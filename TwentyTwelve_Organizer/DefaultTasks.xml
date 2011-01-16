@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+TaskDifficulty="1": VerySimple (1 Day)
+TaskDifficulty="2": Simple (5 Days)
+TaskDifficulty="3": Normal (15 Days)
+TaskDifficulty="4": Hard (1 Month, 10 Days)
+TaskDifficulty="5": VeryHard (3 Months, 10 Days)
+-->
+
+<Tasks>
+  <Task Difficulty="2" Description="Tell someone the story of your life, sparing no details" />
+  <Task Difficulty="5" Description="Buy a round-the-world air ticket and a rucksack, and run away" />
+  <Task Difficulty="4" Description="Be someone's mentor" />
+  <Task Difficulty="5" Description="Learn to play a musical instrument with some degree of skill" />
+  <Task Difficulty="2" Description="Spend a night in a haunted house -- by yourself" />
+  <Task Difficulty="3" Description="Get passionate about a cause and spend time helping it, instead of just thinking about it" />
+  <Task Difficulty="1" Description="Ask someone you've only just met to go on a date" />
+  <Task Difficulty="1" Description="Fart in a crowded space" />
+  <Task Difficulty="3" Description="Reflect on your greatest weakness, and realize how it is your greatest strength" />
+  <Task Difficulty="2" Description="Buy all ours Windows Phone 7 applications" />
+</Tasks>

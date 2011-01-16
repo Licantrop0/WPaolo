@@ -17,6 +17,10 @@ namespace TwentyTwelve_Organizer
         {
             InitializeComponent();
             InitializeTimer();
+            if (Settings.IsTrialMode)
+            {
+                DemoTextBlock.Visibility = System.Windows.Visibility.Visible;
+            }
         }
 
         private void InitializeTimer()
@@ -39,7 +43,7 @@ namespace TwentyTwelve_Organizer
 
         private void ViewTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/TasksPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/TasksPage.xaml", UriKind.Relative));
         }
 
         void dt_Tick(object sender, EventArgs e)

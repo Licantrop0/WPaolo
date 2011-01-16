@@ -76,6 +76,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DemoInfoPage.xaml.cs">
+      <DependentUpon>DemoInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="Task.cs" />
@@ -96,6 +99,10 @@
     <Page Include="AddEditTaskPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DemoInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TasksPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -172,6 +179,7 @@
       <Numbers>True</Numbers>
       <Punctuation>True</Punctuation>
     </BlendEmbeddedFont>
+    <Content Include="WindowsPhoneStateService.dll" />
     <Resource Include="Images\2012background.jpg" />
     <Resource Include="Images\metallic-holes-texture.jpg" />
     <Resource Include="Images\MetallicStrip.png" />

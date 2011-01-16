@@ -78,6 +78,8 @@ namespace TwentyTwelve_Organizer
 
         private void TaskAdd_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(TaskNameTextBox.Text)) return;
+
             TaskDifficulty diff = TaskDifficulty.Normal;
             if (r_verySimple.IsChecked.Value) diff = TaskDifficulty.VerySimple;
             else if (r_Simple.IsChecked.Value) diff = TaskDifficulty.Simple;

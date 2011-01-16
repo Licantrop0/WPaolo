@@ -14,9 +14,9 @@ using Microsoft.Phone.Tasks;
 
 namespace PayMe
 {
-    public partial class TrialExpired : PhoneApplicationPage
+    public partial class TrialExpiredPage : PhoneApplicationPage
     {
-        public TrialExpired()
+        public TrialExpiredPage()
         {
             InitializeComponent();
         }

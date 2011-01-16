@@ -1,12 +1,16 @@
 ﻿using System;
 using System.IO.IsolatedStorage;
 using System.Globalization;
+using Microsoft.Phone.Marketplace;
 
 namespace PayMe
 {
     public static class Settings
     {
         public static string CurrencySymbol { get { return CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol; } }
+
+        #region User Settings
+
         public static Double? HourlyPayment
         {
             get
@@ -37,8 +41,27 @@ namespace PayMe
             }
         }
 
+        public static TimeSpan Threshold
+        {
+            get
+            {
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("threshold"))
+                    IsolatedStorageSettings.ApplicationSettings["threshold"] = TimeSpan.FromMinutes(15);
+                return (TimeSpan)IsolatedStorageSettings.ApplicationSettings["threshold"];
+            }
+            set
+            {
+                if (Threshold != value)
+                    IsolatedStorageSettings.ApplicationSettings["threshold"] = value;
+            }
+        }
+
+        #endregion
+
+        #region Status Management
+
         public enum Status
-        { 
+        {
             Started,
             Stopped,
             Paused,
@@ -90,20 +113,43 @@ namespace PayMe
             }
         }
 
+        #endregion
 
-        public static TimeSpan Threshold
+        #region Trial Mode Detection
+
+        private static LicenseInformation li = new LicenseInformation();
+        public static bool IsTrialMode { get { return li.IsTrial(); } }
+
+        private static DateTime LastOpen
         {
             get
             {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("threshold"))
-                    IsolatedStorageSettings.ApplicationSettings["threshold"] = TimeSpan.FromMinutes(15);
-                return (TimeSpan)IsolatedStorageSettings.ApplicationSettings["threshold"];
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("last_open"))
+                    IsolatedStorageSettings.ApplicationSettings["last_open"] = DateTime.Today.AddDays(-1);
+                return (DateTime)IsolatedStorageSettings.ApplicationSettings["last_open"];
             }
             set
             {
-                if (Threshold != value)
-                    IsolatedStorageSettings.ApplicationSettings["threshold"] = value;
+                if (LastOpen != value)
+                    IsolatedStorageSettings.ApplicationSettings["last_open"] = value;
             }
         }
+
+        public static bool AlreadyOpenedToday
+        {
+            get
+            {
+                if (LastOpen == DateTime.Today)
+                    return true;
+                else
+                {
+                    LastOpen = DateTime.Today;
+                    return false;
+                }
+            }
+        }
+
+        #endregion
+
     }
 }

@@ -23,6 +23,12 @@ namespace PayMe
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            if (Settings.IsTrialMode && Settings.AlreadyOpenedToday)
+            {
+                NavigationService.Navigate(new Uri("/TrialExpiredPage.xaml", UriKind.Relative));
+                return;
+            }
+
             if (!Settings.HourlyPayment.HasValue)
                 NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
             else
@@ -38,6 +44,7 @@ namespace PayMe
 
         void dt_Tick(object sender, EventArgs e)
         {
+            //TODO: risolvere bug qui (quando esce non esegue questo calcolo)
             if (Settings.CurrentStatus == Settings.Status.Paused)
                 Settings.StartTime += dt.Interval;
             else

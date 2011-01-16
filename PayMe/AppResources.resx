@@ -178,7 +178,7 @@
     <value>Trial Expired</value>
   </data>
   <data name="TrialExpiredDescription" xml:space="preserve">
-    <value>Your trial is expired for today.
-Open the app tomorrow or</value>
+    <value>Sorry, your trial is expired for today.
+You can open the app tomorrow or you can</value>
   </data>
 </root>

@@ -82,8 +82,8 @@
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="TiltEffect.cs" />
-    <Compile Include="TrialExpired.xaml.cs">
-      <DependentUpon>TrialExpired.xaml</DependentUpon>
+    <Compile Include="TrialExpiredPage.xaml.cs">
+      <DependentUpon>TrialExpiredPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -99,7 +99,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TrialExpired.xaml">
+    <Page Include="TrialExpiredPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

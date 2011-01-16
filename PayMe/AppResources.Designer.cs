@@ -241,8 +241,8 @@ namespace PayMe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your trial is expired for today.
-        ///Open the app tomorrow or.
+        ///   Looks up a localized string similar to Sorry, your trial is expired for today.
+        ///You can open the app tomorrow or you can.
         /// </summary>
         public static string TrialExpiredDescription {
             get {

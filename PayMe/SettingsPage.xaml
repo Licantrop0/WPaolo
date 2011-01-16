@@ -1,0 +1,89 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="PayMe.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="Georgia"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="WhiteSmoke"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" Loaded="PhoneApplicationPage_Loaded" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                <GradientStop Color="#FFB8B8B8" Offset="1"/>
+                <GradientStop Color="#FF75816D" Offset="0.7"/>
+                <GradientStop Color="#FF1D310F" Offset="0.1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="PageTitle" Margin="9,-7,0,0" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
+                       Text="{Binding Path=LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}" />
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <StackPanel Grid.Row="1" Margin="12,0,12,0">
+            <TextBlock Text="{Binding Path=LocalizedResources.HourlyPayment, Source={StaticResource LocalizedStrings}}"
+                       FontSize="{StaticResource PhoneFontSizeLarge}" />
+            <TextBox Name="HourlyPaymentTextBox" InputScope="TelephoneNumber" FontFamily="Georgia"
+                     GotFocus="HourlyPaymentTextBox_GotFocus" LostFocus="HourlyPaymentTextBox_LostFocus"
+                      Width="200" TextAlignment="Right" HorizontalAlignment="Left" Margin="0,0,0,15"
+                     KeyDown="HourlyPaymentTextBox_KeyDown" />
+
+            <TextBlock Text="{Binding Path=LocalizedResources.CallPay, Source={StaticResource LocalizedStrings}}"
+                       FontSize="{StaticResource PhoneFontSizeLarge}" />
+            <TextBox Name="CallPayTextBox" InputScope="TelephoneNumber" FontFamily="Georgia" 
+                     GotFocus="CallPayTextBox_GotFocus" LostFocus="CallPayTextBox_LostFocus"
+                     HorizontalAlignment="Left" Margin="0,0,0,15" Width="200" TextAlignment="Right" KeyDown="CallPayTextBox_KeyDown" />
+
+            <TextBlock Name="ThresholdTextBox" FontSize="{StaticResource PhoneFontSizeLarge}" 
+                       Text="{Binding Path=LocalizedResources.Threshold, Source={StaticResource LocalizedStrings}}" />
+            <Slider  Name="ThresholdSlider" SmallChange="1" Maximum="5" ValueChanged="ThresholdSlider_ValueChanged" />
+
+            <!--<toolkit:ListPicker Name="ThresholdListPicker" Width="178" HorizontalAlignment="Left" Margin="10,0,0,0">
+                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.OneSecond, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Center" />
+                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.FiveMinutes, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Center" />
+                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.TenMinutes, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Center" />
+                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.FifteenMinutes, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Center" />
+                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.HalfHour, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Center" />
+                <toolkit:ListPickerItem Content="{Binding Path=LocalizedResources.OneHour, Source={StaticResource LocalizedStrings}}" HorizontalAlignment="Center" />
+            </toolkit:ListPicker>-->
+
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>

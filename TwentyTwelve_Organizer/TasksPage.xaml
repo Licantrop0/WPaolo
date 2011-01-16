@@ -1,0 +1,111 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="TwentyTwelve_Organizer.TasksPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=System.Windows"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" shell:SystemTray.IsVisible="True"
+    FontSize="28"
+    d:DesignHeight="768" d:DesignWidth="480"
+    xmlns:Tilt="clr-namespace:Tilt">
+
+    <phone:PhoneApplicationPage.Foreground>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF2DD000" Offset="0"/>
+            <GradientStop Color="#FFAFB1AF" Offset="1"/>
+        </LinearGradientBrush>
+    </phone:PhoneApplicationPage.Foreground>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="Images\2012background.jpg" Stretch="None" AlignmentY="Bottom" />
+        </Grid.Background>
+        <Grid.Resources>
+            <CollectionViewSource x:Name="cvs" >
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription PropertyName="IsCompleted" Direction="Ascending" />
+                    <scm:SortDescription PropertyName="Description" Direction="Ascending" />
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
+        </Grid.Resources>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="2012 Organizer"/>
+            <TextBlock x:Name="PageTitle" Text="Tasks" Margin="9,-7,0,0" FontSize="50" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="12,0,12,0" Orientation="Vertical">
+            <ListBox Name="TaskListBox" ItemsSource="{Binding Source={StaticResource cvs}}"
+                     Margin="6"  Height="540" >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
+                            <StackPanel.Background>
+                                <ImageBrush ImageSource="Images\MetallicStrip.png" Opacity="0.6" Stretch="UniformToFill" />
+                            </StackPanel.Background>
+                            <CheckBox IsChecked="{Binding Path=IsCompleted, Mode=TwoWay}" VerticalAlignment="Center" />
+                            <Button Width="300" VerticalAlignment="Center"
+                                    Click="EditTaskButton_Click"
+                                    Tilt:TiltEffect.IsTiltEnabled="True">
+                                <Button.Template>
+                                    <ControlTemplate />
+                                </Button.Template>
+                                <TextBlock Text="{Binding Path=Description}" Style="{StaticResource GreenTextBlockStyle}" />
+                            </Button>
+                            <Rectangle Fill="{StaticResource PhoneForegroundBrush}" Width="48" Height="48" Margin="6"
+                                       VerticalAlignment="Center" MouseLeftButtonUp="RemoveButton_Click" >
+                                <Rectangle.OpacityMask>
+                                    <ImageBrush ImageSource="Images\remove_white.png" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Button Content="Add Task" Height="70" Margin="6"
+                    Style="{StaticResource MetallicButtonStyle}"
+                    Click="AddTaskButton_Click"
+                    ManipulationStarted="AddTaskButton_ManipulationStarted"
+                    ManipulationCompleted="AddTaskButton_ManipulationCompleted"/>
+        </StackPanel>
+    </Grid>
+</phone:PhoneApplicationPage>

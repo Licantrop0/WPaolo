@@ -49,7 +49,6 @@ namespace TwentyTwelve_Organizer
         void dt_Tick(object sender, EventArgs e)
         {
             TimeLeft = Settings.EndOfTheWorld - DateTime.Now;
-            TimeLeft = TimeLeft.Duration();
             t_countdowndays.Text = TimeLeft.Days.ToString();
             t_countdownhours.Text = TimeLeft.Hours.ToString();
             t_countdownminutes.Text = TimeLeft.Minutes.ToString();

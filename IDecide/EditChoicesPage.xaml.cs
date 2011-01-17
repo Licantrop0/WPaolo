@@ -8,28 +8,33 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Windows.Shapes;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IDecide
 {
     public partial class EditChoicesPage : PhoneApplicationPage
     {
-        private ObservableCollection<string> ChoicesInternal { get; set; }
+        string CurrentGroup;
+        ObservableCollection<string> CurrentChoices = new ObservableCollection<string>();
 
         public EditChoicesPage()
         {
             InitializeComponent();
-            ChoicesInternal = Settings.Choices;
             BuildApplicationBar();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            ChoicesListBox.ItemsSource = ChoicesInternal;
+            CurrentGroup = NavigationContext.QueryString["key"];
+            foreach (var c in Settings.ChoicesGroup.Where(c => c.Key == CurrentGroup))
+                CurrentChoices.Add(c.Value);
+
+            ChoicesListBox.ItemsSource = CurrentChoices;
         }
 
         private void AddButton_Click(object sender, MouseButtonEventArgs e)
         {
-            ChoicesInternal.Add(ChoiceTextBox.Text);
+            CurrentChoices.Add(ChoiceTextBox.Text);
             ChoiceTextBox.Text = string.Empty;
             ChoiceTextBox.Focus();
         }
@@ -43,7 +48,7 @@ namespace IDecide
         private void RemoveButton_Click(object sender, MouseButtonEventArgs e)
         {
             string name = ((Rectangle)sender).DataContext as string;
-            if (name != null) ChoicesInternal.Remove(name);
+            if (name != null) CurrentChoices.Remove(name);
         }
 
         private void BuildApplicationBar()
@@ -55,50 +60,21 @@ namespace IDecide
             SaveAppBarButton.Text = AppResources.Save;
             SaveAppBarButton.Click += delegate(object sender, EventArgs e)
             {
-                Settings.Choices = ChoicesInternal;
+                var OldItems = Settings.ChoicesGroup.Where(c => c.Key == CurrentGroup).ToList();
+                foreach (var c in OldItems)
+                    Settings.ChoicesGroup.Remove(c);
+
+                foreach (var c in CurrentChoices)
+                    Settings.ChoicesGroup.Add(new KeyValuePair<string, string>(CurrentGroup, c));
+
                 NavigationService.GoBack();
             };
             ApplicationBar.Buttons.Add(SaveAppBarButton);
 
-            var MagicBallAppBarMenuItem = new ApplicationBarMenuItem();
-            MagicBallAppBarMenuItem.Text = AppResources.MagicBall;
-            MagicBallAppBarMenuItem.Click += delegate(object sender, EventArgs e) { this.AddItems(Settings.GetMagicBall()); };
-            ApplicationBar.MenuItems.Add(MagicBallAppBarMenuItem);
-
-            var YesNoMaybeAppBarMenuItem = new ApplicationBarMenuItem();
-            YesNoMaybeAppBarMenuItem.Text = AppResources.YesNoMaybe;
-            YesNoMaybeAppBarMenuItem.Click += delegate(object sender, EventArgs e) { this.AddItems(Settings.GetYesNoMaybe()); };
-            ApplicationBar.MenuItems.Add(YesNoMaybeAppBarMenuItem);
-
-            var PercentageAppBarMenuItem = new ApplicationBarMenuItem();
-            PercentageAppBarMenuItem.Text = AppResources.Percentage;
-            PercentageAppBarMenuItem.Click += delegate(object sender, EventArgs e) { this.AddItems(Settings.GetPercentage()); };
-            ApplicationBar.MenuItems.Add(PercentageAppBarMenuItem);
-
-            var HeadOrTailAppBarMenuItem = new ApplicationBarMenuItem();
-            HeadOrTailAppBarMenuItem.Text = AppResources.HeadTail;
-            HeadOrTailAppBarMenuItem.Click += delegate(object sender, EventArgs e) { this.AddItems(Settings.GetHeadOrTail()); };
-            ApplicationBar.MenuItems.Add(HeadOrTailAppBarMenuItem);
-
-            var RPSLSAppBarMenuItem = new ApplicationBarMenuItem();
-            RPSLSAppBarMenuItem.Text = AppResources.RPSLS;
-            RPSLSAppBarMenuItem.Click += delegate(object sender, EventArgs e) { this.AddItems(Settings.GetRPSLS()); };
-            ApplicationBar.MenuItems.Add(RPSLSAppBarMenuItem);
-
             var ClearChoicesAppBarMenuItem = new ApplicationBarMenuItem();
             ClearChoicesAppBarMenuItem.Text = AppResources.ClearChoices;
-            ClearChoicesAppBarMenuItem.Click += delegate(object sender, EventArgs e) { this.AddItems(new List<string>()); };
+            ClearChoicesAppBarMenuItem.Click += delegate(object sender, EventArgs e) { CurrentChoices.Clear(); };
             ApplicationBar.MenuItems.Add(ClearChoicesAppBarMenuItem);
         }
-
-        private void AddItems(IEnumerable<string> items)
-        {
-            ChoicesInternal.Clear();
-            foreach (var item in items)
-                ChoicesInternal.Add(item);
-
-            ChoicesListBox.Focus();
-        }
-
     }
 }

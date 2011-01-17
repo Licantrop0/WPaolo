@@ -16,7 +16,6 @@ namespace IDecide
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        // Constructor
         public MainPage()
         {
             InitializeComponent();
@@ -30,14 +29,19 @@ namespace IDecide
             EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
             EditChoicesAppBarButton.Text = AppResources.EditChoices;
             EditChoicesAppBarButton.Click += delegate(object sender, EventArgs e)
-            { NavigationService.Navigate(new Uri("/EditChoicesPage.xaml", UriKind.Relative)); };
+            { NavigationService.Navigate(new Uri("/GroupChoicesPage.xaml", UriKind.Relative)); };
             ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
         }
 
         private void DecideButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Settings.Choices.Count > 0)
-                MessageBox.Show(Settings.Choices[new Random().Next(Settings.Choices.Count)]);
+            var SelectedChoices = Settings.ChoicesGroup
+                .Where(c => c.Key == Settings.SelectedGroup)
+                .Select(c => c.Value)
+                .ToList();
+
+            if (SelectedChoices.Count > 0)
+                MessageBox.Show(SelectedChoices[new Random().Next(SelectedChoices.Count)]);
             else
                 MessageBox.Show(AppResources.NothingToDecide);
         }

@@ -3,59 +3,69 @@ using System.IO.IsolatedStorage;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using OcKvp = System.Collections.ObjectModel.ObservableCollection<System.Collections.Generic.KeyValuePair<string, string>>;
 
 namespace IDecide
 {
     public static class Settings
     {
-        public static ObservableCollection<string> Choices
+        public static OcKvp ChoicesGroup
         {
             get
             {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("choices"))
-                    IsolatedStorageSettings.ApplicationSettings["choices"] = new ObservableCollection<string>();
-                return (ObservableCollection<string>)IsolatedStorageSettings.ApplicationSettings["choices"];
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("choices_group"))
+                    IsolatedStorageSettings.ApplicationSettings["choices_group"] = GetDefaultChoices();
+                return (OcKvp)IsolatedStorageSettings.ApplicationSettings["choices_group"];
             }
             set
             {
-                if (Choices != value)
-                    IsolatedStorageSettings.ApplicationSettings["choices"] = value;
+                if (ChoicesGroup != value)
+                    IsolatedStorageSettings.ApplicationSettings["choices_group"] = value;
             }
         }
 
-        public static IEnumerable<string> GetYesNoMaybe()
+
+        public static string SelectedGroup
         {
-            yield return AppResources.Yes;
-            yield return AppResources.No;
-            yield return AppResources.Maybe;
+            get
+            {
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("selected_group"))
+                    IsolatedStorageSettings.ApplicationSettings["selected_group"] = "MagicBall";
+                return (string)IsolatedStorageSettings.ApplicationSettings["selected_group"];
+            }
+            set
+            {
+                if (SelectedGroup != value)
+                    IsolatedStorageSettings.ApplicationSettings["selected_group"] = value;
+            }
         }
 
-        public static IEnumerable<string> GetHeadOrTail()
+        private static OcKvp GetDefaultChoices()
         {
-            yield return AppResources.Head;
-            yield return AppResources.Tail;
-        }
+            var Choices = new OcKvp();
 
-        public static IEnumerable<string> GetMagicBall()
-        {
+            Choices.Add(new KeyValuePair<string, string>("YesNoMaybe", AppResources.Yes));
+            Choices.Add(new KeyValuePair<string, string>("YesNoMaybe", AppResources.No));
+            Choices.Add(new KeyValuePair<string, string>("YesNoMaybe", AppResources.Maybe));
+
+            Choices.Add(new KeyValuePair<string, string>("HeadTail", AppResources.Head));
+            Choices.Add(new KeyValuePair<string, string>("HeadTail", AppResources.Tail));
+
+            Choices.Add(new KeyValuePair<string, string>("RPSLS", AppResources.Rock));
+            Choices.Add(new KeyValuePair<string, string>("RPSLS", AppResources.Paper));
+            Choices.Add(new KeyValuePair<string, string>("RPSLS", AppResources.Scissor));
+            Choices.Add(new KeyValuePair<string, string>("RPSLS", AppResources.Lizard));
+            Choices.Add(new KeyValuePair<string, string>("RPSLS", AppResources.Spock));
+
             for (int i = 1; i <= 20; i++)
-                yield return AppResources.ResourceManager.GetString("MagicBall" + i);
-        }
+                Choices.Add(new KeyValuePair<string, string>("MagicBall",
+                    AppResources.ResourceManager.GetString("MagicBall" + i)));
 
-        public static IEnumerable<string> GetPercentage()
-        {
-            return Enumerable.Range(0, 101).Select(i => i + "%");
-        }
+            for (int i = 0; i <= 100; i++)
+                Choices.Add(new KeyValuePair<string, string>("Percentage", i + "%"));
 
-        public static IEnumerable<string> GetRPSLS()
-        {
-            yield return AppResources.Rock;
-            yield return AppResources.Paper;
-            yield return AppResources.Scissor;
-            yield return AppResources.Lizard;
-            yield return AppResources.Spock;
+            return Choices;
         }
-
 
     }
 }

@@ -13,20 +13,6 @@
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	shell:SystemTray.IsVisible="True">
-	<phone:PhoneApplicationPage.Resources>
-		<Style x:Key="ButtonStyle1" TargetType="Button">
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Button">
-						<Grid>
-							<Image Source="IDecide Logo.png" Stretch="Uniform" VerticalAlignment="Top"/>
-							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-	</phone:PhoneApplicationPage.Resources>
 
 	<!--LayoutRoot is the root grid where all page content is placed-->
 	<Grid x:Name="LayoutRoot" Background="Transparent">
@@ -36,17 +22,24 @@
 		</Grid.RowDefinitions>
 
 		<!--TitlePanel contains the name of the application and page title-->
-		<StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,0,0,28">            
+		<StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,0,0,28">
 			<TextBlock x:Name="PageTitle" Text="{Binding Path=LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
 			<TextBlock x:Name="ApplicationTitle" Text="{Binding Path=LocalizedResources.SubTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
 		</StackPanel>
 
 		<!--ContentPanel - place additional content here-->
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-			<Button Name="DecideButton" Content="{Binding Path=LocalizedResources.Decide, Source={StaticResource LocalizedStrings}}"
-					Height="440" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Center" VerticalAlignment="Center"
+			<Button Name="DecideButton" Height="440" HorizontalAlignment="Center" VerticalAlignment="Center"
 					Width="400" Click="DecideButton_Click" VerticalContentAlignment="Bottom"
 					local:TiltEffect.IsTiltEnabled="True">
+				<StackPanel Orientation="Vertical">
+					<Image Source="IDecide Logo.png" Stretch="Uniform" />
+					<TextBlock Text="{Binding Path=LocalizedResources.Decide, Source={StaticResource LocalizedStrings}}"
+							   TextAlignment="Center"/>
+				</StackPanel>
+				<Button.Template>
+					<ControlTemplate />
+				</Button.Template>
 			</Button>
 		</Grid>
 	</Grid>

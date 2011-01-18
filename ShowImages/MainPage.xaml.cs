@@ -54,7 +54,8 @@ namespace ShowImages
                          where href.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase)
                          select FormatImageUrl(href))
                          .Union(ImgLinks)
-                        .ToList();
+                         .Where(i => !string.IsNullOrEmpty(i))
+                         .ToList();
 
             if (ImageList.Count == 0)
                 ImageStackPanel.Children.Add(new TextBlock()
@@ -76,17 +77,19 @@ namespace ShowImages
         private string FormatImageUrl(string url)
         {
             Uri u;
-            if(Uri.TryCreate(url, UriKind.Absolute, out u))
+            if (Uri.TryCreate(url, UriKind.Absolute, out u))
                 return url;
 
             var FirstPart = ChooserWebBrowser.Source.OriginalString.Remove(
                 ChooserWebBrowser.Source.ToString().LastIndexOf('/') + 1);
+
             if (!url.Contains(ChooserWebBrowser.Source.Host))
                 return FirstPart + url;
+
             if (!url.StartsWith("http://", StringComparison.InvariantCultureIgnoreCase))
                 return "http://" + url;
 
-            return url;
+            return string.Empty;
         }
 
         private void ChooserWebBrowser_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)

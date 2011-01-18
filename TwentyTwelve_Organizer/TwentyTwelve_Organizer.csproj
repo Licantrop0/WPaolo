@@ -179,7 +179,6 @@
       <Numbers>True</Numbers>
       <Punctuation>True</Punctuation>
     </BlendEmbeddedFont>
-    <Content Include="WindowsPhoneStateService.dll" />
     <Resource Include="Images\2012background.jpg" />
     <Resource Include="Images\metallic-holes-texture.jpg" />
     <Resource Include="Images\MetallicStrip.png" />

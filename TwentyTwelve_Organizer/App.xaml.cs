@@ -45,8 +45,6 @@ namespace TwentyTwelve_Organizer
 
             // Phone-specific initialization
             InitializePhoneApplication();
-
-            NonLinearNavigationService.Instance.Initialize(RootFrame);
         }
 
         private void InitializeSounds()

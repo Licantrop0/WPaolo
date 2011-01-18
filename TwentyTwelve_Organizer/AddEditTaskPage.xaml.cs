@@ -65,22 +65,21 @@ namespace TwentyTwelve_Organizer
         {
             if (string.IsNullOrEmpty(TaskNameTextBox.Text)) return;
 
-            CurrentTask.Description = TaskNameTextBox.Text;
-
             if (r_verySimple.IsChecked.Value) CurrentTask.Difficulty = TaskDifficulty.VerySimple;
             else if (r_Simple.IsChecked.Value) CurrentTask.Difficulty = TaskDifficulty.Simple;
             else if (r_Normal.IsChecked.Value) CurrentTask.Difficulty = TaskDifficulty.Normal;
             else if (r_Hard.IsChecked.Value) CurrentTask.Difficulty = TaskDifficulty.Hard;
             else CurrentTask.Difficulty = TaskDifficulty.VeryHard;
+            CurrentTask.Description = TaskNameTextBox.Text;
 
-            NavigationService.Navigate(new Uri("/TasksPage.xaml", UriKind.Relative));
+            NavigationService.GoBack();
         }
 
         private void TaskAdd_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(TaskNameTextBox.Text)) return;
 
-            TaskDifficulty diff = TaskDifficulty.Normal;
+            TaskDifficulty diff;
             if (r_verySimple.IsChecked.Value) diff = TaskDifficulty.VerySimple;
             else if (r_Simple.IsChecked.Value) diff = TaskDifficulty.Simple;
             else if (r_Normal.IsChecked.Value) diff = TaskDifficulty.Normal;
@@ -88,15 +87,12 @@ namespace TwentyTwelve_Organizer
             else diff = TaskDifficulty.VeryHard;
 
             Settings.Tasks.Add(new Task(TaskNameTextBox.Text, diff));
-            NavigationService.Navigate(new Uri("/TasksPage.xaml", UriKind.Relative));
+            NavigationService.GoBack();
         }
 
         private void TaskNameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                AddEditButton.Focus();
-            }
+            if (e.Key == Key.Enter) AddEditButton.Focus();
         }
 
         private void AddEditButton_ManipulationStarted(object sender, ManipulationStartedEventArgs e)

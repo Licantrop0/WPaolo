@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Questions>
+  <Question Name="MaleOrFemale" Type="MultipleChoice">
+    <Answer Name="Male" Value="77.5" IsChecked="False" />
+    <Answer Name="Female" Value="83.7" IsChecked="False" />
+  </Question>
+
+  <Question Name="Cigarettes" Type="Number" >
+    <Answer Name="Cigarettes1" Content="" />
+  </Question>
+  
+  <Question Name="Alcohol" Type="MultipleChoice">
+    <Answer Name="Alcohol1" Value="1" IsChecked="False" />
+    <Answer Name="Alcohol2" Value="-0.3" IsChecked="False" />
+    <Answer Name="Alcohol3" Value="-3" IsChecked="False" />
+  </Question>
+
+  <Question Name="Drugs" Type="MultipleChoice">
+    <Answer Name="Drugs1" Value="0" IsChecked="False" />
+    <Answer Name="Drugs2" Value="-1" IsChecked="False" />
+    <Answer Name="Drugs3" Value="-2.2" IsChecked="False" />
+  </Question>
+
+  <Question Name="CronicDisease" Type="MultipleChoice">
+    <Answer Name="CronicDisease1" Value="0" IsChecked="False" />
+    <Answer Name="CronicDisease2" Value="-3" IsChecked="False" />
+    <Answer Name="CronicDisease3" Value="-10" IsChecked="False" />
+  </Question>
+
+  <Question Name="Height" Type="Number">
+    <Answer Name="Height1" Content="" />
+  </Question>
+
+  <Question Name="Weight" Type="Number" >
+    <Answer Name="Weight1" Content="" />
+  </Question>
+  
+  <Question Name="ClinicChecks" Type="MultipleChoice">
+    <Answer Name="ClinicChecks1" Value="-2" IsChecked="False" />
+    <Answer Name="ClinicChecks2" Value="1" IsChecked="False" />
+    <Answer Name="ClinicChecks3" Value="2" IsChecked="False" />
+  </Question>
+
+  <Question Name="Sports" Type="MultipleChoice">
+    <Answer Name="Sports1" Value="-2" IsChecked="False" />
+    <Answer Name="Sports2" Value="1" IsChecked="False" />
+    <Answer Name="Sports3" Value="2" IsChecked="False" />
+  </Question>
+
+  <Question Name="Food" Type="MultipleChoice">
+    <Answer Name="Food1" Value="2" IsChecked="False" />
+    <Answer Name="Food2" Value="0" IsChecked="False" />
+    <Answer Name="Food3" Value="-3" IsChecked="False" />
+    <Answer Name="Food4" Value="-1" IsChecked="False" />
+  </Question>
+
+  <Question Name="Stress" Type="MultipleChoice">
+    <Answer Name="Stress1" Value="1" IsChecked="False" />
+    <Answer Name="Stress2" Value="-1" IsChecked="False" />
+    <Answer Name="Stress3" Value="-2" IsChecked="False" />
+  </Question>
+ 
+</Questions>

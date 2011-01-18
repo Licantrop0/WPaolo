@@ -1,0 +1,69 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="DeathTimer.DeathTimerzPanorama"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <Grid x:Name="LayoutRoot">
+        <controls:Panorama Name="MainPanorama" SelectionChanged="MainPanorama_SelectionChanged"  >
+            <controls:Panorama.Title>
+                <TextBlock Text="{Binding Path=LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
+                           Style="{StaticResource RedChiller}" Margin="0,45,0,0" />
+            </controls:Panorama.Title>
+            <controls:Panorama.Background>
+                <ImageBrush ImageSource="/DeathTimer;component/Images/DeathBackground.jpg" Stretch="UniformToFill" />
+            </controls:Panorama.Background>
+            <!--Age-->
+            <controls:PanoramaItem Margin="0,-60,0,0">
+                <controls:PanoramaItem.Header>
+                    <TextBlock Text="{Binding Path=LocalizedResources.Age, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource RedChiller}" />
+                </controls:PanoramaItem.Header>
+                <Grid  Margin="0,-30,0,0">
+                    <TextBlock Name="YMDTextBlock" HorizontalAlignment="Left" Margin="40,0,0,0" TextWrapping="Wrap"
+                               FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" Style="{StaticResource RedChiller}" />
+                </Grid>
+            </controls:PanoramaItem>
+
+            <!--Days to Birthday-->
+            <controls:PanoramaItem Margin="0,-60,0,0" >
+                <controls:PanoramaItem.Header>
+                    <TextBlock Text="{Binding Path=LocalizedResources.DaysToBirthday, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource RedChiller}" />
+                </controls:PanoramaItem.Header>
+                <Grid  Margin="0,-30,0,0">
+                    <TextBlock Name="DaysToBirthdayTextBlock" HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
+                               FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" Style="{StaticResource RedChiller}"/>
+                    <!--<Image Source="Images\halloween_cake.jpg" HorizontalAlignment="Right" VerticalAlignment="Bottom" Stretch="None" />-->
+                </Grid>
+            </controls:PanoramaItem>
+
+            <!--Time to Death-->
+            <controls:PanoramaItem Margin="0,-60,0,0" >
+                <controls:PanoramaItem.Header>
+                    <TextBlock Text="{Binding Path=LocalizedResources.TimeToDeath, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource RedChiller}" />
+                </controls:PanoramaItem.Header>
+                <Grid Margin="0,-30,0,0">
+                    <TextBlock Name="EstimatedDeathAge" HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
+                                   FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" Style="{StaticResource RedChiller}"/>
+                    
+                    <Button Name="TakeTestButton" Content="{Binding Path=LocalizedResources.TakeTest, Source={StaticResource LocalizedStrings}}"
+                            Visibility="Collapsed" Click="TakeTestButton_Click" Style="{StaticResource RedChillerButton}" >
+                    </Button>
+                </Grid>
+            </controls:PanoramaItem>
+        </controls:Panorama>
+    </Grid>
+
+</phone:PhoneApplicationPage>

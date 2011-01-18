@@ -6,7 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -23,21 +23,15 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,17,0,0">
+            <ProgressBar Name="LoadingProgress" IsIndeterminate="True" Visibility="Collapsed" />
             <TextBox Name="ImageUrlTextBox"  InputScope="Url" KeyDown="ImageUrlTextBox_KeyDown" GotFocus="ImageUrlTextBox_GotFocus" />
         </StackPanel>
 
         <phone:WebBrowser Name="ChooserWebBrowser" Grid.Row="1"
-                          Navigated="ChooserWebBrowser_Navigated" />
+                          Navigated="ChooserWebBrowser_Navigated" Navigating="ChooserWebBrowser_Navigating" />
 
         <ScrollViewer Name="ImageScroller" Grid.Row="1" Visibility="Collapsed">
             <StackPanel Name="ImageStackPanel" />
         </ScrollViewer>
     </Grid>
-
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="AppBar.Images.png" Text="Show Pics"
-                                            Click="ShowPicsApplicationBarIconButton_Click" />
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

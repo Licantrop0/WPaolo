@@ -18,6 +18,9 @@ namespace ShowImages
         public MainPage()
         {
             InitializeComponent();
+            ApplicationBar = new ApplicationBar();
+            ApplicationBar.Buttons.Add(CreateGoHomeAppBarButton());
+            ApplicationBar.Buttons.Add(CreateShowPicsAppBarButton());
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -43,14 +46,13 @@ namespace ShowImages
                 }
 
                 if (src.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase))
-                    ImgLinks.Add(src);
+                    ImgLinks.Add(FormatImageUrl(src));
             }
 
             ImageList = (from anchor in html.DocumentNode.Descendants("a")
                          let href = anchor.GetAttributeValue("href", string.Empty)
                          where href.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase)
-                         select href.StartsWith("http://", StringComparison.InvariantCultureIgnoreCase) ?
-                         href : "http://" + ChooserWebBrowser.Source.Host + ChooserWebBrowser.Source.AbsolutePath + href)
+                         select FormatImageUrl(href))
                          .Union(ImgLinks)
                         .ToList();
 
@@ -64,13 +66,34 @@ namespace ShowImages
                 });
             else
                 ImageList.ForEach(i => ImageStackPanel.Children.Add(
-                    new Image() { Source = new BitmapImage(new Uri(i)) }));
+                    new Image()
+                    {
+                        Source = new BitmapImage(new Uri(i)),
+                        Margin = new Thickness(0, 0, 0, 8)
+                    }));
+        }
+
+        private string FormatImageUrl(string url)
+        {
+            Uri u;
+            if(Uri.TryCreate(url, UriKind.Absolute, out u))
+                return url;
+
+            var FirstPart = ChooserWebBrowser.Source.OriginalString.Remove(
+                ChooserWebBrowser.Source.ToString().LastIndexOf('/') + 1);
+            if (!url.Contains(ChooserWebBrowser.Source.Host))
+                return FirstPart + url;
+            if (!url.StartsWith("http://", StringComparison.InvariantCultureIgnoreCase))
+                return "http://" + url;
+
+            return url;
         }
 
         private void ChooserWebBrowser_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             ImageUrlTextBox.Text = ChooserWebBrowser.Source.ToString();
             Settings.BrowserHistory.Push(ChooserWebBrowser.Source);
+            LoadingProgress.Visibility = Visibility.Collapsed;
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
@@ -96,6 +119,7 @@ namespace ShowImages
 
             if (visibility) //Browser Visible
             {
+                ApplicationBar.Buttons.Add(CreateGoHomeAppBarButton());
                 ApplicationBar.Buttons.Add(CreateShowPicsAppBarButton());
                 ImageScroller.Visibility = Visibility.Collapsed;
                 ChooserWebBrowser.Visibility = Visibility.Visible;
@@ -126,6 +150,16 @@ namespace ShowImages
             return SaveAppBarButton;
         }
 
+        private ApplicationBarIconButton CreateGoHomeAppBarButton()
+        {
+            var GoHomeAppBarButton = new ApplicationBarIconButton();
+            GoHomeAppBarButton.IconUri = new Uri("AppBar.Home.png", UriKind.Relative);
+            GoHomeAppBarButton.Text = "Home";
+            GoHomeAppBarButton.Click += delegate(object sender, EventArgs e)
+            { ChooserWebBrowser.Navigate(new Uri("http://www.google.com/m/?site=images")); };
+            return GoHomeAppBarButton;
+        }
+
         private ApplicationBarIconButton CreateShowPicsAppBarButton()
         {
             var ShowPicsAppBarButton = new ApplicationBarIconButton();
@@ -138,6 +172,7 @@ namespace ShowImages
         private void ShowPicsApplicationBarIconButton_Click(object sender, EventArgs e)
         {
             ImageStackPanel.Children.Clear();
+            ImageScroller.ScrollToVerticalOffset(0);
             SetBrowserVisible(false);
             ExtractImages(ChooserWebBrowser.SaveToString());
         }
@@ -157,6 +192,11 @@ namespace ShowImages
             Uri u;
             if (e.Key == Key.Enter && Uri.TryCreate(ImageUrlTextBox.Text, UriKind.Absolute, out u))
                 ChooserWebBrowser.Navigate(new Uri(ImageUrlTextBox.Text));
+        }
+
+        private void ChooserWebBrowser_Navigating(object sender, NavigatingEventArgs e)
+        {
+            LoadingProgress.Visibility = Visibility.Visible;
         }
 
     }

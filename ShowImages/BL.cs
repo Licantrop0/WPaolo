@@ -25,16 +25,19 @@ namespace ShowImages
 
             wc.OpenReadCompleted += delegate(object sender, OpenReadCompletedEventArgs e)
             {
-                if (e.Cancelled || e.Error != null || e.Result == null)
-                    return;
+                if (e.Cancelled || e.Error != null || e.Result == null) return;
+
                 try
-                { library.SavePicture(Path.GetFileNameWithoutExtension(u), e.Result); }
+                {
+                    library.SavePicture(Path.GetFileNameWithoutExtension(u), e.Result);
+                }
                 catch (InvalidOperationException) { }
                 SaveNextUri(uris);
             };
 
             wc.OpenReadAsync(new Uri(u));
 
+        }
             //WebRequest webRequest = WebRequest.Create(u);
             //webRequest.BeginGetResponse(asyncResult =>
             //{
@@ -47,7 +50,6 @@ namespace ShowImages
 
             //    SaveNextUri(uris);
             //}, null);
-        }
 
     }
 }

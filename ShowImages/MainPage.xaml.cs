@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using System.Windows.Media.Imaging;
+using HtmlAgilityPack;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using HtmlAgilityPack;
-using System.Windows.Media.Imaging;
 
 namespace ShowImages
 {
@@ -124,7 +119,10 @@ namespace ShowImages
             SaveAppBarButton.IconUri = new Uri("AppBar.Save.png", UriKind.Relative);
             SaveAppBarButton.Text = "Save";
             SaveAppBarButton.Click += delegate(object sender, EventArgs e)
-            { BL.SaveFiles(ImageList); };
+            {
+                BL.SaveFiles(ImageList);
+                MessageBox.Show("Images saved in your Picture Library");
+            };
             return SaveAppBarButton;
         }
 

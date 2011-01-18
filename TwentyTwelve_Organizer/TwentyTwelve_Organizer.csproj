@@ -195,5 +195,4 @@
   </Target>
   -->
   <ProjectExtensions />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\WindowsPhone\v7.0\Microsoft.Expression.Blend.WindowsPhone.targets" />
-</Project>
+  </Project>

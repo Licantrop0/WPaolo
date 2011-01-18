@@ -24,19 +24,6 @@ namespace DeathTimer
             BuildApplicationBar();
         }
 
-        void OkAppBarButton_Click(object sender, EventArgs e)
-        {
-            if (!IsTestFilled())
-            {
-                MessageBox.Show(AppResources.TestNotCompleted);
-                return;
-            }
-
-            SaveAnswers();
-            StimateDeathAge();
-            NavigationService.GoBack();
-        }
-
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
@@ -194,7 +181,6 @@ namespace DeathTimer
 
         private void BuildApplicationBar()
         {
-            // Set the page's ApplicationBar to a new instance of ApplicationBar
             ApplicationBar = new ApplicationBar();
 
             var OkAppBarButton = new ApplicationBarIconButton();
@@ -209,6 +195,19 @@ namespace DeathTimer
 
             ApplicationBar.Buttons.Add(OkAppBarButton);
             ApplicationBar.Buttons.Add(CancelAppBarButton);
+        }
+
+        void OkAppBarButton_Click(object sender, EventArgs e)
+        {
+            if (!IsTestFilled())
+            {
+                MessageBox.Show(AppResources.TestNotCompleted);
+                return;
+            }
+
+            SaveAnswers();
+            StimateDeathAge();
+            NavigationService.GoBack();
         }
 
         void CancelAppBarButton_Click(object sender, EventArgs e)

@@ -13,9 +13,15 @@ namespace DeathTimer
         public DeathTimerzPanorama()
         {
             InitializeComponent();
+            InitializeTimer();
             ApplicationBar = new ApplicationBar();
             ApplicationBar.Buttons.Add(CreateSettingsAppBarButton());
 
+            BackgroundMusic.Play();
+        }
+
+        private void InitializeTimer()
+        {
             dt.Interval = TimeSpan.FromSeconds(1);
             dt.Tick += new EventHandler(dt_Tick);
             dt.Start();

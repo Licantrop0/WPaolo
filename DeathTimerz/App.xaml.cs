@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Resources;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using System.IO.IsolatedStorage;
-using System.Windows.Resources;
-using System.IO;
 
 namespace DeathTimer
 {
@@ -43,18 +34,15 @@ namespace DeathTimer
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
+            if (isf.FileExists("Questions.xml")) return;
 
-            using (IsolatedStorageFileStream fs = new IsolatedStorageFileStream("Questions.xml", FileMode.OpenOrCreate, FileAccess.Write, isf))
+            using (IsolatedStorageFileStream fs = new IsolatedStorageFileStream("Questions.xml", FileMode.CreateNew, FileAccess.Write, isf))
             {
-                if (!isf.FileExists("Questions.xml"))
-                {
-                    StreamResourceInfo sri = Application.GetResourceStream(new Uri("DeathTimer;component/Questions.xml", UriKind.Relative));
-                    byte[] bytesInStream = new byte[sri.Stream.Length];
-                    sri.Stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
-
-                    fs.Write(bytesInStream, 0, bytesInStream.Length);
-                    fs.Flush();
-                }
+                StreamResourceInfo sri = Application.GetResourceStream(new Uri("DeathTimer;component/Questions.xml", UriKind.Relative));
+                byte[] bytesInStream = new byte[sri.Stream.Length];
+                sri.Stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
+                fs.Write(bytesInStream, 0, bytesInStream.Length);
+                fs.Flush();
             }
         }
 
@@ -68,7 +56,6 @@ namespace DeathTimer
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
-
         }
 
         // Code to execute when the application is closing (eg, user hit Back)

@@ -16,7 +16,7 @@
 
     <Grid x:Name="LayoutRoot">
         <controls:Panorama Name="MainPanorama" SelectionChanged="MainPanorama_SelectionChanged"  >
-            <controls:Panorama.Title>
+           <controls:Panorama.Title>
                 <TextBlock Text="{Binding Path=LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource RedChiller}" Margin="0,45,0,0" />
             </controls:Panorama.Title>
@@ -64,6 +64,7 @@
                 </Grid>
             </controls:PanoramaItem>
         </controls:Panorama>
+         <MediaElement Name="BackgroundMusic" AutoPlay="True" Source="Music.mp3" />
     </Grid>
 
 </phone:PhoneApplicationPage>

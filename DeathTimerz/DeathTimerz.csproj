@@ -135,13 +135,13 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Images\skull.gif" />
     <Resource Include="Images\halloween_cake.jpg" />
-    <Resource Include="Images\Death counting.jpg" />
-    <Resource Include="Images\no_smoke_by_xcolor.jpg" />
-    <Resource Include="Images\DeathBackground.jpg" />
     <Resource Include="Images\blood.png" />
     <Resource Include="Questions.xml" />
+    <Resource Include="Images\DeathBackground.jpg" />
+    <Content Include="Music.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\appbar_edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

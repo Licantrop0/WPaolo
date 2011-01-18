@@ -58,7 +58,7 @@ namespace TwentyTwelve_Organizer
                 new Uri("BackgroundMusic.wav", UriKind.Relative)).Stream);
             BackgroundMusic = BackgroundSound.CreateInstance();
             BackgroundMusic.IsLooped = true;
-            //faccio finta di aver risolto il bug
+
             var str = App.GetResourceStream(new Uri("TickSound.wav", UriKind.Relative));
             Settings.TickSound = SoundEffect.FromStream(str.Stream);
 

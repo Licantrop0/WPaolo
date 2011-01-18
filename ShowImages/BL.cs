@@ -9,12 +9,10 @@ namespace ShowImages
     public static class BL
     {
         static MediaLibrary library = new MediaLibrary();
-        static WebClient wc = new WebClient();
 
         public static void SaveFiles(List<string> sources)
         {
             Queue<String> uris = new Queue<String>(sources);
-            wc.AllowReadStreamBuffering = true;
             SaveNextUri(uris);
         }
 
@@ -23,6 +21,7 @@ namespace ShowImages
             if (uris.Count == 0) return;
             string u = uris.Dequeue();
 
+            WebClient wc = new WebClient();
             wc.OpenReadCompleted += delegate(object sender, OpenReadCompletedEventArgs e)
             {
                 if (e.Cancelled || e.Error != null || e.Result == null) return;
@@ -36,20 +35,19 @@ namespace ShowImages
             };
 
             wc.OpenReadAsync(new Uri(u));
-
         }
-            //WebRequest webRequest = WebRequest.Create(u);
-            //webRequest.BeginGetResponse(asyncResult =>
-            //{
-            //    var response = webRequest.EndGetResponse(asyncResult);
-            //    using (var stream = response.GetResponseStream())
-            //    {
-            //        if (stream != null)
-            //            library.SavePicture(Path.GetFileName(u), stream);
-            //    }
+        //WebRequest webRequest = WebRequest.Create(u);
+        //webRequest.BeginGetResponse(asyncResult =>
+        //{
+        //    var response = webRequest.EndGetResponse(asyncResult);
+        //    using (var stream = response.GetResponseStream())
+        //    {
+        //        if (stream != null)
+        //            library.SavePicture(Path.GetFileName(u), stream);
+        //    }
 
-            //    SaveNextUri(uris);
-            //}, null);
+        //    SaveNextUri(uris);
+        //}, null);
 
     }
 }

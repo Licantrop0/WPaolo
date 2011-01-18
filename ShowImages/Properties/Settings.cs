@@ -51,6 +51,11 @@ namespace ShowImages
                 History.Remove(last);
                 return last;
             }
+
+            public static Uri Peek()
+            {
+                return History.Last();
+            }
         }
 
     }

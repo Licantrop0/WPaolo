@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.0">
+  <App xmlns=""
+       ProductID="{5132ae33-6f63-4a52-b4c7-e2f474b1a5ff}"
+       Title="Death Timerz"
+       Author="Licantrop0"
+       RuntimeType="Silverlight" Version="1.0.0.0"
+       Genre="apps.normal"
+       Description="With Death Timerz you can calculate your age with accurate precision and predict your death date" Publisher="Licantrop0">
+    <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
+    <Capabilities></Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="DeathTimerzPanorama.xaml" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="DeathTimerzToken" TaskName="_default">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title>DeathTimer</Title>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>

@@ -31,16 +31,20 @@ namespace ShowImages
                 });
             else
             {
-                LoadingProgress.Maximum = Settings.CurrentImageList.Count;
+                LoadingProgress.IsIndeterminate = true;
                 foreach (var ImageUrl in Settings.CurrentImageList)
                 {
                     var i = new Image()
                     {
                         Source = new BitmapImage(new Uri(ImageUrl)),
                         Margin = new Thickness(0, 0, 0, 8)
+                        
                     };
 
-                    i.ImageOpened += delegate(object s, RoutedEventArgs evnt) { LoadingProgress.Value += 1; };
+                    i.ImageOpened += delegate(object s, RoutedEventArgs evnt)
+                    {
+                        LoadingProgress.Value += 1;
+                    };
                     ImageStackPanel.Children.Add(i);
                 }
             }
@@ -71,7 +75,7 @@ namespace ShowImages
 
         private void LoadingProgress_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (LoadingProgress.Value == LoadingProgress.Maximum)
+            if (LoadingProgress.Value >= LoadingProgress.Maximum)
             {
                 LoadingProgress.Value = LoadingProgress.Minimum;
                 if (IsSaving)

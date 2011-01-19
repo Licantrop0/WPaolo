@@ -1,12 +1,12 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="ShowImages.MainPage"
+    x:Class="ShowImages.BrowserPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -15,7 +15,6 @@
     BackKeyPress="PhoneApplicationPage_BackKeyPress"
     Loaded="PhoneApplicationPage_Loaded">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -29,9 +28,13 @@
 
         <phone:WebBrowser Name="ChooserWebBrowser" Grid.Row="1"
                           Navigated="ChooserWebBrowser_Navigated" Navigating="ChooserWebBrowser_Navigating" />
-
-        <ScrollViewer Name="ImageScroller" Grid.Row="1" Visibility="Collapsed">
-            <StackPanel Name="ImageStackPanel" />
-        </ScrollViewer>
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True">
+            <shell:ApplicationBarIconButton IconUri="AppBar.Images.png" Text="Show Pics" Click="ShowPicsApplicationBarIconButton_Click"/>
+            <shell:ApplicationBarIconButton IconUri="AppBar.Home.png" Text="Home" Click="GoHomeAppBarButton_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
 </phone:PhoneApplicationPage>

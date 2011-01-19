@@ -8,18 +8,18 @@ namespace ShowImages
 {
     public static class Settings
     {
-        public static bool BrowserVisibility
+        public static List<string> CurrentImageList
         {
             get
             {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("is_browser_visible"))
-                    IsolatedStorageSettings.ApplicationSettings["is_browser_visible"] = true;
-                return (bool)IsolatedStorageSettings.ApplicationSettings["is_browser_visible"];
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("current_image_list"))
+                    IsolatedStorageSettings.ApplicationSettings["current_image_list"] = new List<string>();
+                return (List<string>)IsolatedStorageSettings.ApplicationSettings["current_image_list"];
             }
             set
             {
-                if (BrowserVisibility != value)
-                    IsolatedStorageSettings.ApplicationSettings["is_browser_visible"] = value;
+                if (CurrentImageList != value)
+                    IsolatedStorageSettings.ApplicationSettings["current_image_list"] = value;
             }
         }
 
@@ -59,6 +59,5 @@ namespace ShowImages
         }
 
     }
-
 
 }

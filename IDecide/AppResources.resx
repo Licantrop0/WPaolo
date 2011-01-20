@@ -250,4 +250,7 @@
   <data name="ClearChoices" xml:space="preserve">
     <value>Clear choices</value>
   </data>
+  <data name="AskAndShake" xml:space="preserve">
+    <value>Ask and Shake!</value>
+  </data>
 </root>

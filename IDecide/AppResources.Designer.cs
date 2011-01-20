@@ -70,6 +70,15 @@ namespace IDecide {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ask and Shake!.
+        /// </summary>
+        public static string AskAndShake {
+            get {
+                return ResourceManager.GetString("AskAndShake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {

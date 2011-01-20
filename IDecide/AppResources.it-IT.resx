@@ -249,4 +249,7 @@
   <data name="ClearChoices" xml:space="preserve">
     <value>Cancella le scelte</value>
   </data>
+  <data name="AskAndShake" xml:space="preserve">
+    <value>Chiedi e poi scuoti!</value>
+  </data>
 </root>

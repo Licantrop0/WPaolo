@@ -9,7 +9,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
@@ -20,11 +20,17 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0">
-            <ProgressBar Name="LoadingProgress" ValueChanged="LoadingProgress_ValueChanged" />
+            <ProgressBar Name="LoadingProgress"
+                         ValueChanged="LoadingProgress_ValueChanged" />
         </StackPanel>
 
         <ScrollViewer Name="ImageScroller" Grid.Row="1" >
-            <StackPanel Name="ImageStackPanel" />
+            <StackPanel Name="ImageStackPanel" >
+                <TextBlock Name="NoImagesTextBlock" Text="No images found, or they are in an incompatible format. Please press back to change the site."
+                           Margin="12" TextWrapping="Wrap" TextAlignment="Center"
+                           FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                           Visibility="Collapsed" />
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 

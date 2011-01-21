@@ -21,7 +21,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,17,0,0">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,0,0,0">
             <ProgressBar Name="LoadingProgress" IsIndeterminate="True" Visibility="Collapsed" />
             <TextBox Name="ImageUrlTextBox"  InputScope="Url" KeyDown="ImageUrlTextBox_KeyDown" GotFocus="ImageUrlTextBox_GotFocus" />
         </StackPanel>

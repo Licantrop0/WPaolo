@@ -145,6 +145,10 @@
     <Resource Include="Images\o1000.png" />
     <Resource Include="Images\o500.png" />
     <Resource Include="Images\sbloccato3.png" />
+    <Resource Include="Images\funFact_base.png" />
+    <Resource Include="Images\oblist.png" />
+    <Resource Include="Images\sbloccato1.png" />
+    <Resource Include="Images\sbloccato2.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup />

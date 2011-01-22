@@ -1,0 +1,89 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="FillTheSquare.FiveSquarePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="Fill the Square!" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="5 x 5 Square" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid Height="350" HorizontalAlignment="Left" Margin="60,140,0,0" Name="MagicFiveGrid" VerticalAlignment="Top" Width="350">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="70*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="70*" />
+                </Grid.ColumnDefinitions>
+                <Button  Name="button1"   Click="Button_Click" />
+                <Button  Name="button2"   Grid.Column="1" Click="Button_Click" />
+                <Button  Name="button3"   Grid.Column="2" Click="Button_Click" />
+                <Button  Name="button4"   Grid.Column="3" Click="Button_Click" />
+                <Button  Name="button5"   Grid.Column="4" Click="Button_Click" />
+                <Button  Name="button6"   Grid.Row="1" Click="Button_Click" />
+                <Button  Name="button7"   Grid.Column="1" Grid.Row="1" Click="Button_Click" />
+                <Button  Name="button8"   Grid.Column="2" Grid.Row="1" Click="Button_Click" />
+                <Button  Name="button9"   Grid.Column="3" Grid.Row="1" Click="Button_Click" />
+                <Button  Name="button10"  Grid.Column="4" Grid.Row="1" Click="Button_Click" />
+                <Button  Name="button11"  Grid.Row="2" Click="Button_Click" />
+                <Button  Name="button12"  Grid.Column="1" Grid.Row="2" Click="Button_Click" />
+                <Button  Name="button13"  Grid.Column="2" Grid.Row="2" Click="Button_Click" />
+                <Button  Name="button14"  Grid.Column="3" Grid.Row="2" Click="Button_Click" />
+                <Button  Name="button15"  Grid.Column="4" Grid.Row="2" Click="Button_Click" />
+                <Button  Name="button16"  Grid.Row="3" Click="Button_Click" />
+                <Button  Name="button17"  Grid.Column="1" Grid.Row="3" Click="Button_Click" />
+                <Button  Name="button18"  Grid.Column="2" Grid.Row="3" Click="Button_Click" />
+                <Button  Name="button19"  Grid.Column="3" Grid.Row="3" Click="Button_Click" />
+                <Button  Name="button20"  Grid.Column="4" Grid.Row="3" Click="Button_Click" />
+                <Button  Name="button21"  Grid.Row="4" Click="Button_Click" />
+                <Button  Name="button22"  Grid.Column="1" Grid.Row="4" Click="Button_Click" />
+                <Button  Name="button23"  Grid.Column="2" Grid.Row="4" Click="Button_Click" />
+                <Button  Name="button24"  Grid.Column="3" Grid.Row="4" Click="Button_Click" />
+                <Button  Name="button25"  Grid.Column="4" Grid.Row="4" Click="Button_Click" />
+            </Grid>
+            <TextBlock Height="51" HorizontalAlignment="Right" Margin="0,42,46,0" Name="secondsTextBlock" Text="0" VerticalAlignment="Top" Width="140" />
+            <TextBlock Height="30" Margin="66,42,256,0" Name="textBlock1" Text="Seconds:" VerticalAlignment="Top" />
+        </Grid>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

@@ -98,18 +98,33 @@ namespace PayMe
             }
         }
 
-        public static DateTime PauseTime
+        public static DateTime StartPauseTime
         {
             get
             {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("pause_time"))
-                    IsolatedStorageSettings.ApplicationSettings["pause_time"] = DateTime.Now;
-                return (DateTime)IsolatedStorageSettings.ApplicationSettings["pause_time"];
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("start_pause_time"))
+                    IsolatedStorageSettings.ApplicationSettings["start_pause_time"] = DateTime.Now;
+                return (DateTime)IsolatedStorageSettings.ApplicationSettings["start_pause_time"];
             }
             set
             {
-                if (PauseTime != value)
-                    IsolatedStorageSettings.ApplicationSettings["pause_time"] = value;
+                if (StartPauseTime != value)
+                    IsolatedStorageSettings.ApplicationSettings["start_pause_time"] = value;
+            }
+        }
+
+        public static TimeSpan PauseTimeSpan
+        {
+            get
+            {
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("pause_timespan"))
+                    IsolatedStorageSettings.ApplicationSettings["pause_timespan"] = new TimeSpan();
+                return (TimeSpan)IsolatedStorageSettings.ApplicationSettings["pause_timespan"];
+            }
+            set
+            {
+                if (PauseTimeSpan != value)
+                    IsolatedStorageSettings.ApplicationSettings["pause_timespan"] = value;
             }
         }
 

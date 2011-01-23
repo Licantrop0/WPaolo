@@ -32,7 +32,7 @@ namespace PayMe
             if (!Settings.HourlyPayment.HasValue)
                 NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
             else
-                SetStatus(Settings.CurrentStatus);
+                ResumeStatus(Settings.CurrentStatus);
         }
 
         private void InitializeTimer()
@@ -44,19 +44,98 @@ namespace PayMe
 
         void dt_Tick(object sender, EventArgs e)
         {
-            //TODO: risolvere bug qui (quando esce non esegue questo calcolo)
-            if (Settings.CurrentStatus == Settings.Status.Paused)
-                Settings.StartTime += dt.Interval;
+            CalculatePayment();
+        }
+
+
+        private void StartStopButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Settings.CurrentStatus == Settings.Status.Stopped)
+            {
+                GoToStatus(Settings.Status.Started);
+            }
             else
-                CalculatePayment();
+            {
+                var sw = new Stopwatch(); sw.Start();
+                if (MessageBox.Show(AppResources.AlertStopCounting, string.Empty, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    if (Settings.CurrentStatus == Settings.Status.Paused)
+                        Settings.StartTime += sw.Elapsed; //CoE del tempo che ci si mette a premere OK nel messagebox
+                    GoToStatus(Settings.Status.Stopped);
+                }
+                sw.Stop();
+            }
+        }
+
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Settings.CurrentStatus == Settings.Status.Started ||
+                Settings.CurrentStatus == Settings.Status.Resumed)
+                GoToStatus(Settings.Status.Paused);
+            else if (Settings.CurrentStatus == Settings.Status.Paused)
+                GoToStatus(Settings.Status.Resumed);
+        }
+
+        private void GoToStatus(Settings.Status status)
+        {
+            Settings.CurrentStatus = status;
+            switch (status)
+            {
+                case Settings.Status.Started:
+                    Settings.StartTime = DateTime.Now;
+                    Settings.PauseTimeSpan = new TimeSpan();
+                    dt.Start();
+                    break;
+                case Settings.Status.Stopped:
+                    Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
+                    dt.Stop();
+                    break;
+                case Settings.Status.Paused:
+                    Settings.StartPauseTime = DateTime.Now;
+                    dt.Stop();
+                    break;
+                case Settings.Status.Resumed:
+                    Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
+                    dt.Start();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void ResumeStatus(Settings.Status status)
+        {
+            switch (status)
+            {
+                case Settings.Status.Started:
+                    VisualStateManager.GoToState(this, "Started", true);
+                    dt.Start();
+                    break;
+                case Settings.Status.Stopped:
+                    Settings.StartTime = DateTime.Now;
+                    VisualStateManager.GoToState(this, "Stopped", true);
+                    break;
+                case Settings.Status.Paused:
+                    Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
+                    VisualStateManager.GoToState(this, "Paused", true);
+                    break;
+                case Settings.Status.Resumed:
+                    VisualStateManager.GoToState(this, "Started", true);
+                    dt.Start();
+                    break;
+                default:
+                    break;
+            }
+            CalculatePayment();
         }
 
         private void CalculatePayment()
         {
-            var ElapsedTime = DateTime.Now - Settings.StartTime;
+            var ElapsedTime = (DateTime.Now - Settings.StartTime) - Settings.PauseTimeSpan;
+
             //Il cuore dell'app è questo calcolo complicatissimo!!!
             //(TempoTrascorso - Resto della divisione con lo scatto).OreTotali * Prezzo Orario + Diritto di chiamata
-            var Payment = FractionTimeSpan(ElapsedTime, Settings.Threshold).TotalHours
+                var Payment = FractionTimeSpan(ElapsedTime, Settings.Threshold).TotalHours
                 * Settings.HourlyPayment + Settings.CallPay;
 
             TotalTextBlock.Text = string.Format("{0:0.00} {1}", Payment, Settings.CurrencySymbol);
@@ -70,62 +149,6 @@ namespace PayMe
             return TimeSpan.FromTicks(t1.Ticks - t1.Ticks % t2.Ticks);
         }
 
-        private void StartStopButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (Settings.CurrentStatus == Settings.Status.Stopped)
-            {
-                SetStatus(Settings.Status.Started);
-            }
-            else
-            {
-                var sw = new Stopwatch(); sw.Start();
-                if (MessageBox.Show(AppResources.AlertStopCounting, string.Empty, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                {
-                    if (Settings.CurrentStatus == Settings.Status.Paused)
-                        Settings.StartTime += sw.Elapsed; //CoE del tempo che ci si mette a premere OK nel messagebox
-                    SetStatus(Settings.Status.Stopped);
-                }
-                sw.Stop();
-            }
-        }
-
-        private void PauseButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (Settings.CurrentStatus == Settings.Status.Started ||
-                Settings.CurrentStatus == Settings.Status.Resumed)
-                SetStatus(Settings.Status.Paused);
-            else if (Settings.CurrentStatus == Settings.Status.Paused)
-                SetStatus(Settings.Status.Resumed);
-        }
-
-        private void SetStatus(Settings.Status status)
-        {
-            Settings.CurrentStatus = status;
-            switch (status)
-            {
-                case Settings.Status.Started:
-                    Settings.StartTime = DateTime.Now;
-                    dt.Start();
-                    VisualStateManager.GoToState(this, "Started", true);
-                    break;
-                case Settings.Status.Resumed:
-                    dt.Start();
-                    VisualStateManager.GoToState(this, "Started", true);
-                    break;
-                case Settings.Status.Paused:
-                    dt.Start();
-                    VisualStateManager.GoToState(this, "Paused", true);
-                    break;
-                case Settings.Status.Stopped:
-                    Settings.StartTime = DateTime.Now;
-                    dt.Stop();
-                    VisualStateManager.GoToState(this, "Stopped", true);
-                    break;
-                default:
-                    break;
-            }
-            CalculatePayment();
-        }
 
         private void CreateAppBar()
         {

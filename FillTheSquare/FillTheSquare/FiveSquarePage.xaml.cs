@@ -77,7 +77,7 @@ namespace FillTheSquare
                 {
                     //TODO aggiungere il punteggio nei records
                     dt.Stop();
-                    MessageBox.Show("Congratulations! 5 x 5 Magic Square completed in " + seconds + "!");
+                    MessageBox.Show("Congratulations! 5 x 5 Magic Square completed in " + seconds + " seconds!");
                     end = true;
                 }
             }
@@ -87,7 +87,7 @@ namespace FillTheSquare
             }
             else
             {
-                //l'utente ha violato le regole quindi non si fa nulla
+                //l'utente ha violato le regole quindi non si fa nulla, magari coloro il tasto di rosso per mezzo secondo?
             }
         }
     }

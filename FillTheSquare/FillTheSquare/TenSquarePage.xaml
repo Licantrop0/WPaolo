@@ -27,7 +27,136 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"></Grid>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <TextBlock Height="30" HorizontalAlignment="Right" Margin="0,6,100,0" Name="secondsTextBlock" Text="0" VerticalAlignment="Top" Width="140" />
+            <TextBlock Height="30" Margin="10,10,312,0" Name="textBlock1" Text="Seconds:" VerticalAlignment="Top" />
+        </Grid>
+        <Grid Height="440" HorizontalAlignment="Center" Margin="12,203,0,0" Name="MagicTenGrid" VerticalAlignment="Center" Width="440" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="44*" />
+                <RowDefinition Height="44*" />
+                <RowDefinition Height="44*" />
+                <RowDefinition Height="44*" />
+                <RowDefinition Height="44*" />
+                <RowDefinition Height="44*" />
+                <RowDefinition Height="44*" />
+                <RowDefinition Height="44*" />
+                <RowDefinition Height="44*" />
+                <RowDefinition Height="44*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="44*" />
+                <ColumnDefinition Width="44*" />
+                <ColumnDefinition Width="44*" />
+                <ColumnDefinition Width="44*" />
+                <ColumnDefinition Width="44*" />
+                <ColumnDefinition Width="44*" />
+                <ColumnDefinition Width="44*" />
+                <ColumnDefinition Width="44*" />
+                <ColumnDefinition Width="44*" />
+                <ColumnDefinition Width="44*" />
+            </Grid.ColumnDefinitions>
+            <Button  Name="button1"   Click="Button_Click" />
+            <Button  Name="button2"   Grid.Column="1" Click="Button_Click" />
+            <Button  Name="button3"   Grid.Column="2" Click="Button_Click" />
+            <Button  Name="button4"   Grid.Column="3" Click="Button_Click" />
+            <Button  Name="button5"   Grid.Column="4" Click="Button_Click" />
+            <Button  Name="button6" Click="Button_Click" Grid.Column="5" />
+            <Button  Name="button7"   Grid.Column="6" Click="Button_Click" />
+            <Button  Name="button8"   Grid.Column="7" Click="Button_Click" />
+            <Button  Name="button9"   Grid.Column="8" Click="Button_Click" />
+            <Button  Name="button10"  Grid.Column="9" Click="Button_Click" Margin="2,0,-2,0" />
+            <Button  Name="button11"  Grid.Row="1" Click="Button_Click" />
+            <Button  Name="button12"  Grid.Column="1" Grid.Row="1" Click="Button_Click" />
+            <Button  Name="button13"  Grid.Column="2" Grid.Row="1" Click="Button_Click" />
+            <Button  Name="button14"  Grid.Column="3" Grid.Row="1" Click="Button_Click" />
+            <Button  Name="button15"  Grid.Column="4" Grid.Row="1" Click="Button_Click" />
+            <Button  Name="button16"  Grid.Row="1" Click="Button_Click" Grid.Column="5" />
+            <Button  Name="button17"  Grid.Column="6" Grid.Row="1" Click="Button_Click" />
+            <Button  Name="button18"  Grid.Column="7" Grid.Row="1" Click="Button_Click" />
+            <Button  Name="button19"  Grid.Column="8" Grid.Row="1" Click="Button_Click" />
+            <Button  Name="button20"  Grid.Column="9" Grid.Row="1" Click="Button_Click" />
+            <Button  Name="button21"  Grid.Row="2" Click="Button_Click" />
+            <Button  Name="button22"  Grid.Column="1" Grid.Row="2" Click="Button_Click" />
+            <Button  Name="button23"  Grid.Column="2" Grid.Row="2" Click="Button_Click" />
+            <Button  Name="button24"  Grid.Column="3" Grid.Row="2" Click="Button_Click" />
+            <Button  Name="button25"  Grid.Column="4" Grid.Row="2" Click="Button_Click" />
+            <Button Name="button26" Grid.Column="5" Grid.Row="2" Click="Button_Click" />
+            <Button Name="button30" Grid.Column="9" Grid.Row="2" Click="Button_Click" />
+            <Button Name="button29" Grid.Column="8" Grid.Row="2" Click="Button_Click" />
+            <Button Name="button28" Grid.Column="7" Grid.Row="2" Click="Button_Click" />
+            <Button Name="button27" Grid.Column="6" Grid.Row="2" Click="Button_Click" />
+            <Button Margin="-2,0,2,0" Name="button31" Grid.Row="3" Click="Button_Click" />
+            <Button Name="button32" Grid.Column="1" Grid.Row="3" Click="Button_Click" />
+            <Button Name="button33" Grid.Column="2" Grid.Row="3" Click="Button_Click" />
+            <Button Name="button34" Grid.Column="3" Grid.Row="3" Click="Button_Click" />
+            <Button Name="button35" Grid.Column="4" Grid.Row="3" Click="Button_Click" />
+            <Button Name="button36" Grid.Column="5" Grid.Row="3" Click="Button_Click" />
+            <Button Name="button37" Grid.Column="6" Grid.Row="3" Click="Button_Click" />
+            <Button Name="button38" Grid.Column="7" Grid.Row="3" Click="Button_Click" />
+            <Button Name="button39" Grid.Column="8" Grid.Row="3" Click="Button_Click" />
+            <Button Name="button40" Grid.Column="9" Grid.Row="3" Click="Button_Click" />
+            <Button Name="button41" Grid.Row="4" Click="Button_Click" />
+            <Button Name="button42" Grid.Column="1" Grid.Row="4" Click="Button_Click" />
+            <Button Name="button43" Grid.Column="2" Grid.Row="4" Click="Button_Click" />
+            <Button Name="button44" Grid.Column="3" Grid.Row="4" Click="Button_Click" />
+            <Button Name="button45" Grid.Column="4" Grid.Row="4" Click="Button_Click" />
+            <Button Name="button46" Grid.Column="5" Grid.Row="4" Click="Button_Click" />
+            <Button Name="button47" Grid.Column="6" Grid.Row="4" Click="Button_Click" />
+            <Button Name="button48" Grid.Column="7" Grid.Row="4" Click="Button_Click" />
+            <Button Name="button49" Grid.Column="8" Grid.Row="4" Click="Button_Click" />
+            <Button Name="button50" Grid.Column="9" Grid.Row="4" Click="Button_Click" />
+            <Button Name="button51" Grid.Row="5" Click="Button_Click" />
+            <Button Name="button52" Grid.Column="1" Grid.Row="5" Click="Button_Click" />
+            <Button Name="button53" Grid.Column="2" Grid.Row="5" Click="Button_Click" />
+            <Button Name="button54" Grid.Column="3" Grid.Row="5" Click="Button_Click" />
+            <Button Name="button55" Grid.Column="4" Grid.Row="5" Click="Button_Click" />
+            <Button Name="button56" Grid.Column="5" Grid.Row="5" Click="Button_Click" />
+            <Button Name="button57" Grid.Column="6" Grid.Row="5" Click="Button_Click" />
+            <Button Name="button58" Grid.Column="7" Grid.Row="5" Click="Button_Click" />
+            <Button Name="button59" Grid.Column="8" Grid.Row="5" Click="Button_Click" />
+            <Button Name="button60" Grid.Column="9" Grid.Row="5" Click="Button_Click" />
+            <Button Name="button61" Grid.Row="6" Click="Button_Click" />
+            <Button Name="button62" Grid.Column="1" Grid.Row="6" Click="Button_Click" />
+            <Button Name="button63" Grid.Column="2" Grid.Row="6" Click="Button_Click" />
+            <Button Name="button64" Grid.Column="3" Grid.Row="6" Click="Button_Click" />
+            <Button Name="button65" Grid.Column="4" Grid.Row="6" Click="Button_Click" />
+            <Button Name="button66" Grid.Column="5" Grid.Row="6" Click="Button_Click" />
+            <Button Name="button67" Grid.Column="6" Grid.Row="6" Click="Button_Click" />
+            <Button Name="button68" Grid.Column="7" Grid.Row="6" Click="Button_Click" />
+            <Button Name="button69" Grid.Column="8" Grid.Row="6" Click="Button_Click" />
+            <Button Name="button70" Grid.Column="9" Grid.Row="6" Click="Button_Click" />
+            <Button Name="button71" Grid.Row="7" Click="Button_Click" />
+            <Button Name="button72" Grid.Column="1" Grid.Row="7" Click="Button_Click" />
+            <Button Name="button73" Grid.Column="2" Grid.Row="7" Click="Button_Click" />
+            <Button Name="button74" Grid.Column="3" Grid.Row="7" Click="Button_Click" />
+            <Button Name="button75" Grid.Column="4" Grid.Row="7" Click="Button_Click" />
+            <Button Name="button76" Grid.Column="5" Grid.Row="7" Click="Button_Click" />
+            <Button Name="button77" Grid.Column="6" Grid.Row="7" Click="Button_Click" />
+            <Button Name="button78" Grid.Column="7" Grid.Row="7" Click="Button_Click" />
+            <Button Name="button79" Grid.Column="8" Grid.Row="7" Click="Button_Click" />
+            <Button Name="button80" Grid.Column="9" Grid.Row="7" Click="Button_Click" />
+            <Button Name="button81" Grid.Row="8" Click="Button_Click" />
+            <Button Name="button82" Grid.Column="1" Grid.Row="8" Click="Button_Click" />
+            <Button Name="button83" Grid.Column="2" Grid.Row="8" Click="Button_Click" />
+            <Button Name="button84" Grid.Column="3" Grid.Row="8" Click="Button_Click" />
+            <Button Name="button85" Grid.Column="4" Grid.Row="8" Click="Button_Click" />
+            <Button Name="button86" Grid.Column="5" Grid.Row="8" Click="Button_Click" />
+            <Button Name="button87" Grid.Column="6" Grid.Row="8" Click="Button_Click" />
+            <Button Name="button88" Grid.Column="7" Grid.Row="8" Click="Button_Click" />
+            <Button Name="button89" Grid.Column="8" Grid.Row="8" Click="Button_Click" />
+            <Button Name="button90" Grid.Column="9" Grid.Row="8" Click="Button_Click" />
+            <Button Name="button91" Grid.Row="9" Click="Button_Click" />
+            <Button Name="button92" Grid.Column="1" Grid.Row="9" Click="Button_Click" />
+            <Button Name="button93" Grid.Column="2" Grid.Row="9" Click="Button_Click" />
+            <Button Name="button94" Grid.Column="3" Grid.Row="9" Click="Button_Click" />
+            <Button Name="button95" Grid.Column="4" Grid.Row="9" Click="Button_Click" />
+            <Button Name="button96" Grid.Column="5" Grid.Row="9" Click="Button_Click" />
+            <Button Name="button97" Grid.Column="6" Grid.Row="9" Click="Button_Click" />
+            <Button Name="button98" Grid.Column="7" Grid.Row="9" Click="Button_Click" />
+            <Button Name="button99" Grid.Column="8" Grid.Row="9" Click="Button_Click" />
+            <Button Name="button100" Grid.Column="9" Grid.Row="9" Click="Button_Click" />
+        </Grid>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

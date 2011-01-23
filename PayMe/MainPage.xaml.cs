@@ -74,7 +74,6 @@ namespace PayMe
 
         private void GoToStatus(Settings.Status status)
         {
-            Settings.CurrentStatus = status;
             switch (status)
             {
                 case Settings.Status.Started:
@@ -85,7 +84,8 @@ namespace PayMe
                     break;
                 case Settings.Status.Stopped:
                     //SE CI ARRIVA DALLO STATUS STARTED NON DEVE FARE QUESTO CALCOLO SE NO SBAGLIA
-                    Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
+                    if (Settings.CurrentStatus == Settings.Status.Paused)
+                        Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
                     dt.Stop();
                     VisualStateManager.GoToState(this, "Stopped", true);
                     var a = new Attendance(Settings.StartTime, DateTime.Now, Settings.PauseTimeSpan,
@@ -106,7 +106,8 @@ namespace PayMe
                 default:
                     break;
             }
-        }
+             Settings.CurrentStatus = status;
+       }
 
         private void ResumeStatus(Settings.Status status)
         {

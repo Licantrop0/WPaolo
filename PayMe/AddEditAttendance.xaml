@@ -30,7 +30,7 @@
         <StackPanel Name="AttendanceStackPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBlock Height="30" Name="StartTimeTextBlock" Text="{Binding Path=StartTime}" />
             <TextBlock Height="30" Name="EndTimeTextBlock" Text="{Binding Path=EndTime}" />
-            <TextBox Height="71" Name="CustomerNameTextBox" Text="{Binding Path=Customer, Mode=TwoWay}" />
+            <TextBox Height="71" Name="CustomerNameTextBox" Text="{Binding Path=Customer}" />
             <TextBlock Height="30" Name="IncomeTextBlock" Text="{Binding Path=Income}" />
         </StackPanel>
     </Grid>

@@ -121,13 +121,16 @@
     <value>Vuoi interrompere il conteggio e resettare il timer?</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>PagaMi</value>
+    <value>PayMe</value>
   </data>
   <data name="CallPay" xml:space="preserve">
     <value>Diritto di chiamata</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annulla</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Cancella</value>
   </data>
   <data name="ElapsedTime" xml:space="preserve">
     <value>Tempo trascorso</value>

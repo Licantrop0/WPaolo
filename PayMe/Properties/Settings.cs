@@ -77,10 +77,10 @@ namespace PayMe
 
         public enum Status
         {
-            Started,
-            Stopped,
-            Paused,
-            Resumed
+            Stopped = 0,
+            Started = 1,
+            Paused = 2,
+            Resumed = 3
         }
 
         public static Status CurrentStatus
@@ -88,13 +88,13 @@ namespace PayMe
             get
             {
                 if (!IsolatedStorageSettings.ApplicationSettings.Contains("current_status"))
-                    IsolatedStorageSettings.ApplicationSettings["current_status"] = Status.Stopped;
+                    IsolatedStorageSettings.ApplicationSettings["current_status"] = 0;
                 return (Status)IsolatedStorageSettings.ApplicationSettings["current_status"];
             }
             set
             {
                 if (CurrentStatus != value)
-                    IsolatedStorageSettings.ApplicationSettings["current_status"] = value;
+                    IsolatedStorageSettings.ApplicationSettings["current_status"] = (int)value;
             }
         }
 

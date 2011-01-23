@@ -44,7 +44,7 @@ namespace PayMe
 
         void dt_Tick(object sender, EventArgs e)
         {
-            CalculatePayment();
+            DisplayPayment();
         }
 
 
@@ -56,14 +56,10 @@ namespace PayMe
             }
             else
             {
-                var sw = new Stopwatch(); sw.Start();
                 if (MessageBox.Show(AppResources.AlertStopCounting, string.Empty, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
-                    if (Settings.CurrentStatus == Settings.Status.Paused)
-                        Settings.StartTime += sw.Elapsed; //CoE del tempo che ci si mette a premere OK nel messagebox
                     GoToStatus(Settings.Status.Stopped);
                 }
-                sw.Stop();
             }
         }
 
@@ -83,20 +79,29 @@ namespace PayMe
             {
                 case Settings.Status.Started:
                     Settings.StartTime = DateTime.Now;
-                    Settings.PauseTimeSpan = new TimeSpan();
+                    Settings.PauseTimeSpan = TimeSpan.Zero;
                     dt.Start();
+                    VisualStateManager.GoToState(this, "Started", true);
                     break;
                 case Settings.Status.Stopped:
+                    //SE CI ARRIVA DALLO STATUS STARTED NON DEVE FARE QUESTO CALCOLO SE NO SBAGLIA
                     Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
                     dt.Stop();
+                    VisualStateManager.GoToState(this, "Stopped", true);
+                    var a = new Attendance(Settings.StartTime, DateTime.Now, Settings.PauseTimeSpan,
+                            CalculatePayment(), Settings.CurrencySymbol);
+                    Settings.Attendances.Add(a);
+                    NavigationService.Navigate(new Uri("/AddEditAttendance.xaml?id=" + a.Id, UriKind.Relative));
                     break;
                 case Settings.Status.Paused:
                     Settings.StartPauseTime = DateTime.Now;
                     dt.Stop();
+                    VisualStateManager.GoToState(this, "Paused", true);
                     break;
                 case Settings.Status.Resumed:
                     Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
                     dt.Start();
+                    VisualStateManager.GoToState(this, "Started", true);
                     break;
                 default:
                     break;
@@ -113,10 +118,12 @@ namespace PayMe
                     break;
                 case Settings.Status.Stopped:
                     Settings.StartTime = DateTime.Now;
+                    Settings.PauseTimeSpan = TimeSpan.Zero;
                     VisualStateManager.GoToState(this, "Stopped", true);
                     break;
                 case Settings.Status.Paused:
                     Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
+                    Settings.StartPauseTime = DateTime.Now;
                     VisualStateManager.GoToState(this, "Paused", true);
                     break;
                 case Settings.Status.Resumed:
@@ -126,17 +133,16 @@ namespace PayMe
                 default:
                     break;
             }
-            CalculatePayment();
+            DisplayPayment();
         }
 
-        private void CalculatePayment()
+        private void DisplayPayment()
         {
             var ElapsedTime = (DateTime.Now - Settings.StartTime) - Settings.PauseTimeSpan;
 
             //Il cuore dell'app è questo calcolo complicatissimo!!!
             //(TempoTrascorso - Resto della divisione con lo scatto).OreTotali * Prezzo Orario + Diritto di chiamata
-                var Payment = FractionTimeSpan(ElapsedTime, Settings.Threshold).TotalHours
-                * Settings.HourlyPayment + Settings.CallPay;
+            var Payment = FractionTimeSpan(ElapsedTime, Settings.Threshold).TotalHours * Settings.HourlyPayment.Value + Settings.CallPay;
 
             TotalTextBlock.Text = string.Format("{0:0.00} {1}", Payment, Settings.CurrencySymbol);
 
@@ -147,6 +153,14 @@ namespace PayMe
         private TimeSpan FractionTimeSpan(TimeSpan t1, TimeSpan t2)
         {
             return TimeSpan.FromTicks(t1.Ticks - t1.Ticks % t2.Ticks);
+        }
+
+
+        private double CalculatePayment()
+        {
+            var ElapsedTime = (DateTime.Now - Settings.StartTime) - Settings.PauseTimeSpan;
+            var i = FractionTimeSpan(ElapsedTime, Settings.Threshold).TotalHours * Settings.HourlyPayment.Value + Settings.CallPay;
+            return i;
         }
 
 

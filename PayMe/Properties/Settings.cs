@@ -2,14 +2,29 @@
 using System.IO.IsolatedStorage;
 using System.Globalization;
 using Microsoft.Phone.Marketplace;
+using System.Collections.Generic;
 
 namespace PayMe
 {
     public static class Settings
     {
-        public static string CurrencySymbol { get { return CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol; } }
 
         #region User Settings
+
+        public static string CurrencySymbol
+        {
+            get
+            {
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("currency_symbol"))
+                    IsolatedStorageSettings.ApplicationSettings["currency_symbol"] = CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol;
+                return (string)IsolatedStorageSettings.ApplicationSettings["currency_symbol"];
+            }
+            set
+            {
+                if (CurrencySymbol != value)
+                    IsolatedStorageSettings.ApplicationSettings["currency_symbol"] = value;
+            }
+        }  
 
         public static Double? HourlyPayment
         {
@@ -130,6 +145,21 @@ namespace PayMe
 
         #endregion
 
+        public static List<Attendance> Attendances
+        {
+            get
+            {
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("attendances"))
+                    IsolatedStorageSettings.ApplicationSettings["attendances"] = new List<Attendance>();
+                return (List<Attendance>)IsolatedStorageSettings.ApplicationSettings["attendances"];
+            }
+            set
+            {
+                if (Attendances != value)
+                    IsolatedStorageSettings.ApplicationSettings["attendances"] = value;
+            }
+        }
+        
         #region Trial Mode Detection
 
         private static LicenseInformation li = new LicenseInformation();

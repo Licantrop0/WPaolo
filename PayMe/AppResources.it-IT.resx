@@ -123,11 +123,17 @@
   <data name="AppName" xml:space="preserve">
     <value>PayMe</value>
   </data>
+  <data name="BuyNow" xml:space="preserve">
+    <value>acquistala ora</value>
+  </data>
   <data name="CallPay" xml:space="preserve">
     <value>Diritto di chiamata</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annulla</value>
+  </data>
+  <data name="CurrencySymbol" xml:space="preserve">
+    <value>Valuta</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Cancella</value>
@@ -173,5 +179,12 @@
   </data>
   <data name="Threshold" xml:space="preserve">
     <value>Scatto ogni</value>
+  </data>
+  <data name="TrialExpired" xml:space="preserve">
+    <value>Trial scaduta</value>
+  </data>
+  <data name="TrialExpiredDescription" xml:space="preserve">
+    <value>La versione di prova è scaduta per oggi.
+Puoi aprire questa app domani, oppure</value>
   </data>
 </root>

@@ -106,6 +106,15 @@ namespace PayMe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        public static string CurrencySymbol {
+            get {
+                return ResourceManager.GetString("CurrencySymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {

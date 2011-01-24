@@ -11,11 +11,13 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Windows.Data;
 
 namespace PayMe
 {
     public partial class SettingsPage : PhoneApplicationPage
     {
+        Settings CurrentSettings = new Settings();
         public SettingsPage()
         {
             InitializeComponent();
@@ -24,10 +26,12 @@ namespace PayMe
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            HourlyPaymentTextBox.Text = GetCurrencyText(Settings.HourlyPayment);
-            CallPayTextBox.Text = GetCurrencyText(Settings.CallPay);
-            ThresholdSlider.Value = GetThresholdIndex(Settings.Threshold);
-            ThresholdTextBox.Text = GetThresholdText(ThresholdSlider.Value);
+            SettingsStackPanel.DataContext = CurrentSettings;
+            //CurrencyListPicker.SelectedItem = Settings.CurrencySymbol;
+            //HourlyPaymentTextBox.Text = GetCurrencyText(Settings.HourlyPayment);
+            //CallPayTextBox.Text = GetCurrencyText(Settings.CallPay);
+            //ThresholdSlider.Value = GetThresholdIndex(Settings.Threshold);
+            //ThresholdTextBox.Text = GetThresholdText(ThresholdSlider.Value);
         }
 
         private void ThresholdSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -43,9 +47,11 @@ namespace PayMe
             SaveAppBarButton.Text = AppResources.Save;
             SaveAppBarButton.Click += delegate(object sender, EventArgs e)
             {
-                Settings.HourlyPayment = GetCurrencyValue(HourlyPaymentTextBox.Text);
-                Settings.CallPay = GetCurrencyValue(CallPayTextBox.Text);
-                Settings.Threshold = GetThresholdValue(ThresholdSlider.Value);
+                HourlyPaymentTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
+                //Settings.HourlyPayment = GetCurrencyValue(HourlyPaymentTextBox.Text);
+                //Settings.CallPay = GetCurrencyValue(CallPayTextBox.Text);
+                //Settings.Threshold = GetThresholdValue(ThresholdSlider.Value);
                 NavigationService.GoBack();
             };
 
@@ -53,20 +59,6 @@ namespace PayMe
         }
 
         #region Converters
-
-        double GetCurrencyValue(string currency)
-        {
-            double temp;
-            return double.TryParse(
-                currency.Replace(" " + Settings.CurrencySymbol, string.Empty), out temp) ? temp : 0.0;
-        }
-
-        string GetCurrencyText(double? currency)
-        {
-            if (!currency.HasValue) currency = 0.0;
-            return string.Format("{0:0.00} {1}", currency, Settings.CurrencySymbol);
-        }
-
 
         private TimeSpan GetThresholdValue(double index)
         {
@@ -169,6 +161,13 @@ namespace PayMe
         {
             if (!Settings.HourlyPayment.HasValue)
                 throw new Exception("ForceExit");
+        }
+
+        private void CurrencyListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Settings.CurrencySymbol = ((ListPicker)sender).SelectedItem as string;
+            //HourlyPaymentTextBox_LostFocus(sender, null);
+            //CallPayTextBox_LostFocus(sender, null);
         }
     }
 }

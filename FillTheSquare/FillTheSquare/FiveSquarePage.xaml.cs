@@ -75,10 +75,12 @@ namespace FillTheSquare
                 currentButton.Background = new SolidColorBrush(Colors.Green);
                 if (FiveSquare.actualValue == 25)
                 {
-                    //TODO aggiungere il punteggio nei records
                     dt.Stop();
-                    MessageBox.Show("Congratulations! 5 x 5 Magic Square completed in " + seconds + " seconds!");
+                    MessageBox.Show("Congratulations! 5 x 5 Magic Square completed in " + seconds + " seconds! Please insert your name");
                     end = true;
+                    string userName = null;
+                    //TO DO: APRIRE MESSAGE BOX PER INSERIRE NOME
+                    Settings.RecordsList.Add(new Record(seconds, userName, DateTime.Now));
                 }
             }
             else if (res && cancel)

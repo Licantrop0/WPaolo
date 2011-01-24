@@ -108,25 +108,6 @@
       <All>True</All>
       <AutoFill>True</AutoFill>
     </BlendEmbeddedFont>
-    <Resource Include="Images\capra1.jpg" />
-    <Resource Include="Images\capra10.jpg" />
-    <Resource Include="Images\capra11.jpg" />
-    <Resource Include="Images\capra12.jpg" />
-    <Resource Include="Images\capra13.jpg" />
-    <Resource Include="Images\capra14.jpg" />
-    <Resource Include="Images\capra15.jpg" />
-    <Resource Include="Images\capra16.jpg" />
-    <Resource Include="Images\capra17.jpg" />
-    <Resource Include="Images\capra18.jpg" />
-    <Resource Include="Images\capra2.jpg" />
-    <Resource Include="Images\capra3.jpg" />
-    <Resource Include="Images\capra4.jpg" />
-    <Resource Include="Images\capra5.jpg" />
-    <Resource Include="Images\capra6.jpg" />
-    <Resource Include="Images\capra7.jpg" />
-    <Resource Include="Images\capra8.jpg" />
-    <Resource Include="Images\capra9.jpg" />
-    <Resource Include="Images\capra0.jpg" />
     <Content Include="capra.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -149,6 +130,35 @@
     <Resource Include="Images\oblist.png" />
     <Resource Include="Images\sbloccato1.png" />
     <Resource Include="Images\sbloccato2.png" />
+    <Resource Include="Images\googleCapre\capra0.jpg" />
+    <Resource Include="Images\googleCapre\capra1.jpg" />
+    <Resource Include="Images\googleCapre\capra10.jpg" />
+    <Resource Include="Images\googleCapre\capra11.jpg" />
+    <Resource Include="Images\googleCapre\capra12.jpg" />
+    <Resource Include="Images\googleCapre\capra13.jpg" />
+    <Resource Include="Images\googleCapre\capra14.jpg" />
+    <Resource Include="Images\googleCapre\capra15.jpg" />
+    <Resource Include="Images\googleCapre\capra16.jpg" />
+    <Resource Include="Images\googleCapre\capra17.jpg" />
+    <Resource Include="Images\googleCapre\capra18.jpg" />
+    <Resource Include="Images\googleCapre\capra2.jpg" />
+    <Resource Include="Images\googleCapre\capra3.jpg" />
+    <Resource Include="Images\googleCapre\capra4.jpg" />
+    <Resource Include="Images\googleCapre\capra5.jpg" />
+    <Resource Include="Images\googleCapre\capra6.jpg" />
+    <Resource Include="Images\googleCapre\capra7.jpg" />
+    <Resource Include="Images\googleCapre\capra8.jpg" />
+    <Resource Include="Images\googleCapre\capra9.jpg" />
+    <Resource Include="Images\capra0.png" />
+    <Resource Include="Images\capra1.png" />
+    <Resource Include="Images\capra2.png" />
+    <Resource Include="Images\capra3.png" />
+    <Resource Include="Images\capra4.png" />
+    <Resource Include="Images\capra5.png" />
+    <Resource Include="Images\capra6.png" />
+    <Resource Include="Images\capra7.png" />
+    <Resource Include="Images\capra8.png" />
+    <Resource Include="Images\capra9.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup />

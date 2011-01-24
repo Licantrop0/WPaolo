@@ -59,7 +59,7 @@ namespace Capra
                 new FunFact(ff.Attribute("Type").Value, ff.Attribute("Text").Value)).ToList();
 
             //Carica le immagini delle capre
-            for (int i = 0; i <= 18; i++)
+            for (int i = 0; i <= 9; i++)
                 CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".jpg", UriKind.Relative)));
 
             SetNewCapraImage();

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace PayMe
 {
-    public static class Settings
+    public class Settings
     {
 
         #region User Settings

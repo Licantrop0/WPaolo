@@ -13,6 +13,7 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:local="clr-namespace:PayMe"
     Loaded="PhoneApplicationPage_Loaded" BackKeyPress="PhoneApplicationPage_BackKeyPress">
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -35,7 +36,6 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -50,15 +50,19 @@
             </LinearGradientBrush>
         </Grid.Background>
 
-        <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="PageTitle" Margin="9,-7,0,0" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
                        Text="{Binding Path=LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}" />
         </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
         <StackPanel Name="SettingsStackPanel" Grid.Row="1" Margin="12,0,12,0">
-            <toolkit:ListPicker Name="CurrencyListPicker" Margin="12,0,0,15" Width="176"
+            <StackPanel.Resources>
+                <local:CurrencyTextConverter x:Key="CurrencyTextConverter" />
+                <local:ThresholdConverter x:Key="ThresholdConverter" />
+                <local:ThresholdTextConverter x:Key="ThresholdTextConverter" />
+            </StackPanel.Resources>
+
+            <!--<toolkit:ListPicker Name="CurrencyListPicker" Margin="12,0,0,15" Width="176"
                                 HorizontalAlignment="Left" >
                 <toolkit:ListPicker.HeaderTemplate>
                     <DataTemplate>
@@ -73,27 +77,27 @@
                 <toolkit:ListPickerItem Content="£" />
                 <toolkit:ListPickerItem Content="¥" />
                 <toolkit:ListPickerItem Content="Fr" />
-            </toolkit:ListPicker>
+            </toolkit:ListPicker>-->
+
             <TextBlock Text="{Binding Path=LocalizedResources.HourlyPayment, Source={StaticResource LocalizedStrings}}"
                        FontSize="{StaticResource PhoneFontSizeLarge}" />
-            <!--GotFocus="HourlyPaymentTextBox_GotFocus" LostFocus="HourlyPaymentTextBox_LostFocus"-->
             <TextBox Name="HourlyPaymentTextBox" InputScope="TelephoneNumber" FontFamily="Georgia"
-                     Text="{Binding HourlyPayment, UpdateSourceTrigger=Explicit}"
+                     Text="{Binding HourlyPayment, Converter={StaticResource CurrencyTextConverter}, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
                       Width="200" TextAlignment="Right" HorizontalAlignment="Left" Margin="0,0,0,15"
-                     KeyDown="HourlyPaymentTextBox_KeyDown" />
+                     KeyDown="HourlyPaymentTextBox_KeyDown" GotFocus="HourlyPaymentTextBox_GotFocus" />
 
             <TextBlock Text="{Binding Path=LocalizedResources.CallPay, Source={StaticResource LocalizedStrings}}"
                        FontSize="{StaticResource PhoneFontSizeLarge}" />
-            <!--GotFocus="CallPayTextBox_GotFocus" LostFocus="CallPayTextBox_LostFocus"-->
+
             <TextBox Name="CallPayTextBox" InputScope="TelephoneNumber" FontFamily="Georgia"
-                     Text="{Binding CallPay}"
-                     HorizontalAlignment="Left" Margin="0,0,0,15" Width="200" TextAlignment="Right" KeyDown="CallPayTextBox_KeyDown" />
+                     Text="{Binding Path=CallPay, Converter={StaticResource CurrencyTextConverter}, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                     GotFocus="CallPayTextBox_GotFocus"  KeyDown="CallPayTextBox_KeyDown"
+                     HorizontalAlignment="Left" Margin="0,0,0,15" Width="200" TextAlignment="Right" />
 
             <TextBlock Name="ThresholdTextBox" FontSize="{StaticResource PhoneFontSizeLarge}" 
-                       Text="{Binding Path=LocalizedResources.Threshold, Source={StaticResource LocalizedStrings}}" />
+                       Text="{Binding ElementName=ThresholdSlider, Path=Value, Converter={StaticResource ThresholdTextConverter}}" />
             <Slider Name="ThresholdSlider" SmallChange="1" Maximum="5"
-                    Value="{Binding Threshold}"
-                    ValueChanged="ThresholdSlider_ValueChanged" />
+                    Value="{Binding Threshold, Converter={StaticResource ThresholdConverter}, Mode=TwoWay, UpdateSourceTrigger=Explicit}" />
         </StackPanel>
     </Grid>
 

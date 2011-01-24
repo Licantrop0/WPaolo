@@ -13,6 +13,7 @@ namespace PayMe
     public partial class MainPage : PhoneApplicationPage
     {
         DispatcherTimer dt;
+        Settings settings = new Settings();
 
         public MainPage()
         {
@@ -29,7 +30,7 @@ namespace PayMe
                 return;
             }
 
-            if (!Settings.HourlyPayment.HasValue)
+            if (!settings.HourlyPayment.HasValue)
                 NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
             else
                 ResumeStatus(Settings.CurrentStatus);
@@ -83,7 +84,6 @@ namespace PayMe
                     VisualStateManager.GoToState(this, "Started", true);
                     break;
                 case Settings.Status.Stopped:
-                    //SE CI ARRIVA DALLO STATUS STARTED NON DEVE FARE QUESTO CALCOLO SE NO SBAGLIA
                     if (Settings.CurrentStatus == Settings.Status.Paused)
                         Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
                     dt.Stop();
@@ -143,7 +143,7 @@ namespace PayMe
 
             //Il cuore dell'app è questo calcolo complicatissimo!!!
             //(TempoTrascorso - Resto della divisione con lo scatto).OreTotali * Prezzo Orario + Diritto di chiamata
-            var Payment = FractionTimeSpan(ElapsedTime, Settings.Threshold).TotalHours * Settings.HourlyPayment.Value + Settings.CallPay;
+            var Payment = FractionTimeSpan(ElapsedTime, settings.Threshold).TotalHours * settings.HourlyPayment.Value + settings.CallPay;
 
             TotalTextBlock.Text = string.Format("{0:0.00} {1}", Payment, Settings.CurrencySymbol);
 
@@ -160,7 +160,7 @@ namespace PayMe
         private double CalculatePayment()
         {
             var ElapsedTime = (DateTime.Now - Settings.StartTime) - Settings.PauseTimeSpan;
-            var i = FractionTimeSpan(ElapsedTime, Settings.Threshold).TotalHours * Settings.HourlyPayment.Value + Settings.CallPay;
+            var i = FractionTimeSpan(ElapsedTime, settings.Threshold).TotalHours * settings.HourlyPayment.Value + settings.CallPay;
             return i;
         }
 

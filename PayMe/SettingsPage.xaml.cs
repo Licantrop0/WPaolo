@@ -17,7 +17,6 @@ namespace PayMe
 {
     public partial class SettingsPage : PhoneApplicationPage
     {
-        Settings CurrentSettings = new Settings();
         public SettingsPage()
         {
             InitializeComponent();
@@ -26,17 +25,12 @@ namespace PayMe
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            SettingsStackPanel.DataContext = CurrentSettings;
+            SettingsStackPanel.DataContext = new Settings();
             //CurrencyListPicker.SelectedItem = Settings.CurrencySymbol;
             //HourlyPaymentTextBox.Text = GetCurrencyText(Settings.HourlyPayment);
             //CallPayTextBox.Text = GetCurrencyText(Settings.CallPay);
             //ThresholdSlider.Value = GetThresholdIndex(Settings.Threshold);
             //ThresholdTextBox.Text = GetThresholdText(ThresholdSlider.Value);
-        }
-
-        private void ThresholdSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            ThresholdTextBox.Text = GetThresholdText(e.NewValue);
         }
 
         private void CreateAppBar()
@@ -48,7 +42,8 @@ namespace PayMe
             SaveAppBarButton.Click += delegate(object sender, EventArgs e)
             {
                 HourlyPaymentTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-
+                CallPayTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                ThresholdSlider.GetBindingExpression(Slider.ValueProperty).UpdateSource();
                 //Settings.HourlyPayment = GetCurrencyValue(HourlyPaymentTextBox.Text);
                 //Settings.CallPay = GetCurrencyValue(CallPayTextBox.Text);
                 //Settings.Threshold = GetThresholdValue(ThresholdSlider.Value);
@@ -58,74 +53,7 @@ namespace PayMe
             ApplicationBar.Buttons.Add(SaveAppBarButton);
         }
 
-        #region Converters
-
-        private TimeSpan GetThresholdValue(double index)
-        {
-            switch (Convert.ToInt32(index))
-            {
-                case 1:
-                    return TimeSpan.FromMinutes(5);
-                case 2:
-                    return TimeSpan.FromMinutes(10);
-                case 3:
-                    return TimeSpan.FromMinutes(15);
-                case 4:
-                    return TimeSpan.FromMinutes(30);
-                case 5:
-                    return TimeSpan.FromMinutes(60);
-                default:
-                    return TimeSpan.FromSeconds(1);
-            }
-        }
-
-        private int GetThresholdIndex(TimeSpan t)
-        {
-            switch (Convert.ToInt32(t.TotalSeconds))
-            {
-                case 5 * 60:
-                    return 1;
-                case 10 * 60:
-                    return 2;
-                case 15 * 60:
-                    return 3;
-                case 30 * 60:
-                    return 4;
-                case 60 * 60:
-                    return 5;
-                default:
-                    return 0;
-            }
-        }
-
-        private string GetThresholdText(double value)
-        {
-            switch (Convert.ToInt32(value))
-            {
-                case 1:
-                    return string.Format("{0}: {1}", AppResources.Threshold, AppResources.FiveMinutes);
-                case 2:
-                    return string.Format("{0}: {1}", AppResources.Threshold, AppResources.TenMinutes);
-                case 3:
-                    return string.Format("{0}: {1}", AppResources.Threshold, AppResources.FifteenMinutes);
-                case 4:
-                    return string.Format("{0}: {1}", AppResources.Threshold, AppResources.HalfHour);
-                case 5:
-                    return string.Format("{0}: {1}", AppResources.Threshold, AppResources.OneHour);
-                default:
-                    return string.Format("{0}: {1}", AppResources.Threshold, AppResources.OneSecond);
-            }
-        }
-
-        #endregion
-
         #region TextBox management
-
-        private void HourlyPaymentTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            HourlyPaymentTextBox.Text = GetCurrencyText(
-                GetCurrencyValue(HourlyPaymentTextBox.Text));
-        }
 
         private void HourlyPaymentTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -136,12 +64,6 @@ namespace PayMe
         {
             if (e.Key == Key.Enter)
                 CallPayTextBox.Focus();
-        }
-
-        private void CallPayTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            CallPayTextBox.Text = GetCurrencyText(
-                GetCurrencyValue(CallPayTextBox.Text));
         }
 
         private void CallPayTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -159,15 +81,13 @@ namespace PayMe
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!Settings.HourlyPayment.HasValue)
-                throw new Exception("ForceExit");
+            //if (!Settings.HourlyPayment.HasValue)
+            //    throw new Exception("ForceExit");
         }
 
-        private void CurrencyListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Settings.CurrencySymbol = ((ListPicker)sender).SelectedItem as string;
-            //HourlyPaymentTextBox_LostFocus(sender, null);
-            //CallPayTextBox_LostFocus(sender, null);
-        }
+        //private void CurrencyListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    Settings.CurrencySymbol = ((ListPicker)sender).SelectedItem as string;
+        //}
     }
 }

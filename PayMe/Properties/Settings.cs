@@ -3,11 +3,20 @@ using System.IO.IsolatedStorage;
 using System.Globalization;
 using Microsoft.Phone.Marketplace;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace PayMe
 {
-    public class Settings
+    public class Settings : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
 
         #region User Settings
 
@@ -15,18 +24,19 @@ namespace PayMe
         {
             get
             {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("currency_symbol"))
-                    IsolatedStorageSettings.ApplicationSettings["currency_symbol"] = CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol;
-                return (string)IsolatedStorageSettings.ApplicationSettings["currency_symbol"];
+                return CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol;
+                //if (!IsolatedStorageSettings.ApplicationSettings.Contains("currency_symbol"))
+                //    IsolatedStorageSettings.ApplicationSettings["currency_symbol"] = CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol;
+                //return (string)IsolatedStorageSettings.ApplicationSettings["currency_symbol"];
             }
-            set
-            {
-                if (CurrencySymbol != value)
-                    IsolatedStorageSettings.ApplicationSettings["currency_symbol"] = value;
-            }
+            //set
+            //{
+            //    if (CurrencySymbol != value)
+            //        IsolatedStorageSettings.ApplicationSettings["currency_symbol"] = value;
+            //}
         }  
 
-        public static Double? HourlyPayment
+        public Double? HourlyPayment
         {
             get
             {
@@ -37,11 +47,14 @@ namespace PayMe
             set
             {
                 if (HourlyPayment != value)
+                {
                     IsolatedStorageSettings.ApplicationSettings["hourly_payment"] = value;
+                    NotifyPropertyChanged("HourlyPayment");
+                }
             }
         }
 
-        public static Double CallPay
+        public Double CallPay
         {
             get
             {
@@ -52,11 +65,14 @@ namespace PayMe
             set
             {
                 if (CallPay != value)
+                {
                     IsolatedStorageSettings.ApplicationSettings["call_pay"] = value;
+                    NotifyPropertyChanged("CallPay");
+                }
             }
         }
 
-        public static TimeSpan Threshold
+        public TimeSpan Threshold
         {
             get
             {

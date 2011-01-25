@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WPCommonPages.AboutControl"
+﻿<UserControl x:Class="WPCommon.AboutControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,27 +7,28 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="800" d:DesignWidth="480">
+    d:DesignHeight="800" d:DesignWidth="480" Loaded="UserControl_Loaded">
 
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
+    <Grid x:Name="LayoutRoot" >
+        <!--<Grid.Background>
             <ImageBrush x:Name="BackgroundImageBrush"
                         ImageSource="{x:Null}"
                         Stretch="UniformToFill" />
-        </Grid.Background>
+        </Grid.Background>-->
 
         <StackPanel>
             <Image Stretch="UniformToFill" Width="400" Height="400"
-                   Source="/WPCommonPages;component/Logo/logo.png" />
-            <TextBlock Name="ApplicationNameTextBlock" Text="WPME Application"
+                   Source="/WPCommon;component/Logo/logo.png" />
+            <TextBlock Name="ApplicationNameTextBlock" Text="Application Name"
                        TextAlignment="Center" TextWrapping="Wrap"
                        Style="{StaticResource PhoneTextTitle1Style}" />
             <TextBlock Name="VersionTextBlock" Text="version"
                        TextAlignment="Center"
                        Style="{StaticResource PhoneTextExtraLargeStyle}" />
-            <HyperlinkButton Name="OtherAppsHyperlinkButton"
-                             Click="OtherAppsHyperlinkButton_Click"
+            <HyperlinkButton Click="OtherAppsHyperlinkButton_Click"
                              Content="Other Apps from WPME" />
+            <Button Content="Contact us" Click="ContactUsButton_Click" />
+            
         </StackPanel>
     </Grid>
 </UserControl>

@@ -22,7 +22,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <Image Height="250" Name="Logo\logo.png" Stretch="Fill" Width="250" Source="/WPCommonPages;component/Logo/logo.png" />
+            <Image Height="250" Name="Logo" Stretch="Fill" Width="250" Source="/WPCommonPages;component/Logo/logo.png" />
             <StackPanel Background="#A03EFF00" OpacityMask="{x:Null}" HorizontalAlignment="Center" Opacity="1">
                 <TextBlock x:Name="ApplicationName" Text="WPME Application"  HorizontalAlignment="Center" Style="{StaticResource PhoneTextNormalStyle}" FontSize="32" Foreground="Black" />
                 <TextBlock x:Name="Version" Text="v. 1.0.2" HorizontalAlignment="Center"  Style="{StaticResource PhoneTextNormalStyle}" FontSize="26" Foreground="Black" />

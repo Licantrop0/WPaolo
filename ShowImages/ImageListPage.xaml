@@ -36,7 +36,7 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" >
-            <shell:ApplicationBarIconButton IconUri="AppBar.Save.png" Text="Save All"
+            <shell:ApplicationBarIconButton IconUri="Images\AppBar.Save.png" Text="Save All"
                                             Click="SaveAllApplicationBarButton_Click" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

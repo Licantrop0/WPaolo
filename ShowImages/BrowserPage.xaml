@@ -32,8 +32,11 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True">
-            <shell:ApplicationBarIconButton IconUri="AppBar.Images.png" Text="Show Pics" Click="ShowPicsApplicationBarIconButton_Click"/>
-            <shell:ApplicationBarIconButton IconUri="AppBar.Home.png" Text="Home" Click="GoHomeAppBarButton_Click"/>
+            <shell:ApplicationBarIconButton IconUri="Images\AppBar.Images.png" Text="Show Pics" Click="ShowPicsApplicationBarIconButton_Click"/>
+            <shell:ApplicationBarIconButton IconUri="Images\AppBar.Home.png" Text="Home" Click="GoHomeAppBarButton_Click"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="About" Click="AboutApplicationBarMenuItem_Click" />
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

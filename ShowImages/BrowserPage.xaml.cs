@@ -78,5 +78,10 @@ namespace ShowImages
 
         #endregion
 
+        private void AboutApplicationBarMenuItem_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+        }
+
     }
 }

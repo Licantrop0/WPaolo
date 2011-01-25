@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommonPages", "WPCommonPages\WPCommonPages.csproj", "{22700591-5E34-4D4D-A01F-6B8C2153B270}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon", "WPCommonPages\WPCommon.csproj", "{22700591-5E34-4D4D-A01F-6B8C2153B270}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -9,7 +9,7 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = WPCommonPages\\WPCommonPages.csproj
+		SccProjectUniqueName1 = WPCommonPages\\WPCommon.csproj
 		SccProjectName1 = WPCommonPages
 		SccLocalPath1 = WPCommonPages
 	EndGlobalSection

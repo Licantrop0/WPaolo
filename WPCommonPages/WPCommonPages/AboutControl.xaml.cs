@@ -10,17 +10,45 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Tasks;
+using System.Reflection;
 
 namespace WPCommon
 {
     public partial class AboutControl : UserControl
     {
-        public string AppName { get; set; }
-        public string version { get; set; }
+        public string ApplicationName
+        {
+            get { return ApplicationNameTextBlock.Text; }
+            set { ApplicationNameTextBlock.Text = value; }
+        }
+
+        public string GetOtherAppsText
+        {
+            get { return (string)OtherAppsHyperlinkButton.Content; }
+            set { OtherAppsHyperlinkButton.Content = value ?? "Get other apps from WPME"; }
+        }
+
+        public string ContactUsText
+        {
+            get { return (string)ContactUsButton.Content; }
+            set { OtherAppsHyperlinkButton.Content = value ?? "Contact Us"; }
+        }
+
+        public ImageSource ImageBackgroundSource
+        {
+            get { return BackgroundImageBrush.ImageSource; }
+            set { BackgroundImageBrush.ImageSource = value; }
+        }
 
         public AboutControl()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            string asmName = Assembly.GetExecutingAssembly().FullName;
+            VersionTextBlock.Text = new AssemblyName(asmName).Version.ToString();
         }
 
         private void OtherAppsHyperlinkButton_Click(object sender, RoutedEventArgs e)
@@ -32,21 +60,11 @@ namespace WPCommon
             }.Show();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            ApplicationNameTextBlock.Text = AppName;
-
-            string name = System.Reflection.Assembly.GetExecutingAssembly().FullName;
-            var asmName = new System.Reflection.AssemblyName(name);
-
-            VersionTextBlock.Text = asmName.Version.ToString();
-        }
-
         private void ContactUsButton_Click(object sender, RoutedEventArgs e)
         {
             new EmailComposeTask()
             {
-                Subject = string.Format("[{0}] {1}", AppName, "feedback"),
+                Subject = string.Format("[{0}] {1}", ApplicationName, "feedback"),
                 To = "wpmobile@hotmail.it"
             }.Show();
         }

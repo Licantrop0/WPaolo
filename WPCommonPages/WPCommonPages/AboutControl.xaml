@@ -10,11 +10,10 @@
     d:DesignHeight="800" d:DesignWidth="480" Loaded="UserControl_Loaded">
 
     <Grid x:Name="LayoutRoot" >
-        <!--<Grid.Background>
+        <Grid.Background>
             <ImageBrush x:Name="BackgroundImageBrush"
-                        ImageSource="{x:Null}"
                         Stretch="UniformToFill" />
-        </Grid.Background>-->
+        </Grid.Background>
 
         <StackPanel>
             <Image Stretch="UniformToFill" Width="400" Height="400"
@@ -25,9 +24,10 @@
             <TextBlock Name="VersionTextBlock" Text="version"
                        TextAlignment="Center"
                        Style="{StaticResource PhoneTextExtraLargeStyle}" />
-            <HyperlinkButton Click="OtherAppsHyperlinkButton_Click"
-                             Content="Other Apps from WPME" />
-            <Button Content="Contact us" Click="ContactUsButton_Click" />
+            <HyperlinkButton Name="OtherAppsHyperlinkButton"
+                             Click="OtherAppsHyperlinkButton_Click" />
+            <Button Name="ContactUsButton"
+                    Click="ContactUsButton_Click" />
             
         </StackPanel>
     </Grid>

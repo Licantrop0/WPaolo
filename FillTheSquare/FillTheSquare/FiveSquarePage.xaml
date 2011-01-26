@@ -11,7 +11,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -28,49 +28,9 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid Height="350" HorizontalAlignment="Center" Margin="0,0,0,0" Name="MagicFiveGrid" VerticalAlignment="Center" Width="350">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="70*" />
-                    <RowDefinition Height="70*" />
-                    <RowDefinition Height="70*" />
-                    <RowDefinition Height="70*" />
-                    <RowDefinition Height="70*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                </Grid.ColumnDefinitions>
-                <Button  Name="button1"   Click="Button_Click" />
-                <Button  Name="button2"   Grid.Column="1" Click="Button_Click" />
-                <Button  Name="button3"   Grid.Column="2" Click="Button_Click" />
-                <Button  Name="button4"   Grid.Column="3" Click="Button_Click" />
-                <Button  Name="button5"   Grid.Column="4" Click="Button_Click" />
-                <Button  Name="button6"   Grid.Row="1" Click="Button_Click" />
-                <Button  Name="button7"   Grid.Column="1" Grid.Row="1" Click="Button_Click" />
-                <Button  Name="button8"   Grid.Column="2" Grid.Row="1" Click="Button_Click" />
-                <Button  Name="button9"   Grid.Column="3" Grid.Row="1" Click="Button_Click" />
-                <Button  Name="button10"  Grid.Column="4" Grid.Row="1" Click="Button_Click" />
-                <Button  Name="button11"  Grid.Row="2" Click="Button_Click" />
-                <Button  Name="button12"  Grid.Column="1" Grid.Row="2" Click="Button_Click" />
-                <Button  Name="button13"  Grid.Column="2" Grid.Row="2" Click="Button_Click" />
-                <Button  Name="button14"  Grid.Column="3" Grid.Row="2" Click="Button_Click" />
-                <Button  Name="button15"  Grid.Column="4" Grid.Row="2" Click="Button_Click" />
-                <Button  Name="button16"  Grid.Row="3" Click="Button_Click" />
-                <Button  Name="button17"  Grid.Column="1" Grid.Row="3" Click="Button_Click" />
-                <Button  Name="button18"  Grid.Column="2" Grid.Row="3" Click="Button_Click" />
-                <Button  Name="button19"  Grid.Column="3" Grid.Row="3" Click="Button_Click" />
-                <Button  Name="button20"  Grid.Column="4" Grid.Row="3" Click="Button_Click" />
-                <Button  Name="button21"  Grid.Row="4" Click="Button_Click" />
-                <Button  Name="button22"  Grid.Column="1" Grid.Row="4" Click="Button_Click" />
-                <Button  Name="button23"  Grid.Column="2" Grid.Row="4" Click="Button_Click" />
-                <Button  Name="button24"  Grid.Column="3" Grid.Row="4" Click="Button_Click" />
-                <Button  Name="button25"  Grid.Column="4" Grid.Row="4" Click="Button_Click" />
-            </Grid>
             <TextBlock Height="51" HorizontalAlignment="Right" Margin="0,42,46,0" Name="secondsTextBlock" Text="0" VerticalAlignment="Top" Width="140" />
             <TextBlock Height="30" Margin="66,42,256,0" Name="textBlock1" Text="Seconds:" VerticalAlignment="Top" />
+            <Grid Height="52" HorizontalAlignment="Left" Margin="49,123,0,0" Name="MagicGrid" VerticalAlignment="Top" Width="57" />
         </Grid>
     </Grid>
  

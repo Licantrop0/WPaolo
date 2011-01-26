@@ -54,10 +54,10 @@ namespace TwentyTwelve_Organizer
             //BackgroundSound.MediaEnded += delegate(object sender, RoutedEventArgs e) { BackgroundSound.Stop(); BackgroundSound.Play(); };
 
 
-            var BackgroundSound = SoundEffect.FromStream(App.GetResourceStream(
-                new Uri("BackgroundMusic.wav", UriKind.Relative)).Stream);
-            BackgroundMusic = BackgroundSound.CreateInstance();
-            BackgroundMusic.IsLooped = true;
+            //var BackgroundSound = SoundEffect.FromStream(App.GetResourceStream(
+            //    new Uri("BackgroundMusic.wav", UriKind.Relative)).Stream);
+            //BackgroundMusic = BackgroundSound.CreateInstance();
+            //BackgroundMusic.IsLooped = true;
 
             var str = App.GetResourceStream(new Uri("TickSound.wav", UriKind.Relative));
             Settings.TickSound = SoundEffect.FromStream(str.Stream);
@@ -74,7 +74,7 @@ namespace TwentyTwelve_Organizer
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             //if (BackgroundSound.CurrentState != MediaElementState.Playing) BackgroundSound.Play();
-            if (BackgroundMusic.State != SoundState.Playing) BackgroundMusic.Play();
+            //if (BackgroundMusic.State != SoundState.Playing) BackgroundMusic.Play();
         }
 
         // Code to execute when the application is activated (brought to foreground)

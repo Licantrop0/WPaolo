@@ -26,10 +26,29 @@
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+
             <TextBlock Name="TimeElapsedTextBlock"
                        Text="Seconds: 0" FontSize="{StaticResource PhoneFontSizeLarge}" />
-            <Grid Name="MagicGrid" Height="450" Width="450" />
+
+            <Grid Name="MagicGrid" Height="450" Width="450" >
+                <Grid.Resources>
+                    <!-- Animates the rectangle's opacity. -->
+                    <Storyboard x:Name="RedFlash">
+                        <ColorAnimation                        
+                        Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                        To="Red" Duration="0:0:0.5" 
+                        AutoReverse="True"  />
+                    </Storyboard>
+
+                    <Storyboard x:Name="Completed" >
+                        <ColorAnimation
+                        Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                        To="Cyan" Duration="0:0:1" />
+                    </Storyboard>
+
+                </Grid.Resources>
+            </Grid>
         </Grid>
     </Grid>
- 
+
 </phone:PhoneApplicationPage>

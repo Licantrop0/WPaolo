@@ -13,24 +13,24 @@ namespace FillTheSquare
 {
     public static class ExtensionHelper
     {
-        public static int GetRow(this Button b)
+        public static int GetRow(this UIElement uie)
         {
-            return (int)b.GetValue(Grid.RowProperty);
+            return (int)uie.GetValue(Grid.RowProperty);
         }
 
-        public static int GetColumn(this Button b)
+        public static int GetColumn(this UIElement uie)
         {
-            return (int)b.GetValue(Grid.ColumnProperty);
+            return (int)uie.GetValue(Grid.ColumnProperty);
         }
 
-        public static void SetRow(this Button b, int row)
+        public static void SetRow(this UIElement uie, int row)
         {
-            b.SetValue(Grid.RowProperty, row);
+            uie.SetValue(Grid.RowProperty, row);
         }
 
-        public static void SetColumn(this Button b, int column)
+        public static void SetColumn(this UIElement uie, int column)
         {
-            b.SetValue(Grid.ColumnProperty, column);
+            uie.SetValue(Grid.ColumnProperty, column);
         }
     }
 }

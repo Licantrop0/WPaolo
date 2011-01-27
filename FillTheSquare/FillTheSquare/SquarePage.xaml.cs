@@ -73,6 +73,8 @@ namespace FillTheSquare
 
             var currentButton = (Border)sender;
             Point p = new Point(currentButton.GetColumn(), currentButton.GetRow());
+
+            //vorrei eliminare questa variabile semplificando la logica (ci sono troppi if!)
             bool cancel = false;
             if (Square.positionHistory.Count != 0)
             {
@@ -127,23 +129,6 @@ namespace FillTheSquare
                 Storyboard.SetTarget(RedFlash, currentButton);
                 RedFlash.Begin();
             }
-        }
-
-        public void flashColor(UIElement uiElement)
-        {
-            var colorAnimation = new ColorAnimation()
-            {
-                AutoReverse = true,
-                Duration = TimeSpan.FromSeconds(0.5),
-                To = Colors.Red
-            };
-
-            Storyboard colorStoryBoard = new Storyboard();
-            colorStoryBoard.Children.Add(colorAnimation);
-            Storyboard.SetTarget(colorAnimation, uiElement);
-            Storyboard.SetTargetProperty(colorAnimation, new PropertyPath("(Button.Background).(SolidColorBrush.Color)"));
-
-            colorStoryBoard.Begin();
         }
 
     }

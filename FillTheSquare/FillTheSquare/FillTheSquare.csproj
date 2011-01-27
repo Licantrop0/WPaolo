@@ -66,8 +66,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExtensionHelper.cs" />
-    <Compile Include="FiveSquarePage.xaml.cs">
-      <DependentUpon>FiveSquarePage.xaml</DependentUpon>
+    <Compile Include="SquarePage.xaml.cs">
+      <DependentUpon>SquarePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Instructions.xaml.cs">
       <DependentUpon>Instructions.xaml</DependentUpon>
@@ -82,16 +82,13 @@
     <Compile Include="Records.xaml.cs">
       <DependentUpon>Records.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TenSquarePage.xaml.cs">
-      <DependentUpon>TenSquarePage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="FiveSquarePage.xaml">
+    <Page Include="SquarePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -104,10 +101,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Records.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TenSquarePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

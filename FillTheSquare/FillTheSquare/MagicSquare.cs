@@ -8,86 +8,89 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 
 namespace FillTheSquare
 {
-    //uso questo enum perchè i quadrati magici per funzionare possono avere solo lati lunghi multipli di cinque
-    public enum SquareSize
-    {
-        Five,
-        Ten
-    }
-
     public class MagicSquare
     {
-        private uint[,] grid;                           //array bidimensionale che rappresenta il quadrato magico
-        private Point[] actualPositionHistory;          //tiene traccia di tutti gli spostamenti
-        public Point actualPosition {get; set;}        //indica la coordinata dell'ultimo numero inserito
-        public uint actualValue {get; set;}             //ultimo numero inserito
+        /// <summary>
+        /// array bidimensionale che rappresenta il quadrato magico
+        /// </summary>
+        private uint[,] grid;
 
-        public MagicSquare(SquareSize Size)
+        /// <summary>
+        /// tiene traccia di tutti gli spostamenti
+        /// </summary>
+        private Point[] PositionHistory; //questo è uno Stack<Point>! perchè hai usato gli array?
+
+        /// <summary>
+        /// indica la coordinata dell'ultimo numero inserito
+        /// </summary>
+        public Point LastPosition { get; set; }
+
+        /// <summary>
+        /// ultimo numero inserito
+        /// </summary>
+        public uint LastValue { get; set; }
+
+
+        public PointValue pv { get; set; }
+
+        public int ActualSize { get; private set; }
+
+        public MagicSquare(int size)
         {
-            int size = 0;
-            switch(Size)
+            if (size != 5 && size != 10)
+                throw new ArgumentException("The square could be only 5x5 or 10x10", "size");
+
+            ActualSize = size;
+
+            grid = new uint[ActualSize, ActualSize];
+
+            LastValue = 0;
+            LastPosition = new Point(-1, -1);
+            int histLen = ActualSize ^ 2;
+            PositionHistory = new Point[histLen];
+            for (int i = 0; i < (histLen); i++)
             {
-                case SquareSize.Ten:
-                    size = 10;
-                    break;
-                default:    //lato di cinque
-                    size = 5;
-                    break;
-            }
-            grid = new uint[size, size];
-            for(int i = 0; i < size; i++)
-            {
-                for(int j = 0; j < size; j++)
-                {
-                    grid[i,j] = 0;
-                }
-            }
-            actualValue = 0;
-            actualPosition = new Point(-1, -1);
-            int histLen = size*size;
-            actualPositionHistory = new Point[histLen];
-            for(int i = 0; i < (histLen); i++)
-            {
-                actualPositionHistory[i] = new Point(-1,-1);
+                PositionHistory[i] = new Point(-1, -1);
             }
         }
 
         public bool PressButton(Point p)
         {
-            if (p == actualPosition)    //voglio cancellare l'ultima mossa
+            if (p == LastPosition)    //voglio cancellare l'ultima mossa
             {
-                actualValue--;
-                if (actualValue > 0)
+                LastValue--;
+                if (LastValue > 0)
                 {
-                    actualPosition = actualPositionHistory[actualValue - 1];
+                    LastPosition = PositionHistory[LastValue - 1];
                 }
                 else
                 {
-                    actualPosition = new Point(-1, -1);
+                    LastPosition = new Point(-1, -1);
                 }
-                actualPositionHistory[actualValue] = new Point(-1, -1);
+                PositionHistory[LastValue] = new Point(-1, -1);
                 grid[(int)(p.X), (int)(p.Y)] = 0;
                 return true;
             }
             else
             {
-                if (actualPosition.X != -1 && actualPosition.Y != -1)   //se ho già fatto la prima mossa
+                if (LastPosition.X != -1 && LastPosition.Y != -1)   //se ho già fatto la prima mossa
                 {
-                    if (((p.X == actualPosition.X - 3) && (p.Y == actualPosition.Y)) ||
-                        ((p.X == actualPosition.X - 2) && (p.Y == actualPosition.Y - 2)) ||
-                        ((p.X == actualPosition.X) && (p.Y == actualPosition.Y - 3)) ||
-                        ((p.X == actualPosition.X + 2) && (p.Y == actualPosition.Y - 2)) ||
-                        ((p.X == actualPosition.X + 3) && (p.Y == actualPosition.Y)) ||
-                        ((p.X == actualPosition.X + 2) && (p.Y == actualPosition.Y + 2)) ||
-                        ((p.X == actualPosition.X) && (p.Y == actualPosition.Y + 3)) ||
-                        ((p.X == actualPosition.X - 2) && (p.Y == actualPosition.Y + 2)))
+                    if (((p.X == LastPosition.X - 3) && (p.Y == LastPosition.Y)) ||
+                        ((p.X == LastPosition.X - 2) && (p.Y == LastPosition.Y - 2)) ||
+                        ((p.X == LastPosition.X) && (p.Y == LastPosition.Y - 3)) ||
+                        ((p.X == LastPosition.X + 2) && (p.Y == LastPosition.Y - 2)) ||
+                        ((p.X == LastPosition.X + 3) && (p.Y == LastPosition.Y)) ||
+                        ((p.X == LastPosition.X + 2) && (p.Y == LastPosition.Y + 2)) ||
+                        ((p.X == LastPosition.X) && (p.Y == LastPosition.Y + 3)) ||
+                        ((p.X == LastPosition.X - 2) && (p.Y == LastPosition.Y + 2)))
                     {
-                        for (int i = 0; i < actualPositionHistory.Length; i++)
+                        for (int i = 0; i < PositionHistory.Length; i++)
                         {
-                            if (p.Equals(actualPositionHistory[i]))
+                            if (p.Equals(PositionHistory[i]))
                             {
                                 return false;   //la casella in questione è già occupata
                             }
@@ -98,12 +101,20 @@ namespace FillTheSquare
                         return false;   //non ho rispettato le regole
                     }
                 }
-                actualPosition = p;
-                actualPositionHistory[actualValue] = p;
-                actualValue++;
-                grid[(int)(p.X), (int)(p.Y)] = actualValue;
+                LastPosition = p;
+                PositionHistory[LastValue] = p;
+                LastValue++;
+                grid[(int)(p.X), (int)(p.Y)] = LastValue;
                 return true;
             }
         }
+    }
+
+
+    public class PointValue
+    {
+        public byte x { get; set; }
+        public byte y { get; set; }
+        public byte value { get; set; }
     }
 }

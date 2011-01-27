@@ -23,12 +23,12 @@ namespace FillTheSquare
 
         private void SquareFiveButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/FiveSquarePage.xaml?id=" + 5, UriKind.Relative));
+            NavigationService.Navigate(new Uri("/SquarePage.xaml?size=5", UriKind.Relative));
         }
 
         private void SquareTenButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/FiveSquarePage.xaml?id=" + 10, UriKind.Relative));
+            NavigationService.Navigate(new Uri("/SquarePage.xaml?size=10", UriKind.Relative));
         }
 
         private void InstructionsButton_Click(object sender, RoutedEventArgs e)

@@ -64,17 +64,20 @@ namespace FillTheSquare
             var currentButton = (Button)sender;
             Point p = new Point(currentButton.GetColumn(), currentButton.GetRow());
             bool cancel = false;
-            if (p.Equals(Square.LastPosition))
+            if (Square.positionHistory.Count != 0)
             {
-                currentButton.Content = "";
-                cancel = true;
+                if (p.Equals(Square.positionHistory.Peek()))
+                {
+                    currentButton.Content = "";
+                    cancel = true;
+                }
             }
             bool res = Square.PressButton(p);
             if (res && !cancel)
             {
-                currentButton.Content = Square.LastValue.ToString();
+                currentButton.Content = Square.positionHistory.Count.ToString();
                 currentButton.Background = new SolidColorBrush(Colors.Green);
-                if (Square.LastValue == (MagicGrid.RowDefinitions.Count * MagicGrid.ColumnDefinitions.Count))
+                if (Square.positionHistory.Count == (MagicGrid.RowDefinitions.Count * MagicGrid.ColumnDefinitions.Count))
                 {
                     dt.Stop();
                     MessageBox.Show("Congratulations! Magic Square completed in " + sw.Elapsed.TotalSeconds + " seconds!");

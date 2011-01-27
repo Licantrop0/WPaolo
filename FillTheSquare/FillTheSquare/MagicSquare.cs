@@ -17,25 +17,17 @@ namespace FillTheSquare
         /// <summary>
         /// array bidimensionale che rappresenta il quadrato magico
         /// </summary>
-        private uint[,] grid;
+        private int[,] grid;
 
         /// <summary>
         /// tiene traccia di tutti gli spostamenti
         /// </summary>
-        private Point[] PositionHistory; //questo è uno Stack<Point>! perchè hai usato gli array?
+        public Stack<Point> positionHistory;
 
         /// <summary>
         /// indica la coordinata dell'ultimo numero inserito
         /// </summary>
-        public Point LastPosition { get; set; }
-
-        /// <summary>
-        /// ultimo numero inserito
-        /// </summary>
-        public uint LastValue { get; set; }
-
-
-        public PointValue pv { get; set; }
+        /// 
 
         public int ActualSize { get; private set; }
 
@@ -46,75 +38,48 @@ namespace FillTheSquare
 
             ActualSize = size;
 
-            grid = new uint[ActualSize, ActualSize];
-
-            LastValue = 0;
-            LastPosition = new Point(-1, -1);
-            int histLen = ActualSize ^ 2;
-            PositionHistory = new Point[histLen];
-            for (int i = 0; i < (histLen); i++)
-            {
-                PositionHistory[i] = new Point(-1, -1);
-            }
+            grid = new int[ActualSize, ActualSize];
+            positionHistory = new Stack<Point>();
         }
 
         public bool PressButton(Point p)
         {
-            if (p == LastPosition)    //voglio cancellare l'ultima mossa
+            if (positionHistory.Count != 0)
             {
-                LastValue--;
-                if (LastValue > 0)
+                if (p == positionHistory.Peek())    //voglio cancellare l'ultima mossa
                 {
-                    LastPosition = PositionHistory[LastValue - 1];
+                    positionHistory.Pop();
+                    grid[(int)(p.X), (int)(p.Y)] = 0;
+                    return true;
                 }
                 else
                 {
-                    LastPosition = new Point(-1, -1);
-                }
-                PositionHistory[LastValue] = new Point(-1, -1);
-                grid[(int)(p.X), (int)(p.Y)] = 0;
-                return true;
-            }
-            else
-            {
-                if (LastPosition.X != -1 && LastPosition.Y != -1)   //se ho già fatto la prima mossa
-                {
-                    if (((p.X == LastPosition.X - 3) && (p.Y == LastPosition.Y)) ||
-                        ((p.X == LastPosition.X - 2) && (p.Y == LastPosition.Y - 2)) ||
-                        ((p.X == LastPosition.X) && (p.Y == LastPosition.Y - 3)) ||
-                        ((p.X == LastPosition.X + 2) && (p.Y == LastPosition.Y - 2)) ||
-                        ((p.X == LastPosition.X + 3) && (p.Y == LastPosition.Y)) ||
-                        ((p.X == LastPosition.X + 2) && (p.Y == LastPosition.Y + 2)) ||
-                        ((p.X == LastPosition.X) && (p.Y == LastPosition.Y + 3)) ||
-                        ((p.X == LastPosition.X - 2) && (p.Y == LastPosition.Y + 2)))
+                    if (positionHistory.Peek().X != -1 && positionHistory.Peek().Y != -1)   //se ho già fatto la prima mossa
                     {
-                        for (int i = 0; i < PositionHistory.Length; i++)
+                        if (((p.X == positionHistory.Peek().X - 3) && (p.Y == positionHistory.Peek().Y)) ||
+                            ((p.X == positionHistory.Peek().X - 2) && (p.Y == positionHistory.Peek().Y - 2)) ||
+                            ((p.X == positionHistory.Peek().X) && (p.Y == positionHistory.Peek().Y - 3)) ||
+                            ((p.X == positionHistory.Peek().X + 2) && (p.Y == positionHistory.Peek().Y - 2)) ||
+                            ((p.X == positionHistory.Peek().X + 3) && (p.Y == positionHistory.Peek().Y)) ||
+                            ((p.X == positionHistory.Peek().X + 2) && (p.Y == positionHistory.Peek().Y + 2)) ||
+                            ((p.X == positionHistory.Peek().X) && (p.Y == positionHistory.Peek().Y + 3)) ||
+                            ((p.X == positionHistory.Peek().X - 2) && (p.Y == positionHistory.Peek().Y + 2)))
                         {
-                            if (p.Equals(PositionHistory[i]))
+                            if (positionHistory.Contains(p))
                             {
-                                return false;   //la casella in questione è già occupata
+                                return false;   //casella già occupata
                             }
                         }
-                    }
-                    else
-                    {
-                        return false;   //non ho rispettato le regole
+                        else
+                        {
+                            return false;   //non ho rispettato le regole
+                        }
                     }
                 }
-                LastPosition = p;
-                PositionHistory[LastValue] = p;
-                LastValue++;
-                grid[(int)(p.X), (int)(p.Y)] = LastValue;
-                return true;
             }
+            positionHistory.Push(p);
+            grid[(int)(p.X), (int)(p.Y)] = positionHistory.Count;
+            return true;
         }
-    }
-
-
-    public class PointValue
-    {
-        public byte x { get; set; }
-        public byte y { get; set; }
-        public byte value { get; set; }
     }
 }

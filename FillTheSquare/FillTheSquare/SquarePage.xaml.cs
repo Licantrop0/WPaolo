@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
+using System.Windows.Media.Animation;
+using System.Linq;
 
 namespace FillTheSquare
 {
@@ -33,10 +35,18 @@ namespace FillTheSquare
 
                 for (int j = 0; j < size; j++)
                 {
-                    var b = new Button();
+                    var b = new Border()
+                    {
+                        Background = new SolidColorBrush(Colors.Transparent),
+                        BorderThickness = new Thickness(1),
+                        Margin = new Thickness(3),
+                        BorderBrush = new SolidColorBrush(Colors.White),
+                        CornerRadius = new CornerRadius(5)
+                    };
+
                     b.SetRow(i);
                     b.SetColumn(j);
-                    b.Click += Button_Click;
+                    b.MouseLeftButtonDown += Button_Click;
                     MagicGrid.Children.Add(b);
                 }
             }
@@ -61,22 +71,33 @@ namespace FillTheSquare
         {
             if (end) return;
 
-            var currentButton = (Button)sender;
+            var currentButton = (Border)sender;
             Point p = new Point(currentButton.GetColumn(), currentButton.GetRow());
             bool cancel = false;
             if (Square.positionHistory.Count != 0)
             {
-                if (p.Equals(Square.positionHistory.Peek()))
+                if (p == Square.positionHistory.Peek())
                 {
-                    currentButton.Content = "";
+                    currentButton.Child = null;
                     cancel = true;
                 }
             }
+
             bool res = Square.PressButton(p);
             if (res && !cancel)
             {
-                currentButton.Content = Square.positionHistory.Count.ToString();
-                currentButton.Background = new SolidColorBrush(Colors.Green);
+                currentButton.Child = new TextBlock()
+                {
+                    Text = Square.positionHistory.Count.ToString(),
+                    VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                    TextAlignment = TextAlignment.Center,
+                    FontSize = 30
+                };
+
+                Completed.Stop();
+                Storyboard.SetTarget(Completed, currentButton);
+                Completed.Begin();
+
                 if (Square.positionHistory.Count == (MagicGrid.RowDefinitions.Count * MagicGrid.ColumnDefinitions.Count))
                 {
                     dt.Stop();
@@ -88,12 +109,41 @@ namespace FillTheSquare
             }
             else if (res && cancel)
             {
-                currentButton.Background = new SolidColorBrush(Colors.Transparent);
+                Completed.Stop();
+                if (Square.positionHistory.Count > 0)
+                {
+                    var lastButton = MagicGrid.Children
+                        .Where(b => b.GetRow() == Square.positionHistory.Peek().Y)
+                        .Where(b => b.GetColumn() == Square.positionHistory.Peek().X).Single();
+
+                    Storyboard.SetTarget(Completed, lastButton);
+                    Completed.Begin();
+                }
             }
             else
             {
                 //l'utente ha violato le regole quindi non si fa nulla, magari coloro il tasto di rosso per mezzo secondo?
+                RedFlash.Stop();
+                Storyboard.SetTarget(RedFlash, currentButton);
+                RedFlash.Begin();
             }
+        }
+
+        public void flashColor(UIElement uiElement)
+        {
+            var colorAnimation = new ColorAnimation()
+            {
+                AutoReverse = true,
+                Duration = TimeSpan.FromSeconds(0.5),
+                To = Colors.Red
+            };
+
+            Storyboard colorStoryBoard = new Storyboard();
+            colorStoryBoard.Children.Add(colorAnimation);
+            Storyboard.SetTarget(colorAnimation, uiElement);
+            Storyboard.SetTargetProperty(colorAnimation, new PropertyPath("(Button.Background).(SolidColorBrush.Color)"));
+
+            colorStoryBoard.Begin();
         }
 
     }

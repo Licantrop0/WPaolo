@@ -32,7 +32,6 @@
 
             <Grid Name="MagicGrid" Height="450" Width="450" >
                 <Grid.Resources>
-                    <!-- Animates the rectangle's opacity. -->
                     <Storyboard x:Name="RedFlash">
                         <ColorAnimation                        
                         Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"

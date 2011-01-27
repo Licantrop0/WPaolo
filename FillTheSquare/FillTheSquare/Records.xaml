@@ -28,29 +28,20 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid Height="45" HorizontalAlignment="Left" Margin="24,62,0,0" Name="recordsGrid" VerticalAlignment="Top" Width="414">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150*"  />
-                    <ColumnDefinition Width="129*" />
-                    <ColumnDefinition Width="135*" />
-                </Grid.ColumnDefinitions>
-            </Grid>
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="24,26,0,0" Name="textBlock1" Text="Name" VerticalAlignment="Top" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="174,26,0,0" Name="textBlock2" Text="Score" VerticalAlignment="Top" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="303,26,0,0" Name="textBlock3" Text="Date" VerticalAlignment="Top" />
+            <ListBox Name="RecordListBox">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
+                            <TextBlock Text="{Binding Path=Size}"  />
+                            <TextBlock Text="{Binding Path=CurrentDate}"  />
+                            <TextBlock Text="{Binding Path=ElapsedTime}"  />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
         </Grid>
+
     </Grid>
- 
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>

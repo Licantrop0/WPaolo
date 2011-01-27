@@ -22,10 +22,7 @@ namespace FillTheSquare
 
         private void FillRecordsList()
         {
-            for (int i = 0; i < Settings.RecordsList.Count; i++)
-            {
-                //TO DO: aggiungo una riga alla griglia
-            }
+            RecordListBox.ItemsSource = Settings.RecordsList;
         }
     }
 }

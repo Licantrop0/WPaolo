@@ -22,5 +22,15 @@ namespace FillTheSquare
         {
             return (int)b.GetValue(Grid.ColumnProperty);
         }
+
+        public static void SetRow(this Button b, int row)
+        {
+            b.SetValue(Grid.RowProperty, row);
+        }
+
+        public static void SetColumn(this Button b, int column)
+        {
+            b.SetValue(Grid.ColumnProperty, column);
+        }
     }
 }

@@ -18,15 +18,15 @@ namespace PayMe
         public int Id { get { return StartTime.GetHashCode() ^ EndTime.GetHashCode(); } }
 
         [DataMember]
-        public DateTime StartTime { get; private set; }
+        public DateTime StartTime { get; set; }
         [DataMember]
-        public DateTime EndTime { get; private set; }
+        public DateTime EndTime { get; set; }
         [DataMember]
-        public TimeSpan PauseTimeSpan { get; private set; }
+        public TimeSpan PauseTimeSpan { get; set; }
         [DataMember]
-        public double Income { get; private set; }
+        public double Income { get; set; }
         [DataMember]
-        public string CurrencySymbol { get; private set; }
+        public string CurrencySymbol { get; set; }
         [DataMember]
         public string CustomerName { get; set; }
         [DataMember]

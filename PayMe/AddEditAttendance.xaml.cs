@@ -22,7 +22,6 @@ namespace PayMe
         {
             InitializeComponent();
             CreateAppBar();
-
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -31,6 +30,9 @@ namespace PayMe
                 a.Id == Convert.ToInt32(NavigationContext.QueryString["id"])).First();
 
             AttendanceStackPanel.DataContext = CurrentAttendance;
+
+            CustomerNameTextBox.Focus();
+            CustomerNameTextBox.SelectAll();
         }
         
         private void CreateAppBar()
@@ -64,6 +66,7 @@ namespace PayMe
         {
             if (e.Key == Key.Enter)
             {
+                e.Handled = false;
                 DescriptionTextBox.Focus();
             }
         }
@@ -72,6 +75,7 @@ namespace PayMe
         {
             if (e.Key == Key.Enter)
             {
+                e.Handled = false;
                 this.Focus();
             }
         }

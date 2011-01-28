@@ -5,6 +5,7 @@ using Microsoft.Phone.Marketplace;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 
 namespace PayMe
 {
@@ -33,7 +34,7 @@ namespace PayMe
             //    if (CurrencySymbol != value)
             //        IsolatedStorageSettings.ApplicationSettings["currency_symbol"] = value;
             //}
-        }  
+        }
 
         #region User Settings
 
@@ -105,6 +106,6 @@ namespace PayMe
                     IsolatedStorageSettings.ApplicationSettings["attendances"] = value;
             }
         }
-        
+
     }
 }

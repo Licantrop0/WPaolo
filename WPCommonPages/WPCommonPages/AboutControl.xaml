@@ -4,31 +4,30 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="800" d:DesignWidth="480" Loaded="UserControl_Loaded">
+    d:DesignHeight="800" d:DesignWidth="480"
+    Loaded="UserControl_Loaded">
 
-    <Grid x:Name="LayoutRoot" >
-        <Grid.Background>
-            <ImageBrush x:Name="BackgroundImageBrush"
-                        Stretch="UniformToFill" />
-        </Grid.Background>
+    <StackPanel Background="Transparent">
+        
+        <StackPanel.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF1BA1E2" Offset="1"/>
+            </LinearGradientBrush>
 
-        <StackPanel>
-            <Image Stretch="UniformToFill" Width="400" Height="400"
+        </StackPanel.Background>
+        <Image Stretch="UniformToFill" Width="400" Height="400"
                    Source="/WPCommon;component/Logo/logo.png" />
-            <TextBlock Name="ApplicationNameTextBlock" Text="Application Name"
+        <TextBlock Name="ApplicationNameTextBlock" Text="Application Name"
                        TextAlignment="Center" TextWrapping="Wrap"
                        Style="{StaticResource PhoneTextTitle1Style}" />
-            <TextBlock Name="VersionTextBlock" Text="version"
-                       TextAlignment="Center"
+        <TextBlock Name="VersionTextBlock" TextAlignment="Center"
                        Style="{StaticResource PhoneTextExtraLargeStyle}" />
-            <HyperlinkButton Name="OtherAppsHyperlinkButton"
-                             Click="OtherAppsHyperlinkButton_Click" />
-            <Button Name="ContactUsButton"
+        <HyperlinkButton Name="OtherAppsHyperlink"
+                             Content="Get other apps from WPME"
+                             Click="OtherAppsHyperlink_Click" />
+        <Button Name="ContactUsButton" Margin="10"
+                    Content="Contact Us"
                     Click="ContactUsButton_Click" />
-            
-        </StackPanel>
-    </Grid>
+    </StackPanel>
 </UserControl>

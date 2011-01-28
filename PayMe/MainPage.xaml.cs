@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Diagnostics;
+using WPCommon;
 
 namespace PayMe
 {
@@ -24,7 +25,7 @@ namespace PayMe
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (Settings.IsTrialMode && Settings.AlreadyOpenedToday)
+            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday)
             {
                 NavigationService.Navigate(new Uri("/TrialExpiredPage.xaml", UriKind.Relative));
                 return;
@@ -135,6 +136,12 @@ namespace PayMe
             DisplayPayment();
         }
 
+        private double CalculatePayment()
+        {
+            var ElapsedTime = (DateTime.Now - StatusManagement.StartTime) - StatusManagement.PauseTimeSpan;
+            return FractionTimeSpan(ElapsedTime, settings.Threshold).TotalHours * settings.HourlyPayment.Value + settings.CallPay;
+        }
+
         private void DisplayPayment()
         {
             var ElapsedTime = (DateTime.Now - StatusManagement.StartTime) - StatusManagement.PauseTimeSpan;
@@ -154,14 +161,6 @@ namespace PayMe
             return TimeSpan.FromTicks(t1.Ticks - t1.Ticks % t2.Ticks);
         }
 
-
-        private double CalculatePayment()
-        {
-            var ElapsedTime = (DateTime.Now - StatusManagement.StartTime) - StatusManagement.PauseTimeSpan;
-            return FractionTimeSpan(ElapsedTime, settings.Threshold).TotalHours * settings.HourlyPayment.Value + settings.CallPay;
-        }
-
-
         private void CreateAppBar()
         {
             ApplicationBar = new ApplicationBar();
@@ -179,6 +178,12 @@ namespace PayMe
             SettingsAppBarButton.Click += delegate(object sender, EventArgs e)
                 { NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative)); };
             ApplicationBar.Buttons.Add(SettingsAppBarButton);
+
+            var AboutAppBarMenuItem = new ApplicationBarMenuItem();
+            AboutAppBarMenuItem.Text = AppResources.About;
+            AboutAppBarMenuItem.Click += delegate(object sender, EventArgs e)
+            { NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative)); };
+            ApplicationBar.MenuItems.Add(AboutAppBarMenuItem);
         }
     }
 }

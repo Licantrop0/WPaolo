@@ -18,7 +18,6 @@ namespace PayMe
         public AttendancesListPage()
         {
             InitializeComponent();
-            AttendanceListBox.ItemsSource = Settings.Attendances;
         }
 
         private void Attendance_Click(object sender, RoutedEventArgs e)
@@ -26,5 +25,12 @@ namespace PayMe
             var a = ((Button)sender).DataContext as Attendance;
             NavigationService.Navigate(new Uri("/AddEditAttendance.xaml?id=" + a.Id, UriKind.Relative));
         }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            AttendanceListBox.ItemsSource = null;
+            AttendanceListBox.ItemsSource = Settings.Attendances;            
+        }
+
     }
 }

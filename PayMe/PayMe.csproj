@@ -89,6 +89,7 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\StatusManagement.cs" />
     <Compile Include="TiltEffect.cs" />
     <Compile Include="TrialExpiredPage.xaml.cs">
       <DependentUpon>TrialExpiredPage.xaml</DependentUpon>

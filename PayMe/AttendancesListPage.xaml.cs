@@ -23,7 +23,8 @@ namespace PayMe
 
         private void Attendance_Click(object sender, RoutedEventArgs e)
         {
-
+            var a = ((Button)sender).DataContext as Attendance;
+            NavigationService.Navigate(new Uri("/AddEditAttendance.xaml?id=" + a.Id, UriKind.Relative));
         }
     }
 }

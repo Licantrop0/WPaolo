@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:scm="clr-namespace:System.ComponentModel;assembly=System.Windows"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    FontFamily="Consolas"
+    FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" shell:SystemTray.IsVisible="True"
     FontSize="28"

@@ -9,7 +9,7 @@ namespace TwentyTwelve_Organizer
 {
     public partial class App : Application
     {
-        SoundEffectInstance BackgroundMusic;
+        //SoundEffectInstance BackgroundMusic;
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
@@ -82,7 +82,7 @@ namespace TwentyTwelve_Organizer
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             //if (BackgroundSound.CurrentState != MediaElementState.Playing) BackgroundSound.Play();
-            if (BackgroundMusic.State != SoundState.Playing) BackgroundMusic.Play();
+            //if (BackgroundMusic.State != SoundState.Playing) BackgroundMusic.Play();
         }
 
         // Code to execute when the application is deactivated (sent to background)

@@ -10,8 +10,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True"
-    FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
-    FontSize="26" Loaded="PhoneApplicationPage_Loaded">
+    FontFamily="Consolas" Loaded="PhoneApplicationPage_Loaded">
     <phone:PhoneApplicationPage.Foreground>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF2DD000" Offset="0"/>
@@ -70,11 +69,11 @@
                 <TextBlock Name="t_countdownhours" Grid.Row="0" Grid.Column="1" TextAlignment="Center" Margin="6,0,30,6" />
                 <TextBlock Name="t_countdownminutes" Grid.Row="0" Grid.Column="2" TextAlignment="Center" Margin="6,0,30,6" />
                 <TextBlock Name="t_countdownseconds" Grid.Row="0" Grid.Column="3" TextAlignment="Center" Margin="6,0,0,6" />
-                
+
                 <TextBlock Text="Days" Grid.Row="1" Grid.Column="0" Margin="6,0,30,6" />
                 <TextBlock Text="Hours" Grid.Row="1" Grid.Column="1" Margin="6,0,30,6" />
                 <TextBlock Text="Minutes" Grid.Row="1" Grid.Column="2" Margin="6,0,30,6" />
-                <TextBlock Text="Seconds" Grid.Row="1" Grid.Column="3" Margin="6,0,0,6" />               
+                <TextBlock Text="Seconds" Grid.Row="1" Grid.Column="3" Margin="6,0,0,6" />
             </Grid>
             <TextBlock Name="EvalTextBlock" Margin="0,140,0,0" Height="300"
                        VerticalAlignment="Top" TextAlignment="Center"
@@ -87,15 +86,12 @@
             </Button>
             <TextBlock Name="DemoTextBlock" Text="Demo"
                      FontSize="96" Visibility="Collapsed"
-                     Foreground="White"
-                     VerticalAlignment="Bottom"
-                     TextAlignment="Center" FontStyle="Italic" Margin="-114,0,114,89">
-            	<TextBlock.Projection>
-            		<PlaneProjection CenterOfRotationY="0.6"/>
-            	</TextBlock.Projection>
-            	<TextBlock.RenderTransform>
-            		<CompositeTransform Rotation="-35" ScaleX="1.55"/>
+                     VerticalAlignment="Center" HorizontalAlignment="Center"
+                     TextAlignment="Center" FontStyle="Italic" Margin="0,0,0,0">
+                <TextBlock.RenderTransform>
+            		<CompositeTransform Rotation="-30" ScaleX="1.55" CenterX="100" CenterY="100" />
             	</TextBlock.RenderTransform>
+
             </TextBlock>
         </Grid>
     </Grid>

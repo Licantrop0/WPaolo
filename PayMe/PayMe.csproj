@@ -137,8 +137,15 @@
     <Resource Include="PauseButton.png" />
     <Resource Include="PlayButton.png" />
     <Content Include="SplashScreenImage.jpg" />
-    <Resource Include="Toolkit.Content\appbar.delete.png" />
-    <Content Include="Toolkit.Content\appbar_edit.png" />
+    <Content Include="Toolkit.Content\appbar.delete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Toolkit.Content\appbar.list.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Toolkit.Content\appbar_edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Toolkit.Content\appbar_save.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

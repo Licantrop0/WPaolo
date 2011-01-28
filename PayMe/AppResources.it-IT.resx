@@ -123,6 +123,12 @@
   <data name="AppName" xml:space="preserve">
     <value>PayMe</value>
   </data>
+  <data name="Attendance" xml:space="preserve">
+    <value>Intervento</value>
+  </data>
+  <data name="AttendancesList" xml:space="preserve">
+    <value>Lista Interventi</value>
+  </data>
   <data name="BuyNow" xml:space="preserve">
     <value>acquistala ora</value>
   </data>
@@ -135,11 +141,20 @@
   <data name="CurrencySymbol" xml:space="preserve">
     <value>Valuta</value>
   </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Nome cliente:</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Cancella</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrizione lavoro:</value>
+  </data>
   <data name="ElapsedTime" xml:space="preserve">
     <value>Tempo trascorso</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>Fine lavoro:</value>
   </data>
   <data name="FifteenMinutes" xml:space="preserve">
     <value>15 Minuti</value>
@@ -152,6 +167,9 @@
   </data>
   <data name="HourlyPayment" xml:space="preserve">
     <value>Paga oraria</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>Guadagno:</value>
   </data>
   <data name="OneHour" xml:space="preserve">
     <value>1 Ora</value>
@@ -170,6 +188,9 @@
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Inizio lavoro:</value>
   </data>
   <data name="Stop" xml:space="preserve">
     <value>Stop</value>

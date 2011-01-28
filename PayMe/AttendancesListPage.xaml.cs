@@ -18,6 +18,12 @@ namespace PayMe
         public AttendancesListPage()
         {
             InitializeComponent();
+            AttendanceListBox.ItemsSource = Settings.Attendances;
+        }
+
+        private void Attendance_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

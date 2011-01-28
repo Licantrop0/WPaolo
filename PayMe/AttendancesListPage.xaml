@@ -6,33 +6,66 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:converters="clr-namespace:Converters"
+    FontFamily="Georgia"
+    Foreground="WhiteSmoke"
+    FontSize="{StaticResource PhoneFontSizeLarge}"
     SupportedOrientations="Landscape" Orientation="Landscape"
     mc:Ignorable="d" d:DesignHeight="480" d:DesignWidth="728"
     shell:SystemTray.IsVisible="True">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                <GradientStop Color="#FFB8B8B8" Offset="1"/>
+                <GradientStop Color="#FF75816D" Offset="0.7"/>
+                <GradientStop Color="#FF1D310F" Offset="0.1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Margin="9,-7,0,0" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
+                       Text="{Binding Path=LocalizedResources.AttendancesList, Source={StaticResource LocalizedStrings}}" />
         </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            
-            
-            
-        </Grid>
+        <ListBox x:Name="AttendanceListBox" Grid.Row="1" Margin="12,0,12,0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
+                        <Button VerticalAlignment="Center" Click="Attendance_Click">
+                            <Button.Template>
+                                <ControlTemplate />
+                            </Button.Template>
+                            <StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=LocalizedResources.StartTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
+                                    <TextBlock Name="StartTimeTextBlock" Text="{Binding Path=StartTime}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=LocalizedResources.EndTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
+                                    <TextBlock Name="EndTimeTextBlock" Text="{Binding Path=EndTime}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=LocalizedResources.Income, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
+                                    <TextBlock Name="IncomeTextBlock" Text="{Binding Path=Income, Converter={StaticResource CurrencyTextConverter}}" />
+                                </StackPanel>
+
+
+                            </StackPanel>
+
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
- 
+
 
 </phone:PhoneApplicationPage>

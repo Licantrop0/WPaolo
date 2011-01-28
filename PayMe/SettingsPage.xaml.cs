@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using System.Windows.Data;
+using System.ComponentModel;
+using Converters;
 
 namespace PayMe
 {
@@ -26,11 +21,6 @@ namespace PayMe
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             SettingsStackPanel.DataContext = new Settings();
-            //CurrencyListPicker.SelectedItem = Settings.CurrencySymbol;
-            //HourlyPaymentTextBox.Text = GetCurrencyText(Settings.HourlyPayment);
-            //CallPayTextBox.Text = GetCurrencyText(Settings.CallPay);
-            //ThresholdSlider.Value = GetThresholdIndex(Settings.Threshold);
-            //ThresholdTextBox.Text = GetThresholdText(ThresholdSlider.Value);
         }
 
         private void CreateAppBar()
@@ -44,9 +34,7 @@ namespace PayMe
                 HourlyPaymentTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 CallPayTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 ThresholdSlider.GetBindingExpression(Slider.ValueProperty).UpdateSource();
-                //Settings.HourlyPayment = GetCurrencyValue(HourlyPaymentTextBox.Text);
-                //Settings.CallPay = GetCurrencyValue(CallPayTextBox.Text);
-                //Settings.Threshold = GetThresholdValue(ThresholdSlider.Value);
+
                 NavigationService.GoBack();
             };
 
@@ -60,6 +48,12 @@ namespace PayMe
             HourlyPaymentTextBox.SelectAll();
         }
 
+        private void HourlyPaymentTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            HourlyPaymentTextBox.Text = CurrencyTextConverter.GetCurrencyText(
+                CurrencyTextConverter.GetCurrencyValue(HourlyPaymentTextBox.Text, CultureInfo.CurrentCulture));
+        }
+
         private void HourlyPaymentTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -71,6 +65,12 @@ namespace PayMe
             CallPayTextBox.SelectAll();
         }
 
+        private void CallPayTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            CallPayTextBox.Text = CurrencyTextConverter.GetCurrencyText(
+                CurrencyTextConverter.GetCurrencyValue(CallPayTextBox.Text, CultureInfo.CurrentCulture));
+        }
+
         private void CallPayTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -79,10 +79,10 @@ namespace PayMe
 
         #endregion
 
-        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
         {
-            //if (!Settings.HourlyPayment.HasValue)
-            //    throw new Exception("ForceExit");
+            if (!new Settings().HourlyPayment.HasValue)
+                throw new Exception("ForceExit");
         }
 
         //private void CurrencyListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)

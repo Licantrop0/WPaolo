@@ -79,6 +79,24 @@ namespace PayMe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attendance.
+        /// </summary>
+        public static string Attendance {
+            get {
+                return ResourceManager.GetString("Attendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attendances List.
+        /// </summary>
+        public static string AttendancesList {
+            get {
+                return ResourceManager.GetString("AttendancesList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to buy it now..
         /// </summary>
         public static string BuyNow {
@@ -115,6 +133,15 @@ namespace PayMe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer name:.
+        /// </summary>
+        public static string CustomerName {
+            get {
+                return ResourceManager.GetString("CustomerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
@@ -124,11 +151,29 @@ namespace PayMe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Work description:.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Elapsed time.
         /// </summary>
         public static string ElapsedTime {
             get {
                 return ResourceManager.GetString("ElapsedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End time:.
+        /// </summary>
+        public static string EndTime {
+            get {
+                return ResourceManager.GetString("EndTime", resourceCulture);
             }
         }
         
@@ -165,6 +210,15 @@ namespace PayMe {
         public static string HourlyPayment {
             get {
                 return ResourceManager.GetString("HourlyPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Income:.
+        /// </summary>
+        public static string Income {
+            get {
+                return ResourceManager.GetString("Income", resourceCulture);
             }
         }
         
@@ -223,6 +277,15 @@ namespace PayMe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start time:.
+        /// </summary>
+        public static string StartTime {
+            get {
+                return ResourceManager.GetString("StartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stop.
         /// </summary>
         public static string Stop {
@@ -241,7 +304,7 @@ namespace PayMe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Threshold.
+        ///   Looks up a localized string similar to Money update.
         /// </summary>
         public static string Threshold {
             get {

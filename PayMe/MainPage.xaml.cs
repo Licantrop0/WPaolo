@@ -174,6 +174,14 @@ namespace PayMe
             SettingsAppBarButton.Click += delegate(object sender, EventArgs e)
                 { NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative)); };
             ApplicationBar.Buttons.Add(SettingsAppBarButton);
+
+            var AttendanceListAppBarButton = new ApplicationBarIconButton();
+            AttendanceListAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar.list.png", UriKind.Relative);
+            AttendanceListAppBarButton.Text = AppResources.AttendancesList;
+            AttendanceListAppBarButton.Click += delegate(object sender, EventArgs e)
+            { NavigationService.Navigate(new Uri("/AttendancesListPage.xaml", UriKind.Relative)); };
+            ApplicationBar.Buttons.Add(AttendanceListAppBarButton);
+
         }
     }
 }

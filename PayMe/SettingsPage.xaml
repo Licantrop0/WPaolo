@@ -7,13 +7,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     FontFamily="Georgia"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="WhiteSmoke"
+    FontSize="{StaticResource PhoneFontSizeLarge}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:local="clr-namespace:PayMe"
+    xmlns:converters="clr-namespace:Converters"
     Loaded="PhoneApplicationPage_Loaded" BackKeyPress="PhoneApplicationPage_BackKeyPress">
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -57,9 +57,9 @@
 
         <StackPanel Name="SettingsStackPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel.Resources>
-                <local:CurrencyTextConverter x:Key="CurrencyTextConverter" />
-                <local:ThresholdConverter x:Key="ThresholdConverter" />
-                <local:ThresholdTextConverter x:Key="ThresholdTextConverter" />
+                <converters:CurrencyTextConverter x:Key="CurrencyTextConverter" />
+                <converters:ThresholdConverter x:Key="ThresholdConverter" />
+                <converters:ThresholdTextConverter x:Key="ThresholdTextConverter" />
             </StackPanel.Resources>
 
             <!--<toolkit:ListPicker Name="CurrencyListPicker" Margin="12,0,0,15" Width="176"
@@ -79,22 +79,19 @@
                 <toolkit:ListPickerItem Content="Fr" />
             </toolkit:ListPicker>-->
 
-            <TextBlock Text="{Binding Path=LocalizedResources.HourlyPayment, Source={StaticResource LocalizedStrings}}"
-                       FontSize="{StaticResource PhoneFontSizeLarge}" />
+            <TextBlock Text="{Binding Path=LocalizedResources.HourlyPayment, Source={StaticResource LocalizedStrings}}" />
             <TextBox Name="HourlyPaymentTextBox" InputScope="TelephoneNumber" FontFamily="Georgia"
                      Text="{Binding HourlyPayment, Converter={StaticResource CurrencyTextConverter}, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
-                      Width="200" TextAlignment="Right" HorizontalAlignment="Left" Margin="0,0,0,15"
-                     KeyDown="HourlyPaymentTextBox_KeyDown" GotFocus="HourlyPaymentTextBox_GotFocus" />
+                     Width="200" TextAlignment="Right" HorizontalAlignment="Left" Margin="0,0,0,15"
+                     KeyDown="HourlyPaymentTextBox_KeyDown" GotFocus="HourlyPaymentTextBox_GotFocus" LostFocus="HourlyPaymentTextBox_LostFocus" />
 
-            <TextBlock Text="{Binding Path=LocalizedResources.CallPay, Source={StaticResource LocalizedStrings}}"
-                       FontSize="{StaticResource PhoneFontSizeLarge}" />
-
+            <TextBlock Text="{Binding Path=LocalizedResources.CallPay, Source={StaticResource LocalizedStrings}}" />
             <TextBox Name="CallPayTextBox" InputScope="TelephoneNumber" FontFamily="Georgia"
                      Text="{Binding Path=CallPay, Converter={StaticResource CurrencyTextConverter}, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
                      GotFocus="CallPayTextBox_GotFocus"  KeyDown="CallPayTextBox_KeyDown"
-                     HorizontalAlignment="Left" Margin="0,0,0,15" Width="200" TextAlignment="Right" />
+                     HorizontalAlignment="Left" Margin="0,0,0,15" Width="200" TextAlignment="Right" LostFocus="CallPayTextBox_LostFocus" />
 
-            <TextBlock Name="ThresholdTextBox" FontSize="{StaticResource PhoneFontSizeLarge}" 
+            <TextBlock Name="ThresholdTextBox"
                        Text="{Binding ElementName=ThresholdSlider, Path=Value, Converter={StaticResource ThresholdTextConverter}}" />
             <Slider Name="ThresholdSlider" SmallChange="1" Maximum="5"
                     Value="{Binding Threshold, Converter={StaticResource ThresholdConverter}, Mode=TwoWay, UpdateSourceTrigger=Explicit}" />

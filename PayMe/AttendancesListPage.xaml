@@ -11,8 +11,8 @@
     Foreground="WhiteSmoke"
     FontSize="{StaticResource PhoneFontSizeLarge}"
     SupportedOrientations="Landscape" Orientation="Landscape"
-    mc:Ignorable="d" d:DesignHeight="480" d:DesignWidth="728"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d" d:DesignHeight="480" d:DesignWidth="800"
+    shell:SystemTray.IsVisible="False">
 
     <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
@@ -34,6 +34,10 @@
         </StackPanel>
 
         <ListBox x:Name="AttendanceListBox" Grid.Row="1" Margin="12,0,12,0">
+            <ListBox.Resources>
+                <converters:CurrencyTextConverter x:Key="CurrencyTextConverter" />
+            </ListBox.Resources>
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
@@ -52,11 +56,11 @@
                                     <TextBlock Text="{Binding Path=LocalizedResources.EndTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
                                     <TextBlock Name="EndTimeTextBlock" Text="{Binding Path=EndTime}" />
                                 </StackPanel>
+                                
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Path=LocalizedResources.Income, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
                                     <TextBlock Name="IncomeTextBlock" Text="{Binding Path=Income, Converter={StaticResource CurrencyTextConverter}}" />
                                 </StackPanel>
-
 
                             </StackPanel>
 

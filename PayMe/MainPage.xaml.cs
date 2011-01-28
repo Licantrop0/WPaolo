@@ -33,7 +33,7 @@ namespace PayMe
             if (!settings.HourlyPayment.HasValue)
                 NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
             else
-                ResumeStatus(Settings.CurrentStatus);
+                ResumeStatus(StatusManagement.CurrentStatus);
         }
 
         private void InitializeTimer()
@@ -51,83 +51,85 @@ namespace PayMe
 
         private void StartStopButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Settings.CurrentStatus == Settings.Status.Stopped)
+            if (StatusManagement.CurrentStatus == Status.Stopped)
             {
-                GoToStatus(Settings.Status.Started);
+                GoToStatus(Status.Started);
             }
             else
             {
                 if (MessageBox.Show(AppResources.AlertStopCounting, string.Empty, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
-                    GoToStatus(Settings.Status.Stopped);
+                    GoToStatus(Status.Stopped);
                 }
             }
         }
 
         private void PauseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Settings.CurrentStatus == Settings.Status.Started ||
-                Settings.CurrentStatus == Settings.Status.Resumed)
-                GoToStatus(Settings.Status.Paused);
-            else if (Settings.CurrentStatus == Settings.Status.Paused)
-                GoToStatus(Settings.Status.Resumed);
+            if (StatusManagement.CurrentStatus == Status.Started ||
+                StatusManagement.CurrentStatus == Status.Resumed)
+                GoToStatus(Status.Paused);
+            else if (StatusManagement.CurrentStatus == Status.Paused)
+                GoToStatus(Status.Resumed);
         }
 
-        private void GoToStatus(Settings.Status status)
+        private void GoToStatus(Status status)
         {
             switch (status)
             {
-                case Settings.Status.Started:
-                    Settings.StartTime = DateTime.Now;
-                    Settings.PauseTimeSpan = TimeSpan.Zero;
+                case Status.Started:
+                    StatusManagement.StartTime = DateTime.Now;
+                    StatusManagement.PauseTimeSpan = TimeSpan.Zero;
                     dt.Start();
                     VisualStateManager.GoToState(this, "Started", true);
                     break;
-                case Settings.Status.Stopped:
-                    if (Settings.CurrentStatus == Settings.Status.Paused)
-                        Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
+                case Status.Stopped:
+                    if (StatusManagement.CurrentStatus == Status.Paused)
+                        StatusManagement.PauseTimeSpan += DateTime.Now - StatusManagement.StartPauseTime;
+
                     dt.Stop();
                     VisualStateManager.GoToState(this, "Stopped", true);
-                    var a = new Attendance(Settings.StartTime, DateTime.Now, Settings.PauseTimeSpan,
+                    var a = new Attendance(StatusManagement.StartTime, DateTime.Now, StatusManagement.PauseTimeSpan,
                             CalculatePayment(), Settings.CurrencySymbol);
                     Settings.Attendances.Add(a);
                     NavigationService.Navigate(new Uri("/AddEditAttendance.xaml?id=" + a.Id, UriKind.Relative));
                     break;
-                case Settings.Status.Paused:
-                    Settings.StartPauseTime = DateTime.Now;
+                case Status.Paused:
+                    StatusManagement.StartPauseTime = DateTime.Now;
                     dt.Stop();
                     VisualStateManager.GoToState(this, "Paused", true);
                     break;
-                case Settings.Status.Resumed:
-                    Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
+                case Status.Resumed:
+                    StatusManagement.PauseTimeSpan += DateTime.Now - StatusManagement.StartPauseTime;
                     dt.Start();
                     VisualStateManager.GoToState(this, "Started", true);
                     break;
                 default:
                     break;
             }
-             Settings.CurrentStatus = status;
-       }
+            StatusManagement.CurrentStatus = status;
+        }
 
-        private void ResumeStatus(Settings.Status status)
+        //BUG!!! NEL RESUME MI DA SEMPRE STATUS = STARTED anziché STOPPED
+        private void ResumeStatus(Status status)
         {
             switch (status)
             {
-                case Settings.Status.Started:
+                case Status.Started:
                     VisualStateManager.GoToState(this, "Started", true);
                     dt.Start();
                     break;
-                case Settings.Status.Stopped:
-                    Settings.StartTime = DateTime.Now;
-                    Settings.PauseTimeSpan = TimeSpan.Zero;
+                case Status.Stopped:
+                    StatusManagement.StartTime = DateTime.Now;
+                    StatusManagement.PauseTimeSpan = TimeSpan.Zero;
                     VisualStateManager.GoToState(this, "Stopped", true);
                     break;
-                case Settings.Status.Paused:
-                    Settings.PauseTimeSpan += DateTime.Now - Settings.StartPauseTime;
-                    Settings.StartPauseTime = DateTime.Now;
+                case Status.Paused:
+                    StatusManagement.PauseTimeSpan += DateTime.Now - StatusManagement.StartPauseTime;
+                    StatusManagement.StartPauseTime = DateTime.Now;
                     VisualStateManager.GoToState(this, "Paused", true);
                     break;
-                case Settings.Status.Resumed:
+                case Status.Resumed:
                     VisualStateManager.GoToState(this, "Started", true);
                     dt.Start();
                     break;
@@ -139,7 +141,7 @@ namespace PayMe
 
         private void DisplayPayment()
         {
-            var ElapsedTime = (DateTime.Now - Settings.StartTime) - Settings.PauseTimeSpan;
+            var ElapsedTime = (DateTime.Now - StatusManagement.StartTime) - StatusManagement.PauseTimeSpan;
 
             //Il cuore dell'app è questo calcolo complicatissimo!!!
             //(TempoTrascorso - Resto della divisione con lo scatto).OreTotali * Prezzo Orario + Diritto di chiamata
@@ -159,7 +161,7 @@ namespace PayMe
 
         private double CalculatePayment()
         {
-            var ElapsedTime = (DateTime.Now - Settings.StartTime) - Settings.PauseTimeSpan;
+            var ElapsedTime = (DateTime.Now - StatusManagement.StartTime) - StatusManagement.PauseTimeSpan;
             var i = FractionTimeSpan(ElapsedTime, settings.Threshold).TotalHours * settings.HourlyPayment.Value + settings.CallPay;
             return i;
         }

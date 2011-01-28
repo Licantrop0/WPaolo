@@ -57,17 +57,18 @@
 
         <StackPanel Name="AttendanceStackPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel.Resources>
-                <converters:CurrencyTextConverter x:Key="CurrencyTextConverter" />
+                <converters:CurrencyTextConverter x:Key="CurrencyTextConverter" />                
+                <converters:DateTimeTextConverter x:Key="DateTimeTextConverter" />
             </StackPanel.Resources>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=LocalizedResources.StartTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
-                <TextBlock Name="StartTimeTextBlock" Text="{Binding Path=StartTime}" />
+                <TextBlock Name="StartTimeTextBlock" Text="{Binding Path=StartTime, Converter={StaticResource DateTimeTextConverter}}" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=LocalizedResources.EndTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
-                <TextBlock Name="EndTimeTextBlock" Text="{Binding Path=EndTime}" />
+                <TextBlock Name="EndTimeTextBlock" Text="{Binding Path=EndTime, Converter={StaticResource DateTimeTextConverter}}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=LocalizedResources.Income, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />

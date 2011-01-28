@@ -110,15 +110,10 @@ namespace PayMe
             StatusManagement.CurrentStatus = status;
         }
 
-        //BUG!!! NEL RESUME MI DA SEMPRE STATUS = STARTED anziché STOPPED
         private void ResumeStatus(Status status)
         {
             switch (status)
             {
-                case Status.Started:
-                    VisualStateManager.GoToState(this, "Started", true);
-                    dt.Start();
-                    break;
                 case Status.Stopped:
                     StatusManagement.StartTime = DateTime.Now;
                     StatusManagement.PauseTimeSpan = TimeSpan.Zero;
@@ -129,6 +124,7 @@ namespace PayMe
                     StatusManagement.StartPauseTime = DateTime.Now;
                     VisualStateManager.GoToState(this, "Paused", true);
                     break;
+                case Status.Started:
                 case Status.Resumed:
                     VisualStateManager.GoToState(this, "Started", true);
                     dt.Start();
@@ -162,20 +158,13 @@ namespace PayMe
         private double CalculatePayment()
         {
             var ElapsedTime = (DateTime.Now - StatusManagement.StartTime) - StatusManagement.PauseTimeSpan;
-            var i = FractionTimeSpan(ElapsedTime, settings.Threshold).TotalHours * settings.HourlyPayment.Value + settings.CallPay;
-            return i;
+            return FractionTimeSpan(ElapsedTime, settings.Threshold).TotalHours * settings.HourlyPayment.Value + settings.CallPay;
         }
 
 
         private void CreateAppBar()
         {
             ApplicationBar = new ApplicationBar();
-            var SettingsAppBarButton = new ApplicationBarIconButton();
-            SettingsAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
-            SettingsAppBarButton.Text = AppResources.Settings;
-            SettingsAppBarButton.Click += delegate(object sender, EventArgs e)
-                { NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative)); };
-            ApplicationBar.Buttons.Add(SettingsAppBarButton);
 
             var AttendanceListAppBarButton = new ApplicationBarIconButton();
             AttendanceListAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar.list.png", UriKind.Relative);
@@ -184,6 +173,12 @@ namespace PayMe
             { NavigationService.Navigate(new Uri("/AttendancesListPage.xaml", UriKind.Relative)); };
             ApplicationBar.Buttons.Add(AttendanceListAppBarButton);
 
+            var SettingsAppBarButton = new ApplicationBarIconButton();
+            SettingsAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
+            SettingsAppBarButton.Text = AppResources.Settings;
+            SettingsAppBarButton.Click += delegate(object sender, EventArgs e)
+                { NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative)); };
+            ApplicationBar.Buttons.Add(SettingsAppBarButton);
         }
     }
 }

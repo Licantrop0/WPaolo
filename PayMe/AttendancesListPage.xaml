@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=System.Windows"
     xmlns:Tilt="clr-namespace:Tilt"
     xmlns:converters="clr-namespace:Converters"
     FontFamily="Georgia"
@@ -42,8 +43,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <Grid.Background>
+            <Grid.Background>
             <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                 <GradientStop Color="#FFB8B8B8" Offset="1"/>
                 <GradientStop Color="#FF75816D" Offset="0.7"/>
@@ -72,7 +72,7 @@
                             </Button.Template>
                             <StackPanel>
 
-                                <TextBlock Text="{Binding Path=CustomerName}" />
+                                <TextBlock Text="{Binding Path=CustomerName}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
                                 <TextBlock Text="{Binding Path=Description}" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Path=LocalizedResources.Income, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />

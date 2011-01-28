@@ -30,7 +30,7 @@
                 </Setter.Value>
             </Setter>
             <Setter Property="Tilt:TiltEffect.IsTiltEnabled" Value="True"/>
-            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontFamily" Value="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas" />
         </Style>
 
         <Style x:Key="GreenTextBlockStyle" TargetType="TextBlock">
@@ -42,7 +42,7 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontFamily" Value="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
 
@@ -55,7 +55,7 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontFamily" Value="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas" />
         </Style>
     </Application.Resources>
 

@@ -24,20 +24,14 @@ namespace WPCommon
 
         public string GetOtherAppsText
         {
-            get { return (string)OtherAppsHyperlinkButton.Content; }
-            set { OtherAppsHyperlinkButton.Content = value ?? "Get other apps from WPME"; }
+            get { return (string)OtherAppsHyperlink.Content; }
+            set { OtherAppsHyperlink.Content = value ?? (string)OtherAppsHyperlink.Content; }
         }
 
         public string ContactUsText
         {
             get { return (string)ContactUsButton.Content; }
-            set { OtherAppsHyperlinkButton.Content = value ?? "Contact Us"; }
-        }
-
-        public ImageSource ImageBackgroundSource
-        {
-            get { return BackgroundImageBrush.ImageSource; }
-            set { BackgroundImageBrush.ImageSource = value; }
+            set { ContactUsButton.Content = value ?? (string)ContactUsButton.Content; }
         }
 
         public AboutControl()
@@ -51,7 +45,7 @@ namespace WPCommon
             VersionTextBlock.Text = new AssemblyName(asmName).Version.ToString();
         }
 
-        private void OtherAppsHyperlinkButton_Click(object sender, RoutedEventArgs e)
+        private void OtherAppsHyperlink_Click(object sender, RoutedEventArgs e)
         {
             new MarketplaceSearchTask()
             {

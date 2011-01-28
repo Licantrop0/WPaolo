@@ -32,7 +32,7 @@ namespace PayMe
 
             AttendanceStackPanel.DataContext = CurrentAttendance;
         }
-
+        
         private void CreateAppBar()
         {
             ApplicationBar = new ApplicationBar();
@@ -54,8 +54,8 @@ namespace PayMe
             DeleteAppBarButton.Text = AppResources.Delete;
             DeleteAppBarButton.Click += delegate(object sender, EventArgs e)
             {
-                Settings.Attendances.Remove(CurrentAttendance);
                 NavigationService.GoBack();
+                Settings.Attendances.Remove(CurrentAttendance);
             };
             ApplicationBar.Buttons.Add(DeleteAppBarButton);
         }

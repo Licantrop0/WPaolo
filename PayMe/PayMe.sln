@@ -3,14 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayMe", "PayMe.csproj", "{82289C7E-26FD-471C-A2B8-2E908F786CAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon", "..\WPCommon\WPCommon.csproj", "{22700591-5E34-4D4D-A01F-6B8C2153B270}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
+		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = PayMe.csproj
 		SccLocalPath1 = .
+		SccProjectUniqueName2 = ..\\WPCommon\\WPCommon.csproj
+		SccProjectName2 = ../WPCommon
+		SccLocalPath2 = ..\\WPCommon
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +28,10 @@ Global
 		{82289C7E-26FD-471C-A2B8-2E908F786CAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82289C7E-26FD-471C-A2B8-2E908F786CAB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{82289C7E-26FD-471C-A2B8-2E908F786CAB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -57,6 +57,7 @@
       <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.0\Toolkit\Nov10\Bin\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -64,6 +65,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddEditAttendance.xaml.cs">
       <DependentUpon>AddEditAttendance.xaml</DependentUpon>
     </Compile>
@@ -100,6 +104,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddEditAttendance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -134,9 +142,9 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="MoneyButton.png" />
-    <Resource Include="PauseButton.png" />
-    <Resource Include="PlayButton.png" />
+    <Resource Include="Images\MoneyButton.png" />
+    <Resource Include="Images\PauseButton.png" />
+    <Resource Include="Images\PlayButton.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\appbar.delete.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -164,6 +172,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WPCommonPages\WPCommonPages\WPCommon.csproj">
+      <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
+      <Name>WPCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

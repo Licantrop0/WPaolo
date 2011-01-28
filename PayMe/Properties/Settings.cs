@@ -4,6 +4,7 @@ using System.Globalization;
 using Microsoft.Phone.Marketplace;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace PayMe
 {
@@ -17,8 +18,6 @@ namespace PayMe
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-
-        #region User Settings
 
         public static string CurrencySymbol
         {
@@ -35,6 +34,9 @@ namespace PayMe
             //        IsolatedStorageSettings.ApplicationSettings["currency_symbol"] = value;
             //}
         }  
+
+        #region User Settings
+
 
         public Double? HourlyPayment
         {
@@ -89,13 +91,13 @@ namespace PayMe
 
         #endregion
 
-        public static List<Attendance> Attendances
+        public static ObservableCollection<Attendance> Attendances
         {
             get
             {
                 if (!IsolatedStorageSettings.ApplicationSettings.Contains("attendances"))
-                    IsolatedStorageSettings.ApplicationSettings["attendances"] = new List<Attendance>();
-                return (List<Attendance>)IsolatedStorageSettings.ApplicationSettings["attendances"];
+                    IsolatedStorageSettings.ApplicationSettings["attendances"] = new ObservableCollection<Attendance>();
+                return (ObservableCollection<Attendance>)IsolatedStorageSettings.ApplicationSettings["attendances"];
             }
             set
             {
@@ -104,41 +106,5 @@ namespace PayMe
             }
         }
         
-        #region Trial Mode Detection
-
-        private static LicenseInformation li = new LicenseInformation();
-        public static bool IsTrialMode { get { return li.IsTrial(); } }
-
-        private static DateTime LastOpen
-        {
-            get
-            {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("last_open"))
-                    IsolatedStorageSettings.ApplicationSettings["last_open"] = DateTime.Today.AddDays(-1);
-                return (DateTime)IsolatedStorageSettings.ApplicationSettings["last_open"];
-            }
-            set
-            {
-                if (LastOpen != value)
-                    IsolatedStorageSettings.ApplicationSettings["last_open"] = value;
-            }
-        }
-
-        public static bool AlreadyOpenedToday
-        {
-            get
-            {
-                if (LastOpen == DateTime.Today)
-                    return true;
-                else
-                {
-                    LastOpen = DateTime.Today;
-                    return false;
-                }
-            }
-        }
-
-        #endregion
-
     }
 }

@@ -7,13 +7,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:Tilt="clr-namespace:Tilt"
     xmlns:converters="clr-namespace:Converters"
     FontFamily="Georgia"
     Foreground="WhiteSmoke"
     FontSize="{StaticResource PhoneFontSizeLarge}"
     SupportedOrientations="Landscape" Orientation="Landscape"
     mc:Ignorable="d" d:DesignHeight="480" d:DesignWidth="800"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
@@ -36,7 +37,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
 
-    <Grid x:Name="LayoutRoot" >
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -55,7 +56,7 @@
                        Text="{Binding Path=LocalizedResources.AttendancesList, Source={StaticResource LocalizedStrings}}" />
         </StackPanel>
 
-        <ListBox x:Name="AttendanceListBox" Grid.Row="1" Margin="12,0,12,0">
+        <ListBox x:Name="AttendanceListBox" Grid.Row="1" Margin="12,0,12,0" >
             <ListBox.Resources>
                 <converters:CurrencyTextConverter x:Key="CurrencyTextConverter" />
             </ListBox.Resources>
@@ -63,32 +64,36 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
-                        <Button VerticalAlignment="Center" Click="Attendance_Click">
+                        <Button VerticalAlignment="Center" Background="Transparent"
+                                Tilt:TiltEffect.IsTiltEnabled="True"
+                                Click="Attendance_Click">
                             <Button.Template>
                                 <ControlTemplate />
                             </Button.Template>
                             <StackPanel>
 
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Path=LocalizedResources.StartTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
-                                    <TextBlock Name="StartTimeTextBlock" Text="{Binding Path=StartTime}" />
-                                </StackPanel>
-
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Path=LocalizedResources.EndTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
-                                    <TextBlock Name="EndTimeTextBlock" Text="{Binding Path=EndTime}" />
-                                </StackPanel>
-
+                                <TextBlock Text="{Binding Path=CustomerName}" />
+                                <TextBlock Text="{Binding Path=Description}" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Path=LocalizedResources.Income, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
                                     <TextBlock Name="IncomeTextBlock" Text="{Binding Path=Income, Converter={StaticResource CurrencyTextConverter}}" />
                                 </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=LocalizedResources.StartTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
+                                    <TextBlock Name="StartTimeTextBlock" Text="{Binding Path=StartTime}" Margin="0,0,8,0"/>
+                                    <TextBlock Text="{Binding Path=LocalizedResources.EndTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
+                                    <TextBlock Name="EndTimeTextBlock" Text="{Binding Path=EndTime}" />
+                                </StackPanel>
+
+                                <Line X1="800" Stroke="{StaticResource PhoneAccentBrush}" Margin="0,0,0,10"/>
 
                             </StackPanel>
 
                         </Button>
                     </StackPanel>
                 </DataTemplate>
+
             </ListBox.ItemTemplate>
         </ListBox>
     </Grid>

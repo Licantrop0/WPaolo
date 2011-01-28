@@ -101,8 +101,8 @@
                 Tilt:TiltEffect.IsTiltEnabled="True" 
                 Click="PauseButton_Click">
                 <Grid>
-                    <Image Name="PauseButtonImage" Source="PauseButton.png" Stretch="Fill" Opacity="0" />
-                    <Image Name="PlayButtonImage" Source="PlayButton.png" Stretch="Fill" Opacity="0" />
+                    <Image Name="PauseButtonImage" Source="Images\PauseButton.png" Stretch="Fill" Opacity="0" />
+                    <Image Name="PlayButtonImage" Source="Images\PlayButton.png" Stretch="Fill" Opacity="0" />
                 </Grid>
                 <Button.Template>
                     <ControlTemplate />
@@ -116,7 +116,7 @@
                     Tilt:TiltEffect.IsTiltEnabled="True" Click="StartStopButton_Click">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="MoneyButton.png" Stretch="Fill"/>
+                        <Image Source="Images\MoneyButton.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>

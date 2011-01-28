@@ -75,7 +75,7 @@
                 <TextBlock Name="IncomeTextBlock" Text="{Binding Path=Income, Converter={StaticResource CurrencyTextConverter}}" />
             </StackPanel>
             <TextBlock Text="{Binding Path=LocalizedResources.CustomerName, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
-            <TextBox Name="CustomerNameTextBox" Text="{Binding Path=Customer, Mode=TwoWay, UpdateSourceTrigger=Explicit}" KeyDown="CustomerNameTextBox_KeyDown" />
+            <TextBox Name="CustomerNameTextBox" Text="{Binding Path=CustomerName, Mode=TwoWay, UpdateSourceTrigger=Explicit}" KeyDown="CustomerNameTextBox_KeyDown" />
             
             <TextBlock Text="{Binding Path=LocalizedResources.Description, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
             <TextBox Height="220" Name="DescriptionTextBox" Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=Explicit}" TextWrapping="Wrap" InputScope="Text" KeyDown="DescriptionTextBox_KeyDown" />

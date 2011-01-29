@@ -11,8 +11,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True"
-    xmlns:local="clr-namespace:Capra" Loaded="PhoneApplicationPage_Loaded">
+    shell:SystemTray.IsVisible="True"    
+    Loaded="PhoneApplicationPage_Loaded">
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
@@ -27,7 +27,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ToggleButton Name="CapraButton" Margin="6"
-                    local:TiltEffect.IsTiltEnabled="True" ManipulationStarted="CapraButton_ManipulationStarted" ManipulationCompleted="CapraButton_ManipulationCompleted">
+                     ManipulationStarted="CapraButton_ManipulationStarted" ManipulationCompleted="CapraButton_ManipulationCompleted">
                 <ToggleButton.Background>
                     <ImageBrush />
                 </ToggleButton.Background>

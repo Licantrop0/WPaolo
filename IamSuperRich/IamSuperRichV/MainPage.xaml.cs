@@ -20,5 +20,15 @@ namespace IamSuperRichV
         {
             InitializeComponent();
         }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+        }
+
+        private void InstructionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/InstructionsPage.xaml", UriKind.Relative));
+        }
     }
 }

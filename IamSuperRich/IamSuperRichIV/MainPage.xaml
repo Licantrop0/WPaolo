@@ -12,5 +12,7 @@
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Image Stretch="UniformToFill" Source="screen_full_4.png" />
+        <Button Content="Instructions" Height="101" HorizontalAlignment="Left" Margin="116,538,0,0" Name="InstructionsButton" VerticalAlignment="Top" Width="260" Background="#8B000000" BorderBrush="{x:Null}" Click="InstructionsButton_Click" />
+        <Button Content="About" Height="101" HorizontalAlignment="Left" Margin="116,619,0,0" Name="AboutButton" VerticalAlignment="Top" Width="240" Background="#7A000000" BorderBrush="{x:Null}" Click="AboutButton_Click"></Button>
     </Grid>
 </phone:PhoneApplicationPage>

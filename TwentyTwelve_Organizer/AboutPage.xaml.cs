@@ -11,13 +11,15 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
-namespace WPCommon
+namespace TwentyTwelve_Organizer
 {
-    public partial class About : PhoneApplicationPage
+    public partial class AboutPage : PhoneApplicationPage
     {
-        public About()
+        public AboutPage()
         {
             InitializeComponent();
         }
+
+
     }
 }

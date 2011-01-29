@@ -81,10 +81,16 @@
                        VerticalAlignment="Top" TextAlignment="Center"
                        Foreground="White" Padding="10" TextWrapping="Wrap">
             </TextBlock>
-            <Button Name="ViewTaskButton" Content="Tasks" Height="116" Margin="0,0,0,60" VerticalAlignment="Bottom"
+            <Button Name="ViewTaskButton" Content="Tasks" Height="116" Margin="80,0,92,90" VerticalAlignment="Bottom"
                     Width="284" Click="ViewTaskButton_Click" Style="{StaticResource MetallicButtonStyle}"
-                    ManipulationStarted="ViewTaskButton_ManipulationStarted"
-                    ManipulationCompleted="ViewTaskButton_ManipulationCompleted">
+                    ManipulationStarted="Button_ManipulationStarted"
+                    ManipulationCompleted="Button_ManipulationCompleted">
+            </Button>
+            <Button Name="AboutButton" Content="About" Height="39"
+                    Margin="80,0,92,21" VerticalAlignment="Bottom"
+                    Click="AboutButton_Click" Style="{StaticResource MetallicButtonStyle}"
+                    ManipulationStarted="Button_ManipulationStarted"
+                    ManipulationCompleted="Button_ManipulationCompleted">
             </Button>
             <TextBlock Name="DemoTextBlock" Text="Demo"
                      FontSize="96" Visibility="Collapsed"

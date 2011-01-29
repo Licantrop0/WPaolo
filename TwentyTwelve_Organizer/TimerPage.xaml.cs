@@ -76,7 +76,7 @@ namespace TwentyTwelve_Organizer
                 {
                     EvalTextBlock.Text = "You MUST change something in your tasks organization or you will not be prepared for the end!";
                 }
-                else if (differenzaGiorni >= 0 && differenzaGiorni < 15)
+                else if (differenzaGiorni >= 40 && differenzaGiorni < 90)
                 {
                     EvalTextBlock.Text = "You have to work in a different way with your tasks, there is not so much time...";
                 }
@@ -84,7 +84,7 @@ namespace TwentyTwelve_Organizer
                 {
                     EvalTextBlock.Text = "You are doing well with your tasks.";
                 }
-                else if (differenzaGiorni >= 40 && differenzaGiorni < 90)
+                else if (differenzaGiorni >= 0 && differenzaGiorni < 15)
                 {
                     EvalTextBlock.Text = "Very good, your tasks organization is brilliant, you will be ready for the end.";
                 }
@@ -97,15 +97,23 @@ namespace TwentyTwelve_Organizer
         }
 
 
-        private void ViewTaskButton_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        private void Button_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
             Settings.ButtonDownSound.Play();
         }
 
-        private void ViewTaskButton_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        private void Button_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
             Settings.ButtonUpSound.Play();
         }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+
+        }
+
+
 
     }
 }

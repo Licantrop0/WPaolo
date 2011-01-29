@@ -159,9 +159,7 @@
       <All>True</All>
       <AutoFill>True</AutoFill>
     </BlendEmbeddedFont>
-    <Content Include="Images\2012background.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Images\2012background.jpg" />
     <Resource Include="Images\metallic-holes-texture.jpg" />
     <Resource Include="Images\MetallicStrip.png" />
     <Resource Include="Images\remove_white.png" />

@@ -5,29 +5,39 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="800" d:DesignWidth="480"
-    Loaded="UserControl_Loaded">
+    Loaded="UserControl_Loaded"             
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone">
 
-    <StackPanel >
-        
-        <StackPanel.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black"/>
-                <GradientStop Color="{StaticResource PhoneAccentColor}" Offset="1"/>
-            </LinearGradientBrush>
+    <StackPanel Name="MainStackPanel" Background="Transparent" >
 
-        </StackPanel.Background>
-        <Image Stretch="UniformToFill" Width="400" Height="400"
+        <Image Stretch="UniformToFill" Width="300" Height="300"
                    Source="/WPCommon;component/Logo/logo.png" />
         <TextBlock Name="ApplicationNameTextBlock" Text="Application Name"
                        TextAlignment="Center" TextWrapping="Wrap"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        <TextBlock Name="VersionTextBlock" TextAlignment="Center"
-                       Style="{StaticResource PhoneTextExtraLargeStyle}" />
-        <HyperlinkButton Name="OtherAppsHyperlink"
-                             Content="Get other apps from WPME"
-                             Click="OtherAppsHyperlink_Click" />
-        <Button Name="ContactUsButton" Margin="10"
-                    Content="Contact Us"
-                    Click="ContactUsButton_Click" />
+                   FontSize="{StaticResource PhoneFontSizeExtraLarge}" Margin="0,15,0,0" />
+        <TextBlock Name="VersionTextBlock" Text="v.0.0.1" TextAlignment="Center"
+                       FontSize="{StaticResource PhoneFontSizeMediumLarge}" Margin="0,5,0,0" />
+
+
+              <TextBlock  Name="OtherAppsTextBlock" Text="Get other apps from WPME"
+                        FontSize="{StaticResource PhoneFontSizeLarge}"
+                        TextWrapping="Wrap" Margin="0,30,0,0"
+                        HorizontalAlignment="Center"
+                        TextAlignment="Center"
+                        MouseLeftButtonDown="OtherAppsTextBlock_MouseLeftButtonDown" TextDecorations="Underline" />
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
+            <Border MouseLeftButtonDown="Facebook_Click">
+                <Image Source="/WPCommon;component/Img/facebook.png" Height="100" />
+            </Border>
+            <Border>
+                <Image Source="/WPCommon;component/Img/twitter.png" Height="100" Margin="20,0" MouseLeftButtonDown="Twitter_Click" />
+            </Border>
+            <Border>
+                <Image Source="/WPCommon;component/Img/hotmail.png" Height="140" MouseLeftButtonDown="Mail_Click" />
+            </Border>
+        </StackPanel>
     </StackPanel>
+
 </UserControl>

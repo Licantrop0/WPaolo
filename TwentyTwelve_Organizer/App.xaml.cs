@@ -49,16 +49,6 @@ namespace TwentyTwelve_Organizer
 
         private void InitializeSounds()
         {
-            //BackgroundSound = new MediaElement();
-            //BackgroundSound.Source = new Uri("Kungfu Tension 03.mp3", UriKind.Relative);
-            //BackgroundSound.MediaEnded += delegate(object sender, RoutedEventArgs e) { BackgroundSound.Stop(); BackgroundSound.Play(); };
-
-
-            //var BackgroundSound = SoundEffect.FromStream(App.GetResourceStream(
-            //    new Uri("BackgroundMusic.wav", UriKind.Relative)).Stream);
-            //BackgroundMusic = BackgroundSound.CreateInstance();
-            //BackgroundMusic.IsLooped = true;
-
             var str = App.GetResourceStream(new Uri("TickSound.wav", UriKind.Relative));
             Settings.TickSound = SoundEffect.FromStream(str.Stream);
 

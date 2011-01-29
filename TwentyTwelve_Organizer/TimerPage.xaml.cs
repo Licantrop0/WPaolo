@@ -61,32 +61,32 @@ namespace TwentyTwelve_Organizer
             //Calcolo per la valutazione (somma delle difficoltà dei task completati)
             //I valori delle difficoltà sono impostati nella classe Task
             int giorniNecessari = Settings.Tasks.Where(t => !t.IsCompleted).Sum(t => (int)t.Difficulty);
-            if (TimeLeft.Days == 0)
+            if (TimeLeft.TotalDays == 0)
             {
                 EvalTextBlock.Text = "THE END IS TODAY! Close your eyes and accept it!";
             }
-            else if (TimeLeft.Days < 0)
+            else if (TimeLeft.TotalDays < 0)
             {
                 EvalTextBlock.Text = "Open your eyes. Everything is different. Have a nice life.";
             }
             else
             {
-                var differenzaGiorni = TimeLeft.TotalDays - giorniNecessari;
-                if (differenzaGiorni < 0)
+                var rapportoGiorni = giorniNecessari / TimeLeft.TotalDays;
+                if (rapportoGiorni > 1)
                 {
-                    EvalTextBlock.Text = "You MUST change something in your tasks organization or you will not be prepared for the end!";
+                    EvalTextBlock.Text = "Do something or thou shall never complete all thy tasks! Change thy priorities or engage actively to fulfill thy tasks";
                 }
-                else if (differenzaGiorni >= 40 && differenzaGiorni < 90)
+                else if (rapportoGiorni <= 1 && rapportoGiorni > 0.75 )
                 {
-                    EvalTextBlock.Text = "You have to work in a different way with your tasks, there is not so much time...";
+                    EvalTextBlock.Text = "";
                 }
-                else if (differenzaGiorni >= 15 && differenzaGiorni < 40)
+                else if (rapportoGiorni <= 0.75 && rapportoGiorni > 0.50)
                 {
                     EvalTextBlock.Text = "You are doing well with your tasks.";
                 }
-                else if (differenzaGiorni >= 0 && differenzaGiorni < 15)
+                else if (rapportoGiorni <= 0.50 && rapportoGiorni > 0.25)
                 {
-                    EvalTextBlock.Text = "Very good, your tasks organization is brilliant, you will be ready for the end.";
+                    EvalTextBlock.Text = "";
                 }
                 else
                 {

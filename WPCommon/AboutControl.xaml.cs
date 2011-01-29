@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Tasks;
 using System.Reflection;
+using System.Windows.Navigation;
 
 namespace WPCommon
 {
@@ -24,14 +25,14 @@ namespace WPCommon
 
         public string GetOtherAppsText
         {
-            get { return (string)OtherAppsHyperlink.Content; }
-            set { OtherAppsHyperlink.Content = value ?? (string)OtherAppsHyperlink.Content; }
+            get { return (string)OtherAppsTextBlock.Text; }
+            set { OtherAppsTextBlock.Text = value ?? (string)OtherAppsTextBlock.Text; }
         }
 
-        public string ContactUsText
+        public Brush BackgroundStackPanel
         {
-            get { return (string)ContactUsButton.Content; }
-            set { ContactUsButton.Content = value ?? (string)ContactUsButton.Content; }
+            get { return MainStackPanel.Background; }
+            set { MainStackPanel.Background = value; }
         }
 
         public AboutControl()
@@ -45,22 +46,33 @@ namespace WPCommon
             VersionTextBlock.Text = new AssemblyName(asmName).Version.ToString();
         }
 
-        private void OtherAppsHyperlink_Click(object sender, RoutedEventArgs e)
+        private void Facebook_Click(object sender, MouseButtonEventArgs e)
         {
-            new MarketplaceSearchTask()
-            {
-                ContentType = MarketplaceContentType.Applications,
-                SearchTerms = "Licantrop0"
-            }.Show();
+            new WebBrowserTask() { URL = "http://www.facebook.com/pages/WP-Mobile-Entertainment/192414040771354" }.Show();
         }
 
-        private void ContactUsButton_Click(object sender, RoutedEventArgs e)
+        private void Twitter_Click(object sender, MouseButtonEventArgs e)
+        {
+            new WebBrowserTask() { URL = "http://twitter.com/wp7me" }.Show();
+        }
+
+        private void Mail_Click(object sender, MouseButtonEventArgs e)
         {
             new EmailComposeTask()
             {
                 Subject = string.Format("[{0}] {1}", ApplicationName, "feedback"),
                 To = "wpmobile@hotmail.it"
             }.Show();
+        }
+
+        private void OtherAppsTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            new MarketplaceSearchTask()
+            {
+                ContentType = MarketplaceContentType.Applications,
+                SearchTerms = "Licantrop0"
+            }.Show();
+
         }
     }
 }

@@ -11,39 +11,39 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" Opacity="1">
-    
-   
-    <!--LayoutRoot is the root grid where all page content is placed-->
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False" Opacity="1">
+
     <Grid x:Name="LayoutRoot">
-        <Image Source="Images\sfondo_about.jpg" />
+        <Grid.Background>
+            <ImageBrush ImageSource="Images\sfondo_about.jpg" />
+        </Grid.Background>
 
-        <!--<Grid.Resources>
-            <CollectionViewSource x:Name="cvs" >
-                <CollectionViewSource.SortDescriptions>
-                    <scm:SortDescription PropertyName="IsCompleted" Direction="Ascending" />
-                    <scm:SortDescription PropertyName="Description" Direction="Ascending" />
-                </CollectionViewSource.SortDescriptions>
-            </CollectionViewSource>
-        </Grid.Resources>-->
-        
-        <TextBlock Name="titleTextBox" Height="85" HorizontalAlignment="Right" Margin="0,177,12,0"  Text="Curiosità" VerticalAlignment="Top" Width="456" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="56"  Foreground="#FFFFEB50" TextAlignment="Center"  />
-        <TextBlock Name="textFunFact" HorizontalAlignment="Left" Margin="12,0,0,44" VerticalAlignment="Bottom" Width="456" Height="499" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="32" Foreground="#FFFFF9B8" TextWrapping="Wrap" Text="W le capre!" />
-        <ProgressBar Name="progressBar" Height="49" Margin="37,85,33,0"  VerticalAlignment="Top" IsHitTestVisible="False" Foreground="#FFDC1309" Value="33" BorderBrush="#FFFFA400" BorderThickness="2" LargeChange="1" Maximum="1000" Opacity="1" SmallChange="1" RenderTransformOrigin="0.498,0.51" >
-        	<ProgressBar.Background>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="Black" Offset="0"/>
-        			<GradientStop Color="#FFF5420D" Offset="1"/>
-        		</LinearGradientBrush>
-        	</ProgressBar.Background>
+        <TextBlock Name="textProgress" Height="85" Width="456"
+                   Margin="0,10,0,0" VerticalAlignment="Top"
+                   FontSize="28" Foreground="#FFFFEB50"
+                   TextAlignment="Center" TextWrapping="Wrap" />
+        <ProgressBar Name="progressBar" Width="456" 
+                     VerticalAlignment="Top" IsHitTestVisible="False"
+                     Maximum="1000" Margin="0,120,0,0" >
+            <ProgressBar.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFFF9B8" Offset="0"/>
+                    <GradientStop Color="#FFFFEB50" Offset="1"/>
+                </LinearGradientBrush>
+            </ProgressBar.Foreground>            
+            <ProgressBar.RenderTransform>
+                <ScaleTransform ScaleY="6" />
+            </ProgressBar.RenderTransform>
         </ProgressBar>
-        <TextBlock Name="textProgress" Height="85" HorizontalAlignment="Left" Margin="12,10,0,0"  Text="" VerticalAlignment="Top" Width="456" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="18"   Foreground="#FFFFEB50" TextAlignment="Center" TextWrapping="Wrap" />
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
+        <TextBlock Name="titleTextBox" Text="Curiosità"
+                   Width="456" Height="85" Margin="0,177,0,0"
+                   VerticalAlignment="Top" FontSize="56"
+                   Foreground="#FFFFEB50" TextAlignment="Center"  />
+        <TextBlock Name="textFunFact" Text="W le capre!"
+                   Width="456" Height="499" Margin="0,0,0,44"
+                   VerticalAlignment="Bottom" FontSize="32"
+                   Foreground="#FFFFF9B8" TextWrapping="Wrap" />
     </Grid>
 
 

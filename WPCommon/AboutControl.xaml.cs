@@ -48,12 +48,12 @@ namespace WPCommon
 
         private void Facebook_Click(object sender, MouseButtonEventArgs e)
         {
-            new WebBrowserTask() { URL = "http://www.facebook.com/pages/WP-Mobile-Entertainment/192414040771354" }.Show();
+            new WebBrowserTask() { URL = "http://m.facebook.com/pages/WP-Mobile-Entertainment/192414040771354" }.Show();
         }
 
         private void Twitter_Click(object sender, MouseButtonEventArgs e)
         {
-            new WebBrowserTask() { URL = "http://twitter.com/wp7me" }.Show();
+            new WebBrowserTask() { URL = "http://mobile.twitter.com/wp7me" }.Show();
         }
 
         private void Mail_Click(object sender, MouseButtonEventArgs e)

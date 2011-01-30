@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using WPCommon;
 
 namespace TwentyTwelve_Organizer
 {
@@ -23,22 +24,39 @@ namespace TwentyTwelve_Organizer
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/AddEditTaskPage.xaml", UriKind.Relative));
+            if (TrialManagement.IsTrialMode)
+            {
+                NavigationService.Navigate(new Uri("/DemoInfoPage.xaml", UriKind.Relative));
+            }
+            else
+                NavigationService.Navigate(new Uri("/AddEditTaskPage.xaml", UriKind.Relative));
         }
 
         private void RemoveButton_Click(object sender, MouseButtonEventArgs e)
         {
-            if (MessageBox.Show("Do you want to delete this task?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (TrialManagement.IsTrialMode)
             {
-                Task taskToDelete = ((Rectangle)sender).DataContext as Task;
-                Settings.Tasks.Remove(taskToDelete);
+                NavigationService.Navigate(new Uri("/DemoInfoPage.xaml", UriKind.Relative));
             }
+            else
+                if (MessageBox.Show("Do you want to delete this taks?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    Task taskToDelete = ((Rectangle)sender).DataContext as Task;
+                    Settings.Tasks.Remove(taskToDelete);
+                }
         }
 
         private void EditTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            Task taskToEdit = ((Button)sender).DataContext as Task;
-            NavigationService.Navigate(new Uri("/AddEditTaskPage.xaml?id=" + taskToEdit.Id, UriKind.Relative));
+            if (TrialManagement.IsTrialMode)
+            {
+                NavigationService.Navigate(new Uri("/DemoInfoPage.xaml", UriKind.Relative));
+            }
+            else
+            {
+                Task taskToEdit = ((Button)sender).DataContext as Task;
+                NavigationService.Navigate(new Uri("/AddEditTaskPage.xaml?id=" + taskToEdit.Id, UriKind.Relative));
+            }
         }
 
         private void AddTaskButton_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
@@ -50,6 +68,5 @@ namespace TwentyTwelve_Organizer
         {
             Settings.ButtonUpSound.Play();
         }
-
     }
 }

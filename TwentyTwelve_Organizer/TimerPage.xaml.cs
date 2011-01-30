@@ -17,7 +17,7 @@ namespace TwentyTwelve_Organizer
         {
             InitializeComponent();
             InitializeTimer();
-            if (Settings.IsTrialMode)
+            if (WPCommon.TrialManagement.IsTrialMode)
             {
                 DemoTextBlock.Visibility = System.Windows.Visibility.Visible;
             }
@@ -110,10 +110,6 @@ namespace TwentyTwelve_Organizer
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
-
         }
-
-
-
     }
 }

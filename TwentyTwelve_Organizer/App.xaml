@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:Tilt="clr-namespace:Tilt"
-    xmlns:Interop="clr-namespace:XNAInterop" >
+    xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
 
     <!--Application Resources-->
     <Application.Resources>
@@ -29,7 +28,7 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Tilt:TiltEffect.IsTiltEnabled" Value="True"/>
+            <Setter Property="WPCommon:TiltEffect.IsTiltEnabled" Value="True"/>
             <Setter Property="FontFamily" Value="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas" />
         </Style>
 
@@ -60,7 +59,7 @@
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
-        <Interop:XNAAsyncDispatcher />
+        <WPCommon:XNAAsyncDispatcher />
         <!--Required object that handles lifetime events for the application-->
         <shell:PhoneApplicationService 
             Launching="Application_Launching" Closing="Application_Closing" 

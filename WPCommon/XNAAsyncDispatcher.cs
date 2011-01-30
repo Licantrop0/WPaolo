@@ -3,7 +3,7 @@ using System.Windows;
 using Microsoft.Xna.Framework;
 using System.Windows.Threading;
 
-namespace XNAInterop
+namespace WPCommon
 {
     public class XNAAsyncDispatcher : IApplicationService
     {

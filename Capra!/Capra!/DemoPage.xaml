@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="Capra.FunFactPage"
+    x:Class="Capra.DemoPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -7,13 +7,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte"
     FontSize="{StaticResource PhoneFontSizeNormal}"
+    FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False" Opacity="1">
-    
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
@@ -39,33 +39,21 @@
         <Grid.Background>
             <ImageBrush ImageSource="Images\sfondo_about.jpg" />
         </Grid.Background>
-
-        <TextBlock Name="textProgress" Height="85" Width="456"
-                   Margin="0,10,0,0" VerticalAlignment="Top"
-                   FontSize="28" Foreground="#FFFFEB50"
-                   TextAlignment="Center" TextWrapping="Wrap" />
-        <ProgressBar Name="progressBar" Width="456" 
-                     VerticalAlignment="Top" IsHitTestVisible="False"
-                     Maximum="1000" Margin="0,120,0,0" >
-            <ProgressBar.Foreground>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFFFF9B8" Offset="0"/>
-                    <GradientStop Color="#FFFFEB50" Offset="1"/>
-                </LinearGradientBrush>
-            </ProgressBar.Foreground>            
-            <ProgressBar.RenderTransform>
-                <ScaleTransform ScaleY="6" />
-            </ProgressBar.RenderTransform>
-        </ProgressBar>
-        <TextBlock Name="titleTextBox" Text="Curiosità"
-                   Width="456" Height="85" Margin="0,177,0,0"
-                   VerticalAlignment="Top" FontSize="56"
+        <TextBlock Name="titleTextBox" Text="Ops!"
+                   Width="456" Height="109" Margin="12,40,12,0"
+                   VerticalAlignment="Top" FontSize="72"
                    Foreground="#FFFFEB50" TextAlignment="Center"  />
-        <TextBlock Name="textFunFact" Text="W le capre!"
-                   Width="456" Height="499" Margin="0,0,0,44"
+        <TextBlock Name="textDemo" 
+                   Text="Questa è solo una demo!
+Puoi dire Capra! una sola volta al giorno, e non hai accesso alle curiosità e agli obiettivi. Se vuoi dire Capra! come Sgarbi, in continuazione, devi comprare la versione completa. 
+Costa meno di un caffè... pensaci è un investimento!"
+                   Width="456" Height="400" Margin="12,0,12,195"
                    VerticalAlignment="Bottom" FontSize="32"
                    Foreground="#FFFFF9B8" TextWrapping="Wrap" />
-    </Grid>
 
+        <HyperlinkButton Name="BuyButton" Content="Clicca e comprala!"
+                             FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                             Click="BuyButton_Click" Margin="23,596,31,34" Foreground="#FFFFFC6C" />
+    </Grid>
 
 </phone:PhoneApplicationPage>

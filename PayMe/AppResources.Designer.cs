@@ -169,6 +169,15 @@ namespace PayMe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duration:.
+        /// </summary>
+        public static string Duration {
+            get {
+                return ResourceManager.GetString("Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Elapsed time.
         /// </summary>
         public static string ElapsedTime {
@@ -300,6 +309,15 @@ namespace PayMe {
         public static string Stop {
             get {
                 return ResourceManager.GetString("Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

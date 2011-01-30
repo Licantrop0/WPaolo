@@ -33,10 +33,10 @@ namespace SgarbiMix
             StreamResourceInfo SoundFileInfo;
 
             //fascista
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds\fascista.wav", UriKind.Relative));
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/fascista.wav", UriKind.Relative));
             FascistaSound = SoundEffect.FromStream(SoundFileInfo.Stream);
             //capra
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds\capra.wav", UriKind.Relative));
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/capra.wav", UriKind.Relative));
             CapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
 
         }

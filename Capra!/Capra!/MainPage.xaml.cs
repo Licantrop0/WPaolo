@@ -24,7 +24,6 @@ namespace Capra
         Random Rnd = new Random();
         List<BitmapImage> CapreImages = new List<BitmapImage>();
         SoundEffect CapraSound;
-        SoundEffectInstance CapraLoop;
         int curImg;
 
         public MainPage()
@@ -66,9 +65,6 @@ namespace Capra
         {
             StreamResourceInfo SoundFileInfo = App.GetResourceStream(new Uri("capra.wav", UriKind.Relative));
             CapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-
-            CapraLoop = CapraSound.CreateInstance();
-            CapraLoop.IsLooped = true;
         }
 
         //===============================================================================

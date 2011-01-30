@@ -11,6 +11,7 @@ using System.Xml.Linq;
 using Microsoft.Phone.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using WPCommon;
 
 
 /* 
@@ -82,15 +83,48 @@ namespace Capra
 
         private void Capra_Click(object sender, RoutedEventArgs e)
         {
-            Settings.CountCapre++;
-            Settings.TotCapre++;
-            CapraSound.Play();
-            SetNewCapraImage();
+            if (TrialManagement.IsTrialMode == false)
+            {
+                // normale funzionamento
+
+                Settings.CountCapre++;
+                Settings.TotCapre++;
+                CapraSound.Play();
+                SetNewCapraImage();
+            }
+            else
+            {         
+                // trial mode: 1 capra al giorno
+                // non incrementa neanche il contatore del totale delle capre
+
+                if (TrialManagement.AlreadyOpenedToday)
+                { 
+                    NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    if(Settings.CountCapre == 0)
+                    {
+                        Settings.CountCapre++;
+                        CapraSound.Play();
+                        SetNewCapraImage();
+                    }
+                }
+                
+            }
         }
 
         private void FunFact_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/FunFactPage.xaml", UriKind.Relative));
+
+            if (TrialManagement.IsTrialMode)
+            {
+                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
+            }
+            else
+            {
+                NavigationService.Navigate(new Uri("/FunFactPage.xaml", UriKind.Relative));
+            }
         }
 
         private void About_Click(object sender, RoutedEventArgs e)

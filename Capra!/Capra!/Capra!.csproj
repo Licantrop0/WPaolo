@@ -72,6 +72,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DemoPage.xaml.cs">
+      <DependentUpon>DemoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FunFact.cs" />
     <Compile Include="FunFactPage.xaml.cs">
       <DependentUpon>FunFactPage.xaml</DependentUpon>
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DemoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

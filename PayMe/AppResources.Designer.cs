@@ -106,7 +106,7 @@ namespace PayMe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to buy it now..
+        ///   Looks up a localized string similar to buy it now!.
         /// </summary>
         public static string BuyNow {
             get {

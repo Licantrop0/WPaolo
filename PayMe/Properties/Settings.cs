@@ -20,6 +20,8 @@ namespace PayMe
             }
         }
 
+        public static bool IsTrialExpired { get; set; }
+
         public static string CurrencySymbol
         {
             get

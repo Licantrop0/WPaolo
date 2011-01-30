@@ -56,7 +56,6 @@
 
         <ListBox x:Name="AttendanceListBox" Grid.Row="1" Margin="12,0,12,0" >
             <ListBox.Resources>
-                <converters:CurrencyTextConverter x:Key="CurrencyTextConverter" />
                 <converters:DateTimeTextConverter x:Key="DateTimeTextConverter" />
                 <converters:TimeSpanTextConverter x:Key="TimeSpanTextConverter" />
             </ListBox.Resources>
@@ -66,15 +65,12 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
                         <Button VerticalAlignment="Center" Click="Attendance_Click"
                                 Style="{StaticResource AttendanceButtonStyle}" >
-                            <Button.Template>
-                                <ControlTemplate />
-                            </Button.Template>
                             <StackPanel>
                                 <TextBlock Text="{Binding Path=CustomerName}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
                                 <TextBlock Text="{Binding Path=Description}" TextWrapping="Wrap" Width="776" HorizontalAlignment="Left" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Path=LocalizedResources.Income, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
-                                    <TextBlock Text="{Binding Path=Income, Converter={StaticResource CurrencyTextConverter}}" />
+                                    <TextBlock Text="{Binding Path=Income}" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">

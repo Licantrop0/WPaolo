@@ -31,6 +31,40 @@ namespace Capra
             FunFacts = XFunFacts.Descendants("FunFact").Select(ff =>
                 new FunFact(ff.Attribute("Type").Value, ff.Attribute("Text").Value)).ToList();
 
+            if (Settings.TotCapre <= 10)
+            {
+                textProgress.Text = "Hai detto Capra! solo " + Settings.TotCapre + "/1000 volte! \nContinua per sbloccare gli extra!";
+                progressBar.Value = ((double)(Settings.TotCapre) / 1000.0);
+
+                titleTextBox.Text = "";
+                textFunFact.Text = "Non hai invocato abbastanza capre per poterne scoprire i segreti. Continua...";
+   
+            }
+            else if ((Settings.TotCapre > 10) && (Settings.TotCapre <= 1000))
+            {
+                // sblocco dei contenuti solo ogni tot 
+                int sbloccati = FunFacts.Count * Settings.TotCapre / 999;
+                if (sbloccati == 0) sbloccati = 1;
+
+                textProgress.Text = "Hai detto Capra! " + Settings.TotCapre 
+                    + "/1000 volte! \n Contenuti extra "+ sbloccati + "/"+ FunFacts.Count +" sbloccati!";
+                progressBar.Value = ((double)(Settings.TotCapre) / 1000.0);
+
+                int randomFact = Rnd.Next(sbloccati);
+                titleTextBox.Text = FunFacts[randomFact].Type;
+                textFunFact.Text = FunFacts[randomFact].Text; 
+            }
+            else
+            {
+                textProgress.Text = "Hai detto Capra! " + Settings.TotCapre + "/1000 volte! \nHai sbloccato tutto!";
+                progressBar.Value = 1000.00;
+
+                titleTextBox.Text = "MASTRO CAPRAIO";
+                textFunFact.Text = "La tua conoscenza sulle capre ha raggiunto un livello tale da fare invidia a Wikipedia :) ";
+            }
+            
+
+
         }
 
         //===============================================================================

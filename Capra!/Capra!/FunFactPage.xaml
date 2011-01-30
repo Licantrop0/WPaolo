@@ -12,7 +12,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" Opacity="1">
     
    
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -28,8 +28,10 @@
             </CollectionViewSource>
         </Grid.Resources>-->
         
-        <TextBox Name="titleTextBox" Height="104" HorizontalAlignment="Right" Margin="0,664,0,0"  Text="Curiosità" VerticalAlignment="Top" Width="480" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="56" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" SelectionBackground="{x:Null}" Foreground="#FFFFEB50" TextAlignment="Right" />
-        <TextBlock Name="textFunFact" HorizontalAlignment="Left" Margin="12,0,0,142" VerticalAlignment="Bottom" Width="456" Height="526" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="32" Foreground="#FFFFF9B8" TextWrapping="Wrap" Text="Prossimo aggiornamento!" />
+        <TextBlock Name="titleTextBox" Height="85" HorizontalAlignment="Right" Margin="0,177,12,0"  Text="Curiosità" VerticalAlignment="Top" Width="456" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="56"  Foreground="#FFFFEB50" TextAlignment="Center"  />
+        <TextBlock Name="textFunFact" HorizontalAlignment="Left" Margin="12,0,0,44" VerticalAlignment="Bottom" Width="456" Height="499" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="32" Foreground="#FFFFF9B8" TextWrapping="Wrap" Text="W le capre!" />
+        <ProgressBar Name="progressBar" Height="49" HorizontalAlignment="Left" Margin="37,77,0,0"  VerticalAlignment="Top" Width="410" IsHitTestVisible="False" Foreground="#FF22DC09" Background="#FF1BD436" Value="33" BorderBrush="Lime" BorderThickness="2" LargeChange="1" Maximum="1000" Opacity="1" />
+        <TextBlock Name="textProgress" Height="85" HorizontalAlignment="Left" Margin="12,10,0,0"  Text="" VerticalAlignment="Top" Width="456" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="18"   Foreground="#FFFFEB50" TextAlignment="Center" TextWrapping="Wrap" />
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

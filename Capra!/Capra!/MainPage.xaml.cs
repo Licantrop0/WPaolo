@@ -43,7 +43,9 @@ namespace Capra
             XnaDispatchTimer.Tick += delegate { try { FrameworkDispatcher.Update(); } catch { } };
             // Start the DispatchTimer running.
             XnaDispatchTimer.Start();
-            Settings.TotCapre = 0;
+            // metto a zero quelle della sessione corrente
+            // quelle totali voglio prenderle dallo storage
+            Settings.CountCapre = 0;
             // default parte con la 10, che è la stessa dello sfondo base
             curImg = 10;
         }

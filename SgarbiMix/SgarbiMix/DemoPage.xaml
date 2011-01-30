@@ -47,7 +47,7 @@
 Puoi gridare le frasi di Sgarbi solo poche volte al giorno! 
 Se vuoi dire Capra! o Ignorante! come Sgarbi, in continuazione, devi comprare la versione completa. 
 Costa meno di un caffè... pensaci è un investimento!"
-                   Height="400" Margin="13,194,11,0"
+                   Height="400" Margin="24,190,0,0"
                    VerticalAlignment="Top" FontSize="32"
                    Foreground="Black" TextWrapping="Wrap" OpacityMask="{x:Null}" />
 

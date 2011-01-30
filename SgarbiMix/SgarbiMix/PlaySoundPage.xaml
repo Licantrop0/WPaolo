@@ -32,19 +32,19 @@
 
 
         <Button Content="Capra!" Click="Capra_Click"
-                Height="63" Width="468" Foreground="#FFFFEBAC" Background="#7A000000" Style="" Margin="12,12,0,693" FontSize="22" BorderThickness="0" />
+                Height="63" Width="468" Foreground="#FFFFEBAC" Background="#7A000000" Margin="12,12,0,693" FontSize="22" BorderThickness="0" />
 
         <Button Content="Taci!" Click="Taci_Click"
-                Height="63" Width="468" Foreground="#FFFFEBAC" Background="#7A000000" Style="" Margin="12,75,0,630" FontSize="22" BorderThickness="0" />
+                Height="63" Width="468" Foreground="#FFFFEBAC" Background="#7A000000" Margin="12,75,0,630" FontSize="22" BorderThickness="0" />
 
         <Button Content="Ignorante!" Click="Ignorante_Click"
                 Height="63" Width="468" Margin="0,0,12,12"
                 VerticalAlignment="Bottom" FontSize="22"
                 Foreground="#FFFFEBAC" Background="#7A000000" 
-                Style="" BorderThickness="0" />
+                BorderThickness="0" />
         
-        <Button Content="E' un crimine!" Click="Crimine_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="12,137,0,568" Style="" Width="468" />
-        <Button Content="Fascista!" Click="Fascista_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="12,203,0,502" Style="" Width="468" />
+        <Button Content="E' un crimine!" Click="Crimine_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="12,137,0,568" Width="468" />
+        <Button Content="Fascista!" Click="Fascista_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="12,203,0,502" Width="468" />
     
     </Grid>
 

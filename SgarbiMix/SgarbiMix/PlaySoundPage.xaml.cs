@@ -53,7 +53,7 @@ namespace SgarbiMix
 
         private void Capra_Click(object sender, RoutedEventArgs e)
         {
-
+            CapraSound.Play();
         }
 
         private void Taci_Click(object sender, RoutedEventArgs e)

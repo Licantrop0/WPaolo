@@ -124,6 +124,8 @@
     <Content Include="sfondo.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="sounds\capra.wav" />
+    <Content Include="sounds\fascista.wav" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

@@ -44,7 +44,7 @@ namespace Capra
         {
             //Carica le immagini delle capre
             for (int i = 0; i <= 17; i++)
-                CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".png", UriKind.Relative)));
+                CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".jpg", UriKind.Relative)));
         }
 
 

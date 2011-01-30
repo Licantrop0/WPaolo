@@ -34,17 +34,17 @@
         <Button Content="Insulta!" Click="Insulta_Click"
                 Height="180" Width="300" 
                 Foreground="#FFFFEBAC" Background="#7A000000" 
-                Style="" Margin="84,470,96,118" FontSize="36" BorderThickness="0" />
+                Margin="84,470,96,118" FontSize="36" BorderThickness="0" />
         <Button Content="Disclaimer" Click="Disclaimer_Click"
                 Height="100" Width="240" Margin="0,0,240,12"
                 VerticalAlignment="Bottom" FontSize="28"
                 Foreground="#FFFFEBAC" Background="#7A000000" 
-                Style="" BorderThickness="0" />
+                BorderThickness="0" />
         <Button Content="About" Click="About_Click"
                 Height="100" Width="240" Margin="228,0,12,12"
                 VerticalAlignment="Bottom" FontSize="28"
                 Foreground="#FFFFEBAC" Background="#7A000000" 
-                Style="" BorderThickness="0" />
+                BorderThickness="0" />
     </Grid>
 
 </phone:PhoneApplicationPage>

@@ -160,7 +160,7 @@
     <value>Elapsed time</value>
   </data>
   <data name="EndTime" xml:space="preserve">
-    <value>End time:</value>
+    <value>End:</value>
   </data>
   <data name="FifteenMinutes" xml:space="preserve">
     <value>15 Minutes</value>
@@ -196,13 +196,10 @@
     <value>Start</value>
   </data>
   <data name="StartTime" xml:space="preserve">
-    <value>Start time:</value>
+    <value>Start:</value>
   </data>
   <data name="Stop" xml:space="preserve">
     <value>Stop</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="TenMinutes" xml:space="preserve">
     <value>10 Minutes</value>

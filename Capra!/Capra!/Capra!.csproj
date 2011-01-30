@@ -118,9 +118,6 @@
       <All>True</All>
       <AutoFill>True</AutoFill>
     </BlendEmbeddedFont>
-    <Content Include="capra.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="capra.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -128,37 +125,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Resource Include="Images\funFact.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\o10.png" />
-    <Resource Include="Images\o100.png" />
-    <Resource Include="Images\o1000.png" />
-    <Resource Include="Images\o500.png" />
-    <Resource Include="Images\sbloccato3.png" />
-    <Resource Include="Images\funFact_base.png" />
-    <Resource Include="Images\oblist.png" />
-    <Resource Include="Images\sbloccato1.png" />
-    <Resource Include="Images\sbloccato2.png" />
-    <Resource Include="Images\googleCapre\capra0.jpg" />
-    <Resource Include="Images\googleCapre\capra1.jpg" />
-    <Resource Include="Images\googleCapre\capra10.jpg" />
-    <Resource Include="Images\googleCapre\capra11.jpg" />
-    <Resource Include="Images\googleCapre\capra12.jpg" />
-    <Resource Include="Images\googleCapre\capra13.jpg" />
-    <Resource Include="Images\googleCapre\capra14.jpg" />
-    <Resource Include="Images\googleCapre\capra15.jpg" />
-    <Resource Include="Images\googleCapre\capra16.jpg" />
-    <Resource Include="Images\googleCapre\capra17.jpg" />
-    <Resource Include="Images\googleCapre\capra18.jpg" />
-    <Resource Include="Images\googleCapre\capra2.jpg" />
-    <Resource Include="Images\googleCapre\capra3.jpg" />
-    <Resource Include="Images\googleCapre\capra4.jpg" />
-    <Resource Include="Images\googleCapre\capra5.jpg" />
-    <Resource Include="Images\googleCapre\capra6.jpg" />
-    <Resource Include="Images\googleCapre\capra7.jpg" />
-    <Resource Include="Images\googleCapre\capra8.jpg" />
-    <Resource Include="Images\googleCapre\capra9.jpg" />
     <Content Include="Images\capra0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -193,9 +159,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\sfondo_about.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\testa.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SplashScreenImage.jpg" />

@@ -50,6 +50,7 @@ namespace Capra
                     + "/1000 volte! \n Contenuti extra "+ sbloccati + "/"+ FunFacts.Count +" sbloccati!";
                 progressBar.Value = ((double)(Settings.TotCapre) / 1000.0);
 
+                // ne mostro uno a caso
                 int randomFact = Rnd.Next(sbloccati);
                 titleTextBox.Text = FunFacts[randomFact].Type;
                 textFunFact.Text = FunFacts[randomFact].Text; 
@@ -61,6 +62,10 @@ namespace Capra
 
                 titleTextBox.Text = "MASTRO CAPRAIO";
                 textFunFact.Text = "La tua conoscenza sulle capre ha raggiunto un livello tale da fare invidia a Wikipedia :) ";
+
+                // non mostro piu' niente
+                // o forse mostriamo qcosa? lupo possiamo mostrarli in un'altra pagina??
+                // come aggiornamento semmai.. ci penseremo..
             }
             
 

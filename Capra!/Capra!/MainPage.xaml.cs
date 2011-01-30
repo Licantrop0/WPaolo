@@ -59,17 +59,17 @@ namespace Capra
 
             //Carica le immagini delle capre
             for (int i = 0; i <= 9; i++)
-                CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".jpg", UriKind.Relative)));
+                CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".png", UriKind.Relative)));
 
             SetNewCapraImage();
         }
 
         private void HideAll()
         {
-            textFunFact.Visibility = Visibility.Collapsed;
-            titleFunFact.Visibility = Visibility.Collapsed;
+            //textFunFact.Visibility = Visibility.Collapsed;
+            //titleFunFact.Visibility = Visibility.Collapsed;
             SblocButton.Visibility = Visibility.Collapsed;
-            textObiettivo.Visibility = Visibility.Collapsed;        
+            //textObiettivo.Visibility = Visibility.Collapsed;        
         }
 
         private void resetToCapra()
@@ -108,7 +108,7 @@ namespace Capra
                 // show a random fun fact
                 this.Focus();
                 Settings.CountCapre = 0;
-                showFunFacts();
+                //showFunFacts();
             }
         }
 
@@ -138,54 +138,54 @@ namespace Capra
         //                        FUN FACTS
         //===============================================================================
 
-        private void showFunFacts()
-        {
-            // sometimes instead of fun facts I'll show the achievements
+        //private void showFunFacts()
+        //{
+        //    // sometimes instead of fun facts I'll show the achievements
 
-            if ((Settings.TotCapre >= 10) && (Settings.TotCapre < 100) && (prizeIsShown == 0))
-            {
-                CapraImage.Source = new BitmapImage(new Uri("Images\\o10.png", UriKind.Relative));
-                textObiettivo.Text = "Obiettivo sbloccato!"; textObiettivo.Visibility = Visibility.Visible;
-                textFunFact.Text = "Hai detto almeno 10 volte Capra!"; textFunFact.Visibility = Visibility.Visible;
-                titleFunFact.Visibility = Visibility.Collapsed;
-                prizeIsShown = 1;
-            }
-            else if ((Settings.TotCapre >= 100) && (Settings.TotCapre < 500) && (prizeIsShown == 1))
-            {
-                CapraImage.Source = new BitmapImage(new Uri("Images\\o100.png", UriKind.Relative));
-                textObiettivo.Text = "Obiettivo sbloccato!"; textObiettivo.Visibility = Visibility.Visible;
-                textFunFact.Text = "Hai detto almeno 100 volte Capra!"; textFunFact.Visibility = Visibility.Visible;
-                titleFunFact.Visibility = Visibility.Collapsed;
-                prizeIsShown = 2;
-            }
-            else if ((Settings.TotCapre >= 500) && (Settings.TotCapre < 1000) && (prizeIsShown == 2))
-            {
-                CapraImage.Source = new BitmapImage(new Uri("Images\\o500.png", UriKind.Relative));
-                textObiettivo.Text = "Obiettivo sbloccato!"; textObiettivo.Visibility = Visibility.Visible;
-                textFunFact.Text = "Hai detto almeno 500 volte Capra!"; textFunFact.Visibility = Visibility.Visible;
-                titleFunFact.Visibility = Visibility.Collapsed;
-                prizeIsShown = 3;
-            }
-            else if ((Settings.TotCapre >= 1000) && (prizeIsShown == 3))
-            {
-                CapraImage.Source = new BitmapImage(new Uri("Images\\o1000.png", UriKind.Relative));
-                textObiettivo.Text = "Obiettivi sbloccati!"; textObiettivo.Visibility = Visibility.Visible;
-                textFunFact.Text = "Hai detto almeno 1000 volte Capra! Congratulazioni, hai sbloccato tutti gli obiettivi! Ora puoi fregiarti del prezioso titolo di Mastro Capraio!"; textFunFact.Visibility = Visibility.Visible;
-                titleFunFact.Visibility = Visibility.Collapsed;
-                prizeIsShown = 4;
-            }
-            else
-            {
-                this.Focus();
-                int randomFact = Rnd.Next(FunFacts.Count);
-                titleFunFact.Text = FunFacts[randomFact].Type; titleFunFact.Visibility = Visibility.Visible;
-                textFunFact.Text = FunFacts[randomFact].Text; textFunFact.Visibility = Visibility.Visible;
-                CapraImage.Source = new BitmapImage(new Uri("Images\\funFact.png", UriKind.Relative));
-            }
-            SblocButton.Visibility = Visibility.Visible;
-            factIsShown = true;
+        //    if ((Settings.TotCapre >= 10) && (Settings.TotCapre < 100) && (prizeIsShown == 0))
+        //    {
+        //        CapraImage.Source = new BitmapImage(new Uri("Images\\o10.png", UriKind.Relative));
+        //        textObiettivo.Text = "Obiettivo sbloccato!"; textObiettivo.Visibility = Visibility.Visible;
+        //        textFunFact.Text = "Hai detto almeno 10 volte Capra!"; textFunFact.Visibility = Visibility.Visible;
+        //        titleFunFact.Visibility = Visibility.Collapsed;
+        //        prizeIsShown = 1;
+        //    }
+        //    else if ((Settings.TotCapre >= 100) && (Settings.TotCapre < 500) && (prizeIsShown == 1))
+        //    {
+        //        CapraImage.Source = new BitmapImage(new Uri("Images\\o100.png", UriKind.Relative));
+        //        textObiettivo.Text = "Obiettivo sbloccato!"; textObiettivo.Visibility = Visibility.Visible;
+        //        textFunFact.Text = "Hai detto almeno 100 volte Capra!"; textFunFact.Visibility = Visibility.Visible;
+        //        titleFunFact.Visibility = Visibility.Collapsed;
+        //        prizeIsShown = 2;
+        //    }
+        //    else if ((Settings.TotCapre >= 500) && (Settings.TotCapre < 1000) && (prizeIsShown == 2))
+        //    {
+        //        CapraImage.Source = new BitmapImage(new Uri("Images\\o500.png", UriKind.Relative));
+        //        textObiettivo.Text = "Obiettivo sbloccato!"; textObiettivo.Visibility = Visibility.Visible;
+        //        textFunFact.Text = "Hai detto almeno 500 volte Capra!"; textFunFact.Visibility = Visibility.Visible;
+        //        titleFunFact.Visibility = Visibility.Collapsed;
+        //        prizeIsShown = 3;
+        //    }
+        //    else if ((Settings.TotCapre >= 1000) && (prizeIsShown == 3))
+        //    {
+        //        CapraImage.Source = new BitmapImage(new Uri("Images\\o1000.png", UriKind.Relative));
+        //        textObiettivo.Text = "Obiettivi sbloccati!"; textObiettivo.Visibility = Visibility.Visible;
+        //        textFunFact.Text = "Hai detto almeno 1000 volte Capra! Congratulazioni, hai sbloccato tutti gli obiettivi! Ora puoi fregiarti del prezioso titolo di Mastro Capraio!"; textFunFact.Visibility = Visibility.Visible;
+        //        titleFunFact.Visibility = Visibility.Collapsed;
+        //        prizeIsShown = 4;
+        //    }
+        //    else
+        //    {
+        //        this.Focus();
+        //        int randomFact = Rnd.Next(FunFacts.Count);
+        //        titleFunFact.Text = FunFacts[randomFact].Type; titleFunFact.Visibility = Visibility.Visible;
+        //        textFunFact.Text = FunFacts[randomFact].Text; textFunFact.Visibility = Visibility.Visible;
+        //        CapraImage.Source = new BitmapImage(new Uri("Images\\funFact.png", UriKind.Relative));
+        //    }
+        //    SblocButton.Visibility = Visibility.Visible;
+        //    factIsShown = true;
 
-        }
+        //}
 
 
         //===============================================================================
@@ -202,35 +202,45 @@ namespace Capra
         //                        ACHIEVEMENTS
         //===============================================================================
 
-        private void SblocButton_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
-        {
-            resetToCapra();
-        }
+        //private void SblocButton_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        //{
+        //    resetToCapra();
+        //}
 
-        private void SblocButton_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
-        {
-            CapraImage.Source = new BitmapImage(new Uri("Images\\o1000.png", UriKind.Relative));
+        //private void SblocButton_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        //{
+        //    CapraImage.Source = new BitmapImage(new Uri("Images\\o1000.png", UriKind.Relative));
 
-            if (prizeIsShown == 4)
-            {
-                textFunFact.Text = "Congratulazioni, hai sbloccato tutti gli obiettivi e puoi fregiarti del titolo di Mastro Capraio. Ora sei anche il massimo esperto mondiale di Capre, e sei autorizzato a dare della capra a chiunque!";
-                textObiettivo.Text = "Mastro Capraio";
-            }
-            else
-            {
-                textFunFact.Text = "Devi sbloccare tutti gli obiettivi per poterti fregiare del titolo di Mastro Capraio. Continua a chiamare Capra! C'è pieno di capre intorno a te!";
-                textObiettivo.Text = "";
-            }
+        //    if (prizeIsShown == 4)
+        //    {
+        //        textFunFact.Text = "Congratulazioni, hai sbloccato tutti gli obiettivi e puoi fregiarti del titolo di Mastro Capraio. Ora sei anche il massimo esperto mondiale di Capre, e sei autorizzato a dare della capra a chiunque!";
+        //        textObiettivo.Text = "Mastro Capraio";
+        //    }
+        //    else
+        //    {
+        //        textFunFact.Text = "Devi sbloccare tutti gli obiettivi per poterti fregiare del titolo di Mastro Capraio. Continua a chiamare Capra! C'è pieno di capre intorno a te!";
+        //        textObiettivo.Text = "";
+        //    }
 
-            textObiettivo.Visibility = Visibility.Visible;
-            textFunFact.Visibility = Visibility.Visible;
-            titleFunFact.Visibility = Visibility.Collapsed;
+        //    textObiettivo.Visibility = Visibility.Visible;
+        //    textFunFact.Visibility = Visibility.Visible;
+        //    titleFunFact.Visibility = Visibility.Collapsed;
 
-        }
+        //}
+
+
+        //===============================================================================
+        //                        ABOUT
+        //===============================================================================
 
         private void PageTitle_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+        }
+
+        private void Image_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/FunFactPage.xaml", UriKind.Relative));
         }
 
 

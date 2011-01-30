@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:Tilt="clr-namespace:Tilt"
+    xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="WhiteSmoke"
@@ -98,7 +98,7 @@
                        VerticalAlignment="Center"/>
             <Button Name="PauseButton" Height="100" Width="100" Grid.Row="1" 
                 Margin="6" HorizontalAlignment="Right" 
-                Tilt:TiltEffect.IsTiltEnabled="True" 
+                WPCommon:TiltEffect.IsTiltEnabled="True" 
                 Click="PauseButton_Click">
                 <Grid>
                     <Image Name="PauseButtonImage" Source="Images\PauseButton.png" Stretch="Fill" Opacity="0" />
@@ -113,7 +113,7 @@
         <!--ContentPanel - place additional content here-->
         <StackPanel Grid.Row="1" >
             <Button Name="StartStopMoneyButton" Height="300" Width="300" Margin="0,34,0,12"
-                    Tilt:TiltEffect.IsTiltEnabled="True" Click="StartStopButton_Click">
+                    WPCommon:TiltEffect.IsTiltEnabled="True" Click="StartStopButton_Click">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="Images\MoneyButton.png" Stretch="Fill"/>

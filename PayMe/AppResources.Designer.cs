@@ -187,7 +187,7 @@ namespace PayMe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End time:.
+        ///   Looks up a localized string similar to End:.
         /// </summary>
         public static string EndTime {
             get {
@@ -295,7 +295,7 @@ namespace PayMe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start time:.
+        ///   Looks up a localized string similar to Start:.
         /// </summary>
         public static string StartTime {
             get {
@@ -309,15 +309,6 @@ namespace PayMe {
         public static string Stop {
             get {
                 return ResourceManager.GetString("Stop", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

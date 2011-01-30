@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:scm="clr-namespace:System.ComponentModel;assembly=System.Windows"
-    xmlns:Tilt="clr-namespace:Tilt"
     xmlns:converters="clr-namespace:Converters"
     FontFamily="Georgia"
     Foreground="WhiteSmoke"
@@ -37,7 +36,6 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -51,7 +49,7 @@
             </LinearGradientBrush>
         </Grid.Background>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,0">
             <TextBlock x:Name="PageTitle" Margin="9,-7,0,0" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
                        Text="{Binding Path=LocalizedResources.AttendancesList, Source={StaticResource LocalizedStrings}}" />
         </StackPanel>
@@ -66,9 +64,8 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
-                        <Button VerticalAlignment="Center" Background="Transparent"
-                                Tilt:TiltEffect.IsTiltEnabled="True"
-                                Click="Attendance_Click">
+                        <Button VerticalAlignment="Center" Click="Attendance_Click"
+                                Style="{StaticResource AttendanceButtonStyle}" >
                             <Button.Template>
                                 <ControlTemplate />
                             </Button.Template>
@@ -87,7 +84,7 @@
                                     <TextBlock Text="{Binding Path=Duration, Converter={StaticResource TimeSpanTextConverter}}" />
                                 </StackPanel>
 
-                                <Line X1="800" Stroke="{StaticResource PhoneAccentBrush}" Margin="0,0,0,10"/>
+                                <Line X1="800" Stroke="WhiteSmoke" Margin="0,6,0,12"/>
 
                             </StackPanel>
 

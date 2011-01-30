@@ -23,32 +23,25 @@ namespace PayMe
             CreateAppBar();
         }
 
+        private void InitializeTimer()
+        {
+            dt = new DispatcherTimer();
+            dt.Interval = TimeSpan.FromSeconds(1);
+            dt.Tick += delegate(object sender, EventArgs e) { DisplayPayment(); };
+        }
+
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday)
+            if (Settings.IsTrialExpired)
             {
                 NavigationService.Navigate(new Uri("/TrialExpiredPage.xaml", UriKind.Relative));
                 return;
             }
-
             if (!settings.HourlyPayment.HasValue)
                 NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
             else
                 ResumeStatus(StatusManagement.CurrentStatus);
         }
-
-        private void InitializeTimer()
-        {
-            dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromSeconds(1);
-            dt.Tick += new EventHandler(dt_Tick);
-        }
-
-        void dt_Tick(object sender, EventArgs e)
-        {
-            DisplayPayment();
-        }
-
 
         private void StartStopButton_Click(object sender, RoutedEventArgs e)
         {

@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
+﻿using System.Windows;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using WPCommon;
 
 namespace PayMe
 {
@@ -56,6 +47,7 @@ namespace PayMe
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            Settings.IsTrialExpired = TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday;
         }
 
         // Code to execute when the application is activated (brought to foreground)

@@ -58,7 +58,7 @@ namespace Capra
                 new FunFact(ff.Attribute("Type").Value, ff.Attribute("Text").Value)).ToList();
 
             //Carica le immagini delle capre
-            for (int i = 0; i <= 9; i++)
+            for (int i = 0; i <= 10; i++)
                 CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".png", UriKind.Relative)));
 
             SetNewCapraImage();
@@ -68,7 +68,7 @@ namespace Capra
         {
             //textFunFact.Visibility = Visibility.Collapsed;
             //titleFunFact.Visibility = Visibility.Collapsed;
-            SblocButton.Visibility = Visibility.Collapsed;
+            //SblocButton.Visibility = Visibility.Collapsed;
             //textObiettivo.Visibility = Visibility.Collapsed;        
         }
 
@@ -230,17 +230,22 @@ namespace Capra
 
 
         //===============================================================================
-        //                        ABOUT
+        //                        MAIN ACTIONS
         //===============================================================================
 
-        private void PageTitle_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        private void Capra_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+            PlayOnce();
         }
 
-        private void Image_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        private void FunFact_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/FunFactPage.xaml", UriKind.Relative));
+        }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
 
 

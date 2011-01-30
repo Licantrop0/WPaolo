@@ -16,8 +16,6 @@ namespace TwentyTwelve_Organizer
         public static SoundEffect ButtonUpSound;
         public static SoundEffect ButtonDownSound;
         public static DateTime EndOfTheWorld { get { return new DateTime(2012, 12, 21); } }
-        private static LicenseInformation li = new LicenseInformation();
-        public static bool IsTrialMode { get { return li.IsTrial(); } }
 
         public static ObservableCollection<Task> Tasks
         {

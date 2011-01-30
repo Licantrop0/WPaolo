@@ -51,11 +51,12 @@ namespace PayMe
         private void HourlyPaymentTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             HourlyPaymentTextBox.Text = CurrencyTextConverter.GetCurrencyText(
-                CurrencyTextConverter.GetCurrencyValue(HourlyPaymentTextBox.Text, CultureInfo.CurrentCulture));
+                CurrencyTextConverter.GetCurrencyValue(HourlyPaymentTextBox.Text));
         }
 
         private void HourlyPaymentTextBox_KeyDown(object sender, KeyEventArgs e)
         {
+            e.Handled = CheckDigits(e);
             if (e.Key == Key.Enter)
                 CallPayTextBox.Focus();
         }
@@ -68,13 +69,26 @@ namespace PayMe
         private void CallPayTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             CallPayTextBox.Text = CurrencyTextConverter.GetCurrencyText(
-                CurrencyTextConverter.GetCurrencyValue(CallPayTextBox.Text, CultureInfo.CurrentCulture));
+                CurrencyTextConverter.GetCurrencyValue(CallPayTextBox.Text));
         }
 
         private void CallPayTextBox_KeyDown(object sender, KeyEventArgs e)
         {
+            e.Handled = CheckDigits(e);
             if (e.Key == Key.Enter)
                 ThresholdSlider.Focus();
+        }
+
+        private static bool CheckDigits(KeyEventArgs e)
+        {
+            if (e.Key == Key.Space || e.PlatformKeyCode == 187 || e.PlatformKeyCode == 222) //* o #
+                return true;
+            if (e.PlatformKeyCode == 180 && CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator != ",")
+                return true;
+            if (e.PlatformKeyCode == 190 && CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator != ".")
+                return true;
+            
+            return false;
         }
 
         #endregion

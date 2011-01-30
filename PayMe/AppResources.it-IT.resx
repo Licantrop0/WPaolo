@@ -153,11 +153,14 @@
   <data name="Description" xml:space="preserve">
     <value>Descrizione lavoro:</value>
   </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Durata:</value>
+  </data>
   <data name="ElapsedTime" xml:space="preserve">
     <value>Tempo trascorso</value>
   </data>
   <data name="EndTime" xml:space="preserve">
-    <value>Fine lavoro:</value>
+    <value>Fine:</value>
   </data>
   <data name="FifteenMinutes" xml:space="preserve">
     <value>15 Minuti</value>
@@ -193,7 +196,7 @@
     <value>Start</value>
   </data>
   <data name="StartTime" xml:space="preserve">
-    <value>Inizio lavoro:</value>
+    <value>Inizio:</value>
   </data>
   <data name="Stop" xml:space="preserve">
     <value>Stop</value>

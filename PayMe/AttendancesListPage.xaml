@@ -59,6 +59,8 @@
         <ListBox x:Name="AttendanceListBox" Grid.Row="1" Margin="12,0,12,0" >
             <ListBox.Resources>
                 <converters:CurrencyTextConverter x:Key="CurrencyTextConverter" />
+                <converters:DateTimeTextConverter x:Key="DateTimeTextConverter" />
+                <converters:TimeSpanTextConverter x:Key="TimeSpanTextConverter" />
             </ListBox.Resources>
 
             <ListBox.ItemTemplate>
@@ -71,19 +73,18 @@
                                 <ControlTemplate />
                             </Button.Template>
                             <StackPanel>
-
                                 <TextBlock Text="{Binding Path=CustomerName}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
-                                <TextBlock Text="{Binding Path=Description}" />
+                                <TextBlock Text="{Binding Path=Description}" TextWrapping="Wrap" Width="776" HorizontalAlignment="Left" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Path=LocalizedResources.Income, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
-                                    <TextBlock Name="IncomeTextBlock" Text="{Binding Path=Income, Converter={StaticResource CurrencyTextConverter}}" />
+                                    <TextBlock Text="{Binding Path=Income, Converter={StaticResource CurrencyTextConverter}}" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Path=LocalizedResources.StartTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
-                                    <TextBlock Name="StartTimeTextBlock" Text="{Binding Path=StartTime}" Margin="0,0,8,0"/>
-                                    <TextBlock Text="{Binding Path=LocalizedResources.EndTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
-                                    <TextBlock Name="EndTimeTextBlock" Text="{Binding Path=EndTime}" />
+                                    <TextBlock Text="{Binding Path=StartTime, Converter={StaticResource DateTimeTextConverter}}" Margin="0,0,12,0"/>
+                                    <TextBlock Text="{Binding Path=LocalizedResources.Duration, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
+                                    <TextBlock Text="{Binding Path=Duration, Converter={StaticResource TimeSpanTextConverter}}" />
                                 </StackPanel>
 
                                 <Line X1="800" Stroke="{StaticResource PhoneAccentBrush}" Margin="0,0,0,10"/>

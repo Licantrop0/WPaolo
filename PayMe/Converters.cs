@@ -20,13 +20,13 @@ namespace Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return GetCurrencyValue((string)value, culture);
+            return GetCurrencyValue((string)value);
         }
 
-        public static double GetCurrencyValue(string currency, CultureInfo culture)
+        public static double GetCurrencyValue(string currency)
         {
             double temp;
-            return double.TryParse(currency, NumberStyles.Currency, culture, out temp) ? temp : 0.0;
+            return double.TryParse(currency, NumberStyles.Currency, CultureInfo.CurrentCulture, out temp) ? temp : 0.0;
 
             //return double.TryParse(
             //    currency.Replace(" " + Settings.CurrencySymbol, string.Empty), out temp) ? temp : 0.0;
@@ -110,7 +110,22 @@ namespace Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var date = (DateTime)value;
-            return date.ToString("hh:mm tt - dd MMM yyyy", culture);
+            return date.ToString("hh:mm tt, dd MMM yyyy", CultureInfo.CurrentCulture);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class TimeSpanTextConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var ts = (TimeSpan)value;
+            return string.Format("{0}:{1}:{2}", ts.Hours, ts.Minutes, ts.Seconds);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

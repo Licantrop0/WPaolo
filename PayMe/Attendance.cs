@@ -23,6 +23,9 @@ namespace PayMe
         public DateTime EndTime { get; set; }
         [DataMember]
         public TimeSpan PauseTimeSpan { get; set; }
+
+        public TimeSpan Duration { get { return EndTime - StartTime - PauseTimeSpan; } }
+
         [DataMember]
         public double Income { get; set; }
         [DataMember]

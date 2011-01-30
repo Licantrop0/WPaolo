@@ -13,7 +13,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 
 
-
 /* 
     Copyright (c) 2010 Serena Ivaldi - serena.ivaldi@gmail.com
 */
@@ -227,6 +226,11 @@ namespace Capra
             textFunFact.Visibility = Visibility.Visible;
             titleFunFact.Visibility = Visibility.Collapsed;
 
+        }
+
+        private void PageTitle_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
 
 

@@ -1,0 +1,54 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="SgarbiMix.DisclaimerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="sfondo.jpg" />
+        </Grid.Background>
+        <TextBlock Name="titleTextBox" Text="Disclaimer"
+                   Width="456" Height="109" Margin="12,40,12,0"
+                   VerticalAlignment="Top" FontSize="48"
+                   Foreground="#FFFFEB50" TextAlignment="Center"  />
+        <TextBlock Text="Questa applicazione è stata creata a scopo puramente ludico. Il contenuto degli insulti dell'On. V. Sgarbi può risultare altamente offensivo per alcune persone, e può lederne l'onore. Pertanto ci dissociamo da eventuali usi impropri dell'applicazione Sgarbi Mix.
+I contenuti multimediali inclusi in Sgarbi Mix sono stati reperiti su internet in siti gratuiti, e WPME sarà disponibile a fornirne i sorgenti qualora l'On. Sgarbi si sentisse offeso dall'uso che ne è stato fatto. Con la presente, invochiamo la benevolenza dello stesso: se volesse farci pervenire dei file audio di alta qualità e una sua foto a scelta, gliene saremmo grati e potremmo migliorare questa applicazione accontentando i suoi desideri, e dedicandogli un'intera pagina di ringraziamenti."
+                   Height="543" Margin="12,171,12,0"
+                   VerticalAlignment="Top" FontSize="22"
+                   Foreground="Black" TextWrapping="Wrap" OpacityMask="{x:Null}" />
+    </Grid>
+
+
+</phone:PhoneApplicationPage>

@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Audio;
 
 
 /* 
-    Copyright (c) 2010 Serena Ivaldi - serena.ivaldi@gmail.com
+    Copyright (c) 2010 WPME
 */
 
 namespace Capra

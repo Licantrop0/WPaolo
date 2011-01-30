@@ -34,7 +34,7 @@ namespace Capra
             if (Settings.TotCapre <= 10)
             {
                 textProgress.Text = "Hai detto Capra! solo " + Settings.TotCapre + "/1000 volte! \nContinua per sbloccare gli extra!";
-                progressBar.Value = ((double)(Settings.TotCapre) / 1000.0);
+                progressBar.Value = (double)(Settings.TotCapre);
 
                 titleTextBox.Text = "";
                 textFunFact.Text = "Non hai invocato abbastanza capre per poterne scoprire i segreti. Continua...";
@@ -48,7 +48,7 @@ namespace Capra
 
                 textProgress.Text = "Hai detto Capra! " + Settings.TotCapre 
                     + "/1000 volte! \n Contenuti extra "+ sbloccati + "/"+ FunFacts.Count +" sbloccati!";
-                progressBar.Value = ((double)(Settings.TotCapre) / 1000.0);
+                progressBar.Value = (double)(Settings.TotCapre);
 
                 // ne mostro uno a caso
                 int randomFact = Rnd.Next(sbloccati);

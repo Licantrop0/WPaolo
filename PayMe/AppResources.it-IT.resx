@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>Informazioni su...</value>
+    <value>Informazioni</value>
   </data>
   <data name="AlertStopCounting" xml:space="preserve">
     <value>Vuoi interrompere il conteggio e resettare il timer?</value>

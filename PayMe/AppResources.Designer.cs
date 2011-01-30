@@ -61,7 +61,7 @@ namespace PayMe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About....
+        ///   Looks up a localized string similar to About.
         /// </summary>
         public static string About {
             get {

@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
@@ -15,36 +15,40 @@
     Loaded="PhoneApplicationPage_Loaded">
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
+       <Image Name="CapraImage" Stretch="UniformToFill" Source="Images\sfondo_about.jpg" />
+
+
+        <Button Content="About" Height="100" HorizontalAlignment="Left" Margin="116,619,0,0" Name="AboutButton" VerticalAlignment="Top" Width="240" Background="#7A000000" BorderBrush="{x:Null}" Click="About_Click" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="36" Foreground="#FFFFEBAC"  />
+        <Button Content="Curiosità" Height="100" HorizontalAlignment="Left" Margin="116,534,0,0" Name="FunButton" VerticalAlignment="Top" Width="240" Background="#8B000000" BorderBrush="{x:Null}" Click="FunFact_Click" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="36" Foreground="#FFFFEBAC" />
+        <Button Content="Capra!" Height="128" HorizontalAlignment="Left" Margin="96,310,0,0" Name="CapraButton" VerticalAlignment="Top" Width="286" Background="#8B000000" BorderBrush="{x:Null}" Click="Capra_Click" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="56" Foreground="#FFFFEB50"  />
+
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Margin="12,17,160,0">
+        </Grid.RowDefinitions>-->
+        <!--<StackPanel x:Name="TitlePanel" Margin="12,17,160,0">
             <TextBlock x:Name="PageTitle" Text="CAPRA!" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" DataContext="{Binding}" Width="277" ManipulationStarted="PageTitle_ManipulationStarted" />
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ToggleButton Name="CapraButton" Margin="6"
-                     ManipulationStarted="CapraButton_ManipulationStarted" ManipulationCompleted="CapraButton_ManipulationCompleted">
-                <ToggleButton.Background>
+        </StackPanel>-->
+        <!--<Grid x:Name="ContentPanel" Background="Transparent">-->
+      
+            <!--<ToggleButton Name="CapraButton" ManipulationStarted="CapraButton_ManipulationStarted" ManipulationCompleted="CapraButton_ManipulationCompleted">-->
+                <!--<ToggleButton.Background>
                     <ImageBrush />
-                </ToggleButton.Background>
-                <Image Name="CapraImage" Stretch="UniformToFill" Source="Images\funFact.png" Height="640" Width="431" />
-                <ToggleButton.Template>
+                </ToggleButton.Background>-->
+        
+                <!--<ToggleButton.Template>
                     <ControlTemplate />
                 </ToggleButton.Template>
-            </ToggleButton>
+            </ToggleButton>-->
             <!--<TextBlock Name="titleFunFact" Margin="30,21,26,0"   VerticalAlignment="Top" Height="52" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="48" Foreground="#FFC74CBD" TextWrapping="Wrap" Text="" />
             <TextBlock Name="textFunFact" HorizontalAlignment="Left" Margin="30,0,0,212" VerticalAlignment="Bottom" Width="400" Height="360" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="26.667" Foreground="#FF5C3C12" TextWrapping="Wrap" Text="" />
             <TextBlock Name="textObiettivo" Height="129" HorizontalAlignment="Left" Margin="30,501,0,0" Text="" VerticalAlignment="Top" Width="400" FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte" FontSize="40" Foreground="#FFC74CBD" TextWrapping="Wrap" />-->
-        </Grid>
-        <ToggleButton Height="96" HorizontalAlignment="Left" Margin="356,12,0,0" Name="SblocButton" VerticalAlignment="Top" Width="112" BorderThickness="0" > 
+        <!--</Grid>-->
+        <!--<ToggleButton Height="96" HorizontalAlignment="Left" Margin="356,12,0,0" Name="SblocButton" VerticalAlignment="Top" Width="112" BorderThickness="0" > 
             <Image Source="Images\sbloccato3.png" Stretch="Fill" Height="90" Width="100" ManipulationStarted="Image_ManipulationStarted" />        
             <ToggleButton.Template>
                 <ControlTemplate />
             </ToggleButton.Template>
-        </ToggleButton>
+        </ToggleButton>-->
     </Grid>
 </phone:PhoneApplicationPage>

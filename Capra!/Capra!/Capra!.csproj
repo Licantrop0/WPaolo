@@ -72,6 +72,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="FunFact.cs" />
+    <Compile Include="FunFactPage.xaml.cs">
+      <DependentUpon>FunFactPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -88,13 +91,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="FunFactPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="obiettivi.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -156,17 +159,39 @@
     <Resource Include="Images\googleCapre\capra7.jpg" />
     <Resource Include="Images\googleCapre\capra8.jpg" />
     <Resource Include="Images\googleCapre\capra9.jpg" />
-    <Resource Include="Images\capra0.png" />
-    <Resource Include="Images\capra1.png" />
-    <Resource Include="Images\capra2.png" />
-    <Resource Include="Images\capra3.png" />
-    <Resource Include="Images\capra4.png" />
-    <Resource Include="Images\capra5.png" />
-    <Resource Include="Images\capra6.png" />
-    <Resource Include="Images\capra7.png" />
-    <Resource Include="Images\capra8.png" />
-    <Resource Include="Images\capra9.png" />
-    <Resource Include="Images\sfondo_about.jpg" />
+    <Content Include="Images\capra0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\capra1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\capra2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\capra3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\capra4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\capra5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\capra6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\capra7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\capra8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\capra9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\sfondo_about.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

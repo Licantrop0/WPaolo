@@ -74,23 +74,23 @@ namespace TwentyTwelve_Organizer
                 var rapportoGiorni = giorniNecessari / TimeLeft.TotalDays;
                 if (rapportoGiorni > 1)
                 {
-                    EvalTextBlock.Text = "Do something or thou shall never complete all thy tasks! Change thy priorities or engage actively to fulfill thy tasks";
+                    EvalTextBlock.Text = "Do something or you will never complete all your tasks! Change your priorities or engage actively to fulfill your tasks!";
                 }
                 else if (rapportoGiorni <= 1 && rapportoGiorni > 0.75 )
                 {
-                    EvalTextBlock.Text = "";
+                    EvalTextBlock.Text = "You must work harder to complete your tasks list.";
                 }
                 else if (rapportoGiorni <= 0.75 && rapportoGiorni > 0.50)
                 {
-                    EvalTextBlock.Text = "You are doing well with your tasks.";
+                    EvalTextBlock.Text = "You are doing fine with your tasks.";
                 }
                 else if (rapportoGiorni <= 0.50 && rapportoGiorni > 0.25)
                 {
-                    EvalTextBlock.Text = "";
+                    EvalTextBlock.Text = "Well done, you can do it with a bit of work";
                 }
                 else
                 {
-                    EvalTextBlock.Text = "You have worked so well.\nYou can take a rest, you have nothing to worry about the end.";
+                    EvalTextBlock.Text = "Greetings my friend, your committment to your tasks list is admirable!";
                 }
             }
 

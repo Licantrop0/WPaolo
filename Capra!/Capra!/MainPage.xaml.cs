@@ -42,7 +42,7 @@ namespace Capra
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             //Carica le immagini delle capre
-            for (int i = 0; i <= 9; i++)
+            for (int i = 0; i <= 17; i++)
                 CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".png", UriKind.Relative)));
         }
 

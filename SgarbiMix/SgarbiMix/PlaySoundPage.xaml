@@ -45,7 +45,11 @@
         
         <Button Content="E' un crimine!" Click="Crimine_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="12,137,0,568" Width="468" />
         <Button Content="Fascista!" Click="Fascista_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="12,203,0,502" Width="468" />
-    
+        <Button Content="Cu... raccomandati!" Click="Culattoni_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="12,272,0,433" Width="468" />
+        <Button Content="Mi state sui c... di principio!" Click="Coglioni_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="0,0,12,81" VerticalAlignment="Bottom" Width="468" />
+        <Button Content="Ridicolo!" Click="Ridicolo_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="12,341,0,364" Width="468" />
+        <Button Content="Ridicolo sei, ma sei sempre stato!" Click="Ridicolo6_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="12,410,0,295" Width="468" />
+        <Button Content="Non ha mai fatto un c... in vita sua ..." Click="NonHaMaiFatto_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="12,479,0,226" Width="468" />
     </Grid>
 
 </phone:PhoneApplicationPage>

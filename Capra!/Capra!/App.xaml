@@ -3,19 +3,28 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" >
-    
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
+
     <!--Application Resources-->
     <Application.Resources>
+        <Style x:Key="CapraButtonStyle" TargetType="Button">
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="Background" Value="#8B000000" />
+            <Setter Property="FontFamily" Value="/Capra!;component/Fonts/Fonts.zip#Forte" />
+            <Setter Property="FontSize" Value="56" />
+            <Setter Property="WPCommon:TiltEffect.IsTiltEnabled" Value="True"/>
+        </Style>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
+
+        <WPCommon:XNAAsyncDispatcher />
         <!--Required object that handles lifetime events for the application-->
         <shell:PhoneApplicationService 
             Launching="Application_Launching" Closing="Application_Closing" 
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>
-      
-
     </Application.ApplicationLifetimeObjects>
 
 </Application>

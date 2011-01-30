@@ -34,25 +34,15 @@ namespace Capra
             // first load sounds
             InitializeSound();
 
-            // then init xna timer
-            // Timer to simulate the XNA game loop (SoundEffect classes are from the XNA Framework)
-            DispatcherTimer XnaDispatchTimer = new DispatcherTimer();
-            XnaDispatchTimer.Interval = TimeSpan.FromMilliseconds(50);
-            // Call FrameworkDispatcher.Update to update the XNA Framework internals.
-            XnaDispatchTimer.Tick += delegate { try { FrameworkDispatcher.Update(); } catch { } };
-            // Start the DispatchTimer running.
-            XnaDispatchTimer.Start();
             // metto a zero quelle della sessione corrente
             // quelle totali voglio prenderle dallo storage
             Settings.CountCapre = 0;
-            // default parte con la 10, che è la stessa dello sfondo base
-            curImg = 10;
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             //Carica le immagini delle capre
-            for (int i = 0; i <= 10; i++)
+            for (int i = 0; i <= 9; i++)
                 CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".png", UriKind.Relative)));
         }
 
@@ -81,7 +71,7 @@ namespace Capra
                 nextImg = Rnd.Next(CapreImages.Count);
             }
 
-            CapraImage.Source = CapreImages[nextImg];
+            CapraImage.ImageSource = CapreImages[nextImg];
             curImg = nextImg;
         }
 
@@ -107,7 +97,6 @@ namespace Capra
         {
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
-
 
     }
 }

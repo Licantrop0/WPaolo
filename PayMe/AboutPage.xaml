@@ -7,14 +7,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wpCommon="clr-namespace:WPCommon;assembly=WPCommon"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
 
-    <wpCommon:AboutControl ApplicationName="PayMe" >
+    <wpCommon:AboutControl ApplicationName="PayMe" Foreground="WhiteSmoke">
         <wpCommon:AboutControl.BackgroundStackPanel>
             <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                 <GradientStop Color="#FFB8B8B8" Offset="1"/>

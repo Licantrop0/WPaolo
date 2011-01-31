@@ -74,10 +74,14 @@
                 <TextBlock Name="IncomeTextBlock" Text="{Binding Path=Income}" />
             </StackPanel>
             <TextBlock Text="{Binding Path=LocalizedResources.CustomerName, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
-            <TextBox Name="CustomerNameTextBox" Text="{Binding Path=CustomerName, Mode=TwoWay, UpdateSourceTrigger=Explicit}" KeyDown="CustomerNameTextBox_KeyDown" />
+            <TextBox Name="CustomerNameTextBox" Text="{Binding Path=CustomerName, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                     KeyDown="CustomerNameTextBox_KeyDown"
+                     Background="#BFFFFFFF" BorderBrush="#BFFFFFFF" Foreground="Black" />
             
             <TextBlock Text="{Binding Path=LocalizedResources.Description, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
-            <TextBox Height="220" Name="DescriptionTextBox" Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=Explicit}" TextWrapping="Wrap" InputScope="Text" KeyDown="DescriptionTextBox_KeyDown" />
+            <TextBox Height="220" Name="DescriptionTextBox" Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                     TextWrapping="Wrap" InputScope="Text" KeyDown="DescriptionTextBox_KeyDown"
+                     Foreground="Black" Background="#BFFFFFFF" BorderBrush="#BFFFFFFF" />
         </StackPanel>
     </Grid>
     

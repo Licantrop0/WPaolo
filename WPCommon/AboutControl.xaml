@@ -3,24 +3,26 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DesignHeight="800" d:DesignWidth="480"
-    Loaded="UserControl_Loaded"             
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone">
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    Loaded="UserControl_Loaded">
 
-    <StackPanel Name="MainStackPanel" Background="Transparent" >
+    <StackPanel Name="MainStackPanel" Background="{StaticResource PhoneBackgroundBrush}" >
 
         <Image Stretch="UniformToFill" Width="300" Height="300"
                    Source="/WPCommon;component/Logo/logo.png" />
-        <TextBlock Name="ApplicationNameTextBlock" Text="Application Name"
-                       TextAlignment="Center" TextWrapping="Wrap"
-                   FontSize="{StaticResource PhoneFontSizeExtraLarge}" Margin="0,15,0,0" />
-        <TextBlock Name="VersionTextBlock" Text="v.0.0.1" TextAlignment="Center"
+        <TextBlock Name="ApplicationNameTextBlock"
+                   Text="Application Name"
+                   TextAlignment="Center" TextWrapping="Wrap"
+                   FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                   Margin="0,15,0,0" />
+
+        <TextBlock Name="VersionTextBlock" Text="1.0.0.0" TextAlignment="Center"
                        FontSize="{StaticResource PhoneFontSizeMediumLarge}" Margin="0,5,0,0" />
 
-
-              <TextBlock  Name="OtherAppsTextBlock" Text="Get other apps from WPME"
+        <TextBlock  Name="OtherAppsTextBlock" Text="Get other apps from WPME"
                         FontSize="{StaticResource PhoneFontSizeLarge}"
                         TextWrapping="Wrap" Margin="0,30,0,0"
                         HorizontalAlignment="Center"

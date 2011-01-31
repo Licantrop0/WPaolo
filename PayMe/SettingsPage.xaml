@@ -83,13 +83,15 @@
             <TextBox Name="HourlyPaymentTextBox" InputScope="TelephoneNumber" FontFamily="Georgia"
                      Text="{Binding HourlyPayment, Converter={StaticResource CurrencyTextConverter}, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
                      Width="200" TextAlignment="Right" HorizontalAlignment="Left" Margin="0,0,0,15"
-                     KeyDown="HourlyPaymentTextBox_KeyDown" GotFocus="HourlyPaymentTextBox_GotFocus" LostFocus="HourlyPaymentTextBox_LostFocus" />
+                     KeyDown="HourlyPaymentTextBox_KeyDown" GotFocus="HourlyPaymentTextBox_GotFocus" LostFocus="HourlyPaymentTextBox_LostFocus"
+                     Background="#BFFFFFFF" BorderBrush="#BFFFFFFF" Foreground="Black" />
 
             <TextBlock Text="{Binding Path=LocalizedResources.CallPay, Source={StaticResource LocalizedStrings}}" />
             <TextBox Name="CallPayTextBox" InputScope="TelephoneNumber" FontFamily="Georgia"
                      Text="{Binding Path=CallPay, Converter={StaticResource CurrencyTextConverter}, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
                      GotFocus="CallPayTextBox_GotFocus"  KeyDown="CallPayTextBox_KeyDown"
-                     HorizontalAlignment="Left" Margin="0,0,0,15" Width="200" TextAlignment="Right" LostFocus="CallPayTextBox_LostFocus" />
+                     HorizontalAlignment="Left" Margin="0,0,0,15" Width="200" TextAlignment="Right" LostFocus="CallPayTextBox_LostFocus"
+                     Background="#BFFFFFFF" BorderBrush="#BFFFFFFF" Foreground="Black" />
 
             <TextBlock Name="ThresholdTextBox"
                        Text="{Binding ElementName=ThresholdSlider, Path=Value, Converter={StaticResource ThresholdTextConverter}}" />

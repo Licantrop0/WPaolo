@@ -8,12 +8,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:scm="clr-namespace:System.ComponentModel;assembly=System.Windows"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon"
     FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" shell:SystemTray.IsVisible="True"
-    FontSize="28"
-    d:DesignHeight="768" d:DesignWidth="480"
-    xmlns:Tilt="clr-namespace:Tilt">
+    mc:Ignorable="d" shell:SystemTray.IsVisible="False"
+    FontSize="28" d:DesignHeight="768" d:DesignWidth="480" >
 
     <phone:PhoneApplicationPage.Foreground>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -84,11 +83,12 @@
                             <CheckBox IsChecked="{Binding Path=IsCompleted, Mode=TwoWay}" VerticalAlignment="Center" />
                             <Button Width="300" VerticalAlignment="Center"
                                     Click="EditTaskButton_Click"
-                                    Tilt:TiltEffect.IsTiltEnabled="True">
+                                    WPCommon:TiltEffect.IsTiltEnabled="True">
                                 <Button.Template>
                                     <ControlTemplate />
                                 </Button.Template>
-                                <TextBlock Text="{Binding Path=Description}" Style="{StaticResource GreenTextBlockStyle}" />
+                                <TextBlock Text="{Binding Path=Description}"
+                                           Style="{StaticResource GreenTextBlockStyle}" />
                             </Button>
                             <Rectangle Fill="{StaticResource PhoneForegroundBrush}" Width="48" Height="48" Margin="6"
                                        VerticalAlignment="Center" MouseLeftButtonUp="RemoveButton_Click" >

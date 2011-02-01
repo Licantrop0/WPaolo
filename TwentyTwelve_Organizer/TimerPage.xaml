@@ -79,21 +79,22 @@
                        VerticalAlignment="Top" TextAlignment="Center"
                        Foreground="White" Padding="10" TextWrapping="Wrap">
             </TextBlock>
-            <Button Name="ViewTaskButton" Content="Tasks" Height="116" Margin="80,0,92,90" VerticalAlignment="Bottom"
-                    Width="284" Click="ViewTaskButton_Click" Style="{StaticResource MetallicButtonStyle}"
+            <Button Content="Tasks" Click="ViewTaskButton_Click"
+                    Height="116" Width="284" Margin="0,0,0,90"
+                    VerticalAlignment="Bottom" Style="{StaticResource MetallicButtonStyle}"
                     ManipulationStarted="Button_ManipulationStarted"
                     ManipulationCompleted="Button_ManipulationCompleted">
             </Button>
-            <Button Name="AboutButton" Content="About" Height="39"
-                    Margin="80,0,92,21" VerticalAlignment="Bottom"
-                    Click="AboutButton_Click" Style="{StaticResource MetallicButtonStyle}"
+            <Button Content="About" Click="AboutButton_Click"
+                    Width="284" Height="39" Margin="0,0,0,21"
+                    VerticalAlignment="Bottom" Style="{StaticResource MetallicButtonStyle}"
                     ManipulationStarted="Button_ManipulationStarted"
                     ManipulationCompleted="Button_ManipulationCompleted">
             </Button>
             <TextBlock Name="DemoTextBlock" Text="Demo"
-                     FontSize="96" Visibility="Collapsed"
-                     VerticalAlignment="Center" HorizontalAlignment="Center"
-                     TextAlignment="Center" FontStyle="Italic" Margin="0,0,0,0">
+                       FontSize="96" Visibility="Collapsed"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                       TextAlignment="Center" FontStyle="Italic">
                 <TextBlock.RenderTransform>
             		<CompositeTransform Rotation="-30" ScaleX="1.55" CenterX="100" CenterY="100" />
             	</TextBlock.RenderTransform>

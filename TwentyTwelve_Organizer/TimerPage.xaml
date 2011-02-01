@@ -7,11 +7,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True"
     FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
     FontSize="26"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False"
     Loaded="PhoneApplicationPage_Loaded">
     <phone:PhoneApplicationPage.Foreground>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -38,7 +38,6 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -49,12 +48,11 @@
             <ImageBrush ImageSource="Images\2012background.jpg" Stretch="None" AlignmentY="Bottom" />
         </Grid.Background>
 
-        <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="2012 Organizer" />
             <TextBlock x:Name="PageTitle" Text="The End is coming" Margin="9,-7,0,0" FontSize="40" />
         </StackPanel>
-        <!--ContentPanel - place additional content here-->
+
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Grid VerticalAlignment="Top" Margin="6" HorizontalAlignment="Center" >
                 <Grid.RowDefinitions>

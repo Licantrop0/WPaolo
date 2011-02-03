@@ -6,8 +6,8 @@
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon"
 	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
-	xmlns:Tilt="clr-namespace:TiltControl"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
@@ -31,7 +31,7 @@
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 			<Button Name="DecideButton" Height="440" HorizontalAlignment="Center" VerticalAlignment="Center"
 					Width="400" Click="DecideButton_Click" VerticalContentAlignment="Bottom"
-					Tilt:TiltEffect.IsTiltEnabled="True">
+					WPCommon:TiltEffect.IsTiltEnabled="True">
 				<StackPanel Orientation="Vertical">
 					<Image Source="IDecide Logo.png" Stretch="Uniform" />
 					<TextBlock Text="{Binding Path=LocalizedResources.AskAndShake, Source={StaticResource LocalizedStrings}}"

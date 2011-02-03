@@ -46,8 +46,8 @@
         <TextBlock Text="Questa applicazione è stata creata a scopo puramente ludico. Il contenuto degli insulti dell'On. V. Sgarbi può risultare altamente offensivo per alcune persone, e può lederne l'onore. Pertanto ci dissociamo da eventuali usi impropri dell'applicazione Sgarbi Mix.
 I contenuti multimediali inclusi in Sgarbi Mix sono stati reperiti su internet in siti gratuiti, e WPME sarà disponibile a fornirne i sorgenti qualora l'On. Sgarbi si sentisse offeso dall'uso che ne è stato fatto. Con la presente, invochiamo la benevolenza dello stesso: se volesse farci pervenire dei file audio di alta qualità e una sua foto a scelta, gliene saremmo grati e potremmo migliorare questa applicazione accontentando i suoi desideri, e dedicandogli un'intera pagina di ringraziamenti."
                    Height="543" Margin="12,171,12,0"
-                   VerticalAlignment="Top" FontSize="22"
-                   Foreground="Black" TextWrapping="Wrap" OpacityMask="{x:Null}" />
+                   VerticalAlignment="Top" FontSize="20"
+                   Foreground="#FFFFA007" TextWrapping="Wrap" OpacityMask="{x:Null}" FontWeight="SemiBold" />
     </Grid>
 
 

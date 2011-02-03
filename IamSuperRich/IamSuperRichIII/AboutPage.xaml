@@ -14,7 +14,7 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
-    <wpcommon:AboutControl ApplicationName="I am super rich III">
+    <wpcommon:AboutControl Background="Black" ApplicationName="I am super rich III">
 
         <wpcommon:AboutControl.Foreground>
             <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">

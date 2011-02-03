@@ -24,14 +24,28 @@ namespace SgarbiMix
 {
     public partial class PlaySoundPage : PhoneApplicationPage
     {
-        SoundEffect FascistaSound;
+        SoundEffect IgnoranteCapraSound;
+        SoundEffect AteoFasulloSound;
         SoundEffect CapraSound;
+        SoundEffect CapraIgnoranteSound;
+        SoundEffect CretinateSound;
+        SoundEffect CriminaleSound;
         SoundEffect CulattoniSound;
-        SoundEffect CoglioniSound;
         SoundEffect CrimineSound;
-        SoundEffect RidicoloSound;
+        SoundEffect InsopportabileSound;
+        SoundEffect PirlaSound;
+        SoundEffect FascistaSound;
+        SoundEffect LicenziareSound;
+        SoundEffect LeggiStudiaSound;
+        SoundEffect LeggaDanteManzoniSound;
+        SoundEffect MangereiVivoSound;
+        SoundEffect GuardaCheRobaSound;
+        SoundEffect CoglioniSound;
         SoundEffect NonHaFattoSound;
+        SoundEffect RidicoloSound;
         SoundEffect Ridicolo6Sound;
+        SoundEffect VaiStudiareSound;
+        SoundEffect VergognaSound;
 
         public PlaySoundPage()
         {
@@ -42,8 +56,11 @@ namespace SgarbiMix
             SoundFileInfo = App.GetResourceStream(new Uri("sounds/fascista.wav", UriKind.Relative));
             FascistaSound = SoundEffect.FromStream(SoundFileInfo.Stream);
             //capra
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/capra.wav", UriKind.Relative));
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/capra1.wav", UriKind.Relative));
             CapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            //capra ignorante
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/capraignorante.wav", UriKind.Relative));
+            CapraIgnoranteSound = SoundEffect.FromStream(SoundFileInfo.Stream);
             //culattoni raccomandati
             SoundFileInfo = App.GetResourceStream(new Uri("sounds/culattoniraccomandati.wav", UriKind.Relative));
             CulattoniSound = SoundEffect.FromStream(SoundFileInfo.Stream);
@@ -51,20 +68,61 @@ namespace SgarbiMix
             SoundFileInfo = App.GetResourceStream(new Uri("sounds/mistatesuicoglionidiprincipio.wav", UriKind.Relative));
             CoglioniSound = SoundEffect.FromStream(SoundFileInfo.Stream);
             //crimine
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/e1crimine.wav", UriKind.Relative));
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/e1crimine1.wav", UriKind.Relative));
             CrimineSound = SoundEffect.FromStream(SoundFileInfo.Stream);
             //ridicolo
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/ridicolo.wav", UriKind.Relative));
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/ridicolo1.wav", UriKind.Relative));
             RidicoloSound = SoundEffect.FromStream(SoundFileInfo.Stream);
             //ridicolo 6 ma 6 sempre stato
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/ridicolo6ma6semprestato.wav", UriKind.Relative));
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/ridicolo6ma6semprestato1.wav", UriKind.Relative));
             Ridicolo6Sound = SoundEffect.FromStream(SoundFileInfo.Stream);
             //non ha mai fatto 1 cazzo in vita sua
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/nonhafattomaiuncazzoinvitasua.wav", UriKind.Relative));
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/nonhafattomaiuncazzoinvitasua1.wav", UriKind.Relative));
             NonHaFattoSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            
+
+            //vergogna vergogna
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/vergognavergogna.wav", UriKind.Relative));
+            VergognaSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            // 6 ignorante come 1 capra
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/61ignorantecome1capra.wav", UriKind.Relative));
+            IgnoranteCapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            // ateo fasullo
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/ateofasullo.wav", UriKind.Relative));
+            AteoFasulloSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            // criminale
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/criminale.wav", UriKind.Relative));
+            CriminaleSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            // e' insopportabile
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/einsopportabile.wav", UriKind.Relative));
+            InsopportabileSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            // e tu sei un pirla
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/etu61pirla.wav", UriKind.Relative));
+            PirlaSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            // io sono convinto che vi debbano licenziare
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/iosonoconvintochevidebbanolicenziare.wav", UriKind.Relative));
+            LicenziareSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            // leggi studia
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/leggistudia.wav", UriKind.Relative));
+            LeggiStudiaSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            // lo mangerei vivo
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/lomangereivivo.wav", UriKind.Relative));
+            MangereiVivoSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            // ma guarda che roba
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/maguardacheroba1.wav", UriKind.Relative));
+            GuardaCheRobaSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            // vai a studiare
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/vaiastudiare.wav", UriKind.Relative));
+            VaiStudiareSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+
+            //legga dante, legga manzoni, impari quella capra
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/leggadanteleggamanzoniimpariquellacapra.wav", UriKind.Relative));
+            LeggaDanteManzoniSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            // non dire cretinate
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/nondirecretinate.wav", UriKind.Relative));
+            CretinateSound = SoundEffect.FromStream(SoundFileInfo.Stream);
 
         }
+
 
         private void Fascista_Click(object sender, RoutedEventArgs e)
         {
@@ -73,17 +131,12 @@ namespace SgarbiMix
 
         private void Ignorante_Click(object sender, RoutedEventArgs e)
         {
-
+            IgnoranteCapraSound.Play();
         }
 
         private void Capra_Click(object sender, RoutedEventArgs e)
         {
             CapraSound.Play();
-        }
-
-        private void Taci_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Crimine_Click(object sender, RoutedEventArgs e)
@@ -114,6 +167,76 @@ namespace SgarbiMix
         private void NonHaMaiFatto_Click(object sender, RoutedEventArgs e)
         {
             NonHaFattoSound.Play();
+        }
+
+        private void CapraIgnorante_Click(object sender, RoutedEventArgs e)
+        {
+            CapraIgnoranteSound.Play();
+        }
+
+        private void Pirla_Click(object sender, RoutedEventArgs e)
+        {
+            PirlaSound.Play();
+        }
+
+        private void LeggiStudia_Click(object sender, RoutedEventArgs e)
+        {
+            LeggiStudiaSound.Play();
+        }
+
+        private void Criminale_Click(object sender, RoutedEventArgs e)
+        {
+            CriminaleSound.Play();
+        }
+
+        private void Guarda_Click(object sender, RoutedEventArgs e)
+        {
+            GuardaCheRobaSound.Play();
+        }
+
+        private void Vergogna_Click(object sender, RoutedEventArgs e)
+        {
+            VergognaSound.Play();
+        }
+
+        private void Mangerei_Click(object sender, RoutedEventArgs e)
+        {
+            MangereiVivoSound.Play();
+        }
+
+        private void Insopportabile_Click(object sender, RoutedEventArgs e)
+        {
+            InsopportabileSound.Play();
+        }
+
+        private void Ateo_Click(object sender, RoutedEventArgs e)
+        {
+            AteoFasulloSound.Play();
+        }
+
+        private void Studiare_Click(object sender, RoutedEventArgs e)
+        {
+            VaiStudiareSound.Play();
+        }
+
+        private void Licenziare_Click(object sender, RoutedEventArgs e)
+        {
+            LicenziareSound.Play();
+        }
+
+        private void Cretinate_Click(object sender, RoutedEventArgs e)
+        {
+            CretinateSound.Play();
+        }
+
+        private void CapraIgnorante2_Click(object sender, RoutedEventArgs e)
+        {
+            CapraIgnoranteSound.Play();
+        }
+
+        private void DanteManzoni_Click(object sender, RoutedEventArgs e)
+        {
+            LeggaDanteManzoniSound.Play();
         }
     }
 }

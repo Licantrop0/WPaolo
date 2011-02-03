@@ -47,6 +47,9 @@ namespace SgarbiMix
         SoundEffect VaiStudiareSound;
         SoundEffect VergognaSound;
 
+        SoundEffect mix1Sound;
+        SoundEffectInstance mix1Loop;
+
         public PlaySoundPage()
         {
             InitializeComponent();
@@ -120,6 +123,27 @@ namespace SgarbiMix
             // non dire cretinate
             SoundFileInfo = App.GetResourceStream(new Uri("sounds/nondirecretinate.wav", UriKind.Relative));
             CretinateSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+
+            // mixer 1
+            SoundFileInfo = App.GetResourceStream(new Uri("sounds/base1.wav", UriKind.Relative));
+            mix1Sound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            mix1Loop = mix1Sound.CreateInstance();
+
+            // Set the volume a little lower than full so it becomes the background.
+            mix1Loop.Volume = 0.8f;
+
+            // Turn on looping so it runs continually in the background.
+            mix1Loop.IsLooped = true;
+
+            // Timer to simulate the XNA game loop (SoundEffect classes are from the XNA Framework)
+            DispatcherTimer XnaDispatchTimer = new DispatcherTimer();
+            XnaDispatchTimer.Interval = TimeSpan.FromMilliseconds(50);
+
+            // Call FrameworkDispatcher.Update to update the XNA Framework internals.
+            XnaDispatchTimer.Tick += delegate { try { FrameworkDispatcher.Update(); } catch { } };
+
+            // Start the DispatchTimer running.
+            XnaDispatchTimer.Start();
 
         }
 
@@ -237,6 +261,46 @@ namespace SgarbiMix
         private void DanteManzoni_Click(object sender, RoutedEventArgs e)
         {
             LeggaDanteManzoniSound.Play();
+        }
+
+        private void mix1CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (mix1Loop.State == SoundState.Paused)
+            {
+                mix1Loop.Resume();
+            }
+            else
+            {
+                mix1Loop.Play();
+            }
+        }
+
+        private void mix2CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mix3CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mix3CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mix2CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mix1CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (mix1Loop.State == SoundState.Playing)
+            {
+                mix1Loop.Pause();
+            }
         }
     }
 }

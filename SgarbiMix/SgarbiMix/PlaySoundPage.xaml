@@ -57,12 +57,16 @@
         <Button Content="Ateo fasullo!" Click="Ateo_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="252,0,3,468" VerticalAlignment="Bottom" Width="225" />
         <Button Content="Vai a studiare!" Click="Studiare_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,224,0,513" Width="237" HorizontalAlignment="Left" />
 
-        <Button Content="Io sono convinto che vi debbano licenziare" Click="Licenziare_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,51,3,686" Width="468" />
+        <Button Content="Io sono convinto che vi debbano licenziare!" Click="Licenziare_Click" Background="#7A000000" BorderThickness="0"  FontSize="21" Foreground="#FFFFEBAC" Height="63" Margin="9,51,3,686" Width="468" />
         <Button Content="Non dire cretinate!" Click="Cretinate_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,0,234,468" VerticalAlignment="Bottom" Width="237" />
 
         <Button Content="Capra ignorante!" Click="CapraIgnorante2_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="252,181,3,556" Width="225" />
         <Button Content="Legga Dante! Legga Manzoni! ... capra!" Click="DanteManzoni_Click" Background="#7A000000" BorderThickness="0" FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,7,3,730" Width="468" />
 
+
+        <CheckBox Content="Mixer 1" Name="mix1CheckBox" Height="72" HorizontalAlignment="Right" Margin="0,728,286,0"  VerticalAlignment="Top" Width="182" Checked="mix1CheckBox_Checked" Unchecked="mix1CheckBox_Unchecked" IsChecked="False" />
+        <CheckBox Content="Mixer 2" Name="mix2CheckBox" Height="72" HorizontalAlignment="Center" Margin="158,728,140,0"  VerticalAlignment="Top" Width="182" Checked="mix2CheckBox_Checked" Unchecked="mix2CheckBox_Unchecked" IsChecked="False" />
+        <CheckBox Content="Mixer 3" Name="mix3CheckBox" Height="72" HorizontalAlignment="Center" Margin="309,728,-11,0"  VerticalAlignment="Top" Width="182" Checked="mix3CheckBox_Checked" Unchecked="mix3CheckBox_Unchecked" IsChecked="False" />
 
     </Grid>
 

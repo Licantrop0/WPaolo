@@ -127,6 +127,7 @@
     </Content>
     <Content Include="sounds\61ignorantecome1capra.wav" />
     <Content Include="sounds\ateofasullo.wav" />
+    <Content Include="sounds\base1.wav" />
     <Content Include="sounds\capra1.wav" />
     <Content Include="sounds\capraignorante.wav" />
     <Content Include="sounds\criminale.wav" />

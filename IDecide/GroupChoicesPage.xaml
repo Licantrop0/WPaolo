@@ -45,7 +45,6 @@
                                     <ImageBrush ImageSource="Toolkit.Content\remove_white.png" />
                                 </Rectangle.OpacityMask>
                             </Rectangle>
-
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

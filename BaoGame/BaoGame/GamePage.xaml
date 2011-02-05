@@ -20,28 +20,42 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Name="BoardGrid" Grid.ColumnSpan="1" Grid.RowSpan="1" ShowGridLines="True" Margin="38,22,0,33">
+        <Grid Name="BoardGrid" ShowGridLines="True" Margin="38,29,0,26">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90" />
-                <RowDefinition Height="98" />
-                <RowDefinition Height="98" />
-                <RowDefinition Height="96" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="90" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="90" />
                 <ColumnDefinition Width="90" />
                 <ColumnDefinition Width="90" />
-                <ColumnDefinition Width="92" />
-                <ColumnDefinition Width="97" />
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition Width="90" />
                 <ColumnDefinition Width="90" />
                 <ColumnDefinition Width="90" />
                 <ColumnDefinition Width="90" />
             </Grid.ColumnDefinitions>
+            
             <Grid.Resources>
+                <Storyboard x:Name="RedFlash">
+                    <ColorAnimation                        
+                            Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                            To="Red" Duration="0:0:0.5" 
+                            AutoReverse="True"  />
+                </Storyboard>
+
+                <Storyboard x:Name="Completed" >
+                    <ColorAnimation
+                            Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                            To="Cyan" Duration="0:0:1" />
+                </Storyboard>      
             </Grid.Resources>
+            
         </Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="img\bao_no_semini.jpg" />
+            <ImageBrush ImageSource="img\bao_table_1.jpg" />
         </Grid.Background>
     </Grid>
  

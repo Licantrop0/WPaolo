@@ -8,11 +8,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 
 namespace WPCommon
 {
-    public static class GridExtensionHelper
+    public static class ExtensionMethods
     {
+
+        #region Grid Position Helper
+
         public static int GetRow(this UIElement uie)
         {
             return (int)uie.GetValue(Grid.RowProperty);
@@ -31,6 +35,14 @@ namespace WPCommon
         public static void SetColumn(this UIElement uie, int column)
         {
             uie.SetValue(Grid.ColumnProperty, column);
+        }
+
+        #endregion
+
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
+        {
+            foreach (var item in source)
+                action(item);
         }
     }
 }

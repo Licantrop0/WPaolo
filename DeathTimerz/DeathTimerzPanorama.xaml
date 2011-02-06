@@ -11,7 +11,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
+    SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 
     <Grid x:Name="LayoutRoot">
@@ -21,7 +21,8 @@
                            Style="{StaticResource RedChiller}" Margin="0,45,0,0" />
             </controls:Panorama.Title>
             <controls:Panorama.Background>
-                <ImageBrush ImageSource="/DeathTimer;component/Images/DeathBackground.jpg" Stretch="UniformToFill" />
+                <ImageBrush ImageSource="/DeathTimer;component/Images/DeathBackground.jpg"
+                            Stretch="UniformToFill" />
             </controls:Panorama.Background>
             <!--Age-->
             <controls:PanoramaItem Margin="0,-60,0,0">
@@ -64,7 +65,7 @@
                 </Grid>
             </controls:PanoramaItem>
         </controls:Panorama>
-         <MediaElement Name="BackgroundMusic" AutoPlay="True" Source="Music.mp3" />
+         <MediaElement Name="BackgroundMusic" Source="/Music.mp3" AutoPlay="True" Volume="1" MediaEnded="BackgroundMusic_MediaEnded" />
     </Grid>
 
 </phone:PhoneApplicationPage>

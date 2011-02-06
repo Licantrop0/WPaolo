@@ -67,12 +67,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Bao\BaoGameState.cs" />
+    <Compile Include="Bao\BaoMove.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MiniMaxTree\GTree.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MiniMaxTree\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +98,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="font\african.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="font\OutOfAfrica.ttf" />
+    <None Include="font\WILD AFRICA.ttf" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
@@ -107,6 +116,9 @@
     <Resource Include="img\bao_table_1.jpg" />
     <Resource Include="img\bao_table_2.jpg" />
     <Resource Include="img\nyumba_85x85.png" />
+    <Content Include="img\semini_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="img\semini_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

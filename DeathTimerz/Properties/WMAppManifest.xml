@@ -8,7 +8,9 @@
        Genre="apps.normal"
        Description="With Death Timerz you can calculate your age with accurate precision and predict your death date" Publisher="Licantrop0">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
-    <Capabilities></Capabilities>
+    <Capabilities>
+      <Capability Name="ID_CAP_MEDIALIB"/>
+    </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="DeathTimerzPanorama.xaml" />
     </Tasks>
@@ -17,7 +19,7 @@
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>DeathTimer</Title>
+          <Title>Death Timerz</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>

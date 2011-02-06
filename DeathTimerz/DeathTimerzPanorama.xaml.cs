@@ -16,8 +16,7 @@ namespace DeathTimer
             InitializeTimer();
             ApplicationBar = new ApplicationBar();
             ApplicationBar.Buttons.Add(CreateSettingsAppBarButton());
-
-            BackgroundMusic.Play();
+            ApplicationBar.MenuItems.Add(CreateAboutAppBarMenuItem());
         }
 
         private void InitializeTimer()
@@ -92,18 +91,20 @@ namespace DeathTimer
             switch (MainPanorama.SelectedIndex)
             {
                 case 2: //Death-Test
-                    ApplicationBar.Buttons.Add(CreateEditTestAppBarButton());
+                    this.ApplicationBar.MenuItems.Clear();
                     ApplicationBar.MenuItems.Add(CreateDisclaimerAppBarMenuItem());
+                    ApplicationBar.Buttons.Add(CreateEditTestAppBarButton());
                     break;
                 default:
                     this.ApplicationBar.MenuItems.Clear();
+                    ApplicationBar.MenuItems.Add(CreateAboutAppBarMenuItem());
                     if (ApplicationBar.Buttons.Count == 2)
                         ApplicationBar.Buttons.RemoveAt(1);
                     break;
             }
         }
 
-        #region AppBar
+        #region Application Bar
 
         private ApplicationBarIconButton CreateSettingsAppBarButton()
         {
@@ -134,7 +135,22 @@ namespace DeathTimer
             return DisclaimerAppBarMenuItem;
         }
 
+        private ApplicationBarMenuItem CreateAboutAppBarMenuItem()
+        {
+            var AboutAppBarMenuItem = new ApplicationBarMenuItem();
+            AboutAppBarMenuItem.Text = AppResources.About;
+            AboutAppBarMenuItem.Click += delegate(object sender, EventArgs e)
+            { NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative)); };
+            return AboutAppBarMenuItem;
+        }
+
         #endregion
+
+        private void BackgroundMusic_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            BackgroundMusic.Stop();
+            BackgroundMusic.Play();
+        }
     }
 
 }

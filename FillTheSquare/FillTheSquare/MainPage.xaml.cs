@@ -40,5 +40,10 @@ namespace FillTheSquare
         {
             NavigationService.Navigate(new Uri("/Records.xaml", UriKind.Relative));
         }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+        }
     }
 }

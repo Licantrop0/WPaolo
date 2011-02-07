@@ -13,17 +13,11 @@ using Microsoft.Phone.Controls;
 
 namespace FillTheSquare
 {
-    public partial class Records : PhoneApplicationPage
+    public partial class AboutPage : PhoneApplicationPage
     {
-        public Records()
+        public AboutPage()
         {
             InitializeComponent();
-            FillRecordsList();
-        }
-
-        private void FillRecordsList()
-        {
-            RecordListBox.ItemsSource = Settings.RecordsList;
         }
     }
 }

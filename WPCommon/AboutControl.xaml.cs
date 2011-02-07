@@ -23,6 +23,12 @@ namespace WPCommon
             set { ApplicationNameTextBlock.Text = value; }
         }
 
+        public string ApplicationVersion
+        {
+            get { return ApplicationVersionTextBlock.Text; }
+            set { ApplicationVersionTextBlock.Text = value; }
+        }
+
         public string GetOtherAppsText
         {
             get { return (string)OtherAppsTextBlock.Text; }
@@ -42,8 +48,6 @@ namespace WPCommon
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            string asmName = Assembly.GetExecutingAssembly().FullName;
-            VersionTextBlock.Text = new AssemblyName(asmName).Version.ToString();
         }
 
         private void Facebook_Click(object sender, MouseButtonEventArgs e)

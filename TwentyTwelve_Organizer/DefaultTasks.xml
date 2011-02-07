@@ -8,104 +8,69 @@ TaskDifficulty="5": VeryHard (3 Months, 10 Days)
 -->
 
 <Tasks>
-  <Task Difficulty="3" Description="Swim with dolphins in the ocean" />
-  <Task Difficulty="3" Description="Swim in the ocean surrounded by sharks" />
-  <Task Difficulty="3" Description="Take a safari tour in Africa" />
-  <Task Difficulty="3" Description="Visit all five continents" />
-  <Task Difficulty="2" Description="Visit the Great Wall of China" />
-  <Task Difficulty="2" Description="Take a picture of Grand Canyon, Colorado, USA" />
-  <Task Difficulty="2" Description="Take a picture of Machu Picchu, Peru" />
-  <Task Difficulty="2" Description="Learn another language" />
-  <Task Difficulty="2" Description="Learn to make 10 cocktails" />
-  <Task Difficulty="3" Description="Watch the launch of the space shuttle from Houston, Texas" />
-  <Task Difficulty="2" Description="Run New York marathon" />
-  <Task Difficulty="2" Description="Fall in love" />
-  <Task Difficulty="1" Description="Make love in a crowded place" />
-  <Task Difficulty="1" Description="Make love in a church" />
-  <Task Difficulty="1" Description="Make love when your parents are home" />
-  <Task Difficulty="1" Description="Make love on a train" />
-  <Task Difficulty="1" Description="Make love on a flying plane" />
-  <Task Difficulty="1" Description="Make love on the kitchen floor" />
-  <Task Difficulty="1" Description="Tape yourself while making love" />
-  <Task Difficulty="1" Description="Stare at stars in a starry night" />
-  <Task Difficulty="1" Description="Wonder at a waterfall in the wild" />
-  <Task Difficulty="1" Description="Take at least one ballroom dance lesson with your partner" />
-  <Task Difficulty="1" Description="Spend an entire day eating junk food without worrying for your health" />
-  <Task Difficulty="5" Description="Write and publish a book" />
-  <Task Difficulty="1" Description="Ask for a raise" />
-  <Task Difficulty="2" Description="Go on a road trip with your best friends" />
-  <Task Difficulty="1" Description="Perform in a karaoke bar" />
-  <Task Difficulty="3" Description="Start your own business" />
-  <Task Difficulty="1" Description="Run naked in a public, possibly crowded, place." />
-  <Task Difficulty="4" Description="Find a job you really love " />
-  <Task Difficulty="3" Description="Attend a huge rock or metal concert" />
-  <Task Difficulty="2" Description="Kiss someone you've just met on a blind date" />
-  <Task Difficulty="2" Description="Have sex with someone you’ve just met" />
-  <Task Difficulty="4" Description="Be in a TV show" />
-  <Task Difficulty="5" Description="Spend New Year’s Eve on an exotic island drinking Piña Colada" />
-  <Task Difficulty="1" Description="Fart in a crowded elevator" />
-  <Task Difficulty="1" Description="Send a message in a bottle" />
-  <Task Difficulty="4" Description="Sell one of your paintings" />
-  <Task Difficulty="1" Description="Take a relaxing bubble bath" />
-  <Task Difficulty="3" Description="Learn a programming language" />
-  <Task Difficulty="2" Description="Talk to a parrot" />
-  <Task Difficulty="2" Description="Create a web site" />
-  <Task Difficulty="1" Description="Get to know your neighbors and invite them for dinner" />
-  <Task Difficulty="4" Description="Be the boss" />
-  <Task Difficulty="1" Description="Get drunk" />
-  <Task Difficulty="3" Description="Get lost in a foreign country" />
-  <Task Difficulty="1" Description="Lie in bed all day, without feeling guilty" />
-  <Task Difficulty="2" Description="Take a real vacation, without phone or laptop" />
-  <Task Difficulty="1" Description="Eat fried insects" />
-  <Task Difficulty="2" Description="Fire a gun" />
-  <Task Difficulty="1" Description="Be a blood donor" />
-  <Task Difficulty="4" Description="Have your picture in a newspaper" />
-  <Task Difficulty="3" Description="Forgive someone who hurt you" />
-  <Task Difficulty="3" Description="Drink a tea in the desert" />
-  <Task Difficulty="3" Description="Sing or play in a rock band" />
-  <Task Difficulty="5" Description="Learn to play an instrument" />
-  <Task Difficulty="3" Description="Ride a mechanical bull for more than 30 seconds" />
-  <Task Difficulty="3" Description="Drive a Ferrari" />
-  <Task Difficulty="2" Description="Own a pet" />
-  <Task Difficulty="2" Description="Meet someone you met on the Internet in real life" />
-  <Task Difficulty="5" Description="Watch the entire Star Trek series" />
-  <Task Difficulty="1" Description="Buy a copy of Playboy" />
-  <Task Difficulty="2" Description="Bungee Jump" />
-  <Task Difficulty="5" Description="Own your house" />
-  <Task Difficulty="4" Description="Take a 2 months trip" />
-  <Task Difficulty="1" Description="Burp your name" />
-  <Task Difficulty="3" Description="Have a threesome" />
-  <Task Difficulty="2" Description="Eat chocolate until you feel sick" />
-  <Task Difficulty="1" Description="Be honest with your boss" />
-  <Task Difficulty="1" Description="Spend a night on a beach" />
-  <Task Difficulty="1" Description="Stay out all night and go to work next day without having gone home " />
-  <Task Difficulty="1" Description="Donate to WWF, Green Peace or another no-profit organization" />
-  <Task Difficulty="2" Description="After complaining, do something to change" />
-  <Task Difficulty="3" Description="Trip in a hot air balloon" />
-  <Task Difficulty="4" Description="Teach or mentor others" />
-  <Task Difficulty="5" Description="See a lunar eclipse" />
-  <Task Difficulty="1" Description="Poop in a forest" />
-  <Task Difficulty="1" Description="Pee in a public place" />
-  <Task Difficulty="4" Description="Eat in 10 McDonalds from 10 different cities" />
-  <Task Difficulty="1" Description="Eat a pizza with 15 different toppings" />
-  <Task Difficulty="2" Description="Make your own ice-cream at home" />
-  <Task Difficulty="1" Description="Kiss your best friend" />
-  <Task Difficulty="5" Description="Write a scientific paper" />
-  <Task Difficulty="1" Description="Play videogames for 1 entire day" />
-  <Task Difficulty="3" Description="Watch all the movies of your favorite actor" />
-  <Task Difficulty="1" Description="Swim for 2 hours" />
-  <Task Difficulty="3" Description="Get the autograph from your favorite band" />
-  <Task Difficulty="3" Description="Take a cooking class" />
-  <Task Difficulty="1" Description="Cut your hair by yourself" />
-  <Task Difficulty="1" Description="Change look, radically" />
-  <Task Difficulty="1" Description="Admit you were wrong" />
-  <Task Difficulty="3" Description="Go whale-watching" />
-  <Task Difficulty="3" Description="Go white water rafting" />
-  <Task Difficulty="3" Description="Drive a husky sled" />
-  <Task Difficulty="5" Description="Be an extra in a film" />
-  <Task Difficulty="2" Description="Have your portrait painted" />
-  <Task Difficulty="3" Description="Throw a huge party and invite every one of your friends" />
-  <Task Difficulty="4" Description="See tigers in the wild" />
-  <Task Difficulty="3" Description="Go polar bear watching" />
-  <Task Difficulty="3" Description="Fly over a volcano" />
+  <Task Difficulty="1" Description="Ask for a raise"/>
+  <Task Difficulty="3" Description="Attend a huge rock or metal concert"/>
+  <Task Difficulty="4" Description="Be in a TV show"/>
+  <Task Difficulty="4" Description="Be the boss"/>
+  <Task Difficulty="1" Description="Burp your name"/>
+  <Task Difficulty="1" Description="Cut your hair by yourself"/>
+  <Task Difficulty="3" Description="Drink a tea in the desert"/>
+  <Task Difficulty="3" Description="Drive a Ferrari"/>
+  <Task Difficulty="3" Description="Drive a husky sled"/>
+  <Task Difficulty="1" Description="Eat a pizza with 15 different toppings"/>
+  <Task Difficulty="2" Description="Eat chocolate until you feel sick"/>
+  <Task Difficulty="1" Description="Eat fried insects"/>
+  <Task Difficulty="4" Description="Eat in 10 McDonalds from 10 different cities"/>
+  <Task Difficulty="1" Description="Fart in a crowded elevator"/>
+  <Task Difficulty="2" Description="Fire a gun"/>
+  <Task Difficulty="2" Description="Go on a road trip with your best friends"/>
+  <Task Difficulty="3" Description="Go polar bear watching"/>
+  <Task Difficulty="3" Description="Go white water rafting"/>
+  <Task Difficulty="3" Description="Have a threesome"/>
+  <Task Difficulty="4" Description="Have your picture in a newspaper"/>
+  <Task Difficulty="2" Description="Learn another language"/>
+  <Task Difficulty="2" Description="Learn to make 10 cocktails"/>
+  <Task Difficulty="5" Description="Learn to play an instrument"/>
+  <Task Difficulty="1" Description="Lie in bed all day, without feeling guilty"/>
+  <Task Difficulty="2" Description="Make Bungee Jump"/>
+  <Task Difficulty="1" Description="Make love on a flying plane"/>
+  <Task Difficulty="1" Description="Make love when your parents are home"/>
+  <Task Difficulty="2" Description="Make your own ice-cream at home"/>
+  <Task Difficulty="2" Description="Meet someone you met on the Internet in real life"/>
+  <Task Difficulty="2" Description="Own a pet"/>
+  <Task Difficulty="5" Description="Own your house"/>
+  <Task Difficulty="1" Description="Pee in a public place"/>
+  <Task Difficulty="1" Description="Perform in a karaoke bar"/>
+  <Task Difficulty="1" Description="Play videogames for 1 entire day"/>
+  <Task Difficulty="1" Description="Poop in a forest"/>
+  <Task Difficulty="3" Description="Ride a mechanical bull for more than 30 seconds"/>
+  <Task Difficulty="2" Description="Run New York marathon"/>
+  <Task Difficulty="5" Description="See a lunar eclipse"/>
+  <Task Difficulty="1" Description="Send a message in a bottle"/>
+  <Task Difficulty="3" Description="Sing or play in a rock band"/>
+  <Task Difficulty="1" Description="Spend a night on a beach"/>
+  <Task Difficulty="1" Description="Spend an entire day eating junk food without worrying for your health"/>
+  <Task Difficulty="5" Description="Spend New Year’s Eve on an exotic island drinking Piña Colada"/>
+  <Task Difficulty="1" Description="Stare at stars in a starry night"/>
+  <Task Difficulty="3" Description="Start your own business"/>
+  <Task Difficulty="1" Description="Stay out all night and go to work next day without having gone home"/>
+  <Task Difficulty="1" Description="Swim for 2 hours"/>
+  <Task Difficulty="3" Description="Swim with dolphins in the ocean"/>
+  <Task Difficulty="4" Description="Take a 1 months trip"/>
+  <Task Difficulty="3" Description="Take a cooking class"/>
+  <Task Difficulty="2" Description="Take a picture of Grand Canyon, Colorado, USA"/>
+  <Task Difficulty="2" Description="Take a picture of Machu Picchu, Peru"/>
+  <Task Difficulty="2" Description="Take a real vacation, without phone or laptop"/>
+  <Task Difficulty="3" Description="Take a safari tour in Africa"/>
+  <Task Difficulty="1" Description="Take at least one ballroom dance lesson with your partner"/>
+  <Task Difficulty="2" Description="Talk to a parrot"/>
+  <Task Difficulty="1" Description="Tape yourself while making love"/>
+  <Task Difficulty="4" Description="Teach or mentor others"/>
+  <Task Difficulty="3" Description="Throw a huge party and invite every one of your friends"/>
+  <Task Difficulty="3" Description="Trip in a hot air balloon"/>
+  <Task Difficulty="3" Description="Visit all five continents"/>
+  <Task Difficulty="2" Description="Visit the Great Wall of China"/>
+  <Task Difficulty="3" Description="Watch the launch of the space shuttle from Houston, Texas"/>
+  <Task Difficulty="1" Description="Wonder at a waterfall in the wild"/>
+  <Task Difficulty="5" Description="Write and publish a book"/>
 </Tasks>

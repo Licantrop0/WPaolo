@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:scm="clr-namespace:System.ComponentModel;assembly=System.Windows"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon"
     FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
     SupportedOrientations="Portrait" Orientation="Portrait"
@@ -43,69 +44,93 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" >
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
         <Grid.Background>
             <ImageBrush ImageSource="Images\2012background.jpg" Stretch="None" AlignmentY="Bottom" />
         </Grid.Background>
         <Grid.Resources>
-            <CollectionViewSource x:Name="cvs" >
+            <CollectionViewSource x:Name="ToDoCVS" Filter="ToDo_Filter" >
                 <CollectionViewSource.SortDescriptions>
-                    <scm:SortDescription PropertyName="IsCompleted" Direction="Ascending" />
                     <scm:SortDescription PropertyName="Description" Direction="Ascending" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
-        </Grid.Resources>
+            <CollectionViewSource x:Name="CompletedCVS" Filter="Completed_Filter" >
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription PropertyName="Description" Direction="Ascending" />
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="2012 Organizer"/>
-            <TextBlock x:Name="PageTitle" Text="Tasks" Margin="9,-7,0,0" FontSize="50" />
-        </StackPanel>
-
-        <StackPanel Grid.Row="1" Margin="12,0,12,0" Orientation="Vertical">
-            <ListBox Name="TaskListBox" ItemsSource="{Binding Source={StaticResource cvs}}"
-                     Margin="6"  Height="540" >
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
-                            <StackPanel.Background>
-                                <ImageBrush ImageSource="Images\MetallicStrip.png" Opacity="0.6" Stretch="UniformToFill" />
-                            </StackPanel.Background>
-                            <CheckBox IsChecked="{Binding Path=IsCompleted, Mode=TwoWay}" VerticalAlignment="Center" />
-                            <Button Width="300" VerticalAlignment="Center"
+            <DataTemplate x:Key="TaskTemplate">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images\MetallicStrip.png" Opacity="0.6" Stretch="UniformToFill" />
+                    </StackPanel.Background>
+                    <CheckBox IsChecked="{Binding Path=IsCompleted, Mode=TwoWay}" VerticalAlignment="Center" />
+                    <Button Width="300" VerticalAlignment="Center"
                                     Click="EditTaskButton_Click"
                                     WPCommon:TiltEffect.IsTiltEnabled="True">
-                                <Button.Template>
-                                    <ControlTemplate />
-                                </Button.Template>
-                                <TextBlock Text="{Binding Path=Description}"
+                        <Button.Template>
+                            <ControlTemplate />
+                        </Button.Template>
+                        <TextBlock Text="{Binding Path=Description}"
                                            Style="{StaticResource GreenTextBlockStyle}" />
-                            </Button>
-                            <Rectangle Fill="{StaticResource PhoneForegroundBrush}" Width="48" Height="48" Margin="6"
+                    </Button>
+                    <Rectangle Fill="{StaticResource PhoneForegroundBrush}" Width="48" Height="48" Margin="6"
                                        VerticalAlignment="Center" MouseLeftButtonUp="RemoveButton_Click" >
-                                <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="Images\remove_white.png" />
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="Images\remove_white.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </DataTemplate>
 
-            <Button Content="Add Task" Height="70" Margin="6"
-                    Style="{StaticResource MetallicButtonStyle}"
-                    Click="AddTaskButton_Click"
-                    ManipulationStarted="AddTaskButton_ManipulationStarted"
-                    ManipulationCompleted="AddTaskButton_ManipulationCompleted"/>
-        </StackPanel>
+        </Grid.Resources>
+
+        <controls:Pivot >
+            <controls:Pivot.Title>
+                <TextBlock Text="2012 Organizer" Style="{StaticResource GreenTextBlockStyle}" />
+            </controls:Pivot.Title>
+
+            <controls:PivotItem >
+                <controls:PivotItem.Header>
+                    <TextBlock Text="To do" Style="{StaticResource GreenTextBlockStyle}" />
+                </controls:PivotItem.Header>
+                <ListBox Margin="6"
+                         ItemTemplate="{StaticResource TaskTemplate}"
+                         ItemsSource="{Binding Source={StaticResource ToDoCVS}}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ListBox>
+            </controls:PivotItem>
+
+            <controls:PivotItem >
+                <controls:PivotItem.Header>
+                    <TextBlock Text="Completed" Style="{StaticResource GreenTextBlockStyle}" />
+                </controls:PivotItem.Header>
+                <ListBox Margin="6"
+                         ItemTemplate="{StaticResource TaskTemplate}"
+                         ItemsSource="{Binding Source={StaticResource CompletedCVS}}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ListBox>
+            </controls:PivotItem>
+        </controls:Pivot>
+
+
+        <Button Content="Add Task" Click="AddTaskButton_Click"
+                Height="70" Margin="6" Grid.Row="1"
+                Style="{StaticResource MetallicButtonStyle}"
+                ManipulationStarted="AddTaskButton_ManipulationStarted"
+                ManipulationCompleted="AddTaskButton_ManipulationCompleted" />
     </Grid>
 </phone:PhoneApplicationPage>

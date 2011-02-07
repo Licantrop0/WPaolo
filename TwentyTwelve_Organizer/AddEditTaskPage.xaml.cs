@@ -34,7 +34,7 @@ namespace TwentyTwelve_Organizer
             }
 
             TaskNameTextBox.Focus();
-            TaskNameTextBox.SelectAll();
+            TaskNameTextBox.SelectionStart = TaskNameTextBox.Text.Length;
         }
 
         private void visualizeTask()

@@ -18,9 +18,7 @@ namespace TwentyTwelve_Organizer
             InitializeComponent();
             InitializeTimer();
             if (WPCommon.TrialManagement.IsTrialMode)
-            {
                 DemoTextBlock.Visibility = System.Windows.Visibility.Visible;
-            }
         }
 
         private void InitializeTimer()
@@ -34,6 +32,8 @@ namespace TwentyTwelve_Organizer
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             dt.Start();
+            TasksProgressBar.Maximum = Settings.Tasks.Count;
+            TasksProgressBar.Value = Settings.Tasks.Where(t => t.IsCompleted).Count();
         }
 
         protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
@@ -43,7 +43,7 @@ namespace TwentyTwelve_Organizer
 
         private void ViewTaskButton_Click(object sender, RoutedEventArgs e)
         {
-                NavigationService.Navigate(new Uri("/TasksPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/TasksPage.xaml", UriKind.Relative));
         }
 
         void dt_Tick(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace TwentyTwelve_Organizer
                 {
                     EvalTextBlock.Text = "Do something or you will never complete all your tasks! Change your priorities or engage actively to fulfill your tasks!";
                 }
-                else if (rapportoGiorni <= 1 && rapportoGiorni > 0.75 )
+                else if (rapportoGiorni <= 1 && rapportoGiorni > 0.75)
                 {
                     EvalTextBlock.Text = "You must work harder to complete your tasks list.";
                 }

@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Xna.Framework.Audio;
 
 namespace FillTheSquare
 {
@@ -47,10 +48,23 @@ namespace FillTheSquare
 
             // Standard Silverlight initialization
             InitializeComponent();
-
+            InitializeSounds();
             // Phone-specific initialization
             InitializePhoneApplication();
         }
+
+        private void InitializeSounds()
+        {
+            Settings.ErrorSound = SoundEffect.FromStream(App.GetResourceStream(
+                new Uri("Sounds\\Error.wav", UriKind.Relative)).Stream);
+
+            Settings.UndoSound = SoundEffect.FromStream(App.GetResourceStream(
+                new Uri("Sounds\\Undo.wav", UriKind.Relative)).Stream);
+
+            Settings.MoveSound = SoundEffect.FromStream(App.GetResourceStream(
+                new Uri("Sounds\\Move.wav", UriKind.Relative)).Stream);
+        }
+
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated

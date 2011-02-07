@@ -16,11 +16,11 @@ namespace FillTheSquare
     public class Record
     {
         [DataMember]
-        public string Size { get; private set; }
+        public string Size { get; set; }
         [DataMember]
-        public DateTime CurrentDate { get; private set; }
+        public DateTime CurrentDate { get; set; }
         [DataMember]
-        public TimeSpan ElapsedTime { get; private set; }
+        public TimeSpan ElapsedTime { get; set; }
 
         public Record(int size, DateTime currentDate, TimeSpan elapsedTime)
         {

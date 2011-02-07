@@ -13,14 +13,14 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
+        <MediaElement AutoPlay="True" Source="Sounds\Intro.mp3" />
+
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="PageTitle" Text="Fill the Square!" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
@@ -31,6 +31,7 @@
             <Button Content="Instructions" Height="72" HorizontalAlignment="Left" Margin="138,309,0,0" Name="InstructionsButton" VerticalAlignment="Top" Width="187" Click="InstructionsButton_Click" />
             <Button Content="10 x 10" Height="72" HorizontalAlignment="Left" Margin="138,208,0,0" Name="SquareTenButton" VerticalAlignment="Top" Width="187" Click="SquareTenButton_Click" />
             <Button Content="Records" Height="72" HorizontalAlignment="Left" Margin="138,410,0,0" Name="RecordsButton" VerticalAlignment="Top" Width="187" Click="RecordsButton_Click" />
+            <Button Content="About" Height="72" HorizontalAlignment="Left" Margin="138,520,0,0" Name="AboutButton" VerticalAlignment="Top" Width="187" Click="AboutButton_Click" />
         </Grid>
     </Grid>
  

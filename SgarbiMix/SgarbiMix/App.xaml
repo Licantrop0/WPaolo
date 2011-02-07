@@ -12,7 +12,6 @@
             <Setter Property="Foreground" Value="#FFFFEBAC" />
             <Setter Property="Background" Value="#7A000000" />
             <Setter Property="FontSize" Value="22" />
-            <Setter Property="Height" Value="63" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="WPCommon:TiltEffect.IsTiltEnabled" Value="True"/>
         </Style>

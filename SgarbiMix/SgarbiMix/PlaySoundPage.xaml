@@ -59,13 +59,13 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Button Grid.Row="0" Grid.Column="0" Content="Capra!" Click="Capra_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="1" Grid.ColumnSpan="2" Content="Sei ignorante come una capra!" Click="Ignorante_Click" Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="0" Grid.Column="1" Content="È un crimine!" Click="Crimine_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="1" Grid.ColumnSpan="2" Content="Sei ignorante come una capra!" Click="Ignorante_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="2" Content="Capra ignorante!" Click="CapraIgnorante2_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="3" Content="Fascista!" Click="Fascista_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="3" Grid.Column="1"  Content="Criminale!" Click="Criminale_Click" Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Culattoni raccomandati!" Click="Culattoni_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Mi state sui c... di principio!" Click="Coglioni_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="6" Content="Ridicolo!" Click="Ridicolo_Click" Style="{StaticResource PlayButtonStyle}" />
@@ -74,7 +74,6 @@
                 <Button Grid.Row="6" Grid.Column="1" Content="E tu sei un pirla!" Click="Pirla_Click" Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="9"  Grid.ColumnSpan="2" Content="Legga Dante! Legga Manzoni! ... capra!" Click="DanteManzoni_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="10" Content="Leggi! Studia!" Click="LeggiStudia_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="11" Content="Criminale!" Click="Criminale_Click" Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="12" Content="Ma guarda che roba!" Click="Guarda_Click" Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="13" Content="Vergogna! Vergogna!" Click="Vergogna_Click" Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="14" Content="Lo mangerei vivo!" Click="Mangerei_Click"  Style="{StaticResource PlayButtonStyle}" />
@@ -82,8 +81,7 @@
                 <Button Grid.Row="16" Content="Ateo fasullo!" Click="Ateo_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="17" Content="Vai a studiare!" Click="Studiare_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Grid.Row="18" Content="Io sono convinto che vi debbano licenziare!" Click="Licenziare_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="19" Content="Non dire cretinate!" Click="Cretinate_Click"  Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="20" Content="Capra ignorante!" Click="CapraIgnorante2_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="11" Content="Non dire cretinate!" Click="Cretinate_Click"  Style="{StaticResource PlayButtonStyle}" />
             </Grid>
 
         </ScrollViewer>

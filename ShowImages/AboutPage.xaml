@@ -6,15 +6,11 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
     xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
 
-    <wp:AboutControl ApplicationName="Show Images" />
- <!--BackgroundImageSource="/WPCommon;component/Img/sfondo_quadri_bn.png"-->
+    <wp:AboutControl Name="WPMEAbout" ApplicationName="Show Images" />
 
 </phone:PhoneApplicationPage>

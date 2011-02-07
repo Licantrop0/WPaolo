@@ -22,17 +22,26 @@
         <StackPanel x:Name="TitlePanel" Grid.Row="0">
             <ProgressBar Name="LoadingProgress"
                          ValueChanged="LoadingProgress_ValueChanged" />
-        </StackPanel>
+               <Image Source="http://cvcl.mit.edu/hybrid/cat2.jpg" />
+   </StackPanel>
+        
+        <TextBlock Name="NoImagesTextBlock" Grid.Row="1"
+                   Text="No images found, or they are in an incompatible format. Please press back to change the site."
+                   Margin="12" TextWrapping="Wrap" TextAlignment="Center"
+                   FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                   Visibility="Collapsed" />        
 
-        <ScrollViewer Name="ImageScroller" Grid.Row="1" >
-            <StackPanel Name="ImageStackPanel" >
-                <TextBlock Name="NoImagesTextBlock" Text="No images found, or they are in an incompatible format. Please press back to change the site."
-                           Margin="12" TextWrapping="Wrap" TextAlignment="Center"
-                           FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                           Visibility="Collapsed" />
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+        <ListBox Name="ImageListBox" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,0,0,8">
+                        <Image Source="{Binding Key}" ImageOpened="Image_ImageOpened" ImageFailed="Image_ImageFailed" />
+                        <CheckBox IsChecked="{Binding Value, Mode=TwoWay}" VerticalAlignment="Top" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+  </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" >

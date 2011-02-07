@@ -30,20 +30,22 @@ namespace ShowImages
                 {
                     src = src.Substring(src.IndexOf("::") + 2);
                     int AndIndex = src.IndexOf("&");
-                    src = "http://" + src.Remove(AndIndex == -1 ? src.Length - 1 : AndIndex);
+                    src = "http://" + (AndIndex == -1 ? src : src.Remove(AndIndex));
                 }
 
                 if (src.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase))
                     ImgLinks.Add(FormatImageUrl(pageUrl, src));
             }
 
-            Settings.CurrentImageList = (from anchor in html.DocumentNode.Descendants("a")
-                                         let href = anchor.GetAttributeValue("href", string.Empty)
-                                         where href.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase)
-                                         select FormatImageUrl(pageUrl, href))
-                         .Union(ImgLinks)
-                         .Where(i => !string.IsNullOrEmpty(i))
-                         .ToList();
+            Settings.CurrentImageList =
+                (from anchor in html.DocumentNode.Descendants("a")
+                 let href = anchor.GetAttributeValue("href", string.Empty)
+                 where href.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase)
+                 select FormatImageUrl(pageUrl, href))
+                 .Union(ImgLinks)
+                 .Where(i => !string.IsNullOrEmpty(i))
+                 .Select(i => new KeyValuePair<string, bool>(i, true))
+                 .ToList();
         }
 
         private static string FormatImageUrl(Uri pageUrl, string url)

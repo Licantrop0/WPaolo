@@ -13,21 +13,14 @@ namespace TwentyTwelve_Organizer
         public TasksPage()
         {    
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            //il cvs è il CollectionViewSource impostato nello XAML,
-            //serve per fare il sorting automatico dei task completati
-            cvs.Source = Settings.Tasks;
+            ToDoCVS.Source = Settings.Tasks;
+            CompletedCVS.Source = Settings.Tasks;
         }
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
             if (TrialManagement.IsTrialMode)
-            {
                 NavigationService.Navigate(new Uri("/DemoInfoPage.xaml", UriKind.Relative));
-            }
             else
                 NavigationService.Navigate(new Uri("/AddEditTaskPage.xaml", UriKind.Relative));
         }
@@ -35,9 +28,7 @@ namespace TwentyTwelve_Organizer
         private void RemoveButton_Click(object sender, MouseButtonEventArgs e)
         {
             if (TrialManagement.IsTrialMode)
-            {
                 NavigationService.Navigate(new Uri("/DemoInfoPage.xaml", UriKind.Relative));
-            }
             else
                 if (MessageBox.Show("Do you want to delete this taks?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
@@ -49,14 +40,22 @@ namespace TwentyTwelve_Organizer
         private void EditTaskButton_Click(object sender, RoutedEventArgs e)
         {
             if (TrialManagement.IsTrialMode)
-            {
                 NavigationService.Navigate(new Uri("/DemoInfoPage.xaml", UriKind.Relative));
-            }
             else
             {
                 Task taskToEdit = ((Button)sender).DataContext as Task;
                 NavigationService.Navigate(new Uri("/AddEditTaskPage.xaml?id=" + taskToEdit.Id, UriKind.Relative));
             }
+        }
+
+        private void ToDo_Filter(object sender, System.Windows.Data.FilterEventArgs e)
+        {
+            e.Accepted = !((Task)e.Item).IsCompleted;
+        }
+
+        private void Completed_Filter(object sender, System.Windows.Data.FilterEventArgs e)
+        {
+            e.Accepted = ((Task)e.Item).IsCompleted;
         }
 
         private void AddTaskButton_ManipulationStarted(object sender, ManipulationStartedEventArgs e)

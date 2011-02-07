@@ -22,51 +22,79 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="sfondo.jpg"
                         Stretch="UniformToFill" />
         </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0">
+            <Grid Name="ButtonsGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Content="Capra!" Click="Capra_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="1" Grid.ColumnSpan="2" Content="Sei ignorante come una capra!" Click="Ignorante_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="0" Grid.Column="1" Content="È un crimine!" Click="Crimine_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="3" Content="Fascista!" Click="Fascista_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Culattoni raccomandati!" Click="Culattoni_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Mi state sui c... di principio!" Click="Coglioni_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="6" Content="Ridicolo!" Click="Ridicolo_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="7"  Grid.ColumnSpan="2" Content="Ridicolo sei, ma sei sempre stato!" Click="Ridicolo6_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Non ha mai fatto un c... in vita sua ..." Click="NonHaMaiFatto_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="6" Grid.Column="1" Content="E tu sei un pirla!" Click="Pirla_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="9"  Grid.ColumnSpan="2" Content="Legga Dante! Legga Manzoni! ... capra!" Click="DanteManzoni_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="10" Content="Leggi! Studia!" Click="LeggiStudia_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="11" Content="Criminale!" Click="Criminale_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="12" Content="Ma guarda che roba!" Click="Guarda_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="13" Content="Vergogna! Vergogna!" Click="Vergogna_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="14" Content="Lo mangerei vivo!" Click="Mangerei_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="15" Content="È insopportabile!" Click="Insopportabile_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="16" Content="Ateo fasullo!" Click="Ateo_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="17" Content="Vai a studiare!" Click="Studiare_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="18" Content="Io sono convinto che vi debbano licenziare!" Click="Licenziare_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="19" Content="Non dire cretinate!" Click="Cretinate_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Grid.Row="20" Content="Capra ignorante!" Click="CapraIgnorante2_Click"  Style="{StaticResource PlayButtonStyle}" />
+            </Grid>
+
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <CheckBox Content="Mixer 1" Name="mix1CheckBox" Checked="mix1CheckBox_Checked" Unchecked="mix1CheckBox_Unchecked" />
+            <CheckBox Content="Mixer 2" Name="mix2CheckBox" Checked="mix2CheckBox_Checked" Unchecked="mix2CheckBox_Unchecked" />
+            <CheckBox Content="Mixer 3" Name="mix3CheckBox" Checked="mix3CheckBox_Checked" Unchecked="mix3CheckBox_Unchecked" />
+        </StackPanel>
 
 
-        <Button Content="Capra!" Click="Capra_Click"
-                Height="63" Width="237" Foreground="#FFFFEBAC" Background="#7A000000" Margin="9,95,234,642" FontSize="22" BorderThickness="0" />
-        <Button Content="Sei ignorante come una capra!" Click="Ignorante_Click"
-                Height="63" Width="468" Margin="9,0,3,122"
-                VerticalAlignment="Bottom" FontSize="22"
-                Foreground="#FFFFEBAC" Background="#7A000000" 
-                BorderThickness="0" />
-        
-        <Button Content="E' un crimine!" Click="Crimine_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="252,95,3,642" Width="225" />
-        <Button Content="Fascista!" Click="Fascista_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,181,234,556" Width="237" />
-        <Button Content="Cu... raccomandati!" Click="Culattoni_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,313,3,424" Width="468" />
-        <Button Content="Mi state sui c... di principio!" Click="Coglioni_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,0,3,295" VerticalAlignment="Bottom" Width="468" />
-        <Button Content="Ridicolo!" Click="Ridicolo_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="0,224,3,513" Width="225" HorizontalAlignment="Right" />
-        <Button Content="Ridicolo sei, ma sei sempre stato!" Click="Ridicolo6_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,355,3,382" Width="468" />
-        <Button Content="Non ha mai fatto un c... in vita sua ..." Click="NonHaMaiFatto_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,397,3,340" Width="468" />
-        <Button Content="E tu sei un pirla!" Click="Pirla_Click" Background="#7A000000" BorderThickness="0" FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,138,234,599" Width="237" />
-        <Button Content="Leggi! Studia!" Click="LeggiStudia_Click" Background="#7A000000" BorderThickness="0" FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="252,138,3,599" Width="225" />
-
-
-        <Button Content="Criminale!" Click="Criminale_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="252,0,3,210" VerticalAlignment="Bottom" Width="225" />
-        <Button Content="Ma guarda che roba!" Click="Guarda_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,0,3,252" VerticalAlignment="Bottom" Width="468" />
-        <Button Content="Vergogna! Vergogna!" Click="Vergogna_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,0,3,167" VerticalAlignment="Bottom" Width="468" />
-        <Button Content="Lo mangerei vivo!" Click="Mangerei_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,0,222,210" VerticalAlignment="Bottom" Width="249" />
-
-        <Button Content="E' insopportabile!" Click="Insopportabile_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,0,3,80" VerticalAlignment="Bottom" Width="468" />
-        <Button Content="Ateo fasullo!" Click="Ateo_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="252,0,3,468" VerticalAlignment="Bottom" Width="225" />
-        <Button Content="Vai a studiare!" Click="Studiare_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,224,0,513" Width="237" HorizontalAlignment="Left" />
-
-        <Button Content="Io sono convinto che vi debbano licenziare!" Click="Licenziare_Click" Background="#7A000000" BorderThickness="0"  FontSize="21" Foreground="#FFFFEBAC" Height="63" Margin="9,51,3,686" Width="468" />
-        <Button Content="Non dire cretinate!" Click="Cretinate_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,0,234,468" VerticalAlignment="Bottom" Width="237" />
-
-        <Button Content="Capra ignorante!" Click="CapraIgnorante2_Click" Background="#7A000000" BorderThickness="0"  FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="252,181,3,556" Width="225" />
-        <Button Content="Legga Dante! Legga Manzoni! ... capra!" Click="DanteManzoni_Click" Background="#7A000000" BorderThickness="0" FontSize="22" Foreground="#FFFFEBAC" Height="63" Margin="9,7,3,730" Width="468" />
-
-
-        <CheckBox Content="Mixer 1" Name="mix1CheckBox" Height="72" HorizontalAlignment="Right" Margin="0,728,286,0"  VerticalAlignment="Top" Width="182" Checked="mix1CheckBox_Checked" Unchecked="mix1CheckBox_Unchecked" IsChecked="False" />
-        <CheckBox Content="Mixer 2" Name="mix2CheckBox" Height="72" HorizontalAlignment="Center" Margin="158,728,140,0"  VerticalAlignment="Top" Width="182" Checked="mix2CheckBox_Checked" Unchecked="mix2CheckBox_Unchecked" IsChecked="False" />
-        <CheckBox Content="Mixer 3" Name="mix3CheckBox" Height="72" HorizontalAlignment="Center" Margin="309,728,-11,0"  VerticalAlignment="Top" Width="182" Checked="mix3CheckBox_Checked" Unchecked="mix3CheckBox_Unchecked" IsChecked="False" />
 
     </Grid>
 

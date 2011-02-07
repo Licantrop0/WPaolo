@@ -24,6 +24,9 @@ namespace SgarbiMix
 {
     public partial class PlaySoundPage : PhoneApplicationPage
     {
+
+        #region Private Sound Fields
+
         SoundEffect IgnoranteCapraSound;
         SoundEffect AteoFasulloSound;
         SoundEffect CapraSound;
@@ -47,106 +50,99 @@ namespace SgarbiMix
         SoundEffect VaiStudiareSound;
         SoundEffect VergognaSound;
 
-        SoundEffect mix1Sound;
         SoundEffectInstance mix1Loop;
+        SoundEffectInstance mix2Loop;
+        SoundEffectInstance mix3Loop;
+
+        #endregion
 
         public PlaySoundPage()
         {
             InitializeComponent();
-            StreamResourceInfo SoundFileInfo;
+            InitializeSounds();
+            InitializeBases();
+            InitializeButtonColors();
+        }
 
+        private void InitializeSounds()
+        {
             //fascista
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/fascista.wav", UriKind.Relative));
-            FascistaSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            FascistaSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/fascista.wav", UriKind.Relative)).Stream);
             //capra
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/capra1.wav", UriKind.Relative));
-            CapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            CapraSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/capra1.wav", UriKind.Relative)).Stream);
             //capra ignorante
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/capraignorante.wav", UriKind.Relative));
-            CapraIgnoranteSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            CapraIgnoranteSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/capraignorante.wav", UriKind.Relative)).Stream);
             //culattoni raccomandati
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/culattoniraccomandati.wav", UriKind.Relative));
-            CulattoniSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            CulattoniSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/culattoniraccomandati.wav", UriKind.Relative)).Stream);
             //mi state sui coglioni di principio
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/mistatesuicoglionidiprincipio.wav", UriKind.Relative));
-            CoglioniSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            CoglioniSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/mistatesuicoglionidiprincipio.wav", UriKind.Relative)).Stream);
             //crimine
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/e1crimine1.wav", UriKind.Relative));
-            CrimineSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            CrimineSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/e1crimine1.wav", UriKind.Relative)).Stream);
             //ridicolo
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/ridicolo1.wav", UriKind.Relative));
-            RidicoloSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            RidicoloSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/ridicolo1.wav", UriKind.Relative)).Stream);
             //ridicolo 6 ma 6 sempre stato
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/ridicolo6ma6semprestato1.wav", UriKind.Relative));
-            Ridicolo6Sound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            Ridicolo6Sound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/ridicolo6ma6semprestato1.wav", UriKind.Relative)).Stream);
             //non ha mai fatto 1 cazzo in vita sua
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/nonhafattomaiuncazzoinvitasua1.wav", UriKind.Relative));
-            NonHaFattoSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-
+            NonHaFattoSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/nonhafattomaiuncazzoinvitasua1.wav", UriKind.Relative)).Stream);
             //vergogna vergogna
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/vergognavergogna.wav", UriKind.Relative));
-            VergognaSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            // 6 ignorante come 1 capra
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/61ignorantecome1capra.wav", UriKind.Relative));
-            IgnoranteCapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            // ateo fasullo
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/ateofasullo.wav", UriKind.Relative));
-            AteoFasulloSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            // criminale
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/criminale.wav", UriKind.Relative));
-            CriminaleSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            // e' insopportabile
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/einsopportabile.wav", UriKind.Relative));
-            InsopportabileSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            // e tu sei un pirla
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/etu61pirla.wav", UriKind.Relative));
-            PirlaSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            // io sono convinto che vi debbano licenziare
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/iosonoconvintochevidebbanolicenziare.wav", UriKind.Relative));
-            LicenziareSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            // leggi studia
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/leggistudia.wav", UriKind.Relative));
-            LeggiStudiaSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            // lo mangerei vivo
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/lomangereivivo.wav", UriKind.Relative));
-            MangereiVivoSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            // ma guarda che roba
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/maguardacheroba1.wav", UriKind.Relative));
-            GuardaCheRobaSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            // vai a studiare
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/vaiastudiare.wav", UriKind.Relative));
-            VaiStudiareSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-
+            VergognaSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/vergognavergogna.wav", UriKind.Relative)).Stream);
+            //6 ignorante come 1 capra
+            IgnoranteCapraSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/61ignorantecome1capra.wav", UriKind.Relative)).Stream);
+            //ateo fasullo
+            AteoFasulloSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/ateofasullo.wav", UriKind.Relative)).Stream);
+            //criminale
+            CriminaleSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/criminale.wav", UriKind.Relative)).Stream);
+            //è insopportabile
+            InsopportabileSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/einsopportabile.wav", UriKind.Relative)).Stream);
+            //e tu sei un pirla
+            PirlaSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/etu61pirla.wav", UriKind.Relative)).Stream);
+            //io sono convinto che vi debbano licenziare
+            LicenziareSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/iosonoconvintochevidebbanolicenziare.wav", UriKind.Relative)).Stream);
+            //leggi studia
+            LeggiStudiaSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/leggistudia.wav", UriKind.Relative)).Stream);
+            //lo mangerei vivo
+            MangereiVivoSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/lomangereivivo.wav", UriKind.Relative)).Stream);
+            //ma guarda che roba
+            GuardaCheRobaSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/maguardacheroba1.wav", UriKind.Relative)).Stream);
+            //vai a studiare
+            VaiStudiareSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/vaiastudiare.wav", UriKind.Relative)).Stream);
             //legga dante, legga manzoni, impari quella capra
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/leggadanteleggamanzoniimpariquellacapra.wav", UriKind.Relative));
-            LeggaDanteManzoniSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            // non dire cretinate
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/nondirecretinate.wav", UriKind.Relative));
-            CretinateSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            LeggaDanteManzoniSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/leggadanteleggamanzoniimpariquellacapra.wav", UriKind.Relative)).Stream);
+            //non dire cretinate
+            CretinateSound = SoundEffect.FromStream(App.GetResourceStream(new Uri("sounds/nondirecretinate.wav", UriKind.Relative)).Stream);
+        }
 
+        private void InitializeBases()
+        {
             // mixer 1
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/base1.wav", UriKind.Relative));
-            mix1Sound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            mix1Loop = mix1Sound.CreateInstance();
-
-            // Set the volume a little lower than full so it becomes the background.
-            mix1Loop.Volume = 0.8f;
-
-            // Turn on looping so it runs continually in the background.
+            mix1Loop = SoundEffect.FromStream(App.GetResourceStream(
+                new Uri("sounds/base1.wav", UriKind.Relative)).Stream).CreateInstance();
             mix1Loop.IsLooped = true;
 
-            // Timer to simulate the XNA game loop (SoundEffect classes are from the XNA Framework)
-            DispatcherTimer XnaDispatchTimer = new DispatcherTimer();
-            XnaDispatchTimer.Interval = TimeSpan.FromMilliseconds(50);
+            //// mixer 2
+            //mix2Loop = SoundEffect.FromStream(App.GetResourceStream(
+            //    new Uri("sounds/base1.wav", UriKind.Relative)).Stream).CreateInstance();
+            //mix2Loop.IsLooped = true;
 
-            // Call FrameworkDispatcher.Update to update the XNA Framework internals.
-            XnaDispatchTimer.Tick += delegate { try { FrameworkDispatcher.Update(); } catch { } };
-
-            // Start the DispatchTimer running.
-            XnaDispatchTimer.Start();
+            //// mixer 3
+            //mix2Loop = SoundEffect.FromStream(App.GetResourceStream(
+            //    new Uri("sounds/base1.wav", UriKind.Relative)).Stream).CreateInstance();
+            //mix2Loop.IsLooped = true;
 
         }
 
+        private void InitializeButtonColors()
+        {
+            //prende tutti i bottoni all'interno della griglia
+            foreach (var b in ButtonsGrid.Children.Where(c => c is Button).Cast<Button>())
+            {
+                //prende le righe pari e colora il bottone di rosso
+                if (b.GetRow() % 2 == 0)
+                    b.Background = new SolidColorBrush(Colors.Red);
+            }
+        }
+
+        #region Play Buttons
 
         private void Fascista_Click(object sender, RoutedEventArgs e)
         {
@@ -263,16 +259,17 @@ namespace SgarbiMix
             LeggaDanteManzoniSound.Play();
         }
 
+        #endregion
+
+
+        #region Mix Checkboxes
+
         private void mix1CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if (mix1Loop.State == SoundState.Paused)
-            {
                 mix1Loop.Resume();
-            }
             else
-            {
                 mix1Loop.Play();
-            }
         }
 
         private void mix2CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -298,9 +295,10 @@ namespace SgarbiMix
         private void mix1CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             if (mix1Loop.State == SoundState.Playing)
-            {
-                mix1Loop.Pause();
-            }
+                 mix1Loop.Pause();
         }
+
+        #endregion
+
     }
 }

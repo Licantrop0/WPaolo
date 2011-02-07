@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using System.Reflection;
 
 namespace ShowImages
 {
@@ -17,7 +18,8 @@ namespace ShowImages
     {
         public AboutPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            WPMEAbout.ApplicationVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
     }
 }

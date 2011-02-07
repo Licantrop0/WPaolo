@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Xna.Framework.Media;
+using System.Linq;
 
 namespace ShowImages
 {
@@ -24,16 +25,8 @@ namespace ShowImages
         {
             if (Settings.CurrentImageList.Count > 0)
             {
-                LoadingProgress.IsIndeterminate = true;
                 LoadingProgress.Maximum = Settings.CurrentImageList.Count;
-
-                foreach (var ImageUrl in Settings.CurrentImageList)
-                {
-                    var i = new Image() { Source = new BitmapImage(new Uri(ImageUrl)), Margin = new Thickness(0, 0, 0, 8) };
-                    i.ImageOpened += delegate(object s, RoutedEventArgs evnt) { LoadingProgress.Value += 1; };
-
-                    ImageStackPanel.Children.Add(i);
-                }
+                ImageListBox.ItemsSource = Settings.CurrentImageList;
             }
             else
                 NoImagesTextBlock.Visibility = Visibility.Visible;
@@ -44,7 +37,7 @@ namespace ShowImages
             IsSaving = true;
             LoadingProgress.Value = LoadingProgress.Minimum;
 
-            foreach (var u in Settings.CurrentImageList)
+            foreach (var u in Settings.CurrentImageList.Where(i => i.Value == true).Select(i => i.Key))
             {
                 WebClient wc = new WebClient();
                 wc.AllowReadStreamBuffering = true;
@@ -74,7 +67,7 @@ namespace ShowImages
         //{
         //    if (uris.Count == 0) return;
         //    string u = uris.Dequeue();
-            
+
         //    WebClient wc = new WebClient();
         //    wc.AllowReadStreamBuffering = true;
 
@@ -97,17 +90,31 @@ namespace ShowImages
 
         private void LoadingProgress_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (IsSaving) LoadingProgress.IsIndeterminate = false;
-
-            if (LoadingProgress.Value >= LoadingProgress.Maximum)
+            if (LoadingProgress.Value > LoadingProgress.Maximum)
             {
-                LoadingProgress.IsIndeterminate = false;
                 LoadingProgress.Value = LoadingProgress.Minimum;
                 if (IsSaving)
                 {
                     MessageBox.Show("Images saved in your Media Library");
                     IsSaving = false;
                 }
+            }
+        }
+
+        private void Image_ImageOpened(object sender, RoutedEventArgs e)
+        {
+            LoadingProgress.Value += 1;
+        }
+
+        private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            if (e.ErrorException.Message == "AG_E_NETWORK_ERROR")
+            {
+                LoadingProgress.Maximum -= 1;
+                LoadingProgress_ValueChanged(sender, null);
+                var imageSource = ((BitmapImage)((Image)sender).Source).UriSource.ToString();
+                var imgToDelete = Settings.CurrentImageList.Where(i=> i.Key == imageSource).Single();
+                //Settings.CurrentImageList.Remove(imgToDelete);
             }
         }
 

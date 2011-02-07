@@ -8,13 +8,13 @@ namespace ShowImages
 {
     public static class Settings
     {
-        public static List<string> CurrentImageList
+        public static List<KeyValuePair<string, bool>> CurrentImageList
         {
             get
             {
                 if (!IsolatedStorageSettings.ApplicationSettings.Contains("current_image_list"))
-                    IsolatedStorageSettings.ApplicationSettings["current_image_list"] = new List<string>();
-                return (List<string>)IsolatedStorageSettings.ApplicationSettings["current_image_list"];
+                    IsolatedStorageSettings.ApplicationSettings["current_image_list"] = new List<KeyValuePair<string, bool>>();
+                return (List<KeyValuePair<string, bool>>)IsolatedStorageSettings.ApplicationSettings["current_image_list"];
             }
             set
             {

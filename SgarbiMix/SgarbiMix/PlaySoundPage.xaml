@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
 
     <toolkit:TransitionService.NavigationOutTransition>
@@ -21,79 +21,48 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="sfondo.jpg"
+        <ScrollViewer>
+            <ScrollViewer.Background>
+                <ImageBrush ImageSource="sfondo.jpg"
                         Stretch="UniformToFill" />
-        </Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+            </ScrollViewer.Background>
 
-        <ScrollViewer Grid.Row="0">
-            <Grid Name="ButtonsGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0" Grid.Column="0" Content="Capra!" Click="Capra_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="0" Grid.Column="1" Content="È un crimine!" Click="Crimine_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="1" Grid.ColumnSpan="2" Content="Sei ignorante come una capra!" Click="Ignorante_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="2" Content="Capra ignorante!" Click="CapraIgnorante2_Click"  Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="3" Content="Fascista!" Click="Fascista_Click"  Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="3" Grid.Column="1"  Content="Criminale!" Click="Criminale_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Culattoni raccomandati!" Click="Culattoni_Click"  Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Mi state sui c... di principio!" Click="Coglioni_Click"  Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="6" Content="Ridicolo!" Click="Ridicolo_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="7"  Grid.ColumnSpan="2" Content="Ridicolo sei, ma sei sempre stato!" Click="Ridicolo6_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Non ha mai fatto un c... in vita sua ..." Click="NonHaMaiFatto_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="6" Grid.Column="1" Content="E tu sei un pirla!" Click="Pirla_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="9"  Grid.ColumnSpan="2" Content="Legga Dante! Legga Manzoni! ... capra!" Click="DanteManzoni_Click"  Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="10" Content="Leggi! Studia!" Click="LeggiStudia_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="12" Content="Ma guarda che roba!" Click="Guarda_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="13" Content="Vergogna! Vergogna!" Click="Vergogna_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="14" Content="Lo mangerei vivo!" Click="Mangerei_Click"  Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="15" Content="È insopportabile!" Click="Insopportabile_Click"  Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="16" Content="Ateo fasullo!" Click="Ateo_Click"  Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="17" Content="Vai a studiare!" Click="Studiare_Click"  Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="18" Content="Io sono convinto che vi debbano licenziare!" Click="Licenziare_Click" Style="{StaticResource PlayButtonStyle}" />
-                <Button Grid.Row="11" Content="Non dire cretinate!" Click="Cretinate_Click"  Style="{StaticResource PlayButtonStyle}" />
-            </Grid>
-
+            <toolkit:WrapPanel Name="ButtonsWrapPanel">
+                <Button Content="È un crimine!" Click="Crimine_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Fascista!" Click="Fascista_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Ridicolo!" Click="Ridicolo_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="È insopportabile!" Click="Insopportabile_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Ateo fasullo!" Click="Ateo_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Sei ignorante come una capra!" Click="Ignorante_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Capra!" Click="Capra_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Criminale!" Click="Criminale_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Culattoni raccomandati!" Click="Culattoni_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Mi state sui coglioni di principio!" Click="Coglioni_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Ridicolo sei, ma sei sempre stato!" Click="Ridicolo6_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Non ha mai fatto un cazzo in vita sua..." Click="NonHaMaiFatto_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="E tu sei un pirla!" Click="Pirla_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Vai a studiare!" Click="Studiare_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Legga Dante! Legga Manzoni! ... capra!" Click="DanteManzoni_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Leggi! Studia!" Click="LeggiStudia_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Ma guarda che roba!" Click="Guarda_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Vergogna! Vergogna!" Click="Vergogna_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Capra ignorante!" Click="CapraIgnorante2_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Non dire cretinate!" Click="Cretinate_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Lo mangerei vivo!" Click="Mangerei_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Io sono convinto che vi debbano licenziare!" Click="Licenziare_Click" Style="{StaticResource PlayButtonStyle}" />
+            </toolkit:WrapPanel>
         </ScrollViewer>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <CheckBox Content="Mixer 1" Name="mix1CheckBox" Checked="mix1CheckBox_Checked" Unchecked="mix1CheckBox_Unchecked" />
-            <CheckBox Content="Mixer 2" Name="mix2CheckBox" Checked="mix2CheckBox_Checked" Unchecked="mix2CheckBox_Unchecked" />
-            <CheckBox Content="Mixer 3" Name="mix3CheckBox" Checked="mix3CheckBox_Checked" Unchecked="mix3CheckBox_Unchecked" />
-        </StackPanel>
-
-
-
-    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Base 2"  Click="Base2ApplicationBar_Click"  />
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Base 3"  Click="Base3ApplicationBar_Click" />
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="Disclaimer" Click="DisclaimerApplicationBar_Click" />
+                <shell:ApplicationBarMenuItem Text="About" Click="AboutApplicationBar_Click" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

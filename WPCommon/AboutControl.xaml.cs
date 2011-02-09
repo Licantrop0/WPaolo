@@ -23,6 +23,8 @@ namespace WPCommon
             set { ApplicationNameTextBlock.Text = value; }
         }
 
+        //var name = Assembly.GetExecutingAssembly().FullName;
+        //WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString(); 
         public string ApplicationVersion
         {
             get { return ApplicationVersionTextBlock.Text; }
@@ -41,13 +43,20 @@ namespace WPCommon
             set { MainStackPanel.Background = value; }
         }
 
+        public double MinFontSize
+        {
+            get { return ApplicationVersionTextBlock.FontSize; }
+            set
+            {
+                ApplicationVersionTextBlock.FontSize = value;
+                OtherAppsTextBlock.FontSize = value * (24 / 19);
+                ApplicationNameTextBlock.FontSize = value * (32 / 19);
+            }
+        }
+
         public AboutControl()
         {
             InitializeComponent();
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
         }
 
         private void Facebook_Click(object sender, MouseButtonEventArgs e)

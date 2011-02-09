@@ -11,9 +11,9 @@
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
 
-    <WPCommon:AboutControl
+    <WPCommon:AboutControl Name="WPMEAbout"
         FontFamily="Fonts\Fonts.zip#Chiller"
-        ApplicationName="{Binding Path=LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}">
+        MinFontSize="50" >
         <WPCommon:AboutControl.BackgroundStackPanel>
             <ImageBrush ImageSource="/DeathTimer;component/Images/DeathBackground.jpg"
                         Stretch="None" AlignmentX="Center" />

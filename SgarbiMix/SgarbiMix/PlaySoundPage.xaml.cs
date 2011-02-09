@@ -41,7 +41,7 @@ namespace SgarbiMix
         SoundEffect VaiStudiareSound;
         SoundEffect VergognaSound;
 
-        SoundEffectInstance mix1Loop;
+        SoundEffectInstance Base1Loop;
         SoundEffectInstance mix2Loop;
         SoundEffectInstance mix3Loop;
 
@@ -106,9 +106,9 @@ namespace SgarbiMix
         private void InitializeBases()
         {
             // mixer 1
-            mix1Loop = SoundEffect.FromStream(App.GetResourceStream(
+            Base1Loop = SoundEffect.FromStream(App.GetResourceStream(
                 new Uri("sounds/base1.wav", UriKind.Relative)).Stream).CreateInstance();
-            mix1Loop.IsLooped = true;
+            Base1Loop.IsLooped = true;
 
             //// mixer 2
             //mix2Loop = SoundEffect.FromStream(App.GetResourceStream(
@@ -125,11 +125,13 @@ namespace SgarbiMix
         private void InitializeButtonColors()
         {
             //prende tutti i bottoni all'interno della griglia
-            foreach (var b in ButtonsGrid.Children.Where(c => c is Button).Cast<Button>())
+            var Toggle = true;
+            foreach (var b in ButtonsWrapPanel.Children.Where(c => c is Button).Cast<Button>())
             {
-                //prende le righe pari e colora il bottone di rosso
-                if (b.GetRow() % 2 == 0)
+                //cambia il colore a bottoni alternati
+                if (Toggle)
                     b.Background = new SolidColorBrush(Colors.Red);
+                Toggle = !Toggle;
             }
         }
 
@@ -137,159 +139,189 @@ namespace SgarbiMix
 
         private void Fascista_Click(object sender, RoutedEventArgs e)
         {
-            FascistaSound.Play();
+            if (CheckTrial())
+                FascistaSound.Play();
         }
 
         private void Ignorante_Click(object sender, RoutedEventArgs e)
         {
-            IgnoranteCapraSound.Play();
+            if (CheckTrial())
+                IgnoranteCapraSound.Play();
         }
 
         private void Capra_Click(object sender, RoutedEventArgs e)
         {
-            CapraSound.Play();
+            if (CheckTrial())
+                CapraSound.Play();
         }
 
         private void Crimine_Click(object sender, RoutedEventArgs e)
         {
-            CrimineSound.Play();
+            if (CheckTrial())
+                CrimineSound.Play();
         }
 
         private void Coglioni_Click(object sender, RoutedEventArgs e)
         {
-            CoglioniSound.Play();
+            if (CheckTrial())
+                CoglioniSound.Play();
         }
 
         private void Culattoni_Click(object sender, RoutedEventArgs e)
         {
-            CulattoniSound.Play();
+            if (CheckTrial())
+                CulattoniSound.Play();
         }
 
         private void Ridicolo_Click(object sender, RoutedEventArgs e)
         {
-            RidicoloSound.Play();
+            if (CheckTrial())
+                RidicoloSound.Play();
         }
 
         private void Ridicolo6_Click(object sender, RoutedEventArgs e)
         {
-            Ridicolo6Sound.Play();
+            if (CheckTrial())
+                Ridicolo6Sound.Play();
         }
 
         private void NonHaMaiFatto_Click(object sender, RoutedEventArgs e)
         {
-            NonHaFattoSound.Play();
+            if (CheckTrial())
+                NonHaFattoSound.Play();
         }
 
         private void CapraIgnorante_Click(object sender, RoutedEventArgs e)
         {
-            CapraIgnoranteSound.Play();
+            if (CheckTrial())
+                CapraIgnoranteSound.Play();
         }
 
         private void Pirla_Click(object sender, RoutedEventArgs e)
         {
-            PirlaSound.Play();
+            if (CheckTrial())
+                PirlaSound.Play();
         }
 
         private void LeggiStudia_Click(object sender, RoutedEventArgs e)
         {
-            LeggiStudiaSound.Play();
+            if (CheckTrial())
+                LeggiStudiaSound.Play();
         }
 
         private void Criminale_Click(object sender, RoutedEventArgs e)
         {
-            CriminaleSound.Play();
+            if (CheckTrial())
+                CriminaleSound.Play();
         }
 
         private void Guarda_Click(object sender, RoutedEventArgs e)
         {
-            GuardaCheRobaSound.Play();
+            if (CheckTrial())
+                GuardaCheRobaSound.Play();
         }
 
         private void Vergogna_Click(object sender, RoutedEventArgs e)
         {
-            VergognaSound.Play();
+            if (CheckTrial())
+                VergognaSound.Play();
         }
 
         private void Mangerei_Click(object sender, RoutedEventArgs e)
         {
-            MangereiVivoSound.Play();
+            if (CheckTrial())
+                MangereiVivoSound.Play();
         }
 
         private void Insopportabile_Click(object sender, RoutedEventArgs e)
         {
-            InsopportabileSound.Play();
+            if (CheckTrial())
+                InsopportabileSound.Play();
         }
 
         private void Ateo_Click(object sender, RoutedEventArgs e)
         {
-            AteoFasulloSound.Play();
+            if (CheckTrial())
+                AteoFasulloSound.Play();
         }
 
         private void Studiare_Click(object sender, RoutedEventArgs e)
         {
-            VaiStudiareSound.Play();
+            if (CheckTrial())
+                VaiStudiareSound.Play();
         }
 
         private void Licenziare_Click(object sender, RoutedEventArgs e)
         {
-            LicenziareSound.Play();
+            if (CheckTrial())
+                LicenziareSound.Play();
         }
 
         private void Cretinate_Click(object sender, RoutedEventArgs e)
         {
-            CretinateSound.Play();
+            if (CheckTrial())
+                CretinateSound.Play();
         }
 
         private void CapraIgnorante2_Click(object sender, RoutedEventArgs e)
         {
-            CapraIgnoranteSound.Play();
+            if (CheckTrial())
+                CapraIgnoranteSound.Play();
         }
 
         private void DanteManzoni_Click(object sender, RoutedEventArgs e)
         {
-            LeggaDanteManzoniSound.Play();
+            if (CheckTrial())
+                LeggaDanteManzoniSound.Play();
         }
 
         #endregion
 
-
-        #region Mix Checkboxes
-
-        private void mix1CheckBox_Checked(object sender, RoutedEventArgs e)
+        private bool CheckTrial()
         {
-            if (mix1Loop.State == SoundState.Paused)
-                mix1Loop.Resume();
-            else
-                mix1Loop.Play();
+            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday)
+            {
+                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
+                return false;
+            }
+            return true;
         }
 
-        private void mix2CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void Base1ApplicationBar_Click(object sender, EventArgs e)
+        {
+            switch (Base1Loop.State)
+            {
+                case SoundState.Paused:
+                    Base1Loop.Resume();
+                    break;
+                case SoundState.Playing:
+                    Base1Loop.Pause();
+                    break;
+                default:
+                    Base1Loop.Play();
+                    break;
+            }
+        }
+
+        private void Base2ApplicationBar_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void mix3CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void Base3ApplicationBar_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void mix3CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        private void DisclaimerApplicationBar_Click(object sender, EventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/DisclaimerPage.xaml", UriKind.Relative));
         }
 
-        private void mix2CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        private void AboutApplicationBar_Click(object sender, EventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
-
-        private void mix1CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (mix1Loop.State == SoundState.Playing)
-                 mix1Loop.Pause();
-        }
-
-        #endregion
 
     }
 }

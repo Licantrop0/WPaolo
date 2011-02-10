@@ -27,7 +27,7 @@
                         Stretch="UniformToFill" />
             </ScrollViewer.Background>
 
-            <toolkit:WrapPanel Name="ButtonsWrapPanel" HorizontalAlignment="Center">
+            <StackPanel Name="ButtonsStackPanel" >
                 <Button Content="È un crimine!" Click="Crimine_Click" Style="{StaticResource PlayButtonStyle}" />
                 <Button Content="Fascista!" Click="Fascista_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Content="Ridicolo!" Click="Ridicolo_Click" Style="{StaticResource PlayButtonStyle}" />
@@ -50,7 +50,7 @@
                 <Button Content="Non dire cretinate!" Click="Cretinate_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Content="Lo mangerei vivo!" Click="Mangerei_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Content="... che vi debbano licenziare!" Click="Licenziare_Click" Style="{StaticResource PlayButtonStyle}" />
-            </toolkit:WrapPanel>
+        </StackPanel>
         </ScrollViewer>
 
     <phone:PhoneApplicationPage.ApplicationBar>

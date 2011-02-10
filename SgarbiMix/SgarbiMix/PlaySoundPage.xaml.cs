@@ -42,8 +42,8 @@ namespace SgarbiMix
         SoundEffect VergognaSound;
 
         SoundEffectInstance Base1Loop;
-        SoundEffectInstance mix2Loop;
-        SoundEffectInstance mix3Loop;
+        SoundEffectInstance Base2Loop;
+        SoundEffectInstance Base3Loop;
 
         #endregion
 
@@ -110,28 +110,39 @@ namespace SgarbiMix
                 new Uri("sounds/base1.wav", UriKind.Relative)).Stream).CreateInstance();
             Base1Loop.IsLooped = true;
 
-            //// mixer 2
-            //mix2Loop = SoundEffect.FromStream(App.GetResourceStream(
-            //    new Uri("sounds/base1.wav", UriKind.Relative)).Stream).CreateInstance();
-            //mix2Loop.IsLooped = true;
+            // mixer 2
+            Base2Loop = SoundEffect.FromStream(App.GetResourceStream(
+                new Uri("sounds/base2.wav", UriKind.Relative)).Stream).CreateInstance();
+            Base2Loop.IsLooped = true;
 
-            //// mixer 3
-            //mix2Loop = SoundEffect.FromStream(App.GetResourceStream(
-            //    new Uri("sounds/base1.wav", UriKind.Relative)).Stream).CreateInstance();
-            //mix2Loop.IsLooped = true;
+            // mixer 3
+            Base3Loop = SoundEffect.FromStream(App.GetResourceStream(
+                new Uri("sounds/base3.wav", UriKind.Relative)).Stream).CreateInstance();
+            Base3Loop.IsLooped = true;
 
         }
 
         private void InitializeButtonColors()
         {
             //prende tutti i bottoni all'interno della griglia
-            var Toggle = true;
+            //var Toggle=true;
+            int Toggle = 1;
             foreach (var b in ButtonsWrapPanel.Children.Where(c => c is Button).Cast<Button>())
             {
-                //cambia il colore a bottoni alternati
-                if (Toggle)
-                    b.Background = new SolidColorBrush(Colors.Red);
-                Toggle = !Toggle;
+                ////cambia il colore a bottoni alternati
+                //if (Toggle)
+                //    b.Background = new SolidColorBrush(Colors.Red);
+                //Toggle = !Toggle;
+
+                switch (Toggle)
+                {
+                    case 1: b.Background = new SolidColorBrush(Colors.Red);  break;
+                    case 2: b.Background = new SolidColorBrush(Colors.White); break;
+                    case 3: b.Background = new SolidColorBrush(Colors.Green); break;   
+                }
+                b.Foreground = new SolidColorBrush(Colors.Black);
+                Toggle++;
+                if (Toggle > 3) Toggle = 1;
             }
         }
 
@@ -305,12 +316,34 @@ namespace SgarbiMix
 
         private void Base2ApplicationBar_Click(object sender, EventArgs e)
         {
-
+            switch (Base2Loop.State)
+            {
+                case SoundState.Paused:
+                    Base2Loop.Resume();
+                    break;
+                case SoundState.Playing:
+                    Base2Loop.Pause();
+                    break;
+                default:
+                    Base2Loop.Play();
+                    break;
+            }
         }
 
         private void Base3ApplicationBar_Click(object sender, EventArgs e)
         {
-
+            switch (Base3Loop.State)
+            {
+                case SoundState.Paused:
+                    Base3Loop.Resume();
+                    break;
+                case SoundState.Playing:
+                    Base3Loop.Pause();
+                    break;
+                default:
+                    Base3Loop.Play();
+                    break;
+            }
         }
 
         private void DisclaimerApplicationBar_Click(object sender, EventArgs e)

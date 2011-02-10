@@ -39,13 +39,14 @@
     <wpcommon:AboutControl ApplicationName="Sgarbi Mix">
 
         <wpcommon:AboutControl.BackgroundStackPanel>
-            <ImageBrush ImageSource="sfondo.jpg" />
+            <ImageBrush ImageSource="sfondo3.jpg" />
         </wpcommon:AboutControl.BackgroundStackPanel>
 
         <wpcommon:AboutControl.Foreground>
             <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                <GradientStop Color="#FFF5F5E1" Offset="0" />
-                <GradientStop Color="#FFFFEB50"  Offset="1" />
+                <GradientStop Color="#FF65F200" Offset="0" />
+                <GradientStop Color="White" Offset="0.5" />
+                <GradientStop Color="#FFFF0008"  Offset="1" />
             </LinearGradientBrush>
         </wpcommon:AboutControl.Foreground>
     </wpcommon:AboutControl>

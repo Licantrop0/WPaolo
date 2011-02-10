@@ -36,24 +36,24 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
-            <ImageBrush ImageSource="sfondo.jpg" />
+            <ImageBrush ImageSource="sfondo3.jpg" />
         </Grid.Background>
         <TextBlock Name="titleTextBox" Text="Ops!"
-                   Width="456" Height="109" Margin="12,40,12,0"
+                   Width="456" Height="109" Margin="12,149,12,0"
                    VerticalAlignment="Top" FontSize="72"
-                   Foreground="#FFFFEB50" TextAlignment="Center" FontWeight="SemiBold" />
+                   Foreground="#FFFF0104" TextAlignment="Center" FontWeight="SemiBold" />
         <TextBlock Text="Questa è solo una demo!
 Puoi gridare le frasi di Sgarbi solo poche volte al giorno! 
 Se vuoi dire Capra! o Ignorante! come Sgarbi, in continuazione, devi comprare la versione completa. 
 Costa meno di un caffè... pensaci è un investimento!"
-                   Height="400" Margin="24,190,0,0"
+                   Height="388" Margin="24,301,0,0"
                    VerticalAlignment="Top" FontSize="32"
-                   Foreground="#FFFFB000" TextWrapping="Wrap" OpacityMask="{x:Null}" FontWeight="SemiBold" />
+                   Foreground="White" TextWrapping="Wrap" OpacityMask="{x:Null}" FontWeight="SemiBold" />
 
         <HyperlinkButton Name="BuyButton" Content="Clicca e comprala!"
                          FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                         Click="BuyButton_Click" Margin="0,596,0,34"
-                         Foreground="#FFFFFC6C" FontWeight="SemiBold" />
+                         Click="BuyButton_Click" Margin="0,694,0,12"
+                         Foreground="#FF00CD00" FontWeight="SemiBold" />
     </Grid>
  
 

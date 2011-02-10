@@ -21,6 +21,7 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
+    
         <ScrollViewer>
             <ScrollViewer.Background>
                 <ImageBrush ImageSource="sfondo3.jpg"

@@ -13,7 +13,7 @@
             <Setter Property="Background" Value="White" />
             <Setter Property="FontSize" Value="22" />
             <Setter Property="Height" Value="80" />
-            <!--<Setter Property="Width" Value="400" />-->
+            <Setter Property="Opacity" Value="0.7" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="WPCommon:TiltEffect.IsTiltEnabled" Value="True"/>
         </Style>

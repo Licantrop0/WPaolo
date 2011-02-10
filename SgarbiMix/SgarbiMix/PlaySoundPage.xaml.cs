@@ -124,18 +124,19 @@ namespace SgarbiMix
 
         private void InitializeButtonColors()
         {
-            int Toggle = 1;
             //prende tutti i bottoni all'interno della griglia
-            foreach (var b in ButtonsStackPanel.Children.Where(c => c is Button).Cast<Button>())
+            var buttons = ButtonsStackPanel.Children
+                .Where(c => c is Button)
+                .Cast<Button>().ToArray();
+
+            for (int i = 0; i < buttons.Length; i++)
             {
-                switch (Toggle)
+                switch (i % 3)
                 {
-                    case 1: b.Background = new SolidColorBrush(Colors.Red); break;
-                    case 2: b.Background = new SolidColorBrush(Colors.White); break;
-                    case 3: b.Background = new SolidColorBrush(Colors.Green); break;
+                    case 0: buttons[i].Background = new SolidColorBrush(Colors.Red); break;
+                    case 1: buttons[i].Background = new SolidColorBrush(Colors.White); break;
+                    case 2: buttons[i].Background = new SolidColorBrush(Colors.Green); break;
                 }
-                Toggle++;
-                if (Toggle > 3) Toggle = 1;
             }
         }
 

@@ -115,12 +115,24 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\battito_cardiaco_bianco1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\battito_cardiaco_rosso.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\battito_cardiaco_verde2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="sfondo.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="sfondo3.jpg" />
     <Content Include="sounds\61ignorantecome1capra.wav" />
     <Content Include="sounds\ateofasullo.wav" />
     <Content Include="sounds\base1.wav" />
+    <Content Include="sounds\base2.wav" />
+    <Content Include="sounds\base3.wav" />
     <Content Include="sounds\capra1.wav" />
     <Content Include="sounds\capraignorante.wav" />
     <Content Include="sounds\criminale.wav" />

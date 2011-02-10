@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgarbiMix", "SgarbiMix.csproj", "{35FEF77F-76EA-4EDA-8751-54F7F381676B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon", "..\..\WPCommon\WPCommon.csproj", "{22700591-5E34-4D4D-A01F-6B8C2153B270}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon", "..\WPCommon\WPCommon.csproj", "{22700591-5E34-4D4D-A01F-6B8C2153B270}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -13,9 +13,9 @@ Global
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = SgarbiMix.csproj
 		SccLocalPath1 = .
-		SccProjectUniqueName2 = ..\\..\\WPCommon\\WPCommon.csproj
-		SccProjectName2 = ../../WPCommon
-		SccLocalPath2 = ..\\..\\WPCommon
+		SccProjectUniqueName2 = ..\\WPCommon\\WPCommon.csproj
+		SccProjectName2 = ../WPCommon
+		SccLocalPath2 = ..\\WPCommon
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

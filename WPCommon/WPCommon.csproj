@@ -75,9 +75,6 @@
     <Resource Include="Logo\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Img\sfondo_quadri_bn.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Img\facebook.png" />
     <Resource Include="Img\hotmail.png" />
     <Resource Include="Img\twitter.png" />

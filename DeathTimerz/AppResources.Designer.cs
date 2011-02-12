@@ -647,7 +647,7 @@ namespace DeathTimer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you yet alive? It&apos;s hard to believe!.
+        ///   Looks up a localized string similar to Are you still alive? It&apos;s hard to believe!.
         /// </summary>
         public static string YetAlive {
             get {

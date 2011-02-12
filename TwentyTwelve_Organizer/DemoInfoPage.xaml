@@ -53,8 +53,9 @@
             <TextBlock x:Name="PageTitle" Text="Demo Mode" Margin="9,-7,0,0" FontSize="80"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Margin="12,0,12,0">
+        <StackPanel Grid.Row="1" Margin="12,-100,12,0" VerticalAlignment="Center">
             <TextBlock Text="This is a trial version, if you want the application with full features,"
+                       Foreground="White"
                        FontSize="{StaticResource PhoneFontSizeExtraLarge}"
                        TextWrapping="Wrap" TextAlignment="Center" />
             <HyperlinkButton Name="BuyButton" Content="click here to buy"

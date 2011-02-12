@@ -50,12 +50,18 @@ namespace TwentyTwelve_Organizer
 
         private void ToDo_Filter(object sender, System.Windows.Data.FilterEventArgs e)
         {
-            e.Accepted = !((Task)e.Item).IsCompleted;
+            if (e.Item == null)
+                e.Accepted = false;
+            else
+                e.Accepted = !((Task)e.Item).IsCompleted;
         }
 
         private void Completed_Filter(object sender, System.Windows.Data.FilterEventArgs e)
         {
-            e.Accepted = ((Task)e.Item).IsCompleted;
+            if (e.Item == null)
+                e.Accepted = false;
+            else
+                e.Accepted = ((Task)e.Item).IsCompleted;
         }
 
         private void AddTaskButton_ManipulationStarted(object sender, ManipulationStartedEventArgs e)

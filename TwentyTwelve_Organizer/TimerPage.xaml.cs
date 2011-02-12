@@ -32,8 +32,10 @@ namespace TwentyTwelve_Organizer
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             dt.Start();
-            TasksProgressBar.Maximum = Settings.Tasks.Count;
-            TasksProgressBar.Value = Settings.Tasks.Where(t => t.IsCompleted).Count();
+            var CompletedTasksCount = Settings.Tasks.Where(t => t.IsCompleted).Count(); 
+            TasksProgressBar.Maximum = Settings.Tasks.Count;            
+            TasksProgressBar.Value = CompletedTasksCount;
+            ProgressTextBlock.Text = string.Format("Task Completed: {0}/{1}", CompletedTasksCount, Settings.Tasks.Count);
         }
 
         protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
@@ -69,6 +71,10 @@ namespace TwentyTwelve_Organizer
             {
                 EvalTextBlock.Text = "Open your eyes. Everything is different. Have a nice life.";
             }
+            else if (Settings.Tasks.Count == 0)
+            {
+                EvalTextBlock.Text = "You have no tasks.\nYou should spend your last days on earth with something to do!";
+            }
             else
             {
                 var rapportoGiorni = giorniNecessari / TimeLeft.TotalDays;
@@ -82,11 +88,11 @@ namespace TwentyTwelve_Organizer
                 }
                 else if (rapportoGiorni <= 0.75 && rapportoGiorni > 0.50)
                 {
-                    EvalTextBlock.Text = "You are doing fine with your tasks.";
+                    EvalTextBlock.Text = "You are doing fine with your tasks, hold on!";
                 }
                 else if (rapportoGiorni <= 0.50 && rapportoGiorni > 0.25)
                 {
-                    EvalTextBlock.Text = "Well done, you can do it with a bit of work";
+                    EvalTextBlock.Text = "Well done, you can do it with a bit of work.";
                 }
                 else
                 {

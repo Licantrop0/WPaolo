@@ -1,0 +1,68 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="SgarbiMix.PlaySoundPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+        <ScrollViewer>
+            <ScrollViewer.Background>
+                <ImageBrush ImageSource="sfondo3.jpg"
+                        Stretch="UniformToFill" />
+            </ScrollViewer.Background>
+
+            <toolkit:WrapPanel Name="ButtonsWrapPanel" HorizontalAlignment="Center">
+                <Button Content="È un crimine!" Click="Crimine_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Fascista!" Click="Fascista_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Ridicolo!" Click="Ridicolo_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="È insopportabile!" Click="Insopportabile_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Ateo fasullo!" Click="Ateo_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Sei ignorante ... capra!" Click="Ignorante_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Capra!" Click="Capra_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Criminale!" Click="Criminale_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Cul....ni raccomandati!" Click="Culattoni_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Mi state sui ... di principio!" Click="Coglioni_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Ridicolo ... sei sempre stato!" Click="Ridicolo6_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Non ha mai fatto un c.. in vita sua" Click="NonHaMaiFatto_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="E tu sei un pirla!" Click="Pirla_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Vai a studiare!" Click="Studiare_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Legga Dante! Legga Manzoni!" Click="DanteManzoni_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Leggi! Studia!" Click="LeggiStudia_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Ma guarda che roba!" Click="Guarda_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Vergogna! Vergogna!" Click="Vergogna_Click" Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Capra ignorante!" Click="CapraIgnorante2_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Non dire cretinate!" Click="Cretinate_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="Lo mangerei vivo!" Click="Mangerei_Click"  Style="{StaticResource PlayButtonStyle}" />
+                <Button Content="... che vi debbano licenziare!" Click="Licenziare_Click" Style="{StaticResource PlayButtonStyle}" />
+            </toolkit:WrapPanel>
+        </ScrollViewer>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
+            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 2"  Click="Base2ApplicationBar_Click"  />
+            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 3"  Click="Base3ApplicationBar_Click" />
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="Disclaimer" Click="DisclaimerApplicationBar_Click" />
+                <shell:ApplicationBarMenuItem Text="About" Click="AboutApplicationBar_Click" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

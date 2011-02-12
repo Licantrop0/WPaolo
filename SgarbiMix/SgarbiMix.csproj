@@ -189,6 +189,7 @@
     <Content Include="sounds\ridicolo6ma6semprestato1.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="sounds\SoundList.txt" />
     <Content Include="sounds\vaiastudiare.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

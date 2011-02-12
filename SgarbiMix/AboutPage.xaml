@@ -36,7 +36,7 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <wpcommon:AboutControl ApplicationName="Sgarbi Mix">
+    <wpcommon:AboutControl ApplicationName="Sgarbi Mix" GetOtherAppsText="Scarica altre app da WPME!">
 
         <wpcommon:AboutControl.BackgroundStackPanel>
             <ImageBrush ImageSource="sfondo3.jpg" />
@@ -49,6 +49,7 @@
                 <GradientStop Color="#FFFF0008"  Offset="1" />
             </LinearGradientBrush>
         </wpcommon:AboutControl.Foreground>
+        
     </wpcommon:AboutControl>
 
 

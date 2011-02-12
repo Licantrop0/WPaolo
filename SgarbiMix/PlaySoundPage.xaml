@@ -21,14 +21,15 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    
-        <ScrollViewer>
+
+   
+    <ScrollViewer>
             <ScrollViewer.Background>
                 <ImageBrush ImageSource="sfondo3.jpg"
                         Stretch="UniformToFill" />
             </ScrollViewer.Background>
-
-            <StackPanel Name="ButtonsStackPanel" >
+            
+        <toolkit:WrapPanel Name="ButtonsWrapPanel" HorizontalAlignment="Center">
                 <Button Content="È un crimine!" Click="Crimine_Click" Style="{StaticResource PlayButtonStyle}" />
                 <Button Content="Fascista!" Click="Fascista_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Content="Ridicolo!" Click="Ridicolo_Click" Style="{StaticResource PlayButtonStyle}" />
@@ -51,14 +52,14 @@
                 <Button Content="Non dire cretinate!" Click="Cretinate_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Content="Lo mangerei vivo!" Click="Mangerei_Click"  Style="{StaticResource PlayButtonStyle}" />
                 <Button Content="... che vi debbano licenziare!" Click="Licenziare_Click" Style="{StaticResource PlayButtonStyle}" />
-        </StackPanel>
+            </toolkit:WrapPanel>
         </ScrollViewer>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/images/battito_cardiaco_verde2.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
-            <shell:ApplicationBarIconButton IconUri="/images/battito_cardiaco_bianco1.png" Text="Base 2"  Click="Base2ApplicationBar_Click"  />
-            <shell:ApplicationBarIconButton IconUri="/images/battito_cardiaco_rosso.png" Text="Base 3"  Click="Base3ApplicationBar_Click" />
+            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
+            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 2"  Click="Base2ApplicationBar_Click"  />
+            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 3"  Click="Base3ApplicationBar_Click" />
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="Disclaimer" Click="DisclaimerApplicationBar_Click" />
                 <shell:ApplicationBarMenuItem Text="About" Click="AboutApplicationBar_Click" />

@@ -15,6 +15,7 @@ namespace SgarbiMix
 {
     public partial class PlaySoundPage : PhoneApplicationPage
     {
+        private int counter;
 
         #region Private Sound Fields
 
@@ -49,6 +50,7 @@ namespace SgarbiMix
 
         public PlaySoundPage()
         {
+            counter = 0;
             InitializeComponent();
             InitializeSounds();
             InitializeBases();
@@ -125,18 +127,19 @@ namespace SgarbiMix
         private void InitializeButtonColors()
         {
             //prende tutti i bottoni all'interno della griglia
-            var buttons = ButtonsStackPanel.Children
-                .Where(c => c is Button)
-                .Cast<Button>().ToArray();
-
-            for (int i = 0; i < buttons.Length; i++)
+            int Toggle = 1;
+            foreach (var b in ButtonsWrapPanel.Children.Where(c => c is Button).Cast<Button>())
             {
-                switch (i % 3)
+                ////cambia il colore a bottoni alternati
+                switch (Toggle)
                 {
-                    case 0: buttons[i].Background = new SolidColorBrush(Colors.Red); break;
-                    case 1: buttons[i].Background = new SolidColorBrush(Colors.White); break;
-                    case 2: buttons[i].Background = new SolidColorBrush(Colors.Green); break;
+                    case 1: b.Background = new SolidColorBrush(Colors.Red);  break;
+                    case 2: b.Background = new SolidColorBrush(Colors.White); break;
+                    case 3: b.Background = new SolidColorBrush(Colors.Green); break;   
                 }
+                b.Foreground = new SolidColorBrush(Colors.Black);
+                Toggle++;
+                if (Toggle > 3) Toggle = 1;
             }
         }
 
@@ -284,11 +287,13 @@ namespace SgarbiMix
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday)
+            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday && (counter > 22) )
             {
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return false;
             }
+            //incremento ogni volta che chiamo checkTrial - cioè ad ogni click di suono
+            counter++;
             return true;
         }
 

@@ -1,31 +1,22 @@
-00_61ignorantecome1capra.wav
-01_ateofasullo.wav
-02_capra.wav
-03_capraignorante.wav
-04_criminale.wav
-05_culattoniraccomandati.wav
-06_e1crimine1.wav
-07_einsopportabile.wav
-08_etu61pirla.wav
-09_fascista.wav
-10_iosonoconvintochevidebbanolicenziare.wav
-11_leggadanteleggamanzoniimpariquellacapra.wav
-12_leggistudia.wav
-13_lomangereivivo.wav
-base1.wav
-base2.wav
-base3.wav
-capra.wav
-e1crimine.wav
-maguardacheroba.wav
-maguardacheroba1.wav
-mistatesuicoglionidiprincipio.wav
-nondirecretinate.wav
-nonhafattomaiuncazzoinvitasua.wav
-nonhafattomaiuncazzoinvitasua1.wav
-ridicolo.wav
-ridicolo1.wav
-ridicolo6ma6semprestato.wav
-ridicolo6ma6semprestato1.wav
-vaiastudiare.wav
-vergognavergogna.wav
+È un crimine!
+Fascista!
+Ridicolo!
+È insopportabile!
+Ateo fasullo!
+Sei ignorante come una capra!
+Capra!
+Criminale!
+Cullattoni raccomandati!
+Mi state sui coglioni di principio!
+Ridicolo sei, e lo sei sempre stato!
+Non ha mai fatto un cazzo in vita sua
+E tu sei un pirla!
+Vai a studiare!
+Legga Dante! Legga Manzoni!
+Leggi! Studia!
+Ma guarda che roba!
+Vergogna! Vergogna!
+Capra ignorante!
+Non dire cretinate!
+Lo mangerei vivo!
+... che vi debbano licenziare!

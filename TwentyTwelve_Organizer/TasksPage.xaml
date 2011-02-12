@@ -10,6 +10,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon"
+    xmlns:Converters="clr-namespace:Converters"
     FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" shell:SystemTray.IsVisible="False"
@@ -53,6 +54,7 @@
             <ImageBrush ImageSource="Images\2012background.jpg" Stretch="None" AlignmentY="Bottom" />
         </Grid.Background>
         <Grid.Resources>
+            <Converters:TaskDifficultyConverter x:Key="TaskDifficultyConverter" />
             <CollectionViewSource x:Name="ToDoCVS" Filter="ToDo_Filter" >
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="Description" Direction="Ascending" />
@@ -70,6 +72,8 @@
                         <ImageBrush ImageSource="Images\MetallicStrip.png" Opacity="0.6" Stretch="UniformToFill" />
                     </StackPanel.Background>
                     <CheckBox IsChecked="{Binding Path=IsCompleted, Mode=TwoWay}" VerticalAlignment="Center" />
+                    <Rectangle Height="32" Width="8" Margin="-15,0,8,0"
+                               Fill="{Binding Path=Difficulty, Converter={StaticResource TaskDifficultyConverter}}"  />
                     <Button Width="300" VerticalAlignment="Center"
                                     Click="EditTaskButton_Click"
                                     WPCommon:TiltEffect.IsTiltEnabled="True">

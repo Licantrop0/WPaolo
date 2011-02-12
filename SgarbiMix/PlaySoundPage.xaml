@@ -21,40 +21,26 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    <ScrollViewer>
-        <ScrollViewer.Background>
+    <Grid Name="MainGrid" >
+        <Grid.Background>
             <ImageBrush ImageSource="sfondo3.jpg"
                         Stretch="UniformToFill" />
-        </ScrollViewer.Background>
+        </Grid.Background>
+        <MediaElement Name="Base1MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base1.mp3" AutoPlay="False" />
+        <MediaElement Name="Base2MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base2.mp3" />
+        <MediaElement Name="Base3MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base3.mp3" />
 
-        <StackPanel Name="ButtonsStackPanel">
-            <!--<Button Content="È un crimine!" Click="Crimine_Click" Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Fascista!" Click="Fascista_Click"  Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Ridicolo!" Click="Ridicolo_Click" Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="È insopportabile!" Click="Insopportabile_Click"  Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Ateo fasullo!" Click="Ateo_Click"  Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Sei ignorante ... capra!" Click="Ignorante_Click" Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Capra!" Click="Capra_Click" Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Criminale!" Click="Criminale_Click" Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Cul....ni raccomandati!" Click="Culattoni_Click"  Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Mi state sui ... di principio!" Click="Coglioni_Click"  Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Ridicolo ... sei sempre stato!" Click="Ridicolo6_Click" Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Non ha mai fatto un c.. in vita sua" Click="NonHaMaiFatto_Click" Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="E tu sei un pirla!" Click="Pirla_Click" Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Vai a studiare!" Click="Studiare_Click"  Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Legga Dante! Legga Manzoni!" Click="DanteManzoni_Click"  Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Leggi! Studia!" Click="LeggiStudia_Click" Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Ma guarda che roba!" Click="Guarda_Click" Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Vergogna! Vergogna!" Click="Vergogna_Click" Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Capra ignorante!" Click="CapraIgnorante2_Click"  Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Non dire cretinate!" Click="Cretinate_Click"  Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="Lo mangerei vivo!" Click="Mangerei_Click"  Style="{StaticResource PlayButtonStyle}" />
-            <Button Content="... che vi debbano licenziare!" Click="Licenziare_Click" Style="{StaticResource PlayButtonStyle}" />-->
-            <MediaElement Name="Base1MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base1.mp3" />
-            <MediaElement Name="Base2MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base2.mp3" />
-            <MediaElement Name="Base3MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base3.mp3" />
-        </StackPanel>
-    </ScrollViewer>
+        <ListBox Name="PlayButtonsListBox" Width="400">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Path=Key}"
+                            Click="PlayButton_Click"
+                            Style="{StaticResource PlayButtonStyle}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">

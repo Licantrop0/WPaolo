@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Audio;
 using WPCommon;
 using System.IO;
 using System.Collections.Generic;
+using System.Collections;
 
 /* 
     Copyright (c) 2011 WPME
@@ -17,9 +18,9 @@ namespace SgarbiMix
 {
     public partial class PlaySoundPage : PhoneApplicationPage
     {
+        Random rnd = new Random();
         private int counter;
-        List<SoundEffect> sounds = new List<SoundEffect>();
-        Random rnd;
+        List<KeyValuePair<string, SoundEffect>> Sounds = new List<KeyValuePair<string, SoundEffect>>();
 
         public PlaySoundPage()
         {
@@ -27,49 +28,58 @@ namespace SgarbiMix
             InitializeComponent();
             InitializeSounds();
             InitializeButtons();
-            var sd = new ShakeDetector();
+            var sd = new ShakeDetector(3);
             sd.ShakeEvent += (sender, e) =>
             {
-                sounds[rnd.Next(sounds.Count)].Play();
+                Sounds[rnd.Next(Sounds.Count)].Value.Play();
             };
             sd.Start();
         }
 
         private void InitializeSounds()
         {
-            foreach (var wav in Directory.GetFiles("sounds", "*.wav"))
+            var res = SoundsResources.ResourceManager.GetResourceSet(System.Globalization.CultureInfo.CurrentCulture, true, true);
+            foreach (var resource in res)
             {
-                sounds.Add(SoundEffect.FromStream(App.GetResourceStream(new Uri(wav, UriKind.Relative)).Stream));
+                var r = (DictionaryEntry)resource;
+                Sounds.Add(new KeyValuePair<string, SoundEffect>(
+                    r.Key.ToString().Replace("_", " "),
+                    SoundEffect.FromStream((UnmanagedMemoryStream)r.Value)));
             }
+
+            PlayButtonsListBox.ItemsSource = Sounds;
+
         }
 
         private void InitializeButtons()
         {
-            var soundFiles = Directory.GetFiles("sounds", "*.wav");
-            for (int i = 0; i < soundFiles.Length; i++)
+            var buttons = MainGrid.Children
+                            .Where(c => c is Button)
+                            .Cast<Button>().ToArray();
+
+            for (int i = 0; i < buttons.Length; i++)
             {
-                var b = new Button();
-                b.Style = (Style)Resources["PlayButtonStyle"];
-                b.Content = Path.GetFileNameWithoutExtension(soundFiles[i]);
                 switch (i % 3)
                 {
-                    case 0: b.Background = new SolidColorBrush(Colors.Red); break;
-                    case 1: b.Background = new SolidColorBrush(Colors.White); break;
-                    case 2: b.Background = new SolidColorBrush(Colors.Green); break;
+                    case 0: buttons[i].Background = new SolidColorBrush(Colors.Red); break;
+                    case 1: buttons[i].Background = new SolidColorBrush(Colors.White); break;
+                    case 2: buttons[i].Background = new SolidColorBrush(Colors.Green); break;
                 }
-                b.Click += (sender, e) =>
-                {
-                    if (CheckTrial())
-                        sounds[i].Play();
-                };
+            }
+        }
 
-                ButtonsStackPanel.Children.Add(b);
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheckTrial())
+            {
+                var kvp = (KeyValuePair<string, SoundEffect>)((Button)sender).DataContext;
+                kvp.Value.Play();
             }
         }
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday && (counter > 22))
+            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday && (counter > Sounds.Count))
             {
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return false;
@@ -119,6 +129,5 @@ namespace SgarbiMix
             me.Stop();
             me.Play();
         }
-
     }
 }

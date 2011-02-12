@@ -81,6 +81,11 @@
       <DependentUpon>PlaySoundPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SoundsResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SoundsResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -120,12 +125,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="sfondo3.jpg" />
-    <Content Include="sounds\00_61ignorantecome1capra.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\01_ateofasullo.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="sounds\Ateo fasullo!.wav" />
     <Resource Include="sounds\base1.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -135,74 +135,46 @@
     <Resource Include="sounds\base3.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Content Include="sounds\02_capra.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\03_capraignorante.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\04_criminale.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\05_culattoniraccomandati.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\06_e1crimine1.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\07_einsopportabile.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\08_etu61pirla.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\09_fascista.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\10_iosonoconvintochevidebbanolicenziare.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\11_leggadanteleggamanzoniimpariquellacapra.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\12_leggistudia.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\13_lomangereivivo.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\maguardacheroba1.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\mistatesuicoglionidiprincipio.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\nondirecretinate.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\nonhafattomaiuncazzoinvitasua1.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\ridicolo1.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\ridicolo6ma6semprestato1.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\SoundList.txt" />
-    <Content Include="sounds\vaiastudiare.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sounds\vergognavergogna.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="sounds\capra.wav" />
+    <None Include="sounds\e1crimine.wav" />
+    <None Include="sounds\maguardacheroba.wav" />
+    <None Include="sounds\nonhafattomaiuncazzoinvitasua.wav" />
+    <None Include="sounds\ridicolo.wav" />
+    <None Include="sounds\ridicolo6ma6semprestato.wav" />
     <Content Include="SplashScreenImage.jpg" />
+    <None Include="sounds\Capra ignorante!.wav" />
+    <None Include="sounds\Capra!.wav" />
+    <None Include="sounds\Criminale!.wav" />
+    <None Include="sounds\Culattoni raccomandati!.wav" />
+    <None Include="sounds\E tu sei un pirla!.wav" />
+    <None Include="sounds\Fascista!.wav" />
+    <None Include="sounds\Io sono convinto che vi debbano licenziare.wav" />
+    <None Include="sounds\Legga Dante! Legga Manzoni!.wav" />
+    <None Include="sounds\Leggi! Studia!.wav" />
+    <None Include="sounds\Lo mangerei vivo!.wav" />
+    <None Include="sounds\Ma guarda che roba!.wav" />
+    <None Include="sounds\Mi state sui coglioni di principio!.wav" />
+    <None Include="sounds\Non dire cretinate!.wav" />
+    <None Include="sounds\Non ha mai fatto un cazzo in vita sua.wav" />
+    <None Include="sounds\Ridicolo sei, e lo sei sempre stato!.wav" />
+    <None Include="sounds\Ridicolo!.wav" />
+    <None Include="sounds\Sei ignorante come una capra!.wav" />
+    <None Include="sounds\Vai a studiare!.wav" />
+    <None Include="sounds\Vergogna! Vergogna!.wav" />
+    <None Include="sounds\È insopportabile!.wav" />
+    <None Include="sounds\È un crimine!.wav" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WPCommon\WPCommon.csproj">
       <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
       <Name>WPCommon</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SoundsResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SoundsResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

@@ -142,23 +142,7 @@
       <All>True</All>
       <AutoFill>True</AutoFill>
     </BlendEmbeddedFont>
-    <BlendEmbeddedFont Include="Fonts\consolab.ttf">
-      <IsSystemFont>True</IsSystemFont>
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-    </BlendEmbeddedFont>
-    <BlendEmbeddedFont Include="Fonts\consolai.ttf">
-      <IsSystemFont>True</IsSystemFont>
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-    </BlendEmbeddedFont>
-    <BlendEmbeddedFont Include="Fonts\consolaz.ttf">
-      <IsSystemFont>True</IsSystemFont>
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-    </BlendEmbeddedFont>
     <Resource Include="Images\2012background.jpg" />
-    <Resource Include="Images\metallic-holes-texture.jpg" />
     <Resource Include="Images\MetallicStrip.png" />
     <Resource Include="Images\remove_white.png" />
     <Content Include="SplashScreenImage.jpg" />

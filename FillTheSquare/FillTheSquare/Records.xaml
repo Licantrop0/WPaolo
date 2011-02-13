@@ -14,7 +14,13 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <RadialGradientBrush GradientOrigin="0.238,0.297" RadiusY="0.545" RadiusX="0.674">
+                <GradientStop Color="#FFB2AEE7"/>
+                <GradientStop Color="#FF4536F9" Offset="1"/>
+            </RadialGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -40,8 +46,10 @@
                 </ListBox.ItemTemplate>
 
             </ListBox>
+            
         </Grid>
-
+        <Image Grid.Row="0" Source="Phil\bravorecords.png"
+               Stretch="Uniform" Height="100" HorizontalAlignment="Right" Margin="0,0,50,0" />
     </Grid>
 
 </phone:PhoneApplicationPage>

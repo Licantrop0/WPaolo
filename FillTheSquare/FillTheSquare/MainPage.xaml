@@ -13,7 +13,13 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+    	<Grid.Background>
+    		<RadialGradientBrush GradientOrigin="0.238,0.297" RadiusY="0.545" RadiusX="0.674">
+    			<GradientStop Color="#FFB2AEE7"/>
+    			<GradientStop Color="#FF4536F9" Offset="1"/>
+    		</RadialGradientBrush>
+    	</Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -27,11 +33,12 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Content="5 x 5" Height="72" Margin="138,107,131,0" Name="SquareFiveButton" VerticalAlignment="Top" Click="SquareFiveButton_Click" />
-            <Button Content="Instructions" Height="72" HorizontalAlignment="Left" Margin="138,309,0,0" Name="InstructionsButton" VerticalAlignment="Top" Width="187" Click="InstructionsButton_Click" />
-            <Button Content="10 x 10" Height="72" HorizontalAlignment="Left" Margin="138,208,0,0" Name="SquareTenButton" VerticalAlignment="Top" Width="187" Click="SquareTenButton_Click" />
-            <Button Content="Records" Height="72" HorizontalAlignment="Left" Margin="138,410,0,0" Name="RecordsButton" VerticalAlignment="Top" Width="187" Click="RecordsButton_Click" />
-            <Button Content="About" Height="72" HorizontalAlignment="Left" Margin="138,520,0,0" Name="AboutButton" VerticalAlignment="Top" Width="187" Click="AboutButton_Click" />
+            <Button Content="5 x 5" Height="72" Margin="8,70,0,0" Name="SquareFiveButton" VerticalAlignment="Top" Click="SquareFiveButton_Click" HorizontalAlignment="Left" Width="187" />
+            <Button Content="Instructions" Height="72" HorizontalAlignment="Left" Margin="0,146,0,0" Name="InstructionsButton" VerticalAlignment="Top" Width="187" Click="InstructionsButton_Click" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" />
+            <Button Content="10 x 10" Height="72" HorizontalAlignment="Left" Margin="215,70,0,0" Name="SquareTenButton" VerticalAlignment="Top" Width="187" Click="SquareTenButton_Click" />
+            <Button Content="Records" Height="72" HorizontalAlignment="Left" Margin="215,161,0,0" Name="RecordsButton" VerticalAlignment="Top" Width="187" Click="RecordsButton_Click" d:LayoutOverrides="VerticalAlignment" />
+            <Button Content="About" Height="72" HorizontalAlignment="Left" Margin="45,237,0,0" Name="AboutButton" VerticalAlignment="Top" Width="187" Click="AboutButton_Click" d:LayoutOverrides="VerticalAlignment" />
+            <Image Margin="176,0,8,8" Source="Phil/saluta.png" Stretch="Fill" Height="196" VerticalAlignment="Bottom"/>
         </Grid>
     </Grid>
  

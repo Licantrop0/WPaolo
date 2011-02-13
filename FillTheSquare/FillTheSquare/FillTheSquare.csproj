@@ -86,7 +86,6 @@
     <Compile Include="Records.xaml.cs">
       <DependentUpon>Records.xaml</DependentUpon>
     </Compile>
-    <Compile Include="XNAAsyncDispatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -125,7 +124,10 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="instructionsImage.jpg" />
+    <Resource Include="Phil\saluta.png" />
+    <Resource Include="Phil\guardaabout.png" />
+    <Resource Include="Phil\bravorecords.png" />
+    <Resource Include="Phil\istruzione.png" />
     <Content Include="Sounds\Error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -39,9 +39,7 @@ namespace FillTheSquare
                     {
                         Background = new SolidColorBrush(Colors.Transparent),
                         BorderThickness = new Thickness(1),
-                        Margin = new Thickness(3),
                         BorderBrush = new SolidColorBrush(Colors.White),
-                        CornerRadius = new CornerRadius(5)
                     };
 
                     b.SetRow(i);
@@ -98,6 +96,7 @@ namespace FillTheSquare
 
                 Completed.Stop();
                 Storyboard.SetTarget(Completed, currentButton);
+                Settings.MoveSound.Play();
                 Completed.Begin();
 
                 if (Square.positionHistory.Count == (MagicGrid.RowDefinitions.Count * MagicGrid.ColumnDefinitions.Count))
@@ -105,6 +104,7 @@ namespace FillTheSquare
                     dt.Stop();
                     MessageBox.Show("Congratulations! Magic Square completed in " + sw.Elapsed.TotalSeconds + " seconds!");
                     sw.Reset();
+                    //TODO aggiungere suono vittoria
                     end = true;
                     Settings.RecordsList.Add(new Record(Square.ActualSize, DateTime.Now, sw.Elapsed));
                 }
@@ -121,12 +121,14 @@ namespace FillTheSquare
                     Storyboard.SetTarget(Completed, lastButton);
                     Completed.Begin();
                 }
+                Settings.UndoSound.Play();
             }
             else
             {
                 //l'utente ha violato le regole quindi non si fa nulla, magari coloro il tasto di rosso per mezzo secondo?
                 RedFlash.Stop();
                 Storyboard.SetTarget(RedFlash, currentButton);
+                Settings.ErrorSound.Play();
                 RedFlash.Begin();
             }
         }

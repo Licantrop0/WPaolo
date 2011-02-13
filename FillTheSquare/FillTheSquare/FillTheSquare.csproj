@@ -73,8 +73,8 @@
     <Compile Include="SquarePage.xaml.cs">
       <DependentUpon>SquarePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Instructions.xaml.cs">
-      <DependentUpon>Instructions.xaml</DependentUpon>
+    <Compile Include="InstructionsPage.xaml.cs">
+      <DependentUpon>InstructionsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MagicSquare.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -100,7 +100,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Instructions.xaml">
+    <Page Include="InstructionsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

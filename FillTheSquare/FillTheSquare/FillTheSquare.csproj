@@ -69,7 +69,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ExtensionHelper.cs" />
     <Compile Include="SquarePage.xaml.cs">
       <DependentUpon>SquarePage.xaml</DependentUpon>
     </Compile>
@@ -83,8 +82,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="Record.cs" />
-    <Compile Include="Records.xaml.cs">
-      <DependentUpon>Records.xaml</DependentUpon>
+    <Compile Include="RecordsPage.xaml.cs">
+      <DependentUpon>RecordsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -108,7 +107,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Records.xaml">
+    <Page Include="RecordsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

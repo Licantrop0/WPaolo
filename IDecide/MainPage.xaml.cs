@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using WPCommon;
 
 namespace IDecide
 {
@@ -21,16 +22,19 @@ namespace IDecide
             InitializeComponent();
             ApplicationBar = new ApplicationBar();
             CreateAppBar();
+
+            var sd = new ShakeDetector(3);
+            sd.ShakeEvent += (sender, e) =>
+            {
+                //Inserire un Mutex
+                Dispatcher.BeginInvoke(() => { DecideButton_Click(sender, null); });
+            };
+            sd.Start();
+
         }
 
-        private void CreateAppBar()
+        void sd_ShakeEvent(object sender, EventArgs e)
         {
-            var EditChoicesAppBarButton = new ApplicationBarIconButton();
-            EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
-            EditChoicesAppBarButton.Text = AppResources.EditChoices;
-            EditChoicesAppBarButton.Click += delegate(object sender, EventArgs e)
-            { NavigationService.Navigate(new Uri("/GroupChoicesPage.xaml", UriKind.Relative)); };
-            ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
         }
 
         private void DecideButton_Click(object sender, RoutedEventArgs e)
@@ -46,5 +50,15 @@ namespace IDecide
                 MessageBox.Show(AppResources.NothingToDecide);
         }
 
+
+        private void CreateAppBar()
+        {
+            var EditChoicesAppBarButton = new ApplicationBarIconButton();
+            EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
+            EditChoicesAppBarButton.Text = AppResources.EditChoices;
+            EditChoicesAppBarButton.Click += delegate(object sender, EventArgs e)
+            { NavigationService.Navigate(new Uri("/GroupChoicesPage.xaml", UriKind.Relative)); };
+            ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
+        }
     }
 }

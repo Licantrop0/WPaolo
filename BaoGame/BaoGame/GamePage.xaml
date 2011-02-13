@@ -20,7 +20,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Name="BoardGrid" ShowGridLines="False" Margin="38,29,0,26">
+        <Grid Name="BoardGrid" ShowGridLines="False" Margin="28,29,0,26">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90" />
                 <RowDefinition Height="90" />
@@ -56,11 +56,12 @@
             </Grid.Resources>
             
         </Grid>
-        <TextBox Height="70" HorizontalAlignment="Center" Margin="99,405,100,5" Name="messageBox"
-                 Text="TextBox" VerticalAlignment="Center" Width="601" Grid.RowSpan="2" Background="Transparent"
-                 BorderBrush="Transparent" Foreground="Yellow" FontFamily="Segoe WP" FontWeight="{Binding}" TextAlignment="Center" FontSize="20" />
-        <TextBlock Grid.Row="1" Height="30" HorizontalAlignment="Left" Margin="731,9,0,0" Name="cpuBarnTextBlock" Text="22" VerticalAlignment="Top" />
-        <TextBlock Height="30" HorizontalAlignment="Left" Margin="38,9,0,0" Name="player1BarnTextBlock" Text="22" VerticalAlignment="Top" Grid.Row="1" />
+        <TextBlock Grid.Row="1" Height="30" HorizontalAlignment="Right" Margin="0,9,47,0" Name="cpuBarnTextBlock" Text="22" VerticalAlignment="Top" Visibility="Collapsed" />
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="43,9,0,0" Name="player1BarnTextBlock" Text="22" VerticalAlignment="Top" Grid.Row="1" Visibility="Collapsed" />
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="116,9,0,0" Name="player1KeteInHandTextBlock" Text="0" VerticalAlignment="Top" Grid.Row="1" Visibility="Visible" />
+        <TextBox Height="60" HorizontalAlignment="Center" Margin="174,408,166,12" Name="messageBox" Text="TextBox" VerticalAlignment="Center" Width="460" Padding="0" BorderThickness="0" SelectionBackground="Transparent" Background="Transparent" Foreground="Yellow" BorderBrush="Transparent" FontSize="20" TextAlignment="Center" Grid.RowSpan="2" />
+        <Button Content="Yes" Height="70" HorizontalAlignment="Left" Margin="444,404,0,0" Name="playNyumbaYesButton" VerticalAlignment="Top" Width="80" Grid.RowSpan="2" Visibility="Collapsed" BorderBrush="Yellow" Foreground="Yellow" FontSize="18" Click="playNyumbaYesButton_Click" />
+        <Button BorderBrush="Yellow" Content="No" FontSize="18" Foreground="Yellow" Height="70" HorizontalAlignment="Right" Margin="0,404,211,0" Name="playNyumbaNoButton" VerticalAlignment="Top" Visibility="Collapsed" Width="80" Grid.RowSpan="2" Click="playNyumbaNoButton_Click" />
         <Grid.Background>
             <ImageBrush ImageSource="img\bao_table_1.jpg" />
         </Grid.Background>

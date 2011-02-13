@@ -25,6 +25,9 @@ namespace Bao
         Player2
     }
 
+    // devo decidere se la sottolineatura della buca la faccio da esterno, oppure con le
+    // azioni startNamuaMoveUnderlined e startMtajiMoveUnderlined
+    // forse si potrebbero sfruttare le azioni...
     public enum ActionType
     {
         none,
@@ -71,6 +74,22 @@ namespace Bao
         {
             row = r;
             col = c;
+        }
+
+        public static bool operator == (Shimo left, Shimo right)
+        {
+            if (left.row == right.row && left.col == right.col)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool operator !=(Shimo left, Shimo right)
+        {
+            if (left.row != right.row || left.col == right.col)
+                return true;
+            else
+                return false;
         }
     }
 
@@ -190,10 +209,15 @@ namespace Bao
             }
         }
 
+        public Byte Barn1 { get { return _barn1; } }
+
+        public Byte Barn2 { get { return _barn2; } }
+
     #endregion
 
     #region private methods
 
+        // alla fine l'ho dovuto rendere pubblico, anche se è un po' una merda...
         private void NextShimo(ref Byte row, ref Byte col, ref Versor versor)
         {
             switch (versor)
@@ -361,11 +385,11 @@ namespace Bao
             Sow(ref row, ref col, ref versor, numOfKete);
         }
 
-        private void CaptureAction(ref Byte row, ref Byte col, ref Versor versor, ref List<ScreenAction> actionList)
+        private void CaptureAction(ref Byte row, ref Byte col, ref Versor versor, ref Queue<ScreenAction> actionList)
         {
             int numOfKete = Pick(OppositeRow(row), col);
-            actionList.Add(new ScreenAction(ActionType.captureUnderlined, row, col));
-            actionList.Add(new ScreenAction(ActionType.pickOpponentSeeds, row, col));
+            actionList.Enqueue(new ScreenAction(ActionType.captureUnderlined, OppositeRow(row), col, 0));
+            actionList.Enqueue(new ScreenAction(ActionType.pickOpponentSeeds, OppositeRow(row), col, (Byte)numOfKete));
 
             CheckNyumbaStates(OppositeRow(row), col);
 
@@ -414,7 +438,7 @@ namespace Bao
             }
         }
 
-        private void SowAction(ref Byte row, ref Byte col, ref Versor versor, int numOfKete, ref List<ScreenAction> actionList)
+        private void SowAction(ref Byte row, ref Byte col, ref Versor versor, int numOfKete, ref Queue<ScreenAction> actionList)
         {
             CheckNyumbaStates(row, col);
 
@@ -423,7 +447,7 @@ namespace Bao
                 NextShimo(ref row, ref col, ref versor);
                 _board[row, col]++;
 
-                actionList.Add(new ScreenAction(ActionType.sowOneSeed, row, col));
+                actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, col, _board[row, col]));
 
                 numOfKete--;
             }
@@ -467,25 +491,28 @@ namespace Bao
             }
         }
 
-        private void PutSeedFromBarnAction(Byte row, Byte col, Byte player, bool nyumbaTax, bool left, ref List<ScreenAction> actionList)
+        private void PutSeedFromBarnAction(Byte row, Byte col, Byte player, bool nyumbaTax, bool left, ref Queue<ScreenAction> actionList)
         {
             Debug.Assert((player == 1 && (row == 2 || row == 3)) || (player == 2 && (row == 0 || row == 1)));
+            byte barn;
 
             if (player == 1)
             {
                 _barn1--;
+                barn = _barn1;
             }
             else
             {
                 _barn2--;
+                barn = _barn2;
             }
 
-            actionList.Add(new ScreenAction(ActionType.barnPicked, player, player));
+            actionList.Enqueue(new ScreenAction(ActionType.barnPicked, player, player, barn));
                 
             _board[row, col]++;
 
-            actionList.Add(new ScreenAction(ActionType.startNamuaMoveUnderlined, row, col));
-            actionList.Add(new ScreenAction(ActionType.sowOneSeed, row, col));
+            //actionList.Enqueue(new ScreenAction(ActionType.startNamuaMoveUnderlined, row, col, 0));
+            actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, col, _board[row, col]));
 
             // Nyumba tax rule
             if (nyumbaTax)
@@ -493,15 +520,15 @@ namespace Bao
                 _board[row, col]--;
                 _board[row, col]--;
 
-                actionList.Add(new ScreenAction(ActionType.pickTwoSeeds, row, col));
+                actionList.Enqueue(new ScreenAction(ActionType.pickTwoSeeds, row, col, _board[row, col]));
 
                 if (left)
                 {
                     _board[row, col + 1]++;
                     _board[row, col + 2]++;
 
-                    actionList.Add(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col + (Byte)1)));
-                    actionList.Add(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col + (Byte)2)));
+                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col + (Byte)1), _board[row, col]));
+                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col + (Byte)2), _board[row, col]));
 
                 }
                 else
@@ -509,8 +536,8 @@ namespace Bao
                     _board[row, col - 1]++;
                     _board[row, col - 2]++;
 
-                    actionList.Add(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col - (Byte)1)));
-                    actionList.Add(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col - (Byte)2)));
+                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col - (Byte)1), _board[row, col]));
+                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col - (Byte)2), _board[row, col]));
                 }
             }
         }
@@ -629,18 +656,18 @@ namespace Bao
             }
 
             // now the only option is the nyumba tax rule
-            if (player == 1 && IsThisShimboNyumba(1, 4))
-            {
-                currMove = new BaoMove(1, 4, true, false, true);
-                returnMoves.Add(currMove);
-                currMove = new BaoMove(1, 4, false, false, true);
-                returnMoves.Add(currMove);
-            }
-            else if (player == 2 && IsThisShimboNyumba(2, 5))
+            if (player == 1 && IsThisShimboNyumba(2, 5))
             {
                 currMove = new BaoMove(2, 5, true, false, true);
                 returnMoves.Add(currMove);
                 currMove = new BaoMove(2, 5, false, false, true);
+                returnMoves.Add(currMove);
+            }
+            else if (player == 2 && IsThisShimboNyumba(1, 4))
+            {
+                currMove = new BaoMove(1, 4, true, false, true);
+                returnMoves.Add(currMove);
+                currMove = new BaoMove(1, 4, false, false, true);
                 returnMoves.Add(currMove);
             }
 
@@ -888,69 +915,155 @@ namespace Bao
             Console.WriteLine("");
         }
 
-        public List<ShimoBaoMove> GetPossibleSecondShimo(Shimo firstShimo, Byte player, List<BaoMove> possibleMoves, MustMove mustMove)
+        public Shimo NextShimo(Shimo shimo, bool direction)
         {
-            List<ShimoBaoMove> returnList = new List<ShimoBaoMove>();
+            Byte row = shimo.row;
+            Byte col = shimo.col;
+            Versor versor = direction == true ? Versor.left : Versor.right;
 
-            if( mustMove == MustMove.namuaCapture )
+            NextShimo(ref row, ref col, ref versor);
+
+            return new Shimo(row, col);
+        }
+
+        // ho rifatto questo, bisogna solo aggiungerci il play nyumba!
+        public Queue<ScreenAction> ExecutePlayerMove(Byte r, Byte c, bool left, Byte player, int numOfKeteinHand, MustMove mustMove, out bool askPlayNyumba)
+        {
+            Queue<ScreenAction> returnList = new Queue<ScreenAction>();
+
+            askPlayNyumba = false;
+
+            int submoves = 0;
+
+            // set final state of player and move
+            _player = player;
+            _move = new BaoMove(0,0,false); // in effetti non c'è piu' il concetto di mossa, ma tanto non e' importante in questo momento
+                                            // si arriverà ad un nuovo stato e su quello la CPU calcolerà il MiniMax
+
+            Byte row = r;
+            Byte col = c;
+
+            // init the initial versor
+            Versor versor = left ? Versor.left : Versor.right;
+
+            bool stayNyumba = false;
+
+            // prima di tutto mi muovo
+            SowAction(ref row, ref col,ref versor, numOfKeteinHand, ref returnList);
+
+            // a questo punto a seconda del tipo di turno imposto i cicli
+            // turno di cattura
+            if (mustMove == MustMove.namuaCapture || mustMove == MustMove.mtagiCapture)
             {
-                // if first shimo is kitchwa or kimbi shimo there is no need to select a second shimo
-                if (firstShimo.col <= 2 || firstShimo.col >= 7)
+                while ((CanCapture(row, col) || CanRelaySowing(row, col)) && !stayNyumba && submoves < MAX_SUBMOVES)
                 {
-                    return returnList;
+                    if (CanCapture(row, col))
+                    {
+                        CaptureAction(ref row, ref col, ref versor, ref returnList);
+                        submoves++;
+                    }
+                    if (!IsThisShimboNyumba(row, col))
+                    {
+                        numOfKeteinHand = Pick(row, col);
+                        returnList.Enqueue(new ScreenAction(ActionType.relaySowingUnderlined, row, col, 0));
+                        returnList.Enqueue(new ScreenAction(ActionType.pickOwnSeeds, row, col, (Byte)numOfKeteinHand));
+
+                        SowAction(ref row, ref col, ref versor, numOfKeteinHand, ref returnList);
+                        submoves++;
+                    }
+                    else
+                    {
+                        askPlayNyumba = true;
+                        returnList.Enqueue(new ScreenAction(ActionType.askPlayNyumba, 0, 0, 0));
+                    }
                 }
-                else
+            }
+            else if (mustMove != MustMove.namuaTaxRule)
+            {
+                // takasa move
+                while (CanRelaySowing(row, col) && !stayNyumba && submoves < MAX_SUBMOVES)
                 {
-                    // seconds shimo allowed are left are right kitchwa
-                    Byte row = (player == 1) ? (Byte)2 : (Byte)1;
-                    returnList.Add(new ShimoBaoMove(new Shimo(row, 1), new BaoMove(row, 1, false)));
-                    returnList.Add(new ShimoBaoMove(new Shimo(row, 8), new BaoMove(row, 8, true )));
-                    return returnList;
+                    if (IsThisShimboNyumba(row, col))
+                    {
+                        returnList.Enqueue(new ScreenAction(ActionType.stayNyumba, row, col, 0));
+                        stayNyumba = true;
+                    }
+                    else
+                    {
+                        numOfKeteinHand = Pick(row, col);
+
+                        returnList.Enqueue(new ScreenAction(ActionType.relaySowingUnderlined, row, col, 0));
+                        returnList.Enqueue(new ScreenAction(ActionType.pickOwnSeeds, row, col, (Byte)numOfKeteinHand));
+
+                        SowAction(ref row, ref col, ref versor, numOfKeteinHand, ref returnList);
+                        submoves++;
+                    }
                 }
+            }
+
+            CheckGameStage();
+
+            return returnList;
+        }
+
+        public Queue<ScreenAction> ExecutePlayerPickShimo(Byte row, Byte col, MustMove mustMove, out int numKeteInHand)
+        {
+            Queue<ScreenAction> returnList = new Queue<ScreenAction>();
+            numKeteInHand = 0;
+
+            if (_namua)
+            {
+                //returnList.Enqueue(new ScreenAction(ActionType.startNamuaMoveUnderlined, row, col, 0));
+
+                // add one seed to target shimo from Barney
+                _board[row, col]++;
+
+                _barn1--;
+                returnList.Enqueue(new ScreenAction(ActionType.barnPicked, 1, 1, _barn1));
+                returnList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, col, _board[row, col]));
             }
             else
             {
-                Byte actualRow = firstShimo.row;
-                Byte actualCol = firstShimo.col;
-                Byte destRow, destCol;
-                BaoMove tentative = new BaoMove(actualRow, actualCol, false);
+                //returnList.Enqueue(new ScreenAction(ActionType.startMtajiMoveUnderlined, row, col, 0));
+            }
 
-                foreach (BaoMove m in possibleMoves)
-                {
-                    Versor versor;
-                    if (tentative.ShimoEqual(m))
-                    {
-                        if (m.left)
-                        {
-                            versor = Versor.left;
-                        }
-                        else
-                        {
-                            versor = Versor.right;
-                        }
-                        destRow = actualRow;
-                        destCol = actualCol;
-                        NextShimo(ref destRow, ref destCol, ref versor);
-                        ShimoBaoMove tmp = new ShimoBaoMove(new Shimo(destRow, destCol), m);
-                        returnList.Add(tmp);
-                    }
-                }
+            // if it is a namua capture move pick opponent seeds
+            if (mustMove == MustMove.namuaCapture)
+            {
+                numKeteInHand = Pick(OppositeRow(row), col);
+
+                returnList.Enqueue(new ScreenAction(ActionType.captureUnderlined, OppositeRow(row), col, 0));
+                returnList.Enqueue(new ScreenAction(ActionType.pickOpponentSeeds, OppositeRow(row), col, (Byte)numKeteInHand));
+            }
+            // if it is namua tax rule just pick two seeds
+            else if (mustMove == MustMove.namuaTaxRule)
+            {
+                numKeteInHand = 2;
+
+                _board[row, col] = (Byte)(_board[row, col] - 2);
+                returnList.Enqueue(new ScreenAction(ActionType.pickTwoSeeds, row, col, _board[row, col]));
+            }
+            // in all the other cases I pick all the seeds in the shimo
+            else
+            {
+                numKeteInHand = Pick(row, col);
+
+                returnList.Enqueue(new ScreenAction(ActionType.pickOwnSeeds, row, col, (Byte)numKeteInHand));
             }
 
             return returnList;
         }
 
-        public List<ScreenAction> ExecutePlayerMove(BaoMove move, Byte player, out bool askPlayNyumba)
+        public Queue<ScreenAction> ExecuteCPUMove(BaoMove move, Byte player)
         {
-            askPlayNyumba = false;
-            List<ScreenAction> returnList = new List<ScreenAction>();
+            Queue<ScreenAction> returnList = new Queue<ScreenAction>();
 
             // does not check for a valid move, check must be done somewhere else, so move MUST be a valid one
             int submoves = 0;
 
             // set final state of player and move
-            _player = player;
-            _move = move;
+            _player = player;       // questi bisogna capire se servono furi dalla gestione del minimax
+            _move = move;   
 
             Byte row = move.rowBox;
             Byte col = move.columnBox;
@@ -968,11 +1081,11 @@ namespace Bao
             {
                 // pick all the kete from the target shimo
                 numOfKete = Pick(row, col);
+                returnList.Enqueue(new ScreenAction(ActionType.pickOwnSeeds, OppositeRow(row), col, (Byte)numOfKete));
                 SowAction(ref row, ref col, ref versor, numOfKete, ref returnList);
             }
 
             bool stayNyumba = false;
-
             // see if I can capture
             if (CanCapture(row, col))
             {
@@ -986,41 +1099,18 @@ namespace Bao
                     }
                     else if (CanRelaySowing(row, col))
                     {
-                        if(!IsThisShimboNyumba(row,col))
+                        if (IsThisShimboNyumba(row, col) && !move.playNyumba)
                         {
-                            numOfKete = Pick(row, col);
-                            returnList.Add(new ScreenAction(ActionType.relaySowingUnderlined, row, col));
-                            returnList.Add(new ScreenAction(ActionType.pickOwnSeeds, row, col));
-
-                            SowAction(ref row, ref col, ref versor, numOfKete, ref returnList);
-                            submoves++;
+                            stayNyumba = true;
                         }
                         else
                         {
-                            if(player == 1)
-                            {
-                                askPlayNyumba = true;
-                                returnList.Add(new ScreenAction(ActionType.askPlayNyumba, 0, 0));
+                            numOfKete = Pick(row, col);
+                            returnList.Enqueue(new ScreenAction(ActionType.relaySowingUnderlined, row, col, 0));
+                            returnList.Enqueue(new ScreenAction(ActionType.pickOwnSeeds, row, col, (Byte)numOfKete));
 
-                                return returnList;
-                            }
-                            else
-                            {
-                                if(!move.playNyumba)
-                                {
-                                    returnList.Add(new ScreenAction(ActionType.stayNyumba, player, player));
-                                    stayNyumba = true;
-                                }
-                                else
-                                {
-                                    numOfKete = Pick(row, col);
-                                    returnList.Add(new ScreenAction(ActionType.playNyumba, row, col));
-                                    returnList.Add(new ScreenAction(ActionType.pickOwnSeeds, row, col));
-
-                                    SowAction(ref row, ref col, ref versor, numOfKete, ref returnList);
-                                    submoves++;
-                                }
-                            }
+                            SowAction(ref row, ref col, ref versor, numOfKete, ref returnList);
+                            submoves++;
                         }
                     }
                 }
@@ -1032,17 +1122,15 @@ namespace Bao
                 {
                     if (IsThisShimboNyumba(row, col) && !move.playNyumba)
                     {
-                        returnList.Add(new ScreenAction(ActionType.stayNyumba, row, col));
                         stayNyumba = true;
                     }
                     else
                     {
                         numOfKete = Pick(row, col);
+                        returnList.Enqueue(new ScreenAction(ActionType.relaySowingUnderlined, row, col, 0));
+                        returnList.Enqueue(new ScreenAction(ActionType.pickOwnSeeds, row, col, (Byte)numOfKete));
 
-                        returnList.Add(new ScreenAction(ActionType.relaySowingUnderlined, row, col));
-                        returnList.Add(new ScreenAction(ActionType.pickOwnSeeds, row, col));
-
-                        Sow(ref row, ref col, ref versor, numOfKete);
+                        SowAction(ref row, ref col, ref versor, numOfKete, ref returnList);
                         submoves++;
                     }
                 }
@@ -1053,7 +1141,7 @@ namespace Bao
             return returnList;
         }
 
-        public List<ScreenAction> PlayNyumba(bool left)
+        public Queue<ScreenAction> PlayNyumba(bool left)
         {
             // init the initial versor
             Versor versor = left ? Versor.left : Versor.right;
@@ -1063,7 +1151,7 @@ namespace Bao
             Byte row = 2;
             Byte col = 5;
 
-            List<ScreenAction> returnList = new List<ScreenAction>();
+            Queue<ScreenAction> returnList = new Queue<ScreenAction>();
             int submoves = 1;
             int numOfKete;
 
@@ -1077,8 +1165,8 @@ namespace Bao
                 else if (CanRelaySowing(row, col))
                 {
                     numOfKete = Pick(row, col);
-                    returnList.Add(new ScreenAction(ActionType.relaySowingUnderlined, row, col));
-                    returnList.Add(new ScreenAction(ActionType.pickOwnSeeds, row, col));
+                    returnList.Enqueue(new ScreenAction(ActionType.relaySowingUnderlined, row, col, 0));
+                    returnList.Enqueue(new ScreenAction(ActionType.pickOwnSeeds, row, col, 0));
 
                     SowAction(ref row, ref col, ref versor, numOfKete, ref returnList);
                     submoves++;   
@@ -1255,7 +1343,6 @@ namespace Bao
             }
         }
 
-
         public float EvaluateGameState()
         {
             // TODO: riscrivere il codice che fa schifo al cazzo
@@ -1312,6 +1399,8 @@ namespace Bao
         }
 
     # endregion    
+    
+        
     }
 
     public class BaoMinimaxElement
@@ -1388,6 +1477,8 @@ namespace Bao
 
         private Byte _col;
 
+        private Byte _numOfSeeds;
+
         #endregion
 
         #region constructors
@@ -1397,13 +1488,15 @@ namespace Bao
             _action = ActionType.none;
             _row = 0;
             _col = 0;
+            _numOfSeeds = 0;
         }
 
-        public ScreenAction(ActionType action, Byte row, Byte col)
+        public ScreenAction(ActionType action, Byte row, Byte col, Byte numOfSeeds)
         {
             _action = action;
             _row = row;
             _col = col;
+            _numOfSeeds = numOfSeeds;
         }
 
         #endregion
@@ -1426,6 +1519,12 @@ namespace Bao
         {
             get { return _col; }
             set { _col = value; }
+        }
+
+        public Byte Seeds
+        {
+            get { return _numOfSeeds; }
+            set { _numOfSeeds = value; }
         }
 
         #endregion

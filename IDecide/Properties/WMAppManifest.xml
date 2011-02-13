@@ -4,6 +4,7 @@
   <App xmlns="" ProductID="{5550b5c6-db59-44b7-831c-e4ff436a88a6}" Title="IDecide" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="IDecide author" Description="Sample description" Publisher="IDecide">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
+      <Capability Name="ID_CAP_SENSORS"/>
     </Capabilities>
     <Tasks>
       <DefaultTask  Name ="_default" NavigationPage="MainPage.xaml"/>

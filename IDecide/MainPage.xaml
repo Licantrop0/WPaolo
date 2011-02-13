@@ -30,7 +30,7 @@
 		<!--ContentPanel - place additional content here-->
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 			<Button Name="DecideButton" Height="440" HorizontalAlignment="Center" VerticalAlignment="Center"
-					Width="400" Click="DecideButton_Click" VerticalContentAlignment="Bottom"
+					Width="400" VerticalContentAlignment="Bottom"
 					WPCommon:TiltEffect.IsTiltEnabled="True">
 				<StackPanel Orientation="Vertical">
 					<Image Source="IDecide Logo.png" Stretch="Uniform" />

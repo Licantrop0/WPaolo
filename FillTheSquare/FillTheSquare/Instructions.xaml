@@ -14,7 +14,13 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <RadialGradientBrush GradientOrigin="0.238,0.297" RadiusY="0.545" RadiusX="0.674">
+                <GradientStop Color="#FFB2AEE7"/>
+                <GradientStop Color="#FF4536F9" Offset="1"/>
+            </RadialGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -28,7 +34,7 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Image Height="607" HorizontalAlignment="Left" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="456" Source="/FillTheSquare;component/instructionsImage.jpg" />
+            <Image Source="Phil\istruzione.png" Height="398" HorizontalAlignment="Left" Margin="41,23,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="379" />
         </Grid>
     </Grid>
  

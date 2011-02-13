@@ -133,5 +133,12 @@ namespace FillTheSquare
             }
         }
 
+        private void BackgroundMediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            var me = (MediaElement)sender;
+            me.Stop();
+            me.Play();
+        }
+
     }
 }

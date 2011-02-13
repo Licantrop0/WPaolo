@@ -14,6 +14,24 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
-    <wpcommon:AboutControl ApplicationName="Phil the Square" />
+    <Grid>
+        <wpcommon:AboutControl ApplicationName="Phil the Square">
+            <wpcommon:AboutControl.BackgroundStackPanel>
+                <RadialGradientBrush GradientOrigin="0.238,0.297" RadiusY="0.545" RadiusX="0.674">
+                    <GradientStop Color="#FFB2AEE7"/>
+                    <GradientStop Color="#FF4536F9" Offset="1"/>
+                </RadialGradientBrush>
+            </wpcommon:AboutControl.BackgroundStackPanel>
+        </wpcommon:AboutControl>
+        <Image Source="Phil\guardaabout.png" Height="107" HorizontalAlignment="Left" Margin="302,21,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="140" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+        	<Image.Projection>
+        		<PlaneProjection RotationX="25" RotationY="16" RotationZ="-16"/>
+        	</Image.Projection>
+        	<Image.RenderTransform>
+        		<CompositeTransform Rotation="-6.729"/>
+        	</Image.RenderTransform>
+        </Image>
+    </Grid>
+    
 
 </phone:PhoneApplicationPage>

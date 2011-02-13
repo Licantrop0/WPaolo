@@ -7,6 +7,7 @@ using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using System.Windows.Media.Animation;
 using System.Linq;
+using WPCommon;
 
 namespace FillTheSquare
 {

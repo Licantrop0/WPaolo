@@ -13,9 +13,9 @@ using Microsoft.Phone.Controls;
 
 namespace FillTheSquare
 {
-    public partial class Records : PhoneApplicationPage
+    public partial class RecordsPage : PhoneApplicationPage
     {
-        public Records()
+        public RecordsPage()
         {
             InitializeComponent();
             FillRecordsList();

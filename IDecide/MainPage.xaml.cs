@@ -17,6 +17,7 @@ namespace IDecide
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        Random rnd = new Random();
         public MainPage()
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace IDecide
                 .ToList();
 
             if (SelectedChoices.Count > 0)
-                MessageBox.Show(SelectedChoices[new Random().Next(SelectedChoices.Count)]);
+                MessageBox.Show(SelectedChoices[rnd.Next(SelectedChoices.Count)]);
             else
                 MessageBox.Show(AppResources.NothingToDecide);
         }

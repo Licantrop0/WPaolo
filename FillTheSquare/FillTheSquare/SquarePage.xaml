@@ -19,7 +19,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        <MediaElement AutoPlay="True" Source="Sounds\Partita.wav" />
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="Fill the Square!" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="PageTitle" Text="5 x 5 Square" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>

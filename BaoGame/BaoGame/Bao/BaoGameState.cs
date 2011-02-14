@@ -932,6 +932,7 @@ namespace Bao
             Queue<ScreenAction> returnList = new Queue<ScreenAction>();
 
             askPlayNyumba = false;
+            bool stayNyumba = false;
 
             int submoves = 0;
 
@@ -946,8 +947,6 @@ namespace Bao
             // init the initial versor
             Versor versor = left ? Versor.left : Versor.right;
 
-            bool stayNyumba = false;
-
             // prima di tutto mi muovo
             SowAction(ref row, ref col,ref versor, numOfKeteinHand, ref returnList);
 
@@ -955,7 +954,7 @@ namespace Bao
             // turno di cattura
             if (mustMove == MustMove.namuaCapture || mustMove == MustMove.mtagiCapture)
             {
-                while ((CanCapture(row, col) || CanRelaySowing(row, col)) && !stayNyumba && submoves < MAX_SUBMOVES)
+                while ((CanCapture(row, col) || CanRelaySowing(row, col)) && !askPlayNyumba && submoves < MAX_SUBMOVES)
                 {
                     if (CanCapture(row, col))
                     {

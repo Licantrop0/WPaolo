@@ -247,7 +247,7 @@ namespace BaoGame
                     // Execute player pick shimo, update state and execute animations
                     _sa = _actualGameState.ExecutePlayerPickShimo(_player1Shimo.row, _player1Shimo.col, _player1MustMove, out _numKeteInHand);
                     _sa.Enqueue(new ScreenAction(ActionType.none, 0, 0, 0));
-                    GraphicEngine();
+                    GraphicEngine(true);
 
                     // calculate utility structure (sowing shimo - sowing direction - underlined shimo - allowed - message                    
                     bool bSecondShimoChose = true;
@@ -414,7 +414,7 @@ namespace BaoGame
                     }
                     _sa.Enqueue(new ScreenAction(ActionType.none, 0, 0, 0));
 
-                    GraphicEngine();
+                    GraphicEngine(true);
 
                     if (askPlayNyumba)
                     {
@@ -448,7 +448,7 @@ namespace BaoGame
                     _playerTurn = 2;
                     _state = MatchState.testWinCondition;
 
-                    GraphicEngine();
+                    GraphicEngine(true);
 
                     break;
                     
@@ -498,7 +498,7 @@ namespace BaoGame
 
                     _state = MatchState.testWinCondition;
 
-                    GraphicEngine();
+                    GraphicEngine(true);
 
                     break;
             }
@@ -513,10 +513,10 @@ namespace BaoGame
             Byte row = (Byte)currentShimo.GetRow();
             Byte col = (Byte)currentShimo.GetColumn();
 
-            /*if (_bGraphicEngineRunning)
+            if (_bGraphicEngineRunning)
             {
                 return;
-            }*/
+            }
 
             bool gameCall = false;
             switch(_state)
@@ -673,7 +673,7 @@ namespace BaoGame
             img.Source = _imageSourceArray[numOfSeeds]; 
         }
 
-        private void GraphicEngine()
+        private void GraphicEngine(bool bFirstAction)
         {
             _bGraphicEngineRunning = true;
 
@@ -681,7 +681,15 @@ namespace BaoGame
             {
                 _handeldAction = _sa.Dequeue();
 
-                _actionTimer.Interval = new TimeSpan(7500000);
+                if (!bFirstAction)
+                {
+                    _actionTimer.Interval = new TimeSpan(7500000);
+                }
+                else
+                {
+                    _actionTimer.Interval = new TimeSpan(1);
+                }
+                
                 _actionTimer.Start();
             }
             else
@@ -788,7 +796,7 @@ namespace BaoGame
                     break;
             }
 
-            GraphicEngine();
+            GraphicEngine(false);
         }
 
         private void playNyumbaYesButton_Click(object sender, RoutedEventArgs e)
@@ -804,6 +812,7 @@ namespace BaoGame
         private void playNyumbaNoButton_Click(object sender, RoutedEventArgs e)
         {
             _state = MatchState.testWinCondition;
+            _playerTurn = 2;
 
             playNyumbaYesButton.Visibility = Visibility.Collapsed;
             playNyumbaNoButton.Visibility = Visibility.Collapsed;

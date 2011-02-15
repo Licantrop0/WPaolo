@@ -961,7 +961,7 @@ namespace Bao
                         CaptureAction(ref row, ref col, ref versor, ref returnList);
                         submoves++;
                     }
-                    if (!IsThisShimboNyumba(row, col))
+                    else if (!IsThisShimboNyumba(row, col))
                     {
                         numOfKeteinHand = Pick(row, col);
                         returnList.Enqueue(new ScreenAction(ActionType.relaySowingUnderlined, row, col, 0));

@@ -92,9 +92,9 @@ namespace BaoGame
 
             _firstMove = FirstMove.random;
 
-            _imageSourceArray = new ImageSource[9];
+            _imageSourceArray = new ImageSource[16];
 
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 16; i++)
             {
                 _imageSourceArray[i] = new ImageSourceConverter().ConvertFromString("img/semini_" + i.ToString() + ".png") as ImageSource; 
             }

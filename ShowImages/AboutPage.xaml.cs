@@ -18,8 +18,9 @@ namespace ShowImages
     {
         public AboutPage()
         {
-            InitializeComponent();            
-            WPMEAbout.ApplicationVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            InitializeComponent();
+            var name = Assembly.GetExecutingAssembly().FullName;
+            WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString();
         }
     }
 }

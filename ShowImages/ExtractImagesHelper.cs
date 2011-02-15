@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using HtmlAgilityPack;
 using System.Collections.Generic;
 using System.Linq;
+using WPCommon;
 
 namespace ShowImages
 {
@@ -22,30 +23,30 @@ namespace ShowImages
             html.LoadHtml(htmlString);
 
             var ImgLinks = new List<string>();
-            foreach (var img in html.DocumentNode.Descendants("img"))
+
+            //Aggiunge i tag Anchor
+            foreach (var anchor in html.DocumentNode.Descendants("a"))
             {
-                var src = img.GetAttributeValue("src", string.Empty);
-
-                if (src.Contains("::")) //Google Images
+                var href = anchor.GetAttributeValue("href", string.Empty);
+                if (href.Contains("/m/imgres?q=")) //Google Images
                 {
-                    src = src.Substring(src.IndexOf("::") + 2);
-                    int AndIndex = src.IndexOf("&");
-                    src = "http://" + (AndIndex == -1 ? src : src.Remove(AndIndex));
+                    href = href.Replace("&amp;", "&");
+                    href = href.Substring(href.IndexOf("imgurl=") + 7);
+                    href = href.Remove(href.IndexOf("&imgrefurl="));
                 }
-
-                if (src.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase))
-                    ImgLinks.Add(FormatImageUrl(pageUrl, src));
+                ImgLinks.Add(href);
             }
 
-            Settings.CurrentImageList =
-                (from anchor in html.DocumentNode.Descendants("a")
-                 let href = anchor.GetAttributeValue("href", string.Empty)
-                 where href.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase)
-                 select FormatImageUrl(pageUrl, href))
-                 .Union(ImgLinks)
-                 .Where(i => !string.IsNullOrEmpty(i))
-                 .Select(i => new KeyValuePair<string, bool>(i, true))
-                 .ToList();
+            //Aggiunge i tag Img
+            ImgLinks.Concat(html.DocumentNode.Descendants("img")
+                .Select(img => img.GetAttributeValue("src", string.Empty)));
+
+            //Aggiunge le immagini .jpg alla CurrentImageList formattate correttamente
+                (from i in ImgLinks
+                 where i.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase)
+                 let iurl = FormatImageUrl(pageUrl, i)
+                 select new KeyValuePair<string, bool>(iurl, true))
+                 .ForEach(i=> Settings.CurrentImageList.Add(i));
         }
 
         private static string FormatImageUrl(Uri pageUrl, string url)

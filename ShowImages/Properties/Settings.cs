@@ -3,18 +3,20 @@ using System.IO.IsolatedStorage;
 using System.Collections.Generic;
 using Microsoft.Phone.Shell;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace ShowImages
 {
     public static class Settings
     {
-        public static List<KeyValuePair<string, bool>> CurrentImageList
+        public static ObservableCollection<KeyValuePair<string, bool>> CurrentImageList
         {
             get
             {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("current_image_list"))
-                    IsolatedStorageSettings.ApplicationSettings["current_image_list"] = new List<KeyValuePair<string, bool>>();
-                return (List<KeyValuePair<string, bool>>)IsolatedStorageSettings.ApplicationSettings["current_image_list"];
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("current_image_list") ||
+                    (IsolatedStorageSettings.ApplicationSettings["current_image_list"] as ObservableCollection<KeyValuePair<string, bool>>) == null)
+                    IsolatedStorageSettings.ApplicationSettings["current_image_list"] = new ObservableCollection<KeyValuePair<string, bool>>();
+                return (ObservableCollection<KeyValuePair<string, bool>>)IsolatedStorageSettings.ApplicationSettings["current_image_list"];
             }
             set
             {

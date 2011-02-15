@@ -1,53 +1,74 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="ShowImages.ImageListPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+	x:Class="ShowImages.ImageListPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:Converters="clr-namespace:Converters"
+	FontFamily="{StaticResource PhoneFontFamilyNormal}"
+	FontSize="{StaticResource PhoneFontSizeNormal}"
+	Foreground="{StaticResource PhoneForegroundBrush}"
+	SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+	mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+	shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+	<Grid x:Name="LayoutRoot" Background="Transparent">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0">
-            <ProgressBar Name="LoadingProgress"
-                         ValueChanged="LoadingProgress_ValueChanged" />
-               <Image Source="http://cvcl.mit.edu/hybrid/cat2.jpg" />
-   </StackPanel>
-        
-        <TextBlock Name="NoImagesTextBlock" Grid.Row="1"
-                   Text="No images found, or they are in an incompatible format. Please press back to change the site."
-                   Margin="12" TextWrapping="Wrap" TextAlignment="Center"
-                   FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                   Visibility="Collapsed" />        
+		<Grid.Resources>
+			<Converters:CheckboxMarginConverter x:Key="CheckboxMarginConverter" />
+		</Grid.Resources>
+		<StackPanel x:Name="TitlePanel" Grid.Row="0">
+			<ProgressBar Name="LoadingProgress"
+						 ValueChanged="LoadingProgress_ValueChanged" />
+		</StackPanel>
 
-        <ListBox Name="ImageListBox" Grid.Row="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,0,0,8">
-                        <Image Source="{Binding Key}" ImageOpened="Image_ImageOpened" ImageFailed="Image_ImageFailed" />
-                        <CheckBox IsChecked="{Binding Value, Mode=TwoWay}" VerticalAlignment="Top" />
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-  </Grid>
+		<TextBlock Name="NoImagesTextBlock" Grid.Row="1"
+				   Text="No images found, or they are in an incompatible format. Please press back to change the site."
+				   Margin="12" TextWrapping="Wrap" TextAlignment="Center"
+				   FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+				   Visibility="Collapsed" />
 
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" >
-            <shell:ApplicationBarIconButton IconUri="Images\AppBar.Save.png" Text="Save All"
-                                            Click="SaveAllApplicationBarButton_Click" />
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+		<controls:Pivot Name="ImagePivot" Grid.Row="1" >
+			<controls:Pivot.HeaderTemplate>
+				<DataTemplate>
+					<CheckBox IsChecked="{Binding Value, Mode=TwoWay}"/>
+							  <!--Margin="{Binding ElementName=LoadingProgress, Path=ActualWidth, Converter=CheckboxMarginConverter}"-->
+				</DataTemplate>
+			</controls:Pivot.HeaderTemplate>
+
+			<controls:Pivot.ItemTemplate>
+				<DataTemplate>
+					<Image Source="{Binding Key}" Margin="0,-35,0,0"
+						   ImageOpened="Image_ImageOpened"
+						   ImageFailed="Image_ImageFailed" />
+				</DataTemplate>
+			</controls:Pivot.ItemTemplate>
+		</controls:Pivot>
+
+		<!--<ListBox Name="ImageListBox" Grid.Row="1">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid Margin="0,0,0,8">
+						<Image Source="{Binding Key}" ImageOpened="Image_ImageOpened" ImageFailed="Image_ImageFailed" />
+						<CheckBox IsChecked="{Binding Value, Mode=TwoWay}" VerticalAlignment="Top" />
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>-->
+	</Grid>
+
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsVisible="True" >
+			<shell:ApplicationBarIconButton IconUri="Images\AppBar.Save.png" Text="Save All"
+											Click="SaveAllApplicationBarButton_Click" />
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

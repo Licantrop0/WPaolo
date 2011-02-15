@@ -122,6 +122,12 @@
     <Content Include="img\semini_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="img\semini_10.png" />
+    <Resource Include="img\semini_11.png" />
+    <Resource Include="img\semini_12.png" />
+    <Resource Include="img\semini_13.png" />
+    <Resource Include="img\semini_14.png" />
+    <Resource Include="img\semini_15.png" />
     <Content Include="img\semini_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -153,6 +159,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="img\shimo_85x85.png" />
+    <Resource Include="img\semini_9.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

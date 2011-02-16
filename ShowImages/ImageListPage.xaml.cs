@@ -37,10 +37,13 @@ namespace ShowImages
         private void SaveAllApplicationBarButton_Click(object sender, EventArgs e)
         {
             LoadingProgress.Value = LoadingProgress.Minimum;
-            LoadingProgress.Maximum = Settings.CurrentImageList.Where(i => i.Value).Count();
+            AllOpened = true;
+
+            var ImagesToSave = Settings.CurrentImageList.Where(i => i.IsSelected);
+            LoadingProgress.Maximum = ImagesToSave.Count();
 
             IsSaving = true;
-            foreach (var u in Settings.CurrentImageList.Where(i => i.Value).Select(i => i.Key))
+            foreach (var u in ImagesToSave.Select(i => i.Url))
             {
                 WebClient wc = new WebClient();
                 wc.AllowReadStreamBuffering = true;
@@ -87,7 +90,7 @@ namespace ShowImages
             {
                 DecrementProgress();
                 var imageSource = ((BitmapImage)((Image)sender).Source).UriSource.ToString();
-                var imgToDelete = Settings.CurrentImageList.Where(i => i.Key == imageSource).Single();
+                var imgToDelete = Settings.CurrentImageList.Where(i => i.Url == imageSource).SingleOrDefault();
                 Settings.CurrentImageList.Remove(imgToDelete);
             }
         }

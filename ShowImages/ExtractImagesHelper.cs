@@ -41,12 +41,15 @@ namespace ShowImages
             ImgLinks.Concat(html.DocumentNode.Descendants("img")
                 .Select(img => img.GetAttributeValue("src", string.Empty)));
 
+            Settings.CurrentImageList.Clear();
+
             //Aggiunge le immagini .jpg alla CurrentImageList formattate correttamente
-                (from i in ImgLinks
-                 where i.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase)
-                 let iurl = FormatImageUrl(pageUrl, i)
-                 select new KeyValuePair<string, bool>(iurl, true))
-                 .ForEach(i=> Settings.CurrentImageList.Add(i));
+            (from i in ImgLinks
+             where i.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase)
+             let iurl = FormatImageUrl(pageUrl, i)
+             where !string.IsNullOrEmpty(iurl)
+             select new SelectionableImage(iurl))
+             .ForEach(i => Settings.CurrentImageList.Add(i));
         }
 
         private static string FormatImageUrl(Uri pageUrl, string url)

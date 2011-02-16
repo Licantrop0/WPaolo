@@ -9,14 +9,14 @@ namespace ShowImages
 {
     public static class Settings
     {
-        public static ObservableCollection<KeyValuePair<string, bool>> CurrentImageList
+        public static ObservableCollection<SelectionableImage> CurrentImageList
         {
             get
             {
                 if (!IsolatedStorageSettings.ApplicationSettings.Contains("current_image_list") ||
-                    (IsolatedStorageSettings.ApplicationSettings["current_image_list"] as ObservableCollection<KeyValuePair<string, bool>>) == null)
-                    IsolatedStorageSettings.ApplicationSettings["current_image_list"] = new ObservableCollection<KeyValuePair<string, bool>>();
-                return (ObservableCollection<KeyValuePair<string, bool>>)IsolatedStorageSettings.ApplicationSettings["current_image_list"];
+                    (IsolatedStorageSettings.ApplicationSettings["current_image_list"] as ObservableCollection<SelectionableImage>) == null)
+                    IsolatedStorageSettings.ApplicationSettings["current_image_list"] = new ObservableCollection<SelectionableImage>();
+                return (ObservableCollection<SelectionableImage>)IsolatedStorageSettings.ApplicationSettings["current_image_list"];
             }
             set
             {

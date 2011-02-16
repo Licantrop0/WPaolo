@@ -7,7 +7,6 @@
 	xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:Converters="clr-namespace:Converters"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
@@ -21,9 +20,6 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
-		<Grid.Resources>
-			<Converters:CheckboxMarginConverter x:Key="CheckboxMarginConverter" />
-		</Grid.Resources>
 		<StackPanel x:Name="TitlePanel" Grid.Row="0">
 			<ProgressBar Name="LoadingProgress"
 						 ValueChanged="LoadingProgress_ValueChanged" />
@@ -38,16 +34,19 @@
 		<controls:Pivot Name="ImagePivot" Grid.Row="1" >
 			<controls:Pivot.HeaderTemplate>
 				<DataTemplate>
-					<CheckBox IsChecked="{Binding Value, Mode=TwoWay}"/>
-							  <!--Margin="{Binding ElementName=LoadingProgress, Path=ActualWidth, Converter=CheckboxMarginConverter}"-->
+					<CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+							  Content="{Binding Name}" />
 				</DataTemplate>
 			</controls:Pivot.HeaderTemplate>
 
 			<controls:Pivot.ItemTemplate>
 				<DataTemplate>
-					<Image Source="{Binding Key}" Margin="0,-35,0,0"
+					<Grid>
+						<TextBlock Text="loading..." HorizontalAlignment="Center" VerticalAlignment="Center" />
+						<Image Source="{Binding Url}" Margin="0,-35,0,0"
 						   ImageOpened="Image_ImageOpened"
 						   ImageFailed="Image_ImageFailed" />
+					</Grid>
 				</DataTemplate>
 			</controls:Pivot.ItemTemplate>
 		</controls:Pivot>
@@ -66,7 +65,7 @@
 
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar IsVisible="True" >
-			<shell:ApplicationBarIconButton IconUri="Images\AppBar.Save.png" Text="Save All"
+			<shell:ApplicationBarIconButton IconUri="Images\AppBar.Save.png" Text="Save Selected"
 											Click="SaveAllApplicationBarButton_Click" />
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>

@@ -134,6 +134,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Resource Include="Images\2012background-white.jpg" />
     <Content Include="TickSound.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -144,7 +145,7 @@
     </BlendEmbeddedFont>
     <Resource Include="Images\2012background.jpg" />
     <Resource Include="Images\MetallicStrip.png" />
-    <Resource Include="Images\remove_white.png" />
+    <Resource Include="Images\remove_green.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

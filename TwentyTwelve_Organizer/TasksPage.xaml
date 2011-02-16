@@ -86,7 +86,7 @@
                     <Rectangle Fill="{StaticResource PhoneForegroundBrush}" Width="48" Height="48" Margin="6"
                                        VerticalAlignment="Center" MouseLeftButtonUp="RemoveButton_Click" >
                         <Rectangle.OpacityMask>
-                            <ImageBrush ImageSource="Images\remove_white.png" />
+                            <ImageBrush ImageSource="Images\remove_green.png" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
                 </StackPanel>

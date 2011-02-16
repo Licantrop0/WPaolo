@@ -23,6 +23,12 @@ namespace WPCommon
             set { ApplicationNameTextBlock.Text = value; }
         }
 
+        public Thickness ApplicationNameMargin
+        {
+            get { return ApplicationNameTextBlock.Margin; }
+            set { ApplicationNameTextBlock.Margin = value; }
+        }
+
         //var name = Assembly.GetExecutingAssembly().FullName;
         //WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString(); 
         public string ApplicationVersion

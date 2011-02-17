@@ -13,13 +13,13 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework.Audio;
+using System.IO.IsolatedStorage;
 
 namespace SgarbiMix
 {
     public partial class App : Application
     {
         public static List<KeyValuePair<string, SoundEffect>> Sounds = new List<KeyValuePair<string, SoundEffect>>();
-
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.

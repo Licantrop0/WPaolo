@@ -19,7 +19,7 @@ namespace SgarbiMix
 
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            InitializeSounds();
+                InitializeSounds();
         }
 
         private void InitializeSounds()
@@ -37,7 +37,7 @@ namespace SgarbiMix
                 {
                     App.Sounds.Add(
                         new KeyValuePair<string, SoundEffect>(
-                            //Convenzione: "_" = spazio, "1" = punto esclamativo
+                        //Convenzione: "_" = spazio, "1" = punto esclamativo
                             res.Key.ToString().Replace("_", " ").Replace("1", "!"),
                             SoundEffect.FromStream((UnmanagedMemoryStream)res.Value)));
                     bw.ReportProgress(0);

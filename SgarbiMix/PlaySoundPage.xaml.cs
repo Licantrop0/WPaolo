@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Phone.Controls;
-using Microsoft.Xna.Framework.Audio;
 using WPCommon;
-using System.IO;
-using System.Collections.Generic;
-
-/* 
-    Copyright (c) 2011 WPME
-*/
 
 namespace SgarbiMix
 {
@@ -23,9 +15,7 @@ namespace SgarbiMix
 
         public PlaySoundPage()
         {
-            counter = 0;
             InitializeComponent();
-            InitializeButtons();
             var sd = new ShakeDetector();
             sd.ShakeDetected += (sender, e) =>
             {
@@ -35,6 +25,17 @@ namespace SgarbiMix
                 }
             };
             sd.Start();
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (App.Sounds.Count == 0)
+                NavigationService.Navigate(new Uri("/LoadingPage.xaml", UriKind.Relative));
+            else
+            {
+                InitializeButtons();
+                ApplicationBar.IsVisible = true;
+            }
         }
 
 
@@ -51,7 +52,7 @@ namespace SgarbiMix
                     case 1: b.Background = new SolidColorBrush(Colors.White); break;
                     case 2: b.Background = new SolidColorBrush(Colors.Green); break;
                 }
-                //ATTENZIONE cagata: mi baso sul nome del button per recuperare l'iesimo sound
+                //ATTENZIONE cagata: mi baso sul nome del button per recuperare l'i-esimo sound
                 b.Name = i.ToString();
                 b.Click += (sender, e) =>
                 {
@@ -122,5 +123,6 @@ namespace SgarbiMix
         {
             throw new Exception("ForceExit");
         }
+
     }
 }

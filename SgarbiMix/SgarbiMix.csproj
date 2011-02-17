@@ -77,10 +77,13 @@
     <Compile Include="DisclaimerPage.xaml.cs">
       <DependentUpon>DisclaimerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LoadingPage.xaml.cs">
+      <DependentUpon>LoadingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PlaySoundPage.xaml.cs">
       <DependentUpon>PlaySoundPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SgarbiMix\Properties\AssemblyInfo.cs" />
     <Compile Include="SoundsResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -104,14 +107,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LoadingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PlaySoundPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\AppManifest.xml" />
-    <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png">
@@ -141,6 +144,9 @@
     <None Include="sounds\nonhafattomaiuncazzoinvitasua.wav" />
     <None Include="sounds\ridicolo.wav" />
     <None Include="sounds\ridicolo6ma6semprestato.wav" />
+    <Resource Include="SgarbiMix\images\bianco.png" />
+    <Content Include="SgarbiMix\Properties\AppManifest.xml" />
+    <Content Include="SgarbiMix\Properties\WMAppManifest.xml" />
     <Content Include="SplashScreenImage.jpg" />
     <None Include="sounds\Capra ignorante!.wav" />
     <None Include="sounds\Capra!.wav" />
@@ -175,6 +181,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SoundsResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

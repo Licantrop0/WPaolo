@@ -84,14 +84,14 @@
                                    Style="{StaticResource GreenTextBlockStyle}" />
                     </Button>
                     <Rectangle Width="48" Height="48" Margin="6"
-                               VerticalAlignment="Center"
-                               MouseLeftButtonUp="RemoveButton_Click" >
+                            VerticalAlignment="Center"
+                            MouseLeftButtonUp="RemoveButton_Click" >
                         <Rectangle.OpacityMask>
                             <ImageBrush ImageSource="Images\remove_white.png" />
                         </Rectangle.OpacityMask>
                         <Rectangle.Fill>
                             <!--colore che segue il tema (l'immagine con la X è usata come OpacityMask)
-                            <SolidColorBrush Color="{StaticResource PhoneForegroundBrush}" />-->
+                        <SolidColorBrush Color="{StaticResource PhoneForegroundBrush}" />-->
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FF2DD000" Offset="0"/>
                                 <GradientStop Color="#FFAFB1AF" Offset="1"/>

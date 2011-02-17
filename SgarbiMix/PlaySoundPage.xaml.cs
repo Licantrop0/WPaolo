@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Audio;
 using WPCommon;
 using System.IO;
 using System.Collections.Generic;
-using System.Collections;
 
 /* 
     Copyright (c) 2011 WPME
@@ -20,66 +19,55 @@ namespace SgarbiMix
     {
         Random rnd = new Random();
         private int counter;
-        List<KeyValuePair<string, SoundEffect>> Sounds = new List<KeyValuePair<string, SoundEffect>>();
+        object mutex = new object();
 
         public PlaySoundPage()
         {
             counter = 0;
             InitializeComponent();
-            InitializeSounds();
             InitializeButtons();
-            var sd = new ShakeDetector(3);
-            sd.ShakeEvent += (sender, e) =>
+            var sd = new ShakeDetector();
+            sd.ShakeDetected += (sender, e) =>
             {
-                Sounds[rnd.Next(Sounds.Count)].Value.Play();
+                lock (mutex) //è necessario?
+                {
+                    App.Sounds[rnd.Next(App.Sounds.Count)].Value.Play();
+                }
             };
             sd.Start();
         }
 
-        private void InitializeSounds()
-        {
-            var res = SoundsResources.ResourceManager.GetResourceSet(System.Globalization.CultureInfo.CurrentCulture, true, true);
-            foreach (var resource in res)
-            {
-                var r = (DictionaryEntry)resource;
-                Sounds.Add(new KeyValuePair<string, SoundEffect>(
-                    r.Key.ToString().Replace("_", " "),
-                    SoundEffect.FromStream((UnmanagedMemoryStream)r.Value)));
-            }
-
-            PlayButtonsListBox.ItemsSource = Sounds;
-
-        }
 
         private void InitializeButtons()
         {
-            var buttons = MainGrid.Children
-                            .Where(c => c is Button)
-                            .Cast<Button>().ToArray();
-
-            for (int i = 0; i < buttons.Length; i++)
+            for (int i = 0; i < App.Sounds.Count; i++)
             {
+                var b = new Button();
+                b.Content = App.Sounds[i].Key;
+                b.Style = (Style)App.Current.Resources["PlayButtonStyle"];
                 switch (i % 3)
                 {
-                    case 0: buttons[i].Background = new SolidColorBrush(Colors.Red); break;
-                    case 1: buttons[i].Background = new SolidColorBrush(Colors.White); break;
-                    case 2: buttons[i].Background = new SolidColorBrush(Colors.Green); break;
+                    case 0: b.Background = new SolidColorBrush(Colors.Red); break;
+                    case 1: b.Background = new SolidColorBrush(Colors.White); break;
+                    case 2: b.Background = new SolidColorBrush(Colors.Green); break;
                 }
-            }
-        }
-
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (CheckTrial())
-            {
-                var kvp = (KeyValuePair<string, SoundEffect>)((Button)sender).DataContext;
-                kvp.Value.Play();
+                //ATTENZIONE cagata: mi baso sul nome del button per recuperare l'iesimo sound
+                b.Name = i.ToString();
+                b.Click += (sender, e) =>
+                {
+                    if (CheckTrial())
+                    {
+                        var SoundIndex = int.Parse(((Button)sender).Name);
+                        App.Sounds[SoundIndex].Value.Play();
+                    }
+                };
+                PlayButtonsStackPanel.Children.Add(b);
             }
         }
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday && (counter > Sounds.Count))
+            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday && (counter > App.Sounds.Count))
             {
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return false;
@@ -128,6 +116,11 @@ namespace SgarbiMix
             var me = (MediaElement)sender;
             me.Stop();
             me.Play();
+        }
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            throw new Exception("ForceExit");
         }
     }
 }

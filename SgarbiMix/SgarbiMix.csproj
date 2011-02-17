@@ -83,7 +83,6 @@
     <Compile Include="PlaySoundPage.xaml.cs">
       <DependentUpon>PlaySoundPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SgarbiMix\Properties\AssemblyInfo.cs" />
     <Compile Include="SoundsResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -144,9 +143,6 @@
     <None Include="sounds\nonhafattomaiuncazzoinvitasua.wav" />
     <None Include="sounds\ridicolo.wav" />
     <None Include="sounds\ridicolo6ma6semprestato.wav" />
-    <Resource Include="SgarbiMix\images\bianco.png" />
-    <Content Include="SgarbiMix\Properties\AppManifest.xml" />
-    <Content Include="SgarbiMix\Properties\WMAppManifest.xml" />
     <Content Include="SplashScreenImage.jpg" />
     <None Include="sounds\Capra ignorante!.wav" />
     <None Include="sounds\Capra!.wav" />

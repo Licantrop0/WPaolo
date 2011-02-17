@@ -135,6 +135,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Resource Include="Images\2012background-white.jpg" />
+    <Resource Include="Images\remove_white.png" />
     <Content Include="TickSound.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

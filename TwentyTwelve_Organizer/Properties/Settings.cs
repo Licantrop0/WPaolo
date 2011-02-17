@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Audio;
 using System.IO;
 using System.Xml.Linq;
 using Microsoft.Phone.Marketplace;
+using System.Windows;
 
 namespace TwentyTwelve_Organizer
 {
@@ -41,6 +42,14 @@ namespace TwentyTwelve_Organizer
                  Task.ParseDifficulty(xe.Attribute("Difficulty").Value))
              ).ToList().ForEach(t => oc.Add(t));
             return oc;
+        }
+
+        public static bool LightThemeEnabled
+        {
+            get
+            {
+                return (Visibility)Application.Current.Resources["PhoneLightThemeVisibility"] == Visibility.Visible;
+            }
         }
     }
 }

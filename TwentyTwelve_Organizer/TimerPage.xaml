@@ -90,7 +90,7 @@
             </ProgressBar>
 
             <TextBlock Name="EvalTextBlock" Margin="0,10,0,0" Height="330"
-                       TextAlignment="Center" Foreground="White"
+                       TextAlignment="Center" Foreground="{StaticResource PhoneForegroundBrush}"
                        Padding="10" TextWrapping="Wrap" />
 
             <Button Content="Tasks" Click="ViewTaskButton_Click"

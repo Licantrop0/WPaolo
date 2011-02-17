@@ -5,6 +5,8 @@ using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using Microsoft.Xna.Framework.Audio;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace TwentyTwelve_Organizer
 {
@@ -19,6 +21,9 @@ namespace TwentyTwelve_Organizer
             InitializeTimer();
             if (WPCommon.TrialManagement.IsTrialMode)
                 DemoTextBlock.Visibility = System.Windows.Visibility.Visible;
+
+            if (Settings.LightThemeEnabled)
+                LayoutRoot.Background = new ImageBrush() { ImageSource = new BitmapImage(new Uri("Images\\2012background-white.png", UriKind.Relative)) };
         }
 
         private void InitializeTimer()

@@ -114,6 +114,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="IDecide Logo.png" />
+    <Resource Include="IDecide Back.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Resource Include="Toolkit.Content\add_black.png" />
     <Resource Include="Toolkit.Content\add_white.png" />

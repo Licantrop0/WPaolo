@@ -134,7 +134,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Resource Include="Images\2012background-white.jpg" />
+    <Content Include="Images\2012background-white.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\remove_white.png" />
     <Content Include="TickSound.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -144,9 +146,10 @@
       <All>True</All>
       <AutoFill>True</AutoFill>
     </BlendEmbeddedFont>
-    <Resource Include="Images\2012background.jpg" />
+    <Content Include="Images\2012background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\MetallicStrip.png" />
-    <Resource Include="Images\remove_green.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

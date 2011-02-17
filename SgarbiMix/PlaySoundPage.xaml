@@ -10,7 +10,17 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
-
+    
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
     <toolkit:TransitionService.NavigationOutTransition>
         <toolkit:NavigationOutTransition>
             <toolkit:NavigationOutTransition.Backward>
@@ -23,14 +33,13 @@
     </toolkit:TransitionService.NavigationOutTransition>
     <Grid Name="MainGrid" >
         <Grid.Background>
-            <ImageBrush ImageSource="sfondo3.jpg"
-                        Stretch="UniformToFill" />
+            <ImageBrush ImageSource="sfondo3.jpg" Stretch="UniformToFill" />
         </Grid.Background>
         <MediaElement Name="Base1MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base1.mp3" AutoPlay="False" />
         <MediaElement Name="Base2MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base2.mp3" />
         <MediaElement Name="Base3MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base3.mp3" />
 
-        <ListBox Name="PlayButtonsListBox" Width="400">
+        <ListBox Name="PlayButtonsListBox" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Button Content="{Binding Path=Key}"
@@ -39,7 +48,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

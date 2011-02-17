@@ -40,19 +40,16 @@
             <ImageBrush ImageSource="sfondo3.jpg" />
         </Grid.Background>
         <TextBlock Name="titleTextBox" Text="Disclaimer"
-                   Width="456" Height="109" Margin="12,53,12,0"
+                   Margin="12,53,12,0"
                    VerticalAlignment="Top" FontSize="56"
-                   Foreground="#FFFF070C" TextAlignment="Center" FontWeight="Bold" />
-        <TextBlock Text="Questa applicazione è stata creata a scopo puramente ludico. Il contenuto degli insulti dell'On. V. Sgarbi può risultare altamente offensivo per alcune persone, e può lederne l'onore. Pertanto ci dissociamo da eventuali usi impropri dell'applicazione Sgarbi Mix.
-I contenuti multimediali inclusi in Sgarbi Mix sono stati reperiti su internet da siti gratuiti, e WPME sarà disponibile a fornirne i sorgenti qualora l'On. Sgarbi si sentisse offeso dall'uso che ne è stato fatto. Con la presente, invochiamo la benevolenza dello stesso: se volesse farci pervenire dei file audio di alta qualità e una sua foto a scelta, gliene saremmo grati e potremmo migliorare questa applicazione accontentando i suoi desideri, e dedicandogli un'intera pagina di ringraziamenti.
-
-I file originali di Sgarbi da cui abbiamo preso gli insulti si trovano su Youtube.
-Le basi musicali originali per gli effetti mixer sono state si trovano su 
-www.freedancebeats.com"
+                   Foreground="#FFFF070C" FontWeight="Bold" TextAlignment="Center" />
+        <TextBlock Text="Questa applicazione è stata creata a scopo puramente ludico.
+Il contenuto degli insulti dell'On. V. Sgarbi può risultare altamente offensivo per alcune persone, pertanto ci dissociamo da eventuali usi impropri dell'applicazione Sgarbi Mix.
+I contenuti multimediali inclusi in Sgarbi Mix sono stati reperiti su Youtube.
+Le basi musicali originali per gli effetti mixer si trovano su www.freedancebeats.com"
                    Height="643" Margin="12,145,12,0"
-                   VerticalAlignment="Top" FontSize="20"
-                   Foreground="#FF00EC07" TextWrapping="Wrap" OpacityMask="{x:Null}" FontWeight="SemiBold" />
+                   VerticalAlignment="Top" FontSize="30"
+                   TextAlignment="Center" 
+                   Foreground="OrangeRed" TextWrapping="Wrap" />
     </Grid>
-
-
 </phone:PhoneApplicationPage>

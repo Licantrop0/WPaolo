@@ -13,8 +13,7 @@
 
     <wp:AboutControl Name="WPMEAbout"
                      ApplicationName="Show Images"
-                     MinFontSize="42"
-                     FontFamily="Calibri" 
+                     MinFontSize="40"
                      ApplicationNameMargin="0,50,0,0">
         <wp:AboutControl.BackgroundStackPanel>
             <ImageBrush ImageSource="Images\Logo.png"

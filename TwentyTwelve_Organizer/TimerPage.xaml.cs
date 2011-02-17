@@ -23,7 +23,10 @@ namespace TwentyTwelve_Organizer
                 DemoTextBlock.Visibility = System.Windows.Visibility.Visible;
 
             if (Settings.LightThemeEnabled)
-                LayoutRoot.Background = new ImageBrush() { ImageSource = new BitmapImage(new Uri("Images\\2012background-white.png", UriKind.Relative)) };
+            {
+                var isource = new BitmapImage(new Uri("Images/2012background-white.jpg", UriKind.Relative));
+                LayoutRoot.Background = new ImageBrush() { ImageSource = isource };
+            }
         }
 
         private void InitializeTimer()

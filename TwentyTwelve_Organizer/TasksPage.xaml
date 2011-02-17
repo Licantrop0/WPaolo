@@ -44,7 +44,6 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -71,7 +70,8 @@
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images\MetallicStrip.png" Opacity="0.6" Stretch="UniformToFill" />
                     </StackPanel.Background>
-                    <CheckBox IsChecked="{Binding Path=IsCompleted, Mode=TwoWay}" VerticalAlignment="Center" />
+                    <CheckBox IsChecked="{Binding Path=IsCompleted, Mode=TwoWay}"
+                              VerticalAlignment="Center" />
                     <Rectangle Height="32" Width="8" Margin="-15,0,8,0"
                                Fill="{Binding Path=Difficulty, Converter={StaticResource TaskDifficultyConverter}}"  />
                     <Button Width="300" VerticalAlignment="Center"
@@ -81,13 +81,22 @@
                             <ControlTemplate />
                         </Button.Template>
                         <TextBlock Text="{Binding Path=Description}"
-                                           Style="{StaticResource GreenTextBlockStyle}" />
+                                   Style="{StaticResource GreenTextBlockStyle}" />
                     </Button>
-                    <Rectangle Fill="{StaticResource PhoneForegroundBrush}" Width="48" Height="48" Margin="6"
-                                       VerticalAlignment="Center" MouseLeftButtonUp="RemoveButton_Click" >
+                    <Rectangle Width="48" Height="48" Margin="6"
+                               VerticalAlignment="Center"
+                               MouseLeftButtonUp="RemoveButton_Click" >
                         <Rectangle.OpacityMask>
-                            <ImageBrush ImageSource="Images\remove_green.png" />
+                            <ImageBrush ImageSource="Images\remove_white.png" />
                         </Rectangle.OpacityMask>
+                        <Rectangle.Fill>
+                            <!--colore che segue il tema (l'immagine con la X è usata come OpacityMask)
+                            <SolidColorBrush Color="{StaticResource PhoneForegroundBrush}" />-->
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF2DD000" Offset="0"/>
+                                <GradientStop Color="#FFAFB1AF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
                     </Rectangle>
                 </StackPanel>
             </DataTemplate>

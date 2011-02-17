@@ -9,7 +9,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress">
     
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -39,15 +39,10 @@
         <MediaElement Name="Base2MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base2.mp3" />
         <MediaElement Name="Base3MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base3.mp3" />
 
-        <ListBox Name="PlayButtonsListBox" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Button Content="{Binding Path=Key}"
-                            Click="PlayButton_Click"
-                            Style="{StaticResource PlayButtonStyle}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ScrollViewer>
+            <StackPanel Name="PlayButtonsStackPanel" />
+        </ScrollViewer>
+
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

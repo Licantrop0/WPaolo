@@ -23,14 +23,12 @@ namespace WPCommon
         private const double MinimumAccelerationMagnitudeSquared = MinimumAccelerationMagnitude * MinimumAccelerationMagnitude;
         private static readonly TimeSpan MinimumShakeTime = TimeSpan.FromMilliseconds(500);
 
-        public event EventHandler<EventArgs> ShakeEvent = null;
-
-
-        protected void OnShakeEvent()
+        public event EventHandler<EventArgs> ShakeDetected = null;
+        protected void OnShakeDetected()
         {
-            if (ShakeEvent != null)
+            if (ShakeDetected != null)
             {
-                ShakeEvent(this, new EventArgs());
+                ShakeDetected(this, new EventArgs());
             }
         }
 
@@ -139,9 +137,101 @@ namespace WPCommon
 
             if ((_shakeRecordList[endIndex].EventTime.Subtract(_shakeRecordList[startIndex].EventTime)) <= MinimumShakeTime)
             {
-                OnShakeEvent();
+                OnShakeDetected();
             }
         }
 
+    }
+
+    public class ShakeDetector2 : IDisposable
+    {
+        private const double ShakeThreshold = 0.7;
+        private readonly Accelerometer _sensor = new Accelerometer();
+        private AccelerometerReadingEventArgs _lastReading;
+        private int _shakeCount;
+        private bool _shaking;
+
+        public SensorState State { get { return _sensor.State; } }
+
+        public event EventHandler<EventArgs> ShakeDetected = null;
+        protected void OnShakeDetected()
+        {
+            if (ShakeDetected != null)
+            {
+                ShakeDetected(this, new EventArgs());
+            }
+        }
+
+        public ShakeDetector2()
+        {
+            var sensor = new Accelerometer();
+            if (sensor.State == SensorState.NotSupported)
+                throw new NotSupportedException("Accelerometer not supported on this device");
+            _sensor = sensor;
+        }
+
+
+        public void Dispose()
+        {
+            if (_sensor != null)
+                _sensor.Dispose();
+        }
+
+
+        public void Start()
+        {
+            if (_sensor != null)
+                _sensor.Start();
+        }
+
+        public void Stop()
+        {
+            if (_sensor != null)
+                _sensor.Stop();
+        }
+
+        private void ReadingChanged(object sender, AccelerometerReadingEventArgs e)
+        {
+            if (_sensor.State == SensorState.Ready)
+            {
+                try
+                {
+                    if (_lastReading != null)
+                    {
+                        if (!_shaking && CheckForShake(_lastReading, e, ShakeThreshold) && _shakeCount >= 1)
+                        {
+                            //We are shaking
+                            _shaking = true;
+                            _shakeCount = 0;
+                            OnShakeDetected();
+                        }
+                        else if (CheckForShake(_lastReading, e, ShakeThreshold))
+                        {
+                            _shakeCount++;
+                        }
+                        else if (!CheckForShake(_lastReading, e, 0.2))
+                        {
+                            _shakeCount = 0;
+                            _shaking = false;
+                        }
+                    }
+                    _lastReading = e;
+                }
+                catch { /* ignore errors */ }
+            }
+        }
+
+
+        private static bool CheckForShake(AccelerometerReadingEventArgs last, AccelerometerReadingEventArgs current,
+                                            double threshold)
+        {
+            double deltaX = Math.Abs((last.X - current.X));
+            double deltaY = Math.Abs((last.Y - current.Y));
+            double deltaZ = Math.Abs((last.Z - current.Z));
+
+            return (deltaX > threshold && deltaY > threshold) ||
+                    (deltaX > threshold && deltaZ > threshold) ||
+                    (deltaY > threshold && deltaZ > threshold);
+        }
     }
 }

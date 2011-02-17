@@ -60,135 +60,135 @@ namespace SgarbiMix {
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Ateo_fasullo_ {
+        internal static System.IO.UnmanagedMemoryStream Ateo_fasullo1 {
             get {
-                return ResourceManager.GetStream("Ateo_fasullo_", resourceCulture);
+                return ResourceManager.GetStream("Ateo_fasullo1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Capra_ {
+        internal static System.IO.UnmanagedMemoryStream Capra_ignorante1 {
             get {
-                return ResourceManager.GetStream("Capra_", resourceCulture);
+                return ResourceManager.GetStream("Capra_ignorante1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Capra_ignorante_ {
+        internal static System.IO.UnmanagedMemoryStream Capra1 {
             get {
-                return ResourceManager.GetStream("Capra_ignorante_", resourceCulture);
+                return ResourceManager.GetStream("Capra1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Criminale_ {
+        internal static System.IO.UnmanagedMemoryStream Criminale1 {
             get {
-                return ResourceManager.GetStream("Criminale_", resourceCulture);
+                return ResourceManager.GetStream("Criminale1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Culattoni_raccomandati_ {
+        internal static System.IO.UnmanagedMemoryStream Culattoni_raccomandati1 {
             get {
-                return ResourceManager.GetStream("Culattoni_raccomandati_", resourceCulture);
+                return ResourceManager.GetStream("Culattoni_raccomandati1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream È_insopportabile_ {
+        internal static System.IO.UnmanagedMemoryStream È_insopportabile1 {
             get {
-                return ResourceManager.GetStream("È_insopportabile_", resourceCulture);
+                return ResourceManager.GetStream("È_insopportabile1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream E_tu_sei_un_pirla_ {
+        internal static System.IO.UnmanagedMemoryStream E_tu_sei_un_pirla1 {
             get {
-                return ResourceManager.GetStream("E_tu_sei_un_pirla_", resourceCulture);
+                return ResourceManager.GetStream("E_tu_sei_un_pirla1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream È_un_crimine_ {
+        internal static System.IO.UnmanagedMemoryStream È_un_crimine1 {
             get {
-                return ResourceManager.GetStream("È_un_crimine_", resourceCulture);
+                return ResourceManager.GetStream("È_un_crimine1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Fascista_ {
+        internal static System.IO.UnmanagedMemoryStream Fascista1 {
             get {
-                return ResourceManager.GetStream("Fascista_", resourceCulture);
+                return ResourceManager.GetStream("Fascista1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Io_sono_convinto_che_vi_debbano_licenziare {
+        internal static System.IO.UnmanagedMemoryStream Legga_Dante1_Legga_Manzoni1 {
             get {
-                return ResourceManager.GetStream("Io_sono_convinto_che_vi_debbano_licenziare", resourceCulture);
+                return ResourceManager.GetStream("Legga_Dante1_Legga_Manzoni1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Legga_Dante__Legga_Manzoni_ {
+        internal static System.IO.UnmanagedMemoryStream Leggi1_Studia1 {
             get {
-                return ResourceManager.GetStream("Legga_Dante__Legga_Manzoni_", resourceCulture);
+                return ResourceManager.GetStream("Leggi1_Studia1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Leggi__Studia_ {
+        internal static System.IO.UnmanagedMemoryStream Lo_mangerei_vivo1 {
             get {
-                return ResourceManager.GetStream("Leggi__Studia_", resourceCulture);
+                return ResourceManager.GetStream("Lo_mangerei_vivo1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Lo_mangerei_vivo_ {
+        internal static System.IO.UnmanagedMemoryStream Ma_guarda_che_roba1 {
             get {
-                return ResourceManager.GetStream("Lo_mangerei_vivo_", resourceCulture);
+                return ResourceManager.GetStream("Ma_guarda_che_roba1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Ma_guarda_che_roba_ {
+        internal static System.IO.UnmanagedMemoryStream Mi_state_sui_coglioni_di_principio1 {
             get {
-                return ResourceManager.GetStream("Ma_guarda_che_roba_", resourceCulture);
+                return ResourceManager.GetStream("Mi_state_sui_coglioni_di_principio1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Mi_state_sui_coglioni_di_principio_ {
+        internal static System.IO.UnmanagedMemoryStream Non_dire_cretinate1 {
             get {
-                return ResourceManager.GetStream("Mi_state_sui_coglioni_di_principio_", resourceCulture);
+                return ResourceManager.GetStream("Non_dire_cretinate1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Non_dire_cretinate_ {
+        internal static System.IO.UnmanagedMemoryStream Non_ha_fatto_mai_un_cazzo {
             get {
-                return ResourceManager.GetStream("Non_dire_cretinate_", resourceCulture);
+                return ResourceManager.GetStream("Non_ha_fatto_mai_un_cazzo", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Non_ha_mai_fatto_un_cazzo_in_vita_sua {
+        internal static System.IO.UnmanagedMemoryStream Ridicolo_sei_e_lo_sei_sempre_stato1 {
             get {
-                return ResourceManager.GetStream("Non_ha_mai_fatto_un_cazzo_in_vita_sua", resourceCulture);
+                return ResourceManager.GetStream("Ridicolo_sei_e_lo_sei_sempre_stato1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Ridicolo_ {
+        internal static System.IO.UnmanagedMemoryStream Ridicolo1 {
             get {
-                return ResourceManager.GetStream("Ridicolo_", resourceCulture);
+                return ResourceManager.GetStream("Ridicolo1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Ridicolo_sei__e_lo_sei_sempre_stato_ {
+        internal static System.IO.UnmanagedMemoryStream Sei_ignorante_come_una_capra1 {
             get {
-                return ResourceManager.GetStream("Ridicolo_sei__e_lo_sei_sempre_stato_", resourceCulture);
+                return ResourceManager.GetStream("Sei_ignorante_come_una_capra1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Sei_ignorante_come_una_capra_ {
+        internal static System.IO.UnmanagedMemoryStream Sono_convinto_che_vi_debbano_licenziare1 {
             get {
-                return ResourceManager.GetStream("Sei_ignorante_come_una_capra_", resourceCulture);
+                return ResourceManager.GetStream("Sono_convinto_che_vi_debbano_licenziare1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Vai_a_studiare_ {
+        internal static System.IO.UnmanagedMemoryStream Vai_a_studiare1 {
             get {
-                return ResourceManager.GetStream("Vai_a_studiare_", resourceCulture);
+                return ResourceManager.GetStream("Vai_a_studiare1", resourceCulture);
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Vergogna__Vergogna_ {
+        internal static System.IO.UnmanagedMemoryStream Vergogna1_Vergogna1 {
             get {
-                return ResourceManager.GetStream("Vergogna__Vergogna_", resourceCulture);
+                return ResourceManager.GetStream("Vergogna1_Vergogna1", resourceCulture);
             }
         }
     }

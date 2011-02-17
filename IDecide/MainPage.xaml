@@ -13,33 +13,81 @@
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	shell:SystemTray.IsVisible="True">
+	<phone:PhoneApplicationPage.Resources>
+		<Storyboard x:Name="RotateButton" AutoReverse="True">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AskAndShakeTextBlock">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
+					<EasingDoubleKeyFrame.EasingFunction>
+						<CubicEase EasingMode="EaseOut"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
+				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimation Duration="0:0:0.6" To="360" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="FrontImage" d:IsOptimized="True"/>
+			<DoubleAnimation Duration="0:0:0.6" To="180" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="BackImage" d:IsOptimized="True"/>
+			<DoubleAnimation Duration="0:0:0.6" To="14" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="FrontImage" d:IsOptimized="True"/>
+			<DoubleAnimation Duration="0:0:0.3" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BackImage" d:IsOptimized="True"/>
+			<DoubleAnimation Duration="0:0:0.6" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FrontImage" d:IsOptimized="True"/>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="AnswerTextBlock">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-90"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimation Duration="0:0:0.6" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AnswerTextBlock" d:IsOptimized="True"/>
+		</Storyboard>
+	</phone:PhoneApplicationPage.Resources>
 
-	<!--LayoutRoot is the root grid where all page content is placed-->
-	<Grid x:Name="LayoutRoot" Background="Transparent">
+	<Grid x:Name="LayoutRoot" Style="{StaticResource BackGroundStyle}">
+		<Grid.Background>
+			<RadialGradientBrush Center="0.5,0.5" GradientOrigin="0,0" RadiusY="0.772" RadiusX="0.654">
+				<GradientStop Offset="1"/>
+				<GradientStop Color="#F4232323"/>
+			</RadialGradientBrush>
+		</Grid.Background>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
-		<!--TitlePanel contains the name of the application and page title-->
-		<StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,0,0,28">
-			<TextBlock x:Name="PageTitle" Text="{Binding Path=LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-			<TextBlock x:Name="ApplicationTitle" Text="{Binding Path=LocalizedResources.SubTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
+		<StackPanel Grid.Row="0" Margin="12,0,0,28">
+			<TextBlock Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+			<TextBlock Text="{Binding LocalizedResources.SubTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
 		</StackPanel>
 
-		<!--ContentPanel - place additional content here-->
-		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-			<Button Name="DecideButton" Height="440" HorizontalAlignment="Center" VerticalAlignment="Center"
-					Width="400" VerticalContentAlignment="Bottom"
+		<Grid Grid.Row="1" Margin="12,0,12,0">
+			<Button x:Name="DecideButton" Height="440" Width="400"
+					HorizontalAlignment="Center" VerticalAlignment="Center"
+					VerticalContentAlignment="Bottom" Click="DecideButton_Click"
 					WPCommon:TiltEffect.IsTiltEnabled="True">
-				<StackPanel Orientation="Vertical">
-					<Image Source="IDecide Logo.png" Stretch="Uniform" />
-					<TextBlock Text="{Binding Path=LocalizedResources.AskAndShake, Source={StaticResource LocalizedStrings}}"
-							   TextAlignment="Center"/>
-				</StackPanel>
+				<Button.Projection>
+					<PlaneProjection/>
+				</Button.Projection>
 				<Button.Template>
 					<ControlTemplate />
 				</Button.Template>
+				<Grid>
+					<Image x:Name="FrontImage" Source="IDecide Back.png" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Opacity="0" >
+						<Image.RenderTransform>
+							<CompositeTransform TranslateX="-14"/>
+						</Image.RenderTransform>
+						<Image.Projection>
+							<PlaneProjection RotationY="180"/>
+						</Image.Projection>
+					</Image>
+					<Image x:Name="BackImage" Source="IDecide Logo.png" Stretch="Uniform" >
+						<Image.Projection>
+							<PlaneProjection/>
+						</Image.Projection>
+					</Image>
+					<TextBlock x:Name="AskAndShakeTextBlock" Text="{Binding LocalizedResources.AskAndShake, Source={StaticResource LocalizedStrings}}"
+							   TextAlignment="Center" VerticalAlignment="Bottom"/>
+					<TextBlock x:Name="AnswerTextBlock" TextWrapping="Wrap" TextAlignment="Center"
+							   VerticalAlignment="Center" HorizontalAlignment="Center"
+							   Width="200" Foreground="Black" Opacity="0" Text="dfsdfsdf">
+						<TextBlock.Projection>
+							<PlaneProjection RotationY="-90"/>
+						</TextBlock.Projection>
+					</TextBlock>
+				</Grid>
 			</Button>
 		</Grid>
 	</Grid>

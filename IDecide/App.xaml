@@ -8,6 +8,17 @@
     <!--Application Resources-->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:IDecide" x:Key="LocalizedStrings" />
+        <Style x:Key="BackGroundStyle" TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0,0" RadiusY="0.5" RadiusX="0.5">
+                        <GradientStop Color="{StaticResource PhoneForegroundBrush}"  Offset="0.75"/>
+                        <GradientStop Color="#F4232323"/>
+                    </RadialGradientBrush>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

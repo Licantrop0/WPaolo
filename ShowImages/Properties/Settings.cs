@@ -28,7 +28,7 @@ namespace ShowImages
         public static class BrowserHistory
         {
             public static bool IsEmpty { get { return History.Count <= 1; } }
-            
+
             private static List<Uri> History
             {
                 get
@@ -39,12 +39,20 @@ namespace ShowImages
 
                     return (List<Uri>)IsolatedStorageSettings.ApplicationSettings["browser_history"];
                 }
+                set
+                {
+                    if (History != value)
+                        IsolatedStorageSettings.ApplicationSettings["browser_history"] = value;
+                }
             }
-
 
             public static void Push(Uri uri)
             {
                 History.Add(uri);
+
+                //tronco la History al 20° item
+                if (History.Count > 20)
+                    History = History.Skip(10).ToList();
             }
 
             public static Uri Pop()
@@ -52,11 +60,6 @@ namespace ShowImages
                 var last = History.Last();
                 History.Remove(last);
                 return last;
-            }
-
-            public static Uri Peek()
-            {
-                return History.Last();
             }
         }
 

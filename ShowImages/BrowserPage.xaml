@@ -6,12 +6,12 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.IsVisible="False"
     BackKeyPress="PhoneApplicationPage_BackKeyPress"
     Loaded="PhoneApplicationPage_Loaded">
 
@@ -22,12 +22,16 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,0,0,0">
-            <ProgressBar Name="LoadingProgress" IsIndeterminate="True" Visibility="Collapsed" />
-            <TextBox Name="ImageUrlTextBox"  InputScope="Url" KeyDown="ImageUrlTextBox_KeyDown" GotFocus="ImageUrlTextBox_GotFocus" />
+            <ProgressBar Name="LoadingProgress" IsIndeterminate="True"
+                         Visibility="Collapsed" />
+            <TextBox Name="ImageUrlTextBox" InputScope="Url"
+                     KeyDown="ImageUrlTextBox_KeyDown"
+                     GotFocus="ImageUrlTextBox_GotFocus" />
         </StackPanel>
 
         <phone:WebBrowser Name="ChooserWebBrowser" Grid.Row="1"
-                          Navigated="ChooserWebBrowser_Navigated" Navigating="ChooserWebBrowser_Navigating" />
+                          Navigated="ChooserWebBrowser_Navigated"
+                          Navigating="ChooserWebBrowser_Navigating" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

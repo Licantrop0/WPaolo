@@ -12,12 +12,6 @@ namespace TwentyTwelve_Organizer
         public DemoInfoPage()
         {
             InitializeComponent();
-
-            if (Settings.LightThemeEnabled)
-            {
-                var isource = new BitmapImage(new Uri("Images/2012background-white.jpg", UriKind.Relative));
-                LayoutRoot.Background = new ImageBrush() { ImageSource = isource };
-            }
         }
 
         private void BuyButton_Click(object sender, RoutedEventArgs e)

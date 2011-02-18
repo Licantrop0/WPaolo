@@ -8,16 +8,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
-    FontSize="28"
+    FontSize="28" Foreground="{StaticResource GreenGradient}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
-    <phone:PhoneApplicationPage.Foreground>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF2DD000" Offset="0"/>
-            <GradientStop Color="#FFAFB1AF" Offset="1"/>
-        </LinearGradientBrush>
-    </phone:PhoneApplicationPage.Foreground>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -40,15 +34,11 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="Images\2012background.jpg" Stretch="None" AlignmentY="Bottom" />
-        </Grid.Background>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="2012 Organizer"/>
@@ -59,9 +49,9 @@
             <TextBlock Text="Difficulty" />
             <toolkit:WrapPanel VerticalAlignment="Top" Width="400" Margin="0,40,0,0">
                 <toolkit:WrapPanel.Background>
-                    <ImageBrush ImageSource="Images/MetallicStrip.png" Stretch="Fill" Opacity="0.6"/>
+                    <ImageBrush ImageSource="Images/MetallicStrip.png" Stretch="Fill" Opacity="0.4"/>
                 </toolkit:WrapPanel.Background>
-                <RadioButton Name="r_verySimple" Content="Very simple" Width="250"
+                <RadioButton Name="r_verySimple" Content="Very Simple" Width="250"
                              Style="{StaticResource GreenRadioButtonStyle}"/>
                 <RadioButton Name="r_Simple" Content="Simple" 
                              Style="{StaticResource GreenRadioButtonStyle}"/>
@@ -85,7 +75,8 @@
                      VerticalAlignment="Top"
                      Margin="0,330,0,0" Height="140" Width="350" 
                      TextWrapping="Wrap"
-                     KeyDown="TaskNameTextBox_KeyDown" />
+                     KeyDown="TaskNameTextBox_KeyDown"
+                     Background="#BFFFFFFF" BorderBrush="#BFFFFFFF" />
             <Button Name="AddEditButton" Width="90" Height="80"
                     Margin="0,360,10,0"
                     Style="{StaticResource MetallicButtonStyle}"

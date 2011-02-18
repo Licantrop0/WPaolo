@@ -8,17 +8,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
-    FontSize="26"
+    FontSize="26" Foreground="{StaticResource GreenGradient}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False"
     Loaded="PhoneApplicationPage_Loaded">
-    <phone:PhoneApplicationPage.Foreground>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF2DD000" Offset="0"/>
-            <GradientStop Color="#FFAFB1AF" Offset="1"/>
-        </LinearGradientBrush>
-    </phone:PhoneApplicationPage.Foreground>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -38,23 +32,27 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot" >
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImage}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid.Background>
-            <ImageBrush ImageSource="Images\2012background.jpg" />
-        </Grid.Background>
-
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,0">
             <TextBlock x:Name="ApplicationTitle" Text="2012 Organizer" />
             <TextBlock x:Name="PageTitle" Text="The End is coming" Margin="9,-7,0,0" FontSize="40" />
         </StackPanel>
 
-        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid HorizontalAlignment="Center" Margin="6" >
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid HorizontalAlignment="Center" Margin="6" Grid.Row="0" >
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -76,46 +74,43 @@
                 <TextBlock Text="Seconds" Grid.Row="1" Grid.Column="3" Margin="6,0,0,6" />
             </Grid>
 
-            <TextBlock Name="ProgressTextBlock" Text=" " HorizontalAlignment="Center" />
-            <ProgressBar Name="TasksProgressBar" Margin="0,10,0,10" >
-                <ProgressBar.Foreground>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF2DD000" Offset="0"/>
-                        <GradientStop Color="#FFAFB1AF" Offset="1"/>
-                    </LinearGradientBrush>
-                </ProgressBar.Foreground>
+            <TextBlock Name="ProgressTextBlock" Text=" " HorizontalAlignment="Center"  Grid.Row="1"  />
+            <ProgressBar Name="TasksProgressBar" Margin="0,10,0,10"  Grid.Row="2"
+                         VerticalAlignment="Center" Foreground="{StaticResource GreenGradient}" >
                 <ProgressBar.RenderTransform>
                     <ScaleTransform ScaleY="4" />
                 </ProgressBar.RenderTransform>
             </ProgressBar>
 
-            <TextBlock Name="EvalTextBlock" Margin="0,10,0,0" Height="330"
-                        TextAlignment="Center" Foreground="{StaticResource PhoneForegroundBrush}"
-                        Padding="10" TextWrapping="Wrap" />
+            <TextBlock Name="EvalTextBlock" Margin="0,10,0,0"  Grid.Row="3" 
+                       TextAlignment="Center" Foreground="{StaticResource PhoneForegroundBrush}"
+                       Padding="10" TextWrapping="Wrap" VerticalAlignment="Center"
+                       Opacity="0.8" FontWeight="Bold" FontStyle="Italic" />
 
-            <Button Content="Tasks" Click="ViewTaskButton_Click"
-                    Height="116" Width="284" Margin="0,10,0,0"
+            <TextBlock Name="DemoTextBlock" Text="Demo"
+                       FontSize="96" Visibility="Collapsed"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3"
+                       TextAlignment="Center" FontStyle="Italic" Opacity="0.8">
+                <TextBlock.RenderTransform>
+            		<CompositeTransform Rotation="-30" ScaleX="2" CenterX="100" CenterY="100" />
+            	</TextBlock.RenderTransform>
+            </TextBlock>
+
+            <Button Content="Tasks" Click="ViewTaskButton_Click" Grid.Row="4" 
+                    Height="120" Width="300" Margin="0,10,0,0"
                     Style="{StaticResource MetallicButtonStyle}"
                     ManipulationStarted="Button_ManipulationStarted"
                     ManipulationCompleted="Button_ManipulationCompleted" />
 
-            <Button Content="About" Click="AboutButton_Click"
-                    Width="284" Height="45" Margin="0,10,0,0"
+            <Button Content="About" Click="AboutButton_Click" Grid.Row="5" 
+                    Width="300" Height="60" Margin="0,10,0,10"
                     Style="{StaticResource MetallicButtonStyle}"
                     ManipulationStarted="Button_ManipulationStarted"
                     ManipulationCompleted="Button_ManipulationCompleted">
             </Button>
-        </StackPanel>
+        </Grid>
 
-        <TextBlock Name="DemoTextBlock" Text="Demo"
-                       FontSize="96" Visibility="Collapsed"
-                       HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"
-                       TextAlignment="Center" FontStyle="Italic">
-                <TextBlock.RenderTransform>
-            		<CompositeTransform Rotation="-30" ScaleX="1.55" CenterX="100" CenterY="100" />
-            	</TextBlock.RenderTransform>
-
-        </TextBlock>
     </Grid>
 
 </phone:PhoneApplicationPage>
+    

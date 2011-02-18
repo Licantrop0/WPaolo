@@ -44,14 +44,15 @@ namespace ShowImages
             if (e.Key == Key.Enter && Uri.TryCreate(ImageUrlTextBox.Text, UriKind.Absolute, out u))
                 ChooserWebBrowser.Navigate(new Uri(ImageUrlTextBox.Text));
         }
-        
+
         #endregion
-        
+
         #region WebBrowser
 
         private void ChooserWebBrowser_Navigating(object sender, NavigatingEventArgs e)
         {
             LoadingProgress.Visibility = Visibility.Visible;
+            this.Focus();
         }
 
         private void ChooserWebBrowser_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
@@ -60,7 +61,8 @@ namespace ShowImages
             Settings.BrowserHistory.Push(ChooserWebBrowser.Source);
             LoadingProgress.Visibility = Visibility.Collapsed;
         }
-        
+
+
         #endregion
 
         #region ApplicationBar Buttons

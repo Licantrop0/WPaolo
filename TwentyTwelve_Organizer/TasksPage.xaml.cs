@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using WPCommon;
 
 namespace TwentyTwelve_Organizer
@@ -15,6 +17,12 @@ namespace TwentyTwelve_Organizer
             InitializeComponent();
             ToDoCVS.Source = Settings.Tasks;
             CompletedCVS.Source = Settings.Tasks;
+
+            if (Settings.LightThemeEnabled)
+            {
+                var isource = new BitmapImage(new Uri("Images/2012background-white.jpg", UriKind.Relative));
+                LayoutRoot.Background = new ImageBrush() { ImageSource = isource };
+            }
         }
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)

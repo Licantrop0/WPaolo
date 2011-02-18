@@ -3,6 +3,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace TwentyTwelve_Organizer
 {
@@ -13,6 +15,12 @@ namespace TwentyTwelve_Organizer
         public AddEditTaskPage()
         {
             InitializeComponent();
+
+            if (Settings.LightThemeEnabled)
+            {
+                var isource = new BitmapImage(new Uri("Images/2012background-white.jpg", UriKind.Relative));
+                LayoutRoot.Background = new ImageBrush() { ImageSource = isource };
+            }
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)

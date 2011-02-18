@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Collections;
 using System.ComponentModel;
+using Microsoft.Xna.Framework.Audio;
+using System.Linq;
+
 
 namespace SgarbiMix
 {
@@ -34,21 +37,22 @@ namespace SgarbiMix
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeSounds();
-        }
+            //se ho già caricato i bottoni esco
+            if (PlayButtonsStackPanel.Children.Count > 0)
+                return;
 
-        private void InitializeSounds()
-        {
             //prendo la risorsa dei suoni castandola in un array
             var sr = SoundsResources.ResourceManager
                 .GetResourceSet(CultureInfo.CurrentCulture, true, true)
                 .Cast<DictionaryEntry>().ToArray();
 
+            LoadingProgressBar.Maximum = sr.Length - 1;
+
             //istanzio il BackgroundWorker (che gira in un thread separato)
             var bw = new BackgroundWorker() { WorkerReportsProgress = true };
-            
+
             //Configuro l'evento DoWork
-            bw.DoWork += (sender, e) =>
+            bw.DoWork += (s, evt) =>
             {
                 for (int i = 0; i < sr.Length; i++)
                 {
@@ -63,9 +67,10 @@ namespace SgarbiMix
             };
 
             //Creo il bottone corrispondende al suono non appena caricato
-            bw.ProgressChanged += (sender, e) =>
+            bw.ProgressChanged += (s, evt) =>
             {
-                var i = e.ProgressPercentage;
+                var i = evt.ProgressPercentage;
+                LoadingProgressBar.Value = i;
                 var b = new Button();
                 b.Content = App.Sounds[i].Key;
                 b.Style = (Style)App.Current.Resources["PlayButtonStyle"];
@@ -77,7 +82,7 @@ namespace SgarbiMix
                 }
                 //ATTENZIONE cagata: mi baso sul nome del button per recuperare l'i-esimo sound
                 b.Name = i.ToString();
-                b.Click += (button, eventargs) =>
+                b.Click += (button, evt1) =>
                 {
                     if (CheckTrial())
                     {
@@ -89,6 +94,15 @@ namespace SgarbiMix
             };
 
             bw.RunWorkerAsync();
+        }
+
+        private void LoadingProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            //faccio sparire la progressbar se ha finito il caricamento
+            if (LoadingProgressBar.Value == LoadingProgressBar.Maximum)
+            {
+                LoadingProgressBar.Visibility = Visibility.Collapsed;
+            }
         }
 
 
@@ -128,6 +142,13 @@ namespace SgarbiMix
                 Base3MediaElement.Play();
         }
 
+        private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            var me = (MediaElement)sender;
+            me.Stop();
+            me.Play();
+        }
+
         private void DisclaimerApplicationBar_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/DisclaimerPage.xaml", UriKind.Relative));
@@ -138,11 +159,5 @@ namespace SgarbiMix
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
 
-        private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            var me = (MediaElement)sender;
-            me.Stop();
-            me.Play();
-        }
     }
 }

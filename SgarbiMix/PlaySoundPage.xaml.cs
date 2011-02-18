@@ -4,6 +4,11 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Phone.Controls;
 using WPCommon;
+using System.IO;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Collections;
+using System.ComponentModel;
 
 namespace SgarbiMix
 {
@@ -29,20 +34,38 @@ namespace SgarbiMix
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (App.Sounds.Count == 0)
-                NavigationService.Navigate(new Uri("/LoadingPage.xaml", UriKind.Relative));
-            else
-            {
-                InitializeButtons();
-                ApplicationBar.IsVisible = true;
-            }
+            InitializeSounds();
         }
 
-
-        private void InitializeButtons()
+        private void InitializeSounds()
         {
-            for (int i = 0; i < App.Sounds.Count; i++)
+            //prendo la risorsa dei suoni castandola in un array
+            var sr = SoundsResources.ResourceManager
+                .GetResourceSet(CultureInfo.CurrentCulture, true, true)
+                .Cast<DictionaryEntry>().ToArray();
+
+            //istanzio il BackgroundWorker (che gira in un thread separato)
+            var bw = new BackgroundWorker() { WorkerReportsProgress = true };
+            
+            //Configuro l'evento DoWork
+            bw.DoWork += (sender, e) =>
             {
+                for (int i = 0; i < sr.Length; i++)
+                {
+                    //Convenzione: "_" = spazio, "1" = punto esclamativo
+                    var name = sr[i].Key.ToString().Replace("_", " ").Replace("1", "!");
+                    var sound = (UnmanagedMemoryStream)sr[i].Value;
+
+                    //Aggiungo il suono alla lista dei suoni
+                    App.Sounds.Add(new KeyValuePair<string, SoundEffect>(name, SoundEffect.FromStream(sound)));
+                    bw.ReportProgress(i);
+                }
+            };
+
+            //Creo il bottone corrispondende al suono non appena caricato
+            bw.ProgressChanged += (sender, e) =>
+            {
+                var i = e.ProgressPercentage;
                 var b = new Button();
                 b.Content = App.Sounds[i].Key;
                 b.Style = (Style)App.Current.Resources["PlayButtonStyle"];
@@ -54,21 +77,24 @@ namespace SgarbiMix
                 }
                 //ATTENZIONE cagata: mi baso sul nome del button per recuperare l'i-esimo sound
                 b.Name = i.ToString();
-                b.Click += (sender, e) =>
+                b.Click += (button, eventargs) =>
                 {
                     if (CheckTrial())
                     {
-                        var SoundIndex = int.Parse(((Button)sender).Name);
+                        var SoundIndex = int.Parse(((Button)button).Name);
                         App.Sounds[SoundIndex].Value.Play();
                     }
                 };
                 PlayButtonsStackPanel.Children.Add(b);
-            }
+            };
+
+            bw.RunWorkerAsync();
         }
+
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday && (counter > App.Sounds.Count))
+            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday && (counter > App.Sounds.Count / 2))
             {
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return false;
@@ -118,11 +144,5 @@ namespace SgarbiMix
             me.Stop();
             me.Play();
         }
-
-        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            throw new Exception("ForceExit");
-        }
-
     }
 }

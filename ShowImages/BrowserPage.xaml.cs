@@ -24,7 +24,8 @@ namespace ShowImages
         {
             if (Settings.BrowserHistory.IsEmpty) return;
             e.Cancel = true;
-            Settings.BrowserHistory.Pop(); //Pop da saltare perchè appena navigo lo mette nello stack
+            //Pop da saltare perchè appena navigo lo mette nello stack
+            Settings.BrowserHistory.Pop();
             ChooserWebBrowser.Navigate(Settings.BrowserHistory.Pop());
         }
 
@@ -51,6 +52,7 @@ namespace ShowImages
 
         private void ChooserWebBrowser_Navigating(object sender, NavigatingEventArgs e)
         {
+            this.Focus();
             LoadingProgress.Visibility = Visibility.Visible;
             this.Focus();
         }
@@ -65,7 +67,7 @@ namespace ShowImages
 
         #endregion
 
-        #region ApplicationBar Buttons
+        #region ApplicationBar
 
         private void ShowPicsApplicationBarIconButton_Click(object sender, EventArgs e)
         {
@@ -78,12 +80,12 @@ namespace ShowImages
             ChooserWebBrowser.Navigate(new Uri("http://www.google.com/m/?site=images"));
         }
 
-        #endregion
-
         private void AboutApplicationBarMenuItem_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
+
+        #endregion
 
     }
 }

@@ -11,8 +11,8 @@
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
-	mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-	shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+	mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
+	shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
 	<Grid x:Name="LayoutRoot" Background="Transparent">
 		<Grid.RowDefinitions>
@@ -50,17 +50,6 @@
 				</DataTemplate>
 			</controls:Pivot.ItemTemplate>
 		</controls:Pivot>
-
-		<!--<ListBox Name="ImageListBox" Grid.Row="1">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<Grid Margin="0,0,0,8">
-						<Image Source="{Binding Key}" ImageOpened="Image_ImageOpened" ImageFailed="Image_ImageFailed" />
-						<CheckBox IsChecked="{Binding Value, Mode=TwoWay}" VerticalAlignment="Top" />
-					</Grid>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>-->
 	</Grid>
 
 	<phone:PhoneApplicationPage.ApplicationBar>

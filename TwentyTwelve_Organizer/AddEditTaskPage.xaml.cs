@@ -15,12 +15,6 @@ namespace TwentyTwelve_Organizer
         public AddEditTaskPage()
         {
             InitializeComponent();
-
-            if (Settings.LightThemeEnabled)
-            {
-                var isource = new BitmapImage(new Uri("Images/2012background-white.jpg", UriKind.Relative));
-                LayoutRoot.Background = new ImageBrush() { ImageSource = isource };
-            }
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -98,7 +92,8 @@ namespace TwentyTwelve_Organizer
 
         private void TaskNameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter) AddEditButton.Focus();
+            if (e.Key == Key.Enter)
+                this.Focus();
         }
 
         private void AddEditButton_ManipulationStarted(object sender, ManipulationStartedEventArgs e)

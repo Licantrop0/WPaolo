@@ -146,9 +146,7 @@
       <All>True</All>
       <AutoFill>True</AutoFill>
     </BlendEmbeddedFont>
-    <Content Include="Images\2012background.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Images\2012background.jpg" />
     <Resource Include="Images\MetallicStrip.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>

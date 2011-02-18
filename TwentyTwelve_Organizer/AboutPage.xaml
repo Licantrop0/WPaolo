@@ -13,17 +13,10 @@
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
 
-    <wpcommon:AboutControl Name="WPMEAbout" ApplicationName="2012 Organizer" MinFontSize="40" >
-        <wpcommon:AboutControl.BackgroundStackPanel>
-            <ImageBrush ImageSource="Images\2012background.jpg" />
-        </wpcommon:AboutControl.BackgroundStackPanel>
-
-        <wpcommon:AboutControl.Foreground>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF2DD000" Offset="0"/>
-                <GradientStop Color="#FFAFB1AF" Offset="1"/>
-            </LinearGradientBrush>
-        </wpcommon:AboutControl.Foreground>
+    <wpcommon:AboutControl Name="WPMEAbout" MinFontSize="40"
+                           ApplicationName="2012 Organizer"
+                           BackgroundStackPanel="{StaticResource BackgroundImage}"
+                           Foreground="{StaticResource GreenGradient}" >
     </wpcommon:AboutControl>
 
 </phone:PhoneApplicationPage>

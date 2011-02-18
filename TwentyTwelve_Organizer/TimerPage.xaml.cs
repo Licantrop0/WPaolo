@@ -21,12 +21,6 @@ namespace TwentyTwelve_Organizer
             InitializeTimer();
             if (WPCommon.TrialManagement.IsTrialMode)
                 DemoTextBlock.Visibility = System.Windows.Visibility.Visible;
-
-            if (Settings.LightThemeEnabled)
-            {
-                var isource = new BitmapImage(new Uri("Images/2012background-white.jpg", UriKind.Relative));
-                LayoutRoot.Background = new ImageBrush() { ImageSource = isource };
-            }
         }
 
         private void InitializeTimer()
@@ -88,7 +82,7 @@ namespace TwentyTwelve_Organizer
                 var rapportoGiorni = giorniNecessari / TimeLeft.TotalDays;
                 if (rapportoGiorni > 1)
                 {
-                    EvalTextBlock.Text = "Do something or you will never complete all your tasks! Change your priorities or engage actively to fulfill your tasks!";
+                    EvalTextBlock.Text = "Do something or you will never complete all your tasks! Change your priorities or engage actively to fulfill your difficult endeavours...";
                 }
                 else if (rapportoGiorni <= 1 && rapportoGiorni > 0.75)
                 {
@@ -100,7 +94,7 @@ namespace TwentyTwelve_Organizer
                 }
                 else if (rapportoGiorni <= 0.50 && rapportoGiorni > 0.25)
                 {
-                    EvalTextBlock.Text = "Well done, you can do it with a bit of work.";
+                    EvalTextBlock.Text = "Well done, you can do it with a bit more of work.";
                 }
                 else
                 {

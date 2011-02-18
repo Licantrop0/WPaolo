@@ -6,57 +6,46 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
 
-    <!--Application Resources-->
     <Application.Resources>
+        
+        <ImageBrush x:Name="BackgroundImage" ImageSource="Images\2012background.jpg" AlignmentY="Bottom"/>
+        
+        <LinearGradientBrush x:Name="GreenGradient" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF2DD000" Offset="0"/>
+            <GradientStop Color="#FF7C7C7C" Offset="1"/>
+        </LinearGradientBrush>
+
         <Style x:Key="MetallicButtonStyle" TargetType="Button">
+            <Setter Property="WPCommon:TiltEffect.IsTiltEnabled" Value="True"/>
+            <Setter Property="FontFamily" Value="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas" />
+            <Setter Property="FontSize" Value="35" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
-                            <Image Source="Images/MetallicStrip.png" Stretch="Fill" Opacity="0.6"/>
+                            <Image Source="Images/MetallicStrip.png" Stretch="Fill" Opacity="0.4"/>
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF2DD000" Offset="0"/>
-                        <GradientStop Color="#FFAFB1AF" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="WPCommon:TiltEffect.IsTiltEnabled" Value="True"/>
-            <Setter Property="FontFamily" Value="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas" />
+            <Setter Property="Foreground" Value="{StaticResource GreenGradient}"/>
         </Style>
 
         <Style x:Key="GreenTextBlockStyle" TargetType="TextBlock">
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF2DD000" Offset="0"/>
-                        <GradientStop Color="#FFAFB1AF" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
             <Setter Property="FontFamily" Value="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas" />
             <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="{StaticResource GreenGradient}"/>
         </Style>
 
         <Style x:Key="GreenRadioButtonStyle" TargetType="RadioButton">
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF2DD000" Offset="0"/>
-                        <GradientStop Color="#FFAFB1AF" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
             <Setter Property="GroupName" Value="Difficulty" />
             <Setter Property="FontFamily" Value="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Foreground" Value="{StaticResource GreenGradient}"/>
         </Style>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
@@ -66,5 +55,5 @@
             Launching="Application_Launching" Closing="Application_Closing" 
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>
     </Application.ApplicationLifetimeObjects>
-    
+
 </Application>

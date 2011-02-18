@@ -15,14 +15,12 @@ namespace TwentyTwelve_Organizer
         public TasksPage()
         {    
             InitializeComponent();
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
             ToDoCVS.Source = Settings.Tasks;
             CompletedCVS.Source = Settings.Tasks;
-
-            if (Settings.LightThemeEnabled)
-            {
-                var isource = new BitmapImage(new Uri("Images/2012background-white.jpg", UriKind.Relative));
-                LayoutRoot.Background = new ImageBrush() { ImageSource = isource };
-            }
         }
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)

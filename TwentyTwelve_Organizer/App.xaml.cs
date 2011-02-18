@@ -4,13 +4,13 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework.Audio;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace TwentyTwelve_Organizer
 {
     public partial class App : Application
     {
-        //SoundEffectInstance BackgroundMusic;
-
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -45,6 +45,8 @@ namespace TwentyTwelve_Organizer
 
             // Phone-specific initialization
             InitializePhoneApplication();
+
+
         }
 
         private void InitializeSounds()
@@ -63,16 +65,19 @@ namespace TwentyTwelve_Organizer
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            //if (BackgroundSound.CurrentState != MediaElementState.Playing) BackgroundSound.Play();
-            //if (BackgroundMusic.State != SoundState.Playing) BackgroundMusic.Play();
+            if (Settings.LightThemeEnabled)
+            {
+                var isource = new BitmapImage(new Uri("Images/2012background-white.jpg", UriKind.Relative));
+                ((ImageBrush)Resources["BackgroundImage"]).ImageSource = isource;
+
+                ((GradientBrush)Resources["GreenGradient"]).GradientStops[1].Color = Colors.Black;
+            }
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            //if (BackgroundSound.CurrentState != MediaElementState.Playing) BackgroundSound.Play();
-            //if (BackgroundMusic.State != SoundState.Playing) BackgroundMusic.Play();
         }
 
         // Code to execute when the application is deactivated (sent to background)

@@ -12,16 +12,10 @@
     xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon"
     xmlns:Converters="clr-namespace:Converters"
     FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
+    Foreground="{StaticResource GreenGradient}" FontSize="28"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" shell:SystemTray.IsVisible="False"
-    FontSize="28" d:DesignHeight="768" d:DesignWidth="480" >
-
-    <phone:PhoneApplicationPage.Foreground>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF2DD000" Offset="0"/>
-            <GradientStop Color="#FFAFB1AF" Offset="1"/>
-        </LinearGradientBrush>
-    </phone:PhoneApplicationPage.Foreground>
+    d:DesignHeight="800" d:DesignWidth="480" Loaded="PhoneApplicationPage_Loaded">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -44,22 +38,19 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="Images\2012background.jpg" Stretch="None" AlignmentY="Bottom" />
-        </Grid.Background>
         <Grid.Resources>
             <Converters:TaskDifficultyConverter x:Key="TaskDifficultyConverter" />
-            <CollectionViewSource x:Name="ToDoCVS" Filter="ToDo_Filter" >
+            <CollectionViewSource x:Name="ToDoCVS" Filter="ToDo_Filter">
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="Description" Direction="Ascending" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
-            <CollectionViewSource x:Name="CompletedCVS" Filter="Completed_Filter" >
+            <CollectionViewSource x:Name="CompletedCVS" Filter="Completed_Filter">
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="Description" Direction="Ascending" />
                 </CollectionViewSource.SortDescriptions>
@@ -68,7 +59,7 @@
             <DataTemplate x:Key="TaskTemplate">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
                     <StackPanel.Background>
-                        <ImageBrush ImageSource="Images\MetallicStrip.png" Opacity="0.6" Stretch="UniformToFill" />
+                        <ImageBrush ImageSource="Images\MetallicStrip.png" Opacity="0.4" Stretch="UniformToFill" />
                     </StackPanel.Background>
                     <CheckBox IsChecked="{Binding Path=IsCompleted, Mode=TwoWay}"
                               VerticalAlignment="Center" />
@@ -84,19 +75,11 @@
                                    Style="{StaticResource GreenTextBlockStyle}" />
                     </Button>
                     <Rectangle Width="48" Height="48" Margin="6"
-                            VerticalAlignment="Center"
+                            VerticalAlignment="Center" Fill="{StaticResource GreenGradient}"
                             MouseLeftButtonUp="RemoveButton_Click" >
                         <Rectangle.OpacityMask>
                             <ImageBrush ImageSource="Images\remove_white.png" />
                         </Rectangle.OpacityMask>
-                        <Rectangle.Fill>
-                            <!--colore che segue il tema (l'immagine con la X è usata come OpacityMask)
-                        <SolidColorBrush Color="{StaticResource PhoneForegroundBrush}" />-->
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF2DD000" Offset="0"/>
-                                <GradientStop Color="#FFAFB1AF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Rectangle.Fill>
                     </Rectangle>
                 </StackPanel>
             </DataTemplate>

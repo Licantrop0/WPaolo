@@ -46,8 +46,6 @@ namespace SgarbiMix
                 .GetResourceSet(CultureInfo.CurrentCulture, true, true)
                 .Cast<DictionaryEntry>().ToArray();
 
-            LoadingProgressBar.Maximum = sr.Length - 1;
-
             //istanzio il BackgroundWorker (che gira in un thread separato)
             var bw = new BackgroundWorker() { WorkerReportsProgress = true };
 
@@ -70,7 +68,6 @@ namespace SgarbiMix
             bw.ProgressChanged += (s, evt) =>
             {
                 var i = evt.ProgressPercentage;
-                LoadingProgressBar.Value = i;
                 var b = new Button();
                 b.Content = App.Sounds[i].Key;
                 b.Style = (Style)App.Current.Resources["PlayButtonStyle"];
@@ -94,15 +91,6 @@ namespace SgarbiMix
             };
 
             bw.RunWorkerAsync();
-        }
-
-        private void LoadingProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            //faccio sparire la progressbar se ha finito il caricamento
-            if (LoadingProgressBar.Value == LoadingProgressBar.Maximum)
-            {
-                LoadingProgressBar.Visibility = Visibility.Collapsed;
-            }
         }
 
 

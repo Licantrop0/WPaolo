@@ -35,7 +35,6 @@
         <Grid.Background>
             <ImageBrush ImageSource="sfondo3.jpg" Stretch="None" AlignmentY="Top"/>
         </Grid.Background>
-        <ProgressBar Name="LoadingProgressBar" VerticalAlignment="Top" ValueChanged="LoadingProgressBar_ValueChanged" />
         <ScrollViewer>
             <StackPanel Name="PlayButtonsStackPanel" />
         </ScrollViewer>

@@ -23,6 +23,7 @@ namespace ShowImages
             html.LoadHtml(htmlString);
 
             var ImgLinks = new List<string>();
+            Settings.CurrentImageList.Clear();
 
             //Aggiunge i tag Anchor
             foreach (var anchor in html.DocumentNode.Descendants("a"))
@@ -38,16 +39,15 @@ namespace ShowImages
             }
 
             //Aggiunge i tag Img
-            ImgLinks.Concat(html.DocumentNode.Descendants("img")
-                .Select(img => img.GetAttributeValue("src", string.Empty)));
-
-            Settings.CurrentImageList.Clear();
+            var imgsrc = html.DocumentNode.Descendants("img")
+                .Select(img => img.GetAttributeValue("src", string.Empty));
 
             //Aggiunge le immagini .jpg alla CurrentImageList formattate correttamente
-            (from i in ImgLinks
+            (from i in ImgLinks.Union(imgsrc)
              where i.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase)
              let iurl = FormatImageUrl(pageUrl, i)
              where !string.IsNullOrEmpty(iurl)
+             orderby iurl ascending
              select new SelectionableImage(iurl))
              .ForEach(i => Settings.CurrentImageList.Add(i));
         }
@@ -58,7 +58,10 @@ namespace ShowImages
             if (Uri.TryCreate(url, UriKind.Absolute, out u))
                 return url;
 
-            var FirstPart = pageUrl.ToString().Remove(pageUrl.ToString().LastIndexOf('/') + 1);
+            var FirstPart = pageUrl.ToString();
+
+            if (pageUrl.AbsolutePath != "/")
+                FirstPart = FirstPart.Remove(FirstPart.LastIndexOf('/') + 1);
 
             if (!url.Contains(pageUrl.Host))
                 return FirstPart + url;

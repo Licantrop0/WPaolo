@@ -41,7 +41,7 @@ namespace SgarbiMix
             if (PlayButtonsStackPanel.Children.Count > 0)
                 return;
 
-            //prendo la risorsa dei suoni castandola in un array
+            //prendo la risorsa dei suoni castandola in un array ordinato
             var sr = SoundsResources.ResourceManager
                 .GetResourceSet(CultureInfo.CurrentCulture, true, true)
                 .Cast<DictionaryEntry>().OrderBy(i=> i.Key).ToArray();

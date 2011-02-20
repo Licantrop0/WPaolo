@@ -21,13 +21,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,0,0,0">
             <ProgressBar Name="LoadingProgress" IsIndeterminate="True"
-                         Visibility="Collapsed" />
+                         Visibility="Collapsed" VerticalAlignment="Top" />
             <TextBox Name="ImageUrlTextBox" InputScope="Url"
                      KeyDown="ImageUrlTextBox_KeyDown"
                      GotFocus="ImageUrlTextBox_GotFocus" />
-        </StackPanel>
 
         <phone:WebBrowser Name="ChooserWebBrowser" Grid.Row="1"
                           Navigated="ChooserWebBrowser_Navigated"

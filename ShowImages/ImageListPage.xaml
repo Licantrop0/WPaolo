@@ -15,23 +15,17 @@
 	shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
 	<Grid x:Name="LayoutRoot" Background="Transparent">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
 
-		<StackPanel x:Name="TitlePanel" Grid.Row="0">
-			<ProgressBar Name="LoadingProgress"
+		<ProgressBar Name="LoadingProgress" VerticalAlignment="Top"
 						 ValueChanged="LoadingProgress_ValueChanged" />
-		</StackPanel>
 
-		<TextBlock Name="NoImagesTextBlock" Grid.Row="1"
+		<TextBlock Name="NoImagesTextBlock"
 				   Text="No images found, or they are in an incompatible format. Please press back to change the site."
 				   Margin="12" TextWrapping="Wrap" TextAlignment="Center"
 				   FontSize="{StaticResource PhoneFontSizeExtraLarge}"
 				   Visibility="Collapsed" />
 
-		<controls:Pivot Name="ImagePivot" Grid.Row="1" >
+		<controls:Pivot Name="ImagePivot" >
 			<controls:Pivot.HeaderTemplate>
 				<DataTemplate>
 					<CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"

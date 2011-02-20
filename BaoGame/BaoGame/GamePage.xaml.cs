@@ -345,7 +345,7 @@ namespace BaoGame
                                     break;
 
                                 case MustMove.mtagiCapture:
-                                    _shimoUtilityLeft.message = "You must chose the other direction in order to capture!";
+                                    _shimoUtilityLeft.message = "You must chose the other direction!";
                                     break;
 
                                 default:

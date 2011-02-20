@@ -22,7 +22,6 @@ namespace IDecide
 		public MainPage()
 		{
 			InitializeComponent();
-			ApplicationBar = new ApplicationBar();
 			CreateAppBar();
 
 			var sd = new ShakeDetector();
@@ -60,11 +59,12 @@ namespace IDecide
 
 		private void CreateAppBar()
 		{
+			ApplicationBar = new ApplicationBar();
 			var EditChoicesAppBarButton = new ApplicationBarIconButton();
 			EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
 			EditChoicesAppBarButton.Text = AppResources.EditChoices;
-			EditChoicesAppBarButton.Click += delegate(object sender, EventArgs e)
-			{ NavigationService.Navigate(new Uri("/GroupChoicesPage.xaml", UriKind.Relative)); };
+			EditChoicesAppBarButton.Click += (sender, e) => {
+                NavigationService.Navigate(new Uri("/GroupChoicesPage.xaml", UriKind.Relative)); };
 			ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
 		}
 	}

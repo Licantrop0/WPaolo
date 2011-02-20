@@ -11,8 +11,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
 
     <Grid x:Name="LayoutRoot" Style="{StaticResource BackGroundStyle}">
         <Grid.RowDefinitions>
@@ -22,21 +22,22 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="{Binding LocalizedResources.SubTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Grid.Resources>
-                <local:ResourceTranslator x:Key="ResourceTranslatorConverter"/>
+                <local:ResourceTranslatorConverter x:Key="ResourceTranslatorConverter"/>
+                <local:AmISelectedConverter x:Key="AmISelectedConverter"/>
             </Grid.Resources>
 
             <ListBox Name="GroupChoicesListBox" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <RadioButton GroupName="Choices" Checked="RadioButton_Checked" />
+                            <RadioButton GroupName="Choices" Checked="RadioButton_Checked" IsChecked="{Binding Converter={StaticResource AmISelectedConverter}}" />
                             <Button Content="{Binding Converter={StaticResource ResourceTranslatorConverter}}"
                                     Width="300" VerticalAlignment="Center" Click="EditChoicesButton_Click" />
                             <Rectangle Fill="{StaticResource PhoneForegroundBrush}" Width="48" Height="48" Margin="6" MouseLeftButtonDown="RemoveButton_Click" >
@@ -50,17 +51,4 @@
             </ListBox>
         </Grid>
     </Grid>
-
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
-
 </phone:PhoneApplicationPage>

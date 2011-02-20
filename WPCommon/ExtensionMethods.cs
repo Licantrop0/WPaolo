@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace WPCommon
 {
@@ -43,6 +44,12 @@ namespace WPCommon
         {
             foreach (var item in source)
                 action(item);
+        }
+
+        public static void AddRange<T>(this ObservableCollection<T> source, IEnumerable<T> items)
+        {
+            foreach (var item in items)
+                source.Add(item);
         }
     }
 }

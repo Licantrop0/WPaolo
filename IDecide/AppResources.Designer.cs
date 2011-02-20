@@ -61,6 +61,15 @@ namespace IDecide {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AggiungiGruppo.
+        /// </summary>
+        public static string AddGroup {
+            get {
+                return ResourceManager.GetString("AddGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I Decide.
         /// </summary>
         public static string AppName {

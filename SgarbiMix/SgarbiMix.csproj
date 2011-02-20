@@ -150,15 +150,9 @@
     </BlendEmbeddedFont>
     <Resource Include="sfondo3.jpg" />
     <None Include="sounds\Ateo fasullo!.wav" />
-    <Resource Include="sounds\base1.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\base2.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="sounds\base3.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <None Include="sounds\base1.mp3" />
+    <None Include="sounds\base2.mp3" />
+    <None Include="sounds\base3.mp3" />
     <None Include="sounds\capra.wav" />
     <None Include="sounds\e1crimine.wav" />
     <None Include="sounds\maguardacheroba.wav" />

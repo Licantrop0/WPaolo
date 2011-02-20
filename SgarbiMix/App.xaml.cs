@@ -20,6 +20,7 @@ namespace SgarbiMix
     public partial class App : Application
     {
         public static List<KeyValuePair<string, SoundEffect>> Sounds = new List<KeyValuePair<string, SoundEffect>>();
+        public static bool alreadyOpen;
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
@@ -32,6 +33,7 @@ namespace SgarbiMix
         /// </summary>
         public App()
         {
+
             // Global handler for uncaught exceptions. 
             UnhandledException += Application_UnhandledException;
 
@@ -60,6 +62,7 @@ namespace SgarbiMix
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            alreadyOpen = WPCommon.TrialManagement.AlreadyOpenedToday;
         }
 
         // Code to execute when the application is activated (brought to foreground)

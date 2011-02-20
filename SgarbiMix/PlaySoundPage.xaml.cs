@@ -71,13 +71,7 @@ namespace SgarbiMix
                 var b = new Button();
                 b.Content = App.Sounds[i].Key;
                 b.Style = (Style)App.Current.Resources["PlayButtonStyle"];
-                //b.Template = (ControlTemplate)App.Current.Resources["GlassButton"];
-                //switch (i % 3)
-                //{
-                //    case 0: b.Background = new SolidColorBrush(Colors.Red); break;
-                //    case 1: b.Background = new SolidColorBrush(Colors.White); break;
-                //    case 2: b.Background = new SolidColorBrush(Colors.Green); break;
-                //}
+
                 //ATTENZIONE cagata: mi baso sul nome del button per recuperare l'i-esimo sound
                 b.Name = i.ToString();
                 b.Click += (button, evt1) =>
@@ -97,7 +91,7 @@ namespace SgarbiMix
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && TrialManagement.AlreadyOpenedToday && (counter > App.Sounds.Count / 2))
+            if (TrialManagement.IsTrialMode && (App.alreadyOpen || (counter > (App.Sounds.Count / 3))) )
             {
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return false;
@@ -107,36 +101,36 @@ namespace SgarbiMix
             return true;
         }
 
-        private void Base1ApplicationBar_Click(object sender, EventArgs e)
-        {
-            if (Base1MediaElement.CurrentState == MediaElementState.Playing)
-                Base1MediaElement.Stop();
-            else
-                Base1MediaElement.Play();
-        }
+        //private void Base1ApplicationBar_Click(object sender, EventArgs e)
+        //{
+        //    if (Base1MediaElement.CurrentState == MediaElementState.Playing)
+        //        Base1MediaElement.Stop();
+        //    else
+        //        Base1MediaElement.Play();
+        //}
 
-        private void Base2ApplicationBar_Click(object sender, EventArgs e)
-        {
-            if (Base2MediaElement.CurrentState == MediaElementState.Playing)
-                Base2MediaElement.Stop();
-            else
-                Base2MediaElement.Play();
-        }
+        //private void Base2ApplicationBar_Click(object sender, EventArgs e)
+        //{
+        //    if (Base2MediaElement.CurrentState == MediaElementState.Playing)
+        //        Base2MediaElement.Stop();
+        //    else
+        //        Base2MediaElement.Play();
+        //}
 
-        private void Base3ApplicationBar_Click(object sender, EventArgs e)
-        {
-            if (Base3MediaElement.CurrentState == MediaElementState.Playing)
-                Base3MediaElement.Stop();
-            else
-                Base3MediaElement.Play();
-        }
+        //private void Base3ApplicationBar_Click(object sender, EventArgs e)
+        //{
+        //    if (Base3MediaElement.CurrentState == MediaElementState.Playing)
+        //        Base3MediaElement.Stop();
+        //    else
+        //        Base3MediaElement.Play();
+        //}
 
-        private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            var me = (MediaElement)sender;
-            me.Stop();
-            me.Play();
-        }
+        //private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        //{
+        //    var me = (MediaElement)sender;
+        //    me.Stop();
+        //    me.Play();
+        //}
 
         private void DisclaimerApplicationBar_Click(object sender, EventArgs e)
         {

@@ -39,17 +39,17 @@
             <StackPanel Name="PlayButtonsStackPanel" />
         </ScrollViewer>
 
-        <MediaElement Name="Base1MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base1.mp3" AutoPlay="False" />
+        <!--<MediaElement Name="Base1MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base1.mp3" AutoPlay="False" />
         <MediaElement Name="Base2MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base2.mp3" AutoPlay="False"/>
-        <MediaElement Name="Base3MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base3.mp3" AutoPlay="False"/>
+        <MediaElement Name="Base3MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base3.mp3" AutoPlay="False"/>-->
 
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
+            <!--<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
             <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 2" Click="Base2ApplicationBar_Click"  />
-            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 3" Click="Base3ApplicationBar_Click" />
+            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 3" Click="Base3ApplicationBar_Click" />-->
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="Disclaimer" Click="DisclaimerApplicationBar_Click" />
                 <shell:ApplicationBarMenuItem Text="About" Click="AboutApplicationBar_Click" />

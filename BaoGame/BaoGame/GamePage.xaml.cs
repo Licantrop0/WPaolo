@@ -22,24 +22,30 @@ namespace BaoGame
     public enum MatchState
     {
         initialization,
-        player1EvaluatingPossibleMoves,
-        player1MustPickShimo,
-        player1PickedShimo,
-        player1MustPickSecondShimo,
-        player1PickedSecondShimo,
-        player1AskedToPlayNyumba,
-        player1PlayNyumba,
-        player1Move,
+        playerEvaluatingPossibleMoves,
+        playerMustPickShimo,
+        playerPickedShimo,
+        playerMustPickSecondShimo,
+        playerPickedSecondShimo,
+        playerAskedToPlayNyumba,
+        playerPlayNyumba,
+        playerMove,
         testWinCondition,
         cpuMove,
         end
+    }
+
+    public enum GameModality
+    {
+        playerVsCpu,
+        playerVsPlayer
     }
 
     public enum FirstMove
     {
         random,
         player1,
-        CPU
+        player2
     }
 
     public struct ShimoUtility
@@ -50,8 +56,6 @@ namespace BaoGame
 
         public Shimo sowingShimo;
 
-        public bool sowingDirection;
-
         public string message;
 
         public bool chosen;
@@ -61,30 +65,31 @@ namespace BaoGame
     {
         # region private members
 
+        // game states variables
+        GameModality _gameModality;
         GameType _gameType;
         FirstMove _firstMove;
         BaoGameState _actualGameState;
         MatchState _state;
-        int _playerTurn;
-        List<BaoMove> _player1PossibleMoves;
-        MustMove _player1MustMove;
-        Shimo _player1Shimo;
-
-        ImageSource[] _imageSourceArray;
-
+        Byte _playerTurn;
+        int _numKeteInHand;
+        List<BaoMove> _playerPossibleMoves;
+        MustMove _playerMustMove;
+        Shimo _playerShimo;
         ShimoUtility _shimoUtilityLeft;
         ShimoUtility _shimoUtilityRight;
+        Byte _winner;
 
+        // animation engine state variables
         Queue<ScreenAction> _sa;
         ScreenAction _handeldAction;
         DispatcherTimer _actionTimer;
-
         bool _bGraphicEngineRunning;
 
-        int _numKeteInHand;
+        // graphical resources
+        ImageSource[] _imageSourceArray;
 
         #endregion
-
 
         public GamePage()
         {
@@ -92,9 +97,9 @@ namespace BaoGame
 
             _firstMove = FirstMove.random;
 
-            _imageSourceArray = new ImageSource[16];
+            _imageSourceArray = new ImageSource[21];
 
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < 21; i++)
             {
                 _imageSourceArray[i] = new ImageSourceConverter().ConvertFromString("img/semini_" + i.ToString() + ".png") as ImageSource; 
             }
@@ -113,6 +118,7 @@ namespace BaoGame
             int rowCount = 4;
             int colCount = 8;
 
+            // initialize board graphics
             for (int i = 0; i < rowCount; i++)
             {
                 for (int j = 1; j <= colCount; j++)
@@ -153,6 +159,10 @@ namespace BaoGame
 
             // decide whether LaKujiFunza or LaKiswahili will be played (TODO: later must be taken from Settings Page)
             _gameType = GameType.laKiswahili;
+            //_gameType = GameType.laKujifunza;
+
+            // decide wheter pvp or pvc will be played (TODO: later must be taken from Settings Page)
+            _gameModality = GameModality.playerVsPlayer;
 
             _state = MatchState.initialization;
             Game();
@@ -160,32 +170,27 @@ namespace BaoGame
 
         private void Game()
         {
-            if (_bGraphicEngineRunning)
-            {
-                return;
-            }
-
             bool gameCall = false;
 
             switch (_state)
             {
-                case MatchState.initialization:
+                case MatchState.initialization:     // pvp ok
 
                     Byte playerToMove;
 
-                    // decide wheter player 1 or cpu will move first
+                    // decide wheter player 1 or player 2 will move first
                     switch (_firstMove)
                     {
                         case FirstMove.random:
                             Random randNum = new Random(DateTime.Now.Millisecond);
-                            playerToMove = (Byte)randNum.Next(1, 1);        // TODO: per adesso forzo il giocatore ad effettuare la prima mossa...
+                            playerToMove = (Byte)randNum.Next(1, 1);        // TODO: per adesso forzo il giocatore 1 ad effettuare la prima mossa...
                             break;
 
                         case FirstMove.player1:
                             playerToMove = 1;
                             break;
 
-                        case FirstMove.CPU:
+                        case FirstMove.player2:
                             playerToMove = 2;
                             break;
 
@@ -197,12 +202,22 @@ namespace BaoGame
                     if (playerToMove == 1)
                     {
                         _actualGameState = new BaoGameState(_gameType, 2);
-                        _state = MatchState.player1EvaluatingPossibleMoves;
+                        _state = MatchState.playerEvaluatingPossibleMoves;
+                        _playerTurn = 1;
                     }
                     else
                     {
                         _actualGameState = new BaoGameState(_gameType, 1);
-                        _state = MatchState.cpuMove;
+                        _playerTurn = 2;
+
+                        if (_gameModality == GameModality.playerVsCpu)
+                        {
+                            _state = MatchState.cpuMove;
+                        }
+                        else
+                        {
+                            _state = MatchState.playerEvaluatingPossibleMoves;
+                        }
                     }
 
                     if (_gameType == GameType.laKiswahili)
@@ -218,34 +233,36 @@ namespace BaoGame
                         cpuBarnTextBlock.Visibility = Visibility.Collapsed;
                     }
 
+                    _winner = 0;
+
                     DrawShimos();
 
                     gameCall = true;
                     break;
                    
-                case MatchState.player1EvaluatingPossibleMoves:
+                case MatchState.playerEvaluatingPossibleMoves:  // pvp ok
 
-                    // ask game engine all valid moves for player 1
-                    _player1PossibleMoves = _actualGameState.GetPossibleMoves(1, out _player1MustMove);
-                    _state = MatchState.player1MustPickShimo;
+                    // ask game engine all valid moves for player
+                    _playerPossibleMoves = _actualGameState.GetPossibleMoves(_playerTurn, out _playerMustMove);
+                    _state = MatchState.playerMustPickShimo;
                     gameCall = true;
                     break;
 
-                case MatchState.player1MustPickShimo:
+                case MatchState.playerMustPickShimo:    // pvp ok
 
-                    _playerTurn = 1;
+                    //_playerTurn = 1;  // l'ho commentato, dovrebbe essere stato asseganto precedentemente per la prima volta, per le successive vedremo....
 
                     // player must pick the first shimo...
-                    messageBox.Text = "Pick a shimo!";
+                    messageBox.Text = "Player " + _playerTurn.ToString() + ", pick a shimo!";
 
                     break;
              
-                case MatchState.player1PickedShimo:
+                case MatchState.playerPickedShimo:  // pvp ok
 
                     _numKeteInHand = 0;
 
                     // Execute player pick shimo, update state and execute animations
-                    _sa = _actualGameState.ExecutePlayerPickShimo(_player1Shimo.row, _player1Shimo.col, _player1MustMove, out _numKeteInHand);
+                    _sa = _actualGameState.ExecutePlayerPickShimo(_playerShimo.row, _playerShimo.col, _playerTurn, _playerMustMove, out _numKeteInHand);
                     _sa.Enqueue(new ScreenAction(ActionType.none, 0, 0, 0));
                     GraphicEngine(true);
 
@@ -259,24 +276,23 @@ namespace BaoGame
                     _shimoUtilityLeft.chosen = false;
                     _shimoUtilityRight.chosen = false;
 
-                    if( _player1MustMove == MustMove.namuaCapture )
+                    Byte kimbiRow = _playerTurn == 1 ? (Byte)2 : (Byte)1;
+
+                    if( _playerMustMove == MustMove.namuaCapture )
                     {
                         // namua capture case
-
                         // if first shimo is kitchwa or kimbi sowing shimo is automaticcally chosen
-                        if (_player1Shimo.col <= 2)
+                        if (_playerShimo.col <= 2)
                         {
                             _shimoUtilityRight.allowed = true;
-                            _shimoUtilityRight.sowingShimo = new Shimo(2, 0);
-                            _shimoUtilityRight.sowingDirection = false;   // tautologico?
+                            _shimoUtilityRight.sowingShimo = new Shimo(kimbiRow, 0);
                             _shimoUtilityRight.chosen = true;
                             bSecondShimoChose = false;
                         }
-                        else if (_player1Shimo.col >= 7)
+                        else if (_playerShimo.col >= 7)
                         {
                             _shimoUtilityLeft.allowed = true;
-                            _shimoUtilityLeft.sowingShimo = new Shimo(2,9);
-                            _shimoUtilityLeft.sowingDirection = true;   // tautologico?
+                            _shimoUtilityLeft.sowingShimo = new Shimo(kimbiRow,9);
                             _shimoUtilityLeft.chosen = true;
                             bSecondShimoChose = false;
                         }
@@ -284,36 +300,32 @@ namespace BaoGame
                         {
                             // seconds shimo allowed are left are right kitchwa, no possibility of error
                             _shimoUtilityRight.allowed = true;
-                            _shimoUtilityRight.sowingShimo = new Shimo(2, 0);
-                            underlinedShimo = new Shimo(2,1);
+                            _shimoUtilityRight.sowingShimo = new Shimo(kimbiRow, 0);
+                            underlinedShimo = new Shimo(kimbiRow,1);
                             _shimoUtilityRight.underlinedShimo = underlinedShimo;
                             UnderlineShimo(underlinedShimo, 1);
-                            _shimoUtilityRight.sowingDirection = false;   // tautologico?
 
                             _shimoUtilityLeft.allowed = true;
-                            _shimoUtilityLeft.sowingShimo = new Shimo(2, 9);
-                            underlinedShimo = new Shimo(2,8);
+                            _shimoUtilityLeft.sowingShimo = new Shimo(kimbiRow, 9);
+                            underlinedShimo = new Shimo(kimbiRow,8);
                             _shimoUtilityLeft.underlinedShimo = underlinedShimo;
                             UnderlineShimo(underlinedShimo, 1);
-                            _shimoUtilityLeft.sowingDirection = true;   // tautologico?
 
                             bSecondShimoChose = true;
                         }
                     }
                     else
                     {
-                        // if not namua capture sowing shimo is current shimo, sowing direction can be either left, rigt or both
+                        // if not namua capture, sowing shimo is current shimo, sowing direction can be either left, rigt or both
                         // it depends on player1 possible moves
                         BaoMove tentative;
 
-                        // underlined shimos are the one next to sowing shimo
-
-                        _shimoUtilityLeft.sowingShimo = _player1Shimo;
+                        // underline shimos are the one next to sowing shimo
+                        _shimoUtilityLeft.sowingShimo = _playerShimo;
                         _shimoUtilityLeft.underlinedShimo = _actualGameState.NextShimo(_shimoUtilityLeft.sowingShimo, true);
                         UnderlineShimo(_shimoUtilityLeft.underlinedShimo, 2);
-                        _shimoUtilityLeft.sowingDirection = true;
-                        tentative = new BaoMove(_player1Shimo.row, _player1Shimo.col, true);
-                        foreach (BaoMove m in _player1PossibleMoves)
+                        tentative = new BaoMove(_playerShimo.row, _playerShimo.col, true);
+                        foreach (BaoMove m in _playerPossibleMoves)
                         {
                             if (tentative.rowBox == m.rowBox && tentative.columnBox == m.columnBox && tentative.left == m.left)
                             {
@@ -325,7 +337,7 @@ namespace BaoGame
                         if (!_shimoUtilityLeft.allowed)
                         {
                             // spiegare perchè non è concesso con il must move...
-                            switch (_player1MustMove)
+                            switch (_playerMustMove)
                             {
                                 case MustMove.namuaLonelyShimoTakasaAwayException:
                                 case MustMove.mtagiLonelyShimoTakasaAwayException:
@@ -342,12 +354,11 @@ namespace BaoGame
                             }   
                         }
 
-                        _shimoUtilityRight.sowingShimo = _player1Shimo;
+                        _shimoUtilityRight.sowingShimo = _playerShimo;
                         _shimoUtilityRight.underlinedShimo = _actualGameState.NextShimo(_shimoUtilityRight.sowingShimo, false);
                         UnderlineShimo(_shimoUtilityRight.underlinedShimo, 2);
-                        _shimoUtilityRight.sowingDirection = false;
-                        tentative = new BaoMove(_player1Shimo.row, _player1Shimo.col, false);
-                        foreach (BaoMove m in _player1PossibleMoves)
+                        tentative = new BaoMove(_playerShimo.row, _playerShimo.col, false);
+                        foreach (BaoMove m in _playerPossibleMoves)
                         {
                             if (tentative.rowBox == m.rowBox && tentative.columnBox == m.columnBox && tentative.left == m.left)
                             {
@@ -359,7 +370,7 @@ namespace BaoGame
                         if (!_shimoUtilityRight.allowed)
                         {
                             // spiegare perchè non è concesso con il must move...
-                            switch (_player1MustMove)
+                            switch (_playerMustMove)
                             {
                                 case MustMove.namuaLonelyShimoTakasaAwayException:
                                 case MustMove.mtagiLonelyShimoTakasaAwayException:
@@ -379,34 +390,34 @@ namespace BaoGame
 
                     if (bSecondShimoChose)
                     {
-                        _state = MatchState.player1MustPickSecondShimo;
+                        _state = MatchState.playerMustPickSecondShimo;
                     }
                     else
                     {
-                        _state = MatchState.player1PickedSecondShimo;
+                        _state = MatchState.playerPickedSecondShimo;
                     }
 
                     break;
 
-                case MatchState.player1MustPickSecondShimo:
+                case MatchState.playerMustPickSecondShimo:  // pvp ok
 
-                    messageBox.Text = "Pick a direction!";
+                    messageBox.Text = "Now sow the seeds!";
 
                     break;
 
-                case MatchState.player1PickedSecondShimo:
+                case MatchState.playerPickedSecondShimo:    // pvp ok
 
                     bool askPlayNyumba = false;
 
                     if (_shimoUtilityLeft.chosen == true)
                     {
-                        _sa = _actualGameState.ExecutePlayerMove(_shimoUtilityLeft.sowingShimo.row, _shimoUtilityLeft.sowingShimo.col, _shimoUtilityLeft.sowingDirection, 1,
-                            _numKeteInHand, _player1MustMove, out askPlayNyumba);
+                        _sa = _actualGameState.ExecutePlayerMove(_shimoUtilityLeft.sowingShimo.row, _shimoUtilityLeft.sowingShimo.col, true, _playerTurn,
+                            _numKeteInHand, _playerMustMove, out askPlayNyumba);
                     }
                     else if (_shimoUtilityRight.chosen == true)
                     {
-                        _sa = _actualGameState.ExecutePlayerMove(_shimoUtilityRight.sowingShimo.row, _shimoUtilityRight.sowingShimo.col, _shimoUtilityRight.sowingDirection, 1,
-                            _numKeteInHand, _player1MustMove, out askPlayNyumba);
+                        _sa = _actualGameState.ExecutePlayerMove(_shimoUtilityRight.sowingShimo.row, _shimoUtilityRight.sowingShimo.col, false, _playerTurn,
+                            _numKeteInHand, _playerMustMove, out askPlayNyumba);
                     }
                     else
                     {
@@ -418,17 +429,17 @@ namespace BaoGame
 
                     if (askPlayNyumba)
                     {
-                        _state = MatchState.player1AskedToPlayNyumba;
+                        _state = MatchState.playerAskedToPlayNyumba;
                     }
                     else
                     {
-                        _playerTurn = 2;
+                        SwitchTurn();
                         _state = MatchState.testWinCondition;
                     }
 
                     break;
 
-                case MatchState.player1AskedToPlayNyumba:
+                case MatchState.playerAskedToPlayNyumba:    // pvp ok
 
                     messageBox.Text = "Play Nyumba?";
                     playNyumbaYesButton.Visibility = Visibility.Visible;
@@ -436,43 +447,52 @@ namespace BaoGame
 
                     break;
 
-                case MatchState.player1PlayNyumba:
+                case MatchState.playerPlayNyumba:   // pvp ok
 
                     if (_shimoUtilityLeft.chosen == true)
-                        _sa = _actualGameState.PlayNyumba(true);
+                        _sa = _actualGameState.PlayNyumba(true, _playerTurn);
                     else
-                        _sa = _actualGameState.PlayNyumba(false);
+                        _sa = _actualGameState.PlayNyumba(false, _playerTurn);
 
                     _sa.Enqueue(new ScreenAction(ActionType.none, 0, 0, 0));
 
-                    _playerTurn = 2;
+                    SwitchTurn();
                     _state = MatchState.testWinCondition;
 
                     GraphicEngine(true);
 
                     break;
                     
-                       
-                case MatchState.testWinCondition:
+                // quando arrivo qua il turno è già switchato...
+                case MatchState.testWinCondition:   // pvp ok
 
                     WinCondition wc = _actualGameState.WinLoseCondition((Byte)_playerTurn);
                     if (wc == WinCondition.Player1)
                     {
                         _state = MatchState.end;
+                        _winner = 1;
                     }
                     else if (wc == WinCondition.Player2)
                     {
                         _state = MatchState.end;
+                        _winner = 2;
                     }
                     else
                     {
-                        if (_playerTurn == 1)
+                        if( _gameModality == GameModality.playerVsPlayer )
                         {
-                            _state = MatchState.player1EvaluatingPossibleMoves;
+                            _state = MatchState.playerEvaluatingPossibleMoves;
                         }
                         else
                         {
-                            _state = MatchState.cpuMove;
+                            if (_playerTurn == 1)
+                            {
+                                _state = MatchState.cpuMove;
+                            }
+                            else
+                            {
+                                _state = MatchState.playerEvaluatingPossibleMoves;
+                            }
                         }
                     }
 
@@ -480,13 +500,13 @@ namespace BaoGame
           
                     break;
         
-                case MatchState.cpuMove:
+                case MatchState.cpuMove:    // pvp ok
 
                     messageBox.Text = "Computer is thinking...";
 
                     GTree<BaoMinimaxElement> minimaxTree = new GTree<BaoMinimaxElement>(new BaoMinimaxElement(_actualGameState));
                     GC.Collect();   // force the garbace collector to clean the memory
-                    BaoMove cpuMove = MiniMax(minimaxTree, 5);
+                    BaoMove cpuMove = MiniMax(minimaxTree, 1);
 
                     messageBox.Text = "Computer moves";
 
@@ -501,10 +521,39 @@ namespace BaoGame
                     GraphicEngine(true);
 
                     break;
+
+                case MatchState.end:
+
+                    if(_winner == 1)
+                    {
+                        messageBox.Text = "Player 1 wins!";
+                    }
+                    else if(_gameModality == GameModality.playerVsPlayer)
+                    {
+                        messageBox.Text = "Player 2 wins!";
+                    }
+                    else
+                    {
+                        messageBox.Text = "CPU wins!";
+                    }
+
+                    break;
             }
 
             if (gameCall)
                 Game();
+        }
+
+        private void SwitchTurn()
+        {
+            if (_playerTurn == 1)
+            {
+                _playerTurn = 2;
+            }
+            else
+            {
+                _playerTurn = 1;
+            }
         }
 
         private void Shimo_Click(object sender, RoutedEventArgs e)
@@ -518,14 +567,16 @@ namespace BaoGame
                 return;
             }
 
+            // TODO: assegnare le giuste componenti grafiche al giocatore...
+
             bool gameCall = false;
             switch(_state)
             {
-                case MatchState.player1MustPickShimo:
+                case MatchState.playerMustPickShimo:    // pvp ok
 
                     bool shimoAllowed = false;
                     BaoMove tmp = new BaoMove(row, col, false);
-                    foreach (BaoMove m in _player1PossibleMoves)
+                    foreach (BaoMove m in _playerPossibleMoves)
                     {
                         if (tmp.ShimoEqual(m))
                         {
@@ -536,21 +587,19 @@ namespace BaoGame
 
                     if (shimoAllowed)
                     {
-                        _player1Shimo.Set(row, col);
-
-                        UnderlineShimo(_player1Shimo, 1);
-
-                        _state = MatchState.player1PickedShimo;
-
+                        _playerShimo.Set(row, col);
+                        //UnderlineShimo(_playerShimo, 1);  // viene fatto dal motore grafico
+                        _state = MatchState.playerPickedShimo;
                         gameCall = true;
                     }
                     else
                     {
                         // explain the reasons why player cannot pick this shimo
                         // 1) He pick a shimo in opponent territory
-                        // 2) He does not take an empty shimo
-                        // 3) Othere reasons depend on mustMove variable
-                        if (row < 2)
+                        // 2) He does take an empty shimo
+                        // 3) Other reasons depend on mustMove variable
+                        //if (row < 2)
+                        if ( (row < 2 && _playerTurn == 1) || (row > 1 && _playerTurn == 2) )
                         {
                             messageBox.Text = "You must select in your own territory";
                         }
@@ -560,7 +609,7 @@ namespace BaoGame
                         }
                         else
                         {
-                            switch(_player1MustMove)
+                            switch(_playerMustMove)
                             {
                                 case MustMove.namuaCapture:
                                 case MustMove.mtagiCapture:
@@ -569,12 +618,12 @@ namespace BaoGame
 
                                 case MustMove.namuaTakasaNonSingletonNonNyumba:
                                 case MustMove.namuaLonelyShimoTakasaAwayException:
-                                    if (row == 3)
+                                    if ( (row == 3 && _playerTurn == 1) || (row == 0 && _playerTurn == 2) )
                                     {
                                         messageBox.Text = "You must select from inner row if you can!";
                                         break;
                                     }
-                                    else if (row == 2 && col == 5)
+                                    else if ( (row == 2 && col == 5 && _playerTurn == 1) || (row == 1 && col == 4 && _playerTurn == 2) )
                                     {
                                         messageBox.Text = "You cannot pick your nyumba now!";
                                     }
@@ -585,7 +634,14 @@ namespace BaoGame
                                     break;
 
                                 case MustMove.namuaTakasaSingleton:
-                                     messageBox.Text = "You must select from inner row if you can!";
+                                    if ((row == 2 && col == 5 && _actualGameState.Board[2, 5] > 1) || (row == 1 && col == 4 && _actualGameState.Board[1, 4] > 1))
+                                    {
+                                        messageBox.Text = "You cannot pick your nyumba now!";
+                                    }
+                                    else
+                                    {
+                                        messageBox.Text = "You must select from inner row if you can!";
+                                    }
                                      break;
 
                                 case MustMove.namuaTaxRule:
@@ -593,7 +649,7 @@ namespace BaoGame
                                      break;
 
                                 case MustMove.mtagiInnerRowTakasa:
-                                     if (row == 3)
+                                     if ((row == 3 && _playerTurn == 1) || (row == 0 && _playerTurn == 2))
                                      {
                                          messageBox.Text = "You must select from inner row if you can!";
                                      }
@@ -612,21 +668,35 @@ namespace BaoGame
 
                     break;
 
-                case MatchState.player1MustPickSecondShimo:
+                case MatchState.playerMustPickSecondShimo:
 
                     Shimo secondShimo = new Shimo(row, col);
 
-                    if( secondShimo == _shimoUtilityLeft.underlinedShimo )
+                    if  (secondShimo == _shimoUtilityLeft.underlinedShimo)
                     {
-                        _shimoUtilityLeft.chosen = true;
-                        _state = MatchState.player1PickedSecondShimo;
-                        gameCall = true;
+                        if (_shimoUtilityLeft.allowed)
+                        {
+                            _shimoUtilityLeft.chosen = true;
+                            _state = MatchState.playerPickedSecondShimo;
+                            gameCall = true;
+                        }
+                        else
+                        {
+                            messageBox.Text = _shimoUtilityLeft.message;
+                        }
                     }
                     else if (secondShimo == _shimoUtilityRight.underlinedShimo)
                     {
-                        _shimoUtilityRight.chosen = true;
-                        _state = MatchState.player1PickedSecondShimo;
-                        gameCall = true;
+                        if (_shimoUtilityRight.allowed)
+                        {
+                            _shimoUtilityRight.chosen = true;
+                            _state = MatchState.playerPickedSecondShimo;
+                            gameCall = true;
+                        }
+                        else
+                        {
+                            messageBox.Text = _shimoUtilityRight.message;
+                        }
                     }
 
                     break;
@@ -683,7 +753,7 @@ namespace BaoGame
 
                 if (!bFirstAction)
                 {
-                    _actionTimer.Interval = new TimeSpan(7500000);
+                    _actionTimer.Interval = new TimeSpan(6000000);
                 }
                 else
                 {
@@ -728,12 +798,14 @@ namespace BaoGame
                 case ActionType.captureUnderlined:
 
                     // TODO: graphycal effect (serena o lupo...)
+                    messageBox.Text = "Capture!";
 
                     break;
 
                 case ActionType.relaySowingUnderlined:
 
                     // TODO: graphycal effect (serena o lupo...)
+                    messageBox.Text = "Relay sowing...";
 
                     break;
 
@@ -754,8 +826,10 @@ namespace BaoGame
                     DrawShimo(_handeldAction.Row, _handeldAction.Col, _handeldAction.Seeds);
 
                     // TODO: capire che giocatore sta seminando sulla base della riga
-                    if (Convert.ToInt32(player1KeteInHandTextBlock.Text) >= 1)
+                    if (Convert.ToInt32(player1KeteInHandTextBlock.Text) >= 1)  // non so se questo controllo è necessario sec me era dovuto per un tappullo, provo a levarlo...
                         player1KeteInHandTextBlock.Text = (Convert.ToInt32(player1KeteInHandTextBlock.Text) - 1).ToString();
+
+                        //messageBox.Text = "Sowing...";
 
                     break;
 
@@ -801,7 +875,7 @@ namespace BaoGame
 
         private void playNyumbaYesButton_Click(object sender, RoutedEventArgs e)
         {
-            _state = MatchState.player1PlayNyumba;
+            _state = MatchState.playerPlayNyumba;
 
             playNyumbaYesButton.Visibility = Visibility.Collapsed;
             playNyumbaNoButton.Visibility = Visibility.Collapsed;
@@ -812,7 +886,7 @@ namespace BaoGame
         private void playNyumbaNoButton_Click(object sender, RoutedEventArgs e)
         {
             _state = MatchState.testWinCondition;
-            _playerTurn = 2;
+            SwitchTurn();
 
             playNyumbaYesButton.Visibility = Visibility.Collapsed;
             playNyumbaNoButton.Visibility = Visibility.Collapsed;

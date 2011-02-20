@@ -128,9 +128,14 @@
     <Resource Include="img\semini_13.png" />
     <Resource Include="img\semini_14.png" />
     <Resource Include="img\semini_15.png" />
+    <Resource Include="img\semini_16.png" />
+    <Resource Include="img\semini_17.png" />
+    <Resource Include="img\semini_18.png" />
+    <Resource Include="img\semini_19.png" />
     <Content Include="img\semini_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="img\semini_20.png" />
     <Content Include="img\semini_2a.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

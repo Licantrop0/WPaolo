@@ -44,7 +44,7 @@ namespace SgarbiMix
             //prendo la risorsa dei suoni castandola in un array
             var sr = SoundsResources.ResourceManager
                 .GetResourceSet(CultureInfo.CurrentCulture, true, true)
-                .Cast<DictionaryEntry>().ToArray();
+                .Cast<DictionaryEntry>().OrderBy(i=> i.Key).ToArray();
 
             //istanzio il BackgroundWorker (che gira in un thread separato)
             var bw = new BackgroundWorker() { WorkerReportsProgress = true };

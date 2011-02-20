@@ -253,4 +253,7 @@
   <data name="AskAndShake" xml:space="preserve">
     <value>Ask and Shake!</value>
   </data>
+  <data name="AddGroup" xml:space="preserve">
+    <value>AggiungiGruppo</value>
+  </data>
 </root>

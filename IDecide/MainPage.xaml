@@ -7,12 +7,12 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon"
-	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="Portrait" Orientation="Portrait"
-	shell:SystemTray.IsVisible="True">
+	shell:SystemTray.IsVisible="False">
 	<phone:PhoneApplicationPage.Resources>
 		<Storyboard x:Name="RotateButton" AutoReverse="True">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AskAndShakeTextBlock">

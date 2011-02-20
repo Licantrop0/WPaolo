@@ -34,7 +34,6 @@
             		</RadialGradientBrush>
             	</Setter.Value>
             </Setter>
-            <Setter Property="ClickMode" Value="Press"/>
         </Style>
     </Application.Resources>
 

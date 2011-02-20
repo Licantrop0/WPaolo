@@ -44,33 +44,26 @@
         	<TextBlock.Foreground>
         		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
         			<GradientStop Color="#FFF70404" Offset="0"/>
-        			<GradientStop Color="White" Offset="1"/>
+        			<GradientStop Color="#FFF9F000" Offset="1"/>
         			<GradientStop Color="#FFFD0B0B" Offset="0.486"/>
         		</LinearGradientBrush>
         	</TextBlock.Foreground>
         </TextBlock>
         <TextBlock Text="Questa è solo una demo! Puoi gridare le frasi di Sgarbi solo poche volte al giorno!  Se vuoi dire Capra! o Ignorante! come Sgarbi, in continuazione, devi comprare la versione completa.  Costa meno di un caffè!"
-                   Height="308" Margin="28,0,3,60"
+                   Height="276" Margin="23,0,8,110"
                    VerticalAlignment="Bottom" FontSize="28" TextWrapping="Wrap" OpacityMask="{x:Null}" FontWeight="SemiBold" >
         	<TextBlock.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-        			<GradientStop Color="#FFFD0707"/>
-        			<GradientStop Color="#FF59FF00" Offset="1"/>
-        			<GradientStop Color="#FFFDFDFD" Offset="0.558"/>
-        		</LinearGradientBrush>
+            		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            			<GradientStop Color="#FFFFA400" Offset="0.414"/>
+            			<GradientStop Color="#FFFFDE00" Offset="0.773"/>
+            			<GradientStop Color="#FFFFAF00" Offset="0.591"/>
+            		</LinearGradientBrush>
         	</TextBlock.Foreground>
         </TextBlock>
 
         <HyperlinkButton Name="BuyButton" Content="Clicca e comprala!"
                          FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                         Click="BuyButton_Click" Margin="0,694,0,12" FontWeight="SemiBold" >
-        	<HyperlinkButton.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="#FF43FD02" Offset="0.996"/>
-        			<GradientStop Color="White"/>
-        		</LinearGradientBrush>
-        	</HyperlinkButton.Foreground>
-        </HyperlinkButton>
+                         Click="BuyButton_Click" Margin="0,694,0,12" FontWeight="SemiBold" Foreground="#FF08FF00" />
     </Grid>
  
 

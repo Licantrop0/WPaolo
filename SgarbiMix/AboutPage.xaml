@@ -43,11 +43,11 @@
         </wpcommon:AboutControl.BackgroundStackPanel>
 
         <wpcommon:AboutControl.Foreground>
-            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                <GradientStop Color="#FF65F200" Offset="0" />
-                <GradientStop Color="White" Offset="0.5" />
-                <GradientStop Color="#FFFF0008"  Offset="1" />
-            </LinearGradientBrush>
+            		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            			<GradientStop Color="#FFFFA400" Offset="0.414"/>
+            			<GradientStop Color="#FFFFDE00" Offset="0.773"/>
+            			<GradientStop Color="#FFFFAF00" Offset="0.591"/>
+            		</LinearGradientBrush>
         </wpcommon:AboutControl.Foreground>
         
     </wpcommon:AboutControl>

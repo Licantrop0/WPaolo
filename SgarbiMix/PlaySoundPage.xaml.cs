@@ -41,10 +41,10 @@ namespace SgarbiMix
             if (PlayButtonsStackPanel.Children.Count > 0)
                 return;
 
-            //prendo la risorsa dei suoni castandola in un array ordinato
+            //prendo la risorsa dei suoni castandola in un array
             var sr = SoundsResources.ResourceManager
                 .GetResourceSet(CultureInfo.CurrentCulture, true, true)
-                .Cast<DictionaryEntry>().OrderBy(i=> i.Key).ToArray();
+                .Cast<DictionaryEntry>().ToArray();
 
             //istanzio il BackgroundWorker (che gira in un thread separato)
             var bw = new BackgroundWorker() { WorkerReportsProgress = true };
@@ -71,12 +71,13 @@ namespace SgarbiMix
                 var b = new Button();
                 b.Content = App.Sounds[i].Key;
                 b.Style = (Style)App.Current.Resources["PlayButtonStyle"];
-                switch (i % 3)
-                {
-                    case 0: b.Background = new SolidColorBrush(Colors.Red); break;
-                    case 1: b.Background = new SolidColorBrush(Colors.White); break;
-                    case 2: b.Background = new SolidColorBrush(Colors.Green); break;
-                }
+                //b.Template = (ControlTemplate)App.Current.Resources["GlassButton"];
+                //switch (i % 3)
+                //{
+                //    case 0: b.Background = new SolidColorBrush(Colors.Red); break;
+                //    case 1: b.Background = new SolidColorBrush(Colors.White); break;
+                //    case 2: b.Background = new SolidColorBrush(Colors.Green); break;
+                //}
                 //ATTENZIONE cagata: mi baso sul nome del button per recuperare l'i-esimo sound
                 b.Name = i.ToString();
                 b.Click += (button, evt1) =>

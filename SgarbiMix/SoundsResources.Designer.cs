@@ -174,9 +174,9 @@ namespace SgarbiMix {
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Sono_convinto_che_vi_debbano_licenziare1 {
+        internal static System.IO.UnmanagedMemoryStream Siete_da_licenziare1 {
             get {
-                return ResourceManager.GetStream("Sono_convinto_che_vi_debbano_licenziare1", resourceCulture);
+                return ResourceManager.GetStream("Siete_da_licenziare1", resourceCulture);
             }
         }
         

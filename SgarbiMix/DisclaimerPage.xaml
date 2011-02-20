@@ -41,15 +41,27 @@
         </Grid.Background>
         <TextBlock Name="titleTextBox" Text="Disclaimer"
                    Margin="12,53,12,0"
-                   VerticalAlignment="Top" FontSize="56"
-                   Foreground="#FFFF070C" FontWeight="Bold" TextAlignment="Center" />
-        <TextBlock Text="Questa applicazione è stata creata a scopo puramente ludico.
-Il contenuto degli insulti dell'On. V. Sgarbi può risultare altamente offensivo per alcune persone, pertanto ci dissociamo da eventuali usi impropri dell'applicazione Sgarbi Mix.
-I contenuti multimediali inclusi in Sgarbi Mix sono stati reperiti su Youtube.
-Le basi musicali originali per gli effetti mixer si trovano su www.freedancebeats.com"
-                   Height="643" Margin="12,145,12,0"
+                   VerticalAlignment="Top" FontSize="74.667" FontWeight="Bold" TextAlignment="Center" >
+        	<TextBlock.Foreground>
+        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        			<GradientStop Color="#FFFDFDFD" Offset="1"/>
+        			<GradientStop Color="#FF67FD04" Offset="0.004"/>
+        			<GradientStop Color="#FF69FB09" Offset="0.466"/>
+        		</LinearGradientBrush>
+        	</TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock Text="Questa applicazione è stata creata a scopo puramente ludico. Il contenuto degli insulti dell'On. V. Sgarbi può risultare altamente offensivo per alcune persone, pertanto ci dissociamo da eventuali usi impropri dell'applicazione Sgarbi Mix.
+I contenuti multimediali inclusi in Sgarbi Mix sono stati reperiti su Youtube. Le basi musicali originali per gli effetti mixer si trovano su www.freedancebeats.com"
+                   Height="597" Margin="12,191,12,0"
                    VerticalAlignment="Top" FontSize="30"
-                   TextAlignment="Center" 
-                   Foreground="OrangeRed" TextWrapping="Wrap" />
+                   TextAlignment="Center" TextWrapping="Wrap" FontWeight="SemiBold" FontFamily="Segoe WP Semibold" >
+        	<TextBlock.Foreground>
+        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        			<GradientStop Color="#FFFF0606" Offset="0"/>
+        			<GradientStop Color="White" Offset="1"/>
+        			<GradientStop Color="#FFFF0808" Offset="0.514"/>
+        		</LinearGradientBrush>
+        	</TextBlock.Foreground>
+        </TextBlock>
     </Grid>
 </phone:PhoneApplicationPage>

@@ -38,22 +38,39 @@
         <Grid.Background>
             <ImageBrush ImageSource="sfondo3.jpg" />
         </Grid.Background>
-        <TextBlock Name="titleTextBox" Text="Ops!"
-                   Width="456" Height="109" Margin="12,149,12,0"
-                   VerticalAlignment="Top" FontSize="72"
-                   Foreground="#FFFF0104" TextAlignment="Center" FontWeight="SemiBold" />
-        <TextBlock Text="Questa è solo una demo!
-Puoi gridare le frasi di Sgarbi solo poche volte al giorno! 
-Se vuoi dire Capra! o Ignorante! come Sgarbi, in continuazione, devi comprare la versione completa. 
-Costa meno di un caffè... pensaci è un investimento!"
-                   Height="388" Margin="24,301,0,0"
-                   VerticalAlignment="Top" FontSize="32"
-                   Foreground="White" TextWrapping="Wrap" OpacityMask="{x:Null}" FontWeight="SemiBold" />
+        <TextBlock Name="titleTextBox" Text="Ooops!"
+                   Width="456" Height="109" Margin="12,113,12,0"
+                   VerticalAlignment="Top" FontSize="80" TextAlignment="Center" FontWeight="SemiBold" >
+        	<TextBlock.Foreground>
+        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        			<GradientStop Color="#FFF70404" Offset="0"/>
+        			<GradientStop Color="White" Offset="1"/>
+        			<GradientStop Color="#FFFD0B0B" Offset="0.486"/>
+        		</LinearGradientBrush>
+        	</TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock Text="Questa è solo una demo! Puoi gridare le frasi di Sgarbi solo poche volte al giorno!  Se vuoi dire Capra! o Ignorante! come Sgarbi, in continuazione, devi comprare la versione completa.  Costa meno di un caffè!"
+                   Height="308" Margin="28,0,3,60"
+                   VerticalAlignment="Bottom" FontSize="28" TextWrapping="Wrap" OpacityMask="{x:Null}" FontWeight="SemiBold" >
+        	<TextBlock.Foreground>
+        		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+        			<GradientStop Color="#FFFD0707"/>
+        			<GradientStop Color="#FF59FF00" Offset="1"/>
+        			<GradientStop Color="#FFFDFDFD" Offset="0.558"/>
+        		</LinearGradientBrush>
+        	</TextBlock.Foreground>
+        </TextBlock>
 
         <HyperlinkButton Name="BuyButton" Content="Clicca e comprala!"
                          FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                         Click="BuyButton_Click" Margin="0,694,0,12"
-                         Foreground="#FF00CD00" FontWeight="SemiBold" />
+                         Click="BuyButton_Click" Margin="0,694,0,12" FontWeight="SemiBold" >
+        	<HyperlinkButton.Foreground>
+        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        			<GradientStop Color="#FF43FD02" Offset="0.996"/>
+        			<GradientStop Color="White"/>
+        		</LinearGradientBrush>
+        	</HyperlinkButton.Foreground>
+        </HyperlinkButton>
     </Grid>
  
 

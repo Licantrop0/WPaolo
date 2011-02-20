@@ -40,8 +40,8 @@
         </ScrollViewer>
 
         <MediaElement Name="Base1MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base1.mp3" AutoPlay="False" />
-        <MediaElement Name="Base2MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base2.mp3" />
-        <MediaElement Name="Base3MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base3.mp3" />
+        <MediaElement Name="Base2MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base2.mp3" AutoPlay="False"/>
+        <MediaElement Name="Base3MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base3.mp3" AutoPlay="False"/>
 
     </Grid>
 

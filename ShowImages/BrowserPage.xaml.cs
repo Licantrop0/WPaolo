@@ -15,6 +15,8 @@ namespace ShowImages
             InitializeComponent();
         }
 
+        #region PhonePage
+
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             ChooserWebBrowser.Navigate(Settings.BrowserHistory.Pop());
@@ -22,12 +24,15 @@ namespace ShowImages
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (Settings.BrowserHistory.IsEmpty) return;
+            //se non ho items nella history esco
+            if (Settings.BrowserHistory.Count == 1) return;
             e.Cancel = true;
             //Pop da saltare perchè appena navigo lo mette nello stack
             Settings.BrowserHistory.Pop();
             ChooserWebBrowser.Navigate(Settings.BrowserHistory.Pop());
         }
+
+        #endregion
 
         #region UrlTextBox
 
@@ -54,7 +59,6 @@ namespace ShowImages
         {
             this.Focus();
             LoadingProgress.Visibility = Visibility.Visible;
-            this.Focus();
         }
 
         private void ChooserWebBrowser_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
@@ -77,7 +81,7 @@ namespace ShowImages
 
         private void GoHomeAppBarButton_Click(object sender, EventArgs e)
         {
-            ChooserWebBrowser.Navigate(new Uri("http://www.google.com/m/?site=images"));
+            ChooserWebBrowser.Navigate(Settings.HomePage);
         }
 
         private void AboutApplicationBarMenuItem_Click(object sender, EventArgs e)

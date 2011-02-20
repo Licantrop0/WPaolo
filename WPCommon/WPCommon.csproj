@@ -64,7 +64,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScrollViewerUtilities.cs" />
     <Compile Include="ShakeDetector.cs" />
-    <Compile Include="TiltEffect.cs" />
     <Compile Include="TrialManagement.cs" />
     <Compile Include="XNAAsyncDispatcher.cs" />
   </ItemGroup>

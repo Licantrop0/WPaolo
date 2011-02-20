@@ -162,7 +162,8 @@ namespace BaoGame
             //_gameType = GameType.laKujifunza;
 
             // decide wheter pvp or pvc will be played (TODO: later must be taken from Settings Page)
-            _gameModality = GameModality.playerVsPlayer;
+            //_gameModality = GameModality.playerVsPlayer;
+            _gameModality = GameModality.playerVsCpu;
 
             _state = MatchState.initialization;
             Game();
@@ -485,7 +486,7 @@ namespace BaoGame
                         }
                         else
                         {
-                            if (_playerTurn == 1)
+                            if (_playerTurn == 2)
                             {
                                 _state = MatchState.cpuMove;
                             }

@@ -46,12 +46,12 @@
 
         <StackPanel Grid.Row="1" Margin="12,-100,12,0" VerticalAlignment="Center">
             <TextBlock Text="This is a trial version, if you want the application with full features,"
-                       Foreground="{StaticResource PhoneForegroundBrush}"
+                       Foreground="{StaticResource GreenGradient}"
                        FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                       TextWrapping="Wrap" TextAlignment="Center" />
+                       TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold" />
             <HyperlinkButton Name="BuyButton" Content="click here to buy"
                              FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                             Click="BuyButton_Click" />
+                             Click="BuyButton_Click" FontWeight="Bold" Foreground="{StaticResource GreenGradient}" />
         </StackPanel>
     </Grid>
  

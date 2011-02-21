@@ -35,7 +35,7 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <wpcommon:AboutControl ApplicationName="Capra!">
+    <wpcommon:AboutControl ApplicationName="Capra!" ApplicationVersion="v. 1.1" GetOtherAppsText="Guarda le altre app di WPME!">
 
         <wpcommon:AboutControl.BackgroundStackPanel>
             <ImageBrush ImageSource="Images\sfondo_about.jpg" />

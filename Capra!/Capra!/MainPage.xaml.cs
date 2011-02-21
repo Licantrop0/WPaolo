@@ -15,7 +15,7 @@ using WPCommon;
 
 
 /* 
-    Copyright (c) 2010 WPME
+    Copyright (c) 2010-2011 WPME
 */
 
 namespace Capra
@@ -25,9 +25,9 @@ namespace Capra
         Random Rnd = new Random();
         List<BitmapImage> CapreImages = new List<BitmapImage>();
         SoundEffect CapraSound;
-        SoundEffect CapraIgnoranteSound;
         SoundEffect IgnoranteComeCapraSound;
         int curImg;
+        object mutex = new object();
 
         public MainPage()
         {
@@ -40,6 +40,16 @@ namespace Capra
             // metto a zero quelle della sessione corrente
             // quelle totali voglio prenderle dallo storage
             Settings.CountCapre = 0;
+
+            var sd = new ShakeDetector();
+            sd.ShakeDetected += (sender, e) =>
+            {
+                lock (mutex) //è necessario?
+                {
+                    CapraIgnorante_Shake();
+                }
+            };
+            sd.Start();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -56,10 +66,8 @@ namespace Capra
 
         private void InitializeSound()
         {
-            StreamResourceInfo SoundFileInfo = App.GetResourceStream(new Uri("Sounds/capra.wav", UriKind.Relative));
+            StreamResourceInfo SoundFileInfo = App.GetResourceStream(new Uri("Sounds/capra_b.wav", UriKind.Relative));
             CapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            SoundFileInfo = App.GetResourceStream(new Uri("Sounds/capra_ignorante.wav", UriKind.Relative));
-            CapraIgnoranteSound = SoundEffect.FromStream(SoundFileInfo.Stream);
             SoundFileInfo = App.GetResourceStream(new Uri("Sounds/ignorante_come_capra.wav", UriKind.Relative));
             IgnoranteComeCapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
         }
@@ -109,7 +117,7 @@ namespace Capra
                 }
                 else
                 {
-                    if(Settings.CountCapre == 0)
+                    if(Settings.CountCapre <= 2)
                     {
                         Settings.CountCapre++;
                         CapraSound.Play();
@@ -117,6 +125,35 @@ namespace Capra
                     }
                 }
                 
+            }
+        }
+
+        private void CapraIgnorante_Shake()
+        {
+            if (TrialManagement.IsTrialMode == false)
+            {
+                // normale funzionamento
+                IgnoranteComeCapraSound.Play();
+                SetNewCapraImage();
+            }
+            else 
+            {
+                // trial mode: 1 shake capra al giorno
+                // non incrementa neanche il contatore del totale delle capre
+
+                if (TrialManagement.AlreadyOpenedToday)
+                {
+                    NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    if (Settings.CountCapre <= 2)
+                    {
+                        IgnoranteComeCapraSound.Play();
+                        SetNewCapraImage();
+                        Settings.CountCapre++;
+                    }
+                } 
             }
         }
 

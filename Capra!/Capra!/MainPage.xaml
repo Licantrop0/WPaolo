@@ -35,14 +35,14 @@
 
         <Button Content="Capra!" Click="Capra_Click"
                 Height="180" Width="300" Foreground="#FFFFEB50"
-                Style="{StaticResource CapraButtonStyle}"  />
+                Style="{StaticResource CapraButtonStyle}" Margin="90,283,90,337"  />
         <Button Content="Curiosità" Click="FunFact_Click"
-                Height="100" Width="240" Margin="0,0,0,120"
+                Height="100" Width="240" Margin="119,0,121,110"
                 VerticalAlignment="Bottom" FontSize="36"
                 Foreground="#FFFFEBAC" Background="#7A000000" 
                 Style="{StaticResource CapraButtonStyle}" />
         <Button Content="About" Click="About_Click"
-                Height="100" Width="240" Margin="0,0,0,30"
+                Height="100" Width="240" Margin="119,0,121,24"
                 VerticalAlignment="Bottom" FontSize="36"
                 Foreground="#FFFFEBAC" Background="#7A000000" 
                 Style="{StaticResource CapraButtonStyle}" />

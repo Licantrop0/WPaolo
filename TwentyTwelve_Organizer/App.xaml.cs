@@ -45,8 +45,6 @@ namespace TwentyTwelve_Organizer
 
             // Phone-specific initialization
             InitializePhoneApplication();
-
-
         }
 
         private void InitializeSounds()
@@ -65,6 +63,18 @@ namespace TwentyTwelve_Organizer
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            SetTheme();
+        }
+
+        // Code to execute when the application is activated (brought to foreground)
+        // This code will not execute when the application is first launched
+        private void Application_Activated(object sender, ActivatedEventArgs e)
+        {
+            SetTheme();
+        }
+
+        private void SetTheme()
+        {
             if (Settings.LightThemeEnabled)
             {
                 var isource = new BitmapImage(new Uri("Images/2012background-white.jpg", UriKind.Relative));
@@ -74,11 +84,6 @@ namespace TwentyTwelve_Organizer
             }
         }
 
-        // Code to execute when the application is activated (brought to foreground)
-        // This code will not execute when the application is first launched
-        private void Application_Activated(object sender, ActivatedEventArgs e)
-        {
-        }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing

@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
 
     <Application.Resources>
@@ -12,11 +13,11 @@
         
         <LinearGradientBrush x:Name="GreenGradient" EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF2DD000" Offset="0"/>
-            <GradientStop Color="#FF7C7C7C" Offset="1"/>
+            <GradientStop Color="#FFB5E5AA" Offset="1"/>
         </LinearGradientBrush>
 
         <Style x:Key="MetallicButtonStyle" TargetType="Button">
-            <Setter Property="WPCommon:TiltEffect.IsTiltEnabled" Value="True"/>
+            <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True"/>
             <Setter Property="FontFamily" Value="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas" />
             <Setter Property="FontSize" Value="35" />
             <Setter Property="Template">

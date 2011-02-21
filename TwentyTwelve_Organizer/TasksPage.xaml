@@ -65,9 +65,9 @@
                               VerticalAlignment="Center" />
                     <Rectangle Height="32" Width="8" Margin="-15,0,8,0"
                                Fill="{Binding Path=Difficulty, Converter={StaticResource TaskDifficultyConverter}}"  />
-                    <Button Width="300" VerticalAlignment="Center"
+                    <Button Width="330" VerticalAlignment="Center"
                                     Click="EditTaskButton_Click"
-                                    WPCommon:TiltEffect.IsTiltEnabled="True">
+                                    toolkit:TiltEffect.IsTiltEnabled="True">
                         <Button.Template>
                             <ControlTemplate />
                         </Button.Template>
@@ -90,12 +90,11 @@
             <controls:Pivot.Title>
                 <TextBlock Text="2012 Organizer" Style="{StaticResource GreenTextBlockStyle}" />
             </controls:Pivot.Title>
-
             <controls:PivotItem >
                 <controls:PivotItem.Header>
                     <TextBlock Text="To do" Style="{StaticResource GreenTextBlockStyle}" />
                 </controls:PivotItem.Header>
-                <ListBox Margin="6"
+                <ListBox Margin="0,-24,0,0"
                          ItemTemplate="{StaticResource TaskTemplate}"
                          ItemsSource="{Binding Source={StaticResource ToDoCVS}}">
                     <ItemsControl.ItemsPanel>
@@ -105,12 +104,11 @@
                     </ItemsControl.ItemsPanel>
                 </ListBox>
             </controls:PivotItem>
-
-            <controls:PivotItem >
+            <controls:PivotItem>
                 <controls:PivotItem.Header>
                     <TextBlock Text="Completed" Style="{StaticResource GreenTextBlockStyle}" />
                 </controls:PivotItem.Header>
-                <ListBox Margin="6"
+                <ListBox Margin="0,-24,0,0"
                          ItemTemplate="{StaticResource TaskTemplate}"
                          ItemsSource="{Binding Source={StaticResource CompletedCVS}}">
                     <ItemsControl.ItemsPanel>
@@ -121,7 +119,6 @@
                 </ListBox>
             </controls:PivotItem>
         </controls:Pivot>
-
 
         <Button Content="Add Task" Click="AddTaskButton_Click"
                 Height="70" Margin="6" Grid.Row="1"

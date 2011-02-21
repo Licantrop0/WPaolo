@@ -25,6 +25,8 @@ namespace Capra
         Random Rnd = new Random();
         List<BitmapImage> CapreImages = new List<BitmapImage>();
         SoundEffect CapraSound;
+        SoundEffect CapraIgnoranteSound;
+        SoundEffect IgnoranteComeCapraSound;
         int curImg;
 
         public MainPage()
@@ -54,8 +56,12 @@ namespace Capra
 
         private void InitializeSound()
         {
-            StreamResourceInfo SoundFileInfo = App.GetResourceStream(new Uri("capra.wav", UriKind.Relative));
+            StreamResourceInfo SoundFileInfo = App.GetResourceStream(new Uri("Sounds/capra.wav", UriKind.Relative));
             CapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            SoundFileInfo = App.GetResourceStream(new Uri("Sounds/capra_ignorante.wav", UriKind.Relative));
+            CapraIgnoranteSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            SoundFileInfo = App.GetResourceStream(new Uri("Sounds/ignorante_come_capra.wav", UriKind.Relative));
+            IgnoranteComeCapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
         }
 
         //===============================================================================

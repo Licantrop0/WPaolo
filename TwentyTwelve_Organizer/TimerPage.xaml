@@ -1,116 +1,115 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="TwentyTwelve_Organizer.TimerPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
-    FontSize="26" Foreground="{StaticResource GreenGradient}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False"
-    Loaded="PhoneApplicationPage_Loaded">
+	x:Class="TwentyTwelve_Organizer.TimerPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+	FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
+	FontSize="26" Foreground="{StaticResource GreenGradient}"
+	SupportedOrientations="Portrait" Orientation="Portrait"
+	mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+	shell:SystemTray.IsVisible="False"
+	Loaded="PhoneApplicationPage_Loaded">
 
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
-            </toolkit:NavigationInTransition.Backward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
+	<toolkit:TransitionService.NavigationInTransition>
+		<toolkit:NavigationInTransition>
+			<toolkit:NavigationInTransition.Backward>
+				<toolkit:SlideTransition Mode="SlideRightFadeIn" />
+			</toolkit:NavigationInTransition.Backward>
+		</toolkit:NavigationInTransition>
+	</toolkit:TransitionService.NavigationInTransition>
+	<toolkit:TransitionService.NavigationOutTransition>
+		<toolkit:NavigationOutTransition>
+			<toolkit:NavigationOutTransition.Backward>
+				<toolkit:SlideTransition Mode="SlideRightFadeOut" />
+			</toolkit:NavigationOutTransition.Backward>
+			<toolkit:NavigationOutTransition.Forward>
+				<toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+			</toolkit:NavigationOutTransition.Forward>
+		</toolkit:NavigationOutTransition>
+	</toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImage}" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+	<Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImage}" >
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,0">
-            <TextBlock x:Name="ApplicationTitle" Text="2012 Organizer" />
-            <TextBlock x:Name="PageTitle" Text="The End is coming" Margin="9,-7,0,0" FontSize="40" />
-        </StackPanel>
+		<StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,0">
+			<TextBlock x:Name="ApplicationTitle" Text="2012 Organizer" />
+			<TextBlock x:Name="PageTitle" Text="The End is coming" Margin="9,-7,0,0" FontSize="40" />
+		</StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid HorizontalAlignment="Center" Margin="6" Grid.Row="0" >
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Name="t_countdowndays" Text=" " Grid.Row="0" Grid.Column="0" TextAlignment="Center" Margin="6,0,30,6" />
-                <TextBlock Name="t_countdownhours" Grid.Row="0" Grid.Column="1" TextAlignment="Center" Margin="6,0,30,6" />
-                <TextBlock Name="t_countdownminutes" Grid.Row="0" Grid.Column="2" TextAlignment="Center" Margin="6,0,30,6" />
-                <TextBlock Name="t_countdownseconds" Grid.Row="0" Grid.Column="3" TextAlignment="Center" Margin="6,0,0,6" />
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Grid HorizontalAlignment="Center" Margin="6" Grid.Row="0" >
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<TextBlock Name="t_countdowndays" Text=" " Grid.Row="0" Grid.Column="0" TextAlignment="Center" Margin="6,0,30,6" />
+				<TextBlock Name="t_countdownhours" Grid.Row="0" Grid.Column="1" TextAlignment="Center" Margin="6,0,30,6" />
+				<TextBlock Name="t_countdownminutes" Grid.Row="0" Grid.Column="2" TextAlignment="Center" Margin="6,0,30,6" />
+				<TextBlock Name="t_countdownseconds" Grid.Row="0" Grid.Column="3" TextAlignment="Center" Margin="6,0,0,6" />
 
-                <TextBlock Text="Days" Grid.Row="1" Grid.Column="0" Margin="6,0,30,6" />
-                <TextBlock Text="Hours" Grid.Row="1" Grid.Column="1" Margin="6,0,30,6" />
-                <TextBlock Text="Minutes" Grid.Row="1" Grid.Column="2" Margin="6,0,30,6" />
-                <TextBlock Text="Seconds" Grid.Row="1" Grid.Column="3" Margin="6,0,0,6" />
-            </Grid>
+				<TextBlock Text="Days" Grid.Row="1" Grid.Column="0" Margin="6,0,30,6" />
+				<TextBlock Text="Hours" Grid.Row="1" Grid.Column="1" Margin="6,0,30,6" />
+				<TextBlock Text="Minutes" Grid.Row="1" Grid.Column="2" Margin="6,0,30,6" />
+				<TextBlock Text="Seconds" Grid.Row="1" Grid.Column="3" Margin="6,0,0,6" />
+			</Grid>
 
-            <TextBlock Name="ProgressTextBlock" Text=" " HorizontalAlignment="Center"  Grid.Row="1"  />
-            <ProgressBar Name="TasksProgressBar" Margin="0,10,0,10"  Grid.Row="2"
-                         VerticalAlignment="Center" Foreground="{StaticResource GreenGradient}" >
-                <ProgressBar.RenderTransform>
-                    <ScaleTransform ScaleY="4" />
-                </ProgressBar.RenderTransform>
-            </ProgressBar>
+			<TextBlock Name="ProgressTextBlock" Text=" " HorizontalAlignment="Center"  Grid.Row="1"  />
+			<ProgressBar Name="TasksProgressBar" Margin="0,10,0,22"  Grid.Row="2"
+						 VerticalAlignment="Center" Foreground="{StaticResource GreenGradient}" >
+				<ProgressBar.RenderTransform>
+					<ScaleTransform ScaleY="4" />
+				</ProgressBar.RenderTransform>
+			</ProgressBar>
+				<TextBlock x:Name="EvalTextBlock" Grid.Row="3"
+					TextAlignment="Center" TextWrapping="Wrap"
+					Padding="10" VerticalAlignment="Center"
+					FontSize="34" FontWeight="Bold" FontStyle="Italic" >
+				</TextBlock>
+			<TextBlock Name="DemoTextBlock" Text="Demo" Grid.Row="3"
+					   FontSize="96" Visibility="Collapsed" Opacity="0"
+					   HorizontalAlignment="Center" VerticalAlignment="Center"
+					   TextAlignment="Center" FontStyle="Italic">
+				<TextBlock.RenderTransform>
+					<CompositeTransform Rotation="-30" ScaleX="2" CenterX="100" CenterY="100" />
+				</TextBlock.RenderTransform>
+			</TextBlock>
 
-            <TextBlock Name="EvalTextBlock" Margin="0,10,0,0"  Grid.Row="3" 
-                       TextAlignment="Center" Foreground="{StaticResource PhoneForegroundBrush}"
-                       Padding="10" TextWrapping="Wrap" VerticalAlignment="Center"
-                       Opacity="0.8" FontWeight="Bold" FontStyle="Italic" />
+			<Button Content="Tasks" Click="ViewTaskButton_Click" Grid.Row="4" 
+					Height="120" Width="300" Margin="0,10,0,0"
+					Style="{StaticResource MetallicButtonStyle}"
+					ManipulationStarted="Button_ManipulationStarted"
+					ManipulationCompleted="Button_ManipulationCompleted" />
 
-            <TextBlock Name="DemoTextBlock" Text="Demo"
-                       FontSize="96" Visibility="Collapsed"
-                       HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3"
-                       TextAlignment="Center" FontStyle="Italic" Opacity="0.8">
-                <TextBlock.RenderTransform>
-            		<CompositeTransform Rotation="-30" ScaleX="2" CenterX="100" CenterY="100" />
-            	</TextBlock.RenderTransform>
-            </TextBlock>
+			<Button Content="About" Click="AboutButton_Click" Grid.Row="5" 
+					Width="300" Height="60" Margin="0,10,0,10"
+					Style="{StaticResource MetallicButtonStyle}"
+					ManipulationStarted="Button_ManipulationStarted"
+					ManipulationCompleted="Button_ManipulationCompleted">
+			</Button>
+		</Grid>
 
-            <Button Content="Tasks" Click="ViewTaskButton_Click" Grid.Row="4" 
-                    Height="120" Width="300" Margin="0,10,0,0"
-                    Style="{StaticResource MetallicButtonStyle}"
-                    ManipulationStarted="Button_ManipulationStarted"
-                    ManipulationCompleted="Button_ManipulationCompleted" />
-
-            <Button Content="About" Click="AboutButton_Click" Grid.Row="5" 
-                    Width="300" Height="60" Margin="0,10,0,10"
-                    Style="{StaticResource MetallicButtonStyle}"
-                    ManipulationStarted="Button_ManipulationStarted"
-                    ManipulationCompleted="Button_ManipulationCompleted">
-            </Button>
-        </Grid>
-
-    </Grid>
+	</Grid>
 
 </phone:PhoneApplicationPage>
-    
+	

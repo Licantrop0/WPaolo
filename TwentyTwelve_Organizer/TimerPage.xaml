@@ -87,7 +87,7 @@
 					FontSize="34" FontWeight="Bold" FontStyle="Italic" >
 				</TextBlock>
 			<TextBlock Name="DemoTextBlock" Text="Demo" Grid.Row="3"
-					   FontSize="96" Visibility="Collapsed" Opacity="0"
+					   FontSize="96" Visibility="Collapsed" Opacity="0.6"
 					   HorizontalAlignment="Center" VerticalAlignment="Center"
 					   TextAlignment="Center" FontStyle="Italic">
 				<TextBlock.RenderTransform>

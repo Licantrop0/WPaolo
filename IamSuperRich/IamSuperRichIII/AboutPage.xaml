@@ -11,10 +11,10 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
 
-    <wpcommon:AboutControl Background="Black" ApplicationName="I am super rich III">
+    <wpcommon:AboutControl Background="Black" ApplicationName="I am super rich III" BackgroundStackPanel="Black">
 
         <wpcommon:AboutControl.Foreground>
             <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">

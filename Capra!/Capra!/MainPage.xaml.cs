@@ -27,42 +27,19 @@ namespace Capra
         SoundEffect CapraSound;
         SoundEffect IgnoranteComeCapraSound;
         int curImg;
-        object mutex = new object();
 
         public MainPage()
         {
-            // init base components
             InitializeComponent();
-
-            // first load sounds
             InitializeSound();
-
-            // metto a zero quelle della sessione corrente
-            // quelle totali voglio prenderle dallo storage
-            Settings.CountCapre = 0;
 
             var sd = new ShakeDetector();
             sd.ShakeDetected += (sender, e) =>
             {
-                lock (mutex) //è necessario?
-                {
-                    CapraIgnorante_Shake();
-                }
+                Dispatcher.BeginInvoke(() => { CapraIgnorante_Shake(); });
             };
             sd.Start();
         }
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            //Carica le immagini delle capre
-            for (int i = 0; i <= 17; i++)
-                CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".jpg", UriKind.Relative)));
-        }
-
-
-        //===============================================================================
-        //                        SOUNDS
-        //===============================================================================
 
         private void InitializeSound()
         {
@@ -72,107 +49,71 @@ namespace Capra
             IgnoranteComeCapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
         }
 
-        //===============================================================================
-        //                        IMAGES
-        //===============================================================================
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Carica le immagini delle capre
+            for (int i = 0; i <= 17; i++)
+                CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".jpg", UriKind.Relative)));
+        }
 
         private void SetNewCapraImage()
         {
-            // bug fix: a volte ri-genera a caso l'img precedente
+            // a volte ri-genera a caso l'img precedente
             // controllo l'index per evitarlo
-            int nextImg = Rnd.Next(CapreImages.Count);
-            while (nextImg == curImg)
-            {
-                nextImg = Rnd.Next(CapreImages.Count);
-            }
+            int nextImg;
+            do { nextImg = Rnd.Next(CapreImages.Count); }
+            while (curImg == nextImg);
 
             CapraImage.ImageSource = CapreImages[nextImg];
             curImg = nextImg;
         }
 
-
-        //===============================================================================
-        //                        MAIN ACTIONS
-        //===============================================================================
+        #region Click Events
 
         private void Capra_Click(object sender, RoutedEventArgs e)
         {
-            if (TrialManagement.IsTrialMode == false)
+            if (CheckTrial())
             {
-                // normale funzionamento
-
-                Settings.CountCapre++;
-                Settings.TotCapre++;
                 CapraSound.Play();
                 SetNewCapraImage();
-            }
-            else
-            {         
-                // trial mode: 1 capra al giorno
-                // non incrementa neanche il contatore del totale delle capre
-
-                if (TrialManagement.AlreadyOpenedToday)
-                { 
-                    NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-                }
-                else
-                {
-                    if(Settings.CountCapre <= 2)
-                    {
-                        Settings.CountCapre++;
-                        CapraSound.Play();
-                        SetNewCapraImage();
-                    }
-                }
-                
+                Settings.CountCapre++;
+                Settings.TotCapre++;
             }
         }
 
         private void CapraIgnorante_Shake()
         {
-            if (TrialManagement.IsTrialMode == false)
+            if (CheckTrial())
             {
-                // normale funzionamento
                 IgnoranteComeCapraSound.Play();
-                SetNewCapraImage();
-            }
-            else 
-            {
-                // trial mode: 1 shake capra al giorno
-                // non incrementa neanche il contatore del totale delle capre
-
-                if (TrialManagement.AlreadyOpenedToday)
-                {
-                    NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-                }
-                else
-                {
-                    if (Settings.CountCapre <= 2)
-                    {
-                        IgnoranteComeCapraSound.Play();
-                        SetNewCapraImage();
-                        Settings.CountCapre++;
-                    }
-                } 
+                //SetNewCapraImage();
+                Settings.CountCapre++;
             }
         }
 
         private void FunFact_Click(object sender, RoutedEventArgs e)
         {
-
             if (TrialManagement.IsTrialMode)
-            {
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-            }
             else
-            {
                 NavigationService.Navigate(new Uri("/FunFactPage.xaml", UriKind.Relative));
-            }
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+        } 
+
+        #endregion
+
+        private bool CheckTrial()
+        {
+            if (TrialManagement.IsTrialMode && (App.AlreadyOpenedToday || Settings.CountCapre >= 3))
+            {
+                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
+                return false;
+            }
+            return true;
         }
 
     }

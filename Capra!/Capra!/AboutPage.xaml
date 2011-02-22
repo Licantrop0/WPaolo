@@ -35,11 +35,9 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <wpcommon:AboutControl ApplicationName="Capra!" ApplicationVersion="v. 1.1" GetOtherAppsText="Guarda le altre app di WPME!">
-
-        <wpcommon:AboutControl.BackgroundStackPanel>
-            <ImageBrush ImageSource="Images\sfondo_about.jpg" />
-        </wpcommon:AboutControl.BackgroundStackPanel>
+    <wpcommon:AboutControl Name="WPMEAbout" ApplicationName="Capra!" MinFontSize="40"
+                           GetOtherAppsText="Guarda le altre app di WPME!"
+                           BackgroundStackPanel="{StaticResource SfondoCapre}">
      
         <wpcommon:AboutControl.Foreground>
             <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">

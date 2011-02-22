@@ -8,9 +8,12 @@
     xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
 
     <Application.Resources>
+        <ImageBrush x:Key="SfondoCapre" ImageSource="Images\sfondo_about.jpg" />
+        
         <Style x:Key="CapraButtonStyle" TargetType="Button">
-            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background" Value="#8B000000" />
+            <Setter Property="Foreground" Value="#FFFFEBAC" />
             <Setter Property="FontFamily" Value="/Capra!;component/Fonts/Fonts.zip#Forte" />
             <Setter Property="FontSize" Value="56" />
             <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True"/>

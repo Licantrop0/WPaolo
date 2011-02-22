@@ -83,6 +83,8 @@ namespace BaoGame
         // graphical resources
         ImageSource[] _imageSourceArray;
 
+        AbsAI _ai;
+
         #endregion
 
         public GamePage()
@@ -105,6 +107,11 @@ namespace BaoGame
             _actionTimer.Stop();
 
             _bGraphicEngineRunning = false;
+
+            // Initialize AI
+            _ai = new AbsAI();
+            _ai.Pli = 7;
+            _ai.Level = 1;  // 0 very hard - 1 hard - 2 medium - 3 easy
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -499,9 +506,10 @@ namespace BaoGame
 
                     messageBox.Text = "Computer is thinking...";
 
-                    GTree<BaoMinimaxElement> minimaxTree = new GTree<BaoMinimaxElement>(new BaoMinimaxElement(_actualGameState));
+                    //GTree<BaoMinimaxElement> minimaxTree = new GTree<BaoMinimaxElement>(new BaoMinimaxElement(_actualGameState));
+                    _ai.InitializeTree(_actualGameState);
                     GC.Collect();   // force the garbace collector to clean the memory
-                    BaoMove cpuMove = MiniMax(minimaxTree, 1);
+                    BaoMove cpuMove = _ai.MiniMax();
 
                     messageBox.Text = "Computer moves";
 
@@ -888,102 +896,5 @@ namespace BaoGame
 
             Game();
         }
-
-        public static BaoMove MiniMax(GTree<BaoMinimaxElement> minimaxTree, int pli)
-        {
-            float maxScore;
-
-            // minimax forward tree creation
-            int numOfStates = 1;    // for testing and debug and possible extension
-            Byte currPlayer = 2;    // CPU move first, then player 1 countermove and so on, until pli depth
-
-            bool newBranch;         // begins true if there is at least one branch from the current layer
-            int depth = 0;          // depth of the tree (root is at depth 0)
-            do
-            {
-                newBranch = false;
-
-                int dummyDebug = 0;
-
-                foreach (Node<BaoMinimaxElement> node in minimaxTree.Layers[depth])
-                {
-                    BaoGameState gs = node.Content.gameState;
-                    dummyDebug++;
-
-                    switch (gs.WinLoseCondition(currPlayer))
-                    {
-                        case WinCondition.Player1:
-                            node.Content.Score = float.MinValue;
-                            break;
-
-                        case WinCondition.Player2:
-                            node.Content.Score = float.MaxValue;
-                            break;
-
-                        case WinCondition.none:
-                            List<BaoGameState> derivedStates = gs.GenerateDerivedStates(currPlayer);
-
-                            foreach (BaoGameState ds in derivedStates)
-                            {
-                                BaoMinimaxElement e = new BaoMinimaxElement(ds);
-                                node.AddChild(e);
-                                numOfStates++;
-                            }
-
-                            newBranch = true;
-                            break;
-                    }
-                }
-
-                currPlayer = (currPlayer == 1) ? (Byte)2 : (Byte)1;
-
-                depth++;
-            }
-            while (depth < pli && newBranch);
-
-            // ok forward state is done, I evaluate all the nodes in the deepest layer
-            foreach (Node<BaoMinimaxElement> n in minimaxTree.Layers[minimaxTree.Layers.Count - 1])
-            {
-                n.Content.Score = n.Content.gameState.EvaluateGameState();
-            }
-
-            // now I climb up the tree, resolving minimax
-            for (int backDepth = depth - 1; backDepth >= 1; backDepth--)
-            {
-                // min or max?
-                currPlayer = minimaxTree.Layers[backDepth][0].Content.gameState.Player;
-
-                if (currPlayer == 1)    // maximize
-                {
-                    foreach (var node in minimaxTree.Layers[backDepth].Where(node => node.Children.Count > 0))
-                    {
-                        node.Content.Score = node.Children.Max(n => n.Content.Score);
-                    }
-
-                }
-                else                    // minimize
-                {
-                    foreach (var node in minimaxTree.Layers[backDepth].Where(node => node.Children.Count > 0))
-                    {
-                        node.Content.Score = node.Children.Min(n => n.Content.Score);
-                    }
-                }
-            }
-
-            // Now I am in the root, I calculate the last argmax, that will be the best possible move!
-            BaoMove CPUMove = null;
-            maxScore = float.MinValue;
-            foreach (Node<BaoMinimaxElement> node in minimaxTree.Root.Children)
-            {
-                if (node.Content.Score >= maxScore)
-                {
-                    CPUMove = node.Content.gameState.Move;
-                    maxScore = node.Content.Score;
-                }
-            }
-
-            return CPUMove;
-        }
-
     }
 }

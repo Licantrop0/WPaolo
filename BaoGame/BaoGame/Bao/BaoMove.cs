@@ -46,34 +46,6 @@ namespace Bao
 
     #region public methods
         
-        /*public static bool operator == (BaoMove leftWise, BaoMove rightWise)
-        {
-            if (leftWise.rowBox == rightWise.rowBox &&
-                leftWise.columnBox == rightWise.columnBox &&
-                    leftWise.left == rightWise.left)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public static bool operator != (BaoMove leftWise, BaoMove rightWise)
-        {
-            if (leftWise.rowBox != rightWise.rowBox ||
-                leftWise.columnBox != rightWise.columnBox ||
-                    leftWise.left != rightWise.left)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }*/
-
         public bool Equal(BaoMove rightWise)
         {
             if (ShimoEqual(rightWise) && left == rightWise.left)

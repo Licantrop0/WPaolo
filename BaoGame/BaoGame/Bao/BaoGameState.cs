@@ -25,9 +25,6 @@ namespace Bao
         Player2
     }
 
-    // devo decidere se la sottolineatura della buca la faccio da esterno, oppure con le
-    // azioni startNamuaMoveUnderlined e startMtajiMoveUnderlined
-    // forse si potrebbero sfruttare le azioni...
     public enum ActionType
     {
         none,
@@ -478,13 +475,13 @@ namespace Bao
 
                 if (left)
                 {
-                    _board[row, col + 1]++;
-                    _board[row, col + 2]++;
+                    _board[row, col - 1]++;
+                    _board[row, col - 2]++;
                 }
                 else
                 {
-                    _board[row, col - 1]++;
-                    _board[row, col - 2]++;
+                    _board[row, col + 1]++;
+                    _board[row, col + 2]++;
                 }
             }
         }
@@ -522,20 +519,20 @@ namespace Bao
 
                 if (left)
                 {
-                    _board[row, col + 1]++;
-                    _board[row, col + 2]++;
+                    _board[row, col - 1]++;
+                    _board[row, col - 2]++;
 
-                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col + (Byte)1), _board[row, col]));
-                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col + (Byte)2), _board[row, col]));
+                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col - (Byte)1), _board[row, col - (Byte)1]));
+                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col - (Byte)2), _board[row, col - (Byte)2]));
 
                 }
                 else
                 {
-                    _board[row, col - 1]++;
-                    _board[row, col - 2]++;
+                    _board[row, col + 1]++;
+                    _board[row, col + 2]++;
 
-                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col - (Byte)1), _board[row, col]));
-                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col - (Byte)2), _board[row, col]));
+                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col + (Byte)1), _board[row, col + (Byte)1]));
+                    actionList.Enqueue(new ScreenAction(ActionType.sowOneSeed, row, (Byte)(col + (Byte)2), _board[row, col + (Byte)2]));
                 }
             }
         }
@@ -1265,56 +1262,93 @@ namespace Bao
 
         public float EvaluateGameState()
         {
-            // TODO: riscrivere il codice che fa schifo al cazzo
-
             float CPUscore = 0.0f;
-            int emptyFronRowShimo = 0;
+            int emptyFrontRowShimo;
+            float backRowKeteScore = 9;
+            float emptyInnerRowPenalty = 7;
 
-            float[] frontRowKeteLookUp = {0,5,10,14,18,21,24,26,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52};
+            float[] frontRowKeteLookUpNamua = {0,10,17,24,30,35,39,42,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68};
+            float[] frontRowKeteLookUpMtaji = {0, 5,17,24,30,35,39,42,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68};
+            float[] nyumbaKeteLookUp        = {0, 7,14,21,28,35,42,49,56,63,70,77,84,91,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116};
 
             int i;
 
-            // every kete in the back row score 5 points
+            // every kete in the back row score backRowKeteScore points
             for (i = 1; i <= 8; i++)
             {
-                CPUscore += _board[0, i] * 5;
+                CPUscore += _board[0, i] * backRowKeteScore;
             }
 
-            // Every kete in the front row score depending on look up
+            // Every kete in the front row score depending on look up and game stage
+            emptyFrontRowShimo = 0;
             for (i = 1; i <= 8; i++)
             {
-                CPUscore += _board[1, i] * frontRowKeteLookUp[_board[1, i]];
-
+                if (_namua)
+                {
+                    if (i == 4 && _nyumba2)  // nyumba
+                    {
+                        CPUscore += nyumbaKeteLookUp[_board[1, i]];
+                    }
+                    else
+                    {
+                        CPUscore += frontRowKeteLookUpNamua[_board[1, i]];
+                    }
+                }
+                else
+                {
+                    CPUscore += frontRowKeteLookUpMtaji[_board[1, i]];
+                }
+                
                 if (_board[1, i] == 0)
-                    emptyFronRowShimo++;
+                    emptyFrontRowShimo++;
             }
 
             // Put a penality for every empty front row after the second one
-            if (emptyFronRowShimo >= 2)
-                CPUscore -= (emptyFronRowShimo - 2) * 5;
-
-            emptyFronRowShimo = 0;
+            if (emptyFrontRowShimo >= 2)
+            {
+                CPUscore -= (emptyFrontRowShimo - 2) * emptyInnerRowPenalty;
+            }
+                
+            emptyFrontRowShimo = 0;
 
             // same logic for the player, score is the opposite
-            // every kete in the back row score 5 points
+
+            // every kete in the back row score backRowKeteScore points
             for (i = 1; i <= 8; i++)
             {
-                CPUscore -= _board[3, i] * 5;
+                CPUscore -= _board[3, i] * backRowKeteScore;
             }
 
-            // Every kete in the front row score depending on look up
+            // Every kete in the front row score depending on look up and game stage
+            emptyFrontRowShimo = 0;
             for (i = 1; i <= 8; i++)
             {
-                CPUscore -= _board[2, i] * frontRowKeteLookUp[_board[2, i]];
+                if (_namua)
+                {
+                    if (i == 5 && _nyumba1)  // nyumba
+                    {
+                        CPUscore -= nyumbaKeteLookUp[_board[2, i]];
+                    }
+                    else
+                    {
+                        CPUscore -= frontRowKeteLookUpNamua[_board[2, i]];
+                    }
+                }
+                else
+                {
+                    CPUscore -= frontRowKeteLookUpMtaji[_board[2, i]];
+                }
 
-                if (_board[2, i] == 0)
-                    emptyFronRowShimo++;
+                if (_board[1, i] == 0)
+                    emptyFrontRowShimo++;
             }
 
             // Put a penality for every empty front row after the second one
-            if (emptyFronRowShimo >= 2)
-                CPUscore += (emptyFronRowShimo - 2) * 5;
-
+            if (emptyFrontRowShimo >= 2)
+            {
+                CPUscore += (emptyFrontRowShimo - 2) * emptyInnerRowPenalty;
+            }
+                
             return CPUscore;
         }
 

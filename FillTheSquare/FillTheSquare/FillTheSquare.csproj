@@ -127,6 +127,7 @@
     <Resource Include="Phil\guardaabout.png" />
     <Resource Include="Phil\bravorecords.png" />
     <Resource Include="Phil\istruzione.png" />
+    <Resource Include="Phil\libro_colore.png" />
     <Content Include="Sounds\Error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

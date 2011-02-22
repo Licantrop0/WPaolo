@@ -86,12 +86,9 @@ namespace BaoGame
             {
                 newBranch = false;
 
-                int dummyDebug = 0;
-
                 foreach (Node<BaoMinimaxElement> node in _minimaxTree.Layers[depth])
                 {
                     BaoGameState gs = node.Content.gameState;
-                    dummyDebug++;
 
                     switch (gs.WinLoseCondition(currPlayer))
                     {

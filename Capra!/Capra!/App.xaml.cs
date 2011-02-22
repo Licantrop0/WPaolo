@@ -21,6 +21,8 @@ namespace Capra
 {
     public partial class App : Application
     {
+        public static bool AlreadyOpenedToday;
+
         // Provides easy access to the root frame of the Phone Application.
         public PhoneApplicationFrame RootFrame { get; private set; }
 
@@ -55,6 +57,7 @@ namespace Capra
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            AlreadyOpenedToday = WPCommon.TrialManagement.AlreadyOpenedToday;
         }
 
         // Code to execute when the application is activated (brought to foreground)

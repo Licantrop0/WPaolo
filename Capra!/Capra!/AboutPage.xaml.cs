@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using System.Reflection;
 
 namespace Capra
 {
@@ -18,6 +19,8 @@ namespace Capra
         public AboutPage()
         {
             InitializeComponent();
+            var name = Assembly.GetExecutingAssembly().FullName;
+            WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString(); 
         }
     }
 }

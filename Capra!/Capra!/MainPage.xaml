@@ -15,6 +15,13 @@
     shell:SystemTray.IsVisible="False"    
     Loaded="PhoneApplicationPage_Loaded">
 
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
     <toolkit:TransitionService.NavigationOutTransition>
         <toolkit:NavigationOutTransition>
             <toolkit:NavigationOutTransition.Backward>
@@ -26,26 +33,28 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" >
         <Grid.Background>
             <ImageBrush x:Name="CapraImage"
                         ImageSource="Images\sfondo_about.jpg"
                         Stretch="UniformToFill" />
         </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <Button Content="Capra!" Click="Capra_Click"
+        <Button Content="Capra!" Click="Capra_Click" Grid.Row="0"
                 Height="180" Width="300" Foreground="#FFFFEB50"
-                Style="{StaticResource CapraButtonStyle}" Margin="90,283,90,337"  />
-        <Button Content="Curiosità" Click="FunFact_Click"
-                Height="100" Width="240" Margin="119,0,121,110"
-                VerticalAlignment="Bottom" FontSize="36"
-                Foreground="#FFFFEBAC" Background="#7A000000" 
                 Style="{StaticResource CapraButtonStyle}" />
-        <Button Content="About" Click="About_Click"
-                Height="100" Width="240" Margin="119,0,121,24"
-                VerticalAlignment="Bottom" FontSize="36"
-                Foreground="#FFFFEBAC" Background="#7A000000" 
-                Style="{StaticResource CapraButtonStyle}" />
+        
+        <Button Content="Curiosità" Click="FunFact_Click" Grid.Row="1"
+                Height="100" Width="240" FontSize="36"
+                Background="#7A000000" Style="{StaticResource CapraButtonStyle}" />
+        
+        <Button Content="About" Click="About_Click" Grid.Row="2"
+                Height="100" Width="240" FontSize="36"
+                Background="#7A000000" Style="{StaticResource CapraButtonStyle}" />
     </Grid>
-    
 </phone:PhoneApplicationPage>

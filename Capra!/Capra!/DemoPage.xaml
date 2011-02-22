@@ -35,25 +35,29 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <ImageBrush ImageSource="Images\sfondo_about.jpg" />
-        </Grid.Background>
-        <TextBlock Name="titleTextBox" Text="Ops!"
-                   Width="456" Height="109" Margin="12,40,12,0"
-                   VerticalAlignment="Top" FontSize="72"
-                   Foreground="#FFFFEB50" TextAlignment="Center"  />
-        <TextBlock Text="Questa è solo una demo!
-Puoi dire Capra! una sola volta al giorno, e non hai accesso alle curiosità e agli obiettivi. Se vuoi dire Capra! come Sgarbi, in continuazione, devi comprare la versione completa. 
-Costa meno di un caffè... pensaci è un investimento!"
-                   Height="400" Margin="12,170,12,0"
-                   VerticalAlignment="Top" FontSize="32"
-                   Foreground="#FFFFF9B8" TextWrapping="Wrap" />
+    <Grid x:Name="LayoutRoot" Background="{StaticResource SfondoCapre}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Ops!" Grid.Row="0"
+                   FontSize="72" Margin="0,30"
+                   Foreground="#FFFFEB50"
+                   TextAlignment="Center"  />
+        <TextBlock Grid.Row="1" FontSize="32" Margin="12"
+                   TextAlignment="Center" VerticalAlignment="Center"
+                   Foreground="#FFFFF9B8" TextWrapping="Wrap" >
+            Questa è solo una demo!<LineBreak />
+            Puoi dire Capra! solo 3 volte al giorno, e non hai accesso alle curiosità e agli obiettivi.<LineBreak />
+            Se vuoi dire Capra! in continuazione come Sgarbi, devi comprare la versione completa.<LineBreak />
+            Costa meno di un caffè...<LineBreak />
+            Pensaci, è un investimento! :)
+        </TextBlock>
 
-        <HyperlinkButton Name="BuyButton" Content="Clicca e comprala!"
+        <HyperlinkButton Content="Clicca e compra subito!" Grid.Row="2" Margin="0,30"
                          FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                         Click="BuyButton_Click" Margin="0,596,0,34"
-                         Foreground="#FFFFFC6C" />
+                         Click="BuyButton_Click" Foreground="#FFFFFC6C" />
     </Grid>
 
 </phone:PhoneApplicationPage>

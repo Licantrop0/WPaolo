@@ -159,8 +159,8 @@ namespace BaoGame
             }
 
             // decide whether LaKujiFunza or LaKiswahili will be played (TODO: later must be taken from Settings Page)
-            _gameType = GameType.laKiswahili;
-            //_gameType = GameType.laKujifunza;
+            //_gameType = GameType.laKiswahili;
+            _gameType = GameType.laKujifunza;
 
             // decide wheter pvp or pvc will be played (TODO: later must be taken from Settings Page)
             //_gameModality = GameModality.playerVsPlayer;
@@ -251,8 +251,6 @@ namespace BaoGame
                     break;
 
                 case MatchState.playerMustPickShimo:    // pvp ok
-
-                    //_playerTurn = 1;  // l'ho commentato, dovrebbe essere stato asseganto precedentemente per la prima volta, per le successive vedremo....
 
                     // player must pick the first shimo...
                     messageBox.Text = "Player " + _playerTurn.ToString() + ", pick a shimo!";
@@ -756,7 +754,7 @@ namespace BaoGame
 
                 if (!bFirstAction)
                 {
-                    _actionTimer.Interval = new TimeSpan(6000000);
+                    _actionTimer.Interval = new TimeSpan(7000000);
                 }
                 else
                 {

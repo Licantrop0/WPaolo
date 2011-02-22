@@ -39,10 +39,9 @@ namespace FillTheSquare
                     var b = new Border()
                     {
                         Background = new SolidColorBrush(Colors.Transparent),
-                        BorderThickness = new Thickness(1),
+                        BorderThickness = new Thickness(5),
                         BorderBrush = new SolidColorBrush(Colors.White),
                     };
-
                     b.SetRow(i);
                     b.SetColumn(j);
                     b.MouseLeftButtonDown += Button_Click;

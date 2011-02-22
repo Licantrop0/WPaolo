@@ -10,8 +10,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d" shell:SystemTray.IsVisible="True" Height="768" Width="480">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
@@ -32,13 +31,14 @@
             <TextBlock x:Name="PageTitle" Text="Instructions" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <ScrollViewer x:Name="LogicalScrollViewer"  Grid.Row="1" Margin="12,0,12,0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" ManipulationCompleted="LogicalScrollViewer_ManipulationCompleted">
+        <ScrollViewer x:Name="LogicalScrollViewer"  Grid.Row="1" Margin="12,0,12,250" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" ManipulationCompleted="LogicalScrollViewer_ManipulationCompleted">
             <StackPanel Orientation="Horizontal">
-                <Image Source="Phil\istruzione.png" Height="600" Width="480" Stretch="Uniform" />
+                <Image Source="Phil\istruzione.png" Height="351" Width="480" Stretch="Uniform" VerticalAlignment="Top" />
                 <Image Source="Phil\istruzione.png" Height="600" Width="480" Stretch="Uniform" />
                 <Image Source="Phil\istruzione.png" Height="600" Width="480" Stretch="Uniform" />
             </StackPanel>
         </ScrollViewer>
+        <Image Grid.Row="1" Height="150" HorizontalAlignment="Left" Margin="142,377,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="200" Source="/FillTheSquare;component/Phil/libro_colore.png" />
     </Grid>
  
 </phone:PhoneApplicationPage>

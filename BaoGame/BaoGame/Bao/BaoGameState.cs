@@ -310,6 +310,14 @@ namespace Bao
                 return 1;
         }
 
+        private byte OppositePlayer(byte player)
+        {
+            if (player == 1)
+                return 2;
+            else
+                return 1;
+        }  
+
         private bool IsMarker(Byte row, Byte col)
         {
             if (row == 0 || row == 3)
@@ -824,6 +832,11 @@ namespace Bao
                 // turn with captures
                 while ((CanCapture(row, col) || CanRelaySowing(row, col)) && !stayNyumba && submoves < MAX_SUBMOVES)
                 {
+                    if (EmptyInnerRow(OppositePlayer(player)))
+                    {
+                        break;  // player wins, no need to go on with further sowing...
+                    }
+                        
                     if (CanCapture(row, col))
                     {
                         Capture(ref row, ref col, ref versor);
@@ -864,7 +877,9 @@ namespace Bao
             }
 
             CheckGameStage();
-        }  
+        }
+
+        
 
     #endregion
 
@@ -1000,6 +1015,11 @@ namespace Bao
             {
                 while ((CanCapture(row, col) || CanRelaySowing(row, col)) && !askPlayNyumba && submoves < MAX_SUBMOVES)
                 {
+                    if (EmptyInnerRow(OppositePlayer(player)))
+                    {
+                        break;  // player wins, no need to go on with further sowing...
+                    }
+
                     if (CanCapture(row, col))
                     {
                         CaptureAction(ref row, ref col, ref versor, ref returnList);
@@ -1090,6 +1110,11 @@ namespace Bao
                 // turn with captures
                 while ((CanCapture(row, col) || CanRelaySowing(row, col)) && !stayNyumba && submoves < MAX_SUBMOVES)
                 {
+                    if (EmptyInnerRow(OppositePlayer(player)))
+                    {
+                        break;  // cpu wins, no need to go on with further sowing...
+                    }
+
                     if (CanCapture(row, col))
                     {
                         CaptureAction(ref row, ref col, ref versor, ref returnList);
@@ -1154,6 +1179,11 @@ namespace Bao
 
             while ((CanCapture(row, col) || CanRelaySowing(row, col)) && submoves < MAX_SUBMOVES)
             {
+                if (EmptyInnerRow(OppositePlayer(player)))
+                {
+                    break;  // player wins, no need to go on with further sowing...
+                }
+
                 if (CanCapture(row, col))
                 {
                     CaptureAction(ref row, ref col, ref versor, ref returnList);

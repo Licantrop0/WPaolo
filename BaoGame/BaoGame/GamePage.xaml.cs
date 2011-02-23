@@ -25,6 +25,7 @@ namespace BaoGame
         playerPlayNyumba,
         playerMove,
         testWinCondition,
+        cpuThinks,
         cpuMove,
         end
     }
@@ -110,8 +111,8 @@ namespace BaoGame
 
             // Initialize AI
             _ai = new AbsAI();
-            _ai.Pli = 7;
-            _ai.Level = 0;  // 0 very hard - 1 hard - 2 medium - 3 easy
+            _ai.Pli = 7;    // temp debug
+            _ai.Level = 1;  // 0 very hard - 1 hard - 2 medium - 3 easy
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -159,8 +160,8 @@ namespace BaoGame
             }
 
             // decide whether LaKujiFunza or LaKiswahili will be played (TODO: later must be taken from Settings Page)
-            _gameType = GameType.laKiswahili;
-            //_gameType = GameType.laKujifunza;
+            //_gameType = GameType.laKiswahili;
+            _gameType = GameType.laKujifunza;
 
             // decide wheter pvp or pvc will be played (TODO: later must be taken from Settings Page)
             //_gameModality = GameModality.playerVsPlayer;
@@ -185,7 +186,7 @@ namespace BaoGame
                     {
                         case FirstMove.random:
                             Random randNum = new Random(DateTime.Now.Millisecond);
-                            playerToMove = (Byte)randNum.Next(1, 1);        // TODO: per adesso forzo il giocatore 1 ad effettuare la prima mossa...
+                            playerToMove = (Byte)randNum.Next(1, 3);
                             break;
 
                         case FirstMove.player1:
@@ -214,7 +215,8 @@ namespace BaoGame
 
                         if (_gameModality == GameModality.playerVsCpu)
                         {
-                            _state = MatchState.cpuMove;
+                            //_state = MatchState.cpuMove;
+                            _state = MatchState.cpuThinks;
                         }
                         else
                         {
@@ -487,7 +489,8 @@ namespace BaoGame
                         {
                             if (_playerTurn == 2)
                             {
-                                _state = MatchState.cpuMove;
+                                //_state = MatchState.cpuMove;
+                                _state = MatchState.cpuThinks;
                             }
                             else
                             {
@@ -500,9 +503,20 @@ namespace BaoGame
           
                     break;
         
-                case MatchState.cpuMove:    // pvp ok
+                case MatchState.cpuThinks:
 
                     messageBox.Text = "Computer is thinking...";
+
+                    _sa.Enqueue(new ScreenAction(ActionType.none, 0, 0, 0));
+                    _sa.Enqueue(new ScreenAction(ActionType.none, 0, 0, 0));
+
+                    _state = MatchState.cpuMove;
+
+                    GraphicEngine(true);
+
+                    break;
+
+                case MatchState.cpuMove:    // pvp ok
 
                     //GTree<BaoMinimaxElement> minimaxTree = new GTree<BaoMinimaxElement>(new BaoMinimaxElement(_actualGameState));
                     _ai.InitializeTree(_actualGameState);
@@ -754,7 +768,7 @@ namespace BaoGame
 
                 if (!bFirstAction)
                 {
-                    _actionTimer.Interval = new TimeSpan(7000000);
+                    _actionTimer.Interval = new TimeSpan(5000000);
                 }
                 else
                 {

@@ -111,8 +111,8 @@ namespace BaoGame
 
             // Initialize AI
             _ai = new AbsAI();
-            _ai.Pli = 7;    // temp debug
-            _ai.Level = 1;  // 0 very hard - 1 hard - 2 medium - 3 easy
+            _ai.Pli = 7;    
+            _ai.Level = 0;  // 0 very hard - 1 hard - 2 medium - 3 easy
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -160,8 +160,8 @@ namespace BaoGame
             }
 
             // decide whether LaKujiFunza or LaKiswahili will be played (TODO: later must be taken from Settings Page)
-            //_gameType = GameType.laKiswahili;
-            _gameType = GameType.laKujifunza;
+            _gameType = GameType.laKiswahili;
+            //_gameType = GameType.laKujifunza;
 
             // decide wheter pvp or pvc will be played (TODO: later must be taken from Settings Page)
             //_gameModality = GameModality.playerVsPlayer;

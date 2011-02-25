@@ -112,7 +112,7 @@ namespace BaoGame
             // Initialize AI
             _ai = new AbsAI();
             _ai.Pli = 7;    
-            _ai.Level = 0;  // 0 very hard - 1 hard - 2 medium - 3 easy
+            _ai.Level = 1;  // 0 very hard - 1 hard - 2 medium - 3 easy
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)

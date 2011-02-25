@@ -11,6 +11,8 @@ using System.Collections;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Audio;
 using System.Linq;
+using System.Windows.Media.Animation;
+using System.Threading;
 
 
 namespace SgarbiMix
@@ -41,17 +43,19 @@ namespace SgarbiMix
             if (PlayButtonsStackPanel.Children.Count > 0)
                 return;
 
-            //prendo la risorsa dei suoni castandola in un array
-            var sr = SoundsResources.ResourceManager
-                .GetResourceSet(CultureInfo.CurrentCulture, true, true)
-                .Cast<DictionaryEntry>().ToArray();
-
             //istanzio il BackgroundWorker (che gira in un thread separato)
             var bw = new BackgroundWorker() { WorkerReportsProgress = true };
 
             //Configuro l'evento DoWork
             bw.DoWork += (s, evt) =>
             {
+                //prendo la risorsa dei suoni castandola in un array
+                var sr = SoundsResources.ResourceManager
+                    .GetResourceSet(CultureInfo.CurrentCulture, true, true)
+                    .Cast<DictionaryEntry>()
+                    .OrderBy(de => de.Key.ToString())
+                    .ToArray();
+
                 for (int i = 0; i < sr.Length; i++)
                 {
                     //Convenzione: "_" = spazio, "1" = punto esclamativo
@@ -61,6 +65,7 @@ namespace SgarbiMix
                     //Aggiungo il suono alla lista dei suoni
                     App.Sounds.Add(new KeyValuePair<string, SoundEffect>(name, SoundEffect.FromStream(sound)));
                     bw.ReportProgress(i);
+                    Thread.Sleep(150);
                 }
             };
 
@@ -83,6 +88,9 @@ namespace SgarbiMix
                     }
                 };
                 PlayButtonsStackPanel.Children.Add(b);
+                //ButtonFade.Stop();
+                //Storyboard.SetTarget(ButtonFade, b);
+                //ButtonFade.Begin();
             };
 
             bw.RunWorkerAsync();
@@ -91,7 +99,7 @@ namespace SgarbiMix
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && (App.alreadyOpen || (counter > (App.Sounds.Count / 3))) )
+            if (TrialManagement.IsTrialMode && (App.alreadyOpen || (counter > (App.Sounds.Count / 4))))
             {
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return false;

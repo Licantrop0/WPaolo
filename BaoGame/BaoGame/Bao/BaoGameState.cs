@@ -112,6 +112,8 @@ namespace Bao
 
     # region private members
 
+        int _moveToAvoidFlag;
+
         Byte[,] _board;
 
         Byte _player;   // player whose move got to the current Gamestate
@@ -197,6 +199,8 @@ namespace Bao
         public Byte Player { get { return _player; } set { _player = value; } }
 
         public BaoMove Move { get { return _move; } }
+
+        public int MoveToAvoidFlag { get { return _moveToAvoidFlag; } }
 
         public Byte[,] Board
         {
@@ -876,6 +880,12 @@ namespace Bao
                 }
             }
 
+            // if the move lead to have the nyumba under menace and player nyumba NOT under menace I rise the moveToAvoidFlag
+            if (player == 2 && _nyumba2 && _board[2, 4] >= 1 && !(_nyumba1 && _board[1,5] >= 1) )
+            {
+                _moveToAvoidFlag = 1;
+            }
+                
             CheckGameStage();
         }
 
@@ -1290,7 +1300,7 @@ namespace Bao
             }
         }
 
-        public float EvaluateGameState()
+        /*public float EvaluateGameState()
         {
             float CPUscore = 0.0f;
             int emptyFrontRowShimo;
@@ -1379,6 +1389,54 @@ namespace Bao
                 CPUscore += (emptyFrontRowShimo - 2) * emptyInnerRowPenalty;
             }
                 
+            return CPUscore;
+        }*/
+
+        // very simplified version (for possible extension it is possible to give different points to nyumba
+        // keeping in order to generate different king of cpu ai)
+        public float EvaluateGameState()
+        {
+            float CPUscore = 0.0f;
+
+            float backRowKeteScore = 1.1f;
+            float frontRowKeteScore = 1.0f;
+            float emptyInnerRowPenalty = 0.1f;
+            float nyumbaBonus = 10.0f;
+
+            int i;
+
+            for (i = 1; i <= 8; i++)
+            {
+                CPUscore += _board[0, i] * backRowKeteScore;
+            }
+
+            for (i = 1; i <= 8; i++)
+            {
+                CPUscore += _board[1, i] * frontRowKeteScore;
+
+                if (_board[1, i] == 0)
+                    CPUscore -= emptyInnerRowPenalty;
+            }
+
+            if (_nyumba2)
+                CPUscore += nyumbaBonus;
+
+            for (i = 1; i <= 8; i++)
+            {
+                CPUscore -= _board[3, i] * backRowKeteScore;
+            }
+
+            for (i = 1; i <= 8; i++)
+            {
+                CPUscore -= _board[2, i] * frontRowKeteScore;
+
+                if (_board[2, i] == 0)
+                    CPUscore += emptyInnerRowPenalty;
+            }
+
+            if (_nyumba1)
+                CPUscore -= nyumbaBonus;
+            
             return CPUscore;
         }
 

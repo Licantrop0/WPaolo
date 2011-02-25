@@ -179,9 +179,15 @@ namespace BaoGame
 
             // nMoveScore : 20 = nMoveOrder : nPossibleMoves
             int nMoveOrder = (int)( (nMoveScore * nPossibleMoves) / 20) + 1;
+            int nMoveIndex = nMoveOrder - 1;
 
             // bisogna esaminare questa mossa, se porta alla cattura della casa si deve escludere (solo per la kujifunza)
-            return sortedMovesList[nMoveOrder - 1].gameState.Move;
+            while (nMoveIndex > 0 && sortedMovesList[nMoveIndex].gameState.MoveToAvoidFlag == 1)
+            {
+                nMoveIndex--;
+            }
+
+            return sortedMovesList[nMoveIndex].gameState.Move;
         }
             
     }

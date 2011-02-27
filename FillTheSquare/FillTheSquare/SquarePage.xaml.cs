@@ -106,7 +106,7 @@ namespace FillTheSquare
                     sw.Reset();
                     //TODO aggiungere suono vittoria
                     end = true;
-                    Settings.RecordsList.Add(new Record(Square.ActualSize, DateTime.Now, sw.Elapsed));
+                    Settings.RecordsList.Add(new Record(Square.ActualSize, DateTime.Now, sw.Elapsed.TotalSeconds));
                 }
             }
             else if (res && cancel)

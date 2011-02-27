@@ -186,7 +186,7 @@ namespace BaoGame
                     {
                         case FirstMove.random:
                             Random randNum = new Random(DateTime.Now.Millisecond);
-                            playerToMove = (Byte)randNum.Next(1, 3);
+                            playerToMove = (Byte)randNum.Next(2, 3);    // temp debug, computer will move first!
                             break;
 
                         case FirstMove.player1:

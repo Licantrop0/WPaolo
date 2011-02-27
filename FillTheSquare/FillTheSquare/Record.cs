@@ -20,9 +20,9 @@ namespace FillTheSquare
         [DataMember]
         public DateTime CurrentDate { get; set; }
         [DataMember]
-        public TimeSpan ElapsedTime { get; set; }
+        public double ElapsedTime { get; set; }
 
-        public Record(int size, DateTime currentDate, TimeSpan elapsedTime)
+        public Record(int size, DateTime currentDate, double elapsedTime)
         {
             Size = size + "x" + size;
             CurrentDate = currentDate;

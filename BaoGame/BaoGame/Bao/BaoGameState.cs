@@ -150,7 +150,9 @@ namespace Bao
             {
                 // Bao LaKiswahili
                 // initialize board
-                _board = new byte[4, 10] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 2, 2, 6, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 6, 2, 2, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+                //_board = new byte[4, 10] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 2, 2, 6, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 6, 2, 2, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+                // temp debug!
+                _board = new byte[4, 10] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 1, 0, 0, 6, 0, 0, 0, 1, 0 }, { 0, 1, 0, 0, 0, 6, 0, 0, 1, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
                 _barn1 = 22;
                 _barn2 = 22;
 
@@ -1247,8 +1249,9 @@ namespace Bao
             if (playNyumba)
             {
                 BaoGameState playNyumbaGameState = this.DeepCopy();
-                move.playNyumba = true;
-                playNyumbaGameState.UpdateGameState(move, player, out playNyumba);
+                BaoMove nyumbaMove = new BaoMove(move.rowBox, move.columnBox, move.left);
+                nyumbaMove.playNyumba = true;
+                playNyumbaGameState.UpdateGameState(nyumbaMove, player, out playNyumba);
                 newGameStates.Add(playNyumbaGameState);
             }
 
@@ -1401,7 +1404,7 @@ namespace Bao
             float backRowKeteScore = 1.1f;
             float frontRowKeteScore = 1.0f;
             float emptyInnerRowPenalty = 0.1f;
-            float nyumbaBonus = 10.0f;
+            float nyumbaBonus = 5.0f;
 
             int i;
 

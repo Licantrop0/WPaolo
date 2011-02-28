@@ -24,6 +24,13 @@ namespace CAPUtil
             CAPS = caps;
         }
 
+        public CAPDB(SerializationInfo info, StreamingContext ctxt)
+        {
+            Province = (SortedList<string, SortedList<string, Comune>>)info.GetValue("Province", typeof(SortedList<string, SortedList<string, Comune>>));
+            Comuni = (SortedList<string, Comune>)info.GetValue("Comuni", typeof(SortedList<string, Comune>));
+            CAPS = (SortedList<string, CAP>)info.GetValue("CAPS", typeof(SortedList<string, CAP>));
+        }
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Province", Province);
@@ -115,8 +122,6 @@ namespace CAPUtil
 
                 string sCivico = Normalize(words[8]);
 
-                //debugWriter.WriteLine(sComune1 + " " + sComune2 + " " + sFrazione1 + " " + sFrazione2 + " " + sToponimo1 + " " + sToponimo2 + " " + sDaugt + "\n");
-
                 string sCap = Normalize(words[9]);
 
                 // insert CAP in CAP SortedList if necessary
@@ -126,7 +131,7 @@ namespace CAPUtil
                 }
 
                 CAPRecord newRecord = new CAPRecord(sFrazione, sToponimo, sCivico);
-                newRecord.cap = dCAPS[sCap];    // devo testare che sia un reference value, no, non lo è...
+                newRecord.cap = dCAPS[sCap];
 
                 // insert in province SortedList if not already inserted
                 if (!dProvince.ContainsKey(sProvincia))

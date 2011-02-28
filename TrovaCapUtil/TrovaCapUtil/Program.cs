@@ -3,13 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
-//using CAPs = List<string>;
-//using Frazione = SortedList<string, string>
-//using Comune = SortedList<string, List<CAP.CAPRecord>>;
 
-namespace CAP
+namespace CAPUtil
 {
+    [Serializable()]    //Set this attribute to all the classes that want to serialize
+    // classe contenitore da serializzare  :-)
+    class CAPDB : ISerializable
+    {
+        public SortedList<string, SortedList<string, Comune>> Province;
+        public SortedList<string, Comune> Comuni;
+        public SortedList<string, CAP> CAPS;
+
+        public CAPDB(SortedList<string, SortedList<string, Comune>> province, SortedList<string, Comune> comuni, SortedList<string, CAP> caps)
+        {
+            Province = province;
+            Comuni = comuni;
+            CAPS = caps;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Province", Province);
+            info.AddValue("Comuni", Comuni);
+            info.AddValue("CAPS", CAPS);
+        }
+    }
+
+    [Serializable()]
     class CAP
     {
         public string CAPstring;
@@ -20,6 +43,7 @@ namespace CAP
         }
     }
 
+    [Serializable()]
     // per adesso, poi vediamo se si può normalizzare anche questo!
     class CAPRecord
     {
@@ -32,14 +56,11 @@ namespace CAP
         {
             frazione = fr;
             indirizzo = ind;
-            if (indirizzo == " ()")
-            {
-                int a = 0;
-            }
             civico = civ;
         }
     }
 
+    [Serializable()]
     class Comune
     {
         public string comuneID;
@@ -104,12 +125,6 @@ namespace CAP
                     dCAPS.Add(sCap, new CAP(sCap));
                 }
 
-                if (sCap == "" || sCap == "0 al 1" || sCap == "0 al 2" || sCap == "0 al 6" || sCap == "0 al 7")
-                {
-                    int a = 0;
-                    a++;
-                }
-
                 CAPRecord newRecord = new CAPRecord(sFrazione, sToponimo, sCivico);
                 newRecord.cap = dCAPS[sCap];    // devo testare che sia un reference value, no, non lo è...
 
@@ -126,7 +141,7 @@ namespace CAP
                 }
                 else
                 {
-                    if (sProvincia != "BZ" && sProvincia != "BG" && sProvincia != "GR")
+                    if (sProvincia != "BZ" && sProvincia != "BG" && sProvincia != "GR" && sProvincia != "St" && sProvincia != "TN" && sProvincia != "TO")
                     {
                         int pippo = 0;
                     }
@@ -166,6 +181,15 @@ namespace CAP
                 //dProvince[sProvincia][sComune1].capRecords.Add(newRecord);
                 dComuni[sComune1].capRecords.Add(newRecord);    // lo aggiunge automaticamente anche sopra...sono tutti puntatori, o come dicono gli sharpisti "reference value"
             }
+
+            CAPDB capDB = new CAPDB(dProvince, dComuni, dCAPS);
+
+            Stream stream = File.Open("CAPDB.osl", FileMode.Create);
+            BinaryFormatter bformatter = new BinaryFormatter();
+
+            Console.WriteLine("Writing CAP DB Information");
+            bformatter.Serialize(stream, capDB);
+            stream.Close();
         }
 
         static string Normalize(string s)

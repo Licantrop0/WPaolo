@@ -23,29 +23,28 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+            <TextBlock x:Name="ApplicationTitle" Text="Trova il CAP" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Center" FontSize="28" FontFamily="Segoe WP Bold" />
+
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-        	<toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="12,104,0,0" VerticalAlignment="Top" Width="438" Name="acbComuni" IsTextCompletionEnabled="True" FontSize="20" GotFocus="acbComuni_GotFocus" LostFocus="acbComuni_LostFocus" />
-        	<toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="143,180,0,0" VerticalAlignment="Top" Width="307" Name="acbFrazioni" />
-        	<toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="143,256,0,279" d:LayoutOverrides="Height" Width="307" Name="acbIndirizzi" />
-        	<toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="143,0,0,203" VerticalAlignment="Bottom" Width="307" Name="acbCivici" />
-        	<toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="12,26,0,0" VerticalAlignment="Top" Width="96" Name="acbProvince" FilterMode="StartsWith" FontSize="20" Height="72" MinimumPrefixLength="0" GotFocus="acbProvince_GotFocus" LostFocus="acbProvince_LostFocus" /></Grid>
+        	<toolkit:AutoCompleteBox HorizontalAlignment="Right" Margin="0,90,0,0" VerticalAlignment="Top" Width="400" Name="acbComuni" IsTextCompletionEnabled="True" FontSize="20" GotFocus="acbComuni_GotFocus" LostFocus="acbComuni_LostFocus" Height="65" />
+        	<toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="47,239,0,0" VerticalAlignment="Top" Width="400" Name="acbIndirizzi" Visibility="Visible" Height="65" />
+        	<toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="47,312,0,335" d:LayoutOverrides="Height" Width="400" Name="acbCivici" Visibility="Visible" Height="65" />
+        	<toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="47,0,0,484" VerticalAlignment="Bottom" Width="400" Name="acbFrazioni" Visibility="Visible" Height="65" />
+        	<toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="46,21,0,626" Width="400" Name="acbProvince" FilterMode="StartsWith" FontSize="20" MinimumPrefixLength="0" GotFocus="acbProvince_GotFocus" LostFocus="acbProvince_LostFocus" Text="" KeyDown="acbProvince_KeyDown" Height="65" />
+            <TextBox Height="102" HorizontalAlignment="Left" Margin="-3,594,0,0" Name="messageBox" Text="" VerticalAlignment="Top" Width="456" FontSize="20"  TextWrapping="Wrap" />
+            <TextBlock FontSize="20"  Height="35" HorizontalAlignment="Left" Margin="58,0,0,0" Name="tbProvincia" Text="Provincia" VerticalAlignment="Top" Width="155" />
+            <TextBlock FontSize="20"  Height="35" HorizontalAlignment="Right" Margin="0,73,31,0" Name="tbComune" Text="Comune" VerticalAlignment="Top" Width="357" />
+            <TextBlock FontSize="20"  Height="35" HorizontalAlignment="Right" Margin="0,144,29,0" Name="textBlock1" Text="Frazione" VerticalAlignment="Top" Width="357" />
+                <TextBlock FontSize="20"  Height="35" HorizontalAlignment="Right" Margin="0,220,6,0" Name="textBlock2" Text="Indirizzo" VerticalAlignment="Top" Width="380" />
+                <TextBlock FontSize="20"  Height="35" HorizontalAlignment="Right" Margin="0,293,6,0" Name="textBlock3" Text="Civ." VerticalAlignment="Top" Width="380" />
+            </Grid>
+            
+            
+       </StackPanel>    
+        
     </Grid>
  
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>

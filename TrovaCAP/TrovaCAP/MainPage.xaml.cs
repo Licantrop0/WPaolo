@@ -61,8 +61,7 @@ namespace TrovaCAP
             {
                 case Step.scegliProvinciaOComune:
 
-                    //acbProvince.ItemsSource = _capDB.Province.Keys;
-                    //acbComuni.ItemsSource = _capDB.Comuni.Keys;
+                    messageBox.Text = "Seleziona una provincia o direttamente un comune";
 
                     break;
 
@@ -76,6 +75,10 @@ namespace TrovaCAP
         {
             if (_state == Step.scegliProvinciaOComune)
             {
+                // put off initial state
+                if (acbProvince.Text == "--")
+                    acbProvince.Text = "";
+
                 acbProvince.ItemsSource = _capDB.Province.Keys;
                 _state = Step.selezionaProvincia;
             }
@@ -90,11 +93,13 @@ namespace TrovaCAP
                     _sProvinciaSelezionata = acbProvince.Text;
                     acbComuni.ItemsSource = _capDB.Province[_sProvinciaSelezionata].Keys;
                     _state = Step.selezionaProvinciaComune;
+                    messageBox.Text = "Ora seleziona un comune";
                 }
                 else
                 {
-                    // produci un suono fastidioso e manda un messaggio di errore
-                    int a;
+                    acbProvince.Text = "";
+                    messageBox.Text = "Provincia errata, riprova o seleziona direttamente un comune";
+                    // <produci un suono fastidioso e manda un messaggio di errore>
                 }
             }
         }
@@ -126,7 +131,8 @@ namespace TrovaCAP
                 if (comuniCandidati.ContainsKey(acbComuni.Text))
                 {
                     _sComuneSelezionato = acbComuni.Text;
-                    _capRecords = _capDB.Province[_sProvinciaSelezionata][_sComuneSelezionato].CapRecords;
+                    //_capRecords = _capDB.Province[_sProvinciaSelezionata][_sComuneSelezionato].CapRecords;
+                    _capRecords = comuniCandidati[_sComuneSelezionato].CapRecords;
 
                     // se i CAPRecords ritornano un solo CAP ritornalo
                     var caps = from cr in _capRecords
@@ -146,7 +152,7 @@ namespace TrovaCAP
                 }
                 else
                 {
-                    // produci un suono fastidioso e manda un messaggio di errore
+                    // <produci un suono fastidioso e manda un messaggio di errore>
                     int a;
                 }
             }
@@ -266,6 +272,16 @@ namespace TrovaCAP
             }
 
             return sReturn;
+        }
+
+        private void acbProvince_KeyDown(object sender, KeyEventArgs e)
+        {
+            // filter input
+            if (acbProvince.Text.Length > 2)
+            {
+                acbProvince.Text = "";
+                // <riproduci suono di errore ed un'animazione (ad esempio il controllo lampeggia di rosso)>
+            }
         }
 
         

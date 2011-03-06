@@ -28,12 +28,17 @@
         <MediaElement AutoPlay="True" Source="Sounds\Intro.mp3" />
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="PageTitle" Text="Fill the Square!" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="Segoe Keycaps" FontSize="48" Height="200" HorizontalAlignment="Center"><TextBlock.Foreground>
+            		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            			<GradientStop Color="Black"/>
+            			<GradientStop Color="#FFF2FF04" Offset="0.534"/>
+            		</LinearGradientBrush>
+            	</TextBlock.Foreground><Run Text=" Phi"/><Run Text="l"/><Run Text=" "/><LineBreak/><Run Text=" "/><Run Text="the"/><Run Text="  "/><LineBreak/><Run Text="Square"/></TextBlock>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Content="5 x 5" Height="72" Margin="22,116,0,0" Name="SquareFiveButton" VerticalAlignment="Top" Click="SquareFiveButton_Click" HorizontalAlignment="Left" Width="187">
+            <Button Content="5 x 5" Height="109" Name="SquareFiveButton" VerticalAlignment="Top" Click="SquareFiveButton_Click" HorizontalAlignment="Left" Width="198" Margin="7,42,0,0">
                 <Button.Background>
                     <RadialGradientBrush>
                         <GradientStop Color="#FF1818EB" Offset="0.686" />
@@ -41,7 +46,7 @@
                     </RadialGradientBrush>
                 </Button.Background>
             </Button>
-            <Button Content="Instructions" Height="72" HorizontalAlignment="Left" Margin="269,221,0,0" Name="InstructionsButton" VerticalAlignment="Top" Width="187" Click="InstructionsButton_Click" d:LayoutOverrides="VerticalAlignment" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Button Content="Instructions" Height="103.569" HorizontalAlignment="Left" Margin="259.429,126.571,0,0" Name="InstructionsButton" VerticalAlignment="Top" Width="187" Click="InstructionsButton_Click" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" d:LayoutOverrides="VerticalAlignment">
             	<Button.RenderTransform>
             		<CompositeTransform Rotation="21.778"/>
             	</Button.RenderTransform>
@@ -52,7 +57,7 @@
                     </RadialGradientBrush>
                 </Button.Background>
             </Button>
-            <Button Content="10 x 10" Height="72" HorizontalAlignment="Left" Margin="239,116,0,0" Name="SquareTenButton" VerticalAlignment="Top" Width="187" Click="SquareTenButton_Click">
+            <Button Content="10 x 10" Height="95" HorizontalAlignment="Left" Margin="211,10,0,0" Name="SquareTenButton" VerticalAlignment="Top" Width="203" Click="SquareTenButton_Click">
                 <Button.Background>
                     <RadialGradientBrush>
                         <GradientStop Color="Blue" Offset="0.465" />
@@ -60,7 +65,7 @@
                     </RadialGradientBrush>
                 </Button.Background>
             </Button>
-            <Button Content="Records" Height="72" HorizontalAlignment="Left" Margin="35,429,0,0" Name="RecordsButton" VerticalAlignment="Top" Width="187" Click="RecordsButton_Click" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Button Content="Records" Height="129.638" HorizontalAlignment="Left" Margin="2.571,334.571,0,0" Name="RecordsButton" VerticalAlignment="Top" Width="205.745" Click="RecordsButton_Click" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
             	<Button.RenderTransform>
             		<CompositeTransform Rotation="-63.854"/>
             	</Button.RenderTransform>
@@ -71,7 +76,7 @@
                     </RadialGradientBrush>
                 </Button.Background>
             </Button>
-            <Button Content="About" Height="72" HorizontalAlignment="Left" Margin="202,433,0,0" Name="AboutButton" VerticalAlignment="Top" Width="187" Click="AboutButton_Click" d:LayoutOverrides="VerticalAlignment">
+            <Button Content="About" Height="85" HorizontalAlignment="Left" Margin="190,364,0,0" Name="AboutButton" VerticalAlignment="Top" Width="224" Click="AboutButton_Click">
                 <Button.Background>
                     <RadialGradientBrush>
                         <GradientStop Color="Blue" Offset="0.378" />
@@ -79,7 +84,7 @@
                     </RadialGradientBrush>
                 </Button.Background>
             </Button>
-            <Image Margin="154,272,30,0" Source="Phil/saluta.png" Stretch="Fill" Height="196" VerticalAlignment="Top"/>
+            <Image Margin="163,209,21,0" Source="Phil/saluta.png" Stretch="Fill" Height="196" VerticalAlignment="Top"/>
         </Grid>
     </Grid>
  

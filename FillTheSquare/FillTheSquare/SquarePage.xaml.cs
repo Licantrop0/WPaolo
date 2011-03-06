@@ -104,7 +104,7 @@ namespace FillTheSquare
                     dt.Stop();
                     MessageBox.Show("Congratulations! Magic Square completed in " + sw.Elapsed.TotalSeconds + " seconds!");
                     sw.Reset();
-                    //TODO aggiungere suono vittoria
+                    Settings.ErrorSound.Play();
                     end = true;
                     Settings.RecordsList.Add(new Record(Square.ActualSize, DateTime.Now, sw.Elapsed.TotalSeconds));
                 }
@@ -125,7 +125,7 @@ namespace FillTheSquare
             }
             else
             {
-                //l'utente ha violato le regole quindi non si fa nulla, magari coloro il tasto di rosso per mezzo secondo?
+                //l'utente ha violato le regole, faccio un flash rosso sul tasto
                 RedFlash.Stop();
                 Storyboard.SetTarget(RedFlash, currentButton);
                 Settings.ErrorSound.Play();

@@ -22,19 +22,25 @@
             </RadialGradientBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="69"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Fill the Square!" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Records" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="4,47,8,-22">
+        	<TextBlock x:Name="PageTitle" Text="Records" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="Segoe Keycaps" FontSize="32" HorizontalAlignment="Center">
+        		<TextBlock.Foreground>
+        			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        				<GradientStop Color="Black" Offset="0"/>
+        				<GradientStop Color="#FFF1FF00" Offset="0.25"/>
+        			</LinearGradientBrush>
+        		</TextBlock.Foreground>
+        	</TextBlock>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Name="RecordListBox">
+            <ListBox Name="RecordListBox" FontFamily="SWGamekeys MT" FontSize="13.333">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
@@ -50,8 +56,8 @@
             </ListBox>
             
         </Grid>
-        <Image Grid.Row="0" Source="Phil\bravorecords.png"
-               Stretch="Uniform" Height="100" HorizontalAlignment="Right" Margin="0,0,50,0" />
+        <Image Source="Phil\bravorecords.png"
+               Stretch="Uniform" Height="100" Margin="0,-9,0,-22" d:LayoutOverrides="VerticalAlignment" HorizontalAlignment="Right" />
     </Grid>
 
 </phone:PhoneApplicationPage>

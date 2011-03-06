@@ -63,6 +63,9 @@ namespace FillTheSquare
 
             Settings.MoveSound = SoundEffect.FromStream(App.GetResourceStream(
                 new Uri("Sounds\\Move.wav", UriKind.Relative)).Stream);
+
+            Settings.VictorySound = SoundEffect.FromStream(App.GetResourceStream(
+                new Uri("Sounds\\Victory.wav", UriKind.Relative)).Stream);
         }
 
 

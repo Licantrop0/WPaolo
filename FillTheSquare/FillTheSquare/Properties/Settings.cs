@@ -13,6 +13,7 @@ namespace FillTheSquare
         public static SoundEffect MoveSound;
         public static SoundEffect ErrorSound;
         public static SoundEffect UndoSound;
+        public static SoundEffect VictorySound;
 
         public static ObservableCollection<Record> RecordsList
         {

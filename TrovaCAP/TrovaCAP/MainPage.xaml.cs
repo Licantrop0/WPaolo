@@ -12,7 +12,6 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.IO;
 
-
 namespace TrovaCAP
 {
     enum Step
@@ -21,9 +20,10 @@ namespace TrovaCAP
         selezionaProvincia,
         selezionaProvinciaComune,
         selezionaComune,
-        selezionaFrazioneOVia,
+        scegliFrazioneOVia,
+        selezionaVia,
+        finished
     }
-
 
     public partial class MainPage : PhoneApplicationPage
     {
@@ -35,10 +35,13 @@ namespace TrovaCAP
 
         Step _state;
 
+        Dictionary<string, string> _provinceLookUp = new Dictionary<string, string>();
+
         string _sProvinciaSelezionata;
         string _sComuneSelezionato;
-        List<CAPRecord> _capRecords;
         string _sCapSelezionato;
+
+        List<CAPRecord> _capRecords;
 
     #endregion
 
@@ -46,8 +49,8 @@ namespace TrovaCAP
         public MainPage()
         {
             InitializeComponent();
-
             ReadAndParseDataBase();
+            ReadAndParseProvinceLookUp();
 
             _state = Step.scegliProvinciaOComune;
 
@@ -62,7 +65,19 @@ namespace TrovaCAP
                 case Step.scegliProvinciaOComune:
 
                     messageBox.Text = "Seleziona una provincia o direttamente un comune";
-
+                    acbProvince.IsEnabled = true;
+                    acbProvince.Text = "";
+                    acbComuni.IsEnabled = true;
+                    acbComuni.Text = "";
+                    acbFrazioni.IsEnabled = false;
+                    acbFrazioni.Text = "";
+                    acbIndirizzi.IsEnabled = false;
+                    acbIndirizzi.Text = "";
+                    acbCivici.IsEnabled = false;
+                    acbCivici.Text = "";
+                    tbCap.Text = "";
+                    tbCapResult.Text = "";
+                    
                     break;
 
                 default:
@@ -70,16 +85,40 @@ namespace TrovaCAP
             }
         }
 
+        public AutoCompleteFilterPredicate<object> FilterItem
+        {
+            get
+            {
+                return AcbFilterContainExtended;
+            }
+
+        }
+
+        private bool AcbFilterContainExtended(string search, object data)
+        {
+            if (search == "")
+            {
+                return true;
+            }
+            else
+            {
+                string value = data as string;
+                if(value.Contains(search))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
         
         private void acbProvince_GotFocus(object sender, RoutedEventArgs e)
         {
             if (_state == Step.scegliProvinciaOComune)
             {
-                // put off initial state
-                if (acbProvince.Text == "--")
-                    acbProvince.Text = "";
-
-                acbProvince.ItemsSource = _capDB.Province.Keys;
+                acbProvince.ItemsSource = _provinceLookUp.Keys;
                 _state = Step.selezionaProvincia;
             }
         }
@@ -88,18 +127,20 @@ namespace TrovaCAP
         {
             if (_state == Step.selezionaProvincia)
             {
-                if (_capDB.Province.ContainsKey(acbProvince.Text))
+                if (_provinceLookUp.ContainsKey(acbProvince.Text))
                 {
-                    _sProvinciaSelezionata = acbProvince.Text;
+                    _sProvinciaSelezionata = _provinceLookUp[acbProvince.Text];
                     acbComuni.ItemsSource = _capDB.Province[_sProvinciaSelezionata].Keys;
                     _state = Step.selezionaProvinciaComune;
+                    acbProvince.IsEnabled = false;
                     messageBox.Text = "Ora seleziona un comune";
                 }
                 else
                 {
                     acbProvince.Text = "";
                     messageBox.Text = "Provincia errata, riprova o seleziona direttamente un comune";
-                    // <produci un suono fastidioso e manda un messaggio di errore>
+                    // <produci un suono di errore>
+                    _state = Step.scegliProvinciaOComune;
                 }
             }
         }
@@ -109,6 +150,7 @@ namespace TrovaCAP
             if (_state == Step.scegliProvinciaOComune)
             {
                 acbComuni.ItemsSource = _capDB.Comuni.Keys;
+                acbProvince.IsEnabled = false;
                 _state = Step.selezionaComune;
             }
         }
@@ -131,34 +173,135 @@ namespace TrovaCAP
                 if (comuniCandidati.ContainsKey(acbComuni.Text))
                 {
                     _sComuneSelezionato = acbComuni.Text;
-                    //_capRecords = _capDB.Province[_sProvinciaSelezionata][_sComuneSelezionato].CapRecords;
                     _capRecords = comuniCandidati[_sComuneSelezionato].CapRecords;
 
-                    // se i CAPRecords ritornano un solo CAP ritornalo
-                    var caps = from cr in _capRecords
-                               select cr.Cap.CAPString;
+                    if (_state == Step.selezionaComune)
+                    {
+                        string sSigla = _sComuneSelezionato.Substring(_sComuneSelezionato.Length - 3, 2);
 
-                    int countCAP = caps.Distinct().Count();
+                        _sProvinciaSelezionata = (from p in _provinceLookUp
+                                                  where p.Value == sSigla
+                                                  select p.Key).First();
+
+                        acbProvince.Text = _sProvinciaSelezionata;
+                    }
+
+                    // se i CAPRecords ritornano un solo CAP ritornalo (eliminare una linea di codice)
+                    int countCAP = (from cr in _capRecords
+                                    select cr.Cap.CAPString).Distinct().Count();
 
                     if (countCAP == 1)
                     {
                         _sCapSelezionato = _capRecords[0].Cap.CAPString;
+                        tbCap.Text = "CAP";
+                        tbCapResult.Text = _sCapSelezionato;
+                        _state = Step.finished;
+                        // <produci suono di soddisfazione>
                     }
                     else
                     {
-                        // bisogna selezionare o la frazione o la via...
-                    }
+                        // populate indirizzi
+                        List<string> sIndirizzi = new List<string>();
+                        sIndirizzi.AddRange((from capRecord in _capRecords
+                                             where capRecord.Indirizzo != ""                // probabilmente è pleonastico
+                                             select capRecord.Indirizzo).Distinct());
 
+                        if (sIndirizzi.Count <= 30)
+                        {
+                            acbIndirizzi.FilterMode = AutoCompleteFilterMode.Custom;
+                            acbIndirizzi.ItemFilter += AcbFilterContainExtended;
+                        }
+                        else
+                        {
+                            acbIndirizzi.FilterMode = AutoCompleteFilterMode.Contains;
+                            acbIndirizzi.ItemFilter -= AcbFilterContainExtended;
+                        }
+                        acbIndirizzi.ItemsSource = sIndirizzi;
+                        acbIndirizzi.IsEnabled = true;
+
+                        // populate frazioni
+                        List<string> sFrazioni = new List<string>();
+                        sFrazioni.Add("NESSUNA FRAZIONE");
+                        sFrazioni.AddRange((from capRecord in _capRecords
+                                            where capRecord.Frazione != ""
+                                            select capRecord.Frazione).Distinct());
+
+                        if (sFrazioni.Count == 1)
+                        {
+                            _state = Step.selezionaVia;
+                        }
+                        else
+                        {
+                            acbFrazioni.ItemsSource = sFrazioni;
+                            acbFrazioni.IsEnabled = true;
+                            _state = Step.scegliFrazioneOVia;
+
+                            if (sFrazioni.Count <= 30)
+                            {
+                                acbFrazioni.FilterMode = AutoCompleteFilterMode.Custom;
+                                acbFrazioni.ItemFilter += AcbFilterContainExtended;
+                            }
+                            else
+                            {
+                                acbFrazioni.FilterMode = AutoCompleteFilterMode.Contains;
+                                acbFrazioni.ItemFilter -= AcbFilterContainExtended;
+                            }
+                        }
+
+                        if (_state == Step.scegliFrazioneOVia)
+                        {
+                            messageBox.Text = "Seleziona la frazione o l'indirizzo";
+                        }
+                        else
+                        {
+                            messageBox.Text = "Seleziona un indirizzo";
+                        }   
+                    }
                 }
                 else
                 {
+                    acbComuni.Text = "";
                     // <produci un suono fastidioso e manda un messaggio di errore>
-                    int a;
+                    {
+                        if (_state == Step.selezionaComune)
+                        {
+                            acbProvince.IsEnabled = true;
+                            _state = Step.scegliProvinciaOComune;
+                            messageBox.Text = "Seleziona una provincia o direttamente un comune";
+                        }
+                        else if (_state == Step.selezionaProvinciaComune)
+                        {
+                            messageBox.Text = "Comune errato, riprova";
+                        }
+                    }
                 }
             }
+
+            // PS prova!
+            /*acbComuni.GotFocus -= acbComuni_GotFocus;
+            acbComuni.LostFocus -= acbComuni_LostFocus;*/
         }
 
+        private void ReadAndParseProvinceLookUp()
+        {
+            var resource = System.Windows.Application.GetResourceStream(new Uri("provinceLookUp.txt", UriKind.Relative));
+            TextReader tr = new StreamReader(resource.Stream);
 
+            string tmp;
+            string provinceName;
+            string provinceSigla;
+
+            while ((tmp = tr.ReadLine()) != null)
+            {
+                string[] words = tmp.Split(' ');
+                provinceSigla = words[words.Length - 1];
+                provinceName = "";
+                for (int i = 0; i < words.Length - 1; i++)
+                    provinceName += words[i];
+
+                _provinceLookUp.Add(provinceName, provinceSigla);
+            }
+        }
        
         private void ReadAndParseDataBase()
         {
@@ -274,22 +417,17 @@ namespace TrovaCAP
             return sReturn;
         }
 
-        private void acbProvince_KeyDown(object sender, KeyEventArgs e)
+        private void button1_Click(object sender, RoutedEventArgs e)
         {
-            // filter input
-            if (acbProvince.Text.Length > 2)
-            {
-                acbProvince.Text = "";
-                // <riproduci suono di errore ed un'animazione (ad esempio il controllo lampeggia di rosso)>
-            }
+            _state = Step.scegliProvinciaOComune;
+            ResumeFocus();
+            GoStep();
         }
 
-        
-
-
-       
-
-        
+        private void ResumeFocus()
+        {
+            //acbComuni.GotFocus += acbComuni_GotFocus;
+        }
     }
 
 

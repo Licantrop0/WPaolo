@@ -81,5 +81,17 @@ namespace FillTheSquare
             grid[(int)(p.X), (int)(p.Y)] = positionHistory.Count;
             return true;
         }
+
+        public void Reset()
+        {
+            for (int i = 0; i < ActualSize; i++)
+            {
+                for (int j = 0; j < ActualSize; j++)
+                {
+                    grid[i, j] = 0;
+                }
+            }
+            positionHistory = new Stack<Point>();
+        }
     }
 }

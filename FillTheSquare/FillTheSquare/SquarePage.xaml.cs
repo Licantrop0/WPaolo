@@ -25,9 +25,8 @@ namespace FillTheSquare
             InitializeTimers();
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        private void creagriglia(int size)
         {
-            var size = int.Parse(NavigationContext.QueryString["size"]);
             Square = new MagicSquare(size);
             for (int i = 0; i < size; i++)
             {
@@ -39,7 +38,7 @@ namespace FillTheSquare
                     var b = new Border()
                     {
                         Background = new SolidColorBrush(Colors.Transparent),
-                        BorderThickness = new Thickness(5),
+                        BorderThickness = new Thickness(1),
                         BorderBrush = new SolidColorBrush(Colors.White),
                     };
                     b.SetRow(i);
@@ -48,6 +47,12 @@ namespace FillTheSquare
                     MagicGrid.Children.Add(b);
                 }
             }
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            var size = int.Parse(NavigationContext.QueryString["size"]);
+            creagriglia(size);
         }
 
         private void dt_Tick(object sender, EventArgs e)
@@ -72,7 +77,6 @@ namespace FillTheSquare
             var currentButton = (Border)sender;
             Point p = new Point(currentButton.GetColumn(), currentButton.GetRow());
 
-            //vorrei eliminare questa variabile semplificando la logica (ci sono troppi if!)
             bool cancel = false;
             if (Square.positionHistory.Count != 0)
             {
@@ -102,11 +106,12 @@ namespace FillTheSquare
                 if (Square.positionHistory.Count == (MagicGrid.RowDefinitions.Count * MagicGrid.ColumnDefinitions.Count))
                 {
                     dt.Stop();
+                    Settings.VictorySound.Play();
                     MessageBox.Show("Congratulations! Magic Square completed in " + sw.Elapsed.TotalSeconds + " seconds!");
                     sw.Reset();
-                    Settings.ErrorSound.Play();
                     end = true;
                     Settings.RecordsList.Add(new Record(Square.ActualSize, DateTime.Now, sw.Elapsed.TotalSeconds));
+                    NavigationService.Navigate(new Uri("/RecordsPage.xaml", UriKind.Relative));
                 }
             }
             else if (res && cancel)
@@ -140,5 +145,16 @@ namespace FillTheSquare
             me.Play();
         }
 
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            sw.Reset();
+            sw.Start();
+            Square.Reset();
+            int size = MagicGrid.RowDefinitions.Count;
+            MagicGrid.Children.Clear();
+            MagicGrid.RowDefinitions.Clear();
+            MagicGrid.ColumnDefinitions.Clear();
+            creagriglia(size);
+        }
     }
 }

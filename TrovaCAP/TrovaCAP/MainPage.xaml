@@ -77,7 +77,7 @@
 				<toolkit:AutoCompleteBox  Margin="46,239,0,0"   x:Name="acbIndirizzi" Visibility="Visible"  Grid.ColumnSpan="2" Style="{StaticResource autocompleteStyle}" IsTextCompletionEnabled="True" FilterMode="Contains" />
 				<toolkit:AutoCompleteBox  Margin="46,308,0,336"  x:Name="acbCivici" Visibility="Visible"  Grid.ColumnSpan="2" Style="{StaticResource autocompleteStyle}" MinimumPrefixLength="0" />
 				<toolkit:AutoCompleteBox  Margin="46,166,0,0"   x:Name="acbFrazioni" Visibility="Visible"  Grid.ColumnSpan="2" Style="{StaticResource autocompleteStyle}" IsTextCompletionEnabled="True" FilterMode="Contains" IsDropDownOpen="True" MinimumPrefixLength="0" />
-				<toolkit:AutoCompleteBox  Margin="46,20,0,0"  x:Name="acbProvince" FilterMode="StartsWith" MinimumPrefixLength="1" GotFocus="acbProvince_GotFocus" LostFocus="acbProvince_LostFocus" Text="" Grid.ColumnSpan="2" Style="{StaticResource autocompleteStyle}"/>
+				<toolkit:AutoCompleteBox  Margin="46,20,0,0"  x:Name="acbProvince" FilterMode="StartsWith" MinimumPrefixLength="0" GotFocus="acbProvince_GotFocus" LostFocus="acbProvince_LostFocus" Text="" Grid.ColumnSpan="2" Style="{StaticResource autocompleteStyle}"/>
 				<TextBox Height="102" HorizontalAlignment="Left" Margin="-9,549,0,0" x:Name="messageBox" Text="aaa" VerticalAlignment="Top" Width="473" FontSize="20"  TextWrapping="Wrap" Grid.ColumnSpan="2" />
 				<TextBlock  Margin="60,0,-10,0" x:Name="tbProvincia" Text="Provincia"  Style="{StaticResource textStyle}" />
 				<TextBlock  Margin="60,73,31,0" x:Name="tbComuni" Text="Comune"   Style="{StaticResource textStyle}" Grid.ColumnSpan="2"/>

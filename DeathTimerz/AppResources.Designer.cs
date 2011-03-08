@@ -323,6 +323,15 @@ namespace DeathTimer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No one with that birthday could be still alive....
+        /// </summary>
+        public static string ErrorTooOldBirthday {
+            get {
+                return ResourceManager.GetString("ErrorTooOldBirthday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Female.
         /// </summary>
         public static string Female {

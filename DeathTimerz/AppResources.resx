@@ -206,6 +206,9 @@ Anyway... touch your balls!</value>
   <data name="ErrorNoBirthay" xml:space="preserve">
     <value>You have to set your birthay first</value>
   </data>
+  <data name="ErrorTooOldBirthday" xml:space="preserve">
+    <value>No one with that birthday could be still alive...</value>
+  </data>
   <data name="Female" xml:space="preserve">
     <value>Female</value>
   </data>

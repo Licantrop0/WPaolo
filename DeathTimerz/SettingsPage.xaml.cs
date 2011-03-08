@@ -30,8 +30,16 @@ namespace DeathTimer
                 BirthDayTimePicker.Value.Value.Minute,
                 BirthDayTimePicker.Value.Value.Second);
 
-            if (NewDate.AddMinutes(1) >= DateTime.Now)
+            if (BirthDayDatePicker.Value >= DateTime.Today)
+            {
                 MessageBox.Show(AppResources.ErrorFutureBirthday);
+            }
+            //Trick per evitare il bug del DatePicker quando si imposta 1600 come anno
+            else if (BirthDayDatePicker.Value < new DateTime(1700, 1, 1))
+            {
+                MessageBox.Show(AppResources.ErrorTooOldBirthday);
+                BirthDayDatePicker.Value = new DateTime(1700, 1, 1);
+            }
             else
             {
                 Settings.BirthDay = NewDate;

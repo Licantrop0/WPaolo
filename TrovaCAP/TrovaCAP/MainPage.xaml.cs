@@ -65,6 +65,7 @@ namespace TrovaCAP
                 case Step.scegliProvinciaOComune:
 
                     messageBox.Text = "Seleziona una provincia o direttamente un comune";
+                    //acbProvince.ItemsSource = _provinceLookUp.Keys;
                     acbProvince.IsEnabled = true;
                     acbProvince.Text = "";
                     acbComuni.IsEnabled = true;
@@ -143,6 +144,8 @@ namespace TrovaCAP
                     _state = Step.scegliProvinciaOComune;
                 }
             }
+
+            this.Focus();
         }
 
         private void acbComuni_GotFocus(object sender, RoutedEventArgs e)
@@ -277,9 +280,7 @@ namespace TrovaCAP
                 }
             }
 
-            // PS prova!
-            /*acbComuni.GotFocus -= acbComuni_GotFocus;
-            acbComuni.LostFocus -= acbComuni_LostFocus;*/
+            this.Focus();
         }
 
         private void ReadAndParseProvinceLookUp()

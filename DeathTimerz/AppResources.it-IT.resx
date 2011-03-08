@@ -205,6 +205,9 @@ Comunque... toccati le palle!</value>
   <data name="ErrorNoBirthay" xml:space="preserve">
     <value>Inserisci la tua data di nascita</value>
   </data>
+  <data name="ErrorTooOldBirthday" xml:space="preserve">
+    <value>Nessuno con quella data di nascita potrebbe essere ancora vivo...</value>
+  </data>
   <data name="Female" xml:space="preserve">
     <value>Femmina</value>
   </data>

@@ -7,7 +7,7 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"  
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -61,7 +61,7 @@
                                    FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" Style="{StaticResource RedChiller}"/>
                     
                     <Button Name="TakeTestButton" Content="{Binding Path=LocalizedResources.TakeTest, Source={StaticResource LocalizedStrings}}"
-                            Visibility="Collapsed" WPCommon:TiltEffect.IsTiltEnabled="True"
+                            Visibility="Collapsed" toolkit:TiltEffect.IsTiltEnabled="True"
                             Click="TakeTestButton_Click" Style="{StaticResource RedChillerButton}" />
                 </Grid>
             </controls:PanoramaItem>

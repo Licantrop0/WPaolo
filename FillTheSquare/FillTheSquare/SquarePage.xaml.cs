@@ -57,7 +57,7 @@ namespace FillTheSquare
 
         private void dt_Tick(object sender, EventArgs e)
         {
-            TimeElapsedTextBlock.Text = "Seconds: " + sw.Elapsed.TotalSeconds.ToString("0");
+            TimeElapsedTextBlock.Text = "Seconds " + sw.Elapsed.TotalSeconds.ToString("0");
         }
 
         private void InitializeTimers()

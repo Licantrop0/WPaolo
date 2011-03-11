@@ -10,13 +10,12 @@ namespace DeathTimer
     public partial class DeathTimerzPanorama : PhoneApplicationPage
     {
         private DispatcherTimer dt = new DispatcherTimer();
+
         public DeathTimerzPanorama()
         {
             InitializeComponent();
             InitializeTimer();
-            ApplicationBar = new ApplicationBar();
-            ApplicationBar.Buttons.Add(CreateSettingsAppBarButton());
-            ApplicationBar.MenuItems.Add(CreateAboutAppBarMenuItem());
+            InitializeApplicationBar();
         }
 
         private void InitializeTimer()
@@ -105,6 +104,13 @@ namespace DeathTimer
         }
 
         #region Application Bar
+
+        private void InitializeApplicationBar()
+        {
+            ApplicationBar = new ApplicationBar();
+            ApplicationBar.Buttons.Add(CreateSettingsAppBarButton());
+            ApplicationBar.MenuItems.Add(CreateAboutAppBarMenuItem());
+        }
 
         private ApplicationBarIconButton CreateSettingsAppBarButton()
         {

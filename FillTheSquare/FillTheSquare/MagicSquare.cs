@@ -93,5 +93,69 @@ namespace FillTheSquare
             }
             positionHistory = new Stack<Point>();
         }
+
+        public int NumberMovesLeft()
+        {
+            int nAllowedMoves = 0;
+            int x = (int)positionHistory.Peek().X;
+            int y = (int)positionHistory.Peek().Y;
+            if ((x - 3) >= 0)
+            {
+                if (grid[(int)(positionHistory.Peek().X - 3), (int)(positionHistory.Peek().Y)] < 1)
+                {
+                    nAllowedMoves++;
+                }
+            }
+            if ((x - 2) >= 0 && (y - 2) >= 0)
+            {
+                if (grid[(int)(positionHistory.Peek().X - 2), (int)(positionHistory.Peek().Y - 2)] < 1)
+                {
+                    nAllowedMoves++;
+                }
+            }
+            if ((y - 3) >= 0)
+            {
+                if (grid[(int)(positionHistory.Peek().X), (int)(positionHistory.Peek().Y - 3)] < 1)
+                {
+                    nAllowedMoves++;
+                }
+            }
+            if ((x + 2) <= (ActualSize - 1) && (y - 2) >= 0)
+            {
+                if (grid[(int)(positionHistory.Peek().X + 2), (int)(positionHistory.Peek().Y - 2)] < 1)
+                {
+                    nAllowedMoves++;
+                }
+            }
+            if ((x + 3) <= (ActualSize - 1))
+            {
+                if (grid[(int)(positionHistory.Peek().X + 3), (int)(positionHistory.Peek().Y)] < 1)
+                {
+                    nAllowedMoves++;
+                }
+            }
+            if ((x + 2) <= (ActualSize - 1) && (y + 2) <= (ActualSize - 1))
+            {
+                if (grid[(int)(positionHistory.Peek().X + 2), (int)(positionHistory.Peek().Y + 2)] < 1)
+                {
+                    nAllowedMoves++;
+                }
+            }
+            if ((y + 3) <= (ActualSize - 1))
+            {
+                if (grid[(int)(positionHistory.Peek().X), (int)(positionHistory.Peek().Y + 3)] < 1)
+                {
+                    nAllowedMoves++;
+                }
+            }
+            if ((x - 2) >= 0 && (y + 2) <= (ActualSize - 1))
+            {
+                if (grid[(int)(positionHistory.Peek().X - 2), (int)(positionHistory.Peek().Y + 2)] < 1)
+                {
+                    nAllowedMoves++;
+                }
+            }
+            return nAllowedMoves;
+        }
     }
 }

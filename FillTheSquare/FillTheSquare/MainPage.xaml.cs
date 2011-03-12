@@ -28,7 +28,14 @@ namespace FillTheSquare
 
         private void SquareTenButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/SquarePage.xaml?size=10", UriKind.Relative));
+            if (WPCommon.TrialManagement.IsTrialMode)
+            {
+                Console.WriteLine("Please buy the full version!");
+            }
+            else
+            {
+                NavigationService.Navigate(new Uri("/SquarePage.xaml?size=10", UriKind.Relative));
+            }
         }
 
         private void InstructionsButton_Click(object sender, RoutedEventArgs e)
@@ -44,30 +51,6 @@ namespace FillTheSquare
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
-        }
-
-        private void SoundOnButton_Click(object sender, RoutedEventArgs e)
-        {
-            SoundOffButton.IsEnabled = true;
-            SoundOffButton.IsHitTestVisible = true;
-            SoundOffButton.Visibility = System.Windows.Visibility.Visible;
-            SoundOnButton.IsEnabled = true;
-            SoundOnButton.IsHitTestVisible = true;
-            SoundOnButton.Visibility = System.Windows.Visibility.Collapsed;
-
-            //qua devo attivare la musica, cosa devo chiamare?
-        }
-
-        private void SoundOffButton_Click(object sender, RoutedEventArgs e)
-        {
-            SoundOnButton.IsEnabled = true;
-            SoundOnButton.IsHitTestVisible = true;
-            SoundOnButton.Visibility = System.Windows.Visibility.Visible;
-            SoundOffButton.IsEnabled = true;
-            SoundOffButton.IsHitTestVisible = true;
-            SoundOffButton.Visibility = System.Windows.Visibility.Collapsed;
-
-            //qua devo disattivare la musica, cosa devo chiamare?
         }
     }
 }

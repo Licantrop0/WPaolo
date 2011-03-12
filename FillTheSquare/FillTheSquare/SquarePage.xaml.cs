@@ -16,6 +16,7 @@ namespace FillTheSquare
         public MagicSquare Square;
         DispatcherTimer dt;
         Stopwatch sw;
+        Stopwatch TrialWatch;
         bool end;
 
         public SquarePage()
@@ -68,11 +69,26 @@ namespace FillTheSquare
             dt.Start();
             sw = new Stopwatch();
             sw.Start();
+
+            if (WPCommon.TrialManagement.IsTrialMode)
+            {
+                TrialWatch = new Stopwatch();
+                TrialWatch.Start();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (end) return;
+
+            if (WPCommon.TrialManagement.IsTrialMode)
+            {
+                if (TrialWatch.Elapsed.Seconds >= 10)
+                {
+                    Console.WriteLine("Please buy the full version!");
+                    ResetPage();
+                }
+            }
 
             var currentButton = (Border)sender;
             Point p = new Point(currentButton.GetColumn(), currentButton.GetRow());
@@ -102,6 +118,13 @@ namespace FillTheSquare
                 Storyboard.SetTarget(Completed, currentButton);
                 Settings.MoveSound.Play();
                 Completed.Begin();
+
+                if (Square.NumberMovesLeft() == 0)  //porco dio non ho più mosse disponibili!
+                {
+                    //TO DO
+                    //appare Phil triste con effetto sfumato per un secondo
+                    int x = 0;
+                }
 
                 if (Square.positionHistory.Count == (MagicGrid.RowDefinitions.Count * MagicGrid.ColumnDefinitions.Count))
                 {
@@ -145,16 +168,26 @@ namespace FillTheSquare
             me.Play();
         }
 
-        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        private void ResetPage()
         {
             sw.Reset();
             sw.Start();
+            if (WPCommon.TrialManagement.IsTrialMode)
+            {
+                TrialWatch.Reset();
+                TrialWatch.Start();
+            }
             Square.Reset();
             int size = MagicGrid.RowDefinitions.Count;
             MagicGrid.Children.Clear();
             MagicGrid.RowDefinitions.Clear();
             MagicGrid.ColumnDefinitions.Clear();
             creagriglia(size);
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            ResetPage();
         }
     }
 }

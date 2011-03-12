@@ -85,24 +85,6 @@
                 </Button.Background>
             </Button>
             <Image Margin="163,209,21,0" Source="Phil/saluta.png" Stretch="Fill" Height="196" VerticalAlignment="Top"/>
-            <Button Height="77" HorizontalAlignment="Left" Margin="366,445,0,0" x:Name="SoundOffButton" VerticalAlignment="Top" Width="82" Click="SoundOffButton_Click">
-            	<Button.Background>
-            		<RadialGradientBrush>
-            			<GradientStop Color="Blue" Offset="0.378" />
-            			<GradientStop Color="#FF000041" Offset="1" />
-            		</RadialGradientBrush>
-            	</Button.Background>
-            	<Image Height="31" Source="Phil/SoundOff.png" Stretch="Fill" Width="31" RenderTransformOrigin="2.25,0.688"/>
-            </Button>
-            <Button Height="77" HorizontalAlignment="Left" Margin="284,445,0,0" x:Name="SoundOnButton" VerticalAlignment="Top" Width="82" Click="SoundOnButton_Click" IsEnabled="False" IsHitTestVisible="False" Visibility="Collapsed">
-            	<Button.Background>
-            		<RadialGradientBrush>
-            			<GradientStop Color="Blue" Offset="0.378" />
-            			<GradientStop Color="#FF000041" Offset="1" />
-            		</RadialGradientBrush>
-            	</Button.Background>
-            	<Image Height="32" Source="Phil/SoundOn.jpg" Stretch="Fill" Width="32" Visibility="Visible" IsHitTestVisible="False" />
-            </Button>
         </Grid>
     </Grid>
  

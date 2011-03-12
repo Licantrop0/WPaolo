@@ -85,7 +85,7 @@ namespace FillTheSquare
             {
                 if (TrialWatch.Elapsed.Seconds >= 10)
                 {
-                    Console.WriteLine("Please buy the full version!");
+                    MessageBox.Show("Please buy the full version!");
                     ResetPage();
                 }
             }
@@ -119,7 +119,7 @@ namespace FillTheSquare
                 Settings.MoveSound.Play();
                 Completed.Begin();
 
-                if (Square.NumberMovesLeft() == 0)  //porco dio non ho più mosse disponibili!
+                if (Square.NumberMovesLeft() == 0)  //non ci sono più mosse disponibili
                 {
                     //TO DO
                     //appare Phil triste con effetto sfumato per un secondo

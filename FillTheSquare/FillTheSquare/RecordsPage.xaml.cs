@@ -19,11 +19,19 @@ namespace FillTheSquare
         {
             InitializeComponent();
             FillRecordsList();
+
+            BackKeyPress += new EventHandler<System.ComponentModel.CancelEventArgs>(BackPage_Click);
         }
 
         private void FillRecordsList()
         {
             RecordListBox.ItemsSource = Settings.RecordsList;
+        }
+
+        private void BackPage_Click(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
     }
 }

@@ -30,7 +30,7 @@ namespace FillTheSquare
         {
             if (WPCommon.TrialManagement.IsTrialMode)
             {
-                Console.WriteLine("Please buy the full version!");
+                 MessageBox.Show("Please buy the full version!");
             }
             else
             {

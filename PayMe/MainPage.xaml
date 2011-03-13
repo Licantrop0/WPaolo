@@ -33,8 +33,7 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackgroundBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="TimerStates">
                 <!--<VisualStateGroup.Transitions>
@@ -82,23 +81,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                <GradientStop Color="#FFB8B8B8" Offset="1"/>
-                <GradientStop Color="#FF75816D" Offset="0.7"/>
-                <GradientStop Color="#FF1D310F" Offset="0.1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-
-
-        <!--TitlePanel contains the name of the application and page title-->
         <Grid x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,12">
             <TextBlock Text="{Binding Path=LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
                        Margin="9,0,0,0"  FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
                        VerticalAlignment="Center"/>
             <Button Name="PauseButton" Height="100" Width="100" Grid.Row="1" 
                 Margin="6" HorizontalAlignment="Right" 
-                WPCommon:TiltEffect.IsTiltEnabled="True" 
+                toolkit:TiltEffect.IsTiltEnabled="True" 
                 Click="PauseButton_Click">
                 <Grid>
                     <Image Name="PauseButtonImage" Source="Images\PauseButton.png" Stretch="Fill" Opacity="0" />
@@ -110,10 +99,9 @@
             </Button>
         </Grid>
 
-        <!--ContentPanel - place additional content here-->
         <StackPanel Grid.Row="1" >
             <Button Name="StartStopMoneyButton" Height="300" Width="300" Margin="0,34,0,12"
-                    WPCommon:TiltEffect.IsTiltEnabled="True" Click="StartStopButton_Click">
+                    toolkit:TiltEffect.IsTiltEnabled="True" Click="StartStopButton_Click">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="Images\MoneyButton.png" Stretch="Fill"/>

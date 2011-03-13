@@ -36,19 +36,11 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot"  Background="{StaticResource DefaultBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                <GradientStop Color="#FFB8B8B8" Offset="1"/>
-                <GradientStop Color="#FF75816D" Offset="0.7"/>
-                <GradientStop Color="#FF1D310F" Offset="0.1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="PageTitle" Margin="9,-7,0,0" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"

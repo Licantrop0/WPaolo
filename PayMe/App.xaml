@@ -4,18 +4,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
+    xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" >
 
-    <!--Application Resources-->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:PayMe" x:Key="LocalizedStrings" />
+        
+        <LinearGradientBrush x:Key="DefaultBackgroundBrush" EndPoint="1,1" StartPoint="0,0">
+            <GradientStop Color="#FFB8B8B8" Offset="1"/>
+            <GradientStop Color="#FF75816D" Offset="0.7"/>
+            <GradientStop Color="#FF1D310F" Offset="0.1"/>
+        </LinearGradientBrush>
 
         <Style x:Key="AttendanceButtonStyle" TargetType="Button">
             <Setter Property="BorderBrush" Value="{x:Null}" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="WhiteSmoke" />
             <Setter Property="FontFamily" Value="Georgia" />
-            <Setter Property="WPCommon:TiltEffect.IsTiltEnabled" Value="True"/>
+            <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True"/>
         </Style>
     </Application.Resources>
 

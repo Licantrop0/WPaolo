@@ -1,4 +1,4 @@
-An|Ancona||||Achille Barilatti||Via||60127
+AN|Ancona||||Achille Barilatti||Via||60127
 AN|Ancona||||Ad Alto||Via||60122
 AN|Ancona||||Agostino Peruzzi||Via||60128
 AN|Ancona||||Agricoltura||Via dell’||60127

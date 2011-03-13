@@ -13,47 +13,14 @@
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	shell:SystemTray.IsVisible="True">
-	<phone:PhoneApplicationPage.Resources>
-		<Style x:Key="textStyle" TargetType="TextBlock">
-			<Setter Property="Foreground">
-				<Setter.Value>
-					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-						<LinearGradientBrush.RelativeTransform>
-							<CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39"/>
-						</LinearGradientBrush.RelativeTransform>
-						<GradientStop Color="#FF00A5FB" Offset="0"/>
-						<GradientStop Color="#FF42C3D4" Offset="1"/>
-					</LinearGradientBrush>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="FontSize" Value="20"/>
-			<Setter Property="Height" Value="35"/>
-			<Setter Property="HorizontalAlignment" Value="Left"/>
-			<Setter Property="VerticalAlignment" Value="Top"/>
-		</Style>
-		
-		<Style x:Key="autocompleteStyle" TargetType="toolkit:AutoCompleteBox">
-			<Setter Property="Height" Value="65"/>
-			<Setter Property="HorizontalAlignment" Value="Left" />
-			<Setter Property="Width" Value="410"/>
-			<Setter Property="VerticalAlignment" Value="Top" />
-			<Setter Property="FontSize" Value="20"/>
-		</Style>
-	</phone:PhoneApplicationPage.Resources>
 
-	<!--LayoutRoot is the root grid where all page content is placed-->
 	<Grid x:Name="LayoutRoot" Background="Transparent">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
-		<!--TitlePanel contains the name of the application and page title-->
 		<StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="8,16,0,29">
-
-
-		<!--ContentPanel - place additional content here-->
-
 
 			<TextBlock x:Name="ApplicationTitle" Text="Trova il CAP" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Center" FontSize="64" FontFamily="Segoe UI Semibold" >
 				<TextBlock.Foreground>
@@ -70,33 +37,51 @@
 
 			<Grid x:Name="ContentPanel" Grid.Row="1" Margin="8,20,8,0" >
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="0.458*"/>
-					<ColumnDefinition Width="0.542*"/>
+					<ColumnDefinition Width="50" />
+					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
-                <toolkit:AutoCompleteBox  Margin="46,91,0,0"   x:Name="acbComuni" IsTextCompletionEnabled="False"  GotFocus="acbComuni_GotFocus" LostFocus="acbComuni_LostFocus"  Grid.ColumnSpan="2" Style="{StaticResource autocompleteStyle}" FilterMode="StartsWith" InputScope="Text" />
-				<toolkit:AutoCompleteBox  Margin="46,0,0,408"   x:Name="acbIndirizzi" Visibility="Visible"  Grid.ColumnSpan="2" Style="{StaticResource autocompleteStyle}" IsTextCompletionEnabled="False" FilterMode="Contains" LostFocus="acbIndirizzi_LostFocus" GotFocus="acbIndirizzi_GotFocus" VerticalAlignment="Bottom" Foreground="Black" Text="" MinimumPrefixLength="2" />
-				<toolkit:AutoCompleteBox  Margin="46,308,0,336"  x:Name="acbCivici" Visibility="Visible"  Grid.ColumnSpan="2" Style="{StaticResource autocompleteStyle}" MinimumPrefixLength="0" FilterMode="Contains" GotFocus="acbCivici_GotFocus" LostFocus="acbCivici_LostFocus" />
-				<toolkit:AutoCompleteBox  Margin="46,166,0,0"   x:Name="acbFrazioni" Visibility="Visible"  Grid.ColumnSpan="2" Style="{StaticResource autocompleteStyle}" IsTextCompletionEnabled="False" FilterMode="Contains" IsDropDownOpen="True" MinimumPrefixLength="0" GotFocus="acbFrazioni_GotFocus" LostFocus="acbFrazioni_LostFocus" />
-				<toolkit:AutoCompleteBox  Margin="46,20,0,0"  x:Name="acbProvince" FilterMode="StartsWith" MinimumPrefixLength="0" GotFocus="acbProvince_GotFocus" LostFocus="acbProvince_LostFocus" Text="" Grid.ColumnSpan="2" Style="{StaticResource autocompleteStyle}" InputScope="Text"/>
-				<TextBox Height="102" HorizontalAlignment="Left" Margin="-9,549,0,0" x:Name="messageBox" Text="aaa" VerticalAlignment="Top" Width="473" FontSize="20"  TextWrapping="Wrap" Grid.ColumnSpan="2" />
-				<TextBlock  Margin="60,0,-10,0" x:Name="tbProvincia" Text="Provincia"  Style="{StaticResource textStyle}" />
-				<TextBlock  Margin="60,73,31,0" x:Name="tbComuni" Text="Comune"   Style="{StaticResource textStyle}" Grid.ColumnSpan="2"/>
-				<TextBlock  Margin="60,144,29,0" x:Name="tbFrazioni" Text="Frazione"   Style="{StaticResource textStyle}" Grid.ColumnSpan="2"/>
-				<TextBlock  Margin="60,220,6,0" x:Name="tbIndirizzi" Text="Indirizzo"   Style="{StaticResource textStyle}" Grid.ColumnSpan="2"/>
-				<TextBlock  Margin="60,290,0,0" x:Name="tbCiv" Text="Civ."   Style="{StaticResource textStyle}" />
-				<Image HorizontalAlignment="Left" Height="55" Margin="3,91,0,0" Source="/images/C_citta.png" Stretch="Fill" VerticalAlignment="Top" Width="42"/>
-				<Image HorizontalAlignment="Left" Margin="5,328,0,347" Source="/images/C_civici.png" Stretch="Fill" Width="49"/>
-				<Image HorizontalAlignment="Left" Height="44" Margin="4,173,0,0" Source="/images/C_frazioni.png" Stretch="Fill" VerticalAlignment="Top" Width="49"/>
-				<Image HorizontalAlignment="Left" Height="41" Margin="8,252,0,0" Source="/images/C_indirizzo.png" Stretch="Fill" VerticalAlignment="Top" Width="46"/>
-				<Image HorizontalAlignment="Left" Height="55" Margin="-2,21,0,0" Source="/images/C_province.png" Stretch="Fill" VerticalAlignment="Top" Width="57"/>
-				<TextBlock FontSize="40"  Height="74" HorizontalAlignment="Right" Margin="0,0,57,239" x:Name="tbCap" Text="CAP" VerticalAlignment="Bottom" Width="100" Style="{StaticResource textStyle}" RenderTransformOrigin="0.28,0.122"/>
-				<TextBlock FontSize="64" Height="85" Margin="168,0,0,254" x:Name="tbCapResult" Text="00000" VerticalAlignment="Bottom" Style="{StaticResource textStyle}" TextAlignment="Center" Grid.ColumnSpan="2" />
-				<Button Content="Reset" Height="72" HorizontalAlignment="Left" Margin="66,476,0,0" Name="btReset" VerticalAlignment="Top" Width="160" Grid.Column="1" Click="button1_Click" />
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+
+				
+				<Image Source="/images/C_indirizzo.png" Stretch="Uniform" Grid.Row="0" VerticalAlignment="Bottom" Margin="0,12" />
+				<StackPanel Grid.Row="0" Grid.Column="1">
+					<TextBlock Name="tbComuni" Text="Comune" Style="{StaticResource textStyle}" Margin="12,0" />
+					<toolkit:AutoCompleteBox Name="acbComuni" FilterMode="StartsWith" SelectionChanged="acbComuni_SelectionChanged" MinimumPopulateDelay="500" />
+				</StackPanel>
+
+				<Image Source="/images/C_frazioni.png" Stretch="Uniform" Grid.Row="1" VerticalAlignment="Bottom"  Margin="0,12"/>
+				<StackPanel Grid.Row="1" Grid.Column="1">
+					<TextBlock Name="tbFrazioni" Text="Frazione"  Style="{StaticResource textStyle}" Margin="12,0" />
+					<toolkit:AutoCompleteBox Name="acbFrazioni" FilterMode="Contains" IsDropDownOpen="True" MinimumPrefixLength="0" GotFocus="acbFrazioni_GotFocus" SelectionChanged="acbFrazioni_SelectionChanged" />
+				</StackPanel>
+
+				<Image Source="/images/C_citta.png" Stretch="Uniform" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,12"/>
+				<StackPanel Grid.Row="2" Grid.Column="1">
+					<TextBlock Name="tbIndirizzi" Text="Indirizzo"  Style="{StaticResource textStyle}" Margin="12,0" />
+					<toolkit:AutoCompleteBox Name="acbIndirizzi" FilterMode="Contains" GotFocus="acbIndirizzi_GotFocus" MinimumPrefixLength="2" SelectionChanged="acbIndirizzi_SelectionChanged" MinimumPopulateDelay="500" />
+				</StackPanel>
+
+
+				<StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" >
+					<TextBlock Text="CAP: " Style="{StaticResource textStyle}" FontSize="64"  />
+					<TextBlock x:Name="tbCapResult" Text="00000" Style="{StaticResource textStyle}"  FontSize="64" />
+				</StackPanel>
+
+				<TextBox Height="105" Name="tbBenchmark" TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.Row="4" />
+				<Button Content="Reset" Grid.Row="6" Grid.ColumnSpan="2" Click="button1_Click" />
 			</Grid>
-			
-			
-	   </StackPanel>
+
+
+		</StackPanel>
 	</Grid>
- 
+
 
 </phone:PhoneApplicationPage>

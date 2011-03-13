@@ -11,14 +11,12 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.IO;
+using System.Diagnostics;
 
 namespace TrovaCAP
 {
     enum Step
     {
-        scegliProvinciaOComune,
-        selezionaProvincia,
-        selezionaProvinciaComune,
         selezionaComune,
         scegliFrazioneOVia,
         scegliFrazione,
@@ -35,21 +33,18 @@ namespace TrovaCAP
     {
         #region private members
 
-        private CAPDB _capDB;
+        private Comune[] _comuni;
 
         Step _state;
         Step _resumeState;
 
-        Dictionary<string, string> _provinceLookUp = new Dictionary<string, string>();
-
-        string _sProvinciaSelezionata = "";
         string _sComuneSelezionato = "";
         string _sFrazioneSelezionata = "";
         string _sIndirizzoSelezionato = "";
-        string _sCiviciSelezionato = "";
         string _sCapSelezionato = "";
 
-        List<CAPRecord> _capRecords;
+        CAPRecord[] _capRecords;
+        Stopwatch sw = new Stopwatch();
 
         #endregion
 
@@ -57,34 +52,37 @@ namespace TrovaCAP
         public MainPage()
         {
             InitializeComponent();
+            sw.Start();
             ReadAndParseDataBase();
-            ReadAndParseProvinceLookUp();
+            sw.Stop();
+            tbBenchmark.Text = "db: " + sw.ElapsedMilliseconds + " is: ";
 
-            _state = Step.scegliProvinciaOComune;
+            sw.Reset();
+            sw.Start();
+            acbComuni.ItemsSource = _comuni.Select(c => c.ComuneID);
+            sw.Stop();
+
+            tbBenchmark.Text += sw.ElapsedMilliseconds.ToString();
+
+            _state = Step.selezionaComune;
 
             Reset();
         }
 
         private void Reset()
         {
-            messageBox.Text = "Seleziona una provincia o direttamente un comune";
-            acbProvince.ItemsSource = null;
-            acbComuni.ItemsSource = null;
-            acbFrazioni.ItemsSource = null;
+            
             acbIndirizzi.ItemsSource = null;
-            acbCivici.ItemsSource = null;
 
-            acbProvince.IsEnabled = true;
-            acbProvince.Text = "";
             acbComuni.IsEnabled = true;
             acbComuni.Text = "";
+
+            acbFrazioni.ItemsSource = null;
             acbFrazioni.IsEnabled = false;
+
             acbFrazioni.Text = "";
             acbIndirizzi.IsEnabled = false;
             acbIndirizzi.Text = "";
-            acbCivici.IsEnabled = false;
-            acbCivici.Text = "";
-            tbCap.Text = "";
             tbCapResult.Text = "";
 
             this.Focus();
@@ -119,88 +117,28 @@ namespace TrovaCAP
             }
         }
 
-        private void acbProvince_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (_state == Step.scegliProvinciaOComune)
-            {
-                acbProvince.ItemsSource = _provinceLookUp.Keys;
-                _state = Step.selezionaProvincia;
-            }
-        }
-
-        private void acbProvince_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (_state == Step.selezionaProvincia)
-            {
-                if (_provinceLookUp.ContainsKey(acbProvince.Text))
-                {
-                    _sProvinciaSelezionata = _provinceLookUp[acbProvince.Text];
-                    acbComuni.ItemsSource = _capDB.Province[_sProvinciaSelezionata].Keys;
-                    _state = Step.selezionaProvinciaComune;
-                    acbProvince.IsEnabled = false;
-                    messageBox.Text = "Ora seleziona un comune";
-                    // non riesco a portare il controllo sul comune
-                    acbComuni.Focus();
-                    //acbComuni.Focus();
-                    //acbComuni.CaptureMouse();
-                }
-                else
-                {
-                    acbProvince.Text = "";
-                    messageBox.Text = "Provincia errata, riprova o seleziona direttamente un comune";
-                    // <produci un suono di errore>
-                    _state = Step.scegliProvinciaOComune;
-                    //this.Focus();
-                }
-            }
-
-            this.Focus();
-        }
-
         private void acbComuni_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (_state == Step.scegliProvinciaOComune)
+            if (_state == Step.selezionaComune)
             {
-                acbComuni.ItemsSource = _capDB.Comuni.Keys;
-                acbProvince.IsEnabled = false;
-                _state = Step.selezionaComune;
-            }
-            else if (_state == Step.selezionaProvinciaComune)
-            {
-                acbComuni.IsDropDownOpen = true;    // prova auto focus
+
             }
         }
 
-        private void acbComuni_LostFocus(object sender, RoutedEventArgs e)
+        private void acbComuni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_state == Step.selezionaProvinciaComune || _state == Step.selezionaComune)
+            if (_state == Step.selezionaComune)
             {
-                Dictionary<string, Comune> comuniCandidati;
+                bool bAutoFocus = false;
 
-                if (_state == Step.selezionaProvinciaComune)
-                    comuniCandidati = _capDB.Province[_sProvinciaSelezionata];
-                else
-                    comuniCandidati = _capDB.Comuni;
-
-                if (comuniCandidati.ContainsKey(acbComuni.Text))
+                if (_comuni.Any(c=> c.ComuneID == acbComuni.Text))
                 {
                     _sComuneSelezionato = acbComuni.Text;
-                    _capRecords = comuniCandidati[_sComuneSelezionato].CapRecords;
-
-                    if (_state == Step.selezionaComune)
-                    {
-                        string sSigla = _sComuneSelezionato.Substring(_sComuneSelezionato.Length - 3, 2);
-
-                        _sProvinciaSelezionata = (from p in _provinceLookUp
-                                                  where p.Value == sSigla
-                                                  select p.Key).First();
-
-                        acbProvince.Text = _sProvinciaSelezionata;
-                    }
+                    _capRecords = _comuni.Where(c => c.ComuneID == _sComuneSelezionato).Single().CapRecords;
 
                     // se i CAPRecords ritornano un solo CAP ritornalo
                     int countCAP = (from cr in _capRecords
-                                    select cr.Cap.CAPString).Distinct().Count();
+                                    select cr.Cap).Distinct().Count();
 
                     if (countCAP == 1)
                     {
@@ -208,47 +146,53 @@ namespace TrovaCAP
                     }
                     else
                     {
-                        acbComuni.IsEnabled = false;
+                        acbComuni.IsEnabled = false;  // sempre tutti abilitati!
 
                         // populate indirizzi
-                        List<string> sIndirizzi = new List<string>();
-                        sIndirizzi.AddRange((from capRecord in _capRecords
-                                             where capRecord.Indirizzo != ""
-                                             select capRecord.Indirizzo).Distinct());
+                        var sIndirizzi =  (from capRecord in _capRecords
+                                           where capRecord.Indirizzo != ""
+                                           select capRecord.Indirizzo).Distinct();
 
-                        if (sIndirizzi.Count == 0)
+                        if (sIndirizzi.Count() == 0)
                         {
                             _state = Step.selezionaFrazione;
-                            messageBox.Text = "Seleziona una frazione";
-                        }
-                        else
-                        {
-                            acbIndirizzi.ItemsSource = sIndirizzi;
-                            acbIndirizzi.IsEnabled = true;
                         }
 
                         // populate frazioni
-                        List<string> sFrazioni = new List<string>();
-                        sFrazioni.AddRange((from capRecord in _capRecords
-                                            where capRecord.Frazione != ""
-                                            select capRecord.Frazione).Distinct());
-
+                        List<string> sFrazioni = (from capRecord in _capRecords
+                                                  where capRecord.Frazione != ""
+                                                  select capRecord.Frazione).Distinct().ToList();
+                        
                         if (sFrazioni.Count == 0)
                         {
                             _state = Step.selezionaVia;
-                            messageBox.Text = "Seleziona un indirizzo";
-                        }
-                        else
-                        {
-                            sFrazioni.Add("NESSUNA FRAZIONE");
-                            acbFrazioni.ItemsSource = sFrazioni;
-                            acbFrazioni.IsEnabled = true;
                         }
 
                         if (_state != Step.selezionaFrazione && _state != Step.selezionaVia)
                         {
                             _state = Step.scegliFrazioneOVia;
-                            messageBox.Text = "Seleziona la frazione o l'indirizzo";
+                        }
+
+                        if (_state == Step.selezionaFrazione || _state == Step.scegliFrazioneOVia)
+                        {
+                            sFrazioni.Insert(0, _sComuneSelezionato + " (nessuna frazione)");
+                            acbFrazioni.ItemsSource = sFrazioni;
+                            acbFrazioni.IsEnabled = true;
+
+                            acbFrazioni.Focus();
+                            bAutoFocus = true;
+                        }
+
+                        if (_state == Step.selezionaVia || _state == Step.scegliFrazioneOVia)
+                        {
+                            acbIndirizzi.ItemsSource = sIndirizzi;
+                            acbIndirizzi.IsEnabled = true;
+
+                            if (_state == Step.selezionaVia)
+                            {
+                                acbIndirizzi.Focus();
+                                bAutoFocus = true;
+                            }
                         }
                     }
                 }
@@ -257,9 +201,10 @@ namespace TrovaCAP
                     acbComuni.Text = "";
                     // <produci un suono fastidioso e manda un messaggio di errore>
                 }
-            }
 
-            this.Focus();
+                if (!bAutoFocus)
+                    this.Focus();
+            }
         }
 
         private void acbFrazioni_GotFocus(object sender, RoutedEventArgs e)
@@ -275,14 +220,90 @@ namespace TrovaCAP
             }
         }
 
-        private void acbFrazioni_LostFocus(object sender, RoutedEventArgs e)
+
+        //private void FrazioniListPicker_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (_state == Step.scegliFrazioneOVia)
+        //    {
+        //        _state = Step.scegliFrazione;
+        //        //acbFrazioni.IsDropDownOpen = true;
+        //        FrazioniListPicker.ListPickerMode = ListPickerMode.Expanded;
+        //    }
+        //    else if (_state == Step.selezionaFrazione || _state == Step.selezionaViaFrazione)
+        //    {
+        //        //FrazioniListPicker.m = true;
+        //    }
+
+        //}
+
+        //private void FrazioniListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (_state == Step.scegliFrazione || _state == Step.selezionaViaFrazione || _state == Step.selezionaFrazione)
+        //    {
+        //        if (FrazioniListPicker.SelectedItem.ToString() != " ")
+        //        {
+        //            _sFrazioneSelezionata = FrazioniListPicker.SelectedItem.ToString();
+        //            if (_sFrazioneSelezionata == _sComuneSelezionato + " (nessuna frazione)")
+        //                _sFrazioneSelezionata = "";
+
+        //            if (_state == Step.selezionaFrazione)
+        //                _sIndirizzoSelezionato = "";
+
+        //            if (_state == Step.selezionaViaFrazione || _state == Step.selezionaFrazione)
+        //            {
+        //                _capRecords = (from cr in _capRecords
+        //                               where (cr.Indirizzo == _sIndirizzoSelezionato && cr.Frazione == _sFrazioneSelezionata)
+        //                               select cr).ToArray();
+        //            }
+        //            else if (_state == Step.scegliFrazione)
+        //            {
+        //                _capRecords = (from cr in _capRecords
+        //                               where cr.Frazione == _sFrazioneSelezionata
+        //                               select cr).ToArray();
+        //            }
+
+        //            int countCAP = (from cr in _capRecords
+        //                            select cr.Cap).Distinct().Count();
+
+        //            if (countCAP == 1)
+        //            {
+        //                ShowResult();
+        //            }
+        //            else if (_sFrazioneSelezionata == "")
+        //            {
+        //                //acbFrazioni.IsEnabled = false;    // i controlli si lasciano sempre tutti attivi
+        //                if (_state == Step.scegliFrazione)
+        //                {
+        //                    _state = Step.selezionaFrazioneVia;
+        //                    acbIndirizzi.Focus();
+        //                }
+        //                else
+        //                {
+        //                    // I must never get here!
+        //                    throw new Exception("FANCULO!!!!!!!!");
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            acbIndirizzi.Text = "";
+        //            // <produci un suono fastidioso e manda un messaggio di errore>
+        //            // non cambio stato
+        //        }
+        //    }
+
+        //    this.Focus();
+
+        //}
+
+        private void acbFrazioni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (_state == Step.scegliFrazione || _state == Step.selezionaViaFrazione || _state == Step.selezionaFrazione)
             {
                 if ((acbFrazioni.ItemsSource as List<string>).Contains(acbFrazioni.Text))
                 {
                     _sFrazioneSelezionata = acbFrazioni.Text;
-                    if (_sFrazioneSelezionata == "NESSUNA FRAZIONE")
+                    if (_sFrazioneSelezionata == _sComuneSelezionato + " (nessuna frazione)")
                         _sFrazioneSelezionata = "";
 
                     if (_state == Step.selezionaFrazione)
@@ -292,13 +313,13 @@ namespace TrovaCAP
                     {
                         _capRecords = (from cr in _capRecords
                                        where (cr.Indirizzo == _sIndirizzoSelezionato && cr.Frazione == _sFrazioneSelezionata)
-                                       select cr).ToList<CAPRecord>();
+                                       select cr).ToArray();
                     }
                     else if (_state == Step.scegliFrazione)
                     {
                         _capRecords = (from cr in _capRecords
                                        where cr.Frazione == _sFrazioneSelezionata
-                                       select cr).ToList<CAPRecord>();
+                                       select cr).ToArray();
                     }
 
                     int countCAP = (from cr in _capRecords
@@ -310,21 +331,17 @@ namespace TrovaCAP
                     }
                     else if (_sFrazioneSelezionata == "")
                     {
-                        acbFrazioni.IsEnabled = false;
+                        //acbFrazioni.IsEnabled = false;    // i controlli si lasciano sempre tutti attivi
                         if (_state == Step.scegliFrazione)
-                            _state = Step.selezionaFrazioneVia; // potrebbe essere anche seleziona civici, no, dopo la frazione non è possibile..., si' è possibile se uno mette nessuna frazione
+                        {
+                            _state = Step.selezionaFrazioneVia;
+                            acbIndirizzi.Focus();
+                        }
                         else
                         {
-                            acbCivici.IsEnabled = true;
-                            _state = Step.selezionaCivici;      // ok, arriva _capRecords Filtrato
-                            //prova auto focus
-                            //acbCivici.Focus();
+                            // I must never get here!
+                            throw new Exception("FANCULO!!!!!!!!");
                         }
-                    }
-                    else
-                    {
-                        // eccezione!!! non dovrei mai venire qua!
-                        messageBox.Text = "FANCULO!";
                     }
                 }
                 else
@@ -344,13 +361,14 @@ namespace TrovaCAP
                 _state = Step.scegliVia;
         }
 
-        private void acbIndirizzi_LostFocus(object sender, RoutedEventArgs e)
+
+        private void acbIndirizzi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (_state == Step.selezionaVia || _state == Step.scegliVia || _state == Step.selezionaFrazioneVia)
             {
                 string sFrazione = "";
 
-                if ((acbIndirizzi.ItemsSource as List<string>).Contains(acbIndirizzi.Text))
+                if ((acbIndirizzi.ItemsSource as IEnumerable<string>).Contains(acbIndirizzi.Text))
                 {
                     _sIndirizzoSelezionato = acbIndirizzi.Text;
 
@@ -360,33 +378,20 @@ namespace TrovaCAP
                     if (_state == Step.selezionaVia || _state == Step.selezionaFrazioneVia)
                     {
                         _capRecords = (from cr in _capRecords
-                                       where (cr.Indirizzo == _sIndirizzoSelezionato && cr.Frazione == sFrazione)
-                                       select cr).ToList<CAPRecord>();
+                                       where cr.Indirizzo == _sIndirizzoSelezionato
+                                       where cr.Frazione == sFrazione
+                                       select cr).ToArray();
 
-                        int countCAP = (from cr in _capRecords
-                                        select cr.Cap).Distinct().Count();
-
-                        if (countCAP == 1)
-                        {
-                            ShowResult();
-                        }
-                        else
-                        {
-                            acbIndirizzi.IsEnabled = false;
-                            acbCivici.IsEnabled = true;
-                            _state = Step.selezionaCivici;      // ok, arrivano i _capRecords filtrati
-                            //prova auto focus
-                            //acbCivici.Focus();
-                        }
+                        ShowResult();
                     }
-                    else        // 
+                    else
                     {
                         // qua dovrei cmq controllare:
                         // - se esistono frazioni associate all'indirizzo
                         // - se esistono altri civici associati all'indirizzo (insomma è un GRAN CASINO!)
                         _capRecords = (from cr in _capRecords
                                        where cr.Indirizzo == _sIndirizzoSelezionato
-                                       select cr).ToList<CAPRecord>();
+                                       select cr).ToArray();
 
                         // vedo se esistono frazioni associate all'indirizzo
                         int countFrazioni = (from cr in _capRecords
@@ -399,32 +404,15 @@ namespace TrovaCAP
                                                       where cr.Frazione != ""
                                                       select cr.Frazione).ToList<string>();
 
-                            sFrazioni.Add("NESSUNA FRAZIONE");
+                            sFrazioni.Insert(0, _sComuneSelezionato + " (nessuna frazione)");
                             acbFrazioni.ItemsSource = sFrazioni;
                             _state = Step.selezionaViaFrazione;
-                            //acbFrazioni.IsEnabled = true;  // workaround...che non funziona...
-                            acbIndirizzi.IsEnabled = false;   // porca troia se lo disabilito non mi fa vedere il testo! bug assurdo!
-                            //acbIndirizzi.Text = _sIndirizzoSelezionato; // workaround...che non funziona...
+                            //acbIndirizzi.IsEnabled = false;   // non disabilito più nessun controllo
                         }
                         else
                         {
                             // non ho frazioni associate all'indirizzo, posso avere però diversi civici
-                            acbFrazioni.IsEnabled = false;
-                            int countCAP = (from cr in _capRecords
-                                            select cr.Cap).Distinct().Count();
-
-                            if (countCAP == 1)
-                            {
-                                ShowResult();
-                            }
-                            else
-                            {
-                                acbIndirizzi.IsEnabled = false;
-                                acbCivici.IsEnabled = true;
-                                _state = Step.selezionaCivici;
-                                //prova auto focus
-                                //acbCivici.Focus();
-                            }
+                            ShowResult();
                         }
                     }
                 }
@@ -439,205 +427,54 @@ namespace TrovaCAP
             this.Focus();
         }
 
-        private void acbCivici_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (_state == Step.selezionaCivici)
-            {
-                acbCivici.ItemsSource = (from cr in _capRecords
-                                         select cr.Civico).ToList<string>();
-
-                // prova comportameto stile dropdownlist
-                acbCivici.IsDropDownOpen = true;
-            }
-        }
-
-        private void acbCivici_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (_state == Step.selezionaCivici)
-            {
-                if ((acbCivici.ItemsSource as List<string>).Contains(acbCivici.Text))
-                {
-                    _sCiviciSelezionato = acbCivici.Text;
-
-                    _capRecords = (from cr in _capRecords
-                                   where cr.Civico == _sCiviciSelezionato
-                                   select cr).ToList<CAPRecord>();
-
-                    acbCivici.IsEnabled = false;
-
-                    ShowResult();
-                }
-                else
-                {
-                    acbCivici.Text = "";
-                    //<produci un suono fastidioso>
-                }
-            }
-
-            this.Focus();
-        }
 
         private void ShowResult()
         {
             _resumeState = _state;  // per resumare lo stato sull'evento pulsanti di edit
             ControlDisable();
-            _sCapSelezionato = _capRecords[0].Cap.CAPString;
-            tbCap.Text = "CAP";
+            _sCapSelezionato = _capRecords[0].Cap;
             tbCapResult.Text = _sCapSelezionato;
-            messageBox.Text = "Ricerca completa, premi Reset per iniziarne un'altra";
+
             _state = Step.finished;
             //<produci suono di soddisfazione>
         }
 
         private void ControlDisable()
         {
-            acbProvince.IsEnabled = acbComuni.IsEnabled = acbFrazioni.IsEnabled = acbIndirizzi.IsEnabled = acbCivici.IsEnabled = false;
-        }
-
-        private void ReadAndParseProvinceLookUp()
-        {
-            var resource = System.Windows.Application.GetResourceStream(new Uri("provinceLookUp.txt", UriKind.Relative));
-            TextReader tr = new StreamReader(resource.Stream);
-
-            string tmp;
-            string provinceName;
-            string provinceSigla;
-
-            while ((tmp = tr.ReadLine()) != null)
-            {
-                string[] words = tmp.Split(' ');
-                provinceSigla = words[words.Length - 1];
-                provinceName = "";
-                for (int i = 0; i < words.Length - 1; i++)
-                    provinceName += words[i];
-
-                _provinceLookUp.Add(provinceName, provinceSigla);
-            }
+            acbFrazioni.IsEnabled = acbIndirizzi.IsEnabled = false;
         }
 
         private void ReadAndParseDataBase()
         {
-            Dictionary<string, Dictionary<string, Comune>> dProvince = new Dictionary<string, Dictionary<string, Comune>>();
-            Dictionary<string, Comune> dComuni = new Dictionary<string, Comune>();
-            Dictionary<string, CAP> dCAPS = new Dictionary<string, CAP>();
-
-            var resource = System.Windows.Application.GetResourceStream(new Uri("DB2.txt", UriKind.Relative));
-            TextReader tr = new StreamReader(resource.Stream);
-            string tmp;
-
-            // read a line of text
-            while ((tmp = tr.ReadLine()) != null)
+            var resource = System.Windows.Application.GetResourceStream(new Uri("DBout.txt", UriKind.Relative));
+            using (var tr = new StreamReader(resource.Stream))
             {
-                //Legenda
+                int count = int.Parse(tr.ReadLine());
+                _comuni = new Comune[count];
 
-                //Provincia = words[0];
-                //Comune1 = words[1];
-                //Comune2 = words[2];
-                //Frazione1 = words[3];
-                //Frazione2 = words[4];              
-                //Indirizzo1 = words[5];
-                //Indirizzo2 = words[6];
-                //Daugt = words[7];
-
-
-                // read a line on ASCII file, separate strings on pipe char
-                string[] words = tmp.Split('|');
-
-                string sProvincia = words[0];
-                string sComune1 = words[1];
-                string sComune2 = words[2];
-
-                string sFrazione = string.IsNullOrEmpty(words[4]) ? words[3] : words[4] + " - " + words[4];
-                string sIndirizzo = string.IsNullOrEmpty(words[6]) ? words[5] : words[6] + " - " + words[6];
-                sIndirizzo = string.IsNullOrEmpty(sIndirizzo) ? sIndirizzo : words[7] + " " + sIndirizzo;
-
-
-
-                string sCivico = words[8];
-                string sCap = words[9];
-
-                // insert CAP in CAP Dictionary if necessary
-                if (!dCAPS.ContainsKey(sCap))
+                for (int i = 0; i < count; i++)
                 {
-                    dCAPS.Add(sCap, new CAP(sCap));
-                }
+                    string[] words = tr.ReadLine().Split('|');
 
-                CAPRecord newRecord = new CAPRecord(sFrazione, sIndirizzo, sCivico);
-                newRecord.Cap = dCAPS[sCap];
+                    int nRecordCount = int.Parse(words[1]);
+                    _comuni[i] = new Comune(words[0], new CAPRecord[nRecordCount]);
 
-                // insert in province Dictionary if not already inserted
-                if (!dProvince.ContainsKey(sProvincia))
-                {
-                    dProvince.Add(sProvincia, new Dictionary<string, Comune>());
-                }
-
-                // parse Comune1, Comune2 if necessary
-                if (sComune2 == "")
-                {
-                    sComune1 = sComune1 + " (" + sProvincia + ")";
-                }
-                else
-                {
-                    string sTmp = sComune1;
-                    sComune1 = sTmp + " - " + sComune2 + " (" + sProvincia + ")";
-                    sComune2 = sComune2 + " - " + sTmp + " (" + sProvincia + ")";
-                }
-
-                // insert into comuni Dictionary if not already inserted, if comune name is bilungual insert two separate records
-                if (!dComuni.ContainsKey(sComune1))
-                {
-                    if (sComune2 != "")
+                    for (int j = 0; j < nRecordCount; j++)
                     {
-                        Comune c2 = new Comune();
-                        c2.ComuneID = sComune2;
-                        c2.CapRecords = new List<CAPRecord>();
-                        dComuni.Add(c2.ComuneID, c2);
-
-                        dProvince[sProvincia].Add(c2.ComuneID, c2);
+                        string[] parole = tr.ReadLine().Split('|');
+                        _comuni[i].CapRecords[j] = new CAPRecord(parole[0], parole[1], parole[2]);
                     }
-
-                    Comune c1 = new Comune();
-                    c1.ComuneID = sComune1;
-                    c1.CapRecords = new List<CAPRecord>();
-                    dComuni.Add(sComune1, c1);
-
-                    dProvince[sProvincia].Add(c1.ComuneID, c1);
                 }
-
-                // insert CAP record into both indexes
-                if (sComune2 != "")
-                {
-                    dComuni[sComune2].CapRecords.Add(newRecord);
-                }
-
-                dComuni[sComune1].CapRecords.Add(newRecord);
             }
-
-            // incapsule CAP structures into the class CAPDB
-            _capDB = new CAPDB(dProvince, dComuni, dCAPS);
         }
 
-        //private string Normalize(string s)
-        //{
-        //    string sReturn;
-        //    if (s == " '")
-        //    {
-        //        sReturn = "";
-        //    }
-        //    else
-        //    {
-        //        sReturn = s.Remove(0, 2);
-        //        sReturn = sReturn.Remove(sReturn.Length - 1, 1);
-        //    }
-
-        //    return sReturn;
-        //}
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            _state = Step.scegliProvinciaOComune;
+            _state = Step.selezionaComune;
             Reset();
         }
+
 
     }
 }

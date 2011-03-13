@@ -7,6 +7,22 @@
 
     <!--Application Resources-->
     <Application.Resources>
+        
+        <Style x:Key="textStyle" TargetType="TextBlock">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39"/>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF00A5FB" Offset="0"/>
+                        <GradientStop Color="#FF42C3D4" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

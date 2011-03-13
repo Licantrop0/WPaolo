@@ -117,14 +117,6 @@ namespace TrovaCAP
             }
         }
 
-        private void acbComuni_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (_state == Step.selezionaComune)
-            {
-
-            }
-        }
-
         private void acbComuni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (_state == Step.selezionaComune)
@@ -146,7 +138,7 @@ namespace TrovaCAP
                     }
                     else
                     {
-                        acbComuni.IsEnabled = false;  // sempre tutti abilitati!
+                        //acbComuni.IsEnabled = false;  // sempre tutti abilitati!
 
                         // populate indirizzi
                         var sIndirizzi =  (from capRecord in _capRecords
@@ -180,6 +172,7 @@ namespace TrovaCAP
                             acbFrazioni.IsEnabled = true;
 
                             acbFrazioni.Focus();
+                            acbFrazioni.IsDropDownOpen = true;
                             bAutoFocus = true;
                         }
 
@@ -205,11 +198,15 @@ namespace TrovaCAP
                 if (!bAutoFocus)
                     this.Focus();
             }
+
+            //acbComuni.IsEnabled = true;
         }
+
+        
 
         private void acbFrazioni_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (_state == Step.scegliFrazioneOVia)
+            /*if (_state == Step.scegliFrazioneOVia)
             {
                 _state = Step.scegliFrazione;
                 acbFrazioni.IsDropDownOpen = true;
@@ -217,7 +214,8 @@ namespace TrovaCAP
             else if (_state == Step.selezionaFrazione || _state == Step.selezionaViaFrazione)
             {
                 acbFrazioni.IsDropDownOpen = true;
-            }
+            }*/
+            acbFrazioni.IsDropDownOpen = true;
         }
 
 
@@ -292,6 +290,8 @@ namespace TrovaCAP
             // non va qua la gestione dello stato, la via deve essere stata effettivamente scelta per avere un cambio di stato!
             if (_state == Step.scegliFrazioneOVia)
                 _state = Step.scegliVia;
+
+            acbComuni.IsEnabled = true;
         }
 
 
@@ -406,6 +406,13 @@ namespace TrovaCAP
         {
             _state = Step.selezionaComune;
             Reset();
+        }
+
+        private void acbComuni_LostFocus(object sender, RoutedEventArgs e)
+        {
+            //acbIndirizzi.Focus();
+
+            acbFrazioni.Focus();
         }
 
         //private void FrazioniListPicker_GotFocus(object sender, RoutedEventArgs e)

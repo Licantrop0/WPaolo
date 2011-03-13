@@ -23,6 +23,11 @@
             <Setter Property="FontSize" Value="25"/>
         </Style>
 
+
+        <Style x:Key="TextWrappingStyle" TargetType="TextBox">
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

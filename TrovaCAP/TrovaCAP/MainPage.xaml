@@ -14,7 +14,7 @@
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	shell:SystemTray.IsVisible="True">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+	<Grid x:Name="LayoutRoot" Background="Transparent">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
@@ -66,7 +66,7 @@
 				<Image Source="/images/C_citta.png" Stretch="Uniform" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,12"/>
 				<StackPanel Grid.Row="2" Grid.Column="1">
 					<TextBlock Name="tbIndirizzi" Text="Indirizzo"  Style="{StaticResource textStyle}" Margin="12,0" />
-					<toolkit:AutoCompleteBox Name="acbIndirizzi" FilterMode="Contains" GotFocus="acbIndirizzi_GotFocus" MinimumPrefixLength="2" SelectionChanged="acbIndirizzi_SelectionChanged" MinimumPopulateDelay="500" />
+					<toolkit:AutoCompleteBox Name="acbIndirizzi" TextBoxStyle="{StaticResource TextWrappingStyle}" FilterMode="Contains" GotFocus="acbIndirizzi_GotFocus" MinimumPrefixLength="2" SelectionChanged="acbIndirizzi_SelectionChanged" MinimumPopulateDelay="500" />
 				</StackPanel>
 
 
@@ -83,5 +83,5 @@
 		</StackPanel>
 	</Grid>
 
-    
+	
 </phone:PhoneApplicationPage>

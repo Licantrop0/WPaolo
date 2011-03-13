@@ -92,6 +92,11 @@ namespace ShowImages
                 var imageSource = ((BitmapImage)((Image)sender).Source).UriSource.ToString();
                 var imgToDelete = Settings.CurrentImageList.Where(i => i.Url == imageSource).SingleOrDefault();
                 Settings.CurrentImageList.Remove(imgToDelete);
+                if (Settings.CurrentImageList.Count == 0)
+                {
+                    NoImagesTextBlock.Text = "Seems to be some network issues, please press Back and try again later.";
+                    NoImagesTextBlock.Visibility = Visibility.Visible;
+                }
             }
         }
 

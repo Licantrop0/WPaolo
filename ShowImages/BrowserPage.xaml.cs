@@ -19,13 +19,14 @@ namespace ShowImages
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            ChooserWebBrowser.Navigate(Settings.BrowserHistory.Pop());
+            if (!Settings.BrowserHistory.IsEmpty)
+                ChooserWebBrowser.Navigate(Settings.BrowserHistory.Pop());
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //se non ho items nella history esco
-            if (Settings.BrowserHistory.Count == 1) return;
+            if (Settings.BrowserHistory.IsEmpty) return;
             e.Cancel = true;
             //Pop da saltare perchè appena navigo lo mette nello stack
             Settings.BrowserHistory.Pop();
@@ -58,14 +59,14 @@ namespace ShowImages
         private void ChooserWebBrowser_Navigating(object sender, NavigatingEventArgs e)
         {
             this.Focus();
-            LoadingProgress.Visibility = Visibility.Visible;
+            LoadingProgress.IsIndeterminate = true;
         }
 
         private void ChooserWebBrowser_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             ImageUrlTextBox.Text = ChooserWebBrowser.Source.ToString();
             Settings.BrowserHistory.Push(ChooserWebBrowser.Source);
-            LoadingProgress.Visibility = Visibility.Collapsed;
+            LoadingProgress.IsIndeterminate = false;
         }
 
 

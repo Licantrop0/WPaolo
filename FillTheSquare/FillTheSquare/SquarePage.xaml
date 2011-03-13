@@ -63,6 +63,7 @@
                 </RadialGradientBrush>
             </Button.Background>
         </Button>
+        <Image Height="166" Margin="109,-24,115,0" Grid.Row="1" Source="Phil/piange.png" Stretch="Fill" VerticalAlignment="Top" Visibility="Collapsed" Name="PhilPiangeImage" />
     </Grid>
 
 </phone:PhoneApplicationPage>

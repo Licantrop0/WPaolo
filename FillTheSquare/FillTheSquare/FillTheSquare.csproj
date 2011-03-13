@@ -147,6 +147,7 @@
       <Numbers>True</Numbers>
       <Punctuation>True</Punctuation>
     </BlendEmbeddedFont>
+    <Resource Include="Phil\piange.png" />
     <Resource Include="Phil\saluta.png" />
     <Resource Include="Phil\guardaabout.png" />
     <Resource Include="Phil\bravorecords.png" />

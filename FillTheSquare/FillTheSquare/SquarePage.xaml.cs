@@ -122,8 +122,9 @@ namespace FillTheSquare
                 if (Square.NumberMovesLeft() == 0)  //non ci sono più mosse disponibili
                 {
                     //TO DO
-                    //appare Phil triste con effetto sfumato per un secondo
-                    int x = 0;
+                    PhilPiangeImage.Visibility = System.Windows.Visibility.Visible;
+                    System.Threading.Thread.Sleep(1000);
+                    PhilPiangeImage.Visibility = System.Windows.Visibility.Collapsed;
                 }
 
                 if (Square.positionHistory.Count == (MagicGrid.RowDefinitions.Count * MagicGrid.ColumnDefinitions.Count))

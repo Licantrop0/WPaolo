@@ -27,6 +27,9 @@
         <Style x:Key="TextWrappingStyle" TargetType="TextBox">
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
+        <DataTemplate x:Key="TextWrappingItemTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+        </DataTemplate>
 
     </Application.Resources>
 

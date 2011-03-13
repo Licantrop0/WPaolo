@@ -15,23 +15,13 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True" BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" >
+    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackgroundBrush}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                <GradientStop Color="#FFB8B8B8" Offset="1"/>
-                <GradientStop Color="#FF75816D" Offset="0.7"/>
-                <GradientStop Color="#FF1D310F" Offset="0.1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
 
-        <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-
             <TextBlock Text="{Binding Path=LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
                        FontSize="{StaticResource PhoneFontSizeLarge}" />
 
@@ -40,7 +30,6 @@
                        Margin="9,0,0,0" />
         </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
         <toolkit:WrapPanel Grid.Row="1" Margin="12,0,12,0">
             <TextBlock Text="{Binding Path=LocalizedResources.TrialExpiredDescription, Source={StaticResource LocalizedStrings}}"
                        FontSize="{StaticResource PhoneFontSizeExtraLarge}" TextWrapping="Wrap" />
@@ -50,16 +39,4 @@
             </toolkit:WrapPanel>
     </Grid>
  
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
-
 </phone:PhoneApplicationPage>

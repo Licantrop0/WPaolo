@@ -61,6 +61,7 @@
       <DependentUpon>AboutControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="NonLinearNavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShakeDetector.cs" />
     <Compile Include="TrialManagement.cs" />

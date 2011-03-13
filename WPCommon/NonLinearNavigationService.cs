@@ -23,7 +23,7 @@ using System.Windows.Navigation;
 using System.Windows;
 using System.Diagnostics;
 
-namespace WindowsPhoneRecipes
+namespace WPCommon
 {
     /// <summary>
     /// 

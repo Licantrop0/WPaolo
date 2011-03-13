@@ -50,7 +50,7 @@
 					<RowDefinition Height="Auto" />
 				</Grid.RowDefinitions>
 
-				
+
 				<Image Source="/images/C_indirizzo.png" Stretch="Uniform" Grid.Row="0" VerticalAlignment="Bottom" Margin="0,12" />
 				<StackPanel Grid.Row="0" Grid.Column="1">
 					<TextBlock Name="tbComuni" Text="Comune" Style="{StaticResource textStyle}" Margin="12,0" />
@@ -66,7 +66,15 @@
 				<Image Source="/images/C_citta.png" Stretch="Uniform" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,12"/>
 				<StackPanel Grid.Row="2" Grid.Column="1">
 					<TextBlock Name="tbIndirizzi" Text="Indirizzo"  Style="{StaticResource textStyle}" Margin="12,0" />
-					<toolkit:AutoCompleteBox Name="acbIndirizzi" TextBoxStyle="{StaticResource TextWrappingStyle}" FilterMode="Contains" GotFocus="acbIndirizzi_GotFocus" MinimumPrefixLength="2" SelectionChanged="acbIndirizzi_SelectionChanged" MinimumPopulateDelay="500" />
+                    <toolkit:AutoCompleteBox Name="acbIndirizzi"
+                                             TextBoxStyle="{StaticResource TextWrappingStyle}"
+                                             ItemTemplate="{StaticResource TextWrappingItemTemplate}"
+                                             FilterMode="Contains"
+                                             GotFocus="acbIndirizzi_GotFocus" 
+                                             MinimumPrefixLength="2"
+                                             SelectionChanged="acbIndirizzi_SelectionChanged"                                              
+                                             MinimumPopulateDelay="500" >				
+					</toolkit:AutoCompleteBox>
 				</StackPanel>
 
 
@@ -83,5 +91,5 @@
 		</StackPanel>
 	</Grid>
 
-	
+
 </phone:PhoneApplicationPage>

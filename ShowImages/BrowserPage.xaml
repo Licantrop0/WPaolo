@@ -21,9 +21,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <toolkit:PerformanceProgressBar Name="LoadingProgress"
-                                        IsIndeterminate="True"
-                                        Visibility="Collapsed"
+        <toolkit:PerformanceProgressBar Name="LoadingProgress" Margin="3"
                                         VerticalAlignment="Top" />
         
         <TextBox Name="ImageUrlTextBox" InputScope="Url"

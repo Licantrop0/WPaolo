@@ -26,20 +26,41 @@ namespace ShowImages
             }
         }
 
-        public static Stack<Uri> BrowserHistory
+        public static class BrowserHistory
         {
-            get
-            {
-                if (!PhoneApplicationService.Current.State.ContainsKey("browser_history"))
-                    PhoneApplicationService.Current.State["browser_history"] = 
-                        new Stack<Uri>(new List<Uri>() { HomePage });
+            public static bool IsEmpty { get { return History.Count <= 1; } }
 
-                return (Stack<Uri>)PhoneApplicationService.Current.State["browser_history"];
-            }
-            set
+            private static List<Uri> History
             {
-                if (BrowserHistory != value)
-                    PhoneApplicationService.Current.State["browser_history"] = value;
+                get
+                {
+                    if (!IsolatedStorageSettings.ApplicationSettings.Contains("browser_history"))
+                        IsolatedStorageSettings.ApplicationSettings["browser_history"] =
+                            new List<Uri> { new Uri("http://www.google.com/m/?site=images") };
+
+                    return (List<Uri>)IsolatedStorageSettings.ApplicationSettings["browser_history"];
+                }
+                set
+                {
+                    if (History != value)
+                        IsolatedStorageSettings.ApplicationSettings["browser_history"] = value;
+                }
+            }
+
+            public static void Push(Uri uri)
+            {
+                History.Add(uri);
+
+                //tronco la History al 20° item
+                if (History.Count > 20)
+                    History = History.Skip(10).ToList();
+            }
+
+            public static Uri Pop()
+            {
+                var last = History.Last();
+                History.Remove(last);
+                return last;
             }
         }
     }

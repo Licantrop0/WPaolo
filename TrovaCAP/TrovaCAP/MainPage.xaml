@@ -54,13 +54,13 @@
                 <Image Source="/images/C_indirizzo.png" Stretch="Uniform" Grid.Row="0" VerticalAlignment="Bottom" Margin="0,12" />
                 <StackPanel Grid.Row="0" Grid.Column="1">
                     <TextBlock Name="tbComuni" Text="Comune" Style="{StaticResource textStyle}" Margin="12,0" />
-                    <toolkit:AutoCompleteBox Name="acbComuni" FilterMode="StartsWith" SelectionChanged="acbComuni_SelectionChanged" MinimumPopulateDelay="500" LostFocus="acbComuni_LostFocus" FontSize="23" />
+                    <toolkit:AutoCompleteBox Name="acbComuni" FilterMode="StartsWith" SelectionChanged="acbComuni_SelectionChanged" MinimumPopulateDelay="500" LostFocus="acbComuni_LostFocus" FontSize="23" MouseLeftButtonDown="acbComuni_MouseLeftButtonDown" />
                 </StackPanel>
 
                 <Image Source="/images/C_frazioni.png" Stretch="Uniform" Grid.Row="1" VerticalAlignment="Bottom"  Margin="0,12"/>
                 <StackPanel Grid.Row="1" Grid.Column="1">
                     <TextBlock Name="tbFrazioni" Text="Frazione"  Style="{StaticResource textStyle}" Margin="12,0" />
-                    <toolkit:AutoCompleteBox Name="acbFrazioni" FilterMode="Contains" IsDropDownOpen="True" MinimumPrefixLength="0" GotFocus="acbFrazioni_GotFocus" SelectionChanged="acbFrazioni_SelectionChanged" FontSize="23" LostFocus="acbFrazioni_LostFocus" />
+                    <toolkit:AutoCompleteBox Name="acbFrazioni" FilterMode="Contains" IsDropDownOpen="True" MinimumPrefixLength="0" GotFocus="acbFrazioni_GotFocus" SelectionChanged="acbFrazioni_SelectionChanged" FontSize="23" LostFocus="acbFrazioni_LostFocus" MouseLeftButtonDown="acbFrazioni_MouseLeftButtonDown" />
                 </StackPanel>
 
                 <Image Source="/images/C_citta.png" Stretch="Uniform" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,12"/>

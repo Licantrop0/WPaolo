@@ -38,6 +38,7 @@ namespace WPCommon
         {
             get
             {
+                //return true;
                 if (LastOpen == DateTime.Today)
                     return true;
                 else

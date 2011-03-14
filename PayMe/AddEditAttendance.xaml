@@ -57,7 +57,6 @@
                 <TextBlock Text="{Binding Path=LocalizedResources.StartTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
                 <TextBlock Name="StartTimeTextBlock" Text="{Binding Path=StartTime, Converter={StaticResource DateTimeTextConverter}}" />
             </StackPanel>
-
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=LocalizedResources.EndTime, Source={StaticResource LocalizedStrings}}" Margin="0,0,8,0" />
                 <TextBlock Name="EndTimeTextBlock" Text="{Binding Path=EndTime, Converter={StaticResource DateTimeTextConverter}}" />

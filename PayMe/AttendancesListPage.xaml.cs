@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 
 namespace PayMe
 {
@@ -18,6 +13,7 @@ namespace PayMe
         public AttendancesListPage()
         {
             InitializeComponent();
+            CreateAppBar();
         }
 
         private void Attendance_Click(object sender, RoutedEventArgs e)
@@ -30,6 +26,47 @@ namespace PayMe
         {
             AttendanceListBox.ItemsSource = null;
             AttendanceListBox.ItemsSource = Settings.Attendances;            
+        }
+
+        private void CreateAppBar()
+        {
+            ApplicationBar = new ApplicationBar();
+
+            var ExportToExcelAppBarButton = new ApplicationBarIconButton();
+            ExportToExcelAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar.sendmail.png", UriKind.Relative);
+            ExportToExcelAppBarButton.Text = AppResources.ExportToMail;
+            ExportToExcelAppBarButton.Click += delegate(object sender, EventArgs e)
+            {
+                var sb = new StringBuilder();
+                //Header
+                sb.AppendLine(string.Join("\t", new string[]
+                {
+                    AppResources.StartTime.TrimEnd(":".ToCharArray()),
+                    AppResources.EndTime.TrimEnd(":".ToCharArray()),
+                    AppResources.CustomerName.TrimEnd(":".ToCharArray()),
+                    AppResources.Description.TrimEnd(":".ToCharArray()),
+                    AppResources.Income.TrimEnd(":".ToCharArray())
+                }));
+
+                foreach (var att in Settings.Attendances)
+                {
+                    sb.AppendLine(string.Join("\t", new string[]
+                    {
+                        att.StartTime.ToString(),
+                        att.EndTime.ToString(),
+                        att.CustomerName,
+                        att.Description,
+                        att.Income.ToString()
+                    }));
+                }
+
+                var MailTask = new EmailComposeTask();
+                MailTask.Subject = "PayMe - " + AppResources.AttendancesList;
+                MailTask.Body = sb.ToString();
+                MailTask.Show();
+            };
+
+            ApplicationBar.Buttons.Add(ExportToExcelAppBarButton);
         }
 
     }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,9 +9,7 @@ using System.Windows.Input;
 using System.Xml.Linq;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using System.IO.IsolatedStorage;
-using System.IO;
-using System.Windows.Resources;
+using WPCommon;
 
 namespace DeathTimer
 {
@@ -74,7 +74,7 @@ namespace DeathTimer
                   where q.Attribute("Type").Value == "MultipleChoice"
                   from ans in q.Elements("Answer")
                   where ans.Attribute("IsChecked").Value == "True"
-                  select TimeSpanFromYears(double.Parse(ans.Attribute("Value").Value, CultureInfo.InvariantCulture))).
+                  select ExtensionMethods.TimeSpanFromYears(double.Parse(ans.Attribute("Value").Value, CultureInfo.InvariantCulture))).
                   Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
 
             var Weight = (from el in doc.Descendants("Answer")
@@ -92,22 +92,22 @@ namespace DeathTimer
                 bmi = Weight * 703 / Math.Pow(Height, 2); //lb-in
 
             if (bmi >= 18 && bmi <= 27)
-                Settings.EstimatedDeathAge += TimeSpanFromYears(2);
+                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
             else if (bmi > 27 && bmi <= 35)
-                Settings.EstimatedDeathAge += TimeSpanFromYears(-2);
+                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-2);
             else if (bmi < 18 || bmi > 35)
-                Settings.EstimatedDeathAge += TimeSpanFromYears(-4);
+                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
 
             var cigarettes = (from el in doc.Descendants("Answer")
                               where el.Attribute("Name").Value == "Cigarettes1"
                               select double.Parse(el.Attribute("Content").Value)).First();
 
             if (cigarettes <= 0)
-                Settings.EstimatedDeathAge += TimeSpanFromYears(2);
+                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
             else if (cigarettes > 0 && cigarettes <= 5)
-                Settings.EstimatedDeathAge += TimeSpanFromYears(-1);
+                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-1);
             else if (cigarettes > 5)
-                Settings.EstimatedDeathAge += TimeSpanFromYears(-4);
+                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
         }
 
         bool IsTestFilled()
@@ -128,12 +128,6 @@ namespace DeathTimer
                     let t = (TextBox)ctrl
                     where !double.TryParse(t.Text, out temp)
                     select t).Count() == 0;
-        }
-
-
-        TimeSpan TimeSpanFromYears(double year)
-        {
-            return TimeSpan.FromDays(year * Settings.AverageYear);
         }
 
         private void BuildTest()
@@ -167,17 +161,31 @@ namespace DeathTimer
                 {
                     InputScope Numbers = new InputScope();
                     Numbers.Names.Add(new InputScopeName() { NameValue = InputScopeNameValue.TelephoneNumber });
-
-                    TestStackPanel.Children.Add(new TextBox()
+                    var answTextBox = new TextBox()
                     {
                         Name = el.Element("Answer").Attribute("Name").Value,
                         Text = el.Element("Answer").Attribute("Content").Value,
                         //Style = (Style)Application.Current.Resources["RedChiller"],
                         InputScope = Numbers
-                    });
+                    };
+                    answTextBox.KeyDown += (sender, e) => { e.Handled = CheckDigits(e); };
+                    TestStackPanel.Children.Add(answTextBox);
                 }
             }
         }
+
+        private static bool CheckDigits(KeyEventArgs e)
+        {
+            if (e.Key == Key.Space || e.Key == Key.D8 || e.Key == Key.D3) //* o #
+                return true;
+            if (e.PlatformKeyCode == 188 && CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator != ",")
+                return true;
+            if (e.PlatformKeyCode == 190 && CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator != ".")
+                return true;
+
+            return false;
+        }
+
 
         private void BuildApplicationBar()
         {

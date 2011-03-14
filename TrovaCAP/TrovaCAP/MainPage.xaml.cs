@@ -466,8 +466,9 @@ namespace TrovaCAP
                             sFrazioneSelezionata = words[i + 1];
                             break; 
                         }
-                        _sIndirizzoSelezionato += words[i];
+                        _sIndirizzoSelezionato += words[i] + " ";
                     }
+                    _sIndirizzoSelezionato.Remove(_sIndirizzoSelezionato.Length - 1);
                 }
                 else
                 {

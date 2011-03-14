@@ -60,7 +60,7 @@
                 <Image Source="/images/C_frazioni.png" Stretch="Uniform" Grid.Row="1" VerticalAlignment="Bottom"  Margin="0,12"/>
                 <StackPanel Grid.Row="1" Grid.Column="1">
                     <TextBlock Name="tbFrazioni" Text="Frazione"  Style="{StaticResource textStyle}" Margin="12,0" />
-                    <toolkit:AutoCompleteBox Name="acbFrazioni" FilterMode="Contains" IsDropDownOpen="True" MinimumPrefixLength="0" GotFocus="acbFrazioni_GotFocus" SelectionChanged="acbFrazioni_SelectionChanged" FontSize="23" />
+                    <toolkit:AutoCompleteBox Name="acbFrazioni" FilterMode="Contains" IsDropDownOpen="True" MinimumPrefixLength="0" GotFocus="acbFrazioni_GotFocus" SelectionChanged="acbFrazioni_SelectionChanged" FontSize="23" LostFocus="acbFrazioni_LostFocus" />
                 </StackPanel>
 
                 <Image Source="/images/C_citta.png" Stretch="Uniform" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,12"/>
@@ -69,11 +69,9 @@
                     <toolkit:AutoCompleteBox Name="acbIndirizzi"
                                              TextBoxStyle="{StaticResource TextWrappingStyle}"
                                              ItemTemplate="{StaticResource TextWrappingItemTemplate}"
-                                             FilterMode="Contains"
-                                             GotFocus="acbIndirizzi_GotFocus" 
-                                             MinimumPrefixLength="2"
+                                             FilterMode="Contains" MinimumPrefixLength="2"
                                              SelectionChanged="acbIndirizzi_SelectionChanged"                                              
-                                             MinimumPopulateDelay="500" FontSize="23">				
+                                             MinimumPopulateDelay="500" FontSize="23" LostFocus="acbIndirizzi_LostFocus">				
                     </toolkit:AutoCompleteBox>
                 </StackPanel>
 

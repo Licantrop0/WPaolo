@@ -24,7 +24,12 @@ namespace TrovaCAP
         selezionaFrazione,
         selezionaVia,
         selezionaFrazioneVia,
-        finished
+        selezionaComuneFinished,
+        scegliFrazioneFinished,
+        scegliViaFinished,
+        selezionaFrazioneFinished,
+        selezionaViaFinished,
+        SelezionaFrazioneViaFinished,
     }
 
     public partial class MainPage : PhoneApplicationPage
@@ -33,8 +38,7 @@ namespace TrovaCAP
 
         private Comune[] _comuni;
 
-        Step _state;
-        Step _resumeState;
+        Step _state = Step.selezionaComune;
 
         string _sComuneSelezionato = "";
         string _sFrazioneSelezionata = "";
@@ -67,56 +71,9 @@ namespace TrovaCAP
 
             tbBenchmark.Text += sw.ElapsedMilliseconds.ToString();
 
-            _state = Step.selezionaComune;
-
-            Reset();
-        }
-
-        private void Reset()
-        { 
-            acbIndirizzi.ItemsSource = null;
-
-            acbComuni.IsEnabled = true;
-            acbComuni.Text = "";
-
-            acbFrazioni.ItemsSource = null;
             acbFrazioni.IsEnabled = false;
-
-            acbFrazioni.Text = "";
             acbIndirizzi.IsEnabled = false;
-            acbIndirizzi.Text = "";
-            tbCapResult.Text = "";
-
-            this.Focus();
-        }
-
-        public AutoCompleteFilterPredicate<object> FilterItem
-        {
-            get
-            {
-                return AcbFilterContainExtended;
-            }
-
-        }
-
-        private bool AcbFilterContainExtended(string search, object data)
-        {
-            if (search == "")
-            {
-                return true;
-            }
-            else
-            {
-                string value = data as string;
-                if (value.Contains(search))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            _state = Step.selezionaComune;
         }
 
         /*private void acbComuni_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -204,15 +161,18 @@ namespace TrovaCAP
             //acbComuni.IsEnabled = true;
         }*/
 
+
         private void acbComuni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // reset Frazione and Via fields
+            tbBenchmark.Text = _state.ToString();
+
+            // reset
             acbFrazioni.Text = "";
             acbFrazioni.IsEnabled = false;
             acbIndirizzi.Text = "";
             acbIndirizzi.IsEnabled = false;
             tbCapResult.Text = "";
-            _autofocus = null;
+            _state = Step.selezionaComune;
 
             if (!_comuni.Any(c => c.ComuneID == acbComuni.Text))
             {
@@ -248,15 +208,6 @@ namespace TrovaCAP
                     {
                         sFrazioni.Insert(0, _sComuneSelezionato + " (nessuna frazione)");
                     }
-
-                    /*var sIndirizzi = (from capRecord in _capRecordsComuni
-                                      where capRecord.Indirizzo != ""
-                                      where capRecord.Frazione == ""
-                                      select capRecord.Indirizzo).Union
-                                     (from capRecord in _capRecordsComuni
-                                      where capRecord.Indirizzo != ""
-                                      where capRecord.Frazione != ""
-                                      select capRecord.Indirizzo + " (" + capRecord.Frazione + ")");*/
 
                     var sIndirizzi =  from capRecord in _capRecordsComuni
                                       where capRecord.Indirizzo != ""
@@ -295,6 +246,8 @@ namespace TrovaCAP
                     }
                 }
             }
+
+            tbBenchmark.Text = _state.ToString();
         }
 
         private void acbComuni_LostFocus(object sender, RoutedEventArgs e)
@@ -319,6 +272,8 @@ namespace TrovaCAP
 
         private void acbFrazioni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            tbBenchmark.Text = _state.ToString();
+
             if (!(acbFrazioni.ItemsSource as IEnumerable<string>).Contains(acbFrazioni.Text))
             {
                 acbFrazioni.Text = "";
@@ -331,10 +286,14 @@ namespace TrovaCAP
 
                 if (_state == Step.scegliFrazioneOVia)
                     _state = Step.scegliFrazione;
-                else if (_state == Step.selezionaFrazioneVia)
+                else if (_state == Step.scegliFrazioneFinished)
+                    _state = Step.scegliFrazione;
+                else if (_state == Step.selezionaFrazioneFinished)
+                    _state = Step.selezionaFrazione;
+                else if (_state == Step.SelezionaFrazioneViaFinished)
                 {
                     acbIndirizzi.Text = "";
-                    _capRecordsSecondLevel = null; 
+                    _capRecordsSecondLevel = null;
                 }
 
                 _sFrazioneSelezionata = acbFrazioni.Text;
@@ -363,6 +322,8 @@ namespace TrovaCAP
                 }
 
             }
+
+            tbBenchmark.Text = _state.ToString();
         }
 
         /*private void acbFrazioni_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -438,6 +399,8 @@ namespace TrovaCAP
 
         private void acbIndirizzi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            tbBenchmark.Text = _state.ToString();
+
             if (!(acbIndirizzi.ItemsSource as IEnumerable<string>).Contains(acbIndirizzi.Text))
             {
                 acbIndirizzi.Text = "";
@@ -490,6 +453,8 @@ namespace TrovaCAP
 
                 ShowResult();
             }
+
+            tbBenchmark.Text = _state.ToString();
         }
 
         /*private void acbIndirizzi_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -564,12 +529,42 @@ namespace TrovaCAP
 
         private void ShowResult()
         {
-            _resumeState = _state;  // per resumare lo stato sull'evento pulsanti di edit
+        /*    selezionaComune,
+        scegliFrazioneOVia,
+        scegliFrazione,
+        scegliVia,
+        selezionaFrazione,
+        selezionaVia,
+        selezionaFrazioneVia,*/
+
+            switch(_state)
+            {
+                case Step.selezionaComune:
+                    _state = Step.selezionaComuneFinished;
+                    break;
+                case Step.scegliFrazione:
+                    _state = Step.scegliFrazioneFinished;
+                    break;
+                case Step.scegliVia:
+                    _state = Step.scegliViaFinished;
+                    break;
+                case Step.selezionaFrazione:
+                    _state = Step.selezionaFrazioneFinished;
+                    break;
+                case Step.selezionaVia:
+                    _state = Step.selezionaViaFinished;
+                    break;
+                case Step.selezionaFrazioneVia:
+                    _state = Step.SelezionaFrazioneViaFinished;
+                    break;
+                default:
+                    throw new Exception("FANCULO!");
+                
+            }
+
             _sCapSelezionato = _capRecordsResults[0].Cap;
             tbCapResult.Text = _sCapSelezionato;
             _autofocus = this;
-
-            _state = Step.finished;
             //<produci suono di soddisfazione>
         }
 
@@ -599,19 +594,35 @@ namespace TrovaCAP
         }
 
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        public AutoCompleteFilterPredicate<object> FilterItem
         {
-            _state = Step.selezionaComune;
-            Reset();
+            get
+            {
+                return AcbFilterContainExtended;
+            }
+
         }
 
+        private bool AcbFilterContainExtended(string search, object data)
+        {
+            if (search == "")
+            {
+                return true;
+            }
+            else
+            {
+                string value = data as string;
+                if (value.Contains(search))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
 
-
-        
-
-       
-
-       
 
         //private void FrazioniListPicker_GotFocus(object sender, RoutedEventArgs e)
         //{

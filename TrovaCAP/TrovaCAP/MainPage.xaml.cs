@@ -459,16 +459,23 @@ namespace TrovaCAP
                 if (acbIndirizzi.Text.Contains("(fr. "))
                 {
                     string[] words = acbIndirizzi.Text.Split(' ') ;
-                    for (int i = 0; i < words.Length - 1; i++)
+
+                    int i = 0;
+                    while (words[i] != "(fr.")
                     {
-                        if (words[i] == "fr.")
-                        {
-                            sFrazioneSelezionata = words[i + 1];
-                            break; 
-                        }
                         _sIndirizzoSelezionato += words[i] + " ";
+                        i++;
                     }
-                    _sIndirizzoSelezionato.Remove(_sIndirizzoSelezionato.Length - 1);
+                    _sIndirizzoSelezionato = _sIndirizzoSelezionato.Remove(_sIndirizzoSelezionato.Length - 1, 1);
+
+                    i++;
+                    while (!words[i].Contains(")"))
+                    {
+                        sFrazioneSelezionata += words[i] + " ";
+                        i++;
+                    }
+                    sFrazioneSelezionata += words[i];
+                    sFrazioneSelezionata = sFrazioneSelezionata.Remove(sFrazioneSelezionata.Length - 1, 1); 
                 }
                 else
                 {

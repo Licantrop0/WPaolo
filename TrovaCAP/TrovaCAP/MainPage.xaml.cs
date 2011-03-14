@@ -76,6 +76,15 @@ namespace TrovaCAP
             _state = Step.selezionaComune;
         }
 
+        private void Autofocus()
+        {
+            if (_autofocus != null)
+            {
+                _autofocus.Focus();
+                _autofocus = null;
+            }
+        }
+
         /*private void acbComuni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (_state == Step.selezionaComune)
@@ -161,18 +170,24 @@ namespace TrovaCAP
             //acbComuni.IsEnabled = true;
         }*/
 
+        private void acbComuni_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_state != Step.selezionaComune)
+            {
+                // reset
+                acbComuni.Text = "";
+                acbFrazioni.Text = "";
+                acbFrazioni.IsEnabled = false;
+                acbIndirizzi.Text = "";
+                acbIndirizzi.IsEnabled = false;
+                tbCapResult.Text = "";
+                _state = Step.selezionaComune;
+            }
+        }
 
         private void acbComuni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             tbBenchmark.Text = _state.ToString();
-
-            // reset
-            acbFrazioni.Text = "";
-            acbFrazioni.IsEnabled = false;
-            acbIndirizzi.Text = "";
-            acbIndirizzi.IsEnabled = false;
-            tbCapResult.Text = "";
-            _state = Step.selezionaComune;
 
             if (!_comuni.Any(c => c.ComuneID == acbComuni.Text))
             {
@@ -255,19 +270,28 @@ namespace TrovaCAP
             Autofocus();
         }
 
-        private void Autofocus()
-        {
-            if (_autofocus != null)
-            {
-                _autofocus.Focus();
-                _autofocus = null;
-            }
-        }
-
         private void acbFrazioni_GotFocus(object sender, RoutedEventArgs e)
         {
             // sec me va filtrato sullo stato, senno' rimane aperta sta stronza
             acbFrazioni.IsDropDownOpen = true;
+        }
+
+        private void acbFrazioni_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_state != Step.selezionaFrazione && _state != Step.scegliFrazioneOVia)
+            {
+                acbFrazioni.Text = "";
+                acbFrazioni.IsDropDownOpen = true;
+            }
+
+            if (_state == Step.scegliFrazioneFinished)
+                _state = Step.scegliFrazione;
+            else if (_state == Step.selezionaFrazioneFinished)
+                _state = Step.selezionaFrazione;
+            else if (_state == Step.SelezionaFrazioneViaFinished)
+            {
+                _capRecordsSecondLevel = null;
+            }
         }
 
         private void acbFrazioni_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -286,16 +310,7 @@ namespace TrovaCAP
 
                 if (_state == Step.scegliFrazioneOVia)
                     _state = Step.scegliFrazione;
-                else if (_state == Step.scegliFrazioneFinished)
-                    _state = Step.scegliFrazione;
-                else if (_state == Step.selezionaFrazioneFinished)
-                    _state = Step.selezionaFrazione;
-                else if (_state == Step.SelezionaFrazioneViaFinished)
-                {
-                    acbIndirizzi.Text = "";
-                    _capRecordsSecondLevel = null;
-                }
-
+                
                 _sFrazioneSelezionata = acbFrazioni.Text;
                 if (_sFrazioneSelezionata == _sComuneSelezionato + " (nessuna frazione)")
                     _sFrazioneSelezionata = "";
@@ -529,14 +544,6 @@ namespace TrovaCAP
 
         private void ShowResult()
         {
-        /*    selezionaComune,
-        scegliFrazioneOVia,
-        scegliFrazione,
-        scegliVia,
-        selezionaFrazione,
-        selezionaVia,
-        selezionaFrazioneVia,*/
-
             switch(_state)
             {
                 case Step.selezionaComune:
@@ -622,6 +629,10 @@ namespace TrovaCAP
                 }
             }
         }
+
+        
+
+        
 
 
         //private void FrazioniListPicker_GotFocus(object sender, RoutedEventArgs e)

@@ -162,6 +162,9 @@
   <data name="EndTime" xml:space="preserve">
     <value>Fine:</value>
   </data>
+  <data name="ExportToMail" xml:space="preserve">
+    <value>Esporta su eMail</value>
+  </data>
   <data name="FifteenMinutes" xml:space="preserve">
     <value>15 Minuti</value>
   </data>

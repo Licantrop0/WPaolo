@@ -87,7 +87,7 @@ namespace PayMe
                 return true;
             if (e.PlatformKeyCode == 190 && CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator != ".")
                 return true;
-            
+
             return false;
         }
 

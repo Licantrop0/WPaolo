@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework.Audio;
+using WPCommon;
 
 namespace FillTheSquare
 {
@@ -51,6 +52,8 @@ namespace FillTheSquare
             InitializeSounds();
             // Phone-specific initialization
             InitializePhoneApplication();
+
+            NonLinearNavigationService.Instance.Initialize(RootFrame);
         }
 
         private void InitializeSounds()

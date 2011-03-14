@@ -6,15 +6,43 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
 
-
-    <!--Application Resources-->
     <Application.Resources>
+        <RadialGradientBrush x:Key="BackgroundGradientBrush" GradientOrigin="0.238,0.297" RadiusY="0.545" RadiusX="0.674">
+            <GradientStop Color="#FFB2AEE7"/>
+            <GradientStop Color="#FF4536F9" Offset="1"/>
+        </RadialGradientBrush>
+
+        <Style x:Key="SquareTitleStyle" TargetType="TextBlock">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FFF2FF04" Offset="0.534"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" />
+        </Style>
+
+        <Style x:Key="HomeButtonStyle" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FF1818EB" Offset="0.686" />
+                        <GradientStop Color="#FF030558" Offset="1" />
+                    </RadialGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
         <WPCommon:XNAAsyncDispatcher />
-
-        <!--Required object that handles lifetime events for the application-->
         <shell:PhoneApplicationService 
             Launching="Application_Launching" Closing="Application_Closing" 
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>

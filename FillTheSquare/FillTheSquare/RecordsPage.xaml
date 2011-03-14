@@ -10,36 +10,24 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <RadialGradientBrush GradientOrigin="0.238,0.297" RadiusY="0.545" RadiusX="0.674">
-                <GradientStop Color="#FFB2AEE7"/>
-                <GradientStop Color="#FF4536F9" Offset="1"/>
-            </RadialGradientBrush>
-        </Grid.Background>
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundGradientBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="69"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="4,47,8,-22">
-        	<TextBlock x:Name="PageTitle" Text="Records" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="Segoe Keycaps" FontSize="32" HorizontalAlignment="Center">
-        		<TextBlock.Foreground>
-        			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        				<GradientStop Color="Black" Offset="0"/>
-        				<GradientStop Color="#FFF1FF00" Offset="0.25"/>
-        			</LinearGradientBrush>
-        		</TextBlock.Foreground>
-        	</TextBlock>
+        <StackPanel Grid.Row="0"  Margin="12,12,12,12" Orientation="Horizontal">
+            <TextBlock Text="Records" FontSize="36"
+                       Style="{StaticResource SquareTitleStyle}" />
+            <Image Source="Phil\bravorecords.png"
+                   Stretch="Uniform" Height="100"
+                   Margin="12,0" />
         </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid Grid.Row="1" Margin="12,0,12,0">
             <ListBox Name="RecordListBox" FontFamily="SWGamekeys MT" FontSize="13.333">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -52,12 +40,8 @@
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-
             </ListBox>
-            
         </Grid>
-        <Image Source="Phil\bravorecords.png"
-               Stretch="Uniform" Height="100" Margin="0,-9,0,-22" d:LayoutOverrides="VerticalAlignment" HorizontalAlignment="Right" />
     </Grid>
 
 </phone:PhoneApplicationPage>

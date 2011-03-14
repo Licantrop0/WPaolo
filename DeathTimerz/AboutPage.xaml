@@ -12,18 +12,13 @@
     shell:SystemTray.IsVisible="False">
 
     <WPCommon:AboutControl Name="WPMEAbout"
-        FontFamily="Fonts\Fonts.zip#Chiller"
-        MinFontSize="50" >
+                           FontFamily="Fonts\Fonts.zip#Chiller"
+                           MinFontSize="55"
+                           Foreground="{StaticResource RedGradientBrush}" >
         <WPCommon:AboutControl.BackgroundStackPanel>
             <ImageBrush ImageSource="/DeathTimer;component/Images/DeathBackground.jpg"
                         Stretch="None" AlignmentX="Center" />
         </WPCommon:AboutControl.BackgroundStackPanel>
-        <WPCommon:AboutControl.Foreground>
-            <LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
-                <GradientStop Color="Red" Offset="0" />
-                <GradientStop Color="#C8503232" Offset="1" />
-            </LinearGradientBrush>
-        </WPCommon:AboutControl.Foreground>
     </WPCommon:AboutControl>
 
 </phone:PhoneApplicationPage>

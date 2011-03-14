@@ -21,8 +21,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,0,0,20">
-            <TextBlock x:Name="PageTitle" Text="{Binding Path=LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
-                       Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
+            <TextBlock x:Name="PageTitle" Style="{StaticResource RedChiller}"
+                       Text="{Binding Path=LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
+                       FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -36,24 +37,13 @@
                            Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}"
                            Grid.Row="0"/>
             <toolkit:DatePicker Name="BirthDayDatePicker" Background="Gray"
-                                    FontFamily="Fonts\Fonts.zip#Chiller"
-                                    Grid.Row="1">
-                <toolkit:DatePicker.Foreground>
-                    <LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
-                        <GradientStop Color="Red" Offset="0" />
-                        <GradientStop Color="#C8503232" Offset="1" />
-                    </LinearGradientBrush>
-                </toolkit:DatePicker.Foreground>
-            </toolkit:DatePicker>
+                                FontFamily="Fonts\Fonts.zip#Chiller"
+                                Foreground="{StaticResource RedGradientBrush}"
+                                Grid.Row="1"/>
             <toolkit:TimePicker Name="BirthDayTimePicker" Background="Gray"
-                                    Grid.Row="2" FontFamily="Fonts\Fonts.zip#Chiller" >
-                <toolkit:TimePicker.Foreground>
-                    <LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
-                        <GradientStop Color="Red" Offset="0" />
-                        <GradientStop Color="#C8503232" Offset="1" />
-                    </LinearGradientBrush>
-                </toolkit:TimePicker.Foreground>
-            </toolkit:TimePicker>
+                                Foreground="{StaticResource RedGradientBrush}"
+                                FontFamily="Fonts\Fonts.zip#Chiller"
+                                Grid.Row="2" />            
             <Image Source="Images\Halloween_cake.jpg" Width="300" Grid.Row="3"/>
         </Grid>
     </Grid>

@@ -8,16 +8,14 @@
 	<Application.Resources>
 		<local:LocalizedStrings xmlns:local="clr-namespace:DeathTimer" x:Key="LocalizedStrings" />
 
+		<LinearGradientBrush x:Key="RedGradientBrush" StartPoint="0.5,0.2" EndPoint="0.5,1">
+			<GradientStop Color="Red" Offset="0" />
+			<GradientStop Color="#C8503232" Offset="1" />
+		</LinearGradientBrush>
+
 		<Style x:Key="RedChiller" TargetType="TextBlock">
 			<Setter Property="FontFamily" Value="Fonts\Fonts.zip#Chiller" />
-			<Setter Property="Foreground">
-				<Setter.Value>
-					<LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
-						<GradientStop Color="Red" Offset="0" />
-						<GradientStop Color="#C8503232" Offset="1" />
-					</LinearGradientBrush>
-				</Setter.Value>
-			</Setter>
+			<Setter Property="Foreground" Value="{StaticResource RedGradientBrush}" />
 		</Style>
 
 		<Style x:Key="RedChillerTest" TargetType="TextBlock" BasedOn="{StaticResource RedChiller}">
@@ -30,27 +28,19 @@
 			<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontFamily" Value="Fonts\Fonts.zip#Chiller" />
-			<Setter Property="Foreground">
-				<Setter.Value>
-					<LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
-						<GradientStop Color="Red" Offset="0" />
-						<GradientStop Color="#C8503232" Offset="1" />
-					</LinearGradientBrush>
-				</Setter.Value>
-			</Setter>
+			<Setter Property="Foreground" Value="{StaticResource RedGradientBrush}" />
 		</Style>
 
 		<Style x:Key="RedChillerButton" TargetType="Button"  BasedOn="{StaticResource RedChillerContentControl}" >
-			 <Setter Property="Foreground">
-				<Setter.Value>
-					<LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
-						<GradientStop Color="#CC430000" Offset="0" />
-						<GradientStop Color="#E5000000" Offset="0.444" />
-					</LinearGradientBrush>
-				</Setter.Value>
-			</Setter>
-
-			<Setter Property="Template">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
+                        <GradientStop Color="#CC430000" Offset="0" />
+                        <GradientStop Color="#E5000000" Offset="0.444" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
 						<Grid>

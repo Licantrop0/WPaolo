@@ -13,57 +13,61 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot"  Background="{StaticResource BackgroundGradientBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <RadialGradientBrush GradientOrigin="0.238,0.297" RadiusY="0.545" RadiusX="0.674">
-                <GradientStop Color="#FFB2AEE7"/>
-                <GradientStop Color="#FF4536F9" Offset="1"/>
-            </RadialGradientBrush>
-        </Grid.Background>
+
         <MediaElement Source="Sounds\Partita.wav" AutoPlay="True"
                       MediaEnded="BackgroundMediaElement_MediaEnded" />
-        
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12">
             <TextBlock Name="TimeElapsedTextBlock"
-                       Text="Seconds 0" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" Margin="5,0,0,0" Height="48" FontSize="29.333" >
-            	<TextBlock.Foreground>
-            		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            			<GradientStop Color="Black" Offset="0"/>
-            			<GradientStop Color="#FFE6FF00" Offset="0.397"/>
-            		</LinearGradientBrush>
-            	</TextBlock.Foreground>
+                       Style="{StaticResource SquareTitleStyle}" 
+                       FontSize="35" Text="Seconds  0">
             </TextBlock>
         </StackPanel>
 
-            <Grid Name="MagicGrid" Height="450" Width="450" Grid.Row="1" >
-                <Grid.Resources>
-                    <Storyboard x:Name="RedFlash">
-                        <ColorAnimation                        
+        <Grid Name="MagicGrid" Height="450" Width="450" Grid.Row="1" >
+            <Grid.Resources>
+                <Storyboard x:Name="RedFlash">
+                    <ColorAnimation
                         Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
-                        To="Red" Duration="0:0:0.5" 
-                        AutoReverse="True"  />
-                    </Storyboard>
+                        To="Red" Duration="0:0:0.5" AutoReverse="True"  />
+                </Storyboard>
 
-                    <Storyboard x:Name="Completed" >
-                        <ColorAnimation
+                <Storyboard x:Name="Completed">
+                    <ColorAnimation
                         Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
                         To="{StaticResource PhoneAccentColor}" Duration="0:0:1" />
-                    </Storyboard>
-                </Grid.Resources>
-            </Grid>
-        <Button Content="Reset" Height="76" HorizontalAlignment="Left" Margin="142,591,0,0" Name="ResetButton" VerticalAlignment="Top" Width="198" Grid.Row="1" Click="ResetButton_Click">
-            <Button.Background>
-                <RadialGradientBrush>
-                    <GradientStop Color="#FF1818EB" Offset="0.686" />
-                    <GradientStop Color="#FF030558" Offset="1" />
-                </RadialGradientBrush>
-            </Button.Background>
-        </Button>
-        <Image Height="166" Margin="109,-24,115,0" Grid.Row="1" Source="Phil/piange.png" Stretch="Fill" VerticalAlignment="Top" Visibility="Collapsed" Name="PhilPiangeImage" />
+                </Storyboard>
+                
+                <Storyboard x:Name="PhilPiangeAppear">
+                    <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="1" Duration="0:0:1" FillBehavior="HoldEnd" />
+                </Storyboard>
+
+                <Storyboard x:Name="PhilPiangeDisappear">
+                    <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0" Duration="0:0:1" FillBehavior="HoldEnd" />
+                </Storyboard>
+
+
+            </Grid.Resources>
+        </Grid>
+        
+        <Button Content="Reset" Click="ResetButton_Click"
+                Style="{StaticResource HomeButtonStyle}" Grid.Row="2" 
+                Height="76" Width="198" Margin="0,0,0,24" />
+        
+        <Image x:Name="PhilPiangeImage" Source="Phil/piange.png"
+               Margin="109,-24,115,0" VerticalAlignment="Top"
+               Height="166" Grid.Row="1" IsHitTestVisible="False"
+               Stretch="Fill" Opacity="0" />
     </Grid>
 
 </phone:PhoneApplicationPage>

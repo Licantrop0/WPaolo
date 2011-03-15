@@ -96,8 +96,8 @@ namespace FillTheSquare
             var currentButton = (Border)sender;
             Point p = new Point(currentButton.GetColumn(), currentButton.GetRow());
 
-
-            //TODO: porco dio non si capisce un cazzo di questa funzione, ci sono delle ripetizioni, semplificala!
+            //controllo se è un'azione di cancellazione di una casella o di un'aggiunta: se il tasto premuto è uguale all'ultimo
+            //nella history vuol dire che sto cancellando
             bool cancel = false;
             if (Square.positionHistory.Count != 0)
             {
@@ -108,8 +108,9 @@ namespace FillTheSquare
                 }
             }
 
+            //tutta la logica della griglia è dentro il metodo PressButton
             bool res = Square.PressButton(p);
-            if (res && !cancel)
+            if (res && !cancel)     //caso creazione andato a buon fine
             {
                 currentButton.Child = new TextBlock()
                 {
@@ -130,12 +131,6 @@ namespace FillTheSquare
                     PhilPiangeDisappear.Stop();
                     PhilPiangeAppear.Begin();
                 }
-                else //TODO: questo non viene mai scatenato se cancello la mossa, spostarlo in un punto più tattico
-                {
-                    PhilPiangeDisappear.Stop();
-                    PhilPiangeAppear.Stop();
-                    PhilPiangeDisappear.Begin();
-                }
 
                 if (Square.positionHistory.Count == (MagicGrid.RowDefinitions.Count * MagicGrid.ColumnDefinitions.Count))
                 {
@@ -148,8 +143,12 @@ namespace FillTheSquare
                     NavigationService.Navigate(new Uri("/RecordsPage.xaml", UriKind.Relative));
                 }
             }
-            else if (res && cancel)
+            else if (res && cancel) //caso di cancellazione andato a buon fine
             {
+                PhilPiangeDisappear.Stop();
+                PhilPiangeAppear.Stop();
+                PhilPiangeDisappear.Begin();
+
                 Completed.Stop();
                 if (Square.positionHistory.Count > 0)
                 {
@@ -162,7 +161,7 @@ namespace FillTheSquare
                 }
                 Settings.UndoSound.Play();
             }
-            else
+            else                    //caso di creazione fallito
             {
                 RedFlash.Stop();
                 Storyboard.SetTarget(RedFlash, currentButton);
@@ -180,6 +179,9 @@ namespace FillTheSquare
 
         private void ResetPage()
         {
+            PhilPiangeDisappear.Stop();
+            PhilPiangeAppear.Stop();
+            PhilPiangeDisappear.Begin();
             sw.Reset();
             sw.Start();
             if (WPCommon.TrialManagement.IsTrialMode)

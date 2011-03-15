@@ -11,23 +11,22 @@
             <GradientStop Color="#FFB2AEE7"/>
             <GradientStop Color="#FF4536F9" Offset="1"/>
         </RadialGradientBrush>
+        
+        <LinearGradientBrush x:Key="ForegroundGradientBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FFF2FF04" Offset="0.534"/>
+        </LinearGradientBrush>
 
         <Style x:Key="SquareTitleStyle" TargetType="TextBlock">
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="#FFF2FF04" Offset="0.534"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" />
+            <Setter Property="Foreground" Value="{StaticResource ForegroundGradientBrush}" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" />
+            <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
 
         <Style x:Key="HomeButtonStyle" TargetType="Button">
+            <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background">
                 <Setter.Value>
                     <RadialGradientBrush>
@@ -36,7 +35,6 @@
                     </RadialGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="BorderThickness" Value="0" />
         </Style>
 
     </Application.Resources>

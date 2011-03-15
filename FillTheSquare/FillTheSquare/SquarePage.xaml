@@ -13,7 +13,21 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
-    <Grid x:Name="LayoutRoot"  Background="{StaticResource BackgroundGradientBrush}">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundGradientBrush}">
+        <Grid.Resources>
+            <Storyboard x:Name="PhilPiangeAppear">
+                <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="1" Duration="0:0:1" FillBehavior="HoldEnd" />
+            </Storyboard>
+
+            <Storyboard x:Name="PhilPiangeDisappear">
+                <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0" Duration="0:0:1" FillBehavior="HoldEnd" />
+            </Storyboard>
+        </Grid.Resources>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -26,48 +40,38 @@
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12">
             <TextBlock Name="TimeElapsedTextBlock"
                        Style="{StaticResource SquareTitleStyle}" 
-                       FontSize="35" Text="Seconds  0">
+                       FontSize="32" Text="Seconds 000">
             </TextBlock>
         </StackPanel>
 
-        <Grid Name="MagicGrid" Height="450" Width="450" Grid.Row="1" >
-            <Grid.Resources>
-                <Storyboard x:Name="RedFlash">
-                    <ColorAnimation
+        <Border Height="452" Width="452" Grid.Row="1"
+                BorderBrush="White" BorderThickness="1" >
+            <Grid Name="MagicGrid">
+                <Grid.Resources>
+                    <Storyboard x:Name="RedFlash">
+                        <ColorAnimation
                         Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
                         To="Red" Duration="0:0:0.5" AutoReverse="True"  />
-                </Storyboard>
+                    </Storyboard>
 
-                <Storyboard x:Name="Completed">
-                    <ColorAnimation
+                    <Storyboard x:Name="Completed">
+                        <ColorAnimation
                         Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
                         To="{StaticResource PhoneAccentColor}" Duration="0:0:1" />
-                </Storyboard>
-                
-                <Storyboard x:Name="PhilPiangeAppear">
-                    <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
-                                     Storyboard.TargetProperty="Opacity"
-                                     To="1" Duration="0:0:1" FillBehavior="HoldEnd" />
-                </Storyboard>
+                    </Storyboard>
+                </Grid.Resources>
+            </Grid>
+        </Border>
 
-                <Storyboard x:Name="PhilPiangeDisappear">
-                    <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
-                                     Storyboard.TargetProperty="Opacity"
-                                     To="0" Duration="0:0:1" FillBehavior="HoldEnd" />
-                </Storyboard>
+        <Image x:Name="PhilPiangeImage" Source="Phil/piange.png"
+               Margin="100,0" Stretch="Uniform" Width="166" Grid.Row="1"
+               VerticalAlignment="Top" HorizontalAlignment="Center"
+               Opacity="0" IsHitTestVisible="False" />
 
-
-            </Grid.Resources>
-        </Grid>
-        
         <Button Content="Reset" Click="ResetButton_Click"
                 Style="{StaticResource HomeButtonStyle}" Grid.Row="2" 
                 Height="76" Width="198" Margin="0,0,0,24" />
-        
-        <Image x:Name="PhilPiangeImage" Source="Phil/piange.png"
-               Margin="109,-24,115,0" VerticalAlignment="Top"
-               Height="166" Grid.Row="1" IsHitTestVisible="False"
-               Stretch="Fill" Opacity="0" />
+
     </Grid>
 
 </phone:PhoneApplicationPage>

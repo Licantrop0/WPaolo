@@ -1,9 +1,5 @@
-﻿using System;
+﻿using System.Collections.ObjectModel;
 using System.IO.IsolatedStorage;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.IO;
 using Microsoft.Xna.Framework.Audio;
 
 namespace FillTheSquare
@@ -15,18 +11,18 @@ namespace FillTheSquare
         public static SoundEffect UndoSound;
         public static SoundEffect VictorySound;
 
-        public static ObservableCollection<Record> RecordsList
+        public static ObservableCollection<Record> Records
         {
             get
             {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("records_list"))
-                    IsolatedStorageSettings.ApplicationSettings["records_list"] = new ObservableCollection<Record>();
-                return (ObservableCollection<Record>)IsolatedStorageSettings.ApplicationSettings["records_list"];
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("records"))
+                    IsolatedStorageSettings.ApplicationSettings["records"] = new ObservableCollection<Record>();
+                return (ObservableCollection<Record>)IsolatedStorageSettings.ApplicationSettings["records"];
             }
             set
             {
-                if (RecordsList != value)
-                    IsolatedStorageSettings.ApplicationSettings["records_list"] = value;
+                if (Records != value)
+                    IsolatedStorageSettings.ApplicationSettings["records"] = value;
             }
         }
     }

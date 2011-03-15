@@ -71,7 +71,7 @@
                                              ItemTemplate="{StaticResource TextWrappingItemTemplate}"
                                              FilterMode="Contains" MinimumPrefixLength="2"
                                              SelectionChanged="acbIndirizzi_SelectionChanged"                                              
-                                             MinimumPopulateDelay="500" FontSize="23" LostFocus="acbIndirizzi_LostFocus">				
+                                             MinimumPopulateDelay="500" FontSize="23" LostFocus="acbIndirizzi_LostFocus" MouseLeftButtonDown="acbIndirizzi_MouseLeftButtonDown">				
                     </toolkit:AutoCompleteBox>
                 </StackPanel>
 

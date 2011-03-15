@@ -15,12 +15,16 @@
     shell:SystemTray.IsVisible="True">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="294*" />
+            <ColumnDefinition Width="186*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="8,16,0,29">
+        <StackPanel x:Name="TitlePanel" Margin="8,16,0,29" Grid.ColumnSpan="2">
 
             <TextBlock x:Name="ApplicationTitle" Text="Trova il CAP" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Center" FontSize="64" FontFamily="Segoe UI Semibold" >
                 <TextBlock.Foreground>
@@ -84,7 +88,7 @@
 
 
         </StackPanel>
-        <TextBox Height="105" Name="tbBenchmark" TextWrapping="Wrap" Grid.Row="1" Margin="24,105,0,12" />
+        <TextBox Height="105" Name="tbBenchmark" TextWrapping="Wrap" Grid.Row="1" Margin="24,105,0,12" Grid.ColumnSpan="2" />
     </Grid>
 
 

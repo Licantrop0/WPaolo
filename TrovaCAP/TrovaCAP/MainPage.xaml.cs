@@ -289,14 +289,9 @@ namespace TrovaCAP
             if (_state != Step.selezionaFrazione && _state != Step.scegliFrazioneOVia)
             {
                 acbFrazioni.Text = "";
-                //acbFrazioni.IsDropDownOpen = true;
                 _capRecordsComuniFrazioni = null;
                 tbCapResult.Text = "";
             }
-            /*else
-            {
-                acbFrazioni.IsDropDownOpen = true;  // temp
-            }*/
 
             // state resume
             if (_state == Step.scegliFrazioneFinished)
@@ -425,15 +420,17 @@ namespace TrovaCAP
 
         private void acbFrazioni_LostFocus(object sender, RoutedEventArgs e)
         {
-            acbFrazioni.IsDropDownOpen = false;     // temp
-
             Autofocus();
+        }
+
+        private void acbIndirizzi_GotFocus(object sender, RoutedEventArgs e)
+        {
+            // work around in order to prevent acbFrazioni drop item to open without any reason, it remain a little flickering anyway...
+            acbFrazioni.IsDropDownOpen = false;
         }
 
         private void acbIndirizzi_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            acbFrazioni.IsDropDownOpen = false;     // workaround...
-
             // reset control
             if (_state != Step.selezionaVia && _state != Step.scegliFrazioneOVia)
             {
@@ -671,12 +668,6 @@ namespace TrovaCAP
                 }
             }
         }
-
-        
-
-        
-
-        
 
 
         //private void FrazioniListPicker_GotFocus(object sender, RoutedEventArgs e)

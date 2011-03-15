@@ -16,18 +16,16 @@ namespace FillTheSquare
         public MagicSquare Square;
         DispatcherTimer dt;
         Stopwatch sw;
-        Stopwatch TrialWatch;
-        bool end;
 
         public SquarePage()
         {
             InitializeComponent();
-            end = false;
             InitializeTimers();
         }
 
-        private void creagriglia(int size)
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            var size = int.Parse(NavigationContext.QueryString["size"]);
             Square = new MagicSquare(size);
             for (int i = 0; i < size; i++)
             {
@@ -50,67 +48,38 @@ namespace FillTheSquare
             }
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            var size = int.Parse(NavigationContext.QueryString["size"]);
-            creagriglia(size);
-        }
-
-        private void dt_Tick(object sender, EventArgs e)
-        {
-            TimeElapsedTextBlock.Text = "Seconds " + sw.Elapsed.TotalSeconds.ToString("0");
-        }
-
         private void InitializeTimers()
         {
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromSeconds(1);
-            dt.Tick += new EventHandler(dt_Tick);
+            dt.Tick += (sender, e) =>
+                { TimeElapsedTextBlock.Text = "Seconds " + sw.Elapsed.TotalSeconds.ToString("000"); };
             dt.Start();
+
             sw = new Stopwatch();
             sw.Start();
-
-            if (WPCommon.TrialManagement.IsTrialMode)
-            {
-                TrialWatch = new Stopwatch();
-                TrialWatch.Start();
-            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (end) return;
-
-            if (WPCommon.TrialManagement.IsTrialMode)
+            if (WPCommon.TrialManagement.IsTrialMode && sw.Elapsed.Seconds >= 120)
             {
-                if (TrialWatch.Elapsed.Seconds >= 10)
-                {
-                    //TODO: qui dovresti far andare l'utente in una nuova pagina dove c'è phil triste e
-                    //il pulsante che punta al marketplace per acquistare l'app.
-                    //scrivici una cazzata tipo "fai felice phil e compra l'app!"
-                    MessageBox.Show("Please buy the full version!");
-                    ResetPage();
-                }
+                //TODO: qui dovresti far andare l'utente in una nuova pagina dove c'è phil triste e
+                //il pulsante che punta al marketplace per acquistare l'app.
+                //scrivici una cazzata tipo "fai felice phil e compra l'app!"
+                MessageBox.Show("Please buy the full version!");
+                ResetPage();
+                return;
             }
+
 
             var currentButton = (Border)sender;
-            Point p = new Point(currentButton.GetColumn(), currentButton.GetRow());
-
-            //controllo se è un'azione di cancellazione di una casella o di un'aggiunta: se il tasto premuto è uguale all'ultimo
-            //nella history vuol dire che sto cancellando
-            bool cancel = false;
-            if (Square.positionHistory.Count != 0)
-            {
-                if (p == Square.positionHistory.Peek())
-                {
-                    currentButton.Child = null;
-                    cancel = true;
-                }
-            }
+            var p = new GridPoint(currentButton.GetColumn(), currentButton.GetRow());
 
             //tutta la logica della griglia è dentro il metodo PressButton
-            bool res = Square.PressButton(p);
-            if (res && !cancel)     //caso creazione andato a buon fine
+            var result = Square.PressButton(p);
+
+            if (result == true)     //caso creazione andato a buon fine
             {
                 currentButton.Child = new TextBlock()
                 {
@@ -125,48 +94,51 @@ namespace FillTheSquare
                 Settings.MoveSound.Play();
                 Completed.Begin();
 
-                if (Square.NumberMovesLeft() == 0)  //non ci sono più mosse disponibili
+                if (Square.GetMovesLeft() == 0)  //non ci sono più mosse disponibili
                 {
                     PhilPiangeAppear.Stop();
                     PhilPiangeDisappear.Stop();
                     PhilPiangeAppear.Begin();
                 }
 
-                if (Square.positionHistory.Count == (MagicGrid.RowDefinitions.Count * MagicGrid.ColumnDefinitions.Count))
+                if (Square.IsCompleted)
                 {
                     dt.Stop();
                     Settings.VictorySound.Play();
-                    MessageBox.Show("Congratulations! Magic Square completed in " + sw.Elapsed.TotalSeconds + " seconds!");
-                    sw.Reset();
-                    end = true;
-                    Settings.RecordsList.Add(new Record(Square.ActualSize, DateTime.Now, sw.Elapsed.TotalSeconds));
+
+                    //Io andrei in un altra pagina dove phil saltella ed è possibile inserire il proprio nome,
+                    //se no così si vede il risultato
+                    MessageBox.Show("Congratulations! Magic Square completed in "
+                        + sw.Elapsed.TotalSeconds.ToString("0.00") + " seconds!");
+                    Settings.Records.Add(new Record(Square.Size, DateTime.Now, sw.Elapsed));
                     NavigationService.Navigate(new Uri("/RecordsPage.xaml", UriKind.Relative));
                 }
             }
-            else if (res && cancel) //caso di cancellazione andato a buon fine
-            {
-                PhilPiangeDisappear.Stop();
-                PhilPiangeAppear.Stop();
-                PhilPiangeDisappear.Begin();
-
-                Completed.Stop();
-                if (Square.positionHistory.Count > 0)
-                {
-                    var lastButton = MagicGrid.Children
-                        .Where(b => b.GetRow() == Square.positionHistory.Peek().Y)
-                        .Where(b => b.GetColumn() == Square.positionHistory.Peek().X).Single();
-
-                    Storyboard.SetTarget(Completed, lastButton);
-                    Completed.Begin();
-                }
-                Settings.UndoSound.Play();
-            }
-            else                    //caso di creazione fallito
+            else if (result == false) //caso di creazione fallito
             {
                 RedFlash.Stop();
                 Storyboard.SetTarget(RedFlash, currentButton);
                 Settings.ErrorSound.Play();
                 RedFlash.Begin();
+            }
+            else if (result == null) //caso di cancellazione
+            {
+                currentButton.Child = null;
+
+                PhilPiangeDisappear.Stop();
+                PhilPiangeAppear.Stop();
+                PhilPiangeDisappear.Begin();
+                Completed.Stop();
+
+                var lastValue = Square.positionHistory.Peek();
+                var lastButton = MagicGrid.Children
+                    .Where(b => b.GetRow() == lastValue.Y)
+                    .Where(b => b.GetColumn() == lastValue.X).First();
+
+                Storyboard.SetTarget(Completed, lastButton);
+                Completed.Begin();
+
+                Settings.UndoSound.Play();
             }
         }
 
@@ -180,21 +152,16 @@ namespace FillTheSquare
         private void ResetPage()
         {
             PhilPiangeDisappear.Stop();
-            PhilPiangeAppear.Stop();
             PhilPiangeDisappear.Begin();
+
             sw.Reset();
             sw.Start();
-            if (WPCommon.TrialManagement.IsTrialMode)
-            {
-                TrialWatch.Reset();
-                TrialWatch.Start();
-            }
-            Square.Reset();
-            int size = MagicGrid.RowDefinitions.Count;
-            MagicGrid.Children.Clear();
-            MagicGrid.RowDefinitions.Clear();
-            MagicGrid.ColumnDefinitions.Clear();
-            creagriglia(size);
+
+            Square.Clear();
+            MagicGrid.Children
+                .Where(ctrl => ctrl is Border)
+                .Cast<Border>()
+                .ForEach(b => b.Child = null);
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)

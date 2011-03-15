@@ -18,14 +18,14 @@ namespace FillTheSquare
         [DataMember]
         public string Size { get; set; }
         [DataMember]
-        public DateTime CurrentDate { get; set; }
+        public DateTime Date { get; set; }
         [DataMember]
-        public double ElapsedTime { get; set; }
+        public TimeSpan ElapsedTime { get; set; }
 
-        public Record(int size, DateTime currentDate, double elapsedTime)
+        public Record(int size, DateTime date, TimeSpan elapsedTime)
         {
             Size = size + "x" + size;
-            CurrentDate = currentDate;
+            Date = date;
             ElapsedTime = elapsedTime;
         }
     }

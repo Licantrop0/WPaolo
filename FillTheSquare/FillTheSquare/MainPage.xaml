@@ -21,8 +21,8 @@
 
         <MediaElement AutoPlay="True" Source="Sounds\Intro.mp3" />
 
-        <StackPanel Grid.Row="0" Margin="12,12,12,12">
-            <TextBlock Style="{StaticResource SquareTitleStyle}" >
+        <StackPanel Grid.Row="0" Margin="12" >
+            <TextBlock Style="{StaticResource SquareTitleStyle}" FontSize="48" >
                 <Run Text="Phil  "/>
                 <LineBreak/>
                 <Run Text="   the"/>

@@ -10,89 +10,29 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" shell:SystemTray.IsVisible="True" Height="768" Width="480">
+    mc:Ignorable="d" shell:SystemTray.IsVisible="False" d:DesignHeight="800" d:DesignWidth="480">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <RadialGradientBrush GradientOrigin="0.238,0.297" RadiusY="0.545" RadiusX="0.674">
-                <GradientStop Color="#FFB2AEE7"/>
-                <GradientStop Color="#FF4536F9" Offset="1"/>
-            </RadialGradientBrush>
-        </Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="736"/>
-        </Grid.RowDefinitions>
+    <StackPanel Background="{StaticResource BackgroundGradientBrush}">
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,0" Height="40" VerticalAlignment="Top">
-            <TextBlock x:Name="PageTitle" Text="Instructions" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" FontSize="29.333">
-            	<TextBlock.Foreground>
-            		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            			<GradientStop Color="Black" Offset="0"/>
-            			<GradientStop Color="#FFEBF715" Offset="0.629"/>
-            		</LinearGradientBrush>
-            	</TextBlock.Foreground>
-            </TextBlock>
-        </StackPanel>
-        <Image Height="115" HorizontalAlignment="Left" Margin="158,593,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="137" Source="/FillTheSquare;component/Phil/libro_colore.png" />
-        <TextBlock x:Name="PageTitle_Copy" Text="Fill the square" Margin="21,82,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" FontSize="18.667" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment">
-        	<TextBlock.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="Black" Offset="0"/>
-        			<GradientStop Color="#FFEBF715" Offset="0.629"/>
-        		</LinearGradientBrush>
-        	</TextBlock.Foreground>
+        <TextBlock Text="Instructions" Margin="0,12"
+                   Style="{StaticResource SquareTitleStyle}"
+                   FontSize="30" />
+
+        <TextBlock FontSize="33" Text="Fill the square with numbers"
+                   Foreground="{StaticResource ForegroundGradientBrush}"
+                   Margin="12" HorizontalAlignment="Center" FontWeight="Bold"/>
+
+        <Image Source="Phil\istruzione.png" Height="340" Width="360" Stretch="Fill" />
+        <TextBlock Foreground="{StaticResource ForegroundGradientBrush}"
+                   FontSize="33" TextWrapping="Wrap" Margin="12">    
+            Allowed moves:
+            <LineBreak />
+            • Left, right, up, down leaving 2 empty out
+            <LineBreak />
+            • Diagonal leaving 1 empty out
         </TextBlock>
-        <TextBlock x:Name="PageTitle_Copy1" Text="with numbers" Margin="21,107,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" FontSize="18.667" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment">
-        	<TextBlock.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="Black" Offset="0"/>
-        			<GradientStop Color="#FFEBF715" Offset="0.629"/>
-        		</LinearGradientBrush>
-        	</TextBlock.Foreground>
-        </TextBlock>
-        <TextBlock x:Name="PageTitle_Copy2" Text="Allowed moves:" Margin="21,136,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" FontSize="18.667" VerticalAlignment="Top">
-        	<TextBlock.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="Black" Offset="0"/>
-        			<GradientStop Color="#FFEBF715" Offset="0.629"/>
-        		</LinearGradientBrush>
-        	</TextBlock.Foreground>
-        </TextBlock>
-        <TextBlock x:Name="PageTitle_Copy3" Text="-Left/right/up/down" Margin="21,0,0,307" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" FontSize="18.667" VerticalAlignment="Bottom">
-        	<TextBlock.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="Black" Offset="0"/>
-        			<GradientStop Color="#FFEBF715" Offset="0.629"/>
-        		</LinearGradientBrush>
-        	</TextBlock.Foreground>
-        </TextBlock>
-        <TextBlock x:Name="PageTitle_Copy4" Text="leaving 2 empty out" Margin="21,432,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" FontSize="18.667" VerticalAlignment="Top">
-        	<TextBlock.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="Black" Offset="0"/>
-        			<GradientStop Color="#FFEBF715" Offset="0.629"/>
-        		</LinearGradientBrush>
-        	</TextBlock.Foreground>
-        </TextBlock>
-        <Image Source="Phil\istruzione.png" Height="204" Stretch="Uniform" VerticalAlignment="Top" Margin="137,182,137,0" />
-        <TextBlock x:Name="PageTitle_Copy5" Text="-Diagonal leaving" Margin="21,0,0,217" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" FontSize="18.667" VerticalAlignment="Bottom">
-        	<TextBlock.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="Black" Offset="0"/>
-        			<GradientStop Color="#FFEBF715" Offset="0.629"/>
-        		</LinearGradientBrush>
-        	</TextBlock.Foreground>
-        </TextBlock>
-        <TextBlock x:Name="PageTitle_Copy6" Text="1 empty out" Margin="21,0,0,187" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Segoe Keycaps" FontSize="18.667" VerticalAlignment="Bottom">
-        	<TextBlock.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="Black" Offset="0"/>
-        			<GradientStop Color="#FFEBF715" Offset="0.629"/>
-        		</LinearGradientBrush>
-        	</TextBlock.Foreground>
-        </TextBlock>
-    </Grid>
+
+        <Image Stretch="Uniform" Source="Phil/libro_colore.png" Height="100"/>
+    </StackPanel>
  
 </phone:PhoneApplicationPage>

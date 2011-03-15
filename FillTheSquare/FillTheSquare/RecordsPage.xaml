@@ -11,6 +11,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    BackKeyPress="PhoneApplicationPage_BackKeyPress"
     shell:SystemTray.IsVisible="False">
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundGradientBrush}">
@@ -19,7 +20,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0"  Margin="12,12,12,12" Orientation="Horizontal">
+        <StackPanel Grid.Row="0"  Margin="12" Orientation="Horizontal">
             <TextBlock Text="Records" FontSize="36"
                        Style="{StaticResource SquareTitleStyle}" />
             <Image Source="Phil\bravorecords.png"
@@ -27,17 +28,36 @@
                    Margin="12,0" />
         </StackPanel>
 
-        <Grid Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Name="RecordListBox" FontFamily="SWGamekeys MT" FontSize="13.333">
+        <Grid Grid.Row="1" Margin="12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="236" />
+                <ColumnDefinition Width="140" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Size" Grid.Column="0"/>
+            <TextBlock Text="Date" Grid.Column="1"/>
+            <TextBlock Text="Time" Grid.Column="2"/>
+
+            <ListBox Name="RecordListBox" Grid.Row="1" Grid.ColumnSpan="3"
+                     FontSize="20" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
-                            <TextBlock Text="{Binding Path=Size}"  />
-                            <TextBlock Text="  Date: "/>
-                            <TextBlock Text="{Binding Path=CurrentDate}"  />
-                            <TextBlock Text="  Seconds: "/>
-                            <TextBlock Text="{Binding Path=ElapsedTime}"  />
-                        </StackPanel>
+                        <Grid Margin="0,0,0,3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="236" />
+                                <ColumnDefinition Width="140" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding Path=Size}" Grid.Column="0" />
+                            <TextBlock Text="{Binding Path=Date}" Grid.Column="1" />
+                            <TextBlock Text="{Binding Path=ElapsedTime}" Grid.Column="2" />
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

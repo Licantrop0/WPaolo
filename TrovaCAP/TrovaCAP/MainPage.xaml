@@ -73,7 +73,7 @@
                     <toolkit:AutoCompleteBox Name="acbIndirizzi"
                                              TextBoxStyle="{StaticResource TextWrappingStyle}"
                                              ItemTemplate="{StaticResource TextWrappingItemTemplate}"
-                                             FilterMode="Contains" MinimumPrefixLength="2"
+                                             FilterMode="Custom" MinimumPrefixLength="2"
                                              SelectionChanged="acbIndirizzi_SelectionChanged"                                              
                                              MinimumPopulateDelay="500" FontSize="23" LostFocus="acbIndirizzi_LostFocus" MouseLeftButtonDown="acbIndirizzi_MouseLeftButtonDown" GotFocus="acbIndirizzi_GotFocus">				
                     </toolkit:AutoCompleteBox>

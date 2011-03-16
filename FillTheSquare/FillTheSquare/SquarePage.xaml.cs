@@ -62,13 +62,9 @@ namespace FillTheSquare
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (WPCommon.TrialManagement.IsTrialMode && sw.Elapsed.Seconds >= 120)
+            if (WPCommon.TrialManagement.IsTrialMode && sw.Elapsed.TotalSeconds >= 90)
             {
-                //TODO: qui dovresti far andare l'utente in una nuova pagina dove c'è phil triste e
-                //il pulsante che punta al marketplace per acquistare l'app.
-                //scrivici una cazzata tipo "fai felice phil e compra l'app!"
-                MessageBox.Show("Please buy the full version!");
-                ResetPage();
+                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return;
             }
 
@@ -81,6 +77,7 @@ namespace FillTheSquare
 
             if (result == true)     //caso creazione andato a buon fine
             {
+
                 currentButton.Child = new TextBlock()
                 {
                     Text = Square.positionHistory.Count.ToString(),
@@ -91,13 +88,14 @@ namespace FillTheSquare
 
                 Completed.Stop();
                 Storyboard.SetTarget(Completed, currentButton);
-                Settings.MoveSound.Play();
                 Completed.Begin();
+                Settings.MoveSound.Play();
 
                 if (Square.GetMovesLeft() == 0)  //non ci sono più mosse disponibili
                 {
-                    PhilPiangeAppear.Stop();
-                    PhilPiangeDisappear.Stop();
+                    //PhilPiangeAppear.Stop();
+                    //PhilPiangeDisappear.Stop();
+                    //TODO: Inserire suono di disperazione
                     PhilPiangeAppear.Begin();
                 }
 
@@ -106,8 +104,7 @@ namespace FillTheSquare
                     dt.Stop();
                     Settings.VictorySound.Play();
 
-                    //Io andrei in un altra pagina dove phil saltella ed è possibile inserire il proprio nome,
-                    //se no così si vede il risultato
+                    //TODO: inserire il proprio nome e nascondere il risultato
                     MessageBox.Show("Congratulations! Magic Square completed in "
                         + sw.Elapsed.TotalSeconds.ToString("0.00") + " seconds!");
                     Settings.Records.Add(new Record(Square.Size, DateTime.Now, sw.Elapsed));
@@ -118,26 +115,26 @@ namespace FillTheSquare
             {
                 RedFlash.Stop();
                 Storyboard.SetTarget(RedFlash, currentButton);
-                Settings.ErrorSound.Play();
                 RedFlash.Begin();
+                Settings.ErrorSound.Play();
             }
             else if (result == null) //caso di cancellazione
             {
                 currentButton.Child = null;
 
-                PhilPiangeDisappear.Stop();
-                PhilPiangeAppear.Stop();
+                //PhilPiangeDisappear.Stop();
+                //PhilPiangeAppear.Stop();
                 PhilPiangeDisappear.Begin();
-                Completed.Stop();
 
+                //Evidenzio la casella sull'ultimo premuto
                 var lastValue = Square.positionHistory.Peek();
                 var lastButton = MagicGrid.Children
                     .Where(b => b.GetRow() == lastValue.Y)
                     .Where(b => b.GetColumn() == lastValue.X).First();
 
+                Completed.Stop();
                 Storyboard.SetTarget(Completed, lastButton);
                 Completed.Begin();
-
                 Settings.UndoSound.Play();
             }
         }

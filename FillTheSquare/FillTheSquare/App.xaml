@@ -4,9 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:loc="clr-namespace:Localization;assembly=FillTheSquare"
     xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
 
     <Application.Resources>
+        <loc:LocalizedStrings x:Key="LocalizedStrings" />
+
         <RadialGradientBrush x:Key="BackgroundGradientBrush" GradientOrigin="0.238,0.297" RadiusY="0.545" RadiusX="0.674">
             <GradientStop Color="#FFB2AEE7"/>
             <GradientStop Color="#FF4536F9" Offset="1"/>

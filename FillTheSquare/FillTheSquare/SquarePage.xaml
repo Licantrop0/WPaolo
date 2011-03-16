@@ -10,8 +10,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundGradientBrush}">
         <Grid.Resources>

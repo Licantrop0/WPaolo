@@ -16,8 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>en-US;it-IT;</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>FillTheSquare.xap</XapFilename>
@@ -71,6 +70,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DemoPage.xaml.cs">
+      <DependentUpon>DemoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LocalizedStrings.cs" />
     <Compile Include="SquarePage.xaml.cs">
       <DependentUpon>SquarePage.xaml</DependentUpon>
     </Compile>
@@ -94,6 +102,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DemoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,8 +165,7 @@
     <Resource Include="Phil\bravorecords.png" />
     <Resource Include="Phil\istruzione.png" />
     <Resource Include="Phil\libro_colore.png" />
-    <Resource Include="Phil\SoundOn.jpg" />
-    <Resource Include="Phil\SoundOff.png" />
+    <Resource Include="Phil\triste.png" />
     <Content Include="Sounds\Error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -162,7 +173,6 @@
     <Content Include="Sounds\Move.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Sounds\Partita.wav" />
     <Content Include="Sounds\Undo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -174,6 +184,13 @@
       <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
       <Name>WPCommon</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AppResources.it-IT.resx" />
+    <EmbeddedResource Include="AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

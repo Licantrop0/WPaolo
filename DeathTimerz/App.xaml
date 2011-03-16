@@ -32,15 +32,15 @@
 		</Style>
 
 		<Style x:Key="RedChillerButton" TargetType="Button"  BasedOn="{StaticResource RedChillerContentControl}" >
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
-                        <GradientStop Color="#CC430000" Offset="0" />
-                        <GradientStop Color="#E5000000" Offset="0.444" />
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
+			<Setter Property="Foreground">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
+						<GradientStop Color="#CC430000" Offset="0" />
+						<GradientStop Color="#E5000000" Offset="0.444" />
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
 						<Grid>

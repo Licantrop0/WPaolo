@@ -39,9 +39,9 @@
                 <ColumnDefinition Width="140" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Size" Grid.Column="0"/>
-            <TextBlock Text="Date" Grid.Column="1"/>
-            <TextBlock Text="Time" Grid.Column="2"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.Size, Source={StaticResource LocalizedStrings}}" Grid.Column="0"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.Date, Source={StaticResource LocalizedStrings}}" Grid.Column="1"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.Time, Source={StaticResource LocalizedStrings}}" Grid.Column="2"/>
 
             <ListBox Name="RecordListBox" Grid.Row="1" Grid.ColumnSpan="3"
                      FontSize="20" >

@@ -34,39 +34,46 @@
             <Button Content="5 x 5" Click="SquareFiveButton_Click"
                     Style="{StaticResource HomeButtonStyle}"
                     Width="198" Height="109"
-                    Canvas.Left="7" Canvas.Top="42" />
+                    Canvas.Left="105" Canvas.Top="75" >
+                <Button.RenderTransform>
+                    <RotateTransform Angle="-30" />
+                </Button.RenderTransform>
+            </Button>
 
             <Button Content="10 x 10" Click="SquareTenButton_Click"
                     Style="{StaticResource HomeButtonStyle}"                    
                     Height="95" Width="203"
-                    Canvas.Left="211" Canvas.Top="10"/>
+                    Canvas.Left="6" Canvas.Top="157"/>
 
-            <Button Content="Instructions" Click="InstructionsButton_Click"
+            <Button Content="{Binding Path=LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
+                    Click="InstructionsButton_Click"
                     Height="103" Width="187" d:LayoutRounding="Auto"
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="286" Canvas.Top="86">
+                    Canvas.Left="285" Canvas.Top="83">
                 <Button.RenderTransform>
                     <RotateTransform Angle="21" />
                 </Button.RenderTransform>
             </Button>
 
-            <Button Content="Records" Click="RecordsButton_Click"
-                    Height="129.638" Width="205.745"
+            <Button Content="{Binding Path=LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
+                    Click="RecordsButton_Click"
+                    Height="120" Width="180"
                     Style="{StaticResource HomeButtonStyle}"
                     d:LayoutRounding="Auto"
-                    Canvas.Left="-26" Canvas.Top="416">
+                    Canvas.Left="-5" Canvas.Top="368">
                 <Button.RenderTransform>
-                    <RotateTransform Angle="-50" />
+                    <RotateTransform Angle="-40" />
                 </Button.RenderTransform>
             </Button>
 
-            <Button Content="About" Click="AboutButton_Click" 
+            <Button Content="{Binding Path=LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
+                    Click="AboutButton_Click" 
                     Height="85" Width="224"
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="190" Canvas.Top="364" />
+                    Canvas.Left="190" Canvas.Top="375" />
 
             <Image Source="Phil/saluta.png"
-                   Stretch="Fill"
+                   Stretch="Fill" IsHitTestVisible="False"
                    Height="196" Width="272"
                    Canvas.Left="163" Canvas.Top="209" />
         </Canvas>

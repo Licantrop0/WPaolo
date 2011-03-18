@@ -166,6 +166,7 @@
     <Resource Include="Phil\istruzione.png" />
     <Resource Include="Phil\libro_colore.png" />
     <Resource Include="Phil\triste.png" />
+    <Resource Include="Phil\phil_con_logo.png" />
     <Content Include="Sounds\Error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

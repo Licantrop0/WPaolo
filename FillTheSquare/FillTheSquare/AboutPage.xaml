@@ -18,8 +18,8 @@
         <wpcommon:AboutControl Name="WPMEAbout"
                                ApplicationName="Phil the Square"
                                BackgroundStackPanel="{StaticResource BackgroundGradientBrush}" />
-        <Image Source="Phil\guardaabout.png" 
-               Margin="302,21,0,0" Stretch="Fill"
+        <Image Source="Phil\phil_con_logo.png" 
+               Margin="101,-8,0,0" Stretch="Fill"
                Height="107" Width="140" 
                HorizontalAlignment="Left"
                VerticalAlignment="Top" >

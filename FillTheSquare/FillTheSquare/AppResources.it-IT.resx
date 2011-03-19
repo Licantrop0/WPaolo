@@ -121,7 +121,7 @@
     <value>About</value>
   </data>
   <data name="BuyNow" xml:space="preserve">
-    <value>Compra subito questa App</value>
+    <value>acquista questa app!</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Data</value>
@@ -133,17 +133,19 @@
     <value>Istruzioni</value>
   </data>
   <data name="PhilWillBeHappy" xml:space="preserve">
-    <value>così Phil sarà sempre felice!</value>
+    <value>così Phil sarà sempre felice e tu potrai giocare senza limiti!</value>
   </data>
   <data name="Records" xml:space="preserve">
     <value>Records</value>
+  </data>
+  <data name="Seconds" xml:space="preserve">
+    <value>Secondi</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Dimensione</value>
   </data>
   <data name="ThisIsADemo" xml:space="preserve">
-    <value>Acci! Questa
-è una Demo!</value>
+    <value>Ooops! Questa è una Demo!</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Tempo</value>

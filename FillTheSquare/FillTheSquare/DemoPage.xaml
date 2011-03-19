@@ -20,22 +20,25 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock FontSize="36" Style="{StaticResource SquareTitleStyle}"
-                       Text="{Binding Path=LocalizedResources.ThisIsADemo, Source={StaticResource LocalizedStrings}}" />
+        <StackPanel Grid.Row="1">
+        	<TextBlock  Style="{StaticResource SquareTitleStyle}" Text="Ouch! This is a Demo!" LineStackingStrategy="BlockLineHeight" Margin="15,15,18,0" d:LayoutOverrides="Width" />
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Margin="12,0,12,0">
-            <Image Source="Phil\triste.png" />
-            <TextBlock FontSize="36" Foreground="{StaticResource ForegroundGradientBrush}"
-                       Text="{Binding Path=LocalizedResources.DontMakePhilSad, Source={StaticResource LocalizedStrings}}" />
+        <StackPanel Grid.Row="2" Margin="0,200,0,0" >
+        	<Image Source="Phil\triste.png" Height="226" />
+        </StackPanel>
+		
+		<StackPanel Grid.Row="3" VerticalAlignment="Bottom">
 
-            <HyperlinkButton Name="BuyButton" Margin="0,0,0,8"  Foreground="{StaticResource ForegroundGradientBrush}"
-                             Content="{Binding Path=LocalizedResources.BuyNow, Source={StaticResource LocalizedStrings}}"
-                             FontSize="{StaticResource PhoneFontSizeExtraLarge}" Click="BuyButton_Click" />
-
-            <TextBlock FontSize="36"  Foreground="{StaticResource ForegroundGradientBrush}"
-                       Text="{Binding Path=LocalizedResources.PhilWillBeHappy, Source={StaticResource LocalizedStrings}}" />
+<TextBlock FontSize="36" Foreground="{StaticResource ForegroundGradientBrush}"
+				Text="{Binding LocalizedResources.DontMakePhilSad, Source={StaticResource LocalizedStrings}}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" TextWrapping="Wrap" Margin="0,0,0,25" Height="83" Width="462" />
+<HyperlinkButton x:Name="BuyButton" Margin="0,0,0,8"  Foreground="{StaticResource ForegroundGradientBrush}"
+	Content="{Binding LocalizedResources.BuyNow, Source={StaticResource LocalizedStrings}}"
+	FontSize="{StaticResource PhoneFontSizeExtraLarge}" Click="BuyButton_Click" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" />
+			<TextBlock FontSize="36"  Foreground="{StaticResource ForegroundGradientBrush}"
+				Text="{Binding LocalizedResources.PhilWillBeHappy, Source={StaticResource LocalizedStrings}}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" TextWrapping="Wrap" Margin="0,15,0,38" Height="123" Width="466" />
+            
+            
         </StackPanel>
     </Grid>
 

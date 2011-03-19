@@ -13,7 +13,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundGradientBrush}">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -21,46 +21,37 @@
 
         <MediaElement AutoPlay="True" Source="Sounds\Intro.mp3" />
 
-        <StackPanel Grid.Row="0" Margin="12" >
-            <TextBlock Style="{StaticResource SquareTitleStyle}" FontSize="48" >
-                <Run Text="Phil  "/>
-                <LineBreak/>
-                <Run Text="   the"/>
-                <LineBreak/>
-                <Run Text="Square"/>
-            </TextBlock>
+        <StackPanel Grid.Row="0" Margin="16,42,8,-18" >
+            <TextBlock Style="{StaticResource SquareTitleStyle}" FontSize="64" Text="Phil  the  Square" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" />
         </StackPanel>
-        <Canvas x:Name="ContentPanel" Margin="12,0" Grid.Row="1" >
+        <Canvas x:Name="ContentPanel" Margin="12,22,12,0" Grid.Row="1" >
             <Button Content="5 x 5" Click="SquareFiveButton_Click"
                     Style="{StaticResource HomeButtonStyle}"
-                    Width="198" Height="109"
-                    Canvas.Left="105" Canvas.Top="119" >
+                    Width="198" Height="93.812"
+                    Canvas.Left="279.985" Canvas.Top="126.471" UseLayoutRounding="False" d:LayoutRounding="Auto" FontSize="29.333" FontWeight="Bold" >
                 <Button.RenderTransform>
-                    <RotateTransform Angle="-30" />
+                	<CompositeTransform Rotation="27.508"/>
                 </Button.RenderTransform>
             </Button>
 
             <Button Content="10 x 10" Click="SquareTenButton_Click"
                     Style="{StaticResource HomeButtonStyle}"                    
-                    Height="95" Width="203"
-                    Canvas.Left="6" Canvas.Top="201"/>
+                    Height="87" Width="203"
+                    Canvas.Left="6" Canvas.Top="209"/>
 
             <Button Content="{Binding Path=LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
                     Click="InstructionsButton_Click"
-                    Height="103" Width="187" d:LayoutRounding="Auto"
+                    Height="103" Width="277.248" 
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="285" Canvas.Top="127">
-                <Button.RenderTransform>
-                    <RotateTransform Angle="21" />
-                </Button.RenderTransform>
+                    Canvas.Left="79" Canvas.Top="31" >
             </Button>
 
             <Button Content="{Binding Path=LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
                     Click="RecordsButton_Click"
-                    Height="120" Width="180"
+                    Height="96.419" Width="180"
                     Style="{StaticResource HomeButtonStyle}"
                     d:LayoutRounding="Auto"
-                    Canvas.Left="-5" Canvas.Top="413">
+                    Canvas.Left="10.157" Canvas.Top="431.064" UseLayoutRounding="False">
                 <Button.RenderTransform>
                     <RotateTransform Angle="-40" />
                 </Button.RenderTransform>

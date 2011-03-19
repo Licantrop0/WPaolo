@@ -17,16 +17,8 @@
     <Grid>
         <wpcommon:AboutControl Name="WPMEAbout"
                                ApplicationName="Phil the Square"
-                               BackgroundStackPanel="{StaticResource BackgroundGradientBrush}" />
-        <Image Source="Phil\phil_con_logo.png" 
-               Margin="101,-8,0,0" Stretch="Fill"
-               Height="107" Width="140" 
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top" >
-        	<Image.Projection>
-        		<PlaneProjection RotationX="25" RotationY="16" RotationZ="-16"/>
-        	</Image.Projection>
-        </Image>
+                               BackgroundStackPanel="{StaticResource BackgroundImageBrush}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" />
+        <Image HorizontalAlignment="Right" Height="92" Margin="0,46,80,0" Source="Phil/phil_con_logo_new.png" Stretch="Fill" VerticalAlignment="Top" Width="83"/>
     </Grid>
     
 

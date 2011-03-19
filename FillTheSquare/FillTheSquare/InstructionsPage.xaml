@@ -13,26 +13,19 @@
     mc:Ignorable="d" shell:SystemTray.IsVisible="False" d:DesignHeight="800" d:DesignWidth="480">
 
     <StackPanel Background="{StaticResource BackgroundGradientBrush}">
-
+        <Image Stretch="Uniform" Source="Phil/libro_colore.png" Height="187" Width="274" />
         <TextBlock Text="Instructions" Margin="0,12"
-                   Style="{StaticResource SquareTitleStyle}"
-                   FontSize="30" />
-
+                   Style="{StaticResource SquareTitleStyle}" />
         <TextBlock FontSize="33" Text="Fill the square with numbers"
                    Foreground="{StaticResource ForegroundGradientBrush}"
-                   Margin="12" HorizontalAlignment="Center" FontWeight="Bold"/>
-
-        <Image Source="Phil\istruzione.png" Height="340" Width="360" Stretch="Fill" />
-        <TextBlock Foreground="{StaticResource ForegroundGradientBrush}"
-                   FontSize="33" TextWrapping="Wrap" Margin="12">    
+                   Margin="12" HorizontalAlignment="Center" FontWeight="Bold" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" TextWrapping="Wrap" Height="80" Width="440" />
+        <TextBlock Foreground="{StaticResource ForegroundGradientBrush}" FontSize="28" TextWrapping="Wrap" Margin="12" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto">    
             Allowed moves:
             <LineBreak />
             • Left, right, up, down leaving 2 empty out
             <LineBreak />
-            • Diagonal leaving 1 empty out
-        </TextBlock>
-
-        <Image Stretch="Uniform" Source="Phil/libro_colore.png" Height="100"/>
+            • Diagonal leaving 1 empty out</TextBlock>
+        <Image Source="Phil\istruzione.png" Height="233" Width="270" Stretch="Fill" />
     </StackPanel>
  
 </phone:PhoneApplicationPage>

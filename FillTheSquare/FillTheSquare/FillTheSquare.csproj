@@ -159,6 +159,12 @@
       <Numbers>True</Numbers>
       <Punctuation>True</Punctuation>
     </BlendEmbeddedFont>
+    <BlendEmbeddedFont Include="Fonts\njnaruto.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+    </BlendEmbeddedFont>
+    <Resource Include="Phil\phil_con_logo_new.png" />
     <Resource Include="Phil\piange.png" />
     <Resource Include="Phil\saluta.png" />
     <Resource Include="Phil\guardaabout.png" />
@@ -166,7 +172,9 @@
     <Resource Include="Phil\istruzione.png" />
     <Resource Include="Phil\libro_colore.png" />
     <Resource Include="Phil\triste.png" />
-    <Resource Include="Phil\phil_con_logo.png" />
+    <Resource Include="Phil\sfondo_quadri_color1.jpg" />
+    <Resource Include="Phil\sfondo_quadri_color2.jpg" />
+    <Resource Include="Phil\sfondo_quadri_color3.jpg" />
     <Content Include="Sounds\Error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

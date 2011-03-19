@@ -39,8 +39,8 @@
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12">
             <TextBlock Name="TimeElapsedTextBlock"
-                       Style="{StaticResource SquareTitleStyle}" 
-                       FontSize="32" Text="Seconds 000">
+                       Style="{StaticResource SquareHeadingsStyle}" 
+                       Text="Seconds 000">
             </TextBlock>
         </StackPanel>
 
@@ -69,7 +69,7 @@
                Opacity="0" IsHitTestVisible="False" />
 
         <Button Content="Reset" Click="ResetButton_Click"
-                Style="{StaticResource HomeButtonStyle}" Grid.Row="2" 
+                Style="{StaticResource ResetButtonStyle}" Grid.Row="2" 
                 Height="76" Width="198" Margin="0,0,0,24" />
 
     </Grid>

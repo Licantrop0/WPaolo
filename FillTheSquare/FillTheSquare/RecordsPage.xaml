@@ -20,13 +20,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0"  Margin="12" Orientation="Horizontal">
-            <TextBlock Text="Records" FontSize="36"
+        <Grid Grid.Row="0"  Margin="12" >
+            <TextBlock Text="Records" FontSize="36" HorizontalAlignment="Left"
                        Style="{StaticResource SquareTitleStyle}" />
-            <Image Source="Phil\bravorecords.png"
-                   Stretch="Uniform" Height="100"
-                   Margin="12,0" />
-        </StackPanel>
+            <Image Source="Phil\bravorecords.png" HorizontalAlignment="Right"
+                   Stretch="Uniform" Height="100" Margin="12,0" />
+        </Grid>
 
         <Grid Grid.Row="1" Margin="12,0">
             <Grid.RowDefinitions>
@@ -34,6 +33,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <!--The sum must be 456-->
                 <ColumnDefinition Width="80" />
                 <ColumnDefinition Width="236" />
                 <ColumnDefinition Width="140" />
@@ -49,11 +49,11 @@
                     <DataTemplate>
                         <Grid Margin="0,0,0,3">
                             <Grid.ColumnDefinitions>
+                                <!--The sum must be 456-->
                                 <ColumnDefinition Width="80" />
                                 <ColumnDefinition Width="236" />
                                 <ColumnDefinition Width="140" />
                             </Grid.ColumnDefinitions>
-
                             <TextBlock Text="{Binding Path=Size}" Grid.Column="0" />
                             <TextBlock Text="{Binding Path=Date}" Grid.Column="1" />
                             <TextBlock Text="{Binding Path=ElapsedTime}" Grid.Column="2" />

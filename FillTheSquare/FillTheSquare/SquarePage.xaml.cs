@@ -81,8 +81,7 @@ namespace FillTheSquare
                 currentButton.Child = new TextBlock()
                 {
                     Text = Square.positionHistory.Count.ToString(),
-                    VerticalAlignment = System.Windows.VerticalAlignment.Center,
-                    TextAlignment = TextAlignment.Center,
+                    Style=(Style)Application.Current.Resources["SquareTitleStyle"],
                     FontSize = 30
                 };
 
@@ -93,8 +92,6 @@ namespace FillTheSquare
 
                 if (Square.GetMovesLeft() == 0)  //non ci sono più mosse disponibili
                 {
-                    //PhilPiangeAppear.Stop();
-                    //PhilPiangeDisappear.Stop();
                     //TODO: Inserire suono di disperazione
                     PhilPiangeAppear.Begin();
                 }
@@ -122,8 +119,6 @@ namespace FillTheSquare
             {
                 currentButton.Child = null;
                 currentButton.Background = new SolidColorBrush(Colors.Transparent);
-                //PhilPiangeDisappear.Stop();
-                //PhilPiangeAppear.Stop();
                 PhilPiangeDisappear.Begin();
 
                 //Evidenzio la casella sull'ultimo premuto se non è il primo
@@ -167,6 +162,7 @@ namespace FillTheSquare
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
             ResetPage();
+            //TODO: Mettere un suono tipo "swoosh"
         }
     }
 }

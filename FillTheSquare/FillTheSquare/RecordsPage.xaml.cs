@@ -15,7 +15,7 @@ namespace FillTheSquare
 
         private void FillRecordsList()
         {
-            //AddFakeRecords();
+            AddFakeRecords();
             RecordListBox.ItemsSource = Settings.Records.OrderBy(r => r.ElapsedTime);
         }
 

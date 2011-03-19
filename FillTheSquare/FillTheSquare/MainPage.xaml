@@ -6,12 +6,12 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
         <Grid.RowDefinitions>
@@ -21,16 +21,16 @@
 
         <MediaElement AutoPlay="True" Source="Sounds\Intro.mp3" />
 
-        <StackPanel Grid.Row="0" Margin="16,42,8,-18" >
-            <TextBlock Style="{StaticResource SquareTitleStyle}" FontSize="64" Text="Phil  the  Square" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" />
-        </StackPanel>
-        <Canvas x:Name="ContentPanel" Margin="12,22,12,0" Grid.Row="1" >
+        <TextBlock Style="{StaticResource SquareTitleStyle}" Grid.Row="0"
+                   FontSize="64" Text="Phil  the  Square" Margin="0,24" />
+
+        <Canvas x:Name="ContentPanel" Margin="12" Grid.Row="1" >
             <Button Content="5 x 5" Click="SquareFiveButton_Click"
                     Style="{StaticResource HomeButtonStyle}"
                     Width="198" Height="93.812"
                     Canvas.Left="279.985" Canvas.Top="126.471" UseLayoutRounding="False" d:LayoutRounding="Auto" FontSize="29.333" FontWeight="Bold" >
                 <Button.RenderTransform>
-                	<CompositeTransform Rotation="27.508"/>
+                    <RotateTransform Angle="26" />
                 </Button.RenderTransform>
             </Button>
 

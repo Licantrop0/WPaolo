@@ -17,8 +17,13 @@
     <Grid>
         <wpcommon:AboutControl Name="WPMEAbout"
                                ApplicationName="Phil the Square"
-                               BackgroundStackPanel="{StaticResource BackgroundImageBrush}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" />
-        <Image HorizontalAlignment="Right" Height="92" Margin="0,46,80,0" Source="Phil/phil_con_logo_new.png" Stretch="Fill" VerticalAlignment="Top" Width="83"/>
+                               BackgroundStackPanel="{StaticResource BackgroundImageBrush}"
+                               FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" />
+        
+        <Image Source="Phil/phil_con_logo_new.png" Stretch="None"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Margin="0,46,80,0" />
     </Grid>
     
 

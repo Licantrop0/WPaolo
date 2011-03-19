@@ -132,6 +132,14 @@
   <data name="Instructions" xml:space="preserve">
     <value>Istruzioni</value>
   </data>
+  <data name="InstructionsText" xml:space="preserve">
+    <value>Riempi il quadrato con i numeri
+
+Mosse permesse:
+• Sinistra, destra, su, giù
+   lasciando 2 quadrati vuoti
+• Diagonale lasciando 1 quadrato vuoto</value>
+  </data>
   <data name="PhilWillBeHappy" xml:space="preserve">
     <value>così Phil sarà sempre felice e tu potrai giocare senza limiti!</value>
   </data>

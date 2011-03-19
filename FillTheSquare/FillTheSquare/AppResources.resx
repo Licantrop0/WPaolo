@@ -132,6 +132,14 @@
   <data name="Instructions" xml:space="preserve">
     <value>Instructions</value>
   </data>
+  <data name="InstructionsText" xml:space="preserve">
+    <value>Fill the square with numbers
+
+Allowed moves:
+• Left, right, up, down
+   leaving 2 empty out
+• Diagonal leaving 1 empty out</value>
+  </data>
   <data name="PhilWillBeHappy" xml:space="preserve">
     <value>so Phil will be always happy and you will have no limits in the play!</value>
   </data>

@@ -13,7 +13,7 @@
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundGradientBrush}">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
         <Grid.Resources>
             <Storyboard x:Name="PhilPiangeAppear">
                 <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
@@ -24,7 +24,7 @@
             <Storyboard x:Name="PhilPiangeDisappear">
                 <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
                                      Storyboard.TargetProperty="Opacity"
-                                     To="0" Duration="0:0:1" FillBehavior="HoldEnd" />
+                                     To="0" Duration="0:0:0.5" FillBehavior="HoldEnd" />
             </Storyboard>
         </Grid.Resources>
 
@@ -34,8 +34,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <MediaElement Source="Sounds\Partita.wav" AutoPlay="True"
-                      MediaEnded="BackgroundMediaElement_MediaEnded" />
+        <!--<MediaElement Source="Sounds\Partita.wav" AutoPlay="True"
+                      MediaEnded="BackgroundMediaElement_MediaEnded" />-->
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12">
             <TextBlock Name="TimeElapsedTextBlock"

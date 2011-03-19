@@ -13,7 +13,7 @@
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
+    <Grid Background="{StaticResource BackgroundImageBrush}">
         <Grid.Resources>
             <Storyboard x:Name="PhilPiangeAppear">
                 <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
@@ -54,7 +54,7 @@
                         To="Red" Duration="0:0:0.5" AutoReverse="True"  />
                     </Storyboard>
 
-                    <Storyboard x:Name="Completed">
+                    <Storyboard x:Name="SetFocus">
                         <ColorAnimation
                         Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
                         To="{StaticResource PhoneAccentColor}" Duration="0:0:1" />

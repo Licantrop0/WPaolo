@@ -53,7 +53,7 @@ namespace FillTheSquare
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromSeconds(1);
             dt.Tick += (sender, e) =>
-                { TimeElapsedTextBlock.Text = "Seconds " + sw.Elapsed.TotalSeconds.ToString("000"); };
+                { TimeElapsedTextBlock.Text = "Seconds " + sw.Elapsed.TotalSeconds.ToString("0"); };
             dt.Start();
 
             sw = new Stopwatch();
@@ -77,35 +77,34 @@ namespace FillTheSquare
 
             if (result == true)     //caso creazione andato a buon fine
             {
-
                 currentButton.Child = new TextBlock()
                 {
                     Text = Square.positionHistory.Count.ToString(),
-                    Style=(Style)Application.Current.Resources["SquareTitleStyle"],
-                    FontSize = 30
+                    Style = (Style)Application.Current.Resources["SquareTitleStyle"],
+                    FontSize = 28
                 };
 
-                Completed.Stop();
-                Storyboard.SetTarget(Completed, currentButton);
-                Completed.Begin();
-                Settings.MoveSound.Play();
+                SetFocus.Stop();
+                Storyboard.SetTarget(SetFocus, currentButton);
+                SetFocus.Begin();
 
+                if (Square.IsCompleted)
+                {
+                    dt.Stop();
+                    var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
+                    Settings.Records.Add(r);
+                    NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id.ToString(), UriKind.Relative));
+                    return;
+                }
+                
                 if (Square.GetMovesLeft() == 0)  //non ci sono più mosse disponibili
                 {
                     //TODO: Inserire suono di disperazione
                     PhilPiangeAppear.Begin();
                 }
-
-                if (Square.IsCompleted)
+                else
                 {
-                    dt.Stop();
-                    Settings.VictorySound.Play();
-
-                    //TODO: inserire il proprio nome e nascondere il risultato
-                    MessageBox.Show("Congratulations! Magic Square completed in "
-                        + sw.Elapsed.TotalSeconds.ToString("0.00") + " seconds!");
-                    Settings.Records.Add(new Record(Square.Size, DateTime.Now, sw.Elapsed));
-                    NavigationService.Navigate(new Uri("/RecordsPage.xaml", UriKind.Relative));
+                    Settings.MoveSound.Play();
                 }
             }
             else if (result == false) //caso di creazione fallito
@@ -129,9 +128,9 @@ namespace FillTheSquare
                         .Where(b => b.GetRow() == lastValue.Y)
                         .Where(b => b.GetColumn() == lastValue.X).First();
 
-                    Completed.Stop();
-                    Storyboard.SetTarget(Completed, lastButton);
-                    Completed.Begin();
+                    SetFocus.Stop();
+                    Storyboard.SetTarget(SetFocus, lastButton);
+                    SetFocus.Begin();
                 }
                 Settings.UndoSound.Play();
             }

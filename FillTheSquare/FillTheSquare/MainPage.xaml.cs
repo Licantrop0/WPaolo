@@ -30,7 +30,7 @@ namespace FillTheSquare
         {
             if (WPCommon.TrialManagement.IsTrialMode)
             {
-                 MessageBox.Show("Please buy the full version!");
+                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
             }
             else
             {

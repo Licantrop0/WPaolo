@@ -37,12 +37,12 @@
 						<GradientStop Color="#FFF1EB0F" Offset="0.794"/>
 						<GradientStop Color="Yellow" Offset="0.371"/>
 					</LinearGradientBrush>
-
 				</Setter.Value>
 			</Setter>
 			<Setter Property="VerticalAlignment" Value="Center" />
 			<Setter Property="HorizontalAlignment" Value="Center" />
 			<Setter Property="TextWrapping" Value="Wrap" />
+			<Setter Property="TextAlignment" Value="Center" />
 			<Setter Property="FontSize" Value="64"/>
 		</Style>
 		<Style x:Key="SquareHeadingsStyle" TargetType="TextBlock">

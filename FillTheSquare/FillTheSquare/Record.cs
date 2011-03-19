@@ -22,6 +22,8 @@ namespace FillTheSquare
         [DataMember]
         public TimeSpan ElapsedTime { get; set; }
 
+        public int Id { get { return Date.GetHashCode(); } }
+
         public Record(int size, DateTime date, TimeSpan elapsedTime)
         {
             Size = size + "x" + size;

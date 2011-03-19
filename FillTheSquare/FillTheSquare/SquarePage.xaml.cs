@@ -121,20 +121,23 @@ namespace FillTheSquare
             else if (result == null) //caso di cancellazione
             {
                 currentButton.Child = null;
-
+                currentButton.Background = new SolidColorBrush(Colors.Transparent);
                 //PhilPiangeDisappear.Stop();
                 //PhilPiangeAppear.Stop();
                 PhilPiangeDisappear.Begin();
 
-                //Evidenzio la casella sull'ultimo premuto
-                var lastValue = Square.positionHistory.Peek();
-                var lastButton = MagicGrid.Children
-                    .Where(b => b.GetRow() == lastValue.Y)
-                    .Where(b => b.GetColumn() == lastValue.X).First();
+                //Evidenzio la casella sull'ultimo premuto se non è il primo
+                if (!Square.IsEmpty)
+                {
+                    var lastValue = Square.positionHistory.Peek();
+                    var lastButton = MagicGrid.Children
+                        .Where(b => b.GetRow() == lastValue.Y)
+                        .Where(b => b.GetColumn() == lastValue.X).First();
 
-                Completed.Stop();
-                Storyboard.SetTarget(Completed, lastButton);
-                Completed.Begin();
+                    Completed.Stop();
+                    Storyboard.SetTarget(Completed, lastButton);
+                    Completed.Begin();
+                }
                 Settings.UndoSound.Play();
             }
         }

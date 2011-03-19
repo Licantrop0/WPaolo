@@ -22,6 +22,7 @@ namespace FillTheSquare
         public int Size { get; private set; }
 
         public bool IsCompleted { get { return positionHistory.Count == Size * Size; } }
+        public bool IsEmpty { get { return positionHistory.Count == 0; } }
 
         public MagicSquare(int size)
         {

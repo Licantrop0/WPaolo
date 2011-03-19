@@ -64,9 +64,9 @@
         </Border>
 
         <Image x:Name="PhilPiangeImage" Source="Phil/piange.png"
-               Margin="100,0" Stretch="Uniform" Width="166" Grid.Row="1"
+               Margin="102,379,98,0" Stretch="Uniform" Width="280" Grid.Row="1"
                VerticalAlignment="Top" HorizontalAlignment="Center"
-               Opacity="0" IsHitTestVisible="False" />
+               Opacity="0" IsHitTestVisible="False" Height="241" />
 
         <Button Content="Reset" Click="ResetButton_Click"
                 Style="{StaticResource ResetButtonStyle}" Grid.Row="2" 

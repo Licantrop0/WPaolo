@@ -123,6 +123,9 @@
   <data name="BuyNow" xml:space="preserve">
     <value>Buy this App now</value>
   </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>Congratulations!</value>
+  </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -148,6 +151,9 @@ Allowed moves:
   </data>
   <data name="Seconds" xml:space="preserve">
     <value>Seconds</value>
+  </data>
+  <data name="SeeRecords" xml:space="preserve">
+    <value>See Records</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Size</value>

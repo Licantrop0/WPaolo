@@ -1,36 +1,66 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="FillTheSquare.CongratulationsPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+	x:Class="FillTheSquare.CongratulationsPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	FontFamily="{StaticResource PhoneFontFamilyNormal}"
+	FontSize="{StaticResource PhoneFontSizeNormal}"
+	Foreground="{StaticResource PhoneForegroundBrush}"
+	SupportedOrientations="Portrait" Orientation="Portrait"
+	mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+	shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+	<phone:PhoneApplicationPage.Resources>
+		<Storyboard x:Name="BouncingPhilStoryboard" RepeatBehavior="Forever">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="BouncingPhilImage">
+				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="62"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="-16"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:3" Value="327"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="BouncingPhilImage">
+				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="329"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="434"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:3" Value="339"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="BouncingPhilImage">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:4" Value="720"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</phone:PhoneApplicationPage.Resources>
 
-    <Grid Background="{StaticResource BackgroundImageBrush}" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+	<Grid Background="{StaticResource BackgroundImageBrush}" >
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Style="{StaticResource SquareTitleStyle}" Grid.Row="0"
-                   FontSize="64" Text="Congratulazioni!" Margin="0,24" />
-        </StackPanel>
 
-        <Canvas x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="175,105,0,0"
-                       Name="textBlock1" Text="{Binding Path=ElapsedTime}" VerticalAlignment="Top" />
-            <Button Content="Guarda i record" Click="GoToRecords_Click" 
-                    Style="{StaticResource HomeButtonStyle}"
-                    Height="112" Width="302" Canvas.Left="66" Canvas.Top="366" />
-        </Canvas>
-    </Grid>
- 
+		<TextBlock Text="{Binding Path=LocalizedResources.Congratulations, Source={StaticResource LocalizedStrings}}"
+				   Style="{StaticResource SquareTitleStyle}" FontSize="64"
+				   Margin="0,24" Grid.Row="0" />
+
+		<Canvas x:Name="ContentPanel" Grid.Row="1" Margin="12,0">
+			<TextBlock Height="30" Text="{Binding Path=ElapsedTime}"
+					   Canvas.Left="66" Canvas.Top="57" />
+			<Button Content="{Binding Path=LocalizedResources.SeeRecords, Source={StaticResource LocalizedStrings}}"
+					Click="GoToRecords_Click" 
+					Style="{StaticResource HomeButtonStyle}"
+					Height="112" Width="302"
+					Canvas.Left="66" Canvas.Top="366" />
+			
+			<Image x:Name="BouncingPhilImage" Source="Phil\bravorecords.png"
+				   IsHitTestVisible="False" Width="200"
+				   RenderTransformOrigin="0,0" Canvas.Left="133" >
+				<Image.RenderTransform>
+					<CompositeTransform/>
+				</Image.RenderTransform>
+			</Image>
+		</Canvas>
+	</Grid>
+
 </phone:PhoneApplicationPage>

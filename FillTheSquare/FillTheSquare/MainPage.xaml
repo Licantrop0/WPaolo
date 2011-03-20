@@ -28,7 +28,7 @@
             <Button Content="5 x 5" Click="SquareFiveButton_Click"
                     Style="{StaticResource HomeButtonStyle}"
                     Width="198" Height="93.812"
-                    Canvas.Left="279.985" Canvas.Top="126.471" UseLayoutRounding="False" d:LayoutRounding="Auto" FontSize="29.333" FontWeight="Bold" >
+                    Canvas.Left="279.985" Canvas.Top="112.891" UseLayoutRounding="False" d:LayoutRounding="Auto" FontSize="29.333" FontWeight="Bold" >
                 <Button.RenderTransform>
                     <RotateTransform Angle="26" />
                 </Button.RenderTransform>
@@ -37,13 +37,13 @@
             <Button Content="10 x 10" Click="SquareTenButton_Click"
                     Style="{StaticResource HomeButtonStyle}"                    
                     Height="87" Width="203"
-                    Canvas.Left="6" Canvas.Top="209"/>
+                    Canvas.Left="6" Canvas.Top="174"/>
 
             <Button Content="{Binding Path=LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
                     Click="InstructionsButton_Click"
                     Height="103" Width="277.248" 
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="79" Canvas.Top="31" >
+                    Canvas.Left="79" Canvas.Top="17" >
             </Button>
 
             <Button Content="{Binding Path=LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
@@ -51,7 +51,7 @@
                     Height="96.419" Width="180"
                     Style="{StaticResource HomeButtonStyle}"
                     d:LayoutRounding="Auto"
-                    Canvas.Left="10.157" Canvas.Top="431.064" UseLayoutRounding="False">
+                    Canvas.Left="10.157" Canvas.Top="417.268" UseLayoutRounding="False">
                 <Button.RenderTransform>
                     <RotateTransform Angle="-40" />
                 </Button.RenderTransform>
@@ -61,12 +61,13 @@
                     Click="AboutButton_Click" 
                     Height="85" Width="224"
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="190" Canvas.Top="419" />
+                    Canvas.Left="190" Canvas.Top="404" />
 
             <Image Source="Phil/saluta.png"
                    Stretch="Fill" IsHitTestVisible="False"
                    Height="196" Width="272"
-                   Canvas.Left="163" Canvas.Top="253" />
+                   Canvas.Left="163" Canvas.Top="239" />
+            <Button Canvas.Left="78" Canvas.Top="521" Content="congratulations" Height="71" Width="238" Click="Button_Click" />
         </Canvas>
     </Grid>
 </phone:PhoneApplicationPage>

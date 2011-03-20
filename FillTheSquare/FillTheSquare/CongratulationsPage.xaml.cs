@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using System.ComponentModel;
+using WPCommon;
 
 namespace FillTheSquare
 {
@@ -22,14 +24,25 @@ namespace FillTheSquare
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            var RecordId = int.Parse(NavigationContext.QueryString["id"]);
-            var CurrentRecord = Settings.Records.Where(r => r.Id == RecordId).First();
-            Settings.VictorySound.Play();
-            this.DataContext = CurrentRecord;
-        }
+            if (NavigationContext.QueryString.ContainsKey("id"))
+            {
+                var RecordId = int.Parse(NavigationContext.QueryString["id"]);
+                var CurrentRecord = Settings.Records.Where(r => r.Id == RecordId).First();
+                this.DataContext = CurrentRecord;
+            }
 
-        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        }
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            if (!NonLinearNavigationService.Instance.IsRecursiveBackNavigation)
+            {
+                BouncingPhilStoryboard.Begin();
+                Settings.VictorySound.Play();
+            }
+        }
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 

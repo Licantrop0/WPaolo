@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
-using System.Windows.Media.Animation;
-using System.Linq;
 using WPCommon;
 
 namespace FillTheSquare
@@ -62,77 +62,76 @@ namespace FillTheSquare
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (WPCommon.TrialManagement.IsTrialMode && sw.Elapsed.TotalSeconds >= 90)
+            if (WPCommon.TrialManagement.IsTrialMode && sw.Elapsed.TotalSeconds >= 99)
             {
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return;
             }
 
-
             var currentButton = (Border)sender;
             var p = new GridPoint(currentButton.GetColumn(), currentButton.GetRow());
 
             //tutta la logica della griglia è dentro il metodo PressButton
-            var result = Square.PressButton(p);
-
-            if (result == true)     //caso creazione andato a buon fine
+            switch (Square.PressButton(p))
             {
-                currentButton.Child = new TextBlock()
-                {
-                    Text = Square.positionHistory.Count.ToString(),
-                    Style = (Style)Application.Current.Resources["SquareTitleStyle"],
-                    FontSize = 28
-                };
-
-                SetFocus.Stop();
-                Storyboard.SetTarget(SetFocus, currentButton);
-                SetFocus.Begin();
-
-                if (Square.IsCompleted)
-                {
-                    dt.Stop();
-                    var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
-                    Settings.Records.Add(r);
-                    NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id.ToString(), UriKind.Relative));
-                    return;
-                }
-                
-                if (Square.GetMovesLeft() == 0)  //non ci sono più mosse disponibili
-                {
-                    //TODO: Inserire suono di disperazione
-                    PhilPiangeAppear.Begin();
-                }
-                else
-                {
-                    Settings.MoveSound.Play();
-                }
-            }
-            else if (result == false) //caso di creazione fallito
-            {
-                RedFlash.Stop();
-                Storyboard.SetTarget(RedFlash, currentButton);
-                RedFlash.Begin();
-                Settings.ErrorSound.Play();
-            }
-            else if (result == null) //caso di cancellazione
-            {
-                currentButton.Child = null;
-                currentButton.Background = new SolidColorBrush(Colors.Transparent);
-                PhilPiangeDisappear.Begin();
-
-                //Evidenzio la casella sull'ultimo premuto se non è il primo
-                if (!Square.IsEmpty)
-                {
-                    var lastValue = Square.positionHistory.Peek();
-                    var lastButton = MagicGrid.Children
-                        .Where(b => b.GetRow() == lastValue.Y)
-                        .Where(b => b.GetColumn() == lastValue.X).First();
+                case true: //caso creazione andato a buon fine
+                    currentButton.Child = new TextBlock()
+                    {
+                        Text = Square.positionHistory.Count.ToString(),
+                        Style = (Style)Application.Current.Resources["SquareTitleStyle"],
+                        FontSize = 28
+                    };
 
                     SetFocus.Stop();
-                    Storyboard.SetTarget(SetFocus, lastButton);
+                    Storyboard.SetTarget(SetFocus, currentButton);
                     SetFocus.Begin();
-                }
-                Settings.UndoSound.Play();
+
+                    if (Square.IsCompleted) //Vittoria!
+                    {
+                        dt.Stop();
+                        var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
+                        Settings.Records.Add(r);
+                        NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id.ToString(), UriKind.Relative));
+                        break;
+                    }
+
+                    if (Square.GetMovesLeft() == 0)  //non ci sono più mosse disponibili
+                    {
+                        //TODO: Inserire suono di disperazione
+                        PhilPiangeAppear.Begin();
+                    }
+                    else
+                    {
+                        Settings.MoveSound.Play();
+                    }
+                    break;
+
+                case false: //caso di creazione fallito
+                    RedFlash.Stop();
+                    Storyboard.SetTarget(RedFlash, currentButton);
+                    RedFlash.Begin();
+                    Settings.ErrorSound.Play();
+                    break;
+
+                case null://caso di cancellazione
+                    currentButton.Child = null;
+                    currentButton.Background = new SolidColorBrush(Colors.Transparent);
+                    PhilPiangeDisappear.Begin();
+
+                    //Evidenzio la casella sull'ultimo premuto se la griglia non è vuota
+                    if (!Square.IsEmpty)
+                    {
+                        var lastValue = Square.positionHistory.Peek();
+                        var lastButton = MagicGrid.Children
+                            .Where(b => b.GetRow() == lastValue.Y)
+                            .Where(b => b.GetColumn() == lastValue.X).First();
+
+                        SetFocus.Stop();
+                        Storyboard.SetTarget(SetFocus, lastButton);
+                        SetFocus.Begin();
+                    }
+                    Settings.UndoSound.Play();
+                    break;
             }
         }
 
@@ -143,9 +142,9 @@ namespace FillTheSquare
             me.Play();
         }
 
-        private void ResetPage()
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-            PhilPiangeDisappear.Stop();
+            //TODO: Mettere un suono tipo "swoosh"
             PhilPiangeDisappear.Begin();
 
             sw.Reset();
@@ -156,12 +155,6 @@ namespace FillTheSquare
                 .Where(ctrl => ctrl is Border)
                 .Cast<Border>()
                 .ForEach(b => b.Child = null);
-        }
-
-        private void ResetButton_Click(object sender, RoutedEventArgs e)
-        {
-            ResetPage();
-            //TODO: Mettere un suono tipo "swoosh"
         }
     }
 }

@@ -123,6 +123,9 @@
   <data name="BuyNow" xml:space="preserve">
     <value>acquista questa app!</value>
   </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>Congratulazioni!</value>
+  </data>
   <data name="Date" xml:space="preserve">
     <value>Data</value>
   </data>
@@ -144,10 +147,13 @@ Mosse permesse:
     <value>così Phil sarà sempre felice e tu potrai giocare senza limiti!</value>
   </data>
   <data name="Records" xml:space="preserve">
-    <value>Records</value>
+    <value>Record</value>
   </data>
   <data name="Seconds" xml:space="preserve">
     <value>Secondi</value>
+  </data>
+  <data name="SeeRecords" xml:space="preserve">
+    <value>Guarda i Record</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Dimensione</value>

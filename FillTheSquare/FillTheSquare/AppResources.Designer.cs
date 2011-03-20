@@ -79,6 +79,15 @@ namespace FillTheSquare {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Congratulations!.
+        /// </summary>
+        public static string Congratulations {
+            get {
+                return ResourceManager.GetString("Congratulations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Date {
@@ -143,6 +152,15 @@ namespace FillTheSquare {
         public static string Seconds {
             get {
                 return ResourceManager.GetString("Seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See Records.
+        /// </summary>
+        public static string SeeRecords {
+            get {
+                return ResourceManager.GetString("SeeRecords", resourceCulture);
             }
         }
         

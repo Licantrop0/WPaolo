@@ -45,23 +45,24 @@ namespace FillTheSquare
                 //voglio cancellare l'ultima mossa
                 if (p == LastPoint)
                 {
-                    Grid[p.X, p.Y] = 0;
+                    this.Grid[p.X, p.Y] = 0;
                     positionHistory.Pop();
                     return null;
                 }
 
                 //Casella già occupata
-                if (positionHistory.Contains(p)) return false;
+                if (positionHistory.Contains(p))
+                    return false;
 
                 bool rules =
-                    (p.X == LastPoint.X + 3 && p.Y == LastPoint.Y) ||     // 3, 0
-                    (p.X == LastPoint.X && p.Y == LastPoint.Y + 3) ||     // 0, 3
-                    (p.X == LastPoint.X - 3 && p.Y == LastPoint.Y) ||     //-3, 0
-                    (p.X == LastPoint.X && p.Y == LastPoint.Y - 3) ||     // 0,-3 
-                    (p.X == LastPoint.X + 2 && p.Y == LastPoint.Y + 2) || // 2, 2
+                    (p.X == LastPoint.X + 3 && p.Y == LastPoint.Y) ||     //+3,+0
+                    (p.X == LastPoint.X && p.Y == LastPoint.Y + 3) ||     //+0,+3
+                    (p.X == LastPoint.X - 3 && p.Y == LastPoint.Y) ||     //-3,+0
+                    (p.X == LastPoint.X && p.Y == LastPoint.Y - 3) ||     //+0,-3
+                    (p.X == LastPoint.X + 2 && p.Y == LastPoint.Y + 2) || //+2,+2
                     (p.X == LastPoint.X - 2 && p.Y == LastPoint.Y - 2) || //-2,-2
-                    (p.X == LastPoint.X + 2 && p.Y == LastPoint.Y - 2) || // 2,-2
-                    (p.X == LastPoint.X - 2 && p.Y == LastPoint.Y + 2);   //-2, 2
+                    (p.X == LastPoint.X + 2 && p.Y == LastPoint.Y - 2) || //+2,-2
+                    (p.X == LastPoint.X - 2 && p.Y == LastPoint.Y + 2);   //-2,+2
 
                 //non ho rispettato le regole
                 if (!rules) return false;
@@ -74,79 +75,57 @@ namespace FillTheSquare
 
         public void Clear()
         {
-            for (int i = 0; i < Size; i++)
-            {
-                for (int j = 0; j < Size; j++)
-                {
-                    Grid[i, j] = 0;
-                }
-            }
-            positionHistory = new Stack<GridPoint>();
+            Array.Clear(Grid, 0, Grid.Length);
+            positionHistory.Clear();
         }
 
         public int GetMovesLeft()
         {
-            int nAllowedMoves = 0;
+            int MovesLeft = 0;
             int x = positionHistory.Peek().X;
             int y = positionHistory.Peek().Y;
 
-            if ((x - 3) >= 0)
-            {
-                if (Grid[x - 3, y] < 1)
-                {
-                    nAllowedMoves++;
-                }
-            }
-            if ((x - 2) >= 0 && (y - 2) >= 0)
-            {
-                if (Grid[x - 2, y - 2] < 1)
-                {
-                    nAllowedMoves++;
-                }
-            }
-            if ((y - 3) >= 0)
-            {
-                if (Grid[x, y - 3] < 1)
-                {
-                    nAllowedMoves++;
-                }
-            }
-            if ((x + 2) <= (Size - 1) && (y - 2) >= 0)
-            {
-                if (Grid[x + 2, y - 2] < 1)
-                {
-                    nAllowedMoves++;
-                }
-            }
-            if ((x + 3) <= (Size - 1))
+            if ((x + 3) <= (Size - 1))                          //+3,+0
             {
                 if (Grid[x + 3, y] < 1)
-                {
-                    nAllowedMoves++;
-                }
+                    MovesLeft++;
             }
-            if ((x + 2) <= (Size - 1) && (y + 2) <= (Size - 1))
-            {
-                if (Grid[x + 2, y + 2] < 1)
-                {
-                    nAllowedMoves++;
-                }
-            }
-            if ((y + 3) <= (Size - 1))
+            if ((y + 3) <= (Size - 1))                          //+0,+3
             {
                 if (Grid[x, y + 3] < 1)
-                {
-                    nAllowedMoves++;
-                }
+                    MovesLeft++;
             }
-            if ((x - 2) >= 0 && (y + 2) <= (Size - 1))
+            if ((x - 3) >= 0)                                   //-3,+0
+            {
+                if (Grid[x - 3, y] < 1)
+                    MovesLeft++;
+            }
+            if ((y - 3) >= 0)                                   //+0,-3
+            {
+                if (Grid[x, y - 3] < 1)
+                    MovesLeft++;
+            }
+            if ((x + 2) <= (Size - 1) && (y + 2) <= (Size - 1)) //+2,+2
+            {
+                if (Grid[x + 2, y + 2] < 1)
+                    MovesLeft++;
+            }
+            if ((x - 2) >= 0 && (y - 2) >= 0)                   //-2,-2
+            {
+                if (Grid[x - 2, y - 2] < 1)
+                    MovesLeft++;
+            }
+            if ((x + 2) <= (Size - 1) && (y - 2) >= 0)          //+2,-2
+            {
+                if (Grid[x + 2, y - 2] < 1)
+                    MovesLeft++;
+            }
+            if ((x - 2) >= 0 && (y + 2) <= (Size - 1))          //-2,+2
             {
                 if (Grid[x - 2, y + 2] < 1)
-                {
-                    nAllowedMoves++;
-                }
+                    MovesLeft++;
             }
-            return nAllowedMoves;
+            return MovesLeft;
         }
     }
 

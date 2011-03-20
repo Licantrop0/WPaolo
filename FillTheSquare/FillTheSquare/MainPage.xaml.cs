@@ -52,5 +52,12 @@ namespace FillTheSquare
         {
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.AddFakeRecords();
+            var id = Settings.Records[0].Id;
+            NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + id, UriKind.Relative));
+        }
     }
 }

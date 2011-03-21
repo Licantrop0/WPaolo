@@ -14,7 +14,7 @@
 	shell:SystemTray.IsVisible="False"
 	BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
-	<Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundGradientBrush}">
+	<Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>

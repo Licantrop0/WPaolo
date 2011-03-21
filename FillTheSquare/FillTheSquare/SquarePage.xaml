@@ -40,7 +40,7 @@
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12">
             <TextBlock Name="TimeElapsedTextBlock"
                        Style="{StaticResource SquareHeadingsStyle}" 
-                       Text="Seconds 0">
+                       Text="Seconds 0" Height="90" Width="269">
             </TextBlock>
         </StackPanel>
 

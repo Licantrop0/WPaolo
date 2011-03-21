@@ -31,7 +31,7 @@ namespace SgarbiMix
             {
                 lock (mutex) //è necessario?
                 {
-                    App.Sounds[rnd.Next(App.Sounds.Count)].Value.Play();
+                    App.Sounds[rnd.Next(App.Sounds.Count)].Play();
                 }
             };
             sd.Start();
@@ -58,14 +58,10 @@ namespace SgarbiMix
 
                 for (int i = 0; i < sr.Length; i++)
                 {
-                    //Convenzione: "_" = spazio, "1" = punto esclamativo
-                    var name = sr[i].Key.ToString().Replace("_", " ").Replace("1", "!");
-                    var sound = (UnmanagedMemoryStream)sr[i].Value;
-
                     //Aggiungo il suono alla lista dei suoni
-                    App.Sounds.Add(new KeyValuePair<string, SoundEffect>(name, SoundEffect.FromStream(sound)));
+                    App.Sounds.Add(new SoundContainer(sr[i].Key.ToString(), (UnmanagedMemoryStream)sr[i].Value));
                     bw.ReportProgress(i);
-                    Thread.Sleep(150);
+                    Thread.Sleep(100);
                 }
             };
 
@@ -73,20 +69,24 @@ namespace SgarbiMix
             bw.ProgressChanged += (s, evt) =>
             {
                 var i = evt.ProgressPercentage;
-                var b = new Button();
-                b.Content = App.Sounds[i].Key;
-                b.Style = (Style)App.Current.Resources["PlayButtonStyle"];
+                var b = new Button()
+                {
+                    //ATTENZIONE: mi baso sul nome del button per recuperare l'i-esimo sound
+                    Name = i.ToString(),
+                    Content = App.Sounds[i].ToString(),
+                    Style = (Style)App.Current.Resources["PlayButtonStyle"]
+                };
 
-                //ATTENZIONE cagata: mi baso sul nome del button per recuperare l'i-esimo sound
-                b.Name = i.ToString();
                 b.Click += (button, evt1) =>
                 {
                     if (CheckTrial())
                     {
+                        //ATTENZIONE: mi baso sul nome del button per recuperare l'i-esimo sound
                         var SoundIndex = int.Parse(((Button)button).Name);
-                        App.Sounds[SoundIndex].Value.Play();
+                        App.Sounds[SoundIndex].Play();
                     }
                 };
+
                 PlayButtonsStackPanel.Children.Add(b);
                 //ButtonFade.Stop();
                 //Storyboard.SetTarget(ButtonFade, b);

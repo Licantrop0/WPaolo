@@ -19,7 +19,7 @@ namespace SgarbiMix
 {
     public partial class App : Application
     {
-        public static List<KeyValuePair<string, SoundEffect>> Sounds = new List<KeyValuePair<string, SoundEffect>>();
+        public static List<SoundContainer> Sounds = new List<SoundContainer>();
         public static bool alreadyOpen;
 
         /// <summary>

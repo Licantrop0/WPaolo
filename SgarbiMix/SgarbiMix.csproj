@@ -83,6 +83,7 @@
       <DependentUpon>PlaySoundPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SoundContainer.cs" />
     <Compile Include="SoundsResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -19,6 +19,7 @@ namespace FillTheSquare
         public InstructionsPage()
         {
             InitializeComponent();
+			illuminazioneIstruzioni.Begin();
         }
     }
 }

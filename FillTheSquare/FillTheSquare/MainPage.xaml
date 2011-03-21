@@ -68,6 +68,7 @@
                    Height="196" Width="272"
                    Canvas.Left="163" Canvas.Top="239" />
             <Button Canvas.Left="78" Canvas.Top="521" Content="congratulations" Height="71" Width="238" Click="Button_Click" />
+     
         </Canvas>
     </Grid>
 </phone:PhoneApplicationPage>

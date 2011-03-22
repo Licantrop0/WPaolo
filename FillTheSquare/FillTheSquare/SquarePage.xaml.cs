@@ -37,13 +37,10 @@ namespace FillTheSquare
 					var b = new Border()
 					{
 						Background = new SolidColorBrush(Colors.Transparent),
-						//BorderThickness = new Thickness(1),
+						BorderThickness = size == 5 ? new Thickness(2) : new Thickness(1),
 						BorderBrush = new SolidColorBrush(Colors.White),
 					};
-					if(size==5)
-						b.BorderThickness = new Thickness(2);
-					else
-						b.BorderThickness = new Thickness(1);
+
 					b.SetRow(i);
 					b.SetColumn(j);
 					b.MouseLeftButtonDown += Button_Click;
@@ -95,7 +92,7 @@ namespace FillTheSquare
 						dt.Stop();
 						var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
 						Settings.Records.Add(r);
-						NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id.ToString(), UriKind.Relative));
+						NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id, UriKind.Relative));
 						break;
 					}
 

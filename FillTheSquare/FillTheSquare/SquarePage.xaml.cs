@@ -11,154 +11,154 @@ using WPCommon;
 
 namespace FillTheSquare
 {
-    public partial class SquarePage : PhoneApplicationPage
-    {
-        public MagicSquare Square;
-        DispatcherTimer dt;
-        Stopwatch sw;
+	public partial class SquarePage : PhoneApplicationPage
+	{
+		public MagicSquare Square;
+		DispatcherTimer dt;
+		Stopwatch sw;
 
-        public SquarePage()
-        {
-            InitializeComponent();
-            InitializeTimers();
-        }
+		public SquarePage()
+		{
+			InitializeComponent();
+			InitializeTimers();
+		}
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            var size = int.Parse(NavigationContext.QueryString["size"]);
-            Square = new MagicSquare(size);
-            for (int i = 0; i < size; i++)
-            {
-                MagicGrid.RowDefinitions.Add(new RowDefinition());
-                MagicGrid.ColumnDefinitions.Add(new ColumnDefinition());
+		private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+		{
+			var size = int.Parse(NavigationContext.QueryString["size"]);
+			Square = new MagicSquare(size);
+			for (int i = 0; i < size; i++)
+			{
+				MagicGrid.RowDefinitions.Add(new RowDefinition());
+				MagicGrid.ColumnDefinitions.Add(new ColumnDefinition());
 
-                for (int j = 0; j < size; j++)
-                {
-                    var b = new Border()
-                    {
-                        Background = new SolidColorBrush(Colors.Transparent),
-                        //BorderThickness = new Thickness(1),
-                        BorderBrush = new SolidColorBrush(Colors.White),
-                    };
+				for (int j = 0; j < size; j++)
+				{
+					var b = new Border()
+					{
+						Background = new SolidColorBrush(Colors.Transparent),
+						//BorderThickness = new Thickness(1),
+						BorderBrush = new SolidColorBrush(Colors.White),
+					};
 					if(size==5)
 						b.BorderThickness = new Thickness(2);
 					else
 						b.BorderThickness = new Thickness(1);
-                    b.SetRow(i);
-                    b.SetColumn(j);
-                    b.MouseLeftButtonDown += Button_Click;
-                    MagicGrid.Children.Add(b);
-                }
-            }
-        }
+					b.SetRow(i);
+					b.SetColumn(j);
+					b.MouseLeftButtonDown += Button_Click;
+					MagicGrid.Children.Add(b);
+				}
+			}
+		}
 
-        private void InitializeTimers()
-        {
-            dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromSeconds(1);
-            dt.Tick += (sender, e) =>
-                { TimeElapsedTextBlock.Text = "Seconds " + sw.Elapsed.TotalSeconds.ToString("0"); };
-            dt.Start();
+		private void InitializeTimers()
+		{
+			dt = new DispatcherTimer();
+			dt.Interval = TimeSpan.FromSeconds(1);
+			dt.Tick += (sender, e) =>
+				{ TimeElapsedTextBlock.Text = "Seconds " + sw.Elapsed.TotalSeconds.ToString("0"); };
+			dt.Start();
 
-            sw = new Stopwatch();
-            sw.Start();
-        }
+			sw = new Stopwatch();
+			sw.Start();
+		}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (WPCommon.TrialManagement.IsTrialMode && sw.Elapsed.TotalSeconds >= 99)
-            {
-                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-                return;
-            }
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			if (WPCommon.TrialManagement.IsTrialMode && sw.Elapsed.TotalSeconds >= 99)
+			{
+				NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
+				return;
+			}
 
-            var currentButton = (Border)sender;
-            var p = new GridPoint(currentButton.GetColumn(), currentButton.GetRow());
+			var currentButton = (Border)sender;
+			var p = new GridPoint(currentButton.GetColumn(), currentButton.GetRow());
 
-            //tutta la logica della griglia è dentro il metodo PressButton
-            switch (Square.PressButton(p))
-            {
-                case true: //caso creazione andato a buon fine
-                    currentButton.Child = new TextBlock()
-                    {
-                        Text = Square.positionHistory.Count.ToString(),
-                        Style = (Style)Application.Current.Resources["SquareTitleStyle"],
-                        FontSize = 28
-                    };
+			//tutta la logica della griglia è dentro il metodo PressButton
+			switch (Square.PressButton(p))
+			{
+				case true: //caso creazione andato a buon fine
+					currentButton.Child = new TextBlock()
+					{
+						Text = Square.positionHistory.Count.ToString(),
+						Style = (Style)Application.Current.Resources["SquareTitleStyle"],
+						FontSize = 28
+					};
 
-                    SetFocus.Stop();
-                    Storyboard.SetTarget(SetFocus, currentButton);
-                    SetFocus.Begin();
+					SetFocus.Stop();
+					Storyboard.SetTarget(SetFocus, currentButton);
+					SetFocus.Begin();
 
-                    if (Square.IsCompleted) //Vittoria!
-                    {
-                        dt.Stop();
-                        var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
-                        Settings.Records.Add(r);
-                        NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id.ToString(), UriKind.Relative));
-                        break;
-                    }
+					if (Square.IsCompleted) //Vittoria!
+					{
+						dt.Stop();
+						var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
+						Settings.Records.Add(r);
+						NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id.ToString(), UriKind.Relative));
+						break;
+					}
 
-                    if (Square.GetMovesLeft() == 0)  //non ci sono più mosse disponibili
-                    {
-                        //TODO: Inserire suono di disperazione
-                        PhilPiangeAppear.Begin();
-                    }
-                    else
-                    {
-                        Settings.MoveSound.Play();
-                    }
-                    break;
+					if (Square.GetMovesLeft() == 0)  //non ci sono più mosse disponibili
+					{
+						//TODO: Inserire suono di disperazione
+						PhilPiangeAppear.Begin();
+					}
+					else
+					{
+						Settings.MoveSound.Play();
+					}
+					break;
 
-                case false: //caso di creazione fallito
-                    RedFlash.Stop();
-                    Storyboard.SetTarget(RedFlash, currentButton);
-                    RedFlash.Begin();
-                    Settings.ErrorSound.Play();
-                    break;
+				case false: //caso di creazione fallito
+					RedFlash.Stop();
+					Storyboard.SetTarget(RedFlash, currentButton);
+					RedFlash.Begin();
+					Settings.ErrorSound.Play();
+					break;
 
-                case null://caso di cancellazione
-                    currentButton.Child = null;
-                    currentButton.Background = new SolidColorBrush(Colors.Transparent);
-                    PhilPiangeDisappear.Begin();
+				case null://caso di cancellazione
+					currentButton.Child = null;
+					currentButton.Background = new SolidColorBrush(Colors.Transparent);
+					PhilPiangeDisappear.Begin();
 
-                    //Evidenzio la casella sull'ultimo premuto se la griglia non è vuota
-                    if (!Square.IsEmpty)
-                    {
-                        var lastValue = Square.positionHistory.Peek();
-                        var lastButton = MagicGrid.Children
-                            .Where(b => b.GetRow() == lastValue.Y)
-                            .Where(b => b.GetColumn() == lastValue.X).First();
+					//Evidenzio la casella sull'ultimo premuto se la griglia non è vuota
+					if (!Square.IsEmpty)
+					{
+						var lastValue = Square.positionHistory.Peek();
+						var lastButton = MagicGrid.Children
+							.Where(b => b.GetRow() == lastValue.Y)
+							.Where(b => b.GetColumn() == lastValue.X).First();
 
-                        SetFocus.Stop();
-                        Storyboard.SetTarget(SetFocus, lastButton);
-                        SetFocus.Begin();
-                    }
-                    Settings.UndoSound.Play();
-                    break;
-            }
-        }
+						SetFocus.Stop();
+						Storyboard.SetTarget(SetFocus, lastButton);
+						SetFocus.Begin();
+					}
+					Settings.UndoSound.Play();
+					break;
+			}
+		}
 
-        private void BackgroundMediaElement_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            var me = (MediaElement)sender;
-            me.Stop();
-            me.Play();
-        }
+		private void BackgroundMediaElement_MediaEnded(object sender, RoutedEventArgs e)
+		{
+			var me = (MediaElement)sender;
+			me.Stop();
+			me.Play();
+		}
 
-        private void ResetButton_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO: Mettere un suono tipo "swoosh"
-            PhilPiangeDisappear.Begin();
+		private void ResetButton_Click(object sender, RoutedEventArgs e)
+		{
+			//TODO: Mettere un suono tipo "swoosh"
+			PhilPiangeDisappear.Begin();
 
-            sw.Reset();
-            sw.Start();
+			sw.Reset();
+			sw.Start();
 
-            Square.Clear();
-            MagicGrid.Children
-                .Where(ctrl => ctrl is Border)
-                .Cast<Border>()
-                .ForEach(b => b.Child = null);
-        }
-    }
+			Square.Clear();
+			MagicGrid.Children
+				.Where(ctrl => ctrl is Border)
+				.Cast<Border>()
+				.ForEach(b => b.Child = null);
+		}
+	}
 }

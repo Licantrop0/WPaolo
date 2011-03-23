@@ -10,12 +10,12 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace WPCommon
 {
     public static class ExtensionMethods
     {
-
         #region Grid Position Helper
 
         public static int GetRow(this UIElement uie)
@@ -50,6 +50,23 @@ namespace WPCommon
         {
             foreach (var item in items)
                 source.Add(item);
+        }
+
+        static Stopwatch sw;
+        public static void StartTrace(string message)
+        {
+            if (sw == null)
+                sw = new Stopwatch();
+            sw.Start();
+            Debug.WriteLine(message);
+        }
+
+        public static void EndTrace()
+        {
+            if (sw == null) return;
+            sw.Stop();
+            Debug.WriteLine("Done in: " + sw.ElapsedMilliseconds + "ms");
+            sw.Reset();
         }
     }
 }

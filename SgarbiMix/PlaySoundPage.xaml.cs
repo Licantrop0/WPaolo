@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
 using WPCommon;
+using System.Diagnostics;
 
 
 namespace SgarbiMix
@@ -57,7 +58,6 @@ namespace SgarbiMix
                     //Aggiungo il suono alla lista dei suoni
                     App.Sounds.Add(new SoundContainer(sr[i].Key.ToString(), (UnmanagedMemoryStream)sr[i].Value));
                     bw.ReportProgress(i);
-                    Thread.Sleep(100);
                 }
             };
 

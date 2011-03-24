@@ -54,7 +54,10 @@ namespace FillTheSquare
 			dt = new DispatcherTimer();
 			dt.Interval = TimeSpan.FromSeconds(1);
 			dt.Tick += (sender, e) =>
-				{ TimeElapsedTextBlock.Text = "Seconds " + sw.Elapsed.TotalSeconds.ToString("0"); };
+                {
+                    TimeElapsedTextBlock.Text = string.Format("{0}: {1:0}",
+                        AppResources.Seconds, sw.Elapsed.TotalSeconds);
+                };
 			dt.Start();
 
 			sw = new Stopwatch();
@@ -63,6 +66,7 @@ namespace FillTheSquare
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
+            //La trial scade dopo 99 secondi
 			if (WPCommon.TrialManagement.IsTrialMode && sw.Elapsed.TotalSeconds >= 99)
 			{
 				NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
@@ -114,7 +118,7 @@ namespace FillTheSquare
 					Settings.ErrorSound.Play();
 					break;
 
-				case null://caso di cancellazione
+				case null: //caso di cancellazione
 					currentButton.Child = null;
 					currentButton.Background = new SolidColorBrush(Colors.Transparent);
 					PhilPiangeDisappear.Begin();
@@ -151,11 +155,14 @@ namespace FillTheSquare
 			sw.Reset();
 			sw.Start();
 
-			Square.Clear();
-			MagicGrid.Children
-				.Where(ctrl => ctrl is Border)
-				.Cast<Border>()
-				.ForEach(b => b.Child = null);
-		}
-	}
+            Square.Clear();
+
+            foreach (Border b in MagicGrid.Children.Where(ctrl => ctrl is Border))
+            {
+                b.Child = null;
+                b.Background = new SolidColorBrush(Colors.Transparent);
+            }
+
+        }
+    }
 }

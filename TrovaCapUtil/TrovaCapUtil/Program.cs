@@ -12,9 +12,27 @@ namespace CAPUtil
 {
     class Program
     {
+        /*
+        static string Normalize(string s)
+        {
+            string sReturn;
+            if (s == " '")
+            {
+                sReturn = "";
+            }
+            else
+            {
+                sReturn = s.Remove(0, 2);
+                sReturn = sReturn.Remove(sReturn.Length - 1, 1);
+            }
+
+            return sReturn;
+        }
+         * */
+
         static void Main(string[] args)
         {
-            SortedList<string, SortedList<string, Comune>> dProvince = new SortedList<string,SortedList<string,Comune>>();
+            /*SortedList<string, SortedList<string, Comune>> dProvince = new SortedList<string,SortedList<string,Comune>>();
             SortedList<string, Comune> dComuni = new SortedList<string, Comune>();
             SortedList<string, CAP> dCAPS = new SortedList<string, CAP>();
 
@@ -130,23 +148,91 @@ namespace CAPUtil
 
             Console.WriteLine("Writing CAP DB Information");
             bformatter.Serialize(stream, capDB);
-            stream.Close();
+            stream.Close();*/
+
+            //private void ReadAndParseDataBase()
+
+            var _capDB = new SortedList<string, Comune>();
+
+            using (var tr = new StreamReader("DB2.txt", Encoding.Default))
+            {
+                while(!tr.EndOfStream)   
+                {
+                    var words = tr.ReadLine().Split('|');
+
+                    string sProvincia = words[0];
+                    string sComune1 = words[1];
+                    string sComune2 = words[2];
+
+                    string sFrazione = string.IsNullOrEmpty(words[4]) ? words[3] : words[3] + " - " + words[4];
+                    string sIndirizzo = string.IsNullOrEmpty(words[6]) ? words[5] : words[5] + " - " + words[6];
+                    sIndirizzo = string.IsNullOrEmpty(sIndirizzo) ? sIndirizzo : words[7] + " " + sIndirizzo;
+
+                    string sCivico = words[8];
+                    string sCap = words[9];
+
+                    if(sCivico != "")
+                    {
+                        sIndirizzo += " " + sCivico; 
+                    }
+
+                    CAPRecord newRecord = new CAPRecord(sFrazione, sIndirizzo, sCap);
+
+                    // parse Comune1, Comune2 if necessary
+                    sComune1 = sComune1 + " (" + sProvincia + ")";
+
+                    if (sComune2 != "")
+                        sComune2 += " (" + sProvincia + ")";
+
+                    // insert into comuni Dictionary if not already inserted, if comune name is bilungual insert two separate records
+                    if (!_capDB.ContainsKey(sComune1))
+                    {
+                        Comune c1 = new Comune();
+                        c1.comuneID = sComune1;
+                        c1.capRecords = new List<CAPRecord>();
+                        _capDB.Add(sComune1, c1);
+
+                        if (sComune2 != "")
+                        {
+                            Comune c2 = new Comune();
+                            c2.comuneID = sComune2;
+                            c2.capRecords = new List<CAPRecord>();
+                            _capDB.Add(c2.comuneID, c2);
+                        }
+                    }
+
+                    // insert CAP record into comune index
+                    _capDB[sComune1].capRecords.Add(newRecord);
+
+                    if (sComune2 != "")
+                    {
+                        _capDB[sComune2].capRecords.Add(newRecord);
+                    }
+                }
+            }
+
+            // write data to file
+            using (var tout = new StreamWriter("DBout.txt", false, Encoding.Default))
+            {
+                int nComuni = _capDB.Count;
+
+                tout.WriteLine(nComuni.ToString());
+
+                foreach (var item in _capDB)
+                {
+                    int nCAPRecords = item.Value.capRecords.Count;
+                    string sComune = item.Value.comuneID;
+
+                    tout.WriteLine(sComune + "|" + nCAPRecords);
+
+                    foreach (var cr in item.Value.capRecords)
+                    {
+                        tout.WriteLine(cr.frazione + "|" + cr.indirizzo + "|" + cr.cap);
+                    }
+                }
+            }
         }
 
-        static string Normalize(string s)
-        {
-            string sReturn;
-            if (s == " '")
-            {
-                sReturn = "";
-            }
-            else
-            {
-                sReturn = s.Remove(0, 2);
-                sReturn = sReturn.Remove(sReturn.Length - 1, 1);
-            }
-            
-            return sReturn;
-        }
+        
     }
 }

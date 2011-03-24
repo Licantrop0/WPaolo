@@ -34,4 +34,15 @@ namespace TrovaCAP
             CapRecords = records;
         }
     }
+
+    class CapDB
+    {
+        [DataMember]
+        public Comune[] Comuni { get; set; }
+
+        public CapDB(Comune[] comuni)
+        {
+            Comuni = comuni;
+        }
+    }
 }

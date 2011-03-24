@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.IO;
 using System.Diagnostics;
+using System.Windows.Resources;
 
 namespace TrovaCAP
 {
@@ -59,6 +60,7 @@ namespace TrovaCAP
             InitializeComponent();
             sw.Start();
             ReadAndParseDataBase();
+            //Deserialize();
             sw.Stop();
             tbBenchmark.Text = "db: " + sw.ElapsedMilliseconds + " is: ";
 
@@ -85,15 +87,36 @@ namespace TrovaCAP
             }
         }
 
+        private void ResetComuniTextBox()
+        {
+            acbComuni.SelectionChanged -= acbComuni_SelectionChanged;
+            acbComuni.Text = "";
+            acbComuni.SelectionChanged += acbComuni_SelectionChanged;
+        }
+
+        private void ResetFrazioniTextBox()
+        {
+            acbFrazioni.SelectionChanged -= acbFrazioni_SelectionChanged;
+            acbFrazioni.Text = "";
+            acbFrazioni.SelectionChanged += acbFrazioni_SelectionChanged;
+        }
+
+        private void ResetIndirizziTextBox()
+        {
+            acbIndirizzi.SelectionChanged -= acbIndirizzi_SelectionChanged;
+            acbIndirizzi.Text = "";
+            acbIndirizzi.SelectionChanged += acbIndirizzi_SelectionChanged;
+        }
+
         private void acbComuni_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (_state != Step.selezionaComune)
             {
                 // reset
-                acbComuni.Text = "";
-                acbFrazioni.Text = "";
+                ResetComuniTextBox();
+                ResetFrazioniTextBox();
                 acbFrazioni.IsEnabled = false;
-                acbIndirizzi.Text = "";
+                ResetIndirizziTextBox();
                 acbIndirizzi.IsEnabled = false;
                 tbCapResult.Text = "";
                 _capRecordsComuni = null;
@@ -108,7 +131,7 @@ namespace TrovaCAP
 
             _autofocus = null;
 
-            if (!_comuni.Any(c => c.ComuneID == acbComuni.Text))
+            if (!_comuni.Any(c => c.ComuneID == acbComuni.Text))        // questo andrebbe messo nel lost focus
             {
                 acbComuni.Text = "";
                 // <produci un suono fastidioso>
@@ -186,6 +209,12 @@ namespace TrovaCAP
 
         private void acbComuni_LostFocus(object sender, RoutedEventArgs e)
         {
+            if (!_comuni.Any(c => c.ComuneID == acbComuni.Text))        // questo andrebbe messo nel lost focus
+            {
+                acbComuni.Text = "";
+                // <produci un suono fastidioso>
+            }
+
             Autofocus();
         }
 
@@ -203,7 +232,7 @@ namespace TrovaCAP
             // reset control and intermediate filtered cap records
             if (_state != Step.selezionaFrazione && _state != Step.scegliFrazioneOVia)
             {
-                acbFrazioni.Text = "";
+                ResetFrazioniTextBox();
                 tbCapResult.Text = "";
             }
 
@@ -216,13 +245,13 @@ namespace TrovaCAP
                 _state = Step.scegliFrazioneOVia;
             else if (_state == Step.SelezionaFrazioneViaFinished)
             {
-                acbIndirizzi.Text = "";
+                ResetIndirizziTextBox();
                 acbIndirizzi.ItemsSource = _sIndirizziComune;   // importante
                 _state = Step.scegliFrazioneOVia;
             }
             else if (_state == Step.scegliViaFinished)
             {
-                acbIndirizzi.Text = "";
+                ResetIndirizziTextBox();
                 _state = Step.scegliFrazioneOVia;
             }
         }
@@ -231,11 +260,11 @@ namespace TrovaCAP
         {
             tbBenchmark.Text = _state.ToString();
 
-            // filtering is necessary
+            /*// filtering is necessary (no more with handlers unlinking)
             if (_state != Step.selezionaFrazione && _state != Step.scegliFrazioneOVia)
             {
                 return;
-            }
+            }*/
 
             _autofocus = null;
 
@@ -280,6 +309,12 @@ namespace TrovaCAP
 
         private void acbFrazioni_LostFocus(object sender, RoutedEventArgs e)
         {
+            if (!(acbFrazioni.ItemsSource as IEnumerable<string>).Contains(acbFrazioni.Text))
+            {
+                acbFrazioni.Text = "";
+                // <produci un suono fastidioso>
+            }
+
             Autofocus();
         }
 
@@ -294,7 +329,7 @@ namespace TrovaCAP
             // reset control
             if (_state != Step.selezionaVia && _state != Step.scegliFrazioneOVia && _state != Step.selezionaFrazioneVia)
             {
-                acbIndirizzi.Text = "";
+                ResetIndirizziTextBox();
                 tbCapResult.Text = "";
             }
 
@@ -309,7 +344,7 @@ namespace TrovaCAP
             }
             else if (_state == Step.scegliFrazioneFinished)
             {
-                acbFrazioni.Text = "";
+                ResetFrazioniTextBox();
                 _state = Step.scegliFrazioneOVia;
             }
         }
@@ -318,11 +353,11 @@ namespace TrovaCAP
         {
             tbBenchmark.Text = _state.ToString();
 
-            // filtering is necessary
+            /*// filtering is necessary (no more with handlers unlinking)
             if (_state != Step.selezionaVia && _state != Step.scegliFrazioneOVia && _state != Step.selezionaFrazioneVia)
             {
                 return;
-            }
+            }*/
 
             _autofocus = null;
 
@@ -450,6 +485,20 @@ namespace TrovaCAP
             }
         }
 
+
+        private void Deserialize()
+        {
+             // deserialization
+            StreamResourceInfo sri = Application.GetResourceStream(new Uri("DB.ser", UriKind.Relative));
+            using (var fin = new StreamReader(sri.Stream))
+            {
+                CustomBinarySerializer ser2 = new CustomBinarySerializer(typeof(CapDB));
+                Comune[] comuniAfterDeserialization = ser2.ReadObject(sri.Stream) as Comune[];
+                _comuni = comuniAfterDeserialization;
+            }
+        }
+
+        
         private bool AcbFilterStartsWithExtended(string search, object data)
         {
             string[] words = (data as string).Split(' ');
@@ -458,6 +507,32 @@ namespace TrovaCAP
             return (words.Where(s => s.StartsWith(search, StringComparison.CurrentCultureIgnoreCase)).Count() > 0) ||
                 (word.ToUpper().Contains(search.ToUpper()) && search.Contains(' '));
         }
+
+
+        // serialize???
+            //CapDB capDB = new CapDB(_comuni);
+
+            // serialization
+            /*MemoryStream ms = new MemoryStream();
+            CustomBinarySerializer ser = new CustomBinarySerializer(capDB.GetType());
+            ser.WriteObject(ms, _comuni);
+
+            ms.Position = 0;
+
+            // deserialization
+            CustomBinarySerializer ser2 = new CustomBinarySerializer(typeof(CapDB));
+            Comune[] comuniAfterDeserialization = ser2.ReadObject(ms) as Comune[];
+
+            _comuni = new Comune[0];
+            _comuni = comuniAfterDeserialization;
+
+            ms.Close();*/
+
+            // serialization
+            /*StreamResourceInfo sri = Application.GetResourceStream(new Uri("DB.ser", UriKind.Relative));
+            CustomBinarySerializer ser = new CustomBinarySerializer(capDB.GetType());
+            ser.WriteObject(sri.Stream, _comuni);
+            sri.Stream.Close();*/
 
     }
 }

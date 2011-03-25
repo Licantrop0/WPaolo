@@ -6,12 +6,34 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:RotateTransition Mode="In90Clockwise" />
+            </toolkit:NavigationInTransition.Forward>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:RotateTransition Mode="In90CounterClockwise" />
+            </toolkit:NavigationInTransition.Backward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:RotateTransition Mode="Out90Clockwise" />
+            </toolkit:NavigationOutTransition.Forward>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:RotateTransition Mode="Out90Counterclockwise" />
+            </toolkit:NavigationOutTransition.Backward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid Background="{StaticResource BackgroundImageBrush}">
         <Grid.Resources>
@@ -50,14 +72,20 @@
                 <Grid.Resources>
                     <Storyboard x:Name="RedFlash">
                         <ColorAnimation
-                        Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
-                        To="Red" Duration="0:0:0.5" AutoReverse="True"  />
+                            Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)"
+                            To="Red" Duration="0:0:0.4" AutoReverse="True"  />
+                        <ColorAnimation
+                            Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                            To="Red" Duration="0:0:0.3" AutoReverse="True"  />
                     </Storyboard>
 
                     <Storyboard x:Name="SetFocus">
                         <ColorAnimation
-                        Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
-                        To="{StaticResource PhoneAccentColor}" Duration="0:0:1" />
+                            Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)"
+                            To="{StaticResource PhoneAccentColor}" Duration="0:0:0.5" />
+                        <ColorAnimation
+                            Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                            To="{StaticResource PhoneAccentColor}" Duration="0:0:0.4" />
                     </Storyboard>
                 </Grid.Resources>
             </Grid>
@@ -68,10 +96,12 @@
                VerticalAlignment="Top" HorizontalAlignment="Center"
                Opacity="0" IsHitTestVisible="False" Height="241" />
 
-        <Button Content="Reset" Click="ResetButton_Click"
-                Style="{StaticResource ResetButtonStyle}" Grid.Row="2" 
-                Height="76" Width="198" Margin="0,0,0,24" />
-
+        <Button Content="{Binding Path=LocalizedResources.Reset, Source={StaticResource LocalizedStrings}}"
+                Click="ResetButton_Click" FontSize="40"
+                Style="{StaticResource HomeButtonStyle}"
+                BorderBrush="{x:Null}"
+                Background="{x:Null}"
+                Grid.Row="2" Height="80" Width="200" Margin="0,0,0,24" />
     </Grid>
 
 </phone:PhoneApplicationPage>

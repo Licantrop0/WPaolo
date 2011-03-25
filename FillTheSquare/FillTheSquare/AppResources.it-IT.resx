@@ -132,6 +132,9 @@
   <data name="DontMakePhilSad" xml:space="preserve">
     <value>Per favore, non rendere Phil triste!</value>
   </data>
+  <data name="GetOtherApps" xml:space="preserve">
+    <value>Scopri altre App di WPME</value>
+  </data>
   <data name="InsertName" xml:space="preserve">
     <value>Inserisci il tuo Nome:</value>
   </data>
@@ -157,6 +160,9 @@ Mosse permesse:
   </data>
   <data name="Records" xml:space="preserve">
     <value>Record</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
   </data>
   <data name="Seconds" xml:space="preserve">
     <value>Secondi</value>

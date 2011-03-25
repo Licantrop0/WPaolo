@@ -106,6 +106,15 @@ namespace FillTheSquare {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get other apps from WPME.
+        /// </summary>
+        public static string GetOtherApps {
+            get {
+                return ResourceManager.GetString("GetOtherApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert your Name:.
         /// </summary>
         public static string InsertName {
@@ -170,6 +179,15 @@ namespace FillTheSquare {
         public static string Records {
             get {
                 return ResourceManager.GetString("Records", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
             }
         }
         

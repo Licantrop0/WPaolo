@@ -17,22 +17,19 @@ namespace FillTheSquare
             InitializeComponent();
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (NavigationContext.QueryString.ContainsKey("id"))
-            {
-                var RecordId = int.Parse(NavigationContext.QueryString["id"]);
-                CurrentRecord = Settings.Records.Where(r => r.Id == RecordId).First();
-                this.DataContext = CurrentRecord;
-            }
-        }
-
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             if (!NonLinearNavigationService.Instance.IsRecursiveBackNavigation)
             {
                 BouncingPhilStoryboard.Begin();
                 Settings.VictorySound.Play();
+
+                if (NavigationContext.QueryString.ContainsKey("id"))
+                {
+                    var RecordId = int.Parse(NavigationContext.QueryString["id"]);
+                    CurrentRecord = Settings.Records.Where(r => r.Id == RecordId).First();
+                    this.DataContext = CurrentRecord;
+                }
             }
         }
 

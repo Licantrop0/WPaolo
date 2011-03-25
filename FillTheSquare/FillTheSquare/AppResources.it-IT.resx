@@ -132,6 +132,9 @@
   <data name="DontMakePhilSad" xml:space="preserve">
     <value>Per favore, non rendere Phil triste!</value>
   </data>
+  <data name="InsertName" xml:space="preserve">
+    <value>Inserisci il tuo Nome:</value>
+  </data>
   <data name="Instructions" xml:space="preserve">
     <value>Istruzioni</value>
   </data>
@@ -143,8 +146,14 @@ Mosse permesse:
    lasciando 2 quadrati vuoti
 • Diagonale lasciando 1 quadrato vuoto</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
   <data name="PhilWillBeHappy" xml:space="preserve">
     <value>così Phil sarà sempre felice e tu potrai giocare senza limiti!</value>
+  </data>
+  <data name="PleaseInsertName" xml:space="preserve">
+    <value>Per favore inserisci il tuo nome</value>
   </data>
   <data name="Records" xml:space="preserve">
     <value>Record</value>

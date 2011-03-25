@@ -106,6 +106,15 @@ namespace FillTheSquare {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert your Name:.
+        /// </summary>
+        public static string InsertName {
+            get {
+                return ResourceManager.GetString("InsertName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Instructions.
         /// </summary>
         public static string Instructions {
@@ -129,11 +138,29 @@ namespace FillTheSquare {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to so Phil will be always happy and you will have no limits in the play!.
         /// </summary>
         public static string PhilWillBeHappy {
             get {
                 return ResourceManager.GetString("PhilWillBeHappy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please insert your Name.
+        /// </summary>
+        public static string PleaseInsertName {
+            get {
+                return ResourceManager.GetString("PleaseInsertName", resourceCulture);
             }
         }
         

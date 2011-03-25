@@ -7,124 +7,93 @@
 	xmlns:loc="clr-namespace:Localization;assembly=FillTheSquare"
 	xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
 
-	<Application.Resources>
-		<loc:LocalizedStrings x:Key="LocalizedStrings" />
+    <Application.Resources>
+        <loc:LocalizedStrings x:Key="LocalizedStrings" />
 
+        <ImageBrush x:Key="BackgroundImageBrush" ImageSource="/FillTheSquare;component/Phil/sfondo_quadri_color1.jpg" />
 
-		<ImageBrush x:Key="BackgroundImageBrush" ImageSource="/FillTheSquare;component/Phil/sfondo_quadri_color1.jpg" />
+        <LinearGradientBrush x:Key="ForegroundGradientBrush" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FFEFB432" Offset="1"/>
+            <GradientStop Color="#FFFFD304" Offset="0.009"/>
+            <GradientStop Color="#FFF1EB0F" Offset="0.794"/>
+            <GradientStop Color="Yellow" Offset="0.371"/>
+        </LinearGradientBrush>
 
-		<LinearGradientBrush x:Key="BackgroundGradientBrush" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-			<GradientStop Color="#FF201983"/>
-			<GradientStop Color="#FF251BA7" Offset="1"/>
-			<GradientStop Color="#FF2E20E9" Offset="0.405"/>
-			<GradientStop Color="#FF695FEB" Offset="0.642"/>
-		</LinearGradientBrush>
-
-		<LinearGradientBrush x:Key="ForegroundGradientBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <!--<LinearGradientBrush x:Key="ForegroundGradientBrush" EndPoint="0.5,1" StartPoint="0.5,0">
 			<GradientStop Color="#FFFB7C10"/>
 			<GradientStop Color="#FFF2FF04" Offset="0.66"/>
 			<GradientStop Color="#FFF4F609" Offset="0.312"/>
 			<GradientStop Color="#FFEF9F11" Offset="0.976"/>
-		</LinearGradientBrush>
+		</LinearGradientBrush>-->
 
-		<Style x:Key="SquareTitleStyle" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" />
-			<Setter Property="Foreground" >
-				<Setter.Value>
-					<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-						<GradientStop Color="#FFEFB432" Offset="1"/>
-						<GradientStop Color="#FFFFD304" Offset="0.009"/>
-						<GradientStop Color="#FFF1EB0F" Offset="0.794"/>
-						<GradientStop Color="Yellow" Offset="0.371"/>
-					</LinearGradientBrush>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="HorizontalAlignment" Value="Center" />
-			<Setter Property="TextWrapping" Value="Wrap" />
-			<Setter Property="TextAlignment" Value="Center" />
-			<Setter Property="FontSize" Value="64"/>
-		</Style>
-		<Style x:Key="SquareHeadingsStyle" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" />
-			<Setter Property="Foreground" >
-				<Setter.Value>
+        <Style x:Key="SquareTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" />
+            <Setter Property="Foreground"  Value="{StaticResource ForegroundGradientBrush}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="64"/>
+        </Style>
+        
+        <Style x:Key="SquareHeadingsStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" />
+            <Setter Property="Foreground"  Value="{StaticResource ForegroundGradientBrush}" />            
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="FontSize" Value="48"/>
+        </Style>
 
-					<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-						<GradientStop Color="#FFEFB432" Offset="1"/>
-						<GradientStop Color="#FFFFD304" Offset="0.009"/>
-						<GradientStop Color="#FFF1EB0F" Offset="0.794"/>
-						<GradientStop Color="Yellow" Offset="0.371"/>
-					</LinearGradientBrush>
+        <Style x:Key="HomeButtonStyle" TargetType="Button">
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Foreground"  Value="{StaticResource ForegroundGradientBrush}" />
+            <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39" SkewY="-39" ScaleX="0.8"/>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF1818EB" Offset="0.797"/>
+                        <GradientStop Color="#FF030558" Offset="1"/>
+                        <GradientStop Color="#FF101070" Offset="0.017"/>
+                        <GradientStop Color="#FF2D58DE" Offset="0.573"/>
+                        <GradientStop Color="#FF2A5BA5" Offset="0.233"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" SpreadMethod="Reflect">
+                        <LinearGradientBrush.RelativeTransform>
+                            <CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="26" SkewY="20"/>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFFDFF00" Offset="0.461"/>
+                        <GradientStop Color="#FFEFB618" Offset="0.013"/>
+                        <GradientStop Color="#FFFDC500" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Height" Value="74"/>
+            <Setter Property="OpacityMask" Value="{x:Null}"/>
+        </Style>
+        <Style x:Key="ResetButtonStyle" TargetType="Button">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="{StaticResource ForegroundGradientBrush}"/>
+            <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="FontSize" Value="29.333"/>
+        </Style>
 
-				</Setter.Value>
-			</Setter>
-			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="HorizontalAlignment" Value="Center" />
-			<Setter Property="TextWrapping" Value="Wrap" />
-			<Setter Property="FontSize" Value="48"/>
-		</Style>
+    </Application.Resources>
 
-		<Style x:Key="HomeButtonStyle" TargetType="Button">
-			<Setter Property="BorderThickness" Value="2" />
-			<Setter Property="Foreground">
-				<Setter.Value>
-
-					<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-						<GradientStop Color="#FFFB7C10"/>
-						<GradientStop Color="#FFF2FF04" Offset="0.66"/>
-						<GradientStop Color="#FFF4F609" Offset="0.312"/>
-						<GradientStop Color="#FFEF9F11" Offset="0.976"/>
-					</LinearGradientBrush>
-
-				</Setter.Value>
-			</Setter>
-			<Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
-			<Setter Property="Background">
-				<Setter.Value>
-					<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-						<LinearGradientBrush.RelativeTransform>
-							<CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39" SkewY="-39" ScaleX="0.8"/>
-						</LinearGradientBrush.RelativeTransform>
-						<GradientStop Color="#FF1818EB" Offset="0.797"/>
-						<GradientStop Color="#FF030558" Offset="1"/>
-						<GradientStop Color="#FF101070" Offset="0.017"/>
-						<GradientStop Color="#FF2D58DE" Offset="0.573"/>
-						<GradientStop Color="#FF2A5BA5" Offset="0.233"/>
-					</LinearGradientBrush>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="BorderBrush">
-				<Setter.Value>
-					<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" SpreadMethod="Reflect">
-						<LinearGradientBrush.RelativeTransform>
-							<CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="26" SkewY="20"/>
-						</LinearGradientBrush.RelativeTransform>
-						<GradientStop Color="#FFFDFF00" Offset="0.461"/>
-						<GradientStop Color="#FFEFB618" Offset="0.013"/>
-						<GradientStop Color="#FFFDC500" Offset="1"/>
-					</LinearGradientBrush>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="Height" Value="74"/>
-			<Setter Property="OpacityMask" Value="{x:Null}"/>
-		</Style>
-		<Style x:Key="ResetButtonStyle" TargetType="Button">
-			<Setter Property="BorderThickness" Value="0" />
-			<Setter Property="Background" Value="{x:Null}"/>
-			<Setter Property="Foreground" Value="{StaticResource ForegroundGradientBrush}"/>
-			<Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
-			<Setter Property="BorderBrush" Value="{x:Null}"/>
-			<Setter Property="FontSize" Value="29.333"/>
-		</Style>
-
-	</Application.Resources>
-
-	<Application.ApplicationLifetimeObjects>
-		<WPCommon:XNAAsyncDispatcher />
-		<shell:PhoneApplicationService 
+    <Application.ApplicationLifetimeObjects>
+        <WPCommon:XNAAsyncDispatcher />
+        <shell:PhoneApplicationService 
 			Launching="Application_Launching" Closing="Application_Closing" 
 			Activated="Application_Activated" Deactivated="Application_Deactivated"/>
-	</Application.ApplicationLifetimeObjects>
+    </Application.ApplicationLifetimeObjects>
 
 </Application>

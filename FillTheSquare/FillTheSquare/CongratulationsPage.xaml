@@ -12,55 +12,61 @@
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
 	shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" BackKeyPress="PhoneApplicationPage_BackKeyPress">
-	<phone:PhoneApplicationPage.Resources>
-		<Storyboard x:Name="BouncingPhilStoryboard" RepeatBehavior="Forever">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="BouncingPhilImage">
-				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="62"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="-16"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:3" Value="327"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="BouncingPhilImage">
-				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="329"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="434"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:3" Value="339"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="BouncingPhilImage">
-				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:4" Value="720"/>
-			</DoubleAnimationUsingKeyFrames>
-		</Storyboard>
-	</phone:PhoneApplicationPage.Resources>
+    <phone:PhoneApplicationPage.Resources>
+        <Storyboard x:Name="BouncingPhilStoryboard" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="BouncingPhilImage">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="62"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="327"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="BouncingPhilImage">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="329"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="434"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="339"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="BouncingPhilImage">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="720"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </phone:PhoneApplicationPage.Resources>
 
-	<Grid Background="{StaticResource BackgroundImageBrush}" >
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
+    <Grid Background="{StaticResource BackgroundImageBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
 
-		<TextBlock Text="{Binding Path=LocalizedResources.Congratulations, Source={StaticResource LocalizedStrings}}"
-				   Style="{StaticResource SquareTitleStyle}" FontSize="64"
-				   Margin="0,24" Grid.Row="0" />
+        <StackPanel Grid.Row="0" Margin="0,24">
+            <TextBlock Text="{Binding Path=LocalizedResources.Congratulations, Source={StaticResource LocalizedStrings}}"
+				   Style="{StaticResource SquareTitleStyle}" FontSize="48" />
+            <TextBlock Text="{Binding Path=LocalizedResources.InsertName, Source={StaticResource LocalizedStrings}}"
+                       Style="{StaticResource SquareTitleStyle}" FontSize="30"
+                       HorizontalAlignment="Left" Margin="12,24,0,0" />
+            <TextBox Name="NameTextBox" KeyDown="NameTextBox_KeyDown"
+                     FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"
+                     FontSize="30" />
+        </StackPanel>
 
-		<Canvas x:Name="ContentPanel" Grid.Row="1" Margin="12,0">
-			<TextBlock Height="30" Text="{Binding Path=ElapsedTime}"
+        <Canvas x:Name="ContentPanel" Grid.Row="1" Margin="12,0">
+            <TextBlock Height="30" Text="{Binding Path=ElapsedTime}"
 					   Canvas.Left="66" Canvas.Top="57" />
-			<Button Content="{Binding Path=LocalizedResources.SeeRecords, Source={StaticResource LocalizedStrings}}"
+            <Button Content="{Binding Path=LocalizedResources.SeeRecords, Source={StaticResource LocalizedStrings}}"
 					Click="GoToRecords_Click" 
 					Style="{StaticResource HomeButtonStyle}"
 					Height="112" Width="302"
-					Canvas.Left="66" Canvas.Top="366" />
-			
-			<Image x:Name="BouncingPhilImage" Source="Phil\bravorecords.png"
+					Canvas.Left="83" Canvas.Top="433" />
+
+            <Image x:Name="BouncingPhilImage" Source="Phil\bravorecords.png"
 				   IsHitTestVisible="False" Width="200"
 				   RenderTransformOrigin="0,0" Canvas.Left="133" >
-				<Image.RenderTransform>
-					<CompositeTransform/>
-				</Image.RenderTransform>
-			</Image>
-		</Canvas>
-	</Grid>
-
+                <Image.RenderTransform>
+                    <CompositeTransform/>
+                </Image.RenderTransform>
+            </Image>
+        </Canvas>
+    </Grid>
 </phone:PhoneApplicationPage>

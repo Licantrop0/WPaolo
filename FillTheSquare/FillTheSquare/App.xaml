@@ -5,12 +5,19 @@
 	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
 	xmlns:loc="clr-namespace:Localization;assembly=FillTheSquare"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
 	xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
 
     <Application.Resources>
         <loc:LocalizedStrings x:Key="LocalizedStrings" />
 
         <ImageBrush x:Key="BackgroundImageBrush" ImageSource="/FillTheSquare;component/Phil/sfondo_quadri_color1.jpg" />
+        
+        <LinearGradientBrush x:Key="BorderBackgroundBrush" EndPoint="1,1" StartPoint="0,0" MappingMode="RelativeToBoundingBox">
+            <GradientStop Color="#CC000000"/>
+            <GradientStop Offset="0.3"/>
+        </LinearGradientBrush>
+
 
         <LinearGradientBrush x:Key="ForegroundGradientBrush" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
             <GradientStop Color="#FFEFB432" Offset="1"/>
@@ -49,6 +56,7 @@
             <Setter Property="BorderThickness" Value="2" />
             <Setter Property="Foreground"  Value="{StaticResource ForegroundGradientBrush}" />
             <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
+            <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -77,14 +85,6 @@
             </Setter>
             <Setter Property="Height" Value="74"/>
             <Setter Property="OpacityMask" Value="{x:Null}"/>
-        </Style>
-        <Style x:Key="ResetButtonStyle" TargetType="Button">
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Background" Value="{x:Null}"/>
-            <Setter Property="Foreground" Value="{StaticResource ForegroundGradientBrush}"/>
-            <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
-            <Setter Property="BorderBrush" Value="{x:Null}"/>
-            <Setter Property="FontSize" Value="29.333"/>
         </Style>
 
     </Application.Resources>

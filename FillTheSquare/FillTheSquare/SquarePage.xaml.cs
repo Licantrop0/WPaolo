@@ -36,7 +36,7 @@ namespace FillTheSquare
 				{
 					var b = new Border()
 					{
-						Background = new SolidColorBrush(Colors.Transparent),
+                        Background = (LinearGradientBrush)App.Current.Resources["BorderBackgroundBrush"],
 						BorderThickness = size == 5 ? new Thickness(2) : new Thickness(1),
 						BorderBrush = new SolidColorBrush(Colors.White),
 					};
@@ -73,14 +73,14 @@ namespace FillTheSquare
 				return;
 			}
 
-			var currentButton = (Border)sender;
-			var p = new GridPoint(currentButton.GetColumn(), currentButton.GetRow());
+			var currentBorder = (Border)sender;
+			var p = new GridPoint(currentBorder.GetColumn(), currentBorder.GetRow());
 
 			//tutta la logica della griglia è dentro il metodo PressButton
 			switch (Square.PressButton(p))
 			{
 				case true: //caso creazione andato a buon fine
-					currentButton.Child = new TextBlock()
+					currentBorder.Child = new TextBlock()
 					{
 						Text = Square.positionHistory.Count.ToString(),
 						Style = (Style)Application.Current.Resources["SquareTitleStyle"],
@@ -88,7 +88,7 @@ namespace FillTheSquare
 					};
 
 					SetFocus.Stop();
-					Storyboard.SetTarget(SetFocus, currentButton);
+					Storyboard.SetTarget(SetFocus, currentBorder);
 					SetFocus.Begin();
 
 					if (Square.IsCompleted) //Vittoria!
@@ -113,14 +113,13 @@ namespace FillTheSquare
 
 				case false: //caso di creazione fallito
 					RedFlash.Stop();
-					Storyboard.SetTarget(RedFlash, currentButton);
+					Storyboard.SetTarget(RedFlash, currentBorder);
 					RedFlash.Begin();
 					Settings.ErrorSound.Play();
 					break;
 
 				case null: //caso di cancellazione
-					currentButton.Child = null;
-					currentButton.Background = new SolidColorBrush(Colors.Transparent);
+					CleanBorder(currentBorder);
 					PhilPiangeDisappear.Begin();
 
 					//Evidenzio la casella sull'ultimo premuto se la griglia non è vuota
@@ -157,12 +156,16 @@ namespace FillTheSquare
 
             Square.Clear();
 
-            foreach (Border b in MagicGrid.Children.Where(ctrl => ctrl is Border))
-            {
-                b.Child = null;
-                b.Background = new SolidColorBrush(Colors.Transparent);
-            }
+            foreach (Border b in MagicGrid.Children
+                .Where(ctrl => ctrl is Border))
+                CleanBorder(b);
 
+        }
+
+        private static void CleanBorder(Border b)
+        {
+            b.Child = null;
+            b.Background = (LinearGradientBrush)App.Current.Resources["BorderBackgroundBrush"];
         }
     }
 }

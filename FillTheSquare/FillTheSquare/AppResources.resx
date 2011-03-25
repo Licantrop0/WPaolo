@@ -132,6 +132,9 @@
   <data name="DontMakePhilSad" xml:space="preserve">
     <value>Please, don't make Phil sad!</value>
   </data>
+  <data name="InsertName" xml:space="preserve">
+    <value>Insert your Name:</value>
+  </data>
   <data name="Instructions" xml:space="preserve">
     <value>Instructions</value>
   </data>
@@ -143,8 +146,14 @@ Allowed moves:
    leaving 2 empty out
 • Diagonal leaving 1 empty out</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="PhilWillBeHappy" xml:space="preserve">
     <value>so Phil will be always happy and you will have no limits in the play!</value>
+  </data>
+  <data name="PleaseInsertName" xml:space="preserve">
+    <value>Please insert your Name</value>
   </data>
   <data name="Records" xml:space="preserve">
     <value>Records</value>

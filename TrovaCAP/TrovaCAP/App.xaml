@@ -8,27 +8,50 @@
     <!--Application Resources-->
     <Application.Resources>
         
-        <Style x:Key="textStyle" TargetType="TextBlock">
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <LinearGradientBrush.RelativeTransform>
-                            <CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39"/>
-                        </LinearGradientBrush.RelativeTransform>
-                        <GradientStop Color="#FF00A5FB" Offset="0"/>
-                        <GradientStop Color="#FF42C3D4" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="FontSize" Value="25"/>
+        <Style x:Key="textComuneFrazioneIndirizzo" TargetType="TextBlock">
+        	<Setter Property="Foreground">
+        		<Setter.Value>
+        			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        				<LinearGradientBrush.RelativeTransform>
+        					<CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39"/>
+        				</LinearGradientBrush.RelativeTransform>
+        				<GradientStop Color="#FF00A5FB" Offset="0"/>
+        				<GradientStop Color="#FF354DD2" Offset="1"/>
+        			</LinearGradientBrush>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="FontSize" Value="32"/>
         </Style>
 
 
         <Style x:Key="TextWrappingStyle" TargetType="TextBox">
             <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="#FF30DED2"/>
+            <Setter Property="FontSize" Value="32"/>
         </Style>
+        
+        <Style x:Key="textCAPresult" TargetType="TextBlock">
+        	<Setter Property="Foreground">
+        		<Setter.Value>
+        			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        				<LinearGradientBrush.RelativeTransform>
+        					<CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39"/>
+        				</LinearGradientBrush.RelativeTransform>
+        				<GradientStop Color="#FF00A5FB" Offset="0"/>
+        				<GradientStop Color="#FF354DD2" Offset="1"/>
+        			</LinearGradientBrush>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="FontSize" Value="60"/>
+        	<Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        
         <DataTemplate x:Key="TextWrappingItemTemplate">
-            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+            <Border BorderThickness="0,0,0,1" BorderBrush="Blue" Width="375">
+                <TextBlock Text="{Binding}" TextWrapping="Wrap" FontSize="32"/>
+            </Border>
         </DataTemplate>
 
     </Application.Resources>

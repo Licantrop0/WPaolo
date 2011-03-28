@@ -70,6 +70,7 @@ namespace TrovaCAP
             Deserialize();
 
             acbComuni.ItemsSource = _comuni.Select(c => c.ComuneID);
+            acbComuni._bSupportDicotomicSearch = true;
 
             acbFrazioni.IsEnabled = false;
             acbIndirizzi.TextFilter = AcbFilterStartsWithExtended;

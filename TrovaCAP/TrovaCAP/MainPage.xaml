@@ -7,12 +7,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.ColumnDefinitions>
@@ -24,9 +24,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Margin="8,16,0,29" Grid.ColumnSpan="2">
+        <StackPanel x:Name="TitlePanel" Margin="8,16,0,29" Grid.ColumnSpan="2" Visibility="Visible">
 
-            <TextBlock x:Name="ApplicationTitle" Text="Trova il CAP" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Center" FontSize="64" FontFamily="Segoe UI Semibold" >
+            <!--<TextBlock x:Name="ApplicationTitle" Text="Trova CAP" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Center" FontSize="80" FontFamily="Segoe UI Semibold" >
                 <TextBlock.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <LinearGradientBrush.RelativeTransform>
@@ -36,7 +36,7 @@
                         <GradientStop Color="#FF3BC6D0" Offset="1"/>
                     </LinearGradientBrush>
                 </TextBlock.Foreground>
-            </TextBlock>
+            </TextBlock>-->
 
 
             <Grid x:Name="ContentPanel" Grid.Row="1" Margin="8,20,8,0" >
@@ -57,38 +57,58 @@
 
                 <Image Source="/images/C_indirizzo.png" Stretch="Uniform" Grid.Row="0" VerticalAlignment="Bottom" Margin="0,12" />
                 <StackPanel Grid.Row="0" Grid.Column="1">
-                    <TextBlock Name="tbComuni" Text="Comune" Style="{StaticResource textStyle}" Margin="12,0" />
-                    <toolkit:AutoCompleteBox Name="acbComuni" FilterMode="StartsWith" SelectionChanged="acbComuni_SelectionChanged" MinimumPopulateDelay="500" LostFocus="acbComuni_LostFocus" FontSize="23" MouseLeftButtonDown="acbComuni_MouseLeftButtonDown" />
+                    <TextBlock Name="tbComuni" Text="Comune" Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
+                    <toolkit:AutoCompleteBox Name="acbComuni" 
+											FilterMode="StartsWith" 
+											SelectionChanged="acbComuni_SelectionChanged" 
+											MinimumPopulateDelay="1000" 
+											LostFocus="acbComuni_LostFocus" 
+											TextBoxStyle="{StaticResource TextWrappingStyle}"
+											MouseLeftButtonDown="acbComuni_MouseLeftButtonDown" 
+                                            FontSize="32" 
+                                            ItemTemplate="{StaticResource TextWrappingItemTemplate}" />
                 </StackPanel>
 
                 <Image Source="/images/C_frazioni.png" Stretch="Uniform" Grid.Row="1" VerticalAlignment="Bottom"  Margin="0,12"/>
                 <StackPanel Grid.Row="1" Grid.Column="1">
-                    <TextBlock Name="tbFrazioni" Text="Frazione"  Style="{StaticResource textStyle}" Margin="12,0" />
-                    <toolkit:AutoCompleteBox Name="acbFrazioni" FilterMode="Contains" IsDropDownOpen="True" MinimumPrefixLength="0" GotFocus="acbFrazioni_GotFocus" SelectionChanged="acbFrazioni_SelectionChanged" FontSize="23" LostFocus="acbFrazioni_LostFocus" MouseLeftButtonDown="acbFrazioni_MouseLeftButtonDown" />
+                    <TextBlock Name="tbFrazioni" Text="Frazione"  Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
+                    <toolkit:AutoCompleteBox Name="acbFrazioni" 
+											FilterMode="Contains" 
+											IsDropDownOpen="True" 
+											MinimumPrefixLength="0" 
+											GotFocus="acbFrazioni_GotFocus" 
+											SelectionChanged="acbFrazioni_SelectionChanged" 
+											LostFocus="acbFrazioni_LostFocus" 
+											MouseLeftButtonDown="acbFrazioni_MouseLeftButtonDown"
+                                            FontSize="32"
+											TextBoxStyle="{StaticResource TextWrappingStyle}" 
+                                            ItemTemplate="{StaticResource TextWrappingItemTemplate}" />
                 </StackPanel>
 
                 <Image Source="/images/C_citta.png" Stretch="Uniform" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,12"/>
                 <StackPanel Grid.Row="2" Grid.Column="1">
-                    <TextBlock Name="tbIndirizzi" Text="Indirizzo"  Style="{StaticResource textStyle}" Margin="12,0" />
+                    <TextBlock Name="tbIndirizzi" Text="Indirizzo"  Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
                     <toolkit:AutoCompleteBox Name="acbIndirizzi"
                                              TextBoxStyle="{StaticResource TextWrappingStyle}"
                                              ItemTemplate="{StaticResource TextWrappingItemTemplate}"
                                              FilterMode="Custom" MinimumPrefixLength="2"
                                              SelectionChanged="acbIndirizzi_SelectionChanged"                                              
-                                             MinimumPopulateDelay="500" FontSize="23" LostFocus="acbIndirizzi_LostFocus" MouseLeftButtonDown="acbIndirizzi_MouseLeftButtonDown" GotFocus="acbIndirizzi_GotFocus">				
+                                             MinimumPopulateDelay="1000" 
+											 LostFocus="acbIndirizzi_LostFocus" 
+                                             FontSize="32"
+											 MouseLeftButtonDown="acbIndirizzi_MouseLeftButtonDown" 
+											 GotFocus="acbIndirizzi_GotFocus">				
                     </toolkit:AutoCompleteBox>
                 </StackPanel>
 
 
-                <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" >
-                    <TextBlock Text="CAP: " Style="{StaticResource textStyle}" FontSize="64"  />
-                    <TextBlock x:Name="tbCapResult" Text="00000" Style="{StaticResource textStyle}"  FontSize="64" />
+                <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal"  HorizontalAlignment="Center" >
+                    <TextBlock x:Name="tbCapResult"  HorizontalAlignment="Center" Text="00000" Style="{StaticResource textCAPresult}"  FontSize="130" Margin="0,40,0,0" FontWeight="Normal" Height="190" />
                 </StackPanel>
             </Grid>
 
 
         </StackPanel>
-        <TextBox Height="105" Name="tbBenchmark" TextWrapping="Wrap" Grid.Row="1" Margin="24,105,0,12" Grid.ColumnSpan="2" />
     </Grid>
 
 

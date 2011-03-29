@@ -66,7 +66,7 @@
 											TextBoxStyle="{StaticResource TextWrappingStyle}"
 											MouseLeftButtonDown="acbComuni_MouseLeftButtonDown" 
 											FontSize="32" 
-											ItemTemplate="{StaticResource TextWrappingItemTemplate}" MinimumPrefixLength="2" />
+											ItemTemplate="{StaticResource TextWrappingItemTemplate}" MinimumPrefixLength="2" TextChanged="acbComuni_TextChanged" />
 				</StackPanel>
 
 				<Image Source="/images/C_frazioni.png" Stretch="Uniform" Grid.Row="1" VerticalAlignment="Bottom"  Margin="0,12"/>
@@ -93,11 +93,11 @@
 											 ItemTemplate="{StaticResource TextWrappingItemTemplate}"
 											 FilterMode="Custom" MinimumPrefixLength="2"
 											 SelectionChanged="acbIndirizzi_SelectionChanged"                                              
-											 MinimumPopulateDelay="750" 
+											 MinimumPopulateDelay="2000" 
 											 LostFocus="acbIndirizzi_LostFocus" 
 											 FontSize="32"
 											 MouseLeftButtonDown="acbIndirizzi_MouseLeftButtonDown" 
-											 GotFocus="acbIndirizzi_GotFocus">				
+											 GotFocus="acbIndirizzi_GotFocus" TextChanged="acbIndirizzi_TextChanged">				
 					</toolkit:AutoCompleteBox>
 				</StackPanel>
 

@@ -2324,18 +2324,22 @@ namespace System.Windows.Controls
 
                 int nCount = _items.Count;
                 int nTryHitIndex = nCount / 2;
-                int nTryIndexInterval = nCount / 4;
+                int nTryIndexInterval = (nTryHitIndex + 1) / 2;
                 int nHitIndex = -1;
 
-                int nNotPresent = 2;
+                int nTotIter = Convert.ToInt32(Math.Log(nCount, 2)) + 1; //+ 1;
 
-                while (nHitIndex == -1 && nNotPresent > 0)
+                for (int i = 0; i < nTotIter; i++ )
                 {
+                    if (nTryHitIndex < 0)
+                        nTryHitIndex = 0;
+
                     string sCompared = FormatValue(_items[nTryHitIndex]);
 
                     if (TextFilter(text, sCompared))
                     {
                         nHitIndex = nTryHitIndex;
+                        nTryHitIndex -= nTryIndexInterval;
                     }
                     else if (String.Compare(text, sCompared) > 0)
                     {
@@ -2346,21 +2350,15 @@ namespace System.Windows.Controls
                         nTryHitIndex -= nTryIndexInterval;
                     }
 
-                    nTryIndexInterval /= 2;
-
-                    if (nTryIndexInterval < 1)
-                    {
-                        nNotPresent--;
-                        nTryIndexInterval = 1;
-                    }
+                    nTryIndexInterval = (nTryIndexInterval + 1) / 2;
                 }
 
                 if (nHitIndex != -1)
                 {
-                    while (TextFilter(text, FormatValue(_items[nHitIndex])))
+                    /*while (TextFilter(text, FormatValue(_items[nHitIndex])))
                         nHitIndex--;
 
-                    nHitIndex++;
+                    nHitIndex++;*/
 
                     while (TextFilter(text, FormatValue(_items[nHitIndex])))
                     {

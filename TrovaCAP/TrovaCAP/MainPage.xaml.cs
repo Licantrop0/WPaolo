@@ -174,6 +174,21 @@ namespace TrovaCAP
             }
         }
 
+        private void acbComuni_TextChanged(object sender, RoutedEventArgs e)
+        {
+            // modula MinimumPrefixLength   // non male, si potrebbe essere più accurati misurando il numero di items nella _view, il comportamento è però soddisfacente già così
+            if (acbComuni.Text.Length <= 2)
+                acbComuni.MinimumPopulateDelay = 2000;
+            else if (acbComuni.Text.Length == 3)
+                acbComuni.MinimumPopulateDelay = 1000;
+            else if (acbComuni.Text.Length == 4)
+                acbComuni.MinimumPopulateDelay = 500;
+            else if (acbComuni.Text.Length == 5)
+                acbComuni.MinimumPopulateDelay = 250;
+            else
+                acbComuni.MinimumPopulateDelay = 0;
+        }
+
         private void acbComuni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _autofocus = null;
@@ -368,6 +383,22 @@ namespace TrovaCAP
                 ResetFrazioniTextBox();
                 _state = Step.scegliFrazioneOVia;
             }
+        }
+
+        private void acbIndirizzi_TextChanged(object sender, RoutedEventArgs e)
+        {
+            // modula MinimumPrefixLength  // no è inutile, devo scalarmo sul numero di record, lo posso faro quando carico la item soure
+                                           // milano si comporta troppo diversamente da palermo
+            if (acbIndirizzi.Text.Length <= 2)
+                acbIndirizzi.MinimumPopulateDelay = 2000;
+            else if (acbIndirizzi.Text.Length == 3)
+                acbIndirizzi.MinimumPopulateDelay = 1000;
+            else if (acbIndirizzi.Text.Length >= 4)
+                acbIndirizzi.MinimumPopulateDelay = 500;
+            /*else if (acbIndirizzi.Text.Length == 5)
+                acbIndirizzi.MinimumPopulateDelay = 250;
+            else
+                acbIndirizzi.MinimumPopulateDelay = 0;*/
         }
 
         private void acbIndirizzi_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -19,7 +19,9 @@ namespace ShowImages
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!Settings.BrowserHistory.IsEmpty)
+            if (Settings.BrowserHistory.IsEmpty)
+                ChooserWebBrowser.Navigate(Settings.HomePage);
+            else
                 ChooserWebBrowser.Navigate(Settings.BrowserHistory.Pop());
         }
 

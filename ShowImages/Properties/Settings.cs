@@ -36,7 +36,7 @@ namespace ShowImages
                 {
                     if (!IsolatedStorageSettings.ApplicationSettings.Contains("browser_history"))
                         IsolatedStorageSettings.ApplicationSettings["browser_history"] =
-                            new List<Uri> { new Uri("http://www.google.com/m/?site=images") };
+                            new List<Uri> { HomePage };
 
                     return (List<Uri>)IsolatedStorageSettings.ApplicationSettings["browser_history"];
                 }

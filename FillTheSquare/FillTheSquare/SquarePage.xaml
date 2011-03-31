@@ -14,27 +14,6 @@
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:RotateTransition Mode="In90Clockwise" />
-            </toolkit:NavigationInTransition.Forward>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:RotateTransition Mode="In90CounterClockwise" />
-            </toolkit:NavigationInTransition.Backward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:RotateTransition Mode="Out90Clockwise" />
-            </toolkit:NavigationOutTransition.Forward>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:RotateTransition Mode="Out90Counterclockwise" />
-            </toolkit:NavigationOutTransition.Backward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
-
     <Grid Background="{StaticResource BackgroundImageBrush}">
         <Grid.Resources>
             <Storyboard x:Name="PhilPiangeAppear">
@@ -46,7 +25,7 @@
             <Storyboard x:Name="PhilPiangeDisappear">
                 <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
                                      Storyboard.TargetProperty="Opacity"
-                                     To="0" Duration="0:0:0.5" FillBehavior="HoldEnd" />
+                                     To="0" Duration="0:0:0.3" FillBehavior="HoldEnd" />
             </Storyboard>
         </Grid.Resources>
 
@@ -61,7 +40,7 @@
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12">
             <TextBlock Name="TimeElapsedTextBlock"
-                       Style="{StaticResource SquareHeadingsStyle}" 
+                       Style="{StaticResource SquareHeadingStyle}" 
                        Text="Seconds 0">
             </TextBlock>
         </StackPanel>

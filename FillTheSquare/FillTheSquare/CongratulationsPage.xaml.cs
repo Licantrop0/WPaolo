@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using WPCommon;
+using Microsoft.Xna.Framework.Audio;
 
 namespace FillTheSquare
 {
@@ -30,6 +31,7 @@ namespace FillTheSquare
                     CurrentRecord = Settings.Records.Where(r => r.Id == RecordId).First();
                     this.DataContext = CurrentRecord;
                 }
+
             }
         }
 
@@ -39,6 +41,13 @@ namespace FillTheSquare
             {
                 CurrentRecord.Name = NameTextBox.Text;
             }
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Se c'è più di 1 record, inserisce automaticamente il nome del penultimo inserito
+            if (Settings.Records.Count > 1)
+                NameTextBox.Text = Settings.Records[Settings.Records.Count - 2].Name;
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
@@ -66,5 +75,6 @@ namespace FillTheSquare
             if (NameTextBox.Text.Length >= 10)
                 e.Handled = true;
         }
+
     }
 }

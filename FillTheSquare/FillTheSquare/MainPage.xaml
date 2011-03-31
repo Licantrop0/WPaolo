@@ -13,24 +13,6 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
-    
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:RotateTransition Mode="In90CounterClockwise"/>
-            </toolkit:NavigationInTransition.Backward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>        
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:RotateTransition Mode="Out90Counterclockwise" />
-            </toolkit:NavigationOutTransition.Backward>                
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:RotateTransition Mode="Out90Clockwise" />
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
         <Grid.RowDefinitions>

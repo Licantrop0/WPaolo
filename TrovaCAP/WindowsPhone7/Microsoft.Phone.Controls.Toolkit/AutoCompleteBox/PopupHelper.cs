@@ -312,6 +312,7 @@ namespace System.Windows.Controls
             {
                 return;
             }
+            // PS per fissare la direzione della drop-down (alto o basso), basta fissare la flag isChildAbove
             Point childPoint = isChildAbove ? AboveChildPoint(margin) : BelowChildPoint(margin, controlSize);
             
             Popup.HorizontalOffset = 0;

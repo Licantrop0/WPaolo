@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Windows;
 using Microsoft.Phone.Controls;
+using System.Linq;
 
 namespace FillTheSquare
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        // Constructor
         public MainPage()
         {
             InitializeComponent();
-        }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
+
         }
 
         private void SquareFiveButton_Click(object sender, RoutedEventArgs e)
@@ -52,7 +49,7 @@ namespace FillTheSquare
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Settings.AddFakeRecords();
-            var id = Settings.Records[0].Id;
+            var id = Settings.Records.Last().Id;
             NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + id, UriKind.Relative));
         }
     }

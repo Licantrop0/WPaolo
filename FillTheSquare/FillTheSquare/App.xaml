@@ -42,13 +42,9 @@
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="FontSize" Value="64"/>
         </Style>
-        
-        <Style x:Key="SquareHeadingsStyle" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" />
-            <Setter Property="Foreground"  Value="{StaticResource ForegroundGradientBrush}" />            
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="TextWrapping" Value="Wrap" />
+
+        <Style x:Key="SquareHeadingStyle" TargetType="TextBlock" BasedOn="{StaticResource SquareTitleStyle}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="FontSize" Value="48"/>
         </Style>
 

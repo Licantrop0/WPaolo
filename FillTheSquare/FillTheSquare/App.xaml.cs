@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
+﻿using System.Windows;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Microsoft.Xna.Framework.Audio;
 using WPCommon;
 
 namespace FillTheSquare
@@ -49,28 +38,11 @@ namespace FillTheSquare
 
             // Standard Silverlight initialization
             InitializeComponent();
-            InitializeSounds();
             // Phone-specific initialization
             InitializePhoneApplication();
 
             NonLinearNavigationService.Instance.Initialize(RootFrame);
         }
-
-        private void InitializeSounds()
-        {
-            Settings.ErrorSound = SoundEffect.FromStream(App.GetResourceStream(
-                new Uri("Sounds\\Error.wav", UriKind.Relative)).Stream);
-
-            Settings.UndoSound = SoundEffect.FromStream(App.GetResourceStream(
-                new Uri("Sounds\\Undo.wav", UriKind.Relative)).Stream);
-
-            Settings.MoveSound = SoundEffect.FromStream(App.GetResourceStream(
-                new Uri("Sounds\\Move.wav", UriKind.Relative)).Stream);
-
-            Settings.VictorySound = SoundEffect.FromStream(App.GetResourceStream(
-                new Uri("Sounds\\Victory.wav", UriKind.Relative)).Stream);
-        }
-
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated

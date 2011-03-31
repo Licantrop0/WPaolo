@@ -58,28 +58,28 @@
 				<Image Source="/images/C_indirizzo.png" Stretch="Uniform" Grid.Row="0" VerticalAlignment="Bottom" Margin="0,12" />
 				<StackPanel Grid.Row="0" Grid.Column="1" Margin="0">
 					<TextBlock Name="tbComuni" Text="Comune" Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
-					<toolkit:AutoCompleteBox Name="acbComuni" 
+					<toolkit:AutoCompleteBox Name="AcbComuni" 
 											FilterMode="StartsWith" 
-											SelectionChanged="acbComuni_SelectionChanged" 
+											SelectionChanged="AcbComuni_SelectionChanged" 
 											MinimumPopulateDelay="1000" 
-											LostFocus="acbComuni_LostFocus" 
+											LostFocus="AcbComuni_LostFocus" 
 											TextBoxStyle="{StaticResource TextWrappingStyle}"
-											MouseLeftButtonDown="acbComuni_MouseLeftButtonDown" 
+											MouseLeftButtonDown="AcbComuni_MouseLeftButtonDown" 
 											FontSize="32" 
-											ItemTemplate="{StaticResource TextWrappingItemTemplate}" MinimumPrefixLength="2" TextChanged="acbComuni_TextChanged" />
+											ItemTemplate="{StaticResource TextWrappingItemTemplate}" MinimumPrefixLength="2" TextChanged="AcbComuni_TextChanged" />
 				</StackPanel>
 
 				<Image Source="/images/C_frazioni.png" Stretch="Uniform" Grid.Row="1" VerticalAlignment="Bottom"  Margin="0,12"/>
 				<StackPanel Grid.Row="1" Grid.Column="1">
 					<TextBlock Name="tbFrazioni" Text="Frazione"  Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
-					<toolkit:AutoCompleteBox Name="acbFrazioni" 
+					<toolkit:AutoCompleteBox Name="AcbFrazioni" 
 											FilterMode="Contains" 
 											IsDropDownOpen="True" 
 											MinimumPrefixLength="0" 
-											GotFocus="acbFrazioni_GotFocus" 
-											SelectionChanged="acbFrazioni_SelectionChanged" 
-											LostFocus="acbFrazioni_LostFocus" 
-											MouseLeftButtonDown="acbFrazioni_MouseLeftButtonDown"
+											GotFocus="AcbFrazioni_GotFocus" 
+											SelectionChanged="AcbFrazioni_SelectionChanged" 
+											LostFocus="AcbFrazioni_LostFocus" 
+											MouseLeftButtonDown="AcbFrazioni_MouseLeftButtonDown"
 											FontSize="32"
 											TextBoxStyle="{StaticResource TextWrappingStyle}" 
 											ItemTemplate="{StaticResource TextWrappingItemTemplate}" />
@@ -88,16 +88,16 @@
 				<Image Source="/images/C_citta.png" Stretch="Uniform" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,12"/>
 				<StackPanel Grid.Row="2" Grid.Column="1">
 					<TextBlock Name="tbIndirizzi" Text="Indirizzo"  Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
-					<toolkit:AutoCompleteBox Name="acbIndirizzi"
+					<toolkit:AutoCompleteBox Name="AcbIndirizzi"
 											 TextBoxStyle="{StaticResource TextWrappingStyle}"
 											 ItemTemplate="{StaticResource TextWrappingItemTemplate}"
 											 FilterMode="Custom" MinimumPrefixLength="2"
-											 SelectionChanged="acbIndirizzi_SelectionChanged"                                              
+											 SelectionChanged="AcbIndirizzi_SelectionChanged"                                              
 											 MinimumPopulateDelay="2000" 
-											 LostFocus="acbIndirizzi_LostFocus" 
+											 LostFocus="AcbIndirizzi_LostFocus" 
 											 FontSize="32"
-											 MouseLeftButtonDown="acbIndirizzi_MouseLeftButtonDown" 
-											 GotFocus="acbIndirizzi_GotFocus" TextChanged="acbIndirizzi_TextChanged">				
+											 MouseLeftButtonDown="AcbIndirizzi_MouseLeftButtonDown" 
+											 GotFocus="AcbIndirizzi_GotFocus" TextChanged="AcbIndirizzi_TextChanged">				
 					</toolkit:AutoCompleteBox>
 				</StackPanel>
 

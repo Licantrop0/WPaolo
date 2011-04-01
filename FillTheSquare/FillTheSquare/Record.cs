@@ -31,6 +31,7 @@ namespace FillTheSquare
             Size = size + "x" + size;
             Date = date;
             ElapsedTime = elapsedTime;
+            Name = string.Empty;
         }
     }
 }

@@ -60,6 +60,12 @@ namespace SgarbiMix {
             }
         }
         
+        internal static System.IO.UnmanagedMemoryStream Altro_che_valori1 {
+            get {
+                return ResourceManager.GetStream("Altro_che_valori1", resourceCulture);
+            }
+        }
+        
         internal static System.IO.UnmanagedMemoryStream Ateo_fasullo1 {
             get {
                 return ResourceManager.GetStream("Ateo_fasullo1", resourceCulture);
@@ -156,6 +162,12 @@ namespace SgarbiMix {
             }
         }
         
+        internal static System.IO.UnmanagedMemoryStream Pagato1 {
+            get {
+                return ResourceManager.GetStream("Pagato1", resourceCulture);
+            }
+        }
+        
         internal static System.IO.UnmanagedMemoryStream Ridicolo_sei_e_lo_sei_sempre_stato1 {
             get {
                 return ResourceManager.GetStream("Ridicolo_sei_e_lo_sei_sempre_stato1", resourceCulture);
@@ -183,6 +195,12 @@ namespace SgarbiMix {
         internal static System.IO.UnmanagedMemoryStream Vai_a_studiare1 {
             get {
                 return ResourceManager.GetStream("Vai_a_studiare1", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Valori_del_buco_del_culo1 {
+            get {
+                return ResourceManager.GetStream("Valori_del_buco_del_culo1", resourceCulture);
             }
         }
         

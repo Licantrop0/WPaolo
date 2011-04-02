@@ -151,15 +151,14 @@
     </BlendEmbeddedFont>
     <Resource Include="sfondo3.jpg" />
     <None Include="sounds\Ateo fasullo!.wav" />
-    <None Include="sounds\base1.mp3" />
-    <None Include="sounds\base2.mp3" />
-    <None Include="sounds\base3.mp3" />
     <None Include="sounds\capra.wav" />
     <None Include="sounds\e1crimine.wav" />
     <None Include="sounds\maguardacheroba.wav" />
     <None Include="sounds\nonhafattomaiuncazzoinvitasua.wav" />
-    <None Include="sounds\ridicolo.wav" />
     <None Include="sounds\ridicolo6ma6semprestato.wav" />
+    <None Include="sounds\Valori del buco del culo.wav" />
+    <None Include="sounds\Pagato!.wav" />
+    <None Include="sounds\Altro che valori.wav" />
     <Content Include="SplashScreenImage.jpg" />
     <None Include="sounds\Capra ignorante!.wav" />
     <None Include="sounds\Capra!.wav" />

@@ -35,9 +35,6 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!--<MediaElement Source="Sounds\Partita.wav" AutoPlay="True"
-                      MediaEnded="BackgroundMediaElement_MediaEnded" />-->
-
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12">
             <TextBlock Name="TimeElapsedTextBlock"
                        Style="{StaticResource SquareHeadingStyle}" 

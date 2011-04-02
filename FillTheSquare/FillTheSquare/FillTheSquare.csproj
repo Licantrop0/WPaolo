@@ -193,8 +193,12 @@
     <Content Include="Sounds\Move.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sounds\musichetta.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sounds\OhNo.wav" />
     <Content Include="Sounds\Reset.wav" />
+    <Content Include="Sounds\start.wav" />
     <Content Include="Sounds\Undo.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

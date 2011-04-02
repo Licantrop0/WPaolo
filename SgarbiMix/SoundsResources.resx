@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Altro_che_valori1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sounds\Altro che valori.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
+  </data>
   <data name="Ateo_fasullo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Ateo fasullo!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
@@ -160,6 +163,9 @@
   <data name="Non_ha_fatto_mai_un_cazzo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Non ha mai fatto un cazzo in vita sua.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
+  <data name="Pagato1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sounds\Pagato!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
+  </data>
   <data name="Ridicolo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Ridicolo!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
@@ -174,6 +180,9 @@
   </data>
   <data name="Vai_a_studiare1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Vai a studiare!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
+  </data>
+  <data name="Valori_del_buco_del_culo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sounds\Valori del buco del culo.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="Vergogna1_Vergogna1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Vergogna! Vergogna!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>

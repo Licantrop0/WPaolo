@@ -69,6 +69,7 @@ namespace SgarbiMix
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            alreadyOpen = WPCommon.TrialManagement.AlreadyOpenedToday;
         }
 
         // Code to execute when the application is deactivated (sent to background)

@@ -41,7 +41,7 @@
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12">
             <TextBlock Name="TimeElapsedTextBlock"
                        Style="{StaticResource SquareHeadingStyle}" 
-                       Text="Seconds 0">
+                       Text="Seconds 0" Height="70">
             </TextBlock>
         </StackPanel>
 
@@ -80,7 +80,7 @@
                 Style="{StaticResource HomeButtonStyle}"
                 BorderBrush="{x:Null}"
                 Background="{x:Null}"
-                Grid.Row="2" Height="80" Width="200" Margin="0,0,0,24" />
+                Grid.Row="2" Height="90" Width="260" Margin="0,0,0,24" />
     </Grid>
 
 </phone:PhoneApplicationPage>

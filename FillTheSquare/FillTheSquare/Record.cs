@@ -28,6 +28,7 @@ namespace FillTheSquare
 
         public Record(int size, DateTime date, TimeSpan elapsedTime)
         {
+
             Size = size + "x" + size;
             Date = date;
             ElapsedTime = elapsedTime;

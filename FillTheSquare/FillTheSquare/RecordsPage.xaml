@@ -34,14 +34,14 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <!--The sum must be 456-->
-                <ColumnDefinition Width="80" />
-                <ColumnDefinition Width="236" />
+                <ColumnDefinition Width="110" />
+                <ColumnDefinition Width="206" />
                 <ColumnDefinition Width="140" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="{Binding Path=LocalizedResources.Size, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
-            <TextBlock Text="{Binding Path=LocalizedResources.Name, Source={StaticResource LocalizedStrings}}" Grid.Column="1" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
-            <TextBlock Text="{Binding Path=LocalizedResources.Time, Source={StaticResource LocalizedStrings}}" Grid.Column="2" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.Size, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" FontSize="32" />
+            <TextBlock Text="{Binding Path=LocalizedResources.Name, Source={StaticResource LocalizedStrings}}" Grid.Column="1" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" FontSize="32"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.Time, Source={StaticResource LocalizedStrings}}" Grid.Column="2" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto" FontSize="32"/>
 
             <ListBox Name="RecordListBox" Grid.Row="1" Grid.ColumnSpan="3"
                      FontSize="20" >
@@ -50,13 +50,13 @@
                         <Grid Margin="0,0,0,3">
                             <Grid.ColumnDefinitions>
                                 <!--The sum must be 456-->
-                                <ColumnDefinition Width="80" />
-                                <ColumnDefinition Width="236" />
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="206" />
                                 <ColumnDefinition Width="140" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Path=Size}" Grid.Column="0" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="26.667" />
-                            <TextBlock Text="{Binding Path=Name}" Grid.Column="1" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="26.667" />
-                            <TextBlock Text="{Binding Path=ElapsedTime}" Grid.Column="2" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="26.667" />
+                            <TextBlock Text="{Binding Path=Size}" Grid.Column="0" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Path=Name}" Grid.Column="1" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Path=ElapsedTime}" Grid.Column="2" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

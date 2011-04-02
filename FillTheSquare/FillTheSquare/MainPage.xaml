@@ -20,7 +20,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <MediaElement AutoPlay="True" Source="Sounds\Intro.mp3" />
+        <MediaElement AutoPlay="False" Volume="1" Source="/Sounds/musichetta.mp3" MediaEnded="MediaElement_MediaEnded" MediaFailed="MediaElement_MediaFailed" MediaOpened="MediaElement_MediaOpened_1" />
 
         <TextBlock Style="{StaticResource SquareTitleStyle}" Grid.Row="0"
                    FontSize="64" Text="Phil  the  Square" Margin="0,24" />
@@ -44,9 +44,9 @@
 
             <Button Content="{Binding Path=LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
                     Click="InstructionsButton_Click"
-                    Height="103" Width="277.248" 
+                    Height="103" Width="270" 
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="79" Canvas.Top="17" >
+                    Canvas.Left="108" Canvas.Top="24" >
             </Button>
 
             <Button Content="{Binding Path=LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
@@ -54,7 +54,7 @@
                     Height="96.419" Width="180"
                     Style="{StaticResource HomeButtonStyle}"
                     d:LayoutRounding="Auto"
-                    Canvas.Left="10.157" Canvas.Top="417.268" UseLayoutRounding="False">
+                    Canvas.Left="2" Canvas.Top="410" UseLayoutRounding="False">
                 <Button.RenderTransform>
                     <RotateTransform Angle="-40" />
                 </Button.RenderTransform>
@@ -70,7 +70,8 @@
                    Stretch="Fill" IsHitTestVisible="False"
                    Height="196" Width="272"
                    Canvas.Left="163" Canvas.Top="239" />
-            <Button Canvas.Left="78" Canvas.Top="521" Content="congratulations" Height="71" Width="238" Click="Button_Click" />
+            <!--<Button Canvas.Left="78" Canvas.Top="521"
+            Content="congratulations" Height="71" Width="238" Click="Button_Click" />-->
      
         </Canvas>
     </Grid>

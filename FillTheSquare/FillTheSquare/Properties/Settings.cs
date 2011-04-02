@@ -11,6 +11,8 @@ namespace FillTheSquare
 {
     public static class Settings
     {
+        #region Sounds
+
         public static SoundEffect _moveSound;
         public static SoundEffect MoveSound
         {
@@ -71,6 +73,18 @@ namespace FillTheSquare
             }
         }
 
+        private static SoundEffect _startSound;
+        public static SoundEffect StartSound
+        {
+            get
+            {
+                if (_startSound == null)
+                    _startSound = SoundEffect.FromStream(App.GetResourceStream(
+                        new Uri("Sounds\\start.wav", UriKind.Relative)).Stream);
+                return _startSound;
+            }
+        }
+
         private static SoundEffect _ohNoSound;
         public static SoundEffect OhNoSound
         {
@@ -83,6 +97,7 @@ namespace FillTheSquare
             }
         }
 
+        #endregion
 
         public static ObservableCollection<Record> Records
         {
@@ -99,22 +114,21 @@ namespace FillTheSquare
             }
         }
 
-        //TODO: Da commentare prima della pubblicazione
-        public static void AddFakeRecords()
-        {
-            if (Records.Count >= 30) return;
+        //public static void AddFakeRecords()
+        //{
+        //    if (Records.Count >= 30) return;
 
-            var rnd = new Random();
-            var temp = new List<Record>();
-            for (int i = 0; i < 30; i++)
-            {
-                temp.Add(new Record((i % 2 + 1) * 5,
-                    DateTime.Now.AddDays(-rnd.Next(365)).AddHours(-rnd.Next(24)).AddMinutes(-rnd.Next(60)),
-                    TimeSpan.FromSeconds(rnd.Next(1000) + 8)) { Name = "Phil" + i });
-            }
+        //    var rnd = new Random();
+        //    var temp = new List<Record>();
+        //    for (int i = 0; i < 30; i++)
+        //    {
+        //        temp.Add(new Record((i % 2 + 1) * 5,
+        //            DateTime.Now.AddDays(-rnd.Next(365)).AddHours(-rnd.Next(24)).AddMinutes(-rnd.Next(60)),
+        //            TimeSpan.FromSeconds(rnd.Next(1000) + 8)) { Name = "Phil" + i });
+        //    }
 
-            Records.AddRange(temp.OrderBy(r => r.Date));
-        }
+        //    Records.AddRange(temp.OrderBy(r => r.Date));
+        //}
 
     }
 }

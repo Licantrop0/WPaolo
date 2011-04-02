@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Microsoft.Phone.Controls;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace FillTheSquare
 {
@@ -14,7 +15,7 @@ namespace FillTheSquare
 
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            Settings.AddFakeRecords();
+            //Settings.AddFakeRecords();
             RecordListBox.ItemsSource = Settings.Records.OrderBy(r => r.ElapsedTime);
         }
 
@@ -22,6 +23,13 @@ namespace FillTheSquare
         {
             e.Cancel = true;
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+        }
+
+        private void MediaElement_MediaEnded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var me = (MediaElement)sender;
+            me.Stop();
+            me.Play();
         }
 
     }

@@ -2,6 +2,7 @@
 using System.Windows;
 using Microsoft.Phone.Controls;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace FillTheSquare
 {
@@ -10,12 +11,11 @@ namespace FillTheSquare
         public MainPage()
         {
             InitializeComponent();
-
-
         }
 
         private void SquareFiveButton_Click(object sender, RoutedEventArgs e)
         {
+            Settings.StartSound.Play();
             NavigationService.Navigate(new Uri("/SquarePage.xaml?size=5", UriKind.Relative));
         }
 
@@ -27,6 +27,7 @@ namespace FillTheSquare
             }
             else
             {
+                Settings.StartSound.Play();
                 NavigationService.Navigate(new Uri("/SquarePage.xaml?size=10", UriKind.Relative));
             }
         }
@@ -48,9 +49,27 @@ namespace FillTheSquare
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Settings.AddFakeRecords();
+            //Settings.AddFakeRecords();
             var id = Settings.Records.Last().Id;
             NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + id, UriKind.Relative));
+        }
+
+        private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            var me = (MediaElement)sender;
+            me.Stop();
+            me.Play();
+        }
+
+
+        private void MediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+
+        }
+
+        private void MediaElement_MediaOpened_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

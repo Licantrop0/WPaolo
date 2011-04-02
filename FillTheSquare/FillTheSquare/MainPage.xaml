@@ -26,7 +26,8 @@
                    FontSize="64" Text="Phil  the  Square" Margin="0,24" />
 
         <Canvas x:Name="ContentPanel" Margin="12" Grid.Row="1" >
-            <Button Content="5 x 5" Click="SquareFiveButton_Click"
+            <Button Content="{Binding Path=LocalizedResources.Easy, Source={StaticResource LocalizedStrings}}" 
+                    Click="SquareFiveButton_Click"
                     Style="{StaticResource HomeButtonStyle}"
                     Width="198" Height="93.812"
                     Canvas.Left="279.985" Canvas.Top="112.891" UseLayoutRounding="False" d:LayoutRounding="Auto" FontSize="29.333" FontWeight="Bold" >
@@ -35,7 +36,8 @@
                 </Button.RenderTransform>
             </Button>
 
-            <Button Content="10 x 10" Click="SquareTenButton_Click"
+            <Button Content="{Binding Path=LocalizedResources.Hard, Source={StaticResource LocalizedStrings}}" 
+                    Click="SquareTenButton_Click"
                     Style="{StaticResource HomeButtonStyle}"                    
                     Height="87" Width="203"
                     Canvas.Left="6" Canvas.Top="174"/>

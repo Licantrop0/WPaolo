@@ -206,6 +206,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AppResource.fr-FR.resx" />
     <EmbeddedResource Include="AppResources.it-IT.resx" />
     <EmbeddedResource Include="AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -94,6 +94,10 @@ namespace System.Windows.Controls
         // PS my customization
         public bool _bSupportDicotomicSearch;
 
+        public bool _bCashingMode;
+        private string _sCashedString;
+
+
         /// <summary>
         /// Gets or sets the observable collection that contains references to 
         /// all of the items in the generated view of data that is provided to 
@@ -1300,6 +1304,11 @@ namespace System.Windows.Controls
 
             // Creating the view here ensures that View is always != null
             ClearView();
+
+            // PS my customizations attributes
+            _bSupportDicotomicSearch = false;
+            _bCashingMode = false;
+            _sCashedString = "";
         }
 
         /// <summary>
@@ -2311,6 +2320,9 @@ namespace System.Windows.Controls
             // Cache the current text value
             string text = Text ?? string.Empty;
 
+            if (text.Length < MinimumPrefixLength)      // serve per correggere un baco di Microsoft
+                return;
+
             // Determine if any filtering mode is on
             bool stringFiltering = TextFilter != null;
             bool objectFiltering = FilterMode == AutoCompleteFilterMode.Custom && TextFilter == null;
@@ -2318,9 +2330,6 @@ namespace System.Windows.Controls
             if (_bSupportDicotomicSearch)
             {
                 ClearView();  // vediamo se la filosofia va bene o bisogna utilizzare quella Microsoft
-
-                if (text.Length < MinimumPrefixLength)      // serve per correggere un baco di Microsoft...
-                    return;
 
                 int nCount = _items.Count;
                 int nTryHitIndex = nCount / 2;
@@ -2395,7 +2404,29 @@ namespace System.Windows.Controls
             {
                 int view_index = 0;
                 int view_count = _view.Count;
-                List<object> items = _items;
+                List<object> items;
+
+                // tocco il codice microsoft, quale eresia!!!
+                /*********************************************************************/
+                if (_bCashingMode)
+                {
+                    if ( _sCashedString.Length > MinimumPrefixLength && text.Length > _sCashedString.Length && TextFilter(_sCashedString, text))
+                    {
+                        items = _view.ToList();
+                    }
+                    else
+                    {
+                        items = _items;
+                    }
+
+                    _sCashedString = text;
+                }
+                /*********************************************************************/
+                else
+                {
+                    /*List<object>*/ items = _items;
+                }
+
                 foreach (object item in items)
                 {
                     bool inResults = !(stringFiltering || objectFiltering);

@@ -75,6 +75,7 @@ namespace TrovaCAP
             AcbFrazioni.IsEnabled = false;
             AcbIndirizzi.TextFilter = AcbFilterStartsWithExtended;
             AcbIndirizzi.IsEnabled = false;
+            AcbIndirizzi._bCashingMode = true;
             tbCapResult.Text = "";
             _state = Step.selezionaComune;
 

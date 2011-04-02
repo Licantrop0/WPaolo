@@ -132,8 +132,14 @@
   <data name="DontMakePhilSad" xml:space="preserve">
     <value>Per favore, non rendere Phil triste!</value>
   </data>
+  <data name="Easy" xml:space="preserve">
+    <value>Facile</value>
+  </data>
   <data name="GetOtherApps" xml:space="preserve">
     <value>Scopri altre App di WPME</value>
+  </data>
+  <data name="Hard" xml:space="preserve">
+    <value>Difficile</value>
   </data>
   <data name="InsertName" xml:space="preserve">
     <value>Inserisci il tuo Nome:</value>

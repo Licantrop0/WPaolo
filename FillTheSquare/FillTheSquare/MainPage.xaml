@@ -20,11 +20,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <MediaElement Volume="1"
-                      Source="/FillTheSquare;component/Sounds/musichetta.mp3"
-                      MediaEnded="MediaElement_MediaEnded"
-                      MediaFailed="MediaElement_MediaFailed"
-                      MediaOpened="MediaElement_MediaOpened" />
+        <MediaElement Source="Sounds\musichetta.wma" AutoPlay="True"
+                      MediaEnded="MediaElement_MediaEnded" />
 
         <TextBlock Style="{StaticResource SquareTitleStyle}" Grid.Row="0"
                    FontSize="64" Text="Phil  the  Square" Margin="0,24" />
@@ -33,8 +30,8 @@
             <Button Content="{Binding Path=LocalizedResources.Easy, Source={StaticResource LocalizedStrings}}" 
                     Click="SquareFiveButton_Click"
                     Style="{StaticResource HomeButtonStyle}"
-                    Width="198" Height="93.812"
-                    Canvas.Left="279.985" Canvas.Top="112.891" UseLayoutRounding="False" d:LayoutRounding="Auto" FontSize="29.333" FontWeight="Bold" >
+                    Width="198" Height="100"
+                    Canvas.Left="288" Canvas.Top="106" >
                 <Button.RenderTransform>
                     <RotateTransform Angle="26" />
                 </Button.RenderTransform>
@@ -55,7 +52,7 @@
 
             <Button Content="{Binding Path=LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
                     Click="RecordsButton_Click"
-                    Height="96.419" Width="180"
+                    Height="100" Width="180"
                     Style="{StaticResource HomeButtonStyle}"
                     d:LayoutRounding="Auto"
                     Canvas.Left="2" Canvas.Top="410" UseLayoutRounding="False">

@@ -41,7 +41,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Ops!" Grid.Row="0"
+        <TextBlock Text="Ooops!" Grid.Row="0"
                    FontSize="72" Margin="0,30"
                    Foreground="#FFFFEB50"
                    TextAlignment="Center"  />
@@ -49,7 +49,7 @@
                    TextAlignment="Center" VerticalAlignment="Center"
                    Foreground="#FFFFF9B8" TextWrapping="Wrap" >
             Questa è solo una demo!<LineBreak />
-            Puoi dire Capra! solo 3 volte al giorno, e non hai accesso alle curiosità e agli obiettivi.<LineBreak />
+            Puoi dire Capra! solo 3 volte al giorno, non hai la frase bonus se scuoti il telefono, e non hai accesso alle curiosità e agli obiettivi.
             Se vuoi dire Capra! in continuazione come Sgarbi, devi comprare la versione completa.<LineBreak />
             Costa meno di un caffè...<LineBreak />
             Pensaci, è un investimento! :)

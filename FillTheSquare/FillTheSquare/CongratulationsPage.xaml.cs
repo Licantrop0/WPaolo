@@ -75,6 +75,5 @@ namespace FillTheSquare
             if (NameTextBox.Text.Length >= 10)
                 e.Handled = true;
         }
-
     }
 }

@@ -102,7 +102,7 @@ namespace Capra
 
                 // ----------------------------------------------------
                 _bCanExecuteSound = false;
-                tmr.Interval = TimeSpan.FromMilliseconds(250);
+                tmr.Interval = TimeSpan.FromMilliseconds(500);
                 tmr.Tick += OnTimerTick;
                 tmr.Start();
                 //---------------------------------------------------- 

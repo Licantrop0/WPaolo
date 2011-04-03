@@ -36,7 +36,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <wpcommon:AboutControl Name="WPMEAbout" ApplicationName="Capra!" MinFontSize="40"
-                           GetOtherAppsText="Guarda le altre app di WPME!"
+                           GetOtherAppsText="Guarda le altre app di WPME!" ApplicationVersion="v. 1.1"
                            BackgroundStackPanel="{StaticResource SfondoCapre}">
      
         <wpcommon:AboutControl.Foreground>

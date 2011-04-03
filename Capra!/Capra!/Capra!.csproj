@@ -159,6 +159,7 @@
     <Content Include="Images\capra17.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\capra18.jpg" />
     <Content Include="Images\capra2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

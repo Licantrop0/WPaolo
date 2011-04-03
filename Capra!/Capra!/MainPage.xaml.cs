@@ -28,12 +28,22 @@ namespace Capra
         SoundEffect IgnoranteComeCapraSound;
         int curImg;
 
+        //---------------------------------------------------
+        private bool _bCanExecuteSound = true;
+        private ShakeDetector sd = new ShakeDetector();
+        private DispatcherTimer tmr = new DispatcherTimer();
+        //------------------------------------------------
+
         public MainPage()
         {
             InitializeComponent();
             InitializeSound();
 
-            var sd = new ShakeDetector();
+            // PS
+            /*shakeDetector.ShakeDetected += CapraIgnorante_Shake;
+            shakeDetector.Start();*/
+
+            //var sd = new ShakeDetector();
             sd.ShakeDetected += (sender, e) =>
             {
                 Dispatcher.BeginInvoke(() => { CapraIgnorante_Shake(); });
@@ -81,14 +91,28 @@ namespace Capra
             }
         }
 
-        private void CapraIgnorante_Shake()
+        private void CapraIgnorante_Shake(/*object sender, EventArgs e*/)
         {
             if (CheckTrial())
             {
-                IgnoranteComeCapraSound.Play();
+                if (_bCanExecuteSound)
+                    IgnoranteComeCapraSound.Play();
                 //SetNewCapraImage();
                 Settings.CountCapre++;
+
+                // ----------------------------------------------------
+                _bCanExecuteSound = false;
+                tmr.Interval = TimeSpan.FromMilliseconds(250);
+                tmr.Tick += OnTimerTick;
+                tmr.Start();
+                //---------------------------------------------------- 
             }
+        }
+
+        private void OnTimerTick(object sender, EventArgs e)
+        {
+            tmr.Stop();
+            _bCanExecuteSound = true;
         }
 
         private void FunFact_Click(object sender, RoutedEventArgs e)

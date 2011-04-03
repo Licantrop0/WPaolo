@@ -8,8 +8,6 @@ using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using WPCommon;
-using Microsoft.Xna.Framework.Audio;
-using System.ComponentModel;
 
 namespace FillTheSquare
 {

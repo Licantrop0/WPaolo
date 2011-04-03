@@ -20,7 +20,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <MediaElement AutoPlay="False" Volume="1" Source="/Sounds/musichetta.mp3" MediaEnded="MediaElement_MediaEnded" MediaFailed="MediaElement_MediaFailed" MediaOpened="MediaElement_MediaOpened_1" />
+        <MediaElement Volume="1"
+                      Source="/FillTheSquare;component/Sounds/musichetta.mp3"
+                      MediaEnded="MediaElement_MediaEnded"
+                      MediaFailed="MediaElement_MediaFailed"
+                      MediaOpened="MediaElement_MediaOpened" />
 
         <TextBlock Style="{StaticResource SquareTitleStyle}" Grid.Row="0"
                    FontSize="64" Text="Phil  the  Square" Margin="0,24" />

@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using Microsoft.Phone.Controls;
 using WPCommon;
 using System.Diagnostics;
+using System.Windows.Threading;
 
 
 namespace SgarbiMix
@@ -18,20 +19,43 @@ namespace SgarbiMix
     {
         Random rnd = new Random();
         private int counter;
-        object mutex = new object();
+
+        //---------------------------------------------------
+        private bool _bCanExecuteSound = true;
+        private ShakeDetector sd = new ShakeDetector();
+        private DispatcherTimer tmr = new DispatcherTimer();
+        //------------------------------------------------
+
+        private void OnTimerTick(object sender, EventArgs e)
+        {
+            tmr.Stop();
+            _bCanExecuteSound = true;
+        }
 
         public PlaySoundPage()
         {
             InitializeComponent();
-            var sd = new ShakeDetector();
             sd.ShakeDetected += (sender, e) =>
             {
-                lock (mutex) //è necessario?
-                {
-                    App.Sounds[rnd.Next(App.Sounds.Count)].Play();
-                }
+                Dispatcher.BeginInvoke(() => { Sound_Shake(); });
             };
             sd.Start();
+
+        }
+
+        private void Sound_Shake()
+        {
+
+            if (_bCanExecuteSound)
+                App.Sounds[rnd.Next(App.Sounds.Count)].Play();
+
+            // ----------------------------------------------------
+            _bCanExecuteSound = false;
+            tmr.Interval = TimeSpan.FromMilliseconds(700);
+            tmr.Tick += OnTimerTick;
+            tmr.Start();
+            //---------------------------------------------------- 
+
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -105,36 +129,6 @@ namespace SgarbiMix
             return true;
         }
 
-        //private void Base1ApplicationBar_Click(object sender, EventArgs e)
-        //{
-        //    if (Base1MediaElement.CurrentState == MediaElementState.Playing)
-        //        Base1MediaElement.Stop();
-        //    else
-        //        Base1MediaElement.Play();
-        //}
-
-        //private void Base2ApplicationBar_Click(object sender, EventArgs e)
-        //{
-        //    if (Base2MediaElement.CurrentState == MediaElementState.Playing)
-        //        Base2MediaElement.Stop();
-        //    else
-        //        Base2MediaElement.Play();
-        //}
-
-        //private void Base3ApplicationBar_Click(object sender, EventArgs e)
-        //{
-        //    if (Base3MediaElement.CurrentState == MediaElementState.Playing)
-        //        Base3MediaElement.Stop();
-        //    else
-        //        Base3MediaElement.Play();
-        //}
-
-        //private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
-        //{
-        //    var me = (MediaElement)sender;
-        //    me.Stop();
-        //    me.Play();
-        //}
 
         private void DisclaimerApplicationBar_Click(object sender, EventArgs e)
         {

@@ -67,7 +67,7 @@ namespace FillTheSquare
 
         }
 
-        private void MediaElement_MediaOpened_1(object sender, RoutedEventArgs e)
+        private void MediaElement_MediaOpened(object sender, RoutedEventArgs e)
         {
 
         }

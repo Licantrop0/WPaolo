@@ -36,7 +36,7 @@
     <Grid x:Name="LayoutRoot" >
         <Grid.Background>
             <ImageBrush x:Name="CapraImage"
-                        ImageSource="Images\sfondo_about.jpg"
+                        ImageSource="Images\capra11.jpg"
                         Stretch="UniformToFill" />
         </Grid.Background>
         <Grid.RowDefinitions>

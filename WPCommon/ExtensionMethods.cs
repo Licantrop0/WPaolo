@@ -55,18 +55,21 @@ namespace WPCommon
         static Stopwatch sw;
         public static void StartTrace(string message)
         {
-            if (sw == null)
-                sw = new Stopwatch();
+#if DEBUG
+            if (sw == null) sw = new Stopwatch();
             sw.Start();
             Debug.WriteLine(message);
+#endif
         }
 
         public static void EndTrace()
         {
+#if DEBUG
             if (sw == null) return;
             sw.Stop();
             Debug.WriteLine("Done in: " + sw.ElapsedMilliseconds + "ms");
             sw.Reset();
+#endif
         }
     }
 }

@@ -127,9 +127,13 @@
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WindowsPhone7\Microsoft.Phone.Controls.Toolkit\Microsoft.Phone.Controls.Toolkit.csproj">
-      <Project>{0754458A-7AFC-463A-B27D-2F6980522119}</Project>
-      <Name>Microsoft.Phone.Controls.Toolkit</Name>
+    <ProjectReference Include="..\..\WPCommon\WPCommon.csproj">
+      <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
+      <Name>WPCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomACB\CustomACB.csproj">
+      <Project>{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}</Project>
+      <Name>CustomACB</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

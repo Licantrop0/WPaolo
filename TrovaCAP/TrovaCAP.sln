@@ -3,20 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrovaCAP", "TrovaCAP\TrovaCAP.csproj", "{D6C051C8-08B6-4F2B-AC5E-EDF3F1FB95F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Phone.Controls.Toolkit", "WindowsPhone7\Microsoft.Phone.Controls.Toolkit\Microsoft.Phone.Controls.Toolkit.csproj", "{0754458A-7AFC-463A-B27D-2F6980522119}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomACB", "CustomACB\CustomACB.csproj", "{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon", "..\WPCommon\WPCommon.csproj", "{22700591-5E34-4D4D-A01F-6B8C2153B270}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = TrovaCAP\\TrovaCAP.csproj
 		SccProjectName1 = TrovaCAP
 		SccLocalPath1 = TrovaCAP
-		SccProjectUniqueName2 = WindowsPhone7\\Microsoft.Phone.Controls.Toolkit\\Microsoft.Phone.Controls.Toolkit.csproj
-		SccProjectName2 = WindowsPhone7/Microsoft.Phone.Controls.Toolkit
-		SccLocalPath2 = WindowsPhone7\\Microsoft.Phone.Controls.Toolkit
+		SccProjectUniqueName2 = CustomACB\\CustomACB.csproj
+		SccProjectName2 = CustomACB
+		SccLocalPath2 = CustomACB
+		SccProjectUniqueName3 = ..\\WPCommon\\WPCommon.csproj
+		SccProjectName3 = ../WPCommon
+		SccLocalPath3 = ..\\WPCommon
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,16 +46,26 @@ Global
 		{D6C051C8-08B6-4F2B-AC5E-EDF3F1FB95F2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D6C051C8-08B6-4F2B-AC5E-EDF3F1FB95F2}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 		{D6C051C8-08B6-4F2B-AC5E-EDF3F1FB95F2}.Release|x86.ActiveCfg = Release|Any CPU
-		{0754458A-7AFC-463A-B27D-2F6980522119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0754458A-7AFC-463A-B27D-2F6980522119}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0754458A-7AFC-463A-B27D-2F6980522119}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0754458A-7AFC-463A-B27D-2F6980522119}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0754458A-7AFC-463A-B27D-2F6980522119}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0754458A-7AFC-463A-B27D-2F6980522119}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0754458A-7AFC-463A-B27D-2F6980522119}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0754458A-7AFC-463A-B27D-2F6980522119}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0754458A-7AFC-463A-B27D-2F6980522119}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0754458A-7AFC-463A-B27D-2F6980522119}.Release|x86.ActiveCfg = Release|Any CPU
+		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Release|x86.ActiveCfg = Release|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

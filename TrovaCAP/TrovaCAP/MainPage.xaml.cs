@@ -80,15 +80,9 @@ namespace TrovaCAP
 
             _state = Step.selezionaComune;
 
-            //io personalizzerei l'ACB solo per implementare questo tipo di ricerca by default, scartando l'altra che tanto fa caga
             AcbComuni._bSupportDicotomicSearch = true;
-
-
-            //impostare tutte queste property direttamente nello xaml
-            AcbFrazioni.IsEnabled = false;
-            AcbIndirizzi.TextFilter = AcbFilterStartsWithExtended;
-            AcbIndirizzi.IsEnabled = false;
             AcbIndirizzi._bCashingMode = true;
+            
             tbCapResult.Text = "";
         }
 
@@ -103,14 +97,17 @@ namespace TrovaCAP
                 WPCommon.ExtensionMethods.StartTrace("Deserializing...");
                 //ReadAndParseDataBase();
                 Deserialize();
-                WPCommon.ExtensionMethods.EndTrace(); //Vedi il risultato nell'Output Window (solo se in debug)
+                WPCommon.ExtensionMethods.EndTrace();
             };
 
             //L'evento completed gira sull'UI Thread (se non ti serve cancellalo)
             bw.RunWorkerCompleted += (sender1, e1) =>
             {
+                // TODO caricamento ItemSource del ACB
+
                 //Il caricamento dei soli Comuni va separato e messo nel costruttore
-                AcbComuni.ItemsSource = _comuni.Select(c => c.ComuneID);
+                //AcbComuni.ItemsSource = _comuni.Select(c => c.ComuneID);
+
             };
 
             bw.RunWorkerAsync();
@@ -296,14 +293,6 @@ namespace TrovaCAP
                 AcbComuni.Text = "";
             }
 
-            /*if (!_comuni.Any(c => c.ComuneID == AcbComuni.Text))
-            {
-                if (AcbComuni.Text != "")
-                    ErrorSound.Play();
-
-                AcbComuni.Text = "";          
-            }*/
-
             Autofocus();
         }
 
@@ -370,7 +359,7 @@ namespace TrovaCAP
             {
                 _state = Step.selezionaFrazioneVia;
 
-                AcbIndirizzi.ItemsSource = from cr in _capRecordsComuniFrazioni     // assegnazione itemsSource indirizzi, qui c'è l'errore, ma lo scovo di là...
+                AcbIndirizzi.ItemsSource = from cr in _capRecordsComuniFrazioni
                                            select cr.Indirizzo;
                 _autofocus = AcbIndirizzi;
             }
@@ -383,14 +372,6 @@ namespace TrovaCAP
                 PlayErrorSound();
                 AcbFrazioni.Text = "";
             }
-
-            /*if (!(AcbFrazioni.ItemsSource as IEnumerable<string>).Contains(AcbFrazioni.Text))
-            {
-                if (AcbFrazioni.Text != "")
-                    ErrorSound.Play();
-
-                AcbFrazioni.Text = ""; 
-            }*/
 
             Autofocus();
         }
@@ -436,10 +417,6 @@ namespace TrovaCAP
                 AcbIndirizzi.MinimumPopulateDelay = 1000;
             else if (AcbIndirizzi.Text.Length >= 4)
                 AcbIndirizzi.MinimumPopulateDelay = 500;
-            /*else if (AcbIndirizzi.Text.Length == 5)
-                AcbIndirizzi.MinimumPopulateDelay = 250;
-            else
-                AcbIndirizzi.MinimumPopulateDelay = 0;*/
         }
 
         private void AcbIndirizzi_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -506,14 +483,6 @@ namespace TrovaCAP
                 AcbIndirizzi.Text = "";
             }
 
-            /*if (!(AcbIndirizzi.ItemsSource as IEnumerable<string>).Contains(AcbIndirizzi.Text))
-            {
-                if (AcbIndirizzi.Text != "")
-                    ErrorSound.Play();
-
-                AcbIndirizzi.Text = "";
-            }*/
-
             Autofocus();
         }
 
@@ -552,8 +521,7 @@ namespace TrovaCAP
             using (var fin = new StreamReader(sri.Stream))
             {
                 CustomBinarySerializer ser2 = new CustomBinarySerializer(typeof(CapDB));
-                Comune[] comuniAfterDeserialization = ser2.ReadObject(sri.Stream) as Comune[];
-                _comuni = comuniAfterDeserialization;
+                _comuni = ser2.ReadObject(sri.Stream) as Comune[];
             }
         }
 
@@ -563,8 +531,6 @@ namespace TrovaCAP
         {
             string word = data as string;
             string[] words = (word).Split(' ');
-
-            //se ho capito bene, qui puoi fare return words.Any(w => w.StartsWith(search, StringComparison.CurrentCultureIgnoreCase))
 
             return (words.Where(s => s.StartsWith(search, StringComparison.CurrentCultureIgnoreCase)).Count() > 0) ||
                  (word.ToUpper().Contains(search.ToUpper()) && search.Contains(' '));

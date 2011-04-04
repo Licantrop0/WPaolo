@@ -14,51 +14,26 @@
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
-	<Grid x:Name="LayoutRoot" Background="Transparent">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="294*" />
-			<ColumnDefinition Width="186*" />
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-
-		<StackPanel x:Name="TitlePanel" Margin="8,16,0,29" Grid.ColumnSpan="2" Visibility="Visible">
-
-			<!--<TextBlock x:Name="ApplicationTitle" Text="Trova CAP" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Center" FontSize="80" FontFamily="Segoe UI Semibold" >
-				<TextBlock.Foreground>
-					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-						<LinearGradientBrush.RelativeTransform>
-							<CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="-36" ScaleX="-0.95" SkewX="-60"/>
-						</LinearGradientBrush.RelativeTransform>
-						<GradientStop Color="#FF1582FB" Offset="0"/>
-						<GradientStop Color="#FF3BC6D0" Offset="1"/>
-					</LinearGradientBrush>
-				</TextBlock.Foreground>
-			</TextBlock>-->
+    <Grid Margin="8,0" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
 
-			<Grid x:Name="ContentPanel" Grid.Row="1" Margin="8,0" >
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="50" />
-					<ColumnDefinition Width="*" />
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-				</Grid.RowDefinitions>
-
-
-				<Image Source="/images/C_indirizzo.png" Stretch="Uniform" Grid.Row="0" VerticalAlignment="Bottom" Margin="0,12" />
-				<StackPanel Grid.Row="0" Grid.Column="1" Margin="0">
-					<TextBlock Name="tbComuni" Text="Comune" Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
-                    <acb:AutoCompleteBox Name="AcbComuni" 
+        <Image Source="/images/C_indirizzo.png" Stretch="Uniform" Grid.Row="0" VerticalAlignment="Bottom" Margin="0,12" />
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="0">
+            <TextBlock Name="tbComuni" Text="Comune" Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
+            <acb:AutoCompleteBox Name="AcbComuni" 
 											FilterMode="StartsWith" 
 											SelectionChanged="AcbComuni_SelectionChanged" 
 											MinimumPopulateDelay="1000" 
@@ -67,12 +42,12 @@
 											MouseLeftButtonDown="AcbComuni_MouseLeftButtonDown" 
 											FontSize="32" 
 											ItemTemplate="{StaticResource TextWrappingItemTemplate}" MinimumPrefixLength="2" TextChanged="AcbComuni_TextChanged" />
-				</StackPanel>
+        </StackPanel>
 
-				<Image Source="/images/C_frazioni.png" Stretch="Uniform" Grid.Row="1" VerticalAlignment="Bottom"  Margin="0,12"/>
-				<StackPanel Grid.Row="1" Grid.Column="1">
-					<TextBlock Name="tbFrazioni" Text="Frazione"  Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
-                    <acb:AutoCompleteBox Name="AcbFrazioni" 
+        <Image Source="/images/C_frazioni.png" Stretch="Uniform" Grid.Row="1" VerticalAlignment="Bottom"  Margin="0,12"/>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Name="tbFrazioni" Text="Frazione"  Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
+            <acb:AutoCompleteBox Name="AcbFrazioni" 
 											FilterMode="Contains" 
 											IsDropDownOpen="True" 
 											MinimumPrefixLength="0" 
@@ -83,33 +58,27 @@
 											FontSize="32"
 											TextBoxStyle="{StaticResource TextWrappingStyle}" 
 											ItemTemplate="{StaticResource TextWrappingItemTemplate}" IsEnabled="False" />
-				</StackPanel>
+        </StackPanel>
 
-				<Image Source="/images/C_citta.png" Stretch="Uniform" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,12"/>
-				<StackPanel Grid.Row="2" Grid.Column="1">
-					<TextBlock Name="tbIndirizzi" Text="Indirizzo"  Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
-                    <acb:AutoCompleteBox Name="AcbIndirizzi"
+        <Image Source="/images/C_citta.png" Stretch="Uniform" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,12"/>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock Name="tbIndirizzi" Text="Indirizzo"  Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
+            <acb:AutoCompleteBox Name="AcbIndirizzi"
 											 TextBoxStyle="{StaticResource TextWrappingStyle}"
 											 ItemTemplate="{StaticResource TextWrappingItemTemplate}"
 											 FilterMode="Custom" MinimumPrefixLength="2"
 											 SelectionChanged="AcbIndirizzi_SelectionChanged"
-                                             TextFilter= "AcbFilterStartsWithExtended"
-											 MinimumPopulateDelay="2000" 
-											 LostFocus="AcbIndirizzi_LostFocus" 
+                                             MinimumPopulateDelay="2000"
+                                 			 LostFocus="AcbIndirizzi_LostFocus" 
 											 FontSize="32"
 											 MouseLeftButtonDown="AcbIndirizzi_MouseLeftButtonDown" 
 											 GotFocus="AcbIndirizzi_GotFocus" TextChanged="AcbIndirizzi_TextChanged" IsEnabled="False" />
-				</StackPanel>
+        </StackPanel>
 
 
-				<StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal"  HorizontalAlignment="Center" >
-					<TextBlock x:Name="tbCapResult"  HorizontalAlignment="Center" Text="00000" Style="{StaticResource textCAPresult}"  FontSize="130" Margin="0,40,0,0" FontWeight="Normal" Height="190" />
-				</StackPanel>
-			</Grid>
-
-
-		</StackPanel>
-	</Grid>
-
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal"  HorizontalAlignment="Center" >
+            <TextBlock x:Name="tbCapResult"  HorizontalAlignment="Center" Text="00000" Style="{StaticResource textCAPresult}"  FontSize="130" Margin="0,40,0,0" FontWeight="Normal" Height="190" />
+        </StackPanel>
+    </Grid>
 
 </phone:PhoneApplicationPage>

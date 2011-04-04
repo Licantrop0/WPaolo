@@ -82,7 +82,7 @@
 											MouseLeftButtonDown="AcbFrazioni_MouseLeftButtonDown"
 											FontSize="32"
 											TextBoxStyle="{StaticResource TextWrappingStyle}" 
-											ItemTemplate="{StaticResource TextWrappingItemTemplate}" />
+											ItemTemplate="{StaticResource TextWrappingItemTemplate}" IsEnabled="False" />
 				</StackPanel>
 
 				<Image Source="/images/C_citta.png" Stretch="Uniform" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,12"/>
@@ -92,12 +92,13 @@
 											 TextBoxStyle="{StaticResource TextWrappingStyle}"
 											 ItemTemplate="{StaticResource TextWrappingItemTemplate}"
 											 FilterMode="Custom" MinimumPrefixLength="2"
-											 SelectionChanged="AcbIndirizzi_SelectionChanged"                                              
+											 SelectionChanged="AcbIndirizzi_SelectionChanged"
+                                             TextFilter= "AcbFilterStartsWithExtended"
 											 MinimumPopulateDelay="2000" 
 											 LostFocus="AcbIndirizzi_LostFocus" 
 											 FontSize="32"
 											 MouseLeftButtonDown="AcbIndirizzi_MouseLeftButtonDown" 
-											 GotFocus="AcbIndirizzi_GotFocus" TextChanged="AcbIndirizzi_TextChanged" />
+											 GotFocus="AcbIndirizzi_GotFocus" TextChanged="AcbIndirizzi_TextChanged" IsEnabled="False" />
 				</StackPanel>
 
 

@@ -6,13 +6,13 @@
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    xmlns:acb="clr-namespace:Microsoft.Phone.Controls;assembly=CustomACB"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="Portrait" Orientation="Portrait"
-	shell:SystemTray.IsVisible="False">
+	shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
 	<Grid x:Name="LayoutRoot" Background="Transparent">
 		<Grid.ColumnDefinitions>
@@ -58,7 +58,7 @@
 				<Image Source="/images/C_indirizzo.png" Stretch="Uniform" Grid.Row="0" VerticalAlignment="Bottom" Margin="0,12" />
 				<StackPanel Grid.Row="0" Grid.Column="1" Margin="0">
 					<TextBlock Name="tbComuni" Text="Comune" Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
-					<toolkit:AutoCompleteBox Name="AcbComuni" 
+                    <acb:AutoCompleteBox Name="AcbComuni" 
 											FilterMode="StartsWith" 
 											SelectionChanged="AcbComuni_SelectionChanged" 
 											MinimumPopulateDelay="1000" 
@@ -72,7 +72,7 @@
 				<Image Source="/images/C_frazioni.png" Stretch="Uniform" Grid.Row="1" VerticalAlignment="Bottom"  Margin="0,12"/>
 				<StackPanel Grid.Row="1" Grid.Column="1">
 					<TextBlock Name="tbFrazioni" Text="Frazione"  Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
-					<toolkit:AutoCompleteBox Name="AcbFrazioni" 
+                    <acb:AutoCompleteBox Name="AcbFrazioni" 
 											FilterMode="Contains" 
 											IsDropDownOpen="True" 
 											MinimumPrefixLength="0" 
@@ -88,7 +88,7 @@
 				<Image Source="/images/C_citta.png" Stretch="Uniform" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,12"/>
 				<StackPanel Grid.Row="2" Grid.Column="1">
 					<TextBlock Name="tbIndirizzi" Text="Indirizzo"  Style="{StaticResource textComuneFrazioneIndirizzo}" Margin="12,0" />
-					<toolkit:AutoCompleteBox Name="AcbIndirizzi"
+                    <acb:AutoCompleteBox Name="AcbIndirizzi"
 											 TextBoxStyle="{StaticResource TextWrappingStyle}"
 											 ItemTemplate="{StaticResource TextWrappingItemTemplate}"
 											 FilterMode="Custom" MinimumPrefixLength="2"
@@ -97,8 +97,7 @@
 											 LostFocus="AcbIndirizzi_LostFocus" 
 											 FontSize="32"
 											 MouseLeftButtonDown="AcbIndirizzi_MouseLeftButtonDown" 
-											 GotFocus="AcbIndirizzi_GotFocus" TextChanged="AcbIndirizzi_TextChanged">				
-					</toolkit:AutoCompleteBox>
+											 GotFocus="AcbIndirizzi_GotFocus" TextChanged="AcbIndirizzi_TextChanged" />
 				</StackPanel>
 
 

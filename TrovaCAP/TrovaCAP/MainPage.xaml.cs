@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
-using System.IO;
-using System.Diagnostics;
 using System.Windows.Resources;
-using Microsoft.Xna.Framework.Audio;
 using System.Windows.Threading;
-using Microsoft.Xna.Framework;
+using Microsoft.Phone.Controls;
+using Microsoft.Xna.Framework.Audio;
+using System.ComponentModel;
 
 namespace TrovaCAP
 {
@@ -53,8 +47,29 @@ namespace TrovaCAP
         CAPRecord[] _capRecordsComuni = null;
         CAPRecord[] _capRecordsComuniFrazioni = null;
 
-        SoundEffect FoundCAPSound;
-        SoundEffect ErrorSound;
+        #endregion
+
+        #region Sounds LazyLoad
+
+        SoundEffect _capFoundSound;
+        public void PlayCapFoundSound()
+        {
+            if (_capFoundSound == null)
+                _capFoundSound = SoundEffect.FromStream(App.GetResourceStream(
+                    new Uri("sounds/trovatoCAP.wav", UriKind.Relative)).Stream);
+
+            _capFoundSound.Play();
+        }
+
+        SoundEffect _errorSound;
+        public void PlayErrorSound()
+        {
+            if (_errorSound == null)
+                _errorSound = SoundEffect.FromStream(App.GetResourceStream(
+                    new Uri("sounds/error.wav", UriKind.Relative)).Stream);
+
+            _errorSound.Play();
+        }
 
         #endregion
 
@@ -62,38 +77,50 @@ namespace TrovaCAP
         public MainPage()
         {
             InitializeComponent();
-            StreamResourceInfo SoundFileInfo = App.GetResourceStream(new Uri("sounds/trovatoCAP.wav", UriKind.Relative));
-            FoundCAPSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            SoundFileInfo = App.GetResourceStream(new Uri("sounds/error.wav", UriKind.Relative));
-            ErrorSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            //ReadAndParseDataBase();
-            Deserialize();
 
-            AcbComuni.ItemsSource = _comuni.Select(c => c.ComuneID);
+            _state = Step.selezionaComune;
+
+            //io personalizzerei l'ACB solo per implementare questo tipo di ricerca by default, scartando l'altra che tanto fa caga
             AcbComuni._bSupportDicotomicSearch = true;
 
+
+            //impostare tutte queste property direttamente nello xaml
             AcbFrazioni.IsEnabled = false;
             AcbIndirizzi.TextFilter = AcbFilterStartsWithExtended;
             AcbIndirizzi.IsEnabled = false;
             AcbIndirizzi._bCashingMode = true;
             tbCapResult.Text = "";
-            _state = Step.selezionaComune;
+        }
 
-            // Timer to simulate the XNA game loop (SoundEffect classes are from the XNA Framework)
-            DispatcherTimer XnaDispatchTimer = new DispatcherTimer();
-            XnaDispatchTimer.Interval = TimeSpan.FromMilliseconds(50);
+        //Ho spostato l'elaborazione del db dal costruttore al Page_Loaded così la pagina viene già visualizzata
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            var bw = new BackgroundWorker();
 
-            // Call FrameworkDispatcher.Update to update the XNA Framework internals.
-            XnaDispatchTimer.Tick += delegate { try { FrameworkDispatcher.Update(); } catch { } };
+            //Evento che gira nel thread separato
+            bw.DoWork += (sender1, e1) =>
+            {
+                WPCommon.ExtensionMethods.StartTrace("Deserializing...");
+                //ReadAndParseDataBase();
+                Deserialize();
+                WPCommon.ExtensionMethods.EndTrace(); //Vedi il risultato nell'Output Window (solo se in debug)
+            };
 
-            // Start the DispatchTimer running.
-            XnaDispatchTimer.Start();
+            //L'evento completed gira sull'UI Thread (se non ti serve cancellalo)
+            bw.RunWorkerCompleted += (sender1, e1) =>
+            {
+                //Il caricamento dei soli Comuni va separato e messo nel costruttore
+                AcbComuni.ItemsSource = _comuni.Select(c => c.ComuneID);
+            };
+
+            bw.RunWorkerAsync();
         }
 
         #region utility fuctions
 
         private void ShowResult(string sResultCAP)
         {
+            //servono proprio tutti tutti gli stati?
             switch (_state)
             {
                 case Step.selezionaComune:
@@ -121,7 +148,7 @@ namespace TrovaCAP
 
             tbCapResult.Text = sResultCAP;
             _autofocus = this;
-            FoundCAPSound.Play();
+            PlayCapFoundSound();
         }
 
         private void Autofocus()
@@ -177,7 +204,8 @@ namespace TrovaCAP
 
         private void AcbComuni_TextChanged(object sender, RoutedEventArgs e)
         {
-            // modula MinimumPrefixLength   // non male, si potrebbe essere più accurati misurando il numero di items nella _view, il comportamento è però soddisfacente già così
+            // modula MinimumPrefixLength
+            // non male, si potrebbe essere più accurati misurando il numero di items nella _view, il comportamento è però soddisfacente già così            
             if (AcbComuni.Text.Length <= 2)
                 AcbComuni.MinimumPopulateDelay = 2000;
             else if (AcbComuni.Text.Length == 3)
@@ -262,9 +290,9 @@ namespace TrovaCAP
 
         private void AcbComuni_LostFocus(object sender, RoutedEventArgs e)
         {
-            if ( AcbComuni.Text != "" && AcbComuni.Text != AcbComuni.SelectedItem as string /*.ToString()*/)
+            if (AcbComuni.Text != "" && AcbComuni.Text != AcbComuni.SelectedItem as string /*.ToString()*/)
             {
-                ErrorSound.Play();
+                PlayErrorSound();
                 AcbComuni.Text = "";
             }
 
@@ -352,8 +380,8 @@ namespace TrovaCAP
         {
             if (AcbFrazioni.Text != "" && AcbFrazioni.Text != AcbFrazioni.SelectedItem as string /*.ToString()*/)
             {
-                ErrorSound.Play();
-                AcbFrazioni.Text = ""; 
+                PlayErrorSound();
+                AcbFrazioni.Text = "";
             }
 
             /*if (!(AcbFrazioni.ItemsSource as IEnumerable<string>).Contains(AcbFrazioni.Text))
@@ -401,7 +429,7 @@ namespace TrovaCAP
         private void AcbIndirizzi_TextChanged(object sender, RoutedEventArgs e)
         {
             // modula MinimumPrefixLength  // no è inutile, devo scalarmo sul numero di record, lo posso faro quando carico la item soure
-                                           // milano si comporta troppo diversamente da palermo
+            // milano si comporta troppo diversamente da palermo
             if (AcbIndirizzi.Text.Length <= 2)
                 AcbIndirizzi.MinimumPopulateDelay = 2000;
             else if (AcbIndirizzi.Text.Length == 3)
@@ -474,7 +502,7 @@ namespace TrovaCAP
         {
             if (AcbIndirizzi.Text != "" && AcbIndirizzi.Text != AcbIndirizzi.SelectedItem as string)
             {
-                ErrorSound.Play();
+                PlayErrorSound();
                 AcbIndirizzi.Text = "";
             }
 
@@ -495,7 +523,7 @@ namespace TrovaCAP
 
         private void ReadAndParseDataBase()
         {
-            var resource = System.Windows.Application.GetResourceStream(new Uri("DBout.txt", UriKind.Relative));
+            var resource = Application.GetResourceStream(new Uri("DBout.txt", UriKind.Relative));
             using (var tr = new StreamReader(resource.Stream))
             {
                 int count = int.Parse(tr.ReadLine());
@@ -520,7 +548,6 @@ namespace TrovaCAP
 
         private void Deserialize()
         {
-            // deserialization
             StreamResourceInfo sri = Application.GetResourceStream(new Uri("DB.ser", UriKind.Relative));
             using (var fin = new StreamReader(sri.Stream))
             {
@@ -534,11 +561,15 @@ namespace TrovaCAP
 
         private bool AcbFilterStartsWithExtended(string search, object data)
         {
-            string[] words = (data as string).Split(' ');
-            string   word  = data as string;
+            string word = data as string;
+            string[] words = (word).Split(' ');
+
+            //se ho capito bene, qui puoi fare return words.Any(w => w.StartsWith(search, StringComparison.CurrentCultureIgnoreCase))
 
             return (words.Where(s => s.StartsWith(search, StringComparison.CurrentCultureIgnoreCase)).Count() > 0) ||
-                (word.ToUpper().Contains(search.ToUpper()) && search.Contains(' '));
+                 (word.ToUpper().Contains(search.ToUpper()) && search.Contains(' '));
+
         }
+
     }
 }

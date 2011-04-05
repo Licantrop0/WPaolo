@@ -111,7 +111,7 @@ namespace NascondiChiappe
         private void AlbumNameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-                this.Focus();
+                SaveAppBarButton_Click(sender, EventArgs.Empty);
         }
     }
 }

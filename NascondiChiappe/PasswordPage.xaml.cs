@@ -57,7 +57,7 @@ namespace NascondiChiappe
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (Settings.PasswordInserted)
+            if (Settings.PasswordInserted & !IsChangePasswordMode)
                 throw new Exception("ForceExit");
         }
 

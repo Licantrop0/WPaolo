@@ -20,7 +20,10 @@
                    Text="{Binding LocalizedResources.AddAlbum, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource PhoneTextTitle1Style}"/>
         <TextBox x:Name="AlbumNameTextBox" Text="{Binding Name}" KeyDown="AlbumNameTextBox_KeyDown" />
-        <ListBox x:Name="ImagesListBox" ItemsSource="{Binding Images}" SelectionMode="Multiple" ItemContainerStyle="{StaticResource ListBoxItemStyle1}">
+        <ListBox x:Name="ImagesListBox"
+                 ItemsSource="{Binding Images}"
+                 SelectionMode="Multiple"
+                 ItemContainerStyle="{StaticResource ListBoxItemStyle1}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <toolkit:WrapPanel ItemWidth="200" ItemHeight="200"/>

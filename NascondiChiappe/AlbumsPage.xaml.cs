@@ -39,6 +39,8 @@ namespace NascondiChiappe
 
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (e.AddedItems[0] == null)
+                return;
             CurrentAlbum = (Album)e.AddedItems[0];
             AddPhotosHintTextBlock.Visibility =
                 CurrentAlbum.Images.Count == 0 ?

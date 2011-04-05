@@ -14,7 +14,7 @@
                     <ControlTemplate TargetType="ListBoxItem">
                         <Border x:Name="LayoutRoot" Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" BorderBrush="Transparent">
                             <VisualStateManager.VisualStateGroups>
-                                <!--<VisualStateGroup x:Name="SelectionStates">-->
+                                <VisualStateGroup x:Name="SelectionStates">
                                     <VisualState x:Name="Selected">
                                         <Storyboard>
                                             <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="LayoutRoot" />
@@ -27,7 +27,7 @@
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
-                                <!--</VisualStateGroup>-->
+                                </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <ContentControl x:Name="ContentContainer"
                                             Content="{TemplateBinding Content}"

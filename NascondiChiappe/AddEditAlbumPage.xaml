@@ -14,43 +14,6 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress" Loaded="PhoneApplicationPage_Loaded">
-	<phone:PhoneApplicationPage.Resources>
-		<Style x:Key="ListBoxItemStyle1" TargetType="ListBoxItem">
-			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="BorderThickness" Value="0"/>
-			<Setter Property="BorderBrush" Value="Transparent"/>
-			<Setter Property="Padding" Value="0"/>
-			<Setter Property="HorizontalContentAlignment" Value="Left"/>
-			<Setter Property="VerticalContentAlignment" Value="Top"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="ListBoxItem">
-						<Border x:Name="LayoutRoot" Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" BorderBrush="Transparent">
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="SelectionStates">
-									<VisualState x:Name="Unselected"/>
-									<VisualState x:Name="Selected">
-										<Storyboard>
-											<ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="LayoutRoot" d:IsOptimized="True"/>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderThickness)" Storyboard.TargetName="LayoutRoot">
-												<DiscreteObjectKeyFrame KeyTime="0">
-													<DiscreteObjectKeyFrame.Value>
-														<Thickness>4</Thickness>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-							<ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-						</Border>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-	</phone:PhoneApplicationPage.Resources>
-
 
     <StackPanel x:Name="LayoutRoot" Margin="12,17,0,28">
         <TextBlock x:Name="PageTitle" Margin="9,-7,0,0"

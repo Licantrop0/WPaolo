@@ -26,9 +26,22 @@ namespace NascondiChiappe
             if (NavigationContext.QueryString.ContainsKey("Album"))
             {
                 PageTitle.Text = AppResources.EditAlbum;
+
+                var DeletePicturesAppBarButton = new ApplicationBarIconButton();
+                DeletePicturesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
+                DeletePicturesAppBarButton.Text = AppResources.DeleteSelected;
+                DeletePicturesAppBarButton.Click += new EventHandler(DeletePicturesAppBarMenuItem_Click);
+                ApplicationBar.Buttons.Add(DeletePicturesAppBarButton);
+
+                var DeleteAlbumAppBarMenuItem = new ApplicationBarMenuItem();
+                DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
+                DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
+                ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
+
                 var id = Convert.ToInt32(NavigationContext.QueryString["Album"]);
                 CurrentAlbum = Settings.Albums[id];
                 LayoutRoot.DataContext = CurrentAlbum;
+            
             }
             else
                 AlbumNameTextBox.Focus();
@@ -43,16 +56,6 @@ namespace NascondiChiappe
             SaveAppBarButton.Text = AppResources.Save;
             SaveAppBarButton.Click += new EventHandler(SaveAppBarButton_Click);
             ApplicationBar.Buttons.Add(SaveAppBarButton);
-
-            var DeletePicturesAppBarMenuItem = new ApplicationBarMenuItem();
-            DeletePicturesAppBarMenuItem.Text = AppResources.DeleteSelected;
-            DeletePicturesAppBarMenuItem.Click += new EventHandler(DeletePicturesAppBarMenuItem_Click);
-            ApplicationBar.MenuItems.Add(DeletePicturesAppBarMenuItem);
-
-            var DeleteAlbumAppBarMenuItem = new ApplicationBarMenuItem();
-            DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
-            DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
-            ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
         }
 
         void DeletePicturesAppBarMenuItem_Click(object sender, EventArgs e)
@@ -63,7 +66,6 @@ namespace NascondiChiappe
             }
         }
 
-
         void SaveAppBarButton_Click(object sender, EventArgs e)
         {
             if (!CheckAlbumName())
@@ -73,8 +75,7 @@ namespace NascondiChiappe
                 Settings.Albums.Add(new Album(AlbumNameTextBox.Text, DateTime.Now.GetHashCode().ToString()));
             else
             {
-                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName)
-                    { Images = (ObservableCollection<BitmapImage>)ImagesListBox.ItemsSource });
+                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName) { Images = (ObservableCollection<BitmapImage>)ImagesListBox.ItemsSource });
                 Settings.Albums.Remove(CurrentAlbum);
             }
             NavigationService.GoBack();

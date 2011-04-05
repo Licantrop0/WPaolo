@@ -34,6 +34,8 @@ namespace NascondiChiappe
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            MainPasswordBox.Focus();
+
             if (IsNewPasswordMode)
             {
                 TitleTextBlock.Text = AppResources.SetPassword;
@@ -53,33 +55,17 @@ namespace NascondiChiappe
             {
                 if (Settings.PasswordInserted)
                     throw new Exception("ForceExit");
-                MainPasswordBox.Focus();
             }
         }
 
         private void InitializeApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
-            ApplicationBar.Buttons.Add(CreateOkAppBarButton());
-            ApplicationBar.Buttons.Add(CreateCancelAppBarButton());
-        }
-
-        private ApplicationBarIconButton CreateOkAppBarButton()
-        {
             var OkAppBarButton = new ApplicationBarIconButton();
             OkAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_check.png", UriKind.Relative);
             OkAppBarButton.Text = AppResources.Ok;
             OkAppBarButton.Click += new EventHandler(OkAppBarButton_Click);
-            return OkAppBarButton;
-        }
-
-        private ApplicationBarIconButton CreateCancelAppBarButton()
-        {
-            var CancelAppBarButton = new ApplicationBarIconButton();
-            CancelAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
-            CancelAppBarButton.Text = AppResources.Cancel;
-            CancelAppBarButton.Click += (sender, e) => { NavigationService.GoBack(); };
-            return CancelAppBarButton;
+            ApplicationBar.Buttons.Add(OkAppBarButton);
         }
 
         private void ForgotPasswordHLButton_Click(object sender, RoutedEventArgs e)

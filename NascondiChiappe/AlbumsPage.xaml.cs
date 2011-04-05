@@ -36,21 +36,15 @@ namespace NascondiChiappe
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CurrentAlbum = (Album)e.AddedItems[0];
+            AddPhotosHintTextBlock.Visibility =
+                CurrentAlbum.Images.Count == 0 ?
+                Visibility.Visible :
+                Visibility.Collapsed;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CurrentPhoto = (BitmapImage)e.AddedItems[0];
-        }
-
-        void DeleteAlbumAppBarMenuItem_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(string.Format(AppResources.ConfirmDelete, CurrentAlbum.Name),
-                AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                Settings.Albums.Remove(CurrentAlbum);
-
-            if (Settings.Albums.Count == 0)
-                NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative));
         }
 
         void TakePictureAppBarButton_Click(object sender, EventArgs e)
@@ -78,10 +72,10 @@ namespace NascondiChiappe
                 var stream = new MemoryStream();
                 var wb = new WriteableBitmap(CurrentPhoto);
                 wb.SaveJpeg(stream, wb.PixelWidth, wb.PixelHeight, 0, 85);
-                MediaLibrary library = new MediaLibrary();
                 stream.Position = 0;
-                library.SavePicture(Guid.NewGuid().ToString(), stream);
+                new MediaLibrary().SavePicture(Guid.NewGuid().ToString(), stream);
                 stream.Close();
+                MessageBox.Show(AppResources.PhotoCopied);
             }
         }
 
@@ -91,13 +85,23 @@ namespace NascondiChiappe
                 CurrentAlbum.AddImage(e.ChosenPhoto);
         }
 
+        void DeleteAlbumAppBarMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(string.Format(AppResources.ConfirmDelete, CurrentAlbum.Name),
+                AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                Settings.Albums.Remove(CurrentAlbum);
+
+            if (Settings.Albums.Count == 0)
+                NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative));
+        }
+
         private void InitializeApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
 
             var TakePictureAppBarButton = new ApplicationBarIconButton();
             TakePictureAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_camera.png", UriKind.Relative);
-            TakePictureAppBarButton.Text = AppResources.TakePicture;
+            TakePictureAppBarButton.Text = AppResources.TakePhoto;
             TakePictureAppBarButton.Click += new EventHandler(TakePictureAppBarButton_Click);
             ApplicationBar.Buttons.Add(TakePictureAppBarButton);
 
@@ -113,11 +117,11 @@ namespace NascondiChiappe
             CopyToMediaLibraryAppBarButton.Click += new EventHandler(CopyToMediaLibraryAppBarButton_Click);
             ApplicationBar.Buttons.Add(CopyToMediaLibraryAppBarButton);
 
-            var ChangePasswordAppBarMenuItem = new ApplicationBarMenuItem();
-            ChangePasswordAppBarMenuItem.Text = AppResources.ChangePassword;
-            ChangePasswordAppBarMenuItem.Click += (sender, e) =>
-            { NavigationService.Navigate(new Uri("/PasswordPage.xaml?ChangePassword=1", UriKind.Relative)); };
-            ApplicationBar.MenuItems.Add(ChangePasswordAppBarMenuItem);
+            var EditAlbumAppBarMenuItem = new ApplicationBarMenuItem();
+            EditAlbumAppBarMenuItem.Text = AppResources.EditAlbum;
+            EditAlbumAppBarMenuItem.Click += (sender, e) =>
+            { NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml?Album=" + AlbumsPivot.SelectedIndex, UriKind.Relative)); };
+            ApplicationBar.MenuItems.Add(EditAlbumAppBarMenuItem);
 
             var AddAlbumAppBarMenuItem = new ApplicationBarMenuItem();
             AddAlbumAppBarMenuItem.Text = AppResources.AddAlbum;
@@ -125,16 +129,16 @@ namespace NascondiChiappe
             { NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(AddAlbumAppBarMenuItem);
 
-            var EditAlbumAppBarMenuItem = new ApplicationBarMenuItem();
-            EditAlbumAppBarMenuItem.Text = AppResources.EditAlbum;
-            EditAlbumAppBarMenuItem.Click += (sender, e) =>
-            { NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml?Album=" + AlbumsPivot.SelectedIndex, UriKind.Relative)); };
-            ApplicationBar.MenuItems.Add(EditAlbumAppBarMenuItem);
+            var ChangePasswordAppBarMenuItem = new ApplicationBarMenuItem();
+            ChangePasswordAppBarMenuItem.Text = AppResources.ChangePassword;
+            ChangePasswordAppBarMenuItem.Click += (sender, e) =>
+            { NavigationService.Navigate(new Uri("/PasswordPage.xaml?ChangePassword=1", UriKind.Relative)); };
+            ApplicationBar.MenuItems.Add(ChangePasswordAppBarMenuItem);
 
-            var DeleteAlbumAppBarMenuItem = new ApplicationBarMenuItem();
-            DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
-            DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
-            ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
+            //var DeleteAlbumAppBarMenuItem = new ApplicationBarMenuItem();
+            //DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
+            //DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
+            //ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
         }
 
     }

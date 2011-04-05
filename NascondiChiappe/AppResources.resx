@@ -156,8 +156,8 @@
   <data name="SetPassword" xml:space="preserve">
     <value>Set Password</value>
   </data>
-  <data name="TakePicture" xml:space="preserve">
-    <value>Take Picture</value>
+  <data name="TakePhoto" xml:space="preserve">
+    <value>Take Photo</value>
   </data>
   <data name="CopyFromMediaLibrary" xml:space="preserve">
     <value>Import</value>
@@ -188,5 +188,11 @@
   </data>
   <data name="DeleteSelected" xml:space="preserve">
     <value>Delete selected Pictures</value>
+  </data>
+  <data name="PhotoCopied" xml:space="preserve">
+    <value>Photo copied to your MediaLibrary</value>
+  </data>
+  <data name="AddPhotosHint" xml:space="preserve">
+    <value>Import some photos from your MediaLibrary or take a new one with the Application Bar Button "Take Photo"</value>
   </data>
 </root>

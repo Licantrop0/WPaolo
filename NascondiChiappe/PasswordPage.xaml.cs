@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
@@ -17,14 +9,7 @@ namespace NascondiChiappe
     public partial class PasswordPage : PhoneApplicationPage
     {
         private bool IsNewPasswordMode { get { return Settings.Password == null; } }
-        private bool IsChangePasswordMode
-        {
-            get
-            {
-                return NavigationContext.QueryString.ContainsKey("ChangePassword") &&
-                    NavigationContext.QueryString["ChangePassword"] == "1";
-            }
-        }
+        private bool IsChangePasswordMode { get { return NavigationContext.QueryString.ContainsKey("ChangePassword"); } }
 
         public PasswordPage()
         {

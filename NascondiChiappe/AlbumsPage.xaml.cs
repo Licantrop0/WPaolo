@@ -47,6 +47,11 @@ namespace NascondiChiappe
             if (e.AddedItems[0] == null)
                 return;
             CurrentPhoto = (BitmapImage)e.AddedItems[0];
+            NavigationService.Navigate(new Uri(
+                string.Format("/ViewPhotosPage.xaml?Album={0}&Photo={1}",
+                AlbumsPivot.SelectedIndex, CurrentAlbum.Images.IndexOf(CurrentPhoto)),
+                UriKind.Relative));
+
         }
 
         void TakePictureAppBarButton_Click(object sender, EventArgs e)

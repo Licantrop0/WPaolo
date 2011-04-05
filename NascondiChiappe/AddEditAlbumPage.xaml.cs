@@ -26,6 +26,9 @@ namespace NascondiChiappe
             if (NavigationContext.QueryString.ContainsKey("Album"))
             {
                 PageTitle.Text = AppResources.EditAlbum;
+                var id = Convert.ToInt32(NavigationContext.QueryString["Album"]);
+                CurrentAlbum = Settings.Albums[id];
+                LayoutRoot.DataContext = CurrentAlbum;
 
                 var DeletePicturesAppBarButton = new ApplicationBarIconButton();
                 DeletePicturesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
@@ -37,10 +40,6 @@ namespace NascondiChiappe
                 DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
                 DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
                 ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
-
-                var id = Convert.ToInt32(NavigationContext.QueryString["Album"]);
-                CurrentAlbum = Settings.Albums[id];
-                LayoutRoot.DataContext = CurrentAlbum;
             }
             else
             {

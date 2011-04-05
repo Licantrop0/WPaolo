@@ -18,7 +18,7 @@
                                     <VisualState x:Name="Unselected" />
                                     <VisualState x:Name="Selected">
                                         <Storyboard>
-                                            <ColorAnimation Duration="0" To="{StaticResource PhoneForegroundBrush}" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="LayoutRoot" />
+                                            <ColorAnimation Duration="0" To="{StaticResource PhoneBorderColor}" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="LayoutRoot" />
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderThickness)" Storyboard.TargetName="LayoutRoot">
                                                 <DiscreteObjectKeyFrame KeyTime="0">
                                                     <DiscreteObjectKeyFrame.Value>

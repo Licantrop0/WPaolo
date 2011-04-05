@@ -156,4 +156,34 @@
   <data name="SetPassword" xml:space="preserve">
     <value>Set Password</value>
   </data>
+  <data name="TakePicture" xml:space="preserve">
+    <value>Take Picture</value>
+  </data>
+  <data name="CopyFromMediaLibrary" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="CopyToMediaLibrary" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="AddAlbum" xml:space="preserve">
+    <value>Add new Album</value>
+  </data>
+  <data name="EditAlbum" xml:space="preserve">
+    <value>Edit Album</value>
+  </data>
+  <data name="AlbumNameRequired" xml:space="preserve">
+    <value>The Album name is required</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="DeleteAlbum" xml:space="preserve">
+    <value>Delete Album</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Are you sure to delete the Album {0}?</value>
+  </data>
 </root>

@@ -7,31 +7,37 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+    shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Pivot Name="ImagePivot" >
+        <controls:Pivot Name="AlbumsPivot" SelectionChanged="Pivot_SelectionChanged">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding AlbumName}" />
+                    <TextBlock Text="{Binding Name}" />
                 </DataTemplate>
             </controls:Pivot.HeaderTemplate>
 
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
-                    <toolkit:WrapPanel Margin="0,-35,0,0">
-                        
-                        <!-- qui ci va la lista delle miniature
-                        <Image Source="{Binding Url}" 
-						   ImageOpened="Image_ImageOpened"
-						   ImageFailed="Image_ImageFailed" />-->
-                        
-                    </toolkit:WrapPanel>
+                    <ListBox Margin="0,-35,0,0" ItemsSource="{Binding Images}"
+                             SelectionChanged="ListBox_SelectionChanged">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel ItemWidth="200" ItemHeight="200"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding}"  Margin="12" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>

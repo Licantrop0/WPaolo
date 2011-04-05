@@ -61,6 +61,24 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new Album.
+        /// </summary>
+        public static string AddAlbum {
+            get {
+                return ResourceManager.GetString("AddAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Album name is required.
+        /// </summary>
+        public static string AlbumNameRequired {
+            get {
+                return ResourceManager.GetString("AlbumNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -79,11 +97,65 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure to delete the Album {0}?.
+        /// </summary>
+        public static string ConfirmDelete {
+            get {
+                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string CopyFromMediaLibrary {
+            get {
+                return ResourceManager.GetString("CopyFromMediaLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string CopyToMediaLibrary {
+            get {
+                return ResourceManager.GetString("CopyToMediaLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Album.
+        /// </summary>
+        public static string DeleteAlbum {
+            get {
+                return ResourceManager.GetString("DeleteAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Album.
+        /// </summary>
+        public static string EditAlbum {
+            get {
+                return ResourceManager.GetString("EditAlbum", resourceCulture);
             }
         }
         
@@ -169,11 +241,29 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set Password.
         /// </summary>
         public static string SetPassword {
             get {
                 return ResourceManager.GetString("SetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take Picture.
+        /// </summary>
+        public static string TakePicture {
+            get {
+                return ResourceManager.GetString("TakePicture", resourceCulture);
             }
         }
     }

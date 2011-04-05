@@ -30,6 +30,10 @@ namespace NascondiChiappe
             {
                 AlbumsPivot.ItemsSource = Settings.Albums;
                 CurrentAlbum = Settings.Albums[0];
+                AddPhotosHintTextBlock.Visibility =
+                    CurrentAlbum.Images.Count == 0 ?
+                    Visibility.Visible :
+                    Visibility.Collapsed;
             }
         }
 

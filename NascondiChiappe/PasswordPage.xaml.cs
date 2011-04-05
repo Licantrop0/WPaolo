@@ -34,18 +34,22 @@ namespace NascondiChiappe
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            MainPasswordBox.Focus();
+
             if (IsNewPasswordMode)
             {
                 TitleTextBlock.Text = AppResources.SetPassword;
                 PasswordStackPanel.Visibility = Visibility.Collapsed;
                 NewPasswordStackPanel.Visibility = Visibility.Visible;
+                NewPasswordBox.Focus();
             }
             else if (IsChangePasswordMode)
             {
                 TitleTextBlock.Text = AppResources.ChangePassword;
                 PasswordStackPanel.Visibility = Visibility.Collapsed;
-                OldPasswordStackPanel.Visibility = Visibility.Visible;
                 NewPasswordStackPanel.Visibility = Visibility.Visible;
+                OldPasswordStackPanel.Visibility = Visibility.Visible;
+                OldPasswordBox.Focus();
             }
         }
 
@@ -59,66 +63,17 @@ namespace NascondiChiappe
         private ApplicationBarIconButton CreateOkAppBarButton()
         {
             var OkAppBarButton = new ApplicationBarIconButton();
-            OkAppBarButton.IconUri = new Uri("Toolkit.Content\\ApplicationBar.Check.png", UriKind.Relative);
+            OkAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_check.png", UriKind.Relative);
             OkAppBarButton.Text = AppResources.Ok;
-            OkAppBarButton.Click += (sender, e) =>
-            {
-                if (IsChangePasswordMode)
-                {
-                    if (Settings.Password != OldPasswordBox.Password)
-                    {
-                        MessageBox.Show(AppResources.PasswordWrong);
-                        return;
-                    }
-
-                    if (NewPasswordBox.Password.Length < Settings.PasswordMinLenght)
-                    {
-                        MessageBox.Show(string.Format(AppResources.PasswordMinLenght, Settings.PasswordMinLenght));
-                        return;
-                    }
-
-                    if (NewPasswordBox.Password != ConfirmPasswordBox.Password)
-                    {
-                        MessageBox.Show(AppResources.PasswordsDoesNotMatch);
-                        return;
-                    }
-
-                    Settings.Password = NewPasswordBox.Password;
-
-                }
-                if (IsNewPasswordMode)
-                {
-                    if (NewPasswordBox.Password.Length < Settings.PasswordMinLenght)
-                    {
-                        MessageBox.Show(string.Format(AppResources.PasswordMinLenght, Settings.PasswordMinLenght));
-                        return;
-                    }
-
-                    if (NewPasswordBox.Password != ConfirmPasswordBox.Password)
-                    {
-                        MessageBox.Show(AppResources.PasswordsDoesNotMatch);
-                        return;
-                    }
-
-                    Settings.Password = NewPasswordBox.Password;
-                }
-                else
-                {
-                    if (Settings.Password != MainPasswordBox.Password)
-                    {
-                        MessageBox.Show(AppResources.PasswordWrong);
-                        return;
-                    }
-                }
-                NavigationService.Navigate(new Uri("/AlbumsPage.xaml", UriKind.Relative));
-            };
+            OkAppBarButton.Click += new EventHandler(OkAppBarButton_Click);
             return OkAppBarButton;
         }
+
 
         private ApplicationBarIconButton CreateCancelAppBarButton()
         {
             var CancelAppBarButton = new ApplicationBarIconButton();
-            CancelAppBarButton.IconUri = new Uri("Toolkit.Content\\ApplicationBar.Cancel.png", UriKind.Relative);
+            CancelAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
             CancelAppBarButton.Text = AppResources.Cancel;
             CancelAppBarButton.Click += (sender, e) => { NavigationService.GoBack(); };
             return CancelAppBarButton;
@@ -129,6 +84,61 @@ namespace NascondiChiappe
             MessageBox.Show(AppResources.Fucked);
         }
 
+        void OkAppBarButton_Click(object sender, EventArgs e)
+        {
+            if (IsNewPasswordMode || IsChangePasswordMode)
+            {
+                if (IsChangePasswordMode && (Settings.Password != OldPasswordBox.Password)) //Controllo anche la vecchia password
+                {
+                    MessageBox.Show(AppResources.PasswordWrong);
+                    OldPasswordBox.SelectAll();
+                    return;
+                }
+
+                if (NewPasswordBox.Password.Length < Settings.PasswordMinLenght)
+                {
+                    MessageBox.Show(string.Format(AppResources.PasswordMinLenght, Settings.PasswordMinLenght));
+                    NewPasswordBox.SelectAll();
+                    return;
+                }
+
+                if (NewPasswordBox.Password != ConfirmPasswordBox.Password)
+                {
+                    MessageBox.Show(AppResources.PasswordsDoesNotMatch);
+                    ConfirmPasswordBox.SelectAll();
+                    return;
+                }
+
+                Settings.Password = NewPasswordBox.Password;
+            }
+
+            else
+            {
+                if (Settings.Password != MainPasswordBox.Password)
+                {
+                    MessageBox.Show(AppResources.PasswordWrong);
+                    MainPasswordBox.SelectAll();
+                    return;
+                }
+            }
+
+            NavigationService.Navigate(new Uri("/AlbumsPage.xaml", UriKind.Relative));
+        }
+
+        private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key== Key.Enter) OkAppBarButton_Click(sender, EventArgs.Empty);
+        }
+
+        private void OldPasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) NewPasswordBox.Focus();
+        }
+
+        private void NewPasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) ConfirmPasswordBox.SelectAll();
+        }
 
     }
 }

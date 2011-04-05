@@ -32,10 +32,8 @@ namespace NascondiChiappe
             InitializeApplicationBar();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            MainPasswordBox.Focus();
-
             if (IsNewPasswordMode)
             {
                 TitleTextBlock.Text = AppResources.SetPassword;
@@ -53,9 +51,14 @@ namespace NascondiChiappe
             }
             else
             {
-                if (Settings.PasswordInserted)
-                    throw new Exception("ForceExit");
+                MainPasswordBox.Focus();
             }
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (Settings.PasswordInserted)
+                throw new Exception("ForceExit");
         }
 
         private void InitializeApplicationBar()
@@ -116,7 +119,7 @@ namespace NascondiChiappe
 
         private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key== Key.Enter) OkAppBarButton_Click(sender, EventArgs.Empty);
+            if (e.Key == Key.Enter) OkAppBarButton_Click(sender, EventArgs.Empty);
         }
 
         private void OldPasswordBox_KeyDown(object sender, KeyEventArgs e)
@@ -128,6 +131,5 @@ namespace NascondiChiappe
         {
             if (e.Key == Key.Enter) ConfirmPasswordBox.SelectAll();
         }
-
     }
 }

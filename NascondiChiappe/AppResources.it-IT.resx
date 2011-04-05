@@ -166,7 +166,7 @@
     <value>Scatta Foto</value>
   </data>
   <data name="AddAlbum" xml:space="preserve">
-    <value>Aggiungi nuovo Album</value>
+    <value>Aggiungi Album</value>
   </data>
   <data name="EditAlbum" xml:space="preserve">
     <value>Modifica Album</value>
@@ -194,5 +194,8 @@
   </data>
   <data name="AddPhotosHint" xml:space="preserve">
     <value>Importa qualche foto dalla tua MediaLibrary o creane una nuova con il pulsante sulla barra delle applicazioni "Scatta Foto"</value>
+  </data>
+  <data name="OneAlbumNecessary" xml:space="preserve">
+    <value>È necessario aggiungere almeno un Album per utilizzare questa App</value>
   </data>
 </root>

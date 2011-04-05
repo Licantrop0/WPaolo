@@ -13,6 +13,7 @@ namespace NascondiChiappe
         [DataMember]
         public string Name { get; set; }
 
+        [DataMember]
         public string DirectoryName { get; set; }
 
         IsolatedStorageFile isf { get { return IsolatedStorageFile.GetUserStoreForApplication(); } }

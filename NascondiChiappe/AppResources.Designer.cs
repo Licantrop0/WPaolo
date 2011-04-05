@@ -70,6 +70,15 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import some photos from your MediaLibrary or take a new one with the Application Bar Button &quot;Take Photo&quot;.
+        /// </summary>
+        public static string AddPhotosHint {
+            get {
+                return ResourceManager.GetString("AddPhotosHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Album name is required.
         /// </summary>
         public static string AlbumNameRequired {
@@ -250,6 +259,15 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Photo copied to your MediaLibrary.
+        /// </summary>
+        public static string PhotoCopied {
+            get {
+                return ResourceManager.GetString("PhotoCopied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -268,11 +286,11 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Take Picture.
+        ///   Looks up a localized string similar to Take Photo.
         /// </summary>
-        public static string TakePicture {
+        public static string TakePhoto {
             get {
-                return ResourceManager.GetString("TakePicture", resourceCulture);
+                return ResourceManager.GetString("TakePhoto", resourceCulture);
             }
         }
     }

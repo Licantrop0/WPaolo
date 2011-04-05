@@ -162,7 +162,7 @@
   <data name="CopyToMediaLibrary" xml:space="preserve">
     <value>Esporta</value>
   </data>
-  <data name="TakePicture" xml:space="preserve">
+  <data name="TakePhoto" xml:space="preserve">
     <value>Scatta Foto</value>
   </data>
   <data name="AddAlbum" xml:space="preserve">
@@ -187,6 +187,12 @@
     <value>Sei sicuro di voler eliminare l'Album {0}?</value>
   </data>
   <data name="DeleteSelected" xml:space="preserve">
-    <value>Elimina le immagini selezionate</value>
+    <value>Elimina le foto selezionate</value>
+  </data>
+  <data name="PhotoCopied" xml:space="preserve">
+    <value>Foto copiata nella tua MediaLibrary</value>
+  </data>
+  <data name="AddPhotosHint" xml:space="preserve">
+    <value>Importa qualche foto dalla tua MediaLibrary o creane una nuova con il pulsante sulla barra delle applicazioni "Scatta Foto"</value>
   </data>
 </root>

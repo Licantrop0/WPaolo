@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using System.Windows.Media.Imaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using System.ComponentModel;
-using System.Windows.Media.Imaging;
-using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Controls;
 
 namespace NascondiChiappe
 {
@@ -47,24 +41,55 @@ namespace NascondiChiappe
             var SaveAppBarButton = new ApplicationBarIconButton();
             SaveAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_save.png", UriKind.Relative);
             SaveAppBarButton.Text = AppResources.Save;
-            SaveAppBarButton.Click += (sender, e) =>
-            {
-                if (!CheckAlbumName())
-                    return;
-
-                if (CurrentAlbum == null)
-                    Settings.Albums.Add(new Album(AlbumNameTextBox.Text));
-                else
-                {
-                    Settings.Albums.Remove(CurrentAlbum);
-                    Settings.Albums.Add(new Album(AlbumNameTextBox.Text)
-                        { Images = (ObservableCollection<BitmapImage>)ImagesListBox.ItemsSource });
-                }
-                NavigationService.GoBack();
-            };
-
+            SaveAppBarButton.Click += new EventHandler(SaveAppBarButton_Click);
             ApplicationBar.Buttons.Add(SaveAppBarButton);
+
+            var DeletePicturesAppBarMenuItem = new ApplicationBarMenuItem();
+            DeletePicturesAppBarMenuItem.Text = AppResources.DeleteSelected;
+            DeletePicturesAppBarMenuItem.Click += new EventHandler(DeletePicturesAppBarMenuItem_Click);
+            ApplicationBar.MenuItems.Add(DeletePicturesAppBarMenuItem);
+
+            var DeleteAlbumAppBarMenuItem = new ApplicationBarMenuItem();
+            DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
+            DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
+            ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
         }
+
+        void DeletePicturesAppBarMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (BitmapImage item in ImagesListBox.SelectedItems)
+            {
+                CurrentAlbum.Images.Remove(item);
+            }
+        }
+
+
+        void SaveAppBarButton_Click(object sender, EventArgs e)
+        {
+            if (!CheckAlbumName())
+                return;
+
+            if (CurrentAlbum == null)
+                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, DateTime.Now.GetHashCode().ToString()));
+            else
+            {
+                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName)
+                    { Images = (ObservableCollection<BitmapImage>)ImagesListBox.ItemsSource });
+                Settings.Albums.Remove(CurrentAlbum);
+            }
+            NavigationService.GoBack();
+        }
+
+        void DeleteAlbumAppBarMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(string.Format(AppResources.ConfirmDelete, CurrentAlbum.Name),
+                AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                Settings.Albums.Remove(CurrentAlbum);
+                NavigationService.GoBack();
+            }
+        }
+
 
         private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
         {

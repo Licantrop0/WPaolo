@@ -32,10 +32,8 @@ namespace NascondiChiappe
             InitializeApplicationBar();
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            MainPasswordBox.Focus();
-
             if (IsNewPasswordMode)
             {
                 TitleTextBlock.Text = AppResources.SetPassword;
@@ -50,6 +48,12 @@ namespace NascondiChiappe
                 NewPasswordStackPanel.Visibility = Visibility.Visible;
                 OldPasswordStackPanel.Visibility = Visibility.Visible;
                 OldPasswordBox.Focus();
+            }
+            else
+            {
+                if (Settings.PasswordInserted)
+                    throw new Exception("ForceExit");
+                MainPasswordBox.Focus();
             }
         }
 
@@ -68,7 +72,6 @@ namespace NascondiChiappe
             OkAppBarButton.Click += new EventHandler(OkAppBarButton_Click);
             return OkAppBarButton;
         }
-
 
         private ApplicationBarIconButton CreateCancelAppBarButton()
         {
@@ -111,7 +114,6 @@ namespace NascondiChiappe
 
                 Settings.Password = NewPasswordBox.Password;
             }
-
             else
             {
                 if (Settings.Password != MainPasswordBox.Password)
@@ -122,6 +124,7 @@ namespace NascondiChiappe
                 }
             }
 
+            Settings.PasswordInserted = true;
             NavigationService.Navigate(new Uri("/AlbumsPage.xaml", UriKind.Relative));
         }
 

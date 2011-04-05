@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using System.Collections.Generic;
-using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
 using System.IO;
 using System.IO.IsolatedStorage;
+using System.Runtime.Serialization;
+using System.Windows.Media.Imaging;
 
 namespace NascondiChiappe
 {
@@ -22,6 +12,8 @@ namespace NascondiChiappe
     {
         [DataMember]
         public string Name { get; set; }
+
+        public string DirectoryName { get; set; }
 
         IsolatedStorageFile isf { get { return IsolatedStorageFile.GetUserStoreForApplication(); } }
 
@@ -35,9 +27,9 @@ namespace NascondiChiappe
                     _images = new ObservableCollection<BitmapImage>();
                     if (isf.DirectoryExists(Name))
                     {
-                        foreach (var fileName in isf.GetFileNames(Name + "\\*"))
+                        foreach (var fileName in isf.GetFileNames(DirectoryName + "\\*"))
                         {
-                            var file = isf.OpenFile(Name + "\\" + fileName, FileMode.Open);
+                            var file = isf.OpenFile(DirectoryName + "\\" + fileName, FileMode.Open);
                             BitmapImage bitmap = new BitmapImage();
                             bitmap.SetSource(file);
                             _images.Add(bitmap);
@@ -50,9 +42,10 @@ namespace NascondiChiappe
         }
 
         public Album() { }
-        public Album(string name)
+        public Album(string name, string directoryName)
         {
             Name = name;
+            DirectoryName = directoryName;
         }
 
         public void AddImage(Stream image)
@@ -62,11 +55,11 @@ namespace NascondiChiappe
             
             _images.Add(bitmap);
 
-            if (!isf.DirectoryExists(Name))
-                isf.CreateDirectory(Name);
+            if (!isf.DirectoryExists(DirectoryName))
+                isf.CreateDirectory(DirectoryName);
 
             var wb = new WriteableBitmap(bitmap);
-            var FileStream = isf.CreateFile(Name + "\\" + Guid.NewGuid());
+            var FileStream = isf.CreateFile(DirectoryName + "\\" + Guid.NewGuid());
             Extensions.SaveJpeg(wb, FileStream, wb.PixelWidth, wb.PixelHeight, 0, 85);
         }
     }

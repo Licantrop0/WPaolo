@@ -186,4 +186,7 @@
   <data name="ConfirmDelete" xml:space="preserve">
     <value>Are you sure to delete the Album {0}?</value>
   </data>
+  <data name="DeleteSelected" xml:space="preserve">
+    <value>Delete selected Pictures</value>
+  </data>
 </root>

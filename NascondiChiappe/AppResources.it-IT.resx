@@ -186,4 +186,7 @@
   <data name="ConfirmDelete" xml:space="preserve">
     <value>Sei sicuro di voler eliminare l'Album {0}?</value>
   </data>
+  <data name="DeleteSelected" xml:space="preserve">
+    <value>Elimina le immagini selezionate</value>
+  </data>
 </root>

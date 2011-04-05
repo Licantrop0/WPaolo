@@ -151,6 +151,15 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete selected Pictures.
+        /// </summary>
+        public static string DeleteSelected {
+            get {
+                return ResourceManager.GetString("DeleteSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Album.
         /// </summary>
         public static string EditAlbum {

@@ -223,6 +223,15 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It&apos;s necessary at least one Album to use this App.
+        /// </summary>
+        public static string OneAlbumNecessary {
+            get {
+                return ResourceManager.GetString("OneAlbumNecessary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {

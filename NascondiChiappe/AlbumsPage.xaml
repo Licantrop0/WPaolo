@@ -25,7 +25,7 @@
 
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
-                    <ListBox Margin="0,-35,0,0" ItemsSource="{Binding Images}"
+                    <ListBox Margin="0,-30,0,0" ItemsSource="{Binding Images}"
                              ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
                              SelectionChanged="ListBox_SelectionChanged">
                         <ListBox.ItemsPanel>
@@ -42,9 +42,12 @@
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>
-        <TextBlock Name="AddPhotosHintTextBlock" Visibility="Collapsed" Style="{StaticResource PhoneTextTitle2Style}"
-                   TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center"
-                   Text="{Binding Path=LocalizedResources.AddPhotosHint, Source={StaticResource LocalizedStrings}}"/>
+        <TextBlock Name="AddPhotosHintTextBlock" Visibility="Collapsed"
+                   Text="{Binding Path=LocalizedResources.AddPhotosHint, Source={StaticResource LocalizedStrings}}"
+                   Style="{StaticResource PhoneTextTitle2Style}"
+                   TextWrapping="Wrap" IsHitTestVisible="False" 
+                   VerticalAlignment="Center" TextAlignment="Center"
+                   FontStyle="Italic" />
     </Grid>
 
 </phone:PhoneApplicationPage>

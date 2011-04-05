@@ -30,10 +30,7 @@ namespace NascondiChiappe
             {
                 AlbumsPivot.ItemsSource = Settings.Albums;
                 CurrentAlbum = Settings.Albums[0];
-                AddPhotosHintTextBlock.Visibility =
-                    CurrentAlbum.Images.Count == 0 ?
-                    Visibility.Visible :
-                    Visibility.Collapsed;
+                ShowHint();
             }
         }
 
@@ -42,14 +39,13 @@ namespace NascondiChiappe
             if (e.AddedItems[0] == null)
                 return;
             CurrentAlbum = (Album)e.AddedItems[0];
-            AddPhotosHintTextBlock.Visibility =
-                CurrentAlbum.Images.Count == 0 ?
-                Visibility.Visible :
-                Visibility.Collapsed;
+            ShowHint();
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (e.AddedItems[0] == null)
+                return;
             CurrentPhoto = (BitmapImage)e.AddedItems[0];
         }
 
@@ -88,8 +84,20 @@ namespace NascondiChiappe
         void CaptureTask_Completed(object sender, PhotoResult e)
         {
             if (e.TaskResult == TaskResult.OK)
+            {
                 CurrentAlbum.AddImage(e.ChosenPhoto);
+                ShowHint();
+            }
         }
+
+        private void ShowHint()
+        {
+            AddPhotosHintTextBlock.Visibility =
+                CurrentAlbum.Images.Count == 0 ?
+                Visibility.Visible :
+                Visibility.Collapsed;
+        }
+
 
         void DeleteAlbumAppBarMenuItem_Click(object sender, EventArgs e)
         {

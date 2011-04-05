@@ -195,4 +195,7 @@
   <data name="AddPhotosHint" xml:space="preserve">
     <value>Import some photos from your MediaLibrary or take a new one with the Application Bar Button "Take Photo"</value>
   </data>
+  <data name="OneAlbumNecessary" xml:space="preserve">
+    <value>It's necessary at least one Album to use this App</value>
+  </data>
 </root>

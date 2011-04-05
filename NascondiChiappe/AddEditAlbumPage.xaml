@@ -36,9 +36,12 @@
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-            
         </ListBox>
-
+        <TextBlock Name="OneAlbumNecessaryTextBlock" Visibility="Collapsed"
+                   Text="{Binding Path=LocalizedResources.OneAlbumNecessary, Source={StaticResource LocalizedStrings}}"
+                   Style="{StaticResource PhoneTextTitle2Style}"
+                   TextWrapping="Wrap" IsHitTestVisible="False"
+                   TextAlignment="Center" FontStyle="Italic"  />
     </StackPanel>
 
 </phone:PhoneApplicationPage>

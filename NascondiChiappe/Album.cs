@@ -26,7 +26,7 @@ namespace NascondiChiappe
                 if (_images == null)
                 {
                     _images = new ObservableCollection<BitmapImage>();
-                    if (isf.DirectoryExists(Name))
+                    if (isf.DirectoryExists(DirectoryName))
                     {
                         foreach (var fileName in isf.GetFileNames(DirectoryName + "\\*"))
                         {

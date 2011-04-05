@@ -41,10 +41,14 @@ namespace NascondiChiappe
                 var id = Convert.ToInt32(NavigationContext.QueryString["Album"]);
                 CurrentAlbum = Settings.Albums[id];
                 LayoutRoot.DataContext = CurrentAlbum;
-            
             }
             else
+            {
+                if (Settings.Albums.Count == 0)
+                    OneAlbumNecessaryTextBlock.Visibility = Visibility.Visible;
+
                 AlbumNameTextBox.Focus();
+            }
         }
 
         private void InitializeApplicationBar()
@@ -72,7 +76,7 @@ namespace NascondiChiappe
                 return;
 
             if (CurrentAlbum == null)
-                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, DateTime.Now.GetHashCode().ToString()));
+                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, Guid.NewGuid().ToString()));
             else
             {
                 Settings.Albums.Add(new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName) { Images = (ObservableCollection<BitmapImage>)ImagesListBox.ItemsSource });

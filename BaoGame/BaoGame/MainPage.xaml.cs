@@ -26,6 +26,26 @@ namespace BaoGame
             NavigationService.Navigate(new Uri("/GamePage.xaml", UriKind.Relative));
         }
 
+        private void settingsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void creditsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tutorialButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void extraButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
 
     }

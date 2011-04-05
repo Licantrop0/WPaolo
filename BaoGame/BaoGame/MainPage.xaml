@@ -6,15 +6,15 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    mc:Ignorable="d" d:DesignWidth="728" d:DesignHeight="480"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="Landscape" Orientation="Landscape"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -22,14 +22,20 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="BAO" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" TextAlignment="Center" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Content="new game" Height="72" HorizontalAlignment="Left" Margin="149,240,0,0" Name="newGameButton" VerticalAlignment="Top" Width="160" Click="newGameButton_Click" />
+            <Button Content="new game" Height="72" HorizontalAlignment="Left" Margin="281,58,0,0" Name="newGameButton" VerticalAlignment="Top" Width="160" Click="newGameButton_Click" />
+            <Button Content="settings" Height="72" HorizontalAlignment="Left" Margin="403,154,0,0" Name="settingsButton" VerticalAlignment="Top" Width="160" Click="settingsButton_Click" />
+            <Button Content="extra" Height="72" HorizontalAlignment="Left" Margin="152,223,0,0" Name="extraButton" VerticalAlignment="Top" Width="160" Click="extraButton_Click" />
+            <Button Content="tutorial" Height="72" HorizontalAlignment="Left" Margin="152,154,0,0" Name="tutorialButton" VerticalAlignment="Top" Width="160" Click="tutorialButton_Click" />
+            <Button Content="credits" Height="72" HorizontalAlignment="Left" Margin="403,223,0,0" Name="creditsButton" VerticalAlignment="Top" Width="160" Click="creditsButton_Click" />
         </Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="img/sfondo_bao.jpg" />
+        </Grid.Background>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

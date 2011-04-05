@@ -241,6 +241,15 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warning: do not forgot your password because you will not able to access to your photos anymore.
+        /// </summary>
+        public static string PasswordHint {
+            get {
+                return ResourceManager.GetString("PasswordHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The new Password must be at least {0} character lenght.
         /// </summary>
         public static string PasswordMinLenght {

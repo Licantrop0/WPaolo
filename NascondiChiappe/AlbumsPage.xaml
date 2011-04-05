@@ -15,7 +15,7 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False" >
 
-    <Grid Background="Transparent">
+    <Grid Margin="12,17,0,28" Background="Transparent">
         <controls:Pivot Name="AlbumsPivot" SelectionChanged="Pivot_SelectionChanged">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>

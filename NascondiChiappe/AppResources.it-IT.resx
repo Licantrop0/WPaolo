@@ -198,4 +198,7 @@
   <data name="OneAlbumNecessary" xml:space="preserve">
     <value>È necessario aggiungere almeno un Album per utilizzare questa App</value>
   </data>
+  <data name="PasswordHint" xml:space="preserve">
+    <value>Attenzione: non dimenticate la password perchè se no non sarete più in grado di accedere alle vostre foto</value>
+  </data>
 </root>

@@ -4,6 +4,7 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
 using System.Windows.Media.Imaging;
+using ExifLib;
 
 namespace NascondiChiappe
 {
@@ -31,15 +32,15 @@ namespace NascondiChiappe
                         foreach (var fileName in isf.GetFileNames(DirectoryName + "\\*"))
                         {
                             var file = isf.OpenFile(DirectoryName + "\\" + fileName, FileMode.Open);
-                            BitmapImage bitmap = new BitmapImage();
+                            var bitmap = new BitmapImage();
                             bitmap.SetSource(file);
                             _images.Add(bitmap);
+                            file.Close();
                         }
                     }
                 }
                 return _images;
             }
-            set { _images = value; }
         }
 
         public Album() { }
@@ -49,19 +50,66 @@ namespace NascondiChiappe
             DirectoryName = directoryName;
         }
 
-        public void AddImage(Stream image)
+        public void RemoveImage(BitmapImage image)
+        {
+            var index = _images.IndexOf(image);
+            var fileName =  isf.GetFileNames(DirectoryName + "\\*")[index];
+            isf.DeleteFile(DirectoryName + "\\" + fileName);
+            
+            Images.Remove(image);
+        }
+
+        public void RemoveDirectoryContent()
+        {
+            foreach (var fileName in isf.GetFileNames(DirectoryName + "\\*"))
+            {
+                isf.DeleteFile(DirectoryName + "\\" + fileName);
+            }
+            isf.DeleteDirectory(DirectoryName);
+        }
+
+        public void AddImage(Stream image, string fileName)
         {
             var bitmap = new BitmapImage();
             bitmap.SetSource(image);
-            
-            _images.Add(bitmap);
 
-            if (!isf.DirectoryExists(DirectoryName))
-                isf.CreateDirectory(DirectoryName);
+            WriteableBitmap wbSource = new WriteableBitmap(bitmap);
+            WriteableBitmap wbTarget = null;
 
-            var wb = new WriteableBitmap(bitmap);
-            var FileStream = isf.CreateFile(DirectoryName + "\\" + Guid.NewGuid());
-            Extensions.SaveJpeg(wb, FileStream, wb.PixelWidth, wb.PixelHeight, 0, 85);
-        }
+            image.Position = 0;
+            switch (ExifReader.ReadJpeg(image, fileName).Orientation)
+            {
+                case ExifOrientation.TopRight: //90°
+                    wbTarget = new WriteableBitmap(wbSource.PixelHeight, wbSource.PixelWidth);
+                    for (int x = 0; x < wbSource.PixelWidth; x++)
+                        for (int y = 0; y < wbSource.PixelHeight; y++)
+                            wbTarget.Pixels[(wbSource.PixelHeight - y - 1) + x * wbTarget.PixelWidth] = wbSource.Pixels[x + y * wbSource.PixelWidth];
+                    break;
+                case ExifOrientation.BottomRight: //180°
+                    wbTarget = new WriteableBitmap(wbSource.PixelWidth, wbSource.PixelHeight);
+                    for (int x = 0; x < wbSource.PixelWidth; x++)
+                        for (int y = 0; y < wbSource.PixelHeight; y++)
+                            wbTarget.Pixels[(wbSource.PixelWidth - x - 1) + (wbSource.PixelHeight - y - 1) * wbSource.PixelWidth] = wbSource.Pixels[x + y * wbSource.PixelWidth];
+                    break;
+                case ExifOrientation.BottomLeft: //270°
+                    wbTarget = new WriteableBitmap(wbSource.PixelHeight, wbSource.PixelWidth);
+                    for (int x = 0; x < wbSource.PixelWidth; x++)
+                        for (int y = 0; y < wbSource.PixelHeight; y++)
+                            wbTarget.Pixels[y + (wbSource.PixelWidth - x - 1) * wbTarget.PixelWidth] = wbSource.Pixels[x + y * wbSource.PixelWidth];
+                    break;
+                default: //0°
+                    wbTarget = wbSource;
+                    break;
+            }
+            image.Close();
+
+            if (!isf.DirectoryExists(DirectoryName)) isf.CreateDirectory(DirectoryName);
+            var fs = isf.CreateFile(DirectoryName + "\\" + Guid.NewGuid());
+            wbTarget.SaveJpeg(fs, wbTarget.PixelWidth, wbTarget.PixelHeight, 0, 85);
+            fs.Position = 0;
+            bitmap.SetSource(fs);
+            fs.Close();
+             _images.Add(bitmap);
+       }
     }
 }

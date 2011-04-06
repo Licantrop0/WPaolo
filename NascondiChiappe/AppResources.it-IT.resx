@@ -130,7 +130,7 @@
     <value>Ho dimenticato la Password</value>
   </data>
   <data name="Fucked" xml:space="preserve">
-    <value>Mi spiace, sei fottuto!</value>
+    <value>Mi spiace, non puoi recuperare la password... Te l'avevo detto di ricordartela!</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
     <value>Nuova Password</value>
@@ -190,7 +190,7 @@
     <value>Elimina le foto selezionate</value>
   </data>
   <data name="PhotoCopied" xml:space="preserve">
-    <value>Foto copiata nella tua MediaLibrary</value>
+    <value>La Foto è stata copiata nella tua MediaLibrary</value>
   </data>
   <data name="AddPhotosHint" xml:space="preserve">
     <value>Importa qualche foto dalla tua MediaLibrary o creane una nuova con il pulsante sulla barra delle applicazioni "Scatta Foto"</value>
@@ -199,6 +199,12 @@
     <value>È necessario aggiungere almeno un Album per utilizzare questa App</value>
   </data>
   <data name="PasswordHint" xml:space="preserve">
-    <value>Attenzione: non dimenticate la password perchè se no non sarete più in grado di accedere alle vostre foto</value>
+    <value>Attenzione: non dimenticate la password, altrimenti non sarete più in grado di accedere alle vostre foto</value>
+  </data>
+  <data name="ViewPhoto" xml:space="preserve">
+    <value>Visualizza Foto</value>
+  </data>
+  <data name="SelectPhoto" xml:space="preserve">
+    <value>Seleziona la foto da esportare</value>
   </data>
 </root>

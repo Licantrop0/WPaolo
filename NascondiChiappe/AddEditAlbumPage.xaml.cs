@@ -65,7 +65,7 @@ namespace NascondiChiappe
         {
             foreach (BitmapImage item in ImagesListBox.SelectedItems)
             {
-                CurrentAlbum.Images.Remove(item);
+                CurrentAlbum.RemoveImage(item);
             }
         }
 
@@ -78,11 +78,11 @@ namespace NascondiChiappe
                 Settings.Albums.Add(new Album(AlbumNameTextBox.Text, Guid.NewGuid().ToString()));
             else
             {
-                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName)
-                    { Images = (ObservableCollection<BitmapImage>)ImagesListBox.ItemsSource });
+                var index = Settings.Albums.IndexOf(CurrentAlbum);
                 Settings.Albums.Remove(CurrentAlbum);
+                Settings.Albums.Insert(index, new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName));
             }
-            NavigationService.GoBack();
+            NavigationService.Navigate(new Uri("/AlbumsPage.xaml", UriKind.Relative));
         }
 
         void DeleteAlbumAppBarMenuItem_Click(object sender, EventArgs e)
@@ -90,6 +90,7 @@ namespace NascondiChiappe
             if (MessageBox.Show(string.Format(AppResources.ConfirmDelete, CurrentAlbum.Name),
                 AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
+                CurrentAlbum.RemoveDirectoryContent();
                 Settings.Albums.Remove(CurrentAlbum);
                 NavigationService.GoBack();
             }

@@ -29,7 +29,7 @@ namespace NascondiChiappe
             else
             {
                 AlbumsPivot.ItemsSource = Settings.Albums;
-                CurrentAlbum = Settings.Albums[0];
+                CurrentAlbum = Settings.Albums[AlbumsPivot.SelectedIndex];
                 ShowHint();
             }
         }
@@ -42,7 +42,10 @@ namespace NascondiChiappe
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CurrentPhoto = e.AddedItems[0] as BitmapImage;
+            if (e.AddedItems.Count == 0)
+                CurrentPhoto = null;
+            else
+                CurrentPhoto = e.AddedItems[0] as BitmapImage;
         }
 
         void TakePictureAppBarButton_Click(object sender, EventArgs e)
@@ -60,7 +63,11 @@ namespace NascondiChiappe
         {
             var photoChooserTask = new PhotoChooserTask();
             photoChooserTask.Completed += CaptureTask_Completed;
-            photoChooserTask.Show();
+            try
+            {
+                photoChooserTask.Show();
+            }
+            catch (InvalidOperationException) { };
         }
 
         void CopyToMediaLibraryAppBarButton_Click(object sender, EventArgs e)
@@ -70,7 +77,7 @@ namespace NascondiChiappe
                 MessageBox.Show(AppResources.SelectPhoto);
                 return;
             }
-               
+
             var stream = new MemoryStream();
             var wb = new WriteableBitmap(CurrentPhoto);
             wb.SaveJpeg(stream, wb.PixelWidth, wb.PixelHeight, 0, 85);
@@ -84,7 +91,8 @@ namespace NascondiChiappe
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                CurrentAlbum.AddImage(e.ChosenPhoto);
+                var index = e.OriginalFileName.LastIndexOf('\\');
+                CurrentAlbum.AddImage(e.ChosenPhoto, e.OriginalFileName.Substring(index + 1));
                 ShowHint();
             }
         }

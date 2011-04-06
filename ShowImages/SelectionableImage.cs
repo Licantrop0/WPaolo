@@ -25,7 +25,7 @@ namespace ShowImages
         public SelectionableImage(string url)
         {
             Url = url;
-            IsSelected = true;
+            IsSelected = false;
         }
     }
 }

@@ -15,7 +15,7 @@
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress" Loaded="PhoneApplicationPage_Loaded">
 
-    <StackPanel x:Name="LayoutRoot" Margin="12,17,0,28">
+    <StackPanel x:Name="LayoutRoot" Margin="12,17,0,28" Background="Transparent">
         <TextBlock x:Name="PageTitle"
                    Text="{Binding LocalizedResources.AddAlbum, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource PhoneTextTitle1Style}"/>
@@ -32,7 +32,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Image Source="{Binding}"  Margin="6" />
+                        <Image Source="{Binding}" Margin="6" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

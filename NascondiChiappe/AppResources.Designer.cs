@@ -187,7 +187,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I&apos;m sorry, you are fucked!.
+        ///   Looks up a localized string similar to I&apos;m sorry, you cannot recover your password... I told you to remember it!.
         /// </summary>
         public static string Fucked {
             get {
@@ -295,6 +295,15 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select a Photo to export.
+        /// </summary>
+        public static string SelectPhoto {
+            get {
+                return ResourceManager.GetString("SelectPhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set Password.
         /// </summary>
         public static string SetPassword {
@@ -309,6 +318,15 @@ namespace NascondiChiappe {
         public static string TakePhoto {
             get {
                 return ResourceManager.GetString("TakePhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Photo.
+        /// </summary>
+        public static string ViewPhoto {
+            get {
+                return ResourceManager.GetString("ViewPhoto", resourceCulture);
             }
         }
     }

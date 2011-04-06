@@ -36,22 +36,13 @@ namespace NascondiChiappe
 
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems[0] == null)
-                return;
-            CurrentAlbum = (Album)e.AddedItems[0];
+            CurrentAlbum = e.AddedItems[0] as Album;
             ShowHint();
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems[0] == null)
-                return;
-            CurrentPhoto = (BitmapImage)e.AddedItems[0];
-            NavigationService.Navigate(new Uri(
-                string.Format("/ViewPhotosPage.xaml?Album={0}&Photo={1}",
-                AlbumsPivot.SelectedIndex, CurrentAlbum.Images.IndexOf(CurrentPhoto)),
-                UriKind.Relative));
-
+            CurrentPhoto = e.AddedItems[0] as BitmapImage;
         }
 
         void TakePictureAppBarButton_Click(object sender, EventArgs e)
@@ -74,16 +65,19 @@ namespace NascondiChiappe
 
         void CopyToMediaLibraryAppBarButton_Click(object sender, EventArgs e)
         {
-            if (CurrentPhoto != null)
+            if (CurrentPhoto == null)
             {
-                var stream = new MemoryStream();
-                var wb = new WriteableBitmap(CurrentPhoto);
-                wb.SaveJpeg(stream, wb.PixelWidth, wb.PixelHeight, 0, 85);
-                stream.Position = 0;
-                new MediaLibrary().SavePicture(Guid.NewGuid().ToString(), stream);
-                stream.Close();
-                MessageBox.Show(AppResources.PhotoCopied);
+                MessageBox.Show(AppResources.SelectPhoto);
+                return;
             }
+               
+            var stream = new MemoryStream();
+            var wb = new WriteableBitmap(CurrentPhoto);
+            wb.SaveJpeg(stream, wb.PixelWidth, wb.PixelHeight, 0, 85);
+            stream.Position = 0;
+            new MediaLibrary().SavePicture(Guid.NewGuid().ToString(), stream);
+            stream.Close();
+            MessageBox.Show(AppResources.PhotoCopied);
         }
 
         void CaptureTask_Completed(object sender, PhotoResult e)
@@ -97,6 +91,9 @@ namespace NascondiChiappe
 
         private void ShowHint()
         {
+            if (CurrentAlbum == null)
+                return;
+
             AddPhotosHintTextBlock.Visibility =
                 CurrentAlbum.Images.Count == 0 ?
                 Visibility.Visible :
@@ -114,9 +111,24 @@ namespace NascondiChiappe
                 NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative));
         }
 
+        void ViewPhotoAppBarButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri(
+                string.Format("/ViewPhotosPage.xaml?Album={0}&Photo={1}",
+                AlbumsPivot.SelectedIndex, CurrentAlbum.Images.IndexOf(CurrentPhoto)),
+                UriKind.Relative));
+        }
+
+
         private void InitializeApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
+
+            var ViewPhotoAppBarButton = new ApplicationBarIconButton();
+            ViewPhotoAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_viewpic.png", UriKind.Relative);
+            ViewPhotoAppBarButton.Text = AppResources.ViewPhoto;
+            ViewPhotoAppBarButton.Click += new EventHandler(ViewPhotoAppBarButton_Click);
+            ApplicationBar.Buttons.Add(ViewPhotoAppBarButton);
 
             var TakePictureAppBarButton = new ApplicationBarIconButton();
             TakePictureAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_camera.png", UriKind.Relative);
@@ -159,6 +171,5 @@ namespace NascondiChiappe
             //DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
             //ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
         }
-
     }
 }

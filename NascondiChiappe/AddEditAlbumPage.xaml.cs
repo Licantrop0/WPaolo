@@ -78,7 +78,8 @@ namespace NascondiChiappe
                 Settings.Albums.Add(new Album(AlbumNameTextBox.Text, Guid.NewGuid().ToString()));
             else
             {
-                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName) { Images = (ObservableCollection<BitmapImage>)ImagesListBox.ItemsSource });
+                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName)
+                    { Images = (ObservableCollection<BitmapImage>)ImagesListBox.ItemsSource });
                 Settings.Albums.Remove(CurrentAlbum);
             }
             NavigationService.GoBack();

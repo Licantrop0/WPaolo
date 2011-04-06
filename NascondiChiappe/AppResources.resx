@@ -130,7 +130,7 @@
     <value>I forgot my Password</value>
   </data>
   <data name="Fucked" xml:space="preserve">
-    <value>I'm sorry, you are fucked!</value>
+    <value>I'm sorry, you cannot recover your password... I told you to remember it!</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
     <value>New Password</value>
@@ -200,5 +200,11 @@
   </data>
   <data name="PasswordHint" xml:space="preserve">
     <value>Warning: do not forgot your password because you will not able to access to your photos anymore</value>
+  </data>
+  <data name="ViewPhoto" xml:space="preserve">
+    <value>View Photo</value>
+  </data>
+  <data name="SelectPhoto" xml:space="preserve">
+    <value>Please select a Photo to export</value>
   </data>
 </root>

@@ -30,6 +30,7 @@ namespace NascondiChiappe
             {
                 TitleTextBlock.Text = AppResources.ChangePassword;
                 PasswordStackPanel.Visibility = Visibility.Collapsed;
+                PasswordHintTextBlock.Visibility = Visibility.Collapsed;
                 NewPasswordStackPanel.Visibility = Visibility.Visible;
                 OldPasswordStackPanel.Visibility = Visibility.Visible;
                 OldPasswordBox.Focus();
@@ -114,7 +115,11 @@ namespace NascondiChiappe
 
         private void NewPasswordBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter) ConfirmPasswordBox.SelectAll();
+            if (e.Key == Key.Enter)
+            {
+                ConfirmPasswordBox.Focus();
+                ConfirmPasswordBox.SelectAll();
+            }
         }
     }
 }

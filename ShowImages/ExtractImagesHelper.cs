@@ -29,12 +29,6 @@ namespace ShowImages
             foreach (var anchor in html.DocumentNode.Descendants("a"))
             {
                 var href = anchor.GetAttributeValue("href", string.Empty);
-                if (href.Contains("/imgres?q=")) //Google Images
-                {
-                    href = href.Replace("&amp;", "&");
-                    href = href.Substring(href.IndexOf("imgurl=") + 7);
-                    href = href.Remove(href.IndexOf("&imgrefurl="));
-                }
                 ImgLinks.Add(href);
             }
 

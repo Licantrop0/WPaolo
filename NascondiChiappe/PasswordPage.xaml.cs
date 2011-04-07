@@ -35,8 +35,14 @@ namespace NascondiChiappe
                 OldPasswordStackPanel.Visibility = Visibility.Visible;
                 OldPasswordBox.Focus();
             }
-            else
+            else //Insert Password Mode
             {
+                var ChangePasswordAppBarMenuItem = new ApplicationBarMenuItem();
+                ChangePasswordAppBarMenuItem.Text = AppResources.ChangePassword;
+                ChangePasswordAppBarMenuItem.Click += (sender1, e1) =>
+                { NavigationService.Navigate(new Uri("/PasswordPage.xaml?ChangePassword=1", UriKind.Relative)); };
+                ApplicationBar.MenuItems.Add(ChangePasswordAppBarMenuItem);
+
                 MainPasswordBox.Focus();
             }
         }
@@ -50,6 +56,7 @@ namespace NascondiChiappe
         private void InitializeApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
+
             var OkAppBarButton = new ApplicationBarIconButton();
             OkAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_check.png", UriKind.Relative);
             OkAppBarButton.Text = AppResources.Ok;

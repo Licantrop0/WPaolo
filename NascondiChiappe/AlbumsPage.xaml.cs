@@ -109,16 +109,6 @@ namespace NascondiChiappe
         }
 
 
-        void DeleteAlbumAppBarMenuItem_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(string.Format(AppResources.ConfirmDelete, CurrentAlbum.Name),
-                AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                Settings.Albums.Remove(CurrentAlbum);
-
-            if (Settings.Albums.Count == 0)
-                NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative));
-        }
-
         void ViewPhotoAppBarButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri(
@@ -167,17 +157,6 @@ namespace NascondiChiappe
             AddAlbumAppBarMenuItem.Click += (sender, e) =>
             { NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(AddAlbumAppBarMenuItem);
-
-            var ChangePasswordAppBarMenuItem = new ApplicationBarMenuItem();
-            ChangePasswordAppBarMenuItem.Text = AppResources.ChangePassword;
-            ChangePasswordAppBarMenuItem.Click += (sender, e) =>
-            { NavigationService.Navigate(new Uri("/PasswordPage.xaml?ChangePassword=1", UriKind.Relative)); };
-            ApplicationBar.MenuItems.Add(ChangePasswordAppBarMenuItem);
-
-            //var DeleteAlbumAppBarMenuItem = new ApplicationBarMenuItem();
-            //DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
-            //DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
-            //ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
         }
     }
 }

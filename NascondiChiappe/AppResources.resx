@@ -183,11 +183,11 @@
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
-  <data name="ConfirmDelete" xml:space="preserve">
+  <data name="ConfirmAlbumDelete" xml:space="preserve">
     <value>Are you sure to delete the Album {0}?</value>
   </data>
-  <data name="DeleteSelected" xml:space="preserve">
-    <value>Delete selected Pictures</value>
+  <data name="DeleteSelectedPhotos" xml:space="preserve">
+    <value>Delete selected Photos</value>
   </data>
   <data name="PhotoCopied" xml:space="preserve">
     <value>Photo copied to your MediaLibrary</value>
@@ -204,7 +204,16 @@
   <data name="ViewPhoto" xml:space="preserve">
     <value>View Photo</value>
   </data>
-  <data name="SelectPhoto" xml:space="preserve">
+  <data name="SelectPhotoExport" xml:space="preserve">
     <value>Please select a Photo to export</value>
+  </data>
+  <data name="ConfirmPhotoDelete" xml:space="preserve">
+    <value>Are you sure to delete the selected Photos?</value>
+  </data>
+  <data name="MoveSelectedPhotos" xml:space="preserve">
+    <value>Move selected Photos</value>
+  </data>
+  <data name="SelectPhotos" xml:space="preserve">
+    <value>Please select the Photos first</value>
   </data>
 </root>

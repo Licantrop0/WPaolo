@@ -74,7 +74,7 @@ namespace NascondiChiappe
         {
             if (CurrentPhoto == null)
             {
-                MessageBox.Show(AppResources.SelectPhoto);
+                MessageBox.Show(AppResources.SelectPhotoExport);
                 return;
             }
 
@@ -92,7 +92,7 @@ namespace NascondiChiappe
             if (e.TaskResult == TaskResult.OK)
             {
                 var index = e.OriginalFileName.LastIndexOf('\\');
-                CurrentAlbum.AddImage(e.ChosenPhoto, e.OriginalFileName.Substring(index + 1));
+                CurrentAlbum.AddPhoto(e.ChosenPhoto, e.OriginalFileName.Substring(index + 1));
                 ShowHint();
             }
         }

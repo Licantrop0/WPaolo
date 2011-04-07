@@ -186,8 +186,8 @@
   <data name="ConfirmDelete" xml:space="preserve">
     <value>Sei sicuro di voler eliminare l'Album {0}?</value>
   </data>
-  <data name="DeleteSelected" xml:space="preserve">
-    <value>Elimina le foto selezionate</value>
+  <data name="DeleteSelectedPhotos" xml:space="preserve">
+    <value>Elimina le Foto selezionate</value>
   </data>
   <data name="PhotoCopied" xml:space="preserve">
     <value>La Foto è stata copiata nella tua MediaLibrary</value>
@@ -204,7 +204,16 @@
   <data name="ViewPhoto" xml:space="preserve">
     <value>Visualizza Foto</value>
   </data>
-  <data name="SelectPhoto" xml:space="preserve">
+  <data name="SelectPhotoExport" xml:space="preserve">
     <value>Seleziona la foto da esportare</value>
+  </data>
+  <data name="ConfirmPhotoDelete" xml:space="preserve">
+    <value>Sei sicuro di voler eliminare le Foto selezionate?</value>
+  </data>
+  <data name="SelectPhotos" xml:space="preserve">
+    <value>Seleziona prima le Foto</value>
+  </data>
+  <data name="MoveSelectedPhotos" xml:space="preserve">
+    <value>Sposta le foto selezionate</value>
   </data>
 </root>

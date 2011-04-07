@@ -129,9 +129,6 @@
     </Content>
     <None Include="ExifLib.dll" />
     <Content Include="SplashScreenImage.jpg" />
-    <Content Include="Toolkit.Content\appbar_add.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Toolkit.Content\appbar_addpicture.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -145,6 +142,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Toolkit.Content\appbar_edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Toolkit.Content\appbar_move.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Toolkit.Content\appbar_save.png">

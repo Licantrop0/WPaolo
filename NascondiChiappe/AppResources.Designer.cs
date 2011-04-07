@@ -117,9 +117,9 @@ namespace NascondiChiappe {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure to delete the Album {0}?.
         /// </summary>
-        public static string ConfirmDelete {
+        public static string ConfirmAlbumDelete {
             get {
-                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
+                return ResourceManager.GetString("ConfirmAlbumDelete", resourceCulture);
             }
         }
         
@@ -129,6 +129,15 @@ namespace NascondiChiappe {
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure to delete the selected Photos?.
+        /// </summary>
+        public static string ConfirmPhotoDelete {
+            get {
+                return ResourceManager.GetString("ConfirmPhotoDelete", resourceCulture);
             }
         }
         
@@ -160,11 +169,11 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete selected Pictures.
+        ///   Looks up a localized string similar to Delete selected Photos.
         /// </summary>
-        public static string DeleteSelected {
+        public static string DeleteSelectedPhotos {
             get {
-                return ResourceManager.GetString("DeleteSelected", resourceCulture);
+                return ResourceManager.GetString("DeleteSelectedPhotos", resourceCulture);
             }
         }
         
@@ -192,6 +201,15 @@ namespace NascondiChiappe {
         public static string Fucked {
             get {
                 return ResourceManager.GetString("Fucked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move selected Photos.
+        /// </summary>
+        public static string MoveSelectedPhotos {
+            get {
+                return ResourceManager.GetString("MoveSelectedPhotos", resourceCulture);
             }
         }
         
@@ -297,9 +315,18 @@ namespace NascondiChiappe {
         /// <summary>
         ///   Looks up a localized string similar to Please select a Photo to export.
         /// </summary>
-        public static string SelectPhoto {
+        public static string SelectPhotoExport {
             get {
-                return ResourceManager.GetString("SelectPhoto", resourceCulture);
+                return ResourceManager.GetString("SelectPhotoExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select the Photos first.
+        /// </summary>
+        public static string SelectPhotos {
+            get {
+                return ResourceManager.GetString("SelectPhotos", resourceCulture);
             }
         }
         

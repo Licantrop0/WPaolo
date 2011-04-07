@@ -5,6 +5,7 @@ using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
 using System.Windows.Media.Imaging;
 using ExifLib;
+using System.Linq;
 
 namespace NascondiChiappe
 {
@@ -50,13 +51,13 @@ namespace NascondiChiappe
             DirectoryName = directoryName;
         }
 
-        public void RemoveImage(BitmapImage image)
+        public void RemovePhoto(BitmapImage photo)
         {
-            var index = _images.IndexOf(image);
-            var fileName =  isf.GetFileNames(DirectoryName + "\\*")[index];
+            var index = _images.IndexOf(photo);
+            var fileName = isf.GetFileNames(DirectoryName + "\\*")[index];
             isf.DeleteFile(DirectoryName + "\\" + fileName);
-            
-            Images.Remove(image);
+
+            Images.Remove(photo);
         }
 
         public void RemoveDirectoryContent()
@@ -68,16 +69,37 @@ namespace NascondiChiappe
             isf.DeleteDirectory(DirectoryName);
         }
 
-        public void AddImage(Stream image, string fileName)
+        public void AddPhoto(Stream photo, string fileName)
+        {
+            var rotatedPhoto = RotatePhoto(photo);
+            var ms = new MemoryStream();
+            rotatedPhoto.SaveJpeg(ms, rotatedPhoto.PixelWidth, rotatedPhoto.PixelHeight, 0, 100);
+            var bitmap = new BitmapImage();
+            bitmap.SetSource(ms);
+            AddPhoto(bitmap, fileName);
+            ms.Close();
+        }
+
+        public void AddPhoto(BitmapImage photo, string fileName)
+        {
+            _images.Add(photo);
+
+            var wb = new WriteableBitmap(photo);
+            if (!isf.DirectoryExists(DirectoryName)) isf.CreateDirectory(DirectoryName);
+            var fs = isf.CreateFile(DirectoryName + "\\" + Guid.NewGuid());
+            wb.SaveJpeg(fs, wb.PixelWidth, wb.PixelHeight, 0, 85);
+        }
+
+        private WriteableBitmap RotatePhoto(Stream photo)
         {
             var bitmap = new BitmapImage();
-            bitmap.SetSource(image);
+            bitmap.SetSource(photo);
 
             WriteableBitmap wbSource = new WriteableBitmap(bitmap);
             WriteableBitmap wbTarget = null;
 
-            image.Position = 0;
-            switch (ExifReader.ReadJpeg(image, fileName).Orientation)
+            photo.Position = 0;
+            switch (ExifReader.ReadJpeg(photo, string.Empty).Orientation)
             {
                 case ExifOrientation.TopRight: //90°
                     wbTarget = new WriteableBitmap(wbSource.PixelHeight, wbSource.PixelWidth);
@@ -101,15 +123,14 @@ namespace NascondiChiappe
                     wbTarget = wbSource;
                     break;
             }
-            image.Close();
+            photo.Close();
+            return wbTarget;
+        }
 
-            if (!isf.DirectoryExists(DirectoryName)) isf.CreateDirectory(DirectoryName);
-            var fs = isf.CreateFile(DirectoryName + "\\" + Guid.NewGuid());
-            wbTarget.SaveJpeg(fs, wbTarget.PixelWidth, wbTarget.PixelHeight, 0, 85);
-            fs.Position = 0;
-            bitmap.SetSource(fs);
-            fs.Close();
-             _images.Add(bitmap);
-       }
+        public void MovePhoto(BitmapImage photo, Album album)
+        {
+            album.AddPhoto(photo, Guid.NewGuid().ToString());
+            RemovePhoto(photo);
+        }
     }
 }

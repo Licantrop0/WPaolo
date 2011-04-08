@@ -114,21 +114,21 @@ namespace FillTheSquare
             }
         }
 
-        //public static void AddFakeRecords()
-        //{
-        //    if (Records.Count >= 30) return;
+        public static void AddFakeRecords()
+        {
+            if (Records.Count >= 30) return;
 
-        //    var rnd = new Random();
-        //    var temp = new List<Record>();
-        //    for (int i = 0; i < 30; i++)
-        //    {
-        //        temp.Add(new Record((i % 2 + 1) * 5,
-        //            DateTime.Now.AddDays(-rnd.Next(365)).AddHours(-rnd.Next(24)).AddMinutes(-rnd.Next(60)),
-        //            TimeSpan.FromSeconds(rnd.Next(1000) + 8)) { Name = "Phil" + i });
-        //    }
+            var rnd = new Random();
+            var temp = new List<Record>();
+            for (int i = 0; i < 30; i++)
+            {
+                temp.Add(new Record((i % 2 + 1) * 5,
+                    DateTime.Now.AddDays(-rnd.Next(365)).AddHours(-rnd.Next(24)).AddMinutes(-rnd.Next(60)),
+                    TimeSpan.FromSeconds(rnd.Next(1000) + 8)) { Name = "Phil" + i });
+            }
 
-        //    Records.AddRange(temp.OrderBy(r => r.Date));
-        //}
+            Records.AddRange(temp.OrderBy(r => r.Date));
+        }
 
     }
 }

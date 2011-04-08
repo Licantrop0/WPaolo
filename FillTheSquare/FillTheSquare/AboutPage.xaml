@@ -15,27 +15,6 @@
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
 
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:RotateTransition Mode="In90Clockwise" />
-            </toolkit:NavigationInTransition.Forward>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:RotateTransition Mode="In90CounterClockwise" />
-            </toolkit:NavigationInTransition.Backward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:RotateTransition Mode="Out90Clockwise" />
-            </toolkit:NavigationOutTransition.Forward>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:RotateTransition Mode="Out90Counterclockwise" />
-            </toolkit:NavigationOutTransition.Backward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
-
     <Grid>
         <wpcommon:AboutControl Name="WPMEAbout"
                                ApplicationName="Phil the Square"

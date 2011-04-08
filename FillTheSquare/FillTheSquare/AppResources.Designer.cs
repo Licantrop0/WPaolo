@@ -181,6 +181,15 @@ namespace FillTheSquare {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No more moves available.
+        /// </summary>
+        public static string NoMoreMoves {
+            get {
+                return ResourceManager.GetString("NoMoreMoves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to so Phil will be always happy and you will have no limits in the play!.
         /// </summary>
         public static string PhilWillBeHappy {

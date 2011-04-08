@@ -105,6 +105,7 @@ namespace FillTheSquare
                     {
                         Settings.OhNoSound.Play();
                         PhilPiangeAppear.Begin();
+                        NoMoreMovesTextBlock.Visibility = Visibility.Visible;
                     }
                     else
                     {
@@ -122,6 +123,7 @@ namespace FillTheSquare
                 case null: //caso di cancellazione
                     ClearBorder(currentBorder);
                     PhilPiangeDisappear.Begin();
+                    NoMoreMovesTextBlock.Visibility = Visibility.Collapsed;
 
                     //Evidenzio la casella sull'ultimo premuto se la griglia non è vuota
                     if (!Square.IsEmpty)
@@ -151,6 +153,7 @@ namespace FillTheSquare
         {
             Settings.ResetSound.Play();
             PhilPiangeDisappear.Begin();
+            NoMoreMovesTextBlock.Visibility = Visibility.Collapsed;
 
             sw.Reset();
             sw.Start();
@@ -159,7 +162,6 @@ namespace FillTheSquare
             foreach (Border b in MagicGrid.Children
                 .Where(ctrl => ctrl is Border))
                 ClearBorder(b);
-
         }
 
         private static void ClearBorder(Border b)

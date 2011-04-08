@@ -159,6 +159,9 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="NoMoreMoves" xml:space="preserve">
+    <value>No more moves available</value>
+  </data>
   <data name="PhilWillBeHappy" xml:space="preserve">
     <value>so Phil will be always happy and you will have no limits in the play!</value>
   </data>

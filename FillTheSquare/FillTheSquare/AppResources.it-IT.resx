@@ -147,10 +147,11 @@
   <data name="Instructions" xml:space="preserve">
     <value>Istruzioni</value>
   </data>
-  <data name="InstructionsText" xml:space="preserve">
-    <value>Riempi il quadrato con i numeri
-
-Mosse permesse:
+  <data name="InstructionsText1" xml:space="preserve">
+    <value>Riempi il quadrato con i numeri in sequenza</value>
+  </data>
+  <data name="InstructionsText2" xml:space="preserve">
+    <value>Mosse permesse:
 • Sinistra, destra, su, giu'
    lasciando 2 quadrati vuoti
 • Diagonale lasciando 1 quadrato vuoto</value>

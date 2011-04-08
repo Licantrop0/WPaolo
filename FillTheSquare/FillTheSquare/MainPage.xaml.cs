@@ -32,24 +32,9 @@ namespace FillTheSquare
             }
         }
 
-        private void InstructionsButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/InstructionsPage.xaml", UriKind.Relative));
-        }
-
-        private void RecordsButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/RecordsPage.xaml", UriKind.Relative));
-        }
-
-        private void AboutButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Settings.AddFakeRecords();
+            Settings.AddFakeRecords();
             var id = Settings.Records.Last().Id;
             NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + id, UriKind.Relative));
         }
@@ -61,15 +46,5 @@ namespace FillTheSquare
             me.Play();
         }
 
-
-        private void MediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-
-        }
-
-        private void MediaElement_MediaOpened(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

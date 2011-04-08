@@ -22,7 +22,6 @@ namespace FillTheSquare
         {
             if (!NonLinearNavigationService.Instance.IsRecursiveBackNavigation)
             {
-                BouncingPhilStoryboard.Begin();
                 Settings.VictorySound.Play();
 
                 if (NavigationContext.QueryString.ContainsKey("id"))
@@ -31,7 +30,6 @@ namespace FillTheSquare
                     CurrentRecord = Settings.Records.Where(r => r.Id == RecordId).First();
                     this.DataContext = CurrentRecord;
                 }
-
             }
         }
 

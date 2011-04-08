@@ -147,10 +147,11 @@
   <data name="Instructions" xml:space="preserve">
     <value>Instructions</value>
   </data>
-  <data name="InstructionsText" xml:space="preserve">
-    <value>Remplir le carre' avec tous les numeros
-
-Actions autorisees:
+  <data name="InstructionsText1" xml:space="preserve">
+    <value>Remplir le carre' avec tous les numeros</value>
+  </data>
+  <data name="InstructionsText2" xml:space="preserve">
+    <value>Actions autorisees:
 • gauche droite haut bas, avec 2 vides
 • diagonale avec 1 vide</value>
   </data>

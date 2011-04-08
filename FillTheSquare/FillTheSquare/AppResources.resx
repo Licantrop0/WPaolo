@@ -147,13 +147,14 @@
   <data name="Instructions" xml:space="preserve">
     <value>Instructions</value>
   </data>
-  <data name="InstructionsText" xml:space="preserve">
-    <value>Fill the square with numbers
-
-Allowed moves:
+  <data name="InstructionsText1" xml:space="preserve">
+    <value>Fill the square with numbers sequentially</value>
+  </data>
+  <data name="InstructionsText2" xml:space="preserve">
+    <value>Allowed moves:
 • Left, right, up, down
-   leaving 2 empty out
-• Diagonal leaving 1 empty out</value>
+   leaving 2 squares empty out
+• Diagonal leaving 1 square empty out</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

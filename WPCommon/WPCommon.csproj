@@ -60,6 +60,7 @@
     <Compile Include="AboutControl.xaml.cs">
       <DependentUpon>AboutControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StandardConverters.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="NonLinearNavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

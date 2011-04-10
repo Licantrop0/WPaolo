@@ -34,7 +34,8 @@ namespace TrovaCAP
     {
         #region private members
 
-        private Comune[] _comuni = null;
+        Comune[] _comuni = null;
+        string[] _comuniNames = null; 
 
         Step _state = Step.selezionaComune;
         string _sComuneSelezionato = "";
@@ -82,6 +83,7 @@ namespace TrovaCAP
 
             AcbComuni._bSupportDicotomicSearch = true;
             AcbIndirizzi._bCashingMode = true;
+            AcbIndirizzi.TextFilter = AcbFilterStartsWithExtended;
             
             tbCapResult.Text = "";
         }
@@ -95,8 +97,8 @@ namespace TrovaCAP
             bw.DoWork += (sender1, e1) =>
             {
                 WPCommon.ExtensionMethods.StartTrace("Deserializing...");
-                //ReadAndParseDataBase();
-                Deserialize();
+                ReadAndParseDataBase();
+                //Deserialize();
                 WPCommon.ExtensionMethods.EndTrace();
             };
 
@@ -104,9 +106,10 @@ namespace TrovaCAP
             bw.RunWorkerCompleted += (sender1, e1) =>
             {
                 // TODO caricamento ItemSource del ACB
+                LoadComuni();
 
                 //Il caricamento dei soli Comuni va separato e messo nel costruttore
-                //AcbComuni.ItemsSource = _comuni.Select(c => c.ComuneID);
+                AcbComuni.ItemsSource = _comuniNames;
 
             };
 
@@ -276,7 +279,7 @@ namespace TrovaCAP
                 }
                 else
                 {
-                    AcbIndirizzi.ItemsSource = _sIndirizziComune;           // assegnazione itemsSource indirizzi
+                    AcbIndirizzi.ItemsSource = _sIndirizziComune/*.OrderBy(s => s)*/;           // assegnazione itemsSource indirizzi
                     AcbIndirizzi.IsEnabled = true;
                     AcbFrazioni.ItemsSource = sFrazioni;                    // assegnazione itemsSource frazioni
                     AcbFrazioni.IsEnabled = true;
@@ -492,7 +495,7 @@ namespace TrovaCAP
 
         private void ReadAndParseDataBase()
         {
-            var resource = Application.GetResourceStream(new Uri("DBout.txt", UriKind.Relative));
+            var resource = Application.GetResourceStream(new Uri("DB3out.txt", UriKind.Relative));
             using (var tr = new StreamReader(resource.Stream))
             {
                 int count = int.Parse(tr.ReadLine());
@@ -514,6 +517,16 @@ namespace TrovaCAP
             }
         }
 
+        private void LoadComuni()
+        {
+            var resource = Application.GetResourceStream(new Uri("Comuni.txt", UriKind.Relative));
+
+            char[] separator = { '\r'/*, '\n'*/ };
+            using (var tr = new StreamReader(resource.Stream))
+            {
+                _comuniNames = tr.ReadToEnd().Split('|');
+            }
+        }
 
         private void Deserialize()
         {

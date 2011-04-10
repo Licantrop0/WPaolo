@@ -12,26 +12,289 @@ namespace CAPUtil
 {
     class Program
     {
-        /*
-        static string Normalize(string s)
+        
+        static string Normalize(string name)
         {
-            string sReturn;
-            if (s == " '")
+            if (name == "")
+                return name;
+
+            // seprate in 3 words
+            name = name.Replace("-", " - ");
+
+            // first of all divide in several words, each words must have first letter capitalized
+            // all other letters NOT capitalized
+            
+            List<string> words = name.Split(' ').ToList();
+
+            // words.ForEach(s => { s = s.ToLower(); char.ToUpper(s[0]); });   //LAMBDA EXPRESSION = USELESS!!!
+            int i;
+            for (i = 0; i < words.Count; i++)
             {
-                sReturn = "";
+                words[i] = words[i].ToLower();
+                if(words[i].Length > 1)
+                    words[i] = char.ToUpper(words[i][0]) + words[i].Substring(1);
+
+                int nApixIndex = words[i].IndexOf("'");
+                if (nApixIndex != -1 && nApixIndex != words[i].Length - 1)
+                    words[i] = words[i].Substring(0, nApixIndex + 1) + char.ToUpper(words[i][nApixIndex + 1]) + words[i].Substring(nApixIndex + 2, words[i].Length - (nApixIndex + 2));   
             }
-            else
+
+            // gli articoli, le preposizioni vanno scritti maiuscoli, non vale per la prima e l'ultima parola
+            i = 1;
+            while (i < words.Count - 1)
             {
-                sReturn = s.Remove(0, 2);
-                sReturn = sReturn.Remove(sReturn.Length - 1, 1);
+                switch (words[i])
+                {
+                    // articoli determinativi
+                    case "Il": words[i] = "il"; break;
+                    case "Lo": words[i] = "lo"; break;
+                    case "La": words[i] = "la"; break;
+                    case "L'": words[i] = "l'"; break;
+                    case "Gli": words[i] = "gli"; break;
+                    case "Le": words[i] = "le"; break;
+                    case "I": words[i] = "i"; break;   // si confonde col numero romano (I)
+
+                    // preposizioni semplici
+                    case "Di": words[i] = "di"; break;
+                    case "A": words[i] = "a"; break;
+                    case "Da": words[i] = "da"; break;
+                    case "In": words[i] = "in"; break;
+                    case "Con": words[i] = "con"; break;
+                    case "Su": words[i] = "su"; break;
+                    case "Per": words[i] = "per"; break;
+                    case "Tra": words[i] = "tra"; break;
+                    case "Fra": words[i] = "fra"; break;
+
+                    // preposizione articolate
+                    case "Del": words[i] = "del"; break;
+                    case "Dello": words[i] = "dello"; break;
+                    case "Della": words[i] = "della"; break;
+                    case "Dei": words[i] = "dei"; break;
+                    case "Degli": words[i] = "degli"; break;
+                    case "Delle": words[i] = "delle"; break;
+                    case "De": words[i] = "de"; break;
+                    case "De'": words[i] = "de'"; break;
+                    case "Al": words[i] = "al"; break;
+                    case "Allo": words[i] = "allo"; break;
+                    case "Alla": words[i] = "alla"; break;
+                    case "Ai": words[i] = "ai"; break;
+                    case "Agli": words[i] = "agli"; break;
+                    case "Alle": words[i] = "alle"; break;
+                    case "Dal": words[i] = "dal"; break;
+                    case "Dallo": words[i] = "dallo"; break;
+                    case "Dalla": words[i] = "dalla"; break;
+                    case "Dai": words[i] = "dai"; break;
+                    case "Dagli": words[i] = "dagli"; break;
+                    case "Dalle": words[i] = "dalle"; break;
+                    case "Sul": words[i] = "sul"; break;
+                    case "Sui": words[i] = "sui"; break;
+
+                    default: break;
+                }
+
+                i++;
             }
+
+            // ogni parola puo' essere un numero romano
+            for (i = 0; i < words.Count; i++)
+            {
+                switch (words[i])
+                {
+                    case "Ii": words[i] = "II"; break;
+                    case "Iii": words[i] = "III"; break;
+                    case "Iv": words[i] = "IV"; break;
+                    case "Vi": words[i] = "VI"; break;
+                    case "Vii": words[i] = "VII"; break;
+                    case "Viii": words[i] = "VIII"; break;
+                    case "Ix": words[i] = "IX"; break;
+                    case "Xi": words[i] = "XI"; break;
+                    case "Xii": words[i] = "XII"; break;
+                    case "Xiii": words[i] = "XIII"; break;
+                    case "Xiv": words[i] = "XIV"; break;
+                    case "Xv": words[i] = "XV"; break;
+                    case "Xvi": words[i] = "XVI"; break;
+                    case "Xvii": words[i] = "XVII"; break;
+                    case "Xviii": words[i] = "XVIII"; break;
+                    case "Xix": words[i] = "XIX"; break;
+                    case "Xx": words[i] = "XX"; break;
+                    case "Xxi": words[i] = "XI"; break;
+                    case "Xxii": words[i] = "XXII"; break;
+                    case "Xxiii": words[i] = "XXIII"; break;
+                    case "Xxiv": words[i] = "XXIV"; break;
+                    case "Xxv": words[i] = "XXV"; break;
+                    case "Xxvi": words[i] = "XXVI"; break;
+                    case "Xxvii": words[i] = "XXVII"; break;
+                    case "Xxviii": words[i] = "XXVIII"; break;
+                    case "Xxix": words[i] = "XXIX"; break;
+                    case "Xxx": words[i] = "XXX"; break;
+                    case "Xxxi": words[i] = "XXXI"; break;
+                    default: break;
+                }
+            }
+
+            string sReturn = words[0];
+
+            if (words.Count > 1)
+                for (i = 1; i < words.Count; i++)
+                    sReturn += " " + words[i];
+
+            // sostuire le preposizioni apostrofate
+            sReturn = sReturn.Replace("D'", "d'");
+            sReturn = sReturn.Replace("Dell'", "dell'");
+            sReturn = sReturn.Replace("All'", "all'");
+            sReturn = sReturn.Replace("Dall'", "dall'");
+            sReturn = sReturn.Replace("Sull'", "sull'");
 
             return sReturn;
         }
-         * */
 
         static void Main(string[] args)
         {
+            // TENTATIVE 3 (DB aggiornato)
+            var _capDB = new SortedList<string, Comune>();
+
+            using (var tr = new StreamReader("DB3.txt", Encoding.Default))
+            {
+                while (!tr.EndOfStream)
+                {
+                    var words = tr.ReadLine().Split('|');
+
+                    string sProvincia = words[0];
+                    string sComune1 = Normalize(words[1]);
+                    string sComune2 = Normalize(words[2]);
+                    string sFrazione1 = Normalize(words[3]);
+                    string sFrazione2 = Normalize(words[4]);
+                    string sDug = Normalize(words[5]);
+                    string sStrada = Normalize(words[6]);
+                    string sParita = words[7];
+                    string sNDal = words[8];
+                    string sEsponenteDal = words[9];
+                    string sNAl = words[10];
+                    string sEsponenteAl = words[11];
+                    string sColore = words[12];
+                    string sCAP = words[13];
+                    string sIndirizzo = "";
+                    string sCivico = "";
+
+                    Console.WriteLine(sProvincia + " " + sComune1 + " " + sComune2 + " " + sFrazione1 + " " + sFrazione2 + " " + sDug + " " + sStrada + " " + sParita + " " + sNDal + " " +
+                                      sEsponenteDal + " " + sNAl + " " + sEsponenteAl + " " + sColore + " " + sCAP);
+                    
+                    // parse indirizzo se necessario
+                    if (sStrada != "")
+                    {
+                        sIndirizzo = sDug + ' ' + sStrada;
+                        sCivico = "";
+
+                        if (sParita != "")
+                        {
+                            if (sParita == "P" || sParita == "D")
+                            {
+                                string sParitaEx = sParita == "P" ? "pari" : "dispari";
+                                sCivico = "N " + sParitaEx;
+
+                                if (sColore == "R")
+                                    sCivico += " rossi ";
+
+                                sCivico += " dal " + sNDal;
+                                if (sEsponenteDal != "")
+                                    sCivico += "/" + sEsponenteDal;
+
+                                sCivico += " al " + sNAl;
+                                if (sEsponenteAl != "")
+                                    sCivico += "/" + sEsponenteAl;
+                            }
+                            else
+                            {
+                                decimal kmDal = Convert.ToInt32(sNDal) / 1000;
+                                decimal kmAl = Convert.ToInt32(sNAl) / 1000;
+
+                                sCivico += "dal km " + kmDal.ToString() + " al km " + kmAl.ToString();
+                            }
+
+                            sIndirizzo += ", " + sCivico;
+                        }
+                    }
+
+                    // si accorpano le frazioni bilingui
+                    string sFrazione = sFrazione2 == "" ? sFrazione1 : sFrazione1 + " - " + sFrazione2;
+
+                    CAPRecord newRecord = new CAPRecord(sFrazione, sIndirizzo, sCAP);
+
+                    // parse Comune1, Comune2 if necessary
+                    sComune1 = sComune1 + " (" + sProvincia + ")";
+
+                    if (sComune2 != "")
+                        sComune2 += " (" + sProvincia + ")";
+
+                    // insert into comuni Dictionary if not already inserted, if comune name is bilungual insert two separate records
+                    if (!_capDB.ContainsKey(sComune1))
+                    {
+                        Comune c1 = new Comune();
+                        c1.comuneID = sComune1;
+                        c1.capRecords = new List<CAPRecord>();
+                        _capDB.Add(sComune1, c1);
+
+                        if (sComune2 != "" && sComune2 != sComune1)
+                        {
+                            Comune c2 = new Comune();
+                            c2.comuneID = sComune2;
+                            c2.capRecords = new List<CAPRecord>();
+                            _capDB.Add(c2.comuneID, c2);
+                        }
+                    }
+
+                    // insert CAP record into comune index
+                    _capDB[sComune1].capRecords.Add(newRecord);
+
+                    if (sComune2 != "")
+                    {
+                        _capDB[sComune2].capRecords.Add(newRecord);
+                    }
+
+                }
+            }
+
+            // write data to file
+            using (var tout = new StreamWriter("DB3out.txt", false, Encoding.Default))
+            {
+                int nComuni = _capDB.Count;
+
+                tout.WriteLine(nComuni.ToString());
+
+                foreach (var item in _capDB)
+                {
+                    int nCAPRecords = item.Value.capRecords.Count;
+                    string sComune = item.Value.comuneID;
+
+                    tout.WriteLine(sComune + "|" + nCAPRecords);
+
+                    foreach (var cr in item.Value.capRecords)
+                    {
+                        tout.WriteLine(cr.frazione + "|" + cr.indirizzo + "|" + cr.cap);
+                    }
+                }
+            }
+
+            // write just comuni names to another file
+            using (var tout2 = new StreamWriter("Comuni.txt", false, Encoding.Default))
+            {
+                
+                int nComuni = _capDB.Count;
+
+                foreach (var item in _capDB)
+                {
+                    tout2.Write(item.Value.comuneID + "|");
+                }
+            }
+
+        }
+
+    }
+}
+
+
+        // TENTATIVE 1
+
             /*SortedList<string, SortedList<string, Comune>> dProvince = new SortedList<string,SortedList<string,Comune>>();
             SortedList<string, Comune> dComuni = new SortedList<string, Comune>();
             SortedList<string, CAP> dCAPS = new SortedList<string, CAP>();
@@ -152,6 +415,8 @@ namespace CAPUtil
 
             //private void ReadAndParseDataBase()
 
+            // TENTATIVE 2
+            /*
             var _capDB = new SortedList<string, Comune>();
 
             using (var tr = new StreamReader("DB2.txt", Encoding.Default))
@@ -231,8 +496,22 @@ namespace CAPUtil
                     }
                 }
             }
-        }
+             * */
 
-        
-    }
-}
+            /*
+            static string Normalize(string s)
+            {
+            string sReturn;
+            if (s == " '")
+            {
+                sReturn = "";
+            }
+            else
+            {
+                sReturn = s.Remove(0, 2);
+                sReturn = sReturn.Remove(sReturn.Length - 1, 1);
+            }
+
+            return sReturn;
+            }
+            * */

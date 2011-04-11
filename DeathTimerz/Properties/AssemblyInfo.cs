@@ -6,12 +6,12 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DeathTimer")]
+[assembly: AssemblyTitle("DeathTimerz")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft IT")]
+[assembly: AssemblyCompany("WPME")]
 [assembly: AssemblyProduct("DeathTimer")]
-[assembly: AssemblyCopyright("Copyright © Microsoft IT 2009")]
+[assembly: AssemblyCopyright("Copyright © WPME")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

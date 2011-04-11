@@ -93,6 +93,7 @@ namespace NascondiChiappe
             {
                 var index = e.OriginalFileName.LastIndexOf('\\');
                 CurrentAlbum.AddPhoto(e.ChosenPhoto, e.OriginalFileName.Substring(index + 1));
+                e.ChosenPhoto.Close();
                 ShowHint();
             }
         }

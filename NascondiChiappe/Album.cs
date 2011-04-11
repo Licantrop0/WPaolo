@@ -20,44 +20,50 @@ namespace NascondiChiappe
 
         IsolatedStorageFile isf { get { return IsolatedStorageFile.GetUserStoreForApplication(); } }
 
-        private ObservableCollection<BitmapImage> _images;
+        private ObservableCollection<BitmapImage> _imageCache;
         public ObservableCollection<BitmapImage> Images
         {
             get
             {
-                if (_images == null)
+                if (_imageCache == null)
                 {
-                    _images = new ObservableCollection<BitmapImage>();
-                    if (isf.DirectoryExists(DirectoryName))
+                    _imageCache = new ObservableCollection<BitmapImage>();
+                    foreach (var fileName in isf.GetFileNames(DirectoryName + "\\*"))
                     {
-                        foreach (var fileName in isf.GetFileNames(DirectoryName + "\\*"))
+                        using (var file = isf.OpenFile(DirectoryName + "\\" + fileName, FileMode.Open))
                         {
-                            var file = isf.OpenFile(DirectoryName + "\\" + fileName, FileMode.Open);
                             var bitmap = new BitmapImage();
                             bitmap.SetSource(file);
-                            _images.Add(bitmap);
-                            file.Close();
+                            _imageCache.Add(bitmap);
                         }
                     }
                 }
-                return _images;
+                return _imageCache;
             }
         }
 
-        public Album() { }
+        public Album()
+        {
+            //TODO: Controllo per sicurezza, probabilmente inutile (vedere se da rimuovere)
+            if (!isf.DirectoryExists(DirectoryName))
+                isf.CreateDirectory(DirectoryName);
+        }
+
         public Album(string name, string directoryName)
         {
             Name = name;
             DirectoryName = directoryName;
+            if (!isf.DirectoryExists(DirectoryName))
+                isf.CreateDirectory(DirectoryName);
         }
 
         public void RemovePhoto(BitmapImage photo)
         {
-            var index = _images.IndexOf(photo);
+            var index = _imageCache.IndexOf(photo);
             var fileName = isf.GetFileNames(DirectoryName + "\\*")[index];
             isf.DeleteFile(DirectoryName + "\\" + fileName);
 
-            Images.Remove(photo);
+            _imageCache.Remove(photo);
         }
 
         public void RemoveDirectoryContent()
@@ -69,25 +75,43 @@ namespace NascondiChiappe
             isf.DeleteDirectory(DirectoryName);
         }
 
+        //TODO: NON PERFORMANTE!!
         public void AddPhoto(Stream photo, string fileName)
         {
+            WPCommon.ExtensionMethods.StartTrace("Rotating Photo...");
+            //2126ms (la prima volta), 894ms, 2279ms, 676ms
             var rotatedPhoto = RotatePhoto(photo);
+            WPCommon.ExtensionMethods.EndTrace();
+
             var ms = new MemoryStream();
+
+            WPCommon.ExtensionMethods.StartTrace("SaveJpg, Quality: 100");
+            //684ms, 693ms, 738ms, 699ms
             rotatedPhoto.SaveJpeg(ms, rotatedPhoto.PixelWidth, rotatedPhoto.PixelHeight, 0, 100);
+            WPCommon.ExtensionMethods.EndTrace();
+            
+            WPCommon.ExtensionMethods.StartTrace("Bitmap SetSource (stream)");
+            //358ms, 345ms, 351ms, 369ms
             var bitmap = new BitmapImage();
             bitmap.SetSource(ms);
+            WPCommon.ExtensionMethods.EndTrace();
+
             AddPhoto(bitmap, fileName);
             ms.Close();
         }
 
         public void AddPhoto(BitmapImage photo, string fileName)
         {
-            _images.Add(photo);
+            _imageCache.Add(photo);
 
+            //35ms, 48ms, 35ms, 42ms
             var wb = new WriteableBitmap(photo);
-            if (!isf.DirectoryExists(DirectoryName)) isf.CreateDirectory(DirectoryName);
+
             var fs = isf.CreateFile(DirectoryName + "\\" + Guid.NewGuid());
+            WPCommon.ExtensionMethods.StartTrace("SaveJpg, Quality: 85");
+            //325ms, 341ms, 347ms, 363ms
             wb.SaveJpeg(fs, wb.PixelWidth, wb.PixelHeight, 0, 85);
+            WPCommon.ExtensionMethods.EndTrace();
         }
 
         private WriteableBitmap RotatePhoto(Stream photo)
@@ -123,10 +147,11 @@ namespace NascondiChiappe
                     wbTarget = wbSource;
                     break;
             }
-            photo.Close();
             return wbTarget;
         }
 
+
+        //TODO: NON PERFORMANTEEE, da correggere!
         public void MovePhoto(BitmapImage photo, Album album)
         {
             album.AddPhoto(photo, Guid.NewGuid().ToString());

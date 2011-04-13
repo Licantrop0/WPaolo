@@ -6,7 +6,8 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=System.Windows"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -16,7 +17,17 @@
     shell:SystemTray.IsVisible="False" >
 
     <Grid Margin="12,17,0,28" Background="Transparent">
-        <controls:Pivot Name="AlbumsPivot" SelectionChanged="Pivot_SelectionChanged">
+        <Grid.Resources>
+            <CollectionViewSource x:Name="csvAlbums">
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription PropertyName="Name" Direction="Ascending" />
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
+        </Grid.Resources>
+        
+        <controls:Pivot Name="AlbumsPivot"
+                        ItemsSource="{Binding Source={StaticResource csvAlbums}}"
+                        SelectionChanged="Pivot_SelectionChanged">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
@@ -26,6 +37,7 @@
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
                     <ListBox Margin="0,-30,0,0" ItemsSource="{Binding Images}"
+                             ItemTemplate="{StaticResource AlbumImageTemplate}"
                              ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
                              SelectionChanged="ListBox_SelectionChanged">
                         <ListBox.ItemsPanel>
@@ -33,11 +45,6 @@
                                 <toolkit:WrapPanel ItemWidth="200" ItemHeight="200"/>
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding}"  Margin="12" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
                     </ListBox>
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>

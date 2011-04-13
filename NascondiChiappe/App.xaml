@@ -2,11 +2,20 @@
     x:Class="NascondiChiappe.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:NascondiChiappe"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
 
     <Application.Resources>
-        <local:LocalizedStrings xmlns:local="clr-namespace:NascondiChiappe" x:Key="LocalizedStrings" />
+        <local:LocalizedStrings x:Key="LocalizedStrings" />
+        <local:RotationConverter x:Key="RotationConverter" />
+        
+        <DataTemplate x:Name="AlbumImageTemplate">
+            <Image Source="{Binding Image}" Margin="12"
+                   RenderTransformOrigin="0.5,0.5"
+                   RenderTransform="{Binding Path=RotationAngle, Converter={StaticResource RotationConverter}}">
+            </Image>
+        </DataTemplate>
 
         <Style x:Key="ListBoxItemStyle1" TargetType="ListBoxItem">
             <Setter Property="Template">

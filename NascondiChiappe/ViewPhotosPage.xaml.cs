@@ -29,8 +29,8 @@ namespace NascondiChiappe
         {
             if (NavigationContext.QueryString.ContainsKey("Album"))
             {
-                var AlbumId = Convert.ToInt32(NavigationContext.QueryString["Album"]);
-                ImagePivot.ItemsSource = Settings.Albums[AlbumId].Images;
+                var AlbumId = NavigationContext.QueryString["Album"];
+                ImagePivot.ItemsSource = Settings.Albums.First(a => a.DirectoryName == AlbumId).Images;
                 var PhotoId = Convert.ToInt32(NavigationContext.QueryString["Photo"]);
                 if (PhotoId == -1) PhotoId = 0; //correzione se nessuna immagine era selezionata
                 ImagePivot.SelectedIndex = PhotoId;

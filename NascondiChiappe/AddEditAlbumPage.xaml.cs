@@ -26,10 +26,12 @@ namespace NascondiChiappe
             if (NavigationContext.QueryString.ContainsKey("Album")) //EditAlbumMode
             {
                 PageTitle.Text = AppResources.EditAlbum;
-                var id = Convert.ToInt32(NavigationContext.QueryString["Album"]);
-                CurrentAlbum = Settings.Albums[id];
+                var AlbumId = NavigationContext.QueryString["Album"];
+                CurrentAlbum = Settings.Albums.First(a => a.DirectoryName == AlbumId);
                 LayoutRoot.DataContext = CurrentAlbum;
-                AlbumsListBox.ItemsSource = Settings.Albums;
+
+                //Imposta la lista degli eventuali altri album su cui spostare le foto
+                AlbumsListBox.ItemsSource = Settings.Albums.Where(a => a.DirectoryName != CurrentAlbum.DirectoryName);
 
                 var DeletePhotosAppBarButton = new ApplicationBarIconButton();
                 DeletePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
@@ -91,7 +93,7 @@ namespace NascondiChiappe
             if (MessageBox.Show(AppResources.ConfirmPhotoDelete,
                 AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                foreach (BitmapImage item in ImagesListBox.SelectedItems)
+                foreach (AlbumPhoto item in ImagesListBox.SelectedItems)
                     CurrentAlbum.RemovePhoto(item);
             }
 
@@ -107,6 +109,7 @@ namespace NascondiChiappe
             else
             {
                 var index = Settings.Albums.IndexOf(CurrentAlbum);
+                //TODO: NON PERFORMANTE!
                 Settings.Albums.Remove(CurrentAlbum);
                 Settings.Albums.Insert(index, new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName));
             }
@@ -124,10 +127,17 @@ namespace NascondiChiappe
             }
         }
 
-
         private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
         {
-            e.Cancel = !CheckAlbumName();
+            if (CurrentAlbum == null)
+                return;
+
+            if (PopupBorder.Visibility == Visibility.Visible)
+            {
+                PopupBorder.Visibility = Visibility.Collapsed;
+                e.Cancel = true;
+                return;
+            }
         }
 
         private bool CheckAlbumName()
@@ -149,10 +159,9 @@ namespace NascondiChiappe
 
         private void AlbumsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (BitmapImage item in ImagesListBox.SelectedItems)
+            foreach (AlbumPhoto item in ImagesListBox.SelectedItems)
                 CurrentAlbum.MovePhoto(item, (Album)e.AddedItems[0]);
 
-            
             PopupBorder.Visibility = Visibility.Collapsed;
         }
     }

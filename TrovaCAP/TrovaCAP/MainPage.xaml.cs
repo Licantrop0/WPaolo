@@ -103,16 +103,14 @@ namespace TrovaCAP
             };
 
             //L'evento completed gira sull'UI Thread (se non ti serve cancellalo)
-            bw.RunWorkerCompleted += (sender1, e1) =>
-            {
-                WPCommon.ExtensionMethods.StartTrace("Loading ACB Comuni...");
+            /*bw.RunWorkerCompleted += (sender1, e1) =>
+            {*/
                 LoadComuni();
 
                 //Il caricamento dei soli Comuni va separato e messo nel costruttore
                 AcbComuni.ItemsSource = _comuniNames;
-                WPCommon.ExtensionMethods.EndTrace();
 
-            };
+            //};
 
             bw.RunWorkerAsync();
         }

@@ -13,8 +13,8 @@ namespace NascondiChiappe
 {
     public partial class AlbumsPage : PhoneApplicationPage
     {
-        Album CurrentAlbum;
-        BitmapImage CurrentPhoto;
+        Album SelectedAlbum;
+        AlbumPhoto SelectedPhoto;
 
         public AlbumsPage()
         {
@@ -28,24 +28,24 @@ namespace NascondiChiappe
                 NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative));
             else
             {
-                AlbumsPivot.ItemsSource = Settings.Albums;
-                CurrentAlbum = Settings.Albums[AlbumsPivot.SelectedIndex];
+                csvAlbums.Source = Settings.Albums;
+                SelectedAlbum = AlbumsPivot.SelectedItem as Album;
                 ShowHint();
             }
         }
 
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CurrentAlbum = e.AddedItems[0] as Album;
+            SelectedAlbum = e.AddedItems[0] as Album;
             ShowHint();
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count == 0)
-                CurrentPhoto = null;
+                SelectedPhoto = null;
             else
-                CurrentPhoto = e.AddedItems[0] as BitmapImage;
+                SelectedPhoto = e.AddedItems[0] as AlbumPhoto;
         }
 
         void TakePictureAppBarButton_Click(object sender, EventArgs e)
@@ -72,18 +72,13 @@ namespace NascondiChiappe
 
         void CopyToMediaLibraryAppBarButton_Click(object sender, EventArgs e)
         {
-            if (CurrentPhoto == null)
+            if (SelectedPhoto == null)
             {
                 MessageBox.Show(AppResources.SelectPhotoExport);
                 return;
             }
 
-            var stream = new MemoryStream();
-            var wb = new WriteableBitmap(CurrentPhoto);
-            wb.SaveJpeg(stream, wb.PixelWidth, wb.PixelHeight, 0, 85);
-            stream.Position = 0;
-            new MediaLibrary().SavePicture(Guid.NewGuid().ToString(), stream);
-            stream.Close();
+            SelectedAlbum.CopyToMediaLibrary(SelectedPhoto);
             MessageBox.Show(AppResources.PhotoCopied);
         }
 
@@ -92,7 +87,7 @@ namespace NascondiChiappe
             if (e.TaskResult == TaskResult.OK)
             {
                 var index = e.OriginalFileName.LastIndexOf('\\');
-                CurrentAlbum.AddPhoto(e.ChosenPhoto, e.OriginalFileName.Substring(index + 1));
+                SelectedAlbum.AddPhoto(new AlbumPhoto(e.OriginalFileName.Substring(index + 1), e.ChosenPhoto));
                 e.ChosenPhoto.Close();
                 ShowHint();
             }
@@ -100,11 +95,11 @@ namespace NascondiChiappe
 
         private void ShowHint()
         {
-            if (CurrentAlbum == null)
+            if (SelectedAlbum == null)
                 return;
 
             AddPhotosHintTextBlock.Visibility =
-                CurrentAlbum.Images.Count == 0 ?
+                SelectedAlbum.Images.Count == 0 ?
                 Visibility.Visible :
                 Visibility.Collapsed;
         }
@@ -114,7 +109,7 @@ namespace NascondiChiappe
         {
             NavigationService.Navigate(new Uri(
                 string.Format("/ViewPhotosPage.xaml?Album={0}&Photo={1}",
-                AlbumsPivot.SelectedIndex, CurrentAlbum.Images.IndexOf(CurrentPhoto)),
+                SelectedAlbum.DirectoryName, SelectedAlbum.Images.IndexOf(SelectedPhoto)),
                 UriKind.Relative));
         }
 
@@ -150,7 +145,7 @@ namespace NascondiChiappe
             var EditAlbumAppBarMenuItem = new ApplicationBarMenuItem();
             EditAlbumAppBarMenuItem.Text = AppResources.EditAlbum;
             EditAlbumAppBarMenuItem.Click += (sender, e) =>
-            { NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml?Album=" + AlbumsPivot.SelectedIndex, UriKind.Relative)); };
+            { NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml?Album=" + SelectedAlbum.DirectoryName, UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(EditAlbumAppBarMenuItem);
 
             var AddAlbumAppBarMenuItem = new ApplicationBarMenuItem();

@@ -16,7 +16,7 @@
         					<CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39"/>
         				</LinearGradientBrush.RelativeTransform>
         				<GradientStop Color="#FF00A5FB" Offset="0"/>
-        				<GradientStop Color="#FF354DD2" Offset="1"/>
+        				<GradientStop Color="#FF35C0D2" Offset="1"/>
         			</LinearGradientBrush>
         		</Setter.Value>
         	</Setter>
@@ -40,7 +40,7 @@
         					<CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39"/>
         				</LinearGradientBrush.RelativeTransform>
         				<GradientStop Color="#FF00A5FB" Offset="0"/>
-        				<GradientStop Color="#FF354DD2" Offset="1"/>
+        				<GradientStop Color="#FF35B9D2" Offset="1"/>
         			</LinearGradientBrush>
         		</Setter.Value>
         	</Setter>

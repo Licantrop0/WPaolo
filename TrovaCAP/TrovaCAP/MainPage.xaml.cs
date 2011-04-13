@@ -549,5 +549,11 @@ namespace TrovaCAP
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //go to about page
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+        }
+
     }
 }

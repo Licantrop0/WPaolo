@@ -80,6 +80,14 @@
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal"  HorizontalAlignment="Center" >
             <TextBlock x:Name="tbCapResult"  HorizontalAlignment="Center" Text="00000" Style="{StaticResource textCAPresult}"  FontSize="130" Margin="0,40,0,0" FontWeight="Normal" Height="190" />
         </StackPanel>
+		<StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" >
+        <Button HorizontalAlignment="Right" Grid.Row="7"  BorderThickness="0" Width="200" Height="200" Click="Button_Click">
+        	<Button.Background>
+        		<ImageBrush Stretch="UniformToFill" ImageSource="images/bollo_it.png"/>
+        	</Button.Background>
+        </Button>			
+		</StackPanel>
+
     </Grid>
 
 </phone:PhoneApplicationPage>

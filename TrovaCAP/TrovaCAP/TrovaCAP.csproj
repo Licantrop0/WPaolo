@@ -86,6 +86,7 @@
   <ItemGroup>
     <Content Include="Comuni.txt" />
     <Content Include="DB.ser" />
+    <Content Include="DB3.ser" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>

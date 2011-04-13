@@ -97,19 +97,20 @@ namespace TrovaCAP
             bw.DoWork += (sender1, e1) =>
             {
                 WPCommon.ExtensionMethods.StartTrace("Deserializing...");
-                ReadAndParseDataBase();
-                //Deserialize();
+                //ReadAndParseDataBase();
+                Deserialize();
                 WPCommon.ExtensionMethods.EndTrace();
             };
 
             //L'evento completed gira sull'UI Thread (se non ti serve cancellalo)
             bw.RunWorkerCompleted += (sender1, e1) =>
             {
-                // TODO caricamento ItemSource del ACB
+                WPCommon.ExtensionMethods.StartTrace("Loading ACB Comuni...");
                 LoadComuni();
 
                 //Il caricamento dei soli Comuni va separato e messo nel costruttore
                 AcbComuni.ItemsSource = _comuniNames;
+                WPCommon.ExtensionMethods.EndTrace();
 
             };
 
@@ -530,7 +531,7 @@ namespace TrovaCAP
 
         private void Deserialize()
         {
-            StreamResourceInfo sri = Application.GetResourceStream(new Uri("DB.ser", UriKind.Relative));
+            StreamResourceInfo sri = Application.GetResourceStream(new Uri("DB3.ser", UriKind.Relative));
             using (var fin = new StreamReader(sri.Stream))
             {
                 CustomBinarySerializer ser2 = new CustomBinarySerializer(typeof(CapDB));

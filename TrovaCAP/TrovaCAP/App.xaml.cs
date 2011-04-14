@@ -12,11 +12,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Windows.Threading;
+using System.ComponentModel;
+using System.Threading;
 
 namespace TrovaCAP
 {
     public partial class App : Application
     {
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -56,6 +60,22 @@ namespace TrovaCAP
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            var bw = new BackgroundWorker();
+
+            //Evento che gira nel thread separato
+            bw.DoWork += (sender1, e1) =>
+            {
+                WPCommon.ExtensionMethods.StartTrace("Deserializing...");
+                //DataLayer.ReadAndParseDataBase();
+                DataLayer.Deserialize();
+                WPCommon.ExtensionMethods.EndTrace();
+            };
+
+            bw.RunWorkerAsync();
+
+            DataLayer.LoadComuniNames();
+
+            Thread.Sleep(2000);
         }
 
         // Code to execute when the application is activated (brought to foreground)

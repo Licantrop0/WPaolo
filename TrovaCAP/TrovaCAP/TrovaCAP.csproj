@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="CAPDB.cs" />
     <Compile Include="CustomBinarySerializer.cs" />
+    <Compile Include="DataLayer.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

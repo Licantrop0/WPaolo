@@ -34,8 +34,8 @@ namespace TrovaCAP
     {
         #region private members
 
-        Comune[] _comuni = null;
-        string[] _comuniNames = null; 
+        //Comune[] _comuni = null;
+        //string[] _comuniNames = null; 
 
         Step _state = Step.selezionaComune;
         string _sComuneSelezionato = "";
@@ -91,7 +91,7 @@ namespace TrovaCAP
         //Ho spostato l'elaborazione del db dal costruttore al Page_Loaded così la pagina viene già visualizzata
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            var bw = new BackgroundWorker();
+            /*var bw = new BackgroundWorker();
 
             //Evento che gira nel thread separato
             bw.DoWork += (sender1, e1) =>
@@ -100,19 +100,15 @@ namespace TrovaCAP
                 //ReadAndParseDataBase();
                 Deserialize();
                 WPCommon.ExtensionMethods.EndTrace();
-            };
+            };*/
 
-            //L'evento completed gira sull'UI Thread (se non ti serve cancellalo)
-            /*bw.RunWorkerCompleted += (sender1, e1) =>
-            {*/
-                LoadComuni();
+            //LoadComuni();
 
-                //Il caricamento dei soli Comuni va separato e messo nel costruttore
-                AcbComuni.ItemsSource = _comuniNames;
+            //Il caricamento dei soli Comuni va separato e messo nel costruttore
+            //AcbComuni.ItemsSource = _comuniNames;
+            AcbComuni.ItemsSource = DataLayer.ComuniNames;
 
-            //};
-
-            bw.RunWorkerAsync();
+            //bw.RunWorkerAsync();
         }
 
         #region utility fuctions
@@ -222,7 +218,8 @@ namespace TrovaCAP
             _autofocus = null;
 
             _sComuneSelezionato = AcbComuni.Text;
-            _capRecordsComuni = _comuni.Where(c => c.ComuneID == _sComuneSelezionato).Single().CapRecords;
+            //_capRecordsComuni = _comuni.Where(c => c.ComuneID == _sComuneSelezionato).Single().CapRecords;
+            _capRecordsComuni = DataLayer.Comuni.Where(c => c.ComuneID == _sComuneSelezionato).Single().CapRecords;
 
             // if CAPRecords returns only one CAP job is finished
             int countCAP = (from cr in _capRecordsComuni
@@ -490,54 +487,7 @@ namespace TrovaCAP
 
         #endregion
 
-        #region read from files functions
-
-        private void ReadAndParseDataBase()
-        {
-            var resource = Application.GetResourceStream(new Uri("DB3out.txt", UriKind.Relative));
-            using (var tr = new StreamReader(resource.Stream))
-            {
-                int count = int.Parse(tr.ReadLine());
-                _comuni = new Comune[count];
-
-                for (int i = 0; i < count; i++)
-                {
-                    string[] words = tr.ReadLine().Split('|');
-
-                    int nRecordCount = int.Parse(words[1]);
-                    _comuni[i] = new Comune(words[0], new CAPRecord[nRecordCount]);
-
-                    for (int j = 0; j < nRecordCount; j++)
-                    {
-                        string[] parole = tr.ReadLine().Split('|');
-                        _comuni[i].CapRecords[j] = new CAPRecord(parole[0], parole[1], parole[2]);
-                    }
-                }
-            }
-        }
-
-        private void LoadComuni()
-        {
-            var resource = Application.GetResourceStream(new Uri("Comuni.txt", UriKind.Relative));
-
-            char[] separator = { '\r'/*, '\n'*/ };
-            using (var tr = new StreamReader(resource.Stream))
-            {
-                _comuniNames = tr.ReadToEnd().Split('|');
-            }
-        }
-
-        private void Deserialize()
-        {
-            StreamResourceInfo sri = Application.GetResourceStream(new Uri("DB3.ser", UriKind.Relative));
-            using (var fin = new StreamReader(sri.Stream))
-            {
-                CustomBinarySerializer ser2 = new CustomBinarySerializer(typeof(CapDB));
-                _comuni = ser2.ReadObject(sri.Stream) as Comune[];
-            }
-        }
-
-        #endregion
+        
 
         private bool AcbFilterStartsWithExtended(string search, object data)
         {

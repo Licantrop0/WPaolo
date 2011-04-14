@@ -16,8 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>it-IT;en-US;fr-FR;</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>TrovaCAP.xap</XapFilename>
@@ -54,6 +53,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Xna.Framework" />
@@ -62,6 +62,7 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -71,9 +72,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="CAPDB.cs" />
+    <Compile Include="Converters.cs" />
     <Compile Include="CustomBinarySerializer.cs" />
     <Compile Include="DataLayer.cs" />
+    <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -97,6 +105,8 @@
     <Content Include="Comuni.txt" />
     <Content Include="DB.ser" />
     <Content Include="DB3.ser" />
+    <None Include="images\bollo_en_png" />
+    <None Include="images\bollo_it_png" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
@@ -110,8 +120,8 @@
     <Content Include="DB2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DB3out.txt" />
-    <Content Include="DBout.txt" />
+    <None Include="DB3out.txt" />
+    <None Include="DBout.txt" />
     <Content Include="images\C_citta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -130,7 +140,7 @@
     <Content Include="images\C_province.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="provinceLookUp.txt" />
+    <None Include="provinceLookUp.txt" />
     <Content Include="sounds\error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -150,8 +160,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\bollo_en.png" />
     <Resource Include="images\bollo_it.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AppResources.en-US.resx" />
+    <EmbeddedResource Include="AppResources.fr-FR.resx" />
+    <EmbeddedResource Include="AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

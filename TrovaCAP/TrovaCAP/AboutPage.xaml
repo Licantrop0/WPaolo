@@ -11,23 +11,13 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
 
-    <wpcommon:AboutControl ApplicationName="Trova CAP" GetOtherAppsText="Scopri altre app di WPME!">
-
+    <wpcommon:AboutControl Name="WPMEAbout" Foreground="{StaticResource BlueGradientBrush}">
         <!--<wpcommon:AboutControl.BackgroundStackPanel>
             <ImageBrush ImageSource="Images\sfondo_about.jpg" />
         </wpcommon:AboutControl.BackgroundStackPanel>-->
-
-        <wpcommon:AboutControl.Foreground>
-            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                <GradientStop Color="#FF00A5FB" Offset="0" />
-                <GradientStop Color="Aqua"  Offset="0.5" />
-                <GradientStop Color="Cyan"  Offset="0.6" />
-                <GradientStop Color="#FF00A5FB"  Offset="1" />
-            </LinearGradientBrush>
-        </wpcommon:AboutControl.Foreground>
     </wpcommon:AboutControl>
 
 </phone:PhoneApplicationPage>

@@ -8,8 +8,8 @@ using System.Windows.Input;
 using System.Windows.Resources;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
-using Microsoft.Xna.Framework.Audio;
 using System.ComponentModel;
+using Microsoft.Xna.Framework.Audio;
 
 namespace TrovaCAP
 {
@@ -33,9 +33,6 @@ namespace TrovaCAP
     public partial class MainPage : PhoneApplicationPage
     {
         #region private members
-
-        //Comune[] _comuni = null;
-        //string[] _comuniNames = null; 
 
         Step _state = Step.selezionaComune;
         string _sComuneSelezionato = "";
@@ -74,41 +71,15 @@ namespace TrovaCAP
 
         #endregion
 
-        // Constructor
         public MainPage()
         {
             InitializeComponent();
-
-            _state = Step.selezionaComune;
-
-            AcbComuni._bSupportDicotomicSearch = true;
-            AcbIndirizzi._bCashingMode = true;
             AcbIndirizzi.TextFilter = AcbFilterStartsWithExtended;
-            
-            tbCapResult.Text = "";
         }
 
-        //Ho spostato l'elaborazione del db dal costruttore al Page_Loaded così la pagina viene già visualizzata
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            /*var bw = new BackgroundWorker();
-
-            //Evento che gira nel thread separato
-            bw.DoWork += (sender1, e1) =>
-            {
-                WPCommon.ExtensionMethods.StartTrace("Deserializing...");
-                //ReadAndParseDataBase();
-                Deserialize();
-                WPCommon.ExtensionMethods.EndTrace();
-            };*/
-
-            //LoadComuni();
-
-            //Il caricamento dei soli Comuni va separato e messo nel costruttore
-            //AcbComuni.ItemsSource = _comuniNames;
             AcbComuni.ItemsSource = DataLayer.ComuniNames;
-
-            //bw.RunWorkerAsync();
         }
 
         #region utility fuctions
@@ -487,23 +458,21 @@ namespace TrovaCAP
 
         #endregion
 
-        
-
-        private bool AcbFilterStartsWithExtended(string search, object data)
+        static bool AcbFilterStartsWithExtended(string search, object data)
         {
             string word = data as string;
             string[] words = (word).Split(' ');
 
             return (words.Where(s => s.StartsWith(search, StringComparison.CurrentCultureIgnoreCase)).Count() > 0) ||
                  (word.ToUpper().Contains(search.ToUpper()) && search.Contains(' '));
-
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void tbCapResult_GotFocus(object sender, RoutedEventArgs e)
         {
-            //go to about page
-            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+            tbCapResult.SelectAll();
         }
+
 
     }
 }

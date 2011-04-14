@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace TrovaCAP
 {
-    class CAPRecord
+    public class CAPRecord
     {
         public string Frazione { get; set; }
         public string Indirizzo { get; set; }
@@ -20,10 +20,10 @@ namespace TrovaCAP
             Cap = cap;
         }
 
-        public CAPRecord() {}
+        public CAPRecord() { }
     }
 
-    class Comune
+    public class Comune
     {
         public string ComuneID { get; set; }
         public CAPRecord[] CapRecords { get; set; }
@@ -35,9 +35,8 @@ namespace TrovaCAP
         }
     }
 
-    class CapDB
+    public class CapDB
     {
-        [DataMember]
         public Comune[] Comuni { get; set; }
 
         public CapDB(Comune[] comuni)

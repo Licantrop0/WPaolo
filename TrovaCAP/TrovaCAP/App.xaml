@@ -7,57 +7,54 @@
     xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon" >
 
     <Application.Resources>
-        
-        <Style x:Key="textComuneFrazioneIndirizzo" TargetType="TextBlock">
-        	<Setter Property="Foreground">
-        		<Setter.Value>
-        			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        				<LinearGradientBrush.RelativeTransform>
-        					<CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39"/>
-        				</LinearGradientBrush.RelativeTransform>
-        				<GradientStop Color="#FF00A5FB" Offset="0"/>
-        				<GradientStop Color="#FF35C0D2" Offset="1"/>
-        			</LinearGradientBrush>
-        		</Setter.Value>
-        	</Setter>
-        	<Setter Property="FontSize" Value="32"/>
+
+        <local:LocalizedStrings xmlns:local="clr-namespace:TrovaCAP" x:Key="LocalizedStrings" />
+
+        <LinearGradientBrush x:Key="BlueGradientBrush"
+                             StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Color="#FF00A5FB" Offset="0"/>
+            <GradientStop Color="#FF3079D2" Offset="1"/>
+        </LinearGradientBrush>
+
+        <Style x:Key="CommonTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Foreground" Value="{StaticResource BlueGradientBrush}" />
+            <Setter Property="Margin" Value="12,0" />
         </Style>
 
+        <Style x:Key="CapTextBoxStyle" TargetType="TextBox">
+            <Setter Property="FontSize" Value="130"/>
+            <Setter Property="Foreground" Value="{StaticResource BlueGradientBrush}" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <ContentPresenter x:Name="ContentElement" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <Style x:Key="TextWrappingStyle" TargetType="TextBox">
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="Background" Value="{x:Null}"/>
             <Setter Property="BorderBrush" Value="{x:Null}"/>
-            <Setter Property="Foreground" Value="#FF30DED2"/>
+            <Setter Property="Foreground" Value="{StaticResource BlueGradientBrush}"/>
             <Setter Property="FontSize" Value="32"/>
         </Style>
         
-        <Style x:Key="textCAPresult" TargetType="TextBlock">
-        	<Setter Property="Foreground">
-        		<Setter.Value>
-        			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        				<LinearGradientBrush.RelativeTransform>
-        					<CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39"/>
-        				</LinearGradientBrush.RelativeTransform>
-        				<GradientStop Color="#FF00A5FB" Offset="0"/>
-        				<GradientStop Color="#FF35B9D2" Offset="1"/>
-        			</LinearGradientBrush>
-        		</Setter.Value>
-        	</Setter>
-        	<Setter Property="FontSize" Value="60"/>
-        	<Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-        
         <DataTemplate x:Key="TextWrappingItemTemplate">
-            <Border BorderThickness="0,0,0,1" BorderBrush="Blue" Width="375">
-                <TextBlock Text="{Binding}" TextWrapping="Wrap" FontSize="32"/>
+            <Border BorderThickness="0,1,0,1" Width="400"
+                    BorderBrush="{StaticResource BlueGradientBrush}" >
+                <TextBlock Text="{Binding}" TextWrapping="Wrap" FontSize="32" Margin="0,6"/>
             </Border>
         </DataTemplate>
 
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
-
         <wp:XNAAsyncDispatcher />
         
         <shell:PhoneApplicationService 

@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using System.ComponentModel;
 using System.IO;
+using System.Threading;
+using System.Windows;
 using System.Windows.Resources;
 using Microsoft.Phone.Shell;
 
@@ -16,40 +10,43 @@ namespace TrovaCAP
 {
     static class DataLayer
     {
-        public static Comune[] Comuni
-        {
-            get
-            {
-                if (!PhoneApplicationService.Current.State.ContainsKey("comuni"))
-                    PhoneApplicationService.Current.State.Add("comuni", null); //Valore di default
-
-                return (Comune[])PhoneApplicationService.Current.State["comuni"];
-            }
-            set
-            {
-                if (Comuni != value)
-                    PhoneApplicationService.Current.State["comuni"] = value;
-            }
-        }
-
+        public static Comune[] Comuni { get; set; }
         public static string[] ComuniNames
         {
             get
             {
                 if (!PhoneApplicationService.Current.State.ContainsKey("comuni_names"))
-                    PhoneApplicationService.Current.State.Add("comuni_names", null); //Valore di default
+                    PhoneApplicationService.Current.State.Add("comuni_names", LoadComuniNames());
 
                 return (string[])PhoneApplicationService.Current.State["comuni_names"];
             }
-            set
+        }
+
+        private static string[] LoadComuniNames()
+        {
+            var resource = Application.GetResourceStream(new Uri("Comuni.txt", UriKind.Relative));
+
+            using (var tr = new StreamReader(resource.Stream))
             {
-                if (ComuniNames != value)
-                    PhoneApplicationService.Current.State["comuni_names"] = value;
+                return tr.ReadToEnd().Split('|');
             }
         }
 
+        public static void LoadDBAsync()
+        {
+            var bw = new BackgroundWorker();
+            bw.DoWork += (sender1, e1) =>
+            {
+                WPCommon.ExtensionMethods.StartTrace("Deserializing...");
+                //DataLayer.ReadAndParseDataBase();
+                DataLayer.Deserialize();
+                WPCommon.ExtensionMethods.EndTrace();
+            };
+            bw.RunWorkerAsync();
+            Thread.Sleep(2000);
+        }
 
-        public static void ReadAndParseDataBase()
+        private static void ReadAndParseDataBase()
         {
             var resource = Application.GetResourceStream(new Uri("DB3out.txt", UriKind.Relative));
             using (var tr = new StreamReader(resource.Stream))
@@ -73,17 +70,7 @@ namespace TrovaCAP
             }
         }
 
-        public static void LoadComuniNames()
-        {
-            var resource = Application.GetResourceStream(new Uri("Comuni.txt", UriKind.Relative));
-
-            using (var tr = new StreamReader(resource.Stream))
-            {
-                ComuniNames = tr.ReadToEnd().Split('|');
-            }
-        }
-
-        public static void Deserialize()
+        private static void Deserialize()
         {
             StreamResourceInfo sri = Application.GetResourceStream(new Uri("DB3.ser", UriKind.Relative));
             using (var fin = new StreamReader(sri.Stream))
@@ -92,6 +79,7 @@ namespace TrovaCAP
                 Comuni = ser2.ReadObject(sri.Stream) as Comune[];
             }
         }
+
 
     }
 }

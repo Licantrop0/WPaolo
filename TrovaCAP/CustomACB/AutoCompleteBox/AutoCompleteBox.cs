@@ -92,10 +92,9 @@ namespace System.Windows.Controls
         private List<object> _items;
 
         // PS my customization
-        public bool _bSupportDicotomicSearch;
-
-        public bool _bCashingMode;
-        private string _sCashedString;
+        public bool IsDicotomicSearchEnabled { get; set; }
+        private string _cashedString;
+        public bool IsCacheEnabled { get; set; }
 
 
         /// <summary>
@@ -1306,9 +1305,9 @@ namespace System.Windows.Controls
             ClearView();
 
             // PS my customizations attributes
-            _bSupportDicotomicSearch = false;
-            _bCashingMode = false;
-            _sCashedString = "";
+            IsDicotomicSearchEnabled = false;
+            IsCacheEnabled = false;
+            _cashedString = "";
         }
 
         /// <summary>
@@ -2327,7 +2326,7 @@ namespace System.Windows.Controls
             bool stringFiltering = TextFilter != null;
             bool objectFiltering = FilterMode == AutoCompleteFilterMode.Custom && TextFilter == null;
 
-            if (_bSupportDicotomicSearch)
+            if (IsDicotomicSearchEnabled)
             {
                 ClearView();  // vediamo se la filosofia va bene o bisogna utilizzare quella Microsoft
 
@@ -2408,9 +2407,9 @@ namespace System.Windows.Controls
 
                 // tocco il codice microsoft, quale eresia!!!
                 /*********************************************************************/
-                if (_bCashingMode)
+                if (IsCacheEnabled)
                 {
-                    if ( _sCashedString.Length > MinimumPrefixLength && text.Length > _sCashedString.Length && TextFilter(_sCashedString, text))
+                    if ( _cashedString.Length > MinimumPrefixLength && text.Length > _cashedString.Length && TextFilter(_cashedString, text))
                     {
                         items = _view.ToList();
                     }
@@ -2419,7 +2418,7 @@ namespace System.Windows.Controls
                         items = _items;
                     }
 
-                    _sCashedString = text;
+                    _cashedString = text;
                 }
                 /*********************************************************************/
                 else

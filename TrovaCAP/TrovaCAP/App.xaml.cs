@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
+﻿using System.Windows;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using System.Windows.Threading;
-using System.ComponentModel;
-using System.Threading;
 
 namespace TrovaCAP
 {
@@ -60,28 +47,14 @@ namespace TrovaCAP
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            var bw = new BackgroundWorker();
-
-            //Evento che gira nel thread separato
-            bw.DoWork += (sender1, e1) =>
-            {
-                WPCommon.ExtensionMethods.StartTrace("Deserializing...");
-                //DataLayer.ReadAndParseDataBase();
-                DataLayer.Deserialize();
-                WPCommon.ExtensionMethods.EndTrace();
-            };
-
-            bw.RunWorkerAsync();
-
-            DataLayer.LoadComuniNames();
-
-            Thread.Sleep(2000);
+            DataLayer.LoadDBAsync();
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            DataLayer.LoadDBAsync();
         }
 
         // Code to execute when the application is deactivated (sent to background)

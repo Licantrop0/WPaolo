@@ -137,7 +137,6 @@
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Death Timerz</value>
-    <comment>application name</comment>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -259,6 +258,9 @@ Anyway... touch your balls!</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="PlayBackgroundMusic" xml:space="preserve">
+    <value>Do you want to stop the current music and play the gloomy background music of this app?</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>

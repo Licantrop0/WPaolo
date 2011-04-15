@@ -1,5 +1,8 @@
 ﻿using System;
 using System.IO.IsolatedStorage;
+using System.Windows;
+using Microsoft.Phone.Shell;
+using Microsoft.Xna.Framework.Media;
 
 namespace DeathTimer
 {
@@ -37,5 +40,24 @@ namespace DeathTimer
                     IsolatedStorageSettings.ApplicationSettings["estimated_death_age"] = value;
             }
         }
+
+
+        public static bool CanIPlayMusic
+        {
+            get
+            {
+                if (!PhoneApplicationService.Current.State.ContainsKey("can_play_music"))
+                {
+                    PhoneApplicationService.Current.State.Add("can_play_music", true);
+
+                    if (!MediaPlayer.GameHasControl)
+                        PhoneApplicationService.Current.State["can_play_music"] =
+                            MessageBox.Show(AppResources.PlayBackgroundMusic,
+                            AppResources.AppName, MessageBoxButton.OKCancel) == MessageBoxResult.OK;
+                }
+                return (bool)PhoneApplicationService.Current.State["can_play_music"];
+            }
+        }
+
     }
 }

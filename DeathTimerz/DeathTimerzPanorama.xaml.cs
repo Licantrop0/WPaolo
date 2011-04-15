@@ -4,6 +4,7 @@ using System.Windows.Navigation;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Windows.Controls;
 
 namespace DeathTimer
 {
@@ -152,11 +153,32 @@ namespace DeathTimer
 
         #endregion
 
-        private void BackgroundMusic_MediaEnded(object sender, RoutedEventArgs e)
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            BackgroundMusic.Stop();
-            BackgroundMusic.Play();
+            if (Settings.CanIPlayMusic)
+            {
+                var BackgroundMusic = new MediaElement();
+                BackgroundMusic.AutoPlay = true;
+                BackgroundMusic.Source = new Uri("DeathTimer;component/Music.mp3", UriKind.Relative);
+
+                BackgroundMusic.MediaEnded += (sender1, e1) =>
+                {
+                    BackgroundMusic.Stop();
+                    BackgroundMusic.Play();
+                };
+
+                BackgroundMusic.MediaOpened +=(sender1, e1) =>
+                {
+                    var a = e1.OriginalSource;
+                };
+
+                BackgroundMusic.MediaFailed += (sender1, e1) =>
+                {
+                    var a = e1.ErrorException;
+                };
+            }
         }
+
     }
 
 }

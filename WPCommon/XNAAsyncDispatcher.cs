@@ -5,6 +5,9 @@ using System.Windows.Threading;
 
 namespace WPCommon
 {
+    //Riga da inserire dentro <Application.ApplicationLifetimeObjects> nell'App.xaml
+    //<wp:XNAAsyncDispatcher xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"/>
+
     public class XNAAsyncDispatcher : IApplicationService
     {
         private DispatcherTimer frameworkDispatcherTimer;

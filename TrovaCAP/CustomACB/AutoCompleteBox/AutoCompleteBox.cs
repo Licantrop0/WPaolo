@@ -89,7 +89,8 @@ namespace System.Windows.Controls
         /// <summary>
         /// Gets or sets a local cached copy of the items data.
         /// </summary>
-        private List<object> _items;
+        private List<string> _items;
+        public List<string> Items { get; set; }
 
         // PS my customization
         public bool IsDicotomicSearchEnabled { get; set; }
@@ -102,7 +103,7 @@ namespace System.Windows.Controls
         /// all of the items in the generated view of data that is provided to 
         /// the selection-style control adapter.
         /// </summary>
-        private ObservableCollection<object> _view;
+        private ObservableCollection<string> _view;
 
         /// <summary>
         /// Gets or sets a value to ignore a number of pending change handlers. 
@@ -605,9 +606,9 @@ namespace System.Windows.Controls
         /// <value>The collection that is used to generate the items of the
         /// drop-down portion of the
         /// <see cref="T:Microsoft.Phone.Controls.AutoCompleteBox" /> control.</value>
-        public IEnumerable ItemsSource
+        public IEnumerable<string> ItemsSource
         {
-            get { return GetValue(ItemsSourceProperty) as IEnumerable; }
+            get { return GetValue(ItemsSourceProperty) as IEnumerable<string>; }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
@@ -622,7 +623,7 @@ namespace System.Windows.Controls
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register(
                 "ItemsSource",
-                typeof(IEnumerable),
+                typeof(IEnumerable<string>),
                 typeof(AutoCompleteBox),
                 new PropertyMetadata(OnItemsSourcePropertyChanged));
 
@@ -634,7 +635,7 @@ namespace System.Windows.Controls
         private static void OnItemsSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             AutoCompleteBox autoComplete = d as AutoCompleteBox;
-            autoComplete.OnItemsSourceChanged((IEnumerable)e.OldValue, (IEnumerable)e.NewValue);
+            autoComplete.OnItemsSourceChanged((IEnumerable<string>)e.OldValue, (IEnumerable<string>)e.NewValue);
         }
 
         #endregion public IEnumerable ItemsSource
@@ -2142,7 +2143,7 @@ namespace System.Windows.Controls
             RefreshView();
 
             // Fire the Populated event containing the read-only view data.
-            PopulatedEventArgs populated = new PopulatedEventArgs(new ReadOnlyCollection<object>(_view));
+            PopulatedEventArgs populated = new PopulatedEventArgs(new ReadOnlyCollection<string>(_view));
             OnPopulated(populated);
 
             if (SelectionAdapter != null && SelectionAdapter.ItemsSource != _view)
@@ -2207,9 +2208,8 @@ namespace System.Windows.Controls
                         // performance on the lookup. It assumes that the 
                         // FilterMode the user has selected is an acceptable 
                         // case sensitive matching function for their scenario.
-                        object top = FilterMode == AutoCompleteFilterMode.StartsWith || FilterMode == AutoCompleteFilterMode.StartsWithCaseSensitive
-                            ? _view[0]
-                            : TryGetMatch(text, _view, AutoCompleteSearch.GetFilter(AutoCompleteFilterMode.StartsWith));
+                        string top = _view[0];
+                            
 
                         // If the search was successful, update SelectedItem
                         if (top != null)
@@ -2272,7 +2272,7 @@ namespace System.Windows.Controls
         /// <param name="predicate">The predicate to use for the partial or 
         /// exact match.</param>
         /// <returns>Returns the object or null.</returns>
-        private object TryGetMatch(string searchText, ObservableCollection<object> view, AutoCompleteFilterPredicate<string> predicate)
+        private object TryGetMatch(string searchText, ObservableCollection<string> view, AutoCompleteFilterPredicate<string> predicate)
         {
             if (view != null && view.Count > 0)
             {
@@ -2296,7 +2296,7 @@ namespace System.Windows.Controls
         {
             if (_view == null)
             {
-                _view = new ObservableCollection<object>();
+                _view = new ObservableCollection<string>();
             }
             else
             {
@@ -2344,14 +2344,14 @@ namespace System.Windows.Controls
                     if (nTryHitIndex > nCount - 1)
                         nTryHitIndex = nCount - 1;
 
-                    string sCompared = FormatValue(_items[nTryHitIndex]);
+                    string sCompared = _items[nTryHitIndex];
 
                     if (TextFilter(text, sCompared))
                     {
                         nHitIndex = nTryHitIndex;
                         nTryHitIndex -= nTryIndexInterval;
                     }
-                    else if (String.Compare(text, sCompared) > 0)
+                    else if (String.Compare(text, sCompared, StringComparison.OrdinalIgnoreCase) > 0)
                     {
                         nTryHitIndex += nTryIndexInterval;
                     }
@@ -2403,7 +2403,7 @@ namespace System.Windows.Controls
             {
                 int view_index = 0;
                 int view_count = _view.Count;
-                List<object> items;
+                List<string> items;
 
                 // tocco il codice microsoft, quale eresia!!!
                 /*********************************************************************/
@@ -2423,10 +2423,10 @@ namespace System.Windows.Controls
                 /*********************************************************************/
                 else
                 {
-                    /*List<object>*/ items = _items;
+                    items = _items;
                 }
 
-                foreach (object item in items)
+                foreach (string item in items)
                 {
                     bool inResults = !(stringFiltering || objectFiltering);
                     if (!inResults)
@@ -2492,7 +2492,7 @@ namespace System.Windows.Controls
         /// <param name="oldValue">The old enumerable reference.</param>
         /// <param name="newValue">The new enumerable reference.</param>
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "oldValue", Justification = "This makes it easy to add validation or other changes in the future.")]
-        private void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
+        private void OnItemsSourceChanged(IEnumerable<string> oldValue, IEnumerable<string> newValue)
         {
             // Remove handler for oldValue.CollectionChanged (if present)
             INotifyCollectionChanged oldValueINotifyCollectionChanged = oldValue as INotifyCollectionChanged;
@@ -2513,7 +2513,7 @@ namespace System.Windows.Controls
             }
 
             // Store a local cached copy of the data
-            _items = newValue == null ? null : new List<object>(newValue.Cast<object>().ToList());
+            _items = newValue == null ? null : new List<string>(newValue.ToList());
 
             // Clear and set the view on the selection adapter
             ClearView();
@@ -2546,14 +2546,14 @@ namespace System.Windows.Controls
             {
                 for (int index = 0; index < e.NewItems.Count; index++)
                 {
-                    _items.Insert(e.NewStartingIndex + index, e.NewItems[index]);
+                    _items.Insert(e.NewStartingIndex + index, (string)e.NewItems[index]);
                 }
             }
             if (e.Action == NotifyCollectionChangedAction.Replace && e.NewItems != null && e.OldItems != null)
             {
                 for (int index = 0; index < e.NewItems.Count; index++)
                 {
-                    _items[e.NewStartingIndex] = e.NewItems[index];
+                    _items[e.NewStartingIndex] = (string)e.NewItems[index];
                 }
             }
 
@@ -2562,7 +2562,7 @@ namespace System.Windows.Controls
             {
                 for (int index = 0; index < e.OldItems.Count; index++)
                 {
-                    _view.Remove(e.OldItems[index]);
+                    _view.Remove((string)e.OldItems[index]);
                 }
             }
 
@@ -2572,7 +2572,7 @@ namespace System.Windows.Controls
                 ClearView();
                 if (ItemsSource != null)
                 {
-                    _items = new List<object>(ItemsSource.Cast<object>().ToList());
+                    _items = new List<string>(ItemsSource.ToList());
                 }
             }
             
@@ -2716,6 +2716,10 @@ namespace System.Windows.Controls
             // the drop down.
             if (IsDropDownOpen)
             {
+                // PS
+                if (e.Key == Key.Enter)
+                    SelectedItem = _view.FirstOrDefault();
+
                 if (SelectionAdapter != null)
                 {
                     SelectionAdapter.HandleKeyDown(e);

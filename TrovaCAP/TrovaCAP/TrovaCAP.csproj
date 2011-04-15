@@ -120,7 +120,7 @@
     <Content Include="DB2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="DB3out.txt" />
+    <Content Include="DB3out.txt" />
     <None Include="DBout.txt" />
     <Content Include="images\C_citta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

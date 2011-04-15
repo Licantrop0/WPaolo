@@ -65,7 +65,7 @@
             <TextBlock Text="{Binding Path=LocalizedResources.FrazioneQuartiere, Source={StaticResource LocalizedStrings}}"
                        Style="{StaticResource CommonTextStyle}" />
             <acb:AutoCompleteBox x:Name="AcbFrazioni"
-                                 FilterMode="Contains"
+                                 FilterMode="Custom"
                                  IsDropDownOpen="True"
                                  MinimumPrefixLength="0"
                                  GotFocus="AcbFrazioni_GotFocus"

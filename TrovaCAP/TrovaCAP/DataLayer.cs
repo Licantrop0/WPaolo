@@ -38,8 +38,8 @@ namespace TrovaCAP
             bw.DoWork += (sender1, e1) =>
             {
                 WPCommon.ExtensionMethods.StartTrace("Deserializing...");
-                //DataLayer.ReadAndParseDataBase();
-                DataLayer.Deserialize();
+                DataLayer.ReadAndParseDataBase();
+                //DataLayer.Deserialize();
                 WPCommon.ExtensionMethods.EndTrace();
             };
             bw.RunWorkerAsync();

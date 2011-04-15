@@ -78,12 +78,12 @@ Acquasparta (TR)|1
 ||05021
 Acquaviva Collecroce (CB)|1
 ||86030
+Acquaviva d'Isernia (IS)|1
+||86080
 Acquaviva delle Fonti (BA)|1
 ||70021
 Acquaviva di Repubblica di San Marino (SM)|1
 ||47892
-Acquaviva d'Isernia (IS)|1
-||86080
 Acquaviva Picena (AP)|1
 ||63075
 Acquaviva Platani (CL)|1
@@ -198,10 +198,10 @@ Aisone (CN)|1
 ||12010
 Ala (TN)|1
 ||38061
-Ala' dei Sardi (OT)|1
-||07020
 Ala di Stura (TO)|1
 ||10070
+Ala' dei Sardi (OT)|1
+||07020
 Alagna (PV)|1
 ||27020
 Alagna Valsesia (VC)|1
@@ -1992,10 +1992,10 @@ Anzi (PZ)|1
 ||85010
 Anzio (RM)|1
 ||00042
-Anzola dell'Emilia (BO)|1
-||40011
 Anzola d'Ossola (VB)|1
 ||28877
+Anzola dell'Emilia (BO)|1
+||40011
 Aosta (AO)|1
 ||11100
 Apecchio (PU)|1
@@ -12411,10 +12411,10 @@ Capizzi (ME)|1
 ||98031
 Capizzone (BG)|1
 ||24030
-Capo di Ponte (BS)|1
-||25044
 Capo d'Orlando (ME)|1
 ||98071
+Capo di Ponte (BS)|1
+||25044
 Capodimonte (VT)|1
 ||01010
 Capodrise (CE)|1
@@ -13184,12 +13184,18 @@ Castelguglielmo (RO)|1
 ||45020
 Castelguidone (CH)|1
 ||66040
+Castell'Alfero (AT)|1
+||14033
+Castell'Arquato (PC)|1
+||29014
+Castell'Azzara (GR)|1
+||58034
+Castell'Umberto (ME)|1
+||98070
 Castellabate (SA)|1
 ||84048
 Castellafiume (AQ)|1
 ||67050
-Castell'Alfero (AT)|1
-||14033
 Castellalto (TE)|1
 ||64020
 Castellammare del Golfo (TP)|4
@@ -13222,12 +13228,8 @@ Castellarano (RE)|1
 ||42014
 Castellaro (IM)|1
 ||18011
-Castell'Arquato (PC)|1
-||29014
 Castellavazzo (BL)|1
 ||32010
-Castell'Azzara (GR)|1
-||58034
 Castellazzo Bormida (AL)|1
 ||15073
 Castellazzo Novarese (NO)|1
@@ -13242,10 +13244,10 @@ Castelletto Cervo (BI)|1
 ||13851
 Castelletto d'Erro (AL)|1
 ||15010
-Castelletto di Branduzzo (PV)|1
-||27040
 Castelletto d'Orba (AL)|1
 ||15060
+Castelletto di Branduzzo (PV)|1
+||27040
 Castelletto Merli (AL)|1
 ||15020
 Castelletto Molina (AT)|1
@@ -13308,8 +13310,6 @@ Castelluccio Superiore (PZ)|1
 ||85040
 Castelluccio Valmaggiore (FG)|1
 ||71020
-Castell'Umberto (ME)|1
-||98070
 Castelmagno (CN)|1
 ||12020
 Castelmarte (CO)|1
@@ -13448,6 +13448,10 @@ Castiglione Cosentino (CS)|1
 ||87040
 Castiglione d'Adda (LO)|1
 ||26823
+Castiglione d'Intelvi (CO)|1
+||22023
+Castiglione d'Orcia (SI)|1
+||53023
 Castiglione dei Pepoli (BO)|1
 ||40035
 Castiglione del Genovesi (SA)|1
@@ -13470,10 +13474,6 @@ Castiglione di Garfagnana (LU)|1
 ||55033
 Castiglione di Sicilia (CT)|1
 ||95012
-Castiglione d'Intelvi (CO)|1
-||22023
-Castiglione d'Orcia (SI)|1
-||53023
 Castiglione Falletto (CN)|1
 ||12060
 Castiglione in Teverina (VT)|1
@@ -16304,10 +16304,10 @@ Cavallerleone (CN)|1
 ||12030
 Cavallermaggiore (CN)|1
 ||12030
-Cavallino - Treporti (VE)|1
-||30013
 Cavallino (LE)|1
 ||73020
+Cavallino - Treporti (VE)|1
+||30013
 Cavallirio (NO)|1
 ||28010
 Cavareno (TN)|1
@@ -19662,10 +19662,10 @@ Farnese (VT)|1
 ||01010
 Farra d'Alpago (BL)|1
 ||32016
-Farra di Soligo (TV)|1
-||31010
 Farra d'Isonzo (GO)|1
 ||34072
+Farra di Soligo (TV)|1
+||31010
 Fasano (BR)|10
 Madonna Pozzo Guacito||72016
 Marina di Savelletri||72015
@@ -30972,6 +30972,8 @@ Kurtatsch An Der Weinstrasse (BZ)|1
 ||39040
 Kurtinig An Der Weinstrasse (BZ)|1
 ||39040
+L'Aquila (AQ)|1
+||67100
 La Cassa (TO)|1
 ||10040
 La Loggia (TO)|1
@@ -31830,8 +31832,6 @@ Lapio (AV)|1
 ||83030
 Lappano (CS)|1
 ||87050
-L'Aquila (AQ)|1
-||67100
 Larciano (PT)|1
 ||51036
 Lardaro (TN)|1
@@ -43321,14 +43321,14 @@ Montelanico (RM)|1
 ||00030
 Montelapiano (CH)|1
 ||66040
+Monteleone d'Orvieto (TR)|1
+||05017
 Monteleone di Fermo (FM)|1
 ||63841
 Monteleone di Puglia (FG)|1
 ||71020
 Monteleone di Spoleto (PG)|1
 ||06045
-Monteleone d'Orvieto (TR)|1
-||05017
 Monteleone Rocca Doria (SS)|1
 ||07010
 Monteleone Sabino (RI)|1
@@ -43685,10 +43685,10 @@ Motta di Livenza (TV)|1
 ||31045
 Motta Montecorvino (FG)|1
 ||71030
-Motta Santa Lucia (CZ)|1
-||88040
 Motta Sant'Anastasia (CT)|1
 ||95040
+Motta Santa Lucia (CZ)|1
+||88040
 Motta Visconti (MI)|1
 ||20086
 Mottafollone (CS)|1
@@ -49840,7 +49840,7 @@ Padova (PD)|2139
 |Via Postumia|35135
 |Via Pozzoveggiani|35124
 |Via Pozzuolo|35141
-| Prato della Valle|35123
+|Prato della Valle|35123
 |Via Premuda|35138
 |Corso Primo Maggio|35127
 |Piazzetta Primo Modin|35129
@@ -57154,12 +57154,12 @@ Pasturana (AL)|1
 ||15060
 Pasturo (LC)|1
 ||23818
-Paterno' (CT)|1
-||95047
 Paterno (PZ)|1
 ||85050
 Paterno Calabro (CS)|1
 ||87040
+Paterno' (CT)|1
+||95047
 Paternopoli (AV)|1
 ||83052
 Patrica (FR)|1
@@ -62876,6 +62876,8 @@ Pieve Albignola (PV)|1
 ||27030
 Pieve d'Alpago (BL)|1
 ||32010
+Pieve d'Olmi (CR)|1
+||26040
 Pieve del Cairo (PV)|1
 ||27037
 Pieve di Bono (TN)|1
@@ -62890,8 +62892,6 @@ Pieve di Soligo (TV)|1
 ||31053
 Pieve di Teco (IM)|1
 ||18026
-Pieve d'Olmi (CR)|1
-||26040
 Pieve Emanuele (MI)|1
 ||20090
 Pieve Fissiraga (LO)|1
@@ -66156,7 +66156,7 @@ Filetto|Carraia Lovatelli|48125
 |Viale Marco Lombardo|48124
 |Via Marco Polo|48125
 |Via Marco Ravegnani|48122
-| Marcuzzi|48125
+|Marcuzzi|48125
 |Via Mare|48122
 |Viale Mare|48123
 |Via Marecchia|48121
@@ -72588,12 +72588,12 @@ Rocca d'Arazzo (AT)|1
 ||14030
 Rocca d'Arce (FR)|1
 ||03030
+Rocca d'Evandro (CE)|1
+||81040
 Rocca de' Baldi (CN)|1
 ||12047
 Rocca de' Giorgi (PV)|1
 ||27040
-Rocca d'Evandro (CE)|1
-||81040
 Rocca di Botte (AQ)|1
 ||67066
 Rocca di Cambio (AQ)|1
@@ -72753,10 +72753,10 @@ Rodello (CN)|1
 ||12050
 Rodeneck (BZ)|1
 ||39037
-Rodengo - Saiano (BS)|1
-||25050
 Rodengo (BZ)|1
 ||39037
+Rodengo - Saiano (BS)|1
+||25050
 Rodero (CO)|1
 ||22070
 Rodi Garganico (FG)|1
@@ -80597,17 +80597,17 @@ Roma (RM)|15641
 |Via Granatieri|00143
 |Lungotevere Grande Ammiraglio Thaon di Revel|00196
 |Viale Grande Muraglia|00144
-| Grande Raccordo Anulare, dal km 46 al km 49|00178
-| Grande Raccordo Anulare, N dispari dal 4507 al 4671|00173
-| Grande Raccordo Anulare, dal km 55 al km 57|00127
-| Grande Raccordo Anulare, N dispari dal 6809 al 6809|00166
-| Grande Raccordo Anulare, dal km 34 al km 42|00133
-| Grande Raccordo Anulare, N dispari dal 4687 al 4745|00178
-| Grande Raccordo Anulare, N pari dal 4700/A al 4720|00178
-| Grande Raccordo Anulare, dal km 5 al km 12|00135
-| Grande Raccordo Anulare, dal km 65 al km 68|00166
-| Grande Raccordo Anulare, N pari dal 4506 al 4684|00173
-| Grande Raccordo Anulare, dal km 19 al km 29|00138
+|Grande Raccordo Anulare, dal km 46 al km 49|00178
+|Grande Raccordo Anulare, N dispari dal 4507 al 4671|00173
+|Grande Raccordo Anulare, dal km 55 al km 57|00127
+|Grande Raccordo Anulare, N dispari dal 6809 al 6809|00166
+|Grande Raccordo Anulare, dal km 34 al km 42|00133
+|Grande Raccordo Anulare, N dispari dal 4687 al 4745|00178
+|Grande Raccordo Anulare, N pari dal 4700/A al 4720|00178
+|Grande Raccordo Anulare, dal km 5 al km 12|00135
+|Grande Raccordo Anulare, dal km 65 al km 68|00166
+|Grande Raccordo Anulare, N pari dal 4506 al 4684|00173
+|Grande Raccordo Anulare, dal km 19 al km 29|00138
 |Via Graniti|00132
 |Via Granito di Belmonte|00121
 |Via Grano|00172
@@ -90479,12 +90479,12 @@ San Giusto Canavese (TO)|1
 ||10090
 San Godenzo (FI)|1
 ||50060
+San Gregorio d'Ippona (VV)|1
+||89853
 San Gregorio da Sassola (RM)|1
 ||00010
 San Gregorio di Catania (CT)|1
 ||95027
-San Gregorio d'Ippona (VV)|1
-||89853
 San Gregorio Magno (SA)|1
 ||84020
 San Gregorio Matese (CE)|1
@@ -90753,10 +90753,10 @@ San Pietro Viminario (PD)|1
 ||35020
 San Pio delle Camere (AQ)|1
 ||67020
-San Polo dei Cavalieri (RM)|1
-||00010
 San Polo d'Enza (RE)|1
 ||42020
+San Polo dei Cavalieri (RM)|1
+||00010
 San Polo di Piave (TV)|1
 ||31020
 San Polo Matese (CB)|1
@@ -90917,6 +90917,162 @@ Sanremo (IM)|1
 ||18038
 Sansepolcro (AR)|1
 ||52037
+Sant'Agapito (IS)|1
+||86070
+Sant'Agata Bolognese (BO)|1
+||40019
+Sant'Agata de' Goti (BN)|1
+||82019
+Sant'Agata del Bianco (RC)|1
+||89030
+Sant'Agata di Esaro (CS)|1
+||87010
+Sant'Agata di Militello (ME)|1
+||98076
+Sant'Agata di Puglia (FG)|1
+||71028
+Sant'Agata Feltria (RN)|1
+||47866
+Sant'Agata Fossili (AL)|1
+||15050
+Sant'Agata Li Battiati (CT)|1
+||95030
+Sant'Agata sul Santerno (RA)|1
+||48020
+Sant'Agnello (NA)|1
+||80065
+Sant'Agostino (FE)|1
+||44047
+Sant'Albano Stura (CN)|1
+||12040
+Sant'Alessio con Vialone (PV)|1
+||27016
+Sant'Alessio in Aspromonte (RC)|1
+||89050
+Sant'Alessio Siculo (ME)|1
+||98030
+Sant'Alfio (CT)|1
+||95010
+Sant'Ambrogio di Torino (TO)|1
+||10057
+Sant'Ambrogio di Valpolicella (VR)|1
+||37015
+Sant'Ambrogio sul Garigliano (FR)|1
+||03040
+Sant'Anastasia (NA)|1
+||80048
+Sant'Anatolia di Narco (PG)|1
+||06040
+Sant'Andrea Apostolo dello Ionio (CZ)|1
+||88060
+Sant'Andrea del Garigliano (FR)|1
+||03040
+Sant'Andrea di Conza (AV)|1
+||83053
+Sant'Andrea Frius (CA)|1
+||09040
+Sant'Angelo a Cupolo (BN)|1
+||82010
+Sant'Angelo a Fasanella (SA)|1
+||84027
+Sant'Angelo a Scala (AV)|1
+||83010
+Sant'Angelo all'Esca (AV)|1
+||83050
+Sant'Angelo d'Alife (CE)|1
+||81017
+Sant'Angelo dei Lombardi (AV)|1
+||83054
+Sant'Angelo del Pesco (IS)|1
+||86080
+Sant'Angelo di Brolo (ME)|1
+||98060
+Sant'Angelo di Piove di Sacco (PD)|1
+||35020
+Sant'Angelo in Lizzola (PU)|1
+||61020
+Sant'Angelo in Pontano (MC)|1
+||62020
+Sant'Angelo in Vado (PU)|1
+||61048
+Sant'Angelo le Fratte (PZ)|1
+||85050
+Sant'Angelo Limosano (CB)|1
+||86020
+Sant'Angelo Lodigiano (LO)|1
+||26866
+Sant'Angelo Lomellina (PV)|1
+||27030
+Sant'Angelo Muxaro (AG)|1
+||92020
+Sant'Angelo Romano (RM)|1
+||00010
+Sant'Anna Arresi (CI)|1
+||09010
+Sant'Anna d'Alfaedo (VR)|1
+||37020
+Sant'Antimo (NA)|1
+||80029
+Sant'Antioco (CI)|1
+||09017
+Sant'Antonino di Susa (TO)|1
+||10050
+Sant'Antonio Abate (NA)|1
+||80057
+Sant'Antonio di Gallura (OT)|1
+||07030
+Sant'Apollinare (FR)|1
+||03048
+Sant'Arcangelo (PZ)|1
+||85037
+Sant'Arcangelo Trimonte (BN)|1
+||82021
+Sant'Arpino (CE)|1
+||81030
+Sant'Arsenio (SA)|1
+||84037
+Sant'Egidio alla Vibrata (TE)|1
+||64016
+Sant'Egidio del Monte Albino (SA)|1
+||84010
+Sant'Elena (PD)|1
+||35040
+Sant'Elena Sannita (IS)|1
+||86095
+Sant'Elia a Pianisi (CB)|1
+||86048
+Sant'Elia Fiumerapido (FR)|1
+||03049
+Sant'Elpidio a Mare (FM)|1
+||63811
+Sant'Eufemia a Maiella (PE)|1
+||65020
+Sant'Eufemia d'Aspromonte (RC)|1
+||89027
+Sant'Eusanio del Sangro (CH)|1
+||66037
+Sant'Eusanio Forconese (AQ)|1
+||67020
+Sant'Ilario d'Enza (RE)|1
+||42049
+Sant'Ilario dello Ionio (RC)|1
+||89040
+Sant'Ippolito (PU)|1
+||61040
+Sant'Olcese (GE)|1
+||16010
+Sant'Omero (TE)|1
+||64027
+Sant'Omobono Terme (BG)|1
+||24038
+Sant'Onofrio (VV)|1
+||89843
+Sant'Oreste (RM)|1
+||00060
+Sant'Orsola Terme (TN)|1
+||38050
+Sant'Urbano (PD)|1
+||35040
 Santa Brigida (BG)|1
 ||24010
 Santa Caterina Albanese (CS)|1
@@ -91037,160 +91193,18 @@ Santa Vittoria in Matenano (FM)|1
 ||63854
 Santadi (CI)|1
 ||09010
-Sant'Agapito (IS)|1
-||86070
-Sant'Agata Bolognese (BO)|1
-||40019
-Sant'Agata de' Goti (BN)|1
-||82019
-Sant'Agata del Bianco (RC)|1
-||89030
-Sant'Agata di Esaro (CS)|1
-||87010
-Sant'Agata di Militello (ME)|1
-||98076
-Sant'Agata di Puglia (FG)|1
-||71028
-Sant'Agata Feltria (RN)|1
-||47866
-Sant'Agata Fossili (AL)|1
-||15050
-Sant'Agata Li Battiati (CT)|1
-||95030
-Sant'Agata sul Santerno (RA)|1
-||48020
-Sant'Agnello (NA)|1
-||80065
-Sant'Agostino (FE)|1
-||44047
-Sant'Albano Stura (CN)|1
-||12040
-Sant'Alessio con Vialone (PV)|1
-||27016
-Sant'Alessio in Aspromonte (RC)|1
-||89050
-Sant'Alessio Siculo (ME)|1
-||98030
-Sant'Alfio (CT)|1
-||95010
-Sant'Ambrogio di Torino (TO)|1
-||10057
-Sant'Ambrogio di Valpolicella (VR)|1
-||37015
-Sant'Ambrogio sul Garigliano (FR)|1
-||03040
-Sant'Anastasia (NA)|1
-||80048
-Sant'Anatolia di Narco (PG)|1
-||06040
-Sant'Andrea Apostolo dello Ionio (CZ)|1
-||88060
-Sant'Andrea del Garigliano (FR)|1
-||03040
-Sant'Andrea di Conza (AV)|1
-||83053
-Sant'Andrea Frius (CA)|1
-||09040
-Sant'Angelo a Cupolo (BN)|1
-||82010
-Sant'Angelo a Fasanella (SA)|1
-||84027
-Sant'Angelo a Scala (AV)|1
-||83010
-Sant'Angelo all'Esca (AV)|1
-||83050
-Sant'Angelo d'Alife (CE)|1
-||81017
-Sant'Angelo dei Lombardi (AV)|1
-||83054
-Sant'Angelo del Pesco (IS)|1
-||86080
-Sant'Angelo di Brolo (ME)|1
-||98060
-Sant'Angelo di Piove di Sacco (PD)|1
-||35020
-Sant'Angelo in Lizzola (PU)|1
-||61020
-Sant'Angelo in Pontano (MC)|1
-||62020
-Sant'Angelo in Vado (PU)|1
-||61048
-Sant'Angelo le Fratte (PZ)|1
-||85050
-Sant'Angelo Limosano (CB)|1
-||86020
-Sant'Angelo Lodigiano (LO)|1
-||26866
-Sant'Angelo Lomellina (PV)|1
-||27030
-Sant'Angelo Muxaro (AG)|1
-||92020
-Sant'Angelo Romano (RM)|1
-||00010
-Sant'Anna Arresi (CI)|1
-||09010
-Sant'Anna d'Alfaedo (VR)|1
-||37020
-Sant'Antimo (NA)|1
-||80029
-Sant'Antioco (CI)|1
-||09017
-Sant'Antonino di Susa (TO)|1
-||10050
-Sant'Antonio Abate (NA)|1
-||80057
-Sant'Antonio di Gallura (OT)|1
-||07030
-Sant'Apollinare (FR)|1
-||03048
-Sant'Arcangelo (PZ)|1
-||85037
 Santarcangelo di Romagna (RN)|1
 ||47822
-Sant'Arcangelo Trimonte (BN)|1
-||82021
-Sant'Arpino (CE)|1
-||81030
-Sant'Arsenio (SA)|1
-||84037
 Sante Marie (AQ)|1
 ||67067
-Sant'Egidio alla Vibrata (TE)|1
-||64016
-Sant'Egidio del Monte Albino (SA)|1
-||84010
-Sant'Elena (PD)|1
-||35040
-Sant'Elena Sannita (IS)|1
-||86095
-Sant'Elia a Pianisi (CB)|1
-||86048
-Sant'Elia Fiumerapido (FR)|1
-||03049
-Sant'Elpidio a Mare (FM)|1
-||63811
 Santena (TO)|1
 ||10026
 Santeramo in Colle (BA)|1
 ||70029
-Sant'Eufemia a Maiella (PE)|1
-||65020
-Sant'Eufemia d'Aspromonte (RC)|1
-||89027
-Sant'Eusanio del Sangro (CH)|1
-||66037
-Sant'Eusanio Forconese (AQ)|1
-||67020
 Santhia' (VC)|1
 ||13048
 Santi Cosma e Damiano (LT)|1
 ||04020
-Sant'Ilario dello Ionio (RC)|1
-||89040
-Sant'Ilario d'Enza (RE)|1
-||42049
-Sant'Ippolito (PU)|1
-||61040
 Santo Stefano al Mare (IM)|1
 ||18010
 Santo Stefano Belbo (CN)|1
@@ -91223,28 +91237,14 @@ Santo Stino di Livenza (VE)|3
 La Salute di Livenza||30020
 ||30029
 Corbolone||30029
-Sant'Olcese (GE)|1
-||16010
 Santomenna (SA)|1
 ||84020
-Sant'Omero (TE)|1
-||64027
-Sant'Omobono Terme (BG)|1
-||24038
-Sant'Onofrio (VV)|1
-||89843
 Santopadre (FR)|1
 ||03030
-Sant'Oreste (RM)|1
-||00060
 Santorso (VI)|1
 ||36014
-Sant'Orsola Terme (TN)|1
-||38050
 Santu Lussurgiu (OR)|1
 ||09075
-Sant'Urbano (PD)|1
-||35040
 Sanza (SA)|1
 ||84030
 Sanzeno (TN)|1
@@ -91349,10 +91349,10 @@ Satriano di Lucania (PZ)|1
 ||85050
 Sauris (UD)|1
 ||33020
-Sauze di Cesana (TO)|1
-||10054
 Sauze d'Oulx (TO)|1
 ||10050
+Sauze di Cesana (TO)|1
+||10054
 Sava (TA)|1
 ||74028
 Savelli (KR)|1
@@ -92631,7 +92631,7 @@ Taranto (TA)|1309
 |Piazzale Cimitero|74123
 |Largo Cimitero|74122
 |Via Cipressi|74122
-| Circummarpiccolo|74123
+|Circummarpiccolo|74123
 |Via Ciro Giovinazzi|74123
 |Vico Cito|74123
 |Strada Vicinale Citrella Malvasea|74123
@@ -96496,7 +96496,7 @@ Torino (TO)|2830
 |Via Tanaro|10156
 |Piazza Tancredi Galimberti|10134
 |Via Tancredi Pozzi|10136
-| Tangenziale|10156
+|Tangenziale|10156
 |Corso Taranto, N pari dal 42 al 222|10154
 |Corso Taranto, N dispari dal 1 al 183/C|10154
 |Corso Taranto, N pari dal 2 al 40|10155
@@ -96853,6 +96853,8 @@ Torre Canavese (TO)|1
 ||10010
 Torre d'Arese (PV)|1
 ||27010
+Torre d'Isola (PV)|1
+||27020
 Torre de' Busi (LC)|1
 ||23806
 Torre de' Negri (PV)|1
@@ -96871,8 +96873,6 @@ Torre di Ruggiero (CZ)|1
 ||88060
 Torre di Santa Maria (SO)|1
 ||23020
-Torre d'Isola (PV)|1
-||27020
 Torre le Nocelle (AV)|1
 ||83030
 Torre Mondovi' (CN)|1
@@ -101240,7 +101240,7 @@ Dorsoduro|Campo Dietro Cimitero|30123
 |Calle Dietro gli Orti|30141
 Castello|Calle Dietro il Campanile|30122
 Castello|Calle Dietro il Forner|30122
-| Dietro la Chiesa|30142
+|Dietro la Chiesa|30142
 Cannaregio|Rio Terra' Dietro la Chiesa|30121
 Castello|Calle Dietro la Chiesa|30122
 Dorsoduro|Calle Dietro la Chiesa|30123
@@ -102228,7 +102228,7 @@ San Marco|Calle Mandola|30124
 San Polo|Calle Mandoler|30125
 |Via Mandorli|30175
 |Via Mandra|30173
-San Martino Destra| Mandracchio|30142
+San Martino Destra|Mandracchio|30142
 San Mauro|Calle Manetta|30142
 Cannaregio|Calle Manganer|30121
 Castello|Calle Maraffoni|30122
@@ -103015,7 +103015,7 @@ Cannaregio|Calle Larga Proverbi|30121
 San Martino Sinistra|Calle Providenza|30142
 |Via Puglie|30174
 Castello|Calle Pugnaletto|30122
-Dorsoduro| Punto Franco|30123
+Dorsoduro|Punto Franco|30123
 |Via Pusteria|30174
 Dorsoduro|Calle Puti|30123
 Castello|Sottoportico Putte|30122
@@ -103279,7 +103279,7 @@ Dorsoduro|Calle San Giovanni|30123
 Cannaregio|Calle San Giovanni|30121
 |Via San Giovanni d'Acri|30126
 |Fondamenta San Giovanni dei Battuti|30141
-| San Giovanni Evangelista|30142
+|San Giovanni Evangelista|30142
 Cannaregio|Campo San Giovanni Grisostomo|30121
 Cannaregio|Salizada San Giovanni Grisostomo|30121
 Castello|Fondamenta San Giovanni Laterano|30122
@@ -106798,10 +106798,10 @@ Vietri sul Mare (SA)|1
 ||84019
 Viganella (VB)|1
 ||28841
-Vigano' (LC)|1
-||23897
 Vigano San Martino (BG)|1
 ||24060
+Vigano' (LC)|1
+||23897
 Vigarano Mainarda (FE)|1
 ||44049
 Vigasio (VR)|1
@@ -106826,10 +106826,10 @@ Vignanello (VT)|1
 ||01039
 Vignate (MI)|1
 ||20060
-Vignola - Falesina (TN)|1
-||38057
 Vignola (MO)|1
 ||41058
+Vignola - Falesina (TN)|1
+||38057
 Vignole Borbera (AL)|1
 ||15060
 Vignolo (CN)|1
@@ -106880,6 +106880,8 @@ Villa d'Adda (BG)|1
 ||24030
 Villa d'Alme' (BG)|1
 ||24018
+Villa d'Ogna (BG)|1
+||24020
 Villa del Bosco (BI)|1
 ||13868
 Villa del Conte (PD)|1
@@ -106892,8 +106894,6 @@ Villa di Serio (BG)|1
 ||24020
 Villa di Tirano (SO)|1
 ||23030
-Villa d'Ogna (BG)|1
-||24020
 Villa Estense (PD)|1
 ||35040
 Villa Faraldi (IM)|1
@@ -106920,16 +106920,16 @@ Villa San Pietro (CA)|1
 ||09010
 Villa San Secondo (AT)|1
 ||14020
+Villa Sant'Angelo (AQ)|1
+||67020
+Villa Sant'Antonio (OR)|1
+||09080
 Villa Santa Lucia (FR)|1
 ||03030
 Villa Santa Lucia degli Abruzzi (AQ)|1
 ||67020
 Villa Santa Maria (CH)|1
 ||66047
-Villa Sant'Angelo (AQ)|1
-||67020
-Villa Sant'Antonio (OR)|1
-||09080
 Villa Santina (UD)|1
 ||33029
 Villa Santo Stefano (FR)|1

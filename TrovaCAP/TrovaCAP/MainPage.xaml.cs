@@ -75,6 +75,7 @@ namespace TrovaCAP
         {
             InitializeComponent();
             AcbIndirizzi.TextFilter = AcbFilterStartsWithExtended;
+            AcbFrazioni.TextFilter = AcbFilterStartsWithExtended;
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -461,10 +462,16 @@ namespace TrovaCAP
         static bool AcbFilterStartsWithExtended(string search, object data)
         {
             string word = data as string;
-            string[] words = (word).Split(' ');
+            string[] words = word.Split(' ');
 
-            return (words.Where(s => s.StartsWith(search, StringComparison.CurrentCultureIgnoreCase)).Count() > 0) ||
-                 (word.ToUpper().Contains(search.ToUpper()) && search.Contains(' '));
+            /* return (words.Where(s => s.StartsWith(search, StringComparison.CurrentCultureIgnoreCase)).Count() > 0) ||
+                  (word.ToUpper().Contains(search.ToUpper()) && search.Contains(' '));*/
+
+            string[] searchWords = search.Split(' ');
+
+            return searchWords.All(s =>
+                words.Any(w => 
+                    w.StartsWith(s, StringComparison.OrdinalIgnoreCase)));
         }
 
 
@@ -472,7 +479,6 @@ namespace TrovaCAP
         {
             tbCapResult.SelectAll();
         }
-
 
     }
 }

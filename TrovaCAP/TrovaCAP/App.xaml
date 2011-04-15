@@ -12,7 +12,7 @@
 
         <LinearGradientBrush x:Key="BlueGradientBrush"
                              StartPoint="0.5,0" EndPoint="0.5,1">
-            <GradientStop Color="#FF00A5FB" Offset="0"/>
+            <GradientStop Color="#FF00A5aB" Offset="0"/>
             <GradientStop Color="#FF3079D2" Offset="1"/>
         </LinearGradientBrush>
 
@@ -26,6 +26,7 @@
             <Setter Property="FontSize" Value="130"/>
             <Setter Property="Foreground" Value="{StaticResource BlueGradientBrush}" />
             <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>

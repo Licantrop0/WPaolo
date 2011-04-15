@@ -6,13 +6,13 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using CapUtil;
+using TrovaCapUtil;
 
 
 namespace CAPUtil
 {
     class Program
     {
-        
         static string Normalize(string name)
         {
             if (name == "")
@@ -25,7 +25,7 @@ namespace CAPUtil
             // all other letters NOT capitalized
             
             List<string> words = name.Split(' ').ToList();
-
+            
             // words.ForEach(s => { s = s.ToLower(); char.ToUpper(s[0]); });   //LAMBDA EXPRESSION = USELESS!!!
             int i;
             for (i = 0; i < words.Count; i++)
@@ -151,13 +151,19 @@ namespace CAPUtil
         static void Main(string[] args)
         {
             // TENTATIVE 3 (DB aggiornato)
-            var _capDB = new SortedList<string, Comune>();
+            var _capDB = new SortedList<string, Comune>(new MyStringComparer());
 
             using (var tr = new StreamReader("DB3.txt", Encoding.Default))
             {
                 while (!tr.EndOfStream)
                 {
                     var words = tr.ReadLine().Split('|');
+
+                    /*if (words[1] == "CASTELLABATE")
+                    {
+                        int pippo = 0;
+                        pippo++;
+                    }*/
 
                     string sProvincia = words[0];
                     string sComune1 = Normalize(words[1]);
@@ -178,6 +184,8 @@ namespace CAPUtil
 
                     Console.WriteLine(sProvincia + " " + sComune1 + " " + sComune2 + " " + sFrazione1 + " " + sFrazione2 + " " + sDug + " " + sStrada + " " + sParita + " " + sNDal + " " +
                                       sEsponenteDal + " " + sNAl + " " + sEsponenteAl + " " + sColore + " " + sCAP);
+
+                   
                     
                     // parse indirizzo se necessario
                     if (sStrada != "")

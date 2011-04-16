@@ -80,6 +80,7 @@ namespace NascondiChiappe
                 MessageBox.Show(AppResources.SelectPhotos);
                 return;
             }
+            PopupBackground.Visibility = Visibility.Visible;
             PopupBorder.Visibility = Visibility.Visible;
         }
 
@@ -134,6 +135,7 @@ namespace NascondiChiappe
 
             if (PopupBorder.Visibility == Visibility.Visible)
             {
+                PopupBackground.Visibility = Visibility.Collapsed;
                 PopupBorder.Visibility = Visibility.Collapsed;
                 e.Cancel = true;
                 return;
@@ -161,7 +163,7 @@ namespace NascondiChiappe
         {
             foreach (AlbumPhoto item in ImagesListBox.SelectedItems)
                 CurrentAlbum.MovePhoto(item, (Album)e.AddedItems[0]);
-
+            PopupBackground.Visibility = Visibility.Collapsed;
             PopupBorder.Visibility = Visibility.Collapsed;
         }
     }

@@ -58,13 +58,13 @@ namespace NascondiChiappe
 
         public void AddPhoto(AlbumPhoto photo)
         {
+            Images.Add(photo);
             var wb = new WriteableBitmap(photo.Image);
             using (var fs = isf.CreateFile(DirectoryName + "\\" + photo.Name))
             {
                 //346ms (average 6 samples)
                 wb.SaveJpeg(fs, wb.PixelWidth, wb.PixelHeight, 0, 85);
             }
-            Images.Add(photo);
         }
 
         public void RemovePhoto(AlbumPhoto photo)

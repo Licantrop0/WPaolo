@@ -1,13 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
-using System.IO;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
-using Microsoft.Xna.Framework.Media;
-using System.Windows;
 
 namespace NascondiChiappe
 {
@@ -86,8 +82,8 @@ namespace NascondiChiappe
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                var index = e.OriginalFileName.LastIndexOf('\\');
-                SelectedAlbum.AddPhoto(new AlbumPhoto(e.OriginalFileName.Substring(index + 1), e.ChosenPhoto));
+                var fileName = AlbumPhoto.GetFileNameWithRotation(e.OriginalFileName, e.ChosenPhoto);
+                SelectedAlbum.AddPhoto(new AlbumPhoto(fileName, e.ChosenPhoto));
                 e.ChosenPhoto.Close();
                 ShowHint();
             }

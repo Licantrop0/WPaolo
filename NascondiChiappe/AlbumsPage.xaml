@@ -51,10 +51,7 @@
         </controls:Pivot>
         <TextBlock Name="AddPhotosHintTextBlock" Visibility="Collapsed"
                    Text="{Binding Path=LocalizedResources.AddPhotosHint, Source={StaticResource LocalizedStrings}}"
-                   Style="{StaticResource PhoneTextTitle2Style}"
-                   TextWrapping="Wrap" IsHitTestVisible="False" 
-                   VerticalAlignment="Center" TextAlignment="Center"
-                   FontStyle="Italic" />
+                   Style="{StaticResource HintTextBlockStyle}" />
     </Grid>
 
 </phone:PhoneApplicationPage>

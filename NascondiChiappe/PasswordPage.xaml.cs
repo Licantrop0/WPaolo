@@ -112,12 +112,14 @@ namespace NascondiChiappe
 
         private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter) OkAppBarButton_Click(sender, EventArgs.Empty);
+            if (e.Key == Key.Enter)
+                OkAppBarButton_Click(sender, EventArgs.Empty);
         }
 
         private void OldPasswordBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter) NewPasswordBox.Focus();
+            if (e.Key == Key.Enter)
+                NewPasswordBox.Focus();
         }
 
         private void NewPasswordBox_KeyDown(object sender, KeyEventArgs e)

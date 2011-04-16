@@ -10,6 +10,16 @@
         <local:LocalizedStrings x:Key="LocalizedStrings" />
         <local:RotationConverter x:Key="RotationConverter" />
         
+        <Style x:Key="HintTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
+        </Style>
+        
+        
         <DataTemplate x:Name="AlbumImageTemplate">
             <Image Source="{Binding Image}" Margin="12"
                    RenderTransformOrigin="0.5,0.5"

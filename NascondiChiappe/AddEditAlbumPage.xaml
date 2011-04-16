@@ -26,9 +26,7 @@
             <TextBox x:Name="AlbumNameTextBox" Text="{Binding Name}" KeyDown="AlbumNameTextBox_KeyDown" />
             <TextBlock Name="OneAlbumNecessaryTextBlock" Visibility="Collapsed"
                    Text="{Binding Path=LocalizedResources.OneAlbumNecessary, Source={StaticResource LocalizedStrings}}"
-                   Style="{StaticResource PhoneTextTitle2Style}"
-                   TextWrapping="Wrap" IsHitTestVisible="False"
-                   TextAlignment="Center" FontStyle="Italic"  />
+                   Style="{StaticResource HintTextBlockStyle}" />
         </StackPanel>
         
         <ListBox x:Name="ImagesListBox" Grid.Row="1"
@@ -43,12 +41,15 @@
             </ListBox.ItemsPanel>
         </ListBox>
 
+        
+        <Rectangle Name="PopupBackground" Grid.RowSpan="2"
+                   Fill="#CC000000" Visibility="Collapsed"/>
         <Border Name="PopupBorder" Grid.Row="1"
+                CornerRadius="10" Visibility="Collapsed"
                 BorderBrush="{StaticResource PhoneBorderBrush}"
                 Background="{StaticResource PhoneBackgroundBrush}"
                 BorderThickness="{StaticResource PhoneBorderThickness}"
-                VerticalAlignment="Center" HorizontalAlignment="Center"
-                Visibility="Collapsed" >
+                VerticalAlignment="Center" HorizontalAlignment="Center">
             <ListBox Name="AlbumsListBox" Margin="24"
                      SelectionChanged="AlbumsListBox_SelectionChanged">
                 <ListBox.ItemTemplate>

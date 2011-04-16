@@ -1,6 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.IO;
-using System.Windows;
+using System.Linq;
 using System.Windows.Media.Imaging;
 using ExifLib;
 
@@ -22,40 +23,66 @@ namespace NascondiChiappe
             }
         }
 
+        public double RotationAngle { get; set; }
         private BitmapImage _image;
         public BitmapImage Image { get { return _image; } }
-        public double RotationAngle { get; set; }
 
         public AlbumPhoto(string name, Stream image)
         {
-            Name = name;
-            switch (ExifReader.ReadJpeg(image, name).Orientation)
+            switch (name.Last())
             {
-                case ExifOrientation.TopRight:
+                case '0':
+                    RotationAngle = 0d;
+                    break;
+                case '1':
                     RotationAngle = 90d;
                     break;
-                case ExifOrientation.BottomRight:
+                case '2':
                     RotationAngle = 180d;
                     break;
-                case ExifOrientation.BottomLeft:
+                case '3':
                     RotationAngle = 270d;
                     break;
                 default:
-                    RotationAngle = 0d;
-                    break;
+                    throw new ArgumentException("FileName does not contain the correct rotation info", "name");
             }
 
+            Name = name;
             _image = new BitmapImage();
             _image.SetSource(image);
         }
 
+        /// <summary>Aggiungo la info sulla rotation nel nome del file</summary>
+        /// <param name="originalFileName"></param>
+        /// <param name="photo"></param>
+        /// <returns>nuovo nome del file con Rotation Info</returns>
+        public static string GetFileNameWithRotation(string originalFileName, Stream photo)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(originalFileName);
+            switch (ExifReader.ReadJpeg(photo, fileName).Orientation)
+            {
+                case ExifOrientation.TopRight:
+                    fileName += '1';
+                    break;
+                case ExifOrientation.BottomRight:
+                    fileName += '2';
+                    break;
+                case ExifOrientation.BottomLeft:
+                    fileName += '3';
+                    break;
+                default:
+                    fileName += '0';
+                    break;
+            }
+            return fileName;
+        }
+
+
         private WriteableBitmap Rotate(Stream photo)
         {
-            WPCommon.ExtensionMethods.StartTrace("Bitmap SetSource (photo)");
             //727ms (average 4 samples)
             var bitmap = new BitmapImage();
             bitmap.SetSource(photo);
-            WPCommon.ExtensionMethods.EndTrace();
 
             WriteableBitmap wbSource = new WriteableBitmap(bitmap);
             WriteableBitmap wbTarget = null;

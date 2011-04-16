@@ -24,6 +24,7 @@ namespace TrovaCAP
             var str = new MemoryStream(arr);
             img.SetSource(str);
             var ib = new ImageBrush();
+            ib.Stretch = Stretch.Uniform;
             ib.ImageSource = img;
             return ib;
         }

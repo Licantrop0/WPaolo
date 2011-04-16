@@ -70,7 +70,7 @@ namespace TrovaCAP
             }
         }
 
-        private static void Deserialize()
+        /*private static void Deserialize()
         {
             StreamResourceInfo sri = Application.GetResourceStream(new Uri("DB3.ser", UriKind.Relative));
             using (var fin = new StreamReader(sri.Stream))
@@ -78,7 +78,7 @@ namespace TrovaCAP
                 CustomBinarySerializer ser2 = new CustomBinarySerializer(typeof(CapDB));
                 Comuni = ser2.ReadObject(sri.Stream) as Comune[];
             }
-        }
+        }*/
 
 
     }

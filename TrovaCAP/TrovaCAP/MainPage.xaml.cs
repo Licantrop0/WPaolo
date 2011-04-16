@@ -10,6 +10,8 @@ using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Audio;
+using System.Threading;
+using System.Diagnostics;
 
 namespace TrovaCAP
 {
@@ -38,7 +40,11 @@ namespace TrovaCAP
         string _sComuneSelezionato = "";
         string _sFrazioneSelezionata = "";
 
-        IEnumerable<string> _sIndirizziComune = null;
+        List<string> _acbIndirizziOriginalItemsSource = null;
+        List<string> _acbIndirizziCashedItemsSource = null;
+        string _acbIndirizziCashedSearchKey = "";
+
+        List<string> _sIndirizziComune = null;
 
         Control _autofocus = null;
 
@@ -218,10 +224,10 @@ namespace TrovaCAP
                     sFrazioni.Insert(0, _sComuneSelezionato + " (nessuna frazione)");
                 }
 
-                _sIndirizziComune = from capRecord in _capRecordsComuni
-                                    where capRecord.Indirizzo != ""
-                                    let ind = string.IsNullOrEmpty(capRecord.Frazione) ? capRecord.Indirizzo : capRecord.Indirizzo + " (fr. " + capRecord.Frazione + ")"
-                                    select ind;
+                _sIndirizziComune = (from capRecord in _capRecordsComuni
+                                     where capRecord.Indirizzo != ""
+                                     let ind = string.IsNullOrEmpty(capRecord.Frazione) ? capRecord.Indirizzo : capRecord.Indirizzo + " (fr. " + capRecord.Frazione + ")"
+                                     select ind).ToList();
 
                 if (_sIndirizziComune.Count() == 0)
                 {
@@ -235,7 +241,8 @@ namespace TrovaCAP
 
                 if (_state == Step.selezionaVia)
                 {
-                    AcbIndirizzi.ItemsSource = _sIndirizziComune;           // assegnazione itemsSource indirizzi!
+                    //AcbIndirizzi.ItemsSource = _sIndirizziComune;           // assegnazione itemsSource indirizzi!
+                    _acbIndirizziOriginalItemsSource = _sIndirizziComune;
                     AcbIndirizzi.IsEnabled = true;
                     _autofocus = AcbIndirizzi;
                 }
@@ -247,7 +254,8 @@ namespace TrovaCAP
                 }
                 else
                 {
-                    AcbIndirizzi.ItemsSource = _sIndirizziComune/*.OrderBy(s => s)*/;           // assegnazione itemsSource indirizzi
+                    //AcbIndirizzi.ItemsSource = _sIndirizziComune;           // assegnazione itemsSource indirizzi
+                    _acbIndirizziOriginalItemsSource = _sIndirizziComune;
                     AcbIndirizzi.IsEnabled = true;
                     AcbFrazioni.ItemsSource = sFrazioni;                    // assegnazione itemsSource frazioni
                     AcbFrazioni.IsEnabled = true;
@@ -294,7 +302,8 @@ namespace TrovaCAP
             else if (_state == Step.SelezionaFrazioneViaFinished)
             {
                 ResetIndirizziTextBox();
-                AcbIndirizzi.ItemsSource = _sIndirizziComune;   // importante
+                //AcbIndirizzi.ItemsSource = _sIndirizziComune;   // importante
+                _acbIndirizziOriginalItemsSource = _sIndirizziComune;
                 _state = Step.scegliFrazioneOVia;
             }
             else if (_state == Step.scegliViaFinished)
@@ -330,8 +339,12 @@ namespace TrovaCAP
             {
                 _state = Step.selezionaFrazioneVia;
 
-                AcbIndirizzi.ItemsSource = from cr in _capRecordsComuniFrazioni
-                                           select cr.Indirizzo;
+                /*AcbIndirizzi.ItemsSource = from cr in _capRecordsComuniFrazioni
+                                           select cr.Indirizzo; */
+
+                _acbIndirizziOriginalItemsSource = (from cr in _capRecordsComuniFrazioni
+                                                    select cr.Indirizzo).ToList();
+
                 _autofocus = AcbIndirizzi;
             }
         }
@@ -385,9 +398,11 @@ namespace TrovaCAP
             if (AcbIndirizzi.Text.Length <= 2)
                 AcbIndirizzi.MinimumPopulateDelay = 2000;
             else if (AcbIndirizzi.Text.Length == 3)
-                AcbIndirizzi.MinimumPopulateDelay = 1000;
+                AcbIndirizzi.MinimumPopulateDelay = 1500;
             else if (AcbIndirizzi.Text.Length >= 4)
-                AcbIndirizzi.MinimumPopulateDelay = 500;
+                AcbIndirizzi.MinimumPopulateDelay = 1000;
+            else if (AcbIndirizzi.Text.Length >= 5)
+                AcbIndirizzi.MinimumPopulateDelay = 1000;
         }
 
         private void AcbIndirizzi_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -459,9 +474,9 @@ namespace TrovaCAP
 
         #endregion
 
-        static bool AcbFilterStartsWithExtended(string search, object data)
+        static bool AcbFilterStartsWithExtended(string search, string word)
         {
-            string word = data as string;
+            //string word = data as string;
             string[] words = word.Split(' ');
 
             /* return (words.Where(s => s.StartsWith(search, StringComparison.CurrentCultureIgnoreCase)).Count() > 0) ||
@@ -470,7 +485,7 @@ namespace TrovaCAP
             string[] searchWords = search.Split(' ');
 
             return searchWords.All(s =>
-                words.Any(w => 
+                words.Any(w =>
                     w.StartsWith(s, StringComparison.OrdinalIgnoreCase)));
         }
 
@@ -480,5 +495,53 @@ namespace TrovaCAP
             tbCapResult.SelectAll();
         }
 
+        private void AcbIndirizzi_Populating(object sender, PopulatingEventArgs e)
+        {
+            e.Cancel = true;
+
+            if (_state == Step.scegliViaFinished || _state == Step.SelezionaFrazioneViaFinished || _state == Step.selezionaViaFinished)
+                return;
+
+            AcbIndirizzi.Populating -= AcbIndirizzi_Populating;
+
+            TbLoading.Opacity = 1;
+            var bw = new BackgroundWorker();
+
+            List<string> itemSource = new List<string>();
+
+            bw.DoWork += (sender1, e1) =>
+            {
+                string text = (string)e1.Argument;
+
+                if (!(_acbIndirizziCashedSearchKey.Length > 2 && text.Length > _acbIndirizziCashedSearchKey.Length &&
+                   AcbFilterStartsWithExtended(_acbIndirizziCashedSearchKey, text)))
+                /*{
+                    _acbIndirizziOriginalItemsSource = AcbIndirizzi.ItemsSource.ToList();
+                }
+                else
+                {*/
+                    _acbIndirizziCashedItemsSource = _acbIndirizziOriginalItemsSource;
+                //}
+
+                _acbIndirizziCashedSearchKey = text;
+
+                // fisso l'itemsource
+                foreach (var s in _acbIndirizziCashedItemsSource)
+                {
+                    if (AcbFilterStartsWithExtended(text, s))
+                        itemSource.Add(s);
+                }
+
+                _acbIndirizziCashedItemsSource = itemSource;
+            };
+            bw.RunWorkerCompleted += (sender1, e1) =>
+            {
+                AcbIndirizzi.ItemsSource = itemSource;
+                TbLoading.Opacity = 0;
+                AcbIndirizzi.Populating += AcbIndirizzi_Populating;
+                AcbIndirizzi.PopulateComplete();
+            };
+            bw.RunWorkerAsync(AcbIndirizzi.Text);
+        }
     }
 }

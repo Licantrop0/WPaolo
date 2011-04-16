@@ -19,7 +19,7 @@ Abriola (PZ)|1
 ||85010
 Abtei (BZ)|4
 La Villa - Stern||39030
-San Cassiano - St.kassian||39030
+San Cassiano - St. Kassian||39030
 Pedraces - Pedraces||39036
 ||39036
 Acate (RG)|1
@@ -2010,10 +2010,10 @@ Appiano Gentile (CO)|1
 ||22070
 Appiano Sulla Strada del Vino (BZ)|5
 Frangarto - Frangart||39057
-San Paolo - St.pauls||39050
+San Paolo - St. Pauls||39050
 ||39057
 Cornaiano - Girlan||39057
-San Michele - St.michael||39057
+San Michele - St. Michael||39057
 Appignano (MC)|1
 ||62010
 Appignano del Tronto (AP)|1
@@ -2388,7 +2388,7 @@ Badesi (OT)|1
 ||07030
 Badia (BZ)|4
 La Villa - Stern||39030
-San Cassiano - St.kassian||39030
+San Cassiano - St. Kassian||39030
 Pedraces - Pedraces||39036
 ||39036
 Badia Calavena (VR)|1
@@ -4075,7 +4075,7 @@ Ceglie del Campo|Via Palmento|70129
 |Via Paolo Lembo|70124
 |Via Papa Benedetto XIII|70124
 |Via Papa Bonifacio IX|70124
-|Via Papa Giovanni Paolo i|70124
+|Via Papa Giovanni Paolo I|70124
 |Viale Papa Giovanni XXIII|70124
 |Via Papa Innocenzo XII|70124
 |Via Papa Paolo VI|70124
@@ -4346,7 +4346,7 @@ Torre a Mare|Via San Giorgio|70126
 |Vico San Luca|70129
 |Strada San Luca|70122
 |Via San Luigi|70131
-|Largo San Marcello i|70125
+|Largo San Marcello I|70125
 Carbonara di Bari|Via San Marco|70131
 Santo Spirito|Via San Marco|70127
 |Traversa San Marco|70131
@@ -4598,15 +4598,15 @@ Ceglie del Campo|Via Ugo Foscolo|70129
 |Via Ugo la Malfa|70125
 |Via Ugonotti|70131
 |Via Umberto Giordano|70132
-Carbonara di Bari|Piazza Umberto i|70131
-|Piazza Umberto i|70121
-Loseto|Via Umberto i|70129
-Ceglie del Campo|Via Umberto i|70129
-|Vico IV Umberto i|70127
-|Corso Umberto i|70127
-|Vico III Umberto i|70127
-|Traversa i Umberto i|70129
-|Vico Umberto i|70127
+Carbonara di Bari|Piazza Umberto I|70131
+|Piazza Umberto I|70121
+Loseto|Via Umberto I|70129
+Ceglie del Campo|Via Umberto I|70129
+|Vico IV Umberto I|70127
+|Corso Umberto I|70127
+|Vico III Umberto I|70127
+|Traversa i Umberto I|70129
+|Vico Umberto I|70127
 |Via Umberto Minervini|70129
 |Via Umberto Zanotti Bianco|70124
 |Traversa Umbria|70132
@@ -16702,7 +16702,7 @@ Cesena (FC)|1529
 |Via Amilcare Zavatti|47521
 |Via Amleto Gherardi|47521
 |Via Amole|47522
-|Via Ancona i|47522
+|Via Ancona I|47522
 |Via Andicino|47522
 |Via Andrea Costa|47521
 |Via Andrea Doria|47521
@@ -16761,12 +16761,12 @@ Cesena (FC)|1529
 |Via Aurelio Saffi|47521
 |Via Avola|47522
 |Via Baccarella|47522
-|Via Baccareto i|47521
+|Via Baccareto I|47521
 |Via Bagnile|47522
 |Via Bagnolo|47522
 |Piazza Balnea|47522
 |Via Balze|47522
-|Via Bandiera i|47522
+|Via Bandiera I|47522
 |Via Bandiera II|47522
 |Via Bantone|47522
 |Via Barco|47522
@@ -16869,7 +16869,7 @@ Cesena (FC)|1529
 |Via Canarelli|47521
 |Via Candiano|47522
 |Via Cane|47522
-|Via Cane i|47522
+|Via Cane I|47522
 |Via Canelli|47522
 |Vicolo Cannone|47521
 |Via Canonico Lugaresi|47521
@@ -16934,7 +16934,7 @@ Cesena (FC)|1529
 |Via Ceriana|47522
 |Vicolo Cerisola|47521
 |Via Cerisola 2a|47521
-|Via Cerisola i|47521
+|Via Cerisola I|47521
 |Via Cerreto|47522
 |Via Certaldo|47522
 |Via Cervese, N pari dal 40 al 3620|47521
@@ -17227,7 +17227,7 @@ Cesena (FC)|1529
 |Vicolo Gasometro|47521
 |Viale Gaspare Finali|47521
 |Corso Gastone Sozzi|47521
-|Via Gatti i|47522
+|Via Gatti I|47522
 |Via Gatti II|47522
 |Via Gattolino|47521
 |Via Gemmano|47521
@@ -17484,7 +17484,7 @@ Cesena (FC)|1529
 |Via Marzabotto|47521
 |Via Marzane di Sopra|47522
 |Via Marzane di Sotto|47522
-|Via Marzolino i|47521
+|Via Marzolino I|47521
 |Via Masiera i, N pari dal 1970 al 8310|47522
 |Via Masiera i, N dispari dal 2345 al 8361|47522
 |Via Masiera i, N dispari dal 25 al 1195|47521
@@ -17563,7 +17563,7 @@ Cesena (FC)|1529
 |Vicolo Morsiani|47521
 |Via Moschina|47522
 |Via Motte|47522
-|Via Motte Matassoni i|47522
+|Via Motte Matassoni I|47522
 |Via Mulinelli|47522
 |Via Mulini|47521
 |Vicolo Mulino|47521
@@ -17596,7 +17596,7 @@ Cesena (FC)|1529
 |Via Nove Febbraio|47521
 |Via Novello Malatesta|47521
 |Via Nuova|47522
-|Galleria O. I. R.|47521
+|Galleria O.I.R.|47521
 |Via Oddino Montanari|47521
 |Via Oderzo|47521
 |Piazzale Olimpia|47521
@@ -17638,7 +17638,7 @@ Cesena (FC)|1529
 |Via Palazzina di Tessello|47522
 |Via Palmieri|47522
 |Via Palmiro Togliatti|47521
-|Via Palo di Ferro i|47521
+|Via Palo di Ferro I|47521
 |Via Panaro|47522
 |Piazzale Paola Brighi|47521
 |Via Paolo Baffi|47522
@@ -18099,7 +18099,7 @@ San Carlo|Via Sodi|47522
 |Via Venti|47522
 |Via Venticinque Aprile|47521
 |Via Ventimiglia|47522
-|Via Ventinovesima Brigata G.a.p.|47522
+|Via Ventinovesima Brigata G.A.P.|47522
 |Via Venzi|47522
 |Via Verdoni|47521
 |Via Vergato|47521
@@ -19494,10 +19494,10 @@ Episcopia (PZ)|1
 ||85033
 Eppan An Der Weinstrasse (BZ)|5
 Frangarto - Frangart||39057
-San Paolo - St.pauls||39050
+San Paolo - St. Pauls||39050
 ||39057
 Cornaiano - Girlan||39057
-San Michele - St.michael||39057
+San Michele - St. Michael||39057
 Eraclea (VE)|1
 ||30020
 Erba (CO)|1
@@ -29698,7 +29698,7 @@ Genova (GE)|3756
 |Vico San Vincenzo|16121
 |Via San Vito|16145
 |Via Sandro Botticelli|16159
-|Largo Sanguineti G.a.|16123
+|Largo Sanguineti G.A.|16123
 |Calata Sanita'|16126
 |Via Sansone|16128
 |Archivolto Santa Brigida|16126
@@ -31464,7 +31464,7 @@ La Spezia (SP)|733
 |Via Nino Siligato|19126
 |Via Noce|19123
 |Via Nuova Lizza|19123
-|Via Privata O.t.o.|19136
+|Via Privata O.T.O.|19136
 |Via Oleandri|19136
 |Via Oliveto|19137
 |Vicolo Orti|19137
@@ -32856,7 +32856,7 @@ Livorno (LI)|1045
 |Via Norvegia|57128
 |Via Novorossiisk|57124
 |Via Numa Campi|57128
-|Via O.n.u.|57128
+|Via O.N.U.|57128
 |Piazza Odoardo Borrani|57128
 |Via Odoardo della Torre|57124
 |Via Olanda|57128
@@ -34101,7 +34101,7 @@ Messina (ME)|2625
 |Via 014 f|98125
 |Via 014 g|98125
 |Via 014 h|98125
-|Via 014 i|98125
+|Via 014 I|98125
 |Via 014 l|98125
 |Via 014 m|98125
 |Via 014 n|98125
@@ -34735,7 +34735,7 @@ Pezzolo|Via Cavaliere|98138
 |Via Celona|98165
 |Vico Celona|98165
 |Via Centauro|98152
-|Via Centauro i|98152
+|Via Centauro I|98152
 |Via Centauro II|98152
 |Via Centonze, N dispari dal 65 al 233|98123
 |Via Centonze, N pari dal 92 al 244|98123
@@ -34888,7 +34888,7 @@ Contemplazione|Contrada Conte|98168
 Faro Superiore|Contrada Conte|98158
 |Contrada Conte Ciaramita|98168
 |Via Conte di Torino|98121
-|Contrada Conte Sperone i|98168
+|Contrada Conte Sperone I|98168
 |Contrada Conte Sperone II|98168
 |Contrada Conte Sperone III|98168
 |Via Contessa Beatrice|98125
@@ -35117,7 +35117,7 @@ Giampilieri|Via Fornace|98142
 Pezzolo|Via Forno|98138
 |Contrada Forno|98163
 Camaro|Via Forno|98151
-|Via Forno i|98138
+|Via Forno I|98138
 |Contrada Forte Spuria|98165
 |Contrada Fortino|98164
 |Contrada Fossa|98135
@@ -35178,7 +35178,7 @@ Faro Superiore|Via Gabriele d'Annunzio|98158
 |Via Gagini|98122
 |Via Galileo Galilei|98124
 |Contrada Gallari|98129
-|Contrada Gallari Z.i.asi|98129
+|Contrada Gallari Z.I.ASI|98129
 |Via Gallucci|98165
 |Via Gare|98124
 |Via Garofalo|98121
@@ -35515,7 +35515,7 @@ Galati Marina|Discesa Marina|98134
 |Via Mario Anneo Lucano|98125
 |Via Mario Aspa|98122
 |Via Mario Giurba|98123
-|Via Mario Giurba i|98121
+|Via Mario Giurba I|98121
 |Via Mario Giurba II|98121
 |Via Mario Giurba III|98121
 |Via Mario Passamonte|98121
@@ -35762,7 +35762,7 @@ Pezzolo|Via Palazzo|98138
 Cumia|Via Palazzo|98146
 Salice|Via Palazzo|98154
 Rodia|Via Palazzo|98161
-|Via Palazzo i|98164
+|Via Palazzo I|98164
 |Via Palazzo II|98164
 |Traversa a Palazzo III|98164
 |Via Palazzo III|98164
@@ -36193,7 +36193,7 @@ Santo Stefano Medio|Traversa III San Isidoro|98136
 |Via San Leo|98122
 |Via San Liberale|98121
 |Via San Licandro Alto|98168
-|Via San Licandro i|98121
+|Via San Licandro I|98121
 |Piazza San Luigi|98149
 |Contrada San Luigi|98149
 |Vico IV San Marco|98132
@@ -36240,7 +36240,7 @@ Camaro Inferiore|Contrada San Paolo|98149
 |Via San Paolo Apostolo|98122
 |Contrada San Paolo Apostolo|98139
 |Via San Paolo dei Disciplinanti|98122
-|Via San Pietro i|98127
+|Via San Pietro I|98127
 |Via San Pietro II|98127
 |Via San Pietro III|98127
 |Contrada San Placido|98158
@@ -36605,7 +36605,7 @@ Contemplazione|Via Trieste|98168
 |Via Ugo de Grossi|98149
 |Via Ugo Fiore|98168
 |Via Ugo Foscolo|98121
-|Piazza Umberto i|98155
+|Piazza Umberto I|98155
 |Via Umbria|98124
 |Via Uni'|98156
 |Vico Uni'|98156
@@ -44339,7 +44339,7 @@ Napoli (NA)|3701
 |Via Carlo Federico Gauss|80126
 |Via Carlo Fiorante|80131
 |Viale Privato Carlo Franza|80126
-|Via Carlo i|80126
+|Via Carlo I|80126
 |Piazza Carlo III|80137
 |Via Carlo Levi|80145
 |Via Carlo Martinez|80146
@@ -44750,8 +44750,8 @@ Arenella|Via Croce Rossa|80131
 |Via Duomo, N pari dal 304 al 350|80133
 |Via Duomo, N pari dal 2 al 302|80138
 |Piazzetta Durante|80129
-|Traversa i E. A. Mario|80128
-|Via E. A. Mario|80128
+|Traversa I E.A. Mario|80128
+|Via E.A. Mario|80128
 |Via Ecce Homo|80134
 |Vicoletto Ecce Homo|80134
 |Largo Ecce Homo|80134
@@ -45114,7 +45114,7 @@ Arenella|Via Croce Rossa|80131
 |Via Galileo Ferraris, N pari dal 2 al 116|80142
 |Via Galileo Ferraris, N dispari dal 207 al 285|80146
 |Via Galileo Ferraris, N pari dal 118 al 172|80146
-|Angiporto Galleria Umberto i|80132
+|Angiporto Galleria Umberto I|80132
 |Largo Garofalo a Pazzigno|80146
 |Largo Gaspare Colosimo|80136
 |Vico Gavine|80133
@@ -47308,8 +47308,8 @@ Chiaia|Piazza San Pasquale|80121
 |Via Ulisse Prota Giurleo|80147
 |Via Umberto Bocconi|80126
 |Via Umberto Giordano|80133
-|Corso Umberto i|80138
-|Galleria Umberto i|80132
+|Corso Umberto I|80138
+|Galleria Umberto I|80132
 |Via Umberto Pierantoni|80126
 |Via Umberto Zanotti Bianco|80144
 |Via Umbria|80144
@@ -50179,7 +50179,7 @@ Padova (PD)|2139
 |Via Umberto Boccioni|35142
 |Via Umberto Cagni|35138
 |Via Umberto Giordano|35132
-|Via Umberto i|35122
+|Via Umberto I|35122
 |Via Umbria|35127
 |Via Urbino|35142
 |Via Uruguay|35127
@@ -53585,7 +53585,7 @@ Palazzo Reale Monte di Pieta|Cortile Napoli|90134
 |Via Papa Pio x|90142
 |Via Papa Pio XII|90142
 |Via Papa San Leone II|90127
-|Via Papa Sergio i|90142
+|Via Papa Sergio I|90142
 |Cortile Papireto|90138
 |Piazza Papireto|90134
 |Vicolo Papireto|90134
@@ -54843,7 +54843,7 @@ Pallavicino|Cortile Trapani|90146
 |Via Ulivo|90149
 |Vicolo Ulivo|90133
 |Via Umberto Giordano|90144
-|Foro Umberto i|90133
+|Foro Umberto I|90133
 |Via Umberto Maddalena, N dispari dal 1 al 75|90131
 |Via Umberto Maddalena, N pari dal 2 al 112/H|90131
 |Via Umberto Maddalena, N dispari dal 77 al 119|90136
@@ -57854,7 +57854,7 @@ Perugia (PG)|2253
 |Via Colle di Velva|06132
 |Via Colle Maggio|06132
 |Strada Colle Palazzone|06134
-|Strada Colle Umberto i|06133
+|Strada Colle Umberto I|06133
 |Strada Colle Umberto Ponte Nese|06133
 |Strada Collestrada|06135
 |Via Colli Albani|06132
@@ -59741,7 +59741,7 @@ Pesaro (PU)|1152
 |Via Bormida|61121
 |Via Botteghe|61121
 |Largo Brenta|61121
-|Via Brigata G. A. P.|61122
+|Via Brigata G.A.P.|61122
 |Via Brigata Garibaldi|61122
 |Via Brigata Maiella|61122
 |Via Brigata Sassari|61122
@@ -61584,7 +61584,7 @@ Pescara (PE)|891
 |Via Ugo Cagni|65126
 |Via Ugo Foscolo|65121
 |Via Ugo la Malfa|65125
-|Corso Umberto i|65122
+|Corso Umberto I|65122
 |Via Umbria|65122
 |Piazza Unione|65127
 |Via Vado di Sole|65125
@@ -67437,7 +67437,7 @@ Catona|Via Casalotto|89135
 |Traversa II Cazzeria|89135
 |Traversa IV Cazzeria|89135
 |Traversa VI Cazzeria|89135
-|Piazzale Ce.dir.|89128
+|Piazzale Ce.Dir.|89128
 |Via Ceci|89133
 |Rione Ceci|89133
 |Vico VII Cecilia|89135
@@ -68389,7 +68389,7 @@ Cannavo|Via Provinciale San Cristoforo|89133
 |Traversa Putorti'|89133
 |Via Puzzi|89131
 |Contrada Puzzi|89134
-|Via Quarnaro i|89135
+|Via Quarnaro I|89135
 |Traversa Quarnaro II|89135
 |Via Quarnaro II|89135
 |Contrada Quartarere|89133
@@ -68777,7 +68777,7 @@ Orti|Via Provinciale Straorino|89126
 |Prolungamento Torrione|89123
 |Via Torrione, N dispari dal 1 al 1/V|89123
 |Traversa Tortorella|89133
-|Via Trabocchetto i|89126
+|Via Trabocchetto I|89126
 |Via Trabocchetto II|89126
 |Vico II Trabocchetto III|89126
 |Via Trabocchetto III|89126
@@ -68835,17 +68835,17 @@ Cataforio|Via Tripodi|89133
 |Via Ulivi|89133
 |Via Umberto Biancamano|89133
 |Viale Umberto Boccioni|89123
-|Strada Umberto i|89135
-Rosali|Via Umberto i|89135
-Salice Calabro|Via Umberto i|89135
-Gallico|Via Umberto i|89135
+|Strada Umberto I|89135
+Rosali|Via Umberto I|89135
+Salice Calabro|Via Umberto I|89135
+Gallico|Via Umberto I|89135
 |Contrada Umbri|89133
 Pellaro|Via Umbro|89134
 Rosario Valanidi|Via Umbro|89134
 |Via Undici Febbraio|89135
 |Traversa Privata Urbe|89135
 |Via Urbe|89135
-|Torrente Valanidi i|89134
+|Torrente Valanidi I|89134
 |Via Valle|89122
 |Contrada Valle|89126
 |Via Valle del Canale|89135
@@ -70465,7 +70465,7 @@ Reggio Emilia (RE)|1624
 |Via Umberto Ceva|42121
 |Via Umberto Degola|42124
 |Via Umberto Giordano|42123
-|Viale Umberto i|42123
+|Viale Umberto I|42123
 |Via Umberto Nobile|42124
 |Viale Umberto Parisoli|42122
 |Via Umberto Pistelli|42124
@@ -72980,7 +72980,7 @@ Roma (RM)|15641
 |Via Adriano de Cicco|00136
 |Via Adriano Ferraresi|00133
 |Via Adriano Fiori|00156
-|Via Adriano i|00167
+|Via Adriano I|00167
 |Via Adriano Mari|00139
 |Via Adriano Salani|00128
 |Via Adriano Tilgher|00137
@@ -75780,7 +75780,7 @@ Roma (RM)|15641
 |Via Carlo Dolci|00197
 |Via Carlo Dossi|00137
 |Via Carlo Ederle|00195
-|Via Carlo Emanuele i|00185
+|Via Carlo Emanuele I|00185
 |Via Carlo Emery|00188
 |Via Carlo Emilio Gadda|00143
 |Via Carlo Erba|00133
@@ -83117,7 +83117,7 @@ Roma (RM)|15641
 |Via Nanno|00124
 |Via Napee|00133
 |Via Napoleone Colajanni|00191
-|Piazzale Napoleone i|00187
+|Piazzale Napoleone I|00187
 |Via Napoleone III|00185
 |Via Napoleone Orsini|00168
 |Via Napoleone Parboni|00153
@@ -83767,7 +83767,7 @@ Roma (RM)|15641
 |Via Panchia'|00124
 |Via Pandino|00188
 |Via Pandolfo Collenuccio|00135
-|Via Pandolfo i|00162
+|Via Pandolfo I|00162
 |Via Pandosia|00183
 |Via Paneno|00124
 |Via Panetteria|00187
@@ -83994,7 +83994,7 @@ Roma (RM)|15641
 |Via Pegognaga|00188
 |Via Peio|00124
 |Via Peirce|00137
-|Via Pelagio i|00165
+|Via Pelagio I|00165
 |Via Pelago|00148
 |Via Pelagosa|00141
 |Via Pelasgi|00185
@@ -84650,7 +84650,7 @@ Roma (RM)|15641
 |Via Ponte Terra|00132
 |Vicolo Ponte Terra|00132
 |Via Ponte Trave|00123
-|Piazza Ponte Umberto i|00186
+|Piazza Ponte Umberto I|00186
 |Via Pontebba|00177
 |Via Pontecorvo|00189
 |Via Pontecurone|00166
@@ -86420,7 +86420,7 @@ Roma (RM)|15641
 |Piazza Sergio Corazzini|00137
 |Via Sergio de Vitis|00128
 |Via Sergio Forti|00144
-|Via Sergio i|00165
+|Via Sergio I|00165
 |Largo Sergio Pugliese|00137
 |Rampa Sergio Sartof|00136
 |Via Sergio Tofano|00139
@@ -87623,7 +87623,7 @@ Roma (RM)|15641
 |Via Umberto Grani|00128
 |Via Umberto Grosso|00121
 |Via Umberto Guarnieri|00177
-|Piazza Umberto i|00119
+|Piazza Umberto I|00119
 |Via Umberto Lilloni|00125
 |Via Umberto Lusena|00136
 |Via Umberto Moricca|00167
@@ -88781,7 +88781,7 @@ Salerno (SA)|1315
 |Via Alberto Pirro|84122
 |Via Alda Borelli|84128
 |Via Alessandro Laurenzi|84124
-|Piazza Alfano i|84121
+|Piazza Alfano I|84121
 |Via Alfonso Alvarez|84121
 |Via Alfonso Balzico|84122
 |Via Alfonso Carella|84127
@@ -89960,7 +89960,7 @@ Brignano|Via Casa Gallo|84135
 |Via Spagnuolo|84135
 |Via Spinosa|84121
 |Via Spontumata|84135
-|Via Stabia i|84121
+|Via Stabia I|84121
 |Via Stanislao Lista|84121
 |Via Stazio|84129
 |Via Stefano Brun|84131
@@ -90009,7 +90009,7 @@ Brignano|Via Casa Gallo|84135
 |Via Ulisse Abbagnano|84123
 |Via Ulisse Caputo|84129
 |Via Umberto d'Agostino|84131
-|Piazza Umberto i|84121
+|Piazza Umberto I|84121
 |Viale Umberto Mondio|84135
 |Via Umberto Zanotti Bianco|84129
 |Via Urbano II|84125
@@ -93613,8 +93613,8 @@ Talsano|Via San Francesco|74122
 |Via Ugo Foscolo|74123
 |Via Ugo la Malfa|74123
 |Via Umberto Cagni|74121
-|Via Umberto i|74122
-|Corso Umberto i|74123
+|Via Umberto I|74122
+|Corso Umberto I|74123
 |Via Umbria|74121
 |Viale Unicef|74121
 |Viale Unita' d'Italia, N dispari dal 635 al 8035|74122
@@ -96600,7 +96600,7 @@ Torino (TO)|2830
 |Viale Umberto Cagni|10126
 |Via Umberto Cosmo|10131
 |Via Umberto Giordano|10154
-|Galleria Umberto i|10122
+|Galleria Umberto I|10122
 |Piazzale Umbria|10144
 |Corso Umbria|10144
 |Corso Undici Febbraio|10152
@@ -105937,7 +105937,7 @@ Verona (VR)|1939
 |Via Museo|37129
 |Vicolo Mustacchi|37129
 |Via Mutilati|37122
-|Via Napoleone i|37138
+|Via Napoleone I|37138
 |Ponte Navi|37121
 |Piazzetta Navona|37121
 |Piazzetta Nazareth|37129

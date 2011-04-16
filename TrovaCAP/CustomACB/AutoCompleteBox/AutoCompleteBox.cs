@@ -91,10 +91,10 @@ namespace System.Windows.Controls
         /// </summary>
         private List<string> _items;
         public List<string> Items { get; set; }
-
+        
         // PS my customization
         public bool IsDicotomicSearchEnabled { get; set; }
-        private string _cashedString;
+        //private string _cashedString;
         public bool IsCacheEnabled { get; set; }
 
 
@@ -1308,7 +1308,7 @@ namespace System.Windows.Controls
             // PS my customizations attributes
             IsDicotomicSearchEnabled = false;
             IsCacheEnabled = false;
-            _cashedString = "";
+            //_cashedString = "";
         }
 
         /// <summary>
@@ -2139,8 +2139,18 @@ namespace System.Windows.Controls
         /// </remarks>
         public void PopulateComplete()
         {
+            /*if (LoadingUI != null)
+            {
+                LoadingUI.Opacity = 100;
+                UpdateLayout();
+            }*/
+                
+
             // Apply the search filter
             RefreshView();
+
+            /*if (LoadingUI != null)
+                LoadingUI.Opacity = 0;*/
 
             // Fire the Populated event containing the read-only view data.
             PopulatedEventArgs populated = new PopulatedEventArgs(new ReadOnlyCollection<string>(_view));
@@ -2406,8 +2416,8 @@ namespace System.Windows.Controls
                 List<string> items;
 
                 // tocco il codice microsoft, quale eresia!!!
-                /*********************************************************************/
-                if (IsCacheEnabled)
+                
+                /*if (IsCacheEnabled)
                 {
                     if ( _cashedString.Length > MinimumPrefixLength && text.Length > _cashedString.Length && TextFilter(_cashedString, text))
                     {
@@ -2420,11 +2430,11 @@ namespace System.Windows.Controls
 
                     _cashedString = text;
                 }
-                /*********************************************************************/
+                
                 else
-                {
+                {*/
                     items = _items;
-                }
+                //}
 
                 foreach (string item in items)
                 {

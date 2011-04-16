@@ -7,6 +7,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:acb="clr-namespace:Microsoft.Phone.Controls;assembly=CustomACB"
     xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
     x:Class="TrovaCAP.MainPage"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
@@ -25,6 +27,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -79,7 +82,7 @@
         </StackPanel>
 
         <Border Background="{StaticResource BlueGradientBrush}"
-                Margin="0,12" Grid.Row="2" Height="80" VerticalAlignment="Bottom">
+                Margin="0,12" Grid.Row="2" Height="80" >
             <Border.OpacityMask>
                 <ImageBrush ImageSource="/images/C_citta.png" Stretch="Uniform" />
             </Border.OpacityMask>
@@ -100,27 +103,33 @@
                                  MouseLeftButtonDown="AcbIndirizzi_MouseLeftButtonDown"
                                  GotFocus="AcbIndirizzi_GotFocus"
                                  TextChanged="AcbIndirizzi_TextChanged"
-                                 IsEnabled="False" />
+                                 IsEnabled="False" Populating="AcbIndirizzi_Populating" />
+            <TextBlock Name="TbLoading" Text="{Binding Path=LocalizedResources.Loading, Source={StaticResource LocalizedStrings}}"
+                       Style="{StaticResource CommonTextStyle}" FontSize="20" Opacity="0" />
         </StackPanel>
 
-
         <TextBox x:Name="tbCapResult"
-                   Grid.Row="3" Grid.Column="1"
+                   Grid.Row="3" Grid.Column="1" Text=""
                    Style="{StaticResource CapTextBoxStyle}"
                    VerticalAlignment="Center" GotFocus="tbCapResult_GotFocus" />
 
-        <Border Grid.Row="4" Grid.Column="1"
-                HorizontalAlignment="Right"
-                Width="200" Height="200"
+        <Rectangle Grid.Row="4" Grid.ColumnSpan="2"
+                HorizontalAlignment="Right" Width="200"
                 OpacityMask="{Binding Path=LocalizedResources.Bollo, Source={StaticResource LocalizedStrings}, Converter={StaticResource ByteArrayToImageBrush}}"
-                Background="{StaticResource BlueGradientBrush}" >
+                Fill="{StaticResource BlueGradientBrush}" >
 
             <Custom:Interaction.Triggers>
                 <Custom:EventTrigger EventName="MouseLeftButtonDown">
                     <ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
                 </Custom:EventTrigger>
             </Custom:Interaction.Triggers>
-        </Border>
+        </Rectangle>
+
+        <google:BannerAd
+            xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
+            Grid.Row="5" Grid.ColumnSpan="2" 
+            AdUnitID="a14da9d2bde5aea">
+        </google:BannerAd>
 
     </Grid>
 

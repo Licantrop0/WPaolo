@@ -26,7 +26,7 @@ namespace CAPUtil
             
             List<string> words = name.Split(' ').ToList();
             
-            // words.ForEach(s => { s = s.ToLower(); char.ToUpper(s[0]); });   //LAMBDA EXPRESSION = USELESS!!!
+            // words.ForEach(s => { s = s.ToLower(); char.ToUpper(s[0]); });
             int i;
             for (i = 0; i < words.Count; i++)
             {

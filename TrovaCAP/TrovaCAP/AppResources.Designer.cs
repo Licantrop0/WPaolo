@@ -120,5 +120,14 @@ namespace TrovaCAP {
                 return ResourceManager.GetString("Indirizzo", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Caricamento....
+        /// </summary>
+        public static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
     }
 }

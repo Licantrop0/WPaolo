@@ -41,15 +41,15 @@
 
             <Button Content="{Binding LocalizedResources.Easy, Source={StaticResource LocalizedStrings}}" 
                      Click="SquareFiveButton_Click"
-                    Style="{StaticResource HomeButtonStyle}"
-                    Width="200" Height="100"
+                    Style="{StaticResource HomeButtonStyle2}"
+                    Width="210" Height="90"
                     Canvas.Left="0" Canvas.Top="30"/>
 
             <Button Content="{Binding LocalizedResources.Hard, Source={StaticResource LocalizedStrings}}" 
                     Click="SquareTenButton_Click"
-                    Style="{StaticResource HomeButtonStyle}"                    
-                    Width="200" Height="100"
-                    Canvas.Left="256" Canvas.Top="30">
+                    Style="{StaticResource HomeButtonStyle2}"                    
+                    Width="210" Height="90"
+                    Canvas.Left="240" Canvas.Top="30">
             </Button>
             
             <Button Content="{Binding LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"

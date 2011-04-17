@@ -49,38 +49,72 @@
         </Style>
 
         <Style x:Key="HomeButtonStyle" TargetType="Button">
-            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="BorderThickness" Value="5" />
             <Setter Property="Foreground"  Value="{StaticResource ForegroundGradientBrush}" />
             <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
             <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
             <Setter Property="Background">
                 <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <LinearGradientBrush.RelativeTransform>
-                            <CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39" SkewY="-39" ScaleX="0.8"/>
-                        </LinearGradientBrush.RelativeTransform>
-                        <GradientStop Color="#FF1818EB" Offset="0.797"/>
-                        <GradientStop Color="#FF030558" Offset="1"/>
-                        <GradientStop Color="#FF101070" Offset="0.017"/>
-                        <GradientStop Color="#FF2D58DE" Offset="0.573"/>
-                        <GradientStop Color="#FF2A5BA5" Offset="0.233"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="BorderBrush">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" SpreadMethod="Reflect">
-                        <LinearGradientBrush.RelativeTransform>
-                            <CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="26" SkewY="20"/>
-                        </LinearGradientBrush.RelativeTransform>
-                        <GradientStop Color="#FFFDFF00" Offset="0.461"/>
-                        <GradientStop Color="#FFEFB618" Offset="0.013"/>
-                        <GradientStop Color="#FFFDC500" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
+            		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" SpreadMethod="Pad">
+            			<LinearGradientBrush.RelativeTransform>
+            				<CompositeTransform CenterY="0.5" CenterX="0.5" SkewX="39" SkewY="-39" ScaleX="0.8" TranslateY="-0.4"/>
+            			</LinearGradientBrush.RelativeTransform>
+            			<GradientStop Color="#FF1818EB" Offset="0.797"/>
+            			<GradientStop Color="#FF030558" Offset="1"/>
+            			<GradientStop Color="#FF101070" Offset="0.017"/>
+            			<GradientStop Color="#FF2D58DE" Offset="0.573"/>
+            			<GradientStop Color="#FF2A5BA5" Offset="0.313"/>
+            		</LinearGradientBrush>
+            	</Setter.Value>
             </Setter>
             <Setter Property="Height" Value="74"/>
-            <Setter Property="OpacityMask" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BackgroundImageBrush}"/>
+            <Setter Property="Projection">
+            	<Setter.Value>
+            		<PlaneProjection CenterOfRotationX="0" CenterOfRotationZ="0" CenterOfRotationY="0" RotationX="5" RotationY="9"/>
+            	</Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="HomeButtonStyle2" TargetType="Button">
+        	<Setter Property="BorderThickness" Value="5" />
+        	<Setter Property="Foreground" >
+        		<Setter.Value>
+        
+        			<LinearGradientBrush EndPoint="1,1" StartPoint="0,0" MappingMode="RelativeToBoundingBox">
+        				<GradientStop Color="#FF0061FF"/>
+        				<GradientStop Offset="1" Color="#FF001BFF"/>
+        			</LinearGradientBrush>
+
+
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
+        	<Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+        	<Setter Property="Height" Value="74"/>
+        	<Setter Property="Projection">
+        		<Setter.Value>
+        			<PlaneProjection CenterOfRotationX="0" CenterOfRotationZ="0" CenterOfRotationY="0" RotationX="0" RotationY="9"/>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="Background">
+        		<Setter.Value>
+
+
+        			<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+        				<GradientStop Color="#FFEFB432" Offset="0.784"/>
+        				<GradientStop Color="#FFFFD304" Offset="0.009"/>
+        				<GradientStop Color="#FFF1EB0F" Offset="1"/>
+        				<GradientStop Color="Yellow" Offset="0.567"/>
+        			</LinearGradientBrush>
+
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="BorderBrush" Value="{StaticResource BackgroundImageBrush}"/>
+        	<Setter Property="FontSize" Value="40"/>
+        	<Setter Property="VerticalAlignment" Value="Bottom"/>
+        	<Setter Property="HorizontalAlignment" Value="Center"/>
+        	<Setter Property="Margin" Value="0"/>
+        	<Setter Property="VerticalContentAlignment" Value="Bottom"/>
         </Style>
 
     </Application.Resources>

@@ -53,7 +53,7 @@
                                  MouseLeftButtonDown="AcbComuni_MouseLeftButtonDown"
                                  FontSize="32" MinimumPrefixLength="2"
                                  ItemTemplate="{StaticResource TextWrappingItemTemplate}"
-                                 TextChanged="AcbComuni_TextChanged" />
+                                 TextChanged="AcbComuni_TextChanged" IsEnabled="False" />
         </StackPanel>
 
         <Border Background="{StaticResource BlueGradientBrush}"
@@ -93,7 +93,7 @@
                                  IsCacheEnabled="True"
                                  TextBoxStyle="{StaticResource TextWrappingStyle}"
                                  ItemTemplate="{StaticResource TextWrappingItemTemplate}"
-                                 FilterMode="Custom" MinimumPrefixLength="2"
+                                 FilterMode="Custom" MinimumPrefixLength="3"
                                  SelectionChanged="AcbIndirizzi_SelectionChanged"
                                  MinimumPopulateDelay="2000"
                                  LostFocus="AcbIndirizzi_LostFocus"                          

@@ -83,6 +83,7 @@ namespace TrovaCAP
             AcbComuni.ItemsSource = DataLayer.ComuniNames;
             AcbIndirizzi.TextFilter = AcbFilterStartsWithExtended;
             AcbFrazioni.TextFilter = AcbFilterStartsWithExtended;
+            AcbComuni.IsEnabled = true;
         }
 
         #region utility fuctions
@@ -167,6 +168,8 @@ namespace TrovaCAP
                 tbCapResult.Text = "";
                 _capRecordsComuni = null;
                 _capRecordsComuniFrazioni = null;
+                _acbIndirizziCashedSearchKey = "";
+
                 _state = Step.selezionaComune;
             }
         }
@@ -391,12 +394,14 @@ namespace TrovaCAP
             else if (AcbIndirizzi.Text.Length == 4)
                 AcbIndirizzi.MinimumPopulateDelay = 1000;
             else if (AcbIndirizzi.Text.Length >= 5)
-                AcbIndirizzi.MinimumPopulateDelay = 500;
+                AcbIndirizzi.MinimumPopulateDelay = 750;
         }
 
         private void AcbIndirizzi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _autofocus = null;
+
+            _acbIndirizziCashedSearchKey = "";
 
             if (_state == Step.scegliFrazioneOVia)
                 _state = Step.scegliVia;
@@ -518,6 +523,7 @@ namespace TrovaCAP
 
             AcbIndirizzi.Populating -= AcbIndirizzi_Populating;
 
+            TbLoading.Text = "Loading...";
             TbLoading.Opacity = 1;
             var bw = new BackgroundWorker();
 
@@ -535,7 +541,7 @@ namespace TrovaCAP
 
                 _acbIndirizziCashedSearchKey = text;
 
-                // fisso l'itemsource
+                // fisso l'itemsource (da ottimizzare, sarebbe meglio eliminare gli item che non ci sono più, non ricrearlo da zero)
                 foreach (var s in _acbIndirizziCashedItemsSource)
                 {
                     if (AcbFilterStartsWithExtended(text, s))
@@ -548,9 +554,18 @@ namespace TrovaCAP
             bw.RunWorkerCompleted += (sender1, e1) =>
             {
                 AcbIndirizzi.ItemsSource = itemSource;
-                TbLoading.Opacity = 0;
                 AcbIndirizzi.Populating += AcbIndirizzi_Populating;
-                AcbIndirizzi.PopulateComplete();
+                if (AcbIndirizzi.ItemsSource.Count() <= 325)
+                {
+                    TbLoading.Opacity = 0;
+                    AcbIndirizzi.PopulateComplete();
+                }
+                else
+                {
+                    AcbIndirizzi.ClearView();
+                    TbLoading.Text = "result list too long, go on writing...";
+                }
+
             };
             bw.RunWorkerAsync(AcbIndirizzi.Text);
         }

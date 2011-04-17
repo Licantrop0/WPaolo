@@ -196,7 +196,6 @@ namespace TrovaCAP
             _autofocus = null;
 
             _sComuneSelezionato = AcbComuni.Text;
-            //_capRecordsComuni = _comuni.Where(c => c.ComuneID == _sComuneSelezionato).Single().CapRecords;
             _capRecordsComuni = DataLayer.Comuni.Where(c => c.ComuneID == _sComuneSelezionato).Single().CapRecords;
 
             // if CAPRecords returns only one CAP job is finished
@@ -241,23 +240,21 @@ namespace TrovaCAP
 
                 if (_state == Step.selezionaVia)
                 {
-                    //AcbIndirizzi.ItemsSource = _sIndirizziComune;           // assegnazione itemsSource indirizzi!
                     _acbIndirizziOriginalItemsSource = _sIndirizziComune;
                     AcbIndirizzi.IsEnabled = true;
                     _autofocus = AcbIndirizzi;
                 }
                 else if (_state == Step.selezionaFrazione)
                 {
-                    AcbFrazioni.ItemsSource = sFrazioni;                    // assegnazione itemsSource frazioni!
+                    AcbFrazioni.ItemsSource = sFrazioni;                   
                     AcbFrazioni.IsEnabled = true;
                     _autofocus = AcbFrazioni;
                 }
                 else
                 {
-                    //AcbIndirizzi.ItemsSource = _sIndirizziComune;           // assegnazione itemsSource indirizzi
                     _acbIndirizziOriginalItemsSource = _sIndirizziComune;
                     AcbIndirizzi.IsEnabled = true;
-                    AcbFrazioni.ItemsSource = sFrazioni;                    // assegnazione itemsSource frazioni
+                    AcbFrazioni.ItemsSource = sFrazioni;                    
                     AcbFrazioni.IsEnabled = true;
                     _autofocus = this;
                 }
@@ -302,7 +299,6 @@ namespace TrovaCAP
             else if (_state == Step.SelezionaFrazioneViaFinished)
             {
                 ResetIndirizziTextBox();
-                //AcbIndirizzi.ItemsSource = _sIndirizziComune;   // importante
                 _acbIndirizziOriginalItemsSource = _sIndirizziComune;
                 _state = Step.scegliFrazioneOVia;
             }
@@ -338,9 +334,6 @@ namespace TrovaCAP
             else
             {
                 _state = Step.selezionaFrazioneVia;
-
-                /*AcbIndirizzi.ItemsSource = from cr in _capRecordsComuniFrazioni
-                                           select cr.Indirizzo; */
 
                 _acbIndirizziOriginalItemsSource = (from cr in _capRecordsComuniFrazioni
                                                     select cr.Indirizzo).ToList();
@@ -399,10 +392,10 @@ namespace TrovaCAP
                 AcbIndirizzi.MinimumPopulateDelay = 2000;
             else if (AcbIndirizzi.Text.Length == 3)
                 AcbIndirizzi.MinimumPopulateDelay = 1500;
-            else if (AcbIndirizzi.Text.Length >= 4)
+            else if (AcbIndirizzi.Text.Length == 4)
                 AcbIndirizzi.MinimumPopulateDelay = 1000;
             else if (AcbIndirizzi.Text.Length >= 5)
-                AcbIndirizzi.MinimumPopulateDelay = 1000;
+                AcbIndirizzi.MinimumPopulateDelay = 500;
         }
 
         private void AcbIndirizzi_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -476,17 +469,41 @@ namespace TrovaCAP
 
         static bool AcbFilterStartsWithExtended(string search, string word)
         {
-            //string word = data as string;
             string[] words = word.Split(' ');
-
-            /* return (words.Where(s => s.StartsWith(search, StringComparison.CurrentCultureIgnoreCase)).Count() > 0) ||
-                  (word.ToUpper().Contains(search.ToUpper()) && search.Contains(' '));*/
-
             string[] searchWords = search.Split(' ');
 
-            return searchWords.All(s =>
+            /*return searchWords.All(s =>           // LINQ: bello ma nel 90% dei casi inutile
                 words.Any(w =>
-                    w.StartsWith(s, StringComparison.OrdinalIgnoreCase)));
+                    w.StartsWith(s, StringComparison.OrdinalIgnoreCase)));*/
+
+            int wordsCount = words.Count();
+            int wordsStartIndex = 0;
+
+            foreach (string sw in searchWords)
+            {
+                bool match = false;
+                int  wordsIndex = wordsStartIndex;
+
+                while (wordsIndex < wordsCount)
+                {
+                    if (words[wordsIndex].StartsWith(sw, StringComparison.OrdinalIgnoreCase))
+                    {
+                        wordsStartIndex++;
+                        match = true;
+                        break;
+                    }
+                    else
+                    {
+                        wordsStartIndex++;
+                        wordsIndex++;
+                    }
+                }
+
+                if(!match)
+                    return false;
+            }
+
+            return true;
         }
 
 
@@ -499,6 +516,7 @@ namespace TrovaCAP
         {
             e.Cancel = true;
 
+            // workaround used to filter double access when item is selected
             if (_state == Step.scegliViaFinished || _state == Step.SelezionaFrazioneViaFinished || _state == Step.selezionaViaFinished)
                 return;
 
@@ -515,13 +533,9 @@ namespace TrovaCAP
 
                 if (!(_acbIndirizziCashedSearchKey.Length > 2 && text.Length > _acbIndirizziCashedSearchKey.Length &&
                    AcbFilterStartsWithExtended(_acbIndirizziCashedSearchKey, text)))
-                /*{
-                    _acbIndirizziOriginalItemsSource = AcbIndirizzi.ItemsSource.ToList();
-                }
-                else
-                {*/
+                {
                     _acbIndirizziCashedItemsSource = _acbIndirizziOriginalItemsSource;
-                //}
+                }
 
                 _acbIndirizziCashedSearchKey = text;
 
@@ -534,6 +548,7 @@ namespace TrovaCAP
 
                 _acbIndirizziCashedItemsSource = itemSource;
             };
+
             bw.RunWorkerCompleted += (sender1, e1) =>
             {
                 AcbIndirizzi.ItemsSource = itemSource;

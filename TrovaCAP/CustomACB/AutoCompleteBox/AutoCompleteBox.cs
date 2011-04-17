@@ -2415,26 +2415,7 @@ namespace System.Windows.Controls
                 int view_count = _view.Count;
                 List<string> items;
 
-                // tocco il codice microsoft, quale eresia!!!
-                
-                /*if (IsCacheEnabled)
-                {
-                    if ( _cashedString.Length > MinimumPrefixLength && text.Length > _cashedString.Length && TextFilter(_cashedString, text))
-                    {
-                        items = _view.ToList();
-                    }
-                    else
-                    {
-                        items = _items;
-                    }
-
-                    _cashedString = text;
-                }
-                
-                else
-                {*/
-                    items = _items;
-                //}
+                items = _items;
 
                 foreach (string item in items)
                 {

@@ -2302,7 +2302,7 @@ namespace System.Windows.Controls
         /// A simple helper method to clear the view and ensure that a view 
         /// object is always present and not null.
         /// </summary>
-        private void ClearView()
+        public/*private*/ void ClearView()
         {
             if (_view == null)
             {
@@ -2381,32 +2381,6 @@ namespace System.Windows.Controls
                         _view.Add(_items[nHitIndex]);
                         nHitIndex++;
                     }
-
-                    // Versione "ottimizzata"  <-- con la filosofia Microsoft, FACCIO UN MERGE SORT PER NON OTTIMIZZARE LE CANCELLAZIONI!
-                    /*int view_index = 0;
-                    int view_count = _view.Count;
-
-                    while (true)
-                    {
-                        string sStringView = FormatValue(_view[view_index]);
-                        string sStringResult = FormatValue(_items[nTryHitIndex]);
-
-                        if (String.Compare(sStringView, sStringResult) < 0)
-                        {
-                            _view.RemoveAt(view_index);
-                            view_index++;
-                        }
-                        else if (String.Compare(sStringView, sStringResult) == 0)
-                        {
-                            view_index++;
-                            nHitIndex++;
-                        }
-                        else if (String.Compare(sStringView, sStringResult) > 0)
-                        {
-                            _view.Insert(view_index, _items[nTryHitIndex]);
-                            nHitIndex++;
-                        }
-                    }*/
                 }
             }
             else

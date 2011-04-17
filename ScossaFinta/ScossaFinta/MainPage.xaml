@@ -5,412 +5,128 @@
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"
-    xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-	xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
+	xmlns:local="clr-namespace:ScossaFinta" 
+    xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"
+	xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
 	x:Class="ScossaFinta.MainPage"
 	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	shell:SystemTray.IsVisible="False">
-	<phone:PhoneApplicationPage.Resources>
-		<wp:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-        <Style x:Key="ThunderButtonStyle" TargetType="ToggleButton">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ToggleButton">
-                        <Grid Background="Transparent">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="Pressed">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image">
-                                                <DiscreteObjectKeyFrame KeyTime="0">
-                                                    <DiscreteObjectKeyFrame.Value>
-                                                        <Visibility>Collapsed</Visibility>
-                                                    </DiscreteObjectKeyFrame.Value>
-                                                </DiscreteObjectKeyFrame>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Disabled"/>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Image Source="Resources/obiettivo1hold.jpg" Stretch="UniformToFill"/>
-                            <Image x:Name="image" Source="Resources/obiettivo1.jpg" Stretch="UniformToFill"/>
-                            <Border x:Name="ButtonBackground" BorderBrush="{StaticResource PhoneBackgroundBrush}" CornerRadius="0" BorderThickness="5"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="ThunderRepeatButtonStyle" TargetType="RepeatButton">
-			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="RepeatButton">
-						<Grid Background="Transparent">
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="CommonStates">
-									<VisualState x:Name="Normal"/>
-									<VisualState x:Name="Pressed">
-										<Storyboard>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image">
-												<DiscreteObjectKeyFrame KeyTime="0">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Collapsed</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-									<VisualState x:Name="Disabled"/>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-							<Image Source="Resources/obiettivo1hold.jpg" Stretch="UniformToFill"/>
-							<Image x:Name="image" Source="Resources/obiettivo1.jpg" Stretch="UniformToFill"/>
-							<Border x:Name="ButtonBackground" BorderBrush="{StaticResource PhoneBackgroundBrush}" CornerRadius="0" BorderThickness="5"/>
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="ScossaButtonStyle" TargetType="ToggleButton">
-			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="ToggleButton">
-						<Grid>
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="CommonStates">
-									<VisualState x:Name="Normal"/>
-									<VisualState x:Name="Pressed">
-										<Storyboard>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image">
-												<DiscreteObjectKeyFrame KeyTime="0">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Collapsed</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-							<Image HorizontalAlignment="Right" Source="Resources/fulmineTandy2.jpg" VerticalAlignment="Bottom" Stretch="Fill"/>
-							<Image x:Name="image" Source="Resources/fulmineTandy1.jpg" Stretch="Fill" VerticalAlignment="Bottom"/>
-							<Border x:Name="ButtonBackground" BorderBrush="{StaticResource PhoneBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0">
-								<ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-							</Border>
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-        <Style x:Key="ScossaRepeatButtonStyle" TargetType="RepeatButton">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="RepeatButton">
-                        <Grid>
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="Pressed">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image">
-                                                <DiscreteObjectKeyFrame KeyTime="0">
-                                                    <DiscreteObjectKeyFrame.Value>
-                                                        <Visibility>Collapsed</Visibility>
-                                                    </DiscreteObjectKeyFrame.Value>
-                                                </DiscreteObjectKeyFrame>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Image HorizontalAlignment="Right" Source="Resources/fulmineTandy2.jpg" VerticalAlignment="Bottom" Stretch="Fill"/>
-                            <Image x:Name="image" Source="Resources/fulmineTandy1.jpg" Stretch="Fill" VerticalAlignment="Bottom"/>
-                            <Border x:Name="ButtonBackground" BorderBrush="{StaticResource PhoneBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0">
-                                <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Border>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="PhoneButtonBase" TargetType="ButtonBase">
-			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
-			<Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-			<Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
-			<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
-			<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
-			<Setter Property="Padding" Value="10,3,10,5"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="ButtonBase">
-						<Grid Background="Transparent">
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="CommonStates">
-									<VisualState x:Name="Normal"/>
-									<VisualState x:Name="MouseOver"/>
-									<VisualState x:Name="Pressed">
-										<Storyboard>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneBackgroundBrush}"/>
-											</ObjectAnimationUsingKeyFrames>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneForegroundBrush}"/>
-											</ObjectAnimationUsingKeyFrames>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ButtonBackground">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneForegroundBrush}"/>
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-									<VisualState x:Name="Disabled">
-										<Storyboard>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
-											</ObjectAnimationUsingKeyFrames>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ButtonBackground">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
-											</ObjectAnimationUsingKeyFrames>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-							<Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="{StaticResource PhoneTouchTargetOverhang}">
-								<ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-							</Border>
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="ZeusButtonStyle" BasedOn="{StaticResource PhoneButtonBase}" TargetType="ToggleButton">
-			<Setter Property="Padding" Value="8"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="ToggleButton">
-						<Grid Background="Transparent">
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="CommonStates">
-									<VisualState x:Name="Normal"/>
-									<VisualState x:Name="Disabled"/>
-									<VisualState x:Name="MouseOver"/>
-									<VisualState x:Name="Pressed">
-										<Storyboard>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ZeusOcchiBianchi">
-												<DiscreteObjectKeyFrame KeyTime="0">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Collapsed</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-											</ObjectAnimationUsingKeyFrames>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ZeusCoiFulmini">
-												<DiscreteObjectKeyFrame KeyTime="0:0:0.1">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Collapsed</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-												<DiscreteObjectKeyFrame KeyTime="0:0:0.2">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Visible</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-												<DiscreteObjectKeyFrame KeyTime="0:0:0.3">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Visible</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-												<DiscreteObjectKeyFrame KeyTime="0:0:0.4">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Collapsed</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-												<DiscreteObjectKeyFrame KeyTime="0:0:0.5">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Visible</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-												<DiscreteObjectKeyFrame KeyTime="0:0:0.6">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Collapsed</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-												<DiscreteObjectKeyFrame KeyTime="0:0:0.7">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Visible</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-												<DiscreteObjectKeyFrame KeyTime="0:0:0.8">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Collapsed</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-												<DiscreteObjectKeyFrame KeyTime="0:0:0.9">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Visible</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-												<DiscreteObjectKeyFrame KeyTime="0:0:1">
-													<DiscreteObjectKeyFrame.Value>
-														<Visibility>Collapsed</Visibility>
-													</DiscreteObjectKeyFrame.Value>
-												</DiscreteObjectKeyFrame>
-											</ObjectAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-								</VisualStateGroup>
-								<VisualStateGroup x:Name="CheckStates">
-									<VisualState x:Name="Unchecked"/>
-									<VisualState x:Name="Checked"/>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-							<Image x:Name="ZeusOcchiRossi" HorizontalAlignment="Right" Height="756" Source="Resources/ZeusOcchiRossi.png" Stretch="UniformToFill" VerticalAlignment="Bottom" Width="480"/>
-							<Image x:Name="ZeusCoiFulmini" HorizontalAlignment="Right" Height="756" Source="Resources/ZeusCoiFulmini.png" Stretch="UniformToFill" VerticalAlignment="Bottom" Width="480"/>
-							<Image x:Name="ZeusOcchiBianchi" HorizontalAlignment="Right" Height="756" Source="Resources/ZeusOcchiBianchi.png" Stretch="UniformToFill" VerticalAlignment="Bottom" Width="480"/>
-							<Border x:Name="ButtonBackground" BorderBrush="{StaticResource PhoneBackgroundBrush}" CornerRadius="0" BorderThickness="5"/>
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="AboutButtonStyle" TargetType="Button">
-			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
-			<Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-			<Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
-			<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
-			<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
-			<Setter Property="Padding" Value="10,3,10,5"/>
-		</Style>
-	</phone:PhoneApplicationPage.Resources>
-
-	<phone:PhoneApplicationPage.FontFamily>
-		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
-	</phone:PhoneApplicationPage.FontFamily>
-	<phone:PhoneApplicationPage.FontSize>
-		<StaticResource ResourceKey="PhoneFontSizeNormal"/>
-	</phone:PhoneApplicationPage.FontSize>
-	<phone:PhoneApplicationPage.Foreground>
-		<StaticResource ResourceKey="PhoneForegroundBrush"/>
-	</phone:PhoneApplicationPage.Foreground>
+    <phone:PhoneApplicationPage.Resources>
+        <wp:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </phone:PhoneApplicationPage.Resources>
 
 	<Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Image Source="Resources\fulmineTandy1.jpg"
-               Grid.ColumnSpan="3" Grid.RowSpan="5" />
-		
-		<Image x:Name ="sfondoScossa1" Source="Resources\fulmineTandy2.jpg"
-			   Visibility="{Binding IsPressed, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ScossaButton}"
-               Grid.ColumnSpan="3" Grid.RowSpan="5" />
-        <Image x:Name ="sfondoScossa2" Source="Resources\fulmineTandy2.jpg"
-			   Visibility="{Binding IsPressed, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ThunderButton}"
-               Grid.ColumnSpan="3" Grid.RowSpan="5" />
-        <Image x:Name ="sfondoScossa3" Source="Resources\fulmineTandy2.jpg"
-               Visibility="{Binding IsPressed, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ZeusButton}"
-               Grid.ColumnSpan="3" Grid.RowSpan="5" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<Image Source="Resources\fulmineTandy1.jpg"
+			Grid.ColumnSpan="3" Grid.RowSpan="5" />
 
-        <Border x:Name="Obiettivo1Border" BorderBrush="Black" 
-                BorderThickness="9" CornerRadius="50"
-                Height="81" Width="81" Opacity="0.4">
+		<Image x:Name ="sfondoScossa1" Source="Resources\fulmineTandy2.jpg"
+			Visibility="{Binding IsPressed, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ScossaButton}"
+			Grid.ColumnSpan="3" Grid.RowSpan="5" />
+		<Image x:Name ="sfondoScossa2" Source="Resources\fulmineTandy2.jpg"
+			Visibility="{Binding IsPressed, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ThunderButton}"
+			Grid.ColumnSpan="3" Grid.RowSpan="5" />
+		<Image x:Name ="sfondoScossa3" Source="Resources\fulmineTandy2.jpg"
+			Visibility="{Binding IsPressed, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ZeusButton}"
+			Grid.ColumnSpan="3" Grid.RowSpan="5" />
+
+		<Border x:Name="Obiettivo1Border" BorderBrush="Black" 
+			BorderThickness="9" CornerRadius="50"
+			Height="81" Width="81" Opacity="0.4">
 			<Border.Background>
 				<ImageBrush ImageSource="/ScossaFinta;component/Resources/obiettivo1.jpg" />
 			</Border.Background>
 		</Border>
-		
-        <Border x:Name="Obiettivo2Border" BorderBrush="Black"
-                BorderThickness="9" CornerRadius="50"
-                Height="81" Width="81" Opacity="0.4" Grid.Column="1">
+
+		<Border x:Name="Obiettivo2Border" BorderBrush="Black"
+			BorderThickness="9" CornerRadius="50"
+			Height="81" Width="81" Opacity="0.4" Grid.Column="1">
 			<Border.Background>
 				<ImageBrush ImageSource="/ScossaFinta;component/Resources/obiettivo2.jpg" />
 			</Border.Background>
 		</Border>
-		
-        <Border x:Name="Obiettivo3Border" BorderBrush="Black"
-                BorderThickness="9" CornerRadius="50"
-                Height="81" Width="81" Opacity="0.4"
-                Grid.Column="2">
+
+		<Border x:Name="Obiettivo3Border" BorderBrush="Black"
+			BorderThickness="9" CornerRadius="50"
+			Height="81" Width="81" Opacity="0.4"
+			Grid.Column="2">
 			<Border.Background>
 				<ImageBrush ImageSource="/ScossaFinta;component/Resources/obiettivo3.jpg" />
 			</Border.Background>
 		</Border>
 
-        <ToggleButton x:Name="ThunderButton"
-                      Click="ThunderButton_Click"
-                      Height="126"  Width="126"
-                      Grid.Row="2"
-                      Grid.Column="3"
-                      Style="{StaticResource ThunderButtonStyle}"
-                      BorderThickness="5" Opacity="0" />
-        <RepeatButton x:Name="ThunderRepeatButton"
-                      Click="ThunderButton_Click"
-                      Height="126"  Width="126"
-                      Grid.Row="2"
-                      Grid.Column="3"
-                      Style="{StaticResource ThunderRepeatButtonStyle}"
-                      BorderThickness="5"
-                      Visibility="Collapsed" />
-        <ToggleButton x:Name="ScossaButton"
-					  Click="ScossaButton_Click"
-                      Grid.Row="2"
-					  Height="126" Width="126"
-					  Style="{StaticResource ScossaButtonStyle}"
-                      BorderThickness="5" />
-        <RepeatButton x:Name="ScossaRepeatButton"
-					  Click="ScossaButton_Click"
-					  Height="126" Width="126"
-					  Grid.Row="2"
-					  Style="{StaticResource ScossaRepeatButtonStyle}"
-                      BorderThickness="5" Visibility="Collapsed" />
-        <ToggleButton x:Name="ZeusButton"
-                      Click="ZeusButton_Click"
-                      Margin="20"
-                      Grid.Row="1"
-                      Grid.ColumnSpan="3"
-                      BorderThickness="5" Style="{StaticResource ZeusButtonStyle}" Visibility="Collapsed" />
-        <TextBlock x:Name="HoldTextBox1" Text="Hold!" Foreground="#FFDAFD0D"
-                   FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#Chiller" 
-                   FontSize="32" Opacity="0" HorizontalAlignment="Center"
-                   Grid.Row="3" />
-        <TextBlock x:Name="HoldTextBox2" Text="Hold!" Foreground="#FFDAFD0D"
-                   FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#Chiller"
-                   FontSize="32" Opacity="0"
-                   Grid.Column="2" Grid.Row="3"
-                   HorizontalAlignment="Center" />
+		<ToggleButton x:Name="ThunderButton"
+			Click="ThunderButton_Click"
+			Height="126"  Width="126"
+			Grid.Row="2"
+			Grid.Column="3"
+			Style="{StaticResource ThunderButtonStyle}"
+			BorderThickness="5" Opacity="0" />
+		<RepeatButton x:Name="ThunderRepeatButton"
+			Click="ThunderButton_Click"
+			Height="126"  Width="126"
+			Grid.Row="2"
+			Grid.Column="3"
+			Style="{StaticResource ThunderRepeatButtonStyle}"
+			BorderThickness="5"
+			Visibility="Collapsed" />
+		<ToggleButton x:Name="ScossaButton"
+			Click="ScossaButton_Click"
+			Grid.Row="2"
+			Height="126" Width="126"
+			Style="{StaticResource ScossaButtonStyle}"
+			BorderThickness="5" />
+		<RepeatButton x:Name="ScossaRepeatButton"
+			Click="ScossaButton_Click"
+			Height="126" Width="126"
+			Grid.Row="2"
+			Style="{StaticResource ScossaRepeatButtonStyle}"
+			BorderThickness="5" Visibility="Collapsed" />
+		<ToggleButton x:Name="ZeusButton"
+			Click="ZeusButton_Click"
+			Margin="20"
+			Grid.Row="1"
+			Grid.ColumnSpan="3"
+			BorderThickness="5" Style="{StaticResource ZeusButtonStyle}" Visibility="Collapsed" />
+		<TextBlock x:Name="HoldTextBox1" Text="Hold!" Foreground="#FFDAFD0D"
+			FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#Chiller" 
+			FontSize="32" Opacity="0" HorizontalAlignment="Center"
+			Grid.Row="3" />
+		<TextBlock x:Name="HoldTextBox2" Text="Hold!" Foreground="#FFDAFD0D"
+			FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#Chiller"
+			FontSize="32" Opacity="0"
+			Grid.Column="2" Grid.Row="3"
+			HorizontalAlignment="Center" />
 
-        <google:BannerAd AdUnitID="a14da86f2609897"
-                         x:Name="ADControl"
-                         Grid.Row="4"
-                         Grid.ColumnSpan="3"
-                         LocationDescription="{Binding ElementName=Location, Mode=OneWay}"/>
-        <Image Grid.Column="1" Grid.Row="2" Source="Resources/logo.png">
-        	<Custom:Interaction.Triggers>
-        		<Custom:EventTrigger EventName="MouseLeftButtonDown">
-        			<ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
-        		</Custom:EventTrigger>
-        	</Custom:Interaction.Triggers>
-        </Image>
+        <local:AchievementUnlocked x:Name="PopupAchievementUnlocked"
+                                   Grid.ColumnSpan="3" Grid.Row="1" >
+        </local:AchievementUnlocked>
 
-    </Grid>
+		<google:BannerAd
+			xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
+			AdUnitID="a14da86f2609897"
+			Grid.Row="4" Grid.ColumnSpan="3"
+			LocationDescription="{Binding ElementName=Location, Mode=OneWay}"/>
+		<Image Grid.Column="1" Grid.Row="2" Source="Resources/logo.png" Height="80">
+			<Custom:Interaction.Triggers>
+				<Custom:EventTrigger EventName="MouseLeftButtonDown">
+					<ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
+				</Custom:EventTrigger>
+			</Custom:Interaction.Triggers>
+		</Image>
+
+	</Grid>
 </phone:PhoneApplicationPage>

@@ -82,6 +82,10 @@
     <Resource Include="Img\hotmail.png" />
     <Resource Include="Img\twitter.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ADMob SDK\Google.AdMob.Ads.WindowsPhone7.dll" />
+    <None Include="ADMob SDK\Google.AdMob.Ads.WindowsPhone7.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions />

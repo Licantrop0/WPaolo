@@ -54,7 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.AdMob.Ads.WindowsPhone7">
-      <HintPath>AdMob SDK\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
+      <HintPath>..\..\WPCommon\ADMob SDK\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone" />

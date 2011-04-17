@@ -7,8 +7,6 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:acb="clr-namespace:Microsoft.Phone.Controls;assembly=CustomACB"
     xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
     x:Class="TrovaCAP.MainPage"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
@@ -128,9 +126,8 @@
         <google:BannerAd
             xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
             Grid.Row="5" Grid.ColumnSpan="2" 
-            AdUnitID="a14da9d2bde5aea">
-        </google:BannerAd>
-
+            AdUnitID="a14da9d2bde5aea"
+            LocationDescription="{Binding ElementName=Location, Mode=OneWay}"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

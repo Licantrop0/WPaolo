@@ -80,13 +80,9 @@ namespace TrovaCAP
         public MainPage()
         {
             InitializeComponent();
+            AcbComuni.ItemsSource = DataLayer.ComuniNames;
             AcbIndirizzi.TextFilter = AcbFilterStartsWithExtended;
             AcbFrazioni.TextFilter = AcbFilterStartsWithExtended;
-        }
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            AcbComuni.ItemsSource = DataLayer.ComuniNames;
         }
 
         #region utility fuctions

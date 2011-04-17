@@ -16,19 +16,22 @@ namespace TrovaCAP
             get
             {
                 if (!PhoneApplicationService.Current.State.ContainsKey("comuni_names"))
-                    PhoneApplicationService.Current.State.Add("comuni_names", LoadComuniNames());
+                    PhoneApplicationService.Current.State.Add("comuni_names", null);
 
                 return (string[])PhoneApplicationService.Current.State["comuni_names"];
             }
+            set
+            {
+                PhoneApplicationService.Current.State["comuni_names"] = value;
+            }
         }
 
-        private static string[] LoadComuniNames()
+        public static void LoadComuniNames()
         {
             var resource = Application.GetResourceStream(new Uri("Comuni.txt", UriKind.Relative));
-
             using (var tr = new StreamReader(resource.Stream))
             {
-                return tr.ReadToEnd().Split('|');
+                ComuniNames = tr.ReadToEnd().Split('|');
             }
         }
 
@@ -37,13 +40,10 @@ namespace TrovaCAP
             var bw = new BackgroundWorker();
             bw.DoWork += (sender1, e1) =>
             {
-                WPCommon.ExtensionMethods.StartTrace("Deserializing...");
                 DataLayer.ReadAndParseDataBase();
                 //DataLayer.Deserialize();
-                WPCommon.ExtensionMethods.EndTrace();
             };
             bw.RunWorkerAsync();
-            Thread.Sleep(2000);
         }
 
         private static void ReadAndParseDataBase()
@@ -79,7 +79,5 @@ namespace TrovaCAP
                 Comuni = ser2.ReadObject(sri.Stream) as Comune[];
             }
         }*/
-
-
     }
 }

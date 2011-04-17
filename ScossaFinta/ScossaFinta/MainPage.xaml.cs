@@ -11,7 +11,6 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Devices;
-using Microsoft.Xna.Framework;
 
 namespace ScossaFinta
 {
@@ -39,7 +38,6 @@ namespace ScossaFinta
             {
                 Obiettivo3Border.Opacity = 100;
                 ZeusButton.Visibility = System.Windows.Visibility.Visible;
-                FrameworkDispatcher.Update();
                 Settings.ZeusParla.Play();
             }
         }
@@ -52,15 +50,15 @@ namespace ScossaFinta
             //controllo raggiungimento obiettivi
             if (Settings.statistics.NumeroDiScosse == 10)
             {
-                FrameworkDispatcher.Update();
                 Settings.SuonoPremio.Play();
                 Obiettivo1Border.Opacity = 1;
                 ThunderButton.Opacity = 1;
+                PopupAchievementUnlocked.AchievementText="Shock Master";
+                PopupAchievementUnlocked.Appear();
                 return;
             }
             else if (Settings.statistics.NumeroDiScosse == 20)
             {
-                FrameworkDispatcher.Update();
                 Settings.SuonoPremio.Play();
                 Obiettivo2Border.Opacity = 1;
                 ScossaButton.Visibility = Visibility.Collapsed;
@@ -69,16 +67,19 @@ namespace ScossaFinta
                 ThunderRepeatButton.Visibility = Visibility.Visible;
                 HoldTextBox1.Opacity = 1;
                 HoldTextBox2.Opacity = 1;
+
+                PopupAchievementUnlocked.AchievementText = "Thunder Master";
+                PopupAchievementUnlocked.Appear();
                 return;
             }
             else if (Settings.statistics.NumeroDiScosse == 30)
             {
-                FrameworkDispatcher.Update();
                 Settings.SuonoPremio.Play();
                 Obiettivo3Border.Opacity = 1;
                 ZeusButton.Visibility = Visibility.Visible;
-                FrameworkDispatcher.Update();
                 Settings.ZeusParla.Play();
+                PopupAchievementUnlocked.AchievementText="Zeus Master";
+                PopupAchievementUnlocked.Appear();
                 return;
             }
 
@@ -91,7 +92,6 @@ namespace ScossaFinta
         private void ScossaButton_Click(object sender, RoutedEventArgs e)
         {
             scossa();
-            FrameworkDispatcher.Update();
             Settings.SuonoScossa.Play();
             if (Settings.statistics.NumeroDiScosse >= 20)
                 System.Threading.Thread.Sleep(300);
@@ -100,7 +100,6 @@ namespace ScossaFinta
         private void ThunderButton_Click(object sender, RoutedEventArgs e)
         {
             scossa();
-            FrameworkDispatcher.Update();
             Settings.SuonoThunder.Play();
             if(Settings.statistics.NumeroDiScosse >= 20)
                 System.Threading.Thread.Sleep(300);
@@ -109,7 +108,6 @@ namespace ScossaFinta
         private void ZeusButton_Click(object sender, RoutedEventArgs e)
         {
             scossa();
-            FrameworkDispatcher.Update();
             Settings.SuonoThunderRisata.Play();
         }
     }

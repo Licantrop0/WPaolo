@@ -16,7 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>it-IT;en-US;fr-FR;</SupportedCultures>
+    <SupportedCultures>en-US;it-IT;de-DE;fr-FR;</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>TrovaCAP.xap</XapFilename>
@@ -104,7 +104,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppResLib.dll" />
     <Content Include="Comuni.txt" />
+    <Content Include="AppResLib.dll.0407.mui" />
+    <Content Include="AppResLib.dll.0409.mui" />
+    <Content Include="AppResLib.dll.040c.mui" />
+    <Content Include="AppResLib.dll.0410.mui" />
     <None Include="DB.ser" />
     <None Include="DB3.ser" />
     <None Include="images\bollo_en_png" />
@@ -161,8 +166,8 @@
     <Resource Include="images\bollo_it.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AppResources.en-US.resx" />
     <EmbeddedResource Include="AppResources.fr-FR.resx" />
+    <EmbeddedResource Include="AppResources.it-IT.resx" />
     <EmbeddedResource Include="AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>

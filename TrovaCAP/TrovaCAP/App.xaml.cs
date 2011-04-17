@@ -2,6 +2,7 @@
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Threading;
 
 namespace TrovaCAP
 {
@@ -48,6 +49,8 @@ namespace TrovaCAP
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             DataLayer.LoadDBAsync();
+            DataLayer.LoadComuniNames();
+            Thread.Sleep(1000);
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -55,6 +58,7 @@ namespace TrovaCAP
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             DataLayer.LoadDBAsync();
+            Thread.Sleep(2000);
         }
 
         // Code to execute when the application is deactivated (sent to background)

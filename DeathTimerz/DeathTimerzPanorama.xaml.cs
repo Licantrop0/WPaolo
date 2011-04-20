@@ -19,6 +19,24 @@ namespace DeathTimer
             InitializeApplicationBar();
         }
 
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Settings.CanIPlayMusic)
+            {
+                var BackgroundMusic = new MediaElement();
+                BackgroundMusic.MediaEnded += (sender1, e1) =>
+                {
+                    BackgroundMusic.Stop();
+                    BackgroundMusic.Play();
+                };
+
+                BackgroundMusic.Source = new Uri("Music.wma", UriKind.Relative);
+                LayoutRoot.Children.Add(BackgroundMusic);
+                BackgroundMusic.Play();
+            }
+        }
+
+
         private void InitializeTimer()
         {
             dt.Interval = TimeSpan.FromSeconds(1);
@@ -152,33 +170,6 @@ namespace DeathTimer
         }
 
         #endregion
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (Settings.CanIPlayMusic)
-            {
-                var BackgroundMusic = new MediaElement();
-                BackgroundMusic.AutoPlay = true;
-                BackgroundMusic.Source = new Uri("DeathTimer;component/Music.mp3", UriKind.Relative);
-
-                BackgroundMusic.MediaEnded += (sender1, e1) =>
-                {
-                    BackgroundMusic.Stop();
-                    BackgroundMusic.Play();
-                };
-
-                BackgroundMusic.MediaOpened +=(sender1, e1) =>
-                {
-                    var a = e1.OriginalSource;
-                };
-
-                BackgroundMusic.MediaFailed += (sender1, e1) =>
-                {
-                    var a = e1.ErrorException;
-                };
-            }
-        }
-
     }
 
 }

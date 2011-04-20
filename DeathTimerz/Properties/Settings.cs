@@ -41,7 +41,6 @@ namespace DeathTimer
             }
         }
 
-
         public static bool CanIPlayMusic
         {
             get
@@ -49,12 +48,13 @@ namespace DeathTimer
                 if (!PhoneApplicationService.Current.State.ContainsKey("can_play_music"))
                 {
                     PhoneApplicationService.Current.State.Add("can_play_music", true);
-
-                    if (!MediaPlayer.GameHasControl)
-                        PhoneApplicationService.Current.State["can_play_music"] =
-                            MessageBox.Show(AppResources.PlayBackgroundMusic,
+                    PhoneApplicationService.Current.State["can_play_music"] =
+                        MediaPlayer.GameHasControl ?
+                        true :
+                        MessageBox.Show(AppResources.PlayBackgroundMusic,
                             AppResources.AppName, MessageBoxButton.OKCancel) == MessageBoxResult.OK;
                 }
+
                 return (bool)PhoneApplicationService.Current.State["can_play_music"];
             }
         }

@@ -66,8 +66,6 @@
                 </Grid>
             </controls:PanoramaItem>
         </controls:Panorama>
-         <!--<MediaElement Name="BackgroundMusic" Source="/Music.mp3" AutoPlay="False"
-                       Volume="1" MediaEnded="BackgroundMusic_MediaEnded" />-->
     </Grid>
 
 </phone:PhoneApplicationPage>

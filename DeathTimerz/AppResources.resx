@@ -226,6 +226,9 @@ Anyway... touch your balls!</value>
   <data name="Food4" xml:space="preserve">
     <value>Vegetarian</value>
   </data>
+  <data name="GetOtherApps" xml:space="preserve">
+    <value>Get other Apps from WPME</value>
+  </data>
   <data name="Height" xml:space="preserve">
     <value>Insert your height (in)</value>
   </data>

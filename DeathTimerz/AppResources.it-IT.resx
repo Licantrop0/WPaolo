@@ -226,6 +226,9 @@ Comunque... toccati le palle!</value>
   <data name="Food4" xml:space="preserve">
     <value>Vegetariana</value>
   </data>
+  <data name="GetOtherApps" xml:space="preserve">
+    <value>Scopri altre applicazioni di WPME</value>
+  </data>
   <data name="Height" xml:space="preserve">
     <value>Inserisci la tua altezza (cm)</value>
   </data>

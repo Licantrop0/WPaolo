@@ -62,8 +62,8 @@ namespace DeathTimer
                 Months.ToString("0") + " " + (Months == 1 ? AppResources.Month : AppResources.Months) + "\n" +
                 Days.ToString("0") + " " + (Days == 1 ? AppResources.Day : AppResources.Days) + "\n" +
                 Age.Hours.ToString("0") + " " + (Age.Hours == 1 ? AppResources.Hour : AppResources.Hours) + "\n" +
-                Age.Minutes.ToString("0") + " " + (Age.Minutes == 1 ? AppResources.Minute : AppResources.Minutes) + "\n" +
-                Age.Seconds.ToString("0") + " " + (Age.Seconds == 1 ? AppResources.Second : AppResources.Seconds);
+                Age.Minutes.ToString("0") + " " + (Age.Minutes == 1 ? AppResources.Minute : AppResources.Minutes);// + "\n" +
+                //Age.Seconds.ToString("0") + " " + (Age.Seconds == 1 ? AppResources.Second : AppResources.Seconds);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

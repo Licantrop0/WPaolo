@@ -16,6 +16,10 @@
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <controls:Panorama Name="MainPanorama" SelectionChanged="MainPanorama_SelectionChanged"  >
            <controls:Panorama.Title>
                 <TextBlock Text="{Binding Path=LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
@@ -66,6 +70,12 @@
                 </Grid>
             </controls:PanoramaItem>
         </controls:Panorama>
+        
+        <google:BannerAd
+            xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
+            Grid.Row="1"
+            AdUnitID="a14daf5abef3060"
+            LocationDescription="{Binding ElementName=Location, Mode=OneWay}"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

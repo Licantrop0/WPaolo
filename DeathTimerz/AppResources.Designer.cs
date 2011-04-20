@@ -386,6 +386,15 @@ namespace DeathTimer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get other Apps from WPME.
+        /// </summary>
+        public static string GetOtherApps {
+            get {
+                return ResourceManager.GetString("GetOtherApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert your height (in).
         /// </summary>
         public static string Height {

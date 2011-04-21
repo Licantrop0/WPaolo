@@ -4,8 +4,9 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Windows;
 using System.ComponentModel;
+using DeathTimerz.Localization;
 
-namespace DeathTimer
+namespace DeathTimerz
 {
     public partial class SettingsPage : PhoneApplicationPage
     {

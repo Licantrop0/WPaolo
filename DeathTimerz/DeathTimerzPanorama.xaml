@@ -60,7 +60,8 @@
                     <TextBlock Text="{Binding Path=LocalizedResources.TimeToDeath, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource RedChiller}" />
                 </controls:PanoramaItem.Header>
-                <Grid Margin="0,-30,0,0">
+                <ScrollViewer Margin="0,-30,0,0">
+                <Grid>
                     <TextBlock Name="EstimatedDeathAge" HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
                                    FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" Style="{StaticResource RedChiller}"/>
                     
@@ -68,6 +69,7 @@
                             Visibility="Collapsed" toolkit:TiltEffect.IsTiltEnabled="True"
                             Click="TakeTestButton_Click" Style="{StaticResource RedChillerButton}" />
                 </Grid>
+            </ScrollViewer>
             </controls:PanoramaItem>
         </controls:Panorama>
         

@@ -314,7 +314,9 @@ Comunque... toccati le palle!</value>
     <value>Inserisci il tuo peso (kg)</value>
   </data>
   <data name="WillDie" xml:space="preserve">
-    <value>Morirai {0:D}, all'età di {1:N0} anni</value>
+    <value>Morirai {0:D},
+all'età di {1:N0} anni.
+Sei al {2:N2}% della tua vita, con {3:N0} giorni di vita rimanenti.</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Anno</value>

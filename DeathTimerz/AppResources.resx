@@ -314,7 +314,9 @@ Anyway... touch your balls!</value>
     <value>Insert your weight (lb)</value>
   </data>
   <data name="WillDie" xml:space="preserve">
-    <value>You will die on {0:D}, at {1:N0} years</value>
+    <value>You will die on {0:D},
+at {1:N0} years.
+You lived {2:N2}% of your life, with {3:N0} days remaining.</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Year</value>

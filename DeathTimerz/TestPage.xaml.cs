@@ -10,8 +10,9 @@ using System.Xml.Linq;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WPCommon;
+using DeathTimerz.Localization;
 
-namespace DeathTimer
+namespace DeathTimerz
 {
     public partial class TestPage : PhoneApplicationPage
     {

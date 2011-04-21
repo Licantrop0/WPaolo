@@ -87,7 +87,8 @@ namespace DeathTimerz
                           select double.Parse(el.Attribute("Content").Value)).First();
 
             double bmi;
-            if (CultureInfo.CurrentUICulture.Name == "it-IT")
+            if (CultureInfo.CurrentUICulture.Name == "it-IT" ||
+                CultureInfo.CurrentUICulture.Name == "fr-FR")
                 bmi = Weight / Math.Pow(Height * .01, 2); //kg-cm
             else
                 bmi = Weight * 703 / Math.Pow(Height, 2); //lb-in
@@ -208,6 +209,12 @@ namespace DeathTimerz
 
         void OkAppBarButton_Click(object sender, EventArgs e)
         {
+            if (FocusManager.GetFocusedElement() is TextBox && !IsTestFilled())
+            {
+                this.Focus();
+                return;
+            }
+
             if (!IsTestFilled())
             {
                 MessageBox.Show(AppResources.TestNotCompleted);

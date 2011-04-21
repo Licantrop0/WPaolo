@@ -118,212 +118,213 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Informazioni</value>
   </data>
   <data name="Age" xml:space="preserve">
-    <value>Age</value>
+    <value>Età</value>
   </data>
   <data name="Alcohol" xml:space="preserve">
-    <value>How often do you drink alcohol?</value>
+    <value>Quante volte bevi superalcolici?</value>
   </data>
   <data name="Alcohol1" xml:space="preserve">
-    <value>I'm teetotal</value>
+    <value>Sono astemio</value>
   </data>
   <data name="Alcohol2" xml:space="preserve">
-    <value>Without exceeding</value>
+    <value>Senza eccedere</value>
   </data>
   <data name="Alcohol3" xml:space="preserve">
-    <value>Every day</value>
+    <value>Tutti i giorni</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Death Timerz</value>
+    <value>L'orologio della Morte</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annulla</value>
   </data>
   <data name="Cigarettes" xml:space="preserve">
-    <value>How many cigarettes do you smoke daily?</value>
+    <value>Quante sigarette fumi al giorno?</value>
   </data>
   <data name="ClinicChecks" xml:space="preserve">
-    <value>How often you make clinic check?</value>
+    <value>Quante volte fai visite mediche?</value>
   </data>
   <data name="ClinicChecks1" xml:space="preserve">
-    <value>The last one was long time ago</value>
+    <value>L'ultima è stata mesi fa</value>
   </data>
   <data name="ClinicChecks2" xml:space="preserve">
-    <value>Only when I'm sick</value>
+    <value>Solo se sono malato</value>
   </data>
   <data name="ClinicChecks3" xml:space="preserve">
-    <value>Periodically</value>
+    <value>Periodicamente</value>
   </data>
   <data name="CronicDisease" xml:space="preserve">
-    <value>Do you have chronic diseases?</value>
+    <value>Soffri di malattie croniche?</value>
   </data>
   <data name="CronicDisease1" xml:space="preserve">
     <value>No</value>
   </data>
   <data name="CronicDisease2" xml:space="preserve">
-    <value>Yes, mild</value>
+    <value>Si, lievi</value>
   </data>
   <data name="CronicDisease3" xml:space="preserve">
-    <value>Yes, serious</value>
+    <value>Si, gravi</value>
   </data>
   <data name="Day" xml:space="preserve">
-    <value>Day</value>
+    <value>Giorno</value>
   </data>
   <data name="Days" xml:space="preserve">
-    <value>Days</value>
+    <value>Giorni</value>
   </data>
   <data name="DaysToBirthday" xml:space="preserve">
-    <value>Birthday after...</value>
+    <value>Compleanno tra...</value>
   </data>
   <data name="Disclaimer" xml:space="preserve">
     <value>Disclaimer</value>
   </data>
   <data name="DisclaimerText" xml:space="preserve">
-    <value>Death Timerz should be intended only for fun, no medical or statistical data are used to calculate the time of your death.
-Anyway... touch your balls!</value>
+    <value>L'orologio della Morte è da considerare solo un gioco, senza alcuna velleità statistica o medica.
+Comunque... toccati le palle!</value>
   </data>
   <data name="Drugs" xml:space="preserve">
-    <value>Do you use drugs?</value>
+    <value>Ti droghi?</value>
   </data>
   <data name="Drugs1" xml:space="preserve">
-    <value>Never taked</value>
+    <value>No, mai fatto</value>
   </data>
   <data name="Drugs2" xml:space="preserve">
-    <value>Sometimes</value>
+    <value>Ogni tanto</value>
   </data>
   <data name="Drugs3" xml:space="preserve">
-    <value>Usually</value>
+    <value>Spesso</value>
   </data>
   <data name="EditTest" xml:space="preserve">
-    <value>Edit Test</value>
+    <value>Modifica Test</value>
   </data>
   <data name="ErrorFutureBirthday" xml:space="preserve">
-    <value>You can't setup your birthday today or in the future.</value>
+    <value>Non puoi impostare la tua data di nascita oggi o nel futuro.</value>
   </data>
   <data name="ErrorNoBirthay" xml:space="preserve">
-    <value>You have to set your birthay first</value>
+    <value>Inserisci la tua data di nascita</value>
   </data>
   <data name="ErrorTooOldBirthday" xml:space="preserve">
-    <value>No one with that birthday could be still alive...</value>
+    <value>Nessuno con quella data di nascita potrebbe essere ancora vivo...</value>
   </data>
   <data name="Female" xml:space="preserve">
-    <value>Female</value>
+    <value>Femmina</value>
   </data>
   <data name="Food" xml:space="preserve">
-    <value>What kind of diet do you follow?</value>
+    <value>Che tipo di dieta segui?</value>
   </data>
   <data name="Food1" xml:space="preserve">
-    <value>Mediterranean</value>
+    <value>Mediterranea</value>
   </data>
   <data name="Food2" xml:space="preserve">
-    <value>I eat everything</value>
+    <value>Mangio di tutto</value>
   </data>
   <data name="Food3" xml:space="preserve">
-    <value>Fat is good</value>
+    <value>Grasso è bello</value>
   </data>
   <data name="Food4" xml:space="preserve">
-    <value>Vegetarian</value>
+    <value>Vegetariana</value>
   </data>
   <data name="GetOtherApps" xml:space="preserve">
-    <value>Get other Apps from WPME</value>
+    <value>Scopri altre applicazioni di WPME</value>
   </data>
   <data name="Height" xml:space="preserve">
-    <value>Insert your height (in)</value>
+    <value>Inserisci la tua altezza (cm)</value>
   </data>
   <data name="Hour" xml:space="preserve">
-    <value>Hour</value>
+    <value>Ora</value>
   </data>
   <data name="Hours" xml:space="preserve">
-    <value>Hours</value>
+    <value>Ore</value>
   </data>
   <data name="InsertBirthday" xml:space="preserve">
-    <value>Insert your Birthday</value>
+    <value>Inserisci la tua data di nascita</value>
   </data>
   <data name="Male" xml:space="preserve">
-    <value>Male</value>
+    <value>Maschio</value>
   </data>
   <data name="MaleOrFemale" xml:space="preserve">
-    <value>Insert your gender</value>
+    <value>Sei maschio o femmina?</value>
   </data>
   <data name="Minute" xml:space="preserve">
-    <value>Minute</value>
+    <value>Minuto</value>
   </data>
   <data name="Minutes" xml:space="preserve">
-    <value>Minutes</value>
+    <value>Minuti</value>
   </data>
   <data name="Month" xml:space="preserve">
-    <value>Month</value>
+    <value>Mese</value>
   </data>
   <data name="Months" xml:space="preserve">
-    <value>Months</value>
+    <value>Mesi</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Ok</value>
   </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
-    <value>Do you want to stop the current music and play the gloomy background music of this app?</value>
+    <value>Vuoi interrompere la musica corrente e riprodurre la lugubre musica di questa app?</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Salva</value>
   </data>
   <data name="Second" xml:space="preserve">
-    <value>Second</value>
+    <value>Secondo</value>
   </data>
   <data name="Seconds" xml:space="preserve">
-    <value>Seconds</value>
+    <value>Secondi</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Settaggi</value>
   </data>
   <data name="Sports" xml:space="preserve">
-    <value>Do you do some sport?</value>
+    <value>Pratichi qualche sport?</value>
   </data>
   <data name="Sports1" xml:space="preserve">
-    <value>Not so much / never</value>
+    <value>Poco / per niente</value>
   </data>
   <data name="Sports2" xml:space="preserve">
-    <value>Weekly</value>
+    <value>Settimanalmente</value>
   </data>
   <data name="Sports3" xml:space="preserve">
-    <value>Daily</value>
+    <value>Tutti i giorni</value>
   </data>
   <data name="Stress" xml:space="preserve">
-    <value>Are you under stress?</value>
+    <value>Sei sotto stress?</value>
   </data>
   <data name="Stress1" xml:space="preserve">
-    <value>Never</value>
+    <value>Mai</value>
   </data>
   <data name="Stress2" xml:space="preserve">
-    <value>Occasionally</value>
+    <value>Ogni tanto</value>
   </data>
   <data name="Stress3" xml:space="preserve">
-    <value>Frequently</value>
+    <value>Spesso</value>
   </data>
   <data name="TakeTest" xml:space="preserve">
-    <value>Take the test!</value>
+    <value>Fai il test!</value>
   </data>
   <data name="TestNotCompleted" xml:space="preserve">
-    <value>Please respond to all questions</value>
+    <value>Per favore rispondi a tutte le domande</value>
   </data>
   <data name="TimeToDeath" xml:space="preserve">
-    <value>Time to Death</value>
+    <value>Tempo Restante</value>
   </data>
   <data name="Weight" xml:space="preserve">
-    <value>Insert your weight (lb)</value>
+    <value>Inserisci il tuo peso (kg)</value>
   </data>
   <data name="WillDie" xml:space="preserve">
-    <value>You will die on {0:D} at {1:N0} years.
-You lived {2:N2}% of your life, with {3:N0} days remaining.</value>
+    <value>Morirai {0:D},
+all'età di {1:N0} anni.
+Sei al {2:N2}% della tua vita, con {3:N0} giorni di vita rimanenti.</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value>Year</value>
+    <value>Anno</value>
   </data>
   <data name="Years" xml:space="preserve">
-    <value>Years</value>
+    <value>Anni</value>
   </data>
   <data name="YetAlive" xml:space="preserve">
-    <value>Are you still alive? It's hard to believe!</value>
+    <value>Ma come fai ad essere ancora vivo?</value>
   </data>
 </root>

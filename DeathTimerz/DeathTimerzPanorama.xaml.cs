@@ -6,8 +6,9 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Windows.Controls;
 using Microsoft.Xna.Framework.Media;
+using DeathTimerz.Localization;
 
-namespace DeathTimer
+namespace DeathTimerz
 {
     public partial class DeathTimerzPanorama : PhoneApplicationPage
     {

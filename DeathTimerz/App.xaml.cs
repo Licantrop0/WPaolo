@@ -33,16 +33,17 @@ namespace DeathTimer
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            Settings.AskAndPlayMusic();
+
             IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
             if (isf.FileExists("Questions.xml")) return;
 
-            using (IsolatedStorageFileStream fs = new IsolatedStorageFileStream("Questions.xml", FileMode.CreateNew, FileAccess.Write, isf))
+            using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.CreateNew, FileAccess.Write, isf))
             {
                 StreamResourceInfo sri = Application.GetResourceStream(new Uri("DeathTimer;component/Questions.xml", UriKind.Relative));
                 byte[] bytesInStream = new byte[sri.Stream.Length];
                 sri.Stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
                 fs.Write(bytesInStream, 0, bytesInStream.Length);
-                fs.Flush();
             }
         }
 
@@ -50,6 +51,7 @@ namespace DeathTimer
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            Settings.AskAndPlayMusic();
         }
 
         // Code to execute when the application is deactivated (sent to background)

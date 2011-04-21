@@ -5,6 +5,7 @@ using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Windows.Controls;
+using Microsoft.Xna.Framework.Media;
 
 namespace DeathTimer
 {
@@ -21,26 +22,27 @@ namespace DeathTimer
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Settings.CanIPlayMusic)
+            if (Settings.BirthDay.HasValue)
             {
-                var BackgroundMusic = new MediaElement();
-                BackgroundMusic.MediaEnded += (sender1, e1) =>
-                {
-                    BackgroundMusic.Stop();
-                    BackgroundMusic.Play();
-                };
-
-                BackgroundMusic.Source = new Uri("Music.wma", UriKind.Relative);
-                LayoutRoot.Children.Add(BackgroundMusic);
-                BackgroundMusic.Play();
+                var DaysToBirthDay = ExtensionMethods.GetNextBirthday(Settings.BirthDay.Value).Subtract(DateTime.Now).Days;
+                DaysToBirthdayTextBlock.Text = DaysToBirthDay.ToString() + " " +
+                    (DaysToBirthDay == 1 ? AppResources.Day : AppResources.Days);
             }
+            else
+            {
+                NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
+                return;
+            }
+
+            dt_Tick(sender, EventArgs.Empty);
+
         }
 
 
         private void InitializeTimer()
         {
-            dt.Interval = TimeSpan.FromSeconds(1);
-            dt.Tick += new EventHandler(dt_Tick);
+            dt.Interval = TimeSpan.FromMinutes(1);
+            dt.Tick += dt_Tick;
             dt.Start();
         }
 
@@ -63,31 +65,25 @@ namespace DeathTimer
                 Days.ToString("0") + " " + (Days == 1 ? AppResources.Day : AppResources.Days) + "\n" +
                 Age.Hours.ToString("0") + " " + (Age.Hours == 1 ? AppResources.Hour : AppResources.Hours) + "\n" +
                 Age.Minutes.ToString("0") + " " + (Age.Minutes == 1 ? AppResources.Minute : AppResources.Minutes);// + "\n" +
-                //Age.Seconds.ToString("0") + " " + (Age.Seconds == 1 ? AppResources.Second : AppResources.Seconds);
+            //Age.Seconds.ToString("0") + " " + (Age.Seconds == 1 ? AppResources.Second : AppResources.Seconds);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (Settings.BirthDay.HasValue)
-            {
-                var DaysToBirthDay = ExtensionMethods.GetNextBirthday(Settings.BirthDay.Value).Subtract(DateTime.Now).Days;
-                DaysToBirthdayTextBlock.Text = DaysToBirthDay.ToString() + " " +
-                    (DaysToBirthDay == 1 ? AppResources.Day : AppResources.Days);
-            }
-            else
-            {
-                NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
-                return;
-            }
-
             if (Settings.EstimatedDeathAge.HasValue)
             {
                 var EstimatedDeathDate = Settings.BirthDay.Value.Add(Settings.EstimatedDeathAge.Value);
 
                 if (EstimatedDeathDate > DateTime.Now)
+                {
+                    var TotalDaysLived = (DateTime.Now - Settings.BirthDay.Value).TotalDays;
+                    var TotalLifeDays = (EstimatedDeathDate - Settings.BirthDay.Value).TotalDays;
                     EstimatedDeathAge.Text = string.Format(AppResources.WillDie,
                         EstimatedDeathDate,
-                        Settings.EstimatedDeathAge.Value.Days / Settings.AverageYear);
+                        Settings.EstimatedDeathAge.Value.TotalDays / Settings.AverageYear,
+                        TotalDaysLived / TotalLifeDays * 100,
+                        TotalLifeDays - TotalDaysLived);
+                }
                 else
                     EstimatedDeathAge.Text = AppResources.YetAlive;
 

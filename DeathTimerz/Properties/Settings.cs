@@ -41,23 +41,24 @@ namespace DeathTimer
             }
         }
 
-        public static bool CanIPlayMusic
+        public static void AskAndPlayMusic()
         {
-            get
+            if (!PhoneApplicationService.Current.State.ContainsKey("can_play_music"))
             {
-                if (!PhoneApplicationService.Current.State.ContainsKey("can_play_music"))
-                {
-                    PhoneApplicationService.Current.State.Add("can_play_music", true);
-                    PhoneApplicationService.Current.State["can_play_music"] =
-                        MediaPlayer.GameHasControl ?
-                        true :
-                        MessageBox.Show(AppResources.PlayBackgroundMusic,
-                            AppResources.AppName, MessageBoxButton.OKCancel) == MessageBoxResult.OK;
-                }
+                PhoneApplicationService.Current.State.Add("can_play_music", true);
+                PhoneApplicationService.Current.State["can_play_music"] =
+                    MediaPlayer.GameHasControl ?
+                    true :
+                    MessageBox.Show(AppResources.PlayBackgroundMusic,
+                        AppResources.AppName, MessageBoxButton.OKCancel) == MessageBoxResult.OK;
+            }
 
-                return (bool)PhoneApplicationService.Current.State["can_play_music"];
+            if ((bool)PhoneApplicationService.Current.State["can_play_music"])
+            {
+                var BackgroundMusic = Song.FromUri("BackgroudMusic", new Uri("Music.wma", UriKind.Relative));
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Play(BackgroundMusic);
             }
         }
-
     }
 }

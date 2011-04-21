@@ -11,8 +11,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Reflection;
+using DeathTimerz.Localization;
 
-namespace DeathTimer
+namespace DeathTimerz
 {
     public partial class AboutPage : PhoneApplicationPage
     {

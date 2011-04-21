@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="DeathTimer.AboutPage"
+    x:Class="DeathTimerz.AboutPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -16,7 +16,7 @@
                            MinFontSize="55"
                            Foreground="{StaticResource RedGradientBrush}" >
         <WPCommon:AboutControl.BackgroundStackPanel>
-            <ImageBrush ImageSource="/DeathTimer;component/Images/DeathBackground.jpg"
+            <ImageBrush ImageSource="/DeathTimerz;component/Images/DeathBackground.jpg"
                         Stretch="None" AlignmentX="Center" />
         </WPCommon:AboutControl.BackgroundStackPanel>
     </WPCommon:AboutControl>

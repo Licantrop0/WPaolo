@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace DeathTimer
+namespace DeathTimerz
 {
     public static class ExtensionMethods
     {

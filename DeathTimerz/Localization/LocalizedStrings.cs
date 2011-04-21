@@ -1,4 +1,4 @@
-﻿namespace DeathTimer
+﻿namespace DeathTimerz.Localization
 {
     public class LocalizedStrings
     {

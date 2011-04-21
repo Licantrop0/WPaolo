@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DeathTimer</RootNamespace>
-    <AssemblyName>DeathTimer</AssemblyName>
+    <RootNamespace>DeathTimerz</RootNamespace>
+    <AssemblyName>DeathTimerz</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
@@ -21,7 +21,7 @@
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>DeathTimer.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>DeathTimer.App</SilverlightAppEntry>
+    <SilverlightAppEntry>DeathTimerz.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <Utf8Output>true</Utf8Output>
@@ -54,9 +54,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.AdMob.Ads.WindowsPhone7">
-      <HintPath>..\WPCommon\ADMob SDK\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
@@ -77,11 +74,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="DeathTimerzPanorama.xaml.cs">
       <DependentUpon>DeathTimerzPanorama.xaml</DependentUpon>
     </Compile>
@@ -89,7 +81,12 @@
       <DependentUpon>DisclaimerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Localization\AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\LocalizedStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="SettingsPage.xaml.cs">
@@ -136,6 +133,8 @@
       <Numbers>True</Numbers>
       <Punctuation>True</Punctuation>
     </BlendEmbeddedFont>
+    <Content Include="AppResLib.dll.0409.mui" />
+    <Content Include="AppResLib.dll.0410.mui" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
@@ -150,9 +149,8 @@
     <Resource Include="Images\blood.png" />
     <Resource Include="Questions.xml" />
     <Resource Include="Images\DeathBackground.jpg" />
-    <Content Include="Music.wma">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="AppResLib.dll" />
+    <Content Include="Music.mp3" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\appbar_edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -167,8 +165,8 @@
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AppResources.it-IT.resx" />
-    <EmbeddedResource Include="AppResources.resx">
+    <EmbeddedResource Include="Localization\AppResources.it-IT.resx" />
+    <EmbeddedResource Include="Localization\AppResources.resx">
       <SubType>Designer</SubType>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>

@@ -3,8 +3,9 @@ using System.IO.IsolatedStorage;
 using System.Windows;
 using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework.Media;
+using DeathTimerz.Localization;
 
-namespace DeathTimer
+namespace DeathTimerz
 {
     public static class Settings
     {

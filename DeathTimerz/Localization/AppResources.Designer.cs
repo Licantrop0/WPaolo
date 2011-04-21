@@ -386,6 +386,15 @@ namespace DeathTimerz.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get other Apps from WPME.
+        /// </summary>
+        public static string GetOtherApps {
+            get {
+                return ResourceManager.GetString("GetOtherApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert your height (in).
         /// </summary>
         public static string Height {
@@ -638,7 +647,8 @@ namespace DeathTimerz.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You will die on {0:D}, at {1:N0} years.
+        ///   Looks up a localized string similar to You will die on {0:D} at {1:N0} years.
+        ///You lived {2:N2}% of your life, with {3:N0} days remaining..
         /// </summary>
         public static string WillDie {
             get {

@@ -7,7 +7,7 @@ using System.Windows.Resources;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace DeathTimer
+namespace DeathTimerz
 {
     public partial class App : Application
     {
@@ -40,7 +40,7 @@ namespace DeathTimer
 
             using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.CreateNew, FileAccess.Write, isf))
             {
-                StreamResourceInfo sri = Application.GetResourceStream(new Uri("DeathTimer;component/Questions.xml", UriKind.Relative));
+                StreamResourceInfo sri = Application.GetResourceStream(new Uri("DeathTimerz;component/Questions.xml", UriKind.Relative));
                 byte[] bytesInStream = new byte[sri.Stream.Length];
                 sri.Stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
                 fs.Write(bytesInStream, 0, bytesInStream.Length);

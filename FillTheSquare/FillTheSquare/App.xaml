@@ -43,10 +43,10 @@
         </Style>
 
         <Style x:Key="HomeButtonStyle" TargetType="Button">
-            <Setter Property="BorderThickness" Value="5" />
             <Setter Property="Foreground"  Value="{StaticResource ForegroundGradientBrush}" />
             <Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
             <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+            <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background">
                 <Setter.Value>
             		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" SpreadMethod="Pad">
@@ -61,12 +61,13 @@
             		</LinearGradientBrush>
             	</Setter.Value>
             </Setter>
-            <Setter Property="BorderBrush" Value="{StaticResource BackgroundImageBrush}"/>
         </Style>
         
         <Style x:Key="HomeButtonStyle2" TargetType="Button">
-        	<Setter Property="BorderThickness" Value="5" />
-        	<Setter Property="Foreground" >
+        	<Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
+        	<Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" >
         		<Setter.Value>
         			<LinearGradientBrush EndPoint="1,1" StartPoint="0,0" MappingMode="RelativeToBoundingBox">
         				<GradientStop Color="#FF0061FF"/>
@@ -74,9 +75,6 @@
         			</LinearGradientBrush>
         		</Setter.Value>
         	</Setter>
-        	<Setter Property="FontFamily" Value="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"/>
-        	<Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
-
         	<Setter Property="Background">
         		<Setter.Value>
         			<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -87,7 +85,6 @@
         			</LinearGradientBrush>
         		</Setter.Value>
         	</Setter>
-        	<Setter Property="BorderBrush" Value="{StaticResource BackgroundImageBrush}"/>
         	<Setter Property="FontSize" Value="30"/>
         </Style>
 

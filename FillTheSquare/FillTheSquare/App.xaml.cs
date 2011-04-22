@@ -51,7 +51,11 @@ namespace FillTheSquare
             if (!PhoneApplicationService.Current.State.ContainsKey("can_play_music"))
             {
                 PhoneApplicationService.Current.State.Add("can_play_music", true);
-                PhoneApplicationService.Current.State["can_play_music"] = MediaPlayer.GameHasControl ? true : MessageBox.Show(AppResources.PlayBackgroundMusic, AppResources.Name, MessageBoxButton.OKCancel) == MessageBoxResult.OK;
+                PhoneApplicationService.Current.State["can_play_music"] =
+                    MediaPlayer.GameHasControl ?
+                    true :
+                    MessageBox.Show(AppResources.PlayBackgroundMusic,
+                        AppResources.Name, MessageBoxButton.OKCancel) == MessageBoxResult.OK;
             }
             if ((bool)PhoneApplicationService.Current.State["can_play_music"])
             {

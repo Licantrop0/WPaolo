@@ -152,8 +152,8 @@
   </data>
   <data name="InstructionsText2" xml:space="preserve">
     <value>Actions autorisees:
-• gauche droite haut bas, avec 2 vides
-• diagonale avec 1 vide</value>
+• A' gauche, droite, but et dessus, en se deplacant de 3 cases
+• En diagonale, en se deplacant de 2 cases</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
@@ -163,6 +163,9 @@
   </data>
   <data name="PhilWillBeHappy" xml:space="preserve">
     <value>et Phil sera toujour joyeux et vous pouvez jouer sans limitations!</value>
+  </data>
+  <data name="PlayBackgroundMusic" xml:space="preserve">
+    <value>Voulez vous couper la musique et utiliser celle de l’app?</value>
   </data>
   <data name="PleaseInsertName" xml:space="preserve">
     <value>Votre nom, s'il vous plait:</value>

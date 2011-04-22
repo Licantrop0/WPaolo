@@ -8,6 +8,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using WPCommon;
+using Google.AdMob.Ads.WindowsPhone7;
+using Google.AdMob.Ads.WindowsPhone7.WPF;
 
 namespace FillTheSquare
 {
@@ -21,24 +23,23 @@ namespace FillTheSquare
         {
             InitializeComponent();
             InitializeTimers();
+            InizializeSquare();
         }
 
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        private void InizializeSquare()
         {
-            var size = int.Parse(NavigationContext.QueryString["size"]);
-            Square = new MagicSquare(size);
-            for (int i = 0; i < size; i++)
+            Square = new MagicSquare(Settings.CurrentGridSize);
+            for (int i = 0; i < Settings.CurrentGridSize; i++)
             {
                 MagicGrid.RowDefinitions.Add(new RowDefinition());
                 MagicGrid.ColumnDefinitions.Add(new ColumnDefinition());
 
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < Settings.CurrentGridSize; j++)
                 {
                     var b = new Border()
                     {
                         Background = (LinearGradientBrush)App.Current.Resources["BorderBackgroundBrush"],
-                        BorderThickness = size == 5 ? new Thickness(2) : new Thickness(1),
+                        BorderThickness = Settings.CurrentGridSize == 5 ? new Thickness(2) : new Thickness(1),
                         BorderBrush = new SolidColorBrush(Colors.White),
                     };
 
@@ -67,13 +68,6 @@ namespace FillTheSquare
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //La trial scade dopo 99 secondi
-            if (WPCommon.TrialManagement.IsTrialMode && sw.Elapsed.TotalSeconds >= 99)
-            {
-                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-                return;
-            }
-
             var currentBorder = (Border)sender;
             var p = new GridPoint(currentBorder.GetColumn(), currentBorder.GetRow());
 
@@ -142,12 +136,6 @@ namespace FillTheSquare
             }
         }
 
-        private void BackgroundMediaElement_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            var me = (MediaElement)sender;
-            me.Stop();
-            me.Play();
-        }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {

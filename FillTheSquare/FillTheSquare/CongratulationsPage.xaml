@@ -33,6 +33,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:4" Value="720"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <wp:TimeSpanTextConverter x:Key="TimeSpanTextConverter" xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon" />
     </phone:PhoneApplicationPage.Resources>
 
 	<Custom:Interaction.Triggers>
@@ -80,7 +81,7 @@
                     <TextBlock Text="{Binding LocalizedResources.Time, Source={StaticResource LocalizedStrings}}"
 					   Style="{StaticResource SquareHeadingStyle}" />
                     <TextBlock Text=": " Style="{StaticResource SquareHeadingStyle}" />
-                    <TextBlock Text="{Binding ElapsedTime}" Style="{StaticResource SquareHeadingStyle}" />
+                    <TextBlock Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanTextConverter}}" Style="{StaticResource SquareHeadingStyle}" />
                 </StackPanel>
             </StackPanel>
 

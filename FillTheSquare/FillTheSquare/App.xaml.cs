@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Xna.Framework.Media;
 using WPCommon;
 
 namespace FillTheSquare
@@ -44,16 +46,35 @@ namespace FillTheSquare
             NonLinearNavigationService.Instance.Initialize(RootFrame);
         }
 
+        public static void AskAndPlayMusic()
+        {
+            if (!PhoneApplicationService.Current.State.ContainsKey("can_play_music"))
+            {
+                PhoneApplicationService.Current.State.Add("can_play_music", true);
+                PhoneApplicationService.Current.State["can_play_music"] = MediaPlayer.GameHasControl ? true : MessageBox.Show(AppResources.PlayBackgroundMusic, AppResources.Name, MessageBoxButton.OKCancel) == MessageBoxResult.OK;
+            }
+            if ((bool)PhoneApplicationService.Current.State["can_play_music"])
+            {
+                var BackgroundMusic = Song.FromUri("BackgroudMusic", new Uri("Sounds/musichetta.wma", UriKind.Relative));
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Play(BackgroundMusic);
+            }
+        }
+
+
+
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            AskAndPlayMusic();
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            AskAndPlayMusic();
         }
 
         // Code to execute when the application is deactivated (sent to background)

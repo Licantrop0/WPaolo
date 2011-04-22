@@ -161,9 +161,8 @@ namespace FillTheSquare {
         
         /// <summary>
         ///   Looks up a localized string similar to Allowed moves:
-        ///• Left, right, up, down
-        ///   leaving 2 squares empty out
-        ///• Diagonal leaving 1 square empty out.
+        ///• 3 squares to the left, right, up, down
+        ///• 2 squares in diagonal.
         /// </summary>
         public static string InstructionsText2 {
             get {
@@ -195,6 +194,15 @@ namespace FillTheSquare {
         public static string PhilWillBeHappy {
             get {
                 return ResourceManager.GetString("PhilWillBeHappy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to stop the current music and play the background music of this app?.
+        /// </summary>
+        public static string PlayBackgroundMusic {
+            get {
+                return ResourceManager.GetString("PlayBackgroundMusic", resourceCulture);
             }
         }
         

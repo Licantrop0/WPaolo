@@ -6,11 +6,13 @@ using System.Windows.Navigation;
 using System.Windows.Resources;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Xml.Linq;
 
 namespace DeathTimerz
 {
     public partial class App : Application
     {
+        IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
 
         // Easy access to the root frame
         public PhoneApplicationFrame RootFrame { get; private set; }
@@ -29,22 +31,27 @@ namespace DeathTimerz
             InitializePhoneApplication();
         }
 
+
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             Settings.AskAndPlayMusic();
 
-            IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
-            if (isf.FileExists("Questions.xml")) return;
-
-            using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.CreateNew, FileAccess.Write, isf))
+            if (!isf.FileExists("Questions.xml"))
             {
-                StreamResourceInfo sri = Application.GetResourceStream(new Uri("DeathTimerz;component/Questions.xml", UriKind.Relative));
-                byte[] bytesInStream = new byte[sri.Stream.Length];
-                sri.Stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
-                fs.Write(bytesInStream, 0, bytesInStream.Length);
+                using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.CreateNew, FileAccess.Write, isf))
+                {
+                    StreamResourceInfo sri = Application.GetResourceStream(
+                        new Uri("DeathTimerz;component/Questions.xml", UriKind.Relative));
+                    byte[] bytesInStream = new byte[sri.Stream.Length];
+                    sri.Stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
+                    fs.Write(bytesInStream, 0, bytesInStream.Length);
+                }
             }
+
+            using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
+                Settings.Questions = XDocument.Load(fs);
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -52,6 +59,10 @@ namespace DeathTimerz
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             Settings.AskAndPlayMusic();
+            using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
+            {
+                Settings.Questions = XDocument.Load(fs);
+            }
         }
 
         // Code to execute when the application is deactivated (sent to background)

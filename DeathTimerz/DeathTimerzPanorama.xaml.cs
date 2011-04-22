@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Navigation;
 using System.Windows.Threading;
+using DeathTimerz.Localization;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using System.Windows.Controls;
-using Microsoft.Xna.Framework.Media;
-using DeathTimerz.Localization;
 
 namespace DeathTimerz
 {
@@ -37,6 +36,20 @@ namespace DeathTimerz
 
             dt_Tick(sender, EventArgs.Empty);
 
+            var Gender = (from q in Settings.Questions.Descendants("Question")
+                          where q.Attribute("Name").Value == "MaleOrFemale"
+                          from ans in q.Elements("Answer")
+                          where ans.Attribute("IsChecked").Value == "True"
+                          select ans.Attribute("Name").Value).SingleOrDefault() ?? string.Empty;
+
+            if (Gender == "Male")
+                GoogleAd.Gender = Google.AdMob.Ads.WindowsPhone7.Gender.Male;
+            else if (Gender == "Female")
+                GoogleAd.Gender = Google.AdMob.Ads.WindowsPhone7.Gender.Female;
+            else
+                GoogleAd.Gender = Google.AdMob.Ads.WindowsPhone7.Gender.Unknown;
+
+            GoogleAd.Birthday = Settings.BirthDay;
         }
 
 

@@ -82,7 +82,7 @@ namespace NascondiChiappe
             isf.DeleteDirectory(DirectoryName);
         }
 
-        //TODO: NON PERFORMANTEEE, da correggere!
+        //TODO: NON PERFORMANTEEE, da correggere con lo spostamento effettivo del file
         public void MovePhoto(AlbumPhoto photo, Album album)
         {
             album.AddPhoto(photo);
@@ -94,7 +94,7 @@ namespace NascondiChiappe
             using (var file = isf.OpenFile(DirectoryName + "\\" + photo.Name, FileMode.Open, FileAccess.Read))
             {
                 MediaLibrary library = new MediaLibrary();
-                library.SavePicture(photo.Name, file);
+                library.SavePicture(photo.Name, photo.GetRotatedPhoto(file));
             }
         }
     }

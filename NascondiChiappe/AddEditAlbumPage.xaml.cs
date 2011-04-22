@@ -109,10 +109,8 @@ namespace NascondiChiappe
                 Settings.Albums.Add(new Album(AlbumNameTextBox.Text, Guid.NewGuid().ToString()));
             else
             {
-                var index = Settings.Albums.IndexOf(CurrentAlbum);
-                //TODO: NON PERFORMANTE!
                 Settings.Albums.Remove(CurrentAlbum);
-                Settings.Albums.Insert(index, new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName));
+                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName));
             }
             NavigationService.Navigate(new Uri("/AlbumsPage.xaml", UriKind.Relative));
         }

@@ -2,10 +2,12 @@
 using System.Collections.ObjectModel;
 using System.IO.IsolatedStorage;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using WPCommon;
+using Microsoft.Phone.Shell;
 
 namespace FillTheSquare
 {
@@ -98,6 +100,22 @@ namespace FillTheSquare
         }
 
         #endregion
+
+        public static int CurrentGridSize
+        {
+            get
+            {
+
+                if (!PhoneApplicationService.Current.State.ContainsKey("current_grid_size"))
+                    PhoneApplicationService.Current.State.Add("current_grid_size", 5);
+
+                return (int)PhoneApplicationService.Current.State["current_grid_size"];
+            }
+            set
+            {
+                PhoneApplicationService.Current.State["current_grid_size"] = value;
+            }
+        }
 
         public static ObservableCollection<Record> Records
         {

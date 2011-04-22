@@ -22,9 +22,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <MediaElement Source="Sounds\musichetta.wma" AutoPlay="True"
-                      MediaEnded="MediaElement_MediaEnded" />
-
         <TextBlock Style="{StaticResource SquareTitleStyle}" Grid.Row="0"
                    FontSize="64" Text="Phil  the  Square" Margin="0,24" />
 
@@ -40,7 +37,7 @@
             </Image>
 
             <Button Content="{Binding LocalizedResources.Easy, Source={StaticResource LocalizedStrings}}" 
-                     Click="SquareFiveButton_Click"
+                    Click="SquareFiveButton_Click"
                     Style="{StaticResource HomeButtonStyle2}"
                     Width="210" Height="90"
                     Canvas.Left="0" Canvas.Top="30"/>
@@ -48,15 +45,15 @@
             <Button Content="{Binding LocalizedResources.Hard, Source={StaticResource LocalizedStrings}}" 
                     Click="SquareTenButton_Click"
                     Style="{StaticResource HomeButtonStyle2}"                    
-                    Width="210" Height="90"
-                    Canvas.Left="240" Canvas.Top="30">
+                    Width="234" Height="90"
+                    Canvas.Left="216" Canvas.Top="30">
             </Button>
             
             <Button Content="{Binding LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
                     Height="100" Width="250"
                     Style="{StaticResource HomeButtonStyle}"
                     d:LayoutRounding="Auto"
-                    Canvas.Left="69" Canvas.Top="197">
+                    Canvas.Left="16" Canvas.Top="208">
                 <Button.RenderTransform>
                     <RotateTransform Angle="-15" />
                 </Button.RenderTransform>
@@ -70,7 +67,11 @@
             <Button Content="{Binding LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
                     Height="100" Width="280" 
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="176" Canvas.Top="286" >
+                    Canvas.Left="194" Canvas.Top="244" >
+                <Button.RenderTransform>
+                    <RotateTransform Angle="10" />
+                </Button.RenderTransform>
+
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
                         <ic:NavigateToPageAction TargetPage="/InstructionsPage.xaml"/>
@@ -79,7 +80,7 @@
             </Button>
 
 
-            <!--<Button Canvas.Left="0" Canvas.Top="406"
+            <!--<Button Canvas.Left="0" Canvas.Top="362"
                     Content="congratulations" Height="71" Width="238" Click="Button_Click" />-->
 
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"

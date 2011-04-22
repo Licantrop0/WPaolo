@@ -12,7 +12,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+    shell:SystemTray.IsVisible="False">
     <phone:PhoneApplicationPage.Resources>
         <ControlTemplate x:Key="ResetButtonControlTemplate" TargetType="ButtonBase">
             <Grid Background="Transparent">
@@ -68,9 +68,7 @@
                    Style="{StaticResource SquareHeadingStyle}" >
         </TextBlock>
 
-        <Border Height="452" Width="452" Grid.Row="1" VerticalAlignment="Top"
-                BorderBrush="White" BorderThickness="1" >
-            <Grid Name="MagicGrid">
+            <Grid Name="MagicGrid" Grid.Row="1" VerticalAlignment="Top" Height="452" Width="452">
                 <Grid.Resources>
                     <Storyboard x:Name="RedFlash">
                         <ColorAnimation
@@ -91,23 +89,24 @@
                     </Storyboard>
                 </Grid.Resources>
             </Grid>
-        </Border>
 
-        <StackPanel Grid.Row="2" Margin="0,0,0,12" >
-            <TextBlock Name="NoMoreMovesTextBlock"
-                       Text="{Binding Path=LocalizedResources.NoMoreMoves, Source={StaticResource LocalizedStrings}}"
+        <StackPanel Grid.Row="1" VerticalAlignment="Bottom" >
+            <TextBlock x:Name="NoMoreMovesTextBlock"
+                       Text="{Binding LocalizedResources.NoMoreMoves, Source={StaticResource LocalizedStrings}}"
                        Style="{StaticResource SquareTitleStyle}" FontSize="30" Visibility="Collapsed" />
-            <Button Content="{Binding Path=LocalizedResources.Reset, Source={StaticResource LocalizedStrings}}"
+            <Button Content="{Binding LocalizedResources.Reset, Source={StaticResource LocalizedStrings}}"
                 Click="ResetButton_Click" FontSize="40"
                 Style="{StaticResource HomeButtonStyle}"
                        Height="100" Width="260"
-                       Template="{StaticResource ResetButtonControlTemplate}" />
+                       Template="{StaticResource ResetButtonControlTemplate}" Margin="110,0" />
+            <google:BannerAd AdUnitID="a14da010647089d"
+                             xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
+                             LocationDescription="{Binding Mode=OneWay, ElementName=Location}" />
         </StackPanel>
 
         <Image x:Name="PhilPiangeImage" Source="Phil/piange.png"
-               Stretch="Uniform" Width="280" Grid.Row="1"
-               VerticalAlignment="Bottom" HorizontalAlignment="Center"
-               Opacity="0" IsHitTestVisible="False" Height="241" />
+               Stretch="Uniform" Width="280" Grid.Row="1" HorizontalAlignment="Center"
+               Opacity="0" IsHitTestVisible="False" VerticalAlignment="Center" />
     </Grid>
 
 </phone:PhoneApplicationPage>

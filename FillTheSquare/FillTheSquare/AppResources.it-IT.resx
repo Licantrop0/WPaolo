@@ -152,9 +152,9 @@
   </data>
   <data name="InstructionsText2" xml:space="preserve">
     <value>Mosse permesse:
-• Sinistra, destra, su, giu'
-   lasciando 2 quadrati vuoti
-• Diagonale lasciando 1 quadrato vuoto</value>
+• A sinistra, destra, su, giu'
+   spostandoti di 3 caselle
+• In diagonale spostandoti di 2 caselle</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nome</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="PhilWillBeHappy" xml:space="preserve">
     <value>e Phil sara' sempre felice e tu potrai giocare senza limiti!</value>
+  </data>
+  <data name="PlayBackgroundMusic" xml:space="preserve">
+    <value>Vuoi interrompere la musica corrente per sentire quella dell'applicazione?</value>
   </data>
   <data name="PleaseInsertName" xml:space="preserve">
     <value>Per favore inserisci il tuo nome</value>

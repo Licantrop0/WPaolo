@@ -24,13 +24,5 @@ namespace FillTheSquare
             e.Cancel = true;
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
-
-        private void MediaElement_MediaEnded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            var me = (MediaElement)sender;
-            me.Stop();
-            me.Play();
-        }
-
     }
 }

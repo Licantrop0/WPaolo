@@ -77,8 +77,7 @@ namespace NascondiChiappe
             return fileName;
         }
 
-
-        private WriteableBitmap Rotate(Stream photo)
+        public Stream GetRotatedPhoto(Stream photo)
         {
             //727ms (average 4 samples)
             var bitmap = new BitmapImage();
@@ -116,9 +115,11 @@ namespace NascondiChiappe
                     wbTarget = wbSource;
                     break;
             }
-            return wbTarget;
-        }
 
+            var ms = new MemoryStream();
+            wbTarget.SaveJpeg(ms, wbSource.PixelWidth, wbSource.PixelHeight, 0, 85);
+            return ms;
+        }
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

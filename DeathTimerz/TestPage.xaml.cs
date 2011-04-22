@@ -16,9 +16,6 @@ namespace DeathTimerz
 {
     public partial class TestPage : PhoneApplicationPage
     {
-        XDocument doc;
-        IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
-
         public TestPage()
         {
             InitializeComponent();
@@ -27,17 +24,13 @@ namespace DeathTimerz
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
-            {
-                doc = XDocument.Load(fs);
-            }
             BuildTest();
         }
 
         private void SaveAnswers()
         {
             //resetto le risposte precedentemente salvate
-            foreach (var el in doc.Descendants("Answer"))
+            foreach (var el in Settings.Questions.Descendants("Answer"))
             {
                 el.Attributes("IsChecked").ForEach(a => a.Value = "False");
                 el.Attributes("Content").ForEach(a => a.Value = string.Empty);
@@ -49,7 +42,7 @@ namespace DeathTimerz
              let rb = (RadioButton)ctrl
              where rb.IsChecked.Value
              select rb.Name).ForEach(ans =>
-                doc.Descendants("Answer")
+                Settings.Questions.Descendants("Answer")
                 .Where(el => el.Attribute("Name").Value == ans).First()
                 .Attribute("IsChecked").Value = "True");
 
@@ -58,31 +51,33 @@ namespace DeathTimerz
              where ctrl is TextBox
              let txtb = (TextBox)ctrl
              select txtb).ForEach(ans =>
-                doc.Descendants("Answer")
+                Settings.Questions.Descendants("Answer")
                 .Where(el => el.Attribute("Name").Value == ans.Name).First()
                 .Attribute("Content").Value = ans.Text);
 
+            IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
             using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Create, FileAccess.Write, isf))
             {
-                doc.Save(fs);
+                Settings.Questions.Save(fs);
             }
         }
 
         private void StimateDeathAge()
         {
             Settings.EstimatedDeathAge =
-                 (from q in doc.Descendants("Question")
+                 (from q in Settings.Questions.Descendants("Question")
                   where q.Attribute("Type").Value == "MultipleChoice"
                   from ans in q.Elements("Answer")
                   where ans.Attribute("IsChecked").Value == "True"
-                  select ExtensionMethods.TimeSpanFromYears(double.Parse(ans.Attribute("Value").Value, CultureInfo.InvariantCulture))).
-                  Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
+                  select ExtensionMethods.TimeSpanFromYears(
+                    double.Parse(ans.Attribute("Value").Value, CultureInfo.InvariantCulture))).
+                    Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
 
-            var Weight = (from el in doc.Descendants("Answer")
+            var Weight = (from el in Settings.Questions.Descendants("Answer")
                           where el.Attribute("Name").Value == "Weight1"
                           select double.Parse(el.Attribute("Content").Value)).First();
 
-            var Height = (from el in doc.Descendants("Answer")
+            var Height = (from el in Settings.Questions.Descendants("Answer")
                           where el.Attribute("Name").Value == "Height1"
                           select double.Parse(el.Attribute("Content").Value)).First();
 
@@ -100,7 +95,7 @@ namespace DeathTimerz
             else if (bmi < 18 || bmi > 35)
                 Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
 
-            var cigarettes = (from el in doc.Descendants("Answer")
+            var cigarettes = (from el in Settings.Questions.Descendants("Answer")
                               where el.Attribute("Name").Value == "Cigarettes1"
                               select double.Parse(el.Attribute("Content").Value)).First();
 
@@ -134,7 +129,7 @@ namespace DeathTimerz
 
         private void BuildTest()
         {
-            foreach (var el in doc.Descendants("Question"))
+            foreach (var el in Settings.Questions.Descendants("Question"))
             {
                 //Domanda
                 TestStackPanel.Children.Add(new TextBlock()
@@ -198,13 +193,7 @@ namespace DeathTimerz
             OkAppBarButton.Text = AppResources.Ok;
             OkAppBarButton.Click += new EventHandler(OkAppBarButton_Click);
 
-            var CancelAppBarButton = new ApplicationBarIconButton();
-            CancelAppBarButton.IconUri = new Uri("Toolkit.Content\\ApplicationBar.Cancel.png", UriKind.Relative);
-            CancelAppBarButton.Text = AppResources.Cancel;
-            CancelAppBarButton.Click += new EventHandler(CancelAppBarButton_Click);
-
             ApplicationBar.Buttons.Add(OkAppBarButton);
-            ApplicationBar.Buttons.Add(CancelAppBarButton);
         }
 
         void OkAppBarButton_Click(object sender, EventArgs e)
@@ -225,11 +214,5 @@ namespace DeathTimerz
             StimateDeathAge();
             NavigationService.GoBack();
         }
-
-        void CancelAppBarButton_Click(object sender, EventArgs e)
-        {
-            NavigationService.GoBack();
-        }
-
     }
 }

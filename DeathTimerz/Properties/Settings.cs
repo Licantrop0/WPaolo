@@ -4,6 +4,7 @@ using System.Windows;
 using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework.Media;
 using DeathTimerz.Localization;
+using System.Xml.Linq;
 
 namespace DeathTimerz
 {
@@ -11,6 +12,8 @@ namespace DeathTimerz
     {
         public const double AverageYear = 365.25;
         public const double AverageMonth = 30.4368499;
+
+        public static XDocument Questions;
 
         public static DateTime? BirthDay
         {

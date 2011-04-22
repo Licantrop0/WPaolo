@@ -15,8 +15,7 @@
 
     <Grid Background="Transparent">
         <ScrollViewer VerticalScrollBarVisibility="Visible">
-            <StackPanel Name="TestStackPanel">
-            </StackPanel>
+            <StackPanel Name="TestStackPanel" />
         </ScrollViewer>
     </Grid>
 

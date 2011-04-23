@@ -138,6 +138,7 @@
     </BlendEmbeddedFont>
     <Content Include="AppResLib.dll.0409.mui" />
     <Content Include="AppResLib.dll.0410.mui" />
+    <Content Include="AppResLib.dll.040c.mui" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>

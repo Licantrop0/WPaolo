@@ -36,10 +36,10 @@ namespace DeathTimerz
                 MessageBox.Show(AppResources.ErrorFutureBirthday);
             }
             //Trick per evitare il bug del DatePicker quando si imposta 1600 come anno
-            else if (BirthDayDatePicker.Value < new DateTime(1700, 1, 1))
+            else if (BirthDayDatePicker.Value < DateTime.Now.AddYears(-130))
             {
                 MessageBox.Show(AppResources.ErrorTooOldBirthday);
-                BirthDayDatePicker.Value = new DateTime(1700, 1, 1);
+                BirthDayDatePicker.Value = DateTime.Now.AddYears(-50);
             }
             else
             {

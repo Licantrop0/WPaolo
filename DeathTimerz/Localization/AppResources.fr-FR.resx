@@ -118,213 +118,215 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>Informazioni</value>
+    <value>Infos</value>
   </data>
   <data name="Age" xml:space="preserve">
-    <value>Età</value>
+    <value>Ton âge</value>
   </data>
   <data name="Alcohol" xml:space="preserve">
-    <value>Quante volte bevi superalcolici?</value>
+    <value>Combien de fois bois-tu de l'alcool?</value>
   </data>
   <data name="Alcohol1" xml:space="preserve">
-    <value>Sono astemio</value>
+    <value>Je ne bois jamais d'alcool</value>
   </data>
   <data name="Alcohol2" xml:space="preserve">
-    <value>Senza eccedere</value>
+    <value>Je bois avec modération</value>
   </data>
   <data name="Alcohol3" xml:space="preserve">
-    <value>Tutti i giorni</value>
+    <value>Tous les jours</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>L'orologio della Morte</value>
+    <value>L'horloge de la Mort</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Annulla</value>
+    <value>Annuller</value>
   </data>
   <data name="Cigarettes" xml:space="preserve">
-    <value>Quante sigarette fumi al giorno?</value>
+    <value>Combien de cigarettes fumes-tu par jour?</value>
   </data>
   <data name="ClinicChecks" xml:space="preserve">
-    <value>Quante volte fai visite mediche?</value>
+    <value>Fais-tu des visites médicales?</value>
   </data>
   <data name="ClinicChecks1" xml:space="preserve">
-    <value>L'ultima è stata mesi fa</value>
+    <value>Il y a queleques mois..</value>
   </data>
   <data name="ClinicChecks2" xml:space="preserve">
-    <value>Solo se sono malato</value>
+    <value>Seulement si je suis malade</value>
   </data>
   <data name="ClinicChecks3" xml:space="preserve">
-    <value>Periodicamente</value>
+    <value>Périodiquement</value>
   </data>
   <data name="CronicDisease" xml:space="preserve">
-    <value>Soffri di malattie croniche?</value>
+    <value>Souffres-tu d'une maladie chronique?</value>
   </data>
   <data name="CronicDisease1" xml:space="preserve">
-    <value>No</value>
+    <value>Non</value>
   </data>
   <data name="CronicDisease2" xml:space="preserve">
-    <value>Si, lievi</value>
+    <value>Oui, pas grave</value>
   </data>
   <data name="CronicDisease3" xml:space="preserve">
-    <value>Si, gravi</value>
+    <value>Oui, grave</value>
   </data>
   <data name="Day" xml:space="preserve">
-    <value>Giorno</value>
+    <value>Jour</value>
   </data>
   <data name="Days" xml:space="preserve">
-    <value>Giorni</value>
+    <value>Jours</value>
   </data>
   <data name="DaysToBirthday" xml:space="preserve">
-    <value>Compleanno tra...</value>
+    <value>Anniversaire entre ...</value>
   </data>
   <data name="Disclaimer" xml:space="preserve">
     <value>Disclaimer</value>
   </data>
   <data name="DisclaimerText" xml:space="preserve">
-    <value>L'orologio della Morte è da considerare solo un gioco, senza alcuna velleità statistica o medica.
-Comunque... toccati le palle!</value>
+    <value>L'horloge de la Mort est comme un jeux, il n'est pas un instrument médical ou statistique.
+De toute façon... touche du bois!</value>
   </data>
   <data name="Drugs" xml:space="preserve">
-    <value>Ti droghi?</value>
+    <value>Abuses-tu de drogues?</value>
   </data>
   <data name="Drugs1" xml:space="preserve">
-    <value>No, mai fatto</value>
+    <value>Non, jamais</value>
   </data>
   <data name="Drugs2" xml:space="preserve">
-    <value>Ogni tanto</value>
+    <value>Quelquefois</value>
   </data>
   <data name="Drugs3" xml:space="preserve">
-    <value>Spesso</value>
+    <value>Souvent</value>
   </data>
   <data name="EditTest" xml:space="preserve">
-    <value>Modifica Test</value>
+    <value>Changer le test</value>
   </data>
   <data name="ErrorFutureBirthday" xml:space="preserve">
-    <value>Non puoi impostare la tua data di nascita oggi o nel futuro.</value>
+    <value>Tu ne peux pas mettre ton jour de naissance aujourd'hui ou dans le futur.</value>
   </data>
   <data name="ErrorNoBirthay" xml:space="preserve">
-    <value>Inserisci la tua data di nascita</value>
+    <value>Jour de naissance</value>
   </data>
   <data name="ErrorTooOldBirthday" xml:space="preserve">
-    <value>Nessuno con quella data di nascita potrebbe essere ancora vivo...</value>
+    <value>Personne avec ce jour de naissance peut être encore en vie...</value>
   </data>
   <data name="Female" xml:space="preserve">
-    <value>Femmina</value>
+    <value>Femme</value>
   </data>
   <data name="Food" xml:space="preserve">
-    <value>Che tipo di dieta segui?</value>
+    <value>Quel type de régime alimentaire suives-tu?</value>
   </data>
   <data name="Food1" xml:space="preserve">
-    <value>Mediterranea</value>
+    <value>Méditerranéen</value>
   </data>
   <data name="Food2" xml:space="preserve">
-    <value>Mangio di tutto</value>
+    <value>Je mange tout ce que je
+trouve</value>
   </data>
   <data name="Food3" xml:space="preserve">
-    <value>Grasso è bello</value>
+    <value>Vive les graisses!</value>
   </data>
   <data name="Food4" xml:space="preserve">
-    <value>Vegetariana</value>
+    <value>Végétarien</value>
   </data>
   <data name="GetOtherApps" xml:space="preserve">
-    <value>Scopri altre applicazioni di WPME</value>
+    <value>Autres apps de WPME</value>
   </data>
   <data name="Height" xml:space="preserve">
-    <value>Inserisci la tua altezza (cm)</value>
+    <value>Ta hauteur (cm)</value>
   </data>
   <data name="Hour" xml:space="preserve">
-    <value>Ora</value>
+    <value>Heure</value>
   </data>
   <data name="Hours" xml:space="preserve">
-    <value>Ore</value>
+    <value>Heures</value>
   </data>
   <data name="InsertBirthday" xml:space="preserve">
-    <value>Inserisci la tua data di nascita</value>
+    <value>Ton jour de naissance</value>
   </data>
   <data name="Male" xml:space="preserve">
-    <value>Maschio</value>
+    <value>Homme</value>
   </data>
   <data name="MaleOrFemale" xml:space="preserve">
-    <value>Sei maschio o femmina?</value>
+    <value>Es tu homme ou femme?</value>
   </data>
   <data name="Minute" xml:space="preserve">
-    <value>Minuto</value>
+    <value>Minute</value>
   </data>
   <data name="Minutes" xml:space="preserve">
-    <value>Minuti</value>
+    <value>Minutes</value>
   </data>
   <data name="Month" xml:space="preserve">
-    <value>Mese</value>
+    <value>Mois</value>
   </data>
   <data name="Months" xml:space="preserve">
-    <value>Mesi</value>
+    <value>Mois</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
-    <value>Vuoi interrompere la musica corrente e riprodurre la lugubre musica di questa app?</value>
+    <value>Veux-tu arrêter ta musique pour écouter la lugubre musique de cette app?</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Salva</value>
+    <value>Confirmer</value>
   </data>
   <data name="Second" xml:space="preserve">
-    <value>Secondo</value>
+    <value>Seconde</value>
   </data>
   <data name="Seconds" xml:space="preserve">
-    <value>Secondi</value>
+    <value>Secondes</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settaggi</value>
+    <value>Options</value>
   </data>
   <data name="Sports" xml:space="preserve">
-    <value>Pratichi qualche sport?</value>
+    <value>Fais-tu du sport?</value>
   </data>
   <data name="Sports1" xml:space="preserve">
-    <value>Poco / per niente</value>
+    <value>Non</value>
   </data>
   <data name="Sports2" xml:space="preserve">
-    <value>Settimanalmente</value>
+    <value>Une fois par semaine</value>
   </data>
   <data name="Sports3" xml:space="preserve">
-    <value>Tutti i giorni</value>
+    <value>Tous les jours</value>
   </data>
   <data name="Stress" xml:space="preserve">
-    <value>Sei sotto stress?</value>
+    <value>Es-tu stressé(e)?</value>
   </data>
   <data name="Stress1" xml:space="preserve">
-    <value>Mai</value>
+    <value>Jamais</value>
   </data>
   <data name="Stress2" xml:space="preserve">
-    <value>Ogni tanto</value>
+    <value>Quelquefois</value>
   </data>
   <data name="Stress3" xml:space="preserve">
-    <value>Spesso</value>
+    <value>Souvent</value>
   </data>
   <data name="TakeTest" xml:space="preserve">
-    <value>Fai il test!</value>
+    <value>Fais le test!</value>
   </data>
   <data name="TestNotCompleted" xml:space="preserve">
-    <value>Per favore rispondi a tutte le domande</value>
+    <value>Réponds à toutes les questions, s'il vous plaît!</value>
   </data>
   <data name="TimeToDeath" xml:space="preserve">
-    <value>Tempo Restante</value>
+    <value>Le temps qui te
+reste</value>
   </data>
   <data name="Weight" xml:space="preserve">
-    <value>Inserisci il tuo peso (kg)</value>
+    <value>Ton poids (kg)</value>
   </data>
   <data name="WillDie" xml:space="preserve">
-    <value>Morirai {0:D},
-all'età di {1:N0} anni.
-Sei al {2:N2}% della tua vita, con {3:N0} giorni di vita rimanenti.</value>
+    <value>Tu mourirais {0:D},
+à {1:N0} ans.
+Tu es au {2:N2}% de ta vie, et il te reste  {3:N0} jours à vivre.</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value>Anno</value>
+    <value>An</value>
   </data>
   <data name="Years" xml:space="preserve">
-    <value>Anni</value>
+    <value>Ans</value>
   </data>
   <data name="YetAlive" xml:space="preserve">
-    <value>Ma come fai ad essere ancora vivo?</value>
+    <value>T'es toujours en vie, toi?!</value>
   </data>
 </root>

@@ -276,6 +276,29 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <LinearGradientBrush x:Key="ForegroundTextParts" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+        	<GradientStop Color="#FF00D0F7" Offset="1"/>
+        	<GradientStop Color="White"/>
+        </LinearGradientBrush>
+        <Style x:Key="HoldTextStyle" TargetType="TextBlock">
+        	<Setter Property="Opacity" Value="1"/>
+        	<Setter Property="Text" Value="hold"/>
+        	<Setter Property="FontSize" Value="21.333"/>
+        	<Setter Property="Foreground" Value="{StaticResource ForegroundTextParts}"/>
+        	<Setter Property="FontFamily" Value="/ScossaFinta;component/Fonts/Fonts.zip#SpacePatrol"/>
+        </Style>
+        <Style x:Key="ObiettivoBorderStyle" TargetType="Border">
+        	<Setter Property="BorderBrush">
+        		<Setter.Value>
+        			<RadialGradientBrush>
+        				<GradientStop Color="#FF03021A" Offset="1"/>
+        				<GradientStop Color="#FF0483F9" Offset="1"/>
+        				<GradientStop Color="#FF181872" Offset="0.591"/>
+        				<GradientStop Color="#FF0606F9" Offset="0.793"/>
+        			</RadialGradientBrush>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
 
     </Application.Resources>
 

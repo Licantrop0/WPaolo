@@ -53,7 +53,8 @@ namespace ScossaFinta
                 Settings.SuonoPremio.Play();
                 Obiettivo1Border.Opacity = 1;
                 ThunderButton.Opacity = 1;
-                PopupAchievementUnlocked.AchievementText="Shock Master";
+                //PopupAchievementUnlocked.AchievementText="Shock Master";
+                PopupAchievementUnlocked.AchievementText="Thunder Shock";
                 PopupAchievementUnlocked.Appear();
                 return;
             }
@@ -68,7 +69,8 @@ namespace ScossaFinta
                 HoldTextBox1.Opacity = 1;
                 HoldTextBox2.Opacity = 1;
 
-                PopupAchievementUnlocked.AchievementText = "Thunder Master";
+                //PopupAchievementUnlocked.AchievementText = "Thunder Master";
+                PopupAchievementUnlocked.AchievementText = "Storm Schock";
                 PopupAchievementUnlocked.Appear();
                 return;
             }
@@ -78,7 +80,8 @@ namespace ScossaFinta
                 Obiettivo3Border.Opacity = 1;
                 ZeusButton.Visibility = Visibility.Visible;
                 Settings.ZeusParla.Play();
-                PopupAchievementUnlocked.AchievementText="Zeus Master";
+                //PopupAchievementUnlocked.AchievementText="Shock Master";
+                PopupAchievementUnlocked.AchievementText = "Shock Master";
                 PopupAchievementUnlocked.Appear();
                 return;
             }
@@ -93,16 +96,20 @@ namespace ScossaFinta
         {
             scossa();
             Settings.SuonoScossa.Play();
-            if (Settings.statistics.NumeroDiScosse >= 20)
-                System.Threading.Thread.Sleep(300);
+			// x tandy da controllare
+			// genera bug sull'animazione: non viene effettuata
+            //if (Settings.statistics.NumeroDiScosse >= 20)
+            //    System.Threading.Thread.Sleep(300);
         }
 
         private void ThunderButton_Click(object sender, RoutedEventArgs e)
         {
             scossa();
             Settings.SuonoThunder.Play();
-            if(Settings.statistics.NumeroDiScosse >= 20)
-                System.Threading.Thread.Sleep(300);
+			// x tandy da controllare
+			// genera bug sull'animazione: non viene effettuata
+            //if(Settings.statistics.NumeroDiScosse >= 20)
+            //    System.Threading.Thread.Sleep(300);
         }
 
         private void ZeusButton_Click(object sender, RoutedEventArgs e)

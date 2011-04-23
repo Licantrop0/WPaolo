@@ -15,11 +15,13 @@
 	shell:SystemTray.IsVisible="False">
     <phone:PhoneApplicationPage.Resources>
         <wp:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <SolidColorBrush x:Key="ObiettiviBrush" Color="Black"/>
     </phone:PhoneApplicationPage.Resources>
 
 	<Grid>
         <Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
@@ -43,84 +45,87 @@
 			Visibility="{Binding IsPressed, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ZeusButton}"
 			Grid.ColumnSpan="3" Grid.RowSpan="5" />
 
-		<Border x:Name="Obiettivo1Border" BorderBrush="Black" 
+		<Border x:Name="Obiettivo1Border" 
 			BorderThickness="9" CornerRadius="50"
-			Height="81" Width="81" Opacity="0.4">
+			Height="81" Width="81" Opacity="0.4" Style="{StaticResource ObiettivoBorderStyle}">
 			<Border.Background>
 				<ImageBrush ImageSource="/ScossaFinta;component/Resources/obiettivo1.jpg" />
 			</Border.Background>
 		</Border>
 
-		<Border x:Name="Obiettivo2Border" BorderBrush="Black"
+		<Border x:Name="Obiettivo2Border"
 			BorderThickness="9" CornerRadius="50"
-			Height="81" Width="81" Opacity="0.4" Grid.Column="1">
+			Height="81" Width="81" Opacity="0.4" Grid.Column="1" Style="{StaticResource ObiettivoBorderStyle}">
 			<Border.Background>
 				<ImageBrush ImageSource="/ScossaFinta;component/Resources/obiettivo2.jpg" />
 			</Border.Background>
 		</Border>
 
-		<Border x:Name="Obiettivo3Border" BorderBrush="Black"
+		<Border x:Name="Obiettivo3Border"
 			BorderThickness="9" CornerRadius="50"
 			Height="81" Width="81" Opacity="0.4"
-			Grid.Column="2">
+			Grid.Column="2" Style="{StaticResource ObiettivoBorderStyle}">
 			<Border.Background>
 				<ImageBrush ImageSource="/ScossaFinta;component/Resources/obiettivo3.jpg" />
 			</Border.Background>
 		</Border>
 
-		<ToggleButton x:Name="ThunderButton"
+        <TextBlock x:Name="AchievementsText" Text="Launch more shocks to unlock new powers!" Foreground="{StaticResource ForegroundTextParts}"
+			FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#SpacePatrol"
+			FontSize="22" 
+			Grid.ColumnSpan="3" Grid.Row="1"
+			HorizontalAlignment="Center" />
+
+        <ToggleButton x:Name="ThunderButton"
 			Click="ThunderButton_Click"
 			Height="126"  Width="126"
-			Grid.Row="2"
+			Grid.Row="4"
 			Grid.Column="3"
 			Style="{StaticResource ThunderButtonStyle}"
 			BorderThickness="5" Opacity="0" />
 		<RepeatButton x:Name="ThunderRepeatButton"
 			Click="ThunderButton_Click"
 			Height="126"  Width="126"
-			Grid.Row="2"
+			Grid.Row="4"
 			Grid.Column="3"
 			Style="{StaticResource ThunderRepeatButtonStyle}"
 			BorderThickness="5"
-			Visibility="Collapsed" />
+			Visibility="Collapsed" Interval="800" />
 		<ToggleButton x:Name="ScossaButton"
 			Click="ScossaButton_Click"
-			Grid.Row="2"
+			Grid.Row="4"
 			Height="126" Width="126"
 			Style="{StaticResource ScossaButtonStyle}"
 			BorderThickness="5" />
 		<RepeatButton x:Name="ScossaRepeatButton"
 			Click="ScossaButton_Click"
 			Height="126" Width="126"
-			Grid.Row="2"
+			Grid.Row="4"
 			Style="{StaticResource ScossaRepeatButtonStyle}"
-			BorderThickness="5" Visibility="Collapsed" />
+			BorderThickness="5" Visibility="Collapsed" Interval="800" />
 		<ToggleButton x:Name="ZeusButton"
 			Click="ZeusButton_Click"
 			Margin="20"
-			Grid.Row="1"
+			Grid.Row="2"
 			Grid.ColumnSpan="3"
 			BorderThickness="5" Style="{StaticResource ZeusButtonStyle}" Visibility="Collapsed" />
-		<TextBlock x:Name="HoldTextBox1" Text="Hold!" Foreground="#FFDAFD0D"
-			FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#Chiller" 
-			FontSize="32" Opacity="0" HorizontalAlignment="Center"
+		<TextBlock x:Name="HoldTextBox1" Text="Hold!" Style="{StaticResource HoldTextStyle}"
+			Opacity="0" HorizontalAlignment="Center"
 			Grid.Row="3" />
-		<TextBlock x:Name="HoldTextBox2" Text="Hold!" Foreground="#FFDAFD0D"
-			FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#Chiller"
-			FontSize="32" Opacity="0"
+		<TextBlock x:Name="HoldTextBox2" Text="Hold!" Opacity="0"
 			Grid.Column="2" Grid.Row="3"
-			HorizontalAlignment="Center" />
+			HorizontalAlignment="Center" Style="{StaticResource HoldTextStyle}" />
 
         <local:AchievementUnlocked x:Name="PopupAchievementUnlocked"
-                                   Grid.ColumnSpan="3" Grid.Row="1" >
+                                   Grid.ColumnSpan="3" Grid.Row="2" >
         </local:AchievementUnlocked>
 
 		<google:BannerAd
 			xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
 			AdUnitID="a14da86f2609897"
-			Grid.Row="4" Grid.ColumnSpan="3"
+			Grid.Row="5" Grid.ColumnSpan="3"
 			LocationDescription="{Binding ElementName=Location, Mode=OneWay}"/>
-		<Image Grid.Column="1" Grid.Row="2" Source="Resources/logo.png" Height="80">
+		<Image Grid.Column="1" Grid.Row="4" Source="Resources/logo.png" Height="80">
 			<Custom:Interaction.Triggers>
 				<Custom:EventTrigger EventName="MouseLeftButtonDown">
 					<ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>

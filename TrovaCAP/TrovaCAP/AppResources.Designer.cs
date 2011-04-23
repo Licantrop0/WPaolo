@@ -158,7 +158,7 @@ namespace TrovaCAP {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to too see the full Zip Code.
+        ///   Looks up a localized string similar to to see the full Zip Code.
         /// </summary>
         public static string TrialMode3 {
             get {

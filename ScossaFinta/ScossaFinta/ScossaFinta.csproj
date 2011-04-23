@@ -115,7 +115,7 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <BlendEmbeddedFont Include="Fonts\CHILLER.TTF">
+    <BlendEmbeddedFont Include="Fonts\SPACP__.TTF">
       <IsSystemFont>True</IsSystemFont>
       <All>True</All>
       <AutoFill>True</AutoFill>

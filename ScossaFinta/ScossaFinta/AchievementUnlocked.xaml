@@ -79,8 +79,8 @@
             </Grid.RowDefinitions>
 
             <Image Grid.Column="0" Grid.RowSpan="2" Source="Resources/logo.png" Height="80"  />
-            <TextBlock Text="Achievement Unlocked!" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Center"
-					FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#Chiller" FontSize="40" >
+            <TextBlock Text="New Power" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Center"
+					FontFamily="Chiller" FontSize="40" >
 					<TextBlock.Foreground>
 						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 							<GradientStop Color="#FFE3F53F" Offset="0.332"/>
@@ -91,7 +91,7 @@
 
             <TextBlock x:Name="AchievementTextBlock" Grid.Column="1" Grid.Row="1"
 					HorizontalAlignment="Center" VerticalAlignment="Center"
-					FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#Chiller" FontSize="40" >
+					FontFamily="Chiller" FontSize="40" >
 					<TextBlock.Foreground>
 						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 							<GradientStop Color="#FFE3F53F"/>

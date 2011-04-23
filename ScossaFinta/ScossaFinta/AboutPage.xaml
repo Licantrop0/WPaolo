@@ -16,8 +16,8 @@
 
     <wp:AboutControl Name="WPMEAbout"
                      ApplicationName="Shock Master"
-                     FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#Chiller"
-                     Foreground="#FFDAFD0D" MinFontSize="55" >
+                     FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#SpacePatrol"
+                     Foreground="{StaticResource ForegroundTextParts}" MinFontSize="40" >
         <wp:AboutControl.BackgroundStackPanel>
             <ImageBrush ImageSource="Resources\fulmineTandy1.jpg" />
         </wp:AboutControl.BackgroundStackPanel>

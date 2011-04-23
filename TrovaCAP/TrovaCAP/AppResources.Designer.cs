@@ -129,5 +129,41 @@ namespace TrovaCAP {
                 return ResourceManager.GetString("Loading", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Too many results, keep writing....
+        /// </summary>
+        public static string TooManyResults {
+            get {
+                return ResourceManager.GetString("TooManyResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trial Mode, click here.
+        /// </summary>
+        public static string TrialMode1 {
+            get {
+                return ResourceManager.GetString("TrialMode1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to and buy the full version.
+        /// </summary>
+        public static string TrialMode2 {
+            get {
+                return ResourceManager.GetString("TrialMode2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to too see the full Zip Code.
+        /// </summary>
+        public static string TrialMode3 {
+            get {
+                return ResourceManager.GetString("TrialMode3", resourceCulture);
+            }
+        }
     }
 }

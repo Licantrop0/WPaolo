@@ -28,7 +28,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -53,7 +52,7 @@
                                  MouseLeftButtonDown="AcbComuni_MouseLeftButtonDown"
                                  FontSize="32" MinimumPrefixLength="2"
                                  ItemTemplate="{StaticResource TextWrappingItemTemplate}"
-                                 TextChanged="AcbComuni_TextChanged" IsEnabled="False" />
+                                 TextChanged="AcbComuni_TextChanged"  />
         </StackPanel>
 
         <Border Background="{StaticResource BlueGradientBrush}"
@@ -67,7 +66,6 @@
                        Style="{StaticResource CommonTextStyle}" />
             <acb:AutoCompleteBox x:Name="AcbFrazioni"
                                  FilterMode="Custom"
-                                 IsDropDownOpen="True"
                                  MinimumPrefixLength="0"
                                  GotFocus="AcbFrazioni_GotFocus"
                                  SelectionChanged="AcbFrazioni_SelectionChanged"
@@ -93,7 +91,7 @@
                                  IsCacheEnabled="True"
                                  TextBoxStyle="{StaticResource TextWrappingStyle}"
                                  ItemTemplate="{StaticResource TextWrappingItemTemplate}"
-                                 FilterMode="Custom" MinimumPrefixLength="3"
+                                 FilterMode="Custom" MinimumPrefixLength="2"
                                  SelectionChanged="AcbIndirizzi_SelectionChanged"
                                  MinimumPopulateDelay="2000"
                                  LostFocus="AcbIndirizzi_LostFocus"                          
@@ -106,13 +104,21 @@
                        Style="{StaticResource CommonTextStyle}" FontSize="20" Opacity="0" />
         </StackPanel>
 
-        <TextBox x:Name="tbCapResult"
-                   Grid.Row="3" Grid.Column="1" Text=""
+        <TextBox x:Name="TbCapResult" TextAlignment="Center"
+                   Grid.Row="3" Grid.ColumnSpan="2" Text=""
                    Style="{StaticResource CapTextBoxStyle}"
                    VerticalAlignment="Center" GotFocus="tbCapResult_GotFocus" />
 
-        <Rectangle Grid.Row="4" Grid.ColumnSpan="2"
-                HorizontalAlignment="Right" Width="170"
+        <StackPanel Name="TrialStackPanel" Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Visibility="Collapsed">
+            <HyperlinkButton Content="{Binding Path=LocalizedResources.TrialMode1, Source={StaticResource LocalizedStrings}}"
+                             Click="HyperlinkButton_Click" HorizontalAlignment="Left" FontSize="18" />
+            <HyperlinkButton Content="{Binding Path=LocalizedResources.TrialMode2, Source={StaticResource LocalizedStrings}}"
+                             Click="HyperlinkButton_Click" HorizontalAlignment="Left" FontSize="18"/>
+            <HyperlinkButton Content="{Binding Path=LocalizedResources.TrialMode3, Source={StaticResource LocalizedStrings}}"
+                             Click="HyperlinkButton_Click" HorizontalAlignment="Left" FontSize="18"/>
+        </StackPanel>
+
+        <Rectangle Grid.Row="4" Grid.ColumnSpan="2" Height="170" Width="170" HorizontalAlignment="Right"
                 OpacityMask="{Binding Path=LocalizedResources.Bollo, Source={StaticResource LocalizedStrings}, Converter={StaticResource ByteArrayToImageBrush}}"
                 Fill="{StaticResource BlueGradientBrush}" >
 
@@ -123,11 +129,6 @@
             </Custom:Interaction.Triggers>
         </Rectangle>
 
-        <google:BannerAd
-            xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
-            Grid.Row="5" Grid.ColumnSpan="2" 
-            AdUnitID="a14da9d2bde5aea"
-            LocationDescription="{Binding ElementName=Location, Mode=OneWay}"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

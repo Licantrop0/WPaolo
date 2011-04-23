@@ -12,6 +12,7 @@ using System.ComponentModel;
 using Microsoft.Xna.Framework.Audio;
 using System.Threading;
 using System.Diagnostics;
+using Microsoft.Phone.Tasks;
 
 namespace TrovaCAP
 {
@@ -47,6 +48,10 @@ namespace TrovaCAP
         List<string> _sIndirizziComune = null;
 
         Control _autofocus = null;
+
+        bool _bIndirizziAlreadySelected = false;
+        bool _bComuniAlreadySelected = false;
+        bool _bFrazioniAlreadySelected = false;
 
         CAPRecord[] _capRecordsComuni = null;
         CAPRecord[] _capRecordsComuniFrazioni = null;
@@ -84,13 +89,15 @@ namespace TrovaCAP
             AcbIndirizzi.TextFilter = AcbFilterStartsWithExtended;
             AcbFrazioni.TextFilter = AcbFilterStartsWithExtended;
             AcbComuni.IsEnabled = true;
+            AcbFrazioni.IsManualDropDownOpen = true;
+            if (WPCommon.TrialManagement.IsTrialMode)
+                TrialStackPanel.Visibility = Visibility.Visible;
         }
 
         #region utility fuctions
 
         private void ShowResult(string sResultCAP)
         {
-            //servono proprio tutti tutti gli stati?
             switch (_state)
             {
                 case Step.selezionaComune:
@@ -116,9 +123,26 @@ namespace TrovaCAP
 
             }
 
-            tbCapResult.Text = sResultCAP;
+            if (WPCommon.TrialManagement.IsTrialMode)
+                sResultCAP = sResultCAP.Substring(0, 4) + "?";
+
+            TbCapResult.Text = sResultCAP;
             _autofocus = this;
             PlayCapFoundSound();
+        }
+
+        private void CloseDropDown()
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                AcbComuni.IsDropDownOpen = false;
+                AcbIndirizzi.IsDropDownOpen = false;
+
+                if (_state != Step.scegliFrazioneOVia && _state != Step.selezionaFrazione)
+                {
+                    AcbFrazioni.IsDropDownOpen = false;
+                }
+            });
         }
 
         private void Autofocus()
@@ -147,7 +171,7 @@ namespace TrovaCAP
         private void ResetIndirizziTextBox()
         {
             AcbIndirizzi.SelectionChanged -= AcbIndirizzi_SelectionChanged;
-            AcbIndirizzi.Text = "";
+            AcbIndirizzi.Text = string.Empty;
             AcbIndirizzi.SelectionChanged += AcbIndirizzi_SelectionChanged;
         }
 
@@ -157,6 +181,8 @@ namespace TrovaCAP
 
         private void AcbComuni_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            TbLoading.Text = string.Empty;
+
             if (_state != Step.selezionaComune)
             {
                 // reset
@@ -165,10 +191,13 @@ namespace TrovaCAP
                 AcbFrazioni.IsEnabled = false;
                 ResetIndirizziTextBox();
                 AcbIndirizzi.IsEnabled = false;
-                tbCapResult.Text = "";
+                TbCapResult.Text = "";
                 _capRecordsComuni = null;
                 _capRecordsComuniFrazioni = null;
                 _acbIndirizziCashedSearchKey = "";
+                _bComuniAlreadySelected = false;
+                _bFrazioniAlreadySelected = false;
+                _bIndirizziAlreadySelected = false;
 
                 _state = Step.selezionaComune;
             }
@@ -193,6 +222,9 @@ namespace TrovaCAP
         private void AcbComuni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _autofocus = null;
+            CloseDropDown();
+
+            _bComuniAlreadySelected = true;
 
             _sComuneSelezionato = AcbComuni.Text;
             _capRecordsComuni = DataLayer.Comuni.Where(c => c.ComuneID == _sComuneSelezionato).Single().CapRecords;
@@ -245,7 +277,7 @@ namespace TrovaCAP
                 }
                 else if (_state == Step.selezionaFrazione)
                 {
-                    AcbFrazioni.ItemsSource = sFrazioni;                   
+                    AcbFrazioni.ItemsSource = sFrazioni;
                     AcbFrazioni.IsEnabled = true;
                     _autofocus = AcbFrazioni;
                 }
@@ -253,19 +285,34 @@ namespace TrovaCAP
                 {
                     _acbIndirizziOriginalItemsSource = _sIndirizziComune;
                     AcbIndirizzi.IsEnabled = true;
-                    AcbFrazioni.ItemsSource = sFrazioni;                    
+                    AcbFrazioni.ItemsSource = sFrazioni;
                     AcbFrazioni.IsEnabled = true;
                     _autofocus = this;
                 }
             }
         }
 
+        //private void AcbComuni_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (AcbComuni.Text != "" && AcbComuni.Text != AcbComuni.SelectedItem as string /*.ToString()*/)
+        //    {
+        //        PlayErrorSound();
+        //        AcbComuni.Text = "";
+        //    }
+
+        //    Autofocus();
+        //}
+
         private void AcbComuni_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (AcbComuni.Text != "" && AcbComuni.Text != AcbComuni.SelectedItem as string /*.ToString()*/)
+            if (AcbComuni.Text != "" && AcbComuni.View.Count == 0)
             {
                 PlayErrorSound();
                 AcbComuni.Text = "";
+            }
+            else if (AcbComuni.Text != "" && AcbComuni.View.Count > 0 && !_bComuniAlreadySelected)
+            {
+                AcbComuni.Text = AcbComuni.View.FirstOrDefault();
             }
 
             Autofocus();
@@ -281,11 +328,15 @@ namespace TrovaCAP
 
         private void AcbFrazioni_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            TbLoading.Text = string.Empty;
+
             // reset control and intermediate filtered cap records
             if (_state != Step.selezionaFrazione && _state != Step.scegliFrazioneOVia)
             {
                 ResetFrazioniTextBox();
-                tbCapResult.Text = "";
+                TbCapResult.Text = "";
+                _bFrazioniAlreadySelected = false;
+                _bIndirizziAlreadySelected = false;
             }
 
             // state resume
@@ -294,7 +345,10 @@ namespace TrovaCAP
             else if (_state == Step.selezionaFrazioneFinished)
                 _state = Step.selezionaFrazione;
             else if (_state == Step.selezionaFrazioneVia)
+            {
+                _acbIndirizziOriginalItemsSource = _sIndirizziComune;
                 _state = Step.scegliFrazioneOVia;
+            }
             else if (_state == Step.SelezionaFrazioneViaFinished)
             {
                 ResetIndirizziTextBox();
@@ -311,6 +365,11 @@ namespace TrovaCAP
         private void AcbFrazioni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _autofocus = null;
+            CloseDropDown();
+            //Dispatcher.BeginInvoke(() => { AcbFrazioni.IsDropDownOpen = false; });
+            AcbFrazioni.IsDropDownOpen = false;
+
+            _bFrazioniAlreadySelected = true;
 
             if (_state == Step.scegliFrazioneOVia)
                 _state = Step.scegliFrazione;
@@ -343,10 +402,14 @@ namespace TrovaCAP
 
         private void AcbFrazioni_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (AcbFrazioni.Text != "" && AcbFrazioni.Text != AcbFrazioni.SelectedItem as string /*.ToString()*/)
+            if (AcbFrazioni.Text != "" && AcbFrazioni.View.Count == 0)
             {
                 PlayErrorSound();
                 AcbFrazioni.Text = "";
+            }
+            else if (AcbFrazioni.Text != "" && AcbFrazioni.View.Count > 0 && !_bFrazioniAlreadySelected)
+            {
+                AcbFrazioni.Text = AcbFrazioni.View.FirstOrDefault();
             }
 
             Autofocus();
@@ -355,16 +418,21 @@ namespace TrovaCAP
         private void AcbIndirizzi_GotFocus(object sender, RoutedEventArgs e)
         {
             // work around in order to prevent AcbFrazioni drop item to open without any reason, it remain a little flickering anyway...
-            AcbFrazioni.IsDropDownOpen = false;
+            //AcbFrazioni.IsDropDownOpen = false;
+            //AcbComuni.IsDropDownOpen = false;
         }
 
         private void AcbIndirizzi_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            TbLoading.Text = string.Empty;
+
             // reset control
             if (_state != Step.selezionaVia && _state != Step.scegliFrazioneOVia && _state != Step.selezionaFrazioneVia)
             {
                 ResetIndirizziTextBox();
-                tbCapResult.Text = "";
+                TbCapResult.Text = "";
+                _bIndirizziAlreadySelected = false;
+                _bFrazioniAlreadySelected = false;
             }
 
             // state resume
@@ -385,8 +453,6 @@ namespace TrovaCAP
 
         private void AcbIndirizzi_TextChanged(object sender, RoutedEventArgs e)
         {
-            // modula MinimumPrefixLength  // no è inutile, devo scalarmo sul numero di record, lo posso faro quando carico la item soure
-            // milano si comporta troppo diversamente da palermo
             if (AcbIndirizzi.Text.Length <= 2)
                 AcbIndirizzi.MinimumPopulateDelay = 2000;
             else if (AcbIndirizzi.Text.Length == 3)
@@ -400,6 +466,7 @@ namespace TrovaCAP
         private void AcbIndirizzi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _autofocus = null;
+            CloseDropDown();
 
             _acbIndirizziCashedSearchKey = "";
 
@@ -411,6 +478,8 @@ namespace TrovaCAP
 
             if (_state == Step.scegliVia || _state == Step.selezionaVia)
             {
+                _bIndirizziAlreadySelected = true;
+
                 // extract indirizzo and frazione from indirizzo string (maybe it can be written better)
                 if (AcbIndirizzi.Text.Contains("(fr. "))
                 {
@@ -457,10 +526,14 @@ namespace TrovaCAP
 
         private void AcbIndirizzi_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (AcbIndirizzi.Text != "" && AcbIndirizzi.Text != AcbIndirizzi.SelectedItem as string)
+            if (AcbIndirizzi.Text != "" && AcbIndirizzi.View.Count == 0)
             {
                 PlayErrorSound();
                 AcbIndirizzi.Text = "";
+            }
+            else if (AcbIndirizzi.Text != "" && AcbIndirizzi.View.Count > 0 && !_bIndirizziAlreadySelected)
+            {
+                AcbIndirizzi.Text = AcbIndirizzi.View.FirstOrDefault();
             }
 
             Autofocus();
@@ -483,7 +556,7 @@ namespace TrovaCAP
             foreach (string sw in searchWords)
             {
                 bool match = false;
-                int  wordsIndex = wordsStartIndex;
+                int wordsIndex = wordsStartIndex;
 
                 while (wordsIndex < wordsCount)
                 {
@@ -500,7 +573,7 @@ namespace TrovaCAP
                     }
                 }
 
-                if(!match)
+                if (!match)
                     return false;
             }
 
@@ -510,7 +583,7 @@ namespace TrovaCAP
 
         private void tbCapResult_GotFocus(object sender, RoutedEventArgs e)
         {
-            tbCapResult.SelectAll();
+            TbCapResult.SelectAll();
         }
 
         private void AcbIndirizzi_Populating(object sender, PopulatingEventArgs e)
@@ -523,7 +596,7 @@ namespace TrovaCAP
 
             AcbIndirizzi.Populating -= AcbIndirizzi_Populating;
 
-            TbLoading.Text = "Loading...";
+            TbLoading.Text = AppResources.Loading;
             TbLoading.Opacity = 1;
             var bw = new BackgroundWorker();
 
@@ -563,11 +636,17 @@ namespace TrovaCAP
                 else
                 {
                     AcbIndirizzi.ClearView();
-                    TbLoading.Text = "result list too long, go on writing...";
+                    TbLoading.Text = AppResources.TooManyResults;
                 }
 
             };
             bw.RunWorkerAsync(AcbIndirizzi.Text);
+        }
+
+        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            var detailTask = new MarketplaceDetailTask();
+            detailTask.Show();
         }
     }
 }

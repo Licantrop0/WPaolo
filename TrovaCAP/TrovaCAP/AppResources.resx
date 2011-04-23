@@ -142,4 +142,16 @@
   <data name="Loading" xml:space="preserve">
     <value>Loading...</value>
   </data>
+  <data name="TooManyResults" xml:space="preserve">
+    <value>Too many results, keep writing...</value>
+  </data>
+  <data name="TrialMode1" xml:space="preserve">
+    <value>Trial Mode, click here</value>
+  </data>
+  <data name="TrialMode2" xml:space="preserve">
+    <value>and buy the full version</value>
+  </data>
+  <data name="TrialMode3" xml:space="preserve">
+    <value>too see the full Zip Code</value>
+  </data>
 </root>

@@ -97,6 +97,8 @@ namespace System.Windows.Controls
         //private string _cashedString;
         public bool IsCacheEnabled { get; set; }
 
+        public bool IsManualDropDownOpen { get; set;}
+
 
         /// <summary>
         /// Gets or sets the observable collection that contains references to 
@@ -104,6 +106,12 @@ namespace System.Windows.Controls
         /// the selection-style control adapter.
         /// </summary>
         private ObservableCollection<string> _view;
+
+        public ObservableCollection<string> View
+        {
+            get { return _view; }
+            set { _view = value; }
+        }
 
         /// <summary>
         /// Gets or sets a value to ignore a number of pending change handlers. 
@@ -1308,6 +1316,7 @@ namespace System.Windows.Controls
             // PS my customizations attributes
             IsDicotomicSearchEnabled = false;
             IsCacheEnabled = false;
+            IsManualDropDownOpen = false;
             //_cashedString = "";
         }
 
@@ -2139,18 +2148,8 @@ namespace System.Windows.Controls
         /// </remarks>
         public void PopulateComplete()
         {
-            /*if (LoadingUI != null)
-            {
-                LoadingUI.Opacity = 100;
-                UpdateLayout();
-            }*/
-                
-
             // Apply the search filter
             RefreshView();
-
-            /*if (LoadingUI != null)
-                LoadingUI.Opacity = 0;*/
 
             // Fire the Populated event containing the read-only view data.
             PopulatedEventArgs populated = new PopulatedEventArgs(new ReadOnlyCollection<string>(_view));
@@ -2162,9 +2161,9 @@ namespace System.Windows.Controls
             }
 
             bool isDropDownOpen = _userCalledPopulate && (_view.Count > 0);
-            if (isDropDownOpen != IsDropDownOpen)
+            if (isDropDownOpen != IsDropDownOpen && !IsManualDropDownOpen)
             {
-                _ignorePropertyChange = true;
+                _ignorePropertyChange = true;                 
                 IsDropDownOpen = isDropDownOpen;
             }
             if (IsDropDownOpen)

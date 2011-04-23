@@ -142,4 +142,16 @@
   <data name="Loading" xml:space="preserve">
     <value>Caricamento...</value>
   </data>
+  <data name="TooManyResults" xml:space="preserve">
+    <value>Troppi risultati, continua a scrivere...</value>
+  </data>
+  <data name="TrialMode1" xml:space="preserve">
+    <value>Modalità Demo, clicca qui e</value>
+  </data>
+  <data name="TrialMode2" xml:space="preserve">
+    <value>acquista la versione Full</value>
+  </data>
+  <data name="TrialMode3" xml:space="preserve">
+    <value>per vedere il CAP completo</value>
+  </data>
 </root>

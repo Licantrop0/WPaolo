@@ -181,7 +181,7 @@ namespace TrovaCAP
 
         private void AcbComuni_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            TbLoading.Text = string.Empty;
+            //TbLoading.Text = string.Empty;
 
             if (_state != Step.selezionaComune)
             {
@@ -328,7 +328,7 @@ namespace TrovaCAP
 
         private void AcbFrazioni_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            TbLoading.Text = string.Empty;
+            //TbLoading.Text = string.Empty;
 
             // reset control and intermediate filtered cap records
             if (_state != Step.selezionaFrazione && _state != Step.scegliFrazioneOVia)
@@ -402,6 +402,7 @@ namespace TrovaCAP
 
         private void AcbFrazioni_LostFocus(object sender, RoutedEventArgs e)
         {
+
             if (AcbFrazioni.Text != "" && AcbFrazioni.View.Count == 0)
             {
                 PlayErrorSound();
@@ -424,7 +425,7 @@ namespace TrovaCAP
 
         private void AcbIndirizzi_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            TbLoading.Text = string.Empty;
+            //TbLoading.Text = string.Empty;
 
             // reset control
             if (_state != Step.selezionaVia && _state != Step.scegliFrazioneOVia && _state != Step.selezionaFrazioneVia)
@@ -526,6 +527,8 @@ namespace TrovaCAP
 
         private void AcbIndirizzi_LostFocus(object sender, RoutedEventArgs e)
         {
+            TbLoading.Text = string.Empty;
+
             if (AcbIndirizzi.Text != "" && AcbIndirizzi.View.Count == 0)
             {
                 PlayErrorSound();

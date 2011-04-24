@@ -169,9 +169,6 @@
   <data name="Ridicolo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Ridicolo!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Ridicolo_sei_e_lo_sei_sempre_stato1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sounds\Ridicolo sei, e lo sei sempre stato!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
-  </data>
   <data name="Sei_ignorante_come_una_capra1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Sei ignorante come una capra!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
@@ -187,8 +184,8 @@
   <data name="Valori_del_buco_del_culo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Valori del buco del culo.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Vergogna1_Vergogna1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sounds\Vergogna! Vergogna!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
+  <data name="Vergogna1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sounds\Vergogna!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="È_insopportabile1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\È insopportabile!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>

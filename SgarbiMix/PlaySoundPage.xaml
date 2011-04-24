@@ -7,59 +7,63 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-	SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="Portrait" Orientation="Portrait"
 	mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
 	shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
-	<phone:PhoneApplicationPage.Resources>
-		<Storyboard x:Name="ButtonFade" FillBehavior="HoldEnd">
-			<DoubleAnimation Duration="0:0:0.3" To="0.8" Storyboard.TargetProperty="(UIElement.Opacity)" d:IsOptimized="True"/>
-		</Storyboard>
-	</phone:PhoneApplicationPage.Resources>
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
 
-	<toolkit:TransitionService.NavigationInTransition>
-		<toolkit:NavigationInTransition>
-			<toolkit:NavigationInTransition.Backward>
-				<toolkit:SlideTransition Mode="SlideRightFadeIn" />
-			</toolkit:NavigationInTransition.Backward>
-			<toolkit:NavigationInTransition.Forward>
-				<toolkit:SlideTransition Mode="SlideLeftFadeIn" />
-			</toolkit:NavigationInTransition.Forward>
-		</toolkit:NavigationInTransition>
-	</toolkit:TransitionService.NavigationInTransition>
-	<toolkit:TransitionService.NavigationOutTransition>
-		<toolkit:NavigationOutTransition>
-			<toolkit:NavigationOutTransition.Backward>
-				<toolkit:SlideTransition Mode="SlideRightFadeOut" />
-			</toolkit:NavigationOutTransition.Backward>
-			<toolkit:NavigationOutTransition.Forward>
-				<toolkit:SlideTransition Mode="SlideLeftFadeOut" />
-			</toolkit:NavigationOutTransition.Forward>
-		</toolkit:NavigationOutTransition>
-	</toolkit:TransitionService.NavigationOutTransition>
-	<Grid Name="MainGrid" >
-		<Grid.Background>
-			<ImageBrush ImageSource="sfondo3.jpg" Stretch="None" AlignmentY="Top"/>
-		</Grid.Background>
-		<ScrollViewer>
-			<StackPanel Name="PlayButtonsStackPanel" />
-		</ScrollViewer>
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="sfondo3.jpg" Stretch="None" AlignmentY="Top"/>
+        </Grid.Background>
+        <google:BannerAd Grid.Row="0"
+                         AdUnitID="a14da0253ee7df0"
+                         xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
+                         LocationDescription="{Binding Mode=OneWay, ElementName=Location}" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Name="PlayButtonsStackPanel" >
+            </StackPanel>
+        </ScrollViewer>
 
-		<!--<MediaElement Name="Base1MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base1.mp3" AutoPlay="False" />
+        <!--<MediaElement Name="Base1MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base1.mp3" AutoPlay="False" />
 		<MediaElement Name="Base2MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base2.mp3" AutoPlay="False"/>
 		<MediaElement Name="Base3MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base3.mp3" AutoPlay="False"/>-->
 
-	</Grid>
+    </Grid>
 
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar IsMenuEnabled="True">
-			<!--<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsMenuEnabled="True">
+            <!--<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
 			<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 2" Click="Base2ApplicationBar_Click"  />
 			<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 3" Click="Base3ApplicationBar_Click" />-->
-			<shell:ApplicationBar.MenuItems>
-				<shell:ApplicationBarMenuItem Text="Disclaimer" Click="DisclaimerApplicationBar_Click" />
-				<shell:ApplicationBarMenuItem Text="About" Click="AboutApplicationBar_Click" />
-			</shell:ApplicationBar.MenuItems>
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="Disclaimer" Click="DisclaimerApplicationBar_Click" />
+                <shell:ApplicationBarMenuItem Text="About" Click="AboutApplicationBar_Click" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

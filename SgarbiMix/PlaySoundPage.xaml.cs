@@ -11,6 +11,8 @@ using Microsoft.Phone.Controls;
 using WPCommon;
 using System.Diagnostics;
 using System.Windows.Threading;
+using Google.AdMob.Ads.WindowsPhone7;
+using Google.AdMob.Ads.WindowsPhone7.WPF;
 
 
 namespace SgarbiMix
@@ -40,7 +42,6 @@ namespace SgarbiMix
                 Dispatcher.BeginInvoke(() => { Sound_Shake(); });
             };
             sd.Start();
-
         }
 
         private void Sound_Shake()
@@ -91,8 +92,8 @@ namespace SgarbiMix
                 var i = evt.ProgressPercentage;
                 var b = new Button()
                 {
-                    //ATTENZIONE: mi baso sul nome del button per recuperare l'i-esimo sound
-                    Name = i.ToString(),
+                    //ATTENZIONE: creo un tag per recuperare l'i-esimo sound
+                    Tag = i,
                     Content = App.Sounds[i].ToString(),
                     Style = (Style)App.Current.Resources["PlayButtonStyle"]
                 };
@@ -101,16 +102,13 @@ namespace SgarbiMix
                 {
                     if (CheckTrial())
                     {
-                        //ATTENZIONE: mi baso sul nome del button per recuperare l'i-esimo sound
-                        var SoundIndex = int.Parse(((Button)button).Name);
+                        //ATTENZIONE: creo un tag per recuperare l'i-esimo sound
+                        var SoundIndex = (int)((Button)button).Tag;
                         App.Sounds[SoundIndex].Play();
                     }
                 };
 
                 PlayButtonsStackPanel.Children.Add(b);
-                //ButtonFade.Stop();
-                //Storyboard.SetTarget(ButtonFade, b);
-                //ButtonFade.Begin();
             };
 
             bw.RunWorkerAsync();

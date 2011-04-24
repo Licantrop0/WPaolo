@@ -1,26 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Microsoft.Xna.Framework.Audio;
-using System.IO.IsolatedStorage;
 
 namespace SgarbiMix
 {
     public partial class App : Application
     {
         public static List<SoundContainer> Sounds = new List<SoundContainer>();
-        public static bool alreadyOpen;
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
@@ -33,7 +21,6 @@ namespace SgarbiMix
         /// </summary>
         public App()
         {
-
             // Global handler for uncaught exceptions. 
             UnhandledException += Application_UnhandledException;
 
@@ -62,14 +49,12 @@ namespace SgarbiMix
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            alreadyOpen = WPCommon.TrialManagement.AlreadyOpenedToday;
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            alreadyOpen = WPCommon.TrialManagement.AlreadyOpenedToday;
         }
 
         // Code to execute when the application is deactivated (sent to background)

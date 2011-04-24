@@ -168,12 +168,6 @@ namespace SgarbiMix {
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Ridicolo_sei_e_lo_sei_sempre_stato1 {
-            get {
-                return ResourceManager.GetStream("Ridicolo_sei_e_lo_sei_sempre_stato1", resourceCulture);
-            }
-        }
-        
         internal static System.IO.UnmanagedMemoryStream Ridicolo1 {
             get {
                 return ResourceManager.GetStream("Ridicolo1", resourceCulture);
@@ -210,9 +204,9 @@ namespace SgarbiMix {
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Vergogna1_Vergogna1 {
+        internal static System.IO.UnmanagedMemoryStream Vergogna1 {
             get {
-                return ResourceManager.GetStream("Vergogna1_Vergogna1", resourceCulture);
+                return ResourceManager.GetStream("Vergogna1", resourceCulture);
             }
         }
     }

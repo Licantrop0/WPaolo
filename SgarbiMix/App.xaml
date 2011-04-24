@@ -7,7 +7,6 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
 
-    <!--Application Resources-->
     <Application.Resources>
         <Style x:Key="PlayButtonStyle" TargetType="Button">
             <Setter Property="Foreground" >
@@ -29,12 +28,12 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="FontSize" Value="21.333" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="Margin" Value="0,-2" />
             <Setter Property="Height" Value="80" />
-            <Setter Property="Width" Value="400" />
+            <Setter Property="MinWidth" Value="230" />
             <Setter Property="BorderThickness" Value="6,4" />
             <Setter Property="Opacity" Value="0.8" />
-            <Setter Property="Margin" Value="0,-2" />
             <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True"/>
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="BorderBrush">
@@ -46,22 +45,8 @@
                     </RadialGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="OpacityMask">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="White" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
             <Setter Property="FontFamily" Value="Segoe Print"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontStretch" Value="Condensed"/>
-            <Setter Property="Projection">
-                <Setter.Value>
-                    <PlaneProjection RotationZ="0" RotationX="3" RotationY="-3"/>
-                </Setter.Value>
-            </Setter>
         </Style>
 
     </Application.Resources>

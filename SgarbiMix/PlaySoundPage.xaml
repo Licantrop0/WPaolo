@@ -39,29 +39,19 @@
         <Grid.Background>
             <ImageBrush ImageSource="sfondo3.jpg" Stretch="None" AlignmentY="Top"/>
         </Grid.Background>
-        <google:BannerAd Grid.Row="0"
-                         AdUnitID="a14da0253ee7df0"
-                         xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
-                         LocationDescription="{Binding Mode=OneWay, ElementName=Location}" />
         <ScrollViewer Grid.Row="1">
-            <StackPanel Name="PlayButtonsStackPanel" >
-            </StackPanel>
+            <toolkit:WrapPanel Name="PlayButtonsStackPanel" />
         </ScrollViewer>
-
-        <!--<MediaElement Name="Base1MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base1.mp3" AutoPlay="False" />
-		<MediaElement Name="Base2MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base2.mp3" AutoPlay="False"/>
-		<MediaElement Name="Base3MediaElement" MediaEnded="MediaElement_MediaEnded" Source="sounds\base3.mp3" AutoPlay="False"/>-->
-
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="True">
-            <!--<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
+            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
 			<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 2" Click="Base2ApplicationBar_Click"  />
-			<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 3" Click="Base3ApplicationBar_Click" />-->
+			<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 3" Click="Base3ApplicationBar_Click" />
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Disclaimer" Click="DisclaimerApplicationBar_Click" />
-                <shell:ApplicationBarMenuItem Text="About" Click="AboutApplicationBar_Click" />
+                <shell:ApplicationBarMenuItem Text="Disclaimer" Click="DisclaimerAppBarMenu_Click" />
+                <shell:ApplicationBarMenuItem Text="About" Click="AboutAppBarMenu_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

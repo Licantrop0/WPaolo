@@ -55,8 +55,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.AdMob.Ads.WindowsPhone7">
-      <HintPath>..\..\..\..\..\Desktop\GoogleAdMobAdsSDKWindowsPhone7-4.0.4\sdk\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
+      <HintPath>..\WPCommon\ADMob SDK\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
@@ -67,6 +68,7 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -162,7 +164,16 @@
     <None Include="sounds\Valori del buco del culo.wav" />
     <None Include="sounds\Pagato!.wav" />
     <None Include="sounds\Altro che valori.wav" />
-    <Content Include="sounds\TACI.wav" />
+    <None Include="sounds\TACI.wav" />
+    <Content Include="sounds\base1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sounds\base2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sounds\base3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SplashScreenImage.jpg" />
     <None Include="sounds\Capra ignorante!.wav" />
     <None Include="sounds\Capra!.wav" />
@@ -182,7 +193,7 @@
     <None Include="sounds\Ridicolo!.wav" />
     <None Include="sounds\Sei ignorante come una capra!.wav" />
     <None Include="sounds\Vai a studiare!.wav" />
-    <None Include="sounds\Vergogna! Vergogna!.wav" />
+    <None Include="sounds\Vergogna!.wav" />
     <None Include="sounds\È insopportabile!.wav" />
     <None Include="sounds\È un crimine!.wav" />
   </ItemGroup>

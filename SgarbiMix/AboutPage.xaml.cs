@@ -21,7 +21,6 @@ namespace SgarbiMix
             InitializeComponent();
             var name = Assembly.GetExecutingAssembly().FullName;
             WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString(); 
-
         }
     }
 }

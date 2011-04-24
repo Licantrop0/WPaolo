@@ -117,13 +117,13 @@ namespace SgarbiMix
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && (App.alreadyOpen || (counter > (App.Sounds.Count / 4))))
-            {
-                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-                return false;
-            }
-            //incremento ogni volta che chiamo checkTrial - cioè ad ogni click di suono
-            counter++;
+            //if (TrialManagement.IsTrialMode && (App.alreadyOpen || (counter > (App.Sounds.Count / 4))))
+            //{
+            //    NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
+            //    return false;
+            //}
+            ////incremento ogni volta che chiamo checkTrial - cioè ad ogni click di suono
+            //counter++;
             return true;
         }
 

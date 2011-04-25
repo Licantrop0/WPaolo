@@ -53,8 +53,8 @@ namespace NascondiChiappe
         }
 
         /// <summary>Aggiungo la info sulla rotation nel nome del file</summary>
-        /// <param name="originalFileName"></param>
-        /// <param name="photo"></param>
+        /// <param name="originalFileName">Nome del file originale</param>
+        /// <param name="photo">MemoryStream che contiene la foto</param>
         /// <returns>nuovo nome del file con Rotation Info</returns>
         public static string GetFileNameWithRotation(string originalFileName, Stream photo)
         {

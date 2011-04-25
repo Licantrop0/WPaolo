@@ -100,8 +100,7 @@ namespace NascondiChiappe
                 Visibility.Collapsed;
         }
 
-
-        void ViewPhotoAppBarButton_Click(object sender, EventArgs e)
+        private void GestureListener_DoubleTap(object sender, GestureEventArgs e)
         {
             NavigationService.Navigate(new Uri(
                 string.Format("/ViewPhotosPage.xaml?Album={0}&Photo={1}",
@@ -109,16 +108,15 @@ namespace NascondiChiappe
                 UriKind.Relative));
         }
 
-
         private void InitializeApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
 
-            var ViewPhotoAppBarButton = new ApplicationBarIconButton();
-            ViewPhotoAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_viewpic.png", UriKind.Relative);
-            ViewPhotoAppBarButton.Text = AppResources.ViewPhoto;
-            ViewPhotoAppBarButton.Click += new EventHandler(ViewPhotoAppBarButton_Click);
-            ApplicationBar.Buttons.Add(ViewPhotoAppBarButton);
+            //var ViewPhotoAppBarButton = new ApplicationBarIconButton();
+            //ViewPhotoAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_viewpic.png", UriKind.Relative);
+            //ViewPhotoAppBarButton.Text = AppResources.ViewPhoto;
+            //ViewPhotoAppBarButton.Click += new EventHandler(ViewPhotoAppBarButton_Click);
+            //ApplicationBar.Buttons.Add(ViewPhotoAppBarButton);
 
             var TakePictureAppBarButton = new ApplicationBarIconButton();
             TakePictureAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_camera.png", UriKind.Relative);

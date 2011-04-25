@@ -23,6 +23,16 @@
                     <scm:SortDescription PropertyName="Name" Direction="Ascending" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
+            
+            <DataTemplate x:Name="AlbumImageTemplate">
+                <Image Source="{Binding Image}" Margin="12"
+                   RenderTransformOrigin="0.5,0.5"
+                   RenderTransform="{Binding Path=RotationAngle, Converter={StaticResource RotationConverter}}">
+                    <toolkit:GestureService.GestureListener>
+                        <toolkit:GestureListener DoubleTap="GestureListener_DoubleTap" />
+                    </toolkit:GestureService.GestureListener>
+                </Image>
+            </DataTemplate>
         </Grid.Resources>
         
         <controls:Pivot Name="AlbumsPivot"

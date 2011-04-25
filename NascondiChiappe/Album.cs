@@ -43,17 +43,14 @@ namespace NascondiChiappe
 
         public Album()
         {
-            //TODO: Controllo per sicurezza, probabilmente inutile (vedere se da rimuovere)
             if (!isf.DirectoryExists(DirectoryName))
                 isf.CreateDirectory(DirectoryName);
         }
 
-        public Album(string name, string directoryName)
+        public Album(string name, string directoryName) : this()
         {
             Name = name;
             DirectoryName = directoryName;
-            if (!isf.DirectoryExists(DirectoryName))
-                isf.CreateDirectory(DirectoryName);
         }
 
         public void AddPhoto(AlbumPhoto photo)

@@ -148,13 +148,13 @@
     <value>The new Password must be at least {0} character lenght</value>
   </data>
   <data name="PasswordsDoesNotMatch" xml:space="preserve">
-    <value>The new Password does not match the confirm password</value>
+    <value>The new Password does not match the confirmed password</value>
   </data>
   <data name="PasswordWrong" xml:space="preserve">
-    <value>The Password inserted is wrong</value>
+    <value>The inserted Password is wrong</value>
   </data>
   <data name="SetPassword" xml:space="preserve">
-    <value>Set Password</value>
+    <value>Set New Password</value>
   </data>
   <data name="TakePhoto" xml:space="preserve">
     <value>Take Photo</value>
@@ -166,7 +166,7 @@
     <value>Export</value>
   </data>
   <data name="AddAlbum" xml:space="preserve">
-    <value>Add new Album</value>
+    <value>New Album</value>
   </data>
   <data name="EditAlbum" xml:space="preserve">
     <value>Edit Album</value>
@@ -184,22 +184,23 @@
     <value>Confirm</value>
   </data>
   <data name="ConfirmAlbumDelete" xml:space="preserve">
-    <value>Are you sure to delete the Album {0}?</value>
+    <value>Do you really want to delete the Album {0}?</value>
   </data>
   <data name="DeleteSelectedPhotos" xml:space="preserve">
-    <value>Delete selected Photos</value>
+    <value>Delete Selected Photos</value>
   </data>
   <data name="PhotoCopied" xml:space="preserve">
-    <value>Photo copied to your MediaLibrary</value>
+    <value>The Photo has been copied to your MediaLibrary</value>
   </data>
   <data name="AddPhotosHint" xml:space="preserve">
-    <value>Import some photos from your MediaLibrary or take a new one with the Application Bar Button "Take Photo"</value>
+    <value>Import some photos from your MediaLibrary or take a new one using the "Take Photo" button below</value>
   </data>
   <data name="OneAlbumNecessary" xml:space="preserve">
-    <value>It's necessary at least one Album to use this App</value>
+    <value>You have to create at least one Album to use this App</value>
   </data>
   <data name="PasswordHint" xml:space="preserve">
-    <value>Warning: do not forgot your password because you will not able to access to your photos anymore</value>
+    <value>Warning: if you forget your password, you will not able to access to your secret photos anymore.
+Password recovery is not available.</value>
   </data>
   <data name="ViewPhoto" xml:space="preserve">
     <value>View Photo</value>
@@ -208,10 +209,10 @@
     <value>Please select a Photo to export</value>
   </data>
   <data name="ConfirmPhotoDelete" xml:space="preserve">
-    <value>Are you sure to delete the selected Photos?</value>
+    <value>Do you really want to delete selected Photos?</value>
   </data>
   <data name="MoveSelectedPhotos" xml:space="preserve">
-    <value>Move selected Photos</value>
+    <value>Move Selected Photos</value>
   </data>
   <data name="SelectPhotos" xml:space="preserve">
     <value>Please select the Photos first</value>

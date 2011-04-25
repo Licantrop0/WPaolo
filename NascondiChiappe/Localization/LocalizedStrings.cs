@@ -1,4 +1,4 @@
-﻿namespace NascondiChiappe
+﻿namespace NascondiChiappe.Localization
 {
     public class LocalizedStrings
     {

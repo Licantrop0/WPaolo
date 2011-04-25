@@ -16,8 +16,7 @@
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Pivot Name="ImagePivot"
-                        SelectionChanged="ImagePivot_SelectionChanged">
+        <controls:Pivot Name="ImagePivot" SelectionChanged="ImagePivot_SelectionChanged">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock />
@@ -25,7 +24,7 @@
             </controls:Pivot.HeaderTemplate>
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding Image}"
+                    <Image Source="{Binding Photo}"
                            Margin="0,-35,0,0"
                            RenderTransform="{Binding Path=RotationAngle, Converter={StaticResource RotationConverter}}"
                            RenderTransformOrigin="0.5,0.5" >
@@ -34,7 +33,8 @@
                                 PinchStarted="GestureListener_PinchStarted"
                                 DragStarted="GestureListener_DragStarted"
                                 PinchDelta="GestureListener_PinchDelta"
-                                DragDelta="GestureListener_DragDelta" />
+                                DragDelta="GestureListener_DragDelta"
+                                DoubleTap="GestureListener_DoubleTap" />
                         </toolkit:GestureService.GestureListener>
                     </Image>
                 </DataTemplate>

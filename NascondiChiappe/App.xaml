@@ -8,10 +8,26 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
 
     <Application.Resources>
-        <local:LocalizedStrings x:Key="LocalizedStrings" />
+        <localization:LocalizedStrings x:Key="LocalizedStrings" xmlns:localization="clr-namespace:NascondiChiappe.Localization" />
         <local:RotationConverter x:Key="RotationConverter" />
+
+        <ImageBrush x:Name="BackgroundImage" ImageSource="SplashScreenImage.jpg" AlignmentY="Top" Stretch="None" />
+
+        <Style x:Key="BaseStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style x:Key="TitleStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraExtraLarge}" />
+        </Style>
         
-        <Style x:Key="HintTextBlockStyle" TargetType="TextBlock">
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
+        </Style>
+
+        <Style x:Key="HintTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Width" Value="400" />
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="IsHitTestVisible" Value="False" />
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -20,6 +36,28 @@
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
         </Style>
         
+        <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="PasswordChar" Value="#" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
+            <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>
+        </Style>
+        
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
+            <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style x:Key="HyperlinkStyle" TargetType="HyperlinkButton">
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+
+
+
         <Style x:Key="ListBoxItemStyle1" TargetType="ListBoxItem">
             <Setter Property="Template">
                 <Setter.Value>
@@ -33,8 +71,11 @@
                                     <VisualState x:Name="Unselected" />
                                     <VisualState x:Name="Selected">
                                         <Storyboard>
-                                            <ColorAnimation Duration="0" To="{StaticResource PhoneBorderColor}" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="LayoutRoot" />
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderThickness)" Storyboard.TargetName="LayoutRoot">
+                                            <ColorAnimation Duration="0" To="WhiteSmoke"
+                                                            Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                            Storyboard.TargetName="LayoutRoot" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderThickness)"
+                                                                           Storyboard.TargetName="LayoutRoot">
                                                 <DiscreteObjectKeyFrame KeyTime="0">
                                                     <DiscreteObjectKeyFrame.Value>
                                                         <Thickness>4</Thickness>
@@ -57,7 +98,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
+        
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

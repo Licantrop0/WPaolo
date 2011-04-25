@@ -14,7 +14,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress" Loaded="PhoneApplicationPage_Loaded">
-    <Grid x:Name="LayoutRoot" Margin="12,17,0,28" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
@@ -22,17 +22,17 @@
 
         <Grid.Resources>
             <DataTemplate x:Name="AlbumImageTemplate">
-                <Image Source="{Binding Image}" Margin="12"
+                <Image Source="{Binding Photo}" Margin="12"
                    RenderTransformOrigin="0.5,0.5"
                    RenderTransform="{Binding Path=RotationAngle, Converter={StaticResource RotationConverter}}" />
             </DataTemplate>
         </Grid.Resources>
 
         <StackPanel Grid.Row="0">
-            <TextBlock x:Name="PageTitle"
-                   Text="{Binding LocalizedResources.AddAlbum, Source={StaticResource LocalizedStrings}}"
-                   Style="{StaticResource PhoneTextTitle1Style}"/>
-            <TextBox x:Name="AlbumNameTextBox" Text="{Binding Name}" KeyDown="AlbumNameTextBox_KeyDown" />
+            <TextBlock x:Name="PageTitle" Style="{StaticResource TitleStyle}" 
+                   Text="{Binding LocalizedResources.AddAlbum, Source={StaticResource LocalizedStrings}}" />
+            <TextBox x:Name="AlbumNameTextBox" Text="{Binding Name}"
+                     KeyDown="AlbumNameTextBox_KeyDown" Style="{StaticResource TextBoxStyle}" />
             <TextBlock Name="OneAlbumNecessaryTextBlock" Visibility="Collapsed"
                    Text="{Binding Path=LocalizedResources.OneAlbumNecessary, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource HintTextBlockStyle}" />
@@ -40,7 +40,7 @@
 
         <ListBox x:Name="ImagesListBox" Grid.Row="1"
                  ItemTemplate="{StaticResource AlbumImageTemplate}"
-                 ItemsSource="{Binding Images}"
+                 ItemsSource="{Binding Photos}"
                  SelectionMode="Multiple"
                  ItemContainerStyle="{StaticResource ListBoxItemStyle1}">
             <ListBox.ItemsPanel>
@@ -55,8 +55,8 @@
                    Fill="#CC000000" Visibility="Collapsed"/>
         <Border Name="PopupBorder" Grid.Row="1"
                 CornerRadius="10" Visibility="Collapsed"
-                BorderBrush="{StaticResource PhoneBorderBrush}"
-                Background="{StaticResource PhoneBackgroundBrush}"
+                BorderBrush="WhiteSmoke"
+                Background="Black"
                 BorderThickness="{StaticResource PhoneBorderThickness}"
                 VerticalAlignment="Center" HorizontalAlignment="Center">
             <ListBox Name="AlbumsListBox" Margin="24"
@@ -65,7 +65,7 @@
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"
                                    Margin="0,8" TextAlignment="Center"
-                                   Style="{StaticResource PhoneTextTitle2Style}" />
+                                   Style="{StaticResource TextBlockStyle}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

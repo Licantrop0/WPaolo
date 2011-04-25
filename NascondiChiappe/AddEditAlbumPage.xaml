@@ -19,6 +19,15 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <DataTemplate x:Name="AlbumImageTemplate">
+                <Image Source="{Binding Image}" Margin="12"
+                   RenderTransformOrigin="0.5,0.5"
+                   RenderTransform="{Binding Path=RotationAngle, Converter={StaticResource RotationConverter}}" />
+            </DataTemplate>
+        </Grid.Resources>
+
         <StackPanel Grid.Row="0">
             <TextBlock x:Name="PageTitle"
                    Text="{Binding LocalizedResources.AddAlbum, Source={StaticResource LocalizedStrings}}"
@@ -28,7 +37,7 @@
                    Text="{Binding Path=LocalizedResources.OneAlbumNecessary, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource HintTextBlockStyle}" />
         </StackPanel>
-        
+
         <ListBox x:Name="ImagesListBox" Grid.Row="1"
                  ItemTemplate="{StaticResource AlbumImageTemplate}"
                  ItemsSource="{Binding Images}"
@@ -41,7 +50,7 @@
             </ListBox.ItemsPanel>
         </ListBox>
 
-        
+
         <Rectangle Name="PopupBackground" Grid.RowSpan="2"
                    Fill="#CC000000" Visibility="Collapsed"/>
         <Border Name="PopupBorder" Grid.Row="1"

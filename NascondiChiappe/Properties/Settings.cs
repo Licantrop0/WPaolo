@@ -7,8 +7,9 @@ namespace NascondiChiappe
 {
     public static class Settings
     {
+        //TODO: Modificare prima del rilascio
         public const int PasswordMinLenght = 1;
-        public static bool PasswordInserted = false;
+        public static bool IsPasswordInserted = false;
 
         public static string Password
         { //TODO: Implementare encription

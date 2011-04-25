@@ -22,41 +22,40 @@ namespace NascondiChiappe
 
         IsolatedStorageFile isf { get { return IsolatedStorageFile.GetUserStoreForApplication(); } }
 
-        private ObservableCollection<AlbumPhoto> _imageCache;
-        public ObservableCollection<AlbumPhoto> Images
+        private ObservableCollection<AlbumPhoto> _photos;
+        public ObservableCollection<AlbumPhoto> Photos
         {
             get
             {
-                if (_imageCache == null)
+                if (_photos == null)
                 {
-                    _imageCache = new ObservableCollection<AlbumPhoto>();
+                    _photos = new ObservableCollection<AlbumPhoto>();
                     foreach (var fileName in isf.GetFileNames(DirectoryName + "\\*"))
                     {
                         using (var file = isf.OpenFile(DirectoryName + "\\" + fileName, FileMode.Open))
-                            _imageCache.Add(new AlbumPhoto(fileName, file));
+                            _photos.Add(new AlbumPhoto(fileName, file));
                     }
                 }
-                return _imageCache;
+                return _photos;
             }
         }
 
 
-        public Album()
+        public Album() { }
+
+        public Album(string name, string directoryName)
         {
+            Name = name;
+            DirectoryName = directoryName;
+
             if (!isf.DirectoryExists(DirectoryName))
                 isf.CreateDirectory(DirectoryName);
         }
 
-        public Album(string name, string directoryName) : this()
-        {
-            Name = name;
-            DirectoryName = directoryName;
-        }
-
         public void AddPhoto(AlbumPhoto photo)
         {
-            Images.Add(photo);
-            var wb = new WriteableBitmap(photo.Image);
+            Photos.Add(photo);
+            var wb = new WriteableBitmap(photo.Photo);
             using (var fs = isf.CreateFile(DirectoryName + "\\" + photo.Name))
             {
                 //346ms (average 6 samples)
@@ -67,8 +66,7 @@ namespace NascondiChiappe
         public void RemovePhoto(AlbumPhoto photo)
         {
             isf.DeleteFile(DirectoryName + "\\" + photo.Name);
-
-            _imageCache.Remove(photo);
+            _photos.Remove(photo);
         }
 
         public void RemoveDirectoryContent()
@@ -79,7 +77,7 @@ namespace NascondiChiappe
             isf.DeleteDirectory(DirectoryName);
         }
 
-        //TODO: NON PERFORMANTEEE, da correggere con lo spostamento effettivo del file
+        //TODO: NON PERFORMANTE, da correggere con lo spostamento effettivo del file
         public void MovePhoto(AlbumPhoto photo, Album album)
         {
             album.AddPhoto(photo);

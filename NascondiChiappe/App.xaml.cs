@@ -50,6 +50,8 @@ namespace NascondiChiappe
 
             // Phone-specific initialization
             InitializePhoneApplication();
+
+            Settings.IsPasswordInserted = false;
         }
 
         // Code to execute when the application is launching (eg, from Start)

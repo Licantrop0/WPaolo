@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NascondiChiappe {
+namespace NascondiChiappe.Localization {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace NascondiChiappe {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NascondiChiappe.AppResources", typeof(AppResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NascondiChiappe.Localization.AppResources", typeof(AppResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new Album.
+        ///   Looks up a localized string similar to New Album.
         /// </summary>
         public static string AddAlbum {
             get {
@@ -70,7 +70,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import some photos from your MediaLibrary or take a new one with the Application Bar Button &quot;Take Photo&quot;.
+        ///   Looks up a localized string similar to Import some photos from your MediaLibrary or take a new one using the &quot;Take Photo&quot; button below.
         /// </summary>
         public static string AddPhotosHint {
             get {
@@ -115,7 +115,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure to delete the Album {0}?.
+        ///   Looks up a localized string similar to Do you really want to delete the Album {0}?.
         /// </summary>
         public static string ConfirmAlbumDelete {
             get {
@@ -133,7 +133,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure to delete the selected Photos?.
+        ///   Looks up a localized string similar to Do you really want to delete selected Photos?.
         /// </summary>
         public static string ConfirmPhotoDelete {
             get {
@@ -169,7 +169,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete selected Photos.
+        ///   Looks up a localized string similar to Delete Selected Photos.
         /// </summary>
         public static string DeleteSelectedPhotos {
             get {
@@ -205,7 +205,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Move selected Photos.
+        ///   Looks up a localized string similar to Move Selected Photos.
         /// </summary>
         public static string MoveSelectedPhotos {
             get {
@@ -241,7 +241,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It&apos;s necessary at least one Album to use this App.
+        ///   Looks up a localized string similar to You have to create at least one Album to use this App.
         /// </summary>
         public static string OneAlbumNecessary {
             get {
@@ -259,7 +259,8 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Warning: do not forgot your password because you will not able to access to your photos anymore.
+        ///   Looks up a localized string similar to Warning: if you forget your password, you will not able to access to your secret photos anymore.
+        ///Password recovery is not available..
         /// </summary>
         public static string PasswordHint {
             get {
@@ -277,7 +278,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The new Password does not match the confirm password.
+        ///   Looks up a localized string similar to The new Password does not match the confirmed password.
         /// </summary>
         public static string PasswordsDoesNotMatch {
             get {
@@ -286,7 +287,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Password inserted is wrong.
+        ///   Looks up a localized string similar to The inserted Password is wrong.
         /// </summary>
         public static string PasswordWrong {
             get {
@@ -295,7 +296,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Photo copied to your MediaLibrary.
+        ///   Looks up a localized string similar to The Photo has been copied to your MediaLibrary.
         /// </summary>
         public static string PhotoCopied {
             get {
@@ -331,7 +332,7 @@ namespace NascondiChiappe {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Password.
+        ///   Looks up a localized string similar to Set New Password.
         /// </summary>
         public static string SetPassword {
             get {

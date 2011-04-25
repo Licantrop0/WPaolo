@@ -25,10 +25,16 @@ namespace NascondiChiappe
 
         public double RotationAngle { get; set; }
         private BitmapImage _image;
-        public BitmapImage Image { get { return _image; } }
+        public BitmapImage Photo { get { return _image; } }
 
-        public AlbumPhoto(string name, Stream image)
+        public AlbumPhoto(string name, Stream photo)
         {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException("name");
+
+            if (photo == null)
+                throw new ArgumentNullException("photo");
+
             switch (name.Last())
             {
                 case '0':
@@ -49,7 +55,7 @@ namespace NascondiChiappe
 
             Name = name;
             _image = new BitmapImage();
-            _image.SetSource(image);
+            _image.SetSource(photo);
         }
 
         /// <summary>Aggiungo la info sulla rotation nel nome del file</summary>
@@ -58,6 +64,12 @@ namespace NascondiChiappe
         /// <returns>nuovo nome del file con Rotation Info</returns>
         public static string GetFileNameWithRotation(string originalFileName, Stream photo)
         {
+            if (string.IsNullOrEmpty(originalFileName))
+                throw new ArgumentNullException("originalFileName");
+
+            if (photo == null)
+                throw new ArgumentNullException("photo");
+
             var fileName = Path.GetFileNameWithoutExtension(originalFileName);
             switch (ExifReader.ReadJpeg(photo, fileName).Orientation)
             {
@@ -112,12 +124,13 @@ namespace NascondiChiappe
                                 wbSource.Pixels[x + y * wbSource.PixelWidth];
                     break;
                 default: //0°
-                    wbTarget = wbSource;
-                    break;
+                    photo.Position = 0;
+                    return photo;
             }
 
             var ms = new MemoryStream();
             wbTarget.SaveJpeg(ms, wbSource.PixelWidth, wbSource.PixelHeight, 0, 85);
+            ms.Position = 0;
             return ms;
         }
 

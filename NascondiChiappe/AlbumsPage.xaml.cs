@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
+using NascondiChiappe.Localization;
+using System.ComponentModel;
 
 namespace NascondiChiappe
 {
@@ -20,6 +22,12 @@ namespace NascondiChiappe
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            if (!Settings.IsPasswordInserted)
+            {
+                NavigationService.Navigate(new Uri("/PasswordPage.xaml", UriKind.Relative));
+                return;
+            }
+
             if (Settings.Albums.Count == 0)
                 NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative));
             else
@@ -46,6 +54,9 @@ namespace NascondiChiappe
 
         void TakePictureAppBarButton_Click(object sender, EventArgs e)
         {
+            if (IsTrialWithCheck())
+                return;
+
             var cameraCaptureTask = new CameraCaptureTask();
             cameraCaptureTask.Completed += new EventHandler<PhotoResult>(CaptureTask_Completed);
             try
@@ -57,6 +68,9 @@ namespace NascondiChiappe
 
         void CopyFromMediaLibraryAppBarButton_Click(object sender, EventArgs e)
         {
+            if (IsTrialWithCheck())
+                return;
+
             var photoChooserTask = new PhotoChooserTask();
             photoChooserTask.Completed += CaptureTask_Completed;
             try
@@ -66,6 +80,17 @@ namespace NascondiChiappe
             catch (InvalidOperationException) { };
         }
 
+        private bool IsTrialWithCheck()
+        {
+            if (WPCommon.TrialManagement.IsTrialMode && SelectedAlbum.Photos.Count >= 6)
+            {
+                //TODO: andare nella pagina trial
+                MessageBox.Show("trial");
+                return true;
+            }
+            return false;
+        }
+
         void CopyToMediaLibraryAppBarButton_Click(object sender, EventArgs e)
         {
             if (SelectedPhoto == null)
@@ -73,6 +98,16 @@ namespace NascondiChiappe
                 MessageBox.Show(AppResources.SelectPhotoExport);
                 return;
             }
+
+            //TODO: implementare export asincrono con Mango
+            //var bw = new BackgroundWorker();
+            //bw.DoWork += (sender1, e1) =>
+            //{
+            //};
+            //bw.RunWorkerCompleted += (sender1, e1) =>
+            //{
+            //};
+            //bw.RunWorkerAsync();
 
             SelectedAlbum.CopyToMediaLibrary(SelectedPhoto);
             MessageBox.Show(AppResources.PhotoCopied);
@@ -95,7 +130,7 @@ namespace NascondiChiappe
                 return;
 
             AddPhotosHintTextBlock.Visibility =
-                SelectedAlbum.Images.Count == 0 ?
+                SelectedAlbum.Photos.Count == 0 ?
                 Visibility.Visible :
                 Visibility.Collapsed;
         }
@@ -104,7 +139,7 @@ namespace NascondiChiappe
         {
             NavigationService.Navigate(new Uri(
                 string.Format("/ViewPhotosPage.xaml?Album={0}&Photo={1}",
-                SelectedAlbum.DirectoryName, SelectedAlbum.Images.IndexOf(SelectedPhoto)),
+                SelectedAlbum.DirectoryName, SelectedAlbum.Photos.IndexOf(SelectedPhoto)),
                 UriKind.Relative));
         }
 

@@ -8,6 +8,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Linq;
 using System.Windows.Controls;
+using NascondiChiappe.Localization;
 
 namespace NascondiChiappe
 {
@@ -23,6 +24,13 @@ namespace NascondiChiappe
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if (!Settings.IsPasswordInserted)
+            {
+                NavigationService.Navigate(new Uri("/PasswordPage.xaml", UriKind.Relative));
+                return;
+            }
+
+            //TODO: se torna indietro evitare la costruzione dei pulsanti
             if (NavigationContext.QueryString.ContainsKey("Album")) //EditAlbumMode
             {
                 PageTitle.Text = AppResources.EditAlbum;
@@ -43,6 +51,15 @@ namespace NascondiChiappe
                 DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
                 DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
                 ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
+
+                if (Settings.Albums.Count > 1)
+                {
+                    var MovePhotosAppBarButton = new ApplicationBarIconButton();
+                    MovePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_move.png", UriKind.Relative);
+                    MovePhotosAppBarButton.Text = AppResources.MoveSelectedPhotos;
+                    MovePhotosAppBarButton.Click += new EventHandler(MovePhotosAppBarButton_Click);
+                    ApplicationBar.Buttons.Add(MovePhotosAppBarButton);
+                }
             }
             else
             {
@@ -63,14 +80,6 @@ namespace NascondiChiappe
             SaveAppBarButton.Click += new EventHandler(SaveAppBarButton_Click);
             ApplicationBar.Buttons.Add(SaveAppBarButton);
 
-            if (Settings.Albums.Count > 1)
-            {
-                var MovePhotosAppBarButton = new ApplicationBarIconButton();
-                MovePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_move.png", UriKind.Relative);
-                MovePhotosAppBarButton.Text = AppResources.MoveSelectedPhotos;
-                MovePhotosAppBarButton.Click += new EventHandler(MovePhotosAppBarButton_Click);
-                ApplicationBar.Buttons.Add(MovePhotosAppBarButton);
-            }
         }
 
         void MovePhotosAppBarButton_Click(object sender, EventArgs e)
@@ -97,13 +106,20 @@ namespace NascondiChiappe
                 foreach (AlbumPhoto item in ImagesListBox.SelectedItems)
                     CurrentAlbum.RemovePhoto(item);
             }
-
         }
 
         void SaveAppBarButton_Click(object sender, EventArgs e)
         {
             if (!CheckAlbumName())
                 return;
+
+            if (WPCommon.TrialManagement.IsTrialMode && Settings.Albums.Count >= 1 &&
+                !NavigationContext.QueryString.ContainsKey("Album"))
+            {
+                //TODO: andare nella pagina trial
+                MessageBox.Show("TrialMode");
+                return;
+            }
 
             if (CurrentAlbum == null)
                 Settings.Albums.Add(new Album(AlbumNameTextBox.Text, Guid.NewGuid().ToString()));
@@ -161,6 +177,7 @@ namespace NascondiChiappe
         {
             foreach (AlbumPhoto item in ImagesListBox.SelectedItems)
                 CurrentAlbum.MovePhoto(item, (Album)e.AddedItems[0]);
+
             PopupBackground.Visibility = Visibility.Collapsed;
             PopupBorder.Visibility = Visibility.Collapsed;
         }

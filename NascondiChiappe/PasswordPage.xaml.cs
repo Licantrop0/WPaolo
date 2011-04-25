@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using NascondiChiappe.Localization;
 
 namespace NascondiChiappe
 {
@@ -49,7 +50,13 @@ namespace NascondiChiappe
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (Settings.PasswordInserted & !IsChangePasswordMode)
+            if (Settings.IsPasswordInserted & !IsChangePasswordMode)
+                throw new Exception("ForceExit");
+        }
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!Settings.IsPasswordInserted & !IsChangePasswordMode)
                 throw new Exception("ForceExit");
         }
 
@@ -106,7 +113,7 @@ namespace NascondiChiappe
                 }
             }
 
-            Settings.PasswordInserted = true;
+            Settings.IsPasswordInserted = true;
             NavigationService.Navigate(new Uri("/AlbumsPage.xaml", UriKind.Relative));
         }
 

@@ -128,7 +128,7 @@ namespace NascondiChiappe
                 Settings.Albums.Remove(CurrentAlbum);
                 Settings.Albums.Add(new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName));
             }
-            NavigationService.Navigate(new Uri("/AlbumsPage.xaml", UriKind.Relative));
+            NavigationService.GoBack();
         }
 
         void DeleteAlbumAppBarMenuItem_Click(object sender, EventArgs e)

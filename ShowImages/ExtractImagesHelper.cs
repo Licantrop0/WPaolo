@@ -42,7 +42,7 @@ namespace ShowImages
              let iurl = FormatImageUrl(pageUrl, i)
              where !string.IsNullOrEmpty(iurl)
              orderby iurl ascending
-             select new SelectionableImage(iurl))
+             select new SelectionableImage(iurl, string.Empty))
              .ForEach(i => Settings.CurrentImageList.Add(i));
         }
 

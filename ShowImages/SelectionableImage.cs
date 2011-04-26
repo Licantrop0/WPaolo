@@ -19,10 +19,10 @@ namespace ShowImages
         public string Url { get; set; }
         [DataMember]
         public bool IsSelected { get; set; }
+        [DataMember]
+        public string Name { get; set; }
 
-        public string Name { get { return Path.GetFileNameWithoutExtension(Url); } }
-
-        public SelectionableImage(string url)
+        public SelectionableImage(string url, string name)
         {
             Url = url;
             IsSelected = false;

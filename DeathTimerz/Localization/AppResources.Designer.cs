@@ -241,6 +241,15 @@ namespace DeathTimerz.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable background music.
+        /// </summary>
+        public static string DisableMusic {
+            get {
+                return ResourceManager.GetString("DisableMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disclaimer.
         /// </summary>
         public static string Disclaimer {
@@ -301,6 +310,15 @@ namespace DeathTimerz.Localization {
         public static string EditTest {
             get {
                 return ResourceManager.GetString("EditTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable background music.
+        /// </summary>
+        public static string EnableMusic {
+            get {
+                return ResourceManager.GetString("EnableMusic", resourceCulture);
             }
         }
         

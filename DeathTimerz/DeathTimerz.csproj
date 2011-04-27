@@ -154,6 +154,8 @@
     <Resource Include="Questions.xml" />
     <Resource Include="Images\DeathBackground.jpg" />
     <Content Include="AppResLib.dll" />
+    <Resource Include="Images\SoundOFF.png" />
+    <Resource Include="Images\SoundON.png" />
     <Content Include="Music.wma">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

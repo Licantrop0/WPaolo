@@ -29,6 +29,9 @@ namespace DeathTimerz
 
             // Phone-specific initialization
             InitializePhoneApplication();
+
+            if (Settings.MusicEnabled)
+                Settings.AskAndPlayMusic();
         }
 
 
@@ -36,8 +39,6 @@ namespace DeathTimerz
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            Settings.AskAndPlayMusic();
-
             if (!isf.FileExists("Questions.xml"))
             {
                 using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.CreateNew, FileAccess.Write, isf))
@@ -58,7 +59,6 @@ namespace DeathTimerz
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            Settings.AskAndPlayMusic();
             using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
             {
                 Settings.Questions = XDocument.Load(fs);

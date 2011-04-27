@@ -5,6 +5,7 @@ using Microsoft.Phone.Shell;
 using System.Windows;
 using System.ComponentModel;
 using DeathTimerz.Localization;
+using Microsoft.Xna.Framework.Media;
 
 namespace DeathTimerz
 {
@@ -19,6 +20,9 @@ namespace DeathTimerz
                 BirthDayDatePicker.Value = Settings.BirthDay;
                 BirthDayTimePicker.Value = Settings.BirthDay;
             }
+
+            SoundOffImage.Visibility = Settings.MusicEnabled ? Visibility.Visible : Visibility.Collapsed;
+            EnableDisableMusicTextBlock.Text = Settings.MusicEnabled ? AppResources.DisableMusic : AppResources.EnableMusic;
         }
 
         private void SaveAppBarButton_Click(object sender, EventArgs e)
@@ -81,6 +85,19 @@ namespace DeathTimerz
         {
             if(!Settings.BirthDay.HasValue)
                 throw new Exception("ForceExit");
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Settings.MusicEnabled = !Settings.MusicEnabled;
+
+            if (Settings.MusicEnabled)
+                Settings.AskAndPlayMusic();
+            else
+                MediaPlayer.Stop();
+
+            SoundOffImage.Visibility = Settings.MusicEnabled ? Visibility.Visible : Visibility.Collapsed;
+            EnableDisableMusicTextBlock.Text = Settings.MusicEnabled ? AppResources.DisableMusic : AppResources.EnableMusic;
         }
     }
 }

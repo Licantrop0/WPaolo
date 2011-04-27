@@ -14,37 +14,27 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,0,0,20">
-            <TextBlock x:Name="PageTitle" Style="{StaticResource RedChiller}"
+    <StackPanel Margin="12,0,0,20">
+        <TextBlock x:Name="PageTitle" Style="{StaticResource RedChiller}"
                        Text="{Binding Path=LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
                        FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
-        </StackPanel>
-
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock Text="{Binding Path=LocalizedResources.InsertBirthday, Source={StaticResource LocalizedStrings}}"
-                           Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                           Grid.Row="0"/>
-            <toolkit:DatePicker Name="BirthDayDatePicker" Background="Gray"
+        <TextBlock Text="{Binding Path=LocalizedResources.InsertBirthday, Source={StaticResource LocalizedStrings}}"
+                           Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
+        <Image Source="Images\Halloween_cake.jpg" Width="200" />
+        <toolkit:DatePicker Name="BirthDayDatePicker" Background="Gray"
                                 FontFamily="Fonts\Fonts.zip#Chiller"
+                                Foreground="{StaticResource RedGradientBrush}" />
+        <toolkit:TimePicker Name="BirthDayTimePicker" Background="Gray"
                                 Foreground="{StaticResource RedGradientBrush}"
-                                Grid.Row="1"/>
-            <toolkit:TimePicker Name="BirthDayTimePicker" Background="Gray"
-                                Foreground="{StaticResource RedGradientBrush}"
-                                FontFamily="Fonts\Fonts.zip#Chiller"
-                                Grid.Row="2" />            
-            <Image Source="Images\Halloween_cake.jpg" Width="300" Grid.Row="3"/>
+                                FontFamily="Fonts\Fonts.zip#Chiller" />
+        
+        <TextBlock Name="EnableDisableMusicTextBlock" Margin="0,24,0,0"
+                   Text="{Binding Path=LocalizedResources.DisableMusic, Source={StaticResource LocalizedStrings}}"
+                   Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
+        <Grid HorizontalAlignment="Center" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+            <Image Source="Images\SoundON.png" Height="120" />
+            <Image Name="SoundOffImage" Source="Images\SoundOFF.png" Height="120" />
         </Grid>
-    </Grid>
+            
+    </StackPanel>
 </phone:PhoneApplicationPage>

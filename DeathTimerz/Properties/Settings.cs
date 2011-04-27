@@ -64,5 +64,21 @@ namespace DeathTimerz
                 MediaPlayer.Play(BackgroundMusic);
             }
         }
+
+        public static bool MusicEnabled
+        {
+            get
+            {
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("music_enabled"))
+                    IsolatedStorageSettings.ApplicationSettings["music_enabled"] = true;
+                return (bool)IsolatedStorageSettings.ApplicationSettings["music_enabled"];
+            }
+            set
+            {
+                if (MusicEnabled != value)
+                    IsolatedStorageSettings.ApplicationSettings["music_enabled"] = value;
+            }
+        }
+
     }
 }

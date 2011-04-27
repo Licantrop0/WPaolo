@@ -6,6 +6,7 @@ using System.Windows;
 using System.ComponentModel;
 using DeathTimerz.Localization;
 using Microsoft.Xna.Framework.Media;
+using System.Windows.Media;
 
 namespace DeathTimerz
 {
@@ -27,29 +28,30 @@ namespace DeathTimerz
 
         private void SaveAppBarButton_Click(object sender, EventArgs e)
         {
-            var NewDate = new DateTime(
-                BirthDayDatePicker.Value.Value.Year,
-                BirthDayDatePicker.Value.Value.Month,
-                BirthDayDatePicker.Value.Value.Day,
-                BirthDayTimePicker.Value.Value.Hour,
-                BirthDayTimePicker.Value.Value.Minute,
-                BirthDayTimePicker.Value.Value.Second);
-
             if (BirthDayDatePicker.Value >= DateTime.Today)
             {
                 MessageBox.Show(AppResources.ErrorFutureBirthday);
+                return;
             }
+
             //Trick per evitare il bug del DatePicker quando si imposta 1600 come anno
-            else if (BirthDayDatePicker.Value < DateTime.Now.AddYears(-130))
+            if (BirthDayDatePicker.Value < DateTime.Now.AddYears(-130))
             {
                 MessageBox.Show(AppResources.ErrorTooOldBirthday);
                 BirthDayDatePicker.Value = DateTime.Now.AddYears(-50);
+                return;
             }
-            else
-            {
-                Settings.BirthDay = NewDate;
-                NavigationService.GoBack();
-            }
+
+            var NewDate = new DateTime(
+                   BirthDayDatePicker.Value.Value.Year,
+                   BirthDayDatePicker.Value.Value.Month,
+                   BirthDayDatePicker.Value.Value.Day,
+                   BirthDayTimePicker.Value.Value.Hour,
+                   BirthDayTimePicker.Value.Value.Minute,
+                   BirthDayTimePicker.Value.Value.Second);
+
+            Settings.BirthDay = NewDate;
+            NavigationService.GoBack();
         }
 
         private void CancelAppBarButton_Click(object sender, EventArgs e)
@@ -65,7 +67,8 @@ namespace DeathTimerz
         {
             // Set the page's ApplicationBar to a new instance of ApplicationBar
             ApplicationBar = new ApplicationBar();
-
+            ApplicationBar.BackgroundColor = Color.FromArgb(255, 60, 60, 60);
+            ApplicationBar.ForegroundColor = Colors.Red;
             // Create a new button and set the text value to the localized string from AppResources
             var SaveAppBarButton = new ApplicationBarIconButton();
             SaveAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_save.png", UriKind.Relative);
@@ -76,15 +79,9 @@ namespace DeathTimerz
             CancelAppBarButton.IconUri = new Uri("Toolkit.Content\\ApplicationBar.Cancel.png", UriKind.Relative);
             CancelAppBarButton.Text = AppResources.Cancel;
             CancelAppBarButton.Click += new EventHandler(CancelAppBarButton_Click);
+            ApplicationBar.Buttons.Add(CancelAppBarButton);
 
             ApplicationBar.Buttons.Add(SaveAppBarButton);
-            ApplicationBar.Buttons.Add(CancelAppBarButton);
-        }
-
-        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
-        {
-            if(!Settings.BirthDay.HasValue)
-                throw new Exception("ForceExit");
         }
 
         private void Grid_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -92,12 +89,17 @@ namespace DeathTimerz
             Settings.MusicEnabled = !Settings.MusicEnabled;
 
             if (Settings.MusicEnabled)
+            {
                 Settings.AskAndPlayMusic();
+                SoundOffImage.Visibility = Visibility.Visible;
+                EnableDisableMusicTextBlock.Text = AppResources.DisableMusic;
+            }
             else
+            {
                 MediaPlayer.Stop();
-
-            SoundOffImage.Visibility = Settings.MusicEnabled ? Visibility.Visible : Visibility.Collapsed;
-            EnableDisableMusicTextBlock.Text = Settings.MusicEnabled ? AppResources.DisableMusic : AppResources.EnableMusic;
+                SoundOffImage.Visibility =  Visibility.Collapsed;
+                EnableDisableMusicTextBlock.Text = AppResources.EnableMusic;
+            }
         }
     }
 }

@@ -217,4 +217,13 @@ Password recovery is not available.</value>
   <data name="SelectPhotos" xml:space="preserve">
     <value>Please select the Photos first</value>
   </data>
+  <data name="ClickToBuy" xml:space="preserve">
+    <value>Click here to buy it!</value>
+  </data>
+  <data name="DemoInfo" xml:space="preserve">
+    <value>To store more than four photos and organize them in more than one album, you have to buy the full version.</value>
+  </data>
+  <data name="DemoTitle" xml:space="preserve">
+    <value>This is a Demo</value>
+  </data>
 </root>

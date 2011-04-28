@@ -106,6 +106,15 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click here to buy it!.
+        /// </summary>
+        public static string ClickToBuy {
+            get {
+                return ResourceManager.GetString("ClickToBuy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string Confirm {
@@ -174,6 +183,24 @@ namespace NascondiChiappe.Localization {
         public static string DeleteSelectedPhotos {
             get {
                 return ResourceManager.GetString("DeleteSelectedPhotos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To store more than four photos and organize them in more than one album, you have to buy the full version..
+        /// </summary>
+        public static string DemoInfo {
+            get {
+                return ResourceManager.GetString("DemoInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a Demo.
+        /// </summary>
+        public static string DemoTitle {
+            get {
+                return ResourceManager.GetString("DemoTitle", resourceCulture);
             }
         }
         

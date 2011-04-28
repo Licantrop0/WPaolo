@@ -24,6 +24,7 @@
         
         <Style x:Key="TextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
 
         <Style x:Key="HintTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
@@ -35,18 +36,17 @@
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
         </Style>
-        
+
         <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
             <Setter Property="PasswordChar" Value="#" />
-            <Setter Property="Foreground" Value="White" />
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
             <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>
         </Style>
-        
+
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
+            <Setter Property="Margin" Value="12,17,0,28" />
             <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>
-            <Setter Property="Foreground" Value="White" />
         </Style>
 
         <Style x:Key="HyperlinkStyle" TargetType="HyperlinkButton">
@@ -55,8 +55,6 @@
             <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>
             <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
-
-
 
         <Style x:Key="ListBoxItemStyle1" TargetType="ListBoxItem">
             <Setter Property="Template">
@@ -98,7 +96,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

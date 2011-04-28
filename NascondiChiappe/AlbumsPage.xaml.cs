@@ -58,7 +58,7 @@ namespace NascondiChiappe
                 return;
 
             var cameraCaptureTask = new CameraCaptureTask();
-            cameraCaptureTask.Completed += new EventHandler<PhotoResult>(CaptureTask_Completed);
+            cameraCaptureTask.Completed += CaptureTask_Completed;
             try
             {
                 cameraCaptureTask.Show();
@@ -80,12 +80,23 @@ namespace NascondiChiappe
             catch (InvalidOperationException) { };
         }
 
+        void CaptureTask_Completed(object sender, PhotoResult e)
+        {
+            if (e.TaskResult == TaskResult.OK)
+            {
+                var fileName = AlbumPhoto.GetFileNameWithRotation(e.OriginalFileName, e.ChosenPhoto);
+                SelectedAlbum.AddPhoto(new AlbumPhoto(fileName, e.ChosenPhoto));
+                e.ChosenPhoto.Close();
+                ShowHint();
+            }
+        }
+
         private bool IsTrialWithCheck()
         {
-            if (WPCommon.TrialManagement.IsTrialMode && SelectedAlbum.Photos.Count >= 6)
+            if (WPCommon.TrialManagement.IsTrialMode && SelectedAlbum.Photos.Count >= 4)
             {
                 //TODO: andare nella pagina trial
-                MessageBox.Show("trial");
+                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return true;
             }
             return false;
@@ -113,17 +124,6 @@ namespace NascondiChiappe
             MessageBox.Show(AppResources.PhotoCopied);
         }
 
-        void CaptureTask_Completed(object sender, PhotoResult e)
-        {
-            if (e.TaskResult == TaskResult.OK)
-            {
-                var fileName = AlbumPhoto.GetFileNameWithRotation(e.OriginalFileName, e.ChosenPhoto);
-                SelectedAlbum.AddPhoto(new AlbumPhoto(fileName, e.ChosenPhoto));
-                e.ChosenPhoto.Close();
-                ShowHint();
-            }
-        }
-
         private void ShowHint()
         {
             if (SelectedAlbum == null)
@@ -145,8 +145,6 @@ namespace NascondiChiappe
 
         private void InitializeApplicationBar()
         {
-            ApplicationBar = new ApplicationBar();
-
             //var ViewPhotoAppBarButton = new ApplicationBarIconButton();
             //ViewPhotoAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_viewpic.png", UriKind.Relative);
             //ViewPhotoAppBarButton.Text = AppResources.ViewPhoto;

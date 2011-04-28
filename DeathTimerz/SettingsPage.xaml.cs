@@ -92,5 +92,11 @@ namespace DeathTimerz
                 EnableDisableMusicTextBlock.Text = AppResources.EnableMusic;
             }
         }
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
+        {
+            if (Settings.BirthDay == null)
+                throw new Exception("ForceExit");
+        }
     }
 }

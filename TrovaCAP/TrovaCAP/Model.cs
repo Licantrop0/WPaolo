@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 
-
 namespace TrovaCAP
 {
     public class CAPRecord
@@ -32,6 +31,17 @@ namespace TrovaCAP
         {
             ComuneID = id;
             CapRecords = records;
+        }
+    }
+
+    public class ComuneSingoloCAP
+    {
+        public string ComuneID { get; set; }
+        public string Cap { get; set; }
+        public ComuneSingoloCAP(string id, string cap)
+        {
+            ComuneID = id;
+            Cap = cap;
         }
     }
 

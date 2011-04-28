@@ -1,8 +1,9 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using System.Threading;
+using TrovaCAP.Data;
 
 namespace TrovaCAP
 {
@@ -42,23 +43,22 @@ namespace TrovaCAP
 
             // Phone-specific initialization
             InitializePhoneApplication();
+
+            DataLayer.LoadDBAsync();
+            DataLayer.LoadComuniNames();
+            Thread.Sleep(2000);
         }
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            DataLayer.LoadDBAsync();
-            DataLayer.LoadComuniNames();
-            Thread.Sleep(1000);
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            DataLayer.LoadDBAsync();
-            Thread.Sleep(2000);
         }
 
         // Code to execute when the application is deactivated (sent to background)

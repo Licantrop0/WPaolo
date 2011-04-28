@@ -9,9 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon", "..\WPCommon\WPC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB Util", "TrovaCapUtil\DB Util.csproj", "{15FC531C-B46D-45E4-849C-C26406AF60A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteSerializedFile", "WriteSerializedFile\WriteSerializedFile.csproj", "{EAA2DA7D-D067-4495-B07D-0590674AE741}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
@@ -27,6 +29,9 @@ Global
 		SccProjectUniqueName4 = TrovaCapUtil\\DB\u0020Util.csproj
 		SccProjectName4 = TrovaCapUtil
 		SccLocalPath4 = TrovaCapUtil
+		SccProjectUniqueName5 = WriteSerializedFile\\WriteSerializedFile.csproj
+		SccProjectName5 = WriteSerializedFile
+		SccLocalPath5 = WriteSerializedFile
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +86,16 @@ Global
 		{15FC531C-B46D-45E4-849C-C26406AF60A8}.Release|Mixed Platforms.Build.0 = Release|x86
 		{15FC531C-B46D-45E4-849C-C26406AF60A8}.Release|x86.ActiveCfg = Release|x86
 		{15FC531C-B46D-45E4-849C-C26406AF60A8}.Release|x86.Build.0 = Release|x86
+		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Debug|x86.ActiveCfg = Debug|x86
+		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Debug|x86.Build.0 = Debug|x86
+		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Release|Any CPU.ActiveCfg = Release|x86
+		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Release|Mixed Platforms.Build.0 = Release|x86
+		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Release|x86.ActiveCfg = Release|x86
+		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

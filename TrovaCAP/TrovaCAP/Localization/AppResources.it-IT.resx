@@ -122,7 +122,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Bollo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\bollo_it_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
+    <value>..\images\bollo_it_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="CAP" xml:space="preserve">
     <value>CAP</value>
@@ -146,12 +146,6 @@
     <value>Troppi risultati, continua a scrivere...</value>
   </data>
   <data name="TrialMode1" xml:space="preserve">
-    <value>Modalità Demo, clicca qui e</value>
-  </data>
-  <data name="TrialMode2" xml:space="preserve">
-    <value>acquista la versione Full</value>
-  </data>
-  <data name="TrialMode3" xml:space="preserve">
-    <value>per vedere il CAP completo</value>
+    <value>Modalità Demo, clicca qui e acquista la versione Full per vedere il CAP completo</value>
   </data>
 </root>

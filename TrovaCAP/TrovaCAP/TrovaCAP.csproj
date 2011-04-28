@@ -75,15 +75,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppResources.Designer.cs">
+    <Compile Include="Model.cs" />
+    <Compile Include="Converters.cs" />
+    <Compile Include="Data\DataLayer.cs" />
+    <Compile Include="Localization\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="CAPDB.cs" />
-    <Compile Include="Converters.cs" />
-    <Compile Include="DataLayer.cs" />
-    <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Localization\LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -105,15 +105,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppResLib.dll" />
-    <Content Include="Comuni.txt" />
+    <Content Include="Data\Comuni.txt" />
     <Content Include="AppResLib.dll.0407.mui" />
     <Content Include="AppResLib.dll.0409.mui" />
     <Content Include="AppResLib.dll.040c.mui" />
     <Content Include="AppResLib.dll.0410.mui" />
-    <None Include="DB.ser" />
-    <None Include="DB3.ser" />
-    <None Include="images\bollo_en_png" />
-    <None Include="images\bollo_it_png" />
+    <None Include="Data\DB.ser" />
+    <None Include="Data\DB3.ser" />
+    <None Include="Images\bollo_en_png" />
+    <None Include="Images\bollo_it_png" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
@@ -124,30 +124,30 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DB3out.txt" />
-    <None Include="DBout.txt" />
-    <Content Include="images\C_citta.png">
+    <Content Include="Data\DB3out.txt" />
+    <None Include="Data\DBout.txt" />
+    <Content Include="Images\C_citta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\C_civici.png">
+    <Content Include="Images\C_civici.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\C_frazioni.png">
+    <Content Include="Images\C_frazioni.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\C_indirizzo.png">
+    <Content Include="Images\C_indirizzo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\C_preferiti.png">
+    <Content Include="Images\C_preferiti.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\C_province.png">
+    <Content Include="Images\C_province.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sounds\error.wav">
+    <Content Include="Sounds\error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sounds\trovatoCAP.wav">
+    <Content Include="Sounds\trovatoCAP.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SplashScreenImage.jpg" />
@@ -163,13 +163,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\bollo_it.png" />
+    <Resource Include="Images\bollo_it.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AppResources.fr-FR.resx" />
-    <EmbeddedResource Include="AppResources.it-IT.resx" />
-    <EmbeddedResource Include="AppResources.de-DE.resx" />
-    <EmbeddedResource Include="AppResources.resx">
+    <EmbeddedResource Include="Localization\AppResources.fr-FR.resx" />
+    <EmbeddedResource Include="Localization\AppResources.it-IT.resx" />
+    <EmbeddedResource Include="Localization\AppResources.de-DE.resx" />
+    <EmbeddedResource Include="Localization\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>

@@ -8,7 +8,8 @@
 
     <Application.Resources>
 
-        <local:LocalizedStrings xmlns:local="clr-namespace:TrovaCAP" x:Key="LocalizedStrings" />
+        <local:LocalizedStrings x:Key="LocalizedStrings"
+            xmlns:local="clr-namespace:TrovaCAP.Localization" />
 
         <LinearGradientBrush x:Key="BlueGradientBrush"
                              StartPoint="0.5,0" EndPoint="0.5,1">
@@ -29,8 +30,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                            <ContentPresenter x:Name="ContentElement"
-                                              Margin="0,-38,0,-22" />
+                        <ContentPresenter x:Name="ContentElement"
+                                          Margin="0,-38,0,-22" />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -43,7 +44,7 @@
             <Setter Property="Foreground" Value="{StaticResource BlueGradientBrush}"/>
             <Setter Property="FontSize" Value="32"/>
         </Style>
-        
+
         <DataTemplate x:Key="TextWrappingItemTemplate">
             <Border BorderThickness="0,1,0,1" Width="400"
                     BorderBrush="{StaticResource BlueGradientBrush}" >
@@ -51,11 +52,59 @@
             </Border>
         </DataTemplate>
 
+        <Style x:Key="HyperlinkButtonWrappingStyle" TargetType="HyperlinkButton">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="HyperlinkButton">
+                        <Border Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="0.5"
+                                                        Storyboard.TargetProperty="Opacity"
+                                                        Storyboard.TargetName="TextElement" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                    Storyboard.TargetName="TextElement">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneDisabledBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border Background="{TemplateBinding Background}"
+                                    Margin="{StaticResource PhoneHorizontalMargin}"
+                                    Padding="{TemplateBinding Padding}">
+                                <TextBlock x:Name="TextElement"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           Text="{TemplateBinding Content}"
+                                           TextDecorations="Underline"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           TextWrapping="Wrap" />
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
         <wp:XNAAsyncDispatcher />
-        
+
         <shell:PhoneApplicationService 
             Launching="Application_Launching" Closing="Application_Closing" 
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>

@@ -6,29 +6,16 @@ using System.Windows;
 using System.Windows.Resources;
 using Microsoft.Phone.Shell;
 
-namespace TrovaCAP
+namespace TrovaCAP.Data
 {
     static class DataLayer
     {
         public static Comune[] Comuni { get; set; }
-        public static string[] ComuniNames
-        {
-            get
-            {
-                if (!PhoneApplicationService.Current.State.ContainsKey("comuni_names"))
-                    PhoneApplicationService.Current.State.Add("comuni_names", null);
-
-                return (string[])PhoneApplicationService.Current.State["comuni_names"];
-            }
-            set
-            {
-                PhoneApplicationService.Current.State["comuni_names"] = value;
-            }
-        }
+        public static string[] ComuniNames { get; set; }
 
         public static void LoadComuniNames()
         {
-            var resource = Application.GetResourceStream(new Uri("Comuni.txt", UriKind.Relative));
+            var resource = Application.GetResourceStream(new Uri("Data/Comuni.txt", UriKind.Relative));
             using (var tr = new StreamReader(resource.Stream))
             {
                 ComuniNames = tr.ReadToEnd().Split('|');
@@ -38,17 +25,13 @@ namespace TrovaCAP
         public static void LoadDBAsync()
         {
             var bw = new BackgroundWorker();
-            bw.DoWork += (sender1, e1) =>
-            {
-                DataLayer.ReadAndParseDataBase();
-                //DataLayer.Deserialize();
-            };
+            bw.DoWork += new DoWorkEventHandler(bw_DoWork);
             bw.RunWorkerAsync();
         }
 
-        private static void ReadAndParseDataBase()
+        static void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            var resource = Application.GetResourceStream(new Uri("DB3out.txt", UriKind.Relative));
+            var resource = Application.GetResourceStream(new Uri("Data/DB3out.txt", UriKind.Relative));
             using (var tr = new StreamReader(resource.Stream))
             {
                 int count = int.Parse(tr.ReadLine());

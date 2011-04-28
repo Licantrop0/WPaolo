@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Resources;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
-using System.ComponentModel;
-using Microsoft.Xna.Framework.Audio;
-using System.Threading;
-using System.Diagnostics;
 using Microsoft.Phone.Tasks;
+using Microsoft.Xna.Framework.Audio;
+using TrovaCAP.Localization;
+using TrovaCAP.Data;
 
 namespace TrovaCAP
 {
@@ -91,7 +89,7 @@ namespace TrovaCAP
             AcbComuni.IsEnabled = true;
             AcbFrazioni.IsManualDropDownOpen = true;
             if (WPCommon.TrialManagement.IsTrialMode)
-                TrialStackPanel.Visibility = Visibility.Visible;
+                TrialHyperlinkButton.Visibility = Visibility.Visible;
         }
 
         #region utility fuctions
@@ -549,10 +547,6 @@ namespace TrovaCAP
             string[] words = word.Split(' ');
             string[] searchWords = search.Split(' ');
 
-            /*return searchWords.All(s =>           // LINQ: bello ma nel 90% dei casi inutile
-                words.Any(w =>
-                    w.StartsWith(s, StringComparison.OrdinalIgnoreCase)));*/
-
             int wordsCount = words.Count();
             int wordsStartIndex = 0;
 
@@ -594,7 +588,9 @@ namespace TrovaCAP
             e.Cancel = true;
 
             // workaround used to filter double access when item is selected
-            if (_state == Step.scegliViaFinished || _state == Step.SelezionaFrazioneViaFinished || _state == Step.selezionaViaFinished)
+            if (_state == Step.scegliViaFinished ||
+                _state == Step.SelezionaFrazioneViaFinished ||
+                _state == Step.selezionaViaFinished)
                 return;
 
             AcbIndirizzi.Populating -= AcbIndirizzi_Populating;
@@ -609,8 +605,9 @@ namespace TrovaCAP
             {
                 string text = (string)e1.Argument;
 
-                if (!(_acbIndirizziCashedSearchKey.Length > 2 && text.Length > _acbIndirizziCashedSearchKey.Length &&
-                   AcbFilterStartsWithExtended(_acbIndirizziCashedSearchKey, text)))
+                if (!(_acbIndirizziCashedSearchKey.Length > 2 &&
+                    text.Length > _acbIndirizziCashedSearchKey.Length &&
+                    AcbFilterStartsWithExtended(_acbIndirizziCashedSearchKey, text)))
                 {
                     _acbIndirizziCashedItemsSource = _acbIndirizziOriginalItemsSource;
                 }
@@ -646,7 +643,7 @@ namespace TrovaCAP
             bw.RunWorkerAsync(AcbIndirizzi.Text);
         }
 
-        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        private void TrialHyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
             var detailTask = new MarketplaceDetailTask();
             detailTask.Show();

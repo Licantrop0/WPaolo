@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.Phone.Controls;
+using TrovaCAP.Localization;
 
 namespace TrovaCAP
 {

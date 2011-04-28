@@ -1,4 +1,4 @@
-﻿namespace TrovaCAP
+﻿namespace TrovaCAP.Localization
 {
     public class LocalizedStrings
     {

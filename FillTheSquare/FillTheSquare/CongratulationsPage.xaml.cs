@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using WPCommon;
 using Microsoft.Xna.Framework.Audio;
+using FillTheSquare.Localization;
 
 namespace FillTheSquare
 {

@@ -1,5 +1,4 @@
-﻿using FillTheSquare;
-namespace Localization
+﻿namespace FillTheSquare.Localization
 {
     public class LocalizedStrings
     {

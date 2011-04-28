@@ -15,6 +15,34 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
+	<phone:PhoneApplicationPage.Resources>
+		<ControlTemplate x:Key="MusicToggleButtonTemplate" TargetType="ToggleButton">
+			<Grid Background="Transparent">
+				<VisualStateManager.VisualStateGroups>
+					<VisualStateGroup x:Name="CheckStates">
+						<VisualStateGroup.Transitions>
+							<VisualTransition GeneratedDuration="0:0:0.5"/>
+						</VisualStateGroup.Transitions>
+						<VisualState x:Name="Checked">
+							<Storyboard>
+								<DoubleAnimation Duration="0" To="1"
+                                                 Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                 Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
+							</Storyboard>
+						</VisualState>
+						<VisualState x:Name="Unchecked"/>
+						<VisualState x:Name="Indeterminate"/>
+					</VisualStateGroup>
+				</VisualStateManager.VisualStateGroups>
+				<TextBlock TextWrapping="Wrap" Text="Abilitato"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+				<TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Disabilitato"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" Opacity="0"/>
+			</Grid>
+		</ControlTemplate>
+	</phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
         <Grid.RowDefinitions>
@@ -53,9 +81,9 @@
                     Height="100" Width="250"
                     Style="{StaticResource HomeButtonStyle}"
                     d:LayoutRounding="Auto"
-                    Canvas.Left="16" Canvas.Top="208">
+                    Canvas.Left="20" Canvas.Top="166">
                 <Button.RenderTransform>
-                    <RotateTransform Angle="-15" />
+                    <RotateTransform Angle="-10" />
                 </Button.RenderTransform>
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
@@ -67,9 +95,9 @@
             <Button Content="{Binding LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
                     Height="100" Width="280" 
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="194" Canvas.Top="244" >
+                    Canvas.Left="213" Canvas.Top="204" >
                 <Button.RenderTransform>
-                    <RotateTransform Angle="10" />
+                    <RotateTransform Angle="18" />
                 </Button.RenderTransform>
 
                 <Custom:Interaction.Triggers>
@@ -78,15 +106,16 @@
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
             </Button>
+            <ToggleButton Name="MusicToggleButton" Canvas.Left="44" Canvas.Top="321"
+                          Height="141" Width="151" Template="{StaticResource MusicToggleButtonTemplate}" Click="MusicToggleButton_Click" />
 
-
-            <!--<Button Canvas.Left="0" Canvas.Top="362"
+                <!--<Button Canvas.Left="0" Canvas.Top="362"
                     Content="congratulations" Height="71" Width="238" Click="Button_Click" />-->
 
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
                     Height="80" Width="200"
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="0" Canvas.Top="439" >
+                    Canvas.Left="17" Canvas.Top="477" >
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
                         <ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>

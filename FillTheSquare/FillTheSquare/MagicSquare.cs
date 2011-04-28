@@ -14,15 +14,15 @@ namespace FillTheSquare
         /// <summary>
         /// tiene traccia di tutti gli spostamenti
         /// </summary>
-        public Stack<GridPoint> positionHistory;
+        public Stack<GridPoint> PositionHistory { get; set; }
 
         /// <summary>
         /// Dimensione della Griglia
         /// </summary>
         public int Size { get; private set; }
 
-        public bool IsCompleted { get { return positionHistory.Count == Size * Size; } }
-        public bool IsEmpty { get { return positionHistory.Count == 0; } }
+        public bool IsCompleted { get { return PositionHistory.Count == Size * Size; } }
+        public bool IsEmpty { get { return PositionHistory.Count == 0; } }
 
         public MagicSquare(int size)
         {
@@ -32,26 +32,26 @@ namespace FillTheSquare
             Size = size;
 
             Grid = new int[Size, Size];
-            positionHistory = new Stack<GridPoint>();
+            PositionHistory = new Stack<GridPoint>();
         }
 
         public bool? PressButton(GridPoint p)
         {
             //se ho già fatto la prima mossa
-            if (positionHistory.Count != 0)
+            if (PositionHistory.Count != 0)
             {
-                var LastPoint = positionHistory.Peek();
+                var LastPoint = PositionHistory.Peek();
 
                 //voglio cancellare l'ultima mossa
                 if (p == LastPoint)
                 {
                     this.Grid[p.X, p.Y] = 0;
-                    positionHistory.Pop();
+                    PositionHistory.Pop();
                     return null;
                 }
 
                 //Casella già occupata
-                if (positionHistory.Contains(p))
+                if (PositionHistory.Contains(p))
                     return false;
 
                 bool rules =
@@ -68,22 +68,22 @@ namespace FillTheSquare
                 if (!rules) return false;
             }
 
-            positionHistory.Push(p);
-            Grid[p.X, p.Y] = positionHistory.Count;
+            PositionHistory.Push(p);
+            Grid[p.X, p.Y] = PositionHistory.Count;
             return true; //tutto ok
         }
 
         public void Clear()
         {
             Array.Clear(Grid, 0, Grid.Length);
-            positionHistory.Clear();
+            PositionHistory.Clear();
         }
 
         public int GetMovesLeft()
         {
             int MovesLeft = 0;
-            int x = positionHistory.Peek().X;
-            int y = positionHistory.Peek().Y;
+            int x = PositionHistory.Peek().X;
+            int y = PositionHistory.Peek().Y;
 
             if ((x + 3) <= (Size - 1))                          //+3,+0
             {

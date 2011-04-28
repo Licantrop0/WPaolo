@@ -77,15 +77,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppResources.Designer.cs">
+    <Compile Include="CongratulationsPage.xaml.cs">
+      <DependentUpon>CongratulationsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="CongratulationsPage.xaml.cs">
-      <DependentUpon>CongratulationsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Localization\LocalizedStrings.cs" />
     <Compile Include="SquarePage.xaml.cs">
       <DependentUpon>SquarePage.xaml</DependentUpon>
     </Compile>
@@ -144,28 +144,6 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <BlendEmbeddedFont Include="Fonts\SegoeKeycaps.TTF">
-      <IsSystemFont>True</IsSystemFont>
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-      <Characters>
-      </Characters>
-      <Uppercase>True</Uppercase>
-      <Lowercase>True</Lowercase>
-      <Numbers>True</Numbers>
-      <Punctuation>True</Punctuation>
-    </BlendEmbeddedFont>
-    <BlendEmbeddedFont Include="Fonts\Swkeys1.ttf">
-      <IsSystemFont>True</IsSystemFont>
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-      <Characters>
-      </Characters>
-      <Uppercase>True</Uppercase>
-      <Lowercase>True</Lowercase>
-      <Numbers>True</Numbers>
-      <Punctuation>True</Punctuation>
-    </BlendEmbeddedFont>
     <BlendEmbeddedFont Include="Fonts\njnaruto.ttf">
       <IsSystemFont>True</IsSystemFont>
       <All>True</All>
@@ -207,11 +185,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AppResources.fr-FR.resx" />
-    <EmbeddedResource Include="AppResources.it-IT.resx" />
-    <EmbeddedResource Include="AppResources.resx">
+    <EmbeddedResource Include="Localization\AppResources.fr-FR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\AppResources.it-IT.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

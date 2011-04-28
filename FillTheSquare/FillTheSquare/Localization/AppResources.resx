@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Phil The Square</value>
+  </data>
   <data name="BuyNow" xml:space="preserve">
     <value>Buy this App now</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="DontMakePhilSad" xml:space="preserve">
     <value>Please, don't make Phil sad!</value>
+  </data>
+  <data name="PleaseInsertName" xml:space="preserve">
+    <value>Please insert your Name</value>
   </data>
   <data name="Easy" xml:space="preserve">
     <value>Easy</value>
@@ -166,9 +172,6 @@
   </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Do you want to stop the current music and play the background music of this app?</value>
-  </data>
-  <data name="PleaseInsertName" xml:space="preserve">
-    <value>Please insert your Name</value>
   </data>
   <data name="Records" xml:space="preserve">
     <value>Records</value>

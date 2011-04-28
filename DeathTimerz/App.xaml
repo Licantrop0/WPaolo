@@ -56,8 +56,7 @@
 			<Setter Property="Height" Value="110" />
 			<Setter Property="Background" Value="Transparent"/>
 			<Setter Property="Content" Value="Button"/>
-		</Style>
-		
+		</Style>		
 	</Application.Resources>
 
 	<Application.ApplicationLifetimeObjects>

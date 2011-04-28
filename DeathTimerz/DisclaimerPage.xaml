@@ -32,7 +32,8 @@
             <TextBlock Text="{Binding Path=LocalizedResources.DisclaimerText, Source={StaticResource LocalizedStrings}}"
                        Margin="9,-7,0,0" Style="{StaticResource RedChillerTest}"
                        TextWrapping="Wrap" TextAlignment="Center"/>
-            <Button Name="OkButton" Content="Ok" VerticalAlignment="Bottom" Click="OkButton_Click" Style="{StaticResource RedChillerButton}" />
+            <Button Name="OkButton" Content="Ok" VerticalAlignment="Bottom" Margin="0,48"
+                    Click="OkButton_Click" Style="{StaticResource RedChillerButton}" />
         </Grid>
     </Grid>
 

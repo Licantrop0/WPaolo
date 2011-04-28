@@ -22,7 +22,7 @@ namespace DeathTimerz
                 BirthDayTimePicker.Value = Settings.BirthDay;
             }
 
-            SoundOffImage.Visibility = Settings.MusicEnabled ? Visibility.Visible : Visibility.Collapsed;
+            MusicToggleButton.IsChecked = Settings.MusicEnabled;
             EnableDisableMusicTextBlock.Text = Settings.MusicEnabled ? AppResources.DisableMusic : AppResources.EnableMusic;
         }
 
@@ -62,42 +62,33 @@ namespace DeathTimerz
                 MessageBox.Show(AppResources.ErrorNoBirthay);
         }
 
-        // Helper function to build a localized ApplicationBar
         private void BuildApplicationBar()
         {
-            // Set the page's ApplicationBar to a new instance of ApplicationBar
-            ApplicationBar = new ApplicationBar();
-            ApplicationBar.BackgroundColor = Color.FromArgb(255, 60, 60, 60);
-            ApplicationBar.ForegroundColor = Colors.Red;
-            // Create a new button and set the text value to the localized string from AppResources
             var SaveAppBarButton = new ApplicationBarIconButton();
             SaveAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_save.png", UriKind.Relative);
             SaveAppBarButton.Text = AppResources.Save;
             SaveAppBarButton.Click += new EventHandler(SaveAppBarButton_Click);
+            ApplicationBar.Buttons.Add(SaveAppBarButton);
 
             var CancelAppBarButton = new ApplicationBarIconButton();
             CancelAppBarButton.IconUri = new Uri("Toolkit.Content\\ApplicationBar.Cancel.png", UriKind.Relative);
             CancelAppBarButton.Text = AppResources.Cancel;
             CancelAppBarButton.Click += new EventHandler(CancelAppBarButton_Click);
             ApplicationBar.Buttons.Add(CancelAppBarButton);
-
-            ApplicationBar.Buttons.Add(SaveAppBarButton);
         }
 
-        private void Grid_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void MusicToggleButton_Click(object sender, RoutedEventArgs e)
         {
             Settings.MusicEnabled = !Settings.MusicEnabled;
 
             if (Settings.MusicEnabled)
             {
                 Settings.AskAndPlayMusic();
-                SoundOffImage.Visibility = Visibility.Visible;
                 EnableDisableMusicTextBlock.Text = AppResources.DisableMusic;
             }
             else
             {
                 MediaPlayer.Stop();
-                SoundOffImage.Visibility =  Visibility.Collapsed;
                 EnableDisableMusicTextBlock.Text = AppResources.EnableMusic;
             }
         }

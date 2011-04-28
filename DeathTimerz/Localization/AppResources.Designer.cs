@@ -260,7 +260,7 @@ namespace DeathTimerz.Localization {
         
         /// <summary>
         ///   Looks up a localized string similar to Death Timerz should be intended only for fun, no medical or statistical data are used to calculate the time of your death.
-        ///Anyway... touch your balls!.
+        ///Anyway... knock on wood!.
         /// </summary>
         public static string DisclaimerText {
             get {

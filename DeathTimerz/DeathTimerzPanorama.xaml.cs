@@ -6,6 +6,7 @@ using System.Windows.Threading;
 using DeathTimerz.Localization;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Windows.Media;
 
 namespace DeathTimerz
 {
@@ -22,20 +23,26 @@ namespace DeathTimerz
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Settings.BirthDay.HasValue)
-            {
-                var DaysToBirthDay = ExtensionMethods.GetNextBirthday(Settings.BirthDay.Value).Subtract(DateTime.Now).Days;
-                DaysToBirthdayTextBlock.Text = DaysToBirthDay.ToString() + " " +
-                    (DaysToBirthDay == 1 ? AppResources.Day : AppResources.Days);
-            }
-            else
+            if (!Settings.BirthDay.HasValue)
             {
                 NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
                 return;
             }
 
+            var DaysToBirthDay = ExtensionMethods.GetNextBirthday(Settings.BirthDay.Value).Subtract(DateTime.Now).Days;
+            DaysToBirthdayTextBlock.Text = DaysToBirthDay.ToString() + " " +
+                (DaysToBirthDay == 1 ? AppResources.Day : AppResources.Days);
+
+
             dt_Tick(sender, EventArgs.Empty);
 
+            InizializeAd();
+        }
+
+        private void InizializeAd()
+        {
+            GoogleAd.BeginUpdates();
+            GoogleAd.Birthday = Settings.BirthDay;
             var Gender = (from q in Settings.Questions.Descendants("Question")
                           where q.Attribute("Name").Value == "MaleOrFemale"
                           from ans in q.Elements("Answer")
@@ -46,12 +53,8 @@ namespace DeathTimerz
                 GoogleAd.Gender = Google.AdMob.Ads.WindowsPhone7.Gender.Male;
             else if (Gender == "Female")
                 GoogleAd.Gender = Google.AdMob.Ads.WindowsPhone7.Gender.Female;
-            else
-                GoogleAd.Gender = Google.AdMob.Ads.WindowsPhone7.Gender.Unknown;
-
-            GoogleAd.Birthday = Settings.BirthDay;
+            GoogleAd.EndUpdates();
         }
-
 
         private void InitializeTimer()
         {
@@ -59,7 +62,6 @@ namespace DeathTimerz
             dt.Tick += dt_Tick;
             dt.Start();
         }
-
 
         void dt_Tick(object sender, EventArgs e)
         {
@@ -78,8 +80,8 @@ namespace DeathTimerz
                 Months.ToString("0") + " " + (Months == 1 ? AppResources.Month : AppResources.Months) + "\n" +
                 Days.ToString("0") + " " + (Days == 1 ? AppResources.Day : AppResources.Days) + "\n" +
                 Age.Hours.ToString("0") + " " + (Age.Hours == 1 ? AppResources.Hour : AppResources.Hours) + "\n" +
-                Age.Minutes.ToString("0") + " " + (Age.Minutes == 1 ? AppResources.Minute : AppResources.Minutes);// + "\n" +
-            //Age.Seconds.ToString("0") + " " + (Age.Seconds == 1 ? AppResources.Second : AppResources.Seconds);
+                Age.Minutes.ToString("0") + " " + (Age.Minutes == 1 ? AppResources.Minute : AppResources.Minutes);
+            // + "\n" + Age.Seconds.ToString("0") + " " + (Age.Seconds == 1 ? AppResources.Second : AppResources.Seconds);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -108,12 +110,6 @@ namespace DeathTimerz
 
         }
 
-        private void TakeTestButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/TestPage.xaml", UriKind.Relative));
-        }
-
-
         private void MainPanorama_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             switch (MainPanorama.SelectedIndex)
@@ -136,7 +132,6 @@ namespace DeathTimerz
 
         private void InitializeApplicationBar()
         {
-            ApplicationBar = new ApplicationBar();
             ApplicationBar.Buttons.Add(CreateSettingsAppBarButton());
             ApplicationBar.MenuItems.Add(CreateAboutAppBarMenuItem());
         }

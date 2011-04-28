@@ -72,14 +72,11 @@ namespace NascondiChiappe
 
         private void InitializeApplicationBar()
         {
-            ApplicationBar = new ApplicationBar();
-
             var SaveAppBarButton = new ApplicationBarIconButton();
             SaveAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_save.png", UriKind.Relative);
             SaveAppBarButton.Text = AppResources.Save;
             SaveAppBarButton.Click += new EventHandler(SaveAppBarButton_Click);
             ApplicationBar.Buttons.Add(SaveAppBarButton);
-
         }
 
         void MovePhotosAppBarButton_Click(object sender, EventArgs e)
@@ -113,11 +110,12 @@ namespace NascondiChiappe
             if (!CheckAlbumName())
                 return;
 
-            if (WPCommon.TrialManagement.IsTrialMode && Settings.Albums.Count >= 1 &&
+            if (WPCommon.TrialManagement.IsTrialMode &&
+                Settings.Albums.Count >= 1 &&
                 !NavigationContext.QueryString.ContainsKey("Album"))
             {
                 //TODO: andare nella pagina trial
-                MessageBox.Show("TrialMode");
+                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return;
             }
 

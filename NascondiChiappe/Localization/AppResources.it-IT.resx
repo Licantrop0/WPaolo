@@ -216,4 +216,13 @@
   <data name="MoveSelectedPhotos" xml:space="preserve">
     <value>Sposta le foto selezionate</value>
   </data>
+  <data name="ClickToBuy" xml:space="preserve">
+    <value>Clicca qui per acquistarla!</value>
+  </data>
+  <data name="DemoInfo" xml:space="preserve">
+    <value>Per registrare più di quattro foto ed organizzarle in più di un album, devi acquistare la versione completa.</value>
+  </data>
+  <data name="DemoTitle" xml:space="preserve">
+    <value>Questa è una Demo</value>
+  </data>
 </root>

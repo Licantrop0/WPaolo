@@ -62,8 +62,6 @@ namespace NascondiChiappe
 
         private void InitializeApplicationBar()
         {
-            ApplicationBar = new ApplicationBar();
-
             var OkAppBarButton = new ApplicationBarIconButton();
             OkAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_check.png", UriKind.Relative);
             OkAppBarButton.Text = AppResources.Ok;

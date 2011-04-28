@@ -71,19 +71,20 @@ namespace NascondiChiappe
                 throw new ArgumentNullException("photo");
 
             var fileName = Path.GetFileNameWithoutExtension(originalFileName);
+
             switch (ExifReader.ReadJpeg(photo, fileName).Orientation)
             {
                 case ExifOrientation.TopRight:
-                    fileName += '1';
+                    fileName = fileName.Remove(fileName.Length - 1) + '1';
                     break;
                 case ExifOrientation.BottomRight:
-                    fileName += '2';
+                    fileName = fileName.Remove(fileName.Length - 1) + '2';
                     break;
                 case ExifOrientation.BottomLeft:
-                    fileName += '3';
+                    fileName = fileName.Remove(fileName.Length - 1) + '3';
                     break;
                 default:
-                    fileName += '0';
+                    fileName = fileName.Remove(fileName.Length - 1) + '0';
                     break;
             }
             return fileName;

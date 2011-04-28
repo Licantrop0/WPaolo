@@ -13,7 +13,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
+    SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False" >
 
     <Grid Background="{StaticResource BackgroundImage}">
@@ -52,7 +52,7 @@
                              SelectionChanged="ListBox_SelectionChanged">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <toolkit:WrapPanel ItemWidth="200" ItemHeight="200"/>
+                                <toolkit:WrapPanel ItemWidth="225" ItemHeight="225"/>
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                     </ListBox>
@@ -64,5 +64,9 @@
                    Style="{StaticResource HintTextBlockStyle}" />
         <TextBlock Name="InfoTextBlock" Style="{StaticResource TextBlockStyle}" VerticalAlignment="Bottom" />
     </Grid>
-
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
+                              BackgroundColor="#BF433544"
+                              ForegroundColor="Black" Opacity="0.99" />
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

@@ -57,6 +57,7 @@
     <Reference Include="Google.AdMob.Ads.WindowsPhone7">
       <HintPath>..\WPCommon\ADMob SDK\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
@@ -67,6 +68,7 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -149,13 +151,13 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\halloween_cake.jpg" />
     <Resource Include="Images\blood.png" />
     <Resource Include="Questions.xml" />
     <Resource Include="Images\DeathBackground.jpg" />
     <Content Include="AppResLib.dll" />
     <Resource Include="Images\SoundOFF.png" />
     <Resource Include="Images\SoundON.png" />
+    <Resource Include="Images\halloween_cake.png" />
     <Content Include="Music.wma">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

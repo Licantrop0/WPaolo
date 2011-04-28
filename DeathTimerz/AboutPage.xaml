@@ -16,7 +16,7 @@
                            MinFontSize="55"
                            Foreground="{StaticResource RedGradientBrush}" >
         <WPCommon:AboutControl.BackgroundStackPanel>
-            <ImageBrush ImageSource="/DeathTimerz;component/Images/DeathBackground.jpg"
+            <ImageBrush ImageSource="Images/DeathBackground.jpg"
                         Stretch="None" AlignmentX="Center" />
         </WPCommon:AboutControl.BackgroundStackPanel>
     </WPCommon:AboutControl>

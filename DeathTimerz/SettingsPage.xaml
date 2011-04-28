@@ -12,8 +12,41 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
-    
-    <Grid Background="Black">
+    <phone:PhoneApplicationPage.Resources>
+        <ControlTemplate x:Key="MusicToggleButtonTemplate" TargetType="ToggleButton">
+            <Grid>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CheckStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition GeneratedDuration="0:0:0.5">
+                                <VisualTransition.GeneratedEasingFunction>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </VisualTransition.GeneratedEasingFunction>
+                            </VisualTransition>
+                        </VisualStateGroup.Transitions>
+                        <VisualState x:Name="Checked">
+                            <Storyboard>
+                                <DoubleAnimation Duration="0" To="1"
+                                                 Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                 Storyboard.TargetName="image" d:IsOptimized="True"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Unchecked"/>
+                        <VisualState x:Name="Indeterminate"/>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Image Source="Images/SoundON.png" Stretch="Fill" Width="120"/>
+                <Image x:Name="image" Source="Images/SoundOFF.png"
+                       Opacity="0" Stretch="Fill" Width="120"/>
+            </Grid>
+        </ControlTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/DeathBackground.jpg"
+                        Stretch="None" AlignmentX="Center" />
+        </Grid.Background>
 
         <StackPanel Margin="12,0,0,0">
             <TextBlock x:Name="PageTitle" Style="{StaticResource RedChiller}"
@@ -21,7 +54,7 @@
                        FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
             <TextBlock Text="{Binding Path=LocalizedResources.InsertBirthday, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
-            <Image Source="Images\Halloween_cake.jpg" Width="200" />
+            <Image Source="Images\Halloween_cake.png" Width="200" HorizontalAlignment="Left" Margin="12,0" />
             <toolkit:DatePicker Name="BirthDayDatePicker" Background="Gray"
                                 FontFamily="Fonts\Fonts.zip#Chiller"
                                 Foreground="{StaticResource RedGradientBrush}" />
@@ -32,10 +65,15 @@
             <TextBlock Name="EnableDisableMusicTextBlock" Margin="0,24,0,0"
                    Text="{Binding Path=LocalizedResources.DisableMusic, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
-            <Grid HorizontalAlignment="Center" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-                <Image Source="Images\SoundON.png" Height="120" />
-                <Image Name="SoundOffImage" Source="Images\SoundOFF.png" Height="120" />
-            </Grid>
+
+            <ToggleButton Name="MusicToggleButton" Margin="12,0" HorizontalAlignment="Left"
+                          Template="{StaticResource MusicToggleButtonTemplate}"
+                          Click="MusicToggleButton_Click" />
         </StackPanel>
     </Grid>
+    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
+                              BackgroundColor="#B4171717" ForegroundColor="#FFBE0000"/>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

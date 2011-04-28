@@ -186,13 +186,10 @@ namespace DeathTimerz
 
         private void BuildApplicationBar()
         {
-            ApplicationBar = new ApplicationBar();
-
             var OkAppBarButton = new ApplicationBarIconButton();
             OkAppBarButton.IconUri = new Uri("Toolkit.Content\\ApplicationBar.Check.png", UriKind.Relative);
             OkAppBarButton.Text = AppResources.Ok;
             OkAppBarButton.Click += new EventHandler(OkAppBarButton_Click);
-
             ApplicationBar.Buttons.Add(OkAppBarButton);
         }
 

@@ -10,13 +10,16 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Background="Black"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
     <Grid Background="Transparent">
-        <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <ScrollViewer>
             <StackPanel Name="TestStackPanel" />
         </ScrollViewer>
     </Grid>
-
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
+                              BackgroundColor="#B4171717" ForegroundColor="#FFBE0000"/>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

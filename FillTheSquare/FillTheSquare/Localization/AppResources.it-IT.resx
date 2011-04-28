@@ -118,77 +118,78 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>Infos</value>
+    <value>About</value>
   </data>
   <data name="BuyNow" xml:space="preserve">
-    <value>Acheter l'app!</value>
+    <value>acquista questa app!</value>
   </data>
   <data name="Congratulations" xml:space="preserve">
-    <value>Bravo!</value>
+    <value>Congratulazioni!</value>
   </data>
   <data name="Date" xml:space="preserve">
-    <value>Date</value>
+    <value>Data</value>
+  </data>
+  <data name="PleaseInsertName" xml:space="preserve">
+    <value>Per favore inserisci il tuo nome</value>
   </data>
   <data name="DontMakePhilSad" xml:space="preserve">
-    <value>Ou Phil sera triste!</value>
+    <value>Per favore, non rendere Phil triste!</value>
   </data>
   <data name="Easy" xml:space="preserve">
     <value>Facile</value>
   </data>
   <data name="GetOtherApps" xml:space="preserve">
-    <value>D'autres apps de WPME</value>
+    <value>Scopri altre App di WPME</value>
   </data>
   <data name="Hard" xml:space="preserve">
     <value>Difficile</value>
   </data>
   <data name="InsertName" xml:space="preserve">
-    <value>Votre nom:</value>
+    <value>Inserisci il tuo Nome:</value>
   </data>
   <data name="Instructions" xml:space="preserve">
-    <value>Instructions</value>
+    <value>Istruzioni</value>
   </data>
   <data name="InstructionsText1" xml:space="preserve">
-    <value>Remplir le carre' avec tous les numeros</value>
+    <value>Riempi il quadrato con i numeri in sequenza</value>
   </data>
   <data name="InstructionsText2" xml:space="preserve">
-    <value>Actions autorisees:
-• A' gauche, droite, but et dessus, en se deplacant de 3 cases
-• En diagonale, en se deplacant de 2 cases</value>
+    <value>Mosse permesse:
+• A sinistra, destra, su, giu'
+   spostandoti di 3 caselle
+• In diagonale spostandoti di 2 caselle</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Nom</value>
+    <value>Nome</value>
   </data>
   <data name="NoMoreMoves" xml:space="preserve">
-    <value>Il n'y a pas mouvements disponibles</value>
+    <value>Non ci sono piu' mosse disponibili</value>
   </data>
   <data name="PhilWillBeHappy" xml:space="preserve">
-    <value>et Phil sera toujour joyeux et vous pouvez jouer sans limitations!</value>
+    <value>e Phil sara' sempre felice e tu potrai giocare senza limiti!</value>
   </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
-    <value>Voulez vous couper la musique et utiliser celle de l’app?</value>
-  </data>
-  <data name="PleaseInsertName" xml:space="preserve">
-    <value>Votre nom, s'il vous plait:</value>
+    <value>Vuoi interrompere la musica corrente per sentire quella dell'applicazione?</value>
   </data>
   <data name="Records" xml:space="preserve">
-    <value>Records</value>
+    <value>Record</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Nouveau</value>
+    <value>Reset</value>
   </data>
   <data name="Seconds" xml:space="preserve">
-    <value>Secondes</value>
+    <value>Secondi</value>
   </data>
   <data name="SeeRecords" xml:space="preserve">
-    <value>Voir les records</value>
+    <value>Guarda i Record</value>
   </data>
   <data name="Size" xml:space="preserve">
-    <value>Type</value>
+    <value>Tipo</value>
   </data>
   <data name="ThisIsADemo" xml:space="preserve">
-    <value>Ooops! Demo limite'..</value>
+    <value>Ooops! Questa e' una Demo!</value>
   </data>
   <data name="Time" xml:space="preserve">
-    <value>Temp</value>
+    <value>Tempo</value>
   </data>
 </root>

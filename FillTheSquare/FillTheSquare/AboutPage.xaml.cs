@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.Phone.Controls;
+using FillTheSquare.Localization;
 
 namespace FillTheSquare
 {

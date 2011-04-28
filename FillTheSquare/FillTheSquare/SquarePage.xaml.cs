@@ -8,8 +8,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using WPCommon;
-using Google.AdMob.Ads.WindowsPhone7;
-using Google.AdMob.Ads.WindowsPhone7.WPF;
+using FillTheSquare.Localization;
 
 namespace FillTheSquare
 {
@@ -66,6 +65,15 @@ namespace FillTheSquare
             sw.Start();
         }
 
+        private void InitializeAd()
+        {
+            if (AdPlaceHolder.Children.Count == 1)
+                return;
+
+            var GoogleAd = new Google.AdMob.Ads.WindowsPhone7.WPF.BannerAd() { AdUnitID = "a14da010647089d" };
+            AdPlaceHolder.Children.Add(GoogleAd);
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var currentBorder = (Border)sender;
@@ -77,7 +85,7 @@ namespace FillTheSquare
                 case true: //caso creazione andato a buon fine
                     currentBorder.Child = new TextBlock()
                     {
-                        Text = Square.positionHistory.Count.ToString(),
+                        Text = Square.PositionHistory.Count.ToString(),
                         Style = (Style)Application.Current.Resources["SquareTitleStyle"],
                         FontSize = 28
                     };
@@ -122,7 +130,7 @@ namespace FillTheSquare
                     //Evidenzio la casella sull'ultimo premuto se la griglia non è vuota
                     if (!Square.IsEmpty)
                     {
-                        var lastValue = Square.positionHistory.Peek();
+                        var lastValue = Square.PositionHistory.Peek();
                         var lastButton = MagicGrid.Children
                             .Where(b => b.GetRow() == lastValue.Y)
                             .Where(b => b.GetColumn() == lastValue.X).First();
@@ -134,6 +142,9 @@ namespace FillTheSquare
                     Settings.UndoSound.Play();
                     break;
             }
+
+            if (Square.PositionHistory.Count == 1)
+                InitializeAd();
         }
 
 

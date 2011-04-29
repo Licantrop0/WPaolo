@@ -1,0 +1,74 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="FillTheSquare.RecordsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"  Margin="12" >
+            <Border BorderBrush="Black" BorderThickness="5" Margin="8,8,195,8" Background="Blue" CornerRadius="8"/>
+            <TextBlock Text="Records" FontSize="48" HorizontalAlignment="Left"
+                       Style="{StaticResource SquareTitleStyle}" Margin="28,29,0,29" VerticalAlignment="Stretch" d:LayoutOverrides="Height" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="Lime" />
+            <Image Source="Phil\bravorecords.png" HorizontalAlignment="Right"
+                   Stretch="Uniform" Height="100" Margin="12,0" />
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="12,0" Background="Blue">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <!--The sum must be 456-->
+                <ColumnDefinition Width="110" />
+                <ColumnDefinition Width="206" />
+                <ColumnDefinition Width="140" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="{Binding Path=LocalizedResources.Size, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" FontSize="32" />
+            <TextBlock Text="{Binding Path=LocalizedResources.Name, Source={StaticResource LocalizedStrings}}" Grid.Column="1" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" FontSize="32"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.Time, Source={StaticResource LocalizedStrings}}" Grid.Column="2" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" FontSize="32"/>
+
+            <ListBox Name="RecordListBox" FontSize="20" 
+                     Grid.Row="1" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="3,6,3,3" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" >
+                <ListBox.Resources>
+                    <wp:TimeSpanTextConverter x:Key="TimeSpanTextConverter" xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon" />
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,0,0,3">
+                            <Grid.ColumnDefinitions>
+                                <!--The sum must be 456-->
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="206" />
+                                <ColumnDefinition Width="140" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Path=Size}" Grid.Column="0" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Path=Name}" Grid.Column="1" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Path=ElapsedTime, Converter={StaticResource TimeSpanTextConverter}}" Grid.Column="2" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Border BorderBrush="Black" BorderThickness="6,6,3,6" Grid.RowSpan="2"/>
+            <Border BorderBrush="Black" BorderThickness="3,6" Grid.Column="1" Margin="0,0,-3,0" Grid.RowSpan="2"/>
+            <Border BorderBrush="Black" BorderThickness="3,6,6,6" Grid.Column="2" Margin="3,0,0,0" Grid.RowSpan="2"/>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

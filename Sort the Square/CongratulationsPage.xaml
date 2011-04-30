@@ -1,0 +1,100 @@
+﻿<phone:PhoneApplicationPage
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:im="clr-namespace:Microsoft.Expression.Interactivity.Media;assembly=Microsoft.Expression.Interactions" 
+	x:Class="SortTheSquare.CongratulationsPage"
+	SupportedOrientations="Portrait" Orientation="Portrait"
+	mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+	shell:SystemTray.IsVisible="False"
+    BackKeyPress="PhoneApplicationPage_BackKeyPress" Loaded="PhoneApplicationPage_Loaded">
+
+    <phone:PhoneApplicationPage.Resources>
+        <Storyboard x:Name="BouncingPhilStoryboard" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="BouncingPhilImage">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="62"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-16"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="327"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="BouncingPhilImage">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="329"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="434"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="339"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="BouncingPhilImage">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="720"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <wp:TimeSpanTextConverter x:Key="TimeSpanTextConverter" xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon" />
+    </phone:PhoneApplicationPage.Resources>
+
+	<Custom:Interaction.Triggers>
+		<Custom:EventTrigger EventName="Loaded">
+			<im:ControlStoryboardAction Storyboard="{StaticResource BouncingPhilStoryboard}"/>
+		</Custom:EventTrigger>
+	</Custom:Interaction.Triggers>
+
+    <Grid Background="{StaticResource BackgroundImageBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Row="0" Margin="0,24">
+            <Border BorderBrush="Black" BorderThickness="5" Height="69" Margin="8,0" Background="Blue" CornerRadius="8">
+            	<TextBlock Text="{Binding LocalizedResources.Congratulations, Source={StaticResource LocalizedStrings}}"
+            		Style="{StaticResource SquareTitleStyle}" FontSize="37.333" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Width="440" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="3" Height="56" Background="Blue" CornerRadius="5" Margin="8,30,199,0">
+            	<TextBlock Text="{Binding LocalizedResources.InsertName, Source={StaticResource LocalizedStrings}}"
+            		Style="{StaticResource SquareTitleStyle}" FontSize="24"
+            		HorizontalAlignment="Left" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Height="56" />
+            </Border>
+            <TextBox x:Name="NameTextBox" KeyDown="NameTextBox_KeyDown"
+                     FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"
+                     FontSize="30" Height="70" Background="#BF0000FF" Foreground="Lime" BorderBrush="{x:Null}" />
+        </StackPanel>
+
+        <Canvas x:Name="ContentPanel" Grid.Row="1" >
+            <Border BorderBrush="Black" BorderThickness="5" Height="161" Width="464" Background="Blue" CornerRadius="8" Canvas.Left="8"/>
+            <Image x:Name="BouncingPhilImage" Source="Phil\bravorecords.png"
+				   IsHitTestVisible="False" Width="200"
+				   RenderTransformOrigin="0,0" Canvas.Left="133" >
+                <Image.RenderTransform>
+                    <CompositeTransform/>
+                </Image.RenderTransform>
+            </Image>
+            
+            <StackPanel Canvas.Left="12" >
+                <StackPanel Orientation="Horizontal" Margin="0,12">
+                    <TextBlock Text="{Binding LocalizedResources.Size, Source={StaticResource LocalizedStrings}}"
+					   Style="{StaticResource SquareHeadingStyle}" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" />
+                    <TextBlock Text=": " Style="{StaticResource SquareHeadingStyle}" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" />
+                    <TextBlock Text="{Binding Size}" Style="{StaticResource SquareHeadingStyle}" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding LocalizedResources.Time, Source={StaticResource LocalizedStrings}}"
+					   Style="{StaticResource SquareHeadingStyle}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="Lime" />
+                    <TextBlock Text=": " Style="{StaticResource SquareHeadingStyle}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="Lime" />
+                    <TextBlock Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanTextConverter}}" Style="{StaticResource SquareHeadingStyle}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="Lime" />
+                </StackPanel>
+            </StackPanel>
+
+            <Button Content="{Binding LocalizedResources.SeeRecords, Source={StaticResource LocalizedStrings}}"
+					Click="GoToRecords_Click" 
+					Style="{StaticResource HomeButtonStyle}"
+					Height="100" Width="300"
+					Canvas.Left="90" Canvas.Top="433" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Background="Blue" BorderBrush="Black" BorderThickness="3" />
+        </Canvas>
+    </Grid>
+</phone:PhoneApplicationPage>

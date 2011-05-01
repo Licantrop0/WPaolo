@@ -1,11 +1,8 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Microsoft.Xna.Framework.Media;
 using WPCommon;
-using FillTheSquare.Localization;
 
 namespace FillTheSquare
 {
@@ -45,8 +42,6 @@ namespace FillTheSquare
             InitializePhoneApplication();
 
             NonLinearNavigationService.Instance.Initialize(RootFrame);
-
-            Settings.AskAndPlayMusic();
         }
 
 

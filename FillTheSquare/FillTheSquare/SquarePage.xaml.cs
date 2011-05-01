@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using WPCommon;
 using FillTheSquare.Localization;
+using FillTheSquare.Sounds;
 
 namespace FillTheSquare
 {
@@ -55,23 +56,14 @@ namespace FillTheSquare
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromSeconds(1);
             dt.Tick += (sender, e) =>
-                {
-                    TimeElapsedTextBlock.Text = string.Format("{0}: {1:0}",
-                        AppResources.Seconds, sw.Elapsed.TotalSeconds);
-                };
+            {
+                TimeElapsedTextBlock.Text = string.Format("{0}: {1:0}",
+                    AppResources.Seconds, sw.Elapsed.TotalSeconds);
+            };
             dt.Start();
 
             sw = new Stopwatch();
             sw.Start();
-        }
-
-        private void InitializeAd()
-        {
-            if (AdPlaceHolder.Children.Count == 1)
-                return;
-
-            var GoogleAd = new Google.AdMob.Ads.WindowsPhone7.WPF.BannerAd() { AdUnitID = "a14da010647089d" };
-            AdPlaceHolder.Children.Add(GoogleAd);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -105,13 +97,13 @@ namespace FillTheSquare
 
                     if (Square.GetMovesLeft() == 0)  //non ci sono più mosse disponibili
                     {
-                        Settings.OhNoSound.Play();
+                        SoundManager.OhNoSound.Play();
                         PhilPiangeAppear.Begin();
                         NoMoreMovesTextBlock.Visibility = Visibility.Visible;
                     }
                     else
                     {
-                        Settings.MoveSound.Play();
+                        SoundManager.MoveSound.Play();
                     }
                     break;
 
@@ -119,7 +111,7 @@ namespace FillTheSquare
                     RedFlash.Stop();
                     Storyboard.SetTarget(RedFlash, currentBorder);
                     RedFlash.Begin();
-                    Settings.ErrorSound.Play();
+                    SoundManager.ErrorSound.Play();
                     break;
 
                 case null: //caso di cancellazione
@@ -139,7 +131,7 @@ namespace FillTheSquare
                         Storyboard.SetTarget(SetFocus, lastButton);
                         SetFocus.Begin();
                     }
-                    Settings.UndoSound.Play();
+                    SoundManager.UndoSound.Play();
                     break;
             }
 
@@ -147,10 +139,18 @@ namespace FillTheSquare
                 InitializeAd();
         }
 
+        private void InitializeAd()
+        {
+            if (AdPlaceHolder.Children.Count == 1)
+                return;
+
+            var GoogleAd = new Google.AdMob.Ads.WindowsPhone7.WPF.BannerAd() { AdUnitID = "a14da010647089d" };
+            AdPlaceHolder.Children.Add(GoogleAd);
+        }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-            Settings.ResetSound.Play();
+            SoundManager.ResetSound.Play();
             PhilPiangeDisappear.Begin();
             NoMoreMovesTextBlock.Visibility = Visibility.Collapsed;
 

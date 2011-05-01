@@ -7,6 +7,7 @@ using Microsoft.Phone.Controls;
 using WPCommon;
 using Microsoft.Xna.Framework.Audio;
 using FillTheSquare.Localization;
+using FillTheSquare.Sounds;
 
 namespace FillTheSquare
 {
@@ -23,7 +24,7 @@ namespace FillTheSquare
         {
             if (!NonLinearNavigationService.Instance.IsRecursiveBackNavigation)
             {
-                Settings.VictorySound.Play();
+                SoundManager.VictorySound.Play();
 
                 if (NavigationContext.QueryString.ContainsKey("id"))
                 {

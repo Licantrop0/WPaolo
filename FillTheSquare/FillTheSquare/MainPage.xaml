@@ -8,6 +8,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+    
     x:Class="FillTheSquare.MainPage"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -107,7 +108,9 @@
                 </Custom:Interaction.Triggers>
             </Button>
             <ToggleButton Name="MusicToggleButton" Canvas.Left="44" Canvas.Top="321"
-                          Height="141" Width="151" Template="{StaticResource MusicToggleButtonTemplate}" Click="MusicToggleButton_Click" />
+                          Template="{StaticResource MusicToggleButtonTemplate}"
+                          IsChecked="{Binding MusicEnabled, Mode=TwoWay}"
+                          Height="141" Width="151" />
 
                 <!--<Button Canvas.Left="0" Canvas.Top="362"
                     Content="congratulations" Height="71" Width="238" Click="Button_Click" />-->
@@ -122,7 +125,6 @@
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
             </Button>
-
         </Canvas>
     </Grid>
 </phone:PhoneApplicationPage>

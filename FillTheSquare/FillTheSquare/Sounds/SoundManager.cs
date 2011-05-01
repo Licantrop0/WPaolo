@@ -38,44 +38,36 @@ namespace FillTheSquare.Sounds
             get
             {
                 if (!IsolatedStorageSettings.ApplicationSettings.Contains("music_enabled"))
-                {
                     IsolatedStorageSettings.ApplicationSettings["music_enabled"] = true;
-                    AskAndPlayMusic();
-                }
-                return (bool)IsolatedStorageSettings.ApplicationSettings["music_enabled"];
+
+                var value = (bool)IsolatedStorageSettings.ApplicationSettings["music_enabled"];
+                if (value) return AskAndPlayMusic();
+                return value;
             }
             set
             {
-                if (value)
-                    AskAndPlayMusic();
-                else
-                    MediaPlayer.Stop();
-
-                if (MusicEnabled != value)
-                {
-                    IsolatedStorageSettings.ApplicationSettings["music_enabled"] = value;
-                    OnPropertyChanged("MusicEnabled");
-                }
+                if (value) value = AskAndPlayMusic();
+                else MediaPlayer.Stop();
+                IsolatedStorageSettings.ApplicationSettings["music_enabled"] = value;
+                OnPropertyChanged("MusicEnabled");
             }
         }
 
-        public void AskAndPlayMusic()
+        public bool AskAndPlayMusic()
         {
-            if (!PhoneApplicationService.Current.State.ContainsKey("can_play_music"))
-            {
-                PhoneApplicationService.Current.State.Add("can_play_music", true);
-                PhoneApplicationService.Current.State["can_play_music"] =
-                    MediaPlayer.GameHasControl ?
-                    true :
-                    MessageBox.Show(AppResources.PlayBackgroundMusic,
-                        AppResources.Name, MessageBoxButton.OKCancel) == MessageBoxResult.OK;
-            }
-            if ((bool)PhoneApplicationService.Current.State["can_play_music"])
+            var canPlayMusic = MediaPlayer.GameHasControl ?
+                                true :
+                                MessageBox.Show(AppResources.PlayBackgroundMusic,
+                                    AppResources.AppName, MessageBoxButton.OKCancel) == MessageBoxResult.OK;
+
+            if (canPlayMusic)
             {
                 var BackgroundMusic = Song.FromUri("BackgroudMusic", new Uri("Sounds/musichetta.wma", UriKind.Relative));
                 MediaPlayer.IsRepeating = true;
                 MediaPlayer.Play(BackgroundMusic);
             }
+
+            return canPlayMusic;
         }
 
         #region Sounds LazyLoading

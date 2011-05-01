@@ -16,34 +16,33 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
-	<phone:PhoneApplicationPage.Resources>
-		<ControlTemplate x:Key="MusicToggleButtonTemplate" TargetType="ToggleButton">
-			<Grid Background="Transparent">
-				<VisualStateManager.VisualStateGroups>
-					<VisualStateGroup x:Name="CheckStates">
-						<VisualStateGroup.Transitions>
-							<VisualTransition GeneratedDuration="0:0:0.5"/>
-						</VisualStateGroup.Transitions>
-						<VisualState x:Name="Checked">
-							<Storyboard>
-								<DoubleAnimation Duration="0" To="1"
+    <phone:PhoneApplicationPage.Resources>
+        <ControlTemplate x:Key="MusicToggleButtonTemplate" TargetType="ToggleButton">
+            <Grid Background="Transparent">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CheckStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition GeneratedDuration="0:0:0.5"/>
+                        </VisualStateGroup.Transitions>
+                        <VisualState x:Name="Checked">
+                            <Storyboard>
+                                <DoubleAnimation Duration="0" To="0"
                                                  Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                 Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
-							</Storyboard>
-						</VisualState>
-						<VisualState x:Name="Unchecked"/>
-						<VisualState x:Name="Indeterminate"/>
-					</VisualStateGroup>
-				</VisualStateManager.VisualStateGroups>
-				<TextBlock TextWrapping="Wrap" Text="Abilitato"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
-				<TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Disabilitato"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center" Opacity="0"/>
-			</Grid>
-		</ControlTemplate>
-	</phone:PhoneApplicationPage.Resources>
+                                                 Storyboard.TargetName="SoundOffImage" d:IsOptimized="True"/>
+                                <DoubleAnimation Duration="0" To="1"
+                                                 Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                 Storyboard.TargetName="SoundOnImage" d:IsOptimized="True"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Unchecked" />
+                        <VisualState x:Name="Indeterminate"/>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Image x:Name="SoundOffImage" Source="Phil\SoundOFF.png"/>
+                <Image x:Name="SoundOnImage" Source="Phil\SoundON.png" Opacity="0" />
+            </Grid>
+        </ControlTemplate>
+    </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
         <Grid.RowDefinitions>
@@ -77,7 +76,7 @@
                     Width="234" Height="90"
                     Canvas.Left="216" Canvas.Top="30">
             </Button>
-            
+
             <Button Content="{Binding LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
                     Height="100" Width="250"
                     Style="{StaticResource HomeButtonStyle}"
@@ -110,9 +109,14 @@
             <ToggleButton Name="MusicToggleButton" Canvas.Left="44" Canvas.Top="321"
                           Template="{StaticResource MusicToggleButtonTemplate}"
                           IsChecked="{Binding MusicEnabled, Mode=TwoWay}"
-                          Height="141" Width="151" />
+                          toolkit:TiltEffect.IsTiltEnabled="True"
+                          Height="141" Width="151" >
+                <ToggleButton.RenderTransform>
+                    <RotateTransform Angle="-10" />
+                </ToggleButton.RenderTransform>
+            </ToggleButton>
 
-                <!--<Button Canvas.Left="0" Canvas.Top="362"
+            <!--<Button Canvas.Left="0" Canvas.Top="362"
                     Content="congratulations" Height="71" Width="238" Click="Button_Click" />-->
 
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"

@@ -161,6 +161,8 @@
     <Resource Include="Phil\sfondo_quadri_color1.jpg" />
     <Resource Include="Phil\sfondo_quadri_color2.jpg" />
     <Resource Include="Phil\sfondo_quadri_color3.jpg" />
+    <Resource Include="Phil\soundOFF.png" />
+    <Resource Include="Phil\soundON.png" />
     <Content Include="Sounds\Error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

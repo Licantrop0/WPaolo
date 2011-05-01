@@ -116,7 +116,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <HyperlinkButton Name="TrialHyperlinkButton" Click="TrialHyperlinkButton_Click"
+            <HyperlinkButton Name="TrialHyperlinkButton" Click="TrialHyperlinkButton_Click" Visibility="Collapsed"
                              Content="{Binding Path=LocalizedResources.TrialMode, Source={StaticResource LocalizedStrings}}"
                              Style="{StaticResource HyperlinkButtonWrappingStyle}" />
 

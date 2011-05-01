@@ -179,8 +179,6 @@ namespace TrovaCAP
 
         private void AcbComuni_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //TbLoading.Text = string.Empty;
-
             if (_state != Step.selezionaComune)
             {
                 // reset
@@ -290,16 +288,6 @@ namespace TrovaCAP
             }
         }
 
-        //private void AcbComuni_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    if (AcbComuni.Text != "" && AcbComuni.Text != AcbComuni.SelectedItem as string /*.ToString()*/)
-        //    {
-        //        PlayErrorSound();
-        //        AcbComuni.Text = "";
-        //    }
-
-        //    Autofocus();
-        //}
 
         private void AcbComuni_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -326,8 +314,6 @@ namespace TrovaCAP
 
         private void AcbFrazioni_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //TbLoading.Text = string.Empty;
-
             // reset control and intermediate filtered cap records
             if (_state != Step.selezionaFrazione && _state != Step.scegliFrazioneOVia)
             {
@@ -364,7 +350,6 @@ namespace TrovaCAP
         {
             _autofocus = null;
             CloseDropDown();
-            //Dispatcher.BeginInvoke(() => { AcbFrazioni.IsDropDownOpen = false; });
             AcbFrazioni.IsDropDownOpen = false;
 
             _bFrazioniAlreadySelected = true;
@@ -423,8 +408,6 @@ namespace TrovaCAP
 
         private void AcbIndirizzi_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //TbLoading.Text = string.Empty;
-
             // reset control
             if (_state != Step.selezionaVia && _state != Step.scegliFrazioneOVia && _state != Step.selezionaFrazioneVia)
             {
@@ -475,7 +458,7 @@ namespace TrovaCAP
             string sFrazioneSelezionata = "";
             string sIndirizzoSelezionato = "";
 
-            if (_state == Step.scegliVia || _state == Step.selezionaVia)
+            if (_state == Step.scegliVia || _state == Step.selezionaVia || _state == Step.selezionaFrazioneVia)
             {
                 _bIndirizziAlreadySelected = true;
 
@@ -585,6 +568,8 @@ namespace TrovaCAP
 
         private void AcbIndirizzi_Populating(object sender, PopulatingEventArgs e)
         {
+            bool skipLoading = false;
+
             e.Cancel = true;
 
             // workaround used to filter double access when item is selected
@@ -595,8 +580,6 @@ namespace TrovaCAP
 
             AcbIndirizzi.Populating -= AcbIndirizzi_Populating;
 
-            TbLoading.Text = AppResources.Loading;
-            TbLoading.Opacity = 1;
             var bw = new BackgroundWorker();
 
             List<string> itemSource = new List<string>();
@@ -605,6 +588,13 @@ namespace TrovaCAP
             {
                 string text = (string)e1.Argument;
 
+                if (text == _acbIndirizziCashedSearchKey + " " || _acbIndirizziCashedSearchKey == text + " ")
+                {
+                    _acbIndirizziCashedSearchKey = text;
+                    skipLoading = true;
+                    return;
+                }
+                    
                 if (!(_acbIndirizziCashedSearchKey.Length > 2 &&
                     text.Length > _acbIndirizziCashedSearchKey.Length &&
                     AcbFilterStartsWithExtended(_acbIndirizziCashedSearchKey, text)))
@@ -613,6 +603,13 @@ namespace TrovaCAP
                 }
 
                 _acbIndirizziCashedSearchKey = text;
+
+                // andrebbe messo qua il loading con una chiamata asincrona
+                Dispatcher.BeginInvoke(() =>
+                {
+                    TbLoading.Text = AppResources.Loading;
+                    TbLoading.Opacity = 1;
+                });
 
                 // fisso l'itemsource (da ottimizzare, sarebbe meglio eliminare gli item che non ci sono più, non ricrearlo da zero)
                 foreach (var s in _acbIndirizziCashedItemsSource)
@@ -626,6 +623,12 @@ namespace TrovaCAP
 
             bw.RunWorkerCompleted += (sender1, e1) =>
             {
+                if (skipLoading)
+                {
+                    AcbIndirizzi.Populating += AcbIndirizzi_Populating;
+                    return;
+                }
+                    
                 AcbIndirizzi.ItemsSource = itemSource;
                 AcbIndirizzi.Populating += AcbIndirizzi_Populating;
                 if (AcbIndirizzi.ItemsSource.Count() <= 325)
@@ -638,7 +641,6 @@ namespace TrovaCAP
                     AcbIndirizzi.ClearView();
                     TbLoading.Text = AppResources.TooManyResults;
                 }
-
             };
             bw.RunWorkerAsync(AcbIndirizzi.Text);
         }

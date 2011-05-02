@@ -13,6 +13,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
+    
     <phone:PhoneApplicationPage.Resources>
         <ControlTemplate x:Key="ResetButtonControlTemplate" TargetType="ButtonBase">
             <Grid>
@@ -43,11 +44,6 @@
     </phone:PhoneApplicationPage.Resources>
 
     <Grid Background="{StaticResource BackgroundImageBrush}">
-        <Grid.Resources>
-            <Storyboard x:Name="PhilPiangeAppear"/>
-
-            <Storyboard x:Name="PhilPiangeDisappear"/>
-        </Grid.Resources>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -55,44 +51,24 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Border BorderBrush="Black" BorderThickness="3" Margin="8,8,23,0" Background="Blue" CornerRadius="5"/>
-
-        <TextBlock x:Name="TimeElapsedTextBlock" Grid.Row="0" Margin="12"
+        <Border BorderBrush="Black" BorderThickness="3" Margin="8,8,23,0" Background="Blue" CornerRadius="5">
+            <TextBlock x:Name="TimeElapsedTextBlock" Grid.Row="0" Margin="12"
                    Text="{Binding LocalizedResources.Seconds, Source={StaticResource LocalizedStrings}}"
-                   Style="{StaticResource SquareHeadingStyle}" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" />
+                   Style="{StaticResource SquareHeadingStyle}" />
+        </Border>
+        
+        <Grid x:Name="MagicGrid" Grid.Row="1" VerticalAlignment="Top" Height="452" Width="452" Margin="0,50,0,0" />
 
-            <Grid x:Name="MagicGrid" Grid.Row="1" VerticalAlignment="Top" Height="452" Width="452" Margin="0,50,0,0">
-                <Grid.Resources>
-                    <Storyboard x:Name="RedFlash">
-                        <ColorAnimation
-                            Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)"
-                            To="Red" Duration="0:0:0.4" AutoReverse="True"  />
-                        <ColorAnimation
-                            Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)"
-                            To="Red" Duration="0:0:0.3" AutoReverse="True"  />
-                    </Storyboard>
-
-                    <Storyboard x:Name="SetFocus">
-                        <ColorAnimation
-                            Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)"
-                            To="{StaticResource PhoneAccentColor}" Duration="0:0:0.5" />
-                        <ColorAnimation
-                            Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)"
-                            To="{StaticResource PhoneAccentColor}" Duration="0:0:0.4" />
-                    </Storyboard>
-                </Grid.Resources>
-            </Grid>
-
-        <StackPanel Grid.Row="1" VerticalAlignment="Top" Height="185" Margin="0,533,0,0" >
+        <StackPanel Grid.Row="2" VerticalAlignment="Top">
             <Button Content="{Binding LocalizedResources.Reset, Source={StaticResource LocalizedStrings}}"
-                Click="ResetButton_Click" FontSize="40"
-                Style="{StaticResource HomeButtonStyle}"
-                       Height="112" Width="260"
-                       Template="{StaticResource ResetButtonControlTemplate}" Margin="110,0" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="#FF00FF04" Background="Lime" BorderBrush="Black" BorderThickness="3" />
-            <google:BannerAd
-                             xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
-                             AdUnitID="a14da9d2bde5aea"
-                             LocationDescription="{Binding ElementName=Location, Mode=OneWay}" />
+                    Click="ResetButton_Click" FontSize="40"
+                    Style="{StaticResource HomeButtonStyle}"
+                    Template="{StaticResource ResetButtonControlTemplate}"
+                    Height="112" Width="260" />
+            
+            <google:BannerAd AdUnitID="a14da9d2bde5aea"
+                xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
+                LocationDescription="{Binding ElementName=Location, Mode=OneWay}" />
         </StackPanel>
     </Grid>
 

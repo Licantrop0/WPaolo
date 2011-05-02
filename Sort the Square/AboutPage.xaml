@@ -17,13 +17,14 @@
 
     <Grid>
         <Image Source="Phil/sfondo_quadri_color1.jpg" Stretch="Fill"/>
-        <Border BorderBrush="Black" BorderThickness="5" Margin="0,349,0,281" Background="Blue" CornerRadius="8"/>
+        <Border BorderBrush="Black" BorderThickness="5" Margin="0,349,0,281"
+                Background="Blue" CornerRadius="8"/>
         
         <wpcommon:AboutControl x:Name="WPMEAbout"
                                ApplicationName="Sort the Square"
                                BackgroundStackPanel="{x:Null}"
                                Foreground="Lime"
-                               FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" />
+                               FontFamily="/SortTheSquare;component/Fonts/Fonts.zip#Quartz MS" />
         
         <Image Source="Phil/phil_con_logo_new.png" Stretch="None"
                HorizontalAlignment="Right"

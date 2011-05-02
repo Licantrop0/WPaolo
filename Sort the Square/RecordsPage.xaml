@@ -20,14 +20,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0"  Margin="12" >
-            <Border BorderBrush="Black" BorderThickness="5" Margin="8,8,195,8" Background="Blue" CornerRadius="8"/>
-            <TextBlock Text="Records" FontSize="48" HorizontalAlignment="Left"
-                       Style="{StaticResource SquareTitleStyle}" Margin="28,29,0,29" VerticalAlignment="Stretch" d:LayoutOverrides="Height" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="Lime" />
-            <Image Source="Phil\bravorecords.png" HorizontalAlignment="Right"
-                   Stretch="Uniform" Height="100" Margin="12,0" />
-        </Grid>
-
+        <Border BorderBrush="Black" BorderThickness="5" Margin="12" Background="Blue" CornerRadius="8">
+            <Grid>
+                <TextBlock Text="Records" FontSize="48" HorizontalAlignment="Left"
+                       Style="{StaticResource SquareTitleStyle}" Margin="30" />
+                <Image Source="Phil\bravorecords.png" HorizontalAlignment="Right"
+                   Stretch="Uniform" Height="100" Margin="12" />
+            </Grid>
+        </Border>
         <Grid Grid.Row="1" Margin="12,0" Background="Blue">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -40,31 +40,38 @@
                 <ColumnDefinition Width="140" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="{Binding Path=LocalizedResources.Size, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" FontSize="32" />
-            <TextBlock Text="{Binding Path=LocalizedResources.Name, Source={StaticResource LocalizedStrings}}" Grid.Column="1" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" FontSize="32"/>
-            <TextBlock Text="{Binding Path=LocalizedResources.Time, Source={StaticResource LocalizedStrings}}" Grid.Column="2" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" FontSize="32"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.Size, Source={StaticResource LocalizedStrings}}"
+                       Grid.Column="0"  Style="{StaticResource SquareHeadingStyle}" FontSize="32" />
+            <TextBlock Text="{Binding Path=LocalizedResources.Name, Source={StaticResource LocalizedStrings}}"
+                       Grid.Column="1" Style="{StaticResource SquareHeadingStyle}" FontSize="32" />
+            <TextBlock Text="{Binding Path=LocalizedResources.Time, Source={StaticResource LocalizedStrings}}"
+                       Grid.Column="2" Style="{StaticResource SquareHeadingStyle}" FontSize="32" />
 
             <ListBox Name="RecordListBox" FontSize="20" 
-                     Grid.Row="1" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="3,6,3,3" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" >
+                     Grid.Row="1" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="3,6,3,3"
+                     Foreground="Lime" FontFamily="/SortTheSquare;component/Fonts/Fonts.zip#Quartz MS" >
                 <ListBox.Resources>
                     <wp:TimeSpanTextConverter x:Key="TimeSpanTextConverter" xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon" />
                 </ListBox.Resources>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0,0,0,3">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <!--The sum must be 456-->
                                 <ColumnDefinition Width="110" />
                                 <ColumnDefinition Width="206" />
                                 <ColumnDefinition Width="140" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Path=Size}" Grid.Column="0" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Path=Name}" Grid.Column="1" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Path=ElapsedTime, Converter={StaticResource TimeSpanTextConverter}}" Grid.Column="2" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold" />
+                            
+                            <TextBlock Text="{Binding Path=Size}" Grid.Column="0" Foreground="Lime" FontFamily="Andy" FontSize="30" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Path=Name}" Grid.Column="1" Foreground="Lime" FontFamily="Andy" FontSize="30" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Path=ElapsedTime, Converter={StaticResource TimeSpanTextConverter}}"
+                                       Grid.Column="2" Foreground="Lime" FontFamily="Andy" FontSize="30" FontWeight="Bold" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            
             <Border BorderBrush="Black" BorderThickness="6,6,3,6" Grid.RowSpan="2"/>
             <Border BorderBrush="Black" BorderThickness="3,6" Grid.Column="1" Margin="0,0,-3,0" Grid.RowSpan="2"/>
             <Border BorderBrush="Black" BorderThickness="3,6,6,6" Grid.Column="2" Margin="3,0,0,0" Grid.RowSpan="2"/>

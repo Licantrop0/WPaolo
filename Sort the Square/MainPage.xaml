@@ -22,36 +22,38 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border BorderBrush="Black" BorderThickness="5" Background="Blue" CornerRadius="8"/>
-
-        <TextBlock Style="{StaticResource SquareTitleStyle}" Grid.Row="0"
-                   FontSize="64" Text="Sort  the  Square" Margin="0,24" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="Lime" />
-
+        <Border BorderBrush="Black" BorderThickness="5" Background="Blue" CornerRadius="8">
+            <TextBlock Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}" 
+                       Style="{StaticResource SquareTitleStyle}" />
+        </Border>
+        
         <Canvas x:Name="ContentPanel" Margin="16,16,8,8" Grid.Row="1" >
-
+            
             <Button Content="{Binding LocalizedResources.Easy, Source={StaticResource LocalizedStrings}}" 
                     Click="SquareFiveButton_Click"
-                    Style="{StaticResource HomeButtonStyle2}"
+                    Style="{StaticResource HomeButtonStyle}"
                     Width="210" Height="90"
-                    Canvas.Left="-14" Canvas.Top="65" BorderThickness="3" Background="Blue" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" FontSize="40" BorderBrush="Black"/>
+                    Canvas.Left="-14" Canvas.Top="65"
+                    FontSize="40" />
 
             <Button Content="{Binding LocalizedResources.Hard, Source={StaticResource LocalizedStrings}}" 
                     Click="SquareTenButton_Click"
-                    Style="{StaticResource HomeButtonStyle2}"                    
+                    Style="{StaticResource HomeButtonStyle}"                    
                     Width="234" Height="90"
-                    Canvas.Left="232" Canvas.Top="46" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" FontSize="40" BorderBrush="Black" BorderThickness="3" Background="Blue" Foreground="Lime" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-            	<Button.RenderTransform>
-            		<CompositeTransform Rotation="50.897"/>
-            	</Button.RenderTransform>
+                    Canvas.Left="314" Canvas.Top="-21" 
+                    FontSize="40" >
+                <Button.RenderTransform>
+                    <CompositeTransform Rotation="50"/>
+                </Button.RenderTransform>
             </Button>
-            
+
             <Button Content="{Binding LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
                     Height="98" Width="182"
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="81" Canvas.Top="362" Foreground="Lime" Background="Blue" BorderBrush="Black" BorderThickness="3" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-            	<Button.RenderTransform>
-            		<CompositeTransform Rotation="-22.382"/>
-            	</Button.RenderTransform>
+                    Canvas.Left="10" Canvas.Top="403">
+                <Button.RenderTransform>
+                    <CompositeTransform Rotation="-22.382"/>
+                </Button.RenderTransform>
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
                         <ic:NavigateToPageAction TargetPage="/RecordsPage.xaml"/>
@@ -60,32 +62,31 @@
             </Button>
 
             <Button Content="{Binding LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
-                    Height="82" Width="220" 
-                    Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="134" Canvas.Top="264" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Background="Blue" Foreground="Lime" FontSize="25.333" BorderThickness="3" BorderBrush="Black" >
-
+                    Height="82" Width="220" Style="{StaticResource HomeButtonStyle}"
+                    Canvas.Left="134" Canvas.Top="264" FontSize="25" >
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
                         <ic:NavigateToPageAction TargetPage="/InstructionsPage.xaml"/>
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
             </Button>
+
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
-                    Height="70" Width="139"
-                    Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="215" Canvas.Top="415" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="Lime" Background="Blue" BorderBrush="Black" BorderThickness="3" >
+                    Height="70" Width="139" Style="{StaticResource HomeButtonStyle}"
+                    Canvas.Left="215" Canvas.Top="415" >
                 <Custom:Interaction.Triggers>
-                	<Custom:EventTrigger EventName="Click">
-                		<ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
-                	</Custom:EventTrigger>
+                    <Custom:EventTrigger EventName="Click">
+                        <ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
+                    </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
             </Button>
+            
             <Image Source="Phil/saluta.png"
                    Stretch="Fill" IsHitTestVisible="False"
                    Height="196" Width="272"
-                   Canvas.Left="133" Canvas.Top="104" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+                   Canvas.Left="133" Canvas.Top="104" >
                 <Image.RenderTransform>
-                	<CompositeTransform Rotation="-1080.247"/>
+                    <CompositeTransform Rotation="-1080.247"/>
                 </Image.RenderTransform>
             </Image>
 

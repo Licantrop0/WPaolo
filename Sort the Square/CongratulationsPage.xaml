@@ -12,7 +12,8 @@
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
 	shell:SystemTray.IsVisible="False"
-    BackKeyPress="PhoneApplicationPage_BackKeyPress" Loaded="PhoneApplicationPage_Loaded">
+    BackKeyPress="PhoneApplicationPage_BackKeyPress"
+    Loaded="PhoneApplicationPage_Loaded">
 
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="BouncingPhilStoryboard" RepeatBehavior="Forever">
@@ -48,19 +49,17 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-
         <StackPanel Grid.Row="0" Margin="0,24">
             <Border BorderBrush="Black" BorderThickness="5" Height="69" Margin="8,0" Background="Blue" CornerRadius="8">
             	<TextBlock Text="{Binding LocalizedResources.Congratulations, Source={StaticResource LocalizedStrings}}"
-            		Style="{StaticResource SquareTitleStyle}" FontSize="37.333" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Width="440" />
+            		Style="{StaticResource SquareTitleStyle}" FontSize="45" />
             </Border>
             <Border BorderBrush="Black" BorderThickness="3" Height="56" Background="Blue" CornerRadius="5" Margin="8,30,199,0">
             	<TextBlock Text="{Binding LocalizedResources.InsertName, Source={StaticResource LocalizedStrings}}"
-            		Style="{StaticResource SquareTitleStyle}" FontSize="24"
-            		HorizontalAlignment="Left" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Height="56" />
+            		Style="{StaticResource SquareTitleStyle}" FontSize="24" />
             </Border>
             <TextBox x:Name="NameTextBox" KeyDown="NameTextBox_KeyDown"
-                     FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"
+                     FontFamily="/SortTheSquare;component/Fonts/Fonts.zip#Quartz MS"
                      FontSize="30" Height="70" Background="#BF0000FF" Foreground="Lime" BorderBrush="{x:Null}" />
         </StackPanel>
 
@@ -77,16 +76,17 @@
             <StackPanel Canvas.Left="12" >
                 <StackPanel Orientation="Horizontal" Margin="0,12">
                     <TextBlock Text="{Binding LocalizedResources.Size, Source={StaticResource LocalizedStrings}}"
-					   Style="{StaticResource SquareHeadingStyle}" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" />
-                    <TextBlock Text=": " Style="{StaticResource SquareHeadingStyle}" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" />
-                    <TextBlock Text="{Binding Size}" Style="{StaticResource SquareHeadingStyle}" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" />
+					   Style="{StaticResource SquareHeadingStyle}" />
+                    <TextBlock Text=": " Style="{StaticResource SquareHeadingStyle}" />
+                    <TextBlock Text="{Binding Size}" Style="{StaticResource SquareHeadingStyle}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding LocalizedResources.Time, Source={StaticResource LocalizedStrings}}"
-					   Style="{StaticResource SquareHeadingStyle}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="Lime" />
-                    <TextBlock Text=": " Style="{StaticResource SquareHeadingStyle}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="Lime" />
-                    <TextBlock Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanTextConverter}}" Style="{StaticResource SquareHeadingStyle}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="Lime" />
+					   Style="{StaticResource SquareHeadingStyle}" />
+                    <TextBlock Text=": " Style="{StaticResource SquareHeadingStyle}"  />
+                    <TextBlock Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanTextConverter}}"
+                               Style="{StaticResource SquareHeadingStyle}" />
                 </StackPanel>
             </StackPanel>
 
@@ -94,7 +94,7 @@
 					Click="GoToRecords_Click" 
 					Style="{StaticResource HomeButtonStyle}"
 					Height="100" Width="300"
-					Canvas.Left="90" Canvas.Top="433" Foreground="Lime" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Background="Blue" BorderBrush="Black" BorderThickness="3" />
+					Canvas.Left="90" Canvas.Top="433" />
         </Canvas>
     </Grid>
 </phone:PhoneApplicationPage>

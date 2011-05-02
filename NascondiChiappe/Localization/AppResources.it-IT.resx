@@ -207,7 +207,7 @@
   <data name="SelectPhotoExport" xml:space="preserve">
     <value>Seleziona la foto da esportare</value>
   </data>
-  <data name="ConfirmPhotoDelete" xml:space="preserve">
+  <data name="ConfirmPhotosDelete" xml:space="preserve">
     <value>Sei sicuro di voler eliminare le Foto selezionate?</value>
   </data>
   <data name="SelectPhotos" xml:space="preserve">
@@ -224,5 +224,14 @@
   </data>
   <data name="DemoTitle" xml:space="preserve">
     <value>Questa è una Demo</value>
+  </data>
+  <data name="PhotosCopied" xml:space="preserve">
+    <value>Le Foto sono state copiate nella tua MediaLibrary</value>
+  </data>
+  <data name="ConfirmPhotoDelete" xml:space="preserve">
+    <value>Sei sicuro di voler eliminare la Foto selezionata?</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
 </root>

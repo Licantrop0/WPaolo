@@ -22,7 +22,7 @@ namespace NascondiChiappe
             InitializeApplicationBar();
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             if (!Settings.IsPasswordInserted)
             {
@@ -44,6 +44,7 @@ namespace NascondiChiappe
                 var DeletePhotosAppBarButton = new ApplicationBarIconButton();
                 DeletePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
                 DeletePhotosAppBarButton.Text = AppResources.DeleteSelectedPhotos;
+                DeletePhotosAppBarButton.IsEnabled = false;
                 DeletePhotosAppBarButton.Click += new EventHandler(DeletePhotosAppBarMenuItem_Click);
                 ApplicationBar.Buttons.Add(DeletePhotosAppBarButton);
 
@@ -57,6 +58,7 @@ namespace NascondiChiappe
                     var MovePhotosAppBarButton = new ApplicationBarIconButton();
                     MovePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_move.png", UriKind.Relative);
                     MovePhotosAppBarButton.Text = AppResources.MoveSelectedPhotos;
+                    MovePhotosAppBarButton.IsEnabled = false;
                     MovePhotosAppBarButton.Click += new EventHandler(MovePhotosAppBarButton_Click);
                     ApplicationBar.Buttons.Add(MovePhotosAppBarButton);
                 }
@@ -69,6 +71,7 @@ namespace NascondiChiappe
                 AlbumNameTextBox.Focus();
             }
         }
+
 
         private void InitializeApplicationBar()
         {
@@ -97,11 +100,17 @@ namespace NascondiChiappe
                 MessageBox.Show(AppResources.SelectPhotos);
                 return;
             }
-            if (MessageBox.Show(AppResources.ConfirmPhotoDelete,
+
+            var SelectedPhotos = ImagesListBox.SelectedItems.Cast<AlbumPhoto>().ToArray();
+
+            //TODO: tradurre anche Francese
+            if (MessageBox.Show(SelectedPhotos.Length == 1 ?
+                AppResources.ConfirmPhotoDelete :
+                AppResources.ConfirmPhotosDelete,
                 AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                foreach (AlbumPhoto item in ImagesListBox.SelectedItems)
-                    CurrentAlbum.RemovePhoto(item);
+                for (int i = 0; i < SelectedPhotos.Length; i++)
+                    CurrentAlbum.RemovePhoto(SelectedPhotos[i]);
             }
         }
 
@@ -173,11 +182,26 @@ namespace NascondiChiappe
 
         private void AlbumsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (AlbumPhoto item in ImagesListBox.SelectedItems)
-                CurrentAlbum.MovePhoto(item, (Album)e.AddedItems[0]);
+            var SelectedPhotos = ImagesListBox.SelectedItems.Cast<AlbumPhoto>().ToArray();
+            for (int i = 0; i < SelectedPhotos.Length; i++)
+            {
+                CurrentAlbum.MovePhoto(SelectedPhotos[i], (Album)e.AddedItems[0]);
+            }
 
             PopupBackground.Visibility = Visibility.Collapsed;
             PopupBorder.Visibility = Visibility.Collapsed;
+        }
+
+        private void ImagesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (NavigationContext.QueryString.ContainsKey("Album")) //EditAlbumMode
+            {
+                var ArePhotosSelected = ImagesListBox.SelectedItems.Count > 0;
+                ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).IsEnabled = ArePhotosSelected;
+
+                if (Settings.Albums.Count > 1)
+                    ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = ArePhotosSelected;
+            }
         }
     }
 }

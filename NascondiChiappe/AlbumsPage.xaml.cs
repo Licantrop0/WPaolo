@@ -6,13 +6,15 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using NascondiChiappe.Localization;
 using System.ComponentModel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NascondiChiappe
 {
     public partial class AlbumsPage : PhoneApplicationPage
     {
         Album SelectedAlbum;
-        AlbumPhoto SelectedPhoto;
+        List<AlbumPhoto> SelectedPhotos;
 
         public AlbumsPage()
         {
@@ -27,13 +29,12 @@ namespace NascondiChiappe
                 NavigationService.Navigate(new Uri("/PasswordPage.xaml", UriKind.Relative));
                 return;
             }
-
             if (Settings.Albums.Count == 0)
                 NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative));
             else
             {
                 csvAlbums.Source = Settings.Albums;
-                SelectedAlbum = AlbumsPivot.SelectedItem as Album;
+                SelectedAlbum = Settings.Albums[AlbumsPivot.SelectedIndex];
                 ShowHint();
             }
         }
@@ -46,10 +47,8 @@ namespace NascondiChiappe
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count == 0)
-                SelectedPhoto = null;
-            else
-                SelectedPhoto = e.AddedItems[0] as AlbumPhoto;
+            SelectedPhotos = ((ListBox)sender).SelectedItems.Cast<AlbumPhoto>().ToList();
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = SelectedPhotos.Count > 0;
         }
 
         void TakePictureAppBarButton_Click(object sender, EventArgs e)
@@ -104,11 +103,13 @@ namespace NascondiChiappe
 
         void CopyToMediaLibraryAppBarButton_Click(object sender, EventArgs e)
         {
-            if (SelectedPhoto == null)
-            {
-                MessageBox.Show(AppResources.SelectPhotoExport);
-                return;
-            }
+            foreach (var p in SelectedPhotos)
+                SelectedAlbum.CopyToMediaLibrary(p);
+
+            //TODO: tradurre anche francese
+            MessageBox.Show(SelectedPhotos.Count == 1 ?
+                AppResources.PhotoCopied :
+                AppResources.PhotosCopied);
 
             //TODO: implementare export asincrono con Mango
             //var bw = new BackgroundWorker();
@@ -119,15 +120,12 @@ namespace NascondiChiappe
             //{
             //};
             //bw.RunWorkerAsync();
-
-            SelectedAlbum.CopyToMediaLibrary(SelectedPhoto);
-            MessageBox.Show(AppResources.PhotoCopied);
         }
 
         private void ShowHint()
         {
             if (SelectedAlbum == null)
-                return;
+                throw new ArgumentException("At least an album must be selected");
 
             AddPhotosHintTextBlock.Visibility =
                 SelectedAlbum.Photos.Count == 0 ?
@@ -137,9 +135,10 @@ namespace NascondiChiappe
 
         private void GestureListener_DoubleTap(object sender, GestureEventArgs e)
         {
+            var photoIndex = SelectedAlbum.Photos.IndexOf(((AlbumPhoto)sender));
             NavigationService.Navigate(new Uri(
                 string.Format("/ViewPhotosPage.xaml?Album={0}&Photo={1}",
-                SelectedAlbum.DirectoryName, SelectedAlbum.Photos.IndexOf(SelectedPhoto)),
+                SelectedAlbum.DirectoryName, photoIndex),
                 UriKind.Relative));
         }
 
@@ -166,6 +165,7 @@ namespace NascondiChiappe
             var CopyToMediaLibraryAppBarButton = new ApplicationBarIconButton();
             CopyToMediaLibraryAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_sendphoto.png", UriKind.Relative);
             CopyToMediaLibraryAppBarButton.Text = AppResources.CopyToMediaLibrary;
+            CopyToMediaLibraryAppBarButton.IsEnabled = false;
             CopyToMediaLibraryAppBarButton.Click += new EventHandler(CopyToMediaLibraryAppBarButton_Click);
             ApplicationBar.Buttons.Add(CopyToMediaLibraryAppBarButton);
 

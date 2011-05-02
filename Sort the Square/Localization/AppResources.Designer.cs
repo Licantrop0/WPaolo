@@ -70,6 +70,15 @@ namespace SortTheSquare.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sort  The  Square.
+        /// </summary>
+        public static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Buy this App now.
         /// </summary>
         public static string BuyNow {

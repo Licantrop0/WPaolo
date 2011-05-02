@@ -43,7 +43,7 @@ namespace SortTheSquare
                         {
                             Text = Square.Grid[j, i].ToString(),
                             Foreground = new SolidColorBrush(Colors.Green),
-                            FontSize = 60,
+                            FontSize = Settings.CurrentGridSize == 5 ? 60 : 30,
                             TextAlignment = TextAlignment.Center,
                         }
                     };
@@ -73,10 +73,10 @@ namespace SortTheSquare
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromSeconds(1);
             dt.Tick += (sender, e) =>
-                {
-                    TimeElapsedTextBlock.Text = string.Format("{0}: {1:0}",
-                        AppResources.Seconds, sw.Elapsed.TotalSeconds);
-                };
+            {
+                TimeElapsedTextBlock.Text = string.Format("{0}: {1:0}",
+                    AppResources.Seconds, sw.Elapsed.TotalSeconds);
+            };
             dt.Start();
 
             sw = new Stopwatch();

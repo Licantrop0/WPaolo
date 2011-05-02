@@ -28,24 +28,26 @@
     </Custom:Interaction.Triggers>
 
     <StackPanel Background="{StaticResource BackgroundImageBrush}">
-        <Border BorderBrush="Black" BorderThickness="5" Height="172" Background="Blue" CornerRadius="8">
+        <Border BorderBrush="Black" BorderThickness="5" Background="Blue" CornerRadius="8">
         	<TextBlock Text="{Binding LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
-        		Margin="0,12" Style="{StaticResource SquareTitleStyle}" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" Foreground="Lime" />
+        		Margin="0,12" Style="{StaticResource SquareTitleStyle}"  />
         </Border>
+        
         <StackPanel Orientation="Horizontal">
             <Border BorderBrush="Black" BorderThickness="3" Height="179" Width="214" CornerRadius="5" Background="Blue">
             	<TextBlock Text="{Binding LocalizedResources.InstructionsText1, Source={StaticResource LocalizedStrings}}"
-            		Foreground="Lime" FontSize="24" TextAlignment="Center"
-            		TextWrapping="Wrap" Margin="5" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS"/>
+                           Style="{StaticResource SquareHeadingStyle}" />
             </Border>
             <Image Stretch="Uniform" Source="Phil/libro_colore.png" Height="200" />
         </StackPanel>
+        
         <Border BorderBrush="Black" BorderThickness="3" Height="140" Background="Blue" CornerRadius="5" Margin="0,0,8,0">
         	<TextBlock Text="{Binding LocalizedResources.InstructionsText2, Source={StaticResource LocalizedStrings}}"
-        		Foreground="Lime" FontSize="24"
-        		TextWrapping="Wrap" Margin="5,5,0,5" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Quartz MS" HorizontalAlignment="Left" Width="456"/>
+                       Style="{StaticResource SquareHeadingStyle}" />
         </Border>
-        <Image x:Name="image" Source="Phil\istruzione.png" Height="205" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Margin="105,0,157,0" >
+        
+        <Image x:Name="image" Source="Phil\istruzione.png" Height="350"
+               Stretch="Uniform" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <CompositeTransform/>
             </Image.RenderTransform>

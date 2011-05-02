@@ -146,33 +146,6 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <BlendEmbeddedFont Include="Fonts\SegoeKeycaps.TTF">
-      <IsSystemFont>True</IsSystemFont>
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-      <Characters>
-      </Characters>
-      <Uppercase>True</Uppercase>
-      <Lowercase>True</Lowercase>
-      <Numbers>True</Numbers>
-      <Punctuation>True</Punctuation>
-    </BlendEmbeddedFont>
-    <BlendEmbeddedFont Include="Fonts\Swkeys1.ttf">
-      <IsSystemFont>True</IsSystemFont>
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-      <Characters>
-      </Characters>
-      <Uppercase>True</Uppercase>
-      <Lowercase>True</Lowercase>
-      <Numbers>True</Numbers>
-      <Punctuation>True</Punctuation>
-    </BlendEmbeddedFont>
-    <BlendEmbeddedFont Include="Fonts\njnaruto.ttf">
-      <IsSystemFont>True</IsSystemFont>
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-    </BlendEmbeddedFont>
     <BlendEmbeddedFont Include="Fonts\QuartzMS.TTF">
       <IsSystemFont>True</IsSystemFont>
       <All>True</All>
@@ -189,7 +162,9 @@
     <Resource Include="Phil\bravorecords.png" />
     <Resource Include="Phil\istruzione.png" />
     <Resource Include="Phil\libro_colore.png" />
-    <Resource Include="Phil\sfondo_quadri_color1.jpg" />
+    <Content Include="Phil\sfondo_quadri_color1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sounds\Error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

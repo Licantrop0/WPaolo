@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Linq;
+using System.Collections;
 
 namespace SortTheSquare
 {
@@ -23,11 +24,11 @@ namespace SortTheSquare
                 {
                     if (Grid[j, i] != counter)
                     {
-                        if (i != (Size-1) && j != (Size-1))
+                        if (i != (Size - 1) && j != (Size - 1))
                             return false;
                     }
                     counter++;
-                }        
+                }
             }
             return true;
         }
@@ -45,19 +46,13 @@ namespace SortTheSquare
         public void InitializeRandomSequence()
         {
             Random rnd = new Random();
-            int[] Numbers = new int[Size*Size];
-            for(int i = 0; i < Size*Size; i++)
-                Numbers[i] = i;
+            var unordered = new Queue<int>(
+                Enumerable.Range(0, Size * Size)
+                .OrderBy(n => rnd.Next()));
 
-            var unordered = Numbers.OrderBy(n => rnd.Next()).ToArray();
-
-            int counter = 0;
             for (int i = 0; i < Size; i++)
                 for (int j = 0; j < Size; j++)
-                {
-                    Grid[i, j] = unordered[counter];
-                    counter++;
-                }
+                    Grid[i, j] = unordered.Dequeue();
         }
 
         public bool SetS(GridPoint p)
@@ -108,19 +103,21 @@ namespace SortTheSquare
             }
             return false;
         }
-       
+
 
         public bool PressButton(GridPoint p)
         {
-            if(Grid[p.X,p.Y] == 0)  //è la casella vuota
-                return false;
+            return SetN(p) || SetS(p) || SetW(p) || SetE(p);
 
-            if (!SetN(p))
-                if (!SetS(p))
-                    if (!SetW(p))
-                        if (!SetE(p))
-                            return false;
-            return true;
+            //if (Grid[p.X, p.Y] == 0)  //è la casella vuota
+            //    return false;
+
+            //if (!SetN(p))
+            //    if (!SetS(p))
+            //        if (!SetW(p))
+            //            if (!SetE(p))
+            //                return false;
+            //return true;
         }
     }
 

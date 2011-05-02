@@ -85,6 +85,12 @@ namespace NascondiChiappe
                     return;
                 }
 
+                if (ConfirmPasswordBox.Password == string.Empty)
+                {
+                    ConfirmPasswordBox.Focus();
+                    return;
+                }
+
                 if (NewPasswordBox.Password.Length < Settings.PasswordMinLenght)
                 {
                     MessageBox.Show(string.Format(AppResources.PasswordMinLenght, Settings.PasswordMinLenght));

@@ -142,11 +142,20 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete selected Photos?.
+        ///   Looks up a localized string similar to Do you really want to delete selected Photo?.
         /// </summary>
         public static string ConfirmPhotoDelete {
             get {
                 return ResourceManager.GetString("ConfirmPhotoDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete selected Photos?.
+        /// </summary>
+        public static string ConfirmPhotosDelete {
+            get {
+                return ResourceManager.GetString("ConfirmPhotosDelete", resourceCulture);
             }
         }
         
@@ -305,7 +314,7 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The new Password does not match the confirmed password.
+        ///   Looks up a localized string similar to The new Password does not match the confirmed Password.
         /// </summary>
         public static string PasswordsDoesNotMatch {
             get {
@@ -332,6 +341,15 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Photos has been copied to your MediaLibrary.
+        /// </summary>
+        public static string PhotosCopied {
+            get {
+                return ResourceManager.GetString("PhotosCopied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -341,7 +359,7 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select a Photo to export.
+        ///   Looks up a localized string similar to Please select the Photo to export.
         /// </summary>
         public static string SelectPhotoExport {
             get {

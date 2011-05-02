@@ -8,10 +8,11 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
 
     <Application.Resources>
-        <localization:LocalizedStrings x:Key="LocalizedStrings" xmlns:localization="clr-namespace:NascondiChiappe.Localization" />
+        <localization:LocalizedStrings x:Key="LocalizedStrings"
+                xmlns:localization="clr-namespace:NascondiChiappe.Localization" />
         <local:RotationConverter x:Key="RotationConverter" />
 
-        <ImageBrush x:Name="BackgroundImage" ImageSource="SplashScreenImage.jpg" AlignmentY="Top" Stretch="None" />
+        <ImageBrush x:Name="BackgroundImage" ImageSource="SplashScreenImage.jpg" Stretch="None" />
 
         <Style x:Key="BaseStyle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>

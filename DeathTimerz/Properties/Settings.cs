@@ -44,41 +44,5 @@ namespace DeathTimerz
                     IsolatedStorageSettings.ApplicationSettings["estimated_death_age"] = value;
             }
         }
-
-        public static void AskAndPlayMusic()
-        {
-            if (!PhoneApplicationService.Current.State.ContainsKey("can_play_music"))
-            {
-                PhoneApplicationService.Current.State.Add("can_play_music", true);
-                PhoneApplicationService.Current.State["can_play_music"] =
-                    MediaPlayer.GameHasControl ?
-                    true :
-                    MessageBox.Show(AppResources.PlayBackgroundMusic,
-                        AppResources.AppName, MessageBoxButton.OKCancel) == MessageBoxResult.OK;
-            }
-
-            if ((bool)PhoneApplicationService.Current.State["can_play_music"])
-            {
-                var BackgroundMusic = Song.FromUri("BackgroudMusic", new Uri("Music.wma", UriKind.Relative));
-                MediaPlayer.IsRepeating = true;
-                MediaPlayer.Play(BackgroundMusic);
-            }
-        }
-
-        public static bool MusicEnabled
-        {
-            get
-            {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("music_enabled"))
-                    IsolatedStorageSettings.ApplicationSettings["music_enabled"] = true;
-                return (bool)IsolatedStorageSettings.ApplicationSettings["music_enabled"];
-            }
-            set
-            {
-                if (MusicEnabled != value)
-                    IsolatedStorageSettings.ApplicationSettings["music_enabled"] = value;
-            }
-        }
-
     }
 }

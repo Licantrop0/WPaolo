@@ -7,6 +7,7 @@ using System.Windows.Resources;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Xml.Linq;
+using DeathTimerz.Sounds;
 
 namespace DeathTimerz
 {
@@ -29,9 +30,6 @@ namespace DeathTimerz
 
             // Phone-specific initialization
             InitializePhoneApplication();
-
-            if (Settings.MusicEnabled)
-                Settings.AskAndPlayMusic();
         }
 
 
@@ -53,6 +51,9 @@ namespace DeathTimerz
 
             using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
                 Settings.Questions = XDocument.Load(fs);
+
+            if (SoundManager.Instance.MusicEnabled)
+                SoundManager.Instance.AskAndPlayMusic();
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -60,9 +61,10 @@ namespace DeathTimerz
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
-            {
                 Settings.Questions = XDocument.Load(fs);
-            }
+
+            if (SoundManager.Instance.MusicEnabled)
+                SoundManager.Instance.AskAndPlayMusic();
         }
 
         // Code to execute when the application is deactivated (sent to background)

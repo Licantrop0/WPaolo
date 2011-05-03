@@ -66,9 +66,10 @@
                    Text="{Binding Path=LocalizedResources.DisableMusic, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
 
-            <ToggleButton Name="MusicToggleButton" Margin="12,0" HorizontalAlignment="Left"
-                          Template="{StaticResource MusicToggleButtonTemplate}"
-                          Click="MusicToggleButton_Click" />
+            <ToggleButton Name="MusicToggleButton" Margin="12,0"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding MusicEnabled, Mode=TwoWay}"
+                          Template="{StaticResource MusicToggleButtonTemplate}" />
         </StackPanel>
     </Grid>
     

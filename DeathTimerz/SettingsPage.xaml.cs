@@ -7,6 +7,7 @@ using System.ComponentModel;
 using DeathTimerz.Localization;
 using Microsoft.Xna.Framework.Media;
 using System.Windows.Media;
+using DeathTimerz.Sounds;
 
 namespace DeathTimerz
 {
@@ -22,8 +23,7 @@ namespace DeathTimerz
                 BirthDayTimePicker.Value = Settings.BirthDay;
             }
 
-            MusicToggleButton.IsChecked = Settings.MusicEnabled;
-            EnableDisableMusicTextBlock.Text = Settings.MusicEnabled ? AppResources.DisableMusic : AppResources.EnableMusic;
+            MusicToggleButton.DataContext = SoundManager.Instance;
         }
 
         private void SaveAppBarButton_Click(object sender, EventArgs e)
@@ -75,22 +75,6 @@ namespace DeathTimerz
             CancelAppBarButton.Text = AppResources.Cancel;
             CancelAppBarButton.Click += new EventHandler(CancelAppBarButton_Click);
             ApplicationBar.Buttons.Add(CancelAppBarButton);
-        }
-
-        private void MusicToggleButton_Click(object sender, RoutedEventArgs e)
-        {
-            Settings.MusicEnabled = !Settings.MusicEnabled;
-
-            if (Settings.MusicEnabled)
-            {
-                Settings.AskAndPlayMusic();
-                EnableDisableMusicTextBlock.Text = AppResources.DisableMusic;
-            }
-            else
-            {
-                MediaPlayer.Stop();
-                EnableDisableMusicTextBlock.Text = AppResources.EnableMusic;
-            }
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)

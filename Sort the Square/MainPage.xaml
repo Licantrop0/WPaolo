@@ -15,8 +15,36 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
+    <phone:PhoneApplicationPage.Resources>
+        <ControlTemplate x:Key="MusicToggleButtonTemplate" TargetType="ToggleButton">
+            <Grid Background="Transparent">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CheckStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition GeneratedDuration="0:0:0.5"/>
+                        </VisualStateGroup.Transitions>
+                        <VisualState x:Name="Checked">
+                            <Storyboard>
+                                <DoubleAnimation Duration="0" To="0"
+                                                 Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                 Storyboard.TargetName="SoundOffImage" d:IsOptimized="True"/>
+                                <DoubleAnimation Duration="0" To="1"
+                                                 Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                 Storyboard.TargetName="SoundOnImage" d:IsOptimized="True"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Unchecked" />
+                        <VisualState x:Name="Indeterminate"/>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Image x:Name="SoundOffImage" Source="Phil\SoundON.png"/>
+                <Image x:Name="SoundOnImage" Source="Phil\SoundOFF.png" Opacity="0" />
+            </Grid>
+        </ControlTemplate>
+    </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
+
+    <Grid Background="{StaticResource BackgroundImageBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -26,31 +54,41 @@
             <TextBlock Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}" 
                        Style="{StaticResource SquareTitleStyle}" />
         </Border>
-        
-        <Canvas x:Name="ContentPanel" Margin="16,16,8,8" Grid.Row="1" >
-            
+
+        <Canvas Grid.Row="1" >
             <Button Content="{Binding LocalizedResources.Easy, Source={StaticResource LocalizedStrings}}" 
-                    Click="SquareFiveButton_Click"
+                    Click="SquareEasyButton_Click"
                     Style="{StaticResource HomeButtonStyle}"
                     Width="210" Height="90"
-                    Canvas.Left="-14" Canvas.Top="65"
+                    Canvas.Left="-6" Canvas.Top="94"
                     FontSize="40" />
 
-            <Button Content="{Binding LocalizedResources.Hard, Source={StaticResource LocalizedStrings}}" 
-                    Click="SquareTenButton_Click"
+            <Button Content="{Binding LocalizedResources.Normal, Source={StaticResource LocalizedStrings}}" 
+                    Click="SquareNormalButton_Click"
                     Style="{StaticResource HomeButtonStyle}"                    
                     Width="234" Height="90"
-                    Canvas.Left="314" Canvas.Top="-21" 
+                    Canvas.Left="326" Canvas.Top="8" 
                     FontSize="40" >
                 <Button.RenderTransform>
                     <CompositeTransform Rotation="50"/>
                 </Button.RenderTransform>
             </Button>
 
+            <Button Content="{Binding LocalizedResources.Hard, Source={StaticResource LocalizedStrings}}" 
+                    Click="SquareHardButton_Click"
+                    Style="{StaticResource HomeButtonStyle}"                    
+                    Width="234" Height="90"
+                    Canvas.Left="28" Canvas.Top="276" 
+                    FontSize="40">
+                <Button.RenderTransform>
+                    <CompositeTransform Rotation="5"/>
+                </Button.RenderTransform>
+            </Button>
+
             <Button Content="{Binding LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
                     Height="98" Width="182"
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="10" Canvas.Top="403">
+                    Canvas.Left="136" Canvas.Top="554">
                 <Button.RenderTransform>
                     <CompositeTransform Rotation="-22.382"/>
                 </Button.RenderTransform>
@@ -63,7 +101,7 @@
 
             <Button Content="{Binding LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
                     Height="82" Width="220" Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="134" Canvas.Top="264" FontSize="25" >
+                    Canvas.Left="244" Canvas.Top="300" FontSize="25" >
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
                         <ic:NavigateToPageAction TargetPage="/InstructionsPage.xaml"/>
@@ -71,25 +109,35 @@
                 </Custom:Interaction.Triggers>
             </Button>
 
+            <ToggleButton Name="MusicToggleButton" Canvas.Left="14" Canvas.Top="400"
+                          Template="{StaticResource MusicToggleButtonTemplate}"
+                          IsChecked="{Binding MusicEnabled, Mode=TwoWay}"
+                          toolkit:TiltEffect.IsTiltEnabled="True"
+                          Height="141" Width="151" >
+                <ToggleButton.RenderTransform>
+                    <RotateTransform Angle="-10" />
+                </ToggleButton.RenderTransform>
+            </ToggleButton>
+
+
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
                     Height="70" Width="139" Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="215" Canvas.Top="415" >
+                    Canvas.Left="325" Canvas.Top="448" >
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
                         <ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
             </Button>
-            
+
             <Image Source="Phil/saluta.png"
                    Stretch="Fill" IsHitTestVisible="False"
                    Height="196" Width="272"
-                   Canvas.Left="133" Canvas.Top="104" >
+                   Canvas.Left="140" Canvas.Top="132" >
                 <Image.RenderTransform>
-                    <CompositeTransform Rotation="-1080.247"/>
+                    <RotateTransform Angle="0" />
                 </Image.RenderTransform>
             </Image>
-
 
             <!--<Button Canvas.Left="0" Canvas.Top="362"
                     Content="congratulations" Height="71" Width="238" Click="Button_Click" />-->

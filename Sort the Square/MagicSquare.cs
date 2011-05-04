@@ -19,30 +19,22 @@ namespace SortTheSquare
         {
             int counter = 1;
             for (int i = 0; i < Size; i++)
-            {
                 for (int j = 0; j < Size; j++)
-                {
-                    if (Grid[j, i] != counter)
-                    {
-                        if (i != (Size - 1) && j != (Size - 1))
-                            return false;
-                    }
-                    counter++;
-                }
-            }
+                    if (Grid[j, i] != counter++)
+                        return counter == (Size * Size) + 1;
+
             return true;
         }
 
         public MagicSquare(int size)
         {
-            if (size != 5 && size != 10)
-                throw new ArgumentException("The square could be only 5x5 or 10x10", "size");
-
             Size = size;
             Grid = new int[Size, Size];
             InitializeRandomSequence();
         }
 
+
+        //TODO: se si fa completamente random, potrebbe uscire fuori un quadrato non risolvibie
         public void InitializeRandomSequence()
         {
             Random rnd = new Random();
@@ -55,19 +47,7 @@ namespace SortTheSquare
                     Grid[i, j] = unordered.Dequeue();
         }
 
-        public bool SetS(GridPoint p)
-        {
-            if (p.Y == 0)
-                return false;
-            if (Grid[p.X, p.Y - 1] == 0)
-            {
-                Grid[p.X, p.Y - 1] = Grid[p.X, p.Y];
-                Grid[p.X, p.Y] = 0;
-                return true;
-            }
-            return false;
-        }
-        public bool SetN(GridPoint p)
+        private bool SetN(GridPoint p)
         {
             if (p.Y == (Size - 1))
                 return false;
@@ -79,19 +59,19 @@ namespace SortTheSquare
             }
             return false;
         }
-        public bool SetE(GridPoint p)
+        private bool SetS(GridPoint p)
         {
-            if (p.X == 0)
+            if (p.Y == 0)
                 return false;
-            if (Grid[p.X - 1, p.Y] == 0)
+            if (Grid[p.X, p.Y - 1] == 0)
             {
-                Grid[p.X - 1, p.Y] = Grid[p.X, p.Y];
+                Grid[p.X, p.Y - 1] = Grid[p.X, p.Y];
                 Grid[p.X, p.Y] = 0;
                 return true;
             }
             return false;
         }
-        public bool SetW(GridPoint p)
+        private bool SetW(GridPoint p)
         {
             if (p.X == (Size - 1))
                 return false;
@@ -103,7 +83,18 @@ namespace SortTheSquare
             }
             return false;
         }
-
+        private bool SetE(GridPoint p)
+        {
+            if (p.X == 0)
+                return false;
+            if (Grid[p.X - 1, p.Y] == 0)
+            {
+                Grid[p.X - 1, p.Y] = Grid[p.X, p.Y];
+                Grid[p.X, p.Y] = 0;
+                return true;
+            }
+            return false;
+        }
 
         public bool PressButton(GridPoint p)
         {
@@ -111,7 +102,6 @@ namespace SortTheSquare
 
             //if (Grid[p.X, p.Y] == 0)  //è la casella vuota
             //    return false;
-
             //if (!SetN(p))
             //    if (!SetS(p))
             //        if (!SetW(p))

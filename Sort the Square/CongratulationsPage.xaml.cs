@@ -7,6 +7,7 @@ using Microsoft.Phone.Controls;
 using WPCommon;
 using Microsoft.Xna.Framework.Audio;
 using SortTheSquare.Localization;
+using SortTheSquare.Sounds;
 
 namespace SortTheSquare
 {
@@ -23,7 +24,7 @@ namespace SortTheSquare
         {
             if (!NonLinearNavigationService.Instance.IsRecursiveBackNavigation)
             {
-                Settings.VictorySound.Play();
+                SoundManager.VictorySound.Play();
 
                 if (NavigationContext.QueryString.ContainsKey("id"))
                 {

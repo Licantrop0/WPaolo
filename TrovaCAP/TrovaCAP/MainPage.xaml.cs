@@ -604,12 +604,8 @@ namespace TrovaCAP
 
                 _acbIndirizziCashedSearchKey = text;
 
-                // andrebbe messo qua il loading con una chiamata asincrona
-                Dispatcher.BeginInvoke(() =>
-                {
-                    TbLoading.Text = AppResources.Loading;
-                    TbLoading.Opacity = 1;
-                });
+                //TODO: BUG se si clicca su COMUNI prima che venga eseguita questa riga dal dispatcher, rimane scritto Loading
+                Dispatcher.BeginInvoke(() => { TbLoading.Text = AppResources.Loading; });
 
                 // fisso l'itemsource (da ottimizzare, sarebbe meglio eliminare gli item che non ci sono più, non ricrearlo da zero)
                 foreach (var s in _acbIndirizziCashedItemsSource)
@@ -631,15 +627,15 @@ namespace TrovaCAP
                     
                 AcbIndirizzi.ItemsSource = itemSource;
                 AcbIndirizzi.Populating += AcbIndirizzi_Populating;
-                if (AcbIndirizzi.ItemsSource.Count() <= 325)
-                {
-                    TbLoading.Opacity = 0;
-                    AcbIndirizzi.PopulateComplete();
-                }
-                else
+                if (AcbIndirizzi.ItemsSource.Count() >= 325)
                 {
                     AcbIndirizzi.ClearView();
                     TbLoading.Text = AppResources.TooManyResults;
+                }
+                else
+                {
+                    TbLoading.Text = string.Empty;
+                    AcbIndirizzi.PopulateComplete();
                 }
             };
             bw.RunWorkerAsync(AcbIndirizzi.Text);

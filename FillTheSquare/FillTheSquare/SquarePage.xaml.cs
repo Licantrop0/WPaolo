@@ -91,6 +91,7 @@ namespace FillTheSquare
                         dt.Stop();
                         var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
                         Settings.Records.Add(r);
+                        AdPlaceHolder.Children.Clear(); //fix per bug GoogleAd
                         NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id, UriKind.Relative));
                         break;
                     }

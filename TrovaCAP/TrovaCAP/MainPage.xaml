@@ -100,8 +100,8 @@
                                  GotFocus="AcbIndirizzi_GotFocus"
                                  TextChanged="AcbIndirizzi_TextChanged"
                                  IsEnabled="False" Populating="AcbIndirizzi_Populating" />
-            <TextBlock Name="TbLoading" Text="{Binding Path=LocalizedResources.Loading, Source={StaticResource LocalizedStrings}}"
-                       Style="{StaticResource CommonTextStyle}" FontSize="20" Opacity="0" />
+            <TextBlock Name="TbLoading" FontSize="20" 
+                       Style="{StaticResource CommonTextStyle}" />
         </StackPanel>
 
         <TextBox x:Name="TbCapResult" TextAlignment="Center"

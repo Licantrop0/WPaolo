@@ -145,7 +145,7 @@
   <data name="TooManyResults" xml:space="preserve">
     <value>Troppi risultati, continua a scrivere...</value>
   </data>
-  <data name="TrialMode1" xml:space="preserve">
+  <data name="TrialMode" xml:space="preserve">
     <value>Modalità Demo, clicca qui e acquista la versione Full per vedere il CAP completo</value>
   </data>
 </root>

@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Net;
+using System.ComponentModel;
+using System.IO.IsolatedStorage;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using FillTheSquare.Localization;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Phone.Shell;
-using FillTheSquare.Localization;
-using System.IO.IsolatedStorage;
-using System.ComponentModel;
 
 namespace FillTheSquare.Sounds
 {
@@ -33,23 +24,40 @@ namespace FillTheSquare.Sounds
             }
         }
 
-        public bool MusicEnabled
+        private bool MusicEnabledWrapper
         {
             get
             {
                 if (!IsolatedStorageSettings.ApplicationSettings.Contains("music_enabled"))
                     IsolatedStorageSettings.ApplicationSettings["music_enabled"] = true;
 
-                var value = (bool)IsolatedStorageSettings.ApplicationSettings["music_enabled"];
-                if (value) return AskAndPlayMusic();
-                return value;
+                return (bool)IsolatedStorageSettings.ApplicationSettings["music_enabled"];
             }
             set
             {
-                if (value) value = AskAndPlayMusic();
-                else MediaPlayer.Stop();
-                IsolatedStorageSettings.ApplicationSettings["music_enabled"] = value;
-                OnPropertyChanged("MusicEnabled");
+                if (MusicEnabledWrapper != value)
+                {
+                    IsolatedStorageSettings.ApplicationSettings["music_enabled"] = value;
+                    OnPropertyChanged("MusicEnabled");
+                }
+            }
+        }
+
+        public bool MusicEnabled
+        {
+            get
+            {
+                if (MusicEnabledWrapper)
+                    MusicEnabledWrapper = AskAndPlayMusic();
+
+                return MusicEnabledWrapper;
+            }
+            set
+            {
+                MusicEnabledWrapper = value;
+
+                if (!value && MediaPlayer.GameHasControl)
+                    MediaPlayer.Stop();
             }
         }
 

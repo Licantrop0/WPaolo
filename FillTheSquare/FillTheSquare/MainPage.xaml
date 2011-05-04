@@ -38,8 +38,8 @@
                         <VisualState x:Name="Indeterminate"/>
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
-                <Image x:Name="SoundOffImage" Source="Phil\SoundOFF.png"/>
-                <Image x:Name="SoundOnImage" Source="Phil\SoundON.png" Opacity="0" />
+                <Image x:Name="SoundOffImage" Source="Phil\SoundON.png"/>
+                <Image x:Name="SoundOnImage" Source="Phil\SoundOFF.png" Opacity="0" />
             </Grid>
         </ControlTemplate>
     </phone:PhoneApplicationPage.Resources>
@@ -99,7 +99,6 @@
                 <Button.RenderTransform>
                     <RotateTransform Angle="18" />
                 </Button.RenderTransform>
-
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
                         <ic:NavigateToPageAction TargetPage="/InstructionsPage.xaml"/>
@@ -122,12 +121,15 @@
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
                     Height="80" Width="200"
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="17" Canvas.Top="477" >
+                    Canvas.Left="18" Canvas.Top="466" >
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
                         <ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
+                <Button.RenderTransform>
+                    <RotateTransform Angle="15" />
+                </Button.RenderTransform>
             </Button>
         </Canvas>
     </Grid>

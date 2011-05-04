@@ -164,6 +164,9 @@
   <data name="NoMoreMoves" xml:space="preserve">
     <value>Il n'y a pas mouvements disponibles</value>
   </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normale</value>
+  </data>
   <data name="PhilWillBeHappy" xml:space="preserve">
     <value>et Phil sera toujour joyeux et vous pouvez jouer sans limitations!</value>
   </data>

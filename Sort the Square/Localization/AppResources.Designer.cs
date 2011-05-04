@@ -196,6 +196,15 @@ namespace SortTheSquare.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        public static string Normal {
+            get {
+                return ResourceManager.GetString("Normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to so Phil will be always happy and you will have no limits in the play!.
         /// </summary>
         public static string PhilWillBeHappy {

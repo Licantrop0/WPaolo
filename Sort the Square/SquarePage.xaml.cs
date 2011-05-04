@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
-using WPCommon;
 using SortTheSquare.Localization;
+using SortTheSquare.Sounds;
+using WPCommon;
 
 namespace SortTheSquare
 {
@@ -34,23 +33,24 @@ namespace SortTheSquare
                 MagicGrid.ColumnDefinitions.Add(new ColumnDefinition());
                 for (int j = 0; j < Settings.CurrentGridSize; j++)
                 {
+                    if (Square.Grid[j, i] == 0)
+                        continue; //salta la generazione del bordo
+
                     var b = new Border()
                     {
-                        Background = new SolidColorBrush(Colors.Cyan),
-                        BorderThickness = Settings.CurrentGridSize == 5 ? new Thickness(2) : new Thickness(1),
-                        BorderBrush = new SolidColorBrush(Colors.Black),
+                        Background = (SolidColorBrush)Resources["PhoneAccentBrush"], //occhio al tema corrente!
+                        BorderThickness = Settings.CurrentGridSize == 3 ? new Thickness(2) : new Thickness(1),
+                        BorderBrush = (SolidColorBrush)Resources["PhoneBorderBrush"],
                         Child = new TextBlock()
                         {
                             Text = Square.Grid[j, i].ToString(),
-                            Foreground = new SolidColorBrush(Colors.Green),
-                            FontSize = Settings.CurrentGridSize == 5 ? 60 : 30,
+                            Foreground = (SolidColorBrush)Resources["PhoneContrastForegroundBrush"],
+                            //scala il font dinamicamente a seconda del numero di square
+                            FontSize = -10 * Settings.CurrentGridSize + 90,
                             TextAlignment = TextAlignment.Center,
+                            VerticalAlignment = VerticalAlignment.Center
                         }
                     };
-                    if (Square.Grid[j, i] == 0)
-                        b.Opacity = 0;
-                    else
-                        b.Opacity = 1;
 
                     b.SetRow(i);
                     b.SetColumn(j);
@@ -60,6 +60,15 @@ namespace SortTheSquare
             }
         }
 
+        /*
+         * Generare ogni volta tutta la griglia causa
+         * lievi problemi di performance sul device.
+         * alla fine è solo uno swap: basta fare SetRow e SetColum
+         * sui 2 button in modo appropriato.
+         * Bisognerebbe creare una classe apposita che contiene
+         * le informazioni dei bottoni da swappare ritornata
+         * dal metodo PressButton
+         */
         private void InvalidateSquare()
         {
             MagicGrid.Children.Clear();
@@ -88,35 +97,39 @@ namespace SortTheSquare
             var currentBorder = (Border)sender;
             var p = new GridPoint(currentBorder.GetColumn(), currentBorder.GetRow());
 
-            //tutta la logica della griglia è dentro il metodo PressButton
-            switch (Square.PressButton(p))
+            if (Square.PressButton(p))
             {
-                case true: //sono riuscito a spostare una casella, devo ridisegnare la griglia
-                    InvalidateSquare();
+                //sono riuscito a spostare una casella, devo ridisegnare la griglia
+                InvalidateSquare();
 
-                    if (Square.IsCompleted()) //Vittoria!
-                    {
-                        dt.Stop();
-                        var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
-                        Settings.Records.Add(r);
-                        NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id, UriKind.Relative));
-                        break;
-                    }
-                    else
-                    {
-                        Settings.MoveSound.Play();
-                    }
-                    break;
-
-                case false: //non sono riuscito a spostare la casella, non faccio un Settings.ErrorSound.Play();
-                    break;
+                if (Square.IsCompleted()) //Vittoria!
+                {
+                    dt.Stop();
+                    AdPlaceHolder.Children.Clear(); //fix per bug GoogleAd
+                    var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
+                    Settings.Records.Add(r);
+                    NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id, UriKind.Relative));
+                }
+                else
+                {
+                    SoundManager.MoveSound.Play();
+                    InitializeAd(); //TODO: trovare un altro modo più furbo
+                }
             }
         }
 
+        private void InitializeAd()
+        {
+            if (AdPlaceHolder.Children.Count == 1)
+                return;
+
+            var GoogleAd = new Google.AdMob.Ads.WindowsPhone7.WPF.BannerAd() { AdUnitID = "a14da9d2bde5aea" };
+            AdPlaceHolder.Children.Add(GoogleAd);
+        }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-            Settings.ResetSound.Play();
+            SoundManager.ResetSound.Play();
             sw.Reset();
             sw.Start();
             Square = new MagicSquare(Settings.CurrentGridSize);

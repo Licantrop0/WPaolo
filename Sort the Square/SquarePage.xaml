@@ -65,10 +65,8 @@
                     Style="{StaticResource HomeButtonStyle}"
                     Template="{StaticResource ResetButtonControlTemplate}"
                     Height="112" Width="260" />
-            
-            <google:BannerAd AdUnitID="a14da9d2bde5aea"
-                xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
-                LocationDescription="{Binding ElementName=Location, Mode=OneWay}" />
+
+            <StackPanel Name="AdPlaceHolder" Height="75" />
         </StackPanel>
     </Grid>
 

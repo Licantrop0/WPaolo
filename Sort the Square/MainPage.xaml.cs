@@ -3,6 +3,7 @@ using System.Windows;
 using Microsoft.Phone.Controls;
 using System.Linq;
 using System.Windows.Controls;
+using SortTheSquare.Sounds;
 
 namespace SortTheSquare
 {
@@ -11,22 +12,32 @@ namespace SortTheSquare
         public MainPage()
         {
             InitializeComponent();
+            MusicToggleButton.DataContext = SoundManager.Instance;
         }
 
-        private void SquareFiveButton_Click(object sender, RoutedEventArgs e)
+        private void SquareEasyButton_Click(object sender, RoutedEventArgs e)
         {
-            Settings.StartSound.Play();
-            Settings.CurrentGridSize = 5;
+            Settings.CurrentGridSize = 3;
+            GoPlay();
+        }
+
+        private void SquareNormalButton_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.CurrentGridSize = 4;
+            GoPlay();
+        }
+
+        private void SquareHardButton_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.CurrentGridSize = 6;
+            GoPlay();
+        }
+
+        private void GoPlay()
+        {
+            SoundManager.StartSound.Play();
             NavigationService.Navigate(new Uri("/SquarePage.xaml", UriKind.Relative));
         }
-
-        private void SquareTenButton_Click(object sender, RoutedEventArgs e)
-        {
-            Settings.StartSound.Play();
-            Settings.CurrentGridSize = 10;
-            NavigationService.Navigate(new Uri("/SquarePage.xaml", UriKind.Relative));
-        }
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

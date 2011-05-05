@@ -8,6 +8,7 @@ using Microsoft.Phone.Controls;
 using SortTheSquare.Localization;
 using SortTheSquare.Sounds;
 using WPCommon;
+using System.Linq;
 
 namespace SortTheSquare
 {
@@ -22,16 +23,24 @@ namespace SortTheSquare
             InitializeComponent();
             InitializeTimers();
             Square = new MagicSquare(Settings.CurrentGridSize);
+            CreateGrid();
             InitializeSquare();
+        }
+
+        private void CreateGrid()
+        {
+            for (int i = 0; i < Square.Size; i++)
+            {
+                MagicGrid.RowDefinitions.Add(new RowDefinition());
+                MagicGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
         }
 
         private void InitializeSquare()
         {
-            for (int i = 0; i < Settings.CurrentGridSize; i++)
+            for (int i = 0; i < Square.Size; i++)
             {
-                MagicGrid.RowDefinitions.Add(new RowDefinition());
-                MagicGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                for (int j = 0; j < Settings.CurrentGridSize; j++)
+                for (int j = 0; j < Square.Size; j++)
                 {
                     if (Square.Grid[j, i] == 0)
                         continue; //salta la generazione del bordo
@@ -60,23 +69,6 @@ namespace SortTheSquare
             }
         }
 
-        /*
-         * Generare ogni volta tutta la griglia causa
-         * lievi problemi di performance sul device.
-         * alla fine è solo uno swap: basta fare SetRow e SetColum
-         * sui 2 button in modo appropriato.
-         * Bisognerebbe creare una classe apposita che contiene
-         * le informazioni dei bottoni da swappare ritornata
-         * dal metodo PressButton
-         */
-        private void InvalidateSquare()
-        {
-            MagicGrid.Children.Clear();
-            MagicGrid.ColumnDefinitions.Clear();
-            MagicGrid.RowDefinitions.Clear();
-            InitializeSquare();
-        }
-
         private void InitializeTimers()
         {
             dt = new DispatcherTimer();
@@ -89,6 +81,8 @@ namespace SortTheSquare
             dt.Start();
 
             sw = new Stopwatch();
+
+            //TODO: farei partire il timer solo al primo click sulla griglia
             sw.Start();
         }
 
@@ -96,16 +90,18 @@ namespace SortTheSquare
         {
             var currentBorder = (Border)sender;
             var p = new GridPoint(currentBorder.GetColumn(), currentBorder.GetRow());
-
-            if (Square.PressButton(p))
+            var newPoint = Square.PressButton(p);
+            if (newPoint.HasValue)
             {
-                //sono riuscito a spostare una casella, devo ridisegnare la griglia
-                InvalidateSquare();
+                //Sposto la casella nella nuova posizione
+                currentBorder.SetColumn(newPoint.Value.X);
+                currentBorder.SetRow(newPoint.Value.Y);
 
                 if (Square.IsCompleted()) //Vittoria!
                 {
                     dt.Stop();
-                    AdPlaceHolder.Children.Clear(); //fix per bug GoogleAd
+                    AdPlaceHolder.Children.Clear(); //fix per bug GoogleAd + NonLinearNavigationService
+
                     var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
                     Settings.Records.Add(r);
                     NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id, UriKind.Relative));
@@ -113,7 +109,7 @@ namespace SortTheSquare
                 else
                 {
                     SoundManager.MoveSound.Play();
-                    InitializeAd(); //TODO: trovare un altro modo più furbo
+                    InitializeAd(); //TODO: trovare un altro modo più furbo (ad es. chiamare il metodo solo al primo click)
                 }
             }
         }
@@ -130,10 +126,13 @@ namespace SortTheSquare
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
             SoundManager.ResetSound.Play();
+
             sw.Reset();
             sw.Start();
+
+            MagicGrid.Children.Clear();
             Square = new MagicSquare(Settings.CurrentGridSize);
-            InvalidateSquare();
+            InitializeSquare();
         }
     }
 }

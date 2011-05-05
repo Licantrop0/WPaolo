@@ -49,6 +49,15 @@ namespace NascondiChiappe
             CurrentImage = sender as Image;
             CurrentTransform = CurrentImage.RenderTransform as CompositeTransform;
 
+            //Point firstTouch = e.GetPosition(CurrentImage, 0);
+            //Point secondTouch = e.GetPosition(CurrentImage, 1);
+
+            //Point center = new Point(firstTouch.X + (secondTouch.X - firstTouch.X) / 2.0,
+            //                            firstTouch.Y + (secondTouch.Y - firstTouch.Y) / 2.0);
+
+            //CurrentTransform.CenterX = center.X;
+            //CurrentTransform.CenterY = center.Y;
+
             // Record the current scaling and rotation values
             _cx = CurrentTransform.ScaleX;
             _cy = CurrentTransform.ScaleY;
@@ -98,7 +107,7 @@ namespace NascondiChiappe
             if (cx >= 1.0 && cx < 4.0 && cy >= 1.0 && cy < 4.0)
             {
                 //TODO: Implementare centro sul tap
-                //var Center = e.GetPosition(this);
+                //var Center = e.GetPosition(CurrentImage);
                 //CurrentTransform.CenterX = Center.X;
                 //CurrentTransform.CenterY = Center.Y;
                 CurrentTransform.ScaleX = cx;

@@ -1,20 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using NascondiChiappe.Localization;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace NascondiChiappe
 {
     public partial class AlbumsPage : PhoneApplicationPage
     {
-        Album SelectedAlbum;
         List<AlbumPhoto> SelectedPhotos;
+        private Album SelectedAlbum
+        {
+            get
+            {
+                if (!PhoneApplicationService.Current.State.ContainsKey("selected_album"))
+                    PhoneApplicationService.Current.State.Add("selected_album", null);
+                return (Album)PhoneApplicationService.Current.State["selected_album"];
+            }
+            set
+            {
+                if(SelectedAlbum != value)
+                    PhoneApplicationService.Current.State["selected_album"] = value;
+            }
+        }
 
         public AlbumsPage()
         {
@@ -34,8 +46,6 @@ namespace NascondiChiappe
             else
             {
                 csvAlbums.Source = Settings.Albums;
-                SelectedAlbum = Settings.Albums[AlbumsPivot.SelectedIndex];
-                ShowHint();
             }
         }
 
@@ -135,7 +145,8 @@ namespace NascondiChiappe
 
         private void GestureListener_DoubleTap(object sender, GestureEventArgs e)
         {
-            var photoIndex = SelectedAlbum.Photos.IndexOf(((AlbumPhoto)sender));
+            var photo = (Image)sender;
+            var photoIndex = SelectedAlbum.Photos.IndexOf(((AlbumPhoto)photo.DataContext));
             NavigationService.Navigate(new Uri(
                 string.Format("/ViewPhotosPage.xaml?Album={0}&Photo={1}",
                 SelectedAlbum.DirectoryName, photoIndex),
@@ -181,5 +192,6 @@ namespace NascondiChiappe
             { NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(AddAlbumAppBarMenuItem);
         }
+
     }
 }

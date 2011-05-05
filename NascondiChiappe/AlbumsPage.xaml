@@ -35,9 +35,8 @@
             </DataTemplate>
         </Grid.Resources>
 
-        <controls:Pivot Name="AlbumsPivot"
-                        ItemsSource="{Binding Source={StaticResource csvAlbums}}"
-                        SelectionChanged="Pivot_SelectionChanged">
+        <controls:Pivot ItemsSource="{Binding Source={StaticResource csvAlbums}}"
+                        SelectionChanged="Pivot_SelectionChanged" >
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" Style="{StaticResource TitleStyle}" />

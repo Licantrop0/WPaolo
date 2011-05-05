@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
 using System.Linq;
-using System.Collections;
 
 namespace SortTheSquare
 {
@@ -11,10 +9,15 @@ namespace SortTheSquare
         // array bidimensionale che rappresenta il quadrato magico
         public int[,] Grid;
 
-        // Dimensione della Griglia
+        /// <summary>
+        /// Dimensione della Griglia
+        /// </summary>
         public int Size { get; private set; }
 
-        //metodo che verifica se il giocatore ha vinto mettendo in ordine tutti i numeri
+        /// <summary>
+        /// Verifica se il giocatore ha vinto mettendo in ordine tutti i numeri
+        /// </summary>
+        /// <returns>True se completo, False altrimenti</returns>
         public bool IsCompleted()
         {
             int counter = 1;
@@ -33,9 +36,8 @@ namespace SortTheSquare
             InitializeRandomSequence();
         }
 
-
         //TODO: se si fa completamente random, potrebbe uscire fuori un quadrato non risolvibie
-        public void InitializeRandomSequence()
+        private void InitializeRandomSequence()
         {
             Random rnd = new Random();
             var unordered = new Queue<int>(
@@ -47,58 +49,58 @@ namespace SortTheSquare
                     Grid[i, j] = unordered.Dequeue();
         }
 
-        private bool SetN(GridPoint p)
-        {
-            if (p.Y == (Size - 1))
-                return false;
-            if (Grid[p.X, p.Y + 1] == 0)
-            {
-                Grid[p.X, p.Y + 1] = Grid[p.X, p.Y];
-                Grid[p.X, p.Y] = 0;
-                return true;
-            }
-            return false;
-        }
-        private bool SetS(GridPoint p)
+        private GridPoint? SetN(GridPoint p)
         {
             if (p.Y == 0)
-                return false;
+                return null;
             if (Grid[p.X, p.Y - 1] == 0)
             {
                 Grid[p.X, p.Y - 1] = Grid[p.X, p.Y];
                 Grid[p.X, p.Y] = 0;
-                return true;
+                return new GridPoint(p.X, p.Y - 1);
             }
-            return false;
+            return null;
         }
-        private bool SetW(GridPoint p)
+        private GridPoint? SetS(GridPoint p)
         {
-            if (p.X == (Size - 1))
-                return false;
-            if (Grid[p.X + 1, p.Y] == 0)
+            if (p.Y == (Size - 1))
+                return null;
+            if (Grid[p.X, p.Y + 1] == 0)
             {
-                Grid[p.X + 1, p.Y] = Grid[p.X, p.Y];
+                Grid[p.X, p.Y + 1] = Grid[p.X, p.Y];
                 Grid[p.X, p.Y] = 0;
-                return true;
+                return new GridPoint(p.X, p.Y + 1);
             }
-            return false;
+            return null;
         }
-        private bool SetE(GridPoint p)
+        private GridPoint? SetW(GridPoint p)
         {
             if (p.X == 0)
-                return false;
+                return null;
             if (Grid[p.X - 1, p.Y] == 0)
             {
                 Grid[p.X - 1, p.Y] = Grid[p.X, p.Y];
                 Grid[p.X, p.Y] = 0;
-                return true;
+                return new GridPoint(p.X - 1, p.Y);
             }
-            return false;
+            return null;
+        }
+        private GridPoint? SetE(GridPoint p)
+        {
+            if (p.X == (Size - 1))
+                return null;
+            if (Grid[p.X + 1, p.Y] == 0)
+            {
+                Grid[p.X + 1, p.Y] = Grid[p.X, p.Y];
+                Grid[p.X, p.Y] = 0;
+                return new GridPoint(p.X + 1, p.Y);
+            }
+            return null;
         }
 
-        public bool PressButton(GridPoint p)
+        public GridPoint? PressButton(GridPoint p)
         {
-            return SetN(p) || SetS(p) || SetW(p) || SetE(p);
+            return SetN(p) ?? SetS(p) ?? SetW(p) ?? SetE(p);
 
             //if (Grid[p.X, p.Y] == 0)  //è la casella vuota
             //    return false;
@@ -110,7 +112,6 @@ namespace SortTheSquare
             //return true;
         }
     }
-
 
     public struct GridPoint
     {

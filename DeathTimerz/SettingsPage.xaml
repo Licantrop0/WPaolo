@@ -62,14 +62,15 @@
                                 Foreground="{StaticResource RedGradientBrush}"
                                 FontFamily="Fonts\Fonts.zip#Chiller" />
 
-            <TextBlock Name="EnableDisableMusicTextBlock" Margin="0,24,0,0"
-                   Text="{Binding Path=LocalizedResources.DisableMusic, Source={StaticResource LocalizedStrings}}"
-                   Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
+            <StackPanel Name="MusicStackPanel">
+                <TextBlock Text="{Binding EnableDisabledMusicDescription}"
+                           Style="{StaticResource RedChiller}" Margin="0,24,0,0"
+                           FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
 
-            <ToggleButton Name="MusicToggleButton" Margin="12,0"
-                          HorizontalAlignment="Left"
-                          IsChecked="{Binding MusicEnabled, Mode=TwoWay}"
-                          Template="{StaticResource MusicToggleButtonTemplate}" />
+                <ToggleButton IsChecked="{Binding MusicEnabled, Mode=TwoWay}"
+                              Template="{StaticResource MusicToggleButtonTemplate}"
+                              HorizontalAlignment="Left" Margin="12,0" />
+            </StackPanel>
         </StackPanel>
     </Grid>
     

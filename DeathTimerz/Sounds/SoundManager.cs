@@ -23,33 +23,51 @@ namespace DeathTimerz.Sounds
             }
         }
 
-        public bool MusicEnabled
+        private bool MusicEnabledWrapper
         {
             get
             {
                 if (!IsolatedStorageSettings.ApplicationSettings.Contains("music_enabled"))
                     IsolatedStorageSettings.ApplicationSettings["music_enabled"] = true;
 
-                var value = (bool)IsolatedStorageSettings.ApplicationSettings["music_enabled"];
-                if (value) return AskAndPlayMusic();
-                return value;
+                return (bool)IsolatedStorageSettings.ApplicationSettings["music_enabled"];
             }
             set
             {
-                if (value) value = AskAndPlayMusic();
-                else MediaPlayer.Stop();
-                IsolatedStorageSettings.ApplicationSettings["music_enabled"] = value;
-                OnPropertyChanged("MusicEnabled");
+                if (MusicEnabledWrapper != value)
+                {
+                    IsolatedStorageSettings.ApplicationSettings["music_enabled"] = value;
+                    OnPropertyChanged("MusicEnabled");
+                    OnPropertyChanged("EnableDisabledMusicDescription");
+                }
             }
         }
 
-        public string DisableEnableMusicText
+        public bool MusicEnabled
         {
-            //TODO: implement localization
-            get { return "enabledisable"; }
+            get
+            {
+                if (MusicEnabledWrapper && MediaPlayer.GameHasControl)
+                    return true;
+                else if (MusicEnabledWrapper && !MediaPlayer.GameHasControl)
+                    MusicEnabledWrapper = AskAndPlayMusic();
+
+                //if (!MediaPlayer.GameHasControl && MediaPlayer.State != MediaState.Playing)
+                return MusicEnabledWrapper;
+            }
+            set
+            {
+                if (!value && MediaPlayer.GameHasControl)
+                    MediaPlayer.Stop();
+
+                MusicEnabledWrapper = value;
+            }
         }
 
-        public bool AskAndPlayMusic()
+        public string EnableDisabledMusicDescription
+        { get { return MusicEnabledWrapper ? AppResources.DisableMusic : AppResources.EnableMusic; } }
+
+        public static bool AskAndPlayMusic()
         {
             var canPlayMusic = MediaPlayer.GameHasControl ?
                                 true :

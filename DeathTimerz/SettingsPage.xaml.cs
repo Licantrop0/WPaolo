@@ -23,7 +23,7 @@ namespace DeathTimerz
                 BirthDayTimePicker.Value = Settings.BirthDay;
             }
 
-            MusicToggleButton.DataContext = SoundManager.Instance;
+            MusicStackPanel.DataContext = SoundManager.Instance;
         }
 
         private void SaveAppBarButton_Click(object sender, EventArgs e)

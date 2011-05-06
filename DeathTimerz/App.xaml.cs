@@ -53,7 +53,7 @@ namespace DeathTimerz
                 Settings.Questions = XDocument.Load(fs);
 
             if (SoundManager.Instance.MusicEnabled)
-                SoundManager.Instance.AskAndPlayMusic();
+                SoundManager.AskAndPlayMusic();
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -64,7 +64,7 @@ namespace DeathTimerz
                 Settings.Questions = XDocument.Load(fs);
 
             if (SoundManager.Instance.MusicEnabled)
-                SoundManager.Instance.AskAndPlayMusic();
+                SoundManager.AskAndPlayMusic();
         }
 
         // Code to execute when the application is deactivated (sent to background)

@@ -4,6 +4,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Phone.Controls;
+using System.IO.IsolatedStorage;
+using System.IO;
+using System.Xml.Linq;
+using System.Collections.Generic;
 
 namespace NascondiChiappe
 {
@@ -18,7 +22,7 @@ namespace NascondiChiappe
             InitializeComponent();
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             if (!Settings.IsPasswordInserted)
             {
@@ -26,13 +30,52 @@ namespace NascondiChiappe
                 return;
             }
 
-            if (NavigationContext.QueryString.ContainsKey("Album"))
+            if (!NavigationContext.QueryString.ContainsKey("Album"))
             {
-                var AlbumId = NavigationContext.QueryString["Album"];
-                ImagePivot.ItemsSource = Settings.Albums.First(a => a.DirectoryName == AlbumId).Photos;
-                var PhotoId = Convert.ToInt32(NavigationContext.QueryString["Photo"]);
-                if (PhotoId == -1) PhotoId = 0; //correzione se nessuna immagine era selezionata
-                ImagePivot.SelectedIndex = PhotoId;
+                NavigationService.GoBack();
+                return;
+            }
+
+            CreateHtml();
+        }
+
+        private void CreateHtml()
+        {
+            var AlbumId = NavigationContext.QueryString["Album"];
+            var CurrentAlbum = Settings.Albums.First(a => a.DirectoryName == AlbumId);
+            var PhotoId = Convert.ToInt32(NavigationContext.QueryString["Photo"]);
+            var CurrentPhoto = CurrentAlbum.Photos[PhotoId];
+
+            Wb.Base = AlbumId;
+
+            var html = new XDocument(
+                new XElement("html",
+                    new XElement("head",
+                        new XElement("meta",
+                            new XAttribute("name", "viewport"),
+                            new XAttribute("content", "width=480,height=800")),
+                        new XElement("body",
+                            new XAttribute("style", "background-color:black"),
+                            //from p in CurrentAlbum.Photos select 
+                            new XElement("div",// container
+                                new XAttribute("style",
+                                    string.Format("background-image: url('{0}'); background-repeat:no-repeat; background-position:center; height:800px", CurrentPhoto.Name))
+                                        //new XElement("img",
+                                        //    new XAttribute("src", CurrentPhoto.Name),
+                                        //    new XAttribute("width", "480"),
+                                        //    new XAttribute("style", string.Format("rotation:{0}deg;margin-top:auto; margin-bottom:auto;", CurrentPhoto.RotationAngle)))
+                                            )))));
+
+
+            IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
+            using (var isfs = isf.OpenFile(AlbumId + "\\image.html", FileMode.Create))
+            {
+                using (var sw = new StreamWriter(isfs))
+                {
+                    sw.Write(html);
+                    sw.Close();
+                    isfs.Close();
+                }
             }
         }
 
@@ -125,6 +168,11 @@ namespace NascondiChiappe
             CurrentTransform.ScaleY = 1;
             CurrentTransform.TranslateX = 0;
             CurrentTransform.TranslateY = 0;
+        }
+
+        private void Wb_Loaded(object sender, RoutedEventArgs e)
+        {
+            Wb.Navigate(new Uri("image.html", UriKind.Relative));
         }
     }
 }

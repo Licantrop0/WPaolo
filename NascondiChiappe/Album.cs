@@ -32,6 +32,7 @@ namespace NascondiChiappe
                     _photos = new ObservableCollection<AlbumPhoto>();
                     foreach (var fileName in isf.GetFileNames(DirectoryName + "\\*"))
                     {
+                        if (fileName.EndsWith("html")) continue;
                         using (var file = isf.OpenFile(DirectoryName + "\\" + fileName, FileMode.Open))
                             _photos.Add(new AlbumPhoto(fileName, file));
                     }

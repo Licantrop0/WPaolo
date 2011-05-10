@@ -52,8 +52,7 @@ namespace DeathTimerz
             using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
                 Settings.Questions = XDocument.Load(fs);
 
-            if (SoundManager.Instance.MusicEnabled)
-                SoundManager.AskAndPlayMusic();
+            SoundManager.Instance.RestoreMusicStatus();
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -63,8 +62,7 @@ namespace DeathTimerz
             using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
                 Settings.Questions = XDocument.Load(fs);
 
-            if (SoundManager.Instance.MusicEnabled)
-                SoundManager.AskAndPlayMusic();
+            SoundManager.Instance.RestoreMusicStatus();
         }
 
         // Code to execute when the application is deactivated (sent to background)

@@ -117,6 +117,9 @@ namespace Virus
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            // handle user input
+            HandleUserInput();
+
             // move the enemies
             _whiteGlobulos.ForEach(wg => wg.Move(dt));
 
@@ -139,6 +142,34 @@ namespace Virus
             _eventsManager.ManageCurrentEvent(gameTime.TotalGameTime);
             
             base.Update(gameTime);
+        }
+
+        private void HandleUserInput()
+        {
+            // we use raw touch points for selection, since they are more appropriate
+            // for that use than gestures. so we need to get that raw touch data
+            TouchCollection touches = TouchPanel.GetState();
+
+            // see if we have a new primary point down. when the first touch
+            // goes down, we do hit detection to try and select one of our enemies
+            if (touches.Count > 0 && touches[0].State == TouchLocationState.Pressed)
+            {
+                // convert the touch position into a Point for hit testing
+                Vector2 touchPoint = new Vector2(touches[0].Position.X, touches[0].Position.Y);
+
+                // iterate our sprites to find which sprite is being touched. we iterate backwards
+                // since that will cause sprites that are drawn on top to be selected before
+                // sprites drawn on the bottom.
+                SimpleEnemy pressedEnemy = null;
+                for (int i = 0, j = 0; i < _whiteGlobulos.Count; i++, j++)
+                {
+                    if (Vector2.Distance(_whiteGlobulos[j].Position, touchPoint) < _whiteGlobulos[j].Radius)
+                    {
+                        _whiteGlobulos.RemoveAt(j);
+                        j--;
+                    }
+                }
+            }
         }
 
         /// <summary>

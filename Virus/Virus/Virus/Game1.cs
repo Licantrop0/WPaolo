@@ -160,8 +160,8 @@ namespace Virus
                 // iterate our sprites to find which sprite is being touched. we iterate backwards
                 // since that will cause sprites that are drawn on top to be selected before
                 // sprites drawn on the bottom.
-                SimpleEnemy pressedEnemy = null;
-                for (int i = 0, j = 0; i < _whiteGlobulos.Count; i++, j++)
+                int count = _whiteGlobulos.Count;
+                for (int i = 0, j = 0; i < count; i++, j++)
                 {
                     if (Vector2.Distance(_whiteGlobulos[j].Position, touchPoint) < _whiteGlobulos[j].Radius)
                     {

@@ -29,14 +29,12 @@ namespace Virus
         // white globulos
         List<SimpleEnemy> _whiteGlobulos = new List<SimpleEnemy>();
 
-        // content
-        Texture2D _whiteGlobulosTexture;
-
         // game timer
         //float _gameTimer = 0;
+        SimpleEnemy _dummyEnemy;
 
         // time sampling
-        float dt;      // [sec]
+        float dt;      // [sec]     //PS si può eliminare usando il GameTime
 
         public Game1()
         {
@@ -84,9 +82,13 @@ namespace Virus
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            _whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
+            Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
+            SpriteAnimation whiteGlobulosSpriteAnimation = new SpriteAnimation(whiteGlobulosTexture, 7);
+            whiteGlobulosSpriteAnimation.IsLooping = true;
+            whiteGlobulosSpriteAnimation.FramesPerSecond = 5;
+
             // create white globulos factory
-            _whiteGlobulosFactory = new MonsterFactory(_eventsManager, _whiteGlobulos, _whiteGlobulosTexture,
+            _whiteGlobulosFactory = new MonsterFactory(_eventsManager, _whiteGlobulos, whiteGlobulosSpriteAnimation,
                TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(3000),     // time interval period for enemies creation schedule (min,max)
                TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
                60, 150,                                                              // enemies speed (min,max)
@@ -95,6 +97,11 @@ namespace Virus
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3),
                GameEventType.scheduleSimpleEnemyCreation,
                _whiteGlobulosFactory));
+            /*_dummyEnemy = new SimpleEnemy(whiteGlobulosSpriteAnimation, 7);
+            _dummyEnemy.Position = new Vector2(1, 1);
+            _dummyEnemy.Speed = new Vector2(10, 10);
+            _whiteGlobulos.Add(_dummyEnemy);*/
+
         }
 
         /// <summary>
@@ -121,7 +128,7 @@ namespace Virus
             HandleUserInput();
 
             // move the enemies
-            _whiteGlobulos.ForEach(wg => wg.Move(dt));
+            _whiteGlobulos.ForEach(wg => wg.Move(dt, gameTime));
 
             // destroy out of screens enemies
             int iterations = _whiteGlobulos.Count;
@@ -181,7 +188,12 @@ namespace Virus
             GraphicsDevice.Clear(Color.CornflowerBlue); // poi ci sarà da disegnare lo sfondo...
 
             spriteBatch.Begin();
-            _whiteGlobulos.ForEach(wg => spriteBatch.Draw(wg.Texture, wg.TexturePosition, Color.White));
+
+           // _whiteGlobulos.ForEach(wg => wg.SpriteAnimation.Draw(spriteBatch));
+            foreach (SimpleEnemy wg in _whiteGlobulos)
+            {
+                wg.SpriteAnimation.Draw(spriteBatch);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);

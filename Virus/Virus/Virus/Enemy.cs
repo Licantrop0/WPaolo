@@ -27,10 +27,13 @@ namespace Virus
         private Vector2 _forces;
 
         // graphics
-        private Texture2D _texture2D;
+        SpriteAnimation _spriteAnimation;
+        /*private Texture2D _texture2D;*/
         private Vector2   _texturePosition;
 
         // properties
+        public SpriteAnimation SpriteAnimation { get { return _spriteAnimation; } set { _spriteAnimation = value; } }
+
         public float Radius { get { return _radius; } set { _radius = value; } }
 
         public float Mass { get { return _mass; } set { _mass = value; } }
@@ -43,15 +46,16 @@ namespace Virus
 
         public Vector2 TexturePosition { get { return _texturePosition; } set { _texturePosition = value; } }
 
-        public Texture2D Texture { get { return _texture2D; } set { _texture2D = value; } }
+        //public Texture2D Texture { get { return _texture2D; } set { _texture2D = value; } }
 
         // constructor
-        public SimpleEnemy(Texture2D texture)
+        public SimpleEnemy(SpriteAnimation spriteAnimation, float radius)
         {
-            Debug.Assert(texture.Width == texture.Height);
+            //Debug.Assert(texture.Width == texture.Height);
 
-            _texture2D = texture;
-            _radius    = texture.Height / 2;
+            _spriteAnimation = spriteAnimation;
+
+            _radius = radius;
             _mass = 1;
         }
 
@@ -65,20 +69,26 @@ namespace Virus
             _forces += f;
         }
 
-        public void Move(float dt)
+        public void Move(float dt, GameTime gameTime)
         {
             // force is [Kg*px / sec2], Dt is [sec]
             Vector2 a = _forces / _mass;     // [px / sec2]
-            _speed    = _speed    + a      * dt;
-           _position  = _position + _speed * dt;
+            //_speed    = _speed    + a      * dt;
+            _speed    = _speed    + a      * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //_position  = _position + _speed * dt;
+            _position = _position + _speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             
             UpdateTexturePosition();
+            _spriteAnimation.Update(gameTime);
         }
 
         private void UpdateTexturePosition()
         {
-            _texturePosition.X = _position.X - _radius;
-            _texturePosition.Y = _position.Y - _radius;
+            Vector2 spritePosition = new Vector2(_position.X - _spriteAnimation.RectangleWidth / 2, _position.Y - _spriteAnimation.RectangleHeight / 2);
+
+            _spriteAnimation.Position = spritePosition;
+            //_texturePosition.X = _position.X - _spriteAnimation.RectangleWidth / 2;
+            //_texturePosition.Y = _position.Y - _spriteAnimation.RectangleHeight / 2;
         }
 
     }

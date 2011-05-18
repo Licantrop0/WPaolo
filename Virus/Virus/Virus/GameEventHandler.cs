@@ -28,7 +28,7 @@ namespace Virus
     {
         List<SimpleEnemy> _enemies;     // reference to the game enemies list
 
-        Texture2D _monsterTexture;
+        SpriteAnimation _monsterSpriteAnimation;
 
         Random _dice = new Random(DateTime.Now.Millisecond);
 
@@ -95,7 +95,10 @@ namespace Virus
         private void CreateSimpleEnemy(TimeSpan actualTime)
         {
             // create simple enemy
-            SimpleEnemy enemy = new SimpleEnemy(_monsterTexture);
+            SpriteAnimation monsterSpriteAnimation = new SpriteAnimation(_monsterSpriteAnimation._texture, 7);
+            monsterSpriteAnimation.IsLooping = true;
+            monsterSpriteAnimation.FramesPerSecond = 5;
+            SimpleEnemy enemy = new SimpleEnemy(monsterSpriteAnimation, 18f);
 
             // roll the dice for enemy position
             int borderPosition = _dice.Next(1, 2561);
@@ -127,7 +130,7 @@ namespace Virus
         }
 
         public MonsterFactory(GameEventsManager em,
-            List<SimpleEnemy> enemies, Texture2D monsterTexture,
+            List<SimpleEnemy> enemies, SpriteAnimation spriteAnimation,
             TimeSpan schedTimeIntervalMin, TimeSpan schedTimeIntervalMax,
             TimeSpan createTimeIntervalMin, TimeSpan createTimeIntervalMax,
             float speedMin, float speedMax,
@@ -135,7 +138,7 @@ namespace Virus
             : base(em)
         {
             _enemies = enemies;
-            _monsterTexture = monsterTexture;
+            _monsterSpriteAnimation = spriteAnimation;
             SchedulingTimeIntervalMin = schedTimeIntervalMin;
             SchedulingTimeIntervalMax = schedTimeIntervalMax;
             CreationTimeIntervalMin = createTimeIntervalMin;

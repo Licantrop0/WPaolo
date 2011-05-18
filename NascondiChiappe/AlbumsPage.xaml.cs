@@ -12,18 +12,23 @@ namespace NascondiChiappe
 {
     public partial class AlbumsPage : PhoneApplicationPage
     {
+        ApplicationBarIconButton CopyToMediaLibraryAppBarButton;
         List<AlbumPhoto> SelectedPhotos;
-        private Album SelectedAlbum
+        private Album SelectedAlbum;
+
+        private Album SelectedAlbumWrapper
         {
             get
             {
                 if (!PhoneApplicationService.Current.State.ContainsKey("selected_album"))
                     PhoneApplicationService.Current.State.Add("selected_album", null);
-                return (Album)PhoneApplicationService.Current.State["selected_album"];
+
+                var sa = (Album)PhoneApplicationService.Current.State["selected_album"];
+                return sa ?? Settings.Albums.OrderBy(a => a.Name).FirstOrDefault();
             }
             set
             {
-                if(SelectedAlbum != value)
+                if (SelectedAlbumWrapper != value)
                     PhoneApplicationService.Current.State["selected_album"] = value;
             }
         }
@@ -32,6 +37,7 @@ namespace NascondiChiappe
         {
             InitializeComponent();
             InitializeApplicationBar();
+            csvAlbums.Source = Settings.Albums;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -42,23 +48,39 @@ namespace NascondiChiappe
                 return;
             }
             if (Settings.Albums.Count == 0)
-                NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative));
-            else
             {
-                csvAlbums.Source = Settings.Albums;
+                NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative));
+                return;
             }
+
+            AlbumsPivot.ItemsSource = Settings.Albums;
+            SelectedAlbum = SelectedAlbumWrapper;
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            SelectedAlbumWrapper = SelectedAlbum;
         }
 
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedAlbum = e.AddedItems[0] as Album;
-            ShowHint();
+            if (AlbumsPivot.SelectedIndex != -1)
+                SelectedAlbum = e.AddedItems[0] as Album;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedPhotos = ((ListBox)sender).SelectedItems.Cast<AlbumPhoto>().ToList();
-            ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = SelectedPhotos.Count > 0;
+            CopyToMediaLibraryAppBarButton.IsEnabled = SelectedPhotos.Count > 0;
+        }
+
+        private void ImageList_DoubleTap(object sender, GestureEventArgs e)
+        {
+            var photoIndex = SelectedAlbum.Photos.IndexOf((AlbumPhoto)sender);
+            NavigationService.Navigate(new Uri(
+                string.Format("/ViewPhotosPage.xaml?Album={0}&Photo={1}",
+                SelectedAlbum.DirectoryName, photoIndex),
+                UriKind.Relative));
         }
 
         void TakePictureAppBarButton_Click(object sender, EventArgs e)
@@ -96,7 +118,6 @@ namespace NascondiChiappe
                 var fileName = AlbumPhoto.GetFileNameWithRotation(e.OriginalFileName, e.ChosenPhoto);
                 SelectedAlbum.AddPhoto(new AlbumPhoto(fileName, e.ChosenPhoto));
                 e.ChosenPhoto.Close();
-                ShowHint();
             }
         }
 
@@ -104,7 +125,6 @@ namespace NascondiChiappe
         {
             if (WPCommon.TrialManagement.IsTrialMode && SelectedAlbum.Photos.Count >= 4)
             {
-                //TODO: andare nella pagina trial
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return true;
             }
@@ -132,27 +152,6 @@ namespace NascondiChiappe
             //bw.RunWorkerAsync();
         }
 
-        private void ShowHint()
-        {
-            if (SelectedAlbum == null)
-                throw new ArgumentException("At least an album must be selected");
-
-            AddPhotosHintTextBlock.Visibility =
-                SelectedAlbum.Photos.Count == 0 ?
-                Visibility.Visible :
-                Visibility.Collapsed;
-        }
-
-        private void GestureListener_DoubleTap(object sender, GestureEventArgs e)
-        {
-            var photo = (Image)sender;
-            var photoIndex = SelectedAlbum.Photos.IndexOf(((AlbumPhoto)photo.DataContext));
-            NavigationService.Navigate(new Uri(
-                string.Format("/ViewPhotosPage.xaml?Album={0}&Photo={1}",
-                SelectedAlbum.DirectoryName, photoIndex),
-                UriKind.Relative));
-        }
-
         private void InitializeApplicationBar()
         {
             //var ViewPhotoAppBarButton = new ApplicationBarIconButton();
@@ -173,7 +172,7 @@ namespace NascondiChiappe
             CopyFromMediaLibraryAppBarButton.Click += new EventHandler(CopyFromMediaLibraryAppBarButton_Click);
             ApplicationBar.Buttons.Add(CopyFromMediaLibraryAppBarButton);
 
-            var CopyToMediaLibraryAppBarButton = new ApplicationBarIconButton();
+            CopyToMediaLibraryAppBarButton = new ApplicationBarIconButton();
             CopyToMediaLibraryAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_sendphoto.png", UriKind.Relative);
             CopyToMediaLibraryAppBarButton.Text = AppResources.CopyToMediaLibrary;
             CopyToMediaLibraryAppBarButton.IsEnabled = false;

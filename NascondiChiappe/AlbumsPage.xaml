@@ -9,12 +9,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:scm="clr-namespace:System.ComponentModel;assembly=System.Windows"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:local="clr-namespace:NascondiChiappe"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" >
 
     <Grid Background="{StaticResource BackgroundImage}">
         <Grid.Resources>
@@ -23,20 +24,10 @@
                     <scm:SortDescription PropertyName="Name" Direction="Ascending" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
-            
-            <DataTemplate x:Name="AlbumImageTemplate">
-                <Image Source="{Binding Photo}" Margin="12"
-                   RenderTransformOrigin="0.5,0.5"
-                   RenderTransform="{Binding Path=RotationAngle, Converter={StaticResource RotationConverter}}">
-                    <toolkit:GestureService.GestureListener>
-                        <toolkit:GestureListener DoubleTap="GestureListener_DoubleTap" />
-                    </toolkit:GestureService.GestureListener>
-                </Image>
-            </DataTemplate>
         </Grid.Resources>
 
-        <controls:Pivot ItemsSource="{Binding Source={StaticResource csvAlbums}}"
-                        SelectionChanged="Pivot_SelectionChanged" >
+        <controls:Pivot Name="AlbumsPivot" DataContext="{StaticResource csvAlbums}"
+                        SelectionChanged="Pivot_SelectionChanged">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" Style="{StaticResource TitleStyle}" />
@@ -45,22 +36,10 @@
 
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
-                    <ListBox Margin="0,-30,0,0" ItemsSource="{Binding Photos}"
-                             ItemTemplate="{StaticResource AlbumImageTemplate}"
-                             ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
-                             SelectionChanged="ListBox_SelectionChanged" SelectionMode="Multiple">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <toolkit:WrapPanel ItemWidth="225" ItemHeight="225"/>
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                    </ListBox>
+                    <local:ImageList DataContext="{Binding Photos}" DoubleTap="ImageList_DoubleTap" />
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>
-        <TextBlock Name="AddPhotosHintTextBlock" Visibility="Collapsed"
-                   Text="{Binding Path=LocalizedResources.AddPhotosHint, Source={StaticResource LocalizedStrings}}"
-                   Style="{StaticResource HintTextBlockStyle}" />
         <TextBlock Name="InfoTextBlock" Style="{StaticResource TextBlockStyle}" VerticalAlignment="Bottom" />
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>

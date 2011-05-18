@@ -29,8 +29,10 @@ namespace NascondiChiappe
                 NavigationService.Navigate(new Uri("/PasswordPage.xaml", UriKind.Relative));
                 return;
             }
+        }
 
-            //TODO: se torna indietro evitare la costruzione dei pulsanti
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
             if (NavigationContext.QueryString.ContainsKey("Album")) //EditAlbumMode
             {
                 PageTitle.Text = AppResources.EditAlbum;
@@ -52,26 +54,24 @@ namespace NascondiChiappe
                 DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
                 DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
                 ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
-
-                if (Settings.Albums.Count > 1)
-                {
-                    var MovePhotosAppBarButton = new ApplicationBarIconButton();
-                    MovePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_move.png", UriKind.Relative);
-                    MovePhotosAppBarButton.Text = AppResources.MoveSelectedPhotos;
-                    MovePhotosAppBarButton.IsEnabled = false;
-                    MovePhotosAppBarButton.Click += new EventHandler(MovePhotosAppBarButton_Click);
-                    ApplicationBar.Buttons.Add(MovePhotosAppBarButton);
-                }
             }
             else
-            {
-                if (Settings.Albums.Count == 0)
-                    OneAlbumNecessaryTextBlock.Visibility = Visibility.Visible;
-
                 AlbumNameTextBox.Focus();
+
+            if (Settings.Albums.Count == 0)
+            {
+                OneAlbumNecessaryTextBlock.Visibility = Visibility.Visible;
+            }
+            else if (Settings.Albums.Count > 1)
+            {
+                var MovePhotosAppBarButton = new ApplicationBarIconButton();
+                MovePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_move.png", UriKind.Relative);
+                MovePhotosAppBarButton.Text = AppResources.MoveSelectedPhotos;
+                MovePhotosAppBarButton.IsEnabled = false;
+                MovePhotosAppBarButton.Click += new EventHandler(MovePhotosAppBarButton_Click);
+                ApplicationBar.Buttons.Add(MovePhotosAppBarButton);
             }
         }
-
 
         private void InitializeApplicationBar()
         {

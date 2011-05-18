@@ -56,7 +56,9 @@ namespace NascondiChiappe
         public void AddPhoto(AlbumPhoto photo)
         {
             Photos.Add(photo);
-            var wb = new WriteableBitmap(photo.Photo);
+
+            //Implementare un ExifWriter o sperare che il metodo SaveJpeg supporti l'orientation un giorno
+            var wb = new WriteableBitmap(photo.Bitmap);
             using (var fs = isf.CreateFile(DirectoryName + "\\" + photo.Name))
             {
                 //346ms (average 6 samples)

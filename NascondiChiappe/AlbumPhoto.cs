@@ -15,17 +15,27 @@ namespace NascondiChiappe
             get { return _name; }
             set
             {
-                if (value != _name)
-                {
-                    _name = value;
-                    onPropertyChanged(this, "Name");
-                }
+                if (Name == value) return;
+
+                _name = value;
+                OnPropertyChanged(this, "Name");
             }
         }
 
         public double RotationAngle { get; set; }
-        private BitmapImage _image;
-        public BitmapImage Photo { get { return _image; } }
+        private BitmapImage _bitmap;
+        public BitmapImage Bitmap
+        {
+            get { return _bitmap; }
+            set
+            {
+                if (Bitmap == value) return;
+
+                _bitmap = value;
+                OnPropertyChanged(this, "Bitmap");
+
+            }
+        }
 
         public AlbumPhoto(string name, Stream photo)
         {
@@ -54,14 +64,15 @@ namespace NascondiChiappe
             }
 
             Name = name;
-            _image = new BitmapImage();
-            _image.SetSource(photo);
+            Bitmap = new BitmapImage();
+            Bitmap.SetSource(photo);
         }
 
         /// <summary>Aggiungo la info sulla rotation nel nome del file</summary>
         /// <param name="originalFileName">Nome del file originale</param>
         /// <param name="photo">MemoryStream che contiene la foto</param>
         /// <returns>nuovo nome del file con Rotation Info</returns>
+        /// <remarks>da eliminare dopo aver implementato un ExifWriter</remarks>
         public static string GetFileNameWithRotation(string originalFileName, Stream photo)
         {
             if (string.IsNullOrEmpty(originalFileName))
@@ -90,6 +101,7 @@ namespace NascondiChiappe
             return fileName;
         }
 
+        //TODO: da eliminare dopo aver implementato un ExifWriter
         public Stream GetRotatedPhoto(Stream photo)
         {
             //727ms (average 4 samples)
@@ -137,7 +149,7 @@ namespace NascondiChiappe
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
-        private void onPropertyChanged(object sender, string propertyName)
+        private void OnPropertyChanged(object sender, string propertyName)
         {
             if (PropertyChanged != null)
             {

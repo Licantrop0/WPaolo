@@ -69,7 +69,7 @@ namespace Virus
             _forces += f;
         }
 
-        public void Move(float dt, GameTime gameTime)
+        public void Move(GameTime gameTime)
         {
             // force is [Kg*px / sec2], Dt is [sec]
             Vector2 a = _forces / _mass;     // [px / sec2]

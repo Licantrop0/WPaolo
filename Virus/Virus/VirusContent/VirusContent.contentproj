@@ -46,6 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="polmoni1.png">
+      <Name>polmoni1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="whiteGlobulos.png">
       <Name>whiteGlobulos</Name>
       <Importer>TextureImporter</Importer>
@@ -60,8 +65,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="background.png">
-      <Name>background</Name>
+    <Compile Include="polmoni0.png">
+      <Name>polmoni0</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

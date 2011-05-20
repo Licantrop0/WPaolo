@@ -84,9 +84,10 @@ namespace Virus
             whiteGlobulosSpriteAnimation.FramesPerSecond = 5;
 
             // create background
-            Texture2D backgroundTexture = Content.Load<Texture2D>("background");
-            _background = new MovingBackground(backgroundTexture, true);
-            _background.Speed = -20f;
+            Texture2D backgroundTexture0 = Content.Load<Texture2D>("polmoni0");
+            Texture2D backgroundTexture1 = Content.Load<Texture2D>("polmoni1");
+            _background = new MovingBackground(new Texture2D[2] {backgroundTexture0, backgroundTexture1}/*, true*/);
+            _background.Speed = 20f;
 
             // create Virus
             Texture2D virusTexture = Content.Load<Texture2D>("virus");

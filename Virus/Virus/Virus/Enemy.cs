@@ -22,6 +22,8 @@ namespace Virus
         // motion state variables
         private Vector2 _position;     // [px, px]
         private Vector2 _speed;        // [px/s px/s]
+        private Vector2 _previousPosition;  // [px, px] (used for collision filter)
+        
 
         // forzanti
         private Vector2 _forces;
@@ -40,7 +42,9 @@ namespace Virus
 
         public float Damping { get { return _damping; } set { _damping = value; } }
 
-        public Vector2 Position { get { return _position; } set { _position = value; UpdateTexturePosition(); } }
+        public Vector2 Position { get { return _position; } set { _position = value; _previousPosition = value; UpdateTexturePosition(); } }
+
+        public Vector2 PreviousPosition { get { return _previousPosition; } }
 
         public Vector2 Speed { get { return _speed; } set { _speed = value; } }
 
@@ -73,9 +77,8 @@ namespace Virus
         {
             // force is [Kg*px / sec2], Dt is [sec]
             Vector2 a = _forces / _mass;     // [px / sec2]
-            //_speed    = _speed    + a      * dt;
             _speed    = _speed    + a      * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            //_position  = _position + _speed * dt;
+            _previousPosition = _position;
             _position = _position + _speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             
             UpdateTexturePosition();
@@ -84,11 +87,7 @@ namespace Virus
 
         private void UpdateTexturePosition()
         {
-            Vector2 spritePosition = new Vector2(_position.X - _spriteAnimation.RectangleWidth / 2, _position.Y - _spriteAnimation.RectangleHeight / 2);
-
-            _spriteAnimation.Position = spritePosition;
-            //_texturePosition.X = _position.X - _spriteAnimation.RectangleWidth / 2;
-            //_texturePosition.Y = _position.Y - _spriteAnimation.RectangleHeight / 2;
+            _spriteAnimation.Position = new Vector2(_position.X - _spriteAnimation.RectangleWidth / 2, _position.Y - _spriteAnimation.RectangleHeight / 2);
         }
 
     }

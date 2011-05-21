@@ -90,7 +90,7 @@ namespace Virus
             Texture2D backgroundTexture0 = Content.Load<Texture2D>("polmoni0");
             Texture2D backgroundTexture1 = Content.Load<Texture2D>("polmoni1");
             _background = new MovingBackground(new Texture2D[2] {backgroundTexture0, backgroundTexture1});
-            _background.Speed = 20f;    // [px/sec]
+            _background.Speed = 15f;    // [px/sec]
 
             // create first plan background
             Texture2D firstPlanBackground0 = Content.Load<Texture2D>("b0");
@@ -98,7 +98,7 @@ namespace Virus
             Texture2D firstPlanBackground2 = Content.Load<Texture2D>("b2");
             Texture2D firstPlanBackground3 = Content.Load<Texture2D>("b3");
             _firstPlanBackground = new MovingBackground(new Texture2D[4] { firstPlanBackground0, firstPlanBackground1, firstPlanBackground2, firstPlanBackground3 });
-            _firstPlanBackground.Speed = 40f;   // [px/sec]
+            _firstPlanBackground.Speed = 30f;   // [px/sec]
 
             // create Virus
             Texture2D virusTexture = Content.Load<Texture2D>("virus");
@@ -198,7 +198,8 @@ namespace Virus
                 int count = _whiteGlobulos.Count;
                 for (int i = 0, j = 0; i < count; i++, j++)
                 {
-                    if (Vector2.Distance(_whiteGlobulos[j].Position, touchPoint) < _whiteGlobulos[j].Radius)
+                    if ( (Vector2.Distance(_whiteGlobulos[j].Position, touchPoint) < _whiteGlobulos[j].Radius) ||
+                         (Vector2.Distance(_whiteGlobulos[j].PreviousPosition, touchPoint) < _whiteGlobulos[j].Radius) )
                     {
                         _whiteGlobulos.RemoveAt(j);
                         j--;

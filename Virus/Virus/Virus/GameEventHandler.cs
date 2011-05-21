@@ -98,7 +98,7 @@ namespace Virus
             SpriteAnimation monsterSpriteAnimation = new SpriteAnimation(_monsterSpriteAnimation._texture, 7);
             monsterSpriteAnimation.IsLooping = true;
             monsterSpriteAnimation.FramesPerSecond = 5;
-            SimpleEnemy enemy = new SimpleEnemy(monsterSpriteAnimation, 18f);
+            SimpleEnemy enemy = new SimpleEnemy(monsterSpriteAnimation, 30f);
 
             // roll the dice for enemy position
             int borderPosition = _dice.Next(1, 2561);

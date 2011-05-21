@@ -34,6 +34,11 @@ namespace Virus
 
         // background
         MovingBackground _background;
+        MovingBackground _firstPlanBackground;
+
+        // debug
+        string debugText;
+        SpriteFont segoe14;
 
         public Game1()
         {
@@ -78,23 +83,35 @@ namespace Virus
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
-            SpriteAnimation whiteGlobulosSpriteAnimation = new SpriteAnimation(whiteGlobulosTexture, 7);
-            whiteGlobulosSpriteAnimation.IsLooping = true;
-            whiteGlobulosSpriteAnimation.FramesPerSecond = 5;
+            // debug font
+            segoe14 = Content.Load<SpriteFont>("Segoe14");
 
             // create background
             Texture2D backgroundTexture0 = Content.Load<Texture2D>("polmoni0");
             Texture2D backgroundTexture1 = Content.Load<Texture2D>("polmoni1");
-            _background = new MovingBackground(new Texture2D[2] {backgroundTexture0, backgroundTexture1}/*, true*/);
-            _background.Speed = 20f;
+            _background = new MovingBackground(new Texture2D[2] {backgroundTexture0, backgroundTexture1});
+            _background.Speed = 20f;    // [px/sec]
+
+            // create first plan background
+            Texture2D firstPlanBackground0 = Content.Load<Texture2D>("b0");
+            Texture2D firstPlanBackground1 = Content.Load<Texture2D>("b1");
+            Texture2D firstPlanBackground2 = Content.Load<Texture2D>("b2");
+            Texture2D firstPlanBackground3 = Content.Load<Texture2D>("b3");
+            _firstPlanBackground = new MovingBackground(new Texture2D[4] { firstPlanBackground0, firstPlanBackground1, firstPlanBackground2, firstPlanBackground3 });
+            _firstPlanBackground.Speed = 40f;   // [px/sec]
 
             // create Virus
             Texture2D virusTexture = Content.Load<Texture2D>("virus");
             _virusSpriteAnimation = new SpriteAnimation(virusTexture, 7);
             _virusSpriteAnimation.IsLooping = true;
-            _virusSpriteAnimation.FramesPerSecond = 2;
+            _virusSpriteAnimation.FramesPerSecond = 4;
             _virusSpriteAnimation.Position = new Vector2(160, 320);
+
+            // create white globulos
+            Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
+            SpriteAnimation whiteGlobulosSpriteAnimation = new SpriteAnimation(whiteGlobulosTexture, 7);
+            whiteGlobulosSpriteAnimation.IsLooping = true;
+            whiteGlobulosSpriteAnimation.FramesPerSecond = 6;
 
             // create white globulos factory
             _whiteGlobulosFactory = new MonsterFactory(_eventsManager, _whiteGlobulos, whiteGlobulosSpriteAnimation,
@@ -133,6 +150,7 @@ namespace Virus
 
             // scroll the background
             _background.Update(gameTime);
+            _firstPlanBackground.Update(gameTime);
 
             // move the enemies
             _whiteGlobulos.ForEach(wg => wg.Move(gameTime));
@@ -200,10 +218,14 @@ namespace Virus
             spriteBatch.Begin();
 
             _background.Draw(spriteBatch);
+            _firstPlanBackground.Draw(spriteBatch);
 
             _virusSpriteAnimation.Draw(spriteBatch);
 
             _whiteGlobulos.ForEach(wg => wg.SpriteAnimation.Draw(spriteBatch));
+
+            /*debugText = Convert.ToString((int)Math.Round(_background._cursor) % 1600);
+            spriteBatch.DrawString(segoe14, debugText, Vector2.One * 100, Color.Yellow);*/
    
             spriteBatch.End();
 

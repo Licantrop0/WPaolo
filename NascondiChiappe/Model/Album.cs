@@ -8,12 +8,24 @@ using ExifLib;
 using System.Linq;
 using Microsoft.Xna.Framework.Media;
 using System.ComponentModel;
+using GalaSoft.MvvmLight;
 
 namespace NascondiChiappe
 {
     [DataContract]
-    public class Album
+    public class Album : INotifyPropertyChanged
     {
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(object sender, string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(sender, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
+
         [DataMember]
         public string Name { get; set; }
 

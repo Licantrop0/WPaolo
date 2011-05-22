@@ -58,7 +58,7 @@ namespace Virus
                     break;
 
                 case GameEventType.createSimpleEnemy:
-                    CreateSimpleEnemy(actualTime);
+                    CreateSimpleEnemy();
                     break;
 
                 case GameEventType.scheduleSimpleEnemyCreation:
@@ -92,12 +92,13 @@ namespace Virus
             _eventsManager.ScheduleEvent(ge);
         }
 
-        private void CreateSimpleEnemy(TimeSpan actualTime)
+        private void CreateSimpleEnemy()
         {
             // create simple enemy
             SpriteAnimation monsterSpriteAnimation = new SpriteAnimation(_monsterSpriteAnimation._texture, 7);
-            monsterSpriteAnimation.IsLooping = true;
-            monsterSpriteAnimation.FramesPerSecond = 5;
+            monsterSpriteAnimation.IsLooping = _monsterSpriteAnimation.IsLooping;
+            monsterSpriteAnimation.FramesPerSecond = _monsterSpriteAnimation.FramesPerSecond;
+            monsterSpriteAnimation.Origin = new Vector2(_monsterSpriteAnimation.RectangleWidth / 2, _monsterSpriteAnimation.RectangleHeight / 2);
             SimpleEnemy enemy = new SimpleEnemy(monsterSpriteAnimation, 30f);
 
             // roll the dice for enemy position

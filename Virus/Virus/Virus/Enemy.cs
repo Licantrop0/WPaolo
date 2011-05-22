@@ -87,7 +87,8 @@ namespace Virus
 
         private void UpdateTexturePosition()
         {
-            _spriteAnimation.Position = new Vector2(_position.X - _spriteAnimation.RectangleWidth / 2, _position.Y - _spriteAnimation.RectangleHeight / 2);
+            //_spriteAnimation.Position = new Vector2(_position.X - _spriteAnimation.RectangleWidth / 2, _position.Y - _spriteAnimation.RectangleHeight / 2);
+            _spriteAnimation.Position = new Vector2(_position.X , _position.Y);
         }
 
     }

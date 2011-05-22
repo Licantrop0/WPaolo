@@ -111,7 +111,7 @@ namespace Virus
             Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
             SpriteAnimation whiteGlobulosSpriteAnimation = new SpriteAnimation(whiteGlobulosTexture, 7);
             whiteGlobulosSpriteAnimation.IsLooping = true;
-            whiteGlobulosSpriteAnimation.FramesPerSecond = 6;
+            whiteGlobulosSpriteAnimation.FramesPerSecond = 6f;
 
             // create white globulos factory
             _whiteGlobulosFactory = new MonsterFactory(_eventsManager, _whiteGlobulos, whiteGlobulosSpriteAnimation,

@@ -56,14 +56,14 @@ namespace NascondiChiappe
                             new XAttribute("content", "width=480,height=800")),
                         new XElement("body",
                             new XAttribute("style", "background-color:black"),
-                            //from p in CurrentAlbum.Photos select 
+                //from p in CurrentAlbum.Photos select 
                             new XElement("div",// container
                                 new XAttribute("style",
                                     string.Format("background-image: url('{0}'); background-repeat:no-repeat; background-position:center; height:800px", CurrentPhoto.Name))
-                                        //new XElement("img",
-                                        //    new XAttribute("src", CurrentPhoto.Name),
-                                        //    new XAttribute("width", "480"),
-                                        //    new XAttribute("style", string.Format("rotation:{0}deg;margin-top:auto; margin-bottom:auto;", CurrentPhoto.RotationAngle)))
+                //new XElement("img",
+                //    new XAttribute("src", CurrentPhoto.Name),
+                //    new XAttribute("width", "480"),
+                //    new XAttribute("style", string.Format("rotation:{0}deg;margin-top:auto; margin-bottom:auto;", CurrentPhoto.RotationAngle)))
                                             )))));
 
 

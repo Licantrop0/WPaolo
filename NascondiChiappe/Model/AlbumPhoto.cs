@@ -7,7 +7,7 @@ using ExifLib;
 
 namespace NascondiChiappe
 {
-    public class AlbumPhoto : INotifyPropertyChanged
+    public class AlbumPhoto
     {
         private string _name;
         public string Name
@@ -15,27 +15,16 @@ namespace NascondiChiappe
             get { return _name; }
             set
             {
-                if (Name == value) return;
-
-                _name = value;
-                OnPropertyChanged(this, "Name");
+                if (value != _name)
+                {
+                    _name = value;
+                }
             }
         }
 
         public double RotationAngle { get; set; }
         private BitmapImage _bitmap;
-        public BitmapImage Bitmap
-        {
-            get { return _bitmap; }
-            set
-            {
-                if (Bitmap == value) return;
-
-                _bitmap = value;
-                OnPropertyChanged(this, "Bitmap");
-
-            }
-        }
+        public BitmapImage Bitmap { get { return _bitmap; } }
 
         public AlbumPhoto(string name, Stream photo)
         {
@@ -64,15 +53,14 @@ namespace NascondiChiappe
             }
 
             Name = name;
-            Bitmap = new BitmapImage();
-            Bitmap.SetSource(photo);
+            _bitmap = new BitmapImage();
+            _bitmap.SetSource(photo);
         }
 
         /// <summary>Aggiungo la info sulla rotation nel nome del file</summary>
         /// <param name="originalFileName">Nome del file originale</param>
         /// <param name="photo">MemoryStream che contiene la foto</param>
         /// <returns>nuovo nome del file con Rotation Info</returns>
-        /// <remarks>da eliminare dopo aver implementato un ExifWriter</remarks>
         public static string GetFileNameWithRotation(string originalFileName, Stream photo)
         {
             if (string.IsNullOrEmpty(originalFileName))
@@ -101,7 +89,6 @@ namespace NascondiChiappe
             return fileName;
         }
 
-        //TODO: da eliminare dopo aver implementato un ExifWriter
         public Stream GetRotatedPhoto(Stream photo)
         {
             //727ms (average 4 samples)
@@ -146,16 +133,5 @@ namespace NascondiChiappe
             ms.Position = 0;
             return ms;
         }
-
-        #region INotifyPropertyChanged Members
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(object sender, string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(sender, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        #endregion
     }
 }

@@ -17,9 +17,10 @@
     shell:SystemTray.IsVisible="False" >
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-            <phone:WebBrowser Name="Wb" Loaded="Wb_Loaded" />
 
-        <!--  <controls:Pivot Name="ImagePivot" SelectionChanged="ImagePivot_SelectionChanged">
+        <phone:WebBrowser Name="Wb" Loaded="Wb_Loaded" />
+
+          <!--<controls:Pivot Name="ImagePivot" SelectionChanged="ImagePivot_SelectionChanged">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="&lt;- Scroll Here -&gt;" />

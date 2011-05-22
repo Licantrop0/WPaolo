@@ -7,6 +7,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using NascondiChiappe.Localization;
+using NascondiChiappe.ViewModel;
 
 namespace NascondiChiappe
 {
@@ -14,30 +15,11 @@ namespace NascondiChiappe
     {
         ApplicationBarIconButton CopyToMediaLibraryAppBarButton;
         List<AlbumPhoto> SelectedPhotos;
-        private Album SelectedAlbum;
-
-        private Album SelectedAlbumWrapper
-        {
-            get
-            {
-                if (!PhoneApplicationService.Current.State.ContainsKey("selected_album"))
-                    PhoneApplicationService.Current.State.Add("selected_album", null);
-
-                var sa = (Album)PhoneApplicationService.Current.State["selected_album"];
-                return sa ?? Settings.Albums.OrderBy(a => a.Name).FirstOrDefault();
-            }
-            set
-            {
-                if (SelectedAlbumWrapper != value)
-                    PhoneApplicationService.Current.State["selected_album"] = value;
-            }
-        }
-
+        
         public AlbumsPage()
         {
             InitializeComponent();
             InitializeApplicationBar();
-            csvAlbums.Source = Settings.Albums;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -52,14 +34,6 @@ namespace NascondiChiappe
                 NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative));
                 return;
             }
-
-            AlbumsPivot.ItemsSource = Settings.Albums;
-            SelectedAlbum = SelectedAlbumWrapper;
-        }
-
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            SelectedAlbumWrapper = SelectedAlbum;
         }
 
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -162,7 +136,7 @@ namespace NascondiChiappe
 
             var TakePictureAppBarButton = new ApplicationBarIconButton();
             TakePictureAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_camera.png", UriKind.Relative);
-            TakePictureAppBarButton.Text = AppResources.TakePhoto;
+            TakePictureAppBarButton.Text = AppResources.TakePhoto;            
             TakePictureAppBarButton.Click += new EventHandler(TakePictureAppBarButton_Click);
             ApplicationBar.Buttons.Add(TakePictureAppBarButton);
 
@@ -191,6 +165,7 @@ namespace NascondiChiappe
             { NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(AddAlbumAppBarMenuItem);
         }
+
 
     }
 }

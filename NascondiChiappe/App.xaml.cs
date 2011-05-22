@@ -58,12 +58,18 @@ namespace NascondiChiappe
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+#if DEBUG
+            IsolatedStorageExplorer.Explorer.Start("192.168.1.15");
+#endif
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+#if DEBUG
+            IsolatedStorageExplorer.Explorer.RestoreFromTombstone();
+#endif
         }
 
         // Code to execute when the application is deactivated (sent to background)

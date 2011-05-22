@@ -53,14 +53,17 @@ namespace Virus
         private float _timeToUpdate = 0.05f;
 
         public bool IsLooping { get; set; }
-        public int FramesPerSecond
+        public float FramesPerSecond
         {
+            get { return 1f / _timeToUpdate; }
             set { _timeToUpdate = (1f / value); }
         }
 
         public void Update(GameTime gameTime)
         {
             _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            //Rotation += (float)(Math.PI / 16);   //PS temp!
 
             if (_timeElapsed > _timeToUpdate)
             {

@@ -198,8 +198,8 @@ namespace Virus
                 int count = _whiteGlobulos.Count;
                 for (int i = 0, j = 0; i < count; i++, j++)
                 {
-                    if ( (Vector2.Distance(_whiteGlobulos[j].Position, touchPoint) < _whiteGlobulos[j].Radius) ||
-                         (Vector2.Distance(_whiteGlobulos[j].PreviousPosition, touchPoint) < _whiteGlobulos[j].Radius) )
+                    if ( (Vector2.Distance(_whiteGlobulos[j].Position, touchPoint) < _whiteGlobulos[j].Radius)/* ||
+                         (Vector2.Distance(_whiteGlobulos[j].PreviousPosition, touchPoint) < _whiteGlobulos[j].Radius)*/ )
                     {
                         _whiteGlobulos.RemoveAt(j);
                         j--;

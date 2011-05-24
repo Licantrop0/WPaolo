@@ -82,7 +82,7 @@ namespace Virus
             _position = _position + _speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             
             UpdateTexturePosition();
-            _spriteAnimation.Update(gameTime);
+            _spriteAnimation.UpdateFrameAnimation(gameTime);
         }
 
         private void UpdateTexturePosition()

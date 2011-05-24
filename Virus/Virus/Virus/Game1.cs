@@ -156,7 +156,7 @@ namespace Virus
             _whiteGlobulos.ForEach(wg => wg.Move(gameTime));
 
             // animate virus
-            _virusSpriteAnimation.Update(gameTime);
+            _virusSpriteAnimation.UpdateFrameAnimation(gameTime);
 
             // destroy out of screens enemies
             int iterations = _whiteGlobulos.Count;

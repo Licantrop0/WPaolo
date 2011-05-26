@@ -80,7 +80,7 @@ namespace Virus
                             _state = CircularEnemyState.fading;
                             _touchable = false;
                             Speed = Vector2.Zero;
-                            _animations["main"].FadeSpeed = 3.0f;
+                            _animations["main"].FadeSpeed = 1.0f;
                             _utilityTimer = 0;
                         }
                         else

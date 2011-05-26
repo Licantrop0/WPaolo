@@ -84,9 +84,14 @@ namespace Virus
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // create our friend virus
-            Texture2D virusTexture = Content.Load<Texture2D>("virus");
+            /*Texture2D virusTexture = Content.Load<Texture2D>("virus");
             Dictionary<string, Animation> virusAnimations = new Dictionary<string,Animation>();
             virusAnimations.Add("main", new Animation(virusTexture, 7));
+            _virus = new Virus(virusAnimations);*/
+
+            Texture2D virusTexture = Content.Load<Texture2D>("VirusGiusto");
+            Dictionary<string, Animation> virusAnimations = new Dictionary<string, Animation>();
+            virusAnimations.Add("main", new Animation(virusTexture, 8));
             _virus = new Virus(virusAnimations);
             
             // create white globulos factory
@@ -217,8 +222,9 @@ namespace Virus
         protected override void Draw(GameTime gameTime)
         {
             //GraphicsDevice.Clear(Color.CornflowerBlue); // poi ci sarà da disegnare lo sfondo...
-
-            spriteBatch.Begin();
+            //GraphicsDevice.BlendState = BlendState.NonPremultiplied;
+            //spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
 
             // draw background
             _background.Draw(spriteBatch);

@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
 using System.IO.IsolatedStorage;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace NascondiChiappe.ViewModel
 {
@@ -28,23 +29,9 @@ namespace NascondiChiappe.ViewModel
         }
         #endregion
 
-        public ObservableCollection<Album> Albums
-        {
-            get
-            {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("albums"))
-                    IsolatedStorageSettings.ApplicationSettings["albums"] = new ObservableCollection<Album>();
-                return (ObservableCollection<Album>)IsolatedStorageSettings.ApplicationSettings["albums"];
-            }
-            set
-            {
-                if (Albums == value) return;
-
-                IsolatedStorageSettings.ApplicationSettings["albums"] = value;
-                OnPropertyChanged(this, "Albums");
-            }
-        }
-
+        public ObservableCollection<AlbumViewModel> Albums { get; set; }
+        public IList<AlbumPhoto> SelectedPhotos { get; set; }
+     
         public bool NoAlbumsPresent { get { return Albums.Count == 0; } }
 
 
@@ -65,6 +52,7 @@ namespace NascondiChiappe.ViewModel
         {
 
         }
+
 
     }
 }

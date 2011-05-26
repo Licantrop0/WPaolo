@@ -9,12 +9,16 @@ using Microsoft.Phone.Shell;
 using System.Linq;
 using System.Windows.Controls;
 using NascondiChiappe.Localization;
+using NascondiChiappe.ViewModel;
 
 namespace NascondiChiappe
 {
     public partial class AddEditAlbumPage : PhoneApplicationPage
     {
-        Album CurrentAlbum;
+
+        AddEditAlbumViewModel vm = new AddEditAlbumViewModel();
+        ApplicationBarIconButton DeletePhotosAppBarButton = new ApplicationBarIconButton();
+        ApplicationBarIconButton MovePhotosAppBarButton = new ApplicationBarIconButton();
 
         public AddEditAlbumPage()
         {
@@ -37,13 +41,7 @@ namespace NascondiChiappe
             {
                 PageTitle.Text = AppResources.EditAlbum;
                 var AlbumId = NavigationContext.QueryString["Album"];
-                CurrentAlbum = Settings.Albums.First(a => a.DirectoryName == AlbumId);
-                LayoutRoot.DataContext = CurrentAlbum;
 
-                //Imposta la lista degli eventuali altri album su cui spostare le foto
-                AlbumsListBox.ItemsSource = Settings.Albums.Where(a => a.DirectoryName != CurrentAlbum.DirectoryName);
-
-                var DeletePhotosAppBarButton = new ApplicationBarIconButton();
                 DeletePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
                 DeletePhotosAppBarButton.Text = AppResources.DeleteSelectedPhotos;
                 DeletePhotosAppBarButton.IsEnabled = false;
@@ -58,19 +56,19 @@ namespace NascondiChiappe
             else
                 AlbumNameTextBox.Focus();
 
-            if (Settings.Albums.Count == 0)
-            {
-                OneAlbumNecessaryTextBlock.Visibility = Visibility.Visible;
-            }
-            else if (Settings.Albums.Count > 1)
-            {
-                var MovePhotosAppBarButton = new ApplicationBarIconButton();
-                MovePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_move.png", UriKind.Relative);
-                MovePhotosAppBarButton.Text = AppResources.MoveSelectedPhotos;
-                MovePhotosAppBarButton.IsEnabled = false;
-                MovePhotosAppBarButton.Click += new EventHandler(MovePhotosAppBarButton_Click);
-                ApplicationBar.Buttons.Add(MovePhotosAppBarButton);
-            }
+            //TODO: Come faccio a recuperare la lista di tutti gli album che sta nell'AlbumsViewModel dalla view?
+            //if (Settings.Albums.Count == 0)
+            //{
+            //    OneAlbumNecessaryTextBlock.Visibility = Visibility.Visible;
+            //}
+            //else if (Settings.Albums.Count > 1)
+            //{
+            //    MovePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_move.png", UriKind.Relative);
+            //    MovePhotosAppBarButton.Text = AppResources.MoveSelectedPhotos;
+            //    MovePhotosAppBarButton.IsEnabled = false;
+            //    MovePhotosAppBarButton.Click += new EventHandler(MovePhotosAppBarButton_Click);
+            //    ApplicationBar.Buttons.Add(MovePhotosAppBarButton);
+            //}
         }
 
         private void InitializeApplicationBar()
@@ -84,7 +82,7 @@ namespace NascondiChiappe
 
         void MovePhotosAppBarButton_Click(object sender, EventArgs e)
         {
-            if (ImagesListBox.SelectedItems.Count == 0)
+            if (vm.SelectedPhotos.Count == 0)
             {
                 MessageBox.Show(AppResources.SelectPhotos);
                 return;
@@ -95,22 +93,19 @@ namespace NascondiChiappe
 
         void DeletePhotosAppBarMenuItem_Click(object sender, EventArgs e)
         {
-            if (ImagesListBox.SelectedItems.Count == 0)
+            if (vm.SelectedPhotos.Count == 0)
             {
                 MessageBox.Show(AppResources.SelectPhotos);
                 return;
             }
 
-            var SelectedPhotos = ImagesListBox.SelectedItems.Cast<AlbumPhoto>().ToArray();
-
-            //TODO: tradurre anche Francese
-            if (MessageBox.Show(SelectedPhotos.Length == 1 ?
+            if (MessageBox.Show(vm.SelectedPhotos.Count == 1 ?
                 AppResources.ConfirmPhotoDelete :
                 AppResources.ConfirmPhotosDelete,
                 AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                for (int i = 0; i < SelectedPhotos.Length; i++)
-                    CurrentAlbum.RemovePhoto(SelectedPhotos[i]);
+                for (int i = 0; i < vm.SelectedPhotos.Count; i++)
+                    vm.CurrentAlbum.Model.RemovePhoto(vm.SelectedPhotos[i]);
             }
         }
 
@@ -119,47 +114,36 @@ namespace NascondiChiappe
             if (!CheckAlbumName())
                 return;
 
-            if (WPCommon.TrialManagement.IsTrialMode &&
-                Settings.Albums.Count >= 1 &&
-                !NavigationContext.QueryString.ContainsKey("Album"))
-            {
-                //TODO: andare nella pagina trial
-                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-                return;
-            }
+            //TODO: Come fare ad accedere alla lista totale degli album?!
+            //if (WPCommon.TrialManagement.IsTrialMode &&
+            //    Settings.Albums.Count >= 1 &&
+            //    !NavigationContext.QueryString.ContainsKey("Album"))
+            //{
+            //    NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
+            //    return;
+            //}
 
-            if (CurrentAlbum == null)
-                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, Guid.NewGuid().ToString()));
-            else
-            {
-                Settings.Albums.Remove(CurrentAlbum);
-                Settings.Albums.Add(new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName));
-            }
             NavigationService.GoBack();
         }
 
         void DeleteAlbumAppBarMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(string.Format(AppResources.ConfirmAlbumDelete, CurrentAlbum.Name),
-                AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-            {
-                CurrentAlbum.RemoveDirectoryContent();
-                Settings.Albums.Remove(CurrentAlbum);
-                NavigationService.GoBack();
-            }
+            //if (MessageBox.Show(string.Format(AppResources.ConfirmAlbumDelete, CurrentAlbum.Name),
+            //    AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            //{
+            //    vm.CurrentAlbum.RemoveDirectoryContent();
+            //    Settings.Albums.Remove(CurrentAlbum);
+            //    NavigationService.GoBack();
+            //}
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
         {
-            if (CurrentAlbum == null)
-                return;
-
             if (PopupBorder.Visibility == Visibility.Visible)
             {
                 PopupBackground.Visibility = Visibility.Collapsed;
                 PopupBorder.Visibility = Visibility.Collapsed;
                 e.Cancel = true;
-                return;
             }
         }
 
@@ -182,10 +166,9 @@ namespace NascondiChiappe
 
         private void AlbumsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var SelectedPhotos = ImagesListBox.SelectedItems.Cast<AlbumPhoto>().ToArray();
-            for (int i = 0; i < SelectedPhotos.Length; i++)
+            for (int i = 0; i < vm.SelectedPhotos.Count; i++)
             {
-                CurrentAlbum.MovePhoto(SelectedPhotos[i], (Album)e.AddedItems[0]);
+                vm.CurrentAlbum.Model.MovePhoto(vm.SelectedPhotos[i], (Album)e.AddedItems[0]);
             }
 
             PopupBackground.Visibility = Visibility.Collapsed;
@@ -196,11 +179,10 @@ namespace NascondiChiappe
         {
             if (NavigationContext.QueryString.ContainsKey("Album")) //EditAlbumMode
             {
-                var ArePhotosSelected = ImagesListBox.SelectedItems.Count > 0;
-                ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).IsEnabled = ArePhotosSelected;
+                var ArePhotosSelected = vm.SelectedPhotos.Count > 0;
 
-                if (Settings.Albums.Count > 1)
-                    ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = ArePhotosSelected;
+                DeletePhotosAppBarButton.IsEnabled = ArePhotosSelected;
+                MovePhotosAppBarButton.IsEnabled = ArePhotosSelected;
             }
         }
     }

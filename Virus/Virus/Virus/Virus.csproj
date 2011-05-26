@@ -93,12 +93,12 @@
     <Compile Include="GameEventHandler.cs" />
     <Compile Include="GameEventsManager.cs" />
     <Compile Include="GameEvent.cs" />
+    <Compile Include="ITouchable.cs" />
     <Compile Include="PhysicalPoint.cs" />
     <Compile Include="MovingBackground.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Animation.cs" />
-    <Compile Include="Touchable.cs" />
     <Compile Include="Virus.cs" />
     <None Include="Properties\AppManifest.xml">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>

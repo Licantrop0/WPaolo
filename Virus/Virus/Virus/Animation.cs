@@ -13,8 +13,8 @@ namespace Virus
         private Rectangle[] _rectangles;
         private int _frameIndex = 0;
 
-        private int  _frameWidth  { get; set; }
-        private int  _frameHeight { get; set; }
+        private int _frameWidth { get; set; }
+        private int _frameHeight { get; set; }
 
         private Vector2 _position;
         private Color _color;
@@ -30,19 +30,24 @@ namespace Virus
         private float _rotationSpeed;
         private float _scalingSpeed;
 
+        // fading attributes
+        private float _fadeSpeed;
+
         public Vector2 Position
-        { set { _position = value;} }
+        { set { _position = value; } }
 
         public float FramePerSecond
-        { set {_timeToUpdate = value != 0 ? (1f / value) : float.PositiveInfinity; } }
+        { set { _timeToUpdate = value != 0 ? (1f / value) : float.PositiveInfinity; } }
 
         public float RotationSpeed
-        { set {_rotationSpeed = value; } }
+        { set { _rotationSpeed = value; } }
 
         public float ScalingSpeed
         { set { _scalingSpeed = value; } }
 
-     
+        public float FadeSpeed
+        { set { _fadeSpeed = value; } }
+
         public Animation(Texture2D texture, int frames)
         {
             _texture = texture;
@@ -56,7 +61,7 @@ namespace Virus
                 _rectangles[i] = new Rectangle(i * _frameWidth, 0, _frameWidth, _frameHeight);
             }
 
-            _color = Color.White;
+            _color = new Color(1f,1f,1f,1f);
             _origin = new Vector2(_frameWidth / 2, _frameHeight / 2);
             _rotation = 0f;
             _scale = 1f;
@@ -69,11 +74,11 @@ namespace Virus
         {
             spriteBatch.Draw(_texture, _position, _rectangles[_frameIndex], _color, _rotation, _origin, _scale, _spriteEffects, 0f);
         }
-    
 
-        public void UpdateFrame(GameTime gameTime)
+
+        public void Animate(float dt)
         {
-            _timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _timeElapsed += dt;
 
             if (_timeElapsed > _timeToUpdate)
             {
@@ -90,17 +95,19 @@ namespace Virus
             }
         }
 
-        public void Rotate(GameTime gameTime)
+        public void Rotate(float dt)
         {
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             _rotation = _rotation + _rotationSpeed * dt;
         }
-        
-        public void ChangeDimension(GameTime gameTime)
-        {
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+        public void ChangeDimension(float dt)
+        {
             _scale = _scale + _scalingSpeed * dt;
         }
+
+        public void Fade(float dt)
+        {
+            _color.A -= (byte)Math.Round(_fadeSpeed * dt * 255);
+        }
+    }
 }

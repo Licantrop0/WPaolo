@@ -3,44 +3,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Virus
 {
-    public abstract class Sprite : IPhysicalPoint
+    /*public class SpriteEvent
+    {
+        private int _spriteEventCode;
+
+        public int SpriteEventCode
+        { get { return _spriteEventCode; } set { _spriteEventCode = value;} }
+    }*/
+
+    public abstract class Sprite
     {
         // graphics
-        private Dictionary<int, Animation> _animations;
-        private Vector2 _framePosition;
+        protected Dictionary<string, Animation> _animations;
+        protected string _currentAnimation;
+        protected Queue<int> _spriteEventQueque = new Queue<int>();
+        protected float _elapsedTime;
+        protected int _actSpriteEvent;
 
-        public void Move()
+        protected Vector2 _framePosition;
+        protected PhysicalPoint _physicalPoint; 
+
+        public Sprite(Dictionary<string, Animation> animations)
         {
-            
+            _animations = animations;
+            _currentAnimation = _animations.Keys.First();
         }
 
+        public Vector2 Position
+        { get { return _physicalPoint.Position; } set { _physicalPoint.Position = value; } }
 
-    }
+        public Vector2 Speed
+        { get { return _physicalPoint.Speed; } set { _physicalPoint.Speed = value; } }
 
-
-
-
-        public void Move(GameTime gameTime)
+        public void Move(float dt)
         {
-            // force is [Kg*px / sec2], Dt is [sec]
-            Vector2 a = _forces / _mass;     // [px / sec2]
-            _speed    = _speed    + a      * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _previousPosition = _position;
-            _position = _position + _speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
-            UpdateTexturePosition();
-            _spriteAnimation.UpdateFrameAnimation(gameTime);
+            _physicalPoint.Move(dt);
+            _animations[_currentAnimation].Position = _physicalPoint.Position;
         }
 
-        private void UpdateTexturePosition()
+        public void Draw(SpriteBatch spriteBatch)
         {
-            //_spriteAnimation.Position = new Vector2(_position.X - _spriteAnimation.RectangleWidth / 2, _position.Y - _spriteAnimation.RectangleHeight / 2);
-            _spriteAnimation.Position = new Vector2(_position.X , _position.Y);
+            _animations[_currentAnimation].Draw(spriteBatch);
         }
 
-    }
+        public void AddSpriteEvent(int evnt)
+        {
+            _spriteEventQueque.Enqueue(evnt);
+        }
+
+        public virtual void Update(GameTime gameTime)
+        {
+            _elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _actSpriteEvent = _spriteEventQueque.Count > 0 ? _spriteEventQueque.Dequeue() : -1;
+        }
     }
 }

@@ -27,18 +27,16 @@ namespace Virus
         MonsterFactory _whiteGlobulosFactory;
 
         // white globulos
-        List<SimpleEnemy> _whiteGlobulos = new List<SimpleEnemy>();
+        List<CircularEnemy> _whiteGlobulos = new List<CircularEnemy>();
 
-        // virus
-        SpriteAnimation _virusSpriteAnimation;
+        // content
+        Texture2D _whiteGlobulosTexture;
 
         // background
         MovingBackground _background;
         MovingBackground _firstPlanBackground;
 
-        // debug
-        string debugText;
-        SpriteFont segoe14;
+        Vector2 _touchPoint;
 
         public Game1()
         {
@@ -83,13 +81,18 @@ namespace Virus
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            // debug font
-            segoe14 = Content.Load<SpriteFont>("Segoe14");
+            _whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
+            // create white globulos factory
+            _whiteGlobulosFactory = new MonsterFactory(_eventsManager, _whiteGlobulos, _whiteGlobulosTexture,
+               TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(3000),     // time interval period for enemies creation schedule (min,max)
+               TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
+               60, 150,                                                              // enemies speed (min,max)
+               1, 5);                                                                // number of enemies created per schedule
 
             // create background
             Texture2D backgroundTexture0 = Content.Load<Texture2D>("polmoni0");
             Texture2D backgroundTexture1 = Content.Load<Texture2D>("polmoni1");
-            _background = new MovingBackground(new Texture2D[2] {backgroundTexture0, backgroundTexture1});
+            _background = new MovingBackground(new Texture2D[2] { backgroundTexture0, backgroundTexture1 });
             _background.Speed = 15f;    // [px/sec]
 
             // create first plan background
@@ -99,26 +102,6 @@ namespace Virus
             Texture2D firstPlanBackground3 = Content.Load<Texture2D>("b3");
             _firstPlanBackground = new MovingBackground(new Texture2D[4] { firstPlanBackground0, firstPlanBackground1, firstPlanBackground2, firstPlanBackground3 });
             _firstPlanBackground.Speed = 30f;   // [px/sec]
-
-            // create Virus
-            Texture2D virusTexture = Content.Load<Texture2D>("virus");
-            _virusSpriteAnimation = new SpriteAnimation(virusTexture, 7);
-            _virusSpriteAnimation.IsLooping = true;
-            _virusSpriteAnimation.FramesPerSecond = 4;
-            _virusSpriteAnimation.Position = new Vector2(160, 320);
-
-            // create white globulos
-            Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
-            SpriteAnimation whiteGlobulosSpriteAnimation = new SpriteAnimation(whiteGlobulosTexture, 7);
-            whiteGlobulosSpriteAnimation.IsLooping = true;
-            whiteGlobulosSpriteAnimation.FramesPerSecond = 6f;
-
-            // create white globulos factory
-            _whiteGlobulosFactory = new MonsterFactory(_eventsManager, _whiteGlobulos, whiteGlobulosSpriteAnimation,
-               TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(3000),     // time interval period for enemies creation schedule (min,max)
-               TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
-               60, 150,                                                              // enemies speed (min,max)
-               1, 5);                                                                // number of enemies created per schedule
 
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3),
                GameEventType.scheduleSimpleEnemyCreation,
@@ -134,6 +117,55 @@ namespace Virus
             // TODO: Unload any non ContentManager content here
         }
 
+       
+
+        private void GetUserTouch()
+        {
+            // we use raw touch points for selection, since they are more appropriate
+            // for that use than gestures. so we need to get that raw touch data
+            TouchCollection touches = TouchPanel.GetState();
+
+            // see if we have a new primary point down. when the first touch
+            // goes down, we do hit detection to try and select one of our enemies
+            if (touches.Count > 0 && touches[0].State == TouchLocationState.Pressed)
+            {
+                // convert the touch position into a Point for hit testing
+                _touchPoint = new Vector2(touches[0].Position.X, touches[0].Position.Y);
+            }
+            else
+            {
+                _touchPoint = Vector2.Zero;
+            }
+        }
+
+        private void DetectTouchCollisions()
+        {
+            // iterate our sprites to find which sprite is being touched.
+            foreach (CircularEnemy wg in _whiteGlobulos)
+            {
+                if (_touchPoint != Vector2.Zero && wg.Touched(_touchPoint))
+                {
+                    wg.AddSpriteEvent((int)CircularEnemySpriteEvent.fingerHit);
+                }
+            }
+        }
+
+        private void ClearOutOfBoundOrDeadEnemies()
+        {
+            // destroy out of screens enemies or dead enemies
+            int iterations = _whiteGlobulos.Count;
+            for (int i = 0, j = 0; i < iterations; i++, j++)
+            {
+                if (_whiteGlobulos[j].State == CircularEnemyState.died ||
+                    _whiteGlobulos[j].Position.X < -50 || _whiteGlobulos[j].Position.X > 530 ||
+                    _whiteGlobulos[j].Position.Y < -50 || _whiteGlobulos[j].Position.Y > 850)
+                {
+                    _whiteGlobulos.RemoveAt(j);
+                    j--;
+                }
+            }
+        }
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -146,88 +178,44 @@ namespace Virus
                 this.Exit();
 
             // handle user input
-            HandleUserInput();
+            GetUserTouch();
 
             // scroll the background
             _background.Update(gameTime);
             _firstPlanBackground.Update(gameTime);
 
             // move the enemies
-            _whiteGlobulos.ForEach(wg => wg.Move(gameTime));
-
-            // animate virus
-            _virusSpriteAnimation.UpdateFrameAnimation(gameTime);
-
-            // destroy out of screens enemies
-            int iterations = _whiteGlobulos.Count;
-            for (int i = 0, j = 0; i < iterations; i++, j++)
-            {
-                if (_whiteGlobulos[j].Position.X < -50 || _whiteGlobulos[j].Position.X > 530 ||
-                    _whiteGlobulos[j].Position.Y < -50 || _whiteGlobulos[j].Position.Y > 850)
-                {
-                    _whiteGlobulos.RemoveAt(j);
-                    j--;
-                }
-            }
+            _whiteGlobulos.ForEach(wg => wg.Update(gameTime));
 
             // detect collision and update ammo, life...
+            DetectTouchCollisions();
 
+            // clear enemies
+            ClearOutOfBoundOrDeadEnemies();
 
             // manage current event (if any)
             _eventsManager.ManageCurrentEvent(gameTime.TotalGameTime);
-            
+
             base.Update(gameTime);
         }
-
-        private void HandleUserInput()
-        {
-            // we use raw touch points for selection, since they are more appropriate
-            // for that use than gestures. so we need to get that raw touch data
-            TouchCollection touches = TouchPanel.GetState();
-
-            // see if we have a new primary point down. when the first touch
-            // goes down, we do hit detection to try and select one of our enemies
-            if (touches.Count > 0 && touches[0].State == TouchLocationState.Pressed)
-            {
-                // convert the touch position into a Point for hit testing
-                Vector2 touchPoint = new Vector2(touches[0].Position.X, touches[0].Position.Y);
-
-                // iterate our sprites to find which sprite is being touched. we iterate backwards
-                // since that will cause sprites that are drawn on top to be selected before
-                // sprites drawn on the bottom.
-                int count = _whiteGlobulos.Count;
-                for (int i = 0, j = 0; i < count; i++, j++)
-                {
-                    if ( (Vector2.Distance(_whiteGlobulos[j].Position, touchPoint) < _whiteGlobulos[j].Radius)/* ||
-                         (Vector2.Distance(_whiteGlobulos[j].PreviousPosition, touchPoint) < _whiteGlobulos[j].Radius)*/ )
-                    {
-                        _whiteGlobulos.RemoveAt(j);
-                        j--;
-                    }
-                }
-            }
-        }
-
+               
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.CornflowerBlue); // poi ci sarà da disegnare lo sfondo...
+            GraphicsDevice.Clear(Color.CornflowerBlue); // poi ci sarà da disegnare lo sfondo...
 
             spriteBatch.Begin();
 
+            // draw background
             _background.Draw(spriteBatch);
             _firstPlanBackground.Draw(spriteBatch);
 
-            _virusSpriteAnimation.Draw(spriteBatch);
+            // draw enemies
+            _whiteGlobulos.ForEach(wg => wg.Draw(spriteBatch));
 
-            _whiteGlobulos.ForEach(wg => wg.SpriteAnimation.Draw(spriteBatch));
-
-            /*debugText = Convert.ToString((int)Math.Round(_background._cursor) % 1600);
-            spriteBatch.DrawString(segoe14, debugText, Vector2.One * 100, Color.Yellow);*/
-   
             spriteBatch.End();
 
             base.Draw(gameTime);

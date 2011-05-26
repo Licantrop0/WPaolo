@@ -6,12 +6,13 @@ using Microsoft.Xna.Framework;
 
 namespace Virus
 {
-    public interface ITouchShape
+    public interface ITouchable
     {
-        public bool Touched(Vector2 fingerPosition);
+        bool Touched(Vector2 fingerPosition);
+        bool Touchable();
     }
 
-    public interface ICircularTouchShape
+    /*public interface ICircularTouchShape
     {
         private float _touchRadius;
         Vector2 _origin;
@@ -32,5 +33,5 @@ namespace Virus
         {
             return (Vector2.Distance(_origin, fingerPosition) <= _touchRadius);
         }
-    }
+    }*/
 }

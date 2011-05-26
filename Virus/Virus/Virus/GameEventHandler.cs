@@ -26,11 +26,11 @@ namespace Virus
 
     public class MonsterFactory : GameEventHandler
     {
-        List<SimpleEnemy> _enemies;     // reference to the game enemies list
-
-        SpriteAnimation _monsterSpriteAnimation;
+        List<CircularEnemy> _enemies;     // reference to the game enemies list
 
         Random _dice = new Random(DateTime.Now.Millisecond);
+
+        Texture2D _monsterTexture;
 
         public TimeSpan SchedulingTimeIntervalMin { get; set; }
 
@@ -95,11 +95,11 @@ namespace Virus
         private void CreateSimpleEnemy()
         {
             // create simple enemy
-            SpriteAnimation monsterSpriteAnimation = new SpriteAnimation(_monsterSpriteAnimation._texture, 7);
-            monsterSpriteAnimation.IsLooping = _monsterSpriteAnimation.IsLooping;
-            monsterSpriteAnimation.FramesPerSecond = _monsterSpriteAnimation.FramesPerSecond;
-            monsterSpriteAnimation.Origin = new Vector2(_monsterSpriteAnimation.RectangleWidth / 2, _monsterSpriteAnimation.RectangleHeight / 2);
-            SimpleEnemy enemy = new SimpleEnemy(monsterSpriteAnimation, 30f);
+            Dictionary<string, Animation> animations = new Dictionary<string,Animation>();
+            Animation mainAnimation = new Animation(_monsterTexture, 7);
+            animations.Add("main", mainAnimation);
+
+            CircularEnemy enemy = new CircularEnemy(animations, 24, 30);
 
             // roll the dice for enemy position
             int borderPosition = _dice.Next(1, 2561);
@@ -131,7 +131,7 @@ namespace Virus
         }
 
         public MonsterFactory(GameEventsManager em,
-            List<SimpleEnemy> enemies, SpriteAnimation spriteAnimation,
+            List<CircularEnemy> enemies, Texture2D monsterTexture,
             TimeSpan schedTimeIntervalMin, TimeSpan schedTimeIntervalMax,
             TimeSpan createTimeIntervalMin, TimeSpan createTimeIntervalMax,
             float speedMin, float speedMax,
@@ -139,7 +139,7 @@ namespace Virus
             : base(em)
         {
             _enemies = enemies;
-            _monsterSpriteAnimation = spriteAnimation;
+            _monsterTexture = monsterTexture;
             SchedulingTimeIntervalMin = schedTimeIntervalMin;
             SchedulingTimeIntervalMax = schedTimeIntervalMax;
             CreationTimeIntervalMin = createTimeIntervalMin;

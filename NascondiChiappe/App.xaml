@@ -8,14 +8,12 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:NascondiChiappe.ViewModel"
     mc:Ignorable="d">
     
     <Application.Resources>
         <localization:LocalizedStrings x:Key="LocalizedStrings"
                                        xmlns:localization="clr-namespace:NascondiChiappe.Localization" />
-        <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
-
+        
         <local:RotationConverter x:Key="RotationConverter" />
         
         <ImageBrush x:Name="BackgroundImage" ImageSource="SplashScreenImage.jpg" Stretch="None" />

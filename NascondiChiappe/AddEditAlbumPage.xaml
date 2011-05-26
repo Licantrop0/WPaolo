@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
+    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+    xmlns:local="clr-namespace:NascondiChiappe"
     x:Class="NascondiChiappe.AddEditAlbumPage"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -21,35 +22,17 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid.Resources>
-            <DataTemplate x:Name="AlbumImageTemplate">
-                <Image Source="{Binding Photo}" Margin="12"
-                   RenderTransformOrigin="0.5,0.5"
-                   RenderTransform="{Binding Path=RotationAngle, Converter={StaticResource RotationConverter}}" />
-            </DataTemplate>
-        </Grid.Resources>
-
         <StackPanel Grid.Row="0">
             <TextBlock x:Name="PageTitle" Style="{StaticResource TitleStyle}" 
                    Text="{Binding LocalizedResources.AddAlbum, Source={StaticResource LocalizedStrings}}" />
-            <TextBox x:Name="AlbumNameTextBox" Text="{Binding Name}"
+            <TextBox x:Name="AlbumNameTextBox" Text="{Binding CurrentAlbum.Model.Name}"
                      KeyDown="AlbumNameTextBox_KeyDown" Style="{StaticResource TextBoxStyle}" />
             <TextBlock Name="OneAlbumNecessaryTextBlock" Visibility="Collapsed"
                    Text="{Binding Path=LocalizedResources.OneAlbumNecessary, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource HintTextBlockStyle}" />
         </StackPanel>
 
-        <ListBox x:Name="ImagesListBox" Grid.Row="1"
-                 ItemTemplate="{StaticResource AlbumImageTemplate}"
-                 ItemsSource="{Binding Photos}"
-                 SelectionMode="Multiple"
-                 ItemContainerStyle="{StaticResource ListBoxItemStyle1}" SelectionChanged="ImagesListBox_SelectionChanged">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <toolkit:WrapPanel ItemWidth="225" ItemHeight="225"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
+        <local:ImageList Grid.Row="1" DataContext="{Binding Photos}" />
 
 
         <Rectangle Name="PopupBackground" Grid.RowSpan="2"

@@ -18,12 +18,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False" >
 
-    <phone:PhoneApplicationPage.Resources>
-             <vm:AlbumsViewModel x:Key="AlbumsViewModel" />
-    </phone:PhoneApplicationPage.Resources>
-
-    <Grid Background="{StaticResource BackgroundImage}" DataContext="{StaticResource AlbumsViewModel}">
-        
+    <Grid Name="LayoutRoot" Background="{StaticResource BackgroundImage}" >        
         <Grid.Resources>
             <DataTemplate x:Name="AlbumImageTemplate">
                 <Image Source="{Binding Photo}" Margin="12"
@@ -37,7 +32,7 @@
         </Grid.Resources>
 
         <controls:Pivot Name="AlbumsPivot" ItemsSource="{Binding Albums}"
-                        SelectionChanged="Pivot_SelectionChanged" >
+                        SelectedItem="{Binding SelectedAlbum}" >
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" Style="{StaticResource TitleStyle}" />

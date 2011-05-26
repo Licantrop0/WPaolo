@@ -23,14 +23,6 @@ namespace NascondiChiappe
             InitializeComponent();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            AddPhotosHintTextBlock.Visibility =
-                ImagesListBox.Items.Count == 0 ?
-                Visibility.Visible :
-                Visibility.Collapsed;
-        }
-        
         private void ImagesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedChanged.Invoke(sender, e);

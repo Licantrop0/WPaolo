@@ -8,7 +8,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480" Loaded="UserControl_Loaded">
+    d:DesignHeight="480" d:DesignWidth="480" >
 
     <UserControl.Resources>
         <DataTemplate x:Name="AlbumImageTemplate">
@@ -22,7 +22,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
-        <ListBox Name="ImagesListBox" Margin="0,-30,0,0" ItemsSource="{Binding}"
+        <ListBox Name="ImagesListBox" Margin="0,-30,0,0" ItemsSource="{Binding Model.Photos}"
                  ItemTemplate="{StaticResource AlbumImageTemplate}"
                  ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
                  SelectionChanged="ImagesListBox_SelectionChanged"
@@ -34,7 +34,7 @@
             </ListBox.ItemsPanel>
         </ListBox>
 
-        <TextBlock Name="AddPhotosHintTextBlock" Visibility="Collapsed"
+        <TextBlock Name="AddPhotosHintTextBlock" Visibility="{Binding HintVisibility}"
                    Text="{Binding Path=LocalizedResources.AddPhotosHint, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource HintTextBlockStyle}" />
     </Grid>

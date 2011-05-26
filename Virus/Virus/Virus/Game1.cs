@@ -30,6 +30,7 @@ namespace Virus
         List<CircularEnemy> _whiteGlobulos = new List<CircularEnemy>();
 
         // virus
+        Virus _virus;
 
         // content
         Texture2D _whiteGlobulosTexture;
@@ -82,9 +83,14 @@ namespace Virus
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            _whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
+            // create our friend virus
+            Texture2D virusTexture = Content.Load<Texture2D>("virus");
+            Dictionary<string, Animation> virusAnimations = new Dictionary<string,Animation>();
+            virusAnimations.Add("main", new Animation(virusTexture, 7));
+            _virus = new Virus(virusAnimations);
+            
             // create white globulos factory
+            _whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
             _whiteGlobulosFactory = new MonsterFactory(_eventsManager, _whiteGlobulos, _whiteGlobulosTexture,
                TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(3000),     // time interval period for enemies creation schedule (min,max)
                TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
@@ -189,6 +195,9 @@ namespace Virus
             // move the enemies
             _whiteGlobulos.ForEach(wg => wg.Update(gameTime));
 
+            // animate our friend virus
+            _virus.Update(gameTime);
+
             // detect collision and update ammo, life...
             DetectTouchCollisions();
 
@@ -207,7 +216,7 @@ namespace Virus
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue); // poi ci sarà da disegnare lo sfondo...
+            //GraphicsDevice.Clear(Color.CornflowerBlue); // poi ci sarà da disegnare lo sfondo...
 
             spriteBatch.Begin();
 
@@ -217,6 +226,9 @@ namespace Virus
 
             // draw enemies
             _whiteGlobulos.ForEach(wg => wg.Draw(spriteBatch));
+
+            // draw our friend virus
+            _virus.Draw(spriteBatch);
 
             spriteBatch.End();
 

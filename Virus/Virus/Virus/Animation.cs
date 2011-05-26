@@ -103,11 +103,17 @@ namespace Virus
         public void ChangeDimension(float dt)
         {
             _scale = _scale + _scalingSpeed * dt;
+            if (_scale < 0)
+                _scale = 0;
         }
 
         public void Fade(float dt)
         {
-            _color.A -= (byte)Math.Round(_fadeSpeed * dt * 255);
+            float alpha = _color.A - _fadeSpeed * dt * 255;
+            if (alpha < 0)
+                alpha = 0;
+
+            _color.A = (byte)alpha;
         }
     }
 }

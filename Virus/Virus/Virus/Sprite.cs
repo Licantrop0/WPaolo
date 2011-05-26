@@ -24,7 +24,6 @@ namespace Virus
         protected float _elapsedTime;
         protected int _actSpriteEvent;
 
-        protected Vector2 _framePosition;
         protected PhysicalPoint _physicalPoint; 
 
         public Sprite(Dictionary<string, Animation> animations)
@@ -34,7 +33,7 @@ namespace Virus
         }
 
         public Vector2 Position
-        { get { return _physicalPoint.Position; } set { _physicalPoint.Position = value; } }
+        { get { return _physicalPoint.Position; } set { _physicalPoint.Position = value; _animations[_currentAnimation].Position = value; } }
 
         public Vector2 Speed
         { get { return _physicalPoint.Speed; } set { _physicalPoint.Speed = value; } }

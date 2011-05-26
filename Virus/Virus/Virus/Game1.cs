@@ -29,6 +29,8 @@ namespace Virus
         // white globulos
         List<CircularEnemy> _whiteGlobulos = new List<CircularEnemy>();
 
+        // virus
+
         // content
         Texture2D _whiteGlobulosTexture;
 

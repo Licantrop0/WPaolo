@@ -10,6 +10,7 @@ namespace Virus
 	{
 	    moving,
         fading,
+        rotatingScaling,    // temp debug!
         stopped,
         died
 	}
@@ -33,6 +34,7 @@ namespace Virus
         {
             _radius = radius;
             _touchRadius = touchRadius;
+            _touchable = true;
 
             _physicalPoint = new PhysicalPoint();
             _currentAnimation = "main";
@@ -49,7 +51,7 @@ namespace Virus
         // ITouchable implementation
         public bool Touched(Vector2 fingerPosition)
         {
-            return (Vector2.Distance(_physicalPoint.Position, fingerPosition) < _touchRadius );
+            return (Touchable() && Vector2.Distance(_physicalPoint.Position, fingerPosition) < _touchRadius );
         }
 
         public bool Touchable()
@@ -59,6 +61,7 @@ namespace Virus
 
         public override void Update(GameTime gameTime)
         {
+            // it sets _elapsedTime and _actSpriteEvent
             base.Update(gameTime);
 
             switch (_state)
@@ -72,16 +75,30 @@ namespace Virus
                     }
                     else if (_actSpriteEvent == (int)CircularEnemySpriteEvent.fingerHit)
                     {
-                        _state = CircularEnemyState.fading;
-                        Speed = Vector2.Zero;
-                        _animations["main"].FadeSpeed = 1f;
-                        _utilityTimer = 0;
+                        if ((int)Position.X % 2 == 0)   // random, just to try...
+                        {
+                            _state = CircularEnemyState.fading;
+                            _touchable = false;
+                            Speed = Vector2.Zero;
+                            _animations["main"].FadeSpeed = 3.0f;
+                            _utilityTimer = 0;
+                        }
+                        else
+                        {
+                            _state = CircularEnemyState.rotatingScaling;
+                            _touchable = false;
+                            Speed = Vector2.Zero;
+                            _animations["main"].ScalingSpeed = -1f;
+                            _animations["main"].RotationSpeed = 4 * (float)Math.PI;
+                            _utilityTimer = 0;
+                        }
                     }
                     
                     break;
 
                 case CircularEnemyState.fading:
 
+                    _animations["main"].Fade(_elapsedTime);
                     _utilityTimer += _elapsedTime;
                     if (_utilityTimer > 1)
                     {
@@ -89,10 +106,27 @@ namespace Virus
                     }
 
                     break;
+
+                case CircularEnemyState.rotatingScaling:
+
+                    _animations["main"].ChangeDimension(_elapsedTime);
+                    _animations["main"].Rotate(_elapsedTime);
+                    _utilityTimer += _elapsedTime;
+                    if (_utilityTimer > 1)
+                    {
+                        _state = CircularEnemyState.died;
+                    }
+
+                    break;
+
                 case CircularEnemyState.stopped:
+
                     break;
+
                 case CircularEnemyState.died:
+
                     break;
+
                 default:
                     break;
             }

@@ -9,6 +9,8 @@ namespace Virus
     {
         undefined,
         createSimpleEnemy,
+        createAcceleratedEnemy,
+        createOrbitalEnemy,
         scheduleSimpleEnemyCreation
     }
 

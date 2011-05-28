@@ -8,8 +8,8 @@ namespace Virus
 {
     public class PhysicalPoint
     {
-        protected Vector2 _position;           // [px, px]
-        protected Vector2 _speed;              // [px/s px/s]
+        protected Vector2 _position = Vector2.Zero;           // [px, px]
+        protected Vector2 _speed = Vector2.Zero;              // [px/s px/s]
 
         public Vector2 Position
         { get { return _position; } set { _position = value; } }
@@ -38,11 +38,16 @@ namespace Virus
 
     public class MassSystem :  PhysicalPoint
     {
-        float _mass;                // [Kg]
-        Vector2 _force;             // [Kg * px/s^2 Kg * px/s^2]
+        float _mass = 1;                    // [Kg]
+        Vector2 _force = Vector2.Zero;      // [Kg * px/s^2 Kg * px/s^2]
 
         public Vector2 ResultantForce
         { set { _force = value; } }
+
+        public MassSystem()
+        {
+
+        }
 
         public MassSystem(Vector2 position, float mass) : base(position)
         {

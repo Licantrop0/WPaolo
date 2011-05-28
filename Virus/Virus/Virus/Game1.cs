@@ -35,9 +35,6 @@ namespace Virus
         // virus
         Virus _virus;
 
-        // content
-        Texture2D _whiteGlobulosTexture;
-
         // background
         MovingBackground _background;
         MovingBackground _firstPlanBackground;
@@ -102,12 +99,14 @@ namespace Virus
             _virus = new Virus(virusAnimations, 37, 37);
             
             // create white globulos factory
-            _whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
-            _whiteGlobulosFactory = new MonsterFactory(_eventsManager, _whiteGlobulos, _whiteGlobulosTexture,
+            Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
+            Texture2D whiteGlobuloExTexture = Content.Load<Texture2D>("whiteGlobulosEx");
+            Texture2D whiteGlobulosOrbTexture = Content.Load<Texture2D>("whiteGlobulosOrb");
+            _whiteGlobulosFactory = new MonsterFactory(_eventsManager, _whiteGlobulos, whiteGlobulosTexture, whiteGlobuloExTexture, whiteGlobulosOrbTexture,
                TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(3000),     // time interval period for enemies creation schedule (min,max)
                TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
                60, 150,                                                              // enemies speed (min,max)
-               1, 5);                                                                // number of enemies created per schedule
+               1, 4);                                                                // number of enemies created per schedule
 
             // create background
             Texture2D backgroundTexture0 = Content.Load<Texture2D>("polmoni0");

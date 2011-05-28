@@ -20,6 +20,9 @@ namespace Virus
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // score
+        SpriteFont _segoe20;
+
         // event scheduler
         GameEventsManager _eventsManager = new GameEventsManager();
 
@@ -27,7 +30,7 @@ namespace Virus
         MonsterFactory _whiteGlobulosFactory;
 
         // white globulos
-        List<CircularEnemy> _whiteGlobulos = new List<CircularEnemy>();
+        List<WhiteGlobulo> _whiteGlobulos = new List<WhiteGlobulo>();
 
         // virus
         Virus _virus;
@@ -83,16 +86,14 @@ namespace Virus
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // create our friend virus
-            /*Texture2D virusTexture = Content.Load<Texture2D>("virus");
-            Dictionary<string, Animation> virusAnimations = new Dictionary<string,Animation>();
-            virusAnimations.Add("main", new Animation(virusTexture, 7));
-            _virus = new Virus(virusAnimations);*/
+            // create score fonts
+            _segoe20 = Content.Load<SpriteFont>("Segoe20");
 
-            Texture2D virusTexture = Content.Load<Texture2D>("VirusGiusto");
+            // create our friend virus
+            Texture2D virusTexture = Content.Load<Texture2D>("virus");
             Dictionary<string, Animation> virusAnimations = new Dictionary<string, Animation>();
-            virusAnimations.Add("main", new Animation(virusTexture, 8));
-            _virus = new Virus(virusAnimations);
+            virusAnimations.Add("main", new Animation(virusTexture, 7));
+            _virus = new Virus(virusAnimations, 37, 37);
             
             // create white globulos factory
             _whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
@@ -130,8 +131,7 @@ namespace Virus
             // TODO: Unload any non ContentManager content here
         }
 
-       
-
+     
         private void GetUserTouch()
         {
             // we use raw touch points for selection, since they are more appropriate
@@ -144,6 +144,7 @@ namespace Virus
             {
                 // convert the touch position into a Point for hit testing
                 _touchPoint = new Vector2(touches[0].Position.X, touches[0].Position.Y);
+                _virus.Score -= 1;
             }
             else
             {
@@ -154,11 +155,29 @@ namespace Virus
         private void DetectTouchCollisions()
         {
             // iterate our sprites to find which sprite is being touched.
-            foreach (CircularEnemy wg in _whiteGlobulos)
+            foreach (CircularSprite wg in _whiteGlobulos)
             {
                 if (_touchPoint != Vector2.Zero && wg.Touched(_touchPoint))
                 {
-                    wg.AddSpriteEvent((int)CircularEnemySpriteEvent.fingerHit);
+                    wg.AddSpriteEvent(new SpriteEvent((int)SpriteEventCode.fingerHit));
+                }
+            }
+        }
+
+        private void DetectVirusGlobulosCollision()
+        {
+            if (_virus != null)
+            {
+                foreach (WhiteGlobulo wg in _whiteGlobulos)
+                {
+                    if ((wg.State == WhiteGlobuloState.moving) && Vector2.Distance(wg.Position, _virus.Position) < wg.Radius + _virus.Radius)
+                    {
+                        // collision occurred, calculate angle of impact
+                        float collisionAngle = (float)Math.Atan2(wg.Position.Y - _virus.Position.Y, wg.Position.X - _virus.Position.X);
+
+                        _virus.AddSpriteEvent(new SpriteEvent(SpriteEventCode.virusGlobuloCollision, new Object[] { collisionAngle }));
+                        wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.virusGlobuloCollision));
+                    }
                 }
             }
         }
@@ -169,7 +188,7 @@ namespace Virus
             int iterations = _whiteGlobulos.Count;
             for (int i = 0, j = 0; i < iterations; i++, j++)
             {
-                if (_whiteGlobulos[j].State == CircularEnemyState.died ||
+                if (_whiteGlobulos[j].State == WhiteGlobuloState.died ||
                     _whiteGlobulos[j].Position.X < -50 || _whiteGlobulos[j].Position.X > 530 ||
                     _whiteGlobulos[j].Position.Y < -50 || _whiteGlobulos[j].Position.Y > 850)
                 {
@@ -193,21 +212,29 @@ namespace Virus
             // handle user input
             GetUserTouch();
 
+            // detect touch collisions
+            DetectTouchCollisions();
+
+            // detect collisions between our friend virus and evil globulos
+            DetectVirusGlobulosCollision();
+
             // scroll the background
             _background.Update(gameTime);
             _firstPlanBackground.Update(gameTime);
 
-            // move the enemies
+            // update the enemies
             _whiteGlobulos.ForEach(wg => wg.Update(gameTime));
 
             // animate our friend virus
-            _virus.Update(gameTime);
-
-            // detect collision and update ammo, life...
-            DetectTouchCollisions();
+            if(_virus != null)
+                _virus.Update(gameTime);
 
             // clear enemies
             ClearOutOfBoundOrDeadEnemies();
+
+            // clear virus  :-(
+            if (_virus != null && _virus.State == ViruState.died)
+                _virus = null;
 
             // manage current event (if any)
             _eventsManager.ManageCurrentEvent(gameTime.TotalGameTime);
@@ -234,7 +261,14 @@ namespace Virus
             _whiteGlobulos.ForEach(wg => wg.Draw(spriteBatch));
 
             // draw our friend virus
-            _virus.Draw(spriteBatch);
+            if(_virus != null)
+                _virus.Draw(spriteBatch);
+
+            // write score
+            if(_virus != null)
+                spriteBatch.DrawString(_segoe20, _virus.Score.ToString(), new Vector2(370, 12), Color.White);
+            else
+                spriteBatch.DrawString(_segoe20, "YOU\nSUCK!", new Vector2(370, 12), Color.White);
 
             spriteBatch.End();
 

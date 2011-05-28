@@ -7,22 +7,32 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Virus
 {
-    /*public class SpriteEvent
+    public class SpriteEvent
     {
-        private int _spriteEventCode;
+        public SpriteEventCode Code { get; set;}
 
-        public int SpriteEventCode
-        { get { return _spriteEventCode; } set { _spriteEventCode = value;} }
-    }*/
+        public Object[] Params { get; set; }
+
+        public SpriteEvent(SpriteEventCode code)
+        {
+            Code = code;
+        }
+
+        public SpriteEvent(SpriteEventCode code, Object[] p)
+        {
+            Code = code;
+            Params = p;
+        }
+    }
 
     public abstract class Sprite
     {
         // graphics
         protected Dictionary<string, Animation> _animations;
         protected string _currentAnimation;
-        protected Queue<int> _spriteEventQueque = new Queue<int>();
+        protected Queue<SpriteEvent> _spriteEventQueque = new Queue<SpriteEvent>();
         protected float _elapsedTime;
-        protected int _actSpriteEvent;
+        protected SpriteEvent _actSpriteEvent;
 
         protected PhysicalPoint _physicalPoint; 
 
@@ -49,7 +59,7 @@ namespace Virus
             _animations[_currentAnimation].Draw(spriteBatch);
         }
 
-        public void AddSpriteEvent(int evnt)
+        public void AddSpriteEvent(SpriteEvent evnt)
         {
             _spriteEventQueque.Enqueue(evnt);
         }
@@ -57,7 +67,7 @@ namespace Virus
         public virtual void Update(GameTime gameTime)
         {
             _elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _actSpriteEvent = _spriteEventQueque.Count > 0 ? _spriteEventQueque.Dequeue() : -1;
+            _actSpriteEvent = _spriteEventQueque.Count > 0 ? _spriteEventQueque.Dequeue() : null;
         }
     }
 }

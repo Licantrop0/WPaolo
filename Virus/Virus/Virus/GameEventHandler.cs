@@ -26,7 +26,7 @@ namespace Virus
 
     public class MonsterFactory : GameEventHandler
     {
-        List<CircularEnemy> _enemies;     // reference to the game enemies list
+        List<WhiteGlobulo> _enemies;     // reference to the game enemies list
 
         Random _dice = new Random(DateTime.Now.Millisecond);
 
@@ -99,7 +99,7 @@ namespace Virus
             Animation mainAnimation = new Animation(_monsterTexture, 7);
             animations.Add("main", mainAnimation);
 
-            CircularEnemy enemy = new CircularEnemy(animations, 24, 30);
+            WhiteGlobulo enemy = new WhiteGlobulo(animations, 24, 30);
 
             // roll the dice for enemy position
             int borderPosition = _dice.Next(1, 2561);
@@ -131,7 +131,7 @@ namespace Virus
         }
 
         public MonsterFactory(GameEventsManager em,
-            List<CircularEnemy> enemies, Texture2D monsterTexture,
+            List<WhiteGlobulo> enemies, Texture2D monsterTexture,
             TimeSpan schedTimeIntervalMin, TimeSpan schedTimeIntervalMax,
             TimeSpan createTimeIntervalMin, TimeSpan createTimeIntervalMax,
             float speedMin, float speedMax,

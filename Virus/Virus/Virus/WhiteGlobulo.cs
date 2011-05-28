@@ -17,12 +17,13 @@ namespace Virus
 
     public class WhiteGlobulo : CircularSprite
     {
-        public WhiteGlobulo(Dictionary<string, Animation> animations, float radius, float touchRadius)
+        public WhiteGlobulo(Dictionary<string, Animation> animations, float radius, float touchRadius, Vector2 position)
             :base(animations, radius, touchRadius)
         {
             _touchable = true;
 
-            _physicalPoint = new PhysicalPoint();
+            _physicalPoint = new MassSystem();
+            Position = position;
             _currentAnimation = "main";
             _animations["main"].FramePerSecond = 6;
             _state = WhiteGlobuloState.moving;
@@ -33,6 +34,11 @@ namespace Virus
 
         public WhiteGlobuloState State
         { get { return _state; } }
+
+        protected virtual void SetForce()
+        {
+            ((MassSystem)_physicalPoint).ResultantForce = Vector2.Zero;
+        }
 
         public override void Update(GameTime gameTime)
         {
@@ -45,6 +51,7 @@ namespace Virus
 
                     if (_actSpriteEvent == null)
                     {
+                        SetForce();
                         Move(_elapsedTime);
                         _animations["main"].Animate(_elapsedTime);
                     }
@@ -105,6 +112,20 @@ namespace Virus
                 default:
                     break;
             }
+        }
+    }
+
+    public class AcceleratedWhiteGlobulo : WhiteGlobulo
+    {
+        public AcceleratedWhiteGlobulo(Dictionary<string, Animation> animations, float radius, float touchRadius, Vector2 position)
+            : base(animations, radius, touchRadius, position)
+        {
+            
+        }
+
+        protected override void SetForce()
+        {
+            ((MassSystem)_physicalPoint).ResultantForce = Vector2.Normalize(new Vector2(240, 400) - Position) * 200f;
         }
     }
 }

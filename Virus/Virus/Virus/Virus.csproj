@@ -94,6 +94,7 @@
     <Compile Include="GameEventsManager.cs" />
     <Compile Include="GameEvent.cs" />
     <Compile Include="ITouchable.cs" />
+    <Compile Include="MonsterFactory.cs" />
     <Compile Include="PhysicalPoint.cs" />
     <Compile Include="MovingBackground.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

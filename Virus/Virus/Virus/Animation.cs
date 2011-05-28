@@ -36,6 +36,12 @@ namespace Virus
         public Vector2 Position
         { set { _position = value; } }
 
+        public float Angle
+        {
+            get { return _rotation; }
+            set { _rotation = value; }
+        }
+
         public float FramePerSecond
         { set { _timeToUpdate = value != 0 ? (1f / value) : float.PositiveInfinity; } }
 

@@ -50,6 +50,7 @@
       <Name>polmoni1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
     </Compile>
     <Compile Include="whiteGlobulos.png">
       <Name>whiteGlobulos</Name>
@@ -71,6 +72,7 @@
       <Name>polmoni0</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -100,8 +102,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Segoe14.spritefont">
-      <Name>Segoe14</Name>
+    <Compile Include="Segoe20.spritefont">
+      <Name>Segoe20</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>

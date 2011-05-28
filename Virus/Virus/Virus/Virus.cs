@@ -31,7 +31,7 @@ namespace Virus
             _animations["main"].FramePerSecond = 4f;
             Position = new Vector2(240, 400);
             _state = ViruState.tranquil;
-            Score = 100;
+            Score = 300;
         }
 
         public override void Update(GameTime gameTime)
@@ -48,7 +48,7 @@ namespace Virus
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
-                        Score -= 20;
+                        Score -= 50;
                         float angle = (float)(_actSpriteEvent.Params[0]);
                         // TODO CAMBIA ANIMAZIONE
                         _animations["main"].Angle = angle;
@@ -69,7 +69,7 @@ namespace Virus
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
-                        Score -= 20;
+                        Score -= 50;
 
                         float angle = (float)(_actSpriteEvent.Params[0]);
                         _animations["main"].Angle = angle;
@@ -78,9 +78,10 @@ namespace Virus
                         _utilityTimer = 0;
                     }
 
-                    if (_utilityTimer > 0.5)
+                    if (_utilityTimer > 1.0)
                     {
                         _state = ViruState.tranquil;
+                        _animations["main"].Angle = 0;  //supefluo quando ci sarà l'animazione dedicata allo stato "shocked"
                     }
 
                     if (Score <= 0)

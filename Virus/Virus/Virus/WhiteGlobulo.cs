@@ -62,7 +62,10 @@ namespace Virus
                         _touchable = false;
                         Speed = Vector2.Zero;
                         _animations["main"].ScalingSpeed = -1f;
-                        _animations["main"].RotationSpeed = 4 * (float)Math.PI;
+                        if((int)Position.X % 2 == 0)
+                            _animations["main"].RotationSpeed =  2 * (float)Math.PI;
+                        else
+                            _animations["main"].RotationSpeed = -2 * (float)Math.PI;
                         _utilityTimer = 0;
                     }
 

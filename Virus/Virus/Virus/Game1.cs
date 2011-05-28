@@ -42,6 +42,9 @@ namespace Virus
         MovingBackground _background;
         MovingBackground _firstPlanBackground;
 
+        // easter egg
+        Texture2D _blazeBaley;
+
         Vector2 _touchPoint;
 
         public Game1()
@@ -88,6 +91,9 @@ namespace Virus
 
             // create score fonts
             _segoe20 = Content.Load<SpriteFont>("Segoe20");
+
+            // create easter egg
+            _blazeBaley = Content.Load<Texture2D>("BB");
 
             // create our friend virus
             Texture2D virusTexture = Content.Load<Texture2D>("virus");
@@ -140,7 +146,7 @@ namespace Virus
 
             // see if we have a new primary point down. when the first touch
             // goes down, we do hit detection to try and select one of our enemies
-            if (touches.Count > 0 && touches[0].State == TouchLocationState.Pressed)
+            if (_virus != null && _virus.Score > 0 && touches.Count > 0 && touches[0].State == TouchLocationState.Pressed)
             {
                 // convert the touch position into a Point for hit testing
                 _touchPoint = new Vector2(touches[0].Position.X, touches[0].Position.Y);
@@ -265,11 +271,16 @@ namespace Virus
                 _virus.Draw(spriteBatch);
 
             // write score
-            if(_virus != null)
+            if (_virus != null)
                 spriteBatch.DrawString(_segoe20, _virus.Score.ToString(), new Vector2(370, 12), Color.White);
             else
-                spriteBatch.DrawString(_segoe20, "YOU\nSUCK!", new Vector2(370, 12), Color.White);
-
+            {
+                //spriteBatch.DrawString(_segoe20, "YOU\nSUCK!", new Vector2(370, 12), Color.White);
+                // easter egg
+                spriteBatch.DrawString(_segoe20, "YOU SUCK!", new Vector2(170, 300), Color.White);
+                spriteBatch.Draw(_blazeBaley, new Vector2(240 - _blazeBaley.Width / 2, 400 - _blazeBaley.Height / 2), Color.White);
+            }
+                
             spriteBatch.End();
 
             base.Draw(gameTime);

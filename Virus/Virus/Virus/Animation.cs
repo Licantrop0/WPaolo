@@ -42,6 +42,12 @@ namespace Virus
             set { _rotation = value; }
         }
 
+        public Color Color
+        {
+            get { return _color; }
+            set { _color = value; }
+        }
+
         public float FramePerSecond
         { set { _timeToUpdate = value != 0 ? (1f / value) : float.PositiveInfinity; } }
 

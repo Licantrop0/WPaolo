@@ -23,15 +23,17 @@ namespace Virus
         // score
         SpriteFont _scoreString;
         SpriteFont _bombString;
+        SpriteFont _fpsString;
 
         // event scheduler
         GameEventsManager _eventsManager = new GameEventsManager();
 
         // white globulos factory
-        MonsterFactory _whiteGlobulosFactory;
+        MonsterBonusFactory _whiteGlobulosFactory;
 
         // white globulos
         List<WhiteGlobulo> _whiteGlobulos = new List<WhiteGlobulo>();
+        List<GoToVirusBonus> _bonuses = new List<GoToVirusBonus>();     // TEMP, bisogna ritrutturare bene la gerarchia di classi mostri / bonus!!!
 
         // virus
         Virus _virus;
@@ -90,7 +92,7 @@ namespace Virus
             // create score fonts
             _scoreString = Content.Load<SpriteFont>("Segoe20");
             _bombString = Content.Load<SpriteFont>("Segoe20");
-
+            _fpsString = Content.Load<SpriteFont>("Segoe20");
 
             // create easter egg
             _blazeBaley = Content.Load<Texture2D>("BB");
@@ -105,7 +107,9 @@ namespace Virus
             Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
             Texture2D whiteGlobuloExTexture = Content.Load<Texture2D>("whiteGlobulosEx");
             Texture2D whiteGlobulosOrbTexture = Content.Load<Texture2D>("whiteGlobulosOrb");
-            _whiteGlobulosFactory = new MonsterFactory(_eventsManager, _whiteGlobulos, whiteGlobulosTexture, whiteGlobuloExTexture, whiteGlobulosOrbTexture,
+            Texture2D bonusBombTexture = Content.Load<Texture2D>("bonusBomb");
+            _whiteGlobulosFactory = new MonsterBonusFactory(_eventsManager, _whiteGlobulos, _bonuses,
+                whiteGlobulosTexture, whiteGlobuloExTexture, whiteGlobulosOrbTexture, bonusBombTexture,
                TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(3000),     // time interval period for enemies creation schedule (min,max)
                TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
                60, 150,                                                              // enemies speed (min,max)
@@ -136,6 +140,23 @@ namespace Virus
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(20),
                 GameEventType.scheduleOrbitalEnemyCreation,
                 _whiteGlobulosFactory));
+
+            // create bonusbomb every 30 seconds (OVVIAMENTE VA RIFATTO BENE!!!)
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(30),
+                GameEventType.createBombBonus,
+            _whiteGlobulosFactory));
+
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(60),
+                GameEventType.createBombBonus,
+            _whiteGlobulosFactory));
+
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(90),
+                GameEventType.createBombBonus,
+            _whiteGlobulosFactory));
+
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(120),
+                GameEventType.createBombBonus,
+            _whiteGlobulosFactory));
         }
 
         /// <summary>
@@ -205,6 +226,15 @@ namespace Virus
                         wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.virusGlobuloCollision));
                     }
                 }
+
+                foreach (GoToVirusBonus b in _bonuses)
+                {
+                    if ((b.State == BonusState.moving) && Vector2.Distance(b.Position, _virus.Position) < b.Radius + _virus.Radius)
+                    {
+                        _virus.AddSpriteEvent(new SpriteEvent(SpriteEventCode.virusBonusCollision));
+                        b.AddSpriteEvent(new SpriteEvent(SpriteEventCode.virusBonusCollision));
+                    }
+                }
             }
         }
 
@@ -251,6 +281,9 @@ namespace Virus
             // update the enemies
             _whiteGlobulos.ForEach(wg => wg.Update(gameTime));
 
+            // update the bonuses
+            _bonuses.ForEach(b => b.Update(gameTime));
+
             // animate our friend virus
             if(_virus != null)
                 _virus.Update(gameTime);
@@ -283,6 +316,9 @@ namespace Virus
             _background.Draw(spriteBatch);
             _firstPlanBackground.Draw(spriteBatch);
 
+            // draw bonuses
+            _bonuses.ForEach(b => b.Draw(spriteBatch));
+
             // draw enemies
             _whiteGlobulos.ForEach(wg => wg.Draw(spriteBatch));
 
@@ -303,7 +339,9 @@ namespace Virus
                 spriteBatch.DrawString(_scoreString, "YOU SUCK!", new Vector2(170, 300), Color.White);
                 spriteBatch.Draw(_blazeBaley, new Vector2(240 - _blazeBaley.Width / 2, 400 - _blazeBaley.Height / 2), Color.White);
             }
-                
+
+            spriteBatch.DrawString(_fpsString, (Math.Round(1 / gameTime.ElapsedGameTime.TotalSeconds, 2).ToString()), new Vector2(30, 768), Color.Yellow);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -7,17 +7,17 @@ using Microsoft.Xna.Framework;
 
 namespace Virus
 {
-    public class MonsterFactory : GameEventHandler
+    public class MonsterBonusFactory : GameEventHandler
     {
         List<WhiteGlobulo> _enemies;     // reference to the game enemies list
+        List<GoToVirusBonus> _bonuses;   // reference to bonus list
 
         Random _dice = new Random(DateTime.Now.Millisecond);
 
         Texture2D _constantSpeedMonsterTexture;
-
         Texture2D _acceleratedMonsterTexture;
-
         Texture2D _orbitalMonsterTexture;
+        Texture2D _bombBonusTexture;
 
         public TimeSpan SchedulingTimeIntervalMin { get; set; }
 
@@ -54,6 +54,10 @@ namespace Virus
 
                 case GameEventType.createOrbitalEnemy:
                     CreateOrbitalEnemy();
+                    break;
+
+                case GameEventType.createBombBonus:
+                    CreateBombBonus();
                     break;
 
                 case GameEventType.scheduleSimpleEnemyCreation:
@@ -201,8 +205,26 @@ namespace Virus
             _enemies.Add(enemy);
         }
 
-        public MonsterFactory(GameEventsManager em,
-            List<WhiteGlobulo> enemies, Texture2D monsterTexture, Texture2D acceleratedMonsterTexture, Texture2D orbitalMonsterTexture,
+        private void CreateBombBonus()
+        {
+            // create simple enemy
+            Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
+            Animation mainAnimation = new Animation(_bombBonusTexture, 1);
+            animations.Add("main", mainAnimation);
+
+            GoToVirusBonus bonus = new GoToVirusBonus(animations, 15, 20);
+            bonus.Position = SetEnemyInitialPositionOnScreenBorder();
+
+            // set enemy speed
+            Vector2 virusPosition = new Vector2(240, 400);
+            bonus.Speed = Vector2.Normalize(virusPosition - bonus.Position) * 40;
+
+            _bonuses.Add(bonus);
+        }
+
+        public MonsterBonusFactory(GameEventsManager em,
+            List<WhiteGlobulo> enemies, List<GoToVirusBonus> bonuses,
+            Texture2D monsterTexture, Texture2D acceleratedMonsterTexture, Texture2D orbitalMonsterTexture, Texture2D bombBonusTexture,
             TimeSpan schedTimeIntervalMin, TimeSpan schedTimeIntervalMax,
             TimeSpan createTimeIntervalMin, TimeSpan createTimeIntervalMax,
             float speedMin, float speedMax,
@@ -210,9 +232,11 @@ namespace Virus
             : base(em)
         {
             _enemies = enemies;
+            _bonuses = bonuses;
             _constantSpeedMonsterTexture = monsterTexture;
             _acceleratedMonsterTexture = acceleratedMonsterTexture;
             _orbitalMonsterTexture = orbitalMonsterTexture;
+            _bombBonusTexture = bombBonusTexture;
             SchedulingTimeIntervalMin = schedTimeIntervalMin;
             SchedulingTimeIntervalMax = schedTimeIntervalMax;
             CreationTimeIntervalMin = createTimeIntervalMin;

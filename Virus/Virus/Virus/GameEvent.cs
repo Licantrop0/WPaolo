@@ -11,7 +11,9 @@ namespace Virus
         createSimpleEnemy,
         createAcceleratedEnemy,
         createOrbitalEnemy,
-        scheduleSimpleEnemyCreation
+        scheduleSimpleEnemyCreation,
+        scheduleAcceleratedEnemyCreation,
+        scheduleOrbitalEnemyCreation
     }
 
     public class GameEvent

@@ -17,16 +17,21 @@ namespace Virus
 
     public class WhiteGlobulo : CircularSprite
     {
-        public WhiteGlobulo(Dictionary<string, Animation> animations, float radius, float touchRadius, Vector2 position)
+        public WhiteGlobulo(Dictionary<string, Animation> animations, float radius, float touchRadius)
             :base(animations, radius, touchRadius)
         {
             _touchable = true;
 
-            _physicalPoint = new MassSystem();
-            Position = position;
             _currentAnimation = "main";
             _animations["main"].FramePerSecond = 6;
             _state = WhiteGlobuloState.moving;
+
+            InitializePhysics();
+        }
+
+        protected virtual void InitializePhysics()
+        {
+             _physicalPoint = new PhysicalMassSystemPoint();           
         }
 
         private WhiteGlobuloState _state;
@@ -37,7 +42,7 @@ namespace Virus
 
         protected virtual void SetForce()
         {
-            ((MassSystem)_physicalPoint).ResultantForce = Vector2.Zero;
+            ((PhysicalMassSystemPoint)_physicalPoint).ResultantForce = Vector2.Zero;
         }
 
         public override void Update(GameTime gameTime)
@@ -117,15 +122,42 @@ namespace Virus
 
     public class AcceleratedWhiteGlobulo : WhiteGlobulo
     {
-        public AcceleratedWhiteGlobulo(Dictionary<string, Animation> animations, float radius, float touchRadius, Vector2 position)
-            : base(animations, radius, touchRadius, position)
+        public AcceleratedWhiteGlobulo(Dictionary<string, Animation> animations, float radius, float touchRadius)
+            : base(animations, radius, touchRadius)
         {
             
         }
 
         protected override void SetForce()
         {
-            ((MassSystem)_physicalPoint).ResultantForce = Vector2.Normalize(new Vector2(240, 400) - Position) * 200f;
+            ((PhysicalMassSystemPoint)_physicalPoint).ResultantForce = Vector2.Normalize(new Vector2(240, 400) - Position) * 150;
+        }
+    }
+
+    public class OrbitalWhiteGlobulo : WhiteGlobulo
+    {
+        public OrbitalWhiteGlobulo(Dictionary<string, Animation> animations, float radius, float touchRadius)
+            : base(animations, radius, touchRadius)
+        {
+
+        }
+
+        protected override void InitializePhysics()
+        {
+            _physicalPoint = new PhysicalKinematicSpiral();
+        }
+ 
+        public void SetSpiralParameters(Vector2 center, float angle, bool clockwise, float speedModulus)
+        {
+            ((PhysicalKinematicSpiral)_physicalPoint).Center = center;
+            ((PhysicalKinematicSpiral)_physicalPoint).Angle = angle;
+            ((PhysicalKinematicSpiral)_physicalPoint).Clockwise = clockwise;
+            ((PhysicalKinematicSpiral)_physicalPoint).SpeedModulus = speedModulus;
+        }
+
+        protected override void SetForce()
+        {
+            
         }
     }
 }

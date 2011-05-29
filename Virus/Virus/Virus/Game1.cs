@@ -21,7 +21,8 @@ namespace Virus
         SpriteBatch spriteBatch;
 
         // score
-        SpriteFont _segoe20;
+        SpriteFont _scoreString;
+        SpriteFont _bombString;
 
         // event scheduler
         GameEventsManager _eventsManager = new GameEventsManager();
@@ -87,7 +88,9 @@ namespace Virus
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // create score fonts
-            _segoe20 = Content.Load<SpriteFont>("Segoe20");
+            _scoreString = Content.Load<SpriteFont>("Segoe20");
+            _bombString = Content.Load<SpriteFont>("Segoe20");
+
 
             // create easter egg
             _blazeBaley = Content.Load<Texture2D>("BB");
@@ -106,7 +109,7 @@ namespace Virus
                TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(3000),     // time interval period for enemies creation schedule (min,max)
                TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
                60, 150,                                                              // enemies speed (min,max)
-               1, 4);                                                                // number of enemies created per schedule
+               2, 4);                                                                // number of enemies created per schedule
 
             // create background
             Texture2D backgroundTexture0 = Content.Load<Texture2D>("polmoni0");
@@ -125,6 +128,14 @@ namespace Virus
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3),
                GameEventType.scheduleSimpleEnemyCreation,
                _whiteGlobulosFactory));
+
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(5),
+                GameEventType.scheduleAcceleratedEnemyCreation,
+                _whiteGlobulosFactory));
+
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(20),
+                GameEventType.scheduleOrbitalEnemyCreation,
+                _whiteGlobulosFactory));
         }
 
         /// <summary>
@@ -159,7 +170,17 @@ namespace Virus
 
         private void DetectTouchCollisions()
         {
-            // iterate our sprites to find which sprite is being touched.
+            // if virus has been touched, a bomb may explode...
+            if (_virus != null)
+            {
+                if (_touchPoint != Vector2.Zero && _virus.Touched(_touchPoint) && _virus.Bombs > 0)
+                {
+                    _virus.Bombs--;
+                    _whiteGlobulos.ForEach(wg => wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit)));
+                }
+            }
+
+            // iterate our enemied sprites to find which sprite is being touched.
             foreach (CircularSprite wg in _whiteGlobulos)
             {
                 if (_touchPoint != Vector2.Zero && wg.Touched(_touchPoint))
@@ -194,8 +215,8 @@ namespace Virus
             for (int i = 0, j = 0; i < iterations; i++, j++)
             {
                 if (_whiteGlobulos[j].State == WhiteGlobuloState.died ||
-                    _whiteGlobulos[j].Position.X < -50 || _whiteGlobulos[j].Position.X > 530 ||
-                    _whiteGlobulos[j].Position.Y < -50 || _whiteGlobulos[j].Position.Y > 850)
+                    _whiteGlobulos[j].Position.X < -250 || _whiteGlobulos[j].Position.X > 730 ||
+                    _whiteGlobulos[j].Position.Y < -250 || _whiteGlobulos[j].Position.Y > 1050)
                 {
                     _whiteGlobulos.RemoveAt(j);
                     j--;
@@ -271,12 +292,15 @@ namespace Virus
 
             // write score
             if (_virus != null)
-                spriteBatch.DrawString(_segoe20, _virus.Score.ToString(), new Vector2(370, 12), Color.White);
+            {
+                spriteBatch.DrawString(_scoreString, _virus.Score.ToString(), new Vector2(370, 12), Color.Yellow);
+                spriteBatch.DrawString(_bombString, _virus.Bombs.ToString(), new Vector2(30, 12), Color.Yellow);
+            }
             else
             {
                 //spriteBatch.DrawString(_segoe20, "YOU\nSUCK!", new Vector2(370, 12), Color.White);
                 // easter egg
-                spriteBatch.DrawString(_segoe20, "YOU SUCK!", new Vector2(170, 300), Color.White);
+                spriteBatch.DrawString(_scoreString, "YOU SUCK!", new Vector2(170, 300), Color.White);
                 spriteBatch.Draw(_blazeBaley, new Vector2(240 - _blazeBaley.Width / 2, 400 - _blazeBaley.Height / 2), Color.White);
             }
                 

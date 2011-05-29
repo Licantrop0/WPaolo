@@ -34,7 +34,7 @@ namespace Virus
         protected float _elapsedTime;
         protected SpriteEvent _actSpriteEvent;
 
-        protected PhysicalPoint _physicalPoint; 
+        protected PhysicalKinematicPoint _physicalPoint; 
 
         public Sprite(Dictionary<string, Animation> animations)
         {

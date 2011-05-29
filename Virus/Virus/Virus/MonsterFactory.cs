@@ -60,6 +60,14 @@ namespace Virus
                     ScheduleSimpleEnemyCreation(actualTime);
                     break;
 
+                case GameEventType.scheduleAcceleratedEnemyCreation:
+                    ScheduleAcceleratedEnemyCreation(actualTime);
+                    break;
+
+                case GameEventType.scheduleOrbitalEnemyCreation:
+                    ScheduleOrbitalEnemyCreation(actualTime);
+                    break;
+
                 default:
                     throw new Exception("W Blaze Baley!");
             }
@@ -80,18 +88,36 @@ namespace Virus
                 _eventsManager.ScheduleEvent(ge);
             }
 
-            // temp! schedule creation of accelerated monster
-            ge = new GameEvent(actualTime + TimeSpan.FromSeconds(0.2), GameEventType.createAcceleratedEnemy, this);
-            _eventsManager.ScheduleEvent(ge);
-
-            // temp! schedule creation of orbital monster
-            /*ge = new GameEvent(actualTime + TimeSpan.FromSeconds(1.0), GameEventType.createOrbitalEnemy, this);
-            _eventsManager.ScheduleEvent(ge);*/
-
             // schedule monster creation schedule
             deltaT = (SchedulingTimeIntervalMin.TotalMilliseconds +
                 _dice.NextDouble() * (SchedulingTimeIntervalMax.TotalMilliseconds - SchedulingTimeIntervalMin.TotalMilliseconds));
             ge = new GameEvent(actualTime + TimeSpan.FromMilliseconds(deltaT), GameEventType.scheduleSimpleEnemyCreation, this);
+            _eventsManager.ScheduleEvent(ge);
+        }
+
+        private void ScheduleAcceleratedEnemyCreation(TimeSpan actualTime)
+        {
+            // schedule creation of accelerated monster
+            GameEvent ge = new GameEvent(actualTime + TimeSpan.FromSeconds(0.2), GameEventType.createAcceleratedEnemy, this);
+            _eventsManager.ScheduleEvent(ge);
+
+            // schedule accelerated monster creation schedule
+            double deltaT = (2000 +
+                _dice.NextDouble() * (5000 - 2000));
+            ge = new GameEvent(actualTime + TimeSpan.FromMilliseconds(deltaT), GameEventType.scheduleAcceleratedEnemyCreation, this);
+            _eventsManager.ScheduleEvent(ge);
+        }
+
+        private void ScheduleOrbitalEnemyCreation(TimeSpan actualTime)
+        {
+            // temp! schedule creation of orbital monster
+            GameEvent ge = new GameEvent(actualTime + TimeSpan.FromSeconds(1.0), GameEventType.createOrbitalEnemy, this);
+            _eventsManager.ScheduleEvent(ge);
+
+            // schedule orbital monster creation schedule
+            double deltaT = (3000 +
+                _dice.NextDouble() * (7000 - 3000));
+            ge = new GameEvent(actualTime + TimeSpan.FromMilliseconds(deltaT), GameEventType.scheduleOrbitalEnemyCreation, this);
             _eventsManager.ScheduleEvent(ge);
         }
 
@@ -129,12 +155,12 @@ namespace Virus
             Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
             Animation mainAnimation = new Animation(_acceleratedMonsterTexture, 7);
             animations.Add("main", mainAnimation);
-            Vector2 position = SetEnemyInitialPositionOnScreenBorder();
 
-            AcceleratedWhiteGlobulo enemy = new AcceleratedWhiteGlobulo(animations, 24, 30, position);
+            AcceleratedWhiteGlobulo enemy = new AcceleratedWhiteGlobulo(animations, 24, 30);
+            enemy.Position =  SetEnemyInitialPositionOnScreenBorder();
 
             // set enemy speed
-            enemy.Speed = new Vector2(0, 0);
+            enemy.Speed = Vector2.Normalize(new Vector2(240, 400) - enemy.Position) * 20f;
 
             _enemies.Add(enemy);
         }
@@ -144,29 +170,15 @@ namespace Virus
             Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
             Animation mainAnimation = new Animation(_orbitalMonsterTexture, 7);
             animations.Add("main", mainAnimation);
+
+            OrbitalWhiteGlobulo enemy = new OrbitalWhiteGlobulo(animations, 24, 30);
             Vector2 position = SetEnemyInitialPositionOnScreenBorder();
+            enemy.Position = position;
 
-            AcceleratedWhiteGlobulo enemy = new AcceleratedWhiteGlobulo(animations, 24, 30, position);
-            float speedModulus = 100;
-
-            bool rightDown = (_dice.Next(0, 2) % 2 == 0);
-            // set enemy speed
-            if (position.Y == 1 || position.Y == 800)
-            {
-                // orizonal speed
-                if (rightDown)
-                    enemy.Speed = new Vector2(speedModulus, 0);
-                else
-                    enemy.Speed = new Vector2(-speedModulus, 0);
-            }
+            if ((int)position.X % 2 == 0)
+                enemy.SetSpiralParameters(new Vector2(240, 400), -(float)Math.PI / 30, true, 100);
             else
-            {
-                // vertical speed
-                if (rightDown)
-                    enemy.Speed = new Vector2(0, speedModulus);
-                else
-                    enemy.Speed = new Vector2(0, -speedModulus);
-            }
+                enemy.SetSpiralParameters(new Vector2(240, 400),  (float)Math.PI / 30, false, 100);
 
             _enemies.Add(enemy);
         }
@@ -178,7 +190,8 @@ namespace Virus
             Animation mainAnimation = new Animation(_constantSpeedMonsterTexture, 7);
             animations.Add("main", mainAnimation);
 
-            WhiteGlobulo enemy = new WhiteGlobulo(animations, 24, 30, SetEnemyInitialPositionOnScreenBorder());
+            WhiteGlobulo enemy = new WhiteGlobulo(animations, 24, 30);
+            enemy.Position = SetEnemyInitialPositionOnScreenBorder();
 
             // set enemy speed
             Vector2 virusPosition = new Vector2(240, 400);

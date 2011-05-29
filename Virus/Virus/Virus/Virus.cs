@@ -19,6 +19,7 @@ namespace Virus
         private float _utilityTimer;
 
         public int Score { get; set; }
+        public int Bombs { get; set; }
 
         public ViruState State
         { get { return _state; } set { _state = value; } }
@@ -26,12 +27,14 @@ namespace Virus
         public Virus(Dictionary<string, Animation> animations, float radius, float touchRadius)
             :base(animations, radius, touchRadius)
         {
-            _physicalPoint = new PhysicalPoint();
+            _touchable = true;
+            _physicalPoint = new PhysicalKinematicPoint();
             _currentAnimation = "main";
             _animations["main"].FramePerSecond = 4f;
             Position = new Vector2(240, 400);
             _state = ViruState.tranquil;
-            Score = 300;
+            Score = 500;
+            Bombs = 5;
         }
 
         public override void Update(GameTime gameTime)

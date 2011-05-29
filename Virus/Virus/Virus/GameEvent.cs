@@ -11,6 +11,7 @@ namespace Virus
         createSimpleEnemy,
         createAcceleratedEnemy,
         createOrbitalEnemy,
+        createBombBonus,
         scheduleSimpleEnemyCreation,
         scheduleAcceleratedEnemyCreation,
         scheduleOrbitalEnemyCreation

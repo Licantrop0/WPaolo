@@ -10,7 +10,7 @@ namespace Virus
     {
         moving,
         fading,
-        rotatingScaling,    // temp debug!
+        falling,
         stopped,
         died
     }
@@ -70,7 +70,7 @@ namespace Virus
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.fingerHit)
                     {
-                        _state = WhiteGlobuloState.rotatingScaling;
+                        _state = WhiteGlobuloState.falling;
                         _touchable = false;
                         Speed = Vector2.Zero;
                         _animations["main"].ScalingSpeed = -1f;
@@ -94,7 +94,7 @@ namespace Virus
 
                     break;
 
-                case WhiteGlobuloState.rotatingScaling:
+                case WhiteGlobuloState.falling:
 
                     _animations["main"].ChangeDimension(_elapsedTime);
                     _animations["main"].Rotate(_elapsedTime);

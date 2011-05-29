@@ -93,6 +93,7 @@
     <Compile Include="GameEventHandler.cs" />
     <Compile Include="GameEventsManager.cs" />
     <Compile Include="GameEvent.cs" />
+    <Compile Include="GoToVirusBonus.cs" />
     <Compile Include="ITouchable.cs" />
     <Compile Include="MonsterFactory.cs" />
     <Compile Include="PhysicalPoint.cs" />

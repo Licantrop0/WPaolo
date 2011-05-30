@@ -24,7 +24,7 @@ namespace FillTheSquare
         {
             if (!NonLinearNavigationService.Instance.IsRecursiveBackNavigation)
             {
-                SoundManager.VictorySound.Play();
+                SoundManager.PlayVictory();
 
                 if (NavigationContext.QueryString.ContainsKey("id"))
                 {

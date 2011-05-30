@@ -89,7 +89,7 @@ namespace WPCommon
             new MarketplaceSearchTask()
             {
                 ContentType = MarketplaceContentType.Applications,
-                SearchTerms = "Licantrop0"
+                SearchTerms = "WPME"
             }.Show();
 
         }

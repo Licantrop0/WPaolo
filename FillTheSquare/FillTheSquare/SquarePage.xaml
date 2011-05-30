@@ -70,7 +70,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Name="TimeElapsedTextBlock" Grid.Row="0" Margin="12"
-                   Text="{Binding Path=LocalizedResources.Seconds, Source={StaticResource LocalizedStrings}}"
+                   Text="{Binding LocalizedResources.ElapsedTime, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource SquareHeadingStyle}" >
         </TextBlock>
 
@@ -100,12 +100,15 @@
             <TextBlock x:Name="NoMoreMovesTextBlock"
                        Text="{Binding LocalizedResources.NoMoreMoves, Source={StaticResource LocalizedStrings}}"
                        Style="{StaticResource SquareTitleStyle}" FontSize="30" Visibility="Collapsed" />
+
             <Button Click="ResetButton_Click" FontSize="50"
                     Content="{Binding LocalizedResources.Reset, Source={StaticResource LocalizedStrings}}"
                     Height="100" Width="260" Style="{StaticResource HomeButtonStyle}"
                     Template="{StaticResource ResetButtonControlTemplate}" />
 
-            <StackPanel Name="AdPlaceHolder" Height="75" />
+            <adduplex:AdControl AppId="2123"
+                xmlns:adduplex="clr-namespace:AdDuplex;assembly=AdDuplex.AdControl.Silverlight"
+                IsTest="True" />
         </StackPanel>
 
         <Image x:Name="PhilPiangeImage" Source="Phil/piange.png"

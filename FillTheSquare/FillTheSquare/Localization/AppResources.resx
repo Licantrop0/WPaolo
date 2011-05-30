@@ -179,8 +179,8 @@
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="Seconds" xml:space="preserve">
-    <value>Seconds</value>
+  <data name="ElapsedTime" xml:space="preserve">
+    <value>Elapsed Time: {0:0.0}</value>
   </data>
   <data name="SeeRecords" xml:space="preserve">
     <value>See Records</value>
@@ -193,5 +193,11 @@
   </data>
   <data name="Time" xml:space="preserve">
     <value>Time</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>Music</value>
   </data>
 </root>

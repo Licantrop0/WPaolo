@@ -104,7 +104,8 @@ namespace Virus
             _virus = new Virus(virusAnimations, 37, 37);
             
             // create white globulos factory
-            Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
+            //Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
+            Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulosBigger");
             Texture2D whiteGlobuloExTexture = Content.Load<Texture2D>("whiteGlobulosEx");
             Texture2D whiteGlobulosOrbTexture = Content.Load<Texture2D>("whiteGlobulosOrb");
             Texture2D bonusBombTexture = Content.Load<Texture2D>("bonusBomb");
@@ -113,7 +114,7 @@ namespace Virus
                TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(3000),     // time interval period for enemies creation schedule (min,max)
                TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
                60, 150,                                                              // enemies speed (min,max)
-               2, 4);                                                                // number of enemies created per schedule
+               2, 6);                                                                // number of enemies created per schedule
 
             // create background
             Texture2D backgroundTexture0 = Content.Load<Texture2D>("polmoni0");
@@ -133,13 +134,14 @@ namespace Virus
                GameEventType.scheduleSimpleEnemyCreation,
                _whiteGlobulosFactory));
 
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(5),
+            // SOLO GLOBULI BIANCHI PER ADESSO!!!
+            /*_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(5),
                 GameEventType.scheduleAcceleratedEnemyCreation,
                 _whiteGlobulosFactory));
 
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(20),
                 GameEventType.scheduleOrbitalEnemyCreation,
-                _whiteGlobulosFactory));
+                _whiteGlobulosFactory));*/
 
             // create bonusbomb every 30 seconds (OVVIAMENTE VA RIFATTO BENE!!!)
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(30),

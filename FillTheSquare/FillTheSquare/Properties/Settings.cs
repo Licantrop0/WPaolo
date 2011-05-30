@@ -19,7 +19,6 @@ namespace FillTheSquare
         {
             get
             {
-
                 if (!PhoneApplicationService.Current.State.ContainsKey("current_grid_size"))
                     PhoneApplicationService.Current.State.Add("current_grid_size", 5);
 
@@ -30,6 +29,37 @@ namespace FillTheSquare
                 PhoneApplicationService.Current.State["current_grid_size"] = value;
             }
         }
+
+        public static GridPoint[] GetGridState()
+        {
+            if (!PhoneApplicationService.Current.State.ContainsKey("grid_state"))
+                PhoneApplicationService.Current.State.Add("grid_state", new GridPoint[0]);
+
+            return (GridPoint[])PhoneApplicationService.Current.State["grid_state"];
+        }
+
+        public static void SetGridState(Stack<GridPoint> state)
+        {
+            var gp = state.ToArray();
+            Array.Reverse(gp);
+            PhoneApplicationService.Current.State["grid_state"] = gp;
+        }
+
+        public static TimeSpan CurrentElapsedTime
+        {
+            get
+            {
+                if (!PhoneApplicationService.Current.State.ContainsKey("current_elapsed_time"))
+                    PhoneApplicationService.Current.State.Add("current_elapsed_time", new TimeSpan());
+
+                return (TimeSpan)PhoneApplicationService.Current.State["current_elapsed_time"];
+            }
+            set
+            {
+                PhoneApplicationService.Current.State["current_elapsed_time"] = value;
+            }
+        }
+
 
         public static ObservableCollection<Record> Records
         {

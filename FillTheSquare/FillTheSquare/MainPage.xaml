@@ -16,33 +16,6 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
-    <phone:PhoneApplicationPage.Resources>
-        <ControlTemplate x:Key="MusicToggleButtonTemplate" TargetType="ToggleButton">
-            <Grid Background="Transparent">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CheckStates">
-                        <VisualStateGroup.Transitions>
-                            <VisualTransition GeneratedDuration="0:0:0.5"/>
-                        </VisualStateGroup.Transitions>
-                        <VisualState x:Name="Checked">
-                            <Storyboard>
-                                <DoubleAnimation Duration="0" To="0"
-                                                 Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                 Storyboard.TargetName="SoundOffImage" d:IsOptimized="True"/>
-                                <DoubleAnimation Duration="0" To="1"
-                                                 Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                 Storyboard.TargetName="SoundOnImage" d:IsOptimized="True"/>
-                            </Storyboard>
-                        </VisualState>
-                        <VisualState x:Name="Unchecked" />
-                        <VisualState x:Name="Indeterminate"/>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-                <Image x:Name="SoundOffImage" Source="Phil\SoundON.png"/>
-                <Image x:Name="SoundOnImage" Source="Phil\SoundOFF.png" Opacity="0" />
-            </Grid>
-        </ControlTemplate>
-    </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
         <Grid.RowDefinitions>
@@ -51,10 +24,10 @@
         </Grid.RowDefinitions>
 
         <TextBlock Style="{StaticResource SquareTitleStyle}" Grid.Row="0"
-                   FontSize="64" Text="Phil  the  Square" Margin="0,24" />
+                   FontSize="64" Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}" Margin="0,24" />
 
         <Canvas x:Name="ContentPanel" Margin="12" Grid.Row="1" >
-
+            
             <Image Source="Phil/saluta.png"
                    Stretch="Fill" IsHitTestVisible="False"
                    Height="196" Width="272"
@@ -105,15 +78,6 @@
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
             </Button>
-            <ToggleButton Name="MusicToggleButton" Canvas.Left="44" Canvas.Top="321"
-                          Template="{StaticResource MusicToggleButtonTemplate}"
-                          IsChecked="{Binding MusicEnabled, Mode=TwoWay}"
-                          toolkit:TiltEffect.IsTiltEnabled="True"
-                          Height="141" Width="151" >
-                <ToggleButton.RenderTransform>
-                    <RotateTransform Angle="-10" />
-                </ToggleButton.RenderTransform>
-            </ToggleButton>
 
             <!--<Button Canvas.Left="0" Canvas.Top="362"
                     Content="congratulations" Height="71" Width="238" Click="Button_Click" />-->
@@ -130,6 +94,19 @@
                 <Button.RenderTransform>
                     <RotateTransform Angle="15" />
                 </Button.RenderTransform>
+            </Button>
+            <Button Content="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
+            	Height="80" Width="256"
+            	Style="{StaticResource HomeButtonStyle}"
+            	Canvas.Left="16" Canvas.Top="388" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+            	<Custom:Interaction.Triggers>
+            		<Custom:EventTrigger EventName="Click">
+            			<ic:NavigateToPageAction TargetPage="/SettingsPage.xaml"/>
+            		</Custom:EventTrigger>
+            	</Custom:Interaction.Triggers>
+            	<Button.RenderTransform>
+            		<CompositeTransform Rotation="-15"/>
+            	</Button.RenderTransform>
             </Button>
         </Canvas>
     </Grid>

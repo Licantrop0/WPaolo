@@ -124,6 +124,15 @@ namespace FillTheSquare.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Elapsed Time: {0:0.0}.
+        /// </summary>
+        public static string ElapsedTime {
+            get {
+                return ResourceManager.GetString("ElapsedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get other apps from WPME.
         /// </summary>
         public static string GetOtherApps {
@@ -176,6 +185,15 @@ namespace FillTheSquare.Localization {
         public static string InstructionsText2 {
             get {
                 return ResourceManager.GetString("InstructionsText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Music.
+        /// </summary>
+        public static string Music {
+            get {
+                return ResourceManager.GetString("Music", resourceCulture);
             }
         }
         
@@ -243,20 +261,20 @@ namespace FillTheSquare.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seconds.
-        /// </summary>
-        public static string Seconds {
-            get {
-                return ResourceManager.GetString("Seconds", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to See Records.
         /// </summary>
         public static string SeeRecords {
             get {
                 return ResourceManager.GetString("SeeRecords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         

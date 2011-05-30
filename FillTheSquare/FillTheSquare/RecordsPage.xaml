@@ -46,7 +46,7 @@
             <ListBox Name="RecordListBox" FontSize="20" 
                      Grid.Row="1" Grid.ColumnSpan="3" >
                 <ListBox.Resources>
-                    <wp:TimeSpanTextConverter x:Key="TimeSpanTextConverter" xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon" />
+                    <wp:ShortTimeSpanTextConverter x:Key="ShortTimeSpanTextConverter" xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon" />
                 </ListBox.Resources>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -59,7 +59,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Path=Size}" Grid.Column="0" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold" />
                             <TextBlock Text="{Binding Path=Name}" Grid.Column="1" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Path=ElapsedTime, Converter={StaticResource TimeSpanTextConverter}}" Grid.Column="2" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Path=ElapsedTime, Converter={StaticResource ShortTimeSpanTextConverter}}" Grid.Column="2" Foreground="{StaticResource ForegroundGradientBrush}" FontFamily="Andy" FontSize="30" FontWeight="Bold" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

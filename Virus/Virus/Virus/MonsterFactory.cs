@@ -194,7 +194,7 @@ namespace Virus
             Animation mainAnimation = new Animation(_constantSpeedMonsterTexture, 7);
             animations.Add("main", mainAnimation);
 
-            WhiteGlobulo enemy = new WhiteGlobulo(animations, 24, 30);
+            WhiteGlobulo enemy = new WhiteGlobulo(animations, 26, 32);
             enemy.Position = SetEnemyInitialPositionOnScreenBorder();
 
             // set enemy speed

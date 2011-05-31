@@ -79,13 +79,13 @@
                 </Custom:Interaction.Triggers>
             </Button>
 
-            <!--<Button Canvas.Left="0" Canvas.Top="362"
+            <!--<Button Canvas.Left="0" Canvas.Top="286"
                     Content="congratulations" Height="71" Width="238" Click="Button_Click" />-->
 
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
                     Height="80" Width="200"
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="18" Canvas.Top="466" >
+                    Canvas.Left="39" Canvas.Top="496" >
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
                         <ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
@@ -98,7 +98,7 @@
             <Button Content="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
             	Height="80" Width="256"
             	Style="{StaticResource HomeButtonStyle}"
-            	Canvas.Left="16" Canvas.Top="388" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+            	Canvas.Left="15" Canvas.Top="394" UseLayoutRounding="False" d:LayoutRounding="Auto" >
             	<Custom:Interaction.Triggers>
             		<Custom:EventTrigger EventName="Click">
             			<ic:NavigateToPageAction TargetPage="/SettingsPage.xaml"/>

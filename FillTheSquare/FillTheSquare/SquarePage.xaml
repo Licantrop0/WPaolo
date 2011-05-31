@@ -108,7 +108,7 @@
 
             <adduplex:AdControl AppId="2123"
                 xmlns:adduplex="clr-namespace:AdDuplex;assembly=AdDuplex.AdControl.Silverlight"
-                IsTest="True" />
+                IsTest="False" />
         </StackPanel>
 
         <Image x:Name="PhilPiangeImage" Source="Phil/piange.png"

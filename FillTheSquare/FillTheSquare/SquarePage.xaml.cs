@@ -9,9 +9,9 @@ using System.Windows.Threading;
 using FillTheSquare.Localization;
 using FillTheSquare.Model;
 using FillTheSquare.Sounds;
+using FillTheSquare.ViewModel;
 using Microsoft.Phone.Controls;
 using WPCommon;
-using FillTheSquare.ViewModel;
 
 namespace FillTheSquare
 {

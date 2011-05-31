@@ -86,7 +86,7 @@ namespace FillTheSquare
             {
                 temp.Add(new Record((i % 2 + 1) * 5,
                     DateTime.Now.AddDays(-rnd.Next(365)).AddHours(-rnd.Next(24)).AddMinutes(-rnd.Next(60)),
-                    TimeSpan.FromSeconds(rnd.Next(1000) + 8)) { Name = "Phil" + i });
+                    TimeSpan.FromMilliseconds(rnd.Next(100000) + 8000)) { Name = "Phil" + i });
             }
 
             Records.AddRange(temp.OrderBy(r => r.Date));

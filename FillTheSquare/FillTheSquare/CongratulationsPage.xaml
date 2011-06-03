@@ -56,7 +56,7 @@
 					   Style="{StaticResource SquareTitleStyle}" FontSize="30"
 					   HorizontalAlignment="Left" Margin="12,24,0,0" />
 			<TextBox x:Name="NameTextBox" KeyDown="NameTextBox_KeyDown"
-					 FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Ninja Naruto"
+					 FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Brecht"
 					 FontSize="30" Height="70" />
 		</StackPanel>
 

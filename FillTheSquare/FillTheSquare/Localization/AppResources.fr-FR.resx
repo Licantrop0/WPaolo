@@ -153,7 +153,7 @@
   <data name="InstructionsText2" xml:space="preserve">
     <value>Actions autorisees:
 • A' gauche, droite, but et dessus, en se deplacant de 3 cases
-• En diagonale, en se deplacant de 2 cases</value>
+• En diagonale, de 2 cases</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>

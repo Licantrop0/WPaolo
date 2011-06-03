@@ -151,13 +151,14 @@
     <value>Istruzioni</value>
   </data>
   <data name="InstructionsText1" xml:space="preserve">
-    <value>Riempi il quadrato con i numeri in sequenza</value>
+    <value>Riempi il quadrato
+con i numeri in sequenza</value>
   </data>
   <data name="InstructionsText2" xml:space="preserve">
     <value>Mosse permesse:
 • A sinistra, destra, su, giu'
-   spostandoti di 3 caselle
-• In diagonale spostandoti di 2 caselle</value>
+   spostati di 3 caselle
+• In diagonale solo di 2</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nome</value>

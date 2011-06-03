@@ -23,15 +23,15 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Style="{StaticResource SquareTitleStyle}" Grid.Row="0"
-                   FontSize="64" Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}" Margin="0,24" />
+        <TextBlock Style="{StaticResource SquareTitleStyle}"
+                   Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
+                   Margin="0,24" />
 
         <Canvas x:Name="ContentPanel" Margin="12" Grid.Row="1" >
             
             <Image Source="Phil/saluta.png"
-                   Stretch="Fill" IsHitTestVisible="False"
-                   Height="196" Width="272"
-                   Canvas.Left="223" Canvas.Top="494" >
+                   Stretch="None" IsHitTestVisible="False"
+                   Canvas.Left="217" Canvas.Top="552" >
                 <Image.RenderTransform>
                     <RotateTransform Angle="-35" />
                 </Image.RenderTransform>
@@ -54,7 +54,7 @@
                     Height="100" Width="250"
                     Style="{StaticResource HomeButtonStyle}"
                     d:LayoutRounding="Auto"
-                    Canvas.Left="20" Canvas.Top="166">
+                    Canvas.Left="67" Canvas.Top="177">
                 <Button.RenderTransform>
                     <RotateTransform Angle="-10" />
                 </Button.RenderTransform>
@@ -68,7 +68,7 @@
             <Button Content="{Binding LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
                     Height="100" Width="280" 
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="213" Canvas.Top="204" >
+                    Canvas.Left="206" Canvas.Top="260" >
                 <Button.RenderTransform>
                     <RotateTransform Angle="18" />
                 </Button.RenderTransform>
@@ -85,7 +85,7 @@
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
                     Height="80" Width="200"
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="39" Canvas.Top="496" >
+                    Canvas.Left="14" Canvas.Top="526" >
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
                         <ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
@@ -98,7 +98,7 @@
             <Button Content="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
             	Height="80" Width="256"
             	Style="{StaticResource HomeButtonStyle}"
-            	Canvas.Left="15" Canvas.Top="394" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+            	Canvas.Left="5.716" Canvas.Top="442.99" UseLayoutRounding="False" d:LayoutRounding="Auto" >
             	<Custom:Interaction.Triggers>
             		<Custom:EventTrigger EventName="Click">
             			<ic:NavigateToPageAction TargetPage="/SettingsPage.xaml"/>

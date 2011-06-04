@@ -172,6 +172,7 @@
     <Resource Include="Phil\istruzione.png" />
     <Resource Include="Phil\libro_colore.png" />
     <Resource Include="Phil\sfondo_quadri_color2.jpg" />
+    <Resource Include="Phil\piange.png" />
     <Content Include="Sounds\Error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

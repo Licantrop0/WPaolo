@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CircularSprite.cs" />
+    <Compile Include="CustomTimeVariable.cs" />
     <Compile Include="GameEventHandler.cs" />
     <Compile Include="GameEventsManager.cs" />
     <Compile Include="GameEvent.cs" />

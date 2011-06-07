@@ -42,10 +42,12 @@ namespace Virus
         MovingBackground _background;
         MovingBackground _firstPlanBackground;
 
-        // easter egg
-        Texture2D _blazeBaley;
-
+        // touch point
         Vector2 _touchPoint;
+
+        // profiling
+        float _fpsSum = 0;
+        int _fpsCount = 1;
 
         public Game1()
         {
@@ -94,32 +96,32 @@ namespace Virus
             _bombString = Content.Load<SpriteFont>("Segoe20");
             _fpsString = Content.Load<SpriteFont>("Segoe20");
 
-            // create easter egg
-            _blazeBaley = Content.Load<Texture2D>("BB");
-
             // create our friend virus
-            Texture2D virusTexture = Content.Load<Texture2D>("virus");
+            //Texture2D virusTexture = Content.Load<Texture2D>("virus");
+            //Texture2D virusTexture = Content.Load<Texture2D>("virusBigger");
+            Texture2D virusTexture = Content.Load<Texture2D>("virusMedium");
             Dictionary<string, Animation> virusAnimations = new Dictionary<string, Animation>();
             virusAnimations.Add("main", new Animation(virusTexture, 7));
-            _virus = new Virus(virusAnimations, 37, 37);
+            _virus = new Virus(virusAnimations, 40, 40);
             
             // create white globulos factory
             //Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
-            Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulosBigger");
+            //Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulosBigger");
+            Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulosBiggest");
             Texture2D whiteGlobuloExTexture = Content.Load<Texture2D>("whiteGlobulosEx");
             Texture2D whiteGlobulosOrbTexture = Content.Load<Texture2D>("whiteGlobulosOrb");
             Texture2D bonusBombTexture = Content.Load<Texture2D>("bonusBomb");
             _whiteGlobulosFactory = new MonsterBonusFactory(_eventsManager, _whiteGlobulos, _bonuses,
                 whiteGlobulosTexture, whiteGlobuloExTexture, whiteGlobulosOrbTexture, bonusBombTexture,
-               TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(3000),     // time interval period for enemies creation schedule (min,max)
+               TimeSpan.FromMilliseconds(1500), TimeSpan.FromMilliseconds(2500),     // time interval period for enemies creation schedule (min,max)
                TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
-               60, 150,                                                              // enemies speed (min,max)
-               2, 6);                                                                // number of enemies created per schedule
+               1.9f, 3.2f,                                                           // enemies time to reach virus (min,max)
+               3, 5);                                                                // number of enemies created per schedule
 
             // create background
             Texture2D backgroundTexture0 = Content.Load<Texture2D>("polmoni0");
             Texture2D backgroundTexture1 = Content.Load<Texture2D>("polmoni1");
-            _background = new MovingBackground(new Texture2D[2] { backgroundTexture0, backgroundTexture1 });
+            _background = new MovingBackground(new Texture2D[2] { backgroundTexture0, backgroundTexture1 }, 30);
             _background.Speed = 15f;    // [px/sec]
 
             // create first plan background
@@ -127,7 +129,7 @@ namespace Virus
             Texture2D firstPlanBackground1 = Content.Load<Texture2D>("b1");
             Texture2D firstPlanBackground2 = Content.Load<Texture2D>("b2");
             Texture2D firstPlanBackground3 = Content.Load<Texture2D>("b3");
-            _firstPlanBackground = new MovingBackground(new Texture2D[4] { firstPlanBackground0, firstPlanBackground1, firstPlanBackground2, firstPlanBackground3 });
+            _firstPlanBackground = new MovingBackground(new Texture2D[4] { firstPlanBackground0, firstPlanBackground1, firstPlanBackground2, firstPlanBackground3 }, 60);
             _firstPlanBackground.Speed = 30f;   // [px/sec]
 
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3),
@@ -200,6 +202,12 @@ namespace Virus
                 {
                     _virus.Bombs--;
                     _whiteGlobulos.ForEach(wg => wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit)));
+
+                    // tremble
+                    CustomTimeVariable trembleAmplitude  = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 20), new Vector2(1, 20), new Vector2(1.25f, 0)});
+                    CustomTimeVariable trembleAmplitude2 = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 10), new Vector2(1, 10), new Vector2(1.25f, 0) });
+                    _background.Tremble(2, trembleAmplitude, 40, (float)Math.PI, true);
+                    _firstPlanBackground.Tremble(2, trembleAmplitude2, 80, 0, false);
                 }
             }
 
@@ -256,6 +264,19 @@ namespace Virus
             }
         }
 
+        private void ClearBonuses()
+        {
+            int iterations = _bonuses.Count;
+            for (int i = 0, j = 0; i < iterations; i++, j++)
+            {
+                if (_bonuses[j].State == BonusState.toBeCleared)
+                {
+                    _bonuses.RemoveAt(j);
+                    j--;
+                }
+            }
+        }
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -279,7 +300,7 @@ namespace Virus
             // scroll the background
             _background.Update(gameTime);
             _firstPlanBackground.Update(gameTime);
-
+            
             // update the enemies
             _whiteGlobulos.ForEach(wg => wg.Update(gameTime));
 
@@ -292,6 +313,9 @@ namespace Virus
 
             // clear enemies
             ClearOutOfBoundOrDeadEnemies();
+
+            // clear bonuses
+            ClearBonuses();
 
             // clear virus  :-(
             if (_virus != null && _virus.State == ViruState.died)
@@ -310,8 +334,7 @@ namespace Virus
         protected override void Draw(GameTime gameTime)
         {
             //GraphicsDevice.Clear(Color.CornflowerBlue); // poi ci sarà da disegnare lo sfondo...
-            //GraphicsDevice.BlendState = BlendState.NonPremultiplied;
-            //spriteBatch.Begin();
+
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
 
             // draw background
@@ -336,13 +359,12 @@ namespace Virus
             }
             else
             {
-                //spriteBatch.DrawString(_segoe20, "YOU\nSUCK!", new Vector2(370, 12), Color.White);
-                // easter egg
-                spriteBatch.DrawString(_scoreString, "YOU SUCK!", new Vector2(170, 300), Color.White);
-                spriteBatch.Draw(_blazeBaley, new Vector2(240 - _blazeBaley.Width / 2, 400 - _blazeBaley.Height / 2), Color.White);
+                spriteBatch.DrawString(_scoreString, "YOU\nSUCK!", new Vector2(370, 12), Color.White);
             }
 
-            spriteBatch.DrawString(_fpsString, (Math.Round(1 / gameTime.ElapsedGameTime.TotalSeconds, 2).ToString()), new Vector2(30, 768), Color.Yellow);
+            _fpsSum += (float)(1 / gameTime.ElapsedGameTime.TotalSeconds); 
+            spriteBatch.DrawString(_fpsString, (_fpsSum / (float)_fpsCount).ToString(), new Vector2(30, 768), Color.Yellow);
+            _fpsCount++;
 
             spriteBatch.End();
 

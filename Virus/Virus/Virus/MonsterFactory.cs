@@ -27,9 +27,9 @@ namespace Virus
 
         public TimeSpan CreationTimeIntervalMax { get; set; }
 
-        public float MonsterSpeedMin { get; set; }
+        public float TimeToReachMin { get; set; }
 
-        public float MonsterSpeedMax { get; set; }
+        public float TimeToReachMax { get; set; }
 
         public int NumberOfMonstersMin { get; set; }
 
@@ -127,25 +127,31 @@ namespace Virus
 
         private Vector2 SetEnemyInitialPositionOnScreenBorder()
         {
-            // roll the dice for enemy position
-            int borderPosition = _dice.Next(1, 2561);
+            int deltaBorderY = 30;
+            int deltaBorderX = 30;
 
-            // set enemy initial position
-            if (borderPosition <= 480)
+            int p1 =      480 + 2 * deltaBorderX;
+            int p2 = p1 + 800 + 2 * deltaBorderY;
+            int p3 = p2 + 480 + 2 * deltaBorderX;
+            int p4 = p3 + 800 + 2 * deltaBorderY;
+
+            int borderPosition = _dice.Next(1, p4 + 1);
+
+            if (borderPosition < p1)
             {
-                return new Vector2(borderPosition, 1);
+                return new Vector2(borderPosition - deltaBorderX, - deltaBorderY);
             }
-            else if (borderPosition >= 481 && borderPosition <= 1280)
+            else if (borderPosition >= p1 && borderPosition < p2)
             {
-                return  new Vector2(480, borderPosition - 480);
+                return new Vector2(480 + deltaBorderX, (borderPosition - p1) - deltaBorderY);
             }
-            else if (borderPosition >= 1281 && borderPosition <= 1760)
+            else if (borderPosition >= p2 && borderPosition < p3)
             {
-                return new Vector2(1760 - borderPosition, 800);
+                return new Vector2(800 + deltaBorderY, p3 - borderPosition - deltaBorderX);
             }
-            else if (borderPosition >= 1761)
+            else if (borderPosition >= p3)
             {
-                return new Vector2(1, 2560 - borderPosition);
+                return new Vector2(- deltaBorderX, p4 - borderPosition - deltaBorderY );
             }
             else
             {
@@ -194,13 +200,20 @@ namespace Virus
             Animation mainAnimation = new Animation(_constantSpeedMonsterTexture, 7);
             animations.Add("main", mainAnimation);
 
-            WhiteGlobulo enemy = new WhiteGlobulo(animations, 26, 32);
-            enemy.Position = SetEnemyInitialPositionOnScreenBorder();
+            WhiteGlobulo enemy = new WhiteGlobulo(animations, 29, 34);
+            Vector2 enemyPosition = SetEnemyInitialPositionOnScreenBorder();
+            enemy.Position = enemyPosition;
+
+            // extract time to reach
+            float timeToReach = (float)(TimeToReachMin + _dice.NextDouble() * (TimeToReachMax - TimeToReachMin));
+
+            // calculate speed modulus
+            Vector2 virusPosition = new Vector2(240, 400);
+            float distance = Vector2.Distance(enemyPosition, virusPosition) - enemy.Radius - 37;    // 37 è il raggio del virus, va messo come variabile membro della monster factory
+            float speedModulus = distance / timeToReach;
 
             // set enemy speed
-            Vector2 virusPosition = new Vector2(240, 400);
-            enemy.Speed = Vector2.Normalize(virusPosition - enemy.Position) *
-                (float)(MonsterSpeedMin + _dice.NextDouble() * (MonsterSpeedMax - MonsterSpeedMin));
+            enemy.Speed = Vector2.Normalize(virusPosition - enemy.Position) * speedModulus;
 
             _enemies.Add(enemy);
         }
@@ -227,7 +240,7 @@ namespace Virus
             Texture2D monsterTexture, Texture2D acceleratedMonsterTexture, Texture2D orbitalMonsterTexture, Texture2D bombBonusTexture,
             TimeSpan schedTimeIntervalMin, TimeSpan schedTimeIntervalMax,
             TimeSpan createTimeIntervalMin, TimeSpan createTimeIntervalMax,
-            float speedMin, float speedMax,
+            float timeToReachMin, float timeToReachMax,
             int numOfMonstersMin, int numOfMonstersMax)
             : base(em)
         {
@@ -241,8 +254,8 @@ namespace Virus
             SchedulingTimeIntervalMax = schedTimeIntervalMax;
             CreationTimeIntervalMin = createTimeIntervalMin;
             CreationTimeIntervalMax = createTimeIntervalMax;
-            MonsterSpeedMin = speedMin;
-            MonsterSpeedMax = speedMax;
+            TimeToReachMin = timeToReachMin;
+            TimeToReachMax = timeToReachMax;
             NumberOfMonstersMin = numOfMonstersMin;
             NumberOfMonstersMax = numOfMonstersMax;
         }

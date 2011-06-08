@@ -33,6 +33,11 @@ namespace Virus
         // fading attributes
         private float _fadeSpeed;
 
+        // blinking attributes
+        private float _blinkingPeriod;
+        private float _blikingTimeElapsed;
+        private Color _blinkingTint;
+
         public Vector2 Position
         { set { _position = value; } }
 
@@ -59,6 +64,12 @@ namespace Virus
 
         public float FadeSpeed
         { set { _fadeSpeed = value; } }
+
+        public float BlinkingFrequency
+        { set { _blinkingPeriod = 1f / value; } }
+
+        public Color BlinkingTint
+        { set { _blinkingTint = value; } }
 
         public Animation(Texture2D texture, int frames)
         {
@@ -127,5 +138,17 @@ namespace Virus
 
             _color.A = (byte)alpha;
         }
+
+        public void Blink(float dt)
+        {
+            _blikingTimeElapsed += dt;
+
+            if (_blikingTimeElapsed > _blinkingPeriod)
+            {
+                _blikingTimeElapsed -= _blinkingPeriod;
+                _color = _color == Color.White ? _blinkingTint : Color.White;
+            }
+        }
+
     }
 }

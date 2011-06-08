@@ -114,7 +114,7 @@ namespace Virus
                     }
                     else
                     {
-                        DrawWindow(spriteBatch, _trembleCursor1, 0.5f);
+                        DrawWindow(spriteBatch, _trembleCursor1, 1f);
                         DrawWindow(spriteBatch, _trembleCursor2, 0.5f);
                     }
                     break;

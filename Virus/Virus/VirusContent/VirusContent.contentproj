@@ -109,14 +109,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VirusGiusto.png">
-      <Name>VirusGiusto</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="whiteGlobulosEx.png">
       <Name>whiteGlobulosEx</Name>
       <Importer>TextureImporter</Importer>
@@ -167,6 +159,14 @@
   <ItemGroup>
     <Compile Include="whiteGlobulosBiggest.png">
       <Name>whiteGlobulosBiggest</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="virusLifeLittle.png">
+      <Name>virusLifeLittle</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>

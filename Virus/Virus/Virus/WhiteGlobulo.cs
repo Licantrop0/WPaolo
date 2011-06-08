@@ -64,8 +64,8 @@ namespace Virus
                     {
                         _state = WhiteGlobuloState.fading;
                         _touchable = false;
-                        Speed = Vector2.Zero;
-                        _animations["main"].FadeSpeed = 1.0f;
+                        Speed = Vector2.Normalize(Speed) * 45;
+                        _animations["main"].FadeSpeed = 0.6f; //1.0f;
                         _utilityTimer = 0;
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.fingerHit)
@@ -86,8 +86,9 @@ namespace Virus
                 case WhiteGlobuloState.fading:
 
                     _animations["main"].Fade(_elapsedTime);
+                    Move(_elapsedTime);
                     _utilityTimer += _elapsedTime;
-                    if (_utilityTimer > 1)
+                    if (_utilityTimer > 10)
                     {
                         _state = WhiteGlobuloState.died;
                     }

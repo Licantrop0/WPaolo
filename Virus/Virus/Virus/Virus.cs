@@ -21,6 +21,7 @@ namespace Virus
 
         public int Score { get; set; }
         public int Bombs { get; set; }
+        public int Lifes { get; set; }
 
         public ViruState State
         { get { return _state; } set { _state = value; } }
@@ -36,33 +37,37 @@ namespace Virus
             _state = ViruState.tranquil;
             Score = 500;
             Bombs = 5;
+            Lifes = 5;
         }
 
-        private void HandleGlobuloCollision()
+        private void TransitionToShockedState()
         {
-            Score -= 50;
-            // TODO CAMBIA ANIMAZIONE
+            Lifes--;
             float angle = (float)(_actSpriteEvent.Params[0]);
-            _animations[_currentAnimation].Color = Color.Blue;
+            _animations[_currentAnimation].BlinkingFrequency = 30;
+            _animations[_currentAnimation].BlinkingTint = Color.Transparent;
             _animations[_currentAnimation].Angle = angle;
             _animations[_currentAnimation].Animate(_elapsedTime);
+            _animations[_currentAnimation].Blink(_elapsedTime);
+            _state = ViruState.shocked;
             _utilityTimer = 0;
         }
 
-        private void HandleBonusCollision()
+        private void TransitionToHappyState()
         {
-            Bombs++;
-            // TODO CAMBIA ANIMAZIONE
+            Bombs++;    // PS temp
             _animations[_currentAnimation].Color = Color.Red;
             _animations[_currentAnimation].Animate(_elapsedTime);
+            _state = ViruState.happy;
             _utilityTimer = 0;
         }
 
-        private void GoBackToTranquilState()
+        private void TransitionToTranquilState()
         {
             _currentAnimation = "main";
             _animations[_currentAnimation].Color = Color.White;
-            _animations[_currentAnimation].Angle = 0;  //supefluo quando ci sarà l'animazione dedicata allo stato "shocked"
+            _animations[_currentAnimation].Angle = 0; 
+            _state = ViruState.tranquil;
         }
 
         public override void Update(GameTime gameTime)
@@ -79,13 +84,12 @@ namespace Virus
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
-                        HandleGlobuloCollision();
-                        _state = ViruState.shocked;
+                        TransitionToShockedState();
+                        
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
                     {
-                        HandleBonusCollision();
-                        _state = ViruState.happy;
+                        TransitionToHappyState();
                     }
 
                     break;
@@ -97,21 +101,21 @@ namespace Virus
                     if (_actSpriteEvent == null)
                     {
                         _animations[_currentAnimation].Animate(_elapsedTime);
+                        _animations[_currentAnimation].Blink(_elapsedTime);
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
-                        HandleGlobuloCollision();
+                        TransitionToShockedState();
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
                     {
-                        HandleBonusCollision();
+                        TransitionToHappyState();
                         _state = ViruState.happy;
                     }
 
-                    if (_utilityTimer > 1.0)
+                    if (_utilityTimer > 1.5)
                     {
-                        GoBackToTranquilState();
-                        _state = ViruState.tranquil;
+                        TransitionToTranquilState();
                     }
 
                     break;
@@ -126,17 +130,17 @@ namespace Virus
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
-                        HandleGlobuloCollision();
+                        TransitionToShockedState();
                         _state = ViruState.shocked;
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
                     {
-                        HandleBonusCollision();
+                        TransitionToHappyState();
                     }
 
                     if (_utilityTimer > 1.0)
                     {
-                        GoBackToTranquilState();
+                        TransitionToTranquilState();
                         _state = ViruState.tranquil;
                     }
 
@@ -149,7 +153,7 @@ namespace Virus
                     break;
             }
 
-            if (Score < 0)
+            if (Lifes <= 0)
             {
                 Score = 0;
                 _state = ViruState.died;

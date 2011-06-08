@@ -38,6 +38,9 @@ namespace Virus
         // virus
         Virus _virus;
 
+        // virus lifes
+        Texture2D _virusLife;
+
         // background
         MovingBackground _background;
         MovingBackground _firstPlanBackground;
@@ -117,6 +120,9 @@ namespace Virus
                TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
                1.9f, 3.2f,                                                           // enemies time to reach virus (min,max)
                3, 5);                                                                // number of enemies created per schedule
+
+            // create life virus
+            _virusLife = Content.Load<Texture2D>("virusLifeLittle");
 
             // create background
             Texture2D backgroundTexture0 = Content.Load<Texture2D>("polmoni0");
@@ -204,10 +210,10 @@ namespace Virus
                     _whiteGlobulos.ForEach(wg => wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit)));
 
                     // tremble
-                    CustomTimeVariable trembleAmplitude  = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 20), new Vector2(1, 20), new Vector2(1.25f, 0)});
-                    CustomTimeVariable trembleAmplitude2 = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 10), new Vector2(1, 10), new Vector2(1.25f, 0) });
+                    CustomTimeVariable trembleAmplitude  = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 30), new Vector2(1, 30), new Vector2(1.25f, 0)});
+                    CustomTimeVariable trembleAmplitude2 = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 15), new Vector2(1, 15), new Vector2(1.25f, 0) });
                     _background.Tremble(2, trembleAmplitude, 40, (float)Math.PI, true);
-                    _firstPlanBackground.Tremble(2, trembleAmplitude2, 80, 0, false);
+                    _firstPlanBackground.Tremble(2, trembleAmplitude2, 80, (float)Math.PI, true);
                 }
             }
 
@@ -277,6 +283,16 @@ namespace Virus
             }
         }
 
+        private void DrawLifes(SpriteBatch spriteBatch)
+        {
+            Vector2 position = new Vector2(450, 8);
+            for (int i = 0; i < _virus.Lifes; i++)
+            {
+                spriteBatch.Draw(_virusLife, position, Color.White);
+                position -= new Vector2(20, 0);
+            }
+        }
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -333,7 +349,7 @@ namespace Virus
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.CornflowerBlue); // poi ci sarà da disegnare lo sfondo...
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
 
@@ -351,15 +367,19 @@ namespace Virus
             if(_virus != null)
                 _virus.Draw(spriteBatch);
 
+            // draw lifes
+            if (_virus != null)
+                DrawLifes(spriteBatch);
+
             // write score
             if (_virus != null)
             {
-                spriteBatch.DrawString(_scoreString, _virus.Score.ToString(), new Vector2(370, 12), Color.Yellow);
-                spriteBatch.DrawString(_bombString, _virus.Bombs.ToString(), new Vector2(30, 12), Color.Yellow);
+                //priteBatch.DrawString(_scoreString, _virus.Score.ToString(), new Vector2(370, 12), Color.Yellow);
+                spriteBatch.DrawString(_bombString, _virus.Bombs.ToString(), new Vector2(30, 4), Color.Yellow);
             }
             else
             {
-                spriteBatch.DrawString(_scoreString, "YOU\nSUCK!", new Vector2(370, 12), Color.White);
+                spriteBatch.DrawString(_scoreString, "YOU\nSUCK!", new Vector2(370, 4), Color.White);
             }
 
             _fpsSum += (float)(1 / gameTime.ElapsedGameTime.TotalSeconds); 

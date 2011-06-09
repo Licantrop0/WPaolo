@@ -19,7 +19,7 @@ namespace Virus
         private ViruState _state;
         private float _utilityTimer;
 
-        public int Score { get; set; }
+        public int Ammo { get; set; }
         public int Bombs { get; set; }
         public int Lifes { get; set; }
 
@@ -35,7 +35,7 @@ namespace Virus
             _animations["main"].FramePerSecond = 4f;
             Position = new Vector2(240, 400);
             _state = ViruState.tranquil;
-            Score = 500;
+            Ammo = 60;
             Bombs = 5;
             Lifes = 5;
         }
@@ -155,7 +155,7 @@ namespace Virus
 
             if (Lifes <= 0)
             {
-                Score = 0;
+                Ammo = 0;
                 _state = ViruState.died;
             }
                 

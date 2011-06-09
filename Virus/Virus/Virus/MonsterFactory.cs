@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace Virus
 {
-    public class MonsterBonusFactory : GameEventHandler
+    public class SpriteFactory : GameEventHandler
     {
         List<WhiteGlobulo> _enemies;     // reference to the game enemies list
         List<GoToVirusBonus> _bonuses;   // reference to bonus list
@@ -235,7 +235,7 @@ namespace Virus
             _bonuses.Add(bonus);
         }
 
-        public MonsterBonusFactory(GameEventsManager em,
+        public SpriteFactory(GameEventsManager em,
             List<WhiteGlobulo> enemies, List<GoToVirusBonus> bonuses,
             Texture2D monsterTexture, Texture2D acceleratedMonsterTexture, Texture2D orbitalMonsterTexture, Texture2D bombBonusTexture,
             TimeSpan schedTimeIntervalMin, TimeSpan schedTimeIntervalMax,
@@ -258,6 +258,11 @@ namespace Virus
             TimeToReachMax = timeToReachMax;
             NumberOfMonstersMin = numOfMonstersMin;
             NumberOfMonstersMax = numOfMonstersMax;
+        }
+
+        internal void CreateAmmoBonus()
+        {
+            throw new NotImplementedException();
         }
     } 
 }

@@ -9,7 +9,7 @@ namespace NascondiChiappe
 {
     public partial class PasswordPage : PhoneApplicationPage
     {
-        private bool IsNewPasswordMode { get { return Settings.Password == null; } }
+        private bool IsNewPasswordMode { get { return AppContext.Password == null; } }
         private bool IsChangePasswordMode { get { return NavigationContext.QueryString.ContainsKey("ChangePassword"); } }
 
         public PasswordPage()
@@ -41,7 +41,7 @@ namespace NascondiChiappe
                 var ChangePasswordAppBarMenuItem = new ApplicationBarMenuItem();
                 ChangePasswordAppBarMenuItem.Text = AppResources.ChangePassword;
                 ChangePasswordAppBarMenuItem.Click += (sender1, e1) =>
-                { NavigationService.Navigate(new Uri("/PasswordPage.xaml?ChangePassword=1", UriKind.Relative)); };
+                { NavigationService.Navigate(new Uri("/View/PasswordPage.xaml?ChangePassword=1", UriKind.Relative)); };
                 ApplicationBar.MenuItems.Add(ChangePasswordAppBarMenuItem);
 
                 MainPasswordBox.Focus();
@@ -50,20 +50,20 @@ namespace NascondiChiappe
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (Settings.IsPasswordInserted & !IsChangePasswordMode)
+            if (AppContext.IsPasswordInserted & !IsChangePasswordMode)
                 throw new Exception("ForceExit");
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!Settings.IsPasswordInserted & !IsChangePasswordMode)
+            if (!AppContext.IsPasswordInserted & !IsChangePasswordMode)
                 throw new Exception("ForceExit");
         }
 
         private void InitializeApplicationBar()
         {
             var OkAppBarButton = new ApplicationBarIconButton();
-            OkAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_check.png", UriKind.Relative);
+            OkAppBarButton.IconUri = new Uri("Toolkit.Content/appbar_check.png", UriKind.Relative);
             OkAppBarButton.Text = AppResources.Ok;
             OkAppBarButton.Click += new EventHandler(OkAppBarButton_Click);
             ApplicationBar.Buttons.Add(OkAppBarButton);
@@ -78,7 +78,7 @@ namespace NascondiChiappe
         {
             if (IsNewPasswordMode || IsChangePasswordMode)
             {
-                if (IsChangePasswordMode && (Settings.Password != OldPasswordBox.Password)) //Controllo anche la vecchia password
+                if (IsChangePasswordMode && (AppContext.Password != OldPasswordBox.Password)) //Controllo anche la vecchia password
                 {
                     MessageBox.Show(AppResources.PasswordWrong);
                     OldPasswordBox.SelectAll();
@@ -91,9 +91,9 @@ namespace NascondiChiappe
                     return;
                 }
 
-                if (NewPasswordBox.Password.Length < Settings.PasswordMinLenght)
+                if (NewPasswordBox.Password.Length < AppContext.PasswordMinLenght)
                 {
-                    MessageBox.Show(string.Format(AppResources.PasswordMinLenght, Settings.PasswordMinLenght));
+                    MessageBox.Show(string.Format(AppResources.PasswordMinLenght, AppContext.PasswordMinLenght));
                     NewPasswordBox.SelectAll();
                     return;
                 }
@@ -105,11 +105,11 @@ namespace NascondiChiappe
                     return;
                 }
 
-                Settings.Password = NewPasswordBox.Password;
+                AppContext.Password = NewPasswordBox.Password;
             }
             else
             {
-                if (Settings.Password != MainPasswordBox.Password)
+                if (AppContext.Password != MainPasswordBox.Password)
                 {
                     MessageBox.Show(AppResources.PasswordWrong);
                     MainPasswordBox.SelectAll();
@@ -117,8 +117,8 @@ namespace NascondiChiappe
                 }
             }
 
-            Settings.IsPasswordInserted = true;
-            NavigationService.Navigate(new Uri("/AlbumsPage.xaml", UriKind.Relative));
+            AppContext.IsPasswordInserted = true;
+            NavigationService.Navigate(new Uri("/View/AlbumsPage.xaml", UriKind.Relative));
         }
 
         private void PasswordBox_KeyDown(object sender, KeyEventArgs e)

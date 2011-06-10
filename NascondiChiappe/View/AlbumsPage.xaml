@@ -17,35 +17,31 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False" >
-
-    <Grid Name="LayoutRoot" Background="{StaticResource BackgroundImage}" >        
-        <Grid.Resources>
-            <DataTemplate x:Name="AlbumImageTemplate">
-                <Image Source="{Binding Photo}" Margin="12"
-                   RenderTransformOrigin="0.5,0.5"
-                   RenderTransform="{Binding Path=RotationAngle, Converter={StaticResource RotationConverter}}">
-                    <toolkit:GestureService.GestureListener>
-                        <toolkit:GestureListener DoubleTap="GestureListener_DoubleTap" />
-                    </toolkit:GestureService.GestureListener>
-                </Image>
-            </DataTemplate>
-        </Grid.Resources>
-
+    
+    <phone:PhoneApplicationPage.Resources>
+        <vm:AlbumsViewModel x:Key="AlbumsViewModel" />
+    </phone:PhoneApplicationPage.Resources>
+        
+    <Grid Name="LayoutRoot" Background="{StaticResource BackgroundImage}"
+          DataContext="{Binding Source={StaticResource AlbumsViewModel}}" >        
+       
         <controls:Pivot Name="AlbumsPivot" ItemsSource="{Binding Albums}"
-                        SelectedItem="{Binding SelectedAlbum}" >
+                        SelectedItem="{Binding SelectedAlbum, Mode=TwoWay}" >
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" Style="{StaticResource TitleStyle}" />
+                    <TextBlock Text="{Binding Model.Name}"
+                               Style="{StaticResource TitleStyle}" />
                 </DataTemplate>
             </controls:Pivot.HeaderTemplate>
 
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
-                    <local:ImageList DataContext="{Binding Photos}" DoubleTap="ImageList_DoubleTap" />
+                    <local:ImageList DataContext="{Binding}" />
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>
-        <TextBlock Name="InfoTextBlock" Style="{StaticResource TextBlockStyle}" VerticalAlignment="Bottom" />
+        <TextBlock Name="InfoTextBlock" Style="{StaticResource TextBlockStyle}"
+                   VerticalAlignment="Bottom" />
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"

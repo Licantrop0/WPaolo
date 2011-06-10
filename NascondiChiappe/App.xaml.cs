@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.IO.IsolatedStorage;
 
 namespace NascondiChiappe
 {
@@ -51,31 +52,41 @@ namespace NascondiChiappe
             // Phone-specific initialization
             InitializePhoneApplication();
 
-            Settings.IsPasswordInserted = false;
+            AppContext.IsPasswordInserted = false;
         }
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            if(!IsolatedStorageSettings.ApplicationSettings.Contains("albums"))
+                IsolatedStorageSettings.ApplicationSettings["albums"] = new List<Album>();
+
+            AppContext.Albums = IsolatedStorageSettings.ApplicationSettings["albums"] as List<Album>;
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            if (!PhoneApplicationService.Current.State.ContainsKey("albums"))
+                PhoneApplicationService.Current.State["albums"] = new List<Album>();
+
+            AppContext.Albums = PhoneApplicationService.Current.State["albums"] as List<Album>;
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            PhoneApplicationService.Current.State["albums"] = AppContext.Albums;
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            IsolatedStorageSettings.ApplicationSettings["albums"] = AppContext.Albums;
         }
 
         // Code to execute if a navigation fails

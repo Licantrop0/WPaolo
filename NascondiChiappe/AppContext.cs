@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace NascondiChiappe
 {
-    public static class Settings
+    public static class AppContext
     {
         //TODO: Modificare prima del rilascio
         public const int PasswordMinLenght = 1;
@@ -26,5 +26,7 @@ namespace NascondiChiappe
             }
         }
 
+        public static List<Album> Albums { get; set; }
+        public static Album CurrentAlbum { get; set; }
     }
 }

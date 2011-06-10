@@ -24,7 +24,7 @@ namespace NascondiChiappe
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (!Settings.IsPasswordInserted)
+            if (!AppContext.IsPasswordInserted)
             {
                 NavigationService.Navigate(new Uri("/PasswordPage.xaml", UriKind.Relative));
                 return;

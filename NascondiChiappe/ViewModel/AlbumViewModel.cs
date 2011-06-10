@@ -1,31 +1,29 @@
-﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using System.ComponentModel;
+﻿using System.Windows;
+using GalaSoft.MvvmLight;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Collections.Generic;
+using GalaSoft.MvvmLight.Command;
+using NascondiChiappe.Helpers;
+using System;
 
 namespace NascondiChiappe.ViewModel
 {
-    public class AlbumViewModel : INotifyPropertyChanged
+    public class AlbumViewModel : ViewModelBase
     {
-        #region INotifyPropertyChanged Members
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(object sender, string propertyName)
+        public Album Model { get; private set; }
+
+        INavigationService _navigationService;
+        public INavigationService NavigationService
         {
-            if (PropertyChanged != null)
+            get
             {
-                PropertyChanged(sender, new PropertyChangedEventArgs(propertyName));
+                if (_navigationService == null)
+                    _navigationService = new NavigationService();
+                return _navigationService;
             }
         }
-        #endregion
 
-        public Album Model { get; private set; }
 
         public AlbumViewModel(Album model)
         {
@@ -33,7 +31,7 @@ namespace NascondiChiappe.ViewModel
             Model.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == "Photos")
-                    OnPropertyChanged(this, "HintVisibility");
+                    RaisePropertyChanged("HintVisibility");
             };
         }
 
@@ -47,5 +45,29 @@ namespace NascondiChiappe.ViewModel
             }
         }
 
+        IList<AlbumPhoto> _selectedPhotos;
+        public IList<AlbumPhoto> SelectedPhotos
+        {
+            get { return _selectedPhotos; }
+            set
+            {
+                _selectedPhotos = value;
+                //CopyToMediaLibrary.RaiseCanExecuteChanged();
+            }
+        }
+
+        private RelayCommand<int> _showImage;
+        public RelayCommand<int> ShowImage
+        {
+            get { return _showImage ?? (_showImage = new RelayCommand<int>(ShowImageAction)); }
+        }
+
+        private void ShowImageAction(int imageIndex)
+        {
+            NavigationService.Navigate(new Uri(
+                string.Format("/View/ViewPhotosPage.xaml?Album={0}&Photo={1}",
+                Model.DirectoryName, imageIndex),
+                UriKind.Relative));
+        }
     }
 }

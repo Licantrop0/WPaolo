@@ -10,30 +10,32 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using NascondiChiappe.ViewModel;
 
 namespace NascondiChiappe
 {
     public partial class ImageList : UserControl
     {
-        public event SelectionChangedEventHandler SelectedChanged = delegate { };
-        public event EventHandler<GestureEventArgs> DoubleTap = delegate { };
+        private AlbumViewModel _vM;
+        public AlbumViewModel VM
+        {
+            get
+            {
+                if (_vM == null)
+                    _vM = DataContext as AlbumViewModel;
+                return _vM;
+            }
+        }
 
         public ImageList()
         {
             InitializeComponent();
         }
 
-        private void ImagesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SelectedChanged.Invoke(sender, e);
-        }
-
         private void GestureListener_DoubleTap(object sender, GestureEventArgs e)
         {
-            var photo = (Image)sender;
-            sender = photo.DataContext;
-
-            DoubleTap.Invoke(sender, e);
+            //TODO replace with actual image index
+            VM.ShowImage.Execute(0);
         }
     }
 }

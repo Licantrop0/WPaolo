@@ -18,7 +18,8 @@ namespace Virus
     {
         oneUp,
         bomb,
-        ammo
+        ammo,
+        bombAmmo
     }
 
     public class GoToVirusBonus : CircularSprite
@@ -42,15 +43,14 @@ namespace Virus
         {
              _touchable = true;
 
-            _currentAnimation = "main";
-            _animations["main"].FramePerSecond = 0;
+            ChangeAnimation("main");
+            FramePerSecond = 0;
+            RotationSpeed = 1f;
             _state = BonusState.moving;
             _type = type;
-
-            InitializePhysics();
         }
 
-        private void InitializePhysics()
+        protected override void InitializePhysics()
         {
             _physicalPoint = new PhysicalMassSystemPoint();
         }
@@ -66,14 +66,15 @@ namespace Virus
 
                     if (_actSpriteEvent == null)
                     {
-                        Move(_elapsedTime);
+                        Move();
+                        Rotate();
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
                     {
                         _state = BonusState.fading;
                         _touchable = false;
                         Speed = Vector2.Zero;
-                        _animations["main"].FadeSpeed = 1.0f;
+                        FadeSpeed = 1.0f;
                         _utilityTimer = 0;
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.fingerHit)
@@ -81,11 +82,11 @@ namespace Virus
                         _state = BonusState.falling;
                         _touchable = false;
                         Speed = Vector2.Zero;
-                        _animations["main"].ScalingSpeed = -1f;
+                        ScalingSpeed = -1f;
                         if ((int)Position.X % 2 == 0)
-                            _animations["main"].RotationSpeed = 2 * (float)Math.PI;
+                            RotationSpeed = 2 * (float)Math.PI;
                         else
-                            _animations["main"].RotationSpeed = -2 * (float)Math.PI;
+                            RotationSpeed = -2 * (float)Math.PI;
                         _utilityTimer = 0;
                     }
 
@@ -93,7 +94,7 @@ namespace Virus
 
                 case BonusState.fading:
 
-                    _animations["main"].Fade(_elapsedTime);
+                    Fade();
                     _utilityTimer += _elapsedTime;
                     if (_utilityTimer > 1)
                     {
@@ -104,8 +105,8 @@ namespace Virus
 
                 case BonusState.falling:
 
-                    _animations["main"].ChangeDimension(_elapsedTime);
-                    _animations["main"].Rotate(_elapsedTime);
+                    ChangeDimension();
+                    Rotate();
                     _utilityTimer += _elapsedTime;
                     if (_utilityTimer > 1)
                     {

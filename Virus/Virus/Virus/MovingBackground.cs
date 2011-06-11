@@ -23,6 +23,7 @@ namespace Virus
         float _speed;
         BackgroundEffects _effects;
         int _frameHeight;
+        float _goalLine;
 
         // trembling data
         float _trembleCursor1;
@@ -40,14 +41,15 @@ namespace Virus
 
         public float Speed { get {return _speed;} set {_speed = value;} }
 
-        public MovingBackground(Texture2D[] textureArray, float offset)
+        public MovingBackground(Texture2D[] textureArray, float startOffset, float endOffset)
         {
             _backgroundTextureArray = textureArray;;
             _speed = 0;
             _effects = BackgroundEffects.none;
 
             _frameHeight = _backgroundTextureArray[0].Height;
-            _cursor = _frameHeight * _backgroundTextureArray.Length - 800 - offset;     // offset is an offset used to have some "room" for effect like trembling and such...
+            _cursor = _frameHeight * _backgroundTextureArray.Length - 800 - startOffset;     // offset is an offset used to have some "room" for effect like trembling and such...
+            _goalLine = endOffset;
         }
 
         public void Tremble(float duration, CustomTimeVariable amplitude, float frequency, float phase, bool separationDistortion)
@@ -64,9 +66,6 @@ namespace Virus
 
         private void DrawWindow(SpriteBatch spriteBatch, float position, float alphaBlending)
         {
-            if (position < 0)
-                position = 0;
-
             int cursor = (int)Math.Round(position);
 
             // determino la texture a cui appartiene il cursore
@@ -129,6 +128,9 @@ namespace Virus
             // normal scrolling
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _cursor = _cursor - _speed * dt;
+
+            if (_cursor < _goalLine)
+                _cursor = _goalLine;
 
             // handle trembling if active
             if (_effects == BackgroundEffects.trembling)

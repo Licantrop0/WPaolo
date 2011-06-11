@@ -16,62 +16,17 @@ namespace Virus
         private int _frameWidth { get; set; }
         private int _frameHeight { get; set; }
 
-        private Vector2 _position;
-        private Color _color;
         private Vector2 _origin;
-        private float _rotation;
-        private float _scale;
-        private SpriteEffects _spriteEffects;
 
         private float _timeElapsed;
         private float _timeToUpdate;
         private bool _looping;
 
-        private float _rotationSpeed;
-        private float _scalingSpeed;
+        public float TimeToUpdate
+        { set { _timeToUpdate = value; } }
 
-        // fading attributes
-        private float _fadeSpeed;
 
-        // blinking attributes
-        private float _blinkingPeriod;
-        private float _blikingTimeElapsed;
-        private Color _blinkingTint;
-
-        public Vector2 Position
-        { set { _position = value; } }
-
-        public float Angle
-        {
-            get { return _rotation; }
-            set { _rotation = value; }
-        }
-
-        public Color Color
-        {
-            get { return _color; }
-            set { _color = value; }
-        }
-
-        public float FramePerSecond
-        { set { _timeToUpdate = value != 0 ? (1f / value) : float.PositiveInfinity; } }
-
-        public float RotationSpeed
-        { set { _rotationSpeed = value; } }
-
-        public float ScalingSpeed
-        { set { _scalingSpeed = value; } }
-
-        public float FadeSpeed
-        { set { _fadeSpeed = value; } }
-
-        public float BlinkingFrequency
-        { set { _blinkingPeriod = 1f / value; } }
-
-        public Color BlinkingTint
-        { set { _blinkingTint = value; } }
-
-        public Animation(Texture2D texture, int frames)
+        public Animation(Texture2D texture, int frames, bool looping)
         {
             _texture = texture;
 
@@ -84,18 +39,13 @@ namespace Virus
                 _rectangles[i] = new Rectangle(i * _frameWidth, 0, _frameWidth, _frameHeight);
             }
 
-            _color = new Color(1f,1f,1f,1f);
             _origin = new Vector2(_frameWidth / 2, _frameHeight / 2);
-            _rotation = 0f;
-            _scale = 1f;
-            _spriteEffects = SpriteEffects.None;
-
-            _looping = true;
+            _looping = looping;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Sprite sprite)
         {
-            spriteBatch.Draw(_texture, _position, _rectangles[_frameIndex], _color, _rotation, _origin, _scale, _spriteEffects, 0f);
+            spriteBatch.Draw(_texture, sprite.Position, _rectangles[_frameIndex], sprite.Tint, sprite.Angle, _origin, sprite.Scale, SpriteEffects.None, 0f);
         }
 
 
@@ -115,38 +65,6 @@ namespace Virus
                 {
                     _frameIndex = 0;
                 }
-            }
-        }
-
-        public void Rotate(float dt)
-        {
-            _rotation = _rotation + _rotationSpeed * dt;
-        }
-
-        public void ChangeDimension(float dt)
-        {
-            _scale = _scale + _scalingSpeed * dt;
-            if (_scale < 0)
-                _scale = 0;
-        }
-
-        public void Fade(float dt)
-        {
-            float alpha = _color.A - _fadeSpeed * dt * 255;
-            if (alpha < 0)
-                alpha = 0;
-
-            _color.A = (byte)alpha;
-        }
-
-        public void Blink(float dt)
-        {
-            _blikingTimeElapsed += dt;
-
-            if (_blikingTimeElapsed > _blinkingPeriod)
-            {
-                _blikingTimeElapsed -= _blinkingPeriod;
-                _color = _color == Color.White ? _blinkingTint : Color.White;
             }
         }
 

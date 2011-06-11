@@ -20,10 +20,11 @@ namespace Virus
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        // score
+        // writings
         SpriteFont _ammoString;
         SpriteFont _bombString;
         SpriteFont _fpsString;
+        SpriteFont _timeString;
 
         // event scheduler
         GameEventsManager _eventsManager = new GameEventsManager();
@@ -33,7 +34,7 @@ namespace Virus
 
         // white globulos
         List<WhiteGlobulo> _whiteGlobulos = new List<WhiteGlobulo>();
-        List<GoToVirusBonus> _bonuses = new List<GoToVirusBonus>();     // TEMP, bisogna ritrutturare bene la gerarchia di classi mostri / bonus!!!
+        List<GoToVirusBonus> _bonuses = new List<GoToVirusBonus>();
 
         // virus
         Virus _virus;
@@ -42,10 +43,9 @@ namespace Virus
         Texture2D _virusLife;
 
         // virus ammo management
-        bool _enemyKilledByAmmo;
         int _enemiesKilledByAmmoCounter;
         int _enemiesKilledByAmmoTriggerNumber;
-        int _ammoQuantityPerBonus;
+        int _ammoQuantityPerBonus;  
 
         // background
         MovingBackground _background;
@@ -88,7 +88,7 @@ namespace Virus
                 GestureType.Tap |
                 GestureType.DoubleTap;
 
-            _enemiesKilledByAmmoTriggerNumber = 47;
+            _enemiesKilledByAmmoTriggerNumber = 50;
 
             base.Initialize();
         }
@@ -102,10 +102,11 @@ namespace Virus
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // create score fonts
+            // create score and debug fonts
             _ammoString = Content.Load<SpriteFont>("Segoe20");
             _bombString = Content.Load<SpriteFont>("Segoe20");
             _fpsString = Content.Load<SpriteFont>("Segoe20");
+            _timeString = Content.Load<SpriteFont>("Segoe20");
 
             // create our friend virus
             //Texture2D virusTexture = Content.Load<Texture2D>("virus");
@@ -113,7 +114,7 @@ namespace Virus
             //Texture2D virusTexture = Content.Load<Texture2D>("ominosimpatico");
             Texture2D virusTexture = Content.Load<Texture2D>("virusMedium");
             Dictionary<string, Animation> virusAnimations = new Dictionary<string, Animation>();
-            virusAnimations.Add("main", new Animation(virusTexture, 7));
+            virusAnimations.Add("main", new Animation(virusTexture, 7, true));
             _virus = new Virus(virusAnimations, 40, 40);
             
             // create white globulos factory
@@ -125,8 +126,10 @@ namespace Virus
             Texture2D bonusBombTexture = Content.Load<Texture2D>("bonusBomb");
             Texture2D bonusAmmoTexture = Content.Load<Texture2D>("bonusAmmo");
             Texture2D bonusOneUpTexture = Content.Load<Texture2D>("bonusOneUp");
+            Texture2D bonusBombPlusTexture = Content.Load<Texture2D>("bonusBombPlus");
+
             _spriteFactory = new SpriteFactory(_eventsManager, _whiteGlobulos, _bonuses,
-                whiteGlobulosTexture, bonusBombTexture, bonusAmmoTexture, bonusOneUpTexture,
+                whiteGlobulosTexture, bonusBombTexture, bonusAmmoTexture, bonusOneUpTexture, bonusBombPlusTexture,
                TimeSpan.FromMilliseconds(1500), TimeSpan.FromMilliseconds(2500),     // time interval period for enemies creation schedule (min,max)
                TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
                1.9f, 3.2f,                                                           // enemies time to reach virus (min,max)
@@ -138,7 +141,7 @@ namespace Virus
             // create background
             Texture2D backgroundTexture0 = Content.Load<Texture2D>("polmoni0");
             Texture2D backgroundTexture1 = Content.Load<Texture2D>("polmoni1");
-            _background = new MovingBackground(new Texture2D[2] { backgroundTexture0, backgroundTexture1 }, 30);
+            _background = new MovingBackground(new Texture2D[2] { backgroundTexture0, backgroundTexture1 }, 30, 30);
             _background.Speed = 15f;    // [px/sec]
 
             // create first plan background
@@ -146,16 +149,25 @@ namespace Virus
             Texture2D firstPlanBackground1 = Content.Load<Texture2D>("b1");
             Texture2D firstPlanBackground2 = Content.Load<Texture2D>("b2");
             Texture2D firstPlanBackground3 = Content.Load<Texture2D>("b3");
-            _firstPlanBackground = new MovingBackground(new Texture2D[4] { firstPlanBackground0, firstPlanBackground1, firstPlanBackground2, firstPlanBackground3 }, 60);
+            _firstPlanBackground = new MovingBackground(new Texture2D[4] { firstPlanBackground0, firstPlanBackground1, firstPlanBackground2, firstPlanBackground3 }, 60, 60);
             _firstPlanBackground.Speed = 30f;   // [px/sec]
 
+            ScheduleEvents();
+        }
+
+        private void ScheduleEvents()
+        {
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3), GameEventType.scheduleSimpleEnemyCreation, _spriteFactory));
 
-            // create bonusbomb every 50 seconds
-            for (int i = 1; i <= 5; i++)
+            // create bonusbomb every 40 seconds
+            for (int i = 0; i < 10; i++)
             {
-                _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(i* 50), GameEventType.createBombBonus, _spriteFactory));
+                _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(i * 40), GameEventType.createBombBonus, _spriteFactory));
             }
+
+            // create bombplus at 45 and 130 seconds
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(45), GameEventType.createBombPlusBonus, _spriteFactory));
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(130), GameEventType.createBombPlusBonus, _spriteFactory));
 
             // create one up bonus at 135 seconds
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(135), GameEventType.createOneUpBonus, _spriteFactory));       
@@ -182,7 +194,7 @@ namespace Virus
             {
                 // convert the touch position into a Point for hit testing
                 _touchPoint = new Vector2(touches[0].Position.X, touches[0].Position.Y);
-                _virus.Ammo -= 1;
+                _virus.Ammo--;
             }
             else
             {
@@ -193,20 +205,22 @@ namespace Virus
         private void DetectTouchCollisions()
         {
             bool recreateAmmoBonus = false;
+            int enemiesKilled = 0;
 
-            // if virus has been touched, a bomb may explode...
+            // if virus has been touched, a bomb explodes!
             if (_virus != null)
             {
                 if (_virus.Touched(_touchPoint) && _virus.Bombs > 0)
                 {
                     // bomb explosion handling!
                     _virus.Bombs--;
+                    enemiesKilled++;
                     _whiteGlobulos.ForEach(wg => wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit)));
 
                     foreach(GoToVirusBonus b in _bonuses)
                     {
                         b.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit));
-                        if (b.Type == BonusType.ammo)
+                        if (b.Type == BonusType.ammo && b.State == BonusState.moving)
                             recreateAmmoBonus = true;
                     }
 
@@ -224,20 +238,18 @@ namespace Virus
                 if ( wg.Touched(_touchPoint))
                 {
                     wg.AddSpriteEvent(new SpriteEvent((int)SpriteEventCode.fingerHit));
-                    _enemyKilledByAmmo = true;
+                    enemiesKilled++;
                 }
             }
 
-            if (_enemyKilledByAmmo)
+            // ammo bonus handling
+            _enemiesKilledByAmmoCounter += enemiesKilled;
+            if (_enemiesKilledByAmmoCounter >= _enemiesKilledByAmmoTriggerNumber)
             {
-                _enemiesKilledByAmmoCounter++;
-
-                if (_enemiesKilledByAmmoCounter == _enemiesKilledByAmmoTriggerNumber)
-                {
-                    _enemiesKilledByAmmoCounter = 0;
-                    _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(1), GameEventType.createAmmoBonus, _spriteFactory));
-                }
+                _enemiesKilledByAmmoCounter = 0;
+                _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(1), GameEventType.createAmmoBonus, _spriteFactory));
             }
+
 
             // iterate our bonus sprites to find which sprite is being touched
             foreach (GoToVirusBonus b in _bonuses)
@@ -252,7 +264,7 @@ namespace Virus
 
             if (recreateAmmoBonus)
             {
-                _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(2), GameEventType.createAmmoBonus, _spriteFactory));
+                _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(1), GameEventType.createAmmoBonus, _spriteFactory));
             }
             
         }
@@ -277,21 +289,7 @@ namespace Virus
                 {
                     if ((b.State == BonusState.moving) && Vector2.Distance(b.Position, _virus.Position) < b.Radius + _virus.Radius)
                     {
-                        BonusType param = BonusType.bomb;   // just for int
-                        switch (b.Type)
-                        {
-                            case BonusType.oneUp:
-                                param = BonusType.oneUp;
-                                break;
-                            case BonusType.bomb:
-                                param = BonusType.bomb;
-                                break;
-                            case BonusType.ammo:
-                                param = BonusType.ammo;
-                                break;
-                            default:
-                                break;
-                        }
+                        BonusType param = b.Type;
 
                         _virus.AddSpriteEvent(new SpriteEvent(SpriteEventCode.virusBonusCollision, new Object[] { param } ));
                         b.AddSpriteEvent(new SpriteEvent(SpriteEventCode.virusBonusCollision));
@@ -428,6 +426,7 @@ namespace Virus
 
             _fpsSum += (float)(1 / gameTime.ElapsedGameTime.TotalSeconds); 
             spriteBatch.DrawString(_fpsString, (_fpsSum / (float)_fpsCount).ToString(), new Vector2(30, 768), Color.Yellow);
+            spriteBatch.DrawString(_timeString, Math.Round(gameTime.TotalGameTime.TotalSeconds, 0).ToString(), new Vector2(410, 768), Color.Yellow);
             _fpsCount++;
 
             spriteBatch.End();

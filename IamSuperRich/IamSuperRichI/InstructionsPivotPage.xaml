@@ -7,6 +7,7 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:wpcommon="clr-namespace:WPCommon;assembly=WPCommon"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -17,47 +18,57 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <controls:Pivot Title="I am Super Rich - Instructions">
-            <!--Pivot item one-->
-            <controls:PivotItem Header="How to">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="1" Text="I am Super Rich is a series of 8 applications. Download them all, pin to start the 8 applications, an re-arrange the tiles following the serial number of each application.
-Now you really can say 'I am Super Rich'!" TextAlignment="Left" TextWrapping="Wrap" Margin="0,20,0,0" FontSize="22" Foreground="White" />
-                    <Image Grid.Row="1" Height="412" HorizontalAlignment="Center" Source="all_logos_numbered.png" Stretch="Uniform" VerticalAlignment="Top" Width="231" Margin="101,182,124,0" />
-                </Grid>
-            </controls:PivotItem>
-
-            <!--Pivot item two-->
-            <controls:PivotItem Header="Get them all">
-                <Grid Name="appLinksGrid">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>    
-                    <!--<Border Height="200" Width="200" MouseLeftButtonDown="Border_MouseLeftButtonDown" Margin="26,3,230,404" Grid.Row="1">
-                        <Border.Background>
-                            <ImageBrush ImageSource="/numbered/1.png" />
-                        </Border.Background>
-                    </Border>
-                    <Border Height="200" Width="200" MouseLeftButtonDown="Border_MouseLeftButtonDown" Margin="232,3,24,404" Grid.RowSpan="2">
-                        <Border.Background>
-                            <ImageBrush ImageSource="/numbered/2.png" />
-                        </Border.Background>
-                    </Border>-->
-                </Grid>
-            </controls:PivotItem>
+        <controls:Pivot Title="I am Super Rich">
 
             <!--Pivot item three-->
             <controls:PivotItem Header="Look">
                 <Grid>
-                    <HyperlinkButton Content="Watch on YouTube"
+                    <Image Stretch="UniformToFill" Source="screen_full_1.png" />
+                </Grid>
+            </controls:PivotItem>
+            
+            <!--Pivot item one-->
+            <controls:PivotItem Header="How to">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <HyperlinkButton Grid.Row="0" Content="Watch on YouTube"
                          FontSize="{StaticResource PhoneFontSizeExtraLarge}"
                          Click="Youtube_Click" Foreground="#FFE5E55E" Background="#00F2D9D9" />
+
+                    <TextBlock Grid.Row="1" 
+Text="I am Super Rich is a series of 8 applications. The original apps were meant for rich people who can afford 499.99$ for a useless application, just to show off how rich they are.
+Now, you can have each app for 0.99$, pretend you're rich, save 499$, but still show off to friends and girls how rich you are.
+                               
+Download them all, pin to start the 8 applications, an re-arrange the tiles following the serial number of each application.
+Your start page will be full with diamonds! Now you really can say 'I am Super Rich'!" TextAlignment="Left" TextWrapping="Wrap" FontSize="22" Foreground="White" />
+                      </Grid>
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="Get them all">
+                <Grid Name="appLinksGrid" HorizontalAlignment="Center" Height="550" Width="270">
                 </Grid>
+            </controls:PivotItem>
+
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="and more..">
+                <ScrollViewer>
+                    <wpcommon:AboutControl Background="Black" ApplicationName="I am super rich I" BackgroundStackPanel="Black" ApplicationVersion="1.1.0">
+
+                        <wpcommon:AboutControl.Foreground>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="WhiteSmoke" Offset="0" />
+                                <GradientStop Color="BlanchedAlmond"  Offset="1" />
+                            </LinearGradientBrush>
+                        </wpcommon:AboutControl.Foreground>
+                    </wpcommon:AboutControl>
+
+                </ScrollViewer>
             </controls:PivotItem>
             
         </controls:Pivot>

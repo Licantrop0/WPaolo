@@ -51,6 +51,10 @@ namespace Virus
                     CreateSimpleEnemy();
                     break;
 
+                case GameEventType.createBouncingEnemy:
+                    CreateBouncingEnemy();
+                    break;
+
                 case GameEventType.createAcceleratedEnemy:
                     CreateAcceleratedEnemy();
                     break;
@@ -142,8 +146,8 @@ namespace Virus
 
         private Vector2 SetSpriteInitialPositionOnScreenBorder()
         {
-            int deltaBorderY = 30;
-            int deltaBorderX = 30;
+            int deltaBorderY = 15;
+            int deltaBorderX = 15;
 
             int p1 =      480 + 2 * deltaBorderX;
             int p2 = p1 + 800 + 2 * deltaBorderY;
@@ -176,8 +180,8 @@ namespace Virus
 
         private Vector2 SetSpriteInitialPositionOnTopOrBotBorder()
         {
-            int deltaBorderX = 30;
-            int deltaBorderY = 30;
+            int deltaBorderX = 15;
+            int deltaBorderY = 15;
 
             int p1 = 480 + 2 * deltaBorderX;
             int p2 = p1 + 480 + 2 * deltaBorderX;
@@ -249,6 +253,20 @@ namespace Virus
 
             // set enemy speed
             enemy.Speed = Vector2.Normalize(virusPosition - enemy.Position) * speedModulus;
+
+            _enemies.Add(enemy);
+        }
+
+        private void CreateBouncingEnemy()
+        {
+            // create simple enemy
+            Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
+            Animation mainAnimation = new Animation(_constantSpeedMonsterTexture, 7, true);
+            animations.Add("main", mainAnimation);
+
+            BouncingWhiteGlobulo enemy = new BouncingWhiteGlobulo(animations, 29, 34);
+            enemy.Position = new Vector2(240, 815);
+            enemy.Speed = new Vector2( _dice.Next(-80, 81), -80);
 
             _enemies.Add(enemy);
         }

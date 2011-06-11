@@ -157,6 +157,7 @@ namespace Virus
 
         private void ScheduleEvents()
         {
+            // schedule and go on scheduling white globulos creation
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3), GameEventType.scheduleSimpleEnemyCreation, _spriteFactory));
 
             // create bonusbomb every 40 seconds
@@ -171,6 +172,12 @@ namespace Virus
 
             // create one up bonus at 135 seconds
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(135), GameEventType.createOneUpBonus, _spriteFactory));       
+
+            // every 10 seconds create bouncing enemy (temp!!!)
+            for(int i = 1; i <= 30; i++)
+            {
+                _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(i * 10), GameEventType.createBouncingEnemy, _spriteFactory));
+            }   
         }
 
         /// <summary>
@@ -269,6 +276,53 @@ namespace Virus
             
         }
 
+        private void DetectGlobulosBorderCollision()
+        {
+            foreach (WhiteGlobulo wg in _whiteGlobulos)
+            {
+                if(wg.LifeTime > 1)
+                {
+                    if (wg.Speed.X > 0)
+                    {
+                        // collision with right border
+                        if (wg.Position.X + wg.Radius >= 480)
+                        {
+                            wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(-1, 0) }));
+                            continue;
+                        } 
+                    }
+                    else
+                    {
+                        // collision with left border
+                        if (wg.Position.X - wg.Radius <= 0)
+                        {
+                            wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(1, 0) }));
+                            continue;
+                        }       
+                    }
+
+                    if (wg.Speed.Y > 0)
+                    {
+                        // collision with bottom border
+                        if (wg.Position.Y + wg.Radius >= 800)
+                        {
+                            wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(0, -1) }));
+                            continue;
+                        }      
+                    }
+                    else
+                    {
+                        // collision with top border
+                        if (wg.Position.Y - wg.Radius <= 0)
+                        {
+                            wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(0, 1) }));
+                            continue;
+                        } 
+                    }
+                }
+            }
+        }
+
         private void DetectVirusGlobulosCollision()
         {
             if (_virus != null)
@@ -358,6 +412,8 @@ namespace Virus
 
             // detect collisions between our friend virus and evil globulos
             DetectVirusGlobulosCollision();
+
+            DetectGlobulosBorderCollision();
 
             // scroll the background
             _background.Update(gameTime);

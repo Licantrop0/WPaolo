@@ -30,14 +30,12 @@ namespace Virus
             :base(animations, radius, touchRadius)
         {
             _touchable = true;
-            _physicalPoint = new PhysicalKinematicPoint();
-            ChangeAnimation("main");
             FramePerSecond = 4f;
             Position = new Vector2(240, 400);
             _state = ViruState.tranquil;
-            Ammo = 80;
-            Bombs = 1;
-            Lifes = 3;
+            Ammo = 800;
+            Bombs = 30;
+            Lifes = 30;
         }
 
         protected override void InitializePhysics()
@@ -47,19 +45,21 @@ namespace Virus
 
         private void TransitionToShockedState()
         {
+            _utilityTimer = 0;
+
             Lifes--;
-            float angle = (float)(_actSpriteEvent.Params[0]);
+            Angle = (float)(_actSpriteEvent.Params[0]);
             BlinkingFrequency = 30;
             BlinkingTint = Color.Transparent;
-            Angle = angle;
             Animate();
             Blink();
-            _state = ViruState.shocked;
-            _utilityTimer = 0;
+            State = ViruState.shocked;
         }
 
         private void TransitionToHappyState()
         {
+            _utilityTimer = 0;
+
             switch ((BonusType)_actSpriteEvent.Params[0])
             {
                 case BonusType.oneUp:
@@ -81,8 +81,7 @@ namespace Virus
 
             Tint = Color.Red;
             Animate();
-            _state = ViruState.happy;
-            _utilityTimer = 0;
+            State = ViruState.happy;
         }
 
         private void TransitionToTranquilState()
@@ -90,7 +89,7 @@ namespace Virus
             ChangeAnimation("main");
             Tint = Color.White;
             Angle = 0; 
-            _state = ViruState.tranquil;
+            State = ViruState.tranquil;
         }
 
         public override void Update(GameTime gameTime)
@@ -107,8 +106,7 @@ namespace Virus
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
-                        TransitionToShockedState();
-                        
+                        TransitionToShockedState();        
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
                     {

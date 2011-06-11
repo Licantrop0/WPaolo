@@ -17,12 +17,17 @@ namespace Virus
 
     public class WhiteGlobulo : CircularSprite
     {
+        private WhiteGlobuloState _state;
+        private float _utilityTimer;
+
+        public WhiteGlobuloState State
+        { get { return _state; } }
+
         public WhiteGlobulo(Dictionary<string, Animation> animations, float radius, float touchRadius)
             :base(animations, radius, touchRadius)
         {
             _touchable = true;
 
-            ChangeAnimation("main");
             FramePerSecond = 6;
             _state = WhiteGlobuloState.moving;
         }
@@ -32,12 +37,6 @@ namespace Virus
              _physicalPoint = new PhysicalMassSystemPoint();           
         }
 
-        private WhiteGlobuloState _state;
-        private float _utilityTimer;
-
-        public WhiteGlobuloState State
-        { get { return _state; } }
-
         protected virtual void SetForce()
         {
             ((PhysicalMassSystemPoint)_physicalPoint).ResultantForce = Vector2.Zero;
@@ -45,7 +44,6 @@ namespace Virus
 
         public override void Update(GameTime gameTime)
         {
-            // it sets _elapsedTime and _actSpriteEvent
             base.Update(gameTime);
 
             switch (_state)
@@ -116,6 +114,25 @@ namespace Virus
                 default:
                     break;
             }
+        }
+    }
+
+    public class BouncingWhiteGlobulo : WhiteGlobulo
+    {
+        public BouncingWhiteGlobulo(Dictionary<string, Animation> animations, float radius, float touchRadius)
+            : base(animations, radius, touchRadius)
+        {
+            
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.borderCollision)
+            {
+                Bounce((Vector2)_actSpriteEvent.Params[0]);
+            }    
         }
     }
 

@@ -9,7 +9,8 @@ namespace Virus
     {
         fingerHit,
         virusGlobuloCollision,
-        virusBonusCollision
+        virusBonusCollision,
+        borderCollision
     }
 
 }

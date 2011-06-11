@@ -32,6 +32,7 @@ namespace Virus
         private Queue<SpriteEvent> _spriteEventQueque = new Queue<SpriteEvent>();
         protected float _elapsedTime;
         protected SpriteEvent _actSpriteEvent;
+        protected float _lifeTime;
 
         // from animations
         private Color _tint;
@@ -46,6 +47,9 @@ namespace Virus
         private float _blinkingPeriod;
         private float _blikingTimeElapsed;
         private Color _blinkingTint;
+
+        public float LifeTime
+        { get { return _lifeTime; } }
 
         // from animations properties
         public float Angle
@@ -126,6 +130,11 @@ namespace Virus
             }
         }
 
+        protected void Bounce(Vector2 normal)
+        {
+            Speed = Vector2.Reflect(Speed, normal);
+        }
+
         // physics
         protected PhysicalKinematicPoint _physicalPoint; 
 
@@ -169,6 +178,7 @@ namespace Virus
         {
             _elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _actSpriteEvent = _spriteEventQueque.Count > 0 ? _spriteEventQueque.Dequeue() : null;
+            _lifeTime += _elapsedTime;
         }
 
         protected virtual void InitializePhysics()

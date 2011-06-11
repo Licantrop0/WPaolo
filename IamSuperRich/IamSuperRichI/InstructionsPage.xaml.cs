@@ -13,11 +13,16 @@ using Microsoft.Phone.Controls;
 
 namespace IamSuperRichI
 {
+    
+
     public partial class InstructionsPage : PhoneApplicationPage
     {
+
         public InstructionsPage()
         {
             InitializeComponent();
         }
+
+
     }
 }

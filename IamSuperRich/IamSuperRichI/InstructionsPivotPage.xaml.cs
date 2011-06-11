@@ -47,20 +47,24 @@ namespace IamSuperRichI
 
             for (j = 0; j < 4; j++)
             {
-                appLinksGrid.RowDefinitions.Add(new RowDefinition());
+                RowDefinition r = new RowDefinition();        
+                appLinksGrid.RowDefinitions.Add(r);
                 
                 for (k = 0; k < 2; k++)
                 {
-                    appLinksGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                    i = 2 * j + k;
+                    ColumnDefinition c = new ColumnDefinition();
+                    appLinksGrid.ColumnDefinitions.Add(c);
+                    c.MinWidth = 130;
 
+                    i = 2 * j + k;
                     var b = new Border();
                     b.BorderThickness = new Thickness(0);
                     ImageBrush brush = new ImageBrush();
                     brush.ImageSource = new BitmapImage(new Uri("numbered/" + (i + 1) + ".png", UriKind.Relative));
+                    brush.Stretch = Stretch.Fill;
                     b.Background = brush;
-                    b.Height = 200;
-                    b.Width = 200;
+                    b.Height = 130;
+                    b.Width = 130;
                     b.SetRow(j);
                     b.SetColumn(k);
                     b.MouseLeftButtonDown += Image_Click;

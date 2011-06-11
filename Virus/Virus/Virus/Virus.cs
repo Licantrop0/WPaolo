@@ -35,7 +35,7 @@ namespace Virus
             _animations["main"].FramePerSecond = 4f;
             Position = new Vector2(240, 400);
             _state = ViruState.tranquil;
-            Ammo = 60;
+            Ammo = 80;
             Bombs = 5;
             Lifes = 5;
         }
@@ -55,7 +55,21 @@ namespace Virus
 
         private void TransitionToHappyState()
         {
-            Bombs++;    // PS temp
+            switch ((BonusType)_actSpriteEvent.Params[0])
+            {
+                case BonusType.oneUp:
+                    Lifes++;
+                    break;
+                case BonusType.bomb:
+                    Bombs++;
+                    break;
+                case BonusType.ammo:
+                    Ammo += 50;
+                    break;
+                default:
+                    break;
+            }
+
             _animations[_currentAnimation].Color = Color.Red;
             _animations[_currentAnimation].Animate(_elapsedTime);
             _state = ViruState.happy;

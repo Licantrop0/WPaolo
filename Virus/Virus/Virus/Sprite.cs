@@ -10,7 +10,6 @@ namespace Virus
     public class SpriteEvent
     {
         public SpriteEventCode Code { get; set;}
-
         public Object[] Params { get; set; }
 
         public SpriteEvent(SpriteEventCode code)

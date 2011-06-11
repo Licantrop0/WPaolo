@@ -12,10 +12,11 @@ namespace Virus
         createAcceleratedEnemy,
         createOrbitalEnemy,
         createBombBonus,
+        createAmmoBonus,
+        createOneUpBonus,
         scheduleSimpleEnemyCreation,
         scheduleAcceleratedEnemyCreation,
-        scheduleOrbitalEnemyCreation,
-        createAmmoBonus
+        scheduleOrbitalEnemyCreation
     }
 
     public class GameEvent

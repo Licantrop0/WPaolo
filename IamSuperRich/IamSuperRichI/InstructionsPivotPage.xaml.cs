@@ -24,29 +24,12 @@ namespace IamSuperRichI
         public InstructionsPivotPage()
         {
             InitializeComponent();
-            InitializeGrid();
+            //InitializeGrid();
+            InitializeAppId();
         }
 
-        void InitializeGrid()
+        void InitializeAppId()
         {
-              for (int i = 0; i < 8; i++)
-            {
-                appLinksGrid.RowDefinitions.Add(new RowDefinition());
-                appLinksGrid.ColumnDefinitions.Add(new ColumnDefinition());
-
-                var b = new Border();
-                b.BorderThickness = new Thickness(0);
-                ImageBrush brush = new ImageBrush();
-                brush.ImageSource = new BitmapImage(new Uri("numbered/%28" + i + "%29.png", UriKind.Relative));
-                b.Background = brush;
-                b.Height = 200;
-                b.Width = 200;
-                b.SetRow(i/2);
-                b.SetColumn(i%2);
-                b.MouseLeftButtonDown += Image_Click;
-                appLinksGrid.Children.Add(b);
-            }
-
             appId = new string[8];
             appId[0] = "59073daf-bb2b-e011-854c-00237de2db9e";
             appId[1] = "a9fb8160-c22b-e011-854c-00237de2db9e";
@@ -58,10 +41,37 @@ namespace IamSuperRichI
             appId[7] = "e9376fb6-c62b-e011-854c-00237de2db9e";
         }
 
+        void InitializeGrid()
+        {
+            int i;
+            //for ( i=0; i<4; i++)
+            //    appLinksGrid.RowDefinitions.Add(new RowDefinition());
+            //for ( i = 0; i <2; i++)
+            //    appLinksGrid.ColumnDefinitions.Add(new ColumnDefinition());
+
+            for ( i = 0; i < 8; i++)
+            {
+                var b = new Border();
+                b.BorderThickness = new Thickness(0);
+                ImageBrush brush = new ImageBrush();
+                brush.ImageSource = new BitmapImage(new Uri("numbered/%28" + i + "%29.png", UriKind.Relative));
+                b.Background = brush;
+                b.Height = 200;
+                b.Width = 200;
+                //b.SetRow(i/2);
+                //b.SetColumn(i%2);
+                b.SetRow(i);
+                b.MouseLeftButtonDown += Image_Click;
+                appLinksGrid.Children.Add(b);
+
+            }
+        }
+
         void Image_Click(object sender, RoutedEventArgs e)
         {
             Border b = (Border)sender;
-            int appNo = 2 * b.GetRow() + b.GetColumn();
+            //int appNo = 2 * b.GetRow() + b.GetColumn();
+            int appNo = b.GetRow();
             MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
             marketplaceDetailTask.ContentIdentifier = appId[appNo];
             marketplaceDetailTask.Show();
@@ -71,6 +81,13 @@ namespace IamSuperRichI
         private void Youtube_Click(object sender, RoutedEventArgs e)
         {
             new WebBrowserTask() { URL = "http://www.youtube.com/watch?v=BiklqLjr9lg" }.Show();
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
+            marketplaceDetailTask.ContentIdentifier = appId[0];
+            marketplaceDetailTask.Show();
         }
     }
 }

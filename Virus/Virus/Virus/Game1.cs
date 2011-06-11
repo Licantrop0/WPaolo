@@ -88,7 +88,7 @@ namespace Virus
                 GestureType.Tap |
                 GestureType.DoubleTap;
 
-            _enemiesKilledByAmmoTriggerNumber = 45;
+            _enemiesKilledByAmmoTriggerNumber = 47;
 
             base.Initialize();
         }

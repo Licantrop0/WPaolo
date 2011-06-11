@@ -174,10 +174,10 @@ namespace Virus
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(135), GameEventType.createOneUpBonus, _spriteFactory));       
 
             // every 10 seconds create bouncing enemy (temp!!!)
-            for(int i = 1; i <= 30; i++)
+            /*for(int i = 1; i <= 30; i++)
             {
                 _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(i * 10), GameEventType.createBouncingEnemy, _spriteFactory));
-            }   
+            }*/   
         }
 
         /// <summary>

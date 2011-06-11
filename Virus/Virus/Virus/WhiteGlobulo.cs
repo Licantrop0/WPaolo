@@ -22,14 +22,12 @@ namespace Virus
         {
             _touchable = true;
 
-            _currentAnimation = "main";
-            _animations["main"].FramePerSecond = 6;
+            ChangeAnimation("main");
+            FramePerSecond = 6;
             _state = WhiteGlobuloState.moving;
-
-            InitializePhysics();
         }
 
-        protected virtual void InitializePhysics()
+        protected override void InitializePhysics()
         {
              _physicalPoint = new PhysicalMassSystemPoint();           
         }
@@ -57,15 +55,15 @@ namespace Virus
                     if (_actSpriteEvent == null)
                     {
                         SetForce();
-                        Move(_elapsedTime);
-                        _animations["main"].Animate(_elapsedTime);
+                        Move();
+                        Animate();
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
                         _state = WhiteGlobuloState.fading;
                         _touchable = false;
                         Speed = Vector2.Normalize(Speed) * 45;
-                        _animations["main"].FadeSpeed = 0.6f; //1.0f;
+                        FadeSpeed = 0.6f;
                         _utilityTimer = 0;
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.fingerHit)
@@ -73,11 +71,11 @@ namespace Virus
                         _state = WhiteGlobuloState.falling;
                         _touchable = false;
                         Speed = Vector2.Zero;
-                        _animations["main"].ScalingSpeed = -1f;
+                        ScalingSpeed = -1f;
                         if((int)Position.X % 2 == 0)
-                            _animations["main"].RotationSpeed =  2 * (float)Math.PI;
+                            RotationSpeed =  2 * (float)Math.PI;
                         else
-                            _animations["main"].RotationSpeed = -2 * (float)Math.PI;
+                            RotationSpeed = -2 * (float)Math.PI;
                         _utilityTimer = 0;
                     }
 
@@ -85,8 +83,8 @@ namespace Virus
 
                 case WhiteGlobuloState.fading:
 
-                    _animations["main"].Fade(_elapsedTime);
-                    Move(_elapsedTime);
+                    Fade();
+                    Move();
                     _utilityTimer += _elapsedTime;
                     if (_utilityTimer > 10)
                     {
@@ -97,8 +95,8 @@ namespace Virus
 
                 case WhiteGlobuloState.falling:
 
-                    _animations["main"].ChangeDimension(_elapsedTime);
-                    _animations["main"].Rotate(_elapsedTime);
+                    ChangeDimension();
+                    Rotate();
                     _utilityTimer += _elapsedTime;
                     if (_utilityTimer > 1)
                     {

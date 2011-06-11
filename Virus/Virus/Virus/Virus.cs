@@ -31,24 +31,29 @@ namespace Virus
         {
             _touchable = true;
             _physicalPoint = new PhysicalKinematicPoint();
-            _currentAnimation = "main";
-            _animations["main"].FramePerSecond = 4f;
+            ChangeAnimation("main");
+            FramePerSecond = 4f;
             Position = new Vector2(240, 400);
             _state = ViruState.tranquil;
             Ammo = 80;
-            Bombs = 5;
-            Lifes = 5;
+            Bombs = 1;
+            Lifes = 3;
+        }
+
+        protected override void InitializePhysics()
+        {
+            _physicalPoint = new PhysicalKinematicPoint();
         }
 
         private void TransitionToShockedState()
         {
             Lifes--;
             float angle = (float)(_actSpriteEvent.Params[0]);
-            _animations[_currentAnimation].BlinkingFrequency = 30;
-            _animations[_currentAnimation].BlinkingTint = Color.Transparent;
-            _animations[_currentAnimation].Angle = angle;
-            _animations[_currentAnimation].Animate(_elapsedTime);
-            _animations[_currentAnimation].Blink(_elapsedTime);
+            BlinkingFrequency = 30;
+            BlinkingTint = Color.Transparent;
+            Angle = angle;
+            Animate();
+            Blink();
             _state = ViruState.shocked;
             _utilityTimer = 0;
         }
@@ -66,21 +71,25 @@ namespace Virus
                 case BonusType.ammo:
                     Ammo += 50;
                     break;
+                case BonusType.bombAmmo:
+                    Bombs++;
+                    Ammo += 5;
+                    break;
                 default:
                     break;
             }
 
-            _animations[_currentAnimation].Color = Color.Red;
-            _animations[_currentAnimation].Animate(_elapsedTime);
+            Tint = Color.Red;
+            Animate();
             _state = ViruState.happy;
             _utilityTimer = 0;
         }
 
         private void TransitionToTranquilState()
         {
-            _currentAnimation = "main";
-            _animations[_currentAnimation].Color = Color.White;
-            _animations[_currentAnimation].Angle = 0; 
+            ChangeAnimation("main");
+            Tint = Color.White;
+            Angle = 0; 
             _state = ViruState.tranquil;
         }
 
@@ -94,7 +103,7 @@ namespace Virus
 
                     if (_actSpriteEvent == null)
                     {
-                        _animations[_currentAnimation].Animate(_elapsedTime);
+                        Animate();
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
@@ -114,8 +123,8 @@ namespace Virus
 
                     if (_actSpriteEvent == null)
                     {
-                        _animations[_currentAnimation].Animate(_elapsedTime);
-                        _animations[_currentAnimation].Blink(_elapsedTime);
+                        Animate();
+                        Blink();
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
@@ -140,7 +149,7 @@ namespace Virus
 
                     if (_actSpriteEvent == null)
                     {
-                        _animations[_currentAnimation].Animate(_elapsedTime);
+                        Animate();
                     }
                     else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {

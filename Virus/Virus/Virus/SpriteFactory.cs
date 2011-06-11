@@ -20,6 +20,7 @@ namespace Virus
         Texture2D _bombBonusTexture;
         Texture2D _ammoBonusTexture;
         Texture2D _oneUpBonusTexture;
+        Texture2D _bombPlusBonusTexture;
 
         public TimeSpan SchedulingTimeIntervalMin { get; set; }
 
@@ -68,6 +69,10 @@ namespace Virus
 
                 case GameEventType.createOneUpBonus:
                     CreateBonus(_oneUpBonusTexture, BonusType.oneUp);
+                    break;
+
+                case GameEventType.createBombPlusBonus:
+                    CreateBonus(_bombPlusBonusTexture, BonusType.bombAmmo);
                     break;
 
                 case GameEventType.scheduleSimpleEnemyCreation:
@@ -193,7 +198,7 @@ namespace Virus
         {
             // create accelerated enemy
             Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
-            Animation mainAnimation = new Animation(_acceleratedMonsterTexture, 7);
+            Animation mainAnimation = new Animation(_acceleratedMonsterTexture, 7, true);
             animations.Add("main", mainAnimation);
 
             AcceleratedWhiteGlobulo enemy = new AcceleratedWhiteGlobulo(animations, 24, 30);
@@ -208,7 +213,7 @@ namespace Virus
         public void CreateOrbitalEnemy()
         {
             Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
-            Animation mainAnimation = new Animation(_orbitalMonsterTexture, 7);
+            Animation mainAnimation = new Animation(_orbitalMonsterTexture, 7, true);
             animations.Add("main", mainAnimation);
 
             OrbitalWhiteGlobulo enemy = new OrbitalWhiteGlobulo(animations, 24, 30);
@@ -227,7 +232,7 @@ namespace Virus
         {
             // create simple enemy
             Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
-            Animation mainAnimation = new Animation(_constantSpeedMonsterTexture, 7);
+            Animation mainAnimation = new Animation(_constantSpeedMonsterTexture, 7, true);
             animations.Add("main", mainAnimation);
 
             WhiteGlobulo enemy = new WhiteGlobulo(animations, 29, 34);
@@ -252,7 +257,7 @@ namespace Virus
         {
             // create bonus
             Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
-            Animation mainAnimation = new Animation(bonusTexture, 1);
+            Animation mainAnimation = new Animation(bonusTexture, 1, true);
             animations.Add("main", mainAnimation);
 
             GoToVirusBonus bonus = new GoToVirusBonus(animations, 29, 30, bonusType);
@@ -269,7 +274,7 @@ namespace Virus
         public SpriteFactory(GameEventsManager em,
             List<WhiteGlobulo> enemies, List<GoToVirusBonus> bonuses,
             Texture2D monsterTexture,
-            Texture2D bombBonusTexture, Texture2D ammoBonusTexture, Texture2D oneUpBonusTexture,
+            Texture2D bombBonusTexture, Texture2D ammoBonusTexture, Texture2D oneUpBonusTexture, Texture2D bombPlusBonusTexture,
             TimeSpan schedTimeIntervalMin, TimeSpan schedTimeIntervalMax,
             TimeSpan createTimeIntervalMin, TimeSpan createTimeIntervalMax,
             float timeToReachMin, float timeToReachMax,
@@ -282,6 +287,7 @@ namespace Virus
             _bombBonusTexture = bombBonusTexture;
             _ammoBonusTexture = ammoBonusTexture;
             _oneUpBonusTexture = oneUpBonusTexture;
+            _bombPlusBonusTexture = bombPlusBonusTexture;
             SchedulingTimeIntervalMin = schedTimeIntervalMin;
             SchedulingTimeIntervalMax = schedTimeIntervalMax;
             CreationTimeIntervalMin = createTimeIntervalMin;

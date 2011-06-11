@@ -33,9 +33,9 @@ namespace Virus
             FramePerSecond = 4f;
             Position = new Vector2(240, 400);
             _state = ViruState.tranquil;
-            Ammo = 800;
-            Bombs = 30;
-            Lifes = 30;
+            Ammo = 80;
+            Bombs = 1;
+            Lifes = 3;
         }
 
         protected override void InitializePhysics()

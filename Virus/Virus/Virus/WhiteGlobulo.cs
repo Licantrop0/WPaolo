@@ -50,7 +50,7 @@ namespace Virus
             {
                 case WhiteGlobuloState.moving:
 
-                    if (_actSpriteEvent == null)
+                    if (_actSpriteEvent == null || _actSpriteEvent.Code == SpriteEventCode.borderCollision)
                     {
                         SetForce();
                         Move();

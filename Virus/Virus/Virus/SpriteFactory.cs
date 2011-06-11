@@ -15,8 +15,8 @@ namespace Virus
         Random _dice = new Random(DateTime.Now.Millisecond);
 
         Texture2D _constantSpeedMonsterTexture;
-        Texture2D _acceleratedMonsterTexture;
-        Texture2D _orbitalMonsterTexture;
+        /*Texture2D _acceleratedMonsterTexture;
+        Texture2D _orbitalMonsterTexture;*/
         Texture2D _bombBonusTexture;
         Texture2D _ammoBonusTexture;
         Texture2D _oneUpBonusTexture;

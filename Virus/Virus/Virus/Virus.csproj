@@ -96,7 +96,7 @@
     <Compile Include="GameEvent.cs" />
     <Compile Include="GoToVirusBonus.cs" />
     <Compile Include="ITouchable.cs" />
-    <Compile Include="MonsterFactory.cs" />
+    <Compile Include="SpriteFactory.cs" />
     <Compile Include="PhysicalPoint.cs" />
     <Compile Include="MovingBackground.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

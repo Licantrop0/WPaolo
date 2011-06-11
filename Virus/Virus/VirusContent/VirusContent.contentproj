@@ -125,14 +125,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bonusBomb.png">
-      <Name>bonusBomb</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="whiteGlobulosBigger.png">
       <Name>whiteGlobulosBigger</Name>
       <Importer>TextureImporter</Importer>
@@ -167,6 +159,26 @@
   <ItemGroup>
     <Compile Include="virusLifeLittle.png">
       <Name>virusLifeLittle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="bonusAmmo.png">
+      <Name>bonusAmmo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+    </Compile>
+    <Compile Include="bonusBomb.png">
+      <Name>bonusBomb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+    </Compile>
+    <Compile Include="bonusOneUp.png">
+      <Name>bonusOneUp</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>

@@ -18,6 +18,8 @@ namespace Virus
         Texture2D _acceleratedMonsterTexture;
         Texture2D _orbitalMonsterTexture;
         Texture2D _bombBonusTexture;
+        Texture2D _ammoBonusTexture;
+        Texture2D _oneUpBonusTexture;
 
         public TimeSpan SchedulingTimeIntervalMin { get; set; }
 
@@ -57,7 +59,15 @@ namespace Virus
                     break;
 
                 case GameEventType.createBombBonus:
-                    CreateBombBonus();
+                    CreateBonus(_bombBonusTexture, BonusType.bomb);
+                    break;
+
+                case GameEventType.createAmmoBonus:
+                    CreateBonus(_ammoBonusTexture, BonusType.ammo);
+                    break;
+
+                case GameEventType.createOneUpBonus:
+                    CreateBonus(_oneUpBonusTexture, BonusType.oneUp);
                     break;
 
                 case GameEventType.scheduleSimpleEnemyCreation:
@@ -125,7 +135,7 @@ namespace Virus
             _eventsManager.ScheduleEvent(ge);
         }
 
-        private Vector2 SetEnemyInitialPositionOnScreenBorder()
+        private Vector2 SetSpriteInitialPositionOnScreenBorder()
         {
             int deltaBorderY = 30;
             int deltaBorderX = 30;
@@ -159,6 +169,26 @@ namespace Virus
             }
         }
 
+        private Vector2 SetSpriteInitialPositionOnTopOrBotBorder()
+        {
+            int deltaBorderX = 30;
+            int deltaBorderY = 30;
+
+            int p1 = 480 + 2 * deltaBorderX;
+            int p2 = p1 + 480 + 2 * deltaBorderX;
+
+            int borderPosition = _dice.Next(1, p2 + 1);
+
+            if (borderPosition < p1)
+            {
+                return new Vector2(borderPosition - deltaBorderX, -deltaBorderY);
+            }
+            else
+            {
+                return new Vector2(p2 - borderPosition - deltaBorderX, 800 + deltaBorderY); ;
+            }
+        }
+
         public void CreateAcceleratedEnemy()
         {
             // create accelerated enemy
@@ -167,7 +197,7 @@ namespace Virus
             animations.Add("main", mainAnimation);
 
             AcceleratedWhiteGlobulo enemy = new AcceleratedWhiteGlobulo(animations, 24, 30);
-            enemy.Position =  SetEnemyInitialPositionOnScreenBorder();
+            enemy.Position =  SetSpriteInitialPositionOnScreenBorder();
 
             // set enemy speed
             enemy.Speed = Vector2.Normalize(new Vector2(240, 400) - enemy.Position) * 20f;
@@ -182,7 +212,7 @@ namespace Virus
             animations.Add("main", mainAnimation);
 
             OrbitalWhiteGlobulo enemy = new OrbitalWhiteGlobulo(animations, 24, 30);
-            Vector2 position = SetEnemyInitialPositionOnScreenBorder();
+            Vector2 position = SetSpriteInitialPositionOnScreenBorder();
             enemy.Position = position;
 
             if ((int)position.X % 2 == 0)
@@ -201,7 +231,7 @@ namespace Virus
             animations.Add("main", mainAnimation);
 
             WhiteGlobulo enemy = new WhiteGlobulo(animations, 29, 34);
-            Vector2 enemyPosition = SetEnemyInitialPositionOnScreenBorder();
+            Vector2 enemyPosition = SetSpriteInitialPositionOnScreenBorder();
             enemy.Position = enemyPosition;
 
             // extract time to reach
@@ -218,26 +248,28 @@ namespace Virus
             _enemies.Add(enemy);
         }
 
-        private void CreateBombBonus()
+        private void CreateBonus(Texture2D bonusTexture, BonusType bonusType)
         {
-            // create simple enemy
+            // create bonus
             Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
-            Animation mainAnimation = new Animation(_bombBonusTexture, 1);
+            Animation mainAnimation = new Animation(bonusTexture, 1);
             animations.Add("main", mainAnimation);
 
-            GoToVirusBonus bonus = new GoToVirusBonus(animations, 15, 20);
-            bonus.Position = SetEnemyInitialPositionOnScreenBorder();
+            GoToVirusBonus bonus = new GoToVirusBonus(animations, 29, 30, bonusType);
+            bonus.Position = SetSpriteInitialPositionOnTopOrBotBorder();
 
-            // set enemy speed
+            // set bonus speed
             Vector2 virusPosition = new Vector2(240, 400);
-            bonus.Speed = Vector2.Normalize(virusPosition - bonus.Position) * 40;
+            bonus.Speed = Vector2.Normalize(virusPosition - bonus.Position) * 45;
 
             _bonuses.Add(bonus);
         }
 
+
         public SpriteFactory(GameEventsManager em,
             List<WhiteGlobulo> enemies, List<GoToVirusBonus> bonuses,
-            Texture2D monsterTexture, Texture2D acceleratedMonsterTexture, Texture2D orbitalMonsterTexture, Texture2D bombBonusTexture,
+            Texture2D monsterTexture,
+            Texture2D bombBonusTexture, Texture2D ammoBonusTexture, Texture2D oneUpBonusTexture,
             TimeSpan schedTimeIntervalMin, TimeSpan schedTimeIntervalMax,
             TimeSpan createTimeIntervalMin, TimeSpan createTimeIntervalMax,
             float timeToReachMin, float timeToReachMax,
@@ -247,9 +279,9 @@ namespace Virus
             _enemies = enemies;
             _bonuses = bonuses;
             _constantSpeedMonsterTexture = monsterTexture;
-            _acceleratedMonsterTexture = acceleratedMonsterTexture;
-            _orbitalMonsterTexture = orbitalMonsterTexture;
             _bombBonusTexture = bombBonusTexture;
+            _ammoBonusTexture = ammoBonusTexture;
+            _oneUpBonusTexture = oneUpBonusTexture;
             SchedulingTimeIntervalMin = schedTimeIntervalMin;
             SchedulingTimeIntervalMax = schedTimeIntervalMax;
             CreationTimeIntervalMin = createTimeIntervalMin;
@@ -258,11 +290,6 @@ namespace Virus
             TimeToReachMax = timeToReachMax;
             NumberOfMonstersMin = numOfMonstersMin;
             NumberOfMonstersMax = numOfMonstersMax;
-        }
-
-        internal void CreateAmmoBonus()
-        {
-            throw new NotImplementedException();
         }
     } 
 }

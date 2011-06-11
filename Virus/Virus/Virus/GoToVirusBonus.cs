@@ -14,17 +14,30 @@ namespace Virus
         toBeCleared
     }
 
+    public enum BonusType
+    {
+        oneUp,
+        bomb,
+        ammo
+    }
+
     public class GoToVirusBonus : CircularSprite
     {
         BonusState _state;
         float _utilityTimer;
+        BonusType _type;
 
         public BonusState State
         {
             get { return _state; }
         }
 
-        public GoToVirusBonus(Dictionary<string, Animation> animations, float radius, float touchRadius)
+        public BonusType Type
+        {
+            get { return _type; }
+        }
+
+        public GoToVirusBonus(Dictionary<string, Animation> animations, float radius, float touchRadius, BonusType type)
             : base(animations, radius, touchRadius)
         {
              _touchable = true;
@@ -32,6 +45,7 @@ namespace Virus
             _currentAnimation = "main";
             _animations["main"].FramePerSecond = 0;
             _state = BonusState.moving;
+            _type = type;
 
             InitializePhysics();
         }

@@ -28,7 +28,7 @@ namespace IamSuperRichI
 
         private void InstructionsButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/InstructionsPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/InstructionsPivotPage.xaml", UriKind.Relative));
         }
     }
 }

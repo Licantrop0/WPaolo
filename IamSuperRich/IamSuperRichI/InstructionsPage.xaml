@@ -26,7 +26,38 @@
             <TextBlock Text="I am Super Rich is a series of 8 applications. Download them all, then just pin to start the 8 applications, an re-arrange the tiles as shown below, following the serial number of each application.
 Now you really can say 'I am Super Rich'!" TextAlignment="Left" TextWrapping="Wrap" Margin="0,20,0,0" FontSize="22" Foreground="White" />
         </StackPanel>
-        <Image Height="457" HorizontalAlignment="Left" Margin="104,299,0,0" Source="all_logos_numbered.png" Stretch="Uniform" VerticalAlignment="Top" Width="275" Grid.RowSpan="2" />
+
+        <Grid x:Name="gridLinkApp" Grid.Row="4" Grid.Column="2" Height="430" HorizontalAlignment="Center" Margin="92,15,0,0"  VerticalAlignment="Top" Width="210" >
+            <Grid.Background>
+                <ImageBrush ImageSource="/IamSuperRichI;component/numbered/%281%29.png" />
+            </Grid.Background>
+            <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="204*"/>
+                <RowDefinition Height="224*" />
+            </Grid.RowDefinitions>
+
+
+
+                <!--<Button Grid.Column="1" x:Name="link1" Click="clickLink1" Width="100" Height="100" BorderThickness="0">
+                    <Button.Background >
+                        <ImageBrush ImageSource="/numbered/%281%29.png" />
+                    </Button.Background>
+                </Button>
+
+                <Button Grid.Column="2" x:Name="link2" Click="clickLink2" Width="100" Height="100" BorderThickness="0">
+                    <Button.Background >
+                        <ImageBrush ImageSource="/numbered/%282%29.png" />
+                    </Button.Background>
+                </Button>-->
+
+ 
+
+            <Border />
+
+        </Grid>
+    <!--<Image Height="457" HorizontalAlignment="Left" Margin="104,299,0,0" Source="all_logos_numbered.png" Stretch="Uniform" VerticalAlignment="Top" Width="275" Grid.RowSpan="2" />-->
+
     </Grid>
 
 </phone:PhoneApplicationPage>

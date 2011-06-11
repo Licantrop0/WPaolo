@@ -53,6 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -69,6 +70,9 @@
     </Compile>
     <Compile Include="InstructionsPage.xaml.cs">
       <DependentUpon>InstructionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InstructionsPivotPage.xaml.cs">
+      <DependentUpon>InstructionsPivotPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -88,6 +92,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InstructionsPivotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +112,14 @@
     <Content Include="logo_rich_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="numbered\%281%29.png" />
+    <Resource Include="numbered\%282%29.png" />
+    <Resource Include="numbered\%283%29.png" />
+    <Resource Include="numbered\%284%29.png" />
+    <Resource Include="numbered\%285%29.png" />
+    <Resource Include="numbered\%286%29.png" />
+    <Resource Include="numbered\%287%29.png" />
+    <Resource Include="numbered\%288%29.png" />
     <Content Include="screen_full_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

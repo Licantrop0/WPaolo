@@ -38,7 +38,7 @@ Now you really can say 'I am Super Rich'!" TextAlignment="Left" TextWrapping="Wr
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>    
-                    <Border Height="200" Width="200" MouseLeftButtonDown="Border_MouseLeftButtonDown" Margin="26,3,230,404" Grid.Row="1">
+                    <!--<Border Height="200" Width="200" MouseLeftButtonDown="Border_MouseLeftButtonDown" Margin="26,3,230,404" Grid.Row="1">
                         <Border.Background>
                             <ImageBrush ImageSource="/numbered/1.png" />
                         </Border.Background>
@@ -47,7 +47,7 @@ Now you really can say 'I am Super Rich'!" TextAlignment="Left" TextWrapping="Wr
                         <Border.Background>
                             <ImageBrush ImageSource="/numbered/2.png" />
                         </Border.Background>
-                    </Border>
+                    </Border>-->
                 </Grid>
             </controls:PivotItem>
 

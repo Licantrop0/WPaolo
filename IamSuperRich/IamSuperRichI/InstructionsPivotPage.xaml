@@ -37,7 +37,17 @@ Now you really can say 'I am Super Rich'!" TextAlignment="Left" TextWrapping="Wr
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>      
+                    </Grid.RowDefinitions>    
+                    <Border Height="200" Width="200" MouseLeftButtonDown="Border_MouseLeftButtonDown" Margin="26,3,230,404" Grid.Row="1">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/numbered/1.png" />
+                        </Border.Background>
+                    </Border>
+                    <Border Height="200" Width="200" MouseLeftButtonDown="Border_MouseLeftButtonDown" Margin="232,3,24,404" Grid.RowSpan="2">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/numbered/2.png" />
+                        </Border.Background>
+                    </Border>
                 </Grid>
             </controls:PivotItem>
 

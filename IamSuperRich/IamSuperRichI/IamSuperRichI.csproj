@@ -118,22 +118,22 @@
     <Content Include="numbered\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="numbered\%283%29.png">
+    <Content Include="numbered\3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="numbered\%284%29.png">
+    <Content Include="numbered\4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="numbered\%285%29.png">
+    <Content Include="numbered\5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="numbered\%286%29.png">
+    <Content Include="numbered\6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="numbered\%287%29.png">
+    <Content Include="numbered\7.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="numbered\%288%29.png">
+    <Content Include="numbered\8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="screen_full_1.png">

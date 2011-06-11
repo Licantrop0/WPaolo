@@ -24,7 +24,7 @@ namespace IamSuperRichI
         public InstructionsPivotPage()
         {
             InitializeComponent();
-            //InitializeGrid();
+            InitializeGrid();
             InitializeAppId();
         }
 
@@ -43,35 +43,37 @@ namespace IamSuperRichI
 
         void InitializeGrid()
         {
-            int i;
-            //for ( i=0; i<4; i++)
-            //    appLinksGrid.RowDefinitions.Add(new RowDefinition());
-            //for ( i = 0; i <2; i++)
-            //    appLinksGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            int i, j, k;
 
-            for ( i = 0; i < 8; i++)
+            for (j = 0; j < 4; j++)
             {
-                var b = new Border();
-                b.BorderThickness = new Thickness(0);
-                ImageBrush brush = new ImageBrush();
-                brush.ImageSource = new BitmapImage(new Uri("numbered/%28" + i + "%29.png", UriKind.Relative));
-                b.Background = brush;
-                b.Height = 200;
-                b.Width = 200;
-                //b.SetRow(i/2);
-                //b.SetColumn(i%2);
-                b.SetRow(i);
-                b.MouseLeftButtonDown += Image_Click;
-                appLinksGrid.Children.Add(b);
+                appLinksGrid.RowDefinitions.Add(new RowDefinition());
+                
+                for (k = 0; k < 2; k++)
+                {
+                    appLinksGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                    i = 2 * j + k;
 
+                    var b = new Border();
+                    b.BorderThickness = new Thickness(0);
+                    ImageBrush brush = new ImageBrush();
+                    brush.ImageSource = new BitmapImage(new Uri("numbered/" + (i + 1) + ".png", UriKind.Relative));
+                    b.Background = brush;
+                    b.Height = 200;
+                    b.Width = 200;
+                    b.SetRow(j);
+                    b.SetColumn(k);
+                    b.MouseLeftButtonDown += Image_Click;
+                    appLinksGrid.Children.Add(b);
+
+                }
             }
         }
 
         void Image_Click(object sender, RoutedEventArgs e)
         {
             Border b = (Border)sender;
-            //int appNo = 2 * b.GetRow() + b.GetColumn();
-            int appNo = b.GetRow();
+            int appNo = 2 * b.GetRow() + b.GetColumn();       
             MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
             marketplaceDetailTask.ContentIdentifier = appId[appNo];
             marketplaceDetailTask.Show();

@@ -48,21 +48,6 @@ namespace BalanceBall
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            // enable the gestures we care about. you must set EnabledGestures before
-            // you can use any of the other gesture APIs.
-            // we use both Tap and DoubleTap to workaround a bug in the XNA GS 4.0 Beta
-            // where some Taps are missed if only Tap is specified.
-            /*TouchPanel.EnabledGestures =
-                GestureType.Hold |
-                GestureType.Tap |
-                GestureType.DoubleTap |
-                GestureType.FreeDrag |
-                GestureType.Flick |
-                GestureType.Pinch;*/
-
-            TouchPanel.EnabledGestures =
-                GestureType.Hold;
-
             base.Initialize();
         }
 
@@ -108,22 +93,7 @@ namespace BalanceBall
 
         private void HandleTouchInput()
         {
-            // we use raw touch points for selection, since they are more appropriate
-            // for that use than gestures. so we need to get that raw touch data.
-            /*TouchCollection touches = TouchPanel.GetState();
-
-            // see if we have a new primary point down. when the first touch
-            // goes down, we do hit detection to try and select one of our sprites.
-            if (touches.Count > 0 && touches[0].State == TouchLocationState.Pressed)
-            {
-                // convert the touch position into a Point for hit testing
-                Point touchPoint = new Point((int)touches[0].Position.X, (int)touches[0].Position.Y);
-                _ballRadius += _scalingSpeed;
-                Debug.WriteLine(_ballRadius);
-            }*/
-
             // get the "mouse" state
-
             var mouseState = Mouse.GetState();
 
             // the left button press is equal to touching the screen
@@ -132,36 +102,10 @@ namespace BalanceBall
                 _ballRadius += _scalingSpeed;
                 Debug.WriteLine(_ballRadius);
             }
-
-            // next we handle all of the gestures. since we may have multiple gestures available,
-            // we use a loop to read in all of the gestures. this is important to make sure the 
-            // TouchPanel's queue doesn't get backed up with old data
-            /*while (TouchPanel.IsGestureAvailable)
+            else
             {
-                // read the next gesture from the queue
-                GestureSample gesture = TouchPanel.ReadGesture();
-
-                // we can use the type of gesture to determine our behavior
-                switch (gesture.GestureType)
-                {
-                    // on taps, we change the color of the selected sprite
-                    case GestureType.Tap:
-                    case GestureType.DoubleTap:
-                        
-                        break;
-
-                    // on holds, if no sprite is selected, we add a new sprite at the
-                    // hold position and make it our selected sprite. otherwise we
-                    // remove our selected sprite.
-                    case GestureType.Hold:
-
-                        _ballRadius += _scalingSpeed;
-                        Debug.WriteLine(_ballRadius);
-
-                        break;
-                }
-            }*/
-
+                Debug.WriteLine("now falling");
+            }
         }
 
         /// <summary>

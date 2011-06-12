@@ -165,7 +165,7 @@
   <data name="CopyToMediaLibrary" xml:space="preserve">
     <value>Export</value>
   </data>
-  <data name="AddAlbum" xml:space="preserve">
+  <data name="NewAlbum" xml:space="preserve">
     <value>New Album</value>
   </data>
   <data name="EditAlbum" xml:space="preserve">

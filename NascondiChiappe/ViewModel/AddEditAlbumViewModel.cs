@@ -6,6 +6,8 @@ using GalaSoft.MvvmLight.Command;
 using NascondiChiappe.Localization;
 using NascondiChiappe.Helpers;
 using System;
+using GalaSoft.MvvmLight.Messaging;
+using NascondiChiappe.Messages;
 
 namespace NascondiChiappe.ViewModel
 {
@@ -13,6 +15,8 @@ namespace NascondiChiappe.ViewModel
     {
         public IList<AlbumPhoto> SelectedPhotos { get; set; }
         public Album CurrentAlbum { get { return AppContext.CurrentAlbum; } }
+        public ImageListViewModel ImageList { get { return new ImageListViewModel(CurrentAlbum); } }
+        public bool EditMode { get { return CurrentAlbum != null; } }
 
         INavigationService _navigationService;
         public INavigationService NavigationService
@@ -40,9 +44,10 @@ namespace NascondiChiappe.ViewModel
             get
             {
                 return CurrentAlbum == null ?
-                    AppResources.AddAlbum : AppResources.EditAlbum;
+                    AppResources.NewAlbum : AppResources.EditAlbum;
             }
         }
+
 
         private string _albumName;
         public string AlbumName
@@ -50,10 +55,14 @@ namespace NascondiChiappe.ViewModel
             get { return CurrentAlbum == null ? _albumName : CurrentAlbum.Name; }
             set
             {
+                if (AlbumName == value) return;
+
                 if (CurrentAlbum == null)
                     _albumName = value;
                 else
                     CurrentAlbum.Name = value;
+
+                Messenger.Default.Send<EditAlbumMessage>(new EditAlbumMessage());
             }
         }
 
@@ -66,6 +75,8 @@ namespace NascondiChiappe.ViewModel
             }
         }
 
+
+        #region Commands
         private RelayCommand _deletePhotos;
         public RelayCommand DeletePhotos
         {
@@ -108,13 +119,15 @@ namespace NascondiChiappe.ViewModel
             if (CurrentAlbum == null) //NewAlbum Mode
             {
                 if (WPCommon.TrialManagement.IsTrialMode &&
-                    AppContext.Albums.Count >= 1) 
+                    AppContext.Albums.Count >= 1)
                 {
                     NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                     return;
                 }
 
-                AppContext.Albums.Add(new Album(AlbumName, Guid.NewGuid().ToString()));
+                var NewAlbum = new Album(AlbumName, Guid.NewGuid().ToString());
+                AppContext.Albums.Add(NewAlbum);
+                Messenger.Default.Send<Messages.AddAlbumMessage>(new Messages.AddAlbumMessage(NewAlbum));
             }
 
             NavigationService.GoBack();
@@ -134,10 +147,32 @@ namespace NascondiChiappe.ViewModel
             if (MessageBox.Show(string.Format(AppResources.ConfirmAlbumDelete, CurrentAlbum.Name),
                 AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
+                //TODO: non funziona IndexOf
+                Messenger.Default.Send<DeleteAlbumMessage>(
+                    new DeleteAlbumMessage(AppContext.Albums.IndexOf(CurrentAlbum)));
                 CurrentAlbum.RemoveDirectoryContent();
                 AppContext.Albums.Remove(CurrentAlbum);
                 NavigationService.GoBack();
             }
         }
+
+        private RelayCommand<Album> _movePhotos;
+        public RelayCommand<Album> MovePhotos
+        {
+            get
+            {
+                return _movePhotos ?? (_movePhotos = new RelayCommand<Album>(MovePhotosAction));
+            }
+        }
+
+        private void MovePhotosAction(Album destination)
+        {
+            for (int i = 0; i < SelectedPhotos.Count; i++)
+            {
+                CurrentAlbum.MovePhoto(SelectedPhotos[i], destination);
+            }
+        }
+
+        #endregion
     }
 }

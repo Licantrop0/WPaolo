@@ -16,13 +16,13 @@ namespace NascondiChiappe
 {
     public partial class ImageList : UserControl
     {
-        private AlbumViewModel _vM;
-        public AlbumViewModel VM
+        private ImageListViewModel _vM;
+        public ImageListViewModel VM
         {
             get
             {
                 if (_vM == null)
-                    _vM = DataContext as AlbumViewModel;
+                    _vM = DataContext as ImageListViewModel;
                 return _vM;
             }
         }
@@ -34,8 +34,16 @@ namespace NascondiChiappe
 
         private void GestureListener_DoubleTap(object sender, GestureEventArgs e)
         {
-            //TODO replace with actual image index
-            VM.ShowImage.Execute(0);
+            //TODO: gestire meglio CurrentPhoto
+            var CurrentImage = sender as Image;
+            var CurrentPhoto = AppContext.CurrentAlbum.Photos.Where(i=> i.Bitmap == CurrentImage.Source).Single();
+            var ImageIndex = AppContext.CurrentAlbum.Photos.IndexOf(CurrentPhoto);
+            VM.ShowImage.Execute(ImageIndex);
+        }
+
+        private void ImagesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            VM.SelectedPhotos = ImagesListBox.SelectedItems.Cast<AlbumPhoto>().ToList();
         }
     }
 }

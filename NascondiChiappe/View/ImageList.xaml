@@ -35,8 +35,7 @@
         <ListBox Name="ImagesListBox" Margin="0,-30,0,0" ItemsSource="{Binding Model.Photos}"
                  ItemTemplate="{StaticResource AlbumImageTemplate}"
                  ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
-                 SelectedItem="{Binding SelectedPhotos, Mode=TwoWay}"
-                 SelectionMode="Multiple">
+                 SelectionMode="Multiple" SelectionChanged="ImagesListBox_SelectionChanged">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <toolkit:WrapPanel ItemWidth="225" ItemHeight="225"/>

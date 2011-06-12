@@ -7,32 +7,55 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Tasks;
 using NascondiChiappe.Helpers;
 using NascondiChiappe.Localization;
+using NascondiChiappe.Messages;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace NascondiChiappe.ViewModel
 {
     public class AlbumsViewModel : ViewModelBase
     {
-        public bool NoAlbumsPresent { get { return Albums.Count == 0; } }
-        public bool ImagesSelected { get { return SelectedAlbum.SelectedPhotos.Count > 0; } }
-
-        ObservableCollection<AlbumViewModel> _albums;
-        public ObservableCollection<AlbumViewModel> Albums
+        INavigationService _navigationService;
+        private INavigationService NavigationService
         {
             get
             {
-                //TODO: AIUTTTOO
-                //if (_albums == null)
-                //{
-                    _albums = new ObservableCollection<AlbumViewModel>();
-                    foreach (var album in AppContext.Albums)
-                        _albums.Add(new AlbumViewModel(album));
-                //}
-                return _albums;
+                if (_navigationService == null)
+                    _navigationService = new NavigationService();
+                return _navigationService;
             }
         }
 
-        private AlbumViewModel _selectedAlbum = null;
-        public AlbumViewModel SelectedAlbum
+        public AlbumsViewModel()
+        {
+            Messenger.Default.Register<AddAlbumMessage>(this, m => AddAlbum(m.AddedAlbum));
+            Messenger.Default.Register<DeleteAlbumMessage>(this, m => Albums.RemoveAt(m.Id));
+            //TODO trovare un metodo più furbo che far ricaricare tutta la lista
+            Messenger.Default.Register<EditAlbumMessage>(this, m => Albums = null);
+        }
+
+        #region Public Properties
+
+        public bool NoAlbumsPresent { get { return Albums.Count == 0; } }
+        public bool ImagesSelected { get { return SelectedAlbum.SelectedPhotos.Count > 0; } }
+
+        ObservableCollection<ImageListViewModel> _albums;
+        public ObservableCollection<ImageListViewModel> Albums
+        {
+            get
+            {
+                if (_albums == null)
+                {
+                    _albums = new ObservableCollection<ImageListViewModel>();
+                    foreach (var album in AppContext.Albums)
+                        _albums.Add(new ImageListViewModel(album));
+                }
+                return _albums;
+            }
+            set { _albums = value; }
+        }
+
+        private ImageListViewModel _selectedAlbum = null;
+        public ImageListViewModel SelectedAlbum
         {
             get { return _selectedAlbum; }
             set
@@ -44,16 +67,22 @@ namespace NascondiChiappe.ViewModel
                 RaisePropertyChanged("SelectedAlbum");
             }
         }
+        #endregion
 
-        INavigationService _navigationService;
-        public INavigationService NavigationService
+        #region Commands
+
+        private RelayCommand _newAlbum;
+        public RelayCommand NewAlbum
         {
-            get
-            {
-                if (_navigationService == null)
-                    _navigationService = new NavigationService();
-                return _navigationService;
-            }
+            get { return _newAlbum ?? (_newAlbum = new RelayCommand(NewAlbumAction)); }
+        }
+
+        private void NewAlbumAction()
+        {
+            AppContext.PreviousSelectedAlbum = SelectedAlbum.Model;
+            AppContext.CurrentAlbum = null;
+            NavigationService.Navigate(new Uri("/View/AddEditAlbumPage.xaml", UriKind.Relative));
+
         }
 
         private RelayCommand _copyToMediaLibrary;
@@ -84,7 +113,6 @@ namespace NascondiChiappe.ViewModel
             //{
             //};
             //bw.RunWorkerAsync();
-
         }
 
         private RelayCommand _copyFromMediaLibrary;
@@ -110,7 +138,6 @@ namespace NascondiChiappe.ViewModel
             catch (InvalidOperationException) { };
         }
 
-
         private RelayCommand _takePicture;
         public RelayCommand TakePicture
         {
@@ -131,7 +158,18 @@ namespace NascondiChiappe.ViewModel
             catch (InvalidOperationException) { };
         }
 
-        void CaptureTask_Completed(object sender, PhotoResult e)
+        #endregion
+
+        #region PageHelpers
+
+        private void AddAlbum(Album addedAlbum)
+        {
+            var ilvm = new ImageListViewModel(addedAlbum);
+            Albums.Add(ilvm);
+            SelectedAlbum = ilvm;
+        }
+
+        private void CaptureTask_Completed(object sender, PhotoResult e)
         {
             if (e.TaskResult == TaskResult.OK)
             {
@@ -140,7 +178,6 @@ namespace NascondiChiappe.ViewModel
                 e.ChosenPhoto.Close();
             }
         }
-
 
         private bool IsTrialWithCheck()
         {
@@ -151,6 +188,8 @@ namespace NascondiChiappe.ViewModel
             }
             return false;
         }
+
+        #endregion
 
     }
 }

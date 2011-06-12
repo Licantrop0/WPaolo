@@ -165,7 +165,7 @@
   <data name="TakePhoto" xml:space="preserve">
     <value>Scatta Foto</value>
   </data>
-  <data name="AddAlbum" xml:space="preserve">
+  <data name="NewAlbum" xml:space="preserve">
     <value>Aggiungi Album</value>
   </data>
   <data name="EditAlbum" xml:space="preserve">

@@ -6,10 +6,12 @@ using System.Collections.Generic;
 using GalaSoft.MvvmLight.Command;
 using NascondiChiappe.Helpers;
 using System;
+using GalaSoft.MvvmLight.Messaging;
+using NascondiChiappe.Messages;
 
 namespace NascondiChiappe.ViewModel
 {
-    public class AlbumViewModel : ViewModelBase
+    public class ImageListViewModel : ViewModelBase
     {
         public Album Model { get; private set; }
 
@@ -24,14 +26,15 @@ namespace NascondiChiappe.ViewModel
             }
         }
 
-
-        public AlbumViewModel(Album model)
+        public ImageListViewModel(Album model)
         {
+            if (model == null)
+                return;
+
             Model = model;
-            Model.PropertyChanged += (s, e) =>
+            Model.Photos.CollectionChanged += (s, e) =>
             {
-                if (e.PropertyName == "Photos")
-                    RaisePropertyChanged("HintVisibility");
+                RaisePropertyChanged("HintVisibility");
             };
         }
 
@@ -39,6 +42,9 @@ namespace NascondiChiappe.ViewModel
         {
             get
             {
+                if (Model == null)
+                    return Visibility.Collapsed;
+
                 return Model.Photos.Count == 0 ?
                     Visibility.Visible :
                     Visibility.Collapsed;
@@ -51,8 +57,13 @@ namespace NascondiChiappe.ViewModel
             get { return _selectedPhotos; }
             set
             {
+                if (SelectedPhotos == value)
+                    return;
+
                 _selectedPhotos = value;
-                //CopyToMediaLibrary.RaiseCanExecuteChanged();
+
+                Messenger.Default.Send<CanExecuteOnSelectedPhotosMessage>(
+                    new CanExecuteOnSelectedPhotosMessage(_selectedPhotos.Count > 0));
             }
         }
 
@@ -65,7 +76,7 @@ namespace NascondiChiappe.ViewModel
         private void ShowImageAction(int imageIndex)
         {
             NavigationService.Navigate(new Uri(
-                string.Format("/View/ViewPhotosPage.xaml?Album={0}&Photo={1}",
+                string.Format("/View/ViewPhotosPage.xaml?Photo={1}",
                 Model.DirectoryName, imageIndex),
                 UriKind.Relative));
         }

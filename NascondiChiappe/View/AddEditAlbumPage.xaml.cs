@@ -7,6 +7,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NascondiChiappe.Localization;
 using NascondiChiappe.ViewModel;
+using GalaSoft.MvvmLight.Messaging;
+using NascondiChiappe.Messages;
 
 namespace NascondiChiappe
 {
@@ -30,6 +32,9 @@ namespace NascondiChiappe
         {
             InitializeComponent();
             InitializeApplicationBar();
+
+            Messenger.Default.Register<CanExecuteOnSelectedPhotosMessage>(
+                this, m => ImagesSelectionChanged(m.CanExecute));
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -42,10 +47,8 @@ namespace NascondiChiappe
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (NavigationContext.QueryString.ContainsKey("Album")) //EditAlbumMode
+            if (VM.EditMode && ApplicationBar.Buttons.Count == 1)
             {
-                var AlbumId = NavigationContext.QueryString["Album"];
-
                 DeletePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
                 DeletePhotosAppBarButton.Text = AppResources.DeleteSelectedPhotos;
                 DeletePhotosAppBarButton.IsEnabled = false;
@@ -57,10 +60,10 @@ namespace NascondiChiappe
                 DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
                 ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
             }
-            else
+            else //BUG SUL BACK dalla ViewPhotosPage
                 AlbumNameTextBox.Focus();
 
-            if (AppContext.Albums.Count > 1)
+            if (AppContext.Albums.Count > 1 && ApplicationBar.Buttons.Count == 1)
             {
                 MovePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_move.png", UriKind.Relative);
                 MovePhotosAppBarButton.Text = AppResources.MoveSelectedPhotos;
@@ -100,6 +103,7 @@ namespace NascondiChiappe
             if (!CheckAlbumName())
                 return;
 
+            this.Focus();
             VM.SaveAlbum.Execute(null);
         }
 
@@ -138,24 +142,16 @@ namespace NascondiChiappe
 
         private void AlbumsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            for (int i = 0; i < VM.SelectedPhotos.Count; i++)
-            {
-                VM.CurrentAlbum.MovePhoto(VM.SelectedPhotos[i], (Album)e.AddedItems[0]);
-            }
+            VM.MovePhotos.Execute(e.AddedItems);
 
             PopupBackground.Visibility = Visibility.Collapsed;
             PopupBorder.Visibility = Visibility.Collapsed;
         }
 
-        private void ImagesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ImagesSelectionChanged(bool canExecute)
         {
-            if (NavigationContext.QueryString.ContainsKey("Album")) //EditAlbumMode
-            {
-                var ArePhotosSelected = VM.SelectedPhotos.Count > 0;
-
-                DeletePhotosAppBarButton.IsEnabled = ArePhotosSelected;
-                MovePhotosAppBarButton.IsEnabled = ArePhotosSelected;
-            }
+            DeletePhotosAppBarButton.IsEnabled = canExecute;
+            MovePhotosAppBarButton.IsEnabled = canExecute;
         }
     }
 }

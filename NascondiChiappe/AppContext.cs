@@ -28,5 +28,6 @@ namespace NascondiChiappe
 
         public static List<Album> Albums { get; set; }
         public static Album CurrentAlbum { get; set; }
+        public static Album PreviousSelectedAlbum { get; set; }
     }
 }

@@ -40,8 +40,7 @@
                    Style="{StaticResource HintTextBlockStyle}" />
         </StackPanel>
 
-        <local:ImageList Grid.Row="1" DataContext="{Binding Photos}" />
-
+        <local:ImageList Grid.Row="1" DataContext="{Binding ImageList}" />
 
         <Rectangle Name="PopupBackground" Grid.RowSpan="2"
                    Fill="#CC000000" Visibility="Collapsed"/>

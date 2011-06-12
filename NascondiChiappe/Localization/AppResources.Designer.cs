@@ -61,15 +61,6 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Album.
-        /// </summary>
-        public static string AddAlbum {
-            get {
-                return ResourceManager.GetString("AddAlbum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Import some photos from your MediaLibrary or take a new one using the &quot;Take Photo&quot; button below.
         /// </summary>
         public static string AddPhotosHint {
@@ -246,6 +237,15 @@ namespace NascondiChiappe.Localization {
         public static string MoveSelectedPhotos {
             get {
                 return ResourceManager.GetString("MoveSelectedPhotos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Album.
+        /// </summary>
+        public static string NewAlbum {
+            get {
+                return ResourceManager.GetString("NewAlbum", resourceCulture);
             }
         }
         

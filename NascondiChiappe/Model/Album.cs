@@ -26,8 +26,19 @@ namespace NascondiChiappe
         }
         #endregion
 
+        private string _name;
         [DataMember]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                if (_name == value) return;
+
+                _name = value;
+                OnPropertyChanged(this, "Name");
+            }
+        }
 
         [DataMember]
         public string DirectoryName { get; set; }

@@ -45,13 +45,16 @@ namespace BalanceBall
         Vector2 _position;                  // [px | px]   
         Vector2 _speed;                     // [px/sec | px/sec]
         float _mass;                        // [Kg]
-        float _damping = 0.05f;             // [Kg / sec]
+        float _damping = 0f;                // [Kg / sec]
         float _platformYposition = 400;     // [px]
+        float _targetPlatformYPosition;     // [px]
+        float _platformSpeed = 50;          // [px]
 
+        float _rightMass = 0;             // [Kg]
         
         // common features
         float _specificWeight = 0.0001f;    // [Kg / px^3]
-        float _gainPulley = 1;
+        float _gainPulley = 180;
         float _gravity =  200;              // [(Kg*px) / sec^2]
         float _kCollision = 0.80f;          // 0 - 1 it represents the fraction of energy absorved in collision
 
@@ -165,20 +168,31 @@ namespace BalanceBall
                     _speed     = _speed    + a      * dt;
                     _position  = _position + _speed  * dt;
 
-                    // filtro anti compenetrazione
-                    /*if (_position.Y + _radius > _platformYposition)
-                        _position.Y = _platformYposition - _radius;*/
-
-                    if ( (Math.Abs(_speed.Y) < 3) && (Math.Abs(_position.Y - (_platformYposition - _radius)) < 2 ))
+                    if ( (Math.Abs(_speed.Y) < 3) && (Math.Abs(_position.Y - (_platformYposition - _radius)) < 3 ))
                     {
                         _speed.Y = 0;
                         _position.Y = _platformYposition - _radius;
+                        float deltaMass = _mass - _rightMass;
+                        _targetPlatformYPosition = 400 + _gainPulley * deltaMass;
                         _state = State.weighting;
                     }
 
                     break;
 
                 case State.weighting:
+
+                    if (Math.Abs(_platformYposition - _targetPlatformYPosition) > 1.6)
+                    {
+                        _platformYposition = _platformYposition + dt * _platformSpeed;
+                        _position.Y = _platformYposition - _radius;
+                    }
+                    else
+                    {
+                        _platformYposition = _targetPlatformYPosition;
+                        _position.Y = _platformYposition - _radius;
+                        _state = State.idle;
+                    }
+                        
                     break;
 
                 default:
@@ -212,7 +226,7 @@ namespace BalanceBall
             spriteBatch.Begin();
             // draw platforms
             spriteBatch.Draw(_blackPlatform, new Vector2(50, _platformYposition), Color.White);
-            spriteBatch.Draw(_blackPlatform, new Vector2(290, _platformYposition), Color.White);
+            spriteBatch.Draw(_blackPlatform, new Vector2(290, 800 - _platformYposition), Color.White);
 
             spriteBatch.Draw(_redBall, _position, new Rectangle(0, 0, width, height), Color.White, 0, new Vector2(width / 2, height / 2), new Vector2(scale), SpriteEffects.None, 0);
             spriteBatch.End();

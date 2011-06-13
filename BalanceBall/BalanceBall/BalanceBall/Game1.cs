@@ -13,6 +13,14 @@ using System.Diagnostics;
 
 namespace BalanceBall
 {
+    public enum State
+    {
+        idle,
+        ballSizing,
+        ballFallingAndBouncing,
+        weighting
+    }
+
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -21,9 +29,31 @@ namespace BalanceBall
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        float _ballRadius = 0;
-        float _scalingSpeed = 2;
+        // game state
+        State _state = State.idle;
+
+        // game input
+        MouseState _mouseState;
+
+        // textures
         Texture2D _redBall;
+        Texture2D _blackPlatform;
+
+        // left ball features
+        float _radius = 0;                  // [px]
+        float _scalingSpeed = 10;           // [px / sec]
+        Vector2 _position;                  // [px | px]   
+        Vector2 _speed;                     // [px/sec | px/sec]
+        float _mass;                        // [Kg]
+        float _damping = 0.05f;             // [Kg / sec]
+        float _platformYposition = 400;     // [px]
+
+        
+        // common features
+        float _specificWeight = 0.0001f;    // [Kg / px^3]
+        float _gainPulley = 1;
+        float _gravity =  200;              // [(Kg*px) / sec^2]
+        float _kCollision = 0.80f;          // 0 - 1 it represents the fraction of energy absorved in collision
 
         public Game1()
         {
@@ -62,6 +92,7 @@ namespace BalanceBall
 
             // TODO: use this.Content to load your game content here
             _redBall = Content.Load<Texture2D>("redBall");
+            _blackPlatform = Content.Load<Texture2D>("BlackPlatform");
         }
 
         /// <summary>
@@ -84,9 +115,77 @@ namespace BalanceBall
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
-            // handle the touch input
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            // get the touch input
             HandleTouchInput();
+
+            switch (_state)
+            {
+                case State.idle:
+
+                    if (_mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        _radius = _radius + dt * _scalingSpeed;
+                        _position = new Vector2(_mouseState.X, _mouseState.Y);
+                        _state = State.ballSizing;
+                    }
+                    // else remain idle...
+
+                    break;
+
+                case State.ballSizing:
+
+                    if (_mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        _radius = _radius + dt * _scalingSpeed;
+                        Debug.WriteLine(_radius);
+                    }
+                    else
+                    {
+                        _mass = (4 / 3) * (float)Math.PI * _radius * _radius * _radius * _specificWeight;
+                        _speed = new Vector2(0, 0);
+                        _state = State.ballFallingAndBouncing;
+                    }
+
+                    break;
+
+                case State.ballFallingAndBouncing:
+
+                    // detect collision
+                    if ( _speed.Y > 0 &&  _position.Y + _radius >= _platformYposition)
+                    {
+                        // bounce!
+                        _speed.Y = - (float)Math.Sqrt((1 - _kCollision)) * _speed.Y; 
+                    }
+
+                    // move
+                    Vector2 forceNet = new Vector2(0, _mass * _gravity - _damping * _speed.Y);
+                    Vector2 a = forceNet / _mass;      // [px / sec2]
+                    _speed     = _speed    + a      * dt;
+                    _position  = _position + _speed  * dt;
+
+                    // filtro anti compenetrazione
+                    /*if (_position.Y + _radius > _platformYposition)
+                        _position.Y = _platformYposition - _radius;*/
+
+                    if ( (Math.Abs(_speed.Y) < 3) && (Math.Abs(_position.Y - (_platformYposition - _radius)) < 2 ))
+                    {
+                        _speed.Y = 0;
+                        _position.Y = _platformYposition - _radius;
+                        _state = State.weighting;
+                    }
+
+                    break;
+
+                case State.weighting:
+                    break;
+
+                default:
+                    break;
+            }
+
+            
 
             base.Update(gameTime);
         }
@@ -94,18 +193,7 @@ namespace BalanceBall
         private void HandleTouchInput()
         {
             // get the "mouse" state
-            var mouseState = Mouse.GetState();
-
-            // the left button press is equal to touching the screen
-            if (mouseState.LeftButton == ButtonState.Pressed)
-            {
-                _ballRadius += _scalingSpeed;
-                Debug.WriteLine(_ballRadius);
-            }
-            else
-            {
-                Debug.WriteLine("now falling");
-            }
+            _mouseState = Mouse.GetState();
         }
 
         /// <summary>
@@ -114,14 +202,19 @@ namespace BalanceBall
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
             int height = _redBall.Height;
             int width = _redBall.Width;
+            float scale = (1f / 14f) * _radius;
 
             spriteBatch.Begin();
-            spriteBatch.Draw(_redBall, new Vector2(200, 200), new Rectangle(0, 0, width, height), Color.White, 0, new Vector2(width / 2, height / 2), new Vector2(_ballRadius * 0.1f), SpriteEffects.None, 0);
+            // draw platforms
+            spriteBatch.Draw(_blackPlatform, new Vector2(50, _platformYposition), Color.White);
+            spriteBatch.Draw(_blackPlatform, new Vector2(290, _platformYposition), Color.White);
+
+            spriteBatch.Draw(_redBall, _position, new Rectangle(0, 0, width, height), Color.White, 0, new Vector2(width / 2, height / 2), new Vector2(scale), SpriteEffects.None, 0);
             spriteBatch.End();
 
             base.Draw(gameTime);

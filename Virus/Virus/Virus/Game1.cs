@@ -71,7 +71,6 @@ namespace Virus
 
             // Frame rate is 30 fps by default for Windows Phone.
               TargetElapsedTime = TimeSpan.FromTicks(333333);
-            //TargetElapsedTime = TimeSpan.FromTicks(200000);
         }
 
         /// <summary>
@@ -122,19 +121,13 @@ namespace Virus
             Texture2D bonusOneUpTexture = Content.Load<Texture2D>("bonusOneUp");
             Texture2D bonusBombPlusTexture = Content.Load<Texture2D>("bonusBombPlus");
 
-            /*_spriteFactory = new SpriteFactory(_eventsManager, _whiteGlobulos, _bonuses,
+            _spriteFactory = new SpriteFactory(_eventsManager, _whiteGlobulos, _bonuses,
                 whiteGlobulosTexture, bonusBombTexture, bonusAmmoTexture, bonusOneUpTexture, bonusBombPlusTexture,
                TimeSpan.FromMilliseconds(1500), TimeSpan.FromMilliseconds(2500),     // time interval period for enemies creation schedule (min,max)
                TimeSpan.FromMilliseconds(100) , TimeSpan.FromMilliseconds(1000),     // time offset from schedule to creation (min,max) 
                1.9f, 3.2f,                                                           // enemies time to reach virus (min,max)
                3, 5);                                                                // number of enemies created per schedule*/
 
-            _spriteFactory = new SpriteFactory(_eventsManager, _whiteGlobulos, _bonuses,
-                whiteGlobulosTexture, bonusBombTexture, bonusAmmoTexture, bonusOneUpTexture, bonusBombPlusTexture,
-               TimeSpan.FromMilliseconds(4000), TimeSpan.FromMilliseconds(8000),     // time interval period for enemies creation schedule (min,max)
-               TimeSpan.FromMilliseconds(1000), TimeSpan.FromMilliseconds(2000),     // time offset from schedule to creation (min,max) 
-               1.9f, 3.2f,                                                           // enemies time to reach virus (min,max)
-               1, 2);  
 
             // create life virus
             _virusLife = Content.Load<Texture2D>("virusLifeLittle");

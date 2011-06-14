@@ -69,11 +69,11 @@ namespace Virus
                         _state = WhiteGlobuloState.falling;
                         _touchable = false;
                         Speed = Vector2.Zero;
-                        ScalingSpeed = -1f;
+                        ScalingSpeed = -1.125f;
                         if((int)Position.X % 2 == 0)
-                            RotationSpeed =  2 * (float)Math.PI;
+                            RotationSpeed =  2.25f * (float)Math.PI;
                         else
-                            RotationSpeed = -2 * (float)Math.PI;
+                            RotationSpeed = -2.25f * (float)Math.PI;
                         _utilityTimer = 0;
                     }
 

@@ -67,10 +67,11 @@ namespace Virus
             graphics.PreferredBackBufferHeight = 800;
             graphics.IsFullScreen = true;
 
-            IsFixedTimeStep = false;
+            //IsFixedTimeStep = false;
 
             // Frame rate is 30 fps by default for Windows Phone.
             //TargetElapsedTime = TimeSpan.FromTicks(333333);
+              TargetElapsedTime = TimeSpan.FromTicks(200000);
         }
 
         /// <summary>

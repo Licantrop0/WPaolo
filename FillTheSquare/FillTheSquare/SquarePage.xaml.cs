@@ -118,14 +118,23 @@ namespace FillTheSquare
 					Storyboard.SetTarget(SetFocus, currentBorder);
 					SetFocus.Begin();
 
-					if (Square.IsCompleted) //Vittoria!
-					{
-						dt.Stop();
-						var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
-						Settings.Records.Add(r);
-						NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id, UriKind.Relative));
-						break;
-					}
+                    //qua devo far venire verdi le caselle disponibili per la mossa successiva
+                    if (Square.AvailablePoints != null)
+                        for (int i = 0; i < Square.AvailablePoints.Count; i++)
+                        {
+                            GreenMeansAvailable.Stop();
+                            Storyboard.SetTarget(GreenMeansAvailable, /* qua ci vanno i border presi dalle posizioni dei GridPoint presenti nello Stack AvailablePoints*/);
+                            GreenMeansAvailable.Begin();
+                        }
+
+                    if (Square.IsCompleted) //Vittoria!
+                    {
+                        dt.Stop();
+                        var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
+                        Settings.Records.Add(r);
+                        NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id, UriKind.Relative));
+                        break;
+                    }
 
 					if (Square.GetMovesLeft() == 0)  //non ci sono più mosse disponibili
 					{

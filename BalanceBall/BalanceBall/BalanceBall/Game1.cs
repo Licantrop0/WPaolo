@@ -39,23 +39,25 @@ namespace BalanceBall
         Texture2D _redBall;
         Texture2D _blackPlatform;
 
+        SoundEffect _thud;
+
         // left ball features
         float _radius = 0;                  // [px]
-        float _scalingSpeed = 10;           // [px / sec]
+        float _scalingSpeed = 15;           // [px / sec]
         Vector2 _position;                  // [px | px]   
         Vector2 _speed;                     // [px/sec | px/sec]
         float _mass;                        // [Kg]
         float _damping = 0f;                // [Kg / sec]
         float _platformYposition = 400;     // [px]
         float _targetPlatformYPosition;     // [px]
-        float _platformSpeed = 50;          // [px]
+        float _platformSpeed = 75;          // [px]
 
         float _rightMass = 0;             // [Kg]
         
         // common features
         float _specificWeight = 0.0001f;    // [Kg / px^3]
-        float _gainPulley = 180;
-        float _gravity =  200;              // [(Kg*px) / sec^2]
+        float _gainPulley = 130;
+        float _gravity =  250;              // [(Kg*px) / sec^2]
         float _kCollision = 0.80f;          // 0 - 1 it represents the fraction of energy absorved in collision
 
         public Game1()
@@ -96,6 +98,7 @@ namespace BalanceBall
             // TODO: use this.Content to load your game content here
             _redBall = Content.Load<Texture2D>("redBall");
             _blackPlatform = Content.Load<Texture2D>("BlackPlatform");
+            _thud = this.Content.Load<SoundEffect>("thud");
         }
 
         /// <summary>
@@ -159,7 +162,9 @@ namespace BalanceBall
                     if ( _speed.Y > 0 &&  _position.Y + _radius >= _platformYposition)
                     {
                         // bounce!
-                        _speed.Y = - (float)Math.Sqrt((1 - _kCollision)) * _speed.Y; 
+                        _speed.Y = - (float)Math.Sqrt((1 - _kCollision)) * _speed.Y;
+                        //_platformYposition = _position.Y + _radius;
+                        _thud.Play();
                     }
 
                     // move
@@ -168,7 +173,7 @@ namespace BalanceBall
                     _speed     = _speed    + a      * dt;
                     _position  = _position + _speed  * dt;
 
-                    if ( (Math.Abs(_speed.Y) < 3) && (Math.Abs(_position.Y - (_platformYposition - _radius)) < 3 ))
+                    if ( (Math.Abs(_speed.Y) < 5) && (Math.Abs(_position.Y - (_platformYposition - _radius)) < 3 ))
                     {
                         _speed.Y = 0;
                         _position.Y = _platformYposition - _radius;
@@ -181,7 +186,7 @@ namespace BalanceBall
 
                 case State.weighting:
 
-                    if (Math.Abs(_platformYposition - _targetPlatformYPosition) > 1.6)
+                    if (Math.Abs(_platformYposition - _targetPlatformYPosition) > 3)
                     {
                         _platformYposition = _platformYposition + dt * _platformSpeed;
                         _position.Y = _platformYposition - _radius;
@@ -190,7 +195,7 @@ namespace BalanceBall
                     {
                         _platformYposition = _targetPlatformYPosition;
                         _position.Y = _platformYposition - _radius;
-                        _state = State.idle;
+                        _state = State.idle;    // d'ora in poi comportamento immprecisato
                     }
                         
                     break;

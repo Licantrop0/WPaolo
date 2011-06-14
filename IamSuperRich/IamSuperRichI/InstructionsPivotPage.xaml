@@ -58,7 +58,13 @@ Your start page will be full with diamonds! Now you really can say 'I am Super R
             <!--Pivot item two-->
             <controls:PivotItem Header="and more..">
                 <ScrollViewer>
-                    <wpcommon:AboutControl Background="Black" ApplicationName="I am super rich I" BackgroundStackPanel="Black" ApplicationVersion="1.1.0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="750"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <wpcommon:AboutControl Grid.Row="0"  Background="Black" ApplicationName="I am super rich I" BackgroundStackPanel="Black" ApplicationVersion="1.1.0">
 
                         <wpcommon:AboutControl.Foreground>
                             <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
@@ -68,6 +74,13 @@ Your start page will be full with diamonds! Now you really can say 'I am Super R
                         </wpcommon:AboutControl.Foreground>
                     </wpcommon:AboutControl>
 
+                        <TextBlock Grid.Row="1" Text="Updates:
+* NEW personalized social status                         
+* NEW youtube video and link                                
+* NEW fast shorcuts to all 8 apps, directly to the marketplace
+* NEW pivot layout" TextAlignment="Left" TextWrapping="Wrap" FontSize="22" Foreground="White" />
+
+</Grid>
                 </ScrollViewer>
             </controls:PivotItem>
             

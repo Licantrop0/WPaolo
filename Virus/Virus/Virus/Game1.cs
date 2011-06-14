@@ -23,7 +23,7 @@ namespace Virus
         // writings
         SpriteFont _ammoString;
         SpriteFont _bombString;
-        SpriteFont _fpsString;
+        SpriteFont _delayString;
         SpriteFont _timeString;
 
         // event scheduler
@@ -55,8 +55,7 @@ namespace Virus
         Vector2 _touchPoint;
 
         // profiling
-        float _fpsSum = 0;
-        int _fpsCount = 1;
+        int _delayCount = 0;
 
         public Game1()
         {
@@ -68,8 +67,10 @@ namespace Virus
             graphics.PreferredBackBufferHeight = 800;
             graphics.IsFullScreen = true;
 
+            IsFixedTimeStep = false;
+
             // Frame rate is 30 fps by default for Windows Phone.
-            TargetElapsedTime = TimeSpan.FromTicks(333333);
+            //TargetElapsedTime = TimeSpan.FromTicks(333333);
         }
 
         /// <summary>
@@ -80,14 +81,6 @@ namespace Virus
         /// </summary>
         protected override void Initialize()
         {
-            // enable the gestures we care about. you must set EnabledGestures before
-            // you can use any of the other gesture APIs.
-            // we use both Tap and DoubleTap to workaround a bug in the XNA GS 4.0 Beta
-            // where some Taps are missed if only Tap is specified.
-            TouchPanel.EnabledGestures =
-                GestureType.Tap |
-                GestureType.DoubleTap;
-
             _enemiesKilledByAmmoTriggerNumber = 50;
 
             base.Initialize();
@@ -105,7 +98,7 @@ namespace Virus
             // create score and debug fonts
             _ammoString = Content.Load<SpriteFont>("Segoe20");
             _bombString = Content.Load<SpriteFont>("Segoe20");
-            _fpsString = Content.Load<SpriteFont>("Segoe20");
+            _delayString = Content.Load<SpriteFont>("Segoe20");
             _timeString = Content.Load<SpriteFont>("Segoe20");
 
             // create our friend virus
@@ -232,10 +225,10 @@ namespace Virus
                     }
 
                     // tremble
-                    CustomTimeVariable trembleAmplitude = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 30), new Vector2(1, 30), new Vector2(1.25f, 0) });
-                    CustomTimeVariable trembleAmplitude2 = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 15), new Vector2(1, 15), new Vector2(1.25f, 0) });
-                    _background.Tremble(2, trembleAmplitude, 40, (float)Math.PI, true);
-                    _firstPlanBackground.Tremble(2, trembleAmplitude2, 80, (float)Math.PI, true);
+                    CustomTimeVariable trembleAmplitude = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 60), new Vector2(1, 60), new Vector2(1.25f, 0) });
+                    CustomTimeVariable trembleAmplitude2 = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 30), new Vector2(1, 30), new Vector2(1.25f, 0) });
+                    _background.Tremble(2, trembleAmplitude, 30, (float)Math.PI, false);
+                    _firstPlanBackground.Tremble(2, trembleAmplitude2, 60, (float)Math.PI, false);
                 }
             }
 
@@ -480,10 +473,11 @@ namespace Virus
                 spriteBatch.DrawString(_bombString, _virus.Bombs.ToString(), new Vector2(30, 4), Color.Yellow);
             }
 
-            _fpsSum += (float)(1 / gameTime.ElapsedGameTime.TotalSeconds); 
-            spriteBatch.DrawString(_fpsString, (_fpsSum / (float)_fpsCount).ToString(), new Vector2(30, 768), Color.Yellow);
+            if ( gameTime.IsRunningSlowly )
+                _delayCount++;
+
+            spriteBatch.DrawString(_delayString, _delayCount.ToString(), new Vector2(30, 768), Color.Yellow);
             spriteBatch.DrawString(_timeString, Math.Round(gameTime.TotalGameTime.TotalSeconds, 0).ToString(), new Vector2(410, 768), Color.Yellow);
-            _fpsCount++;
 
             spriteBatch.End();
 

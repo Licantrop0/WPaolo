@@ -16,9 +16,6 @@ namespace FillTheSquare
         /// </summary>
         public Stack<GridPoint> PositionHistory { get; set; }
 
-        //mostra tutte le posizioni disponibili attuali
-        public Stack<GridPoint> AvailablePoints { get; set; }
-
         /// <summary>
         /// Dimensione della Griglia
         /// </summary>
@@ -83,85 +80,45 @@ namespace FillTheSquare
             PositionHistory.Clear();
         }
 
-        public int GetMovesLeft()
+        public List<GridPoint> GetAvailableMoves()
         {
-            int MovesLeft = 0;
             int x = PositionHistory.Peek().X;
             int y = PositionHistory.Peek().Y;
+            var AvailablePoints = new List<GridPoint>();
 
-            //resetto i punti disponibili per la prossima mossa
-            AvailablePoints = new Stack<GridPoint>();
+            //+3,+0
+            if ((x + 3) <= (Size - 1) && Grid[x + 3, y] == 0)
+                AvailablePoints.Add(new GridPoint(x + 3, y));
 
-            if ((x + 3) <= (Size - 1))          //+3,+0
-            {
-                if (Grid[x + 3, y] < 1)
-                {
-                    MovesLeft++;
-                    AvailablePoints.Push(new GridPoint(PositionHistory.Peek().X + 3, PositionHistory.Peek().Y));
-                }
-            }
-            if ((y + 3) <= (Size - 1))          //+0,+3
-            {
-                if (Grid[x, y + 3] < 1)
-                {
-                    MovesLeft++;
-                    AvailablePoints.Add(new GridPoint(PositionHistory.Peek().X, PositionHistory.Peek().Y + 3));
-                }
-            }
-            if ((x - 3) >= 0)                   //-3,+0
-            {
-                if (Grid[x - 3, y] < 1)
-                {
-                    MovesLeft++;
-                    AvailablePoints.Add(new GridPoint(PositionHistory.Peek().X - 3, PositionHistory.Peek().Y));
-                }
-            }
-            if ((y - 3) >= 0)                   //+0,-3
-            {
-                if (Grid[x, y - 3] < 1)
-                {
-                    MovesLeft++;
-                    AvailablePoints.Add(new GridPoint(PositionHistory.Peek().X, PositionHistory.Peek().Y - 3));
-                }
-            }
-            if ((x + 2) <= (Size - 1) &&
-                (y + 2) <= (Size - 1))          //+2,+2
-            {
-                if (Grid[x + 2, y + 2] < 1)
-                {
-                    MovesLeft++;
-                    AvailablePoints.Add(new GridPoint(PositionHistory.Peek().X + 2, PositionHistory.Peek().Y + 2));
-                }
-            }
-            if ((x - 2) >= 0 &&
-                (y - 2) >= 0)                   //-2,-2
-            {
-                if (Grid[x - 2, y - 2] < 1)
-                {
-                    MovesLeft++;
-                    AvailablePoints.Add(new GridPoint(PositionHistory.Peek().X - 2, PositionHistory.Peek().Y - 2));
-                }
-            }
-            if ((x + 2) <= (Size - 1) &&
-                (y - 2) >= 0)                   //+2,-2
-            {
-                if (Grid[x + 2, y - 2] < 1)
-                {
-                    MovesLeft++;
-                    AvailablePoints.Add(new GridPoint(PositionHistory.Peek().X + 2, PositionHistory.Peek().Y - 2));
-                }
-            }
-            if ((x - 2) >= 0 &&
-                (y + 2) <= (Size - 1))          //-2,+2
-            {
-                if (Grid[x - 2, y + 2] < 1)
-                {
-                    MovesLeft++;
-                    AvailablePoints.Add(new GridPoint(PositionHistory.Peek().X - 2, PositionHistory.Peek().Y + 2));
-                }
-            }
-            
-            return MovesLeft;
+            //+0,+3
+            if ((y + 3) <= (Size - 1) && Grid[x, y + 3] == 0)
+                AvailablePoints.Add(new GridPoint(x, y + 3));
+
+            //-3,+0
+            if ((x - 3) >= 0 && Grid[x - 3, y] == 0)
+                AvailablePoints.Add(new GridPoint(x - 3, y));
+
+            //+0,-3
+            if ((y - 3) >= 0 && Grid[x, y - 3] == 0)
+                AvailablePoints.Add(new GridPoint(x, y - 3));
+
+            //+2,+2
+            if ((x + 2) <= (Size - 1) && (y + 2) <= (Size - 1) && Grid[x + 2, y + 2] == 0)
+                AvailablePoints.Add(new GridPoint(x + 2, y + 2));
+
+            //-2,-2
+            if ((x - 2) >= 0 && (y - 2) >= 0 && Grid[x - 2, y - 2] == 0)
+                AvailablePoints.Add(new GridPoint(x - 2, y - 2));
+
+            //+2,-2
+            if ((x + 2) <= (Size - 1) && (y - 2) >= 0 && Grid[x + 2, y - 2] == 0)
+                AvailablePoints.Add(new GridPoint(x + 2, y - 2));
+
+            //-2,+2
+            if ((x - 2) >= 0 && (y + 2) <= (Size - 1) && Grid[x - 2, y + 2] == 0)
+                AvailablePoints.Add(new GridPoint(x - 2, y + 2));
+
+            return AvailablePoints;
         }
     }
 }

@@ -76,14 +76,8 @@
 
         <Grid Name="MagicGrid" Grid.Row="1" VerticalAlignment="Top" Height="452" Width="452">
             <Grid.Resources>
-                <Storyboard x:Name="GreenMeansAvailable">
-                    <ColorAnimation
-                            Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)"
-                            To="Green" Duration="0:0:0.4" AutoReverse="True"  />
-                    <ColorAnimation
-                            Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)"
-                            To="Green" Duration="0:0:0.3" AutoReverse="True"  />
-                </Storyboard>
+                <Storyboard x:Name="GreenMeansAvailable" />
+
                 <Storyboard x:Name="RedFlash">
                     <ColorAnimation
                             Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)"

@@ -82,40 +82,48 @@ namespace FillTheSquare
 
         public List<GridPoint> GetAvailableMoves()
         {
-            int x = PositionHistory.Peek().X;
-            int y = PositionHistory.Peek().Y;
             var AvailablePoints = new List<GridPoint>();
 
-            //+3,+0
+            if (PositionHistory.Count == 0)
+                return AvailablePoints;
+ 
+            int x = PositionHistory.Peek().X;
+            int y = PositionHistory.Peek().Y;
+
+            //+3, +0
             if ((x + 3) <= (Size - 1) && Grid[x + 3, y] == 0)
                 AvailablePoints.Add(new GridPoint(x + 3, y));
 
-            //+0,+3
+            //+0, +3
             if ((y + 3) <= (Size - 1) && Grid[x, y + 3] == 0)
                 AvailablePoints.Add(new GridPoint(x, y + 3));
 
-            //-3,+0
+            //-3, +0
             if ((x - 3) >= 0 && Grid[x - 3, y] == 0)
                 AvailablePoints.Add(new GridPoint(x - 3, y));
 
-            //+0,-3
+            //+0, -3
             if ((y - 3) >= 0 && Grid[x, y - 3] == 0)
                 AvailablePoints.Add(new GridPoint(x, y - 3));
 
-            //+2,+2
-            if ((x + 2) <= (Size - 1) && (y + 2) <= (Size - 1) && Grid[x + 2, y + 2] == 0)
+            //+2, +2
+            if ((x + 2) <= (Size - 1) && (y + 2) <= (Size - 1) &&
+                Grid[x + 2, y + 2] == 0)
                 AvailablePoints.Add(new GridPoint(x + 2, y + 2));
 
-            //-2,-2
-            if ((x - 2) >= 0 && (y - 2) >= 0 && Grid[x - 2, y - 2] == 0)
+            //-2, -2
+            if ((x - 2) >= 0 && (y - 2) >= 0 &&
+                Grid[x - 2, y - 2] == 0)
                 AvailablePoints.Add(new GridPoint(x - 2, y - 2));
 
-            //+2,-2
-            if ((x + 2) <= (Size - 1) && (y - 2) >= 0 && Grid[x + 2, y - 2] == 0)
+            //+2, -2
+            if ((x + 2) <= (Size - 1) && (y - 2) >= 0 &&
+                Grid[x + 2, y - 2] == 0)
                 AvailablePoints.Add(new GridPoint(x + 2, y - 2));
 
-            //-2,+2
-            if ((x - 2) >= 0 && (y + 2) <= (Size - 1) && Grid[x - 2, y + 2] == 0)
+            //-2, +2
+            if ((x - 2) >= 0 && (y + 2) <= (Size - 1) &&
+                Grid[x - 2, y + 2] == 0)
                 AvailablePoints.Add(new GridPoint(x - 2, y + 2));
 
             return AvailablePoints;

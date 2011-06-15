@@ -90,6 +90,8 @@
 					Style="{StaticResource HomeButtonStyle}"
 					Height="100" Width="350"
 					Canvas.Left="60" Canvas.Top="433" />
+			<Button Canvas.Left="34" Canvas.Top="230" Click="FacebookShare_Click"
+					Content="Share on Facebook" Height="92" Width="286" />
 		</Canvas>
 	</Grid>
 </phone:PhoneApplicationPage>

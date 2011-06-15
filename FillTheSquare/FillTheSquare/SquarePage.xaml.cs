@@ -17,7 +17,7 @@ namespace FillTheSquare
 {
     public partial class SquarePage : PhoneApplicationPage
     {
-        public MagicSquare Square;
+        MagicSquare Square;
         DispatcherTimer dt;
         StopwatchWrapper sw;
 
@@ -62,12 +62,7 @@ namespace FillTheSquare
             for (int i = 0; i < points.Length; i++)
             {
                 var b = GetBorder(points[i].X, points[i].Y);
-                b.Child = new TextBlock()
-                {
-                    Text = (i + 1).ToString(),
-                    Style = (Style)Application.Current.Resources["SquareTitleStyle"],
-                    FontSize = Square.Size == 5 ? 32 : 28
-                };
+                b.Child = GetTextBlock(i + 1);
             }
 
             //ripristino dello stato
@@ -98,25 +93,25 @@ namespace FillTheSquare
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (NoMoreMovesTextBlock.Visibility == Visibility.Visible) //GAME OVER, can't do anything
+                return;
+
             var currentBorder = (Border)sender;
             var p = new GridPoint(
                 currentBorder.GetColumn(),
                 currentBorder.GetRow());
 
+            var result = Square.PressButton(p);
+            var lastAvailableMoves = Square.GetAvailableMoves();
+
             //tutta la logica della griglia è dentro il metodo PressButton
-            switch (Square.PressButton(p))
+            switch (result)
             {
                 case true: //caso creazione andato a buon fine
-                    currentBorder.Child = new TextBlock()
-                    {
-                        Text = Square.PositionHistory.Count.ToString(),
-                        Style = (Style)Application.Current.Resources["SquareTitleStyle"],
-                        FontSize = 28
-                    };
-
+                    currentBorder.Child = GetTextBlock(Square.PositionHistory.Count);
                     SetFocusAnimation(currentBorder);
 
-                    if (Square.IsCompleted) //Vittoria!
+                    if (Square.IsCompleted) //Vittoria! :)
                     {
                         dt.Stop();
                         var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
@@ -125,30 +120,29 @@ namespace FillTheSquare
                         break;
                     }
 
-                    var availableMoves = Square.GetAvailableMoves();
-
-                    if (availableMoves.Count == 0)  //non ci sono più mosse disponibili
+                    GreenMeansAnimation(lastAvailableMoves.Select(move => GetBorder(move.X, move.Y)));
+                    if (lastAvailableMoves.Count == 0)  //Game Over! :(
                     {
                         SoundManager.PlayOhNo();
                         PhilPiangeAppear.Begin();
                         NoMoreMovesTextBlock.Visibility = Visibility.Visible;
+                        sw.Stop();
                     }
                     else
                     {
                         SoundManager.PlayMove();
-
-                        //Qua devo far venire verdi le caselle disponibili per la mossa successiva
-                        GreenMeansAnimation(availableMoves.Select(move => GetBorder(move.X, move.Y)));
                     }
                     break;
 
                 case false: //caso di creazione fallito
-                    RedFlashAnimation(currentBorder);
                     SoundManager.PlayError();
+                    RedFlashAnimation(currentBorder);
                     break;
 
                 case null: //caso di cancellazione
+                    var borders = lastAvailableMoves.Select(move => GetBorder(move.X, move.Y));
                     ClearBorder(currentBorder);
+                    GreenMeansAnimation(borders);
 
                     //Evidenzio la casella sull'ultimo premuto se la griglia non è vuota
                     if (!Square.IsEmpty)
@@ -156,8 +150,6 @@ namespace FillTheSquare
                         var lastValue = Square.PositionHistory.Peek();
                         var lastBorder = GetBorder(lastValue.X, lastValue.Y);
                         SetFocusAnimation(lastBorder);
-                        var borders = Square.GetAvailableMoves().Select(move => GetBorder(move.X, move.Y));
-                        GreenMeansAnimation(borders);
                     }
 
                     SoundManager.PlayUndo();
@@ -200,6 +192,16 @@ namespace FillTheSquare
             return MagicGrid.Children[Square.Size * y + x] as Border;
         }
 
+        private TextBlock GetTextBlock(int i)
+        {
+            return new TextBlock()
+            {
+                Text = i.ToString(),
+                Style = (Style)Application.Current.Resources["SquareTitleStyle"],
+                FontSize = Square.Size == 5 ? 32 : 28
+            };
+        }
+
         #endregion
 
         #region Animations
@@ -228,7 +230,7 @@ namespace FillTheSquare
                 var ca1 = new ColorAnimation()
                 {
                     Duration = new Duration(TimeSpan.FromSeconds(0.5)),
-                    To = Colors.Green
+                    To = Color.FromArgb(255, 131, 255, 128)
                 };
                 Storyboard.SetTarget(ca1, border);
                 Storyboard.SetTargetProperty(ca1,
@@ -238,7 +240,7 @@ namespace FillTheSquare
                 var ca2 = new ColorAnimation()
                 {
                     Duration = new Duration(TimeSpan.FromSeconds(0.5)),
-                    To = Colors.Green
+                    To = Color.FromArgb(178, 62, 153, 59)
                 };
                 Storyboard.SetTarget(ca2, border);
                 Storyboard.SetTargetProperty(ca2,
@@ -246,7 +248,7 @@ namespace FillTheSquare
                 GreenMeansAvailable.Children.Add(ca2);
             }
 
-            GreenMeansAvailable.Begin();        
+            GreenMeansAvailable.Begin();
         }
 
 

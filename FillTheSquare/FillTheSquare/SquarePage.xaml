@@ -115,7 +115,7 @@
 
         <Image x:Name="PhilPiangeImage" Source="Phil/piange.png"
                Stretch="Uniform" Width="280" Grid.Row="1" HorizontalAlignment="Center"
-               Opacity="0" IsHitTestVisible="False" VerticalAlignment="Top" Margin="0,100" />
+               Opacity="0" IsHitTestVisible="False" VerticalAlignment="Top" Margin="0,140" />
     </Grid>
 
 </phone:PhoneApplicationPage>

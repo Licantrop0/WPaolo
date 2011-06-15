@@ -1,50 +1,33 @@
 ﻿using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Globalization;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework.Media;
-using WPCommon;
+using System.ComponentModel;
+using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
+using System.Globalization;
+using System.Collections;
+using System.IO;
 
 namespace SgarbiMix
 {
-    public partial class PlaySoundPage : PhoneApplicationPage
+    public partial class PlayButtonsPivotPage : PhoneApplicationPage
     {
-        Random rnd = new Random();
-
-        //---------------------------------------------------
-        private bool _bCanExecuteSound = true;
-        private ShakeDetector sd = new ShakeDetector();
-        private DispatcherTimer tmr = new DispatcherTimer();
-        //------------------------------------------------
-
-        public PlaySoundPage()
+        public PlayButtonsPivotPage()
         {
             InitializeComponent();
-
-            tmr.Interval = TimeSpan.FromMilliseconds(700);
-            tmr.Tick += (sender, e) =>
-            {
-                tmr.Stop();
-                _bCanExecuteSound = true;
-            };
-
-            sd.ShakeDetected += (sender, e) =>
-            {
-                Dispatcher.BeginInvoke(() => { Sound_Shake(); });
-            };
-            sd.Start();
-
             if (WPCommon.TrialManagement.IsTrialMode)
             {
-                MainGrid.Children.Add(new AdDuplex.AdControl() { AppId = "", IsTest = true });
+                AdPlaceHolder.Children.Add(new AdDuplex.AdControl() { AppId = "", IsTest = true });
                 var BuyFullMenuItem = new ApplicationBarMenuItem("Rimuovi la pubblicità");
                 BuyFullMenuItem.Click += (sender, e) =>
                 {
@@ -56,42 +39,34 @@ namespace SgarbiMix
             }
         }
 
-        private void Sound_Shake()
-        {
-            if (_bCanExecuteSound)
-                App.Sounds[rnd.Next(App.Sounds.Count)].Play();
-
-            // ----------------------------------------------------
-            _bCanExecuteSound = false;
-            tmr.Start();
-            //---------------------------------------------------- 
-        }
-
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             //se ho già caricato i bottoni esco
-            if (PlayButtonsStackPanel.Children.Count > 0)
+            if (ShortPlayButtonsStackPanel.Children.Count > 0)
                 return;
 
-            //istanzio il BackgroundWorker (che gira in un thread separato)
+            WPCommon.ExtensionMethods.StartTrace("carico risorse");
+            //prendo la risorsa dei suoni castandola in un array ordinato
+            var sr = SoundsResources.ResourceManager
+                .GetResourceSet(CultureInfo.CurrentCulture, true, true)
+                .Cast<DictionaryEntry>()
+                .OrderBy(de => de.Key.ToString().Length)
+                .ToArray();
+            WPCommon.ExtensionMethods.EndTrace();
+
             var bw = new BackgroundWorker() { WorkerReportsProgress = true };
 
             //Configuro l'evento DoWork
             bw.DoWork += (s, evt) =>
             {
-                //prendo la risorsa dei suoni castandola in un array ordinato
-                var sr = SoundsResources.ResourceManager
-                    .GetResourceSet(CultureInfo.CurrentCulture, true, true)
-                    .Cast<DictionaryEntry>()
-                    .OrderBy(de => de.Key.ToString().Length)
-                    .ToArray();
-
+                WPCommon.ExtensionMethods.StartTrace("ciclo sulla lista");
                 for (int i = 0; i < sr.Length; i++)
                 {
                     //Aggiungo il suono alla lista dei suoni
                     App.Sounds.Add(new SoundContainer(sr[i].Key.ToString(), (UnmanagedMemoryStream)sr[i].Value));
                     bw.ReportProgress(i);
                 }
+                WPCommon.ExtensionMethods.EndTrace();
             };
 
             //Creo il bottone corrispondende al suono non appena caricato
@@ -103,7 +78,7 @@ namespace SgarbiMix
                 {
                     Tag = i, //ATTENZIONE: creo un tag per recuperare l'i-esimo sound
                     Content = text,
-                    Width =  text.Length > 18 ? 480 : 240,
+                    Width = text.Length > 18 ? 468 : 230,
                     Style = (Style)App.Current.Resources["PlayButtonStyle"]
                 };
 
@@ -114,7 +89,10 @@ namespace SgarbiMix
                     App.Sounds[SoundIndex].Play();
                 };
 
-                PlayButtonsStackPanel.Children.Add(b);
+                if (b.Width > 400)
+                    LongPlayButtonsStackPanel.Children.Add(b);
+                else
+                    ShortPlayButtonsStackPanel.Children.Add(b);
             };
 
             bw.RunWorkerAsync();

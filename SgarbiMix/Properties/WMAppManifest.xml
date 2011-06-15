@@ -3,20 +3,16 @@
   <App xmlns="" ProductID="{ee74f6d6-0ad3-4723-b871-9758e92a5a13}" Title="SgarbiMix" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="SgarbiMix author" Description="Sample description" Publisher="SgarbiMix">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
-      <Capability Name="ID_CAP_GAMERSERVICES" />
+      <!--<Capability Name="ID_CAP_GAMERSERVICES" />
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
       <Capability Name="ID_CAP_IDENTITY_USER" />
-      <Capability Name="ID_CAP_LOCATION" />
+      <Capability Name="ID_CAP_LOCATION" />-->
       <Capability Name="ID_CAP_MEDIALIB" />
-      <Capability Name="ID_CAP_MICROPHONE" />
       <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_PHONEDIALER" />
-      <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
-      <Capability Name="ID_CAP_SENSORS" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
     </Capabilities>
     <Tasks>
-      <DefaultTask Name="_default" NavigationPage="PlaySoundPage.xaml" />
+      <DefaultTask Name="_default" NavigationPage="PlayButtonsPivotPage.xaml" />
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="SgarbiMixToken" TaskName="_default">

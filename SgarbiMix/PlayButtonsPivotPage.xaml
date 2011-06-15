@@ -1,0 +1,57 @@
+﻿<phone:PhoneApplicationPage 
+	x:Class="SgarbiMix.PlayButtonsPivotPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
+	FontFamily="{StaticResource PhoneFontFamilyNormal}"
+	FontSize="{StaticResource PhoneFontSizeNormal}"
+	Foreground="{StaticResource PhoneForegroundBrush}"
+	SupportedOrientations="Portrait"  Orientation="Portrait"
+	shell:SystemTray.IsVisible="False">
+
+	<Grid x:Name="LayoutRoot" Loaded="PhoneApplicationPage_Loaded">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid.Background>
+			<ImageBrush ImageSource="sfondo3.jpg" Stretch="None" AlignmentY="Top"/>
+		</Grid.Background>
+
+		<controls:Pivot Title="{x:Null}" Margin="0,-30,0,0" Grid.Row="0">
+			<!--Pivot item one-->
+            <controls:PivotItem Header="Corti" Margin="6,6,6,0" >
+				<ScrollViewer>
+					<toolkit:WrapPanel Name="ShortPlayButtonsStackPanel" />
+				</ScrollViewer>
+			</controls:PivotItem>
+
+			<!--Pivot item two-->
+            <controls:PivotItem Header="Lunghi" Margin="6,6,6,0" >
+				<ScrollViewer>
+					<toolkit:WrapPanel Name="LongPlayButtonsStackPanel" />
+				</ScrollViewer>
+			</controls:PivotItem>
+		</controls:Pivot>
+		<StackPanel Name="AdPlaceHolder" Grid.Row="1" />
+	</Grid>
+
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsMenuEnabled="True">
+			<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
+			<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 2" Click="Base2ApplicationBar_Click"  />
+			<shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 3" Click="Base3ApplicationBar_Click" />
+			<shell:ApplicationBar.MenuItems>
+				<shell:ApplicationBarMenuItem Text="Disclaimer" Click="DisclaimerAppBarMenu_Click" />
+				<shell:ApplicationBarMenuItem Text="About" Click="AboutAppBarMenu_Click" />
+			</shell:ApplicationBar.MenuItems>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

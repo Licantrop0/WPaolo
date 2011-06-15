@@ -47,7 +47,7 @@ namespace WPCommon
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var ts = (TimeSpan)value;
-            return string.Format("{0:00}:{1:00.0}", ts.TotalMinutes, ts.TotalSeconds % 60);
+            return string.Format("{0:00}:{1:00.0}", ts.Minutes + ts.Hours * 60, ts.TotalSeconds % 60);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -31,7 +31,6 @@
             <Setter Property="FontSize" Value="22" />
             <Setter Property="Margin" Value="0,-2" />
             <Setter Property="Height" Value="80" />
-            <Setter Property="MinWidth" Value="230" />
             <Setter Property="BorderThickness" Value="6,4" />
             <Setter Property="Opacity" Value="0.8" />
             <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True"/>

@@ -15,10 +15,13 @@ namespace IamSuperRichII
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        LocalizedStrings personalText = new LocalizedStrings();
+
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+            PersonalTextBox.Text = personalText.PersonalTextMsg;
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
@@ -29,6 +32,11 @@ namespace IamSuperRichII
         private void InstructionsButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/InstructionsPage.xaml", UriKind.Relative));
+        }
+
+        private void PersonalTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            personalText.PersonalTextMsg = PersonalTextBox.Text;
         }
     }
 }

@@ -13,20 +13,28 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Image Stretch="UniformToFill" Source="screen_full_2.png" />
-        <Button Content="Instructions" Height="101" HorizontalAlignment="Left" Margin="116,538,0,0" Name="InstructionsButton" VerticalAlignment="Top" Width="260" Background="#AC000000" BorderBrush="{x:Null}" Click="InstructionsButton_Click" >
-        	<Button.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="#FFFFFB9A" Offset="0"/>
-        			<GradientStop Color="White" Offset="1"/>
-        		</LinearGradientBrush>
-        	</Button.Foreground>
+        <Button Content="Readme" Height="80" HorizontalAlignment="Left" Margin="12,708,0,0" Name="InstructionsButton" VerticalAlignment="Top" Width="149" Background="#8B000000" BorderBrush="{x:Null}" Click="InstructionsButton_Click" >
+            <Button.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE9ED96" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Foreground>
         </Button>
-        <Button Content="About" Height="101" HorizontalAlignment="Left" Margin="116,619,0,0" Name="AboutButton" VerticalAlignment="Top" Width="240" Background="#8A000000" BorderBrush="{x:Null}" Click="AboutButton_Click">
+        <!--<Button Content="About" Height="101" HorizontalAlignment="Left" Margin="116,619,0,0" Name="AboutButton" VerticalAlignment="Top" Width="240" Background="#7A000000" BorderBrush="{x:Null}" Click="AboutButton_Click">
         	<Button.Foreground>
         		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="#FFFFFB9A" Offset="0"/>
+        			<GradientStop Color="#FFE9ED96" Offset="0"/>
         			<GradientStop Color="White" Offset="1"/>
         		</LinearGradientBrush>
-        	</Button.Foreground></Button>
+        	</Button.Foreground></Button>-->
+        <TextBox HorizontalAlignment="Left" Margin="12,41,0,0" Name="PersonalTextBox" Text="" VerticalAlignment="Top" Width="460" Background="#BB414141" BorderBrush="{x:Null}" BorderThickness="0" FontSize="40" TextWrapping="Wrap" FontFamily="Segoe WP Bold" TextChanged="PersonalTextBox_TextChanged">
+            <TextBox.Foreground>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FFEBE694" Offset="0" />
+                    <GradientStop Color="#FFF5F8E9" Offset="1" />
+                </LinearGradientBrush>
+            </TextBox.Foreground>
+        </TextBox>
     </Grid>
- </phone:PhoneApplicationPage>
+</phone:PhoneApplicationPage>

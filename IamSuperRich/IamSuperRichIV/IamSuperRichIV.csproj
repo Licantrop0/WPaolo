@@ -70,6 +70,7 @@
     <Compile Include="InstructionsPage.xaml.cs">
       <DependentUpon>InstructionsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -104,14 +105,14 @@
     <Content Include="logo_rich_4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="numbered\%281%29.png" />
-    <Resource Include="numbered\%282%29.png" />
-    <Resource Include="numbered\%283%29.png" />
-    <Resource Include="numbered\%284%29.png" />
-    <Resource Include="numbered\%285%29.png" />
-    <Resource Include="numbered\%286%29.png" />
-    <Resource Include="numbered\%287%29.png" />
-    <Resource Include="numbered\%288%29.png" />
+    <Resource Include="numbered\1.png" />
+    <Resource Include="numbered\2.png" />
+    <Resource Include="numbered\3.png" />
+    <Resource Include="numbered\4.png" />
+    <Resource Include="numbered\5.png" />
+    <Resource Include="numbered\6.png" />
+    <Resource Include="numbered\7.png" />
+    <Resource Include="numbered\8.png" />
     <Content Include="screen_full_4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

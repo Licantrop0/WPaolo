@@ -52,14 +52,14 @@
         <Grid.Resources>
             <Storyboard x:Name="PhilPiangeAppear">
                 <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
-                                     Storyboard.TargetProperty="Opacity"
-                                     To="1" Duration="0:0:1" FillBehavior="HoldEnd" />
+                                 Storyboard.TargetProperty="Opacity"
+                                 To="1" Duration="0:0:1" FillBehavior="HoldEnd" />
             </Storyboard>
 
             <Storyboard x:Name="PhilPiangeDisappear">
                 <DoubleAnimation Storyboard.TargetName="PhilPiangeImage"
-                                     Storyboard.TargetProperty="Opacity"
-                                     To="0" Duration="0:0:0.3" FillBehavior="HoldEnd" />
+                                 Storyboard.TargetProperty="Opacity"
+                                 To="0" Duration="0:0:0.3" FillBehavior="HoldEnd" />
             </Storyboard>
         </Grid.Resources>
 
@@ -115,7 +115,7 @@
 
         <Image x:Name="PhilPiangeImage" Source="Phil/piange.png"
                Stretch="Uniform" Width="280" Grid.Row="1" HorizontalAlignment="Center"
-               Opacity="0" IsHitTestVisible="False" VerticalAlignment="Center" />
+               Opacity="0" IsHitTestVisible="False" VerticalAlignment="Top" Margin="0,100" />
     </Grid>
 
 </phone:PhoneApplicationPage>

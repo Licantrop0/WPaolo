@@ -56,12 +56,12 @@ namespace FillTheSquare
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            //ripristino dello stato della griglia
+            //ripristino della griglia
             var points = Square.PositionHistory.ToArray();
             Array.Reverse(points);
             for (int i = 0; i < points.Length; i++)
             {
-                var b = MagicGrid.Children[Square.Size * points[i].Y + points[i].X] as Border;
+                var b = GetBorder(points[i].X, points[i].Y);
                 b.Child = new TextBlock()
                 {
                     Text = (i + 1).ToString(),
@@ -114,9 +114,7 @@ namespace FillTheSquare
                         FontSize = 28
                     };
 
-                    SetFocus.Stop();
-                    Storyboard.SetTarget(SetFocus, currentBorder);
-                    SetFocus.Begin();
+                    SetFocusAnimation(currentBorder);
 
                     if (Square.IsCompleted) //Vittoria!
                     {
@@ -138,77 +136,30 @@ namespace FillTheSquare
                     else
                     {
                         SoundManager.PlayMove();
-                        //qua devo far venire verdi le caselle disponibili per la mossa successiva
 
-                        DependencyProperty[] propertyChain = new DependencyProperty[]
-                        {
-                            Border.BackgroundProperty,
-                            GradientBrush.GradientStopsProperty,
-                            GradientStop.ColorProperty
-                        };
-
-
-                        GreenMeansAvailable.Stop();
-                        GreenMeansAvailable.Children.Clear();
-
-                        foreach (var move in availableMoves)
-                        {
-                            var b = MagicGrid.Children[Square.Size * move.Y + move.X] as Border;
-
-                            var ca1 = new ColorAnimation()
-                            {
-                                Duration = new Duration(TimeSpan.FromSeconds(0.5)),
-                                To = Colors.Green
-                            };
-                            //TODO trovare un altro sistema (questo non è supportato da WP7)
-                            Storyboard.SetTargetProperty(ca1,
-                                new PropertyPath("(0).(1)[0].(2)", propertyChain));
-                            GreenMeansAvailable.Children.Add(ca1);
-                            Storyboard.SetTarget(ca1, b);
-                            
-                            var ca2 = new ColorAnimation()
-                             {
-                                 Duration = new Duration(TimeSpan.FromSeconds(0.5)),
-                                 To = Colors.Green
-                             };
-                            Storyboard.SetTargetProperty(ca2,
-                                new PropertyPath("(0).(1)[1].(2)", propertyChain));
-                            GreenMeansAvailable.Children.Add(ca2);
-
-                            Storyboard.SetTarget(ca2, b);
-
-                            // (Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)
-                        }
-                        GreenMeansAvailable.Begin();
+                        //Qua devo far venire verdi le caselle disponibili per la mossa successiva
+                        GreenMeansAnimation(availableMoves.Select(move => GetBorder(move.X, move.Y)));
                     }
                     break;
 
                 case false: //caso di creazione fallito
-                    RedFlash.Stop();
-                    Storyboard.SetTarget(RedFlash, currentBorder);
-                    RedFlash.Begin();
+                    RedFlashAnimation(currentBorder);
                     SoundManager.PlayError();
                     break;
 
                 case null: //caso di cancellazione
                     ClearBorder(currentBorder);
-                    PhilPiangeDisappear.Begin();
-                    NoMoreMovesTextBlock.Visibility = Visibility.Collapsed;
 
                     //Evidenzio la casella sull'ultimo premuto se la griglia non è vuota
                     if (!Square.IsEmpty)
                     {
                         var lastValue = Square.PositionHistory.Peek();
-                        var lastButton = MagicGrid.Children[Square.Size * lastValue.Y + lastValue.X];
-
-                        //MagicGrid.Children
-                        //    .Where(b => b.GetRow() == lastValue.Y)
-                        //    .Where(b => b.GetColumn() == lastValue.X).First();
-
-                        SetFocus.Stop();
-                        Storyboard.SetTarget(SetFocus, lastButton);
-                        SetFocus.Begin();
+                        var lastBorder = GetBorder(lastValue.X, lastValue.Y);
+                        SetFocusAnimation(lastBorder);
+                        var borders = Square.GetAvailableMoves().Select(move => GetBorder(move.X, move.Y));
+                        GreenMeansAnimation(borders);
                     }
+
                     SoundManager.PlayUndo();
                     break;
             }
@@ -235,11 +186,70 @@ namespace FillTheSquare
                 .ForEach(b => ClearBorder(b));
         }
 
+
+        #region Helpers
+
         private static void ClearBorder(Border b)
         {
             b.Child = null;
             b.Background = (LinearGradientBrush)App.Current.Resources["BorderBackgroundBrush"];
         }
 
+        private Border GetBorder(int x, int y)
+        {
+            return MagicGrid.Children[Square.Size * y + x] as Border;
+        }
+
+        #endregion
+
+        #region Animations
+
+        public void RedFlashAnimation(Border border)
+        {
+            RedFlash.Stop();
+            Storyboard.SetTarget(RedFlash, border);
+            RedFlash.Begin();
+        }
+
+        public void SetFocusAnimation(Border border)
+        {
+            SetFocus.Stop();
+            Storyboard.SetTarget(SetFocus, border);
+            SetFocus.Begin();
+        }
+
+        public void GreenMeansAnimation(IEnumerable<Border> borders)
+        {
+            GreenMeansAvailable.Stop();
+            GreenMeansAvailable.Children.Clear();
+
+            foreach (var border in borders)
+            {
+                var ca1 = new ColorAnimation()
+                {
+                    Duration = new Duration(TimeSpan.FromSeconds(0.5)),
+                    To = Colors.Green
+                };
+                Storyboard.SetTarget(ca1, border);
+                Storyboard.SetTargetProperty(ca1,
+                    new PropertyPath("(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)"));
+                GreenMeansAvailable.Children.Add(ca1);
+
+                var ca2 = new ColorAnimation()
+                {
+                    Duration = new Duration(TimeSpan.FromSeconds(0.5)),
+                    To = Colors.Green
+                };
+                Storyboard.SetTarget(ca2, border);
+                Storyboard.SetTargetProperty(ca2,
+                    new PropertyPath("(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)"));
+                GreenMeansAvailable.Children.Add(ca2);
+            }
+
+            GreenMeansAvailable.Begin();        
+        }
+
+
+        #endregion
     }
 }

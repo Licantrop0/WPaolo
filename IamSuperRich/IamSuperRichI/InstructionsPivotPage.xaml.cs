@@ -20,12 +20,14 @@ namespace IamSuperRichI
     public partial class InstructionsPivotPage : PhoneApplicationPage
     {
         private string[] appId;
+        LocalizedStrings personalText = new LocalizedStrings();
 
         public InstructionsPivotPage()
         {
             InitializeComponent();
             InitializeGrid();
             InitializeAppId();
+            PersonalTextBox.Text = personalText.PersonalTextMsg;
         }
 
         void InitializeAppId()
@@ -95,5 +97,11 @@ namespace IamSuperRichI
             marketplaceDetailTask.ContentIdentifier = appId[0];
             marketplaceDetailTask.Show();
         }
+
+        private void PersonalTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            personalText.PersonalTextMsg = PersonalTextBox.Text;
+        }
+
     }
 }

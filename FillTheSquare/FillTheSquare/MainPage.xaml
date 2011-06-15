@@ -79,8 +79,8 @@
                 </Custom:Interaction.Triggers>
             </Button>
 
-            <!--<Button Canvas.Left="0" Canvas.Top="286"
-                    Content="congratulations" Height="71" Width="238" Click="Button_Click" />-->
+            <Button Canvas.Left="0" Canvas.Top="286"
+                    Content="congratulations" Height="71" Width="238" Click="Button_Click" />
 
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
                     Height="80" Width="200"

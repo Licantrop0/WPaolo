@@ -8,6 +8,7 @@ using WPCommon;
 using Microsoft.Xna.Framework.Audio;
 using FillTheSquare.Localization;
 using FillTheSquare.Sounds;
+using Microsoft.Phone.Tasks;
 
 namespace FillTheSquare
 {
@@ -74,6 +75,19 @@ namespace FillTheSquare
 
             if (NameTextBox.Text.Length >= 10)
                 e.Handled = true;
+        }
+
+        private void FacebookShare_Click(object sender, RoutedEventArgs e)
+        {
+            var fs = new FacebookSharer(
+                AppResources.AppName,
+                string.Format("Ho finito Phil the Square {0} in {1} secondi!", CurrentRecord.Size, CurrentRecord.ElapsedTime.TotalSeconds),
+                new Uri("http://www.facebook.com/permalink.php?story_fbid=223498064336762&id=192414040771354"),
+                new Uri("http://image.catalog.zune.net/v3.2/image/8d36721a-b44a-4e4a-bfbc-6d76b11db918?width=200&height=200"));
+
+            var wbt = new WebBrowserTask();
+            wbt.URL = "http://www.facebook.com/share.php?u=http%3A%2F%2Ffb-share-control.com%2F%3Ft%3DPhil%2520the%2520Square%26i%3Dhttp%253A%252F%252Fimage.catalog.zune.net%252Fv3.2%252Fimage%252F8d36721a-b44a-4e4a-bfbc-6d76b11db918%253Fwidth%253D200%2526height%253D200%26d%3DHo%2520sbloccato%2520l'obiettivo%2520finisci%2520in%2520modalit%25C3%25A0%2520facile!%26u%3Dhttp%253A%252F%252Fwww.facebook.com%252Fpermalink.php%253Fstory_fbid%253D223498064336762%2526id%253D192414040771354";
+            wbt.Show();
         }
     }
 }

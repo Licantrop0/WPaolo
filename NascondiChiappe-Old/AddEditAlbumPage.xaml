@@ -1,0 +1,82 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
+    x:Class="NascondiChiappe.AddEditAlbumPage"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False"
+    BackKeyPress="PhoneApplicationPage_BackKeyPress" Loaded="PhoneApplicationPage_Loaded">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImage}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <DataTemplate x:Name="AlbumImageTemplate">
+                <Image Source="{Binding Photo}" Margin="12"
+                   RenderTransformOrigin="0.5,0.5"
+                   RenderTransform="{Binding Path=RotationAngle, Converter={StaticResource RotationConverter}}" />
+            </DataTemplate>
+        </Grid.Resources>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock x:Name="PageTitle" Style="{StaticResource TitleStyle}" 
+                   Text="{Binding LocalizedResources.AddAlbum, Source={StaticResource LocalizedStrings}}" />
+            <TextBox x:Name="AlbumNameTextBox" Text="{Binding Name}"
+                     KeyDown="AlbumNameTextBox_KeyDown" Style="{StaticResource TextBoxStyle}" />
+            <TextBlock Name="OneAlbumNecessaryTextBlock" Visibility="Collapsed"
+                   Text="{Binding Path=LocalizedResources.OneAlbumNecessary, Source={StaticResource LocalizedStrings}}"
+                   Style="{StaticResource HintTextBlockStyle}" />
+        </StackPanel>
+
+        <ListBox x:Name="ImagesListBox" Grid.Row="1"
+                 ItemTemplate="{StaticResource AlbumImageTemplate}"
+                 ItemsSource="{Binding Photos}"
+                 SelectionMode="Multiple"
+                 ItemContainerStyle="{StaticResource ListBoxItemStyle1}" SelectionChanged="ImagesListBox_SelectionChanged">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <toolkit:WrapPanel ItemWidth="225" ItemHeight="225"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+
+
+        <Rectangle Name="PopupBackground" Grid.RowSpan="2"
+                   Fill="#CC000000" Visibility="Collapsed"/>
+        <Border Name="PopupBorder" Grid.Row="1"
+                CornerRadius="10" Visibility="Collapsed"
+                BorderBrush="WhiteSmoke"
+                Background="Black"
+                BorderThickness="{StaticResource PhoneBorderThickness}"
+                VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ListBox Name="AlbumsListBox" Margin="24"
+                     SelectionChanged="AlbumsListBox_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"
+                                   Margin="0,8" TextAlignment="Center"
+                                   Style="{StaticResource TextBlockStyle}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+    </Grid>
+    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
+                              BackgroundColor="#BF000000"
+                              ForegroundColor="{StaticResource PhoneAccentColor}"
+                              Opacity="0.99" />
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

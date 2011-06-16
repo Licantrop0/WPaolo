@@ -63,11 +63,11 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Button Tag="{Binding AppId}" Click="Image_Click"
-                                Width="200" Height="200"
+                                Width="170" Height="170"
                                 toolkit:TiltEffect.IsTiltEnabled="True">
                             <Button.Template>
                                 <ControlTemplate>
-                                    <Image Source="{Binding Img}" Margin="10"/>
+                                    <Image Source="{Binding Img}" Margin="8"/>
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>

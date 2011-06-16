@@ -19,9 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IamSuperRichVIII", "IamSupe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon", "..\WPCommon\WPCommon.csproj", "{22700591-5E34-4D4D-A01F-6B8C2153B270}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperRichResources", "SuperRichResources\SuperRichResources.csproj", "{20DA71C2-BCB5-4AC0-A942-27E30ACC9FCA}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 10
+		SccNumberOfProjects = 11
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
@@ -52,6 +54,9 @@ Global
 		SccProjectUniqueName9 = ..\\WPCommon\\WPCommon.csproj
 		SccProjectName9 = ../WPCommon
 		SccLocalPath9 = ..\\WPCommon
+		SccProjectUniqueName10 = SuperRichResources\\SuperRichResources.csproj
+		SccProjectName10 = SuperRichResources
+		SccLocalPath10 = SuperRichResources
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +115,10 @@ Global
 		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20DA71C2-BCB5-4AC0-A942-27E30ACC9FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20DA71C2-BCB5-4AC0-A942-27E30ACC9FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20DA71C2-BCB5-4AC0-A942-27E30ACC9FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20DA71C2-BCB5-4AC0-A942-27E30ACC9FCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

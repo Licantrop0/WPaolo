@@ -7,81 +7,90 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:wpcommon="clr-namespace:WPCommon;assembly=WPCommon"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    xmlns:vm="clr-namespace:SuperRichResources.ViewModel;assembly=SuperRichResources"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False" >
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <!--Pivot Control-->
-        <controls:Pivot Title="{x:Null}" Margin="0,-30,0,0">
+    <phone:PhoneApplicationPage.Resources>
+        <vm:InstructionViewModel x:Key="ViewModel" />
+    </phone:PhoneApplicationPage.Resources>
 
-            <!--Pivot item three-->
-            <controls:PivotItem Header="Look">
-                <Grid>
-                    <Image Stretch="UniformToFill" Source="screen_full_1.png" />
-                    <TextBox HorizontalAlignment="Left" Margin="12,41,0,0" Name="PersonalTextBox" Text="" VerticalAlignment="Top" Width="430" BorderBrush="{x:Null}" BorderThickness="0" FontSize="40" TextWrapping="Wrap" FontFamily="Segoe WP Bold" TextChanged="PersonalTextBox_TextChanged">
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                <GradientStop Color="#FFEBE658" Offset="0" />
-                                <GradientStop Color="#FFF5F8A1" Offset="1" />
-                                <GradientStop Color="#FFFF7A01" Offset="0.523" />
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                <GradientStop Color="#A7000000" Offset="0" />
-                                <GradientStop Color="#69655656" Offset="1" />
-                                <GradientStop Color="#848F8F8F" Offset="0.564" />
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                    </TextBox>
-                </Grid>
-            </controls:PivotItem>
-            
-            <!--Pivot item one-->
-            <controls:PivotItem Header="How to">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="150"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    
-                    <HyperlinkButton Grid.Row="0" Content="Watch on YouTube"
+    <controls:Pivot Name="MainPivot" Title="{x:Null}" Margin="0,-25,0,0"
+                        DataContext="{StaticResource ViewModel}"
+                        Loaded="OnPivotControlLoaded" >
+
+        <controls:PivotItem Header="Look" Margin="0">
+            <Grid>
+                <Image Stretch="Uniform" Source="screen_full_1.png" />
+                <TextBox Text="{Binding PersonalText, Mode=TwoWay}"
+                    Style="{StaticResource MessageTextBoxStyle}"  />
+            </Grid>
+        </controls:PivotItem>
+
+        <controls:PivotItem Header="How to">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <HyperlinkButton Grid.Row="0" Content="Watch on YouTube"
                          FontSize="{StaticResource PhoneFontSizeExtraLarge}"
                          Click="Youtube_Click" Foreground="#FFE5E55E" Background="#00F2D9D9" />
 
-                    <TextBlock Grid.Row="1" 
-Text="I am Super Rich is a series of 8 applications. The original apps were meant for rich people who can afford 499.99$ for a useless application, just to show off how rich they are.
-Now, you can have each app for 0.99$, pretend you're rich, save 499$, but still show off to friends and girls how rich you are.
-                               
-Download them all, pin to start the 8 applications, an re-arrange the tiles following the serial number of each application.
-Your start page will be full with diamonds! Now you really can say 'I am Super Rich'!" TextAlignment="Left" TextWrapping="Wrap" FontSize="22" Foreground="White" />
-                      </Grid>
-            </controls:PivotItem>
+                <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" FontSize="23" Foreground="White" >
+                        I am Super Rich is a series of 8 applications. The original apps were meant for rich people who can afford 499.99$ for a useless application, just to show off how rich they are.
+                        <LineBreak />
+                        Now, you can have each app for 0.99$, pretend you're rich, save 499$, but still show off to friends and girls how rich you are.
+                        <LineBreak />
+                        Download them all, pin to start the 8 applications, an re-arrange the tiles following the serial number of each application.
+                        <LineBreak />
+                        Your start page will be full with diamonds! Now you really can say 'I am Super Rich'!
+                </TextBlock>
+            </Grid>
+        </controls:PivotItem>
 
-            <!--Pivot item two-->
-            <controls:PivotItem Header="Get them all">
-                <Grid Name="appLinksGrid" HorizontalAlignment="Center" Height="550" Width="270">
-                </Grid>
-            </controls:PivotItem>
+        <controls:PivotItem Header="Get them all" Margin="0">
+            <ListBox Name="ButtonsListBox" ItemsSource="{Binding ApplicationList}" 
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button Tag="{Binding AppId}" Click="Image_Click"
+                                Width="200" Height="200"
+                                toolkit:TiltEffect.IsTiltEnabled="True">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Image Source="{Binding Img}" Margin="10"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
 
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <toolkit:WrapPanel />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </controls:PivotItem>
 
-            <!--Pivot item two-->
-            <controls:PivotItem Header="and more..">
-                <ScrollViewer>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="750"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        
-                        <wpcommon:AboutControl Grid.Row="0"  Background="Black" ApplicationName="I am super rich I" BackgroundStackPanel="Black" ApplicationVersion="1.1.0">
-
+        <controls:PivotItem Header="and more...">
+            <ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <wpcommon:AboutControl Grid.Row="1" ApplicationName="I am super rich I"
+                                           Margin="0,-35,0,0" ApplicationVersion="1.1.0">
                         <wpcommon:AboutControl.Foreground>
                             <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                                 <GradientStop Color="WhiteSmoke" Offset="0" />
@@ -89,19 +98,21 @@ Your start page will be full with diamonds! Now you really can say 'I am Super R
                             </LinearGradientBrush>
                         </wpcommon:AboutControl.Foreground>
                     </wpcommon:AboutControl>
+                    
+                    <TextBlock Grid.Row="0" TextAlignment="Left" TextWrapping="Wrap"
+                               FontSize="22" Foreground="White" >
+                        Updates:<LineBreak />
+                        * NEW pivot layout<LineBreak />
+                        * NEW personalized social status<LineBreak />
+                        * NEW youtube video and link<LineBreak />
+                        * NEW fast shorcuts to all 8 apps,<LineBreak />
+                        <Run Text="            " /> directly to the marketplace
+                    </TextBlock>
 
-                        <TextBlock Grid.Row="1" Text="Updates:
-* NEW personalized social status                         
-* NEW youtube video and link                                
-* NEW fast shorcuts to all 8 apps, directly to the marketplace
-* NEW pivot layout" TextAlignment="Left" TextWrapping="Wrap" FontSize="22" Foreground="White" />
+                </Grid>
+            </ScrollViewer>
+        </controls:PivotItem>
 
-</Grid>
-                </ScrollViewer>
-            </controls:PivotItem>
-            
-        </controls:Pivot>
-        
-    </Grid>
-   
+    </controls:Pivot>
+
 </phone:PhoneApplicationPage>

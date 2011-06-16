@@ -1,23 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using SuperRichResources.Model;
 
 namespace SuperRichResources.ViewModel
 {
-    public class InstructionViewModel : INotifyPropertyChanged
+    public class InstructionViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
         private string[] appId =
         {
             "59073daf-bb2b-e011-854c-00237de2db9e",
@@ -30,7 +20,7 @@ namespace SuperRichResources.ViewModel
             "e9376fb6-c62b-e011-854c-00237de2db9e"
         };
 
-         public IEnumerable<AppTile> ApplicationList
+        public IEnumerable<AppTile> ApplicationList
         {
             get
             {
@@ -43,7 +33,7 @@ namespace SuperRichResources.ViewModel
             }
         }
 
-       public string PersonalText //Salvata sull'isolatedStorage
+        public string PersonalText //Salvata sull'isolatedStorage
         {
             get
             {
@@ -60,10 +50,7 @@ namespace SuperRichResources.ViewModel
                     return;
 
                 IsolatedStorageSettings.ApplicationSettings["personal_text"] = value;
-                RaisePropertyChanged("PersonalText");
             }
         }
-
-
     }
 }

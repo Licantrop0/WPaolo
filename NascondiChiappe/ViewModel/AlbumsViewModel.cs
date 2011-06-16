@@ -9,6 +9,7 @@ using NascondiChiappe.Helpers;
 using NascondiChiappe.Localization;
 using NascondiChiappe.Messages;
 using GalaSoft.MvvmLight.Messaging;
+using System.Windows.Data;
 
 namespace NascondiChiappe.ViewModel
 {
@@ -28,9 +29,8 @@ namespace NascondiChiappe.ViewModel
         public AlbumsViewModel()
         {
             Messenger.Default.Register<AddAlbumMessage>(this, m => AddAlbum(m.AddedAlbum));
-            Messenger.Default.Register<DeleteAlbumMessage>(this, m => Albums.RemoveAt(m.Id));
-            //TODO trovare un metodo più furbo che far ricaricare tutta la lista
-            Messenger.Default.Register<EditAlbumMessage>(this, m => Albums = null);
+            //TODO trovare un metodo più furbo che far ricaricare sempre tutta la lista
+            Messenger.Default.Register<RefreshAlbumsMessage>(this, m => _albums = null);
         }
 
         #region Public Properties
@@ -38,7 +38,7 @@ namespace NascondiChiappe.ViewModel
         public bool NoAlbumsPresent { get { return Albums.Count == 0; } }
         public bool ImagesSelected { get { return SelectedAlbum.SelectedPhotos.Count > 0; } }
 
-        ObservableCollection<ImageListViewModel> _albums;
+        private ObservableCollection<ImageListViewModel> _albums;
         public ObservableCollection<ImageListViewModel> Albums
         {
             get
@@ -49,9 +49,9 @@ namespace NascondiChiappe.ViewModel
                     foreach (var album in AppContext.Albums)
                         _albums.Add(new ImageListViewModel(album));
                 }
+                SelectedAlbum = _albums.FirstOrDefault();
                 return _albums;
             }
-            set { _albums = value; }
         }
 
         private ImageListViewModel _selectedAlbum = null;
@@ -63,7 +63,8 @@ namespace NascondiChiappe.ViewModel
                 if (_selectedAlbum == value) return;
 
                 _selectedAlbum = value;
-                AppContext.CurrentAlbum = value.Model;
+                AppContext.CurrentAlbum = value == null ? null : value.Model;
+                //Bug nel controllo pivot
                 RaisePropertyChanged("SelectedAlbum");
             }
         }
@@ -183,7 +184,7 @@ namespace NascondiChiappe.ViewModel
         {
             if (WPCommon.TrialManagement.IsTrialMode && SelectedAlbum.Model.Photos.Count >= 4)
             {
-                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
                 return true;
             }
             return false;

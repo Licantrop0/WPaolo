@@ -12,7 +12,7 @@ namespace NascondiChiappe
         public static bool IsPasswordInserted = false;
 
         public static string Password
-        { //TODO: Implementare encription
+        { //TODO: Implementare encription?
             get
             {
                 if (!IsolatedStorageSettings.ApplicationSettings.Contains("password"))

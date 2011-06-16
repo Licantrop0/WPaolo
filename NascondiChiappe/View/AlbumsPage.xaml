@@ -23,10 +23,11 @@
     </phone:PhoneApplicationPage.Resources>
         
     <Grid Name="LayoutRoot" Background="{StaticResource BackgroundImage}"
-          DataContext="{Binding Source={StaticResource AlbumsViewModel}}" >        
+          DataContext="{StaticResource AlbumsViewModel}" >        
        
         <controls:Pivot Name="AlbumsPivot" ItemsSource="{Binding Albums}"
-                        SelectedItem="{Binding SelectedAlbum, Mode=TwoWay}" >
+                        SelectedItem="{Binding SelectedAlbum, Mode=TwoWay}"
+                        Loaded="AlbumsPivot_Loaded">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Model.Name}"

@@ -25,13 +25,12 @@
 
         <TextBlock Style="{StaticResource SquareTitleStyle}"
                    Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
-                   Margin="0,24" />
+                   Margin="0,12" />
 
         <Canvas x:Name="ContentPanel" Margin="12" Grid.Row="1" >
-            
             <Image Source="Phil/saluta.png"
                    Stretch="None" IsHitTestVisible="False"
-                   Canvas.Left="217" Canvas.Top="552" >
+                   Canvas.Left="217" Canvas.Top="577" >
                 <Image.RenderTransform>
                     <RotateTransform Angle="-35" />
                 </Image.RenderTransform>
@@ -40,21 +39,21 @@
             <Button Content="{Binding LocalizedResources.Easy, Source={StaticResource LocalizedStrings}}" 
                     Click="SquareFiveButton_Click"
                     Style="{StaticResource HomeButtonStyle2}"
-                    Width="210" Height="90"
-                    Canvas.Left="0" Canvas.Top="30"/>
+                    Width="240" Height="150"
+                    Canvas.Left="-12" Canvas.Top="0"/>
 
             <Button Content="{Binding LocalizedResources.Hard, Source={StaticResource LocalizedStrings}}" 
                     Click="SquareTenButton_Click"
                     Style="{StaticResource HomeButtonStyle2}"                    
-                    Width="234" Height="90"
-                    Canvas.Left="216" Canvas.Top="30">
+                    Width="240" Height="150"
+                    Canvas.Left="228" Canvas.Top="0">
             </Button>
 
             <Button Content="{Binding LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
                     Height="100" Width="250"
                     Style="{StaticResource HomeButtonStyle}"
                     d:LayoutRounding="Auto"
-                    Canvas.Left="67" Canvas.Top="177">
+                    Canvas.Left="57" Canvas.Top="203">
                 <Button.RenderTransform>
                     <RotateTransform Angle="-10" />
                 </Button.RenderTransform>
@@ -68,9 +67,9 @@
             <Button Content="{Binding LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
                     Height="100" Width="280" 
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="206" Canvas.Top="260" >
+                    Canvas.Left="218" Canvas.Top="272" >
                 <Button.RenderTransform>
-                    <RotateTransform Angle="18" />
+                    <RotateTransform Angle="22" />
                 </Button.RenderTransform>
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
@@ -79,13 +78,13 @@
                 </Custom:Interaction.Triggers>
             </Button>
 
-            <Button Canvas.Left="0" Canvas.Top="286"
+            <Button Canvas.Left="0" Canvas.Top="382"
                     Content="congratulations" Height="71" Width="238" Click="Button_Click" />
 
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
                     Height="80" Width="200"
                     Style="{StaticResource HomeButtonStyle}"
-                    Canvas.Left="14" Canvas.Top="526" >
+                    Canvas.Left="13" Canvas.Top="550" >
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
                         <ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
@@ -96,9 +95,9 @@
                 </Button.RenderTransform>
             </Button>
             <Button Content="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
-            	Height="80" Width="256"
+            	Height="91.685" Width="256"
             	Style="{StaticResource HomeButtonStyle}"
-            	Canvas.Left="5.716" Canvas.Top="442.99" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+            	Canvas.Left="31.673" Canvas.Top="481.763" UseLayoutRounding="False" d:LayoutRounding="Auto" >
             	<Custom:Interaction.Triggers>
             		<Custom:EventTrigger EventName="Click">
             			<ic:NavigateToPageAction TargetPage="/SettingsPage.xaml"/>

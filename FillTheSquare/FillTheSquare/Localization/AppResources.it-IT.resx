@@ -199,4 +199,13 @@ con i numeri in sequenza</value>
   <data name="Music" xml:space="preserve">
     <value>Musica</value>
   </data>
+  <data name="Hints" xml:space="preserve">
+    <value>Suggerimenti</value>
+  </data>
+  <data name="HomeMusic" xml:space="preserve">
+    <value>Musica Menu</value>
+  </data>
+  <data name="SoundEffects" xml:space="preserve">
+    <value>Effetti Sonori</value>
+  </data>
 </root>

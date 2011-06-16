@@ -197,4 +197,13 @@
   <data name="Music" xml:space="preserve">
     <value>Music</value>
   </data>
+  <data name="Hints" xml:space="preserve">
+    <value>Suggestions</value>
+  </data>
+  <data name="HomeMusic" xml:space="preserve">
+    <value>Menu Musique</value>
+  </data>
+  <data name="SoundEffects" xml:space="preserve">
+    <value>Effets Sonores</value>
+  </data>
 </root>

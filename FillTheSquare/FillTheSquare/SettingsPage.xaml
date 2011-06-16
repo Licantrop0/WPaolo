@@ -23,12 +23,16 @@
         <TextBlock Text="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
                        Grid.Row="0" Margin="12,17,0,28" Style="{StaticResource SquareTitleStyle}" />
 
-        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">            
-            <toolkit:ToggleSwitch Header="Home Music"
+        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <toolkit:ToggleSwitch Header="{Binding LocalizedResources.Hints, Source={StaticResource LocalizedStrings}}"
+                                  IsChecked="{Binding HintsEnabled, Mode=TwoWay}"
+                                  Style="{StaticResource ToggleSwitchStyle}"
+                                  HeaderTemplate="{StaticResource HeaderToggleSwitchTemplate}"/>
+            <toolkit:ToggleSwitch Header="{Binding LocalizedResources.HomeMusic, Source={StaticResource LocalizedStrings}}"
                                   IsChecked="{Binding MusicEnabled, Mode=TwoWay}"
                                   Style="{StaticResource ToggleSwitchStyle}"
                                   HeaderTemplate="{StaticResource HeaderToggleSwitchTemplate}" />
-            <toolkit:ToggleSwitch Header="Sound Effects"
+            <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SoundEffects, Source={StaticResource LocalizedStrings}}"
                                   IsChecked="{Binding SoundEffectsEnabled, Mode=TwoWay}"
                                   Style="{StaticResource ToggleSwitchStyle}"
                                   HeaderTemplate="{StaticResource HeaderToggleSwitchTemplate}"/>

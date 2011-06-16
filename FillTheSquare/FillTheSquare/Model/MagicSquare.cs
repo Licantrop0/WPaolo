@@ -37,8 +37,7 @@ namespace FillTheSquare
 
         public bool? PressButton(GridPoint p)
         {
-            //se ho già fatto la prima mossa
-            if (PositionHistory.Count != 0)
+            if (this.IsEmpty == false) //ho già fatto la prima mossa
             {
                 var LastPoint = PositionHistory.Peek();
 
@@ -84,7 +83,7 @@ namespace FillTheSquare
         {
             var AvailablePoints = new List<GridPoint>();
 
-            if (PositionHistory.Count == 0)
+            if (this.IsEmpty)
                 return AvailablePoints;
  
             int x = PositionHistory.Peek().X;

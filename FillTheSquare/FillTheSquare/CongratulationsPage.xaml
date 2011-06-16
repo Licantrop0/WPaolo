@@ -57,7 +57,7 @@
 					   HorizontalAlignment="Left" Margin="12,24,0,0" />
 			<TextBox x:Name="NameTextBox" KeyDown="NameTextBox_KeyDown"
 					 FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Brecht"
-					 FontSize="30" Height="70" />
+					 FontSize="30" Height="90" />
 		</StackPanel>
 
 		<Canvas x:Name="ContentPanel" Grid.Row="1" >
@@ -85,13 +85,15 @@
 				</StackPanel>
 			</StackPanel>
 
+			<Button Canvas.Left="6" Canvas.Top="206" Click="FacebookShare_Click"
+                    Style="{StaticResource HomeButtonStyle}"
+					Content="Share on Facebook" Height="92" Width="468" />
+            
 			<Button Content="{Binding LocalizedResources.SeeRecords, Source={StaticResource LocalizedStrings}}"
 					Click="GoToRecords_Click" 
 					Style="{StaticResource HomeButtonStyle}"
 					Height="100" Width="350"
-					Canvas.Left="60" Canvas.Top="433" />
-			<Button Canvas.Left="34" Canvas.Top="230" Click="FacebookShare_Click"
-					Content="Share on Facebook" Height="92" Width="286" />
+					Canvas.Left="60" Canvas.Top="430" />
 		</Canvas>
 	</Grid>
 </phone:PhoneApplicationPage>

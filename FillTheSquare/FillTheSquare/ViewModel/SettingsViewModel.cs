@@ -104,5 +104,24 @@ namespace FillTheSquare.ViewModel
                 }
             }
         }
+
+        public bool HintsEnabled
+        {
+            get
+            {
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("hints_enabled"))
+                    IsolatedStorageSettings.ApplicationSettings["hints_enabled"] = true;
+
+                return (bool)IsolatedStorageSettings.ApplicationSettings["hints_enabled"];
+            }
+            set
+            {
+                if (HintsEnabled != value)
+                {
+                    IsolatedStorageSettings.ApplicationSettings["hints_enabled"] = value;
+                    OnPropertyChanged("HintsEnabled");
+                }
+            }
+        }
     }
 }

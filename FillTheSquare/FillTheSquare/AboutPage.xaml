@@ -14,20 +14,35 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
-
-    <Grid>
-        <wpcommon:AboutControl Name="WPMEAbout"
+<ScrollViewer>
+        <Grid Background="{StaticResource BackgroundImageBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="820"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="400"/>
+            </Grid.RowDefinitions>
+        
+        <wpcommon:AboutControl Grid.Row="0"  Name="WPMEAbout"
                                ApplicationName="Phil the Square"
                                BackgroundStackPanel="{StaticResource BackgroundImageBrush}"
                                Foreground="{StaticResource ForegroundGradientBrush}"
                                FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Brecht"
                                MinFontSize="50" />
-        
-        <Image Source="Phil/phil_con_logo_new.png" Stretch="None"
+
+            <Image Grid.Row="0" Source="Phil/phil_con_logo_new.png" Stretch="None"
                HorizontalAlignment="Right"
                VerticalAlignment="Top"
                Margin="0,46,80,0" />
-    </Grid>
+
+            <TextBlock Grid.Row="2" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Brecht" 
+                       Text="*UPDATES*: - new settings - improved graphics - hints during game" TextWrapping="Wrap" />
+
+            <HyperlinkButton Grid.Row="1" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Brecht" Content="Watch on YouTube!!"
+                         FontSize="{StaticResource PhoneFontSizeLarge}"
+                         Click="Youtube_Click" Foreground="#FFE5E55E" Background="#00F2D9D9" />
+
+
+        </Grid></ScrollViewer>
     
 
 </phone:PhoneApplicationPage>

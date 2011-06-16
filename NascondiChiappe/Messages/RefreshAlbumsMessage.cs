@@ -11,12 +11,6 @@ using System.Windows.Shapes;
 
 namespace NascondiChiappe.Messages
 {
-    public class DeleteAlbumMessage
-    {
-        public int Id { get; set; }
-        public DeleteAlbumMessage(int id)
-        {
-            Id = id;
-        }
-    }
+    public class RefreshAlbumsMessage
+    { }
 }

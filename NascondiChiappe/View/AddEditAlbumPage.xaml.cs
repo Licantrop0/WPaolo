@@ -37,6 +37,12 @@ namespace NascondiChiappe
                 this, m => ImagesSelectionChanged(m.CanExecute));
         }
 
+        private void ImagesSelectionChanged(bool canExecute)
+        {
+            DeletePhotosAppBarButton.IsEnabled = canExecute;
+            MovePhotosAppBarButton.IsEnabled = canExecute;
+        }
+
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             if (!AppContext.IsPasswordInserted)
@@ -52,18 +58,18 @@ namespace NascondiChiappe
                 DeletePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
                 DeletePhotosAppBarButton.Text = AppResources.DeleteSelectedPhotos;
                 DeletePhotosAppBarButton.IsEnabled = false;
-                DeletePhotosAppBarButton.Click += new EventHandler(DeletePhotosAppBarMenuItem_Click);
+                DeletePhotosAppBarButton.Click += (sender1, e1) => { VM.DeletePhotos.Execute(null); };
                 ApplicationBar.Buttons.Add(DeletePhotosAppBarButton);
 
                 var DeleteAlbumAppBarMenuItem = new ApplicationBarMenuItem();
                 DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
-                DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
+                DeleteAlbumAppBarMenuItem.Click += (sender1, e1) => { VM.DeleteAlbum.Execute(null); };
                 ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
             }
             else //BUG SUL BACK dalla ViewPhotosPage
                 AlbumNameTextBox.Focus();
 
-            if (AppContext.Albums.Count > 1 && ApplicationBar.Buttons.Count == 1)
+            if (AppContext.Albums.Count > 1 && ApplicationBar.Buttons.Count < 3)
             {
                 MovePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_move.png", UriKind.Relative);
                 MovePhotosAppBarButton.Text = AppResources.MoveSelectedPhotos;
@@ -84,7 +90,7 @@ namespace NascondiChiappe
 
         void MovePhotosAppBarButton_Click(object sender, EventArgs e)
         {
-            if (VM.SelectedPhotos.Count == 0)
+            if (VM.ImageList.SelectedPhotos.Count == 0)
             {
                 MessageBox.Show(AppResources.SelectPhotos);
                 return;
@@ -93,17 +99,25 @@ namespace NascondiChiappe
             PopupBorder.Visibility = Visibility.Visible;
         }
 
-        void DeletePhotosAppBarMenuItem_Click(object sender, EventArgs e)
+        private void AlbumsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            VM.DeletePhotos.Execute(null);
+            VM.MovePhotos.Execute(e.AddedItems[0]);
+
+            PopupBackground.Visibility = Visibility.Collapsed;
+            PopupBorder.Visibility = Visibility.Collapsed;
         }
+
 
         void SaveAppBarButton_Click(object sender, EventArgs e)
         {
             if (!CheckAlbumName())
                 return;
 
-            this.Focus();
+            //Fix per aggiornare il ViewModel programmaticamente
+            //non si scatena il LostFocus alla pressione dell'appbarbutton
+            var be = AlbumNameTextBox.GetBindingExpression(TextBox.TextProperty);
+            be.UpdateSource(); 
+            
             VM.SaveAlbum.Execute(null);
         }
 
@@ -117,11 +131,6 @@ namespace NascondiChiappe
                 return false;
             }
             return true;
-        }
-
-        void DeleteAlbumAppBarMenuItem_Click(object sender, EventArgs e)
-        {
-            VM.DeleteAlbum.Execute(null);
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
@@ -138,20 +147,6 @@ namespace NascondiChiappe
         {
             if (e.Key == Key.Enter)
                 SaveAppBarButton_Click(sender, EventArgs.Empty);
-        }
-
-        private void AlbumsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            VM.MovePhotos.Execute(e.AddedItems);
-
-            PopupBackground.Visibility = Visibility.Collapsed;
-            PopupBorder.Visibility = Visibility.Collapsed;
-        }
-
-        private void ImagesSelectionChanged(bool canExecute)
-        {
-            DeletePhotosAppBarButton.IsEnabled = canExecute;
-            MovePhotosAppBarButton.IsEnabled = canExecute;
         }
     }
 }

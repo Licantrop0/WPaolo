@@ -43,9 +43,6 @@ namespace NascondiChiappe
                 NavigationService.Navigate(new Uri("/View/AddEditAlbumPage.xaml", UriKind.Relative));
                 return;
             }
-
-            if (AlbumsPivot.SelectedItem == null)
-                AlbumsPivot.SelectedItem = AppContext.PreviousSelectedAlbum;
         }
 
         private void InitializeApplicationBar()
@@ -79,6 +76,12 @@ namespace NascondiChiappe
             NewAlbumAppBarMenuItem.Text = AppResources.NewAlbum;
             NewAlbumAppBarMenuItem.Click += (sender, e) => { VM.NewAlbum.Execute(null); };
             ApplicationBar.MenuItems.Add(NewAlbumAppBarMenuItem);
+        }
+
+        private void AlbumsPivot_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (AlbumsPivot.SelectedItem == null)
+                AlbumsPivot.SelectedItem = AppContext.PreviousSelectedAlbum;
         }
     }
 }

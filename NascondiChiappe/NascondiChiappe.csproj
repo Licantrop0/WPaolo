@@ -79,9 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Messages\AddAlbumMessage.cs" />
-    <Compile Include="Messages\DeleteAlbumMessage.cs" />
-    <Compile Include="Messages\EditAlbumMessage.cs" />
     <Compile Include="Messages\CanExecuteOnSelectedPhotosMessage.cs" />
+    <Compile Include="Messages\RefreshAlbumsMessage.cs" />
     <Compile Include="View\AddEditAlbumPage.xaml.cs">
       <DependentUpon>AddEditAlbumPage.xaml</DependentUpon>
     </Compile>

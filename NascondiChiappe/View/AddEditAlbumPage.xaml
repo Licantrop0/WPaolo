@@ -33,7 +33,7 @@
         <StackPanel Grid.Row="0">
             <TextBlock x:Name="PageTitle" Style="{StaticResource TitleStyle}" 
                    Text="{Binding PageTitle}" />
-            <TextBox x:Name="AlbumNameTextBox" Text="{Binding AlbumName, Mode=TwoWay}"
+            <TextBox x:Name="AlbumNameTextBox" Text="{Binding Mode=TwoWay, Path=AlbumName, UpdateSourceTrigger=Explicit}"
                      KeyDown="AlbumNameTextBox_KeyDown" Style="{StaticResource TextBoxStyle}" />
             <TextBlock Name="OneAlbumNecessaryTextBlock" Visibility="{Binding OneAlbumNecessaryVisibility}"
                    Text="{Binding Path=LocalizedResources.OneAlbumNecessary, Source={StaticResource LocalizedStrings}}"
@@ -50,7 +50,7 @@
                 Background="Black"
                 BorderThickness="{StaticResource PhoneBorderThickness}"
                 VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ListBox Name="AlbumsListBox" Margin="24"
+            <ListBox Name="AlbumsListBox" Margin="24" ItemsSource="{Binding OtherAlbums}"
                      SelectionChanged="AlbumsListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

@@ -200,4 +200,13 @@
   <data name="Music" xml:space="preserve">
     <value>Music</value>
   </data>
+  <data name="Hints" xml:space="preserve">
+    <value>Hints</value>
+  </data>
+  <data name="HomeMusic" xml:space="preserve">
+    <value>Home Music</value>
+  </data>
+  <data name="SoundEffects" xml:space="preserve">
+    <value>Sound Effects</value>
+  </data>
 </root>

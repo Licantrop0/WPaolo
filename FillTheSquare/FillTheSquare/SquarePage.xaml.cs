@@ -222,6 +222,9 @@ namespace FillTheSquare
 
         public void GreenMeansAnimation(IEnumerable<Border> borders)
         {
+            if (!SettingsViewModel.Instance.HintsEnabled)
+                return;
+
             GreenMeansAvailable.Stop();
             GreenMeansAvailable.Children.Clear();
 

@@ -151,6 +151,24 @@ namespace FillTheSquare.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hints.
+        /// </summary>
+        public static string Hints {
+            get {
+                return ResourceManager.GetString("Hints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home Music.
+        /// </summary>
+        public static string HomeMusic {
+            get {
+                return ResourceManager.GetString("HomeMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert your Name:.
         /// </summary>
         public static string InsertName {
@@ -284,6 +302,15 @@ namespace FillTheSquare.Localization {
         public static string Size {
             get {
                 return ResourceManager.GetString("Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sound Effects.
+        /// </summary>
+        public static string SoundEffects {
+            get {
+                return ResourceManager.GetString("SoundEffects", resourceCulture);
             }
         }
         

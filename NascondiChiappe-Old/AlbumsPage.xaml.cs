@@ -28,8 +28,8 @@ namespace NascondiChiappe
             }
             set
             {
-                if (SelectedAlbumWrapper != value)
-                    PhoneApplicationService.Current.State["selected_album"] = value;
+                if (SelectedAlbumWrapper == value) return;
+                PhoneApplicationService.Current.State["selected_album"] = value;
             }
         }
 
@@ -116,7 +116,9 @@ namespace NascondiChiappe
             if (e.TaskResult == TaskResult.OK)
             {
                 var fileName = AlbumPhoto.GetFileNameWithRotation(e.OriginalFileName, e.ChosenPhoto);
-                SelectedAlbum.AddPhoto(new AlbumPhoto(fileName, e.ChosenPhoto));
+                var p = new AlbumPhoto(fileName, e.ChosenPhoto);
+                if (!SelectedAlbum.AddPhoto(p))
+                    MessageBox.Show(AppResources.ErrorSavingPhoto);
                 e.ChosenPhoto.Close();
             }
         }

@@ -183,7 +183,7 @@
   <data name="Confirm" xml:space="preserve">
     <value>Conferma</value>
   </data>
-  <data name="ConfirmDelete" xml:space="preserve">
+  <data name="ConfirmAlbumDelete" xml:space="preserve">
     <value>Sei sicuro di voler eliminare l'Album {0}?</value>
   </data>
   <data name="DeleteSelectedPhotos" xml:space="preserve">
@@ -231,7 +231,7 @@
   <data name="ConfirmPhotoDelete" xml:space="preserve">
     <value>Sei sicuro di voler eliminare la Foto selezionata?</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="ErrorSavingPhoto" xml:space="preserve">
+    <value>Non sono riuscito a salvare la foto, riprova</value>
   </data>
 </root>

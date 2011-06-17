@@ -232,4 +232,7 @@ Password recovery is not available.</value>
   <data name="PhotosCopied" xml:space="preserve">
     <value>The Photos has been copied to your MediaLibrary</value>
   </data>
+  <data name="ErrorSavingPhoto" xml:space="preserve">
+    <value>Can't save the photo right now, please try again</value>
+  </data>
 </root>

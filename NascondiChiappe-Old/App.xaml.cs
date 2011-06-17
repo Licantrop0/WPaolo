@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
+using System.Collections.ObjectModel;
 
 namespace NascondiChiappe
 {
@@ -60,35 +61,39 @@ namespace NascondiChiappe
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("albums"))
-                IsolatedStorageSettings.ApplicationSettings["albums"] = new List<Album>();
+                IsolatedStorageSettings.ApplicationSettings["albums"] = new ObservableCollection<Album>();
 
-            (IsolatedStorageSettings.ApplicationSettings["albums"] as List<Album>)
-                .ForEach(a => AppContext.Albums.Add(a));
+            if (PhoneApplicationService.Current.State.ContainsKey("albums"))
+                AppContext.Albums = PhoneApplicationService.Current.State["albums"] as ObservableCollection<Album>;
+
+            else
+                AppContext.Albums = IsolatedStorageSettings.ApplicationSettings["albums"] as ObservableCollection<Album>;
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            //if (!PhoneApplicationService.Current.State.ContainsKey("albums"))
-            //    PhoneApplicationService.Current.State["albums"] = new List<Album>();
+            if (AppContext.Albums != null) return;
 
-            //(PhoneApplicationService.Current.State["albums"] as List<Album>)
-            //    .ForEach(a => AppContext.Albums.Add(a));
+            if (!PhoneApplicationService.Current.State.ContainsKey("albums"))
+                PhoneApplicationService.Current.State["albums"] = new ObservableCollection<Album>();
+
+            AppContext.Albums = PhoneApplicationService.Current.State["albums"] as ObservableCollection<Album>;
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
-          //  PhoneApplicationService.Current.State["albums"] = AppContext.Albums.ToList();
+            PhoneApplicationService.Current.State["albums"] = AppContext.Albums;
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-            IsolatedStorageSettings.ApplicationSettings["albums"] = AppContext.Albums.ToList();
+            IsolatedStorageSettings.ApplicationSettings["albums"] = AppContext.Albums;
         }
 
 

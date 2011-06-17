@@ -25,15 +25,26 @@ namespace NascondiChiappe
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            AddPhotosHintTextBlock.Visibility =
-                ImagesListBox.Items.Count == 0 ?
-                Visibility.Visible :
-                Visibility.Collapsed;
+            if (HintVisible)
+                HintVisible = ImagesListBox.Items.Count == 0;
         }
-        
+
+        public bool HintVisible
+        {
+            get { return AddPhotosHintTextBlock.Visibility == Visibility.Visible ? true : false; }
+            set { AddPhotosHintTextBlock.Visibility = value ? Visibility.Visible : Visibility.Collapsed; }
+        }
+
+        public bool ArePhotosSelected { get { return ImagesListBox.SelectedItems.Count > 0; } }
+
         private void ImagesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedChanged.Invoke(sender, e);
+        }
+
+        public IList<AlbumPhoto> SelectedPhotos
+        {
+            get { return ImagesListBox.SelectedItems.Cast<AlbumPhoto>().ToList(); }
         }
 
         private void GestureListener_DoubleTap(object sender, GestureEventArgs e)

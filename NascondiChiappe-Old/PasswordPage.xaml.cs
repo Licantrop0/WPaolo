@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NascondiChiappe.Localization;
+using System.IO.IsolatedStorage;
 
 namespace NascondiChiappe
 {
@@ -51,13 +52,21 @@ namespace NascondiChiappe
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             if (AppContext.IsPasswordInserted & !IsChangePasswordMode)
+            {
+                IsolatedStorageSettings.ApplicationSettings["albums"] = AppContext.Albums;
+                IsolatedStorageSettings.ApplicationSettings.Save();
                 throw new Exception("ForceExit");
+            }
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!AppContext.IsPasswordInserted & !IsChangePasswordMode)
+            {
+                IsolatedStorageSettings.ApplicationSettings["albums"] = AppContext.Albums;
+                IsolatedStorageSettings.ApplicationSettings.Save();
                 throw new Exception("ForceExit");
+            }
         }
 
         private void InitializeApplicationBar()

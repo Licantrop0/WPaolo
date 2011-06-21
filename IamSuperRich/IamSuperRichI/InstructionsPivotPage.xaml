@@ -99,7 +99,7 @@
                         </wpcommon:AboutControl.Foreground>
                     </wpcommon:AboutControl>
                     
-                    <TextBlock Grid.Row="0" TextAlignment="Left" TextWrapping="Wrap"
+                    <!--<TextBlock Grid.Row="0" TextAlignment="Left" TextWrapping="Wrap"
                                FontSize="22" Foreground="White" >
                         Updates:<LineBreak />
                         * NEW pivot layout<LineBreak />
@@ -107,7 +107,7 @@
                         * NEW youtube video and link<LineBreak />
                         * NEW fast shorcuts to all 8 apps,<LineBreak />
                         <Run Text="            " /> directly to the marketplace
-                    </TextBlock>
+                    </TextBlock>-->
 
                 </Grid>
             </ScrollViewer>

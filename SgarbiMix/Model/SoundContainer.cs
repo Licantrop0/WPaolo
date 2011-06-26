@@ -1,21 +1,11 @@
-﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+﻿using System.IO;
 using Microsoft.Xna.Framework.Audio;
-using System.IO;
 
-namespace SgarbiMix
+namespace SgarbiMix.Model
 {
     public class SoundContainer
     {
-        string _name;
+        public string Name { get; set; }
         UnmanagedMemoryStream _rawSound;
 
         private SoundEffect _sound;
@@ -32,7 +22,7 @@ namespace SgarbiMix
         public SoundContainer(string rawName, UnmanagedMemoryStream rawSound)
         {
             //Convenzione: "_" = spazio, "1" = punto esclamativo
-            _name = rawName.Replace("_", " ").Replace("1", "!");
+            Name = rawName.Replace("_", " ").Replace("1", "!");
             _rawSound = rawSound;
         }
 
@@ -43,7 +33,7 @@ namespace SgarbiMix
 
         public override string ToString()
         {
-            return _name;
+            return Name;
         }
     }
 }

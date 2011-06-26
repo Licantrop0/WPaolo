@@ -1,30 +1,70 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 using Microsoft.Phone.Controls;
-using Microsoft.Xna.Framework.Media;
-using System.ComponentModel;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
-using System.Globalization;
-using System.Collections;
-using System.IO;
+using SgarbiMix.ViewModel;
+using WPCommon;
 
 namespace SgarbiMix
 {
     public partial class PlayButtonsPivotPage : PhoneApplicationPage
     {
+        private int counter;
+
+        PlayButtonsViewModel _vm;
+        public PlayButtonsViewModel VM
+        {
+            get
+            {
+                if (_vm == null)
+                    _vm = LayoutRoot.DataContext as PlayButtonsViewModel;
+                return _vm;
+            }
+        }
+
         public PlayButtonsPivotPage()
         {
             InitializeComponent();
+            InitializeAdControl();
+            InizializeShaker();
+        }
+
+        private void InizializeShaker()
+        {
+            var _bCanExecuteSound = true;
+            var sd = new ShakeDetector();
+            var tmr = new DispatcherTimer();
+            var rnd = new Random();
+
+            tmr.Interval = TimeSpan.FromMilliseconds(700);
+            tmr.Tick += (sender, e) =>
+            {
+                tmr.Stop();
+                _bCanExecuteSound = true;
+            };
+
+            sd.ShakeDetected += (sender, e) =>
+            {
+                if (!CheckTrial()) return;
+
+                Dispatcher.BeginInvoke(() =>
+                {
+                    if (_bCanExecuteSound)
+                        VM.SoundResources[rnd.Next(VM.SoundResources.Length)].Play();
+
+                    _bCanExecuteSound = false;
+                    tmr.Start();
+                });
+            };
+
+            sd.Start();
+        }
+
+        private void InitializeAdControl()
+        {
             if (WPCommon.TrialManagement.IsTrialMode)
             {
                 AdPlaceHolder.Children.Add(new AdDuplex.AdControl() { AppId = "", IsTest = true });
@@ -39,100 +79,40 @@ namespace SgarbiMix
             }
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            //se ho già caricato i bottoni esco
-            if (ShortPlayButtonsStackPanel.Children.Count > 0)
-                return;
+            if (!CheckTrial()) return;
+            var b = sender as Button;
+            var sound = b.DataContext as Model.SoundContainer;
+            sound.Play();
+        }
 
-            WPCommon.ExtensionMethods.StartTrace("carico risorse");
-            //prendo la risorsa dei suoni castandola in un array ordinato
-            var sr = SoundsResources.ResourceManager
-                .GetResourceSet(CultureInfo.CurrentCulture, true, true)
-                .Cast<DictionaryEntry>()
-                .OrderBy(de => de.Key.ToString().Length)
-                .ToArray();
-            WPCommon.ExtensionMethods.EndTrace();
 
-            var bw = new BackgroundWorker() { WorkerReportsProgress = true };
-
-            //Configuro l'evento DoWork
-            bw.DoWork += (s, evt) =>
+        private bool CheckTrial()
+        {
+            if (TrialManagement.IsTrialMode && (App.alreadyOpen || (counter > (VM.SoundResources.Length / 4))))
             {
-                WPCommon.ExtensionMethods.StartTrace("ciclo sulla lista");
-                for (int i = 0; i < sr.Length; i++)
-                {
-                    //Aggiungo il suono alla lista dei suoni
-                    App.Sounds.Add(new SoundContainer(sr[i].Key.ToString(), (UnmanagedMemoryStream)sr[i].Value));
-                    bw.ReportProgress(i);
-                }
-                WPCommon.ExtensionMethods.EndTrace();
-            };
-
-            //Creo il bottone corrispondende al suono non appena caricato
-            bw.ProgressChanged += (s, evt) =>
-            {
-                var i = evt.ProgressPercentage;
-                var text = App.Sounds[i].ToString();
-                var b = new Button()
-                {
-                    Tag = i, //ATTENZIONE: creo un tag per recuperare l'i-esimo sound
-                    Content = text,
-                    Width = text.Length > 18 ? 468 : 230,
-                    Style = (Style)App.Current.Resources["PlayButtonStyle"]
-                };
-
-                b.Click += (button, evt1) =>
-                {
-                    //ATTENZIONE: uso il tag per recuperare l'i-esimo sound
-                    var SoundIndex = (int)((Button)button).Tag;
-                    App.Sounds[SoundIndex].Play();
-                };
-
-                if (b.Width > 400)
-                    LongPlayButtonsStackPanel.Children.Add(b);
-                else
-                    ShortPlayButtonsStackPanel.Children.Add(b);
-            };
-
-            bw.RunWorkerAsync();
+                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
+                return false;
+            }
+            //incremento ogni volta che chiamo checkTrial - cioè ad ogni click di suono
+            counter++;
+            return true;
         }
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)
         {
-            PlayBase("base1");
+            VM.PlayBase("base1");
         }
 
         private void Base2ApplicationBar_Click(object sender, EventArgs e)
         {
-            PlayBase("base2");
+            VM.PlayBase("base2");
         }
 
         private void Base3ApplicationBar_Click(object sender, EventArgs e)
         {
-            PlayBase("base3");
-        }
-
-        private static void PlayBase(string baseName)
-        {
-            if (AskAndPlayMusic())
-            {
-                if (MediaPlayer.Queue.Count == 1 && MediaPlayer.Queue.ActiveSong.Name == baseName && MediaPlayer.State == MediaState.Playing)
-                    MediaPlayer.Stop();
-                else
-                {
-                    MediaPlayer.Play(Song.FromUri(baseName, new Uri("sounds/" + baseName + ".mp3", UriKind.Relative)));
-                    MediaPlayer.IsRepeating = true;
-                }
-            }
-        }
-
-        public static bool AskAndPlayMusic()
-        {
-            return MediaPlayer.GameHasControl ?
-                true :
-                MessageBox.Show("Vuoi interrompere la canzone corrente e riprodurre la base su cui mixare le frasi di Sgarbi?",
-                    "SgarbiMix", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
+            VM.PlayBase("base3");
         }
 
         private void DisclaimerAppBarMenu_Click(object sender, EventArgs e)

@@ -35,12 +35,16 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="sfondo3.jpg" />
         </Grid.Background>
         <TextBlock Name="titleTextBox" Text="Ooops!"
-                   Width="456" Height="109" Margin="12,113,12,0"
-                   VerticalAlignment="Top" FontSize="80" TextAlignment="Center" FontWeight="SemiBold" >
+                   FontSize="80" TextAlignment="Center" FontWeight="SemiBold" >
         	<TextBlock.Foreground>
         		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
         			<GradientStop Color="#FFF70404" Offset="0"/>
@@ -49,22 +53,25 @@
         		</LinearGradientBrush>
         	</TextBlock.Foreground>
         </TextBlock>
-        <TextBlock Text="Questa è solo una demo! Puoi gridare le frasi di Sgarbi solo poche volte al giorno!  Se vuoi dire Capra! o Ignorante! come Sgarbi, in continuazione, devi comprare la versione completa.  Costa meno di un caffè!"
-                   Height="276" Margin="23,0,8,110"
-                   VerticalAlignment="Bottom" FontSize="28" TextWrapping="Wrap" OpacityMask="{x:Null}" FontWeight="SemiBold" >
+        <TextBlock Grid.Row="1" FontSize="32" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
+                   TextWrapping="Wrap" OpacityMask="{x:Null}" FontWeight="SemiBold">            
         	<TextBlock.Foreground>
             		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             			<GradientStop Color="#FFFFA400" Offset="0.414"/>
             			<GradientStop Color="#FFFFDE00" Offset="0.773"/>
             			<GradientStop Color="#FFFFAF00" Offset="0.591"/>
-            		</LinearGradientBrush>
+            		</LinearGradientBrush>                
         	</TextBlock.Foreground>
+            Questa è solo una demo.<LineBreak/>
+            Puoi gridare le frasi di Sgarbi solo poche volte al giorno!<LineBreak/>
+            Se vuoi dire "Capra!" o "Ignorante!" in continuazione come Sgarbi, devi comprare la versione completa.<LineBreak/>
+            Costa meno di un caffè, non perdere questa occasione!
         </TextBlock>
 
         <HyperlinkButton Name="BuyButton" Content="Clicca e comprala!"
                          FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                         Click="BuyButton_Click" Margin="0,694,0,12" FontWeight="SemiBold" Foreground="#FF08FF00" />
+                         Click="BuyButton_Click" FontWeight="SemiBold" Foreground="#FF08FF00" Grid.Row="2" />
     </Grid>
- 
+
 
 </phone:PhoneApplicationPage>

@@ -8,14 +8,13 @@ namespace SgarbiMix
 {
     public partial class App : Application
     {
-        public static List<SoundContainer> Sounds = new List<SoundContainer>();
+        public static bool alreadyOpen;
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
-
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
@@ -49,12 +48,14 @@ namespace SgarbiMix
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            alreadyOpen = WPCommon.TrialManagement.AlreadyOpenedToday;
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            alreadyOpen = WPCommon.TrialManagement.AlreadyOpenedToday;
         }
 
         // Code to execute when the application is deactivated (sent to background)

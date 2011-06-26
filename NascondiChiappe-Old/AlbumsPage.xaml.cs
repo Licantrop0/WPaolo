@@ -13,7 +13,10 @@ namespace NascondiChiappe
     public partial class AlbumsPage : PhoneApplicationPage
     {
         ApplicationBarIconButton CopyToMediaLibraryAppBarButton;
-        List<AlbumPhoto> SelectedPhotos;
+        ApplicationBarIconButton DeletePhotosAppBarButton;
+        ApplicationBarIconButton CopyFromMediaLibraryAppBarButton;
+
+        IList<AlbumPhoto> SelectedPhotos;
         private Album SelectedAlbum;
 
         private Album SelectedAlbumWrapper
@@ -66,12 +69,25 @@ namespace NascondiChiappe
         {
             if (AlbumsPivot.SelectedIndex != -1)
                 SelectedAlbum = e.AddedItems[0] as Album;
+            SelectedPhotos = null;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedPhotos = ((ListBox)sender).SelectedItems.Cast<AlbumPhoto>().ToList();
-            CopyToMediaLibraryAppBarButton.IsEnabled = SelectedPhotos.Count > 0;
+            if (SelectedPhotos.Count > 0)
+            {
+                if(ApplicationBar.Buttons.Count != 2) return;
+                ApplicationBar.Buttons.Remove(CopyFromMediaLibraryAppBarButton);
+                ApplicationBar.Buttons.Add(CopyToMediaLibraryAppBarButton);
+                ApplicationBar.Buttons.Add(DeletePhotosAppBarButton);
+            }
+            else
+            {
+                ApplicationBar.Buttons.Remove(CopyToMediaLibraryAppBarButton);
+                ApplicationBar.Buttons.Remove(DeletePhotosAppBarButton);
+                ApplicationBar.Buttons.Add(CopyFromMediaLibraryAppBarButton);
+            }
         }
 
         private void ImageList_DoubleTap(object sender, GestureEventArgs e)
@@ -159,19 +175,13 @@ namespace NascondiChiappe
 
         private void InitializeApplicationBar()
         {
-            //var ViewPhotoAppBarButton = new ApplicationBarIconButton();
-            //ViewPhotoAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_viewpic.png", UriKind.Relative);
-            //ViewPhotoAppBarButton.Text = AppResources.ViewPhoto;
-            //ViewPhotoAppBarButton.Click += new EventHandler(ViewPhotoAppBarButton_Click);
-            //ApplicationBar.Buttons.Add(ViewPhotoAppBarButton);
-
             var TakePictureAppBarButton = new ApplicationBarIconButton();
             TakePictureAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_camera.png", UriKind.Relative);
             TakePictureAppBarButton.Text = AppResources.TakePhoto;
             TakePictureAppBarButton.Click += new EventHandler(TakePictureAppBarButton_Click);
             ApplicationBar.Buttons.Add(TakePictureAppBarButton);
 
-            var CopyFromMediaLibraryAppBarButton = new ApplicationBarIconButton();
+            CopyFromMediaLibraryAppBarButton = new ApplicationBarIconButton();
             CopyFromMediaLibraryAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_addpicture.png", UriKind.Relative);
             CopyFromMediaLibraryAppBarButton.Text = AppResources.CopyFromMediaLibrary;
             CopyFromMediaLibraryAppBarButton.Click += new EventHandler(CopyFromMediaLibraryAppBarButton_Click);
@@ -180,22 +190,55 @@ namespace NascondiChiappe
             CopyToMediaLibraryAppBarButton = new ApplicationBarIconButton();
             CopyToMediaLibraryAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_sendphoto.png", UriKind.Relative);
             CopyToMediaLibraryAppBarButton.Text = AppResources.CopyToMediaLibrary;
-            CopyToMediaLibraryAppBarButton.IsEnabled = false;
             CopyToMediaLibraryAppBarButton.Click += new EventHandler(CopyToMediaLibraryAppBarButton_Click);
-            ApplicationBar.Buttons.Add(CopyToMediaLibraryAppBarButton);
+            //ApplicationBar.Buttons.Add(CopyToMediaLibraryAppBarButton);
+
+            DeletePhotosAppBarButton = new ApplicationBarIconButton();
+            DeletePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
+            DeletePhotosAppBarButton.Text = AppResources.DeleteSelectedPhotos;
+            DeletePhotosAppBarButton.Click += new EventHandler(DeletePhotosAppBarMenuItem_Click);
+            //ApplicationBar.Buttons.Add(DeletePhotosAppBarButton);
 
             var EditAlbumAppBarMenuItem = new ApplicationBarMenuItem();
             EditAlbumAppBarMenuItem.Text = AppResources.EditAlbum;
             EditAlbumAppBarMenuItem.Click += (sender, e) =>
-            { NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml?Album=" + SelectedAlbum.DirectoryName, UriKind.Relative)); };
+            { NavigationService.Navigate(new Uri("/AddRenameAlbumPage.xaml?Album=" + SelectedAlbum.DirectoryName, UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(EditAlbumAppBarMenuItem);
 
             var AddAlbumAppBarMenuItem = new ApplicationBarMenuItem();
             AddAlbumAppBarMenuItem.Text = AppResources.AddAlbum;
             AddAlbumAppBarMenuItem.Click += (sender, e) =>
-            { NavigationService.Navigate(new Uri("/AddEditAlbumPage.xaml", UriKind.Relative)); };
+            { NavigationService.Navigate(new Uri("/AddRenameAlbumPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(AddAlbumAppBarMenuItem);
+
+            var DeleteAlbumAppBarMenuItem = new ApplicationBarMenuItem();
+            DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
+            DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
+            ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
         }
+
+        void DeleteAlbumAppBarMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(string.Format(AppResources.ConfirmAlbumDelete, SelectedAlbum.Name),
+                AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                SelectedAlbum.RemoveDirectoryContent();
+                AppContext.Albums.Remove(SelectedAlbum);
+            }
+        }
+
+        void DeletePhotosAppBarMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(SelectedPhotos.Count == 1 ?
+                AppResources.ConfirmPhotoDelete :
+                AppResources.ConfirmPhotosDelete,
+                AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                for (int i = 0; i < SelectedPhotos.Count; i++)
+                    SelectedAlbum.RemovePhoto(SelectedPhotos[i]);
+            }
+        }
+
 
     }
 }

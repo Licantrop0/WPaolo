@@ -70,8 +70,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddEditAlbumPage.xaml.cs">
-      <DependentUpon>AddEditAlbumPage.xaml</DependentUpon>
+    <Compile Include="AddRenameAlbumPage.xaml.cs">
+      <DependentUpon>AddRenameAlbumPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppContext.cs" />
     <Compile Include="AlbumsPage.xaml.cs">
@@ -109,7 +109,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="AddEditAlbumPage.xaml">
+    <Page Include="AddRenameAlbumPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

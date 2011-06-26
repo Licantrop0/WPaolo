@@ -102,7 +102,7 @@ namespace NascondiChiappe
         }
 
         //TODO: da eliminare dopo aver implementato un ExifWriter
-        public Stream GetRotatedPhoto(Stream photo)
+        public Stream GetRotatedPhoto(Stream photo, double rotationAngle)
         {
             //727ms (average 4 samples)
             var bitmap = new BitmapImage();
@@ -111,32 +111,30 @@ namespace NascondiChiappe
             WriteableBitmap wbSource = new WriteableBitmap(bitmap);
             WriteableBitmap wbTarget = null;
 
-            photo.Position = 0;
-            //1447 (average 3 samples actual rotation)
-            switch (ExifReader.ReadJpeg(photo, string.Empty).Orientation)
+            switch (Convert.ToInt32(rotationAngle))
             {
-                case ExifOrientation.TopRight: //90°
+                case 90:
                     wbTarget = new WriteableBitmap(wbSource.PixelHeight, wbSource.PixelWidth);
                     for (int x = 0; x < wbSource.PixelWidth; x++)
                         for (int y = 0; y < wbSource.PixelHeight; y++)
                             wbTarget.Pixels[(wbSource.PixelHeight - y - 1) + x * wbTarget.PixelWidth] =
                                 wbSource.Pixels[x + y * wbSource.PixelWidth];
                     break;
-                case ExifOrientation.BottomRight: //180°
+                case 180:
                     wbTarget = new WriteableBitmap(wbSource.PixelWidth, wbSource.PixelHeight);
                     for (int x = 0; x < wbSource.PixelWidth; x++)
                         for (int y = 0; y < wbSource.PixelHeight; y++)
                             wbTarget.Pixels[(wbSource.PixelWidth - x - 1) + (wbSource.PixelHeight - y - 1) * wbSource.PixelWidth] =
                                 wbSource.Pixels[x + y * wbSource.PixelWidth];
                     break;
-                case ExifOrientation.BottomLeft: //270°
+                case 270:
                     wbTarget = new WriteableBitmap(wbSource.PixelHeight, wbSource.PixelWidth);
                     for (int x = 0; x < wbSource.PixelWidth; x++)
                         for (int y = 0; y < wbSource.PixelHeight; y++)
                             wbTarget.Pixels[y + (wbSource.PixelWidth - x - 1) * wbTarget.PixelWidth] =
                                 wbSource.Pixels[x + y * wbSource.PixelWidth];
                     break;
-                default: //0°
+                default: //0
                     photo.Position = 0;
                     return photo;
             }

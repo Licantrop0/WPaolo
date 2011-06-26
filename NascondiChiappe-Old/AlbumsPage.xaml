@@ -36,7 +36,9 @@
 
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
-                    <local:ImageList DataContext="{Binding Photos}" DoubleTap="ImageList_DoubleTap" />
+                    <local:ImageList DataContext="{Binding Photos}"
+                                     DoubleTap="ImageList_DoubleTap"
+                                     SelectedChanged="ListBox_SelectionChanged" />
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>

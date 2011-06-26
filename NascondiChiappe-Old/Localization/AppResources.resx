@@ -235,4 +235,7 @@ Password recovery is not available.</value>
   <data name="ErrorSavingPhoto" xml:space="preserve">
     <value>Can't save the photo right now, please try again</value>
   </data>
+  <data name="ChangePasswordHint" xml:space="preserve">
+    <value>To change password, open the Application Bar Menu</value>
+  </data>
 </root>

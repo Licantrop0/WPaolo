@@ -95,13 +95,21 @@ namespace NascondiChiappe
             RemovePhoto(photo);
         }
 
-        public void CopyToMediaLibrary(AlbumPhoto photo)
+        public bool CopyToMediaLibrary(AlbumPhoto photo)
         {
-            using (var file = isf.OpenFile(DirectoryName + "\\" + photo.Name, FileMode.Open, FileAccess.Read))
+            try
             {
-                MediaLibrary library = new MediaLibrary();
-                library.SavePicture(photo.Name, photo.GetRotatedPhoto(file));
+                using (var file = isf.OpenFile(DirectoryName + "\\" + photo.Name, FileMode.Open, FileAccess.Read))
+                {
+                    MediaLibrary library = new MediaLibrary();
+                    library.SavePicture(photo.Name, photo.GetRotatedPhoto(file, photo.RotationAngle));
+                }
             }
-        }
+            catch (IsolatedStorageException)
+            {
+                return false;
+            }
+            return true;
+      }
     }
 }

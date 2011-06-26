@@ -28,7 +28,7 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontSize" Value="21.333" />
             <Setter Property="Margin" Value="0,-2" />
             <Setter Property="Height" Value="80" />
             <Setter Property="BorderThickness" Value="6,4" />
@@ -44,8 +44,8 @@
                     </RadialGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="FontFamily" Value="Segoe Print"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="/SgarbiMix;component/Fonts/Fonts.zip#Segoe Print"/>
+            <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
     </Application.Resources>

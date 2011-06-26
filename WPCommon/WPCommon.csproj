@@ -60,6 +60,10 @@
     <Compile Include="AboutControl.xaml.cs">
       <DependentUpon>AboutControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AchievementListControl.xaml.cs">
+      <DependentUpon>AchievementListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Achievement.cs" />
     <Compile Include="FacebookSharer.cs" />
     <Compile Include="StandardConverters.cs" />
     <Compile Include="ExtensionMethods.cs" />
@@ -71,6 +75,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="AboutControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AchievementListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -89,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AD SDK\AdDuplex.AdControl.Silverlight.dll" />
+    <Resource Include="Img\lucchetto.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

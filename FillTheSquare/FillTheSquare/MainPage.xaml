@@ -79,7 +79,15 @@
             </Button>
 
             <Button Canvas.Left="0" Canvas.Top="382"
-                    Content="congratulations" Height="71" Width="238" Click="Button_Click" />
+                    Content="congratulations" Click="Button_Click" />
+            <Button Content="Achievements"
+                    Canvas.Left="249" Canvas.Top="240" >
+                <Custom:Interaction.Triggers>
+                    <Custom:EventTrigger EventName="Click">
+                        <ic:NavigateToPageAction TargetPage="/AchievementsPage.xaml"/>
+                    </Custom:EventTrigger>
+                </Custom:Interaction.Triggers>
+            </Button>
 
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
                     Height="80" Width="200"

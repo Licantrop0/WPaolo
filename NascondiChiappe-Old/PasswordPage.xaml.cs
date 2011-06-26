@@ -44,7 +44,7 @@ namespace NascondiChiappe
                 ChangePasswordAppBarMenuItem.Click += (sender1, e1) =>
                 { NavigationService.Navigate(new Uri("/PasswordPage.xaml?ChangePassword=1", UriKind.Relative)); };
                 ApplicationBar.MenuItems.Add(ChangePasswordAppBarMenuItem);
-
+                ChangePasswordHintTextBlock.Visibility = Visibility.Visible;
                 MainPasswordBox.Focus();
             }
         }

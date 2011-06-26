@@ -136,9 +136,12 @@ namespace NascondiChiappe
         void CopyToMediaLibraryAppBarButton_Click(object sender, EventArgs e)
         {
             foreach (var p in SelectedPhotos)
-                SelectedAlbum.CopyToMediaLibrary(p);
+                if (!SelectedAlbum.CopyToMediaLibrary(p))
+                {
+                    MessageBox.Show(AppResources.ErrorSavingPhoto);
+                    return;
+                }
 
-            //TODO: tradurre anche francese
             MessageBox.Show(SelectedPhotos.Count == 1 ?
                 AppResources.PhotoCopied :
                 AppResources.PhotosCopied);

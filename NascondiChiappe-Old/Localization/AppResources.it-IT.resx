@@ -234,4 +234,7 @@
   <data name="ErrorSavingPhoto" xml:space="preserve">
     <value>Non sono riuscito a salvare la foto, riprova</value>
   </data>
+  <data name="ChangePasswordHint" xml:space="preserve">
+    <value>Per cambiare la password, apri il menu dell'Application Bar</value>
+  </data>
 </root>

@@ -12,11 +12,11 @@ using NascondiChiappe.Localization;
 
 namespace NascondiChiappe
 {
-    public partial class AddEditAlbumPage : PhoneApplicationPage
+    public partial class AddRenameAlbumPage : PhoneApplicationPage
     {
         Album CurrentAlbum;
 
-        public AddEditAlbumPage()
+        public AddRenameAlbumPage()
         {
             InitializeComponent();
             InitializeApplicationBar();
@@ -42,18 +42,6 @@ namespace NascondiChiappe
 
                 //Imposta la lista degli eventuali altri album su cui spostare le foto
                 AlbumsListBox.ItemsSource = AppContext.Albums.Where(a => a.DirectoryName != CurrentAlbum.DirectoryName);
-
-                var DeletePhotosAppBarButton = new ApplicationBarIconButton();
-                DeletePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
-                DeletePhotosAppBarButton.Text = AppResources.DeleteSelectedPhotos;
-                DeletePhotosAppBarButton.IsEnabled = false;
-                DeletePhotosAppBarButton.Click += new EventHandler(DeletePhotosAppBarMenuItem_Click);
-                ApplicationBar.Buttons.Add(DeletePhotosAppBarButton);
-
-                var DeleteAlbumAppBarMenuItem = new ApplicationBarMenuItem();
-                DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
-                DeleteAlbumAppBarMenuItem.Click += new EventHandler(DeleteAlbumAppBarMenuItem_Click);
-                ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
             }
             else
                 AlbumNameTextBox.Focus();
@@ -93,26 +81,6 @@ namespace NascondiChiappe
             PopupBorder.Visibility = Visibility.Visible;
         }
 
-        void DeletePhotosAppBarMenuItem_Click(object sender, EventArgs e)
-        {
-            var SelectedPhotos = ImagesList.SelectedPhotos;
-
-            if (SelectedPhotos.Count == 0)
-            {
-                MessageBox.Show(AppResources.SelectPhotos);
-                return;
-            }
-
-            //TODO: tradurre anche Francese
-            if (MessageBox.Show(SelectedPhotos.Count == 1 ?
-                AppResources.ConfirmPhotoDelete :
-                AppResources.ConfirmPhotosDelete,
-                AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-            {
-                for (int i = 0; i < SelectedPhotos.Count; i++)
-                    CurrentAlbum.RemovePhoto(SelectedPhotos[i]);
-            }
-        }
 
         void SaveAppBarButton_Click(object sender, EventArgs e)
         {
@@ -136,17 +104,6 @@ namespace NascondiChiappe
                 AppContext.Albums.Add(new Album(AlbumNameTextBox.Text, CurrentAlbum.DirectoryName));
             }
             NavigationService.GoBack();
-        }
-
-        void DeleteAlbumAppBarMenuItem_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(string.Format(AppResources.ConfirmAlbumDelete, CurrentAlbum.Name),
-                AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-            {
-                CurrentAlbum.RemoveDirectoryContent();
-                AppContext.Albums.Remove(CurrentAlbum);
-                NavigationService.GoBack();
-            }
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)

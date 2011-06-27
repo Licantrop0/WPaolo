@@ -50,13 +50,7 @@ namespace Virus
             {
                 case WhiteGlobuloState.moving:
 
-                    if (_actSpriteEvent == null || _actSpriteEvent.Code == SpriteEventCode.borderCollision)
-                    {
-                        SetForce();
-                        Move();
-                        Animate();
-                    }
-                    else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
+                    if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
                         _state = WhiteGlobuloState.fading;
                         _touchable = false;
@@ -70,11 +64,17 @@ namespace Virus
                         _touchable = false;
                         Speed = Vector2.Zero;
                         ScalingSpeed = -1.125f;
-                        if((int)Position.X % 2 == 0)
-                            RotationSpeed =  2.25f * (float)Math.PI;
+                        if ((int)Position.X % 2 == 0)
+                            RotationSpeed = 2.25f * (float)Math.PI;
                         else
                             RotationSpeed = -2.25f * (float)Math.PI;
                         _utilityTimer = 0;
+                    }
+                    else
+                    {
+                        SetForce();
+                        Move();
+                        Animate();
                     }
 
                     break;

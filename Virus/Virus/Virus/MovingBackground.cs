@@ -43,7 +43,7 @@ namespace Virus
 
         public MovingBackground(Texture2D[] textureArray, float startOffset, float endOffset)
         {
-            _backgroundTextureArray = textureArray;;
+            _backgroundTextureArray = textureArray;
             _speed = 0;
             _effects = BackgroundEffects.none;
 

@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BossLung.cs" />
     <Compile Include="CircularSprite.cs" />
     <Compile Include="CustomTimeVariable.cs" />
     <Compile Include="GameEventHandler.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="GameEvent.cs" />
     <Compile Include="GoToVirusBonus.cs" />
     <Compile Include="ITouchable.cs" />
+    <Compile Include="RectangularSprite.cs" />
     <Compile Include="SpriteFactory.cs" />
     <Compile Include="PhysicalPoint.cs" />
     <Compile Include="MovingBackground.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Sprite.cs" />
     <Compile Include="Animation.cs" />
     <Compile Include="SpriteEventCodes.cs" />
+    <Compile Include="Utilities.cs" />
     <Compile Include="Virus.cs" />
     <Compile Include="WhiteGlobulo.cs" />
     <None Include="Properties\AppManifest.xml">

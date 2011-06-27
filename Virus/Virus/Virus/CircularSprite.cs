@@ -25,7 +25,7 @@ namespace Virus
         // ITouchable implementation
         public bool Touched(Vector2 fingerPosition)
         {
-            return (Touchable() && Vector2.Distance(_physicalPoint.Position, fingerPosition) < _touchRadius );
+            return (Touchable() && Vector2.Distance(Position, fingerPosition) < _touchRadius );
         }
 
         public bool Touchable()

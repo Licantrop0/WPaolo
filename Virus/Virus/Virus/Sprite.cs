@@ -39,10 +39,10 @@ namespace Virus
         private float _angle;
         private float _scale;
 
-        private float _rotationSpeed;
-        private float _scalingSpeed;
+        protected float _rotationSpeed;
+        protected float _scalingSpeed;
 
-        private float _fadeSpeed;
+        protected float _fadeSpeed;
 
         private float _blinkingPeriod;
         private float _blikingTimeElapsed;

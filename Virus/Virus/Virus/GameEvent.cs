@@ -18,7 +18,9 @@ namespace Virus
         createBombPlusBonus,
         scheduleSimpleEnemyCreation,
         scheduleAcceleratedEnemyCreation,
-        scheduleOrbitalEnemyCreation
+        scheduleOrbitalEnemyCreation,
+        ScheduleBombBonusCreation,
+        ChangeLevel1Difficulty
     }
 
     public class GameEvent
@@ -29,11 +31,21 @@ namespace Virus
 
         public GameEventHandler Subscriber { get; set; }
 
+        public Object[] Params { get; set; }
+
         public GameEvent(TimeSpan time, GameEventType et, GameEventHandler subscriber)
         {
             GameTimer = time;
             EventType = et;
             Subscriber = subscriber;
+        }
+
+        public GameEvent(TimeSpan time, GameEventType et, GameEventHandler subscriber, Object[] parameters)
+        {
+            GameTimer = time;
+            EventType = et;
+            Subscriber = subscriber;
+            Params = parameters;
         }
     }
 }

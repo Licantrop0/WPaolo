@@ -10,7 +10,8 @@ namespace Virus
         fingerHit,
         virusGlobuloCollision,
         virusBonusCollision,
-        borderCollision
+        borderCollision,
+        awake
     }
 
 }

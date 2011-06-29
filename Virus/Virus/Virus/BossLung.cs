@@ -22,16 +22,29 @@ namespace Virus
         const float DELTA_SPACE = 45;
         const float DELTA_ANGLE = (float)Math.PI * (150 / 180);
 
+        static GameEventsManager _gameManager;
+        static MonsterFactory _monsterFactory;
+
+        static public GameEventsManager GameManager { set { _gameManager = value; } }
+        static public MonsterFactory MonsterFactory { set { _monsterFactory = value; } }
+
         int _hitPoints;
         MouthState _state;
         Vector2 _leavingSpeed;
 
-        float _utilityTimer;
-        float _approchingTime;
+        float _timer;
+        float _firingTimer;
+
+        float _approachingTime;
         float _rotatingTime;
 
-        float _firingPeriod;
-        float _firingTimer;
+        int _spittedGlobulos = 4;
+        float _globulosSpeed = 200;
+
+        public float ApprochingTime { set { _approachingTime = value; } }
+        public float RotatingTime { set { _rotatingTime = value; } }
+        public float GlobulosSpeed { set { _globulosSpeed = value; } }
+        public int HitPoints { set { _hitPoints = value; } }
 
         public MouthState State
         { get { return _state; } }
@@ -41,7 +54,15 @@ namespace Virus
         {
             _hitPoints = 10;
             _state = MouthState.idle;
+            Position = new Vector2(-100, -100);
+        }
 
+        private void FireGlobulo(TimeSpan t)
+        {
+            Vector2 speedVersor = new Vector2((float)Math.Cos(Angle), (float)Math.Sin(Angle));
+            Vector2 position = Position + 15 * speedVersor;
+            _gameManager.ScheduleEvent(new GameEvent(t, GameEventType.createBouncingEnemy, _monsterFactory,
+                new Object[] { position, speedVersor * _globulosSpeed }));
         }
 
         public override void Update(GameTime gameTime)
@@ -56,22 +77,22 @@ namespace Virus
                     {
                         // assign leaving speed
                         _leavingSpeed = -Speed;
-                        _approchingTime = DELTA_SPACE / Speed.Length();
-                        _rotatingTime = DELTA_ANGLE / Math.Abs(_rotationSpeed);
+                        _approachingTime = DELTA_SPACE / Speed.Length();
+                        _rotatingTime = (DELTA_ANGLE * 0.5f) / Math.Abs(_rotationSpeed);
                         Angle = (float)Math.Atan2(Speed.Y, Speed.X);
 
-                        _utilityTimer = 0;
+                        _timer = 0;
                         _state = MouthState.approching;
                     }
                     break;
 
                 case MouthState.approching:
 
-                    _utilityTimer += _elapsedTime;
+                    _timer += _elapsedTime;
 
-                    if (_utilityTimer > _approchingTime)
+                    if (_timer > _approachingTime)
                     {
-                        _utilityTimer = 0;
+                        _timer = 0;
                         _state = MouthState.preRotating;
                     }
                     else
@@ -83,12 +104,16 @@ namespace Virus
 
                 case MouthState.preRotating:
 
-                    _utilityTimer += _elapsedTime;
+                    _timer += _elapsedTime;
 
-                    if (_utilityTimer > _rotatingTime)
+                    if (_timer > _rotatingTime / 2)
                     {
                         _rotationSpeed = -_rotationSpeed;
-                        _utilityTimer = 0;
+                        _timer = 0;
+                        _firingTimer = 0;
+
+                        FireGlobulo(gameTime.ElapsedGameTime);
+
                         _state = MouthState.rotatingAndFiring;
                     }
                     else
@@ -99,10 +124,61 @@ namespace Virus
                     break;
 
                 case MouthState.rotatingAndFiring:
+
+                    _timer += _elapsedTime;
+                    _firingTimer += _elapsedTime;
+
+                    Rotate();
+
+                    if (_firingTimer > _timer / _spittedGlobulos)
+                    {
+                        _firingTimer -= _timer / _spittedGlobulos;
+                        FireGlobulo(gameTime.ElapsedGameTime);
+                    }
+
+                    if (_timer > _rotatingTime)
+                    {
+                        _rotationSpeed = -_rotationSpeed;
+                        _timer = 0;
+
+                        _state = MouthState.postRotating;
+                    }
+
+                    break;
+
+                case MouthState.postRotating:
+
+                    _timer += _elapsedTime;
+
+                    if (_timer > _rotatingTime / 2)
+                    {
+                        Speed = _leavingSpeed;
+                        _timer = 0;
+                        _state = MouthState.leaving;
+                    }
+                    else
+                    {
+                        Rotate();
+                    }
+
                     break;
 
                 case MouthState.leaving:
+
+                    _timer += _elapsedTime;
+
+                    if (_timer > _approachingTime)
+                    {
+                        _timer = 0;
+                        _state = MouthState.idle;
+                    }
+                    else
+                    {
+                        Move();
+                    }
+                        
                     break;
+
 
                 case MouthState.died:
                     break;
@@ -139,13 +215,38 @@ namespace Virus
 
         Random _dice  = new Random(DateTime.Now.Millisecond);
 
-        public BossLung(Dictionary<string, Animation> animations, float width, float height, float touchWidth, float touchHeight)
+        public BossLung(Dictionary<string, Animation> animations, float width, float height, float touchWidth, float touchHeight, 
+            Dictionary<string, Animation> mouthAnimation, GameEventsManager gm, MonsterFactory mf)
             : base(animations, width, height, touchWidth, touchHeight)
         {
-            
+            // initialize mouths
+            Mouth.GameManager = gm;
+            Mouth.MonsterFactory = mf;
 
+            int i = 0;
+
+            _leftMouths = new Mouth[5];
+            for (i = 0; i < 5; i++)
+                _leftMouths[i] = new Mouth(mouthAnimation, 40, 40);
+
+            _bottomMouths = new Mouth[5];
+            for (i = 0; i < 5; i++)
+                _bottomMouths[i] = new Mouth(mouthAnimation, 40, 40);
+
+            _rightMouths = new Mouth[5];
+            for (i = 0; i < 5; i++)
+                _rightMouths[i] = new Mouth(mouthAnimation, 40, 40);
+
+            _leftTimeToCall = (float)_dice.RandomDouble(2,5);
+            _bottomTimeToCall = (float)_dice.RandomDouble(2, 5);
+            _rightTimeToCall = (float)_dice.RandomDouble(2, 5);
         }
 
+        protected override void InitializePhysics()
+        {
+            _physicalPoint = new PhysicalMassSystemPoint();
+        }
+         
         private void AwakeMouth(Mouth[] mouthArray, bool vertical, float fixedPosition, float variablePositionMin, float variablePositionMax, float distance, Vector2 speedVersor)
         {
             // chose randomly the mouth to awake
@@ -256,7 +357,11 @@ namespace Virus
 
         private void UpdateMouthSpeedParameters()
         {
-            throw new NotImplementedException();
+            _approchingPeriodMin = 4;
+            _approchingPeriodMax = 6;
+
+            _approchingSpeed = 60;
+            _rotatingSpeed = (float)Math.PI / 8;
         }
 
     }

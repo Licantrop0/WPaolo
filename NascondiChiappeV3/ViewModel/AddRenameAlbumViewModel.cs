@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using NascondiChiappe.Helpers;
 using NascondiChiappe.Model;
+using NascondiChiappe.Localization;
 
 namespace NascondiChiappe.ViewModel
 {
@@ -22,14 +23,23 @@ namespace NascondiChiappe.ViewModel
             }
         }
 
-        private Album _selectedAlbum = null;
-        public Album SelectedAlbum
+        public string Title
         {
             get
             {
-                return _selectedAlbum;
+                return IsNewAlbumMode ?
+                    AppResources.AddAlbum :
+                    AppResources.RenameAlbum;
             }
+        }
 
+        public bool IsNewAlbumMode
+        { get { return string.IsNullOrEmpty(SelectedAlbum.DirectoryName); } }
+
+        private Album _selectedAlbum = null;
+        public Album SelectedAlbum
+        {
+            get { return _selectedAlbum; } 
             set
             {
                 if (_selectedAlbum == value)
@@ -55,7 +65,7 @@ namespace NascondiChiappe.ViewModel
 
         private void SaveAlbumAction()
         {
-            if (string.IsNullOrEmpty(SelectedAlbum.DirectoryName))
+            if (IsNewAlbumMode)
             {
                 SelectedAlbum.DirectoryName = Guid.NewGuid().ToString();
                 AppContext.Albums.Add(new ImageListViewModel(SelectedAlbum));

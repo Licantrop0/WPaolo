@@ -40,27 +40,28 @@ namespace NascondiChiappe.View
         private void AlbumNameTextBox_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             AlbumNameTextBox.Focus();
+            AlbumNameTextBox.SelectAll();
         }
 
         private void AlbumNameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 SaveAlbum();
-            }
-
-        private void InitializeApplicationBar()
-        {
-            var SaveAppBarButton = new ApplicationBarIconButton();
-            SaveAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_save.png", UriKind.Relative);
-            SaveAppBarButton.Text = NascondiChiappe.Localization.AppResources.Save;
-            SaveAppBarButton.Click += (sender, e) => { SaveAlbum(); };
-            ApplicationBar.Buttons.Add(SaveAppBarButton);
         }
 
         private void SaveAlbum()
         {
             if (!CheckAlbumName())
                 return;
+
+            if (WPCommon.TrialManagement.IsTrialMode &&
+                AppContext.Albums.Count > 0 &&
+                VM.IsNewAlbumMode)
+            {
+                //TODO: andare nella pagina trial
+                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
+                return;
+            }
 
             this.Focus();
             AlbumNameTextBox.GetBindingExpression(
@@ -80,6 +81,13 @@ namespace NascondiChiappe.View
             return true;
         }
 
-
+        private void InitializeApplicationBar()
+        {
+            var SaveAppBarButton = new ApplicationBarIconButton();
+            SaveAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_save.png", UriKind.Relative);
+            SaveAppBarButton.Text = NascondiChiappe.Localization.AppResources.Save;
+            SaveAppBarButton.Click += (sender, e) => { SaveAlbum(); };
+            ApplicationBar.Buttons.Add(SaveAppBarButton);
+        }
     }
 }

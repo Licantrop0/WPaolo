@@ -53,7 +53,6 @@ namespace NascondiChiappe
         {
             if (AppContext.IsPasswordInserted & !IsChangePasswordMode)
             {
-                IsolatedStorageSettings.ApplicationSettings["albums"] = AppContext.Albums;
                 IsolatedStorageSettings.ApplicationSettings.Save();
                 throw new Exception("ForceExit");
             }
@@ -63,7 +62,6 @@ namespace NascondiChiappe
         {
             if (!AppContext.IsPasswordInserted & !IsChangePasswordMode)
             {
-                IsolatedStorageSettings.ApplicationSettings["albums"] = AppContext.Albums;
                 IsolatedStorageSettings.ApplicationSettings.Save();
                 throw new Exception("ForceExit");
             }

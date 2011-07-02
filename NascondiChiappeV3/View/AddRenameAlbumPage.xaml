@@ -16,12 +16,11 @@
     <StackPanel x:Name="LayoutRoot"
                 DataContext="{Binding Source={StaticResource Locator}, Path=AddRenameAlbumVM}"
                 Background="{StaticResource BackgroundImage}">
-        <TextBlock x:Name="PageTitle" Style="{StaticResource TitleStyle}" 
-                   Text="{Binding LocalizedResources.AddAlbum, Source={StaticResource LocalizedStrings}}" />
+        <TextBlock Style="{StaticResource TitleStyle}" Text="{Binding Title}" />
         <TextBox x:Name="AlbumNameTextBox" Style="{StaticResource TextBoxStyle}"
                      Text="{Binding SelectedAlbum.Name, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
                      KeyDown="AlbumNameTextBox_KeyDown" Loaded="AlbumNameTextBox_Loaded" />
-        <TextBlock Name="OneAlbumNecessaryTextBlock" Visibility="{Binding OneAlbumNecessary}"
+        <TextBlock Visibility="{Binding OneAlbumNecessary}"
                    Text="{Binding Path=LocalizedResources.OneAlbumNecessary, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource HintTextBlockStyle}" />
     </StackPanel>

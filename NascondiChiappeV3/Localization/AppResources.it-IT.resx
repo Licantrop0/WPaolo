@@ -168,8 +168,8 @@
   <data name="AddAlbum" xml:space="preserve">
     <value>Aggiungi Album</value>
   </data>
-  <data name="EditAlbum" xml:space="preserve">
-    <value>Modifica Album</value>
+  <data name="RenameAlbum" xml:space="preserve">
+    <value>Rinomina Album</value>
   </data>
   <data name="AlbumNameRequired" xml:space="preserve">
     <value>Il nome dell'Album è necessario</value>

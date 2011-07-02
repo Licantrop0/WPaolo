@@ -9,6 +9,7 @@ using Microsoft.Phone.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace NascondiChiappe.ViewModel
 {
@@ -31,8 +32,28 @@ namespace NascondiChiappe.ViewModel
 
                 _selectedAlbum = value;
                 RaisePropertyChanged("SelectedAlbum");
+                RaisePropertyChanged("OtherAlbums");
+
                 //Messaggio per aggiornare l'ApplicationBar nella View
                 Messenger.Default.Send<bool>(ArePhotosSelected, "SelectedPhotos");
+            }
+        }
+
+        public IEnumerable<ImageListViewModel> OtherAlbums
+        {
+            get { return Albums.Except(new ImageListViewModel[] { SelectedAlbum }); }
+        }
+
+        private ImageListViewModel _moveToAlbum;
+        public ImageListViewModel MoveToAlbum
+        {
+            get { return _moveToAlbum; }
+            set
+            {
+                _moveToAlbum = value;
+
+                if (_moveToAlbum != null)
+                    MovePhotos.Execute(_moveToAlbum.Model);
             }
         }
 
@@ -41,7 +62,7 @@ namespace NascondiChiappe.ViewModel
             Albums.CollectionChanged += (semder, e) =>
             {
                 SelectedAlbum = e.NewStartingIndex == -1 ?
-                    Albums.First() :
+                    Albums.FirstOrDefault() :
                     Albums[e.NewStartingIndex];
             };
         }
@@ -225,11 +246,11 @@ namespace NascondiChiappe.ViewModel
 
         private bool IsTrialWithCheck()
         {
-            //if (WPCommon.TrialManagement.IsTrialMode && SelectedAlbum.Model.Photos.Count >= 4)
-            //{
-            //    NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
-            //    return true;
-            //}
+            if (WPCommon.TrialManagement.IsTrialMode && SelectedAlbum.Model.Photos.Count >= 4)
+            {
+                NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
+                return true;
+            }
             return false;
         }
 

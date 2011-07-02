@@ -1,0 +1,104 @@
+﻿<phone:PhoneApplicationPage xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP7"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    x:Class="NascondiChiappe.View.AlbumsPage"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
+                              BackgroundColor="#BF000000"
+                              ForegroundColor="{StaticResource PhoneAccentColor}"
+                              Opacity="0.99" />
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+    <Grid x:Name="LayoutRoot"
+          DataContext="{Binding AlbumsVM, Source={StaticResource Locator}}"
+          Background="{StaticResource BackgroundImage}">
+        <controls:Pivot x:Name="AlbumsPivot" ItemsSource="{Binding Albums}"
+                        SelectedItem="{Binding SelectedAlbum, Mode=TwoWay}" Margin="0,-1,0,1">
+            <controls:Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Model.Name}"
+                               Style="{StaticResource TitleStyle}" />
+                </DataTemplate>
+            </controls:Pivot.HeaderTemplate>
+            <controls:Pivot.ItemTemplate>
+                <DataTemplate>
+                    <Grid>                        
+                        <ListBox x:Name="ImagesListBox" Margin="0,-30,0,0"
+                                 ItemsSource="{Binding Model.Photos}"
+                                 ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
+                                 SelectionMode="Multiple" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <cmd:EventToCommand
+                                        Command="{Binding SelectionChangedCommand}"
+                                        PassEventArgsToCommand="True" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Bitmap}" Margin="12"
+                                           RenderTransformOrigin="0.5,0.5"
+                                           RenderTransform="{Binding RotationAngle, Converter={StaticResource RotationConverter}}">
+                                         <toolkit:GestureService.GestureListener>
+                                           <toolkit:GestureListener DoubleTap="GestureListener_DoubleTap" /> 
+                                        </toolkit:GestureService.GestureListener>
+                                    </Image>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <toolkit:WrapPanel ItemWidth="225" ItemHeight="225"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+
+                        <TextBlock x:Name="AddPhotosHintTextBlock" Visibility="{Binding HintVisibility}"
+                                   Text="{Binding LocalizedResources.AddPhotosHint, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HintTextBlockStyle}" />
+                    </Grid>
+
+
+                </DataTemplate>
+            </controls:Pivot.ItemTemplate>
+        </controls:Pivot>
+
+        <TextBlock x:Name="InfoTextBlock" Style="{StaticResource TextBlockStyle}"
+                   VerticalAlignment="Bottom" />
+
+        <Rectangle x:Name="PopupBackground"
+                   Fill="#CC000000" Visibility="Collapsed"/>
+        <Border x:Name="PopupBorder"
+                CornerRadius="10" Visibility="Collapsed"
+                BorderBrush="WhiteSmoke"
+                Background="Black"
+                BorderThickness="{StaticResource PhoneBorderThickness}"
+                VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ListBox x:Name="AlbumsListBox" Margin="24" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,8" TextAlignment="Center"
+                                   Style="{StaticResource TextBlockStyle}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+    </Grid>
+</phone:PhoneApplicationPage>

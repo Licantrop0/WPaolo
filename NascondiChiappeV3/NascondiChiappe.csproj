@@ -85,7 +85,11 @@
     <Compile Include="Helpers\INavigationService.cs" />
     <Compile Include="Helpers\NavigationService.cs" />
     <Compile Include="Helpers\RotationConverter.cs" />
-    <Compile Include="Localization\AppResources.Designer.cs" />
+    <Compile Include="Localization\AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Localization\LocalizedStrings.cs" />
     <Compile Include="Messages\ViewPhotoMessage.cs" />
     <Compile Include="Model\Album.cs" />
@@ -195,11 +199,19 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\WPCommon\WPCommon.csproj">
+      <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
+      <Name>WPCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\AppResources.fr-FR.resx" />
     <EmbeddedResource Include="Localization\AppResources.it-IT.resx" />
-    <EmbeddedResource Include="Localization\AppResources.resx" />
+    <EmbeddedResource Include="Localization\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

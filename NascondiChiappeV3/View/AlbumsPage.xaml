@@ -14,15 +14,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
-
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
-                              BackgroundColor="#BF000000"
-                              ForegroundColor="{StaticResource PhoneAccentColor}"
-                              Opacity="0.99" />
-    </phone:PhoneApplicationPage.ApplicationBar>
-
+    shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+    
     <Grid x:Name="LayoutRoot"
           DataContext="{Binding AlbumsVM, Source={StaticResource Locator}}"
           Background="{StaticResource BackgroundImage}">
@@ -71,8 +64,6 @@
                                    Text="{Binding LocalizedResources.AddPhotosHint, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HintTextBlockStyle}" />
                     </Grid>
-
-
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>
@@ -88,10 +79,12 @@
                 Background="Black"
                 BorderThickness="{StaticResource PhoneBorderThickness}"
                 VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ListBox x:Name="AlbumsListBox" Margin="24" >
+            <ListBox Margin="24" ItemsSource="{Binding OtherAlbums}"
+                     SelectionChanged="AlbumsListBox_SelectionChanged"
+                     SelectedItem="{Binding MoveToAlbum, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"
+                        <TextBlock Text="{Binding Model.Name}"
                                    HorizontalAlignment="Center"
                                    Margin="0,8" TextAlignment="Center"
                                    Style="{StaticResource TextBlockStyle}" />
@@ -101,4 +94,12 @@
         </Border>
 
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
+                              BackgroundColor="#BF000000"
+                              ForegroundColor="{StaticResource PhoneAccentColor}"
+                              Opacity="0.99" />
+    </phone:PhoneApplicationPage.ApplicationBar>
+    
 </phone:PhoneApplicationPage>

@@ -15,6 +15,7 @@ using NascondiChiappe.Localization;
 using NascondiChiappe.ViewModel;
 using NascondiChiappe.Model;
 using GalaSoft.MvvmLight.Messaging;
+using System.ComponentModel;
 
 namespace NascondiChiappe.View
 {
@@ -59,11 +60,6 @@ namespace NascondiChiappe.View
             }
         }
 
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void UpdateSelectionButtons(bool areSelected)
         {
             if (areSelected)
@@ -96,7 +92,24 @@ namespace NascondiChiappe.View
 
         void ShowOtherAlbumsListPopup(object sender, EventArgs e)
         {
+            PopupBackground.Visibility = Visibility.Visible;
+            PopupBorder.Visibility = Visibility.Visible;
+        }
 
+        private void AlbumsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PopupBackground.Visibility = Visibility.Collapsed;
+            PopupBorder.Visibility = Visibility.Collapsed;
+        }
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
+        {
+            if (PopupBorder.Visibility == Visibility.Visible)
+            {
+                PopupBackground.Visibility = Visibility.Collapsed;
+                PopupBorder.Visibility = Visibility.Collapsed;
+                e.Cancel = true;
+            }
         }
 
         private void InitializeApplicationBar()
@@ -128,21 +141,20 @@ namespace NascondiChiappe.View
             MovePhotosAppBarButton.Text = AppResources.MoveSelectedPhotos;
             MovePhotosAppBarButton.Click += new EventHandler(ShowOtherAlbumsListPopup);
 
-            var RenameAlbumAppBarMenuItem = new ApplicationBarMenuItem();
-            RenameAlbumAppBarMenuItem.Text = AppResources.EditAlbum;
-            RenameAlbumAppBarMenuItem.Click += (sender, e) => { VM.RenameAlbum.Execute(null); };
-            ApplicationBar.MenuItems.Add(RenameAlbumAppBarMenuItem);
-
             var AddAlbumAppBarMenuItem = new ApplicationBarMenuItem();
             AddAlbumAppBarMenuItem.Text = AppResources.AddAlbum;
             AddAlbumAppBarMenuItem.Click += (sender, e) => { VM.NewAlbum.Execute(null); };
             ApplicationBar.MenuItems.Add(AddAlbumAppBarMenuItem);
+
+            var RenameAlbumAppBarMenuItem = new ApplicationBarMenuItem();
+            RenameAlbumAppBarMenuItem.Text = AppResources.RenameAlbum;
+            RenameAlbumAppBarMenuItem.Click += (sender, e) => { VM.RenameAlbum.Execute(null); };
+            ApplicationBar.MenuItems.Add(RenameAlbumAppBarMenuItem);
 
             var DeleteAlbumAppBarMenuItem = new ApplicationBarMenuItem();
             DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
             DeleteAlbumAppBarMenuItem.Click += (sender, e) => { VM.DeleteAlbum.Execute(null); };
             ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
         }
-
     }
 }

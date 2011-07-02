@@ -1,0 +1,36 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="NascondiChiappe.View.AddRenameAlbumPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+
+    <StackPanel x:Name="LayoutRoot"
+                DataContext="{Binding Source={StaticResource Locator}, Path=AddRenameAlbumVM}"
+                Background="{StaticResource BackgroundImage}">
+        <TextBlock x:Name="PageTitle" Style="{StaticResource TitleStyle}" 
+                   Text="{Binding LocalizedResources.AddAlbum, Source={StaticResource LocalizedStrings}}" />
+        <TextBox x:Name="AlbumNameTextBox" Style="{StaticResource TextBoxStyle}"
+                     Text="{Binding SelectedAlbum.Name, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                     KeyDown="AlbumNameTextBox_KeyDown" Loaded="AlbumNameTextBox_Loaded" />
+        <TextBlock Name="OneAlbumNecessaryTextBlock" Visibility="{Binding OneAlbumNecessary}"
+                   Text="{Binding Path=LocalizedResources.OneAlbumNecessary, Source={StaticResource LocalizedStrings}}"
+                   Style="{StaticResource HintTextBlockStyle}" />
+    </StackPanel>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
+                              BackgroundColor="#BF000000"
+                              ForegroundColor="{StaticResource PhoneAccentColor}"
+                              Opacity="0.99" />
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

@@ -8,44 +8,71 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     Foreground="{StaticResource PhoneForegroundBrush}"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
-
-    <Grid Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
-        <controls:Pivot>
-            <controls:PivotItem Header="Application">
-                <StackPanel>
-                    <TextBlock Name="ApplicationNameTextBlock" Text="Application Name"
+    
+    <controls:Pivot Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
+        <controls:PivotItem >
+            <controls:PivotItem.Header>
+                <TextBlock Text="Application"/>
+            </controls:PivotItem.Header>
+            
+            <StackPanel>
+                <TextBlock Name="ApplicationNameTextBlock" Text="Application Name"
                                TextAlignment="Center" TextWrapping="Wrap"
                                FontSize="{StaticResource PhoneFontSizeExtraLarge}"
                                Margin="0,15,0,0" />
 
-                    <TextBlock Name="ApplicationVersionTextBlock" Text="1.0.0.0"
+                <TextBlock Name="ApplicationVersionTextBlock" Text="1.0.0.0"
                                TextAlignment="Center" Margin="0,5,0,0"
                                FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
-                </StackPanel>
-            </controls:PivotItem>
-            <controls:PivotItem Header="Contact US">
-                <StackPanel HorizontalAlignment="Center" >
-                    <Image Source="/WPCommon;component/Img/hotmail.png" Height="240" MouseLeftButtonDown="Mail_Click" />
-                    <Image Source="/WPCommon;component/Img/facebook.png" Height="200" MouseLeftButtonDown="Facebook_Click"/>
-                    <Image Source="/WPCommon;component/Img/twitter.png" Height="200" Margin="0,30" MouseLeftButtonDown="Twitter_Click" />
-                </StackPanel>
-            </controls:PivotItem>
-            <controls:PivotItem Header="Get other Apps">
-                <StackPanel>
-                    <Image Source="Logo/logo.png" Stretch="Uniform" Height="300" Margin="0,30,0,0"/>
-                    <TextBlock Name="OtherAppsTextBlock" Text="Get other apps from WPME"
-                       FontSize="{StaticResource PhoneFontSizeLarge}"
-                       TextWrapping="Wrap" Margin="0,30,0,0"
-                       HorizontalAlignment="Center"
-                       TextAlignment="Center"
-                       MouseLeftButtonDown="OtherAppsTextBlock_MouseLeftButtonDown"
-                       TextDecorations="Underline" />
-                </StackPanel>
-            </controls:PivotItem>
-        </controls:Pivot>
-    </Grid>
+            </StackPanel>
+        </controls:PivotItem>
+        
+        <controls:PivotItem >
+            <controls:PivotItem.Header>
+                <TextBlock Text="Contact US" />
+            </controls:PivotItem.Header>
 
-    <!--<StackPanel Name="MainStackPanel"  >
-    </StackPanel>-->
-
+            <StackPanel HorizontalAlignment="Center" >
+                <Button Click="Mail_Click">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="/WPCommon;component/Img/hotmail.png"
+                                       Height="200" Stretch="None" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Click="Facebook_Click" Margin="0,8,0,16">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="/WPCommon;component/Img/facebook.png"
+                                       Height="200"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Click="Twitter_Click" >
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="/WPCommon;component/Img/twitter.png"
+                                       Height="200" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </controls:PivotItem>
+        
+        <controls:PivotItem>
+            <controls:PivotItem.Header>
+                <TextBlock Text="Get other Apps" />
+            </controls:PivotItem.Header>
+            
+            <StackPanel>
+                <Image Source="Logo/logo.png" Stretch="None" Height="200" />
+                <HyperlinkButton Name="OtherAppsHyperLink"
+                                 Click="OtherAppsHyperLink_Click"
+                                 Content="Get other apps from WPME"
+                                 FontSize="{StaticResource PhoneFontSizeLarge}"
+                                 Margin="0,30,0,0" />
+            </StackPanel>
+        </controls:PivotItem>
+    </controls:Pivot>
 </UserControl>

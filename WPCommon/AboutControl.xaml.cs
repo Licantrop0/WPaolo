@@ -39,8 +39,8 @@ namespace WPCommon
 
         public string GetOtherAppsText
         {
-            get { return (string)OtherAppsTextBlock.Text; }
-            set { OtherAppsTextBlock.Text = value ?? (string)OtherAppsTextBlock.Text; }
+            get { return OtherAppsHyperLink.Content.ToString(); }
+            set { OtherAppsHyperLink.Content = value ?? OtherAppsHyperLink.Content; }
         }
 
         public Brush BackgroundStackPanel
@@ -55,7 +55,7 @@ namespace WPCommon
             set
             {
                 ApplicationVersionTextBlock.FontSize = value;
-                OtherAppsTextBlock.FontSize = value * (24 / 19);
+                OtherAppsHyperLink.FontSize = value * (24 / 19);
                 ApplicationNameTextBlock.FontSize = value * (32 / 19);
             }
         }
@@ -65,17 +65,17 @@ namespace WPCommon
             InitializeComponent();
         }
 
-        private void Facebook_Click(object sender, MouseButtonEventArgs e)
+        private void Facebook_Click(object sender, RoutedEventArgs e)
         {
             new WebBrowserTask() { URL = "http://m.facebook.com/pages/WP-Mobile-Entertainment/192414040771354" }.Show();
         }
 
-        private void Twitter_Click(object sender, MouseButtonEventArgs e)
+        private void Twitter_Click(object sender, RoutedEventArgs e)
         {
             new WebBrowserTask() { URL = "http://mobile.twitter.com/wp7me" }.Show();
         }
 
-        private void Mail_Click(object sender, MouseButtonEventArgs e)
+        private void Mail_Click(object sender, RoutedEventArgs e)
         {
             new EmailComposeTask()
             {
@@ -84,14 +84,13 @@ namespace WPCommon
             }.Show();
         }
 
-        private void OtherAppsTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void OtherAppsHyperLink_Click(object sender, RoutedEventArgs e)
         {
             new MarketplaceSearchTask()
             {
                 ContentType = MarketplaceContentType.Applications,
                 SearchTerms = "WPME"
             }.Show();
-
         }
     }
 }

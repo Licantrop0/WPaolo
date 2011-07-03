@@ -199,7 +199,7 @@
     <value>È necessario aggiungere almeno un Album per utilizzare questa App</value>
   </data>
   <data name="PasswordHint" xml:space="preserve">
-    <value>Attenzione: non dimenticate la password, altrimenti non sarete più in grado di accedere alle vostre foto</value>
+    <value>Attenzione: non dimenticate la password, altrimenti non sarete più in grado di accedere alle vostre foto. Il recupero della password NON è disponibile.</value>
   </data>
   <data name="ViewPhoto" xml:space="preserve">
     <value>Visualizza Foto</value>
@@ -236,5 +236,11 @@
   </data>
   <data name="ChangePasswordHint" xml:space="preserve">
     <value>Per cambiare la password, apri il menu dell'Application Bar</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>sotohP</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Informazioni</value>
   </data>
 </root>

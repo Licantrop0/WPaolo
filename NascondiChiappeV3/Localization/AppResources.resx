@@ -200,7 +200,7 @@
   </data>
   <data name="PasswordHint" xml:space="preserve">
     <value>Warning: if you forget your password, you will not able to access to your secret photos anymore.
-Password recovery is not available.</value>
+Password recovery is NOT available.</value>
   </data>
   <data name="ViewPhoto" xml:space="preserve">
     <value>View Photo</value>
@@ -237,5 +237,11 @@ Password recovery is not available.</value>
   </data>
   <data name="ChangePasswordHint" xml:space="preserve">
     <value>To change password, open the Application Bar Menu</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>sotohP</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
   </data>
 </root>

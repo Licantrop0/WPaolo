@@ -61,6 +61,15 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Album.
         /// </summary>
         public static string AddAlbum {
@@ -84,6 +93,15 @@ namespace NascondiChiappe.Localization {
         public static string AlbumNameRequired {
             get {
                 return ResourceManager.GetString("AlbumNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sotohP.
+        /// </summary>
+        public static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
             }
         }
         
@@ -305,7 +323,7 @@ namespace NascondiChiappe.Localization {
         
         /// <summary>
         ///   Looks up a localized string similar to Warning: if you forget your password, you will not able to access to your secret photos anymore.
-        ///Password recovery is not available..
+        ///Password recovery is NOT available..
         /// </summary>
         public static string PasswordHint {
             get {

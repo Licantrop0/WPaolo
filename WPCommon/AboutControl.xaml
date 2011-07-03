@@ -5,33 +5,47 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     Foreground="{StaticResource PhoneForegroundBrush}"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
 
-    <StackPanel Name="MainStackPanel" Background="{StaticResource PhoneBackgroundBrush}" >
-        <Image Source="Logo/logo.png" Stretch="Uniform" Height="300" Margin="0,30,0,0"/>
-        <TextBlock Name="ApplicationNameTextBlock" Text="Application Name"
-                   TextAlignment="Center" TextWrapping="Wrap"
-                   FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                   Margin="0,15,0,0" />
+    <Grid Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
+        <controls:Pivot>
+            <controls:PivotItem Header="Application">
+                <StackPanel>
+                    <TextBlock Name="ApplicationNameTextBlock" Text="Application Name"
+                               TextAlignment="Center" TextWrapping="Wrap"
+                               FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                               Margin="0,15,0,0" />
 
-        <TextBlock Name="ApplicationVersionTextBlock" Text="1.0.0.0"
-                   TextAlignment="Center" Margin="0,5,0,0"
-                   FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                    <TextBlock Name="ApplicationVersionTextBlock" Text="1.0.0.0"
+                               TextAlignment="Center" Margin="0,5,0,0"
+                               FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                </StackPanel>
+            </controls:PivotItem>
+            <controls:PivotItem Header="Contact US">
+                <StackPanel HorizontalAlignment="Center" >
+                    <Image Source="/WPCommon;component/Img/hotmail.png" Height="240" MouseLeftButtonDown="Mail_Click" />
+                    <Image Source="/WPCommon;component/Img/facebook.png" Height="200" MouseLeftButtonDown="Facebook_Click"/>
+                    <Image Source="/WPCommon;component/Img/twitter.png" Height="200" Margin="0,30" MouseLeftButtonDown="Twitter_Click" />
+                </StackPanel>
+            </controls:PivotItem>
+            <controls:PivotItem Header="Get other Apps">
+                <StackPanel>
+                    <Image Source="Logo/logo.png" Stretch="Uniform" Height="300" Margin="0,30,0,0"/>
+                    <TextBlock Name="OtherAppsTextBlock" Text="Get other apps from WPME"
+                       FontSize="{StaticResource PhoneFontSizeLarge}"
+                       TextWrapping="Wrap" Margin="0,30,0,0"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       MouseLeftButtonDown="OtherAppsTextBlock_MouseLeftButtonDown"
+                       TextDecorations="Underline" />
+                </StackPanel>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
 
-        <TextBlock Name="OtherAppsTextBlock" Text="Get other apps from WPME"
-                   FontSize="{StaticResource PhoneFontSizeLarge}"
-                   TextWrapping="Wrap" Margin="0,30,0,0"
-                   HorizontalAlignment="Center"
-                   TextAlignment="Center"
-                   MouseLeftButtonDown="OtherAppsTextBlock_MouseLeftButtonDown"
-                   TextDecorations="Underline" />
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
-            <Image Source="/WPCommon;component/Img/facebook.png" Height="100" MouseLeftButtonDown="Facebook_Click"/>
-            <Image Source="/WPCommon;component/Img/twitter.png" Height="100" Margin="15,0" MouseLeftButtonDown="Twitter_Click" />
-            <Image Source="/WPCommon;component/Img/hotmail.png" Height="140" MouseLeftButtonDown="Mail_Click" />
-        </StackPanel>
-    </StackPanel>
+    <!--<StackPanel Name="MainStackPanel"  >
+    </StackPanel>-->
 
 </UserControl>

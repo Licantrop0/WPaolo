@@ -45,8 +45,8 @@ namespace WPCommon
 
         public Brush BackgroundStackPanel
         {
-            get { return MainStackPanel.Background; }
-            set { MainStackPanel.Background = value; }
+            get { return LayoutRoot.Background; }
+            set { LayoutRoot.Background = value; }
         }
 
         public double MinFontSize

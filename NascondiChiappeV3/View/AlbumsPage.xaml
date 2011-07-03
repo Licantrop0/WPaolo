@@ -30,7 +30,7 @@
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <ListBox x:Name="ImagesListBox" Margin="0,-30,0,0"
+                        <ListBox x:Name="ImagesListBox" Margin="0,-30,0,72"
                                  ItemsSource="{Binding Model.Photos}"
                                  ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
                                  SelectionMode="Multiple" >

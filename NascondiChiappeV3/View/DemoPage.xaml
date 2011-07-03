@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource TitleStyle}" Grid.Row="0"
+        <TextBlock Style="{StaticResource TitleStyle}" Grid.Row="0" TextWrapping="Wrap"
                    Text="{Binding LocalizedResources.DemoTitle, Source={StaticResource LocalizedStrings}}" />
 
         <StackPanel Grid.Row="1" VerticalAlignment="Center">

@@ -10,6 +10,7 @@ using Microsoft.Phone.Tasks;
 using NascondiChiappe.Helpers;
 using NascondiChiappe.Localization;
 using NascondiChiappe.Model;
+using WPCommon;
 
 namespace NascondiChiappe.ViewModel
 {
@@ -77,6 +78,12 @@ namespace NascondiChiappe.ViewModel
 
         private void NewAlbumAction()
         {
+            if (TrialManagement.IsTrialMode && Albums.Count > 0)
+            {
+                NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
+                return;
+            }
+
             Messenger.Default.Send<Album>(new Album(), "AddOrRename");
             NavigationService.Navigate(new Uri("/View/AddRenameAlbumPage.xaml", UriKind.Relative));
         }
@@ -246,7 +253,7 @@ namespace NascondiChiappe.ViewModel
 
         private bool IsTrialWithCheck()
         {
-            if (WPCommon.TrialManagement.IsTrialMode && SelectedAlbum.Model.Photos.Count >= 4)
+            if (TrialManagement.IsTrialMode && SelectedAlbum.Model.Photos.Count >= 4)
             {
                 NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
                 return true;

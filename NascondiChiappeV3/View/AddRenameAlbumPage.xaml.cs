@@ -54,15 +54,6 @@ namespace NascondiChiappe.View
             if (!CheckAlbumName())
                 return;
 
-            if (WPCommon.TrialManagement.IsTrialMode &&
-                AppContext.Albums.Count > 0 &&
-                VM.IsNewAlbumMode)
-            {
-                //TODO: andare nella pagina trial
-                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-                return;
-            }
-
             this.Focus();
             AlbumNameTextBox.GetBindingExpression(
                 TextBox.TextProperty).UpdateSource();

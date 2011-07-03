@@ -32,7 +32,6 @@ namespace NascondiChiappe
             {
                 TitleTextBlock.Text = AppResources.ChangePassword;
                 PasswordStackPanel.Visibility = Visibility.Collapsed;
-                PasswordHintTextBlock.Visibility = Visibility.Collapsed;
                 NewPasswordStackPanel.Visibility = Visibility.Visible;
                 OldPasswordStackPanel.Visibility = Visibility.Visible;
                 OldPasswordBox.Focus();
@@ -79,6 +78,7 @@ namespace NascondiChiappe
                 if (IsChangePasswordMode && (Settings.Password != OldPasswordBox.Password)) //Controllo anche la vecchia password
                 {
                     MessageBox.Show(AppResources.PasswordWrong);
+                    OldPasswordBox.Focus();
                     OldPasswordBox.SelectAll();
                     return;
                 }
@@ -99,10 +99,12 @@ namespace NascondiChiappe
                 if (NewPasswordBox.Password != ConfirmPasswordBox.Password)
                 {
                     MessageBox.Show(AppResources.PasswordsDoesNotMatch);
+                    ConfirmPasswordBox.Focus();
                     ConfirmPasswordBox.SelectAll();
                     return;
                 }
 
+                MessageBox.Show(AppResources.PasswordHint);
                 Settings.Password = NewPasswordBox.Password;
             }
             else

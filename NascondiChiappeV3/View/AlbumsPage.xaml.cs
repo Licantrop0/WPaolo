@@ -146,6 +146,12 @@ namespace NascondiChiappe.View
             DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
             DeleteAlbumAppBarMenuItem.Click += (sender, e) => { VM.DeleteAlbum.Execute(null); };
             ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
+
+            var AboutAppBarMenuItem = new ApplicationBarMenuItem();
+            AboutAppBarMenuItem.Text = AppResources.About;
+            AboutAppBarMenuItem.Click += (sender, e) =>
+            { NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative)); };
+            ApplicationBar.MenuItems.Add(AboutAppBarMenuItem);
         }
     }
 }

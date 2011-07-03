@@ -133,7 +133,7 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete the Album {0}?.
+        ///   Looks up a localized string similar to Do you really want to delete the Album {0} and all Photos in it?.
         /// </summary>
         public static string ConfirmAlbumDelete {
             get {

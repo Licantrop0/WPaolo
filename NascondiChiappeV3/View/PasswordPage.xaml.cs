@@ -49,15 +49,6 @@ namespace NascondiChiappe
             }
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            if (AppContext.IsPasswordInserted & !IsChangePasswordMode)
-            {
-                IsolatedStorageSettings.ApplicationSettings.Save();
-                throw new Exception("ForceExit");
-            }
-        }
-
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!AppContext.IsPasswordInserted & !IsChangePasswordMode)
@@ -125,7 +116,8 @@ namespace NascondiChiappe
             }
 
             AppContext.IsPasswordInserted = true;
-            NavigationService.Navigate(new Uri("/View/AlbumsPage.xaml", UriKind.Relative));
+            //Go to Albums Page
+            NavigationService.GoBack();
         }
 
         private void PasswordBox_KeyDown(object sender, KeyEventArgs e)

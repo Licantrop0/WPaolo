@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
@@ -41,15 +40,8 @@ namespace NascondiChiappe
                 //Application.Current.Host.Settings.EnableCacheVisualization = true;
             }
 
-            if (!IsolatedStorageSettings.ApplicationSettings.Contains("albums"))
-                IsolatedStorageSettings.ApplicationSettings["albums"] = new List<Album>();
-
-            LoadAlbums(IsolatedStorageSettings.ApplicationSettings["albums"] as List<Album>);
-
-
             // Standard Silverlight initialization
             InitializeComponent();
-
 
             // Phone-specific initialization
             InitializePhoneApplication();
@@ -59,30 +51,30 @@ namespace NascondiChiappe
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            //IsolatedStorage
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains("albums"))
+                IsolatedStorageSettings.ApplicationSettings["albums"] = new List<Album>();
+
+            //Controllo se per caso esiste la chiave nel TombStone, se si carico quello
+            if (PhoneApplicationService.Current.State.ContainsKey("albums"))
+                LoadAlbums(PhoneApplicationService.Current.State["albums"] as List<Album>);
+            else
+                LoadAlbums(IsolatedStorageSettings.ApplicationSettings["albums"] as List<Album>);
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            //if (!PhoneApplicationService.Current.State.ContainsKey("albums"))
-            //    PhoneApplicationService.Current.State["albums"] = new List<Album>();
-
-            //LoadAlbums(PhoneApplicationService.Current.State["albums"] as List<Album>);
-        }
-
-        private void LoadAlbums(List<Album> albums)
-        {
-            AppContext.Albums = new ObservableCollection<ImageListViewModel>();
-            foreach (var a in albums)
-                AppContext.Albums.Add(new ImageListViewModel(a));
+            if (PhoneApplicationService.Current.State.ContainsKey("albums"))
+                LoadAlbums(PhoneApplicationService.Current.State["albums"] as List<Album>);
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
-           // PhoneApplicationService.Current.State["albums"] = AppContext.Albums.Select(a => a.Model);
+            PhoneApplicationService.Current.State["albums"] = AppContext.Albums.Select(a => a.Model).ToList();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
@@ -90,6 +82,15 @@ namespace NascondiChiappe
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             IsolatedStorageSettings.ApplicationSettings["albums"] = AppContext.Albums.Select(a => a.Model).ToList();
+        }
+
+        private void LoadAlbums(List<Album> albums)
+        {
+            if (AppContext.Albums.Count != 0)
+                return;
+
+            foreach (var a in albums)
+                AppContext.Albums.Add(new ImageListViewModel(a));
         }
 
         // Code to execute if a navigation fails

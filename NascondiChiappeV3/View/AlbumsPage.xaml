@@ -15,9 +15,9 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress">
-    
+
     <Grid x:Name="LayoutRoot"
-          DataContext="{Binding AlbumsVM, Source={StaticResource Locator}}"
+          DataContext="{Binding Source={StaticResource Locator}, Path=AlbumsVM}"
           Background="{StaticResource BackgroundImage}">
         <controls:Pivot x:Name="AlbumsPivot" ItemsSource="{Binding Albums}"
                         SelectedItem="{Binding SelectedAlbum, Mode=TwoWay}" Margin="0,-1,0,1">
@@ -29,7 +29,7 @@
             </controls:Pivot.HeaderTemplate>
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
-                    <Grid>                        
+                    <Grid>
                         <ListBox x:Name="ImagesListBox" Margin="0,-30,0,0"
                                  ItemsSource="{Binding Model.Photos}"
                                  ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
@@ -41,14 +41,14 @@
                                         PassEventArgsToCommand="True" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                            
+
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Image Source="{Binding Bitmap}" Margin="12"
                                            RenderTransformOrigin="0.5,0.5"
                                            RenderTransform="{Binding RotationAngle, Converter={StaticResource RotationConverter}}">
-                                         <toolkit:GestureService.GestureListener>
-                                           <toolkit:GestureListener DoubleTap="GestureListener_DoubleTap" /> 
+                                        <toolkit:GestureService.GestureListener>
+                                            <toolkit:GestureListener DoubleTap="GestureListener_DoubleTap" />
                                         </toolkit:GestureService.GestureListener>
                                     </Image>
                                 </DataTemplate>
@@ -73,7 +73,7 @@
 
         <Rectangle x:Name="PopupBackground"
                    Fill="#CC000000" Visibility="Collapsed"/>
-        <Border x:Name="PopupBorder"
+        <Border x:Name="PopupBorder" Margin="0,0,0,72"
                 CornerRadius="10" Visibility="Collapsed"
                 BorderBrush="WhiteSmoke"
                 Background="Black"
@@ -86,8 +86,8 @@
                     <DataTemplate>
                         <TextBlock Text="{Binding Model.Name}"
                                    HorizontalAlignment="Center"
-                                   Margin="0,8" TextAlignment="Center"
-                                   Style="{StaticResource TextBlockStyle}" />
+                                   Margin="12,0" TextAlignment="Center"
+                                   Style="{StaticResource TitleStyle}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -101,5 +101,5 @@
                               ForegroundColor="{StaticResource PhoneAccentColor}"
                               Opacity="0.99" />
     </phone:PhoneApplicationPage.ApplicationBar>
-    
+
 </phone:PhoneApplicationPage>

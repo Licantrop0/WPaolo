@@ -1,20 +1,10 @@
-﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+﻿using System.IO;
+using System.IO.IsolatedStorage;
+using System.Xml.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
-using NascondiChiappe.Model;
-using System.Xml.Linq;
-using System.IO.IsolatedStorage;
-using System.IO;
 using NascondiChiappe.Messages;
+using NascondiChiappe.Model;
 
 namespace NascondiChiappe.ViewModel
 {

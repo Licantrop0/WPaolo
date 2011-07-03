@@ -1,15 +1,15 @@
-using GalaSoft.MvvmLight;
-using NascondiChiappe.Helpers;
-using System.Collections.ObjectModel;
-using NascondiChiappe.Model;
-using GalaSoft.MvvmLight.Command;
-using NascondiChiappe.Localization;
 using System;
-using Microsoft.Phone.Tasks;
-using System.Windows;
-using GalaSoft.MvvmLight.Messaging;
-using System.Linq;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Phone.Tasks;
+using NascondiChiappe.Helpers;
+using NascondiChiappe.Localization;
+using NascondiChiappe.Model;
 
 namespace NascondiChiappe.ViewModel
 {
@@ -59,7 +59,7 @@ namespace NascondiChiappe.ViewModel
 
         public AlbumsViewModel()
         {
-            Albums.CollectionChanged += (semder, e) =>
+            Albums.CollectionChanged += (sender, e) =>
             {
                 SelectedAlbum = e.NewStartingIndex == -1 ?
                     Albums.FirstOrDefault() :

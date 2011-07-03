@@ -7,6 +7,16 @@ namespace NascondiChiappe
     public class AppContext
     {
         public static bool IsPasswordInserted = false;
-        public static ObservableCollection<ImageListViewModel> Albums { get; set; }
+
+        private static ObservableCollection<ImageListViewModel> _albums;
+        public static ObservableCollection<ImageListViewModel> Albums
+        {
+            get
+            {
+                if (_albums == null)
+                    _albums = new ObservableCollection<ImageListViewModel>();
+                return _albums;
+            }
+        }
     }
 }

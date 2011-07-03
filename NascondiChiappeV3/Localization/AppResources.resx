@@ -184,7 +184,7 @@
     <value>Confirm</value>
   </data>
   <data name="ConfirmAlbumDelete" xml:space="preserve">
-    <value>Do you really want to delete the Album {0}?</value>
+    <value>Do you really want to delete the Album {0} and all Photos in it?</value>
   </data>
   <data name="DeleteSelectedPhotos" xml:space="preserve">
     <value>Delete Selected Photos</value>

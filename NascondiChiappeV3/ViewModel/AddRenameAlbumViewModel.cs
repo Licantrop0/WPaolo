@@ -12,7 +12,6 @@ namespace NascondiChiappe.ViewModel
     public class AddRenameAlbumViewModel : ViewModelBase
     {
         public INavigationService NavigationService { get; set; }
-
         public Visibility OneAlbumNecessary
         {
             get
@@ -36,7 +35,7 @@ namespace NascondiChiappe.ViewModel
         public bool IsNewAlbumMode
         { get { return string.IsNullOrEmpty(SelectedAlbum.DirectoryName); } }
 
-        private Album _selectedAlbum = null;
+        private Album _selectedAlbum = new Album();
         public Album SelectedAlbum
         {
             get { return _selectedAlbum; } 

@@ -16,6 +16,9 @@ namespace BalanceBall
     public enum State
     {
         idle,
+        menu_main,
+        menu_choose_game,
+        menu_scores,
         ballSizing,
         ballFallingAndBouncing,
         weighting
@@ -38,6 +41,7 @@ namespace BalanceBall
         // textures
         Texture2D _redBall;
         Texture2D _blackPlatform;
+        Texture2D _background;
 
         SoundEffect _thud;
 
@@ -96,9 +100,10 @@ namespace BalanceBall
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            _redBall = Content.Load<Texture2D>("redBall");
+            _redBall = Content.Load<Texture2D>("b2");
             _blackPlatform = Content.Load<Texture2D>("BlackPlatform");
             _thud = this.Content.Load<SoundEffect>("thud");
+            _background = Content.Load<Texture2D>("sky11");
         }
 
         /// <summary>
@@ -222,13 +227,20 @@ namespace BalanceBall
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
+            float maxRadius = 200f;
+            int maxRadiusI = 200;
 
             // TODO: Add your drawing code here
-            int height = _redBall.Height;
-            int width = _redBall.Width;
+            int height = _redBall.Height > maxRadiusI ? maxRadiusI : _redBall.Height; 
+            int width = _redBall.Width > maxRadiusI ? maxRadiusI : _redBall.Width;
+
             float scale = (1f / 14f) * _radius;
+            if (_radius > maxRadius)
+                scale = maxRadius;
 
             spriteBatch.Begin();
+            // draw background
+            spriteBatch.Draw(_background, new Vector2(0, 0), new Rectangle(0, 0, 480, 800), Color.White);
             // draw platforms
             spriteBatch.Draw(_blackPlatform, new Vector2(50, _platformYposition), Color.White);
             spriteBatch.Draw(_blackPlatform, new Vector2(290, 800 - _platformYposition), Color.White);

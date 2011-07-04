@@ -50,7 +50,7 @@ namespace Virus
             {
                 case WhiteGlobuloState.moving:
 
-                    if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
+                    if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
                         _state = WhiteGlobuloState.fading;
                         _touchable = false;
@@ -58,7 +58,7 @@ namespace Virus
                         FadeSpeed = 0.6f;
                         _utilityTimer = 0;
                     }
-                    else if (_actSpriteEvent.Code == SpriteEventCode.fingerHit)
+                    else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.fingerHit)
                     {
                         _state = WhiteGlobuloState.falling;
                         _touchable = false;

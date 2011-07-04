@@ -100,17 +100,17 @@ namespace Virus
             {
                 case ViruState.tranquil:
 
-                    if (_actSpriteEvent == null)
-                    {
-                        Animate();
-                    }
-                    else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
+                    if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
                         TransitionToShockedState();        
                     }
-                    else if (_actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
+                    else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
                     {
                         TransitionToHappyState();
+                    }
+                    else
+                    {
+                        Animate();
                     }
 
                     break;
@@ -119,19 +119,19 @@ namespace Virus
 
                     _utilityTimer += _elapsedTime;
 
-                    if (_actSpriteEvent == null)
-                    {
-                        Animate();
-                        Blink();
-                    }
-                    else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
+                    if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
                         TransitionToShockedState();
                     }
-                    else if (_actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
+                    else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
                     {
                         TransitionToHappyState();
                         _state = ViruState.happy;
+                    }
+                    else
+                    {
+                        Animate();
+                        Blink();
                     }
 
                     if (_utilityTimer > 1.5)
@@ -144,19 +144,19 @@ namespace Virus
                 case ViruState.happy:
 
                     _utilityTimer += _elapsedTime;
-
-                    if (_actSpriteEvent == null)
-                    {
-                        Animate();
-                    }
-                    else if (_actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
+                    
+                    if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
                     {
                         TransitionToShockedState();
                         _state = ViruState.shocked;
                     }
-                    else if (_actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
+                    else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
                     {
                         TransitionToHappyState();
+                    }
+                    else
+                    {
+                        Animate();
                     }
 
                     if (_utilityTimer > 1.0)

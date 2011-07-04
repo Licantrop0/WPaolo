@@ -129,6 +129,7 @@ namespace Virus
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _cursor = _cursor - _speed * dt;
 
+            // goal line range check!
             if (_cursor < _goalLine)
                 _cursor = _goalLine;
 

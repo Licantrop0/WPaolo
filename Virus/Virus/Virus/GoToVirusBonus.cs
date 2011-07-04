@@ -64,12 +64,7 @@ namespace Virus
             {
                 case BonusState.moving:
 
-                    if (_actSpriteEvent == null)
-                    {
-                        Move();
-                        Rotate();
-                    }
-                    else if (_actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
+                    if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
                     {
                         _state = BonusState.fading;
                         _touchable = false;
@@ -77,7 +72,7 @@ namespace Virus
                         FadeSpeed = 1.0f;
                         _utilityTimer = 0;
                     }
-                    else if (_actSpriteEvent.Code == SpriteEventCode.fingerHit)
+                    else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.fingerHit)
                     {
                         _state = BonusState.falling;
                         _touchable = false;
@@ -88,6 +83,11 @@ namespace Virus
                         else
                             RotationSpeed = -2 * (float)Math.PI;
                         _utilityTimer = 0;
+                    }
+                    else
+                    {
+                        Move();
+                        Rotate();
                     }
 
                     break;

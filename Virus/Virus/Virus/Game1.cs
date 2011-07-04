@@ -35,7 +35,12 @@ namespace Virus
 
         // white globulos
         List<WhiteGlobulo> _whiteGlobulos = new List<WhiteGlobulo>();
+
+        // bonuses
         List<GoToVirusBonus> _bonuses = new List<GoToVirusBonus>();
+
+        // boss
+        List<BossLung> _bossContainer = new List<BossLung>();
 
         // virus
         Virus _virus;
@@ -88,6 +93,8 @@ namespace Virus
             _enemiesKilledByAmmoTriggerNumber = 50;
 
             base.Initialize();
+
+            GC.Collect();
         }
 
         /// <summary>
@@ -124,6 +131,8 @@ namespace Virus
             Texture2D bonusAmmoTexture = Content.Load<Texture2D>("bonusAmmo");
             Texture2D bonusOneUpTexture = Content.Load<Texture2D>("bonusOneUp");
             Texture2D bonusBombPlusTexture = Content.Load<Texture2D>("bonusBombPlus");
+            Texture2D bossLungTexture = Content.Load<Texture2D>("Boss");
+            Texture2D bossLungMouthTexture = Content.Load<Texture2D>("Mouth");
 
             // set ascending climax difficulty pack!
 
@@ -141,17 +150,25 @@ namespace Virus
                                                                       3, 5);
 
 
-            _monsterFactory = new MonsterFactory(_eventsManager, _whiteGlobulos);
-            _monsterFactory.SimpleEnemyTexture = whiteGlobulosTexture;
-            _monsterFactory.VirusPosition = new Vector2(240, 400);
+            _monsterFactory = new MonsterFactory(_eventsManager, _whiteGlobulos,  _bossContainer)
+            {
+                SimpleEnemyTexture = whiteGlobulosTexture,
+                VirusPosition = new Vector2(240, 400),
+                BossLungTexture = bossLungTexture,
+                BossLungMouthTexture = bossLungMouthTexture,
+            };
+           
+            _bonusFactory = new BonusFactory(_eventsManager, _bonuses)
+            {
+                BombBonusTexture = bonusBombTexture,
+                AmmoBonusTexture = bonusAmmoTexture,
+                OneUpBonusTexture = bonusOneUpTexture,
+                BombPlusBonusTexture = bonusBombPlusTexture,
+                VirusPosition = new Vector2(240, 400),
+            };
 
-            _bonusFactory = new BonusFactory(_eventsManager, _bonuses);
-            _bonusFactory.BombBonusTexture = bonusBombTexture;
-            _bonusFactory.AmmoBonusTexture = bonusAmmoTexture;
-            _bonusFactory.OneUpBonusTexture = bonusOneUpTexture;
-            _bonusFactory.BombPlusBonusTexture = bonusBombPlusTexture;
             _bonusFactory.SetBombBonusTimePeriod(30, 50);
-            _bonusFactory.VirusPosition = new Vector2(240, 400);
+            
 
             // create life virus
             _virusLife = Content.Load<Texture2D>("virusLifeLittle");
@@ -175,29 +192,25 @@ namespace Virus
 
         private void ScheduleEvents()
         {
-            // set difficulty
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0)  , GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[0] }));
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(30) , GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[1] }));
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(100), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[2] }));
+            //// set difficulty
+            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0)  , GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[0] }));
+            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(30) , GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[1] }));
+            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(100), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[2] }));
 
-            // schedule and go on scheduling white globulos creation
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3), GameEventType.scheduleSimpleEnemyCreation, _monsterFactory));
+            //// schedule and go on scheduling white globulos creation
+            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3), GameEventType.scheduleSimpleEnemyCreation, _monsterFactory));
 
-            // create bonusbomb every 30/50 seconds (as set up before)
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.ScheduleBombBonusCreation, _bonusFactory));
+            //// create bonusbomb every 30/50 seconds (as set up before)
+            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.ScheduleBombBonusCreation, _bonusFactory));
 
-            // create bombplus at 45 and 130 seconds
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(45), GameEventType.createBombPlusBonus, _bonusFactory));
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(130), GameEventType.createBombPlusBonus, _bonusFactory));
+            //// create bombplus at 45 and 130 seconds
+            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(45), GameEventType.createBombPlusBonus, _bonusFactory));
+            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(130), GameEventType.createBombPlusBonus, _bonusFactory));
 
-            // create one up bonus at 135 seconds
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(135), GameEventType.createOneUpBonus, _bonusFactory));       
+            //// create one up bonus at 135 seconds
+            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(135), GameEventType.createOneUpBonus, _bonusFactory));        
 
-            // every 10 seconds create bouncing enemy (temp!!!)
-            /*for(int i = 1; i <= 30; i++)
-            {
-                _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(i * 10), GameEventType.createBouncingEnemy, _spriteFactory));
-            }*/   
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3), GameEventType.createBossLung, _monsterFactory));
         }
 
         /// <summary>
@@ -264,7 +277,7 @@ namespace Virus
             {
                 if ( wg.Touched(_touchPoint))
                 {
-                    wg.AddSpriteEvent(new SpriteEvent((int)SpriteEventCode.fingerHit));
+                    wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit));
                     enemiesKilled++;
                 }
             }
@@ -445,6 +458,10 @@ namespace Virus
             // update the bonuses
             _bonuses.ForEach(b => b.Update(gameTime));
 
+            // udpate boss
+            if (_bossContainer.Count != 0)
+                _bossContainer[0].Update(gameTime);
+
             // animate our friend virus
             if(_virus != null)
                 _virus.Update(gameTime);
@@ -484,6 +501,10 @@ namespace Virus
 
             // draw enemies
             _whiteGlobulos.ForEach(wg => wg.Draw(spriteBatch));
+
+            // draw boss
+            if (_bossContainer.Count != 0)
+                _bossContainer[0].Draw(spriteBatch);
 
             // draw our friend virus
             if(_virus != null)

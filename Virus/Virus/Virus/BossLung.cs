@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Virus
 {
@@ -20,7 +21,7 @@ namespace Virus
     public class Mouth : CircularSprite
     {
         const float DELTA_SPACE = 45;
-        const float DELTA_ANGLE = (float)Math.PI * (150 / 180);
+        const float DELTA_ANGLE = (float)Math.PI * (150f / 180f);
 
         static GameEventsManager _gameManager;
         static MonsterFactory _monsterFactory;
@@ -39,7 +40,7 @@ namespace Virus
         float _rotatingTime;
 
         int _spittedGlobulos = 4;
-        float _globulosSpeed = 200;
+        float _globulosSpeed = 100;
 
         public float ApprochingTime { set { _approachingTime = value; } }
         public float RotatingTime { set { _rotatingTime = value; } }
@@ -55,6 +56,11 @@ namespace Virus
             _hitPoints = 10;
             _state = MouthState.idle;
             Position = new Vector2(-100, -100);
+        }
+
+        protected override void InitializePhysics()
+        {
+            _physicalPoint = new PhysicalMassSystemPoint();
         }
 
         private void FireGlobulo(TimeSpan t)
@@ -73,7 +79,7 @@ namespace Virus
             {
                 case MouthState.idle:
 
-                    if (_actSpriteEvent.Code == SpriteEventCode.awake)
+                    if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.awake)
                     {
                         // assign leaving speed
                         _leavingSpeed = -Speed;
@@ -112,7 +118,7 @@ namespace Virus
                         _timer = 0;
                         _firingTimer = 0;
 
-                        FireGlobulo(gameTime.ElapsedGameTime);
+                        FireGlobulo(gameTime.TotalGameTime);
 
                         _state = MouthState.rotatingAndFiring;
                     }
@@ -130,10 +136,10 @@ namespace Virus
 
                     Rotate();
 
-                    if (_firingTimer > _timer / _spittedGlobulos)
+                    if (_firingTimer > _rotatingTime / _spittedGlobulos)
                     {
-                        _firingTimer -= _timer / _spittedGlobulos;
-                        FireGlobulo(gameTime.ElapsedGameTime);
+                        _firingTimer -= _rotatingTime / _spittedGlobulos;
+                        FireGlobulo(gameTime.TotalGameTime);
                     }
 
                     if (_timer > _rotatingTime)
@@ -194,9 +200,17 @@ namespace Virus
         int _hitPoints;
 
         // mouth structures
-        Mouth[] _leftMouths;
+        List<Mouth> _idleLeftMouths;
+        List<Mouth> _idleBottomMouths;
+        List<Mouth> _idleRightMouths;
+
+        List<Mouth> _activeLeftMouths = new List<Mouth>();
+        List<Mouth> _activeBottomMouths = new List<Mouth>();
+        List<Mouth> _activeRightMouths = new List<Mouth>();
+
+        /*Mouth[] _leftMouths;
         Mouth[] _bottomMouths;
-        Mouth[] _rightMouths;
+        Mouth[] _rightMouths;*/
 
         // mouth handling structures
         float _approchingPeriodMin;
@@ -225,17 +239,17 @@ namespace Virus
 
             int i = 0;
 
-            _leftMouths = new Mouth[5];
+            _idleLeftMouths = new List<Mouth>();
             for (i = 0; i < 5; i++)
-                _leftMouths[i] = new Mouth(mouthAnimation, 40, 40);
+                _idleLeftMouths.Add(new Mouth(mouthAnimation, 40, 40));
 
-            _bottomMouths = new Mouth[5];
+            _idleBottomMouths = new List<Mouth>();
             for (i = 0; i < 5; i++)
-                _bottomMouths[i] = new Mouth(mouthAnimation, 40, 40);
+                _idleBottomMouths.Add(new Mouth(mouthAnimation, 40, 40));
 
-            _rightMouths = new Mouth[5];
+            _idleRightMouths = new List<Mouth>(); ;
             for (i = 0; i < 5; i++)
-                _rightMouths[i] = new Mouth(mouthAnimation, 40, 40);
+                _idleRightMouths.Add(new Mouth(mouthAnimation, 40, 40));
 
             _leftTimeToCall = (float)_dice.RandomDouble(2,5);
             _bottomTimeToCall = (float)_dice.RandomDouble(2, 5);
@@ -247,40 +261,25 @@ namespace Virus
             _physicalPoint = new PhysicalMassSystemPoint();
         }
          
-        private void AwakeMouth(Mouth[] mouthArray, bool vertical, float fixedPosition, float variablePositionMin, float variablePositionMax, float distance, Vector2 speedVersor)
+        private void AwakeMouth(List<Mouth> idleMouthsList, List<Mouth> activeMouthsList, bool vertical, float fixedPosition, float variablePositionMin, float variablePositionMax, float distance, Vector2 speedVersor)
         {
             // chose randomly the mouth to awake
-            int idleMouths = mouthArray.Where(m => m.State == MouthState.idle).Count();
+            int idleMouths = idleMouthsList.Count();
 
             // if there is not a mouth to pick exit (no mouth awaken)
             if (idleMouths == 0)
                 return;
 
             // get position of the active mouth, if any
-            Mouth activeMouth = (Mouth)(mouthArray.Where(m => m.State != MouthState.idle && m.State != MouthState.died).First());
-            // VERIFICARE CHE TORNA NULL SE NON CI SONO BOCCHE ATTIVE SENNO' CASCA TUTTO!!!
+            Mouth activeMouth = activeMouthsList.Count > 0 ? activeMouthsList[0] : null;
 
-            // awake a idle mouth picking randomly
-            int mouthPickedIndex = _dice.Next(1, idleMouths + 1);
-
-            int i = 1;
-            Mouth awakenMouth = null;
-            foreach (Mouth m in mouthArray)
-            {
-                awakenMouth = m;
-
-                if (m.State == MouthState.idle)
-                {
-                    if (i == mouthPickedIndex)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        i++;
-                    }
-                }
-            }
+            // retrieve mouth to awake picking randomly
+            int mouthPickedIndex = _dice.Next(0, idleMouths);
+            Mouth awakenMouth = idleMouthsList[mouthPickedIndex];
+            
+            // bring awaken mouth to active mouth list
+            activeMouthsList.Add(awakenMouth);
+            idleMouthsList.RemoveAt(mouthPickedIndex);
 
             // set position and speed of chosen mouth and awake it!
             float position, referencePosition, middlePosition;
@@ -330,38 +329,69 @@ namespace Virus
             UpdateMouthSpeedParameters();
 
             // update timers and awake mouth if timer is expired
-            _leftTimer += _elapsedTime;
-            if (_leftTimer > _leftTimeToCall)
-            {
-                _leftTimer -= _leftTimeToCall;
-                _leftTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
-                AwakeMouth(_leftMouths, true, -30, 250, 750, 200, new Vector2(1, 0));
-            }
+            //_leftTimer += _elapsedTime;
+            //if (_leftTimer > _leftTimeToCall)
+            //{
+            //    _leftTimer -= _leftTimeToCall;
+            //    _leftTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
+            //    AwakeMouth(_idleLeftMouths, _activeLeftMouths, true, -30, 250, 750, 200, new Vector2(1, 0));
+            //}
 
-            _bottomTimer += _elapsedTime;
-            if (_bottomTimer > _bottomTimeToCall)
-            {
-                _bottomTimer -= _bottomTimeToCall;
-                _bottomTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
-                AwakeMouth(_bottomMouths, false, 830, 50, 430, 140, new Vector2(0, -1));
-            }
+            //_bottomTimer += _elapsedTime;
+            //if (_bottomTimer > _bottomTimeToCall)
+            //{
+            //    _bottomTimer -= _bottomTimeToCall;
+            //    _bottomTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
+            //    AwakeMouth(_idleBottomMouths, _activeBottomMouths, false, 830, 50, 430, 140, new Vector2(0, -1));
+            //}
 
             _rightTimer += _elapsedTime;
             if (_rightTimer > _rightTimeToCall)
             {
                 _rightTimer -= _rightTimeToCall;
                 _rightTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
-                AwakeMouth(_rightMouths, true, 480, 250, 750, 200, new Vector2(-1, 0));
+                AwakeMouth(_idleRightMouths, _activeRightMouths, true, 480, 250, 750, 200, new Vector2(-1, 0));
+            }
+
+            // call update on every active mouth!
+            _activeLeftMouths.ForEach(m => m.Update(gameTime));
+            _activeBottomMouths.ForEach(m => m.Update(gameTime));
+            _activeRightMouths.ForEach(m => m.Update(gameTime));
+
+            // remove died mouths
+            RemoveDiedMouths(_activeLeftMouths);
+            RemoveDiedMouths(_activeBottomMouths);
+            RemoveDiedMouths(_activeLeftMouths);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+
+            //_activeLeftMouths.ForEach(m => m.Draw(spriteBatch));
+            //_activeBottomMouths.ForEach(m => m.Draw(spriteBatch));
+            _activeRightMouths.ForEach(m => m.Draw(spriteBatch));
+        }
+
+        private void RemoveDiedMouths(List<Mouth> _activeMouths)
+        {
+            for (int i = 0; i < _activeMouths.Count; i++)
+            {
+                if (_activeMouths[i].State == MouthState.died)
+                {
+                    _activeMouths.RemoveAt(i);
+                    i--;
+                }
             }
         }
 
         private void UpdateMouthSpeedParameters()
         {
-            _approchingPeriodMin = 4;
-            _approchingPeriodMax = 6;
+            _approchingPeriodMin = 10;
+            _approchingPeriodMax = 10;
 
-            _approchingSpeed = 60;
-            _rotatingSpeed = (float)Math.PI / 8;
+            _approchingSpeed = 120;
+            _rotatingSpeed = (float)Math.PI / 16;
         }
 
     }

@@ -12,6 +12,7 @@ namespace Virus
         createBouncingEnemy,
         createAcceleratedEnemy,
         createOrbitalEnemy,
+        createBossLung,
         createBombBonus,
         createAmmoBonus,
         createOneUpBonus,

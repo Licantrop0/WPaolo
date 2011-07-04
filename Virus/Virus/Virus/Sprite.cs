@@ -164,7 +164,7 @@ namespace Virus
             _physicalPoint.Move(_elapsedTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             _animations[_currentAnimation].Draw(spriteBatch, this);
         }

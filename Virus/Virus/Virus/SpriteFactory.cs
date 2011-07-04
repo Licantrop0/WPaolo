@@ -116,15 +116,19 @@ namespace Virus
     public class MonsterFactory : SpriteFactory
     {
         List<WhiteGlobulo> _enemies;                // reference to the game enemies list
+        List<BossLung> _bossContainer;                   
 
         // valori cablati
         const float VIRUS_RADIUS = 37;
         float ENEMY_RADIUS = 29;
         float ENEMY_TOUCH_RADIUS = 34;
 
+        // textures
         Texture2D _constantSpeedMonsterTexture;
         Texture2D _acceleratedMonsterTexture;
         Texture2D _orbitalMonsterTexture;
+        Texture2D _bossLungTexture;
+        Texture2D _bossLungMouthTexture;
 
         // difficulty parameters
         protected TimeSpan _simpleEnemySchedulingTimeIntervalMin;
@@ -139,10 +143,11 @@ namespace Virus
         protected int _numberOfMonstersMin;
         protected int _numberOfMonstersMax;
 
-        public MonsterFactory(GameEventsManager eventManager, List<WhiteGlobulo> enemies)
+        public MonsterFactory(GameEventsManager eventManager, List<WhiteGlobulo> enemies,  List<BossLung> bossContainer)
             :base(eventManager)
         {
             _enemies = enemies;
+            _bossContainer = bossContainer;
         }
 
         // Initializing methods
@@ -154,6 +159,12 @@ namespace Virus
 
         public Texture2D OrbitalMonsterTexture
         { set { _orbitalMonsterTexture = value; } }
+
+        public Texture2D BossLungTexture
+        { set { _bossLungTexture = value; } }
+
+        public Texture2D BossLungMouthTexture
+        { set { _bossLungMouthTexture = value; } }
 
         public void SetDifficulty(Level1DifficultyPackEnemies difficulty)
         {
@@ -184,7 +195,7 @@ namespace Virus
                     break;
 
                 case GameEventType.createBouncingEnemy:
-                    CreateBouncingEnemy();
+                    CreateBouncingEnemy((Vector2)gameEvent.Params[0], (Vector2)gameEvent.Params[1]);
                     break;
 
                 case GameEventType.createAcceleratedEnemy:
@@ -193,6 +204,10 @@ namespace Virus
 
                 case GameEventType.createOrbitalEnemy:
                     CreateOrbitalEnemy();
+                    break;
+
+                case GameEventType.createBossLung:
+                    CreateBossLung();
                     break;
 
                 case GameEventType.scheduleSimpleEnemyCreation:
@@ -287,8 +302,27 @@ namespace Virus
             _enemies.Add(enemy);
         }
 
+        private void CreateBossLung()
+        {
+            // create boss
+            Dictionary<string, Animation> bossAnimations = new Dictionary<string, Animation>();
+            Animation bossMainAnimation = new Animation(_bossLungTexture, 1, true);
+            bossAnimations.Add("main", bossMainAnimation);
+
+            Dictionary<string, Animation> mouthAnimations = new Dictionary<string, Animation>();
+            Animation mouthMainAnimation = new Animation(_bossLungMouthTexture, 1, true);
+            mouthAnimations.Add("main", mouthMainAnimation);
+
+            BossLung boss = new BossLung(bossAnimations, 240, 80, 240, 80, mouthAnimations, _eventsManager, this)
+            {
+                Position = new Vector2(240, 40),
+            };
+
+            _bossContainer.Add(boss);
+        }
+
         // da rivedere
-        public void CreateAcceleratedEnemy()
+        private void CreateAcceleratedEnemy()
         {
             // create accelerated enemy
             Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
@@ -324,16 +358,18 @@ namespace Virus
         }
 
         // da rivedere
-        private void CreateBouncingEnemy()
+        private void CreateBouncingEnemy(Vector2 position, Vector2 speed)
         {
             // create simple enemy
             Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
             Animation mainAnimation = new Animation(_constantSpeedMonsterTexture, 7, true);
             animations.Add("main", mainAnimation);
 
-            BouncingWhiteGlobulo enemy = new BouncingWhiteGlobulo(animations, ENEMY_RADIUS, ENEMY_TOUCH_RADIUS);
-            enemy.Position = new Vector2(240, 815);
-            enemy.Speed = new Vector2(_dice.Next(-80, 81), -80);
+            BouncingWhiteGlobulo enemy = new BouncingWhiteGlobulo(animations, ENEMY_RADIUS, ENEMY_TOUCH_RADIUS)
+            {
+                Position = position,
+                Speed = speed,
+            };
 
             _enemies.Add(enemy);
         }

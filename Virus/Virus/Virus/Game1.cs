@@ -313,45 +313,43 @@ namespace Virus
         {
             foreach (WhiteGlobulo wg in _whiteGlobulos)
             {
-                if(wg.LifeTime > 1)
-                {
-                    if (wg.Speed.X > 0)
-                    {
-                        // collision with right border
-                        if (wg.Position.X + wg.Radius >= 480)
-                        {
-                            wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(-1, 0) }));
-                            continue;
-                        } 
-                    }
-                    else
-                    {
-                        // collision with left border
-                        if (wg.Position.X - wg.Radius <= 0)
-                        {
-                            wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(1, 0) }));
-                            continue;
-                        }       
-                    }
 
-                    if (wg.Speed.Y > 0)
+                if (wg.Speed.X > 0)
+                {
+                    // collision with right border
+                    if (wg.Position.X + wg.Radius >= 480)
                     {
-                        // collision with bottom border
-                        if (wg.Position.Y + wg.Radius >= 800)
-                        {
-                            wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(0, -1) }));
-                            continue;
-                        }      
-                    }
-                    else
+                        wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(-1, 0) }));
+                        continue;
+                    } 
+                }
+                else
+                {
+                    // collision with left border
+                    if (wg.Position.X - wg.Radius <= 0)
                     {
-                        // collision with top border
-                        if (wg.Position.Y - wg.Radius <= 0)
-                        {
-                            wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(0, 1) }));
-                            continue;
-                        } 
-                    }
+                        wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(1, 0) }));
+                        continue;
+                    }       
+                }
+
+                if (wg.Speed.Y > 0)
+                {
+                    // collision with bottom border
+                    if (wg.Position.Y + wg.Radius >= 800)
+                    {
+                        wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(0, -1) }));
+                        continue;
+                    }      
+                }
+                else
+                {
+                    // collision with top border
+                    if (wg.Position.Y - wg.Radius <= 0)
+                    {
+                        wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.borderCollision, new Object[] { new Vector2(0, 1) }));
+                        continue;
+                    } 
                 }
             }
         }

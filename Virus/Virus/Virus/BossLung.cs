@@ -20,8 +20,8 @@ namespace Virus
 
     public class Mouth : CircularSprite
     {
-        const float DELTA_SPACE = 45;
-        const float DELTA_ANGLE = (float)Math.PI * (150f / 180f);
+        const float DELTA_SPACE = 50;
+        const float DELTA_ANGLE = (float)Math.PI * (120f / 180f);
 
         static GameEventsManager _gameManager;
         static MonsterFactory _monsterFactory;
@@ -40,7 +40,7 @@ namespace Virus
         float _rotatingTime;
 
         int _spittedGlobulos = 4;
-        float _globulosSpeed = 100;
+        float _globulosSpeed = 150;
 
         public float ApprochingTime { set { _approachingTime = value; } }
         public float RotatingTime { set { _rotatingTime = value; } }
@@ -84,7 +84,7 @@ namespace Virus
                         // assign leaving speed
                         _leavingSpeed = -Speed;
                         _approachingTime = DELTA_SPACE / Speed.Length();
-                        _rotatingTime = (DELTA_ANGLE * 0.5f) / Math.Abs(_rotationSpeed);
+                        _rotatingTime = (DELTA_ANGLE) / Math.Abs(_rotationSpeed);
                         Angle = (float)Math.Atan2(Speed.Y, Speed.X);
 
                         _timer = 0;
@@ -134,11 +134,13 @@ namespace Virus
                     _timer += _elapsedTime;
                     _firingTimer += _elapsedTime;
 
+                    float fireTime = _rotatingTime / (_spittedGlobulos - 1);
+
                     Rotate();
 
-                    if (_firingTimer > _rotatingTime / _spittedGlobulos)
+                    if (_firingTimer > fireTime)
                     {
-                        _firingTimer -= _rotatingTime / _spittedGlobulos;
+                        _firingTimer -= fireTime;
                         FireGlobulo(gameTime.TotalGameTime);
                     }
 
@@ -251,9 +253,9 @@ namespace Virus
             for (i = 0; i < 5; i++)
                 _idleRightMouths.Add(new Mouth(mouthAnimation, 40, 40));
 
-            _leftTimeToCall = (float)_dice.RandomDouble(2,5);
-            _bottomTimeToCall = (float)_dice.RandomDouble(2, 5);
-            _rightTimeToCall = (float)_dice.RandomDouble(2, 5);
+            _leftTimeToCall = 3;
+            _bottomTimeToCall = 6;
+            _rightTimeToCall = 9;
         }
 
         protected override void InitializePhysics()
@@ -328,29 +330,29 @@ namespace Virus
             // aggiorna le frequenze e velocità delle bocche in maniera inversamente proporzionale agli hit points
             UpdateMouthSpeedParameters();
 
-            // update timers and awake mouth if timer is expired
-            //_leftTimer += _elapsedTime;
-            //if (_leftTimer > _leftTimeToCall)
-            //{
-            //    _leftTimer -= _leftTimeToCall;
-            //    _leftTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
-            //    AwakeMouth(_idleLeftMouths, _activeLeftMouths, true, -30, 250, 750, 200, new Vector2(1, 0));
-            //}
+            //update timers and awake mouth if timer is expired
+            _leftTimer += _elapsedTime;
+            if (_leftTimer > _leftTimeToCall)
+            {
+                _leftTimer -= _leftTimeToCall;
+                _leftTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
+                AwakeMouth(_idleLeftMouths, _activeLeftMouths, true, -20, 250, 750, 200, new Vector2(1, 0));
+            }
 
-            //_bottomTimer += _elapsedTime;
-            //if (_bottomTimer > _bottomTimeToCall)
-            //{
-            //    _bottomTimer -= _bottomTimeToCall;
-            //    _bottomTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
-            //    AwakeMouth(_idleBottomMouths, _activeBottomMouths, false, 830, 50, 430, 140, new Vector2(0, -1));
-            //}
+            _bottomTimer += _elapsedTime;
+            if (_bottomTimer > _bottomTimeToCall)
+            {
+                _bottomTimer -= _bottomTimeToCall;
+                _bottomTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
+                AwakeMouth(_idleBottomMouths, _activeBottomMouths, false, 820, 50, 430, 140, new Vector2(0, -1));
+            }
 
             _rightTimer += _elapsedTime;
             if (_rightTimer > _rightTimeToCall)
             {
                 _rightTimer -= _rightTimeToCall;
                 _rightTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
-                AwakeMouth(_idleRightMouths, _activeRightMouths, true, 480, 250, 750, 200, new Vector2(-1, 0));
+                AwakeMouth(_idleRightMouths, _activeRightMouths, true, 500, 250, 750, 200, new Vector2(-1, 0));
             }
 
             // call update on every active mouth!
@@ -358,28 +360,46 @@ namespace Virus
             _activeBottomMouths.ForEach(m => m.Update(gameTime));
             _activeRightMouths.ForEach(m => m.Update(gameTime));
 
+            // idle mouths in active list are brought back to idle queues
+            BringBackIdleMouthsToIdleQueque(_activeLeftMouths, _idleLeftMouths);
+            BringBackIdleMouthsToIdleQueque(_activeBottomMouths, _idleBottomMouths);
+            BringBackIdleMouthsToIdleQueque(_activeRightMouths, _idleRightMouths);
+
             // remove died mouths
             RemoveDiedMouths(_activeLeftMouths);
             RemoveDiedMouths(_activeBottomMouths);
-            RemoveDiedMouths(_activeLeftMouths);
+            RemoveDiedMouths(_activeRightMouths);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
 
-            //_activeLeftMouths.ForEach(m => m.Draw(spriteBatch));
-            //_activeBottomMouths.ForEach(m => m.Draw(spriteBatch));
+            _activeLeftMouths.ForEach(m => m.Draw(spriteBatch));
+            _activeBottomMouths.ForEach(m => m.Draw(spriteBatch));
             _activeRightMouths.ForEach(m => m.Draw(spriteBatch));
         }
 
-        private void RemoveDiedMouths(List<Mouth> _activeMouths)
+        private void RemoveDiedMouths(List<Mouth> activeMouths)
         {
-            for (int i = 0; i < _activeMouths.Count; i++)
+            for (int i = 0; i < activeMouths.Count; i++)
             {
-                if (_activeMouths[i].State == MouthState.died)
+                if (activeMouths[i].State == MouthState.died)
                 {
-                    _activeMouths.RemoveAt(i);
+                    activeMouths.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+
+        private void BringBackIdleMouthsToIdleQueque(List<Mouth> activeMouths, List<Mouth> idleMouths)
+        {
+            for (int i = 0; i < activeMouths.Count; i++)
+            {
+                if (activeMouths[i].State == MouthState.idle)
+                {
+                    idleMouths.Add(activeMouths[i]);
+                    activeMouths.RemoveAt(i);
                     i--;
                 }
             }
@@ -387,11 +407,11 @@ namespace Virus
 
         private void UpdateMouthSpeedParameters()
         {
-            _approchingPeriodMin = 10;
-            _approchingPeriodMax = 10;
+            _approchingPeriodMin = 7;
+            _approchingPeriodMax = 12;
 
-            _approchingSpeed = 120;
-            _rotatingSpeed = (float)Math.PI / 16;
+            _approchingSpeed = 60;
+            _rotatingSpeed = 1;
         }
 
     }

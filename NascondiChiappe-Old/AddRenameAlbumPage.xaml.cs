@@ -39,9 +39,6 @@ namespace NascondiChiappe
                 var AlbumId = NavigationContext.QueryString["Album"];
                 CurrentAlbum = AppContext.Albums.First(a => a.DirectoryName == AlbumId);
                 LayoutRoot.DataContext = CurrentAlbum;
-
-                //Imposta la lista degli eventuali altri album su cui spostare le foto
-                AlbumsListBox.ItemsSource = AppContext.Albums.Where(a => a.DirectoryName != CurrentAlbum.DirectoryName);
             }
             else
                 AlbumNameTextBox.Focus();
@@ -49,15 +46,6 @@ namespace NascondiChiappe
             if (AppContext.Albums.Count == 0)
             {
                 OneAlbumNecessaryTextBlock.Visibility = Visibility.Visible;
-            }
-            else if (AppContext.Albums.Count > 1)
-            {
-                var MovePhotosAppBarButton = new ApplicationBarIconButton();
-                MovePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_move.png", UriKind.Relative);
-                MovePhotosAppBarButton.Text = AppResources.MoveSelectedPhotos;
-                MovePhotosAppBarButton.IsEnabled = false;
-                MovePhotosAppBarButton.Click += new EventHandler(MovePhotosAppBarButton_Click);
-                ApplicationBar.Buttons.Add(MovePhotosAppBarButton);
             }
         }
 
@@ -70,16 +58,6 @@ namespace NascondiChiappe
             ApplicationBar.Buttons.Add(SaveAppBarButton);
         }
 
-        void MovePhotosAppBarButton_Click(object sender, EventArgs e)
-        {
-            if (!ImagesList.ArePhotosSelected)
-            {
-                MessageBox.Show(AppResources.SelectPhotos);
-                return;
-            }
-            PopupBackground.Visibility = Visibility.Visible;
-            PopupBorder.Visibility = Visibility.Visible;
-        }
 
 
         void SaveAppBarButton_Click(object sender, EventArgs e)
@@ -106,19 +84,6 @@ namespace NascondiChiappe
             NavigationService.GoBack();
         }
 
-        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
-        {
-            if (CurrentAlbum == null)
-                return;
-
-            if (PopupBorder.Visibility == Visibility.Visible)
-            {
-                PopupBackground.Visibility = Visibility.Collapsed;
-                PopupBorder.Visibility = Visibility.Collapsed;
-                e.Cancel = true;
-                return;
-            }
-        }
 
         private bool CheckAlbumName()
         {
@@ -137,27 +102,5 @@ namespace NascondiChiappe
                 SaveAppBarButton_Click(sender, EventArgs.Empty);
         }
 
-        private void AlbumsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var SelectedPhotos = ImagesList.SelectedPhotos;
-            for (int i = 0; i < SelectedPhotos.Count; i++)
-            {
-                CurrentAlbum.MovePhoto(SelectedPhotos[i], (Album)e.AddedItems[0]);
-            }
-
-            PopupBackground.Visibility = Visibility.Collapsed;
-            PopupBorder.Visibility = Visibility.Collapsed;
-        }
-
-        private void ImagesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (NavigationContext.QueryString.ContainsKey("Album")) //EditAlbumMode
-            {
-                ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).IsEnabled = ImagesList.ArePhotosSelected;
-
-                if (AppContext.Albums.Count > 1)
-                    ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).IsEnabled = ImagesList.ArePhotosSelected;
-            }
-        }
     }
 }

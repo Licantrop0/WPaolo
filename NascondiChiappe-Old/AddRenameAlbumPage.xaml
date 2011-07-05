@@ -15,7 +15,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False"
-    BackKeyPress="PhoneApplicationPage_BackKeyPress" Loaded="PhoneApplicationPage_Loaded">
+    Loaded="PhoneApplicationPage_Loaded">
     <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -31,31 +31,6 @@
                    Text="{Binding Path=LocalizedResources.OneAlbumNecessary, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource HintTextBlockStyle}" />
         </StackPanel>
-
-        <local:ImageList x:Name="ImagesList" Grid.Row="1"
-                         DataContext="{Binding Photos}"
-                         SelectedChanged="ImagesListBox_SelectionChanged"
-                         HintVisible="False" />
-
-        <Rectangle Name="PopupBackground" Grid.RowSpan="2"
-                   Fill="#CC000000" Visibility="Collapsed"/>
-        <Border Name="PopupBorder" Grid.Row="1"
-                CornerRadius="10" Visibility="Collapsed"
-                BorderBrush="WhiteSmoke"
-                Background="Black"
-                BorderThickness="{StaticResource PhoneBorderThickness}"
-                VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ListBox Name="AlbumsListBox" Margin="24"
-                     SelectionChanged="AlbumsListBox_SelectionChanged">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"
-                                   Margin="0,8" TextAlignment="Center"
-                                   Style="{StaticResource TextBlockStyle}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Border>
     </Grid>
     
     <phone:PhoneApplicationPage.ApplicationBar>

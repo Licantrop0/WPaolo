@@ -69,6 +69,8 @@ namespace NascondiChiappe
         private void ForgotPasswordHLButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(AppResources.Fucked);
+            MainPasswordBox.Focus();
+            MainPasswordBox.SelectAll();
         }
 
         void OkAppBarButton_Click(object sender, EventArgs e)
@@ -83,16 +85,18 @@ namespace NascondiChiappe
                     return;
                 }
 
-                if (ConfirmPasswordBox.Password == string.Empty)
-                {
-                    ConfirmPasswordBox.Focus();
-                    return;
-                }
-
                 if (NewPasswordBox.Password.Length < Settings.PasswordMinLenght)
                 {
                     MessageBox.Show(string.Format(AppResources.PasswordMinLenght, Settings.PasswordMinLenght));
+                    ConfirmPasswordBox.Password = string.Empty;
+                    NewPasswordBox.Focus();
                     NewPasswordBox.SelectAll();
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(ConfirmPasswordBox.Password))
+                {
+                    ConfirmPasswordBox.Focus();
                     return;
                 }
 
@@ -131,7 +135,10 @@ namespace NascondiChiappe
         private void OldPasswordBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
+            {
                 NewPasswordBox.Focus();
+                NewPasswordBox.SelectAll();
+            }
         }
 
         private void NewPasswordBox_KeyDown(object sender, KeyEventArgs e)
@@ -140,6 +147,20 @@ namespace NascondiChiappe
             {
                 ConfirmPasswordBox.Focus();
                 ConfirmPasswordBox.SelectAll();
+            }
+            else if (e.Key == Key.Back && string.IsNullOrEmpty(NewPasswordBox.Password))
+            {
+                OldPasswordBox.Focus();
+            }                
+        }
+
+        private void ConfirmPasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                OkAppBarButton_Click(sender, EventArgs.Empty);
+            else if (e.Key == Key.Back && string.IsNullOrEmpty(ConfirmPasswordBox.Password))
+            {
+                NewPasswordBox.Focus();
             }
         }
     }

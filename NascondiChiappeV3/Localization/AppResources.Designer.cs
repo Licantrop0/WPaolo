@@ -322,7 +322,7 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Warning: if you forget your password, you will not able to access to your secret photos anymore.
+        ///   Looks up a localized string similar to WARNING: if you forget your password, you will not able to access to your secret photos anymore.
         ///Password recovery is NOT available..
         /// </summary>
         public static string PasswordHint {

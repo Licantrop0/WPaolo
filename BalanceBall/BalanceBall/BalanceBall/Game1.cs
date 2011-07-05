@@ -47,6 +47,7 @@ namespace BalanceBall
 
         // left ball features
         float _radius = 0;                  // [px]
+        float _maxRadius = 200;             // [px]
         float _scalingSpeed = 15;           // [px / sec]
         Vector2 _position;                  // [px | px]   
         Vector2 _speed;                     // [px/sec | px/sec]
@@ -57,6 +58,7 @@ namespace BalanceBall
         float _platformSpeed = 75;          // [px]
 
         float _rightMass = 0;             // [Kg]
+
         
         // common features
         float _specificWeight = 0.0001f;    // [Kg / px^3]
@@ -137,9 +139,17 @@ namespace BalanceBall
 
                     if (_mouseState.LeftButton == ButtonState.Pressed)
                     {
-                        _radius = _radius + dt * _scalingSpeed;
+                        _radius = _radius + dt * _scalingSpeed;                        
                         _position = new Vector2(_mouseState.X, _mouseState.Y);
-                        _state = State.ballSizing;
+                        if (_radius >= _maxRadius)
+                        {
+                            _radius = _maxRadius;
+                            _mass = (4 / 3) * (float)Math.PI * _radius * _radius * _radius * _specificWeight;
+                            _speed = new Vector2(0, 0);
+                            _state = State.ballFallingAndBouncing;
+                        }
+                        else
+                            _state = State.ballSizing;
                     }
                     // else remain idle...
 
@@ -150,6 +160,13 @@ namespace BalanceBall
                     if (_mouseState.LeftButton == ButtonState.Pressed)
                     {
                         _radius = _radius + dt * _scalingSpeed;
+                        if (_radius >= _maxRadius)
+                        {
+                            _radius = _maxRadius;
+                            _mass = (4 / 3) * (float)Math.PI * _radius * _radius * _radius * _specificWeight;
+                            _speed = new Vector2(0, 0);
+                            _state = State.ballFallingAndBouncing;
+                        }
                         Debug.WriteLine(_radius);
                     }
                     else
@@ -220,6 +237,9 @@ namespace BalanceBall
             _mouseState = Mouse.GetState();
         }
 
+
+
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -227,16 +247,15 @@ namespace BalanceBall
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-            float maxRadius = 200f;
-            int maxRadiusI = 200;
 
             // TODO: Add your drawing code here
-            int height = _redBall.Height > maxRadiusI ? maxRadiusI : _redBall.Height; 
-            int width = _redBall.Width > maxRadiusI ? maxRadiusI : _redBall.Width;
+            int height = _redBall.Height; // > maxRadiusI ? maxRadiusI : _redBall.Height; 
+            int width = _redBall.Width; // > maxRadiusI ? maxRadiusI : _redBall.Width;
 
-            float scale = (1f / 14f) * _radius;
-            if (_radius > maxRadius)
-                scale = maxRadius;
+            //float scale = (1f / 14f) * _radius;
+            float scale = (1f / 200f) * _radius;
+            //if (_radius > maxRadius)
+            //    scale = maxRadius;
 
             spriteBatch.Begin();
             // draw background

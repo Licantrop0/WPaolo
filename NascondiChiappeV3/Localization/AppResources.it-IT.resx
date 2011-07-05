@@ -199,7 +199,8 @@
     <value>È necessario aggiungere almeno un Album per utilizzare questa App</value>
   </data>
   <data name="PasswordHint" xml:space="preserve">
-    <value>Attenzione: non dimenticate la password, altrimenti non sarete più in grado di accedere alle vostre foto. Il recupero della password NON è disponibile.</value>
+    <value>ATTENZIONE: non dimenticare la Password, altrimenti non sarai più in grado di accedere alle tue foto.
+Il recupero password NON è disponibile.</value>
   </data>
   <data name="ViewPhoto" xml:space="preserve">
     <value>Visualizza Foto</value>

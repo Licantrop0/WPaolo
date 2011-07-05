@@ -199,7 +199,7 @@
     <value>You have to create at least one Album to use this App</value>
   </data>
   <data name="PasswordHint" xml:space="preserve">
-    <value>Warning: if you forget your password, you will not able to access to your secret photos anymore.
+    <value>WARNING: if you forget your password, you will not able to access to your secret photos anymore.
 Password recovery is NOT available.</value>
   </data>
   <data name="ViewPhoto" xml:space="preserve">

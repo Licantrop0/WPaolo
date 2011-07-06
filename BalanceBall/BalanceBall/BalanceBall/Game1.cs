@@ -15,10 +15,13 @@ namespace BalanceBall
 {
     public enum State
     {
-        idle,
         menu_main,
         menu_choose_game,
         menu_scores,
+        menu_settings,
+        menu_contact,
+        game_infinity,
+        idle,
         ballSizing,
         ballFallingAndBouncing,
         weighting

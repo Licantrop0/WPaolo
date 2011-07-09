@@ -64,7 +64,7 @@ namespace BalanceBall
 
         
         // common features
-        float _specificWeight = 0.0001f;    // [Kg / px^3]
+        float _specificWeight = 0.000001f;    // [Kg / px^3]
         float _gainPulley = 130;
         float _gravity =  250;              // [(Kg*px) / sec^2]
         float _kCollision = 0.80f;          // 0 - 1 it represents the fraction of energy absorved in collision
@@ -105,8 +105,8 @@ namespace BalanceBall
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            _redBall = Content.Load<Texture2D>("b2");
-            _blackPlatform = Content.Load<Texture2D>("BlackPlatform");
+            _redBall = Content.Load<Texture2D>("b4");
+            _blackPlatform = Content.Load<Texture2D>("p1");
             _thud = this.Content.Load<SoundEffect>("thud");
             _background = Content.Load<Texture2D>("sky11");
         }
@@ -256,7 +256,7 @@ namespace BalanceBall
             int width = _redBall.Width; // > maxRadiusI ? maxRadiusI : _redBall.Width;
 
             //float scale = (1f / 14f) * _radius;
-            float scale = (1f / 200f) * _radius;
+            float scale = (1f / 50f) * _radius;
             //if (_radius > maxRadius)
             //    scale = maxRadius;
 
@@ -264,8 +264,8 @@ namespace BalanceBall
             // draw background
             spriteBatch.Draw(_background, new Vector2(0, 0), new Rectangle(0, 0, 480, 800), Color.White);
             // draw platforms
-            spriteBatch.Draw(_blackPlatform, new Vector2(50, _platformYposition), Color.White);
-            spriteBatch.Draw(_blackPlatform, new Vector2(290, 800 - _platformYposition), Color.White);
+            spriteBatch.Draw(_blackPlatform, new Vector2(10, _platformYposition), Color.White);
+            spriteBatch.Draw(_blackPlatform, new Vector2(230, 800 - _platformYposition), Color.White);
 
             spriteBatch.Draw(_redBall, _position, new Rectangle(0, 0, width, height), Color.White, 0, new Vector2(width / 2, height / 2), new Vector2(scale), SpriteEffects.None, 0);
             spriteBatch.End();

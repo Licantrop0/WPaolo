@@ -244,4 +244,10 @@ Password recovery is NOT available.</value>
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Move</value>
+  </data>
 </root>

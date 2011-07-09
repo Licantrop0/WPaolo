@@ -205,6 +205,15 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Album.
         /// </summary>
         public static string DeleteAlbum {
@@ -264,6 +273,15 @@ namespace NascondiChiappe.Localization {
         public static string Fucked {
             get {
                 return ResourceManager.GetString("Fucked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move.
+        /// </summary>
+        public static string Move {
+            get {
+                return ResourceManager.GetString("Move", resourceCulture);
             }
         }
         

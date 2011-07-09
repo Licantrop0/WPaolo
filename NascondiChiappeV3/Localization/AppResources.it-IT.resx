@@ -244,4 +244,10 @@ Il recupero password NON è disponibile.</value>
   <data name="About" xml:space="preserve">
     <value>Informazioni</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Elimina</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Sposta</value>
+  </data>
 </root>

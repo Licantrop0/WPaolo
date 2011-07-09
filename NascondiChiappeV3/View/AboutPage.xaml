@@ -15,6 +15,5 @@
     shell:SystemTray.IsVisible="False">
 
     <wp:AboutControl x:Name="WPMEAbout"
-                     BackgroundStackPanel="{StaticResource BackgroundImage}"
                      FontFamily="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic" />
 </phone:PhoneApplicationPage>

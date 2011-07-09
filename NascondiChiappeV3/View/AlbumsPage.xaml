@@ -48,8 +48,17 @@
                                            RenderTransformOrigin="0.5,0.5"
                                            RenderTransform="{Binding RotationAngle, Converter={StaticResource RotationConverter}}">
                                         <toolkit:GestureService.GestureListener>
-                                            <toolkit:GestureListener DoubleTap="GestureListener_DoubleTap" />
+                                            <toolkit:GestureListener DoubleTap="GestureListener_DoubleTap"  />
                                         </toolkit:GestureService.GestureListener>
+                                        <!--<toolkit:ContextMenuService.ContextMenu>
+                                            <toolkit:ContextMenu>
+                                                <toolkit:MenuItem Header="{Binding LocalizedResources.Delete, Source={StaticResource LocalizedStrings}}"
+                                                                  Command="{Binding AlwaysCommand}"/>
+                                                <toolkit:MenuItem Header="{Binding LocalizedResources.Move, Source={StaticResource LocalizedStrings}}"
+                                                                  Command="{Binding AlwaysCommand}"
+                                                                  CommandParameter="param1"/>
+                                            </toolkit:ContextMenu>
+                                        </toolkit:ContextMenuService.ContextMenu>-->
                                     </Image>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

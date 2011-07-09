@@ -53,7 +53,7 @@
         </DataTemplate>
 
         <Style x:Key="HyperlinkButtonWrappingStyle" TargetType="HyperlinkButton">
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}" />

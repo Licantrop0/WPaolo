@@ -7,23 +7,21 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"  
-    xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
-    x:Class="DeathTimerz.DeathTimerzPanorama"  
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
+    x:Class="DeathTimerz.DeathTimerzPanorama"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <Grid x:Name="LayoutRoot">
-        <controls:Panorama x:Name="MainPanorama" SelectionChanged="MainPanorama_SelectionChanged">
+        <controls:Panorama x:Name="MainPanorama" SelectionChanged="MainPanorama_SelectionChanged" >
             <controls:Panorama.Title>
                 <TextBlock Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource RedChiller}" Margin="0,45,0,0" />
             </controls:Panorama.Title>
             <controls:Panorama.Background>
-                <ImageBrush ImageSource="Images/DeathBackground.jpg"
+                <ImageBrush ImageSource="../Images/DeathBackground.jpg"
                             Stretch="UniformToFill" />
             </controls:Panorama.Background>
             <!--Age-->
@@ -32,7 +30,7 @@
                     <TextBlock Text="{Binding LocalizedResources.Age, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource RedChiller}" />
                 </controls:PanoramaItem.Header>
-                <Grid  Margin="0,-30,0,74">
+                <Grid  Margin="0,-30,0,80">
                     <TextBlock x:Name="YMDTextBlock" HorizontalAlignment="Left" Margin="40,0,0,0" TextWrapping="Wrap"
                                FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" Style="{StaticResource RedChiller}" />
                 </Grid>
@@ -44,10 +42,10 @@
                     <TextBlock Text="{Binding LocalizedResources.DaysToBirthday, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource RedChiller}" />
                 </controls:PanoramaItem.Header>
-                <Grid  Margin="0,-30,0,74">
+                <Grid  Margin="0,-30,0,80">
                     <TextBlock x:Name="DaysToBirthdayTextBlock" HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
                                FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" Style="{StaticResource RedChiller}"/>
-                    <Image Source="Images\halloween_cake.png" VerticalAlignment="Bottom" Stretch="None" />
+                    <Image Source="../Images/halloween_cake.png" VerticalAlignment="Bottom" Stretch="None" />
                 </Grid>
             </controls:PanoramaItem>
 
@@ -57,7 +55,7 @@
                     <TextBlock Text="{Binding LocalizedResources.TimeToDeath, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource RedChiller}" />
                 </controls:PanoramaItem.Header>
-                <Grid Margin="0,-30,0,74">
+                <Grid Margin="0,-30,0,80">
                     <ScrollViewer>
                         <TextBlock x:Name="EstimatedDeathAge" HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
                                    FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" Style="{StaticResource RedChiller}"/>
@@ -68,7 +66,7 @@
                             Style="{StaticResource RedChillerButton}" >
                         <Custom:Interaction.Triggers>
                             <Custom:EventTrigger EventName="Click">
-                                <ic:NavigateToPageAction TargetPage="/TestPage.xaml"/>
+                                <ic:NavigateToPageAction TargetPage="/View/TestPage.xaml"/>
                             </Custom:EventTrigger>
                         </Custom:Interaction.Triggers>
                     </Button>
@@ -76,11 +74,8 @@
             </controls:PanoramaItem>
         </controls:Panorama>
 
-        <google:BannerAd x:Name="GoogleAd"
-            xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
-            VerticalAlignment="Bottom" Margin="0,0,0,-2"
-            AdUnitID="a14daf5abef3060"
-            LocationDescription="{Binding ElementName=Location, Mode=OneWay}"/>
+        <AdDuplex:AdControl xmlns:AdDuplex="clr-namespace:AdDuplex;assembly=AdDuplex.AdControl.Silverlight"
+                            AppId="12345" IsTest="True" VerticalAlignment="Bottom" />
     </Grid>
     
     <phone:PhoneApplicationPage.ApplicationBar>

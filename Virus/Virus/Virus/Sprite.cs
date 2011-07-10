@@ -28,7 +28,8 @@ namespace Virus
     {
         // graphics
         private Dictionary<string, Animation> _animations;
-        private string _currentAnimation;
+        //private string _currentAnimation;
+        private Animation _currentAnimation;
         private Queue<SpriteEvent> _spriteEventQueque = new Queue<SpriteEvent>();
         protected float _elapsedTime;
         protected SpriteEvent _actSpriteEvent;
@@ -71,7 +72,27 @@ namespace Virus
         }
 
         public float FramePerSecond
-        { set { _animations[_currentAnimation].TimeToUpdate = value != 0 ? (1f / value) : float.PositiveInfinity; } }
+        { set { _currentAnimation.TimeToUpdate = value != 0 ? (1f / value) : float.PositiveInfinity; } }
+
+        public int AnimationFrames
+        { get { return _currentAnimation.NFrames; } }
+
+        public bool AnimationFinished()
+        {
+            return _currentAnimation.Finished;
+        }
+
+        public void ReverseAnimation()
+        {
+            if (!_currentAnimation.Reverse)
+            {
+                _currentAnimation.Reverse = true;
+            }
+            else
+            {
+                _currentAnimation.Reverse = false;
+            }
+        }
 
         public float RotationSpeed
         { set { _rotationSpeed = value; } }
@@ -90,12 +111,12 @@ namespace Virus
 
         public void Animate()
         {
-            _animations[_currentAnimation].Animate(_elapsedTime);
+            _currentAnimation.Animate(_elapsedTime);
         }
 
         public void ChangeAnimation(string animationKey)
         {
-            _currentAnimation = animationKey;
+            _currentAnimation = _animations[animationKey];
         }
 
         public void Rotate()
@@ -141,7 +162,7 @@ namespace Virus
         public Sprite(Dictionary<string, Animation> animations)
         {
             _animations = animations;
-            _currentAnimation = _animations.Keys.First();
+            _currentAnimation = _animations[_animations.Keys.First()];
             _tint = Color.White;
             Scale = 1;
 
@@ -166,7 +187,7 @@ namespace Virus
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            _animations[_currentAnimation].Draw(spriteBatch, this);
+            _currentAnimation.Draw(spriteBatch, this);
         }
 
         public void AddSpriteEvent(SpriteEvent evnt)

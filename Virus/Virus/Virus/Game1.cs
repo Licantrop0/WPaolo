@@ -113,26 +113,20 @@ namespace Virus
             _timeString = Content.Load<SpriteFont>("Segoe20");
 
             // create our friend virus
-            //Texture2D virusTexture = Content.Load<Texture2D>("virus");
-            //Texture2D virusTexture = Content.Load<Texture2D>("virusBigger");
-            //Texture2D virusTexture = Content.Load<Texture2D>("ominosimpatico");
             Texture2D virusTexture = Content.Load<Texture2D>("virusMedium");
             Dictionary<string, Animation> virusAnimations = new Dictionary<string, Animation>();
             virusAnimations.Add("main", new Animation(virusTexture, 7, true));
             _virus = new Virus(virusAnimations, 40, 40);
             
             // create white globulos factory
-            //Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulos");
-            //Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulosBigger");
             Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulosBiggest");
-            //Texture2D whiteGlobuloExTexture = Content.Load<Texture2D>("whiteGlobulosEx");
-            //Texture2D whiteGlobulosOrbTexture = Content.Load<Texture2D>("whiteGlobulosOrb");
             Texture2D bonusBombTexture = Content.Load<Texture2D>("bonusBomb");
             Texture2D bonusAmmoTexture = Content.Load<Texture2D>("bonusAmmo");
             Texture2D bonusOneUpTexture = Content.Load<Texture2D>("bonusOneUp");
             Texture2D bonusBombPlusTexture = Content.Load<Texture2D>("bonusBombPlus");
             Texture2D bossLungTexture = Content.Load<Texture2D>("Boss");
-            Texture2D bossLungMouthTexture = Content.Load<Texture2D>("Mouth");
+            Texture2D bossLungMouthOpeningTexture = Content.Load<Texture2D>("boccaLateraleApre40");
+            Texture2D bossLungMouthDeathTexture = Content.Load<Texture2D>("boccaLateraleMuore40");
 
             // set ascending climax difficulty pack!
 
@@ -155,7 +149,8 @@ namespace Virus
                 SimpleEnemyTexture = whiteGlobulosTexture,
                 VirusPosition = new Vector2(240, 400),
                 BossLungTexture = bossLungTexture,
-                BossLungMouthTexture = bossLungMouthTexture,
+                BossLungMouthOpeningTexture = bossLungMouthOpeningTexture,
+                BossLungMouthDeathTexture = bossLungMouthDeathTexture
             };
            
             _bonusFactory = new BonusFactory(_eventsManager, _bonuses)

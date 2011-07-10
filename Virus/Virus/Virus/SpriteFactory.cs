@@ -128,7 +128,8 @@ namespace Virus
         Texture2D _acceleratedMonsterTexture;
         Texture2D _orbitalMonsterTexture;
         Texture2D _bossLungTexture;
-        Texture2D _bossLungMouthTexture;
+        Texture2D _bossLungMouthOpeningTexture;
+        Texture2D _bossLungMouthDeathTexture;
 
         // difficulty parameters
         protected TimeSpan _simpleEnemySchedulingTimeIntervalMin;
@@ -163,8 +164,11 @@ namespace Virus
         public Texture2D BossLungTexture
         { set { _bossLungTexture = value; } }
 
-        public Texture2D BossLungMouthTexture
-        { set { _bossLungMouthTexture = value; } }
+        public Texture2D BossLungMouthOpeningTexture
+        { set { _bossLungMouthOpeningTexture = value; } }
+
+        public Texture2D BossLungMouthDeathTexture
+        { set { _bossLungMouthDeathTexture = value; } }
 
         public void SetDifficulty(Level1DifficultyPackEnemies difficulty)
         {
@@ -310,8 +314,10 @@ namespace Virus
             bossAnimations.Add("main", bossMainAnimation);
 
             Dictionary<string, Animation> mouthAnimations = new Dictionary<string, Animation>();
-            Animation mouthMainAnimation = new Animation(_bossLungMouthTexture, 1, true);
-            mouthAnimations.Add("main", mouthMainAnimation);
+            Animation animation = new Animation(_bossLungMouthOpeningTexture, 8, false);
+            mouthAnimations.Add("opening", animation);
+            animation = new Animation(_bossLungMouthDeathTexture, 8, false);
+            mouthAnimations.Add("death", animation);
 
             BossLung boss = new BossLung(bossAnimations, 240, 80, 240, 80, mouthAnimations, _eventsManager, this)
             {

@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Phone.Tasks;
-using WPCommon.ViewModel;
 
 namespace WPCommon
 {
@@ -11,21 +10,6 @@ namespace WPCommon
         public AboutControl()
         {
             InitializeComponent();
-        }
-
-        private AboutViewModel _vM;
-        public AboutViewModel VM
-        {
-            get
-            {
-                if (_vM == null)
-                    _vM = LayoutRoot.DataContext as AboutViewModel;
-                return _vM;
-            }
-            set
-            {
-                LayoutRoot.DataContext = value;
-            }
         }
 
         private void Facebook_Click(object sender, RoutedEventArgs e)
@@ -42,7 +26,10 @@ namespace WPCommon
         {
             new EmailComposeTask()
             {
-                Subject = string.Format("[{0}] {1}", VM.AppName, "feedback"),
+                Subject = string.Format("[{0} {1}] {2}",
+                    AppNameTextBlock.Text,
+                    AppVersionTextBlock.Text,
+                    "Feedback"),
                 To = "wpmobile@hotmail.it"
             }.Show();
         }

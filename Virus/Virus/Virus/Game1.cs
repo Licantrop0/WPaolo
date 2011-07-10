@@ -205,6 +205,10 @@ namespace Virus
             //// create one up bonus at 135 seconds
             //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(135), GameEventType.createOneUpBonus, _bonusFactory));        
 
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.createBombPlusBonus, _bonusFactory));
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.createBombPlusBonus, _bonusFactory));
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.createBombPlusBonus, _bonusFactory));
+
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3), GameEventType.createBossLung, _monsterFactory));
         }
 
@@ -275,6 +279,12 @@ namespace Virus
                     wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit));
                     enemiesKilled++;
                 }
+            }
+
+            // iterate boss hittable sprites to find which sprite is being touched
+            if (_bossContainer.Count != 0)
+            {
+                _bossContainer[0].HandleUserTouch(_touchPoint, ref enemiesKilled);
             }
 
             // ammo bonus handling

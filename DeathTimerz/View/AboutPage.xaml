@@ -7,18 +7,22 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon"
+    xmlns:vm="clr-namespace:DeathTimerz.ViewModel"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
-
-    <WPCommon:AboutControl Name="WPMEAbout"
-                           FontFamily="Fonts\Fonts.zip#Chiller"
+    
+    <phone:PhoneApplicationPage.Resources>
+        <vm:AboutViewModel x:Key="AboutVM"
                            MinFontSize="55"
-                           Foreground="{StaticResource RedGradientBrush}" >
-        <WPCommon:AboutControl.BackgroundStackPanel>
-            <ImageBrush ImageSource="Images/DeathBackground.jpg"
+                           DefaultFont="/DeathTimerz;component/Fonts/Fonts.zip#Chiller"
+                           DefaultForeground="{StaticResource RedGradientBrush}" >
+            <vm:AboutViewModel.DefaultBackground>
+                <ImageBrush ImageSource="../Images/DeathBackground.jpg"
                         Stretch="None" AlignmentX="Center" />
-        </WPCommon:AboutControl.BackgroundStackPanel>
-    </WPCommon:AboutControl>
+            </vm:AboutViewModel.DefaultBackground>
+        </vm:AboutViewModel>
+    </phone:PhoneApplicationPage.Resources>
+    <WPCommon:AboutControl DataContext="{StaticResource AboutVM}" />
 
 </phone:PhoneApplicationPage>

@@ -6,15 +6,15 @@
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
 
 	<Application.Resources>
-        <local:LocalizedStrings xmlns:local="clr-namespace:DeathTimerz.Localization" x:Key="LocalizedStrings" />
+		<local:LocalizedStrings xmlns:local="clr-namespace:DeathTimerz.Localization" x:Key="LocalizedStrings" />
 
-        <LinearGradientBrush x:Key="RedGradientBrush" StartPoint="0.5,0.2" EndPoint="0.5,1">
+		<LinearGradientBrush x:Key="RedGradientBrush" StartPoint="0.5,0.2" EndPoint="0.5,1">
 			<GradientStop Color="Red" Offset="0" />
 			<GradientStop Color="#C8503232" Offset="1" />
 		</LinearGradientBrush>
 
 		<Style x:Key="RedChiller" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="Fonts\Fonts.zip#Chiller" />
+			<Setter Property="FontFamily" Value="/DeathTimerz;component/Fonts/Fonts.zip#Chiller" />
 			<Setter Property="Foreground" Value="{StaticResource RedGradientBrush}" />
 		</Style>
 
@@ -27,7 +27,7 @@
 		<Style x:Key="RedChillerContentControl" TargetType="ContentControl" >
 			<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
 			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="FontFamily" Value="Fonts\Fonts.zip#Chiller" />
+			<Setter Property="FontFamily" Value="/DeathTimerz;component/Fonts/Fonts.zip#Chiller" />
 			<Setter Property="Foreground" Value="{StaticResource RedGradientBrush}" />
 		</Style>
 
@@ -44,7 +44,7 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
 						<Grid>
-							<Image Source="Images/blood.png" Stretch="Fill" Margin="-182,-101,-121,-113"/>
+							<Image Source="/DeathTimerz;component/Images/blood.png" Stretch="Fill" Margin="-182,-101,-121,-113"/>
 							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 							 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 						</Grid>
@@ -60,8 +60,8 @@
 	</Application.Resources>
 
 	<Application.ApplicationLifetimeObjects>
-        <wp:XNAAsyncDispatcher xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"/>
-        <shell:PhoneApplicationService 
+		<wp:XNAAsyncDispatcher xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"/>
+		<shell:PhoneApplicationService 
 			Launching="Application_Launching" Closing="Application_Closing" 
 			Activated="Application_Activated" Deactivated="Application_Deactivated"/>
 	</Application.ApplicationLifetimeObjects>

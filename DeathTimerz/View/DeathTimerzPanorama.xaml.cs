@@ -25,7 +25,7 @@ namespace DeathTimerz
         {
             if (!Settings.BirthDay.HasValue)
             {
-                NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/View/SettingsPage.xaml", UriKind.Relative));
                 return;
             }
 
@@ -33,27 +33,7 @@ namespace DeathTimerz
             DaysToBirthdayTextBlock.Text = DaysToBirthDay.ToString() + " " +
                 (DaysToBirthDay == 1 ? AppResources.Day : AppResources.Days);
 
-
             dt_Tick(sender, EventArgs.Empty);
-
-            InizializeAd();
-        }
-
-        private void InizializeAd()
-        {
-            GoogleAd.BeginUpdates();
-            GoogleAd.Birthday = Settings.BirthDay;
-            var Gender = (from q in Settings.Questions.Descendants("Question")
-                          where q.Attribute("Name").Value == "MaleOrFemale"
-                          from ans in q.Elements("Answer")
-                          where ans.Attribute("IsChecked").Value == "True"
-                          select ans.Attribute("Name").Value).SingleOrDefault() ?? string.Empty;
-
-            if (Gender == "Male")
-                GoogleAd.Gender = Google.AdMob.Ads.WindowsPhone7.Gender.Male;
-            else if (Gender == "Female")
-                GoogleAd.Gender = Google.AdMob.Ads.WindowsPhone7.Gender.Female;
-            GoogleAd.EndUpdates();
         }
 
         private void InitializeTimer()
@@ -142,7 +122,7 @@ namespace DeathTimerz
             SettingsAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
             SettingsAppBarButton.Text = AppResources.Settings;
             SettingsAppBarButton.Click += delegate(object sender, EventArgs e)
-            { NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative)); };
+            { NavigationService.Navigate(new Uri("/View/SettingsPage.xaml", UriKind.Relative)); };
             return SettingsAppBarButton;
         }
 
@@ -152,7 +132,7 @@ namespace DeathTimerz
             EditTestAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_edit.png", UriKind.Relative);
             EditTestAppBarButton.Text = AppResources.EditTest;
             EditTestAppBarButton.Click += delegate(object sender, EventArgs e)
-            { NavigationService.Navigate(new Uri("/TestPage.xaml", UriKind.Relative)); };
+            { NavigationService.Navigate(new Uri("/View/TestPage.xaml", UriKind.Relative)); };
             return EditTestAppBarButton;
         }
 
@@ -161,7 +141,7 @@ namespace DeathTimerz
             var DisclaimerAppBarMenuItem = new ApplicationBarMenuItem();
             DisclaimerAppBarMenuItem.Text = AppResources.Disclaimer;
             DisclaimerAppBarMenuItem.Click += delegate(object sender, EventArgs e)
-            { NavigationService.Navigate(new Uri("/DisclaimerPage.xaml", UriKind.Relative)); };
+            { NavigationService.Navigate(new Uri("/View/DisclaimerPage.xaml", UriKind.Relative)); };
             return DisclaimerAppBarMenuItem;
         }
 
@@ -170,7 +150,7 @@ namespace DeathTimerz
             var AboutAppBarMenuItem = new ApplicationBarMenuItem();
             AboutAppBarMenuItem.Text = AppResources.About;
             AboutAppBarMenuItem.Click += delegate(object sender, EventArgs e)
-            { NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative)); };
+            { NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative)); };
             return AboutAppBarMenuItem;
         }
 

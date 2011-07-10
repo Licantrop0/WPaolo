@@ -20,10 +20,6 @@ namespace DeathTimerz
         public AboutPage()
         {
             InitializeComponent();
-            WPMEAbout.ApplicationName = AppResources.AppName;
-            WPMEAbout.GetOtherAppsText = AppResources.GetOtherApps;
-            var name = Assembly.GetExecutingAssembly().FullName;
-            WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString(); 
         }
     }
 }

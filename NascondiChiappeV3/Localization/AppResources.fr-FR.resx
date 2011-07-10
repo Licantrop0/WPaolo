@@ -124,7 +124,7 @@
     <value>Ajouter dossier</value>
   </data>
   <data name="AddPhotosHint" xml:space="preserve">
-    <value>Ajouter des photos de la Media Library ou creer une photo avec le bouton "Photo" de l'Application Bar</value>
+    <value>Ajoutez des photos de la bibliothèque d'images ou prenez une photo en utilisant les liens de l'Application Bar</value>
   </data>
   <data name="AlbumNameRequired" xml:space="preserve">
     <value>Le nom du dossier est obligatoire</value>
@@ -139,7 +139,7 @@
     <value>Changer mot de passe</value>
   </data>
   <data name="ChangePasswordHint" xml:space="preserve">
-    <value>Pour changer le mot de passe, ouvrir le menu de l'Application Bar</value>
+    <value>Pour changer le mot de passe, ouvrir l'Application Bar</value>
   </data>
   <data name="ClickToBuy" xml:space="preserve">
     <value>Cliquez pour acheter</value>
@@ -187,7 +187,7 @@
     <value>J'ai oublié le mot de passe</value>
   </data>
   <data name="Fucked" xml:space="preserve">
-    <value>Desolé, on peut pas récupérer le mot de passe. Je t'avait dit de ne l'oublier pas!</value>
+    <value>Desolé, on ne peut pas récupérer le mot de passe. Vous avez été prévenu de ne l'oublier pas!</value>
   </data>
   <data name="Move" xml:space="preserve">
     <value>Déplacer</value>
@@ -211,8 +211,7 @@
     <value>Mot de passe</value>
   </data>
   <data name="PasswordHint" xml:space="preserve">
-    <value>ATTENTION: n'oubliez pas le mot de passe pour l'accés aux dossiers privés. On ne peut pas le recuperer, si vous l'oublié, vous perdez l'accés aux dossiers.
-Il recupero password NON è disponibile.</value>
+    <value>ATTENTION: on ne peut pas recuperer le mot de passe, pour raisons de securité. Si vous oubliez le mot de passe, vous perdez l'accés aux dossiers privés.</value>
   </data>
   <data name="PasswordMinLenght" xml:space="preserve">
     <value>Le nouveau mot de passe doit etre au moins long de {0} caractères</value>
@@ -224,10 +223,10 @@ Il recupero password NON è disponibile.</value>
     <value>Le mot de passe n'est pas correct</value>
   </data>
   <data name="PhotoCopied" xml:space="preserve">
-    <value>La photo est enregistrée dans ta MediaLibrary</value>
+    <value>La photo est enregistrée dans ta bibliothèque d'images</value>
   </data>
   <data name="PhotosCopied" xml:space="preserve">
-    <value>Les photos sont enrigistrées dans ta MediaLibrary</value>
+    <value>Les photos sont enrigistrées dans ta bibliothèque d'images</value>
   </data>
   <data name="RenameAlbum" xml:space="preserve">
     <value>Renommer dossier</value>

@@ -28,7 +28,7 @@ namespace NascondiChiappe.ViewModel
             get { return _selectedAlbum; }
             set
             {
-                if (_selectedAlbum == value)
+                if (SelectedAlbum == value)
                     return;
 
                 _selectedAlbum = value;
@@ -36,7 +36,8 @@ namespace NascondiChiappe.ViewModel
                 RaisePropertyChanged("OtherAlbums");
 
                 //Messaggio per aggiornare l'ApplicationBar nella View
-                Messenger.Default.Send<bool>(ArePhotosSelected, "SelectedPhotos");
+                if (SelectedAlbum != null)
+                    Messenger.Default.Send<bool>(ArePhotosSelected, "SelectedPhotos");
             }
         }
 
@@ -63,7 +64,7 @@ namespace NascondiChiappe.ViewModel
             Albums.CollectionChanged += (sender, e) =>
             {
                 SelectedAlbum = e.NewStartingIndex == -1 ?
-                    Albums.FirstOrDefault() :
+                    null :
                     Albums[e.NewStartingIndex];
             };
         }

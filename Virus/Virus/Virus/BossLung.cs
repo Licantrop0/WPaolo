@@ -19,6 +19,9 @@ namespace Virus
         chargingAfter,
         postRotating,
         leaving,
+        dyingMouthClosing,
+        dying,
+        fading,
         died
     }
 
@@ -36,6 +39,8 @@ namespace Virus
         int _hitPoints;
         MouthState _state;
         Vector2 _leavingSpeed;
+        bool _blinking;
+        float _blinkingTimer;
 
         float _timer;
 
@@ -59,7 +64,7 @@ namespace Virus
         public Mouth(Dictionary<string, Animation> animations, float radius, float touchRadius)
             : base(animations, radius, touchRadius)
         {
-            _hitPoints = 10;
+            _hitPoints = 15;
             _state = MouthState.idle;
             Position = new Vector2(-100, -100);
         }
@@ -81,6 +86,52 @@ namespace Virus
         {
             base.Update(gameTime);
 
+            // hanlde blinking
+            if (_blinking)
+            {
+                _blinkingTimer += _elapsedTime;
+                if (_blinkingTimer < 0.2f)
+                {
+                    Blink();
+                }
+                else
+                {
+                    Tint = Color.White;
+                    _blinkingTimer = 0;
+                    _blinking = false;
+                }
+            }
+
+            // handle death transition
+            if (_hitPoints <= 0)
+            {
+                // state in which mouth is closed
+                if (_state == MouthState.approching || _state == MouthState.leaving ||
+                    _state == MouthState.preRotating || _state == MouthState.rotating || _state == MouthState.postRotating)
+                {
+                    ChangeAnimation("death");
+                    FramePerSecond = 10;
+                    _state = MouthState.dying;
+                }
+                // state in which mouth is open or partially opened
+                else if (_state == MouthState.chargingAfter || _state == MouthState.chargingBefore ||
+                    _state == MouthState.mouthOpenAfter || _state == MouthState.mouthOpenBefore)
+                {
+                    SetAnimationVerse(false);
+                    FramePerSecond = AnimationFrames / _openingTime;
+                    _state = MouthState.dyingMouthClosing;
+                }
+            }
+            // hanlde hit
+            else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.fingerHit)
+            {
+                _hitPoints--;
+                BlinkingFrequency = 30;
+                BlinkingTint = Color.Transparent;
+                _blinking = true;
+            }
+
+            // handle state machine
             switch (_state)
             {
                 case MouthState.idle:
@@ -102,6 +153,7 @@ namespace Virus
                         FramePerSecond = 0;
 
                         _timer = 0;
+                        _touchable = true;
                         _state = MouthState.approching;
                     }
                     break;
@@ -249,6 +301,7 @@ namespace Virus
                     if (_timer > _approachingTime)
                     {
                         _timer = 0;
+                        _touchable = false;
                         _state = MouthState.idle;
                     }
                     else
@@ -257,7 +310,48 @@ namespace Virus
                     }
                         
                     break;
+                
+                case MouthState.dyingMouthClosing:
 
+                    Animate();
+
+                    if (AnimationFinished())
+                    {
+                        ChangeAnimation("death");
+                        FramePerSecond = 10;
+                        _state = MouthState.dying;
+                    }
+                        
+                    break;
+
+                case MouthState.dying:
+
+                    Animate();
+
+                    if (AnimationFinished())
+                    {
+                        _timer = 0;
+                        FadeSpeed = 0.5f;
+                        _touchable = false;
+                        _state = MouthState.fading;
+                    }
+
+                    break;
+
+                case MouthState.fading:
+
+                    _timer += _elapsedTime;
+
+                    if (_timer < 2)
+                    {
+                        Fade();
+                    }
+                    else
+                    {
+                        _state = MouthState.died;
+                    }
+
+                    break;
 
                 case MouthState.died:
                     break;
@@ -307,6 +401,8 @@ namespace Virus
             Dictionary<string, Animation> mouthAnimations, GameEventsManager gm, MonsterFactory mf)
             : base(animations, width, height, touchWidth, touchHeight)
         {
+            _touchable = true;
+
             // initialize mouths
             Mouth.GameManager = gm;
             Mouth.MonsterFactory = mf;
@@ -347,9 +443,9 @@ namespace Virus
                 _idleRightMouths.Add(new Mouth(aux, 40, 40));
             }
                 
-            _leftTimeToCall = 3;
-            _bottomTimeToCall = 6;
-            _rightTimeToCall = 9;
+            _leftTimeToCall = 2;
+            _bottomTimeToCall = 4;
+            _rightTimeToCall = 8;
         }
 
         protected override void InitializePhysics()
@@ -505,14 +601,39 @@ namespace Virus
 
         private void UpdateMouthSpeedParameters()
         {
-            _approchingPeriodMin = 10;
-            _approchingPeriodMax = 15;
+            _approchingPeriodMin = 6;
+            _approchingPeriodMax = 10;
 
             _approchingSpeed = 60;
             _rotatingSpeed = 1;
         }
 
-    }
+        // deve diventare un metodo di una interfaccia che i boss ereditano e che ogni boss deve implementare
+        public void HandleUserTouch(Vector2 _touchPoint, ref int enemiesHit)
+        {
+            // contact with main blob
+            if (Touched(_touchPoint))
+            {
+                enemiesHit++;
+                this.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit));
+            }
 
-    
+            // contact with mouths
+            HandleFingerContactWidthMouthQueque(_touchPoint, _activeLeftMouths, ref enemiesHit);
+            HandleFingerContactWidthMouthQueque(_touchPoint, _activeBottomMouths, ref enemiesHit);
+            HandleFingerContactWidthMouthQueque(_touchPoint, _activeRightMouths, ref enemiesHit);
+        }
+
+        private void HandleFingerContactWidthMouthQueque(Vector2 touchPoint, List<Mouth> Mouths, ref int enemiesHit)
+        {
+            foreach (Mouth m in Mouths)
+            {
+                if (m.Touched(touchPoint))
+                {
+                    m.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit));
+                    enemiesHit++;
+                }
+            }
+        }
+    }
 }

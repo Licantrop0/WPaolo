@@ -94,6 +94,11 @@ namespace Virus
             }
         }
 
+        public void SetAnimationVerse(bool isForward)
+        {
+            _currentAnimation.Reverse = !isForward;
+        }
+
         public float RotationSpeed
         { set { _rotationSpeed = value; } }
 

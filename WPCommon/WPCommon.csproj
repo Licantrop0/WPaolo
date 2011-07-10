@@ -80,7 +80,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShakeDetector.cs" />
     <Compile Include="TrialManagement.cs" />
-    <Compile Include="ViewModel\AboutViewModel.cs" />
+    <None Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="XNAAsyncDispatcher.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,11 +102,9 @@
     <Resource Include="Img\twitter.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AD SDK\Google.AdMob.Ads.WindowsPhone7.dll" />
-    <None Include="AD SDK\Google.AdMob.Ads.WindowsPhone7.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="AD SDK\AdDuplex.AdControl.Silverlight.dll" />
+    <None Include="AD SDK\AdDuplex.AdControl.Silverlight.dll" />
+    <None Include="OpenXLive\OpenXLive.dll" />
+    <None Include="OpenXLive\OpenXLive.Silverlight.dll" />
     <Resource Include="Img\lucchetto.png" />
   </ItemGroup>
   <ItemGroup />

@@ -9,10 +9,12 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows;
 using System.Reflection;
+using GalaSoft.MvvmLight;
+using NascondiChiappe.Localization;
 
-namespace WPCommon.ViewModel
+namespace NascondiChiappe.ViewModel
 {
-    public class AboutViewModel : INotifyPropertyChanged
+    public class AboutViewModel : ViewModelBase
     {
         XNamespace nsAtom = "http://www.w3.org/2005/Atom";
         XNamespace nsZune = "http://schemas.zune.net/catalog/apps/2008/02";
@@ -184,12 +186,5 @@ namespace WPCommon.ViewModel
         { get { return WPCommon.Localization.AppResources.RateThisApp; } }
 
         #endregion
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

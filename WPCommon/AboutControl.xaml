@@ -6,11 +6,11 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
-    xmlns:vm="clr-namespace:WPCommon.ViewModel"
     Foreground="{StaticResource PhoneForegroundBrush}"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
     <UserControl.Resources>
-        <vm:AboutViewModel x:Key="AboutVM" />
+    <!--xmlns:vm="clr-namespace:WPCommon.ViewModel"-->
+        <!--<vm:AboutViewModel x:Key="AboutVM" />-->
         <Style x:Key="HyperlinkWrappingStyle" TargetType="HyperlinkButton">
             <Setter Property="Template">
                 <Setter.Value>
@@ -55,31 +55,43 @@
         </Style>
     </UserControl.Resources>
 
-    <controls:Pivot Name="LayoutRoot" DataContext="{StaticResource AboutVM}"
-                    Background="{Binding BackgroundStackPanel}"
+    <controls:Pivot Name="LayoutRoot"
+                    Background="{Binding DefaultBackground}"
+                    Foreground="{Binding DefaultForeground}"
                     FontFamily="{Binding DefaultFont}" >
         <controls:PivotItem >
             <controls:PivotItem.Header>
                 <TextBlock Text="{Binding ApplicationText}" FontFamily="{Binding DefaultFont}" />
             </controls:PivotItem.Header>
-            <Grid>
-                <StackPanel>
-                    <TextBlock Text="{Binding AppName}"
-                           TextAlignment="Center" TextWrapping="Wrap"
-                           FontSize="{Binding AppNameFontSize}" />
+            <ScrollViewer>
+                <Grid>
+                    <StackPanel>
+                        <TextBlock Name="AppNameTextBlock"
+                                   Text="{Binding AppName}"
+                                   TextAlignment="Center" TextWrapping="Wrap"
+                                   FontSize="{Binding AppNameFontSize}" />
 
-                    <TextBlock Text="{Binding AppVersion}"
-                           FontSize="{Binding AppVersionFontSize}"
-                           TextAlignment="Center" Margin="0,8" />
+                        <TextBlock Name="AppVersionTextBlock"
+                                   Text="{Binding AppVersion}"
+                                   FontSize="{Binding AppVersionFontSize}"
+                                   TextAlignment="Center" Margin="0,8" />
 
-                    <HyperlinkButton Content="{Binding RateText}"
-                                 FontSize="{Binding HyperLinkFontSize}"
-                                 Style="{StaticResource HyperlinkWrappingStyle}"
-                                 Click="Rate_Click" Margin="0,0,0,30" />
-                    <Image Source="Logo/logo.png" Stretch="None" Width="180" />
-                </StackPanel>
-                <Image Source="{Binding CustomLogo}" />
-            </Grid>
+                        <HyperlinkButton Content="{Binding RateText}"
+                                         FontSize="{Binding HyperLinkFontSize}"
+                                         Foreground="{Binding DefaultForeground}"
+                                         Style="{StaticResource HyperlinkWrappingStyle}"
+                                         Click="Rate_Click" />
+
+                        <Image Source="Logo/logo.png" Stretch="None" Width="180" Margin="12" />
+
+                        <TextBlock Text="{Binding CustomText}" TextWrapping="Wrap"
+                                   FontSize="{Binding AppVersionFontSize}" />
+                    </StackPanel>
+                    <Image Source="{Binding CustomLogo}" Stretch="None"
+                       HorizontalAlignment="Left" VerticalAlignment="Top"
+                       Margin="{Binding CustomLogoMargin}" />
+                </Grid>
+            </ScrollViewer>
         </controls:PivotItem>
 
         <controls:PivotItem >
@@ -130,6 +142,7 @@
                 <HyperlinkButton Content="{Binding GetOtherAppsText}"
                                  Click="OtherAppsHyperLink_Click"
                                  Style="{StaticResource HyperlinkWrappingStyle}"
+                                 Foreground="{Binding DefaultForeground}"
                                  FontSize="{Binding HyperLinkFontSize}"
                                  Grid.Row="0" Margin="0,0,0,12" />
                 <ListBox Name="AppListBox"

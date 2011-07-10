@@ -3,6 +3,8 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WPCommon;
+using OpenXLive.Silverlight;
+using System;
 
 namespace FillTheSquare
 {
@@ -44,12 +46,17 @@ namespace FillTheSquare
             NonLinearNavigationService.Instance.Initialize(RootFrame);
         }
 
-
+        public static XLiveSLFormManager FormManager { get; internal set; }
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            FormManager = new XLiveSLFormManager(this, "vwnHyxGk3c8fJATEQ9SRKWV6");
+            StartupPage.BackgroundPath = "/FillTheSquare;component/Phil/sfondo_quadri_color2.jpg";
+            StartupPage.NewGameButtonClick += (s1, e1) => { RootFrame.Navigate(new Uri("/MainPage.xaml", UriKind.Relative)); };
+            StartupPage.AboutButtonClick += (s1, e1) => { RootFrame.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative)); };
         }
+
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched

@@ -2,6 +2,11 @@
 using Microsoft.Phone.Controls;
 using FillTheSquare.Localization;
 using Microsoft.Phone.Tasks;
+using FillTheSquare.ViewModel;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System;
+using System.Windows;
 
 namespace FillTheSquare
 {
@@ -10,9 +15,6 @@ namespace FillTheSquare
         public AboutPage()
         {
             InitializeComponent();
-            var name = Assembly.GetExecutingAssembly().FullName;
-            WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString();
-            WPMEAbout.GetOtherAppsText = AppResources.GetOtherApps;
         }
 
         private void Youtube_Click(object sender, System.Windows.RoutedEventArgs e)

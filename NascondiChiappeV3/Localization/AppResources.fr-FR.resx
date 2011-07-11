@@ -249,4 +249,7 @@
   <data name="ViewPhoto" xml:space="preserve">
     <value>Voir photo</value>
   </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Patientez, copie de photos...</value>
+  </data>
 </root>

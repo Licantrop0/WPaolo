@@ -19,6 +19,20 @@ namespace NascondiChiappe.ViewModel
         public INavigationService NavigationService { get; set; }
         public bool ArePhotosSelected { get { return SelectedAlbum.SelectedPhotos.Count > 0; } }
 
+        private bool _isBusy = false;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                if (IsBusy == value) return;
+                _isBusy = value;
+                RaisePropertyChanged("IsBusy");
+                //Messaggio per aggiornare l'ApplicationBar nella View
+                Messenger.Default.Send<bool>(value, "IsBusy");
+            }
+        }
+
         public ObservableCollection<ImageListViewModel> Albums
         { get { return AppContext.Albums; } }
 
@@ -114,12 +128,15 @@ namespace NascondiChiappe.ViewModel
 
         public void CopyToMediaLibraryAction()
         {
+            IsBusy = true;
             foreach (var p in SelectedAlbum.SelectedPhotos)
                 SelectedAlbum.Model.CopyToMediaLibrary(p);
+            IsBusy = false;
 
             MessageBox.Show(SelectedAlbum.SelectedPhotos.Count == 1 ?
                 AppResources.PhotoCopied :
                 AppResources.PhotosCopied);
+
 
             //TODO: implementare export asincrono con Mango
             //var bw = new BackgroundWorker();

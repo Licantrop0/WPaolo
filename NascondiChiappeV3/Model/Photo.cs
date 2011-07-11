@@ -108,8 +108,8 @@ namespace NascondiChiappe.Model
             var bitmap = new BitmapImage();
             bitmap.SetSource(photo);
 
-            WriteableBitmap wbSource = new WriteableBitmap(bitmap);
-            WriteableBitmap wbTarget = null;
+            var wbSource = new WriteableBitmap(bitmap);
+            WriteableBitmap wbTarget;
 
             switch (Convert.ToInt32(rotationAngle))
             {
@@ -140,7 +140,7 @@ namespace NascondiChiappe.Model
             }
 
             var ms = new MemoryStream();
-            wbTarget.SaveJpeg(ms, wbSource.PixelWidth, wbSource.PixelHeight, 0, 85);
+            wbTarget.SaveJpeg(ms, wbTarget.PixelWidth, wbTarget.PixelHeight, 0, 85);
             ms.Position = 0;
             return ms;
         }

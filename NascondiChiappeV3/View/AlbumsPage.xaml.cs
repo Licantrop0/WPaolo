@@ -32,9 +32,19 @@ namespace NascondiChiappe.View
         {
             InitializeComponent();
             InitializeApplicationBar();
+            InizializeMessages();
+        }
 
+        private void InizializeMessages()
+        {
             Messenger.Default.Register<bool>(this, "SelectedPhotos",
                 AreSelected => UpdateSelectionButtons(AreSelected));
+
+            Messenger.Default.Register<bool>(this, "IsBusy", IsBusy =>
+            {
+                PleaseWaitTextBlock.Visibility = IsBusy ? Visibility.Visible : Visibility.Collapsed;
+                ApplicationBar.IsVisible = !IsBusy;
+            });
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

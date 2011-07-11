@@ -250,4 +250,7 @@ Il recupero password NON è disponibile.</value>
   <data name="Move" xml:space="preserve">
     <value>Sposta</value>
   </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Attendere, sto copiando le Foto...</value>
+  </data>
 </root>

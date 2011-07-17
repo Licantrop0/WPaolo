@@ -97,7 +97,7 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to sotohP.
+        ///   Looks up a localized string similar to Fantasme.
         /// </summary>
         public static string AppName {
             get {

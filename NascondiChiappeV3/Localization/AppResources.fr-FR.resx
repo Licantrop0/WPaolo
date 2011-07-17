@@ -130,7 +130,7 @@
     <value>Le nom du dossier est obligatoire</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Tospho</value>
+    <value>Fantasme</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuler</value>
@@ -187,7 +187,8 @@
     <value>J'ai oublié le mot de passe</value>
   </data>
   <data name="Fucked" xml:space="preserve">
-    <value>Desolé, on ne peut pas récupérer le mot de passe. Vous avez été prévenu de ne l'oublier pas!</value>
+    <value>Desolé, on ne peut pas récupérer le mot de passe.
+Vous avez été prévenu de ne l'oublier pas!</value>
   </data>
   <data name="Move" xml:space="preserve">
     <value>Déplacer</value>
@@ -211,7 +212,8 @@
     <value>Mot de passe</value>
   </data>
   <data name="PasswordHint" xml:space="preserve">
-    <value>ATTENTION: on ne peut pas recuperer le mot de passe, pour raisons de securité. Si vous oubliez le mot de passe, vous perdez l'accés aux dossiers privés.</value>
+    <value>ATTENTION: on ne peut pas recuperer le mot de passe, pour raisons de securité.
+Si vous oubliez le mot de passe, vous perdez l'accés aux dossiers privés.</value>
   </data>
   <data name="PasswordMinLenght" xml:space="preserve">
     <value>Le nouveau mot de passe doit etre au moins long de {0} caractères</value>

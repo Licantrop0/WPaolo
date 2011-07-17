@@ -42,8 +42,8 @@ namespace NascondiChiappe.View
 
             Messenger.Default.Register<bool>(this, "IsBusy", IsBusy =>
             {
-                PleaseWaitTextBlock.Visibility = IsBusy ? Visibility.Visible : Visibility.Collapsed;
                 ApplicationBar.IsVisible = !IsBusy;
+                PopupBackground.Visibility = IsBusy ? Visibility.Visible : Visibility.Collapsed;
             });
         }
 
@@ -86,8 +86,12 @@ namespace NascondiChiappe.View
 
         private void GestureListener_DoubleTap(object sender, GestureEventArgs e)
         {
-            var CurrentImage = sender as Image;
-            VM.SelectedAlbum.ShowImage.Execute(CurrentImage.Source);
+            //Fix errore z-order GestureListener
+            if (PopupBackground.Visibility == Visibility.Collapsed)
+            {
+                var CurrentImage = sender as Image;
+                VM.SelectedAlbum.ShowImage.Execute(CurrentImage.Source);
+            }
         }
 
 

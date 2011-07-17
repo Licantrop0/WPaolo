@@ -73,9 +73,7 @@ namespace NascondiChiappe.Model
             }
         }
 
-
         public Album() { }
-
         public Album(string name, string directoryName)
         {
             Name = name;
@@ -122,23 +120,6 @@ namespace NascondiChiappe.Model
         {
             album.AddPhoto(photo);
             RemovePhoto(photo);
-        }
-
-        public bool CopyToMediaLibrary(Photo photo)
-        {
-            try
-            {
-                using (var file = isf.OpenFile(DirectoryName + "\\" + photo.Name, FileMode.Open, FileAccess.Read))
-                {
-                    MediaLibrary library = new MediaLibrary();
-                    library.SavePicture(photo.Name, photo.GetRotatedPhoto(file, photo.RotationAngle));
-                }
-            }
-            catch (IsolatedStorageException)
-            {
-                return false;
-            }
-            return true;
         }
     }
 }

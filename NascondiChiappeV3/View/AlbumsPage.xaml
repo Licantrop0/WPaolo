@@ -8,6 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP7"
+    xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     x:Class="NascondiChiappe.View.AlbumsPage"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
@@ -20,8 +21,11 @@
     <Grid x:Name="LayoutRoot"
           DataContext="{Binding Source={StaticResource Locator}, Path=AlbumsVM}"
           Background="{StaticResource BackgroundImage}">
+        <Grid.Resources>
+            <wp:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+        </Grid.Resources>
         
-        <controls:Pivot x:Name="AlbumsPivot" ItemsSource="{Binding Albums}"
+            <controls:Pivot x:Name="AlbumsPivot" ItemsSource="{Binding Albums}"
                         SelectedItem="{Binding SelectedAlbum, Mode=TwoWay}" Margin="0,-1,0,1">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
@@ -78,20 +82,18 @@
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>
-        
-        <!--Visibility not Binded but changed with a Message in code behind for performance reason-->
-        <TextBlock Name="PleaseWaitTextBlock" VerticalAlignment="Bottom" TextAlignment="Center"
-                   Text="{Binding LocalizedResources.PleaseWait, Source={StaticResource LocalizedStrings}}"
-                   Style="{StaticResource TextBlockStyle}" Visibility="Collapsed" />
 
-        <Rectangle x:Name="PopupBackground"
-                   Fill="#CC000000" Visibility="Collapsed"/>
+
+        <Rectangle x:Name="PopupBackground" Fill="#CC000000"
+                   Visibility="Collapsed" />
+        
         <Border x:Name="PopupBorder" Margin="0,0,0,72"
                 CornerRadius="10" Visibility="Collapsed"
                 BorderBrush="WhiteSmoke"
                 Background="Black"
                 BorderThickness="{StaticResource PhoneBorderThickness}"
                 VerticalAlignment="Center" HorizontalAlignment="Center">
+
             <ListBox Margin="24" ItemsSource="{Binding OtherAlbums}"
                      SelectionChanged="AlbumsListBox_SelectionChanged"
                      SelectedItem="{Binding MoveToAlbum, Mode=TwoWay}">
@@ -105,6 +107,15 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Border>
+        
+        <toolkit:PerformanceProgressBar Name="CopyPhotosProgressBar"
+                                        IsHitTestVisible="False"
+                                        IsIndeterminate="{Binding IsBusy}" />
+
+        <TextBlock Name="PleaseWaitTextBlock" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="{Binding LocalizedResources.PleaseWait, Source={StaticResource LocalizedStrings}}"
+                   Style="{StaticResource TextBlockStyle}" Margin="0,0,0,48"
+                   Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibility}}" />
 
     </Grid>
 

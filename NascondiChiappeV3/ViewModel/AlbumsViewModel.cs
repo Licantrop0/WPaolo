@@ -11,6 +11,7 @@ using NascondiChiappe.Helpers;
 using NascondiChiappe.Localization;
 using NascondiChiappe.Model;
 using WPCommon;
+using System.ComponentModel;
 
 namespace NascondiChiappe.ViewModel
 {
@@ -77,9 +78,10 @@ namespace NascondiChiappe.ViewModel
         {
             Albums.CollectionChanged += (sender, e) =>
             {
-                SelectedAlbum = e.NewStartingIndex == -1 ?
-                    null :
-                    Albums[e.NewStartingIndex];
+                if (e.NewStartingIndex == -1)
+                    SelectedAlbum = Albums.FirstOrDefault();
+                else
+                    SelectedAlbum = Albums[e.NewStartingIndex];
             };
         }
 
@@ -129,24 +131,18 @@ namespace NascondiChiappe.ViewModel
         public void CopyToMediaLibraryAction()
         {
             IsBusy = true;
-            foreach (var p in SelectedAlbum.SelectedPhotos)
-                SelectedAlbum.Model.CopyToMediaLibrary(p);
-            IsBusy = false;
-
-            MessageBox.Show(SelectedAlbum.SelectedPhotos.Count == 1 ?
-                AppResources.PhotoCopied :
-                AppResources.PhotosCopied);
-
-
-            //TODO: implementare export asincrono con Mango
-            //var bw = new BackgroundWorker();
-            //bw.DoWork += (sender1, e1) =>
-            //{
-            //};
-            //bw.RunWorkerCompleted += (sender1, e1) =>
-            //{
-            //};
-            //bw.RunWorkerAsync();
+            var ph = new RotatePhotoHelper(SelectedAlbum.SelectedPhotos, SelectedAlbum.Model.DirectoryName);
+            ph.CopyToMediaLibraryCompleted += (sender, e) =>
+            {
+                IsBusy = false;
+                if (e.Error == null)
+                    MessageBox.Show(SelectedAlbum.SelectedPhotos.Count == 1 ?
+                        AppResources.PhotoCopied :
+                        AppResources.PhotosCopied);
+                else
+                    MessageBox.Show(AppResources.ErrorSavingPhoto);
+            };
+            ph.CopyToMediaLibraryAsync();
         }
 
         private RelayCommand _copyFromMediaLibrary;

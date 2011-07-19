@@ -13,12 +13,18 @@
 			<GradientStop Color="#C8503232" Offset="1" />
 		</LinearGradientBrush>
 
+		<sys:String x:Key="DefaultFont"
+					xmlns:sys="clr-namespace:System;assembly=mscorlib" >
+			/DeathTimerz;component/Fonts/CHILLER.TTF#Chiller
+		</sys:String>
+
+
 		<Style x:Key="RedChiller" TargetType="TextBlock">
-			<Setter Property="FontFamily" Value="/DeathTimerz;component/Fonts/Fonts.zip#Chiller" />
-			<Setter Property="Foreground" Value="{StaticResource RedGradientBrush}" />
+			<Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+			<Setter Property="Foreground" Value="{StaticResource RedGradientBrush}" />            
 		</Style>
 
-		<Style x:Key="RedChillerTest" TargetType="TextBlock" BasedOn="{StaticResource RedChiller}">
+			<Style x:Key="RedChillerTest" TargetType="TextBlock" BasedOn="{StaticResource RedChiller}">
 			<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="Margin" Value="0,28,0,0" />
@@ -27,7 +33,7 @@
 		<Style x:Key="RedChillerContentControl" TargetType="ContentControl" >
 			<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
 			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="FontFamily" Value="/DeathTimerz;component/Fonts/Fonts.zip#Chiller" />
+			<Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
 			<Setter Property="Foreground" Value="{StaticResource RedGradientBrush}" />
 		</Style>
 
@@ -44,9 +50,12 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
 						<Grid>
-							<Image Source="/DeathTimerz;component/Images/blood.png" Stretch="Fill" Margin="-182,-101,-121,-113"/>
-							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-							 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+							<Image Source="/DeathTimerz;component/Images/blood.png"
+								   Stretch="Fill"
+								   Margin="-182,-101,-121,-113" />
+							<ContentPresenter
+								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 						</Grid>
 					</ControlTemplate>
 				</Setter.Value>

@@ -45,7 +45,7 @@
                 <Grid  Margin="0,-30,0,80">
                     <TextBlock x:Name="DaysToBirthdayTextBlock" HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
                                FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" Style="{StaticResource RedChiller}"/>
-                    <Image Source="../Images/halloween_cake.png" VerticalAlignment="Bottom" Stretch="None" />
+                    <Image Source="../Images/halloween_cake.png" VerticalAlignment="Bottom" Stretch="None" />                    
                 </Grid>
             </controls:PanoramaItem>
 
@@ -75,7 +75,7 @@
         </controls:Panorama>
 
         <AdDuplex:AdControl xmlns:AdDuplex="clr-namespace:AdDuplex;assembly=AdDuplex.AdControl.Silverlight"
-                            AppId="12345" IsTest="True" VerticalAlignment="Bottom" />
+                            AppId="2835" IsTest="False" VerticalAlignment="Bottom" />
     </Grid>
     
     <phone:PhoneApplicationPage.ApplicationBar>

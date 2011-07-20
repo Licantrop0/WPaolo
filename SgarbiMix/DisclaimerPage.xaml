@@ -53,7 +53,8 @@
 			<TextBlock Text="Questa applicazione è stata creata a scopo puramente ludico. Il contenuto degli insulti dell'On. V. Sgarbi può risultare altamente offensivo per alcune persone, pertanto ci dissociamo da eventuali usi impropri dell'applicazione Sgarbi Mix."
 				   Height="283" Margin="12,232,12,0"
 				   VerticalAlignment="Top" FontSize="26.667"
-				   TextAlignment="Center" TextWrapping="Wrap" FontWeight="SemiBold" FontFamily="Segoe WP Semibold" >
+				   TextAlignment="Center" TextWrapping="Wrap" FontWeight="SemiBold"
+					   FontFamily="{StaticResource DefaultFont}" >
 			<TextBlock.Foreground>
 					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 						<GradientStop Color="#FFFFA400" Offset="0.414"/>

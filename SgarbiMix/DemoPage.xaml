@@ -54,16 +54,9 @@
         	</TextBlock.Foreground>
         </TextBlock>
         <TextBlock Grid.Row="1" FontSize="32" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
-                   TextWrapping="Wrap" OpacityMask="{x:Null}" FontWeight="SemiBold">            
-        	<TextBlock.Foreground>
-            		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            			<GradientStop Color="#FFFFA400" Offset="0.414"/>
-            			<GradientStop Color="#FFFFDE00" Offset="0.773"/>
-            			<GradientStop Color="#FFFFAF00" Offset="0.591"/>
-            		</LinearGradientBrush>                
-        	</TextBlock.Foreground>
+                   TextWrapping="Wrap" FontWeight="SemiBold" Foreground="{StaticResource DefaultForeground}">
             Questa è solo una demo.<LineBreak/>
-            Puoi gridare le frasi di Sgarbi solo poche volte al giorno!<LineBreak/>
+            Puoi gridare le frasi di Sgarbi solo 5 volte al giorno!<LineBreak/>
             Se vuoi dire "Capra!" o "Ignorante!" in continuazione come Sgarbi, devi comprare la versione completa.<LineBreak/>
             Costa meno di un caffè, non perdere questa occasione!
         </TextBlock>

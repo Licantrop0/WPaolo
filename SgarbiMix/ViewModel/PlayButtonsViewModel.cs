@@ -18,7 +18,6 @@ namespace SgarbiMix.ViewModel
             get
             {
                 if (_soundResources == null)
-                    //tempo impiegato: 30 ms
                     _soundResources = (from de in SoundsResources.ResourceManager
                                           .GetResourceSet(CultureInfo.CurrentCulture, true, true)
                                           .Cast<DictionaryEntry>()

@@ -19,8 +19,6 @@ namespace SgarbiMix
         public AboutPage()
         {
             InitializeComponent();
-            var name = Assembly.GetExecutingAssembly().FullName;
-            WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString(); 
         }
     }
 }

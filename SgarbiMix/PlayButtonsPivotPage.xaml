@@ -31,14 +31,14 @@
 		</Grid.Background>
 
 		<controls:Pivot Title="{x:Null}" Margin="0,-30,0,0" Grid.Row="0" >
-			<controls:PivotItem Header="Corti" Margin="6,6,6,0" >
+			<controls:PivotItem Header="Corti" Margin="6,6,0,0" FontFamily="{StaticResource DefaultFont}" >
 				<ListBox ItemsSource="{Binding SuoniCorti}">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<Button Style="{StaticResource PlayButtonStyle}"
 									Click="PlayButton_Click"
 									Content="{Binding Name}"
-									Width="230" />
+									Width="235" />
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 					<ListBox.ItemsPanel>
@@ -48,7 +48,7 @@
 					</ListBox.ItemsPanel>
 				</ListBox>
 			</controls:PivotItem>
-			<controls:PivotItem Header="Lunghi" Margin="6,6,6,0" >
+			<controls:PivotItem Header="Lunghi" Margin="6,6,0,0" >
 				<ListBox ItemsSource="{Binding SuoniLunghi}">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
@@ -61,7 +61,7 @@
 				</ListBox>
 			</controls:PivotItem>
 		</controls:Pivot>
-        
+		
 		<StackPanel Name="AdPlaceHolder" Grid.Row="1" />
 	</Grid>
 

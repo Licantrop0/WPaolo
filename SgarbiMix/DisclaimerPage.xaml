@@ -13,35 +13,35 @@
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
 	shell:SystemTray.IsVisible="False">
-	<toolkit:TransitionService.NavigationInTransition>
-		<toolkit:NavigationInTransition>
-			<toolkit:NavigationInTransition.Backward>
-				<toolkit:SlideTransition Mode="SlideRightFadeIn" />
-			</toolkit:NavigationInTransition.Backward>
-			<toolkit:NavigationInTransition.Forward>
-				<toolkit:SlideTransition Mode="SlideLeftFadeIn" />
-			</toolkit:NavigationInTransition.Forward>
-		</toolkit:NavigationInTransition>
-	</toolkit:TransitionService.NavigationInTransition>
-	<toolkit:TransitionService.NavigationOutTransition>
-		<toolkit:NavigationOutTransition>
-			<toolkit:NavigationOutTransition.Backward>
-				<toolkit:SlideTransition Mode="SlideRightFadeOut" />
-			</toolkit:NavigationOutTransition.Backward>
-			<toolkit:NavigationOutTransition.Forward>
-				<toolkit:SlideTransition Mode="SlideLeftFadeOut" />
-			</toolkit:NavigationOutTransition.Forward>
-		</toolkit:NavigationOutTransition>
-	</toolkit:TransitionService.NavigationOutTransition>
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
 
-	<Grid x:Name="LayoutRoot">
-		<Grid.Background>
-			<ImageBrush ImageSource="sfondo3.jpg" />	        
-		</Grid.Background>
-		<Border Background="#84000000"/>
-		<TextBlock Name="titleTextBox" Text="Disclaimer"
-				   Margin="12,116,12,0"
-				   VerticalAlignment="Top" FontSize="74.667" FontWeight="Bold" TextAlignment="Center" >
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="sfondo3.jpg" />
+        </Grid.Background>
+                
+        <Border Background="#84000000" />
+        <TextBlock Text="Disclaimer" Margin="12,116,12,0" Style="{StaticResource TextBlockBaseStyle}"
+                   VerticalAlignment="Top" FontSize="75" FontWeight="Bold" TextAlignment="Center" >
 			<TextBlock.Foreground>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<GradientStop Color="#FFF0FD00" Offset="1"/>
@@ -49,44 +49,37 @@
 					<GradientStop Color="#FFFB4C09" Offset="0.457"/>
 				</LinearGradientBrush>
 			</TextBlock.Foreground>
-		</TextBlock>
-			<TextBlock Text="Questa applicazione è stata creata a scopo puramente ludico. Il contenuto degli insulti dell'On. V. Sgarbi può risultare altamente offensivo per alcune persone, pertanto ci dissociamo da eventuali usi impropri dell'applicazione Sgarbi Mix."
-				   Height="283" Margin="12,232,12,0"
-				   VerticalAlignment="Top" FontSize="26.667"
-				   TextAlignment="Center" TextWrapping="Wrap" FontWeight="SemiBold"
-					   FontFamily="{StaticResource DefaultFont}" >
-			<TextBlock.Foreground>
-					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-						<GradientStop Color="#FFFFA400" Offset="0.414"/>
-						<GradientStop Color="#FFFFDE00" Offset="0.773"/>
-						<GradientStop Color="#FFFFAF00" Offset="0.591"/>
-					</LinearGradientBrush>
-			</TextBlock.Foreground>
-			</TextBlock>
+        </TextBlock>
+        
+        <TextBlock Margin="12,232,12,0"
+                       VerticalAlignment="Top" FontSize="24"
+                       TextAlignment="Center" TextWrapping="Wrap"
+                       FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
+                Questa applicazione è stata creata a scopo puramente ludico.
+                <LineBreak />
+                Il contenuto degli insulti dell'On. V. Sgarbi può risultare altamente offensivo per alcune persone,
+                pertanto ci dissociamo da eventuali usi impropri dell'applicazione Sgarbi Mix.
+        </TextBlock>
 
-		<TextBlock Name="CreditsTextBox" Text="Credits"
-				   Margin="14,601,10,0"
-				   VerticalAlignment="Top" FontSize="40" FontWeight="Bold" TextAlignment="Center" >
-			<TextBlock.Foreground>
+        <TextBlock Name="CreditsTextBox" Text="Credits" Margin="14,601,10,0"
+                   Style="{StaticResource TextBlockBaseStyle}"
+				   VerticalAlignment="Top" FontSize="40" FontWeight="Bold"
+                   TextAlignment="Center" >
+            <TextBlock.Foreground>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<GradientStop Color="#FFF0FD00" Offset="1"/>
 					<GradientStop Color="#FFFD0404" Offset="0.004"/>
 					<GradientStop Color="#FFFB4C09" Offset="0.457"/>
 				</LinearGradientBrush>
 			</TextBlock.Foreground>
-		</TextBlock>
-		<!--. Le basi musicali originali per gli effetti mixer si trovano su www.freedancebeats.com" -->
-		<TextBlock Text="I contenuti multimediali inclusi in Sgarbi Mix sono stati reperiti su Youtube."
-			Margin="14,661,10,0" FontSize="22"
-				   TextAlignment="Center" TextWrapping="Wrap" FontWeight="SemiBold" FontFamily="Segoe WP Semibold" >
-			<TextBlock.Foreground>
-					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-						<GradientStop Color="#FFFFA400" Offset="0.414"/>
-						<GradientStop Color="#FFFFDE00" Offset="0.773"/>
-						<GradientStop Color="#FFFFAF00" Offset="0.591"/>
-					</LinearGradientBrush>
-			</TextBlock.Foreground>
-		</TextBlock>
-	   
-	</Grid>
+        </TextBlock>
+
+        <!--. Le basi musicali originali per gli effetti mixer si trovano su www.freedancebeats.com" -->
+        <TextBlock Margin="14,661,10,0" FontSize="22"
+                   TextAlignment="Center" TextWrapping="Wrap"
+                   FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}" >
+            I contenuti multimediali inclusi in Sgarbi Mix sono stati reperiti su Youtube.
+        </TextBlock>
+
+    </Grid>
 </phone:PhoneApplicationPage>

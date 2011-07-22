@@ -28,7 +28,6 @@ namespace SgarbiMix
         public PlayButtonsPivotPage()
         {
             InitializeComponent();
-            InitializeAdControl();
             InizializeShaker();
         }
 
@@ -61,22 +60,6 @@ namespace SgarbiMix
             };
 
             sd.Start();
-        }
-
-        private void InitializeAdControl()
-        {
-            if (WPCommon.TrialManagement.IsTrialMode)
-            {
-                AdPlaceHolder.Children.Add(new AdDuplex.AdControl() { AppId = "", IsTest = true });
-                var BuyFullMenuItem = new ApplicationBarMenuItem("Rimuovi la pubblicità");
-                BuyFullMenuItem.Click += (sender, e) =>
-                {
-                    //Rimando a Sgarbimix senza Ad a pagamento
-                    var detailTask = new MarketplaceDetailTask() { ContentIdentifier = "5925f9d6-483d-e011-854c-00237de2db9e" };
-                    detailTask.Show();
-                };
-                ApplicationBar.MenuItems.Add(BuyFullMenuItem);
-            }
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)

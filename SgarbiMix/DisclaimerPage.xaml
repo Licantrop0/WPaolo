@@ -52,7 +52,7 @@
 
             <TextBlock VerticalAlignment="Top" FontSize="24"
                        TextAlignment="Center" TextWrapping="Wrap"
-                       FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}" FontFamily="Blackadder ITC">
+                       FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
                 Questa applicazione è stata creata a scopo puramente ludico.
                 <LineBreak />
                 Il contenuto degli insulti dell'On. V. Sgarbi può risultare altamente offensivo per alcune persone,

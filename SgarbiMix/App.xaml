@@ -9,7 +9,7 @@
 
 	<Application.Resources>
 		<sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
-			/SgarbiMix;component/Fonts/Fonts.zip#Segoe Print
+			Consolas
 		</sys:FontFamily>
 
 		<LinearGradientBrush x:Key="DefaultForeground" EndPoint="0.5,1" StartPoint="0.5,0">

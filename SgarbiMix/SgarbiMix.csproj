@@ -177,7 +177,7 @@
     <None Include="sounds\È un crimine!.wav" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WPCommon\WPCommon.csproj">
+    <ProjectReference Include="..\WPCommon\WPCommon.csproj">
       <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
       <Name>WPCommon</Name>
     </ProjectReference>
@@ -190,16 +190,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <BlendEmbeddedFont Include="Fonts\segoepr.ttf">
-      <Characters>
-      </Characters>
-      <Uppercase>True</Uppercase>
-      <Lowercase>True</Lowercase>
-      <Numbers>True</Numbers>
-      <Punctuation>True</Punctuation>
-      <AutoFill>False</AutoFill>
-      <All>True</All>
-    </BlendEmbeddedFont>
+    <Folder Include="Fonts\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

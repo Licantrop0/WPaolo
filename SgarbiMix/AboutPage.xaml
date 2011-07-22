@@ -41,6 +41,7 @@
         <vm:AboutViewModel x:Key="AboutVM"
                            MinFontSize="30"
                            AppName="Sgarbi Mix"
+                           DefaultFont="{StaticResource DefaultFont}"
                            DefaultForeground="{StaticResource DefaultForeground}"
                            AppId="5925f9d6-483d-e011-854c-00237de2db9e" >
             <vm:AboutViewModel.DefaultBackground>

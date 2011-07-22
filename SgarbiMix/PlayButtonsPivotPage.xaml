@@ -30,9 +30,13 @@
             <ImageBrush ImageSource="sfondo3.jpg" Stretch="None" AlignmentY="Top"/>
         </Grid.Background>
 
-        <controls:Pivot Margin="0,-30,0,0" Grid.Row="0">
-            <controls:PivotItem Header="Corti" Margin="6,6,0,0" >
-                <ListBox ItemsSource="{Binding SuoniCorti}">
+        <controls:Pivot Margin="0,-20,0,0" Grid.Row="0">
+            <controls:PivotItem Margin="3,0">
+                <controls:PivotItem.Header>
+                    <TextBlock Text="Corti" FontFamily="{StaticResource DefaultFont}"
+                               Foreground="{StaticResource HeaderForeground}" />
+                </controls:PivotItem.Header>
+                <ListBox ItemsSource="{Binding SuoniCorti}" HorizontalAlignment="Center">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource PlayButtonStyle}"
@@ -48,8 +52,12 @@
                     </ListBox.ItemsPanel>
                 </ListBox>
             </controls:PivotItem>
-            <controls:PivotItem Header="Lunghi" Margin="6,6,0,0" >
-                <ListBox ItemsSource="{Binding SuoniLunghi}">
+            <controls:PivotItem >
+                <controls:PivotItem.Header>
+                    <TextBlock Text="Lunghi" FontFamily="{StaticResource DefaultFont}"
+                               Foreground="{StaticResource HeaderForeground}" />
+                </controls:PivotItem.Header>
+                <ListBox ItemsSource="{Binding SuoniLunghi}" HorizontalAlignment="Center">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource PlayButtonStyle}"

@@ -46,10 +46,10 @@
                    Foreground="{StaticResource HeaderForeground}"
                    FontSize="80" TextAlignment="Center" FontWeight="SemiBold" />
         
-        <TextBlock Grid.Row="1" FontSize="26.667" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
+        <TextBlock Grid.Row="1" FontSize="26" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
                    TextWrapping="Wrap" FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
             Questa è solo una demo.<LineBreak/>
-            Puoi gridare le frasi di Sgarbi solo 5 volte al giorno!<LineBreak/>
+            Puoi gridare le frasi di Sgarbi solo 6 volte al giorno!<LineBreak/>
             Se vuoi dire<LineBreak/>
             "Capra!" o "Ignorante!"<LineBreak/>
             in continuazione come Sgarbi, devi comprare la versione completa.<LineBreak/>

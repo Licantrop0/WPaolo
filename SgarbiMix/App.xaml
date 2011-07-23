@@ -34,8 +34,9 @@
             <Setter Property="FontSize" Value="22" />
             <Setter Property="BorderThickness" Value="6,4" />
             <Setter Property="Opacity" Value="0.8" />
-            <Setter Property="Margin" Value="0,-2" />
-
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="-10,-6" />
+            <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
             <Setter Property="Background">
@@ -58,7 +59,6 @@
                 </Setter.Value>
             </Setter>
             <Setter Property="Height" Value="100"/>
-            <!--<Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True"/>-->
         </Style>
 
     </Application.Resources>

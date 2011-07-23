@@ -35,7 +35,7 @@ namespace SgarbiMix.ViewModel
             get
             {
                 if (_suoniCorti == null)
-                    _suoniCorti = SoundResources.Where(s => s.Name.Length <= 18);
+                    _suoniCorti = SoundResources.Where(s => s.Name.Length <= 17);
                 return _suoniCorti;
             }
         }
@@ -46,7 +46,7 @@ namespace SgarbiMix.ViewModel
             get
             {
                 if (_suoniLunghi == null)
-                    _suoniLunghi = SoundResources.Where(s => s.Name.Length > 18);
+                    _suoniLunghi = SoundResources.Where(s => s.Name.Length > 17);
                 return _suoniLunghi;
             }
         }

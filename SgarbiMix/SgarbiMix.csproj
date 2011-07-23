@@ -16,8 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>it-IT</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>SgarbiMix.xap</XapFilename>
@@ -124,24 +123,17 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Fonts\segoepr.ttf" />
     <Content Include="images\bianco.png" />
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
     <Content Include="sfondo.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Fonts\segoepr.ttf">
-      <IsSystemFont>True</IsSystemFont>
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-    </Content>
     <Resource Include="sfondo3.jpg" />
     <None Include="sounds\Ateo fasullo!.wav" />
     <None Include="sounds\capra.wav" />
     <None Include="sounds\e1crimine.wav" />
-    <None Include="sounds\maguardacheroba.wav" />
-    <None Include="sounds\nonhafattomaiuncazzoinvitasua.wav" />
-    <None Include="sounds\ridicolo6ma6semprestato.wav" />
     <None Include="sounds\Valori del buco del culo.wav" />
     <None Include="sounds\Pagato!.wav" />
     <None Include="sounds\Altro che valori.wav" />
@@ -156,8 +148,7 @@
     <Content Include="sounds\base3.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="sounds\per_quella_stronza_della_moratti.wma" />
-    <None Include="sounds\quella_e_la_merda.wma" />
+    <Content Include="sounds\quella_è_la_merda.wav" />
     <Content Include="SplashScreenImage.jpg" />
     <None Include="sounds\Capra ignorante!.wav" />
     <None Include="sounds\Capra!.wav" />

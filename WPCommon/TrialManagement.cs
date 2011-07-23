@@ -16,8 +16,17 @@ namespace WPCommon
     public static class TrialManagement
     {
         private static LicenseInformation li = new LicenseInformation();
-        public static bool IsTrialMode { get { return li.IsTrial(); } }
-        //public static bool IsTrialMode { get { return true; } }
+        public static bool IsTrialMode
+        {
+            get
+            {
+#if DEBUG
+                return true;
+#else
+                return false;
+#endif
+            }
+        }
 
         private static DateTime LastOpen
         {

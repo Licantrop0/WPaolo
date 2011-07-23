@@ -6,11 +6,11 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WPCommon")]
+[assembly: AssemblyTitle("WPCommon.Controls")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("WPCommonPages")]
+[assembly: AssemblyProduct("WPCommon.Controls")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("cb1ba22e-dcd4-4e3c-8b31-51045d4116dd")]
+[assembly: Guid("909b07ab-eef2-4ced-81ef-9fb342f38374")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -13,7 +13,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" Background="Black">
+    shell:SystemTray.IsVisible="False" Background="Black" Foreground="#DEFFFFFF">
 
     <phone:PhoneApplicationPage.Resources>
         <vm:PlayButtonsViewModel x:Name="PlayButtonsViewModel" />
@@ -30,18 +30,19 @@
         </Grid.Background>
 
         <controls:Pivot Margin="0,-30,0,0" Grid.Row="0">
-            <controls:PivotItem Margin="0,-20,0,0">
+            <controls:PivotItem Margin="0,-10,0,0">
                 <controls:PivotItem.Header>
                     <TextBlock Text="Corti" FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource HeaderForeground}" />
                 </controls:PivotItem.Header>
-                <ListBox ItemsSource="{Binding SuoniCorti}" HorizontalAlignment="Center">
+                <ListBox ItemsSource="{Binding SuoniCorti}"
+                         HorizontalAlignment="Center">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource PlayButtonStyle}"
                                     Click="PlayButton_Click"
                                     Content="{Binding Name}"
-                                    Width="245" BorderThickness="6,4" Margin="-6,-4" />
+                                    Width="252" />
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                     <ListBox.ItemsPanel>
@@ -51,7 +52,7 @@
                     </ListBox.ItemsPanel>
                 </ListBox>
             </controls:PivotItem>
-            <controls:PivotItem Margin="0,-20,0,0">
+            <controls:PivotItem Margin="0,-10,0,0">
                 <controls:PivotItem.Header>
                     <TextBlock Text="Lunghi" FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource HeaderForeground}" />

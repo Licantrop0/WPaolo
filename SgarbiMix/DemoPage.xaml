@@ -9,9 +9,8 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" Background="Black">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -37,33 +36,31 @@
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="sfondo3.jpg" />
+            <ImageBrush ImageSource="sfondo3.jpg" Opacity="0.6" />
         </Grid.Background>
-        <TextBlock Name="titleTextBox" Text="Ooops!"
-                   FontSize="80" TextAlignment="Center" FontWeight="SemiBold" >
-        	<TextBlock.Foreground>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="#FFF70404" Offset="0"/>
-        			<GradientStop Color="#FFF9F000" Offset="1"/>
-        			<GradientStop Color="#FFFD0B0B" Offset="0.486"/>
-        		</LinearGradientBrush>
-        	</TextBlock.Foreground>
-        </TextBlock>
-        <TextBlock Grid.Row="1" FontSize="32" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
-                   TextWrapping="Wrap" FontWeight="SemiBold" Foreground="{StaticResource DefaultForeground}">
+        <TextBlock Text="Ooops!" Style="{StaticResource TextBlockBaseStyle}"
+                   Foreground="{StaticResource HeaderForeground}"
+                   FontSize="80" TextAlignment="Center" FontWeight="SemiBold" />
+        
+        <TextBlock Grid.Row="1" FontSize="26.667" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
+                   TextWrapping="Wrap" FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
             Questa è solo una demo.<LineBreak/>
             Puoi gridare le frasi di Sgarbi solo 5 volte al giorno!<LineBreak/>
-            Se vuoi dire "Capra!" o "Ignorante!" in continuazione come Sgarbi, devi comprare la versione completa.<LineBreak/>
+            Se vuoi dire<LineBreak/>
+            "Capra!" o "Ignorante!"<LineBreak/>
+            in continuazione come Sgarbi, devi comprare la versione completa.<LineBreak/>
             Costa meno di un caffè, non perdere questa occasione!
         </TextBlock>
 
         <HyperlinkButton Name="BuyButton" Content="Clicca e comprala!"
+                         FontFamily="{StaticResource DefaultFont}"
                          FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                         Click="BuyButton_Click" FontWeight="SemiBold" Foreground="#FF08FF00" Grid.Row="2" />
+                         Click="BuyButton_Click" FontWeight="SemiBold"
+                         Foreground="{StaticResource HeaderForeground}" Grid.Row="2" />
     </Grid>
 
 

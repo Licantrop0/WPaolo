@@ -43,7 +43,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" Margin="8,0">
             <TextBlock Text="Disclaimer" Style="{StaticResource TextBlockBaseStyle}"
                        FontSize="75" FontWeight="Bold"
                        Foreground="{StaticResource HeaderForeground}"
@@ -52,7 +52,8 @@
 
             <TextBlock VerticalAlignment="Top" FontSize="24"
                        TextAlignment="Center" TextWrapping="Wrap"
-                       FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
+                       FontWeight="SemiBold"
+                       Style="{StaticResource TextBlockBaseStyle}">
                 Questa applicazione è stata creata a scopo puramente ludico.
                 <LineBreak />
                 Il contenuto degli insulti dell'On. V. Sgarbi può risultare altamente offensivo per alcune persone,
@@ -60,20 +61,19 @@
             </TextBlock>
         </StackPanel>
 
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" Margin="8,0">
             <TextBlock Text="Credits"
                        Foreground="{StaticResource HeaderForeground}"
                        Style="{StaticResource TextBlockBaseStyle}"
                        FontSize="40" FontWeight="Bold" TextAlignment="Center" />
 
-            <TextBlock FontSize="22" Style="{StaticResource TextBlockBaseStyle}"
-                       TextAlignment="Center" TextWrapping="Wrap"
-                       FontWeight="SemiBold" >
+            <TextBlock FontSize="22" FontWeight="SemiBold" 
+                       Style="{StaticResource TextBlockBaseStyle}"
+                       TextAlignment="Center" TextWrapping="Wrap" >
                 I contenuti multimediali inclusi in Sgarbi Mix sono stati reperiti su Youtube.
                 <LineBreak />
                 Le basi musicali originali per gli effetti mixer si trovano su www.freedancebeats.com
             </TextBlock>
         </StackPanel>
-
     </Grid>
 </phone:PhoneApplicationPage>

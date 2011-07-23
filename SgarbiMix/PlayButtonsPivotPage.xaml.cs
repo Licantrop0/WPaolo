@@ -73,7 +73,7 @@ namespace SgarbiMix
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && (App.alreadyOpen || (counter > (VM.SoundResources.Length / 4))))
+            if (TrialManagement.IsTrialMode && (App.alreadyOpen || counter > 5))
             {
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return false;

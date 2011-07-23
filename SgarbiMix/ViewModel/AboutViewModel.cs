@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Windows.Media;
 using System.Xml.Linq;
-using WPCommon.Model;
+using WPCommon.Controls.Model;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows;
@@ -54,7 +54,8 @@ namespace SgarbiMix.ViewModel
         }
 
         #region App Data
-
+        /// <summary>Set this value to the Marketplace Product ID</summary>
+        public string AppId { get; set; }
         public string AppName { get; set; }
 
         private string _appVersion;
@@ -71,9 +72,6 @@ namespace SgarbiMix.ViewModel
             }
         }
 
-        //SET THIS VALUE TO THE MARKETPLACE Product ID (to filter out in the Ohter Apps List)
-        public string AppId { get; set; }
-
         public string CustomText
         {
             get { return ""; }
@@ -87,12 +85,7 @@ namespace SgarbiMix.ViewModel
         public ImageSource CustomLogo
         {
             get { return _customLogo; }
-            set
-            {
-                if (CustomLogo == value) return;
-                _customLogo = value;
-                RaisePropertyChanged("CustomLogo");
-            }
+            set { _customLogo = value; }
         }
 
         private Thickness _customLogoMargin = new Thickness(0);
@@ -102,56 +95,39 @@ namespace SgarbiMix.ViewModel
             set { _customLogoMargin = value; }
         }
 
-
         private Brush _defaultBackground = new SolidColorBrush(Colors.Black);
         public Brush DefaultBackground
         {
             get { return _defaultBackground; }
-            set
-            {
-                if (DefaultBackground == value) return;
-                _defaultBackground = value;
-                RaisePropertyChanged("DefaultBackground");
-            }
+            set { _defaultBackground = value; }
         }
 
         private Brush _defaultForeground = new SolidColorBrush(Colors.White);
         public Brush DefaultForeground
         {
             get { return _defaultForeground; }
-            set
-            {
-                if (DefaultForeground == value) return;
-                _defaultForeground = value;
-                RaisePropertyChanged("DefaultForeground");
-            }
+            set { _defaultForeground = value; }
+        }
+
+        private Brush _headerForeground;
+        public Brush HeaderForeground
+        {
+            get { return _headerForeground ?? _defaultForeground; }
+            set { _headerForeground = value; }
         }
 
         private FontFamily _defaultFont = new FontFamily("Segoe WP SemiLight");
         public FontFamily DefaultFont
         {
             get { return _defaultFont; }
-            set
-            {
-                if (DefaultFont == value) return;
-                _defaultFont = value;
-                RaisePropertyChanged("DefaultFont");
-            }
+            set { _defaultFont = value; }
         }
 
         private double _minFontSize = 19;
         public double MinFontSize
         {
             get { return _minFontSize; }
-            set
-            {
-                if (MinFontSize == value) return;
-                _minFontSize = value;
-                RaisePropertyChanged("MinFontSize");
-                RaisePropertyChanged("AppNameFontSize");
-                RaisePropertyChanged("AppVersionFontSize");
-                RaisePropertyChanged("HyperLinkFontSize");
-            }
+            set { _minFontSize = value; }
         }
 
         public double AppNameFontSize
@@ -168,19 +144,19 @@ namespace SgarbiMix.ViewModel
         #region Localization
 
         public string ApplicationText
-        { get { return WPCommon.Localization.AppResources.Application; } }
+        { get { return WPCommon.Controls.Localization.AppResources.Application; } }
 
         public string ContactUsText
-        { get { return WPCommon.Localization.AppResources.ContactUs; } }
+        { get { return WPCommon.Controls.Localization.AppResources.ContactUs; } }
 
         public string GetOtherAppsText
-        { get { return WPCommon.Localization.AppResources.GetOtherApps; } }
+        { get { return WPCommon.Controls.Localization.AppResources.GetOtherApps; } }
 
         public string OtherAppsText
-        { get { return WPCommon.Localization.AppResources.OtherApps; } }
+        { get { return WPCommon.Controls.Localization.AppResources.OtherApps; } }
 
         public string RateText
-        { get { return WPCommon.Localization.AppResources.RateThisApp; } }
+        { get { return WPCommon.Controls.Localization.AppResources.RateThisApp; } }
 
         #endregion
 

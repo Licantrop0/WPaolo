@@ -12,9 +12,8 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" Background="Black">
 
     <phone:PhoneApplicationPage.Resources>
         <vm:PlayButtonsViewModel x:Name="PlayButtonsViewModel" />
@@ -30,8 +29,8 @@
             <ImageBrush ImageSource="sfondo3.jpg" Stretch="None" AlignmentY="Top"/>
         </Grid.Background>
 
-        <controls:Pivot Margin="0,-20,0,0" Grid.Row="0">
-            <controls:PivotItem Margin="3,0">
+        <controls:Pivot Margin="0,-30,0,0" Grid.Row="0">
+            <controls:PivotItem Margin="0,-20,0,0">
                 <controls:PivotItem.Header>
                     <TextBlock Text="Corti" FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource HeaderForeground}" />
@@ -42,7 +41,7 @@
                             <Button Style="{StaticResource PlayButtonStyle}"
                                     Click="PlayButton_Click"
                                     Content="{Binding Name}"
-                                    Width="235" />
+                                    Width="245" BorderThickness="6,4" Margin="-6,-4" />
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                     <ListBox.ItemsPanel>
@@ -52,7 +51,7 @@
                     </ListBox.ItemsPanel>
                 </ListBox>
             </controls:PivotItem>
-            <controls:PivotItem >
+            <controls:PivotItem Margin="0,-20,0,0">
                 <controls:PivotItem.Header>
                     <TextBlock Text="Lunghi" FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource HeaderForeground}" />

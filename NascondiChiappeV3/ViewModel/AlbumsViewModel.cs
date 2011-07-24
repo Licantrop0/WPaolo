@@ -10,7 +10,7 @@ using Microsoft.Phone.Tasks;
 using NascondiChiappe.Helpers;
 using NascondiChiappe.Localization;
 using NascondiChiappe.Model;
-using WPCommon;
+using WPCommon.Helpers;
 using System.ComponentModel;
 
 namespace NascondiChiappe.ViewModel

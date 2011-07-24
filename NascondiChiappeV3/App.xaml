@@ -15,11 +15,15 @@
         <localization:LocalizedStrings x:Key="LocalizedStrings" />
         <helpers:RotationConverter x:Key="RotationConverter" />
 
-        <ImageBrush x:Name="BackgroundImage" ImageSource="SplashScreenImage.jpg" Stretch="None" />
+        <ImageBrush x:Name="BackgroundImage" ImageSource="/NascondiChiappe;component/SplashScreenImage.jpg" Stretch="None" />
+        <SolidColorBrush x:Name="DefaultForeground" Color="WhiteSmoke" />
+        <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
+            /NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic
+        </sys:FontFamily>
 
         <Style x:Key="BaseStyle" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+            <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
         </Style>
 
         <Style x:Key="TitleStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
@@ -44,18 +48,20 @@
         <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
             <Setter Property="PasswordChar" Value="#" />
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
-            <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>
+            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+            <Setter Property="Foreground" Value="Black" />
         </Style>
 
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
-            <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>
+            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+            <Setter Property="Foreground" Value="Black" />
         </Style>
 
         <Style x:Key="HyperlinkStyle" TargetType="HyperlinkButton">
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontFamily" Value="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"/>
+            <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
             <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
 
@@ -75,28 +81,27 @@
                                       IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected, Mode=TwoWay}"                                
                                       VerticalAlignment="Top" HorizontalAlignment="Left" />
     
-                            <VisualStateManager.VisualStateGroups>
+                            <!--<VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="SelectionStates">
                                     <VisualState x:Name="Unselected">
-                                        <!--<Storyboard>
+                                        <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(CheckBox.IsChecked)"
                                                                            Storyboard.TargetName="SelectionCheckBox">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
                                             </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>-->
+                                        </Storyboard>
                                     </VisualState>
                                         
                                     <VisualState x:Name="Selected">
-                                        <!--<Storyboard>
+                                        <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(CheckBox.IsChecked)"
                                                                            Storyboard.TargetName="SelectionCheckBox">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
                                             </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>-->
+                                        </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-
+                            </VisualStateManager.VisualStateGroups>-->
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -106,9 +111,10 @@
     </Application.Resources>
     <Application.ApplicationLifetimeObjects>
         <!--Required object that handles lifetime events for the application-->
-        <shell:PhoneApplicationService Launching="Application_Launching"
-                                   Closing="Application_Closing"
-                                   Activated="Application_Activated"
-                                   Deactivated="Application_Deactivated" />
+        <shell:PhoneApplicationService
+            Launching="Application_Launching"
+            Closing="Application_Closing"
+            Activated="Application_Activated"
+            Deactivated="Application_Deactivated" />
     </Application.ApplicationLifetimeObjects>
 </Application>

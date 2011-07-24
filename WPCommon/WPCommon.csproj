@@ -63,13 +63,8 @@
     <Compile Include="Model\Achievement.cs" />
     <Compile Include="FacebookSharer.cs" />
     <Compile Include="Model\AppTile.cs" />
-    <Compile Include="StandardConverters.cs" />
-    <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="NonLinearNavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShakeDetector.cs" />
-    <Compile Include="TrialManagement.cs" />
-    <Compile Include="XNAAsyncDispatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="AchievementListControl.xaml">

@@ -17,6 +17,7 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:AboutViewModel x:Key="AboutVM"
+                           AppId="ce252ef7-9e69-4ac1-8ae7-0ab52b424f51"
                            DefaultFont="{StaticResource DefaultFont}"
                            DefaultBackground="{StaticResource BackgroundImage}"
                            MinFontSize="34"

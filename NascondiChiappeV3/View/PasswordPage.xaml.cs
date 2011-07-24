@@ -38,14 +38,22 @@ namespace NascondiChiappe
             }
             else //Insert Password Mode
             {
-                var ChangePasswordAppBarMenuItem = new ApplicationBarMenuItem();
-                ChangePasswordAppBarMenuItem.Text = AppResources.ChangePassword;
-                ChangePasswordAppBarMenuItem.Click += (sender1, e1) =>
-                { NavigationService.Navigate(new Uri("/View/PasswordPage.xaml?ChangePassword=1", UriKind.Relative)); };
-                ApplicationBar.MenuItems.Add(ChangePasswordAppBarMenuItem);
+                AddChangePasswordMenuItem();
                 ChangePasswordHintTextBlock.Visibility = Visibility.Visible;
                 MainPasswordBox.Focus();
             }
+        }
+
+        private void AddChangePasswordMenuItem()
+        {
+            if (ApplicationBar.MenuItems.Count > 0)
+                return;
+
+            var ChangePasswordAppBarMenuItem = new ApplicationBarMenuItem();
+            ChangePasswordAppBarMenuItem.Text = AppResources.ChangePassword;
+            ChangePasswordAppBarMenuItem.Click += (sender1, e1) =>
+            { NavigationService.Navigate(new Uri("/View/PasswordPage.xaml?ChangePassword=1", UriKind.Relative)); };
+            ApplicationBar.MenuItems.Add(ChangePasswordAppBarMenuItem);
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)

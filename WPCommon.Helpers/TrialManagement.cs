@@ -14,7 +14,7 @@ namespace WPCommon.Helpers
 #if DEBUG
                 return true;
 #else
-                return false;
+                return li.IsTrial();
 #endif
             }
         }

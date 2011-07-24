@@ -9,8 +9,8 @@ using System.Windows.Input;
 using System.Xml.Linq;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using WPCommon;
 using DeathTimerz.Localization;
+using System.Collections.Generic;
 
 namespace DeathTimerz
 {

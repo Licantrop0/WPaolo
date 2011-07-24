@@ -57,7 +57,6 @@
     <Reference Include="AdDuplex.AdControl.Silverlight">
       <HintPath>..\WPCommon\AD SDK\AdDuplex.AdControl.Silverlight.dll</HintPath>
     </Reference>
-    <Reference Include="Google.AdMob.Ads.WindowsPhone7, Version=4.0.1.27070, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
@@ -177,14 +176,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WPCommon\WPCommon.csproj">
-      <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
-      <Name>WPCommon</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
     <Resource Include="Fonts\CHILLER.TTF" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WPCommon.Controls\WPCommon.Controls.csproj">
+      <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
+      <Name>WPCommon.Controls</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

@@ -1,9 +1,5 @@
 ﻿using System;
 using System.IO.IsolatedStorage;
-using System.Windows;
-using Microsoft.Phone.Shell;
-using Microsoft.Xna.Framework.Media;
-using DeathTimerz.Localization;
 using System.Xml.Linq;
 
 namespace DeathTimerz

@@ -4,6 +4,7 @@ using System.IO.IsolatedStorage;
 using System.Windows;
 using DeathTimerz.Localization;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework;
 
 namespace DeathTimerz.Sounds
 {
@@ -90,6 +91,7 @@ namespace DeathTimerz.Sounds
             {
                 var BackgroundMusic = Song.FromUri("BackgroudMusic", new Uri("Sounds/Music.wma", UriKind.Relative));
                 MediaPlayer.IsRepeating = true;
+                FrameworkDispatcher.Update(); 
                 MediaPlayer.Play(BackgroundMusic);
             }
 

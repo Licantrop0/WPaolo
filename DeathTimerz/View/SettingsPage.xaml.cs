@@ -1,13 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Navigation;
+using DeathTimerz.Localization;
+using DeathTimerz.Sounds;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using System.Windows;
-using System.ComponentModel;
-using DeathTimerz.Localization;
-using Microsoft.Xna.Framework.Media;
-using System.Windows.Media;
-using DeathTimerz.Sounds;
 
 namespace DeathTimerz
 {

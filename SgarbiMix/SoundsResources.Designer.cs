@@ -60,9 +60,9 @@ namespace SgarbiMix {
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Abbia_ognuno_il_pudore {
+        internal static System.IO.UnmanagedMemoryStream Abbia_ognuno_il_pudore___ {
             get {
-                return ResourceManager.GetStream("Abbia_ognuno_il_pudore", resourceCulture);
+                return ResourceManager.GetStream("Abbia_ognuno_il_pudore...", resourceCulture);
             }
         }
         

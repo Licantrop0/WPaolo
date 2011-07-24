@@ -243,7 +243,7 @@ Si vous oubliez le mot de passe, vous perdez l'accés aux dossiers privés.</val
     <value>Il faut selectionner les photos avant</value>
   </data>
   <data name="SetPassword" xml:space="preserve">
-    <value>Mettre le mot de passe</value>
+    <value>Mot de passe</value>
   </data>
   <data name="TakePhoto" xml:space="preserve">
     <value>Prendre une photo</value>

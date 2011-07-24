@@ -208,15 +208,6 @@
     <Content Include="Toolkit.Content\appbar_settings.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Toolkit.Content\appbar_viewpic.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WPCommon\WPCommon.csproj">
-      <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
-      <Name>WPCommon</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\AppResources.fr-FR.resx" />
@@ -225,6 +216,16 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WPCommon.Controls\WPCommon.Controls.csproj">
+      <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
+      <Name>WPCommon.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPCommon.Helpers\WPCommon.Helpers.csproj">
+      <Project>{7CF377DB-129E-4C84-A23D-5758F01DC6F1}</Project>
+      <Name>WPCommon.Helpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

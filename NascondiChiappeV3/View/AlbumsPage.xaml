@@ -8,7 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP7"
-    xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"
+    xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     x:Class="NascondiChiappe.View.AlbumsPage"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
@@ -22,7 +22,7 @@
           DataContext="{Binding Source={StaticResource Locator}, Path=AlbumsVM}"
           Background="{StaticResource BackgroundImage}">
         <Grid.Resources>
-            <wp:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+            <wph:BoolToVisibilityConverter x:Key="BoolToVisibility" />
         </Grid.Resources>
         
             <controls:Pivot x:Name="AlbumsPivot" ItemsSource="{Binding Albums}"

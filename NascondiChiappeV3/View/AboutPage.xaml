@@ -6,7 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"
+    xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
     xmlns:vm="clr-namespace:NascondiChiappe.ViewModel"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -17,13 +17,11 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:AboutViewModel x:Key="AboutVM"
-                           DefaultFont="/NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic"
-                           MinFontSize="34">
-            <vm:AboutViewModel.DefaultBackground>
-                <ImageBrush ImageSource="/NascondiChiappe;component/SplashScreenImage.jpg" />
-            </vm:AboutViewModel.DefaultBackground>
-        </vm:AboutViewModel>
+                           DefaultFont="{StaticResource DefaultFont}"
+                           DefaultBackground="{StaticResource BackgroundImage}"
+                           MinFontSize="34"
+                           LogoMargin="30" />
     </phone:PhoneApplicationPage.Resources>
     
-    <wp:AboutControl x:Name="WPMEAbout" DataContext="{StaticResource AboutVM}" />
+    <wpc:About DataContext="{StaticResource AboutVM}" />
 </phone:PhoneApplicationPage>

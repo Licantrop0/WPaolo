@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using NascondiChiappe.ViewModel;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using System.Windows;
 using NascondiChiappe.Localization;
+using NascondiChiappe.ViewModel;
 
 namespace NascondiChiappe.View
 {
@@ -79,6 +79,12 @@ namespace NascondiChiappe.View
             SaveAppBarButton.Text = NascondiChiappe.Localization.AppResources.Save;
             SaveAppBarButton.Click += (sender, e) => { SaveAlbum(); };
             ApplicationBar.Buttons.Add(SaveAppBarButton);
+        }
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (AppContext.Albums.Count == 0)
+                throw new Exception("ForceExit");
         }
     }
 }

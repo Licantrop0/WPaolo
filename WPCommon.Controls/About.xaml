@@ -49,7 +49,7 @@
                                          Click="Rate_Click" />
 
                         <Image Source="Img/logo.png" Stretch="None"
-                               Margin="{Binding CustomLogoMargin}" />
+                               Margin="{Binding LogoMargin}" />
 
                         <TextBlock Text="{Binding CustomText}" TextWrapping="Wrap"
                                    FontSize="{Binding AppVersionFontSize}" />

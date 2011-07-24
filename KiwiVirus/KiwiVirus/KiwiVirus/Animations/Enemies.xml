@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SpriteAnimations>
+  <Sprite Name="WhiteGlobulo">
+     <Animation Name="main" Type="simple" Path ="Sprites\WhiteGLobulos\whiteGlobulosBiggest" FramesNum ="7" />
+  </Sprite>
+  <Sprite Name="Mouth">
+    <Animation Name="opening" Type="Simple" Path ="Sprites\Mouth\boccaLateraleApre40" FramesNum ="8" />
+    <Animation Name="death" Type="Simple" Path ="Sprites\Mouth\boccaLateraleMuore40" FramesNum ="8" />
+  </Sprite>
+  <Sprite Name="BossLung">
+    <Animation Name="main" Type="Big" FramesNum ="8">
+      <Texture Path="Sprites\bossLung\bossLungMain"/>
+    </Animation>
+    <Animation Name="vomit" Type="Big" FramesNum ="19">
+      <Texture Path="Sprites\bossLung\bossLungVomit1"/>
+      <Texture Path="Sprites\bossLung\bossLungVomit2"/>
+      <Texture Path="Sprites\bossLung\bossLungVomit3"/>
+    </Animation>
+    <Animation Name="death" Type="Big" FramesNum ="19">
+      <Texture Path="Sprites\bossLung\bossLungDeath1"/>
+      <Texture Path="Sprites\bossLung\bossLungDeath2"/>
+      <Texture Path="Sprites\bossLung\bossLungDeath3"/>
+    </Animation>
+  </Sprite>
+</SpriteAnimations>

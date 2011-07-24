@@ -89,7 +89,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation.cs" />
+    <Compile Include="AnimationUtil.cs" />
+    <Compile Include="BossLung.cs" />
+    <Compile Include="CircularSprite.cs" />
+    <Compile Include="CustomTimeVariable.cs" />
+    <Compile Include="GameEvent.cs" />
+    <Compile Include="GameEventHandler.cs" />
+    <Compile Include="GameEventsManager.cs" />
+    <Compile Include="GoToVirusBonus.cs" />
+    <Compile Include="ITouchable.cs" />
+    <Compile Include="MovingBackground.cs" />
+    <Compile Include="PhysicalPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RectangularSprite.cs" />
+    <Compile Include="Sprite.cs" />
+    <Compile Include="SpriteEventCodes.cs" />
+    <Compile Include="SpriteFactory.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="Kiwi.cs" />
+    <Compile Include="WhiteGlobulo.cs" />
     <None Include="Properties\AppManifest.xml">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </None>
@@ -100,6 +119,7 @@
     <Compile Include="Game1.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Animations\Enemies.xml" />
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
     <Content Include="Background.png">

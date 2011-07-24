@@ -61,7 +61,7 @@ namespace WPCommon.Controls.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Application.
+        ///   Looks up a localized string similar to App.
         /// </summary>
         public static string Application {
             get {

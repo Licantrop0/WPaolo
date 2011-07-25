@@ -117,9 +117,9 @@ namespace Kiwi
             _timeString = Content.Load<SpriteFont>("Segoe20");
 
             // create our friend kiwi
-            Texture2D kiwiTexture = Content.Load<Texture2D>("KiwiMain");
+            Texture2D kiwiTexture = Content.Load<Texture2D>("kiwiAnimato2");
             Dictionary<string, Animation> kiwiAnimations = new Dictionary<string, Animation>();
-            kiwiAnimations.Add("main", new Animation(kiwiTexture, 6, true));
+            kiwiAnimations.Add("main", new Animation(kiwiTexture, 23, true));
             _kiwi = new Kiwi(kiwiAnimations, 67, 67);
             
             // create white globulos factory

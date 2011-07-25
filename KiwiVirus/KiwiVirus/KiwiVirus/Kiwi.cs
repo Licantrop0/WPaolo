@@ -30,7 +30,7 @@ namespace Kiwi
             :base(animations, radius, touchRadius)
         {
             _touchable = true;
-            FramePerSecond = 4f;
+            FramePerSecond = 5f;
             Position = new Vector2(240, 400);
             Angle = -(float)Math.PI / 2;
             _state = KiwiState.sad;

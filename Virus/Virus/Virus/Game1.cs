@@ -484,15 +484,15 @@ namespace Virus
             _background.Draw(spriteBatch);
             _firstPlanBackground.Draw(spriteBatch);
 
+            // draw boss
+            if (_bossContainer.Count != 0)
+                _bossContainer[0].Draw(spriteBatch);
+
             // draw bonuses
             _bonuses.ForEach(b => b.Draw(spriteBatch));
 
             // draw enemies
             _whiteGlobulos.ForEach(wg => wg.Draw(spriteBatch));
-
-            // draw boss
-            if (_bossContainer.Count != 0)
-                _bossContainer[0].Draw(spriteBatch);
 
             // draw our friend virus
             if(_virus != null)

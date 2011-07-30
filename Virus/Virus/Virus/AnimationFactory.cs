@@ -59,11 +59,11 @@ using Microsoft.Xna.Framework.Graphics;
                         break;
                     
                     case "BigPortrait":
-                        animationDictionary.Add(a.Key, new ScreenAnimation(a.Value.FramesNum, true, a.Value.Looping, a.Value.Textures));
+                        animationDictionary.Add(a.Key, new ScreenAnimation(a.Value.FramesNum, a.Value.Looping, true, a.Value.Textures));
                         break;
 
                     case "BigLandscape":
-                        animationDictionary.Add(a.Key, new ScreenAnimation(a.Value.FramesNum, false, a.Value.Looping, a.Value.Textures));
+                        animationDictionary.Add(a.Key, new ScreenAnimation(a.Value.FramesNum, a.Value.Looping, false, a.Value.Textures));
                         break;
 
                     default:

@@ -287,7 +287,7 @@ namespace Virus
 			BossLung boss = new BossLung(_animationFactory.CreateAnimations("BossLung"), 240, 80, 240, 80,
 				_animationFactory, _eventsManager, this)
 			{
-                FramePerSecond = 4
+                FramePerSecond = 3.5f
 			};
 
 			_bossContainer.Add(boss);

@@ -52,12 +52,6 @@
       <Processor>TextureProcessor</Processor>
       <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
     </Compile>
-    <Compile Include="whiteGlobulos.png">
-      <Name>whiteGlobulos</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="virus.png">
@@ -125,23 +119,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="whiteGlobulosBigger.png">
-      <Name>whiteGlobulosBigger</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="virusBigger.png">
-      <Name>virusBigger</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="virusMedium.png">
+    <Compile Include="Sprites\Virus\virusMedium.png">
       <Name>virusMedium</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -149,7 +127,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="whiteGlobulosBiggest.png">
+    <Compile Include="Sprites\WhiteGlobulos\whiteGlobulosBiggest.png">
       <Name>whiteGlobulosBiggest</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -165,19 +143,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bonusAmmo.png">
+    <Compile Include="Sprites\Bonuses\bonusAmmo.png">
       <Name>bonusAmmo</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
     </Compile>
-    <Compile Include="bonusBomb.png">
+    <Compile Include="Sprites\Bonuses\bonusBomb.png">
       <Name>bonusBomb</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
     </Compile>
-    <Compile Include="bonusOneUp.png">
+    <Compile Include="Sprites\Bonuses\bonusOneUp.png">
       <Name>bonusOneUp</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -185,7 +163,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bonusBombPlus.png">
+    <Compile Include="Sprites\Bonuses\bonusBombPlus.png">
       <Name>bonusBombPlus</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -193,23 +171,58 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Boss.png">
-      <Name>Boss</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="boccaLateraleApre40.png">
+    <Compile Include="Sprites\Mouth\boccaLateraleApre40.png">
       <Name>boccaLateraleApre40</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="boccaLateraleMuore40.png">
+    <Compile Include="Sprites\Mouth\boccaLateraleMuore40.png">
       <Name>boccaLateraleMuore40</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\bossLung\bossLungVomit1.png">
+      <Name>bossLungVomit1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\bossLung\bossLungVomit2.png">
+      <Name>bossLungVomit2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\bossLung\bossLungVomit3.png">
+      <Name>bossLungVomit3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\bossLung\bossLungMain.png">
+      <Name>bossLungMain</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\bossLung\bossLungDeath1.png">
+      <Name>bossLungDeath1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\bossLung\bossLungDeath2.png">
+      <Name>bossLungDeath2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ammobar.png">
+      <Name>ammobar</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

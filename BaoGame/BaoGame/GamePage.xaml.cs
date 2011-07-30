@@ -94,9 +94,9 @@ namespace BaoGame
 
             _firstMove = FirstMove.random;
 
-            _imageSourceArray = new ImageSource[33];
+            _imageSourceArray = new ImageSource[21];
 
-            for (int i = 0; i < 33; i++)
+            for (int i = 0; i < 21; i++)
             {
                 _imageSourceArray[i] = new ImageSourceConverter().ConvertFromString("img/semini_" + i.ToString() + ".png") as ImageSource; 
             }
@@ -186,7 +186,7 @@ namespace BaoGame
                     {
                         case FirstMove.random:
                             Random randNum = new Random(DateTime.Now.Millisecond);
-                            playerToMove = (Byte)randNum.Next(2, 3);    // temp debug, computer will move first!
+                            playerToMove = (Byte)randNum.Next(1, 3);
                             break;
 
                         case FirstMove.player1:

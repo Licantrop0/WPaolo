@@ -89,6 +89,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimationFactory.cs" />
+    <Compile Include="AnimationUtil.cs" />
     <Compile Include="BossLung.cs" />
     <Compile Include="CircularSprite.cs" />
     <Compile Include="CustomTimeVariable.cs" />
@@ -118,6 +120,12 @@
     <Compile Include="Game1.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Animations\Enemies.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Animations\Bonuses.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
   </ItemGroup>

@@ -48,6 +48,9 @@ namespace Virus
         // virus lifes
         Texture2D _virusLife;
 
+        // ammo bar
+        Texture2D _ammobar;
+
         // virus ammo management
         int _enemiesKilledByAmmoCounter;
         int _enemiesKilledByAmmoTriggerNumber;
@@ -106,28 +109,19 @@ namespace Virus
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // create score and debug fonts
+            // create score and debug fonts and ammo bar
             _ammoString = Content.Load<SpriteFont>("Segoe20");
             _bombString = Content.Load<SpriteFont>("Segoe20");
             _delayString = Content.Load<SpriteFont>("Segoe20");
             _timeString = Content.Load<SpriteFont>("Segoe20");
+            _ammobar = Content.Load<Texture2D>("ammobar");
 
             // create our friend virus
-            Texture2D virusTexture = Content.Load<Texture2D>("virusMedium");
+            Texture2D virusTexture = Content.Load<Texture2D>("Sprites/Virus/virusMedium");
             Dictionary<string, Animation> virusAnimations = new Dictionary<string, Animation>();
-            virusAnimations.Add("main", new Animation(virusTexture, 7, true));
+            virusAnimations.Add("main", new SpriteSheetAnimation(7, true, virusTexture));
             _virus = new Virus(virusAnimations, 40, 40);
             
-            // create white globulos factory
-            Texture2D whiteGlobulosTexture = Content.Load<Texture2D>("whiteGlobulosBiggest");
-            Texture2D bonusBombTexture = Content.Load<Texture2D>("bonusBomb");
-            Texture2D bonusAmmoTexture = Content.Load<Texture2D>("bonusAmmo");
-            Texture2D bonusOneUpTexture = Content.Load<Texture2D>("bonusOneUp");
-            Texture2D bonusBombPlusTexture = Content.Load<Texture2D>("bonusBombPlus");
-            Texture2D bossLungTexture = Content.Load<Texture2D>("Boss");
-            Texture2D bossLungMouthOpeningTexture = Content.Load<Texture2D>("boccaLateraleApre40");
-            Texture2D bossLungMouthDeathTexture = Content.Load<Texture2D>("boccaLateraleMuore40");
-
             // set ascending climax difficulty pack!
 
             _level1DifficultyPack[0] = new Level1DifficultyPackEnemies(TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(2500),
@@ -143,28 +137,19 @@ namespace Virus
                                                                       1.9f, 3.2f,
                                                                       3, 5);
 
-
-            _monsterFactory = new MonsterFactory(_eventsManager, _whiteGlobulos,  _bossContainer)
+            // create Monster Factory
+            _monsterFactory = new MonsterFactory(_eventsManager, _whiteGlobulos,  _bossContainer, new AnimationFactory( Content, "Animations/Enemies.xml"))
             {
-                SimpleEnemyTexture = whiteGlobulosTexture,
-                VirusPosition = new Vector2(240, 400),
-                BossLungTexture = bossLungTexture,
-                BossLungMouthOpeningTexture = bossLungMouthOpeningTexture,
-                BossLungMouthDeathTexture = bossLungMouthDeathTexture
-            };
-           
-            _bonusFactory = new BonusFactory(_eventsManager, _bonuses)
-            {
-                BombBonusTexture = bonusBombTexture,
-                AmmoBonusTexture = bonusAmmoTexture,
-                OneUpBonusTexture = bonusOneUpTexture,
-                BombPlusBonusTexture = bonusBombPlusTexture,
                 VirusPosition = new Vector2(240, 400),
             };
 
+            // create Bonus Factory
+            _bonusFactory = new BonusFactory(_eventsManager, _bonuses, new AnimationFactory( Content, "Animations/Bonuses.xml"))
+            {
+                VirusPosition = new Vector2(240, 400),
+            };
             _bonusFactory.SetBombBonusTimePeriod(30, 50);
             
-
             // create life virus
             _virusLife = Content.Load<Texture2D>("virusLifeLittle");
 
@@ -188,8 +173,8 @@ namespace Virus
         private void ScheduleEvents()
         {
             //// set difficulty
-            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0)  , GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[0] }));
-            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(30) , GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[1] }));
+            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[0] }));
+            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(30), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[1] }));
             //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(100), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[2] }));
 
             //// schedule and go on scheduling white globulos creation
@@ -522,6 +507,10 @@ namespace Virus
             {
                 spriteBatch.DrawString(_ammoString, _virus.Ammo.ToString(), new Vector2(80, 4), Color.Yellow);
                 spriteBatch.DrawString(_bombString, _virus.Bombs.ToString(), new Vector2(30, 4), Color.Yellow);
+
+                // draw ammobar
+                //spriteBatch.Draw(_ammobar, new Vector2(0, 790), null, Color.Green, Vector2.One, Vector2.Zero, SpriteEffects.None, 0);
+                spriteBatch.Draw(_ammobar, new Vector2(0, 790), null, Color.Green, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
             }
 
             if ( gameTime.IsRunningSlowly )

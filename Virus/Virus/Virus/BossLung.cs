@@ -363,9 +363,18 @@ namespace Virus
 
     }
 
+    public enum BossLungState
+    {
+        approaching,
+        standing
+    }
+
     public class BossLung : RectangularSprite
     {
         int _hitPoints;
+        BossLungState _state;
+
+        AnimationFactory _mouthAnimationFactory;
 
         // mouth structures
         List<Mouth> _idleLeftMouths;
@@ -375,10 +384,6 @@ namespace Virus
         List<Mouth> _activeLeftMouths = new List<Mouth>();
         List<Mouth> _activeBottomMouths = new List<Mouth>();
         List<Mouth> _activeRightMouths = new List<Mouth>();
-
-        /*Mouth[] _leftMouths;
-        Mouth[] _bottomMouths;
-        Mouth[] _rightMouths;*/
 
         // mouth handling structures
         float _approchingPeriodMin;
@@ -397,11 +402,17 @@ namespace Virus
 
         Random _dice  = new Random(DateTime.Now.Millisecond);
 
-        public BossLung(Dictionary<string, Animation> animations, float width, float height, float touchWidth, float touchHeight, 
-            Dictionary<string, Animation> mouthAnimations, GameEventsManager gm, MonsterFactory mf)
+        public BossLung(Dictionary<string,Animation> animations, float width, float height, float touchWidth, float touchHeight, AnimationFactory mouthAnimationFactory, GameEventsManager gm, MonsterFactory mf)
             : base(animations, width, height, touchWidth, touchHeight)
         {
             _touchable = true;
+
+            _state = BossLungState.approaching;
+
+            Position = new Vector2(240, 350);
+            Speed = new Vector2(0, 25);
+
+            _mouthAnimationFactory = mouthAnimationFactory;
 
             // initialize mouths
             Mouth.GameManager = gm;
@@ -409,43 +420,27 @@ namespace Virus
 
             int i = 0;
 
-            Animation opening = mouthAnimations["opening"];
-            Animation death = mouthAnimations["death"];
-            Dictionary<string, Animation> aux;
-
             _idleLeftMouths = new List<Mouth>();
             for (i = 0; i < 5; i++)
             {
-                 aux = new Dictionary<string, Animation>();
-                 aux.Add("opening", opening.Clone());
-                 aux.Add("death", death.Clone());
-
-                _idleLeftMouths.Add(new Mouth(aux, 40, 40));
+                 _idleLeftMouths.Add(new Mouth(_mouthAnimationFactory.CreateAnimations("Mouth"), 40, 40));
             }
                 
             _idleBottomMouths = new List<Mouth>();
             for (i = 0; i < 5; i++)
             {
-                aux = new Dictionary<string, Animation>();
-                aux.Add("opening", opening.Clone());
-                aux.Add("death", death.Clone());
-
-                _idleBottomMouths.Add(new Mouth(aux, 40, 40));
+                _idleBottomMouths.Add(new Mouth(_mouthAnimationFactory.CreateAnimations("Mouth"), 40, 40));
             }
                 
             _idleRightMouths = new List<Mouth>(); ;
             for (i = 0; i < 5; i++)
             {
-                aux = new Dictionary<string, Animation>();
-                aux.Add("opening", opening.Clone());
-                aux.Add("death", death.Clone());
-
-                _idleRightMouths.Add(new Mouth(aux, 40, 40));
+                _idleRightMouths.Add(new Mouth(_mouthAnimationFactory.CreateAnimations("Mouth"), 40, 40));
             }
                 
-            _leftTimeToCall = 2;
-            _bottomTimeToCall = 4;
-            _rightTimeToCall = 8;
+            _leftTimeToCall = 7;
+            _bottomTimeToCall = 9;
+            _rightTimeToCall = 11;
         }
 
         protected override void InitializePhysics()
@@ -521,6 +516,37 @@ namespace Virus
         {
             base.Update(gameTime);
 
+            switch (_state)
+            {
+                case BossLungState.approaching:
+                    HandleLateralMouths(gameTime);
+                    Move();
+                    Animate();
+
+                    if (Position.Y >= 400)
+                    {
+                        Speed = Vector2.Zero;
+                        _state = BossLungState.standing;
+                    }
+                        
+                    break;
+
+                case BossLungState.standing:
+                    HandleLateralMouths(gameTime);
+                    Move();
+                    Animate();
+
+                    break;
+
+                default:
+                    break;
+            }
+
+            
+        }
+
+        private void HandleLateralMouths(GameTime gameTime)
+        {
             // aggiorna le frequenze e velocità delle bocche in maniera inversamente proporzionale agli hit points
             UpdateMouthSpeedParameters();
 

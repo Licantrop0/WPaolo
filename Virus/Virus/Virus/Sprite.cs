@@ -75,7 +75,7 @@ namespace Virus
         { set { _currentAnimation.TimeToUpdate = value != 0 ? (1f / value) : float.PositiveInfinity; } }
 
         public int AnimationFrames
-        { get { return _currentAnimation.NFrames; } }
+        { get { return _currentAnimation.FramesNum; } }
 
         public bool AnimationFinished()
         {

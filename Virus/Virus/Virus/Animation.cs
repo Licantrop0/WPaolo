@@ -7,27 +7,28 @@ using Microsoft.Xna.Framework;
 
 namespace Virus
 {
-    public class Animation
+    public abstract class Animation
     {
-        private Texture2D _texture;
-        private Rectangle[] _rectangles;
-        private int _frameIndex = 0;
+        protected Texture2D _sourceTexture;
+        protected Rectangle[] _rectangles;
+        protected int _frameIndex = 0;
 
-        private int _frameWidth { get; set; }
-        private int _frameHeight { get; set; }
+        protected int _frameWidth; 
+        protected int _frameHeight;
 
-        private Vector2 _origin;
+        protected Vector2 _origin;
 
         private float _timeElapsed;
         private float _timeToUpdate;
-        private bool _looping;
-        private bool _reverse = false;
+        protected bool _looping;
+        protected bool _reverse = false;
+        protected int _frames;
 
         public float TimeToUpdate
         { set { _timeToUpdate = value; } }
 
-        public int NFrames
-        { get { return _rectangles.Length; } }
+        public int FramesNum
+        { get { return _frames; } }
 
         public bool Reverse { get { return _reverse; } set { _reverse = value; } }
 
@@ -39,32 +40,15 @@ namespace Virus
             }
         }
 
-        public Animation(Texture2D texture, int frames, bool looping)
+        public Animation(int frames, bool looping)
         {
-            _texture = texture;
-
-            _frameWidth = _texture.Width / frames;
-            _frameHeight = _texture.Height;
-
-            _rectangles = new Rectangle[frames];
-            for (int i = 0; i < frames; i++)
-            {
-                _rectangles[i] = new Rectangle(i * _frameWidth, 0, _frameWidth, _frameHeight);
-            }
-
-            _origin = new Vector2(_frameWidth / 2, _frameHeight / 2);
+            _frames = frames;
             _looping = looping;
         }
-
-        //TODO va fatto meglio
-        public Animation Clone()
-        {
-            return new Animation(_texture, _rectangles.Length, _looping);
-        }
-
+       
         public void Draw(SpriteBatch spriteBatch, Sprite sprite)
         {
-            spriteBatch.Draw(_texture, sprite.Position, _rectangles[_frameIndex], sprite.Tint, sprite.Angle, _origin, sprite.Scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_sourceTexture, sprite.Position, _rectangles[_frameIndex], sprite.Tint, sprite.Angle, _origin, sprite.Scale, SpriteEffects.None, 0f);
         }
 
 
@@ -99,7 +83,78 @@ namespace Virus
                     }
                 }
             }
+
+            SetSourceTexture();
         }
 
+        virtual protected void SetSourceTexture()
+        {
+        }
+    }
+
+    public class SpriteSheetAnimation : Animation
+    {
+        public SpriteSheetAnimation(int frames, bool looping, Texture2D sourceTexture) 
+            : base(frames, looping)
+        {
+            _sourceTexture = sourceTexture;
+
+            _frameWidth = _sourceTexture.Width / frames;
+            _frameHeight = _sourceTexture.Height;
+
+            _rectangles = new Rectangle[frames];
+            for (int i = 0; i < frames; i++)
+            {
+                _rectangles[i] = new Rectangle(i * _frameWidth, 0, _frameWidth, _frameHeight);
+            }
+
+            _origin = new Vector2(_frameWidth / 2, _frameHeight / 2);
+        }
+    }
+
+    public class ScreenAnimation : Animation
+    {
+        Texture2D[] _textureArray;
+        bool _isPortrait;
+
+        public ScreenAnimation(int frames, bool looping, bool isPortrait, Texture2D[] textureArray)
+            : base(frames, looping)
+        {
+            _textureArray = textureArray;
+            _sourceTexture = _textureArray[0];
+            
+            _isPortrait = isPortrait;
+
+            if (_isPortrait)
+            {
+                _frameWidth = 480;
+                _frameHeight = 800;
+            }
+            else
+            {
+                _frameWidth = 800;
+                _frameHeight = 480;
+            }
+
+            int horizontalPeriod = _isPortrait ? 4 : 2;
+            int verticalPeriod = _isPortrait ? 2 : 4; 
+
+            _rectangles = new Rectangle[frames];
+
+            for (int i = 0; i < frames; i++)
+            {
+                _rectangles[i] = new Rectangle(
+                    (i % horizontalPeriod) * _frameWidth,
+                    (i % verticalPeriod) * _frameHeight,
+                    _frameWidth, _frameHeight);
+            }
+
+            _origin = new Vector2(_frameWidth / 2, _frameHeight / 2);
+        }
+
+        protected override void SetSourceTexture()
+        {
+            _sourceTexture = _textureArray[(int)Math.Floor(_frameIndex / 8)];
+        }
     }
 }

@@ -68,6 +68,22 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </controls:PivotItem>
+
+            <controls:PivotItem Margin="0,-10,0,0">
+                <controls:PivotItem.Header>
+                    <TextBlock Text="Suggerisci!" FontFamily="{StaticResource DefaultFont}"
+                               Foreground="{StaticResource HeaderForeground}" />
+                </controls:PivotItem.Header>
+                <StackPanel VerticalAlignment="Center">
+                <TextBlock FontSize="26" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
+                   TextWrapping="Wrap" FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
+            C'é una frase famosa o un insulto di Sgarbi che manca a questa app?<LineBreak/>
+            Suggeriscila!<LineBreak/>
+            Provvederemo ad inserirla nel prossimo update!!
+                </TextBlock>
+                    <Button Style="{StaticResource PlayButtonStyle}" Content="SUGGERISCI!!" Click="Suggersci_Click" />
+                </StackPanel>
+            </controls:PivotItem>
         </controls:Pivot>
     </Grid>
 

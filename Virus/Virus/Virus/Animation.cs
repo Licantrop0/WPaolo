@@ -30,6 +30,10 @@ namespace Virus
         public int FramesNum
         { get { return _frames; } }
 
+        // temp
+        public int FrameIndex
+        { get { return _frameIndex; } }
+
         public bool Reverse { get { return _reverse; } set { _reverse = value; } }
 
         public bool Finished
@@ -38,6 +42,11 @@ namespace Virus
             {
                 return !_looping && ((!_reverse && _frameIndex == _rectangles.Length - 1) || (_reverse && _frameIndex == 0));
             }
+        }
+
+        public void Reset()
+        {
+            _frameIndex = 0;
         }
 
         public Animation(int frames, bool looping)
@@ -137,15 +146,17 @@ namespace Virus
             }
 
             int horizontalPeriod = _isPortrait ? 4 : 2;
-            int verticalPeriod = _isPortrait ? 2 : 4; 
+            int verticalParts = _isPortrait ? 4 : 4; 
 
             _rectangles = new Rectangle[frames];
 
             for (int i = 0; i < frames; i++)
             {
+                int j = i % 8;
+
                 _rectangles[i] = new Rectangle(
-                    (i % horizontalPeriod) * _frameWidth,
-                    (i % verticalPeriod) * _frameHeight,
+                    (j % horizontalPeriod) * _frameWidth,
+                    (j / verticalParts) * _frameHeight,
                     _frameWidth, _frameHeight);
             }
 
@@ -154,7 +165,7 @@ namespace Virus
 
         protected override void SetSourceTexture()
         {
-            _sourceTexture = _textureArray[(int)Math.Floor(_frameIndex / 8)];
+            _sourceTexture = _textureArray[_frameIndex / 8];
         }
     }
 }

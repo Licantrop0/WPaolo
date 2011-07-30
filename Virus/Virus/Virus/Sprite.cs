@@ -119,10 +119,25 @@ namespace Virus
             _currentAnimation.Animate(_elapsedTime);
         }
 
+        public bool IsAnimationBegin()
+        {
+            if (_currentAnimation.FrameIndex == 0)
+                return true;
+            else
+                return false;
+        }
+
         public void ChangeAnimation(string animationKey)
         {
+            _currentAnimation.Reset();
             _currentAnimation = _animations[animationKey];
+            _currentAnimation.Reset();
         }
+
+        /*public void ResetAnimation()
+        {
+            _currentAnimation.Reset();
+        }*/
 
         public void Rotate()
         {

@@ -366,13 +366,16 @@ namespace Virus
     public enum BossLungState
     {
         approaching,
-        standing
+        standing,
+        vomiting
     }
 
     public class BossLung : RectangularSprite
     {
         int _hitPoints;
         BossLungState _state;
+
+        float _timer = 0;
 
         AnimationFactory _mouthAnimationFactory;
 
@@ -409,8 +412,8 @@ namespace Virus
 
             _state = BossLungState.approaching;
 
-            Position = new Vector2(240, 350);
-            Speed = new Vector2(0, 25);
+            Position = new Vector2(240, 150);
+            Speed = new Vector2(0, 20);
 
             _mouthAnimationFactory = mouthAnimationFactory;
 
@@ -525,16 +528,40 @@ namespace Virus
 
                     if (Position.Y >= 400)
                     {
-                        Speed = Vector2.Zero;
                         _state = BossLungState.standing;
                     }
                         
                     break;
 
                 case BossLungState.standing:
+
+                    _timer += _elapsedTime;
+
                     HandleLateralMouths(gameTime);
-                    Move();
                     Animate();
+
+                    if (_timer >= 10 && IsAnimationBegin())
+                    {
+                        _timer = 0;
+                        ChangeAnimation("vomit");
+                        FramePerSecond = 3.5f;
+                        _state = BossLungState.vomiting;
+                    }
+
+                    break;
+
+                case BossLungState.vomiting:
+
+                    Animate();
+                    HandleLateralMouths(gameTime);
+
+                    if (AnimationFinished())
+                    {
+                        //ResetAnimation();
+                        ChangeAnimation("main");
+                        FramePerSecond = 3.5f;
+                        _state = BossLungState.standing;
+                    }
 
                     break;
 

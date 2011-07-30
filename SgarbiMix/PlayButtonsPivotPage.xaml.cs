@@ -7,6 +7,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using SgarbiMix.ViewModel;
 using WPCommon;
+using WPCommon.Helpers;
 
 namespace SgarbiMix
 {

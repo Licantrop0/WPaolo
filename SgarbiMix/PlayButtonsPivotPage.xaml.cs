@@ -108,5 +108,14 @@ namespace SgarbiMix
         {
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
+
+        private void Suggersci_Click(object sender, RoutedEventArgs e)
+        {
+            new EmailComposeTask()
+            {
+                Subject = "Suggerimento insulto SgarbiMix",
+                To = "wpmobile@hotmail.it"
+            }.Show();
+        }
     }
 }

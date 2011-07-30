@@ -95,6 +95,13 @@ namespace SgarbiMix.ViewModel
             set { _customLogoMargin = value; }
         }
 
+        private Thickness _logoMargin = new Thickness(0);
+        public Thickness LogoMargin
+        {
+            get { return _logoMargin; }
+            set { _logoMargin = value; }
+        }
+
         private Brush _defaultBackground = new SolidColorBrush(Colors.Black);
         public Brush DefaultBackground
         {

@@ -46,7 +46,7 @@
             DefaultFont="{StaticResource DefaultFont}"
             DefaultForeground="{StaticResource DefaultForeground}"
             HeaderForeground="{StaticResource HeaderForeground}"
-            CustomLogoMargin="24" >
+            LogoMargin="24" >
             <vm:AboutViewModel.DefaultBackground>
                 <ImageBrush ImageSource="sfondo3.jpg" />
             </vm:AboutViewModel.DefaultBackground>

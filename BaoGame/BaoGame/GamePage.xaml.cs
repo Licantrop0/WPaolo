@@ -9,7 +9,7 @@ using System.Windows.Threading;
 using Bao;
 using Microsoft.Phone.Controls;
 using MiniMaxTree;
-using WPCommon;
+using WPCommon.Helpers;
 
 namespace BaoGame
 {

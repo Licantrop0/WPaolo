@@ -7,12 +7,7 @@ namespace FillTheSquare
     public class MagicSquare
     {
         /// <summary>
-        /// array bidimensionale che rappresenta il quadrato magico
-        /// </summary>
-        private int[,] Grid;
-
-        /// <summary>
-        /// tiene traccia di tutti gli spostamenti
+        /// Rappresentazione della Griglia
         /// </summary>
         public Stack<GridPoint> PositionHistory { get; set; }
 
@@ -30,8 +25,6 @@ namespace FillTheSquare
                 throw new ArgumentException("The square could be only 5x5 or 10x10", "size");
 
             Size = size;
-
-            Grid = new int[Size, Size];
             PositionHistory = new Stack<GridPoint>(points);
         }
 
@@ -44,7 +37,6 @@ namespace FillTheSquare
                 //voglio cancellare l'ultima mossa
                 if (p == LastPoint)
                 {
-                    this.Grid[p.X, p.Y] = 0;
                     PositionHistory.Pop();
                     return null;
                 }
@@ -68,14 +60,11 @@ namespace FillTheSquare
             }
 
             PositionHistory.Push(p);
-            Grid[p.X, p.Y] = PositionHistory.Count;
-
             return true; //tutto ok
         }
 
         public void Clear()
         {
-            Array.Clear(Grid, 0, Grid.Length);
             PositionHistory.Clear();
         }
 
@@ -89,41 +78,56 @@ namespace FillTheSquare
             int x = PositionHistory.Peek().X;
             int y = PositionHistory.Peek().Y;
 
+            GridPoint EvaluatedPoint;
+            bool SquareOccupied;
+
             //+3, +0
-            if ((x + 3) <= (Size - 1) && Grid[x + 3, y] == 0)
-                AvailablePoints.Add(new GridPoint(x + 3, y));
+            EvaluatedPoint = new GridPoint(x + 3, y);
+            SquareOccupied = PositionHistory.Contains(EvaluatedPoint);
+            if ((x + 3) <= (Size - 1) && !SquareOccupied)
+                AvailablePoints.Add(EvaluatedPoint);
 
             //+0, +3
-            if ((y + 3) <= (Size - 1) && Grid[x, y + 3] == 0)
-                AvailablePoints.Add(new GridPoint(x, y + 3));
+            EvaluatedPoint = new GridPoint(x, y + 3);
+            SquareOccupied = PositionHistory.Contains(EvaluatedPoint);
+            if ((y + 3) <= (Size - 1) && !SquareOccupied)
+                AvailablePoints.Add(EvaluatedPoint);
 
             //-3, +0
-            if ((x - 3) >= 0 && Grid[x - 3, y] == 0)
-                AvailablePoints.Add(new GridPoint(x - 3, y));
+            EvaluatedPoint = new GridPoint(x - 3, y);
+            SquareOccupied = PositionHistory.Contains(EvaluatedPoint);
+            if ((x - 3) >= 0 && !SquareOccupied)
+                AvailablePoints.Add(EvaluatedPoint);
 
             //+0, -3
-            if ((y - 3) >= 0 && Grid[x, y - 3] == 0)
-                AvailablePoints.Add(new GridPoint(x, y - 3));
+            EvaluatedPoint = new GridPoint(x, y - 3);
+            SquareOccupied = PositionHistory.Contains(EvaluatedPoint);
+            if ((y - 3) >= 0 && !SquareOccupied)
+                AvailablePoints.Add(EvaluatedPoint);
 
             //+2, +2
-            if ((x + 2) <= (Size - 1) && (y + 2) <= (Size - 1) &&
-                Grid[x + 2, y + 2] == 0)
-                AvailablePoints.Add(new GridPoint(x + 2, y + 2));
+            EvaluatedPoint = new GridPoint(x + 2, y + 2);
+            SquareOccupied = PositionHistory.Contains(EvaluatedPoint);
+            if ((x + 2) <= (Size - 1) && (y + 2) <= (Size - 1) && !SquareOccupied)
+                AvailablePoints.Add(EvaluatedPoint);
 
             //-2, -2
-            if ((x - 2) >= 0 && (y - 2) >= 0 &&
-                Grid[x - 2, y - 2] == 0)
-                AvailablePoints.Add(new GridPoint(x - 2, y - 2));
+            EvaluatedPoint = new GridPoint(x - 2, y - 2);
+            SquareOccupied = PositionHistory.Contains(EvaluatedPoint);
+            if ((x - 2) >= 0 && (y - 2) >= 0 && !SquareOccupied)
+                AvailablePoints.Add(EvaluatedPoint);
 
             //+2, -2
-            if ((x + 2) <= (Size - 1) && (y - 2) >= 0 &&
-                Grid[x + 2, y - 2] == 0)
-                AvailablePoints.Add(new GridPoint(x + 2, y - 2));
+            EvaluatedPoint = new GridPoint(x + 2, y - 2);
+            SquareOccupied = PositionHistory.Contains(EvaluatedPoint);
+            if ((x + 2) <= (Size - 1) && (y - 2) >= 0 && !SquareOccupied)
+                AvailablePoints.Add(EvaluatedPoint);
 
             //-2, +2
-            if ((x - 2) >= 0 && (y + 2) <= (Size - 1) &&
-                Grid[x - 2, y + 2] == 0)
-                AvailablePoints.Add(new GridPoint(x - 2, y + 2));
+            EvaluatedPoint = new GridPoint(x - 2, y + 2);
+            SquareOccupied = PositionHistory.Contains(EvaluatedPoint);
+            if ((x - 2) >= 0 && (y + 2) <= (Size - 1) && !SquareOccupied)
+                AvailablePoints.Add(EvaluatedPoint);
 
             return AvailablePoints;
         }

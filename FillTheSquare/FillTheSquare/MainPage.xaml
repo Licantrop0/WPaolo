@@ -101,6 +101,7 @@
                     <RotateTransform Angle="15" />
                 </Button.RenderTransform>
             </Button>
+
             <Button Content="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
             	Height="91.685" Width="256"
             	Style="{StaticResource HomeButtonStyle}"

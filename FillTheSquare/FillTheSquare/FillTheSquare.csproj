@@ -53,8 +53,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AdDuplex.AdControl.Silverlight">
-      <HintPath>..\..\WPCommon\AD SDK\AdDuplex.AdControl.Silverlight.dll</HintPath>
+    <Reference Include="AdDuplex.AdControl.Silverlight, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\WPCommon.Libraries\AdDuplex.AdControl.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone" />
@@ -75,9 +76,6 @@
     <Compile Include="AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <None Include="AchievementsPage.xaml.cs">
-      <DependentUpon>AchievementsPage.xaml</DependentUpon>
-    </None>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -113,7 +111,6 @@
       <DependentUpon>RecordsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AboutViewModel.cs" />
-    <None Include="ViewModel\AchievementViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,10 +122,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <None Include="AchievementsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
     <Page Include="CongratulationsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

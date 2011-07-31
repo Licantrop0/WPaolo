@@ -4,7 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Windows.Media;
 using System.Xml.Linq;
-using WPCommon.Model;
+using WPCommon.Controls;
+using WPCommon.Controls.Model;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows;
@@ -23,6 +24,11 @@ namespace FillTheSquare.ViewModel
         public IEnumerable<AppTile> AppList
         {
             get { return _appList; }
+            private set
+            {
+                _appList = value;
+                RaisePropertyChanged("AppList");
+            }
         }
 
         public AboutViewModel()
@@ -40,23 +46,23 @@ namespace FillTheSquare.ViewModel
             wc.OpenReadCompleted += (sender, e) =>
             {
                 if (e.Error != null) return;
-                if (_appList != null) return;
+                if (AppList != null) return;
 
                 XDocument response = XDocument.Load(e.Result);
-                _appList = from n in response.Descendants(nsAtom + "entry")
+                AppList = from n in response.Descendants(nsAtom + "entry")
                           let imageId = n.Element(nsZune + "image")
                               .Element(nsZune + "id").Value.Substring(9) //rimozione di "urn:uuid:"
-                          select new AppTile(
-                              new Guid(n.Element(nsAtom + "id").Value.Substring(9)),
-                              n.Element(nsAtom + "title").Value,
-                              new Uri(string.Format(
-                                  "http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
+                          let appId = n.Element(nsAtom + "id").Value.Substring(9)
+                          where appId != AppId
+                          select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
+                              string.Format("http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
                                   cultureName, imageId)));
             };
         }
 
         #region App Data
-
+        /// <summary>Set this value to the Marketplace Product ID</summary>
+        public string AppId { get; set; }
         public string AppName
         {
             get { return AppResources.AppName; }
@@ -70,15 +76,17 @@ namespace FillTheSquare.ViewModel
                 if (string.IsNullOrEmpty(_appVersion))
                 {
                     var name = Assembly.GetExecutingAssembly().FullName;
-                    _appVersion = new AssemblyName(name).Version.ToString(); 
+                    _appVersion = new AssemblyName(name).Version.ToString();
                 }
                 return _appVersion;
             }
         }
 
+        private string _customText;
         public string CustomText
         {
-            get { return "*UPDATES*:\n- new settings\n- improved graphics\n- hints during game"; }
+            get { return _customText; }
+            set { _customText = value; }
         }
 
         #endregion
@@ -89,12 +97,7 @@ namespace FillTheSquare.ViewModel
         public ImageSource CustomLogo
         {
             get { return _customLogo; }
-            set
-            {
-                if (CustomLogo == value) return;
-                _customLogo = value;
-                RaisePropertyChanged("CustomLogo");
-            }
+            set { _customLogo = value; }
         }
 
         private Thickness _customLogoMargin = new Thickness(0);
@@ -104,56 +107,46 @@ namespace FillTheSquare.ViewModel
             set { _customLogoMargin = value; }
         }
 
+        private Thickness _logoMargin = new Thickness(0);
+        public Thickness LogoMargin
+        {
+            get { return _logoMargin; }
+            set { _logoMargin = value; }
+        }
 
         private Brush _defaultBackground = new SolidColorBrush(Colors.Black);
         public Brush DefaultBackground
         {
             get { return _defaultBackground; }
-            set
-            {
-                if (DefaultBackground == value) return;
-                _defaultBackground = value;
-                RaisePropertyChanged("DefaultBackground");
-            }
+            set { _defaultBackground = value; }
         }
 
         private Brush _defaultForeground = new SolidColorBrush(Colors.White);
         public Brush DefaultForeground
         {
             get { return _defaultForeground; }
-            set
-            {
-                if (DefaultForeground == value) return;
-                _defaultForeground = value;
-                RaisePropertyChanged("DefaultForeground");
-            }
+            set { _defaultForeground = value; }
+        }
+
+        private Brush _headerForeground;
+        public Brush HeaderForeground
+        {
+            get { return _headerForeground ?? _defaultForeground; }
+            set { _headerForeground = value; }
         }
 
         private FontFamily _defaultFont = new FontFamily("Segoe WP SemiLight");
         public FontFamily DefaultFont
         {
             get { return _defaultFont; }
-            set
-            {
-                if (DefaultFont == value) return;
-                _defaultFont = value;
-                RaisePropertyChanged("DefaultFont");
-            }
+            set { _defaultFont = value; }
         }
 
         private double _minFontSize = 19;
         public double MinFontSize
         {
             get { return _minFontSize; }
-            set
-            {
-                if (MinFontSize == value) return;
-                _minFontSize = value;
-                RaisePropertyChanged("MinFontSize");
-                RaisePropertyChanged("AppNameFontSize");
-                RaisePropertyChanged("AppVersionFontSize");
-                RaisePropertyChanged("HyperLinkFontSize");
-            }
+            set { _minFontSize = value; }
         }
 
         public double AppNameFontSize
@@ -170,19 +163,19 @@ namespace FillTheSquare.ViewModel
         #region Localization
 
         public string ApplicationText
-        { get { return WPCommon.Localization.AppResources.Application; } }
+        { get { return WPCommon.Controls.Localization.AppResources.Application; } }
 
         public string ContactUsText
-        { get { return WPCommon.Localization.AppResources.ContactUs; } }
+        { get { return WPCommon.Controls.Localization.AppResources.ContactUs; } }
 
         public string GetOtherAppsText
-        { get { return WPCommon.Localization.AppResources.GetOtherApps; } }
+        { get { return WPCommon.Controls.Localization.AppResources.GetOtherApps; } }
 
         public string OtherAppsText
-        { get { return WPCommon.Localization.AppResources.OtherApps; } }
+        { get { return WPCommon.Controls.Localization.AppResources.OtherApps; } }
 
         public string RateText
-        { get { return WPCommon.Localization.AppResources.RateThisApp; } }
+        { get { return WPCommon.Controls.Localization.AppResources.RateThisApp; } }
 
         #endregion
 

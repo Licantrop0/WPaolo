@@ -46,7 +46,9 @@
             <ListBox Name="RecordListBox" FontSize="20" 
                      Grid.Row="1" Grid.ColumnSpan="3" >
                 <ListBox.Resources>
-                    <wp:ShortTimeSpanTextConverter x:Key="ShortTimeSpanTextConverter" xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon" />
+                    <wp:ShortTimeSpanTextConverter
+                        x:Key="ShortTimeSpanTextConverter"
+                        xmlns:wp="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers" />
                 </ListBox.Resources>
                 <ListBox.ItemTemplate>
                     <DataTemplate>

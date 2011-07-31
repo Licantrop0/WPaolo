@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{22700591-5E34-4D4D-A01F-6B8C2153B270}</ProjectGuid>
+    <ProjectGuid>{B3072132-A92C-4800-A18F-793C868AC7DD}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WPCommon</RootNamespace>
-    <AssemblyName>WPCommon</AssemblyName>
+    <RootNamespace>WPCommon.Libraries</RootNamespace>
+    <AssemblyName>WPCommon.Libraries</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
@@ -45,11 +45,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Devices.Sensors" />
-    <Reference Include="Microsoft.Phone" />
-    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Interop" />
-    <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -57,25 +52,17 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AchievementListControl.xaml.cs">
-      <DependentUpon>AchievementListControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Achievement.cs" />
-    <Compile Include="FacebookSharer.cs" />
-    <Compile Include="Model\AppTile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShakeDetector.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AchievementListControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <None Include="AdDuplex.AdControl.Silverlight.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Img\lucchetto.png" />
+    <None Include="OpenXLive\OpenXLive.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="OpenXLive\OpenXLive.Silverlight.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions />

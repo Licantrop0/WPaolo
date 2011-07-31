@@ -56,17 +56,29 @@ namespace FillTheSquare
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            //ripristino della griglia
+            if (Square.IsEmpty)
+                return;
+
+            //ripristino la griglia
             var points = Square.PositionHistory.ToArray();
             Array.Reverse(points);
+            var b = new Border();
             for (int i = 0; i < points.Length; i++)
             {
-                var b = GetBorder(points[i].X, points[i].Y);
+                b = GetBorder(points[i]);
                 b.Child = GetTextBlock(i + 1);
             }
 
-            //ripristino dello stato
-            if (points.Length > 0)
+            SetFocusAnimation(b);
+            var lastAvailableMoves = Square.GetAvailableMoves();
+            GreenMeansAnimation(lastAvailableMoves.Select(move => GetBorder(move)));
+
+            if (lastAvailableMoves.Count == 0)
+            {
+                PhilPiangeAppear.Begin();
+                NoMoreMovesTextBlock.Visibility = Visibility.Visible;
+            }
+            else if (points.Length > 0)
                 sw.Start();
         }
 
@@ -93,15 +105,17 @@ namespace FillTheSquare
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (NoMoreMovesTextBlock.Visibility == Visibility.Visible) //GAME OVER, can't do anything
+             //GAME OVER, can't do anything
+            if (NoMoreMovesTextBlock.Visibility == Visibility.Visible)
                 return;
 
             var currentBorder = (Border)sender;
-            var p = new GridPoint(
-                currentBorder.GetColumn(),
-                currentBorder.GetRow());
+            PressButton(currentBorder);
+        }
 
-            var result = Square.PressButton(p);
+        private void PressButton(Border currentBorder)
+        {
+            var result = Square.PressButton(GetPoint(currentBorder));
             var lastAvailableMoves = Square.GetAvailableMoves();
 
             //tutta la logica della griglia è dentro il metodo PressButton
@@ -120,7 +134,7 @@ namespace FillTheSquare
                         break;
                     }
 
-                    GreenMeansAnimation(lastAvailableMoves.Select(move => GetBorder(move.X, move.Y)));
+                    GreenMeansAnimation(lastAvailableMoves.Select(move => GetBorder(move)));
                     if (lastAvailableMoves.Count == 0)  //Game Over! :(
                     {
                         SoundManager.PlayOhNo();
@@ -140,15 +154,15 @@ namespace FillTheSquare
                     break;
 
                 case null: //caso di cancellazione
-                    var borders = lastAvailableMoves.Select(move => GetBorder(move.X, move.Y));
+                    //prendo i border delle ultime mosse disponibili
+                    var borders = lastAvailableMoves.Select(move => GetBorder(move));
                     ClearBorder(currentBorder);
                     GreenMeansAnimation(borders);
 
                     //Evidenzio la casella sull'ultimo premuto se la griglia non è vuota
                     if (!Square.IsEmpty)
-                    {
-                        var lastValue = Square.PositionHistory.Peek();
-                        var lastBorder = GetBorder(lastValue.X, lastValue.Y);
+                    {                        
+                        var lastBorder = GetBorder(Square.PositionHistory.Peek());
                         SetFocusAnimation(lastBorder);
                     }
 
@@ -184,12 +198,17 @@ namespace FillTheSquare
         private static void ClearBorder(Border b)
         {
             b.Child = null;
-            b.Background = (LinearGradientBrush)App.Current.Resources["BorderBackgroundBrush"];
+            b.Background = App.Current.Resources["BorderBackgroundBrush"] as LinearGradientBrush;
         }
 
-        private Border GetBorder(int x, int y)
+        private Border GetBorder(GridPoint p)
         {
-            return MagicGrid.Children[Square.Size * y + x] as Border;
+            return MagicGrid.Children[Square.Size * p.Y + p.X] as Border;
+        }
+
+        private GridPoint GetPoint(Border b)
+        {
+            return new GridPoint(b.GetColumn(), b.GetRow());
         }
 
         private TextBlock GetTextBlock(int i)

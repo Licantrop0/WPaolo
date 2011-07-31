@@ -15,7 +15,9 @@
 	BackKeyPress="PhoneApplicationPage_BackKeyPress" Loaded="PhoneApplicationPage_Loaded">
 
 	<phone:PhoneApplicationPage.Resources>
-		<wp:ShortTimeSpanTextConverter x:Key="ShortTimeSpanTextConverter" xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon" />
+		<wph:ShortTimeSpanTextConverter
+			x:Key="ShortTimeSpanTextConverter"
+			xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers" />
 		<Storyboard x:Name="BouncingPhilStoryboard" RepeatBehavior="Forever">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="BouncingPhilImage">
 				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="62"/>
@@ -85,10 +87,10 @@
 				</StackPanel>
 			</StackPanel>
 
-			<Button Canvas.Left="6" Canvas.Top="206" Click="FacebookShare_Click"
-                    Style="{StaticResource HomeButtonStyle}"
-					Content="Share on Facebook" Height="92" Width="468" />
-            
+			<!--<Button Canvas.Left="6" Canvas.Top="206" Click="FacebookShare_Click"
+					Style="{StaticResource HomeButtonStyle}"
+					Content="Share on Facebook" Height="92" Width="468" />-->
+			
 			<Button Content="{Binding LocalizedResources.SeeRecords, Source={StaticResource LocalizedStrings}}"
 					Click="GoToRecords_Click" 
 					Style="{StaticResource HomeButtonStyle}"

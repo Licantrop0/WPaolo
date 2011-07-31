@@ -46,8 +46,7 @@
                     Click="SquareTenButton_Click"
                     Style="{StaticResource HomeButtonStyle2}"                    
                     Width="240" Height="150"
-                    Canvas.Left="228" Canvas.Top="0">
-            </Button>
+                    Canvas.Left="228" Canvas.Top="0" />
 
             <Button Content="{Binding LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
                     Height="100" Width="250"
@@ -78,7 +77,7 @@
                 </Custom:Interaction.Triggers>
             </Button>
 
-            <Button Canvas.Left="0" Canvas.Top="382"
+            <!--<Button Canvas.Left="0" Canvas.Top="382"
                     Content="congratulations" Click="Button_Click" />
             <Button Content="Achievements"
                     Canvas.Left="249" Canvas.Top="240" >
@@ -87,7 +86,7 @@
                         <ic:NavigateToPageAction TargetPage="/AchievementsPage.xaml"/>
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
-            </Button>
+            </Button>-->
 
             <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
                     Height="80" Width="200"

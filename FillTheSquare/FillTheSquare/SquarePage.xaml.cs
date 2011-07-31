@@ -11,7 +11,7 @@ using FillTheSquare.Model;
 using FillTheSquare.Sounds;
 using FillTheSquare.ViewModel;
 using Microsoft.Phone.Controls;
-using WPCommon;
+using WPCommon.Helpers;
 
 namespace FillTheSquare
 {

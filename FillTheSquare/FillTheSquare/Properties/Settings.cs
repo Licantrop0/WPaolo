@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Media;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
-using WPCommon;
+using WPCommon.Helpers;
 using Microsoft.Phone.Shell;
 using System.Windows;
 using FillTheSquare.Localization;

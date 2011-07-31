@@ -5,7 +5,7 @@
 	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
 	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-	xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon" >
+	xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers" >
 
 	<Application.Resources>
 		<loc:LocalizedStrings x:Key="LocalizedStrings" xmlns:loc="clr-namespace:FillTheSquare.Localization" />
@@ -99,7 +99,7 @@
 	</Application.Resources>
 
 	<Application.ApplicationLifetimeObjects>
-		<WPCommon:XNAAsyncDispatcher />
+		<wph:XNAAsyncDispatcher />
 		<shell:PhoneApplicationService 
 			Launching="Application_Launching" Closing="Application_Closing" 
 			Activated="Application_Activated" Deactivated="Application_Deactivated"/>

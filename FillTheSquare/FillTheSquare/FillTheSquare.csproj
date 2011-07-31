@@ -62,12 +62,6 @@
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Input.Touch" />
-    <Reference Include="OpenXLive">
-      <HintPath>..\..\WPCommon\OpenXLive\OpenXLive.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenXLive.Silverlight">
-      <HintPath>..\..\WPCommon\OpenXLive\OpenXLive.Silverlight.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -81,9 +75,9 @@
     <Compile Include="AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AchievementsPage.xaml.cs">
+    <None Include="AchievementsPage.xaml.cs">
       <DependentUpon>AchievementsPage.xaml</DependentUpon>
-    </Compile>
+    </None>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -119,7 +113,7 @@
       <DependentUpon>RecordsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AboutViewModel.cs" />
-    <Compile Include="ViewModel\AchievementViewModel.cs" />
+    <None Include="ViewModel\AchievementViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -131,10 +125,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AchievementsPage.xaml">
+    <None Include="AchievementsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
+    </None>
     <Page Include="CongratulationsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,12 +202,6 @@
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WPCommon\WPCommon.csproj">
-      <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
-      <Name>WPCommon</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Localization\AppResources.fr-FR.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -226,7 +214,16 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\WPCommon.Controls\WPCommon.Controls.csproj">
+      <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
+      <Name>WPCommon.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WPCommon.Helpers\WPCommon.Helpers.csproj">
+      <Project>{7CF377DB-129E-4C84-A23D-5758F01DC6F1}</Project>
+      <Name>WPCommon.Helpers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

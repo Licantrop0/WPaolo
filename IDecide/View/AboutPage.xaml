@@ -1,0 +1,29 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="IDecide.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:IDecide.ViewModel"
+    xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <vm:AboutViewModel x:Name="AboutVM"
+                           MinFontSize="50"
+                           AppId="34d447d5-60fe-df11-9264-00237de2db9e"
+                           LogoMargin="20"
+                           CustomLogo="/FillTheSquare;component/Phil/phil_con_logo_new.png"
+                           CustomLogoMargin="265, 390, 0, 0" />
+    </phone:PhoneApplicationPage.Resources>
+
+    <wpc:About DataContext="{StaticResource AboutVM}"  />
+    
+</phone:PhoneApplicationPage>

@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WPCommon;
+using IDecide.Localization;
 
 namespace IDecide
 {
@@ -24,32 +25,32 @@ namespace IDecide
 			InitializeComponent();
 			CreateAppBar();
 
-			var sd = new ShakeDetector();
-			sd.ShakeDetected += (sender, e) =>
-			{
-				//Inserire un Mutex
-				lock(mutex)
-				{
-					Dispatcher.BeginInvoke(() =>
-					{ DecideButton_Click(sender, null); });
-				}
-			};
-			sd.Start();
+            //var sd = new ShakeDetector();
+            //sd.ShakeDetected += (sender, e) =>
+            //{
+            //    //Inserire un Mutex
+            //    lock(mutex)
+            //    {
+            //        Dispatcher.BeginInvoke(() =>
+            //        { DecideButton_Click(sender, null); });
+            //    }
+            //};
+            //sd.Start();
 
 		}
 
 		private void DecideButton_Click(object sender, RoutedEventArgs e)
 		{
-			RotateButton.Stop();
-			var SelectedChoices = Settings.ChoicesGroup
-				.Where(c => c.Key == Settings.SelectedGroup)
-				.Select(c => c.Value)
-				.ToList();
+            //RotateButton.Stop();
+            //var SelectedChoices = Settings.ChoicesGroup
+            //    .Where(c => c.Key == Settings.SelectedGroup)
+            //    .Select(c => c.Value)
+            //    .ToList();
 
-			AnswerTextBlock.Text = SelectedChoices.Count > 0 ?
-				SelectedChoices[rnd.Next(SelectedChoices.Count)] :
-				AppResources.NothingToDecide;
-			RotateButton.Begin();
+            //AnswerTextBlock.Text = SelectedChoices.Count > 0 ?
+            //    SelectedChoices[rnd.Next(SelectedChoices.Count)] :
+            //    AppResources.NothingToDecide;
+            //RotateButton.Begin();
 			//if (SelectedChoices.Count > 0)
 			//    MessageBox.Show(SelectedChoices[rnd.Next(SelectedChoices.Count)]);
 			//else

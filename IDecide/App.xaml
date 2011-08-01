@@ -7,7 +7,10 @@
 
     <!--Application Resources-->
     <Application.Resources>
-        <local:LocalizedStrings xmlns:local="clr-namespace:IDecide" x:Key="LocalizedStrings" />
+        <localization:LocalizedStrings
+            xmlns:localization="clr-namespace:IDecide.Localization"
+            x:Key="LocalizedStrings" />
+        
         <Style x:Key="BackGroundStyle" TargetType="Grid">
             <Setter Property="Background">
                 <Setter.Value>

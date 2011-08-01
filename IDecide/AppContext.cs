@@ -1,13 +1,11 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO.IsolatedStorage;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+using IDecide.Localization;
 using OcKvp = System.Collections.ObjectModel.ObservableCollection<System.Collections.Generic.KeyValuePair<string, string>>;
 
 namespace IDecide
 {
-    public static class Settings
+    public class AppContext
     {
         public static OcKvp ChoicesGroup
         {
@@ -66,6 +64,5 @@ namespace IDecide
 
             return Choices;
         }
-
     }
 }

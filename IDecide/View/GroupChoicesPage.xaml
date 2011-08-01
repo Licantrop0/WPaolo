@@ -6,7 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:IDecide"
+    xmlns:hlp="clr-namespace:IDecide.Helpers"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -29,15 +29,14 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Grid.Resources>
-                <local:ResourceTranslatorConverter x:Key="ResourceTranslatorConverter"/>
-                <local:AmISelectedConverter x:Key="AmISelectedConverter"/>
+                <hlp:ResourceTranslatorConverter x:Key="ResourceTranslatorConverter"/>
             </Grid.Resources>
 
             <ListBox Name="GroupChoicesListBox" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <RadioButton GroupName="Choices" Checked="RadioButton_Checked" IsChecked="{Binding Converter={StaticResource AmISelectedConverter}}" />
+                            <RadioButton GroupName="Choices" Checked="RadioButton_Checked" />
                             <Button Content="{Binding Converter={StaticResource ResourceTranslatorConverter}}"
                                     Width="300" VerticalAlignment="Center" Click="EditChoicesButton_Click" />
                             <Rectangle Fill="{StaticResource PhoneForegroundBrush}" Width="48" Height="48" Margin="6" MouseLeftButtonDown="RemoveButton_Click" >

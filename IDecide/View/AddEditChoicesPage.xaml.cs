@@ -10,13 +10,13 @@ using System.Windows.Shapes;
 using System.Collections.Generic;
 using System.Linq;
 using WPCommon;
+using IDecide.Localization;
 
 namespace IDecide
 {
     public partial class AddEditChoicesPage : PhoneApplicationPage
     {
         string CurrentGroup;
-        ObservableCollection<string> CurrentChoices = new ObservableCollection<string>();
 
         public AddEditChoicesPage()
         {
@@ -27,16 +27,16 @@ namespace IDecide
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             CurrentGroup = NavigationContext.QueryString["key"];
-            CurrentChoices.AddRange(Settings.ChoicesGroup
-                .Where(c => c.Key == CurrentGroup)
-                .Select(c => c.Value));
+            //CurrentChoices.AddRange(Settings.ChoicesGroup
+            //    .Where(c => c.Key == CurrentGroup)
+            //    .Select(c => c.Value));
 
-            ChoicesListBox.ItemsSource = CurrentChoices;
+            //ChoicesListBox.ItemsSource = CurrentChoices;
         }
 
         private void AddButton_Click(object sender, MouseButtonEventArgs e)
         {
-            CurrentChoices.Add(ChoiceTextBox.Text);
+            //CurrentChoices.Add(ChoiceTextBox.Text);
             ChoiceTextBox.Text = string.Empty;
             ChoiceTextBox.Focus();
         }
@@ -50,7 +50,7 @@ namespace IDecide
         private void RemoveButton_Click(object sender, MouseButtonEventArgs e)
         {
             string name = ((Rectangle)sender).DataContext as string;
-            if (name != null) CurrentChoices.Remove(name);
+            //if (name != null) CurrentChoices.Remove(name);
         }
 
         private void BuildApplicationBar()
@@ -62,11 +62,11 @@ namespace IDecide
             SaveAppBarButton.Text = AppResources.Save;
             SaveAppBarButton.Click += (sender, e) =>
             {
-                Settings.ChoicesGroup.Where(c => c.Key == CurrentGroup)
-                    .ForEach(i => Settings.ChoicesGroup.Remove(i));
+                //Settings.ChoicesGroup.Where(c => c.Key == CurrentGroup)
+                //    .ForEach(i => Settings.ChoicesGroup.Remove(i));
 
-                Settings.ChoicesGroup.AddRange(CurrentChoices
-                    .Select(c => new KeyValuePair<string, string>(CurrentGroup, c)));
+                //Settings.ChoicesGroup.AddRange(CurrentChoices
+                //    .Select(c => new KeyValuePair<string, string>(CurrentGroup, c)));
 
                 NavigationService.GoBack();
             };
@@ -74,7 +74,7 @@ namespace IDecide
 
             var ClearChoicesAppBarMenuItem = new ApplicationBarMenuItem();
             ClearChoicesAppBarMenuItem.Text = AppResources.ClearChoices;
-            ClearChoicesAppBarMenuItem.Click += (sender, e) => { CurrentChoices.Clear(); };
+            //ClearChoicesAppBarMenuItem.Click += (sender, e) => { CurrentChoices.Clear(); };
             ApplicationBar.MenuItems.Add(ClearChoicesAppBarMenuItem);
         }
     }

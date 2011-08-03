@@ -50,6 +50,9 @@ namespace Virus
 
         // ammo bar
         Texture2D _ammobar;
+        Color[] _ammobarLookUp = new Color[100];
+        //Vector2 _colorBarScale;
+        Color _ammoBarColor;
 
         // virus ammo management
         int _enemiesKilledByAmmoCounter;
@@ -94,6 +97,46 @@ namespace Virus
         protected override void Initialize()
         {
             _enemiesKilledByAmmoTriggerNumber = 50;
+
+            // initialize color bar
+            _ammobarLookUp[0]  = new Color(255, 0, 0);     // red
+            _ammobarLookUp[32] = new Color(255, 127, 0);  // orange
+            _ammobarLookUp[65] = new Color(255, 255, 0);     // yellow
+            _ammobarLookUp[99] = new Color(0, 255, 0);     // green
+
+            int i;
+            Vector3 m, rgb;
+            m = (new Vector3(_ammobarLookUp[32].R, _ammobarLookUp[32].G, _ammobarLookUp[32].B) - new Vector3(_ammobarLookUp[0].R, _ammobarLookUp[0].G, _ammobarLookUp[0].B)) / 32;
+            
+            // interpolating from red to orange
+            m = (new Vector3(_ammobarLookUp[32].R, _ammobarLookUp[32].G, _ammobarLookUp[32].B) - new Vector3(_ammobarLookUp[0].R, _ammobarLookUp[0].G, _ammobarLookUp[0].B)) / 32;
+            for (i = 1; i < 32; i++)
+            {
+                rgb = new Vector3(_ammobarLookUp[0].R, _ammobarLookUp[0].G, _ammobarLookUp[0].B) + m * (i - 0);
+                _ammobarLookUp[i].R = (byte)rgb.X;
+                _ammobarLookUp[i].G = (byte)rgb.Y;
+                _ammobarLookUp[i].B = (byte)rgb.Z;
+            }
+
+            // interpolating from orange to yellow
+            m = (new Vector3(_ammobarLookUp[65].R, _ammobarLookUp[65].G, _ammobarLookUp[65].B) - new Vector3(_ammobarLookUp[32].R, _ammobarLookUp[32].G, _ammobarLookUp[32].B)) / 32;
+            for (i = 33; i < 65; i++)
+            {
+                rgb = new Vector3(_ammobarLookUp[32].R, _ammobarLookUp[32].G, _ammobarLookUp[32].B) + m * (i - 32);
+                _ammobarLookUp[i].R = (byte)rgb.X;
+                _ammobarLookUp[i].G = (byte)rgb.Y;
+                _ammobarLookUp[i].B = (byte)rgb.Z;
+            }
+
+            // interpolating from yellow to green
+            m = (new Vector3(_ammobarLookUp[99].R, _ammobarLookUp[99].G, _ammobarLookUp[99].B) - new Vector3(_ammobarLookUp[65].R, _ammobarLookUp[65].G, _ammobarLookUp[65].B)) / 33;
+            for (i = 66; i < 99; i++)
+            {
+                rgb = new Vector3(_ammobarLookUp[65].R, _ammobarLookUp[65].G, _ammobarLookUp[65].B) + m * (i - 33);
+                _ammobarLookUp[i].R = (byte)rgb.X;
+                _ammobarLookUp[i].G = (byte)rgb.Y;
+                _ammobarLookUp[i].B = (byte)rgb.Z;
+            }
 
             base.Initialize();
 
@@ -147,6 +190,7 @@ namespace Virus
             _bonusFactory = new BonusFactory(_eventsManager, _bonuses, new AnimationFactory( Content, "Animations/Bonuses.xml"))
             {
                 VirusPosition = new Vector2(240, 400),
+                BonusSpeed = 200
             };
             _bonusFactory.SetBombBonusTimePeriod(30, 50);
             
@@ -239,16 +283,25 @@ namespace Virus
                     // bomb explosion handling!
                     _virus.Bombs--;
                     enemiesKilled++;
-                    _whiteGlobulos.ForEach(wg => wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit)));
 
+                    // send bomHit event to each enemy
+                    _whiteGlobulos.ForEach(wg => wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit)));
+
+                    // send bombHit event to each bonus, 
                     foreach(GoToVirusBonus b in _bonuses)
                     {
-                        b.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit));
+                        b.AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit));
                         if (b.Type == BonusType.ammo && b.State == BonusState.moving)
                             recreateAmmoBonus = true;
                     }
 
-                    // tremble
+                    // send bombHit event to the boss
+                    if (_bossContainer.Count != 0)
+                    {
+                        _bossContainer[0].AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit));
+                    }
+
+                    // make the screen tremble
                     CustomTimeVariable trembleAmplitude = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 60), new Vector2(1, 60), new Vector2(1.25f, 0) });
                     CustomTimeVariable trembleAmplitude2 = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 30), new Vector2(1, 30), new Vector2(1.25f, 0) });
                     _background.Tremble(2, trembleAmplitude, 30, (float)Math.PI, false);
@@ -299,6 +352,19 @@ namespace Virus
             
         }
 
+        private void HandleBossSpecialMove()
+        {
+            // see if boss has delivered the special move
+            if (_bossContainer[0].SpecialMoveHit)
+            {
+                if (_virus != null)
+                {
+                    _virus.AddSpriteEvent(new SpriteEvent(SpriteEventCode.virusGlobuloCollision, new Object[] { (float)(Math.PI / 2) }));
+                    _bossContainer[0].SpecialMoveHit = false;
+                } 
+            }
+        }
+
         private void DetectGlobulosBorderCollision()
         {
             foreach (WhiteGlobulo wg in _whiteGlobulos)
@@ -344,7 +410,7 @@ namespace Virus
             }
         }
 
-        private void DetectVirusGlobulosCollision()
+        private void DetectVirusCollision()
         {
             if (_virus != null)
             {
@@ -431,8 +497,11 @@ namespace Virus
             if (_touchPoint != Vector2.Zero)
                 DetectTouchCollisions();
 
-            // detect collisions between our friend virus and evil globulos
-            DetectVirusGlobulosCollision();
+            // detect collisions between our friend virus and evil globulos, and bonuses
+            DetectVirusCollision();
+
+            if (_bossContainer.Count != 0)
+                HandleBossSpecialMove();
 
             DetectGlobulosBorderCollision();
 
@@ -467,6 +536,13 @@ namespace Virus
             // manage current event (if any)
             _eventsManager.ManageCurrentEvent(gameTime.TotalGameTime);
 
+            // update colorbar
+            if (_virus != null)
+            {
+                int lookUpIndex = _virus.Ammo - 1 < 100 ? _virus.Ammo - 1 : 99;
+                _ammoBarColor = _ammobarLookUp[lookUpIndex];
+            }
+          
             base.Update(gameTime);
         }
                
@@ -498,19 +574,18 @@ namespace Virus
             if(_virus != null)
                 _virus.Draw(spriteBatch);
 
-            // draw lifes
+            // draw lifes and ammobar
             if (_virus != null)
+            {
                 DrawLifes(spriteBatch);
-
+                spriteBatch.Draw(_ammobar, new Vector2(0, 790), null, new Color(_ammoBarColor.R, _ammoBarColor.G, _ammoBarColor.B), 0, Vector2.Zero, /*Vector2.One*/new Vector2((float)_virus.Ammo / 100f, 1), SpriteEffects.None, 0);
+            }
+                
             // write score
             if (_virus != null)
             {
                 spriteBatch.DrawString(_ammoString, _virus.Ammo.ToString(), new Vector2(80, 4), Color.Yellow);
-                spriteBatch.DrawString(_bombString, _virus.Bombs.ToString(), new Vector2(30, 4), Color.Yellow);
-
-                // draw ammobar
-                //spriteBatch.Draw(_ammobar, new Vector2(0, 790), null, Color.Green, Vector2.One, Vector2.Zero, SpriteEffects.None, 0);
-                spriteBatch.Draw(_ammobar, new Vector2(0, 790), null, Color.Green, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+                spriteBatch.DrawString(_bombString, _virus.Bombs.ToString(), new Vector2(30, 4), Color.Yellow);                
             }
 
             if ( gameTime.IsRunningSlowly )

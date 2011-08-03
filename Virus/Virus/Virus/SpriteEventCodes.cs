@@ -8,6 +8,7 @@ namespace Virus
     public enum SpriteEventCode
     {
         fingerHit,
+        bombHit,
         virusGlobuloCollision,
         virusBonusCollision,
         borderCollision,

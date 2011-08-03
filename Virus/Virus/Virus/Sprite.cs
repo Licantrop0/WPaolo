@@ -38,10 +38,10 @@ namespace Virus
         // from animations
         private Color _tint;
         private float _angle;
-        private float _scale;
+        private Vector2 _scale;
 
         protected float _rotationSpeed;
-        protected float _scalingSpeed;
+        protected Vector2 _scalingSpeed;
 
         protected float _fadeSpeed;
 
@@ -59,7 +59,7 @@ namespace Virus
             set { _angle = value; }
         }
 
-        public float Scale
+        public Vector2 Scale
         {
             get { return _scale; }
             set { _scale = value; }
@@ -77,9 +77,19 @@ namespace Virus
         public int AnimationFrames
         { get { return _currentAnimation.FramesNum; } }
 
+        public void DelayAnimation()
+        {
+            _currentAnimation.Delay();
+        }
+
         public bool AnimationFinished()
         {
             return _currentAnimation.Finished;
+        }
+
+        public int FrameIndex()
+        {
+            return _currentAnimation.FrameIndex;
         }
 
         public void ReverseAnimation()
@@ -99,10 +109,15 @@ namespace Virus
             _currentAnimation.Reverse = !isForward;
         }
 
+        public bool GetAnimationVerse()
+        {
+            return !_currentAnimation.Reverse;
+        }
+
         public float RotationSpeed
         { set { _rotationSpeed = value; } }
 
-        public float ScalingSpeed
+        public Vector2 ScalingSpeed
         { set { _scalingSpeed = value; } }
 
         public float FadeSpeed
@@ -147,8 +162,11 @@ namespace Virus
         public void ChangeDimension()
         {
             _scale = _scale + _scalingSpeed * _elapsedTime;
-            if (_scale < 0)
-                _scale = 0;
+
+            if (_scale.X < 0)
+                _scale.X = 0;
+            if (_scale.Y < 0)
+                _scale.Y = 0;
         }
 
         public void Fade()
@@ -184,7 +202,7 @@ namespace Virus
             _animations = animations;
             _currentAnimation = _animations[_animations.Keys.First()];
             _tint = Color.White;
-            Scale = 1;
+            Scale = Vector2.One;
 
             InitializePhysics();
 

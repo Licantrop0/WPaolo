@@ -180,6 +180,10 @@ namespace Virus
 					CreateBouncingEnemy((Vector2)gameEvent.Params[0], (Vector2)gameEvent.Params[1]);
 					break;
 
+				case GameEventType.createMouthBullet:
+					CreateMouthBullet((Vector2)gameEvent.Params[0], (Vector2)gameEvent.Params[1]);
+					break;
+
 				case GameEventType.createAcceleratedEnemy:
 					CreateAcceleratedEnemy();
 					break;
@@ -284,10 +288,10 @@ namespace Virus
 		private void CreateBossLung()
 		{
 			// create boss
-			BossLung boss = new BossLung(_animationFactory.CreateAnimations("BossLung"), 240, 80, 240, 80,
+			BossLung boss = new BossLung(_animationFactory.CreateAnimations("BossLung"), 240, 178, 240, 178,
 				_animationFactory, _eventsManager, this)
 			{
-                FramePerSecond = 3.5f
+				FramePerSecond = 3.5f
 			};
 
 			_bossContainer.Add(boss);
@@ -331,8 +335,19 @@ namespace Virus
 
 		private void CreateBouncingEnemy(Vector2 position, Vector2 speed)
 		{
-			// create simple enemy
+			// create bouncing enemy
 			BouncingWhiteGlobulo enemy = new BouncingWhiteGlobulo(_animationFactory.CreateAnimations("WhiteGlobulo"), ENEMY_RADIUS, ENEMY_TOUCH_RADIUS)
+			{
+				Position = position,
+				Speed = speed,
+			};
+
+			_enemies.Add(enemy);
+		}
+
+		private void CreateMouthBullet(Vector2 position, Vector2 speed)
+		{
+			WhiteGlobulo enemy = new WhiteGlobulo(_animationFactory.CreateAnimations("WhiteGlobulo"), ENEMY_RADIUS, ENEMY_TOUCH_RADIUS)
 			{
 				Position = position,
 				Speed = speed,
@@ -352,7 +367,8 @@ namespace Virus
 		//valori cablati
 		const float BONUS_RADIUS = 29;
 		const float BONUS_TOUCH_RADIUS = 30;
-		const float BONUS_SPEED = 45;
+
+		public float BonusSpeed { get; set; }
 
 		// bomb bonus creation time
 		float _bombBonusCreationPeriodMin;
@@ -362,7 +378,7 @@ namespace Virus
 			:base(eventManager)
 		{
 			_bonuses = bonuses;
-            _animationFactory = animationFactory;
+			_animationFactory = animationFactory;
 		}
 
 		public void SetBombBonusTimePeriod(float periodMin, float periodMax)
@@ -413,7 +429,7 @@ namespace Virus
 
 			// set bonus speed
 			Vector2 virusPosition = _virusPosition;
-			bonus.Speed = Vector2.Normalize(virusPosition - bonus.Position) * BONUS_SPEED;
+			bonus.Speed = Vector2.Normalize(virusPosition - bonus.Position) * BonusSpeed;
 
 			_bonuses.Add(bonus);
 		}

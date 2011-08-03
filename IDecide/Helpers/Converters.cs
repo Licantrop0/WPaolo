@@ -9,7 +9,7 @@ namespace IDecide.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var TranslatedString = DefaultChoices.ResourceManager.GetString((string)value);
+            var TranslatedString = DefaultChoices.ResourceManager.GetString((string)value ?? string.Empty);
             return string.IsNullOrEmpty(TranslatedString) ? value : TranslatedString;
         }
 

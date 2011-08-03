@@ -7,7 +7,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"  
-	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
@@ -39,6 +39,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
 		<StackPanel Grid.Row="0" Margin="12,0,0,28">
@@ -81,11 +82,12 @@
 				</TextBlock>
 			</Grid>
 		</Button>
+		<adduplex:AdControl xmlns:adduplex="clr-namespace:AdDuplex;assembly=AdDuplex.AdControl.Silverlight"
+					Grid.Row="2" AppId="3087" IsTest="True" />
 	</Grid>
 
 	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
-							  BackgroundColor="#BF000000"
+		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"							  
 							  ForegroundColor="{StaticResource PhoneAccentColor}" />
 	</phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

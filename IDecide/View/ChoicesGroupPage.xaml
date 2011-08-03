@@ -16,12 +16,12 @@
 	mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
 	shell:SystemTray.IsVisible="False">
 
-	<Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}">
+	<phone:PhoneApplicationPage.Resources>
+			<hlp:ResourceTranslatorConverter x:Key="ResourceTranslator"/>   
+	</phone:PhoneApplicationPage.Resources>
 
-		<Grid.Resources>
-			<vm:ChoicesGroupViewModel x:Key="VM" />
-			<hlp:ResourceTranslatorConverter x:Key="ResourceTranslator"/>
-		</Grid.Resources>
+	<Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
+		  DataContext="{Binding Path=ChoicesGroupVM, Source={StaticResource Locator}}">
 		
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -33,7 +33,7 @@
 			<TextBlock Text="{Binding LocalizedResources.SubTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
 		</StackPanel>
 
-		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" DataContext="{StaticResource VM}">
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 			<ListBox Name="GroupChoicesListBox" ItemsSource="{Binding Groups}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
@@ -41,7 +41,7 @@
 							<RadioButton GroupName="Groups"
 										 IsChecked="{Binding Model.IsSelected, Mode=TwoWay}" />
 							<Button Width="320" Click="EditChoicesButton_Click"
-									IsEnabled="{Binding ButtonEnabled}"
+									IsEnabled="{Binding ButtonEnabled}"                                    
 									toolkit:TiltEffect.IsTiltEnabled="{Binding ButtonEnabled}">
 								<TextBlock Text="{Binding Model.Name, Converter={StaticResource ResourceTranslator}}"
 										   TextWrapping="Wrap" TextAlignment="Center"/>
@@ -63,7 +63,6 @@
 
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="False"
-							  BackgroundColor="#BF000000"
 							  ForegroundColor="{StaticResource PhoneAccentColor}" />
 	</phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

@@ -13,14 +13,9 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+    shell:SystemTray.IsVisible="True">
     
-    <phone:PhoneApplicationPage.Resources>
-             <vm:AddEditChoicesViewModel x:Key="VM" />
-       
-    </phone:PhoneApplicationPage.Resources>
-    
-    <Grid x:Name="LayoutRoot" DataContext="{StaticResource VM}"
+    <Grid x:Name="LayoutRoot" DataContext="{Binding Path=AddEditChoicesVM, Source={StaticResource Locator}}"
           Background="{StaticResource DefaultBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -32,17 +27,28 @@
                        Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid VerticalAlignment="Top" >
-                <TextBox Name="ChoiceTextBox" Margin="0,0,60,0" TabIndex="0" KeyDown="ChoiceTextBox_KeyDown" InputScope="Text" />
-                <Rectangle Fill="{StaticResource PhoneForegroundBrush}" HorizontalAlignment="Right" Margin="6" Width="48" Height="48" MouseLeftButtonDown="AddButton_Click" >
+        <Grid Grid.Row="1" Margin="12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Text="{Binding CurrentChoiceGroup.Model.Name, Mode=TwoWay}" Grid.Row="0" />
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Name="ChoiceTextBox" KeyDown="ChoiceTextBox_KeyDown" InputScope="Text" Grid.Column="0" />
+                <Rectangle Fill="{StaticResource PhoneForegroundBrush}" HorizontalAlignment="Right" Grid.Column="1"
+                           Margin="6" Width="48" Height="48" MouseLeftButtonDown="AddButton_Click" >
                     <Rectangle.OpacityMask>
                         <ImageBrush ImageSource="..\Toolkit.Content\add_white.png" />
                     </Rectangle.OpacityMask>
                 </Rectangle>
             </Grid>
-            
-            <ListBox Name="ChoicesListBox" Margin="0,78,0,50" ItemsSource="{Binding Choices}"  >
+
+            <ListBox Name="ChoicesListBox" ItemsSource="{Binding CurrentChoiceGroup.Choices}" Grid.Row="2" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

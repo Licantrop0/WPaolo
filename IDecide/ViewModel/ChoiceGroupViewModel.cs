@@ -11,18 +11,12 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using IDecide.Model;
 using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight;
 
 namespace IDecide.ViewModel
 {
-    public class ChoiceGroupViewModel : INotifyPropertyChanged
+    public class ChoiceGroupViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public ObservableCollection<string> Choices { get; set; }
         public ChoiceGroup Model { get; private set; }
         public bool ButtonEnabled { get { return !Model.IsDefault; } }

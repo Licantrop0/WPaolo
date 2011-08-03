@@ -63,6 +63,13 @@
   <ItemGroup>
     <None Include="OpenXLive\OpenXLive.Silverlight.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="MVVM Light\GalaSoft.MvvmLight.Extras.WP7.dll" />
+    <None Include="MVVM Light\GalaSoft.MvvmLight.Extras.WP7.XML" />
+    <None Include="MVVM Light\GalaSoft.MvvmLight.WP7.dll" />
+    <None Include="MVVM Light\GalaSoft.MvvmLight.WP7.XML" />
+    <None Include="MVVM Light\System.Windows.Interactivity.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions />

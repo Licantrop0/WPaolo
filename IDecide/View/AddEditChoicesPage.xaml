@@ -6,21 +6,30 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:vm="clr-namespace:IDecide.ViewModel"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
     
-    <Grid x:Name="LayoutRoot" Style="{StaticResource BackGroundStyle}">
+    <phone:PhoneApplicationPage.Resources>
+             <vm:AddEditChoicesViewModel x:Key="VM" />
+       
+    </phone:PhoneApplicationPage.Resources>
+    
+    <Grid x:Name="LayoutRoot" DataContext="{StaticResource VM}"
+          Background="{StaticResource DefaultBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,6">
-            <TextBlock x:Name="PageTitle" Text="{Binding Path=LocalizedResources.EditChoices, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Path=LocalizedResources.EditChoices, Source={StaticResource LocalizedStrings}}"
+                       Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -28,15 +37,17 @@
                 <TextBox Name="ChoiceTextBox" Margin="0,0,60,0" TabIndex="0" KeyDown="ChoiceTextBox_KeyDown" InputScope="Text" />
                 <Rectangle Fill="{StaticResource PhoneForegroundBrush}" HorizontalAlignment="Right" Margin="6" Width="48" Height="48" MouseLeftButtonDown="AddButton_Click" >
                     <Rectangle.OpacityMask>
-                        <ImageBrush ImageSource="Toolkit.Content\add_white.png" />
+                        <ImageBrush ImageSource="..\Toolkit.Content\add_white.png" />
                     </Rectangle.OpacityMask>
                 </Rectangle>
             </Grid>
-            <ListBox Name="ChoicesListBox" Margin="0,78,0,50" >
+            
+            <ListBox Name="ChoicesListBox" Margin="0,78,0,50" ItemsSource="{Binding Choices}"  >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Rectangle Fill="{StaticResource PhoneForegroundBrush}" Width="48" Height="48" Margin="6" MouseLeftButtonDown="RemoveButton_Click" >
+                            <Rectangle Fill="{StaticResource PhoneForegroundBrush}"
+                                       Width="48" Height="48" Margin="6" MouseLeftButtonDown="RemoveButton_Click" >
                                 <Rectangle.OpacityMask>
                                     <ImageBrush ImageSource="Toolkit.Content\remove_white.png" />
                                 </Rectangle.OpacityMask>
@@ -50,5 +61,4 @@
 
         </Grid>
     </Grid>
-
 </phone:PhoneApplicationPage>

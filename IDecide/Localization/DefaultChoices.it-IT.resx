@@ -117,40 +117,109 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppName" xml:space="preserve">
-    <value>I Decide</value>
+  <data name="Head" xml:space="preserve">
+    <value>Testa</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Annulla</value>
+  <data name="HeadTail" xml:space="preserve">
+    <value>Testa o Croce</value>
   </data>
-  <data name="Decide" xml:space="preserve">
-    <value>Decidi!</value>
+  <data name="Lizard" xml:space="preserve">
+    <value>Lucertola</value>
   </data>
-  <data name="EditChoices" xml:space="preserve">
-    <value>Modifica Scelte</value>
+  <data name="MagicBall" xml:space="preserve">
+    <value>Palla 8</value>
   </data>
-  <data name="NothingToDecide" xml:space="preserve">
-    <value>Niente da decidere, usa le opzioni per modificare le scelte</value>
+  <data name="MagicBall1" xml:space="preserve">
+    <value>I segni indicano di sì</value>
   </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
+  <data name="MagicBall10" xml:space="preserve">
+    <value>È decisamente così</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>Salva</value>
+  <data name="MagicBall11" xml:space="preserve">
+    <value>Meglio che non risponda ora</value>
   </data>
-  <data name="SubTitle" xml:space="preserve">
-    <value>Per l'uomo che non deve decidere mai!</value>
+  <data name="MagicBall12" xml:space="preserve">
+    <value>Molto dubbioso</value>
   </data>
-  <data name="ClearChoices" xml:space="preserve">
-    <value>Cancella le scelte</value>
+  <data name="MagicBall13" xml:space="preserve">
+    <value>Assolutamente sì</value>
   </data>
-  <data name="AskAndShake" xml:space="preserve">
-    <value>Chiedi e poi scuoti!</value>
+  <data name="MagicBall14" xml:space="preserve">
+    <value>È certo</value>
   </data>
-  <data name="AddGroup" xml:space="preserve">
-    <value>Aggiungi Gruppo</value>
+  <data name="MagicBall15" xml:space="preserve">
+    <value>Non posso predirlo ora</value>
   </data>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
+  <data name="MagicBall16" xml:space="preserve">
+    <value>Molto probabilmente</value>
+  </data>
+  <data name="MagicBall17" xml:space="preserve">
+    <value>Rifai la domanda più tardi</value>
+  </data>
+  <data name="MagicBall18" xml:space="preserve">
+    <value>La mia risposta è no</value>
+  </data>
+  <data name="MagicBall19" xml:space="preserve">
+    <value>Le prospettive sono buone</value>
+  </data>
+  <data name="MagicBall2" xml:space="preserve">
+    <value>Sì</value>
+  </data>
+  <data name="MagicBall20" xml:space="preserve">
+    <value>Non ci contare</value>
+  </data>
+  <data name="MagicBall3" xml:space="preserve">
+    <value>È difficile rispondere, prova di nuovo</value>
+  </data>
+  <data name="MagicBall4" xml:space="preserve">
+    <value>Senza alcun dubbio</value>
+  </data>
+  <data name="MagicBall5" xml:space="preserve">
+    <value>Le mie fonti dicono di no</value>
+  </data>
+  <data name="MagicBall6" xml:space="preserve">
+    <value>Per quanto posso vedere, sì</value>
+  </data>
+  <data name="MagicBall7" xml:space="preserve">
+    <value>Ci puoi contare</value>
+  </data>
+  <data name="MagicBall8" xml:space="preserve">
+    <value>Concentrati e rifai la domanda</value>
+  </data>
+  <data name="MagicBall9" xml:space="preserve">
+    <value>Le prospettive non sono buone</value>
+  </data>
+  <data name="Maybe" xml:space="preserve">
+    <value>Forse</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Paper" xml:space="preserve">
+    <value>Carta</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Percentuale</value>
+  </data>
+  <data name="Rock" xml:space="preserve">
+    <value>Sasso</value>
+  </data>
+  <data name="RPSLS" xml:space="preserve">
+    <value>Sasso-Carta-Forbice-Lucertola-Spock</value>
+  </data>
+  <data name="Scissor" xml:space="preserve">
+    <value>Forbice</value>
+  </data>
+  <data name="Spock" xml:space="preserve">
+    <value>Spock</value>
+  </data>
+  <data name="Tail" xml:space="preserve">
+    <value>Croce</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sì</value>
+  </data>
+  <data name="YesNoMaybe" xml:space="preserve">
+    <value>Sì, No, Forse?</value>
   </data>
 </root>

@@ -61,7 +61,16 @@ namespace IDecide.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AggiungiGruppo.
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Group.
         /// </summary>
         public static string AddGroup {
             get {
@@ -124,240 +133,6 @@ namespace IDecide.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Head.
-        /// </summary>
-        public static string Head {
-            get {
-                return ResourceManager.GetString("Head", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Head or Tail.
-        /// </summary>
-        public static string HeadTail {
-            get {
-                return ResourceManager.GetString("HeadTail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Lizard.
-        /// </summary>
-        public static string Lizard {
-            get {
-                return ResourceManager.GetString("Lizard", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Magic Ball.
-        /// </summary>
-        public static string MagicBall {
-            get {
-                return ResourceManager.GetString("MagicBall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to As I see it, yes.
-        /// </summary>
-        public static string MagicBall1 {
-            get {
-                return ResourceManager.GetString("MagicBall1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You may rely on it.
-        /// </summary>
-        public static string MagicBall10 {
-            get {
-                return ResourceManager.GetString("MagicBall10", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Reply hazy, try again.
-        /// </summary>
-        public static string MagicBall11 {
-            get {
-                return ResourceManager.GetString("MagicBall11", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ask again later.
-        /// </summary>
-        public static string MagicBall12 {
-            get {
-                return ResourceManager.GetString("MagicBall12", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Better not tell you now.
-        /// </summary>
-        public static string MagicBall13 {
-            get {
-                return ResourceManager.GetString("MagicBall13", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot predict now.
-        /// </summary>
-        public static string MagicBall14 {
-            get {
-                return ResourceManager.GetString("MagicBall14", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Concentrate and ask again.
-        /// </summary>
-        public static string MagicBall15 {
-            get {
-                return ResourceManager.GetString("MagicBall15", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t count on it.
-        /// </summary>
-        public static string MagicBall16 {
-            get {
-                return ResourceManager.GetString("MagicBall16", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to My reply is no.
-        /// </summary>
-        public static string MagicBall17 {
-            get {
-                return ResourceManager.GetString("MagicBall17", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to My sources say no.
-        /// </summary>
-        public static string MagicBall18 {
-            get {
-                return ResourceManager.GetString("MagicBall18", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Outlook not so good.
-        /// </summary>
-        public static string MagicBall19 {
-            get {
-                return ResourceManager.GetString("MagicBall19", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to It is certain.
-        /// </summary>
-        public static string MagicBall2 {
-            get {
-                return ResourceManager.GetString("MagicBall2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Very doubtful.
-        /// </summary>
-        public static string MagicBall20 {
-            get {
-                return ResourceManager.GetString("MagicBall20", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to It is decidedly so.
-        /// </summary>
-        public static string MagicBall3 {
-            get {
-                return ResourceManager.GetString("MagicBall3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Most likely.
-        /// </summary>
-        public static string MagicBall4 {
-            get {
-                return ResourceManager.GetString("MagicBall4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Outlook good.
-        /// </summary>
-        public static string MagicBall5 {
-            get {
-                return ResourceManager.GetString("MagicBall5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Signs point to yes.
-        /// </summary>
-        public static string MagicBall6 {
-            get {
-                return ResourceManager.GetString("MagicBall6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Without a doubt.
-        /// </summary>
-        public static string MagicBall7 {
-            get {
-                return ResourceManager.GetString("MagicBall7", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes.
-        /// </summary>
-        public static string MagicBall8 {
-            get {
-                return ResourceManager.GetString("MagicBall8", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes – definitely.
-        /// </summary>
-        public static string MagicBall9 {
-            get {
-                return ResourceManager.GetString("MagicBall9", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Maybe.
-        /// </summary>
-        public static string Maybe {
-            get {
-                return ResourceManager.GetString("Maybe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No.
-        /// </summary>
-        public static string No {
-            get {
-                return ResourceManager.GetString("No", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Nothing to decide, use options to edit choices.
         /// </summary>
         public static string NothingToDecide {
@@ -376,42 +151,6 @@ namespace IDecide.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paper.
-        /// </summary>
-        public static string Paper {
-            get {
-                return ResourceManager.GetString("Paper", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Percentage.
-        /// </summary>
-        public static string Percentage {
-            get {
-                return ResourceManager.GetString("Percentage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rock.
-        /// </summary>
-        public static string Rock {
-            get {
-                return ResourceManager.GetString("Rock", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rock-Paper-Scissor-Lizard-Spock.
-        /// </summary>
-        public static string RPSLS {
-            get {
-                return ResourceManager.GetString("RPSLS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -421,56 +160,11 @@ namespace IDecide.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scissor.
-        /// </summary>
-        public static string Scissor {
-            get {
-                return ResourceManager.GetString("Scissor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Spock.
-        /// </summary>
-        public static string Spock {
-            get {
-                return ResourceManager.GetString("Spock", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to For the man who never has to decide!.
         /// </summary>
         public static string SubTitle {
             get {
                 return ResourceManager.GetString("SubTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tail.
-        /// </summary>
-        public static string Tail {
-            get {
-                return ResourceManager.GetString("Tail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes.
-        /// </summary>
-        public static string Yes {
-            get {
-                return ResourceManager.GetString("Yes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes, No, Maybe?.
-        /// </summary>
-        public static string YesNoMaybe {
-            get {
-                return ResourceManager.GetString("YesNoMaybe", resourceCulture);
             }
         }
     }

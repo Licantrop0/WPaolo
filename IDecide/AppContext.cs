@@ -1,66 +1,103 @@
-﻿using System.Collections.Generic;
-using System.IO.IsolatedStorage;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using IDecide.Localization;
-using OcKvp = System.Collections.ObjectModel.ObservableCollection<System.Collections.Generic.KeyValuePair<string, string>>;
+using IDecide.Model;
+using IDecide.ViewModel;
 
 namespace IDecide
 {
     public class AppContext
     {
-        public static OcKvp ChoicesGroup
+        private static ObservableCollection<ChoiceGroupViewModel> _groups;
+        public static ObservableCollection<ChoiceGroupViewModel> Groups
         {
             get
             {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("choices_group"))
-                    IsolatedStorageSettings.ApplicationSettings["choices_group"] = GetDefaultChoices();
-                return (OcKvp)IsolatedStorageSettings.ApplicationSettings["choices_group"];
+                if (_groups == null)
+                    _groups = GetDefaultChoices();
+                return _groups;
             }
-            set
-            {
-                if (ChoicesGroup != value)
-                    IsolatedStorageSettings.ApplicationSettings["choices_group"] = value;
-            }
+            set { _groups = value; }
         }
+        //{
+        //    get
+        //    {
+        //        if (!IsolatedStorageSettings.ApplicationSettings.Contains("choices_group"))
+        //            IsolatedStorageSettings.ApplicationSettings["choices_group"] = GetDefaultChoices();
+        //        return (ObservableCollection<ChoiceGroup>)IsolatedStorageSettings.ApplicationSettings["choices_group"];
+        //    }
+        //    set
+        //    {
+        //        if (Groups != value)
+        //            IsolatedStorageSettings.ApplicationSettings["choices_group"] = value;
+        //    }
+        //}
 
 
-        public static string SelectedGroup
+        //public static ChoiceGroup SelectedGroup { get; set; }
+        //{
+        //    get
+        //    {
+        //        if (!IsolatedStorageSettings.ApplicationSettings.Contains("selected_group"))
+        //            IsolatedStorageSettings.ApplicationSettings["selected_group"] = "MagicBall";
+        //        return (ChoiceGroup)IsolatedStorageSettings.ApplicationSettings["selected_group"];
+        //    }
+        //    set
+        //    {
+        //        if (SelectedGroup != value)
+        //            IsolatedStorageSettings.ApplicationSettings["selected_group"] = value;
+        //    }
+        //}
+
+        public static ObservableCollection<ChoiceGroupViewModel> GetDefaultChoices()
         {
-            get
+            var Choices = new ObservableCollection<ChoiceGroupViewModel>();
+
+            Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
             {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("selected_group"))
-                    IsolatedStorageSettings.ApplicationSettings["selected_group"] = "MagicBall";
-                return (string)IsolatedStorageSettings.ApplicationSettings["selected_group"];
-            }
-            set
+                Name = "MagicBall",
+                IsDefault = true,
+                Choices = Enumerable.Range(1, 20).Select(i =>
+                    DefaultChoices.ResourceManager.GetString("MagicBall" + i)),
+                IsSelected = true
+            }));
+
+            Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
             {
-                if (SelectedGroup != value)
-                    IsolatedStorageSettings.ApplicationSettings["selected_group"] = value;
-            }
-        }
+                Name = "HeadTail",
+                Choices = new string[] { DefaultChoices.Head, DefaultChoices.Tail },
+                IsDefault = true
+            }));
 
-        private static OcKvp GetDefaultChoices()
-        {
-            var Choices = new OcKvp();
+            Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
+            {
+                Name = "YesNoMaybe",
+                IsDefault = true,
+                Choices = new string[]
+                { 
+                    DefaultChoices.Yes,
+                    DefaultChoices.No,
+                    DefaultChoices.Maybe
+                }
+            }));
 
-            Choices.Add(new KeyValuePair<string, string>("YesNoMaybe", AppResources.Yes));
-            Choices.Add(new KeyValuePair<string, string>("YesNoMaybe", AppResources.No));
-            Choices.Add(new KeyValuePair<string, string>("YesNoMaybe", AppResources.Maybe));
+            Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
+            {
+                Name = "RPSLS",
+                IsDefault = true,
+                Choices = new string[]
+                {
+                    DefaultChoices.Rock, DefaultChoices.Paper, DefaultChoices.Scissor,
+                    DefaultChoices.Lizard, DefaultChoices.Spock
+                }
+            }));
 
-            Choices.Add(new KeyValuePair<string, string>("HeadTail", AppResources.Head));
-            Choices.Add(new KeyValuePair<string, string>("HeadTail", AppResources.Tail));
-
-            Choices.Add(new KeyValuePair<string, string>("RPSLS", AppResources.Rock));
-            Choices.Add(new KeyValuePair<string, string>("RPSLS", AppResources.Paper));
-            Choices.Add(new KeyValuePair<string, string>("RPSLS", AppResources.Scissor));
-            Choices.Add(new KeyValuePair<string, string>("RPSLS", AppResources.Lizard));
-            Choices.Add(new KeyValuePair<string, string>("RPSLS", AppResources.Spock));
-
-            for (int i = 1; i <= 20; i++)
-                Choices.Add(new KeyValuePair<string, string>("MagicBall",
-                    AppResources.ResourceManager.GetString("MagicBall" + i)));
-
-            for (int i = 0; i <= 100; i++)
-                Choices.Add(new KeyValuePair<string, string>("Percentage", i + "%"));
+            Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
+            {
+                Name = "Percentage",
+                IsDefault = true,
+                Choices = Enumerable.Range(0, 100).Select(i => i + "%")
+            }));
 
             return Choices;
         }

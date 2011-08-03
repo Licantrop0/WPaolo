@@ -13,6 +13,8 @@ namespace IDecide.ViewModel
 {
     public class AddEditChoicesViewModel
     {
+        public ChoiceGroupViewModel Choices { get; set; }
+
 
     }
 }

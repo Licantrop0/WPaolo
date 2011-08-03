@@ -1,72 +1,52 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using IDecide.Localization;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using WPCommon;
-using IDecide.Localization;
 
 namespace IDecide
 {
 	public partial class MainPage : PhoneApplicationPage
 	{
 		Random rnd = new Random();
-		object mutex = new object();
 		public MainPage()
 		{
 			InitializeComponent();
 			CreateAppBar();
 
-            //var sd = new ShakeDetector();
-            //sd.ShakeDetected += (sender, e) =>
-            //{
-            //    //Inserire un Mutex
-            //    lock(mutex)
-            //    {
-            //        Dispatcher.BeginInvoke(() =>
-            //        { DecideButton_Click(sender, null); });
-            //    }
-            //};
-            //sd.Start();
-
+			//var sd = new ShakeDetector();
+			//sd.ShakeDetected += (sender, e) =>
+			//{
+			//    Dispatcher.BeginInvoke(() =>
+			//    { DecideButton_Click(sender, null); });
+			//};
+			//sd.Start();
 		}
 
 		private void DecideButton_Click(object sender, RoutedEventArgs e)
 		{
-            //RotateButton.Stop();
-            //var SelectedChoices = Settings.ChoicesGroup
-            //    .Where(c => c.Key == Settings.SelectedGroup)
-            //    .Select(c => c.Value)
-            //    .ToList();
-
-            //AnswerTextBlock.Text = SelectedChoices.Count > 0 ?
-            //    SelectedChoices[rnd.Next(SelectedChoices.Count)] :
-            //    AppResources.NothingToDecide;
-            //RotateButton.Begin();
-			//if (SelectedChoices.Count > 0)
-			//    MessageBox.Show(SelectedChoices[rnd.Next(SelectedChoices.Count)]);
-			//else
-			//    MessageBox.Show(AppResources.NothingToDecide);
+			var selectedChoices = AppContext.Groups.Where(g => g.Model.IsSelected).Single().Choices;
+			AnswerTextBlock.Text = selectedChoices.Count > 0 ?
+				selectedChoices[rnd.Next(selectedChoices.Count)] :
+				AppResources.NothingToDecide;
+			RotateButton.Begin();
 		}
-
 
 		private void CreateAppBar()
 		{
-			ApplicationBar = new ApplicationBar();
 			var EditChoicesAppBarButton = new ApplicationBarIconButton();
-			EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
 			EditChoicesAppBarButton.Text = AppResources.EditChoices;
+			EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
 			EditChoicesAppBarButton.Click += (sender, e) => {
-                NavigationService.Navigate(new Uri("/GroupChoicesPage.xaml", UriKind.Relative)); };
+				NavigationService.Navigate(new Uri("/View/GroupChoicesPage.xaml", UriKind.Relative)); };
 			ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
+
+			var AboutAppBarMenuItem = new ApplicationBarMenuItem();
+			AboutAppBarMenuItem.Text = AppResources.About;
+			AboutAppBarMenuItem.Click += (sender, e) => {
+				NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative)); };
+			ApplicationBar.MenuItems.Add(AboutAppBarMenuItem);
 		}
 	}
 }

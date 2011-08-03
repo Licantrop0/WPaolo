@@ -5,23 +5,17 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
 
-    <!--Application Resources-->
     <Application.Resources>
-        <localization:LocalizedStrings
-            xmlns:localization="clr-namespace:IDecide.Localization"
-            x:Key="LocalizedStrings" />
-        
-        <Style x:Key="BackGroundStyle" TargetType="Grid">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0,0" RadiusY="0.5" RadiusX="0.5">
-                        <GradientStop Color="{StaticResource PhoneForegroundBrush}"  Offset="0.75"/>
-                        <GradientStop Color="#F4232323"/>
-                    </RadialGradientBrush>
+        <localization:LocalizedStrings x:Key="LocalizedStrings"
+            xmlns:localization="clr-namespace:IDecide.Localization" />
 
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <RadialGradientBrush x:Key="DefaultBackground"
+                             Center="0.5,0.5" GradientOrigin="0,0"
+                             RadiusY="0.5" RadiusX="0.5">
+            <GradientStop Color="{StaticResource PhoneForegroundBrush}"  Offset="0.75"/>
+            <GradientStop Color="#F4232323"/>
+        </RadialGradientBrush>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

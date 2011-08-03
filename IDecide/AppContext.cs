@@ -56,7 +56,7 @@ namespace IDecide
             Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
             {
                 Name = "MagicBall",
-                IsDefault = true,
+                IsDefault = false,
                 Choices = Enumerable.Range(1, 20).Select(i =>
                     DefaultChoices.ResourceManager.GetString("MagicBall" + i)),
                 IsSelected = true

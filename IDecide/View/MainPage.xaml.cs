@@ -39,7 +39,8 @@ namespace IDecide
 			EditChoicesAppBarButton.Text = AppResources.EditChoices;
 			EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
 			EditChoicesAppBarButton.Click += (sender, e) => {
-				NavigationService.Navigate(new Uri("/View/GroupChoicesPage.xaml", UriKind.Relative)); };
+                NavigationService.Navigate(new Uri("/View/ChoicesGroupPage.xaml", UriKind.Relative));
+            };
 			ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
 
 			var AboutAppBarMenuItem = new ApplicationBarMenuItem();

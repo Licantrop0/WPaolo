@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SpriteAnimations>
   <Sprite Name="Bomb">
-    <Animation Name="main" Type="Simple" FramesNum="1" Looping="True" >
+    <Animation Name="main" Type="Simple" FramesNum="1" Looping="True" Origin="default">
       <Texture Path ="Sprites\Bonuses\bonusBomb"/>
     </Animation>
   </Sprite>
   <Sprite Name="BombPlus">
-    <Animation Name="main" Type="Simple" FramesNum="1" Looping="True" >
+    <Animation Name="main" Type="Simple" FramesNum="1" Looping="True" Origin="default">
       <Texture Path ="Sprites\Bonuses\bonusBombPlus"/>
     </Animation>
   </Sprite>
   <Sprite Name="Ammo">
-    <Animation Name="main" Type="Simple" FramesNum="1" Looping="True" >
+    <Animation Name="main" Type="Simple" FramesNum="1" Looping="True" Origin="default">
       <Texture Path ="Sprites\Bonuses\bonusAmmo"/>
     </Animation>
   </Sprite>
   <Sprite Name="OneUp">
-    <Animation Name="main" Type="Simple" FramesNum="1" Looping="True" >
+    <Animation Name="main" Type="Simple" FramesNum="1" Looping="True" Origin="default">
       <Texture Path ="Sprites\Bonuses\bonusOneUp"/>
     </Animation>
   </Sprite>

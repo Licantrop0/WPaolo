@@ -35,7 +35,7 @@ namespace Virus
             _state = ViruState.tranquil;
             Ammo = 80;
             Bombs = 2;
-            Lifes = 30;
+            Lifes = 3;
         }
 
         protected override void InitializePhysics()

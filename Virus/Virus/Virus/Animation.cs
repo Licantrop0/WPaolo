@@ -30,11 +30,15 @@ namespace Virus
         public int FramesNum
         { get { return _frames; } }
 
-        // temp
         public int FrameIndex
         { get { return _frameIndex; } }
 
         public bool Reverse { get { return _reverse; } set { _reverse = value; } }
+
+        public void Delay()
+        {
+            _timeElapsed = 0;
+        }
 
         public bool Finished
         {
@@ -44,9 +48,10 @@ namespace Virus
             }
         }
 
-        public void Reset()
+        virtual public void Reset()
         {
             _frameIndex = 0;
+            _timeElapsed = 0;
         }
 
         public Animation(int frames, bool looping)
@@ -129,9 +134,24 @@ namespace Virus
         public ScreenAnimation(int frames, bool looping, bool isPortrait, Texture2D[] textureArray)
             : base(frames, looping)
         {
+            Initialize(frames, isPortrait, textureArray);
+
+            _origin = new Vector2(_frameWidth / 2, _frameHeight / 2);
+        }
+
+        public ScreenAnimation(int frames, bool looping, bool isPortrait, Texture2D[] textureArray, Vector2 origin)
+            : base(frames, looping)
+        {
+            Initialize(frames, isPortrait, textureArray);
+
+            _origin = origin;
+        }
+
+        private void Initialize(int frames, bool isPortrait, Texture2D[] textureArray)
+        {
             _textureArray = textureArray;
             _sourceTexture = _textureArray[0];
-            
+
             _isPortrait = isPortrait;
 
             if (_isPortrait)
@@ -146,7 +166,7 @@ namespace Virus
             }
 
             int horizontalPeriod = _isPortrait ? 4 : 2;
-            int verticalParts = _isPortrait ? 4 : 4; 
+            int verticalParts = _isPortrait ? 4 : 4;
 
             _rectangles = new Rectangle[frames];
 
@@ -159,13 +179,18 @@ namespace Virus
                     (j / verticalParts) * _frameHeight,
                     _frameWidth, _frameHeight);
             }
-
-            _origin = new Vector2(_frameWidth / 2, _frameHeight / 2);
         }
 
         protected override void SetSourceTexture()
         {
             _sourceTexture = _textureArray[_frameIndex / 8];
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+
+            _sourceTexture = _textureArray[0];
         }
     }
 }

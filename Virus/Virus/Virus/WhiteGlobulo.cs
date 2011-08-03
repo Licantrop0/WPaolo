@@ -58,12 +58,12 @@ namespace Virus
                         FadeSpeed = 0.6f;
                         _utilityTimer = 0;
                     }
-                    else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.fingerHit)
+                    else if (_actSpriteEvent != null && (_actSpriteEvent.Code == SpriteEventCode.fingerHit || _actSpriteEvent.Code == SpriteEventCode.bombHit))
                     {
                         _state = WhiteGlobuloState.falling;
                         _touchable = false;
                         Speed = Vector2.Zero;
-                        ScalingSpeed = -1.125f;
+                        ScalingSpeed = Vector2.One * -1.125f;
                         if ((int)Position.X % 2 == 0)
                             RotationSpeed = 2.25f * (float)Math.PI;
                         else

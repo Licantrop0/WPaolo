@@ -13,10 +13,10 @@ namespace Virus
         approching,
         preRotating,
         rotating,
-        chargingBefore,
+        opening,
         mouthOpenBefore,
         mouthOpenAfter,
-        chargingAfter,
+        closing,
         postRotating,
         leaving,
         dyingMouthClosing,
@@ -27,8 +27,8 @@ namespace Virus
 
     public class Mouth : CircularSprite
     {
-        const float DELTA_SPACE = 50;
-        const float DELTA_ANGLE = (float)Math.PI * (120f / 180f);
+        const float DELTA_SPACE = 60;
+        const float DELTA_ANGLE = (float)Math.PI * (100f / 180f);
 
         static GameEventsManager _gameManager;
         static MonsterFactory _monsterFactory;
@@ -41,17 +41,21 @@ namespace Virus
         Vector2 _leavingSpeed;
         bool _blinking;
         float _blinkingTimer;
+        bool _freezed;
+        float _freezingTimer;
 
         float _timer;
 
-        float _approachingTime;
-        float _rotatingTime;
+        Vector2 _initialPosition;
+        float _spitAngle;
+        float _initialAngle;
+
         float _openingTime;
         float _mouthOpenTime;
 
         int _globulosToSpit = 4;
         int _spittedGlobulos;
-        float _globulosSpeed = 150;
+        float _globulosSpeed = 300;
 
         public float OpeningTime { set { _openingTime = value; } }
         public float MouthOpenTime { set { _mouthOpenTime = value; } }
@@ -64,7 +68,7 @@ namespace Virus
         public Mouth(Dictionary<string, Animation> animations, float radius, float touchRadius)
             : base(animations, radius, touchRadius)
         {
-            _hitPoints = 15;
+            _hitPoints = 5;
             _state = MouthState.idle;
             Position = new Vector2(-100, -100);
         }
@@ -77,8 +81,8 @@ namespace Virus
         private void FireGlobulo(TimeSpan t)
         {
             Vector2 speedVersor = new Vector2((float)Math.Cos(Angle), (float)Math.Sin(Angle));
-            Vector2 position = Position + 20 * speedVersor;
-            _gameManager.ScheduleEvent(new GameEvent(t, GameEventType.createBouncingEnemy, _monsterFactory,
+            Vector2 position = Position + 30 * speedVersor;
+            _gameManager.ScheduleEvent(new GameEvent(t, GameEventType.createMouthBullet, _monsterFactory,
                 new Object[] { position, speedVersor * _globulosSpeed }));
         }
 
@@ -102,6 +106,17 @@ namespace Virus
                 }
             }
 
+            // hanlde freezing
+            if (_freezed)
+            {
+                _freezingTimer += _elapsedTime;
+                if (_freezingTimer > 2)
+                {
+                    _freezingTimer = 0;
+                    _freezed = false;
+                }
+            }
+
             // handle death transition
             if (_hitPoints <= 0)
             {
@@ -114,7 +129,7 @@ namespace Virus
                     _state = MouthState.dying;
                 }
                 // state in which mouth is open or partially opened
-                else if (_state == MouthState.chargingAfter || _state == MouthState.chargingBefore ||
+                else if (_state == MouthState.closing || _state == MouthState.opening ||
                     _state == MouthState.mouthOpenAfter || _state == MouthState.mouthOpenBefore)
                 {
                     SetAnimationVerse(false);
@@ -130,8 +145,14 @@ namespace Virus
                 BlinkingTint = Color.Transparent;
                 _blinking = true;
             }
+            // handle bomb
+            else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.bombHit)
+            {
+                _freezed = true;
+                _freezingTimer = 0;
+            }
 
-            // handle state machine
+            // handle standard state machine
             switch (_state)
             {
                 case MouthState.idle:
@@ -141,11 +162,9 @@ namespace Virus
                         // assign leaving speed
                         _leavingSpeed = -Speed;
 
-                        // calculating approaching and rotating time
-                        _approachingTime = DELTA_SPACE / Speed.Length();
-                        _rotatingTime = (DELTA_ANGLE) / Math.Abs(_rotationSpeed);
-
+                        _initialPosition = Position;
                         Angle = (float)Math.Atan2(Speed.Y, Speed.X);
+                        _initialAngle = Angle;
 
                         // initialize and change state
                         _spittedGlobulos = 0;
@@ -160,51 +179,46 @@ namespace Virus
 
                 case MouthState.approching:
 
-                    _timer += _elapsedTime;
-
-                    if (_timer > _approachingTime)
+                    if (Vector2.Distance(Position, _initialPosition) >= DELTA_SPACE)
                     {
-                        _timer = 0;
                         _state = MouthState.preRotating;
                     }
                     else
                     {
-                        Move();
+                        if (!_freezed)
+                            Move();
                     }
                         
                     break;
 
                 case MouthState.preRotating:
 
-                    _timer += _elapsedTime;
-
-                    if (_timer > _rotatingTime / 2)
+                    if (Math.Abs(_initialAngle - Angle) >= DELTA_ANGLE / 2)
                     {
                         // reverse rotation asped for rotating state
                         _rotationSpeed = -_rotationSpeed;
 
                         // initialize variables for first mouth opening
-                        _timer = 0;
                         FramePerSecond = AnimationFrames / _openingTime ;
-                        _state = MouthState.chargingBefore;
+                        _state = MouthState.opening;
                     }
                     else
                     {
-                        Rotate();
+                        if (!_freezed)
+                            Rotate();
                     }
 
                     break;
 
-                case MouthState.chargingBefore:
+                case MouthState.opening:
 
-                    Animate();
+                    if (!_freezed)
+                        Animate();
 
                     if (AnimationFinished())
                     {
-                        _timer = 0;
-                        ReverseAnimation();
+                        SetAnimationVerse(false);
                         FramePerSecond = 0;
-
                         _state = MouthState.mouthOpenBefore;
                     }
 
@@ -212,12 +226,14 @@ namespace Virus
 
                 case MouthState.mouthOpenBefore:
 
-                    _timer += _elapsedTime;
+                    if (!_freezed)
+                        _timer += _elapsedTime;
 
-                    if (_timer >= _openingTime / 2)
+                    if (_timer >= _mouthOpenTime / 2)
                     {
                         _timer = 0;
                         _spittedGlobulos++;
+                        _spitAngle = Angle;
                         FireGlobulo(gameTime.TotalGameTime);
                         _state = MouthState.mouthOpenAfter;
                     }
@@ -226,23 +242,25 @@ namespace Virus
 
                 case MouthState.mouthOpenAfter:
 
-                    _timer += _elapsedTime;
+                    if (!_freezed)
+                        _timer += _elapsedTime;
 
-                    if (_timer >= _openingTime / 2)
+                    if (_timer >= _mouthOpenTime / 2)
                     {
                         FramePerSecond = AnimationFrames / _openingTime;
-                        _state = MouthState.chargingAfter;
+                        _state = MouthState.closing;
                     }
 
                     break;
 
-                case MouthState.chargingAfter:
+                case MouthState.closing:
 
-                    Animate();
+                    if (!_freezed)
+                        Animate();
 
                     if (AnimationFinished())
                     {
-                        ReverseAnimation();
+                        SetAnimationVerse(true);
                         _timer = 0;
 
                         if (_spittedGlobulos == _globulosToSpit)
@@ -260,53 +278,43 @@ namespace Virus
 
                 case MouthState.rotating:
 
-                    _timer += _elapsedTime;
+                    if (!_freezed)
+                        Rotate();
 
-                    float chargeTime = _rotatingTime / (_globulosToSpit - 1);
-
-                    Rotate();
-
-                    if (_timer > chargeTime)
+                    if (Math.Abs(Angle - _spitAngle) >= DELTA_ANGLE / (_globulosToSpit - 1))
                     {
-                        //_timer -= chargeTime;
-                        _timer = 0;
-
                         FramePerSecond = AnimationFrames / _openingTime;
-                        _state = MouthState.chargingBefore;
+                        _state = MouthState.opening;
                     }
 
                     break;
 
                 case MouthState.postRotating:
 
-                    _timer += _elapsedTime;
-
-                    if (_timer > _rotatingTime / 2)
+                    if (Math.Abs(Angle - _initialAngle) < 0.01)     // si potrebbe usare il verso della velocità angolare per fare un controllo meno rischioso
                     {
                         Speed = _leavingSpeed;
-                        _timer = 0;
                         _state = MouthState.leaving;
                     }
                     else
                     {
-                        Rotate();
+                        if (!_freezed)
+                            Rotate();
                     }
 
                     break;
 
                 case MouthState.leaving:
 
-                    _timer += _elapsedTime;
-
-                    if (_timer > _approachingTime)
+                    if (Math.Abs(Vector2.Distance(Position, _initialPosition)) < 3)
                     {
-                        _timer = 0;
                         _touchable = false;
                         _state = MouthState.idle;
                     }
                     else
                     {
-                        Move();
+                        if (!_freezed)
+                            Move();
                     }
                         
                     break;
@@ -367,15 +375,30 @@ namespace Virus
     {
         approaching,
         standing,
-        vomiting
+        vomiting,
+        vomitingback,
+        dying,
+        died
     }
 
     public class BossLung : RectangularSprite
     {
         int _hitPoints;
+        int _reverseVomitingHitPoints = 0;
         BossLungState _state;
 
         float _timer = 0;
+
+        int _diedMouthCounter = 0;
+
+        public bool SpecialMoveHit { get; set; }
+
+        bool _freezed;
+        float _freezingTimer = 0;
+        bool _blinking;
+        float _blinkingTimer;
+
+        bool _bSpecialMoveFlag = false;
 
         AnimationFactory _mouthAnimationFactory;
 
@@ -412,7 +435,7 @@ namespace Virus
 
             _state = BossLungState.approaching;
 
-            Position = new Vector2(240, 150);
+            Position = new Vector2(240, -100);
             Speed = new Vector2(0, 20);
 
             _mouthAnimationFactory = mouthAnimationFactory;
@@ -422,28 +445,29 @@ namespace Virus
             Mouth.MonsterFactory = mf;
 
             int i = 0;
+            int totalQueueMouths = 10;
 
             _idleLeftMouths = new List<Mouth>();
-            for (i = 0; i < 5; i++)
+            for (i = 0; i < totalQueueMouths; i++)
             {
                  _idleLeftMouths.Add(new Mouth(_mouthAnimationFactory.CreateAnimations("Mouth"), 40, 40));
             }
                 
             _idleBottomMouths = new List<Mouth>();
-            for (i = 0; i < 5; i++)
+            for (i = 0; i < totalQueueMouths; i++)
             {
                 _idleBottomMouths.Add(new Mouth(_mouthAnimationFactory.CreateAnimations("Mouth"), 40, 40));
             }
                 
             _idleRightMouths = new List<Mouth>(); ;
-            for (i = 0; i < 5; i++)
+            for (i = 0; i < totalQueueMouths; i++)
             {
                 _idleRightMouths.Add(new Mouth(_mouthAnimationFactory.CreateAnimations("Mouth"), 40, 40));
             }
                 
-            _leftTimeToCall = 7;
-            _bottomTimeToCall = 9;
-            _rightTimeToCall = 11;
+            _leftTimeToCall = 7f;
+            _bottomTimeToCall = 7.25f;
+            _rightTimeToCall = 7.5f;
         }
 
         protected override void InitializePhysics()
@@ -451,7 +475,7 @@ namespace Virus
             _physicalPoint = new PhysicalMassSystemPoint();
         }
          
-        private void AwakeMouth(List<Mouth> idleMouthsList, List<Mouth> activeMouthsList, bool vertical, float fixedPosition, float variablePositionMin, float variablePositionMax, float distance, Vector2 speedVersor)
+        /*private void AwakeMouth(List<Mouth> idleMouthsList, List<Mouth> activeMouthsList, bool vertical, float fixedPosition, float variablePositionMin, float variablePositionMax, float distance, Vector2 speedVersor)
         {
             // chose randomly the mouth to awake
             int idleMouths = idleMouthsList.Count();
@@ -508,28 +532,115 @@ namespace Virus
 
             // set opening mouth time and mout open time!
             awakenMouth.OpeningTime = 0.3f;
-            awakenMouth.MouthOpenTime = 0.15f;
+            awakenMouth.MouthOpenTime = 0.3f;
             
+            // awake!
+            awakenMouth.AddSpriteEvent(new SpriteEvent(SpriteEventCode.awake));
+        }*/
+
+        private void AwakeMouth(List<Mouth> idleMouthsList, List<Mouth> activeMouthsList, bool vertical, float fixedPosition, float variablePositionMin, float variablePositionMax, float distance, Vector2 speedVersor)
+        {
+            // chose randomly the mouth to awake
+            int idleMouths = idleMouthsList.Count();
+
+            // if there is not a mouth to pick exit (no mouth awaken)
+            if (idleMouths == 0)
+                return;
+
+            // get position of the active mouth, if any
+            Mouth activeMouth = activeMouthsList.Count > 0 ? activeMouthsList[0] : null;
+
+            // retrieve mouth to awake picking randomly
+            int mouthPickedIndex = _dice.Next(0, idleMouths);
+            Mouth awakenMouth = idleMouthsList[mouthPickedIndex];
+
+            // bring awaken mouth to active mouth list
+            activeMouthsList.Add(awakenMouth);
+            idleMouthsList.RemoveAt(mouthPickedIndex);
+
+            // set position and speed of chosen mouth and awake it!
+            float position;
+
+            // position is always taken randomly
+            position = (float)_dice.RandomDouble(variablePositionMin, variablePositionMax);
+
+            if (vertical)
+                awakenMouth.Position = new Vector2(fixedPosition, position);
+            else
+                awakenMouth.Position = new Vector2(position, fixedPosition);
+
+            // set linear speed
+            awakenMouth.Speed = speedVersor * _approchingSpeed;
+
+            // set rotational speed
+            awakenMouth.RotationSpeed = (int)position % 2 == 0 ? _rotatingSpeed : -_rotatingSpeed;
+
+            // set opening mouth time and mout open time!
+            awakenMouth.OpeningTime = 0.3f;
+            awakenMouth.MouthOpenTime = 0.3f;
+
             // awake!
             awakenMouth.AddSpriteEvent(new SpriteEvent(SpriteEventCode.awake));
         }
 
+        /*private bool MouthDestroyed()
+        {
+            return _
+        }*/
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
+            // handle freezed
+            if (_freezed)
+            {
+                _freezingTimer += _elapsedTime;
+                if (_freezingTimer > 2.0f)
+                {
+                    _freezingTimer = 0;
+                    _freezed = false;
+                }
+            }
+
+            // hanlde blinking
+            if (_blinking)
+            {
+                _blinkingTimer += _elapsedTime;
+                if (_blinkingTimer < 0.2f)
+                {
+                    Blink();
+                }
+                else
+                {
+                    Tint = Color.White;
+                    _blinkingTimer = 0;
+                    _blinking = false;
+                }
+            }
+
+
+            if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.bombHit)
+            {
+                _activeLeftMouths.ForEach(m => m.AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit)));
+                _activeBottomMouths.ForEach(m => m.AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit)));
+                _activeRightMouths.ForEach(m => m.AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit)));
+                _freezed = true;
+                _freezingTimer = 0;
+
+                // cancella l'animazione vomiting
+            }
+
+            HandleLateralMouths(gameTime);
+            Animate();
+
             switch (_state)
             {
                 case BossLungState.approaching:
-                    HandleLateralMouths(gameTime);
                     Move();
-                    Animate();
 
-                    if (Position.Y >= 400)
-                    {
+                    if (Position.Y >= 128)
                         _state = BossLungState.standing;
-                    }
                         
                     break;
 
@@ -537,14 +648,14 @@ namespace Virus
 
                     _timer += _elapsedTime;
 
-                    HandleLateralMouths(gameTime);
-                    Animate();
+                    _bSpecialMoveFlag = false;
 
                     if (_timer >= 10 && IsAnimationBegin())
                     {
-                        _timer = 0;
+                        _timer -= 10f;
                         ChangeAnimation("vomit");
                         FramePerSecond = 3.5f;
+                        SetAnimationVerse(true);
                         _state = BossLungState.vomiting;
                     }
 
@@ -552,24 +663,92 @@ namespace Virus
 
                 case BossLungState.vomiting:
 
-                    Animate();
-                    HandleLateralMouths(gameTime);
-
-                    if (AnimationFinished())
+                    // condition to reverse vomiting
+                    if (FrameIndex() <= 5)
                     {
-                        //ResetAnimation();
+                        if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.fingerHit)
+                        {
+                            DelayAnimation();
+                            BlinkingFrequency = 30;
+                            BlinkingTint = Color.Transparent;
+                            _blinking = true;
+
+                            _reverseVomitingHitPoints++;
+                            if (_reverseVomitingHitPoints >= 3)
+                            {
+                                SetAnimationVerse(false);
+                                FramePerSecond = 3.5f;
+                                _reverseVomitingHitPoints = 0;
+                                _state = BossLungState.vomitingback;
+
+                                break;
+                            }
+                        }
+                        else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.bombHit)
+                        {
+                            SetAnimationVerse(false);
+                            FramePerSecond = 3.5f;
+                            _reverseVomitingHitPoints = 0;
+                            _state = BossLungState.vomitingback;
+                            break;
+                        }
+                    }
+                   
+                    if (FrameIndex() == 5)
+                    {
+                        FramePerSecond = 2.0f;
+                    }
+                    else if (FrameIndex() == 6)
+                    {
+                        FramePerSecond = 10.0f;
+                    }
+                    else if (FrameIndex() == 24 && !_bSpecialMoveFlag)
+                    {
+                        SpecialMoveHit = true;
+                        _bSpecialMoveFlag = true;
+                    }
+                    else if (AnimationFinished())
+                    {
                         ChangeAnimation("main");
+                        _reverseVomitingHitPoints = 0;
                         FramePerSecond = 3.5f;
                         _state = BossLungState.standing;
                     }
 
                     break;
 
+                case BossLungState.vomitingback:
+
+                    if (AnimationFinished())
+                    {
+                        if (_diedMouthCounter < 30)
+                        {
+                            ChangeAnimation("main");
+                            FramePerSecond = 3.5f;
+                            _state = BossLungState.standing;
+                        }
+                        else
+                        {
+                            ChangeAnimation("death");
+                            FramePerSecond = 3.5f;
+                            _state = BossLungState.dying;
+                        }
+                    }
+
+                    break;
+
+                case BossLungState.dying:
+
+                    if (AnimationFinished())
+                    {
+                        _state = BossLungState.died;
+                    }
+
+                    break;
+
                 default:
                     break;
-            }
-
-            
+            }   
         }
 
         private void HandleLateralMouths(GameTime gameTime)
@@ -578,28 +757,31 @@ namespace Virus
             UpdateMouthSpeedParameters();
 
             //update timers and awake mouth if timer is expired
-            _leftTimer += _elapsedTime;
+            if (!_freezed)
+                _leftTimer += _elapsedTime;
             if (_leftTimer > _leftTimeToCall)
             {
                 _leftTimer -= _leftTimeToCall;
                 _leftTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
-                AwakeMouth(_idleLeftMouths, _activeLeftMouths, true, -20, 250, 750, 200, new Vector2(1, 0));
+                AwakeMouth(_idleLeftMouths, _activeLeftMouths, true, -30, 250, 750, 200, new Vector2(1, 0));
             }
 
-            _bottomTimer += _elapsedTime;
+            if (!_freezed)
+                _bottomTimer += _elapsedTime;
             if (_bottomTimer > _bottomTimeToCall)
             {
                 _bottomTimer -= _bottomTimeToCall;
                 _bottomTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
-                AwakeMouth(_idleBottomMouths, _activeBottomMouths, false, 820, 50, 430, 140, new Vector2(0, -1));
+                AwakeMouth(_idleBottomMouths, _activeBottomMouths, false, 830, 50, 430, 140, new Vector2(0, -1));
             }
 
-            _rightTimer += _elapsedTime;
+            if (!_freezed)
+                _rightTimer += _elapsedTime;
             if (_rightTimer > _rightTimeToCall)
             {
                 _rightTimer -= _rightTimeToCall;
                 _rightTimeToCall = (float)_dice.RandomDouble(_approchingPeriodMin, _approchingPeriodMax);
-                AwakeMouth(_idleRightMouths, _activeRightMouths, true, 500, 250, 750, 200, new Vector2(-1, 0));
+                AwakeMouth(_idleRightMouths, _activeRightMouths, true, 510, 250, 750, 200, new Vector2(-1, 0));
             }
 
             // call update on every active mouth!
@@ -634,6 +816,7 @@ namespace Virus
                 if (activeMouths[i].State == MouthState.died)
                 {
                     activeMouths.RemoveAt(i);
+                    _diedMouthCounter++;
                     i--;
                 }
             }
@@ -654,11 +837,11 @@ namespace Virus
 
         private void UpdateMouthSpeedParameters()
         {
-            _approchingPeriodMin = 6;
-            _approchingPeriodMax = 10;
+            _approchingPeriodMin = 3.75f;
+            _approchingPeriodMax = 5.25f;
 
-            _approchingSpeed = 60;
-            _rotatingSpeed = 1;
+            _approchingSpeed = 120;
+            _rotatingSpeed = 1.5f;
         }
 
         // deve diventare un metodo di una interfaccia che i boss ereditano e che ogni boss deve implementare

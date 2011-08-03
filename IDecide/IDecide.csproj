@@ -56,6 +56,7 @@
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -71,9 +72,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Localization\DefaultChoices.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefaultChoices.resx</DependentUpon>
+    </Compile>
     <Compile Include="Model\ChoiceGroup.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\AddEditChoicesViewModel.cs" />
+    <Compile Include="ViewModel\ChoiceGroupViewModel.cs" />
+    <Compile Include="ViewModel\ChoicesGroupViewModel.cs" />
     <Compile Include="View\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -83,8 +91,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\GroupChoicesPage.xaml.cs">
-      <DependentUpon>GroupChoicesPage.xaml</DependentUpon>
+    <Compile Include="View\ChoicesGroupPage.xaml.cs">
+      <DependentUpon>ChoicesGroupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Localization\LocalizedStrings.cs" />
     <Compile Include="View\MainPage.xaml.cs">
@@ -105,7 +113,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\GroupChoicesPage.xaml">
+    <Page Include="View\ChoicesGroupPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,6 +163,11 @@
     <EmbeddedResource Include="Localization\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\DefaultChoices.it-IT.resx" />
+    <EmbeddedResource Include="Localization\DefaultChoices.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DefaultChoices.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

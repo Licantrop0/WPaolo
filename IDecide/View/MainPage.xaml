@@ -35,13 +35,7 @@
 			<DoubleAnimation Duration="0:0:0.6" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AnswerTextBlock" d:IsOptimized="True"/>
 		</Storyboard>
 	</phone:PhoneApplicationPage.Resources>
-	<Grid x:Name="LayoutRoot" Style="{StaticResource BackGroundStyle}">
-		<Grid.Background>
-			<RadialGradientBrush Center="0.5,0.5" GradientOrigin="0,0" RadiusY="0.772" RadiusX="0.654">
-				<GradientStop Offset="1"/>
-				<GradientStop Color="#F4232323"/>
-			</RadialGradientBrush>
-		</Grid.Background>
+	<Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
@@ -52,42 +46,46 @@
 			<TextBlock Text="{Binding LocalizedResources.SubTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
 		</StackPanel>
 
-		<Grid Grid.Row="1" Margin="12,0,12,0">
-			<Button x:Name="DecideButton" Height="440" Width="400"
+		<Button x:Name="DecideButton" Height="440" Width="400" Grid.Row="1"
 					HorizontalAlignment="Center" VerticalAlignment="Center"
 					VerticalContentAlignment="Bottom" Click="DecideButton_Click"
 					toolkit:TiltEffect.IsTiltEnabled="True">
-				<Button.Projection>
-					<PlaneProjection/>
-				</Button.Projection>
-				<Button.Template>
-					<ControlTemplate />
-				</Button.Template>
-				<Grid>
-					<Image x:Name="FrontImage" Source="IDecide Back.png" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Opacity="0" >
-						<Image.RenderTransform>
-							<CompositeTransform TranslateX="-14"/>
-						</Image.RenderTransform>
-						<Image.Projection>
-							<PlaneProjection RotationY="180"/>
-						</Image.Projection>
-					</Image>
-					<Image x:Name="BackImage" Source="IDecide Logo.png" Stretch="Uniform" >
-						<Image.Projection>
-							<PlaneProjection/>
-						</Image.Projection>
-					</Image>
-					<TextBlock x:Name="AskAndShakeTextBlock" Text="{Binding LocalizedResources.AskAndShake, Source={StaticResource LocalizedStrings}}"
+			<Button.Projection>
+				<PlaneProjection/>
+			</Button.Projection>
+			<Button.Template>
+				<ControlTemplate />
+			</Button.Template>
+			<Grid>
+				<Image x:Name="FrontImage" Source="..\Images\IDecide Back.png" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Opacity="0" >
+					<Image.RenderTransform>
+						<CompositeTransform TranslateX="-14"/>
+					</Image.RenderTransform>
+					<Image.Projection>
+						<PlaneProjection RotationY="180"/>
+					</Image.Projection>
+				</Image>
+				<Image x:Name="BackImage" Source="..\Images\IDecide Logo.png" Stretch="Uniform" >
+					<Image.Projection>
+						<PlaneProjection/>
+					</Image.Projection>
+				</Image>
+				<TextBlock x:Name="AskAndShakeTextBlock" Text="{Binding LocalizedResources.AskAndShake, Source={StaticResource LocalizedStrings}}"
 							   TextAlignment="Center" VerticalAlignment="Bottom"/>
-					<TextBlock x:Name="AnswerTextBlock" TextWrapping="Wrap" TextAlignment="Center"
+				<TextBlock x:Name="AnswerTextBlock" TextWrapping="Wrap" TextAlignment="Center"
 							   VerticalAlignment="Center" HorizontalAlignment="Center"
 							   Width="200" Foreground="Black" Opacity="0" Text="dfsdfsdf">
 						<TextBlock.Projection>
 							<PlaneProjection RotationY="-90"/>
 						</TextBlock.Projection>
-					</TextBlock>
-				</Grid>
-			</Button>
-		</Grid>
+				</TextBlock>
+			</Grid>
+		</Button>
 	</Grid>
+
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
+							  BackgroundColor="#BF000000"
+							  ForegroundColor="{StaticResource PhoneAccentColor}" />
+	</phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

@@ -9,44 +9,33 @@ using Microsoft.Phone.Shell;
 
 namespace IDecide
 {
-    public partial class GroupChoicesPage : PhoneApplicationPage
+    public partial class ChoicesGroupPage : PhoneApplicationPage
     {
-        public GroupChoicesPage()
+        public ChoicesGroupPage()
         {
             InitializeComponent();
             CreateAppBar();
-            //GroupChoicesListBox.ItemsSource = Settings.ChoicesGroup.Select(c => c.Key).Distinct();
         }
 
         private void RemoveButton_Click(object sender, MouseButtonEventArgs e)
         {
-            var GroupName = ((Rectangle)sender).DataContext as string;
-
-            //Settings.ChoicesGroup.Where(i => i.Key == GroupName)
-            //    .ForEach(i => Settings.ChoicesGroup.Remove(i));
         }
 
         private void EditChoicesButton_Click(object sender, RoutedEventArgs e)
         {
             var GroupName = ((Button)sender).DataContext as string;
             if (GroupName != null)
-                NavigationService.Navigate(new Uri("/AddEditChoicesPage.xaml?key=" + GroupName, UriKind.Relative));
-        }
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-          //  Settings.SelectedGroup = ((RadioButton)sender).DataContext as string;
+                NavigationService.Navigate(new Uri("/View/AddEditChoicesPage.xaml" + GroupName, UriKind.Relative));
         }
 
         private void CreateAppBar()
         {
-            ApplicationBar = new ApplicationBar();
             var AddChoiceGroupAppBarButton = new ApplicationBarIconButton();
             AddChoiceGroupAppBarButton.IconUri = new Uri("Toolkit.Content\\add_white.png", UriKind.Relative);
             AddChoiceGroupAppBarButton.Text = AppResources.AddGroup;
             AddChoiceGroupAppBarButton.Click += (sender, e) =>
             {
-                NavigationService.Navigate(new Uri("/AddEditChoicesPage.xaml?key=test", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/View/AddEditChoicesPage.xaml", UriKind.Relative));
             };
             ApplicationBar.Buttons.Add(AddChoiceGroupAppBarButton);
         }

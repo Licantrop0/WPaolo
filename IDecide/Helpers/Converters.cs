@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Data;
 using IDecide.Localization;
+using System.Windows;
 
 namespace IDecide.Helpers
 {
@@ -8,7 +9,7 @@ namespace IDecide.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var TranslatedString = AppResources.ResourceManager.GetString((string)value);
+            var TranslatedString = DefaultChoices.ResourceManager.GetString((string)value);
             return string.IsNullOrEmpty(TranslatedString) ? value : TranslatedString;
         }
 
@@ -17,5 +18,4 @@ namespace IDecide.Helpers
             throw new NotImplementedException();
         }
     }
-
 }

@@ -1,0 +1,27 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Cartellino.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
+    xmlns:vm="clr-namespace:Cartellino.ViewModel"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+    <phone:PhoneApplicationPage.Resources>
+        <vm:AboutViewModel
+            x:Key="AboutVM"
+            AppName="Penality Card"
+            AppId=""
+            MinFontSize="34"
+            LogoMargin="30" />
+    </phone:PhoneApplicationPage.Resources>
+
+    <wpc:About DataContext="{StaticResource AboutVM}" />
+</phone:PhoneApplicationPage>

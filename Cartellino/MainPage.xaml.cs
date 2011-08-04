@@ -6,6 +6,7 @@ using System.Windows.Media.Animation;
 using Cartellino.Helpers;
 using Microsoft.Phone.Controls;
 using Microsoft.Xna.Framework.Audio;
+using System.Collections.Generic;
 
 namespace Cartellino
 {
@@ -50,14 +51,21 @@ namespace Cartellino
             #endregion
         }
 
-        private static SoundEffect _fischiettoSound;
+
+        private List<SoundEffect> _fischiettoSounds = new List<SoundEffect>();
+        private Random rnd = new Random();
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            for (int i = 1; i <= 4; i++)
+            {
+                _fischiettoSounds.Add(SoundEffect.FromStream(App.GetResourceStream(
+                    new Uri("Sounds/fischietto" + i + ".wav", UriKind.Relative)).Stream));
+            }
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (_fischiettoSound == null)
-                _fischiettoSound = SoundEffect.FromStream(App.GetResourceStream(
-                    new Uri("fischietto.wav", UriKind.Relative)).Stream);
-
-            _fischiettoSound.Play();
+            _fischiettoSounds[rnd.Next(4)].Play();
         }
 
         private void LogicalScrollViewer_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
@@ -159,5 +167,11 @@ namespace Cartellino
         {
             LogicalScrollViewer.ScrollToHorizontalOffset(Persistance.HorizontalOffset);
         }
+
+        private void ApplicationBarAboutButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+        }
+
     }
 }

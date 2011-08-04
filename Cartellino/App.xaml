@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"  >
 
     <Application.Resources>
@@ -25,7 +24,7 @@
                     <ControlTemplate>
                         <Border Style="{StaticResource CartellinoBase}">
                             <Border.Background>
-                                <SolidColorBrush Color="Red" />
+                                <ImageBrush ImageSource="Images\rosso.png" />
                             </Border.Background>
                         </Border>
                     </ControlTemplate>
@@ -40,7 +39,7 @@
                     <ControlTemplate>
                         <Border Style="{StaticResource CartellinoBase}">
                             <Border.Background>
-                                <SolidColorBrush Color="Yellow" />
+                                <ImageBrush ImageSource="Images\giallo.png" />
                             </Border.Background>
                         </Border>
                     </ControlTemplate>
@@ -51,8 +50,8 @@
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
-        <!--Required object that handles lifetime events for the application-->
-        <wp:XNAAsyncDispatcher />
+        <wph:XNAAsyncDispatcher
+            xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers" />
         <shell:PhoneApplicationService 
             Launching="Application_Launching" Closing="Application_Closing" 
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>

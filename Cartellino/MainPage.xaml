@@ -11,23 +11,9 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <!--<Grid.Resources>
-            <Storyboard x:Name="HorizontalScrollingStoryboard"
-                        Storyboard.TargetName="LogicalScrollViewer"
-                        Storyboard.TargetProperty="HorizontalOffset"
-                        Completed="HorizontalScrollingStoryboard_Completed">
-                <DoubleAnimation x:Name="HorizontalScrollingAnimation"
-                                 Duration="0:0:0.5">
-                    <DoubleAnimation.EasingFunction>
-                        <CircleEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-            </Storyboard>
-        </Grid.Resources>-->
-
         <ScrollViewer x:Name="LogicalScrollViewer"
                           HorizontalScrollBarVisibility="Hidden"
                           VerticalScrollBarVisibility="Disabled"
@@ -38,4 +24,14 @@
             </StackPanel>
         </ScrollViewer>
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False"
+                              ForegroundColor="{StaticResource PhoneForegroundColor}"
+                              Opacity="0.2">
+            <shell:ApplicationBarIconButton Text="About" IconUri="Images/Help.png"
+                                            Click="ApplicationBarAboutButton_Click" />
+        </shell:ApplicationBar>
+            
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

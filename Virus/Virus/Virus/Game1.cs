@@ -42,6 +42,9 @@ namespace Virus
         // boss
         List<BossLung> _bossContainer = new List<BossLung>();
 
+        // tester
+        Tester _tester;
+
         // virus
         Virus _virus;
 
@@ -164,6 +167,13 @@ namespace Virus
             Dictionary<string, Animation> virusAnimations = new Dictionary<string, Animation>();
             virusAnimations.Add("main", new SpriteSheetAnimation(7, true, virusTexture));
             _virus = new Virus(virusAnimations, 40, 40);
+
+            // create Tester
+            Texture2D testerTexture = Content.Load<Texture2D>("Sprites/Virus/virusMedium");
+            Dictionary<string, Animation> testerAnimations = new Dictionary<string, Animation>();
+            testerAnimations.Add("main", new SpriteSheetAnimation(7, true, virusTexture));
+            _tester = new Tester(testerAnimations, 40, 40);
+            _tester.Position = new Vector2(240, 700);
             
             // set ascending climax difficulty pack!
 
@@ -284,6 +294,8 @@ namespace Virus
                     _virus.Bombs--;
                     enemiesKilled++;
 
+                    _tester.AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit));
+
                     // send bomHit event to each enemy
                     _whiteGlobulos.ForEach(wg => wg.AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit)));
 
@@ -307,6 +319,12 @@ namespace Virus
                     _background.Tremble(2, trembleAmplitude, 30, (float)Math.PI, false);
                     _firstPlanBackground.Tremble(2, trembleAmplitude2, 60, (float)Math.PI, false);
                 }
+            }
+
+            // tester
+            if (_tester.Touched(_touchPoint))
+            {
+                _tester.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit));
             }
 
             // iterate our enemied sprites to find which sprite is being touched.
@@ -493,6 +511,9 @@ namespace Virus
             if (_virus != null)
                 GetUserTouch();
 
+            // tester
+            //_tester.Update(gameTime);
+
             // detect touch collisions
             if (_touchPoint != Vector2.Zero)
                 DetectTouchCollisions();
@@ -559,6 +580,8 @@ namespace Virus
             // draw background
             _background.Draw(spriteBatch);
             _firstPlanBackground.Draw(spriteBatch);
+
+            //_tester.Draw(spriteBatch);
 
             // draw boss
             if (_bossContainer.Count != 0)

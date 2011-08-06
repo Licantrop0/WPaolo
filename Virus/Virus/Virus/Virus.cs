@@ -34,8 +34,8 @@ namespace Virus
             Position = new Vector2(240, 400);
             _state = ViruState.tranquil;
             Ammo = 80;
-            Bombs = 2;
-            Lifes = 3;
+            Bombs = 200;
+            Lifes = 30;
         }
 
         protected override void InitializePhysics()

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Virus
 {
-    public class CircularSprite : Sprite, ITouchable
+    public class CircularSprite : TimingBehaviouralSprite, ITouchable
     {
         protected bool _touchable;
         protected float _radius;        // va incapsulato in una classe per gestire le collisioni

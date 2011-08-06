@@ -14,7 +14,7 @@ namespace Virus
         float _endingTime;
 
         // behaviours
-        List<Behaviour> _behaviours = new List<Behaviour>();
+        List<BehaviourExecutor> _behaviours = new List<BehaviourExecutor>();
 
         // specific behaviours
         public bool Freezed { get; set; }
@@ -38,9 +38,21 @@ namespace Virus
             _endingTime = endingTime;
         }
 
+        protected void RestartTimer(float endingTime)
+        {
+            _timer = 0;
+            _timerRunning = true;
+            _endingTime = endingTime;
+        }
+
         protected bool Exceeded()
         {
             return _timer >= _endingTime;
+        }
+
+        protected void Recycle()
+        {
+            _timer -= _endingTime;
         }
 
         public override void Update(GameTime gameTime)
@@ -57,9 +69,15 @@ namespace Virus
             HandleBehaviours(_elapsedTime);
         }
 
-        private void StartBehaviour(Behaviour behaviour)
+        private void StartBehaviour(BehaviourExecutor behaviour)
         {
-            _behaviours.Remove(_behaviours.Where(b => b.GetCode() == behaviour.GetCode()).First());
+            //_behaviours.Remove(_behaviours.Where(b => b.GetCode() == behaviour.GetCode()).First());
+            _behaviours.RemoveAll();
+            _behaviours.Re
+            /*if (_behaviours.Any(b => b.GetCode() == behaviour.GetCode())
+            {
+            
+            }*/
 
             behaviour.Initialize();
             _behaviours.Add(behaviour);
@@ -79,61 +97,81 @@ namespace Virus
 
         // specific behaviours
         // blinking
-        private void BehaviourBlinkingInitialize(BlinkingBehaviour b)
+        private void BehaviourBlinkingInitialize(BehaviourExecutor b)
         {
+            BlinikingBehaviourExecutor blink = (BlinikingBehaviourExecutor)b;
+
             Blinking = true;
-            b.BlinkingTimer = 0;
+            blink.BlinkingTimer = 0;
         }
 
-        private void BehaviourBlinkingRun(BlinkingBehaviour b)
+        private void BehaviourBlinkingRun(BehaviourExecutor b)
         {
-            b.BlinkingTimer += _elapsedTime;
+            BlinikingBehaviourExecutor blink = (BlinikingBehaviourExecutor)b;
 
-            if (b.BlinkingTimer > b.BlinkingPeriod)
+            blink.BlinkingTimer += _elapsedTime;
+
+            if (blink.BlinkingTimer > blink.BlinkingPeriod)
             {
-                b.BlinkingTimer -= b.BlinkingPeriod;
-                Tint = Tint == b.RollbackTint ? b.BlinkingTint : b.RollbackTint;
+                blink.BlinkingTimer -= blink.BlinkingPeriod;
+                Tint = Tint == blink.RollbackTint ? blink.BlinkingTint : blink.RollbackTint;
             }
         }
 
-        private void BehaviourBlinkingExpire(BlinkingBehaviour b)
+        private void BehaviourBlinkingExpire(BehaviourExecutor b)
         {
+            BlinikingBehaviourExecutor blink = (BlinikingBehaviourExecutor)b;
+
             Blinking = false;
-            Tint = b.RollbackTint;
+            Tint = blink.RollbackTint;
         }
 
         protected void StartBlinking(float timeToExpire, float blinkingFrequency, Color blinkingTint)
         {
-            BlinkingBehaviour blink =
-                new BlinkingBehaviour(timeToExpire, BehaviourBlinkingInitialize, BehaviourBlinkingRun, BehaviourBlinkingExpire, blinkingFrequency, blinkingTint, Tint);
+            BehaviourExecutor blink =
+                new BlinikingBehaviourExecutor(timeToExpire, BehaviourBlinkingInitialize, BehaviourBlinkingRun, BehaviourBlinkingExpire, blinkingFrequency, blinkingTint, Tint);
+
+            StartBehaviour(blink);
         }
 
         // freezing
-        /*protected void BehaviourBlinkingInitialize(BlinkingBehaviour b)
+        protected void BehaviourFreezedInitialize(BehaviourExecutor b)
         {
-            Blinking = true;
-            b.BlinkingTimer = 0;
+            FreezedBehaviourExecutor freeze = (FreezedBehaviourExecutor) b;
+
+            Freezed = true;
+            Speed = Vector2.Zero;
+            RotationSpeed = 0;
+            FramePerSecond = 0;
+            _timerRunning = false;
         }
 
-        protected void BehaviourBlinkingRun(BlinkingBehaviour b)
+        protected void BehaviourFreezedRun(BehaviourExecutor b)
         {
-            b.BlinkingTimer += _elapsedTime;
-
-            if (b.BlinkingTimer > b.BlinkingPeriod)
-            {
-                b.BlinkingTimer -= b.BlinkingPeriod;
-                Tint = Tint == b.RollbackTint ? b.BlinkingTint : b.RollbackTint;
-            }
         }
 
-        protected void BehaviourBLinkingExpire(BlinkingBehaviour b)
+        protected void BehaviourFreezedExpire(BehaviourExecutor b)
         {
-            Blinking = false;
-            Tint = b.RollbackTint;
-        }*/
+            FreezedBehaviourExecutor freeze = (FreezedBehaviourExecutor) b;
+
+            Freezed = false;
+            Speed = freeze.RollbackSpeed;
+            RotationSpeed = freeze.RollbackRotationSpeed;
+            FramePerSecond = freeze.RollbackFPS;
+            _timerRunning = true;
+        }
+
+        protected void Freeze(float timeToExpire)
+        {
+            BehaviourExecutor freeze =
+                new FreezedBehaviourExecutor(timeToExpire, BehaviourFreezedInitialize, BehaviourFreezedRun, BehaviourFreezedExpire, Speed, FramePerSecond, RotationSpeed);
+
+            StartBehaviour(freeze);
+        }
     }
  
-    public delegate void ContainerBehaviourDelegate(Behaviour behaviour);
+    public delegate void ContainerBehaviourDelegate(BehaviourExecutor behaviour);
+    //public Action<BehaviourExecutor>;
 
     public enum BehaviourCode
     {
@@ -141,7 +179,8 @@ namespace Virus
         freezed
     }
 
-    public abstract class Behaviour
+
+    public abstract class BehaviourExecutor
     {
         public abstract BehaviourCode GetCode();
 
@@ -151,7 +190,7 @@ namespace Virus
         ContainerBehaviourDelegate _containerDelegateRun;
         ContainerBehaviourDelegate _containerDelegateExpire;
 
-        public Behaviour(float timeToExpire, ContainerBehaviourDelegate cbi, ContainerBehaviourDelegate cbr, ContainerBehaviourDelegate cbe)
+        public BehaviourExecutor(float timeToExpire, ContainerBehaviourDelegate cbi, ContainerBehaviourDelegate cbr, ContainerBehaviourDelegate cbe)
         {
             _timeToExpire = timeToExpire;
             _containerDelegateInitialize = cbi;
@@ -182,7 +221,7 @@ namespace Virus
         }
     }
 
-    public class BlinkingBehaviour : Behaviour
+    public class BlinikingBehaviourExecutor : BehaviourExecutor
     {
         float _blinkingPeriod;
         Color _blinkingTint;
@@ -193,7 +232,7 @@ namespace Virus
         public Color RollbackTint { get { return _rollbackTint; } }
         public float BlinkingTimer { get; set; }
 
-        public BlinkingBehaviour(float timeToExpire, ContainerBehaviourDelegate cbi, ContainerBehaviourDelegate cbr, ContainerBehaviourDelegate cbe,
+        public BlinikingBehaviourExecutor(float timeToExpire, ContainerBehaviourDelegate cbi, ContainerBehaviourDelegate cbr, ContainerBehaviourDelegate cbe,
             float blinkingFrequency, Color blinkingTint, Color rollbackTint)
             :base(timeToExpire, cbi, cbr, cbe)
         {
@@ -205,6 +244,31 @@ namespace Virus
         public override BehaviourCode GetCode()
         {
             return BehaviourCode.blinking;
+        }
+    }
+
+    public class FreezedBehaviourExecutor : BehaviourExecutor
+    {
+        Vector2 _rollbackSpeed;
+        float _rollbackFPS;
+        float _rollbackRoationSpeed;
+
+        public Vector2 RollbackSpeed { get { return _rollbackSpeed; } }
+        public float RollbackFPS { get { return _rollbackFPS; } }
+        public float RollbackRotationSpeed { get { return _rollbackRoationSpeed;} }
+
+        public FreezedBehaviourExecutor(float timeToExpire, ContainerBehaviourDelegate cbi, ContainerBehaviourDelegate cbr, ContainerBehaviourDelegate cbe,
+            Vector2 rollbackSpeed, float rollbackFPS, float rollbackRotationSpeed)
+            : base(timeToExpire, cbi, cbr, cbe)
+        {
+            _rollbackSpeed = rollbackSpeed;
+            _rollbackFPS = RollbackFPS;
+            _rollbackRoationSpeed = rollbackRotationSpeed;
+        }
+
+        public override BehaviourCode GetCode()
+        {
+            return BehaviourCode.freezed;
         }
     }
 }

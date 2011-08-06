@@ -13,7 +13,6 @@ namespace IDecide
 {
     public partial class ChoicesGroupPage : PhoneApplicationPage
     {
-
         private ChoicesGroupViewModel _vM;
         public ChoicesGroupViewModel VM
         {
@@ -31,9 +30,9 @@ namespace IDecide
             CreateAppBar();
         }
 
-        private void RemoveButton_Click(object sender, MouseButtonEventArgs e)
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            var selectedGroup = ((Rectangle)sender).DataContext as ChoiceGroupViewModel;
+            var selectedGroup = ((Button)sender).DataContext as ChoiceGroupViewModel;
             VM.DeleteGroup.Execute(selectedGroup);
         }
 
@@ -51,5 +50,6 @@ namespace IDecide
             AddChoiceGroupAppBarButton.Click += (sender, e) => { VM.AddGroup.Execute(null); };
             ApplicationBar.Buttons.Add(AddChoiceGroupAppBarButton);
         }
+
     }
 }

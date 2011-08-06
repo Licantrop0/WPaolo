@@ -70,6 +70,15 @@ namespace IDecide.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  Add a Choice and tap +.
+        /// </summary>
+        public static string AddChoice {
+            get {
+                return ResourceManager.GetString("AddChoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Group.
         /// </summary>
         public static string AddGroup {
@@ -138,6 +147,24 @@ namespace IDecide.Localization {
         public static string EditChoices {
             get {
                 return ResourceManager.GetString("EditChoices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Insert a Group Name.
+        /// </summary>
+        public static string InsertGroupName {
+            get {
+                return ResourceManager.GetString("InsertGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Group Name name is required, please insert it.
+        /// </summary>
+        public static string InsertGroupNameAlert {
+            get {
+                return ResourceManager.GetString("InsertGroupNameAlert", resourceCulture);
             }
         }
         

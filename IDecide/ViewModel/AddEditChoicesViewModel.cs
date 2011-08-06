@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using NascondiChiappe.Helpers;
+using System.Linq;
 
 namespace IDecide.ViewModel
 {
@@ -19,19 +20,29 @@ namespace IDecide.ViewModel
     {
         public INavigationService NavigationService { get; set; }
 
+        public bool EditMode { get; private set; }
+
         private ChoiceGroupViewModel _currentChoiceGroup;
         public ChoiceGroupViewModel CurrentChoiceGroup
         {
             get { return _currentChoiceGroup; }
-            set { _currentChoiceGroup = value;
-            RaisePropertyChanged("CurrentChoiceGroup");
+            set
+            {
+                _currentChoiceGroup = value;
+                RaisePropertyChanged("CurrentChoiceGroup");
             }
         }
 
         public AddEditChoicesViewModel()
         {
-            Messenger.Default.Register<ChoiceGroupViewModel>(this,
-                "AddOrEdit", choiceGroup => CurrentChoiceGroup = choiceGroup);            
+            Messenger.Default.Register<NotificationMessage<ChoiceGroupViewModel>>(
+                this, m => ReadMessage(m));
+        }
+
+        private void ReadMessage(NotificationMessage<ChoiceGroupViewModel> message)
+        {
+            EditMode = message.Notification == "Edit";
+            CurrentChoiceGroup = message.Content;
         }
 
         private RelayCommand<string> _addChoice;

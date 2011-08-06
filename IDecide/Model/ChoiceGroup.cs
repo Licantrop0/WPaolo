@@ -31,8 +31,20 @@ namespace IDecide.Model
 
         [DataMember]
         public IEnumerable<string> Choices { get; set; }
+        
+        private bool _isSelected;
         [DataMember]
-        public bool IsSelected { get; set; }
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set 
+            {
+                if(IsSelected == value)
+                   return;
+                _isSelected = value;
+                RaisePropertyChanged("IsSelected");
+            }
+        }
         [DataMember]
         public bool IsDefault { get; set; }
 

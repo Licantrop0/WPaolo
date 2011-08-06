@@ -25,7 +25,10 @@ namespace Virus
         protected int _frames;
 
         public float TimeToUpdate
-        { set { _timeToUpdate = value; } }
+        {
+            get { return _timeToUpdate; }
+            set { _timeToUpdate = value; }
+        }
 
         public int FramesNum
         { get { return _frames; } }

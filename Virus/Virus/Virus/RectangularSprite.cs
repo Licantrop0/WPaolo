@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Virus
 {
-    public class RectangularSprite : Sprite, ITouchable
+    public class RectangularSprite : TimingBehaviouralSprite, ITouchable
     {
         protected bool _touchable;
         protected float _width;        // vanno incapsulate in una classe per gestire le collisioni

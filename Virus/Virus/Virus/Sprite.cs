@@ -71,7 +71,10 @@ namespace Virus
         }
 
         public float FramePerSecond
-        { set { _currentAnimation.TimeToUpdate = value != 0 ? (1f / value) : float.PositiveInfinity; } }
+        {
+            get { return 1 / _currentAnimation.TimeToUpdate; }
+            set { _currentAnimation.TimeToUpdate = value != 0 ? (1f / value) : float.PositiveInfinity; }
+        }
 
         public int AnimationFrames
         { get { return _currentAnimation.FramesNum; } }
@@ -114,7 +117,10 @@ namespace Virus
         }
 
         public float RotationSpeed
-        { set { _rotationSpeed = value; } }
+        {
+            get { return _rotationSpeed; }
+            set { _rotationSpeed = value; }
+        }
 
         public Vector2 ScalingSpeed
         { set { _scalingSpeed = value; } }
@@ -172,6 +178,7 @@ namespace Virus
             _tint.A = (byte)alpha;
         }
 
+        // è incapsulato nel behaviour, andrebbe acancellato assueme ai dati di riferimento
         public void Blink()
         {
             _blikingTimeElapsed += _elapsedTime;
@@ -183,6 +190,7 @@ namespace Virus
             }
         }
 
+        // andrebbe messo nella classe body, non nello sprite...
         protected void Bounce(Vector2 normal)
         {
             Speed = Vector2.Reflect(Speed, normal);

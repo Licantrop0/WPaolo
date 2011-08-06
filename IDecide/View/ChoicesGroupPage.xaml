@@ -46,8 +46,9 @@
 								<TextBlock Text="{Binding Model.Name, Converter={StaticResource ResourceTranslator}}"
 										   TextWrapping="Wrap" TextAlignment="Center"/>
 							</Button>
-                            <Button Template="{StaticResource RemoveButtonTemplate}"
+							<Button Template="{StaticResource RemoveButtonTemplate}"
 									Width="48" Height="48" Margin="6"
+									Visibility="{Binding CanDeleteVisibility}"
 									IsEnabled="{Binding ButtonEnabled}"
 									Click="RemoveButton_Click" />
 						</StackPanel>

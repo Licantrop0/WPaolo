@@ -28,7 +28,6 @@ namespace Virus
     {
         // graphics
         private Dictionary<string, Animation> _animations;
-        //private string _currentAnimation;
         private Animation _currentAnimation;
         private Queue<SpriteEvent> _spriteEventQueque = new Queue<SpriteEvent>();
         protected float _elapsedTime;
@@ -148,11 +147,6 @@ namespace Virus
             _currentAnimation = _animations[animationKey];
             _currentAnimation.Reset();
         }
-
-        /*public void ResetAnimation()
-        {
-            _currentAnimation.Reset();
-        }*/
 
         public void Rotate()
         {

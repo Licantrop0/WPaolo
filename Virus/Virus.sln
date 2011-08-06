@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Virus", "Virus\Virus\Virus.csproj", "{B4EC0289-9245-4C12-9EFF-87089BF00FF9}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "VirusContent", "Virus\VirusContent\VirusContent.contentproj", "{9778A463-3B75-4584-A94F-41B6BF2B4562}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirusContent", "Virus\VirusContent\VirusContent.contentproj", "{9778A463-3B75-4584-A94F-41B6BF2B4562}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution

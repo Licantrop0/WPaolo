@@ -13,6 +13,14 @@
       <Texture Path="Sprites\Mouth\boccaLateraleMuore40"/>
     </Animation>
   </Sprite>
+  <Sprite Name="CentralMouth">
+    <Animation Name="opening" Type="Simple" FramesNum="8" Looping="False" Origin="default">
+      <Texture  Path="Sprites\Mouth\boccaCentraleApre" />
+    </Animation>
+    <Animation Name="closing" Type="Simple" FramesNum="5" Looping="False" Origin="default">
+      <Texture Path="Sprites\Mouth\boccaCentraleChiude"/>
+    </Animation>
+  </Sprite>
   <Sprite Name="BossLung">
     <Animation Name="main" Type="BigPortrait" FramesNum="8" Looping="True" Origin="240 128">
       <Texture Path="Sprites\bossLung\bossLungMain"/>

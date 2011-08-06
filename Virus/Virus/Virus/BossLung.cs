@@ -81,7 +81,7 @@ namespace Virus
 
 		int _globulosToSpit = 4;
 		int _spittedGlobulos;
-		float _globulosSpeed = 300;
+		float _globulosSpeed = 250;
 
 		public float OpeningTime { set { _openingTime = value; } }
 		public float MouthOpenTime { set { _mouthOpenTime = value; } }
@@ -140,7 +140,7 @@ namespace Virus
 			else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.fingerHit)
 			{
 				_hitPoints--;
-				StartBlinking(0.2f, 30, Color.Transparent);
+				StartBlinking(0.3f, 30, Color.Transparent);
 			}
 			// handle bomb
 			else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.bombHit)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace Virus
 {
@@ -69,16 +70,21 @@ namespace Virus
             HandleBehaviours(_elapsedTime);
         }
 
+        private void FinalizeBehaviour(BehaviourCode code)
+        {
+            for (int i = 0; i < _behaviours.Count; i++)
+            {
+                if (_behaviours[i].GetCode() == code)
+                {
+                    _behaviours[i].Finalize();
+                    _behaviours.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+
         private void StartBehaviour(BehaviourExecutor behaviour)
         {
-            //_behaviours.Remove(_behaviours.Where(b => b.GetCode() == behaviour.GetCode()).First());
-            _behaviours.RemoveAll();
-            _behaviours.Re
-            /*if (_behaviours.Any(b => b.GetCode() == behaviour.GetCode())
-            {
-            
-            }*/
-
             behaviour.Initialize();
             _behaviours.Add(behaviour);
         }
@@ -128,6 +134,8 @@ namespace Virus
 
         protected void StartBlinking(float timeToExpire, float blinkingFrequency, Color blinkingTint)
         {
+            FinalizeBehaviour(BehaviourCode.blinking);
+
             BehaviourExecutor blink =
                 new BlinikingBehaviourExecutor(timeToExpire, BehaviourBlinkingInitialize, BehaviourBlinkingRun, BehaviourBlinkingExpire, blinkingFrequency, blinkingTint, Tint);
 
@@ -163,6 +171,8 @@ namespace Virus
 
         protected void Freeze(float timeToExpire)
         {
+            FinalizeBehaviour(BehaviourCode.freezed);
+
             BehaviourExecutor freeze =
                 new FreezedBehaviourExecutor(timeToExpire, BehaviourFreezedInitialize, BehaviourFreezedRun, BehaviourFreezedExpire, Speed, FramePerSecond, RotationSpeed);
 
@@ -219,6 +229,11 @@ namespace Virus
                 return true;
             }
         }
+
+        public void Finalize()
+        {
+            _containerDelegateExpire(this);
+        }
     }
 
     public class BlinikingBehaviourExecutor : BehaviourExecutor
@@ -262,7 +277,7 @@ namespace Virus
             : base(timeToExpire, cbi, cbr, cbe)
         {
             _rollbackSpeed = rollbackSpeed;
-            _rollbackFPS = RollbackFPS;
+            _rollbackFPS = rollbackFPS;
             _rollbackRoationSpeed = rollbackRotationSpeed;
         }
 

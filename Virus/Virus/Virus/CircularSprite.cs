@@ -17,6 +17,7 @@ namespace Virus
         {
             _radius = radius;
             _touchRadius = touchRadius;
+            _touchable = true;
         }
 
         public float Radius

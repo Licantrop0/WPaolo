@@ -107,6 +107,7 @@
     <Compile Include="Sprite.cs" />
     <Compile Include="Animation.cs" />
     <Compile Include="SpriteEventCodes.cs" />
+    <Compile Include="Tester.cs" />
     <Compile Include="TimingBehaviouralSprite.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Virus.cs" />

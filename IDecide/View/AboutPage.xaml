@@ -19,9 +19,7 @@
         <vm:AboutViewModel x:Name="AboutVM"
                            MinFontSize="50"
                            AppId="34d447d5-60fe-df11-9264-00237de2db9e"
-                           LogoMargin="20"
-                           CustomLogo="/FillTheSquare;component/Phil/phil_con_logo_new.png"
-                           CustomLogoMargin="265, 390, 0, 0" />
+                           LogoMargin="20" />
     </phone:PhoneApplicationPage.Resources>
 
     <wpc:About DataContext="{StaticResource AboutVM}"  />

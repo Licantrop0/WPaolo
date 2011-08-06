@@ -46,14 +46,10 @@
 								<TextBlock Text="{Binding Model.Name, Converter={StaticResource ResourceTranslator}}"
 										   TextWrapping="Wrap" TextAlignment="Center"/>
 							</Button>
-							<Rectangle Fill="{StaticResource PhoneForegroundBrush}"
-									   Width="48" Height="48" Margin="6"
-									   Visibility="{Binding CanDeleteVisibility}"
-									   MouseLeftButtonDown="RemoveButton_Click" >
-								<Rectangle.OpacityMask>
-									<ImageBrush ImageSource="..\Toolkit.Content\remove_white.png" />
-								</Rectangle.OpacityMask>
-							</Rectangle>
+                            <Button Template="{StaticResource RemoveButtonTemplate}"
+									Width="48" Height="48" Margin="6"
+									IsEnabled="{Binding ButtonEnabled}"
+									Click="RemoveButton_Click" />
 						</StackPanel>
 					</DataTemplate>
 				</ListBox.ItemTemplate>

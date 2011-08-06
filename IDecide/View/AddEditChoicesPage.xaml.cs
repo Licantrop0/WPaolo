@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using System.Windows.Shapes;
-using System.Collections.Generic;
-using System.Linq;
-using WPCommon;
 using IDecide.Localization;
-using GalaSoft.MvvmLight.Messaging;
 using IDecide.ViewModel;
+using Microsoft.Phone.Controls;
 
 namespace IDecide
 {
@@ -34,11 +26,18 @@ namespace IDecide
             InitializeComponent();
         }
 
-        private void AddButton_Click(object sender, MouseButtonEventArgs e)
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
         {
-            VM.AddChoice.Execute(ChoiceTextBox.Text);
-            ChoiceTextBox.Text = string.Empty;
-            ChoiceTextBox.Focus();
+            if (VM.EditMode)
+                return;
+
+            if (string.IsNullOrEmpty(GroupNameTextBox.Text))
+            {
+                e.Cancel = true;
+                MessageBox.Show(AppResources.InsertGroupNameAlert);
+                GroupNameTextBox.Focus();
+                return;
+            }
         }
 
         private void ChoiceTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -47,9 +46,22 @@ namespace IDecide
                 AddButton_Click(sender, null);
         }
 
-        private void RemoveButton_Click(object sender, MouseButtonEventArgs e)
+        private void GroupNameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            var selectedChoice = ((Rectangle)sender).DataContext as string;
+            if (e.Key == Key.Enter)
+                ChoiceTextBox.Focus();
+        }
+
+        private void AddButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            VM.AddChoice.Execute(ChoiceTextBox.Text);
+            ChoiceTextBox.Text = string.Empty;
+            ChoiceTextBox.Focus();
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedChoice = ((Button)sender).DataContext as string;
             VM.DeleteChoice.Execute(selectedChoice);
         }
     }

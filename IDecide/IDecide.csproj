@@ -75,6 +75,9 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsPhoneWatermarkTextBoxControl">
+      <HintPath>.\WindowsPhoneWatermarkTextBoxControl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppContext.cs" />
@@ -169,7 +172,9 @@
     <Content Include="Toolkit.Content\ApplicationBar.Check.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Toolkit.Content\remove_white.png" />
+    <Content Include="Toolkit.Content\remove_white.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\AppResources.it-IT.resx">

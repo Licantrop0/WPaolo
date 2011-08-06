@@ -156,4 +156,15 @@
   <data name="Confirm" xml:space="preserve">
     <value>Conferma</value>
   </data>
+  <data name="AddChoice" xml:space="preserve">
+    <value> Aggiungi una scelta e premi +</value>
+    <comment>Watermark Text, aggiungere uno spazio prima per i margini</comment>
+  </data>
+  <data name="InsertGroupName" xml:space="preserve">
+    <value> Inserisci il nome del Gruppo</value>
+    <comment>Watermark Text, aggiungere uno spazio prima per i margini</comment>
+  </data>
+  <data name="InsertGroupNameAlert" xml:space="preserve">
+    <value>Il nome del Gruppo è richiesto, per favore inseriscilo</value>
+  </data>
 </root>

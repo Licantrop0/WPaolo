@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Messaging;
 using IDecide.Localization;
 using NascondiChiappe.Helpers;
 using System;
+using System.Linq;
 
 namespace IDecide.ViewModel
 {
@@ -28,9 +29,11 @@ namespace IDecide.ViewModel
         }
         private void AddGroupAction()
         {
-            var newGroup = new ChoiceGroupViewModel(new Model.ChoiceGroup());
-            Groups.Add(newGroup);
-            Messenger.Default.Send<ChoiceGroupViewModel>(newGroup, "AddOrEdit");
+            var choiceGroup = new ChoiceGroupViewModel(new Model.ChoiceGroup() { IsSelected = true });
+            AppContext.Groups.Single(g => g.Model.IsSelected).Model.IsSelected = false;
+            AppContext.Groups.Add(choiceGroup);
+            Messenger.Default.Send<NotificationMessage<ChoiceGroupViewModel>>(
+                new NotificationMessage<ChoiceGroupViewModel>(choiceGroup, "Add"));
             NavigationService.Navigate(new Uri("/View/AddEditChoicesPage.xaml", UriKind.Relative));
         }
 
@@ -44,11 +47,10 @@ namespace IDecide.ViewModel
         }
         private void EditGroupAction(ChoiceGroupViewModel group)
         {
-            Messenger.Default.Send<ChoiceGroupViewModel>(group, "AddOrEdit");
+            Messenger.Default.Send<NotificationMessage<ChoiceGroupViewModel>>(
+                new NotificationMessage<ChoiceGroupViewModel>(group, "Edit"));
             NavigationService.Navigate(new Uri("/View/AddEditChoicesPage.xaml", UriKind.Relative));
         }
-
-
 
         private RelayCommand<ChoiceGroupViewModel> _deleteGroup;
         public RelayCommand<ChoiceGroupViewModel> DeleteGroup
@@ -63,6 +65,9 @@ namespace IDecide.ViewModel
             if (MessageBox.Show(string.Format(AppResources.Cancel, group.Model.Name),
                 AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
+                if (group.Model.IsSelected)
+                    Groups.First(g => g.Model.IsDefault).Model.IsSelected = true;
+
                 Groups.Remove(group);
             }
         }

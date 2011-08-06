@@ -18,6 +18,20 @@
             <GradientStop Color="#F4232323"/>
         </RadialGradientBrush>
 
+        <ControlTemplate x:Key="RemoveButtonTemplate" TargetType="Button">
+            <Grid>
+                <Rectangle Fill="{StaticResource PhoneAccentBrush}">
+                    <Rectangle.OpacityMask>
+                        <ImageBrush ImageSource="..\Toolkit.Content\remove_white.png" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <ContentPresenter
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Grid>
+        </ControlTemplate>
+
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

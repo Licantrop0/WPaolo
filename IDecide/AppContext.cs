@@ -56,17 +56,17 @@ namespace IDecide
             Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
             {
                 Name = "MagicBall",
-                IsDefault = false,
+                IsDefault = true,
+                IsSelected = true,
                 Choices = Enumerable.Range(1, 20).Select(i =>
-                    DefaultChoices.ResourceManager.GetString("MagicBall" + i)),
-                IsSelected = true
+                    DefaultChoices.ResourceManager.GetString("MagicBall" + i))
             }));
 
             Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
             {
                 Name = "HeadTail",
-                Choices = new string[] { DefaultChoices.Head, DefaultChoices.Tail },
-                IsDefault = true
+                IsDefault = true,
+                Choices = new string[] { DefaultChoices.Head, DefaultChoices.Tail }
             }));
 
             Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()

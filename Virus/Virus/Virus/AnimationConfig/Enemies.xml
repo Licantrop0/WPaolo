@@ -20,6 +20,9 @@
     <Animation Name="closing" Type="Simple" FramesNum="5" Looping="False" Origin="default">
       <Texture Path="Sprites\Mouth\boccaCentraleChiude"/>
     </Animation>
+    <Animation Name="death" Type="Simple" FramesNum="8" Looping="False" Origin="default">
+      <Texture Path="Sprites\Mouth\BoccaCentraleMuore"/>
+    </Animation>
   </Sprite>
   <Sprite Name="BossLung">
     <Animation Name="main" Type="BigPortrait" FramesNum="8" Looping="True" Origin="240 128">

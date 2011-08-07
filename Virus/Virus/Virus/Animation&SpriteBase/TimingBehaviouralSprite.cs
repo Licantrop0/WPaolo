@@ -76,7 +76,7 @@ namespace Virus
             {
                 if (_behaviours[i].GetCode() == code)
                 {
-                    _behaviours[i].Finalize();
+                    _behaviours[i].End();
                     _behaviours.RemoveAt(i);
                     i--;
                 }
@@ -142,6 +142,11 @@ namespace Virus
             StartBehaviour(blink);
         }
 
+        protected void EndBlinking()
+        {
+            FinalizeBehaviour(BehaviourCode.blinking);
+        }
+
         // freezing
         protected void BehaviourFreezedInitialize(BehaviourExecutor b)
         {
@@ -169,7 +174,7 @@ namespace Virus
             _timerRunning = true;
         }
 
-        protected void Freeze(float timeToExpire)
+        protected void StartFreeze(float timeToExpire)
         {
             FinalizeBehaviour(BehaviourCode.freezed);
 
@@ -177,6 +182,11 @@ namespace Virus
                 new FreezedBehaviourExecutor(timeToExpire, BehaviourFreezedInitialize, BehaviourFreezedRun, BehaviourFreezedExpire, Speed, FramePerSecond, RotationSpeed);
 
             StartBehaviour(freeze);
+        }
+
+        protected void EndFreeze()
+        {
+            FinalizeBehaviour(BehaviourCode.freezed);
         }
     }
  
@@ -230,7 +240,7 @@ namespace Virus
             }
         }
 
-        public void Finalize()
+        public void End()
         {
             _containerDelegateExpire(this);
         }

@@ -191,13 +191,13 @@ namespace Virus
                                                                       3, 5);
 
             // create Monster Factory
-            _monsterFactory = new MonsterFactory(_eventsManager, _whiteGlobulos,  _bossContainer, new AnimationFactory( Content, "Animations/Enemies.xml"))
+            _monsterFactory = new MonsterFactory(_eventsManager, _whiteGlobulos,  _bossContainer, new AnimationFactory( Content, "AnimationConfig/Enemies.xml"))
             {
                 VirusPosition = new Vector2(240, 400),
             };
 
             // create Bonus Factory
-            _bonusFactory = new BonusFactory(_eventsManager, _bonuses, new AnimationFactory( Content, "Animations/Bonuses.xml"))
+            _bonusFactory = new BonusFactory(_eventsManager, _bonuses, new AnimationFactory( Content, "AnimationConfig/Bonuses.xml"))
             {
                 VirusPosition = new Vector2(240, 400),
                 BonusSpeed = 200

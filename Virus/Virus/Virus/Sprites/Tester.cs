@@ -26,7 +26,7 @@ namespace Virus
 
             if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.bombHit)
             {
-                Freeze(5);
+                StartFreeze(5);
             }
         }
 

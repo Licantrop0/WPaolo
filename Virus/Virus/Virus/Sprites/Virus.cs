@@ -9,15 +9,15 @@ namespace Virus
     public enum ViruState
     {
         tranquil,
-        shocked,
-        happy,
+        //shocked,
+        //happy,
         died
     }
 
     public class Virus : CircularSprite
     {
         private ViruState _state;
-        private float _utilityTimer;
+        //private float _utilityTimer;
 
         public int Ammo { get; set; }
         public int Bombs { get; set; }
@@ -43,56 +43,9 @@ namespace Virus
             _physicalPoint = new PhysicalKinematicPoint();
         }
 
-        private void TransitionToShockedState()
-        {
-            _utilityTimer = 0;
+        
 
-            Lifes--;
-            Angle = (float)(_actSpriteEvent.Params[0]);
-            BlinkingFrequency = 30;
-            BlinkingTint = Color.Transparent;
-            Animate();
-            Blink();
-            State = ViruState.shocked;
-        }
-
-        private void TransitionToHappyState()
-        {
-            _utilityTimer = 0;
-
-            switch ((BonusType)_actSpriteEvent.Params[0])
-            {
-                case BonusType.oneUp:
-                    Lifes++;
-                    break;
-                case BonusType.bomb:
-                    Bombs++;
-                    break;
-                case BonusType.ammo:
-                    Ammo += 50;
-                    break;
-                case BonusType.bombAmmo:
-                    Bombs++;
-                    Ammo += 5;
-                    break;
-                default:
-                    break;
-            }
-
-            Tint = Color.Red;
-            Animate();
-            State = ViruState.happy;
-        }
-
-        private void TransitionToTranquilState()
-        {
-            ChangeAnimation("main");
-            Tint = Color.White;
-            Angle = 0; 
-            State = ViruState.tranquil;
-        }
-
-        public override void Update(GameTime gameTime)
+        /*public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             
@@ -180,6 +133,115 @@ namespace Virus
                 _state = ViruState.died;
             }
                 
+        }*/
+
+        /*private void TransitionToShockedState()
+        {
+            _utilityTimer = 0;
+
+            Lifes--;
+            Angle = (float)(_actSpriteEvent.Params[0]);
+            BlinkingFrequency = 30;
+            BlinkingTint = Color.Transparent;
+            Animate();
+            Blink();
+            State = ViruState.shocked;
         }
+
+        private void TransitionToHappyState()
+        {
+            _utilityTimer = 0;
+
+            switch ((BonusType)_actSpriteEvent.Params[0])
+            {
+                case BonusType.oneUp:
+                    Lifes++;
+                    break;
+                case BonusType.bomb:
+                    Bombs++;
+                    break;
+                case BonusType.ammo:
+                    Ammo += 50;
+                    break;
+                case BonusType.bombAmmo:
+                    Bombs++;
+                    Ammo += 5;
+                    break;
+                default:
+                    break;
+            }
+
+            Tint = Color.Red;
+            Animate();
+            State = ViruState.happy;
+        }
+
+        private void TransitionToTranquilState()
+        {
+            ChangeAnimation("main");
+            Tint = Color.White;
+            Angle = 0;
+            State = ViruState.tranquil;
+        }*/
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            switch (_state)
+            {
+                case ViruState.tranquil:
+
+                    Animate();
+
+                    if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
+                    {
+                        Lifes--;
+                        Angle = (float)(_actSpriteEvent.Params[0]);
+
+                        StartBlinking(1.5f, 30, Color.Transparent);
+                        BlinkingFrequency = 30;
+                        BlinkingTint = Color.Transparent;
+                    }
+                    else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
+                    {
+                        switch ((BonusType)_actSpriteEvent.Params[0])
+                        {
+                            case BonusType.oneUp:
+                                Lifes++;
+                                break;
+                            case BonusType.bomb:
+                                Bombs++;
+                                break;
+                            case BonusType.ammo:
+                                Ammo += 50;
+                                break;
+                            case BonusType.bombAmmo:
+                                Bombs++;
+                                Ammo += 5;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                    break;
+
+                case ViruState.died:
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (Lifes <= 0)
+            {
+                Ammo = 0;
+                _state = ViruState.died;
+            }
+
+        }
+
+
     }
 }

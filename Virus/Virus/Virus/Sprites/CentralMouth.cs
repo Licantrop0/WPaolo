@@ -13,7 +13,7 @@ namespace Virus.Sprites
         // fixed
         float _closingTime = 0.3f;
         float _idlePeriodMin = 0.5f;
-        float _idlePeriodMax = 2f;
+        float _idlePeriodMax = 1.5f;
 
         // to be initialized properly (they depend on left flag)
         bool _left;
@@ -38,7 +38,7 @@ namespace Virus.Sprites
         public CentralMouth(Dictionary<string, Animation> animations, BossLung bossLung, bool left, float radius, float touchRadius)
             : base(animations, radius, touchRadius)
         {
-            _hitPoints = 6;
+            _hitPoints = 20;
             _state = MouthState.idle;
             _left = left;
             _bossLung = bossLung;

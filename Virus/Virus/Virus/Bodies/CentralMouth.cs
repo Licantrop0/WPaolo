@@ -35,8 +35,8 @@ namespace Virus.Sprites
 
         #region constructors
 
-        public CentralMouth(Dictionary<string, Animation> animations, BossLung bossLung, bool left, float radius, float touchRadius)
-            : base(animations, radius, touchRadius)
+        public CentralMouth(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, BossLung bossLung, bool left)
+            : base(dynamicSystem, sprite, shape)
         {
             _hitPoints = 20;
             _state = MouthState.idle;
@@ -62,7 +62,7 @@ namespace Virus.Sprites
                 _dice = new Random(DateTime.Now.Minute);
             }
 
-            RestartTimer((float)_dice.RandomDouble(_idlePeriodMin, _idlePeriodMax));
+            ResetAndStartTimer((float)_dice.RandomDouble(_idlePeriodMin, _idlePeriodMax));
         }
 
         #endregion
@@ -96,16 +96,16 @@ namespace Virus.Sprites
                 // state in which mouth is closed
                 if (_state == MouthState.idle)
                 {
-                    ChangeAnimation("death");
-                    FramePerSecond = 10;
+                    Sprite.ChangeAnimation("death");
+                    Sprite.FramePerSecond = 10;
                     _state = MouthState.dying;
                 }
                 // state in which mouth is open or partially opened
                 else if (_state == MouthState.opening ||
                     _state == MouthState.mouthOpenAfter || _state == MouthState.mouthOpenBefore)
                 {
-                    SetAnimationVerse(false);
-                    FramePerSecond = AnimationFrames / _openingTime;
+                    Sprite.AnimationVerse = false;
+                    Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
                     _state = MouthState.dyingMouthClosing;
                 }
                 else if (_state == MouthState.closing)
@@ -114,13 +114,13 @@ namespace Virus.Sprites
                 }
             }
             // hanlde hit
-            else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.fingerHit)
+            else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.fingerHit)
             {
                 _hitPoints--;
                 StartBlinking(0.3f, 30, Color.Transparent);
             }
             // handle bomb
-            else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.bombHit)
+            else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.bombHit)
             {
                 StartFreeze(2);
             }
@@ -132,8 +132,8 @@ namespace Virus.Sprites
 
                     if (Exceeded())
                     {
-                        ChangeAnimation("opening");
-                        FramePerSecond = AnimationFrames / _openingTime;
+                        Sprite.ChangeAnimation("opening");
+                        Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
                         _state = MouthState.opening;
                     }
 
@@ -143,10 +143,10 @@ namespace Virus.Sprites
 
                     Animate();
 
-                    if (AnimationFinished())
+                    if (Sprite.AnimationFinished())
                     {
-                        FramePerSecond = 0;
-                        RestartTimer(_mouthOpenTime);
+                        Sprite.FramePerSecond = 0;
+                        ResetAndStartTimer(_mouthOpenTime);
                         _state = MouthState.mouthOpenBefore;
                     }
 
@@ -156,7 +156,7 @@ namespace Virus.Sprites
 
                     if (Exceeded())
                     {
-                        RestartTimer(_mouthOpenTime);
+                        ResetAndStartTimer(_mouthOpenTime);
                         FireGlobulo(gameTime.TotalGameTime);
                         _state = MouthState.mouthOpenAfter;
                     }
@@ -167,8 +167,8 @@ namespace Virus.Sprites
 
                     if (Exceeded())
                     {
-                        ChangeAnimation("closing");
-                        FramePerSecond = AnimationFrames / _closingTime;
+                        Sprite.ChangeAnimation("closing");
+                        Sprite.FramePerSecond = Sprite.AnimationFrames / _closingTime;
                         _state = MouthState.closing;
                     }
 
@@ -178,9 +178,9 @@ namespace Virus.Sprites
 
                     Animate();
 
-                    if (AnimationFinished())
+                    if (Sprite.AnimationFinished())
                     {
-                        RestartTimer((float)_dice.RandomDouble(_idlePeriodMin, _idlePeriodMax));
+                        ResetAndStartTimer((float)_dice.RandomDouble(_idlePeriodMin, _idlePeriodMax));
                         _state = MouthState.idle;
                     }
 
@@ -190,10 +190,10 @@ namespace Virus.Sprites
 
                     Animate();
 
-                    if (AnimationFinished())
+                    if (Sprite.AnimationFinished())
                     {
-                        ChangeAnimation("death");
-                        FramePerSecond = 10;
+                        Sprite.ChangeAnimation("death");
+                        Sprite.FramePerSecond = 10;
                         _state = MouthState.dying;
                     }
 
@@ -203,9 +203,9 @@ namespace Virus.Sprites
 
                     Animate();
 
-                    if (AnimationFinished())
+                    if (Sprite.AnimationFinished())
                     {
-                        _touchable = false;
+                        Touchable = false;
                         _state = MouthState.died;
                     }
 

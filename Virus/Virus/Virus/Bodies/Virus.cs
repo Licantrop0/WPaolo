@@ -14,10 +14,9 @@ namespace Virus
         died
     }
 
-    public class Virus : CircularSprite
+    public class Virus : TimingBehaviouralBody
     {
         private ViruState _state;
-        //private float _utilityTimer;
 
         public int Ammo { get; set; }
         public int Bombs { get; set; }
@@ -26,11 +25,11 @@ namespace Virus
         public ViruState State
         { get { return _state; } set { _state = value; } }
 
-        public Virus(Dictionary<string, Animation> animations, float radius, float touchRadius)
-            :base(animations, radius, touchRadius)
+        public Virus(DynamicSystem dynamicSystem, Sprite sprite, Shape shape)
+            :base(dynamicSystem, sprite, shape)
         {
-            _touchable = true;
-            FramePerSecond = 4f;
+            Touchable = true;
+            Sprite.FramePerSecond = 4f;
             Position = new Vector2(240, 400);
             _state = ViruState.tranquil;
             Ammo = 80;
@@ -38,12 +37,61 @@ namespace Virus
             Lifes = 3;
         }
 
-        protected override void InitializePhysics()
+        public override void Update(GameTime elapsedTime)
         {
-            _physicalPoint = new PhysicalKinematicPoint();
-        }
+            base.Update(elapsedTime);
 
-        
+            switch (_state)
+            {
+                case ViruState.tranquil:
+
+                    Animate();
+
+                    if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.virusGlobuloCollision)
+                    {
+                        Lifes--;
+                        Angle = (float)(_actBodyEvent.Params[0]);
+
+                        StartBlinking(1.5f, 30, Color.Transparent);
+                    }
+                    else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.virusBonusCollision)
+                    {
+                        switch ((BonusType)_actBodyEvent.Params[0])
+                        {
+                            case BonusType.oneUp:
+                                Lifes++;
+                                break;
+                            case BonusType.bomb:
+                                Bombs++;
+                                break;
+                            case BonusType.ammo:
+                                Ammo += 50;
+                                break;
+                            case BonusType.bombAmmo:
+                                Bombs++;
+                                Ammo += 5;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                    break;
+
+                case ViruState.died:
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (Lifes <= 0)
+            {
+                Ammo = 0;
+                _state = ViruState.died;
+            }
+
+        }
 
         /*public override void Update(GameTime gameTime)
         {
@@ -184,63 +232,7 @@ namespace Virus
             State = ViruState.tranquil;
         }*/
 
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-
-            switch (_state)
-            {
-                case ViruState.tranquil:
-
-                    Animate();
-
-                    if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusGlobuloCollision)
-                    {
-                        Lifes--;
-                        Angle = (float)(_actSpriteEvent.Params[0]);
-
-                        StartBlinking(1.5f, 30, Color.Transparent);
-                        BlinkingFrequency = 30;
-                        BlinkingTint = Color.Transparent;
-                    }
-                    else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
-                    {
-                        switch ((BonusType)_actSpriteEvent.Params[0])
-                        {
-                            case BonusType.oneUp:
-                                Lifes++;
-                                break;
-                            case BonusType.bomb:
-                                Bombs++;
-                                break;
-                            case BonusType.ammo:
-                                Ammo += 50;
-                                break;
-                            case BonusType.bombAmmo:
-                                Bombs++;
-                                Ammo += 5;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-
-                    break;
-
-                case ViruState.died:
-                    break;
-
-                default:
-                    break;
-            }
-
-            if (Lifes <= 0)
-            {
-                Ammo = 0;
-                _state = ViruState.died;
-            }
-
-        }
+        
 
 
     }

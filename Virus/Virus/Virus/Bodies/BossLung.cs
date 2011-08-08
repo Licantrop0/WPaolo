@@ -18,7 +18,7 @@ namespace Virus
 		died
 	}
 
-	public class BossLung :  RectangularSprite
+	public class BossLung :  Boss
 	{
 		#region privare members states
 
@@ -62,21 +62,17 @@ namespace Virus
 
 		#endregion
 
-		#region properties
-
-		public bool SpecialMoveHit { get; set; }
-
-		#endregion
-
 		#region constructors
 
-		public BossLung(Dictionary<string, Animation> animations, float width, float height, float touchWidth, float touchHeight, AnimationFactory mouthAnimationFactory, GameEventsManager gm, MonsterFactory mf)
-			: base(animations, width, height, touchWidth, touchHeight)
+		public BossLung(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, AnimationFactory mouthAnimationFactory, GameEventsManager gm, MonsterFactory mf)
+			: base(dynamicSystem, sprite, shape)
 		{
-			_touchable = true;
+			Touchable = true;
 
 			Position = new Vector2(240, -100);
 			Speed = new Vector2(0, 20);
+
+			Sprite.FramePerSecond = 3.5f;
 
 			_mouthAnimationFactory = mouthAnimationFactory;
 
@@ -88,17 +84,23 @@ namespace Virus
 			// create lateral mouths
 			for (i = 0; i < _mouthsPerQueue; i++)
 			{
-				_idleLeftMouths.Add(new LateralMouth(_mouthAnimationFactory.CreateAnimations("Mouth"), 40, 40));
+				_idleLeftMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
+													 new Sprite(_mouthAnimationFactory.CreateAnimations("Mouth")),
+													 new CircularShape(40, 40)));
 			}
 
 			for (i = 0; i < _mouthsPerQueue; i++)
 			{
-				_idleBottomMouths.Add(new LateralMouth(_mouthAnimationFactory.CreateAnimations("Mouth"), 40, 40));
+				_idleBottomMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
+													   new Sprite(_mouthAnimationFactory.CreateAnimations("Mouth")),
+													   new CircularShape(40, 40)));
 			}
 
 			for (i = 0; i < _mouthsPerQueue; i++)
 			{
-				_idleRightMouths.Add(new LateralMouth(_mouthAnimationFactory.CreateAnimations("Mouth"), 40, 40));
+				_idleRightMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
+													  new Sprite(_mouthAnimationFactory.CreateAnimations("Mouth")),
+													  new CircularShape(40, 40)));
 			}
 
 			// lateral mouths will be called when central mouths are all dead!
@@ -108,17 +110,11 @@ namespace Virus
 			// create central mouths
 			for (i = 0; i < 2; i++)
 			{
-				_centralMouths.Add(new CentralMouth(_mouthAnimationFactory.CreateAnimations("CentralMouth"), this, i == 0, 40, 40));
+				_centralMouths.Add(new CentralMouth(new MassDoubleIntegratorDynamicSystem(),
+													new Sprite(_mouthAnimationFactory.CreateAnimations("CentralMouth")),
+													new CircularShape(40, 40),
+													this, i == 0));
 			}
-		}
-
-		#endregion
-
-		#region physics initialization
-
-		protected override void InitializePhysics()
-		{
-			_physicalPoint = new PhysicalMassSystemPoint();
 		}
 
 		#endregion
@@ -157,10 +153,10 @@ namespace Virus
 			awakenMouth.Speed = speedVersor * _approchingSpeed;
 
 			// set rotational speed
-			awakenMouth.RotationSpeed = (int)position % 2 == 0 ? _rotatingSpeed : -_rotatingSpeed;
+			awakenMouth.AngularSpeed = (int)position % 2 == 0 ? _rotatingSpeed : -_rotatingSpeed;
 
 			// awake!
-			awakenMouth.AddSpriteEvent(new SpriteEvent(SpriteEventCode.awake));
+			awakenMouth.AddBodyEvent(new BodyEvent(BodyEventCode.awake));
 		}
 
 		private void HandleCentralMouths(GameTime gameTime)
@@ -227,14 +223,13 @@ namespace Virus
 
 		#region interface with user inputs
 
-		// deve diventare un metodo di una interfaccia che i boss ereditano e che ogni boss deve implementare
-		public void HandleUserTouch(Vector2 _touchPoint, ref int enemiesHit)
+		public override void HandleUserTouch(Vector2 _touchPoint, ref int enemiesHit)
 		{
 			// contact with main blob
 			if (Touched(_touchPoint))
 			{
 				enemiesHit++;
-				this.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit));
+				this.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
 			}
 
 			// contact with mouths
@@ -251,7 +246,7 @@ namespace Virus
 			{
 				if (m.Touched(touchPoint))
 				{
-					m.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit));
+					m.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
 					enemiesHit++;
 				}
 			}
@@ -263,7 +258,7 @@ namespace Virus
 			{
 				if (m.Touched(touchPoint))
 				{
-					m.AddSpriteEvent(new SpriteEvent(SpriteEventCode.fingerHit));
+					m.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
 					enemiesHit++;
 				}
 			}
@@ -288,12 +283,12 @@ namespace Virus
 				}
 			}
 
-			if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.bombHit)
+			if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.bombHit)
 			{
-				_activeLeftMouths.ForEach(m => m.AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit)));
-				_activeBottomMouths.ForEach(m => m.AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit)));
-				_activeRightMouths.ForEach(m => m.AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit)));
-				_centralMouths.ForEach(m => m.AddSpriteEvent(new SpriteEvent(SpriteEventCode.bombHit)));
+				_activeLeftMouths.ForEach(m => m.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit)));
+				_activeBottomMouths.ForEach(m => m.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit)));
+				_activeRightMouths.ForEach(m => m.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit)));
+				_centralMouths.ForEach(m => m.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit)));
 				_mouthsFreezed = true;
 				_mouthFreezedTimer = 0;
 			}
@@ -301,7 +296,7 @@ namespace Virus
 			// if central mouths are died, awake lateral mouths
 			if (!_lateralMouthCall && _centralMouths.All(cm => cm.State == MouthState.died))
 			{
-				_lateralMouthsTimeToCall = 3;
+				_lateralMouthsTimeToCall = 1.5f;
 				_lateralMouthCall = true;
 			}
 
@@ -314,12 +309,12 @@ namespace Virus
 			{
 				case BossLungState.approaching:
 
-					Move();
+					Traslate();
 
 					if (Position.Y >= 128)
 					{
 						_state = BossLungState.standing;
-						RestartTimer(13);
+						ResetAndStartTimer(13);
 					}
 
 					break;
@@ -328,12 +323,12 @@ namespace Virus
 
 					_specialMoveFlag = false;
 
-					if (Exceeded() && IsAnimationBegin())
+					if (Exceeded() && Sprite.IsAnimationBegin())
 					{
 						Recycle();
-						ChangeAnimation("vomit");
-						FramePerSecond = 3.5f;
-						SetAnimationVerse(true);
+						Sprite.ChangeAnimation("vomit");
+						Sprite.FramePerSecond = 3.5f;
+						Sprite.AnimationVerse = true;
 						_state = BossLungState.vomiting;
 					}
 
@@ -342,52 +337,52 @@ namespace Virus
 				case BossLungState.vomiting:
 
 					// condition to reverse vomiting
-					if (FrameIndex() <= 5)
+					if (Sprite.FrameIndex() <= 5)
 					{
-						if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.fingerHit)
+						if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.fingerHit)
 						{
-							DelayAnimation();
+							Sprite.DelayAnimation();
 							StartBlinking(0.3f, 30, Color.Transparent);
 							_reverseVomitingHitPoints++;
 
 							if (_reverseVomitingHitPoints >= 3)
 							{
 								_reverseVomitingHitPoints = 0;
-								SetAnimationVerse(false);
-								FramePerSecond = 3.5f;
+								Sprite.AnimationVerse = false;
+								Sprite.FramePerSecond = 3.5f;
 								_state = BossLungState.vomitingback;
 
 								break;
 							}
 						}
-						else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.bombHit)
+						else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.bombHit)
 						{
 							_reverseVomitingHitPoints = 0;
-							SetAnimationVerse(false);
-							FramePerSecond = 3.5f;
+							Sprite.AnimationVerse = false;
+							Sprite.FramePerSecond = 3.5f;
 							_state = BossLungState.vomitingback;
 							break;
 						}
 					}
 
-					if (FrameIndex() == 5)
+					if (Sprite.FrameIndex() == 5)
 					{
-						FramePerSecond = 2.0f;
+						Sprite.FramePerSecond = 2.0f;
 					}
-					else if (FrameIndex() == 6)
+					else if (Sprite.FrameIndex() == 6)
 					{
-						FramePerSecond = 10.0f;
+						Sprite.FramePerSecond = 10.0f;
 					}
-					else if (FrameIndex() == 24 && !_specialMoveFlag)
+					else if (Sprite.FrameIndex() == 24 && !_specialMoveFlag)
 					{
 						SpecialMoveHit = true;
 						_specialMoveFlag = true;
 					}
-					else if (AnimationFinished())
+					else if (Sprite.AnimationFinished())
 					{
-						ChangeAnimation("main");
+						Sprite.ChangeAnimation("main");
 						_reverseVomitingHitPoints = 0;
-						FramePerSecond = 3.5f;
+						Sprite.FramePerSecond = 3.5f;
 						_state = BossLungState.standing;
 					}
 
@@ -395,20 +390,20 @@ namespace Virus
 
 				case BossLungState.vomitingback:
 
-					if (AnimationFinished())
+					if (Sprite.AnimationFinished())
 					{
 						if (_diedMouthCounter < 3 * _mouthsPerQueue)
 						{
-							ChangeAnimation("main");
-							FramePerSecond = 3.5f;
+							Sprite.ChangeAnimation("main");
+							Sprite.FramePerSecond = 3.5f;
 							_state = BossLungState.standing;
 						}
 						else
 						{
 							_centralMouths.RemoveAt(0);
 							_centralMouths.RemoveAt(0);
-							ChangeAnimation("death");
-							FramePerSecond = 3.5f;
+							Sprite.ChangeAnimation("death");
+							Sprite.FramePerSecond = 3.5f;
 							_state = BossLungState.dying;
 						}
 					}
@@ -417,7 +412,7 @@ namespace Virus
 
 				case BossLungState.dying:
 
-					if (AnimationFinished())
+					if (Sprite.AnimationFinished())
 					{
 						_state = BossLungState.died;
 					}

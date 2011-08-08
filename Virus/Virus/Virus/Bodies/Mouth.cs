@@ -23,7 +23,7 @@ namespace Virus.Sprites
         died
     }
 
-    public abstract class Mouth : CircularSprite
+    public abstract class Mouth : Enemy
     {
         #region static members
 
@@ -40,6 +40,11 @@ namespace Virus.Sprites
 
         #endregion
 
+        public MouthState State 
+        {
+            get { return _state; }
+        }
+
         #region protected members state
 
         protected MouthState _state;
@@ -47,19 +52,12 @@ namespace Virus.Sprites
 
         #endregion
 
-        #region properties
-
-        public MouthState State
-        { get { return _state; } }
-
-        #endregion
-
         #region costructors
 
-        public Mouth(Dictionary<string, Animation> animations, float radius, float touchRadius)
-            :base(animations, radius, touchRadius)
+        public Mouth(DynamicSystem dynamicSystem, Sprite sprite, Shape shape)
+            :base(dynamicSystem, sprite, shape)
         {
-
+            Touchable = true;
         }
 
         #endregion
@@ -70,13 +68,14 @@ namespace Virus.Sprites
 
         #endregion
 
-        #region physics initialization
-
-        protected override void InitializePhysics()
+        public override bool Moving
         {
-            _physicalPoint = new PhysicalMassSystemPoint();
+            get { return false; }
         }
 
-        #endregion
+        public override bool Died
+        {
+            get { return (_state == MouthState.died); }
+        }
     }
 }

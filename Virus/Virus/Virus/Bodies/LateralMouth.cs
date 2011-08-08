@@ -34,8 +34,8 @@ namespace Virus.Sprites
 
         #region constructors
 
-        public LateralMouth(Dictionary<string, Animation> animations, float radius, float touchRadius)
-            : base(animations, radius, touchRadius)
+        public LateralMouth(DynamicSystem dynamicSystem, Sprite sprite, Shape shape)
+            : base(dynamicSystem, sprite, shape)
         {
             _hitPoints = 3;
             _state = MouthState.idle;
@@ -72,27 +72,27 @@ namespace Virus.Sprites
                 if (_state == MouthState.approching || _state == MouthState.leaving ||
                     _state == MouthState.preRotating || _state == MouthState.rotating || _state == MouthState.postRotating)
                 {
-                    ChangeAnimation("death");
-                    FramePerSecond = 10;
+                    Sprite.ChangeAnimation("death");
+                    Sprite.FramePerSecond = 10;
                     _state = MouthState.dying;
                 }
                 // state in which mouth is open or partially opened
                 else if (_state == MouthState.closing || _state == MouthState.opening ||
                     _state == MouthState.mouthOpenAfter || _state == MouthState.mouthOpenBefore)
                 {
-                    SetAnimationVerse(false);
-                    FramePerSecond = AnimationFrames / _openingTime;
+                    Sprite.AnimationVerse = false;
+                    Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
                     _state = MouthState.dyingMouthClosing;
                 }
             }
             // hanlde hit
-            else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.fingerHit)
+            else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.fingerHit)
             {
                 _hitPoints--;
                 StartBlinking(0.3f, 30, Color.Transparent);
             }
             // handle bomb
-            else if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.bombHit)
+            else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.bombHit)
             {
                 StartFreeze(2);
             }
@@ -102,7 +102,7 @@ namespace Virus.Sprites
             {
                 case MouthState.idle:
 
-                    if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.awake)
+                    if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.awake)
                     {
                         // assign leaving speed
                         _leavingSpeed = -Speed;
@@ -113,17 +113,17 @@ namespace Virus.Sprites
 
                         // initialize and change state
                         _spittedGlobulos = 0;
-                        ChangeAnimation("opening");
-                        FramePerSecond = 0;
+                        Sprite.ChangeAnimation("opening");
+                        Sprite.FramePerSecond = 0;
 
-                        _touchable = true;
+                        Touchable = true;
                         _state = MouthState.approching;
                     }
                     break;
 
                 case MouthState.approching:
 
-                    Move();
+                    Traslate();
 
                     if (Vector2.Distance(Position, _initialPosition) >= DELTA_SPACE)
                     {
@@ -139,10 +139,10 @@ namespace Virus.Sprites
                     if (Math.Abs(_initialAngle - Angle) >= DELTA_ANGLE / 2)
                     {
                         // reverse rotation asped for rotating state
-                        _rotationSpeed = -_rotationSpeed;
+                        AngularSpeed = -AngularSpeed;
 
                         // initialize variables for first mouth opening
-                        FramePerSecond = AnimationFrames / _openingTime;
+                        Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
                         _state = MouthState.opening;
                     }
 
@@ -152,11 +152,11 @@ namespace Virus.Sprites
 
                     Animate();
 
-                    if (AnimationFinished())
+                    if (Sprite.AnimationFinished())
                     {
-                        SetAnimationVerse(false);
-                        FramePerSecond = 0;
-                        RestartTimer(_mouthOpenTime / 2);
+                        Sprite.AnimationVerse = false;
+                        Sprite.FramePerSecond = 0;
+                        ResetAndStartTimer(_mouthOpenTime / 2);
                         _state = MouthState.mouthOpenBefore;
                     }
 
@@ -166,7 +166,7 @@ namespace Virus.Sprites
 
                     if (Exceeded())
                     {
-                        RestartTimer(_mouthOpenTime / 2);
+                        ResetAndStartTimer(_mouthOpenTime / 2);
                         _spittedGlobulos++;
                         _spitAngle = Angle;
                         FireGlobulo(gameTime.TotalGameTime);
@@ -179,7 +179,7 @@ namespace Virus.Sprites
 
                     if (Exceeded())
                     {
-                        FramePerSecond = AnimationFrames / _openingTime;
+                        Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
                         _state = MouthState.closing;
                     }
 
@@ -189,13 +189,13 @@ namespace Virus.Sprites
 
                     Animate();
 
-                    if (AnimationFinished())
+                    if (Sprite.AnimationFinished())
                     {
-                        SetAnimationVerse(true);
+                        Sprite.AnimationVerse = true;
 
                         if (_spittedGlobulos == _globulosToSpit)
                         {
-                            _rotationSpeed = -_rotationSpeed;
+                            AngularSpeed = -AngularSpeed;
                             _state = MouthState.postRotating;
                         }
                         else
@@ -212,7 +212,7 @@ namespace Virus.Sprites
 
                     if (Math.Abs(Angle - _spitAngle) >= DELTA_ANGLE / (_globulosToSpit - 1))
                     {
-                        FramePerSecond = AnimationFrames / _openingTime;
+                        Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
                         _state = MouthState.opening;
                     }
 
@@ -236,12 +236,12 @@ namespace Virus.Sprites
 
                     if (Math.Abs(Vector2.Distance(Position, _initialPosition)) < 3)
                     {
-                        _touchable = false;
+                        Touchable = false;
                         _state = MouthState.idle;
                     }
                     else
                     {
-                        Move();
+                        Traslate();
                     }
 
                     break;
@@ -250,10 +250,10 @@ namespace Virus.Sprites
 
                     Animate();
 
-                    if (AnimationFinished())
+                    if (Sprite.AnimationFinished())
                     {
-                        ChangeAnimation("death");
-                        FramePerSecond = 10;
+                        Sprite.ChangeAnimation("death");
+                        Sprite.FramePerSecond = 10;
                         _state = MouthState.dying;
                     }
 
@@ -263,11 +263,11 @@ namespace Virus.Sprites
 
                     Animate();
 
-                    if (AnimationFinished())
+                    if (Sprite.AnimationFinished())
                     {
-                        RestartTimer(1);
-                        FadeSpeed = 1f;
-                        _touchable = false;
+                        ResetAndStartTimer(1);
+                        Sprite.FadeSpeed = 1f;
+                        Touchable = false;
                         _state = MouthState.fading;
                     }
 
@@ -275,7 +275,7 @@ namespace Virus.Sprites
 
                 case MouthState.fading:
 
-                    Fade();
+                    Sprite.Fade();
 
                     if (Exceeded())
                     {

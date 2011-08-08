@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace Virus
 {
-    public class TimingBehaviouralSprite : Sprite
+    public class TimingBehaviouralBody : Body
     {
         // main timer
         float _timer = 0;
@@ -21,8 +21,8 @@ namespace Virus
         public bool Freezed { get; set; }
         public bool Blinking { get; set; }
 
-        public TimingBehaviouralSprite(Dictionary<string, Animation> animations)
-            :base(animations)
+        public TimingBehaviouralBody(DynamicSystem dynamicSystem, Sprite sprite, Shape shape)
+            :base(dynamicSystem, sprite, shape)
         {
 
         }
@@ -39,7 +39,12 @@ namespace Virus
             _endingTime = endingTime;
         }
 
-        protected void RestartTimer(float endingTime)
+        protected void StopTimer()
+        {
+            _timerRunning = false;
+        }
+
+        protected void ResetAndStartTimer(float endingTime)
         {
             _timer = 0;
             _timerRunning = true;
@@ -120,7 +125,7 @@ namespace Virus
             if (blink.BlinkingTimer > blink.BlinkingPeriod)
             {
                 blink.BlinkingTimer -= blink.BlinkingPeriod;
-                Tint = Tint == blink.RollbackTint ? blink.BlinkingTint : blink.RollbackTint;
+                Sprite.Tint = Sprite.Tint == blink.RollbackTint ? blink.BlinkingTint : blink.RollbackTint;
             }
         }
 
@@ -129,7 +134,7 @@ namespace Virus
             BlinikingBehaviourExecutor blink = (BlinikingBehaviourExecutor)b;
 
             Blinking = false;
-            Tint = blink.RollbackTint;
+            Sprite.Tint = blink.RollbackTint;
         }
 
         protected void StartBlinking(float timeToExpire, float blinkingFrequency, Color blinkingTint)
@@ -137,7 +142,7 @@ namespace Virus
             FinalizeBehaviour(BehaviourCode.blinking);
 
             BehaviourExecutor blink =
-                new BlinikingBehaviourExecutor(timeToExpire, BehaviourBlinkingInitialize, BehaviourBlinkingRun, BehaviourBlinkingExpire, blinkingFrequency, blinkingTint, Tint);
+                new BlinikingBehaviourExecutor(timeToExpire, BehaviourBlinkingInitialize, BehaviourBlinkingRun, BehaviourBlinkingExpire, blinkingFrequency, blinkingTint, Sprite.Tint);
 
             StartBehaviour(blink);
         }
@@ -154,8 +159,8 @@ namespace Virus
 
             Freezed = true;
             Speed = Vector2.Zero;
-            RotationSpeed = 0;
-            FramePerSecond = 0;
+            AngularSpeed = 0;
+            Sprite.FramePerSecond = 0;
             _timerRunning = false;
         }
 
@@ -169,8 +174,8 @@ namespace Virus
 
             Freezed = false;
             Speed = freeze.RollbackSpeed;
-            RotationSpeed = freeze.RollbackRotationSpeed;
-            FramePerSecond = freeze.RollbackFPS;
+            AngularSpeed = freeze.RollbackRotationSpeed;
+            Sprite.FramePerSecond = freeze.RollbackFPS;
             _timerRunning = true;
         }
 
@@ -179,7 +184,7 @@ namespace Virus
             FinalizeBehaviour(BehaviourCode.freezed);
 
             BehaviourExecutor freeze =
-                new FreezedBehaviourExecutor(timeToExpire, BehaviourFreezedInitialize, BehaviourFreezedRun, BehaviourFreezedExpire, Speed, FramePerSecond, RotationSpeed);
+                new FreezedBehaviourExecutor(timeToExpire, BehaviourFreezedInitialize, BehaviourFreezedRun, BehaviourFreezedExpire, Speed, Sprite.FramePerSecond, AngularSpeed);
 
             StartBehaviour(freeze);
         }

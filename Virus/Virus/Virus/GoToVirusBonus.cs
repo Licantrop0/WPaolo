@@ -22,7 +22,7 @@ namespace Virus
         bombAmmo
     }
 
-    public class GoToVirusBonus : CircularSprite
+    public class GoToVirusBonus : TimingBehaviouralBody
     {
         BonusState _state;
         float _utilityTimer;
@@ -38,21 +38,16 @@ namespace Virus
             get { return _type; }
         }
 
-        public GoToVirusBonus(Dictionary<string, Animation> animations, float radius, float touchRadius, BonusType type)
-            : base(animations, radius, touchRadius)
+        public GoToVirusBonus(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, BonusType type)
+            : base(dynamicSystem, sprite, shape)
         {
-             _touchable = true;
+            Touchable = true;
 
-            ChangeAnimation("main");
-            FramePerSecond = 0;
-            RotationSpeed = 1f;
+            Sprite.ChangeAnimation("main");
+            Sprite.FramePerSecond = 0;
+            AngularSpeed = 1f;
             _state = BonusState.moving;
             _type = type;
-        }
-
-        protected override void InitializePhysics()
-        {
-            _physicalPoint = new PhysicalMassSystemPoint();
         }
 
         public override void Update(GameTime gameTime)
@@ -64,29 +59,29 @@ namespace Virus
             {
                 case BonusState.moving:
 
-                    if (_actSpriteEvent != null && _actSpriteEvent.Code == SpriteEventCode.virusBonusCollision)
+                    if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.virusBonusCollision)
                     {
                         _state = BonusState.fading;
-                        _touchable = false;
+                        Touchable = false;
                         Speed = Vector2.Zero;
-                        FadeSpeed = 1.0f;
+                        Sprite.FadeSpeed = 1.0f;
                         _utilityTimer = 0;
                     }
-                    else if (_actSpriteEvent != null && (_actSpriteEvent.Code == SpriteEventCode.fingerHit || _actSpriteEvent.Code == SpriteEventCode.bombHit))
+                    else if (_actBodyEvent != null && (_actBodyEvent.Code == BodyEventCode.fingerHit || _actBodyEvent.Code == BodyEventCode.bombHit))
                     {
                         _state = BonusState.falling;
-                        _touchable = false;
+                        Touchable = false;
                         Speed = Vector2.Zero;
-                        ScalingSpeed = Vector2.One * (-1f);
+                        ResizingSpeed = Vector2.One * (-29f);
                         if ((int)Position.X % 2 == 0)
-                            RotationSpeed = 2 * (float)Math.PI;
+                            AngularSpeed = 2 * (float)Math.PI;
                         else
-                            RotationSpeed = -2 * (float)Math.PI;
+                            AngularSpeed = -2 * (float)Math.PI;
                         _utilityTimer = 0;
                     }
                     else
                     {
-                        Move();
+                        Traslate();
                         Rotate();
                     }
 
@@ -94,7 +89,7 @@ namespace Virus
 
                 case BonusState.fading:
 
-                    Fade();
+                    Sprite.Fade();
                     _utilityTimer += _elapsedTime;
                     if (_utilityTimer > 1)
                     {
@@ -105,7 +100,7 @@ namespace Virus
 
                 case BonusState.falling:
 
-                    ChangeDimension();
+                    Resize();
                     Rotate();
                     _utilityTimer += _elapsedTime;
                     if (_utilityTimer > 1)

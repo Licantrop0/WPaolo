@@ -9,7 +9,12 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Virus
 {
-	public class Level1DifficultyPackEnemies
+    public abstract class LevelDifficultyPack
+    {
+
+    }
+
+	public class Level1DifficultyPackEnemies : LevelDifficultyPack
 	{
 		public TimeSpan SimpleEnemySchedulingTimeIntervalMin { get; set; }
 		public TimeSpan SimpleEnemySchedulingTimeIntervalMax { get; set; }
@@ -116,13 +121,13 @@ namespace Virus
 
 	public class MonsterFactory : SpriteFactory
 	{
-		List<WhiteGlobulo> _enemies;                // reference to the game enemies list
-		List<BossLung> _bossContainer;                   
+		List<Enemy> _enemies;                // reference to the game enemies list
+		List<Boss> _bossContainer;                   
 
 		// valori cablati
 		const float VIRUS_RADIUS = 37;
-		float ENEMY_RADIUS = 29;
-		float ENEMY_TOUCH_RADIUS = 34;
+		float GLOBULO_RADIUS = 29;
+		float GLOBULO_TOUCH_RADIUS = 34;
 		
 		// configuration
 		AnimationFactory _animationFactory;
@@ -140,7 +145,7 @@ namespace Virus
 		protected int _numberOfMonstersMin;
 		protected int _numberOfMonstersMax;
 
-		public MonsterFactory(GameEventsManager eventManager, List<WhiteGlobulo> enemies, List<BossLung> bossContainer, AnimationFactory animationFactory)
+		public MonsterFactory(GameEventsManager eventManager, List<Enemy> enemies, List<Boss> bossContainer, AnimationFactory animationFactory)
 			:base(eventManager)
 		{
 			_enemies = enemies;
@@ -267,7 +272,9 @@ namespace Virus
 		private void CreateSimpleEnemy()
 		{
 			// create simple enemy
-			WhiteGlobulo enemy = new WhiteGlobulo(_animationFactory.CreateAnimations("WhiteGlobulo"), ENEMY_RADIUS, ENEMY_TOUCH_RADIUS);
+			var enemy = new WhiteGlobulo(new MassDoubleIntegratorDynamicSystem(),
+                                         new Sprite(_animationFactory.CreateAnimations("WhiteGlobulo")),
+                                         new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS));
 
 			Vector2 enemyPosition = SetSpriteInitialPositionOnScreenBorder();
 			enemy.Position = enemyPosition;
@@ -276,7 +283,7 @@ namespace Virus
 			 float timeToReach = (float)DoubleDiceResult(_timeToReachMin, _timeToReachMax);
 
 			// calculate speed modulus
-			float distance = Vector2.Distance(enemyPosition, _virusPosition) - enemy.Radius - VIRUS_RADIUS; 
+             float distance = Vector2.Distance(enemyPosition, _virusPosition); 
 			float speedModulus = distance / timeToReach;
 
 			// set enemy speed
@@ -288,11 +295,10 @@ namespace Virus
 		private void CreateBossLung()
 		{
 			// create boss
-			BossLung boss = new BossLung(_animationFactory.CreateAnimations("BossLung"), 240, 178, 240, 178,
-				_animationFactory, _eventsManager, this)
-			{
-				FramePerSecond = 3.5f
-			};
+            BossLung boss = new BossLung(new MassDoubleIntegratorDynamicSystem(),
+                                         new Sprite(_animationFactory.CreateAnimations("BossLung")),
+                                         new RectangularShape(240, 178, 240, 178),
+                                         _animationFactory, _eventsManager, this);
 
 			_bossContainer.Add(boss);
 		}
@@ -336,7 +342,9 @@ namespace Virus
 		private void CreateBouncingEnemy(Vector2 position, Vector2 speed)
 		{
 			// create bouncing enemy
-			BouncingWhiteGlobulo enemy = new BouncingWhiteGlobulo(_animationFactory.CreateAnimations("WhiteGlobulo"), ENEMY_RADIUS, ENEMY_TOUCH_RADIUS)
+			BouncingWhiteGlobulo enemy = new BouncingWhiteGlobulo(new MassDoubleIntegratorDynamicSystem(),
+                                                                  new Sprite(_animationFactory.CreateAnimations("WhiteGlobulo")),
+                                                                  new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS))
 			{
 				Position = position,
 				Speed = speed,
@@ -347,7 +355,9 @@ namespace Virus
 
 		private void CreateMouthBullet(Vector2 position, Vector2 speed)
 		{
-			WhiteGlobulo enemy = new WhiteGlobulo(_animationFactory.CreateAnimations("WhiteGlobulo"), ENEMY_RADIUS, ENEMY_TOUCH_RADIUS)
+			WhiteGlobulo enemy = new WhiteGlobulo(new MassDoubleIntegratorDynamicSystem(),
+                                                  new Sprite(_animationFactory.CreateAnimations("WhiteGlobulo")),
+                                                  new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS))
 			{
 				Position = position,
 				Speed = speed,
@@ -424,7 +434,11 @@ namespace Virus
 		private void CreateBonus(string bonusSpriteName, BonusType bonusType)
 		{
 			// create bonus
-			GoToVirusBonus bonus = new GoToVirusBonus(_animationFactory.CreateAnimations(bonusSpriteName), BONUS_RADIUS, BONUS_TOUCH_RADIUS, bonusType);
+			GoToVirusBonus bonus = new GoToVirusBonus(new MassDoubleIntegratorDynamicSystem(),
+                                                      new Sprite(_animationFactory.CreateAnimations(bonusSpriteName)),
+                                                      new CircularShape(BONUS_RADIUS, BONUS_TOUCH_RADIUS),
+                                                      bonusType);
+
 			bonus.Position = SetSpriteInitialPositionOnTopOrBotBorder();
 
 			// set bonus speed

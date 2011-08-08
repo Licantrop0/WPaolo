@@ -9,6 +9,6 @@ namespace Virus
     public interface ITouchable
     {
         bool Touched(Vector2 fingerPosition);
-        bool Touchable();
+        bool Touchable { get; set; }
     }
 }

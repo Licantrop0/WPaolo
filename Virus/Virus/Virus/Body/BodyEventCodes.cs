@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Virus
 {
-    public enum SpriteEventCode
+    public enum BodyEventCode
     {
         fingerHit,
         bombHit,

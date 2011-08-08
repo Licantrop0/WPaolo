@@ -9,7 +9,7 @@ namespace Virus
 {
     public abstract class GameEventHandler
     {
-        protected Game1 _game;
+        protected VirusGame _game;
 
         protected GameEventsManager _eventsManager;    // reference to the game manager
 

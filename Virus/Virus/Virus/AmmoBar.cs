@@ -72,7 +72,7 @@ namespace Virus
             _scaleX = (float)virusAmmo / 100f;
         }
 
-        public void Draw(SpriteBatch spriteBatch, int virus)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture,
                              new Vector2(0, 790),

@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
+using OpenXLive;
+using OpenXLive.Forms;
 
 namespace Virus
 {
@@ -20,25 +22,28 @@ namespace Virus
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        //ContentManager[] levelsContentManagers;
+        // Open Xlive manager
+        private string APISecretKey = "sgTU4GJkRcbKFM3XuaqjtN5V";
+        XLiveFormManager manager;
+        bool _play = false;
 
         // writings
         SpriteFont _bombString;
         SpriteFont _delayString;
         SpriteFont _timeString;
 
-        // monstres and bonuses factory
-        MonsterFactory _monsterFactory;
-        BonusFactory _bonusFactory;
-
         // virus
         Virus _virus;
+        Texture2D _virusLifeTexture;
 
         // ammo bar
         AmmoBar _ammoBar;
 
         // levels
-        List<Level> _levels = new List<Level>(3);
+        Level _currentLevel;
+
+        // prophiling
+        int _delayCount = 0;
 
         public VirusGame()
         {
@@ -62,7 +67,12 @@ namespace Virus
         /// </summary>
         protected override void Initialize()
         {
-            //_enemiesKilledByAmmoTriggerNumber = 50;
+            // Create XLive FormManager
+            manager = new XLiveFormManager(this, APISecretKey);
+            manager.OpenSession();
+
+            // Add XLive FormManager in Components
+            Components.Add(manager);
 
             base.Initialize();
             GC.Collect();
@@ -77,6 +87,16 @@ namespace Virus
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // Load OpenXLive stuff
+            Texture2D background = this.Content.Load<Texture2D>("OpenXLive");
+            XLiveStartupForm form = new XLiveStartupForm(this.manager);
+
+            form.Background = background;
+            form.AnimationIntervalSeconds = 0;
+            form.AnimationSpeed = 5;
+            form.BackgroundAnimation = true;
+            form.Show();
+
             // create score and debug fonts and ammo bar
             _bombString = Content.Load<SpriteFont>("Segoe20");
             _delayString = Content.Load<SpriteFont>("Segoe20");
@@ -90,12 +110,12 @@ namespace Virus
             _virus = new Virus(new MassDoubleIntegratorDynamicSystem(),
                                new Sprite(virusAnimations),
                                new CircularShape(40, 40));
-            
+
             // create life virus
             _virusLifeTexture = Content.Load<Texture2D>("virusLifeLittle");
 
-            // fa il load content del primo livello
-            _levels.Add(new Level(this, graphics, spriteBatch, 1, _virus, _ammoBar));
+            // fa il load content del primo livello -> va fatto una volta scelto il livello...
+            _currentLevel = new Level(this, graphics, spriteBatch, 1, _virus);
         }
 
         /// <summary>
@@ -105,6 +125,92 @@ namespace Virus
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+        }
+
+
+
+        /// <summary>
+        /// Allows the game to run logic such as updating the world,
+        /// checking for collisions, gathering input, and playing audio.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Update(GameTime gameTime)
+        {
+            // Allows the game to exit
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            {
+                if (manager.IsRunning)
+                {
+                    XLivePauseForm form = new XLivePauseForm(this.manager);
+                    form.Show();
+                }
+            }
+
+            if (manager.IsRunning)
+            {
+                // TODO: Add your update logic here
+                //manager.
+                if (!_currentLevel.Finished)
+                {
+                    // faccio l'update del livello corrente
+                    _currentLevel.Update(gameTime);
+
+                    // update colorbar
+                    if (_virus != null)
+                    {
+                        _ammoBar.Update(_virus.Ammo);
+                    }
+                }
+                else
+                {
+                    XLivePauseForm form = new XLivePauseForm(this.manager);
+                    form.Show();
+                }
+            }
+
+            base.Update(gameTime);
+        }
+
+        /// <summary>
+        /// This is called when the game should draw itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Draw(GameTime gameTime)
+        {
+            if (manager.IsRunning)
+            {
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+
+                // disegna il livello corrente
+                _currentLevel.Draw(gameTime);
+
+                spriteBatch.Begin();
+
+                // draw lifes and ammobar
+                if (_virus != null)
+                {
+                    DrawLifes(spriteBatch);
+                }
+
+                // VEDO IL CONTORNO DOVE DISEGNARLO!!! SE NEL LIVELLO O FUORI!!!
+                // write score
+                if (_virus != null)
+                {
+                    spriteBatch.DrawString(_bombString, _virus.Bombs.ToString(), new Vector2(30, 4), Color.Yellow);
+                    _ammoBar.Draw(spriteBatch);
+                }
+
+                if (gameTime.IsRunningSlowly)
+                    _delayCount++;
+
+                spriteBatch.DrawString(_delayString, _delayCount.ToString(), new Vector2(30, 768), Color.Yellow);
+                spriteBatch.DrawString(_timeString, Math.Round(gameTime.TotalGameTime.TotalSeconds, 0).ToString(), new Vector2(410, 768), Color.Yellow);
+
+                spriteBatch.End();
+            }
+
+
+            base.Draw(gameTime);
         }
 
         private void DrawLifes(SpriteBatch spriteBatch)
@@ -117,47 +223,6 @@ namespace Virus
             }
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
-        {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
 
-            // fa l'update del livello corrente
-            _levels[0].Update(gameTime);
-          
-            base.Update(gameTime);
-        }
-               
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // disegna il livello corrente
-            _levels[0].Draw(gameTime);
-
-            spriteBatch.Begin();
-
-            // draw lifes and ammobar
-            if (_virus != null)
-            {
-                DrawLifes(spriteBatch);
-            }
-
-            spriteBatch.End();
-
-            base.Draw(gameTime);
-        }
-
-        public Texture2D _virusLifeTexture { get; set; }
     }
 }

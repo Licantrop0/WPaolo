@@ -72,6 +72,8 @@
     <Reference Include="mscorlib">
       <Private>False</Private>
     </Reference>
+    <Reference Include="OpenXLive, Version=0.0.9.6, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="OpenXLive.Form, Version=0.0.9.6, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System">
       <Private>False</Private>
     </Reference>

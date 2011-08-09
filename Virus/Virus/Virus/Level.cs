@@ -15,6 +15,12 @@ namespace Virus
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // condition of level finished
+        public bool Finished { get; set; }
+
+        bool _bossDead = false;
+        float  _bossDeath; 
+
         // content manager
         ContentManager contentManager;
 
@@ -36,15 +42,10 @@ namespace Virus
 
         // virus (reference)
         Virus _virus;
-
-       
-
+      
         // background
         MovingBackground _mainbackground;
         MovingBackground _firstPlanBackground;
-
-        // ammo bar (reference)
-        AmmoBar _ammoBar;
 
         // difficulty parameters
         LevelDifficultyPack[] _levelDifficultyPack;
@@ -57,16 +58,13 @@ namespace Virus
         int _enemiesKilledByAmmoTriggerNumber;
         int _ammoQuantityPerBonus;
 
-        // profiling
-        int _delayCount = 0;
-
-        public Level(Game game, GraphicsDeviceManager gdm, SpriteBatch sb, int level, Virus virus, AmmoBar ammoBar)
+        public Level(Game game, GraphicsDeviceManager gdm, SpriteBatch sb, int level, Virus virus)
         {
             graphics = gdm;
             spriteBatch = sb;
-
             _virus = virus;
-            _ammoBar = ammoBar;
+
+            Finished = false;
 
             contentManager = new ContentManager(game.Services);
             contentManager.RootDirectory = "Content";
@@ -428,9 +426,6 @@ namespace Virus
             if (_virus != null)
                 GetUserTouch();
 
-            // tester
-            //_tester.Update(gameTime);
-
             // detect touch collisions
             if (_touchPoint != Vector2.Zero)
                 DetectTouchCollisions();
@@ -467,18 +462,25 @@ namespace Virus
             // clear bonuses
             ClearBonuses();
 
-            // clear virus  :-(
+            // clear virus  :-( DEVO FINIRE IL LIVELLO ANCHE SE MUORE VIRUS, NEL QUAL CASO PERO' DEVO FARE IL ROLLBACK DI TUTTO (METEODO PER FARE IL ROLLBACK DEL LIVELLO!!!)
             if (_virus != null && _virus.State == ViruState.died)
                 _virus = null;
 
+            if (_bossContainer.Count != 0 && _bossContainer[0].Died)
+            {
+                _bossContainer.RemoveAt(0);
+                _virus.AddBodyEvent(new BodyEvent(BodyEventCode.go));
+                _bossDead = true;
+                _bossDeath = (float)gameTime.TotalGameTime.TotalSeconds;
+            }
+
+            if (_bossDead && (gameTime.TotalGameTime.TotalSeconds - _bossDeath > 5))
+            {
+                Finished = true;
+            }
+
             // manage current event (if any)
             _eventsManager.ManageCurrentEvent(gameTime.TotalGameTime);
-
-            // update colorbar
-            if (_virus != null)
-            {
-                _ammoBar.Update(_virus.Ammo);
-            }
         }
 
         public void Draw(GameTime gameTime)
@@ -502,21 +504,6 @@ namespace Virus
             // draw our friend virus
             if (_virus != null)
                 _virus.Draw(spriteBatch);
-
-            
-            // VEDO IL CONTORNO DOVE DISEGNARLO!!! SE NEL LIVELLO O FUORI!!!
-            // write score
-            /*if (_virus != null)
-            {
-                spriteBatch.DrawString(_bombString, _virus.Bombs.ToString(), new Vector2(30, 4), Color.Yellow);
-                _ammoBar.Draw(spriteBatch, _virus);
-            }*/
-
-            if (gameTime.IsRunningSlowly)
-                _delayCount++;
-
-            //spriteBatch.DrawString(_delayString, _delayCount.ToString(), new Vector2(30, 768), Color.Yellow);
-            //spriteBatch.DrawString(_timeString, Math.Round(gameTime.TotalGameTime.TotalSeconds, 0).ToString(), new Vector2(410, 768), Color.Yellow);
 
             spriteBatch.End();
         }

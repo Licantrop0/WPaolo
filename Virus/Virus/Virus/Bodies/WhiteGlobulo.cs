@@ -47,7 +47,8 @@ namespace Virus
                     {
                         _state = GlobuloState.fading;
                         Touchable = false;
-                        Speed = Vector2.Normalize(Speed) * 45;
+                        //Speed = Vector2.Normalize(Speed) * 45;
+                        Speed = Vector2.Zero;
                         Sprite.FadeSpeed = 0.6f;
                         _utilityTimer = 0;
                     }

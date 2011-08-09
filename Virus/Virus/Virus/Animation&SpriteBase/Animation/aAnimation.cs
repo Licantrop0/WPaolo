@@ -66,7 +66,7 @@ namespace Virus
         {
             get
             {
-                return !_looping && ((!_reverse && _frameIndex == _rectangles.Length - 1) || (_reverse && _frameIndex == 0));
+                return !_looping && ((!_reverse && _frameIndex == _frames - 1) || (_reverse && _frameIndex == 0));
             }
         }
 

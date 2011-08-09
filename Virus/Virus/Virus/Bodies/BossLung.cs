@@ -49,7 +49,7 @@ namespace Virus
 
 		// mouth handling structures
 		float _approchingPeriodMin = 6.00f;
-		float _approchingPeriodMax = 8.00f;
+		float _approchingPeriodMax = 7.00f;
 		float _approchingSpeed = 175;
 		float _rotatingSpeed = 1.5f;
 
@@ -115,6 +115,15 @@ namespace Virus
 													new CircularShape(40, 40),
 													this, i == 0));
 			}
+		}
+
+		#endregion
+
+		#region implementing interface
+
+		public override bool Died 
+		{
+			get { return _state == BossLungState.died; }
 		}
 
 		#endregion

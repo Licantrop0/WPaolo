@@ -12,7 +12,8 @@ namespace Virus
         virusGlobuloCollision,
         virusBonusCollision,
         borderCollision,
-        awake
+        awake,
+        go
     }
 
 }

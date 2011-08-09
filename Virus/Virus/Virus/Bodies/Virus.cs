@@ -9,6 +9,7 @@ namespace Virus
     public enum ViruState
     {
         tranquil,
+        leaving,
         //shocked,
         //happy,
         died
@@ -31,6 +32,7 @@ namespace Virus
             Touchable = true;
             Sprite.FramePerSecond = 4f;
             Position = new Vector2(240, 400);
+            Speed = Vector2.Zero;
             _state = ViruState.tranquil;
             Ammo = 80;
             Bombs = 2;
@@ -75,7 +77,17 @@ namespace Virus
                                 break;
                         }
                     }
+                    else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.go)
+                    {
+                        Speed = new Vector2(0, -100);
+                        _state = ViruState.leaving;
+                    }
 
+                    break;
+
+                case ViruState.leaving:
+                    Traslate();
+                    Animate();
                     break;
 
                 case ViruState.died:

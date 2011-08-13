@@ -60,9 +60,9 @@ namespace SgarbiMix {
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream Abbia_ognuno_il_pudore___ {
+        internal static System.IO.UnmanagedMemoryStream Abbia_ognuno_il_pudore_della_propria_vita {
             get {
-                return ResourceManager.GetStream("Abbia_ognuno_il_pudore...", resourceCulture);
+                return ResourceManager.GetStream("Abbia_ognuno_il_pudore_della_propria_vita", resourceCulture);
             }
         }
         
@@ -75,6 +75,12 @@ namespace SgarbiMix {
         internal static System.IO.UnmanagedMemoryStream Ateo_fasullo1 {
             get {
                 return ResourceManager.GetStream("Ateo_fasullo1", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Avete_rotto_i_coglioni {
+            get {
+                return ResourceManager.GetStream("Avete_rotto_i_coglioni", resourceCulture);
             }
         }
         
@@ -162,15 +168,33 @@ namespace SgarbiMix {
             }
         }
         
+        internal static System.IO.UnmanagedMemoryStream Non_dici_frasi_ma_stronzate1 {
+            get {
+                return ResourceManager.GetStream("Non_dici_frasi_ma_stronzate1", resourceCulture);
+            }
+        }
+        
         internal static System.IO.UnmanagedMemoryStream Non_dire_cretinate1 {
             get {
                 return ResourceManager.GetStream("Non_dire_cretinate1", resourceCulture);
             }
         }
         
+        internal static System.IO.UnmanagedMemoryStream non_gliene_importa_niente {
+            get {
+                return ResourceManager.GetStream("non_gliene_importa_niente", resourceCulture);
+            }
+        }
+        
         internal static System.IO.UnmanagedMemoryStream Non_ha_fatto_mai_un_cazzo {
             get {
                 return ResourceManager.GetStream("Non_ha_fatto_mai_un_cazzo", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Non_sputtanare_l_italia1 {
+            get {
+                return ResourceManager.GetStream("Non_sputtanare_l_italia1", resourceCulture);
             }
         }
         
@@ -183,6 +207,12 @@ namespace SgarbiMix {
         internal static System.IO.UnmanagedMemoryStream Ridicolo1 {
             get {
                 return ResourceManager.GetStream("Ridicolo1", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Se_lo_vuol_prendere_da_quella_parte {
+            get {
+                return ResourceManager.GetStream("Se_lo_vuol_prendere_da_quella_parte", resourceCulture);
             }
         }
         
@@ -219,6 +249,12 @@ namespace SgarbiMix {
         internal static System.IO.UnmanagedMemoryStream Vergogna1 {
             get {
                 return ResourceManager.GetStream("Vergogna1", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Voglio_essere_processato1 {
+            get {
+                return ResourceManager.GetStream("Voglio_essere_processato1", resourceCulture);
             }
         }
     }

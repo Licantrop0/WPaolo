@@ -114,7 +114,8 @@ namespace SgarbiMix
             new EmailComposeTask()
             {
                 Subject = "Suggerimento insulto SgarbiMix",
-                To = "wpmobile@hotmail.it"
+                To = "wpmobile@hotmail.it",
+                Body = SuggerimentoTextBox.Text
             }.Show();
         }
     }

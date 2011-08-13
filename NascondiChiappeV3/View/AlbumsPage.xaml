@@ -36,6 +36,11 @@
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
                         <ListBox x:Name="ImagesListBox" Margin="0,-30,0,72"
                                  ItemsSource="{Binding Model.Photos}"
                                  ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
@@ -78,6 +83,11 @@
                         <TextBlock x:Name="AddPhotosHintTextBlock" Visibility="{Binding HintVisibility}"
                                    Text="{Binding LocalizedResources.AddPhotosHint, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HintTextBlockStyle}" />
+
+                        <TextBlock Name="FullScreenPhotoHintTextBlock" Grid.Row="1" Visibility="Visible"
+				   Text="{Binding LocalizedResources.FullScreenPhotoHint, Source={StaticResource LocalizedStrings}}"
+				   Style="{StaticResource HintTextBlockStyle}" />
+                        
                     </Grid>
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>

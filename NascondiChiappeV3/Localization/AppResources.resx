@@ -253,4 +253,7 @@ Password recovery is NOT available.</value>
   <data name="PleaseWait" xml:space="preserve">
     <value>Please wait, copying Photos...</value>
   </data>
+  <data name="FullScreenPhotoHint" xml:space="preserve">
+    <value>Double-click on a photo to view in full screen</value>
+  </data>
 </root>

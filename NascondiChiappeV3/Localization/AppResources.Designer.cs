@@ -277,6 +277,15 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Double-click on a photo to view in full screen.
+        /// </summary>
+        public static string FullScreenPhotoHint {
+            get {
+                return ResourceManager.GetString("FullScreenPhotoHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move.
         /// </summary>
         public static string Move {

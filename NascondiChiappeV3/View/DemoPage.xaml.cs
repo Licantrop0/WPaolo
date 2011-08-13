@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace NascondiChiappe
 {
@@ -18,6 +19,12 @@ namespace NascondiChiappe
         public DemoPage()
         {
             InitializeComponent();
+        }
+
+        private void BuyAppClick(object sender, RoutedEventArgs e)
+        {
+            var detailTask = new MarketplaceDetailTask();
+            detailTask.Show();
         }
     }
 }

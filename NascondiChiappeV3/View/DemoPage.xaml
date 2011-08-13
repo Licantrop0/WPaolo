@@ -28,7 +28,8 @@
 
             <HyperlinkButton Style="{StaticResource HyperlinkStyle}"
                              FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                             Content="{Binding LocalizedResources.ClickToBuy, Source={StaticResource LocalizedStrings}}" />
+                             Content="{Binding LocalizedResources.ClickToBuy, Source={StaticResource LocalizedStrings}}" 
+                             Click="BuyAppClick"/>
         </StackPanel>
     </Grid>
 </phone:PhoneApplicationPage>

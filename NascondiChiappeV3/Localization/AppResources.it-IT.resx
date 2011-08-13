@@ -253,4 +253,7 @@ Il recupero password NON è disponibile.</value>
   <data name="PleaseWait" xml:space="preserve">
     <value>Attendere, sto copiando le Foto...</value>
   </data>
+  <data name="FullScreenPhotoHint" xml:space="preserve">
+    <value>Doppio-click su una foto per visualizzarla in full screen</value>
+  </data>
 </root>

@@ -19,15 +19,12 @@
         <vm:PlayButtonsViewModel x:Name="PlayButtonsViewModel" />
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot"  DataContext="{StaticResource PlayButtonsViewModel}">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
+          DataContext="{StaticResource PlayButtonsViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <Grid.Background>
-            <ImageBrush ImageSource="sfondo3.jpg" Stretch="None" AlignmentY="Top"/>
-        </Grid.Background>
 
         <controls:Pivot Margin="0,-30,0,0" Grid.Row="0">
             <controls:PivotItem Margin="0,-10,0,0">
@@ -73,14 +70,15 @@
                     <TextBlock Text="Suggerisci!" FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource HeaderForeground}" />
                 </controls:PivotItem.Header>
-                <StackPanel VerticalAlignment="Center">
-                <TextBlock FontSize="24" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
+                <StackPanel>
+                    <TextBlock FontSize="24" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
                    TextWrapping="Wrap" FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
-            C'é una frase famosa o un insulto di Sgarbi che manca a questa app?
-            Suggeriscila!<LineBreak/>
-            Provvederemo ad inserirla nel prossimo update!!
-                </TextBlock>
-                    <TextBox x:Name="SuggerimentoTextBox"  Text="Cara WPME, aggiungete in SgarbiMix questa frase: " TextWrapping="Wrap" Height="200" />
+                        C'é una frase famosa o un insulto di Sgarbi che manca a questa app?
+                        Suggeriscila!<LineBreak/>
+                        Provvederemo ad inserirla nel prossimo update!
+                    </TextBlock>
+                    <TextBox Name="SuggerimentoTextBox" TextWrapping="Wrap" Height="200" AcceptsReturn="True"
+                             Text="Cara WPME, aggiungete in SgarbiMix questa frase: " />
                     <Button Style="{StaticResource PlayButtonStyle}" Content="SUGGERISCI!!" Click="Suggersci_Click" />
                 </StackPanel>
             </controls:PivotItem>

@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using SgarbiMix.ViewModel;
 using WPCommon;
@@ -113,7 +112,7 @@ namespace SgarbiMix
         {
             new EmailComposeTask()
             {
-                Subject = "Suggerimento insulto SgarbiMix",
+                Subject = "[SgarbiMix] Suggerimento insulto",
                 To = "wpmobile@hotmail.it",
                 Body = SuggerimentoTextBox.Text
             }.Show();

@@ -12,6 +12,12 @@
             Fonts/segoepr.ttf#Segoe Print
         </sys:FontFamily>
 
+        <ImageBrush x:Key="DefaultBackground" ImageSource="SplashScreenImage.jpg"
+                    Stretch="None" AlignmentY="Top" />
+
+        <ImageBrush x:Key="DarkerBackground" ImageSource="SplashScreenImage.jpg"
+                    Stretch="None" AlignmentY="Top" Opacity="0.4" />
+
         <LinearGradientBrush x:Key="DefaultForeground" EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFFFA400" Offset="0.414"/>
             <GradientStop Color="#FFFFDE00" Offset="0.773"/>

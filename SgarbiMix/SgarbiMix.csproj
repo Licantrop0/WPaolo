@@ -127,10 +127,6 @@
     <Content Include="images\bianco.png" />
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
-    <Content Include="sfondo.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="sfondo3.jpg" />
     <None Include="sounds\Ateo fasullo!.wav" />
     <None Include="sounds\capra.wav" />
     <None Include="sounds\e1crimine.wav" />
@@ -155,7 +151,9 @@
     <Content Include="sounds\quella_è_la_merda.wav" />
     <None Include="sounds\se_lo_vuol_prendere_da_quella_parte.wav" />
     <None Include="sounds\voglio_essere_processato.wav" />
-    <Content Include="SplashScreenImage.jpg" />
+    <Content Include="SplashScreenImage.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="sounds\Capra ignorante!.wav" />
     <None Include="sounds\Capra!.wav" />
     <None Include="sounds\Criminale!.wav" />

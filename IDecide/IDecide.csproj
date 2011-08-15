@@ -151,6 +151,7 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="WindowsPhoneWatermarkTextBoxControl.dll" />
     <Resource Include="Images\IDecide Logo.png" />
     <Resource Include="Images\IDecide Back.png" />
     <Content Include="SplashScreenImage.jpg" />

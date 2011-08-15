@@ -23,14 +23,14 @@ namespace WPCommon.Controls
 
         private void Mail_Click(object sender, RoutedEventArgs e)
         {
-            //new EmailComposeTask()
-            //{
-            //    Subject = string.Format("[{0} {1}] {2}",
-            //        AppNameTextBlock.Text,
-            //        AppVersionTextBlock.Text,
-            //        "Feedback"),
-            //    To = "wpmobile@hotmail.it"
-            //}.Show();
+            new EmailComposeTask()
+            {
+                Subject = string.Format("[{0} {1}] {2}",
+                    AppNameTextBlock.Text,
+                    AppVersionTextBlock.Text,
+                    "Feedback"),
+                To = "wpmobile@hotmail.it"
+            }.Show();
         }
 
         private void OtherAppsHyperLink_Click(object sender, RoutedEventArgs e)

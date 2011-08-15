@@ -1,0 +1,147 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="SheldonMix.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728" 
+    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <Grid x:Name="LayoutRoot" Loaded="MainPage_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="images/sfondo3.jpg" Stretch="None" AlignmentY="Top"/>
+        </Grid.Background>
+
+        <controls:Pivot Title="{x:Null}" Margin="0,-30,0,0" Grid.Row="0">
+            <!-- Pivot item 1 -->
+            <controls:PivotItem Header="Classic" Margin="6,6,6,0" >
+                <ScrollViewer>
+                    <toolkit:WrapPanel Name="ClassicPlayButtonsStackPanel" />
+                </ScrollViewer>
+            </controls:PivotItem>
+
+            <!-- Pivot item 2 -->
+            <controls:PivotItem Header="Bazinga" Margin="6,6,6,0" >
+                <ScrollViewer>
+                    <toolkit:WrapPanel Name="BazingaPlayButtonsStackPanel" />
+                </ScrollViewer>
+            </controls:PivotItem>
+
+        <!-- Pivot item 3 -->
+        <controls:PivotItem Header="Zazzy" Margin="6,6,6,0" >
+            <ScrollViewer>
+                <toolkit:WrapPanel Name="ZazzyPlayButtonsStackPanel" />
+            </ScrollViewer>
+        </controls:PivotItem>
+
+        <!-- Pivot item 3 -->
+        <controls:PivotItem Header="TBBT" Margin="6,6,6,0" >
+            <ScrollViewer>
+                <toolkit:WrapPanel Name="TBBTPlayButtonsStackPanel">
+
+                        <TextBlock Name="ThemeLyricsText" TextWrapping="Wrap">
+Our whole universe was in a hot dense state,
+<LineBreak />
+Then nearly fourteen billion years ago expansion started. Wait... 
+<LineBreak />
+The Earth began to cool,
+<LineBreak />
+The autotrophs began to drool,
+<LineBreak />
+Neanderthals developed tools,
+<LineBreak />
+We built a wall (we built the pyramids),
+<LineBreak />
+Math, science, history, unravelling the mystery,
+<LineBreak />
+That all started with the big bang! BANG!
+<LineBreak />
+<LineBreak />
+Since the dawn of man is really not that long,
+<LineBreak />
+As every galaxy was formed in less time
+<LineBreak />
+than it takes to sing this song.
+<LineBreak />
+A fraction of a second and the elements were made.
+<LineBreak />
+The bipeds stood up straight,
+<LineBreak />
+The dinosaurs all met their fate,
+<LineBreak />
+They tried to leap but they were late
+<LineBreak />
+And they all died (they froze their asses off)
+<LineBreak />
+<LineBreak />
+The oceans and Pangaea
+<LineBreak />   
+See ya, wouldn't wanna be ya!
+<LineBreak />
+Set in motion by the same big bang!
+<LineBreak />
+It all started with a big BANG!
+<LineBreak />
+<LineBreak />
+It's expanding ever outward but one day
+<LineBreak />
+It will pause, then start to go the other way,
+<LineBreak />
+Collapsing ever inward,
+<LineBreak />
+we won't be here, it wont be heard
+<LineBreak />
+Our best and brightest figure that
+<LineBreak />
+it'll make an even bigger bang!
+<LineBreak />
+<LineBreak />
+Australopithecus would really have been sick of us
+<LineBreak />
+Debating how we're here,
+<LineBreak />
+they're catching deer (we're catching viruses)
+<LineBreak />
+Religion or astronomy, Encarta, Deuteronomy
+<LineBreak />
+It all started with a big bang!
+<LineBreak />
+<LineBreak />
+Music and mythology, Einstein and astrology
+<LineBreak />
+It all started with a big bang!
+<LineBreak />
+It all started with a big BANG!"
+                            </TextBlock>
+                            
+                    </toolkit:WrapPanel>
+                </ScrollViewer>
+        </controls:PivotItem>
+        </controls:Pivot>
+
+        <StackPanel Name="AdPlaceHolder" Grid.Row="1" />
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 1" Click="Base1ApplicationBar_Click" />
+            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 2" Click="Base2ApplicationBar_Click"  />
+            <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 3" Click="Base3ApplicationBar_Click" />
+            <shell:ApplicationBarIconButton IconUri="/images/smile.png"  Text="About"  Click="AboutAppBarMenu_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

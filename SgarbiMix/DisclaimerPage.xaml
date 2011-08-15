@@ -34,10 +34,7 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <ImageBrush ImageSource="sfondo3.jpg" Stretch="None" Opacity="0.3" />
-        </Grid.Background>
+    <Grid Background="{StaticResource DarkerBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />

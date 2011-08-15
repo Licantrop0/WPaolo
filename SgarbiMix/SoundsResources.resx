@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Abbia_ognuno_il_pudore_della_propria_vita" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Abbia_ognuno_il_pudore..." type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\abbia_ognuno_il_pudore_della_propria_vita.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="Altro_che_valori1" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -169,13 +169,13 @@
   <data name="Non_dire_cretinate1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Non dire cretinate!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="non_gliene_importa_niente" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Non_gliene_importa_niente1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\non_gliene_importa_niente.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Non_ha_fatto_mai_un_cazzo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Non_ha_fatto_mai_un_cazzo..." type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Non ha mai fatto un cazzo in vita sua.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Non_sputtanare_l_italia1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Non_sputtanare_l'italia1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\non_sputtanare_l_italia.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="Pagato1" type="System.Resources.ResXFileRef, System.Windows.Forms">

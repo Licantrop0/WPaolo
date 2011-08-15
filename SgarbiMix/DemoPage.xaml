@@ -33,19 +33,16 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource DarkerBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="sfondo3.jpg" Opacity="0.6" />
-        </Grid.Background>
         <TextBlock Text="Ooops!" Style="{StaticResource TextBlockBaseStyle}"
                    Foreground="{StaticResource HeaderForeground}"
                    FontSize="80" TextAlignment="Center" FontWeight="SemiBold" />
-        
+
         <TextBlock Grid.Row="1" FontSize="26" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
                    TextWrapping="Wrap" FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
             Questa è solo una demo.<LineBreak/>

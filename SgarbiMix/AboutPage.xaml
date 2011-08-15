@@ -43,13 +43,11 @@
             AppName="Sgarbi Mix"
             AppId="5925f9d6-483d-e011-854c-00237de2db9e"
             MinFontSize="30"
+            DefaultBackground="{StaticResource DarkerBackground}"
             DefaultFont="{StaticResource DefaultFont}"
             DefaultForeground="{StaticResource DefaultForeground}"
             HeaderForeground="{StaticResource HeaderForeground}"
             LogoMargin="24" >
-            <vm:AboutViewModel.DefaultBackground>
-                <ImageBrush ImageSource="sfondo3.jpg" />
-            </vm:AboutViewModel.DefaultBackground>
         </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>
 

@@ -125,6 +125,7 @@
     <Compile Include="Utilities.cs" />
     <Compile Include="Bodies\Virus.cs" />
     <Compile Include="Bodies\WhiteGlobulo.cs" />
+    <Compile Include="XLiveLevelChoiceForm.cs" />
     <None Include="Properties\AppManifest.xml">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </None>

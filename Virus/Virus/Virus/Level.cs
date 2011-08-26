@@ -9,6 +9,15 @@ using Microsoft.Xna.Framework.Input.Touch;
 
 namespace Virus
 {
+    public enum LevelState
+    {
+        none,
+        loading,
+        running,
+        lost,
+        finished
+    }
+
     public class Level
     {
         // graphics manager and sprite batch (references to game graphics)
@@ -16,7 +25,9 @@ namespace Virus
         SpriteBatch spriteBatch;
 
         // condition of level finished
-        public bool Finished { get; set; }
+        //public bool Finished { get; set; }
+        public LevelState State { get; set; }
+        
 
         bool _bossDead = false;
         float  _bossDeath; 
@@ -64,25 +75,30 @@ namespace Virus
             spriteBatch = sb;
             _virus = virus;
 
-            Finished = false;
+            State = LevelState.loading;
 
             contentManager = new ContentManager(game.Services);
             contentManager.RootDirectory = "Content";
 
-            InitializeLevel(level);
-            ScheduleEvents(level);
+            LoadLevel(level);
         }
 
-        private void InitializeLevel(int level)
+
+        public void InitializeLevel(int level)
+        {
+            _eventsManager.ClearAllEvents();
+            ScheduleEvents(level);
+            
+            _enemiesKilledByAmmoTriggerNumber = 50;
+            State = LevelState.running;
+        }
+
+        private void LoadLevel(int level)
         {
             LoadContent(level);
             CreateDifficulty(level);
-            CreateMonsterFactory(level);
-            CreateBonusFactory(level);
-            CreateBackground(level);
-
-            _enemiesKilledByAmmoTriggerNumber = 50;
         }
+
 
         private void CreateBackground(int level)
         {
@@ -120,7 +136,7 @@ namespace Virus
                     _bonusFactory = new BonusFactory(_eventsManager, _bonuses, new AnimationFactory(contentManager, "AnimationConfig/Bonuses.xml"))
                     {
                         VirusPosition = new Vector2(240, 400),
-                        BonusSpeed = 200
+                        BonusSpeed = 50
                     };
                     _bonusFactory.SetBombBonusTimePeriod(30, 50);
 
@@ -180,34 +196,37 @@ namespace Virus
 
         private void LoadContent(int level)
         {
-
+            CreateBackground(level);
+            CreateMonsterFactory(level);
+            CreateBonusFactory(level);
         }
 
         private void ScheduleEvents(int level)
         {
             //// set difficulty
-            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[0] }));
-            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(30), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[1] }));
-            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(100), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _level1DifficultyPack[2] }));
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _levelDifficultyPack[0] }));
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(30), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _levelDifficultyPack[1] }));
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(100), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _levelDifficultyPack[2] }));
 
-            //// schedule and go on scheduling white globulos creation
-            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3), GameEventType.scheduleSimpleEnemyCreation, _monsterFactory));
+            // schedule and go on scheduling white globulos creation
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3), GameEventType.scheduleSimpleEnemyCreation, _monsterFactory));
 
-            //// create bonusbomb every 30/50 seconds (as set up before)
-            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.ScheduleBombBonusCreation, _bonusFactory));
+            // create bonusbomb every 30/50 seconds (as set up before)
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.ScheduleBombBonusCreation, _bonusFactory));
 
-            //// create bombplus at 45 and 130 seconds
-            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(45), GameEventType.createBombPlusBonus, _bonusFactory));
-            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(130), GameEventType.createBombPlusBonus, _bonusFactory));
+            // create bombplus at 45 and 130 seconds
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(45), GameEventType.createBombPlusBonus, _bonusFactory));
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(130), GameEventType.createBombPlusBonus, _bonusFactory));
 
-            //// create one up bonus at 135 seconds
-            //_eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(135), GameEventType.createOneUpBonus, _bonusFactory));        
+            // create one up bonus at 135 seconds
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(135), GameEventType.createOneUpBonus, _bonusFactory));        
 
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.createBombPlusBonus, _bonusFactory));
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.createBombPlusBonus, _bonusFactory));
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.createBombPlusBonus, _bonusFactory));
+            // boss arrives
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(149), GameEventType.createOneUpBonus, _bonusFactory)); 
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(150), GameEventType.changeBonusSpeed, _bonusFactory, new object[] { 180 }));
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(150), GameEventType.clearEvents, _monsterFactory, new object[] { new GameEventType[] { GameEventType.createSimpleEnemy, GameEventType.scheduleSimpleEnemyCreation }}));
 
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3), GameEventType.createBossLung, _monsterFactory));
+            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(153), GameEventType.createBossLung, _monsterFactory));
         }
 
         #region user input handle
@@ -476,7 +495,7 @@ namespace Virus
 
             if (_bossDead && (gameTime.TotalGameTime.TotalSeconds - _bossDeath > 5))
             {
-                Finished = true;
+                State = LevelState.finished;
             }
 
             // manage current event (if any)

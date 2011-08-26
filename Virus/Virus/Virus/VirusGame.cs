@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
 using OpenXLive;
 using OpenXLive.Forms;
+using OpenXLive.Controls;
 
 namespace Virus
 {
@@ -25,7 +26,6 @@ namespace Virus
         // Open Xlive manager
         private string APISecretKey = "sgTU4GJkRcbKFM3XuaqjtN5V";
         XLiveFormManager manager;
-        bool _play = false;
 
         // writings
         SpriteFont _bombString;
@@ -71,6 +71,10 @@ namespace Virus
             manager = new XLiveFormManager(this, APISecretKey);
             manager.OpenSession();
 
+            // PS create custom form and asscociate it with NewGame event
+            //manager.NewGameEvent += new EventHandler(manager_NewGameEvent);
+            //manager.
+
             // Add XLive FormManager in Components
             Components.Add(manager);
 
@@ -88,7 +92,8 @@ namespace Virus
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load OpenXLive stuff
-            Texture2D background = this.Content.Load<Texture2D>("OpenXLive");
+            //Texture2D background = this.Content.Load<Texture2D>("OpenXLive");
+            Texture2D background = this.Content.Load<Texture2D>("MenuBackground");
             XLiveStartupForm form = new XLiveStartupForm(this.manager);
 
             form.Background = background;
@@ -116,6 +121,7 @@ namespace Virus
 
             // fa il load content del primo livello -> va fatto una volta scelto il livello...
             _currentLevel = new Level(this, graphics, spriteBatch, 1, _virus);
+            _currentLevel.InitializeLevel(1);
         }
 
         /// <summary>
@@ -150,12 +156,12 @@ namespace Virus
             {
                 // TODO: Add your update logic here
                 //manager.
-                if (!_currentLevel.Finished)
+                if (_currentLevel.State == LevelState.running)
                 {
                     // faccio l'update del livello corrente
                     _currentLevel.Update(gameTime);
 
-                    // update colorbar
+                    // update ammobar
                     if (_virus != null)
                     {
                         _ammoBar.Update(_virus.Ammo);
@@ -166,6 +172,10 @@ namespace Virus
                     XLivePauseForm form = new XLivePauseForm(this.manager);
                     form.Show();
                 }
+            }
+            else
+            {
+                manager.ActiveForm.Update(gameTime);
             }
 
             base.Update(gameTime);
@@ -208,6 +218,10 @@ namespace Virus
 
                 spriteBatch.End();
             }
+            else
+            {
+                manager.ActiveForm.Draw(gameTime);
+            }
 
 
             base.Draw(gameTime);
@@ -223,6 +237,14 @@ namespace Virus
             }
         }
 
+        void manager_NewGameEvent(object sender, EventArgs e)
+        {
+            //XLiveAboutForm form = new XLiveAboutForm(manager);
+            //form.Show();
 
+            XLiveLevelChoiceForm form = new XLiveLevelChoiceForm(manager);
+            form.AddControl(new XLiveTextBox(form));
+            form.Show();
+        }  
     }
 }

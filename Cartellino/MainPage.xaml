@@ -11,13 +11,14 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+    shell:SystemTray.IsVisible="False" >
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <ScrollViewer x:Name="LogicalScrollViewer"
-                          HorizontalScrollBarVisibility="Hidden"
-                          VerticalScrollBarVisibility="Disabled"
-                          ManipulationCompleted="LogicalScrollViewer_ManipulationCompleted" Loaded="LogicalScrollViewer_Loaded">
+                      HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Disabled"
+                      ManipulationCompleted="LogicalScrollViewer_ManipulationCompleted"
+                      Loaded="LogicalScrollViewer_Loaded">
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource CartellinoGiallo}" Click="Button_Click" />
                 <Button Style="{StaticResource CartellinoRosso}"  Click="Button_Click" />

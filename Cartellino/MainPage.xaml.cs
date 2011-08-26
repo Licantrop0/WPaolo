@@ -51,21 +51,13 @@ namespace Cartellino
             #endregion
         }
 
-
-        private List<SoundEffect> _fischiettoSounds = new List<SoundEffect>();
-        private Random rnd = new Random();
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            for (int i = 1; i <= 4; i++)
-            {
-                _fischiettoSounds.Add(SoundEffect.FromStream(App.GetResourceStream(
-                    new Uri("Sounds/fischietto" + i + ".wav", UriKind.Relative)).Stream));
-            }
-        }
-
+        private SoundEffect _fischiettoSound;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _fischiettoSounds[rnd.Next(4)].Play();
+            if (_fischiettoSound == null)
+                _fischiettoSound = SoundEffect.FromStream(App.GetResourceStream(
+                    new Uri("Sounds/fischietto.wav", UriKind.Relative)).Stream);
+            _fischiettoSound.Play();
         }
 
         private void LogicalScrollViewer_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)

@@ -111,10 +111,7 @@
     <Content Include="Images\help.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sounds\fischietto1.wav" />
-    <Content Include="Sounds\fischietto2.wav" />
-    <Content Include="Sounds\fischietto3.wav" />
-    <Content Include="Sounds\fischietto4.wav" />
+    <Content Include="Sounds\fischietto.wav" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WPCommon.Controls\WPCommon.Controls.csproj">

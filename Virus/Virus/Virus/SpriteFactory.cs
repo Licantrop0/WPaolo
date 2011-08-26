@@ -9,10 +9,10 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Virus
 {
-    public abstract class LevelDifficultyPack
-    {
+	public abstract class LevelDifficultyPack
+	{
 
-    }
+	}
 
 	public class Level1DifficultyPackEnemies : LevelDifficultyPack
 	{
@@ -177,6 +177,10 @@ namespace Virus
 				case GameEventType.undefined:
 					break;
 
+				case GameEventType.clearEvents:
+					ClearEvents((GameEventType[])gameEvent.Params[0]);
+					break;
+
 				case GameEventType.createSimpleEnemy:
 					CreateSimpleEnemy();
 					break;
@@ -220,6 +224,11 @@ namespace Virus
 				default:
 					throw new Exception("W Blaze Baley!");
 			}
+		}
+
+		private void ClearEvents(GameEventType[] gameEventType)
+		{
+			_eventsManager.ClearEventsType(gameEventType);
 		}
 
 		private void ScheduleSimpleEnemyCreation(TimeSpan actualTime)
@@ -273,8 +282,8 @@ namespace Virus
 		{
 			// create simple enemy
 			var enemy = new WhiteGlobulo(new MassDoubleIntegratorDynamicSystem(),
-                                         new Sprite(_animationFactory.CreateAnimations("WhiteGlobulo")),
-                                         new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS));
+										 new Sprite(_animationFactory.CreateAnimations("WhiteGlobulo")),
+										 new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS));
 
 			Vector2 enemyPosition = SetSpriteInitialPositionOnScreenBorder();
 			enemy.Position = enemyPosition;
@@ -283,7 +292,7 @@ namespace Virus
 			 float timeToReach = (float)DoubleDiceResult(_timeToReachMin, _timeToReachMax);
 
 			// calculate speed modulus
-             float distance = Vector2.Distance(enemyPosition, _virusPosition); 
+			 float distance = Vector2.Distance(enemyPosition, _virusPosition); 
 			float speedModulus = distance / timeToReach;
 
 			// set enemy speed
@@ -295,10 +304,10 @@ namespace Virus
 		private void CreateBossLung()
 		{
 			// create boss
-            BossLung boss = new BossLung(new MassDoubleIntegratorDynamicSystem(),
-                                         new Sprite(_animationFactory.CreateAnimations("BossLung")),
-                                         new RectangularShape(240, 178, 240, 178),
-                                         _animationFactory, _eventsManager, this);
+			BossLung boss = new BossLung(new MassDoubleIntegratorDynamicSystem(),
+										 new Sprite(_animationFactory.CreateAnimations("BossLung")),
+										 new RectangularShape(240, 178, 240, 178),
+										 _animationFactory, _eventsManager, this);
 
 			_bossContainer.Add(boss);
 		}
@@ -343,8 +352,8 @@ namespace Virus
 		{
 			// create bouncing enemy
 			BouncingWhiteGlobulo enemy = new BouncingWhiteGlobulo(new MassDoubleIntegratorDynamicSystem(),
-                                                                  new Sprite(_animationFactory.CreateAnimations("WhiteGlobulo")),
-                                                                  new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS))
+																  new Sprite(_animationFactory.CreateAnimations("WhiteGlobulo")),
+																  new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS))
 			{
 				Position = position,
 				Speed = speed,
@@ -356,8 +365,8 @@ namespace Virus
 		private void CreateMouthBullet(Vector2 position, Vector2 speed)
 		{
 			WhiteGlobulo enemy = new WhiteGlobulo(new MassDoubleIntegratorDynamicSystem(),
-                                                  new Sprite(_animationFactory.CreateAnimations("WhiteGlobulo")),
-                                                  new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS))
+												  new Sprite(_animationFactory.CreateAnimations("WhiteGlobulo")),
+												  new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS))
 			{
 				Position = position,
 				Speed = speed,
@@ -426,6 +435,10 @@ namespace Virus
 					ScheduleCreatePeriodicalBonus(actualTime);
 					break;
 
+                case GameEventType.changeBonusSpeed:
+                    BonusSpeed = (int)gameEvent.Params[0];
+                    break;
+
 				default:
 					throw new Exception("W Blaze Baley!");
 			}
@@ -435,9 +448,9 @@ namespace Virus
 		{
 			// create bonus
 			GoToVirusBonus bonus = new GoToVirusBonus(new MassDoubleIntegratorDynamicSystem(),
-                                                      new Sprite(_animationFactory.CreateAnimations(bonusSpriteName)),
-                                                      new CircularShape(BONUS_RADIUS, BONUS_TOUCH_RADIUS),
-                                                      bonusType);
+													  new Sprite(_animationFactory.CreateAnimations(bonusSpriteName)),
+													  new CircularShape(BONUS_RADIUS, BONUS_TOUCH_RADIUS),
+													  bonusType);
 
 			bonus.Position = SetSpriteInitialPositionOnTopOrBotBorder();
 

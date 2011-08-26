@@ -36,7 +36,7 @@ namespace Virus
             }
         }
 
-        internal void ManageCurrentEvent(TimeSpan gameTimer)
+        public void ManageCurrentEvent(TimeSpan gameTimer)
         {
             if (_gameEvents.Count > 0)
             {
@@ -46,6 +46,23 @@ namespace Virus
                     GameEventHandler handler = curEvent.Subscriber;
                     _gameEvents.RemoveAt(0);
                     handler.HandleEvent(curEvent);
+                }
+            }
+        }
+
+        public void ClearAllEvents()
+        {
+            _gameEvents.Clear();
+        }
+
+        public void ClearEventsType(GameEventType[] eventTypes)
+        {
+            for (int i = 0; i < _gameEvents.Count; i++)
+            {
+                if (eventTypes.Contains(_gameEvents[i].EventType))
+                {
+                    _gameEvents.RemoveAt(i);
+                    i--;
                 }
             }
         }

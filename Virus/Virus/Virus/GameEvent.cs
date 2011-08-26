@@ -18,11 +18,13 @@ namespace Virus
         createAmmoBonus,
         createOneUpBonus,
         createBombPlusBonus,
+        changeBonusSpeed,
         scheduleSimpleEnemyCreation,
         scheduleAcceleratedEnemyCreation,
         scheduleOrbitalEnemyCreation,
         ScheduleBombBonusCreation,
-        ChangeLevel1Difficulty
+        ChangeLevel1Difficulty,
+        clearEvents
     }
 
     public class GameEvent

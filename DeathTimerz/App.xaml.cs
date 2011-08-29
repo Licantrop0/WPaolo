@@ -50,7 +50,7 @@ namespace DeathTimerz
             }
 
             using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
-                Settings.Questions = XDocument.Load(fs);
+                Settings.Test1 = XDocument.Load(fs);
 
             SoundManager.Instance.RestoreMusicStatus();
         }
@@ -59,10 +59,13 @@ namespace DeathTimerz
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
-                Settings.Questions = XDocument.Load(fs);
+            if (!e.IsApplicationInstancePreserved)
+            {
+                using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
+                    Settings.Test1 = XDocument.Load(fs);
 
-            SoundManager.Instance.RestoreMusicStatus();
+                SoundManager.Instance.RestoreMusicStatus();
+            }
         }
 
         // Code to execute when the application is deactivated (sent to background)

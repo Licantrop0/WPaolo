@@ -13,6 +13,7 @@ namespace DeathTimerz
     public partial class DeathTimerzPanorama : PhoneApplicationPage
     {
         private DispatcherTimer dt = new DispatcherTimer();
+        ApplicationBarIconButton EditTestAppBarButton;
 
         public DeathTimerzPanorama()
         {
@@ -28,10 +29,6 @@ namespace DeathTimerz
                 NavigationService.Navigate(new Uri("/View/SettingsPage.xaml", UriKind.Relative));
                 return;
             }
-
-            var DaysToBirthDay = ExtensionMethods.GetNextBirthday(Settings.BirthDay.Value).Subtract(DateTime.Now).Days;
-            DaysToBirthdayTextBlock.Text = DaysToBirthDay.ToString() + " " +
-                (DaysToBirthDay == 1 ? AppResources.Day : AppResources.Days);
 
             dt_Tick(sender, EventArgs.Empty);
         }
@@ -92,69 +89,39 @@ namespace DeathTimerz
 
         private void MainPanorama_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            switch (MainPanorama.SelectedIndex)
-            {
-                case 2: //Death-Test
-                    this.ApplicationBar.MenuItems.Clear();
-                    ApplicationBar.MenuItems.Add(CreateDisclaimerAppBarMenuItem());
-                    ApplicationBar.Buttons.Add(CreateEditTestAppBarButton());
-                    break;
-                default:
-                    this.ApplicationBar.MenuItems.Clear();
-                    ApplicationBar.MenuItems.Add(CreateAboutAppBarMenuItem());
-                    if (ApplicationBar.Buttons.Count == 2)
-                        ApplicationBar.Buttons.RemoveAt(1);
-                    break;
-            }
+            if (MainPanorama.SelectedIndex == 1) //Death-Test
+                ApplicationBar.Buttons.Add(EditTestAppBarButton);
+            else
+                ApplicationBar.Buttons.Remove(EditTestAppBarButton);
         }
-
-        #region Application Bar
 
         private void InitializeApplicationBar()
-        {
-            ApplicationBar.Buttons.Add(CreateSettingsAppBarButton());
-            ApplicationBar.MenuItems.Add(CreateAboutAppBarMenuItem());
-        }
-
-        private ApplicationBarIconButton CreateSettingsAppBarButton()
         {
             var SettingsAppBarButton = new ApplicationBarIconButton();
             SettingsAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
             SettingsAppBarButton.Text = AppResources.Settings;
-            SettingsAppBarButton.Click += delegate(object sender, EventArgs e)
+            SettingsAppBarButton.Click += (sender, e) =>
             { NavigationService.Navigate(new Uri("/View/SettingsPage.xaml", UriKind.Relative)); };
-            return SettingsAppBarButton;
-        }
+            ApplicationBar.Buttons.Add(SettingsAppBarButton);
 
-        private ApplicationBarIconButton CreateEditTestAppBarButton()
-        {
-            var EditTestAppBarButton = new ApplicationBarIconButton();
-            EditTestAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_edit.png", UriKind.Relative);
-            EditTestAppBarButton.Text = AppResources.EditTest;
-            EditTestAppBarButton.Click += delegate(object sender, EventArgs e)
-            { NavigationService.Navigate(new Uri("/View/TestPage.xaml", UriKind.Relative)); };
-            return EditTestAppBarButton;
-        }
-
-        private ApplicationBarMenuItem CreateDisclaimerAppBarMenuItem()
-        {
-            var DisclaimerAppBarMenuItem = new ApplicationBarMenuItem();
-            DisclaimerAppBarMenuItem.Text = AppResources.Disclaimer;
-            DisclaimerAppBarMenuItem.Click += delegate(object sender, EventArgs e)
-            { NavigationService.Navigate(new Uri("/View/DisclaimerPage.xaml", UriKind.Relative)); };
-            return DisclaimerAppBarMenuItem;
-        }
-
-        private ApplicationBarMenuItem CreateAboutAppBarMenuItem()
-        {
             var AboutAppBarMenuItem = new ApplicationBarMenuItem();
             AboutAppBarMenuItem.Text = AppResources.About;
-            AboutAppBarMenuItem.Click += delegate(object sender, EventArgs e)
+            AboutAppBarMenuItem.Click += (sender, e) =>
             { NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative)); };
-            return AboutAppBarMenuItem;
-        }
+            ApplicationBar.MenuItems.Add(AboutAppBarMenuItem);
 
-        #endregion
+            var DisclaimerAppBarMenuItem = new ApplicationBarMenuItem();
+            DisclaimerAppBarMenuItem.Text = AppResources.Disclaimer;
+            DisclaimerAppBarMenuItem.Click += (sender, e) =>
+            { NavigationService.Navigate(new Uri("/View/DisclaimerPage.xaml", UriKind.Relative)); };
+            ApplicationBar.MenuItems.Add(DisclaimerAppBarMenuItem);
+
+            EditTestAppBarButton = new ApplicationBarIconButton();
+            EditTestAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_edit.png", UriKind.Relative);
+            EditTestAppBarButton.Text = AppResources.EditTest;
+            EditTestAppBarButton.Click += (sender, e) =>
+            { NavigationService.Navigate(new Uri("/View/TestPage.xaml", UriKind.Relative)); };
+        }
     }
 
 }

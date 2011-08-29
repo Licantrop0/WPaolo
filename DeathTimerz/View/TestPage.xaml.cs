@@ -19,53 +19,51 @@ namespace DeathTimerz
         public TestPage()
         {
             InitializeComponent();
-            BuildApplicationBar();
-        }
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
             BuildTest();
         }
 
         private void SaveAnswers()
         {
             //resetto le risposte precedentemente salvate
-            foreach (var el in Settings.Questions.Descendants("Answer"))
+            foreach (var el in Settings.Test1.Descendants("Answer"))
             {
                 el.Attributes("IsChecked").ForEach(a => a.Value = "False");
                 el.Attributes("Content").ForEach(a => a.Value = string.Empty);
             }
 
             //imposto l'attributo IsChecked alle risposte selezionate nell'XML
-            (from ctrl in TestStackPanel.Children
-             where ctrl is RadioButton
-             let rb = (RadioButton)ctrl
-             where rb.IsChecked.Value
-             select rb.Name).ForEach(ans =>
-                Settings.Questions.Descendants("Answer")
-                .Where(el => el.Attribute("Name").Value == ans).First()
-                .Attribute("IsChecked").Value = "True");
+            TestStackPanel.Children
+                .Where(ctrl => ctrl is RadioButton)
+                .Cast<RadioButton>()
+                .Where(rb => rb.IsChecked.Value)
+                .Select(rb => rb.Name)
+                .ForEach(ans =>
+                    Settings.Test1.Descendants("Answer")
+                    .Where(el => el.Attribute("Name").Value == ans).First()
+                    .Attribute("IsChecked").Value = "True");
 
             //Imposto i valori delle textbox nell'XML
-            (from ctrl in TestStackPanel.Children
-             where ctrl is TextBox
-             let txtb = (TextBox)ctrl
-             select txtb).ForEach(ans =>
-                Settings.Questions.Descendants("Answer")
-                .Where(el => el.Attribute("Name").Value == ans.Name).First()
-                .Attribute("Content").Value = ans.Text);
+            TestStackPanel.Children
+                .Where(ctrl => ctrl is TextBox)
+                .Cast<TextBox>()
+                .ForEach(ans =>
+                    Settings.Test1.Descendants("Answer")
+                    .Where(el => el.Attribute("Name").Value == ans.Name).First()
+                    .Attribute("Content").Value = ans.Text);
 
             IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
             using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Create, FileAccess.Write, isf))
             {
-                Settings.Questions.Save(fs);
+                Settings.Test1.Save(fs);
             }
         }
 
         private void StimateDeathAge()
         {
-            Settings.EstimatedDeathAge =
-                 (from q in Settings.Questions.Descendants("Question")
+            Settings.EstimatedDeathAge = ExtensionMethods.TimeSpanFromYears(Settings.AverageAge);
+
+            Settings.EstimatedDeathAge +=
+                 (from q in Settings.Test1.Descendants("Question")
                   where q.Attribute("Type").Value == "MultipleChoice"
                   from ans in q.Elements("Answer")
                   where ans.Attribute("IsChecked").Value == "True"
@@ -73,20 +71,19 @@ namespace DeathTimerz
                     double.Parse(ans.Attribute("Value").Value, CultureInfo.InvariantCulture))).
                     Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
 
-            var Weight = (from el in Settings.Questions.Descendants("Answer")
+            var Weight = (from el in Settings.Test1.Descendants("Answer")
                           where el.Attribute("Name").Value == "Weight1"
                           select double.Parse(el.Attribute("Content").Value)).First();
 
-            var Height = (from el in Settings.Questions.Descendants("Answer")
+            var Height = (from el in Settings.Test1.Descendants("Answer")
                           where el.Attribute("Name").Value == "Height1"
                           select double.Parse(el.Attribute("Content").Value)).First();
 
             double bmi;
-            if (CultureInfo.CurrentUICulture.Name == "it-IT" ||
-                CultureInfo.CurrentUICulture.Name == "fr-FR")
-                bmi = Weight / Math.Pow(Height * .01, 2); //kg-cm
-            else
+            if (CultureInfo.CurrentUICulture.Name == "en-US")
                 bmi = Weight * 703 / Math.Pow(Height, 2); //lb-in
+            else
+                bmi = Weight / Math.Pow(Height * .01, 2); //kg-cm
 
             if (bmi >= 18 && bmi <= 27)
                 Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
@@ -95,10 +92,11 @@ namespace DeathTimerz
             else if (bmi < 18 || bmi > 35)
                 Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
 
-            var cigarettes = (from el in Settings.Questions.Descendants("Answer")
+            var cigarettes = (from el in Settings.Test1.Descendants("Answer")
                               where el.Attribute("Name").Value == "Cigarettes1"
                               select double.Parse(el.Attribute("Content").Value)).First();
 
+            //elaborare meglio sulle sigarette
             if (cigarettes <= 0)
                 Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
             else if (cigarettes > 0 && cigarettes <= 5)
@@ -129,12 +127,12 @@ namespace DeathTimerz
 
         private void BuildTest()
         {
-            foreach (var el in Settings.Questions.Descendants("Question"))
+            foreach (var el in Settings.Test1.Descendants("Question")) //ciclo su ogni domanda
             {
                 //Domanda
                 TestStackPanel.Children.Add(new TextBlock()
                 {
-                    Text = AppResources.ResourceManager.GetString(el.Attribute("Name").Value),
+                    Text = Test1.ResourceManager.GetString(el.Attribute("Name").Value),
                     TextWrapping = TextWrapping.Wrap,
                     Style = (Style)Application.Current.Resources["RedChillerTest"],
                 });
@@ -142,19 +140,19 @@ namespace DeathTimerz
                 //Risposta Multipla
                 if (el.Attribute("Type").Value == "MultipleChoice")
                 {
-                    foreach (var answ in el.Elements("Answer"))
+                    foreach (var answ in el.Elements("Answer")) //ciclo su ogni risposta
                     {
                         TestStackPanel.Children.Add(new RadioButton()
                         {
                             Name = answ.Attribute("Name").Value,
-                            Content = AppResources.ResourceManager.GetString(answ.Attribute("Name").Value),
+                            Content = Test1.ResourceManager.GetString(answ.Attribute("Name").Value),
                             GroupName = el.Attribute("Name").Value,
                             Style = (Style)Application.Current.Resources["RedChillerContentControl"],
                             IsChecked = bool.Parse(answ.Attribute("IsChecked").Value)
                         });
                     }
                 }
-                else //Risposta Aperta
+                else //Risposta Aperta (textbox)
                 {
                     InputScope Numbers = new InputScope();
                     Numbers.Names.Add(new InputScopeName() { NameValue = InputScopeNameValue.TelephoneNumber });
@@ -169,7 +167,16 @@ namespace DeathTimerz
                     TestStackPanel.Children.Add(answTextBox);
                 }
             }
+
+            TestStackPanel.Children.Add(new TextBlock()
+            {
+                Text = "[Premi back per salvare e vedere il Risultato]",
+                TextWrapping = TextWrapping.Wrap,
+                Style = (Style)Application.Current.Resources["RedChillerTest"],
+            });
+
         }
+
 
         private static bool CheckDigits(KeyEventArgs e)
         {
@@ -183,33 +190,14 @@ namespace DeathTimerz
             return false;
         }
 
-
-        private void BuildApplicationBar()
+        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var OkAppBarButton = new ApplicationBarIconButton();
-            OkAppBarButton.IconUri = new Uri("Toolkit.Content\\ApplicationBar.Check.png", UriKind.Relative);
-            OkAppBarButton.Text = AppResources.Ok;
-            OkAppBarButton.Click += new EventHandler(OkAppBarButton_Click);
-            ApplicationBar.Buttons.Add(OkAppBarButton);
-        }
-
-        void OkAppBarButton_Click(object sender, EventArgs e)
-        {
-            if (FocusManager.GetFocusedElement() is TextBox && !IsTestFilled())
-            {
-                this.Focus();
-                return;
-            }
-
-            if (!IsTestFilled())
-            {
-                MessageBox.Show(AppResources.TestNotCompleted);
-                return;
-            }
-
             SaveAnswers();
-            StimateDeathAge();
-            NavigationService.GoBack();
+            if (IsTestFilled())
+            {
+                StimateDeathAge();
+            }
+
         }
     }
 }

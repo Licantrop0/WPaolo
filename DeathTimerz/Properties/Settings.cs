@@ -9,7 +9,30 @@ namespace DeathTimerz
         public const double AverageYear = 365.25;
         public const double AverageMonth = 30.4368499;
 
-        public static XDocument Questions;
+        public static XDocument Test1;
+
+        public static bool IsMale
+        {
+            get
+            {
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("is_male"))
+                    IsolatedStorageSettings.ApplicationSettings["is_male"] = true;
+                return (bool)IsolatedStorageSettings.ApplicationSettings["is_male"];
+            }
+            set
+            {
+                if (IsMale != value)
+                    IsolatedStorageSettings.ApplicationSettings["is_male"] = value;
+            }
+        }
+
+        public static double AverageAge
+        {
+            get
+            {
+                return IsMale ? 77.5 : 83.7;
+            }
+        }
 
         public static DateTime? BirthDay
         {

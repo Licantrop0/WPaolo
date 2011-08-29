@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Questions>
-  <Question Name="MaleOrFemale" Type="MultipleChoice">
-    <Answer Name="Male" Value="77.5" IsChecked="False" />
-    <Answer Name="Female" Value="83.7" IsChecked="False" />
-  </Question>
-
+  
   <Question Name="Cigarettes" Type="Number" >
     <Answer Name="Cigarettes1" Content="" />
   </Question>

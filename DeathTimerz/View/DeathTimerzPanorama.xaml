@@ -24,6 +24,7 @@
                 <ImageBrush ImageSource="../Images/DeathBackground.jpg"
                             Stretch="UniformToFill" />
             </controls:Panorama.Background>
+            
             <!--Age-->
             <controls:PanoramaItem Margin="0,-60,0,0">
                 <controls:PanoramaItem.Header>
@@ -35,20 +36,7 @@
                                FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" Style="{StaticResource RedChiller}" />
                 </Grid>
             </controls:PanoramaItem>
-
-            <!--Days to Birthday-->
-            <controls:PanoramaItem Margin="0,-60,0,0" >
-                <controls:PanoramaItem.Header>
-                    <TextBlock Text="{Binding LocalizedResources.DaysToBirthday, Source={StaticResource LocalizedStrings}}"
-                               Style="{StaticResource RedChiller}" />
-                </controls:PanoramaItem.Header>
-                <Grid  Margin="0,-30,0,80">
-                    <TextBlock x:Name="DaysToBirthdayTextBlock" HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
-                               FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" Style="{StaticResource RedChiller}"/>
-                    <Image Source="../Images/halloween_cake.png" VerticalAlignment="Bottom" Stretch="None" />                    
-                </Grid>
-            </controls:PanoramaItem>
-
+            
             <!--Time to Death-->
             <controls:PanoramaItem Margin="0,-60,0,0">
                 <controls:PanoramaItem.Header>

@@ -48,19 +48,30 @@
                         Stretch="None" AlignmentX="Center" />
         </Grid.Background>
 
-        <StackPanel Margin="12,0,0,0">
+        <StackPanel Margin="12,0">
             <TextBlock x:Name="PageTitle" Style="{StaticResource RedChiller}"
                        Text="{Binding Path=LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
                        FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
+            
+            <TextBlock Text="{Binding Path=LocalizedResources.MaleOrFemale, Source={StaticResource LocalizedStrings}}"                       
+                           Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
+            <RadioButton Name="MaleRadioButton" Content="{Binding Path=LocalizedResources.Male, Source={StaticResource LocalizedStrings}}"
+                         Style="{StaticResource RedChillerContentControl}"
+                         GroupName="MaleOrFemale" Margin="0,-10" />
+            <RadioButton Name="FemaleRadioButton" Content="{Binding Path=LocalizedResources.Female, Source={StaticResource LocalizedStrings}}"
+                         Style="{StaticResource RedChillerContentControl}"
+                         GroupName="MaleOrFemale" Margin="0,-10" />
+
             <TextBlock Text="{Binding Path=LocalizedResources.InsertBirthday, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
-            <Image Source="../Images/Halloween_cake.png" Width="200" HorizontalAlignment="Left" Margin="12,0" />
             <toolkit:DatePicker Name="BirthDayDatePicker" Background="Gray"
                                 FontFamily="/DeathTimerz;component/Fonts/Fonts.zip#Chiller"
                                 Foreground="{StaticResource RedGradientBrush}" />
             <toolkit:TimePicker Name="BirthDayTimePicker" Background="Gray"
                                 Foreground="{StaticResource RedGradientBrush}"
                                 FontFamily="/DeathTimerz;component/Fonts/Fonts.zip#Chiller" />
+            <TextBlock x:Name="DaysToBirthdayTextBlock" HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
+                               FontSize="{StaticResource PhoneFontSizeLarge}" Style="{StaticResource RedChiller}"/>
 
             <StackPanel Name="MusicStackPanel">
                 <TextBlock Text="{Binding EnableDisabledMusicDescription}"

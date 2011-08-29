@@ -15,17 +15,37 @@ namespace DeathTimerz
         {
             InitializeComponent();
             BuildApplicationBar();
+
+            if (Settings.IsMale)
+                MaleRadioButton.IsChecked = true;
+            else
+                FemaleRadioButton.IsChecked = true;
+
             if (Settings.BirthDay.HasValue)
             {
                 BirthDayDatePicker.Value = Settings.BirthDay;
                 BirthDayTimePicker.Value = Settings.BirthDay;
+
+                var DaysToBirthDay = ExtensionMethods.GetNextBirthday(Settings.BirthDay.Value).Subtract(DateTime.Now).Days;
+                DaysToBirthdayTextBlock.Text = string.Join(" ",
+                    AppResources.BirthdayAfter,
+                    DaysToBirthDay.ToString(),
+                    DaysToBirthDay == 1 ? AppResources.Day : AppResources.Days);
             }
 
             MusicStackPanel.DataContext = SoundManager.Instance;
         }
 
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
+        {
+            if (Settings.BirthDay == null)
+                throw new Exception("ForceExit");
+        }
+
         private void SaveAppBarButton_Click(object sender, EventArgs e)
         {
+            Settings.IsMale = MaleRadioButton.IsChecked.Value;
+
             if (BirthDayDatePicker.Value >= DateTime.Today)
             {
                 MessageBox.Show(AppResources.ErrorFutureBirthday);
@@ -73,12 +93,6 @@ namespace DeathTimerz
             CancelAppBarButton.Text = AppResources.Cancel;
             CancelAppBarButton.Click += new EventHandler(CancelAppBarButton_Click);
             ApplicationBar.Buttons.Add(CancelAppBarButton);
-        }
-
-        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
-        {
-            if (Settings.BirthDay == null)
-                throw new Exception("ForceExit");
         }
     }
 }

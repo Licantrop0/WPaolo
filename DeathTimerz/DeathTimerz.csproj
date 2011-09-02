@@ -79,6 +79,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Test1.resx</DependentUpon>
     </Compile>
+    <Compile Include="Localization\Test2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Test2.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="View\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
@@ -160,6 +165,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SplashScreenImage.jpg" />
+    <Content Include="Test2.xml" />
     <Content Include="Toolkit.Content\appbar_edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -185,6 +191,10 @@
     <EmbeddedResource Include="Localization\Test1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Test1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Test2.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Test2.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

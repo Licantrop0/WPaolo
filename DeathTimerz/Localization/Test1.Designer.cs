@@ -304,42 +304,6 @@ namespace DeathTimerz.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you under stress?.
-        /// </summary>
-        internal static string Stress {
-            get {
-                return ResourceManager.GetString("Stress", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Never.
-        /// </summary>
-        internal static string Stress1 {
-            get {
-                return ResourceManager.GetString("Stress1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Occasionally.
-        /// </summary>
-        internal static string Stress2 {
-            get {
-                return ResourceManager.GetString("Stress2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Frequently.
-        /// </summary>
-        internal static string Stress3 {
-            get {
-                return ResourceManager.GetString("Stress3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Insert your weight (lb).
         /// </summary>
         internal static string Weight {

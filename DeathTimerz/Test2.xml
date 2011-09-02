@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+http://www.testcafe.com/anx/anx.html
+Soffri di stress? (nulla, poco, normale, molto, a bomba) (più ne soffri meno vivi)0 -1 -2 -3 -4 -5
+
+Hai una grande paura di qualcosa di particolare anche assurda? (se hai una fobia levi qualche anno) 0 -4
+
+Ci sono momenti in cui tutto ti sembra nero? (ovvero se soffri di depressione vivi di meno) 0 -6
+In caso di eventuali relazioni sessuali promiscue utilizzi sempre il preservativo? (ovvero hai una scarsa attenzione nella valutazione delle conseguenze delle tue azioni e vivi meno) 0 -5
+A che livello è la tua autostima? (sono meno di 0, bassa, realista, alta, sono il migliore di tutti) (il giusto è avere autostima ALTA, ma se uno crede di essere il migliore di tutti ha un problema quindi leva qualche anno anche lì) -3 -2 -1 0 -1
+Che animale preferisci tra cane, gatto e cavallo? (domanda che non ha alcun senso, la mettiamo perchè sembra celare chissà quale significato psicologico, magari se uno sceglie CANE tutti i valori del test psicologico, ovvero i vari + e - vengono moltiplicati per 0.9, se uno sceglie gatto per 1, se uno sceglie cavallo per 1.1 giusto per far vedere che i numeri cambiano)
+Esiste una persona per cui daresti la tua vita? (se esiste sei altruista e quindi hai qualche anno in più) sì = +2 no = 0
+ -->
+
+
+<Questions>
+  <Question Name="Stress" Type="MultipleChoice">
+    <Answer Name="Stress1" Value="1" IsChecked="False" />
+    <Answer Name="Stress2" Value="0" IsChecked="False" />
+    <Answer Name="Stress3" Value="-1" IsChecked="False" />
+    <Answer Name="Stress4" Value="-2" IsChecked="False" />
+  </Question>
+
+  <Question Name="Phobia" Type="MultipleChoice">
+    <Answer Name="Phobia1" Value="-0.4" IsChecked="False" />
+    <Answer Name="Phobia2" Value="0.3" IsChecked="False" />
+  </Question>
+
+  <Question Name="Panic" Type="MultipleChoice">
+    <Answer Name="Panic1" Value="-0.4" IsChecked="False" />
+    <Answer Name="Panic2" Value="0.3" IsChecked="False" />
+    <Answer Name="Panic3" Value="0.3" IsChecked="False" />
+    <Answer Name="Panic4" Value="0.3" IsChecked="False" />
+  </Question>
+
+  <Question Name="ForeverAlone" Type="MultipleChoice">
+    <Answer Name="ForeverAlone1" Value="0" IsChecked="False" />
+    <Answer Name="ForeverAlone2" Value="-1" IsChecked="False" />
+    <Answer Name="ForeverAlone3" Value="-2.2" IsChecked="False" />
+    <Answer Name="ForeverAlone4" Value="-2.2" IsChecked="False" />
+  </Question>
+
+  <Question Name="Insomnia" Type="MultipleChoice">
+    <Answer Name="Insomnia1" Value="0" IsChecked="False" />
+    <Answer Name="Insomnia2" Value="-1" IsChecked="False" />
+    <Answer Name="Insomnia3" Value="-2.2" IsChecked="False" />
+    <Answer Name="Insomnia4" Value="-2.2" IsChecked="False" />
+  </Question>
+
+  <Question Name="SelfEsteem" Type="MultipleChoice">
+    <Answer Name="SelfEsteem1" Value="-2.4" IsChecked="False" />
+    <Answer Name="SelfEsteem2" Value="-1" IsChecked="False" />
+    <Answer Name="SelfEsteem3" Value="0" IsChecked="False" />
+    <Answer Name="SelfEsteem4" Value="2.2" IsChecked="False" />
+    <Answer Name="SelfEsteem5" Value="-2.2" IsChecked="False" />
+  </Question>
+
+  <Question Name="Headache" Type="MultipleChoice">
+    <Answer Name="Headache1" Value="0" IsChecked="False" />
+    <Answer Name="Headache2" Value="-1" IsChecked="False" />
+    <Answer Name="Headache3" Value="-2.2" IsChecked="False" />
+    <Answer Name="Headache4" Value="-2.2" IsChecked="False" />
+  </Question>
+
+  <Question Name="Animal" Type="MultipleChoice">
+    <Answer Name="Animal1" Value="0" IsChecked="False" />
+    <Answer Name="Animal2" Value="-1" IsChecked="False" />
+    <Answer Name="Animal3" Value="-2.2" IsChecked="False" />    
+  </Question>
+  
+</Questions>

@@ -117,88 +117,118 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Alcohol" xml:space="preserve">
-    <value>How often do you drink alcohol?</value>
+  <data name="Animal" xml:space="preserve">
+    <value>Which animal do you prefer?</value>
   </data>
-  <data name="Alcohol1" xml:space="preserve">
-    <value>I'm teetotal</value>
+  <data name="Animal1" xml:space="preserve">
+    <value>Dog</value>
   </data>
-  <data name="Alcohol2" xml:space="preserve">
-    <value>Without exceeding</value>
+  <data name="Animal2" xml:space="preserve">
+    <value>Cat</value>
   </data>
-  <data name="Alcohol3" xml:space="preserve">
-    <value>Every day</value>
+  <data name="Animal3" xml:space="preserve">
+    <value>Horse</value>
   </data>
-  <data name="Cigarettes" xml:space="preserve">
-    <value>How many cigarettes do you smoke daily?</value>
+  <data name="ForeverAlone" xml:space="preserve">
+    <value>Are you feeling lonley, shy or isolated?</value>
   </data>
-  <data name="ClinicChecks" xml:space="preserve">
-    <value>How often you make clinic check?</value>
+  <data name="ForeverAlone1" xml:space="preserve">
+    <value>No, I have friends</value>
   </data>
-  <data name="ClinicChecks1" xml:space="preserve">
-    <value>The last one was long time ago</value>
+  <data name="ForeverAlone2" xml:space="preserve">
+    <value>Lately</value>
   </data>
-  <data name="ClinicChecks2" xml:space="preserve">
-    <value>Only when I'm sick</value>
+  <data name="ForeverAlone3" xml:space="preserve">
+    <value>Since adolesence</value>
   </data>
-  <data name="ClinicChecks3" xml:space="preserve">
-    <value>Periodically</value>
+  <data name="ForeverAlone4" xml:space="preserve">
+    <value>In my entire life</value>
   </data>
-  <data name="CronicDisease" xml:space="preserve">
-    <value>Do you have chronic diseases?</value>
+  <data name="Headache" xml:space="preserve">
+    <value>Do you suffer Headaches?</value>
   </data>
-  <data name="CronicDisease1" xml:space="preserve">
-    <value>No</value>
+  <data name="Headache1" xml:space="preserve">
+    <value>Almost never</value>
   </data>
-  <data name="CronicDisease2" xml:space="preserve">
-    <value>Yes, mild</value>
+  <data name="Headache2" xml:space="preserve">
+    <value>Few times in a year</value>
   </data>
-  <data name="CronicDisease3" xml:space="preserve">
-    <value>Yes, serious</value>
+  <data name="Headache3" xml:space="preserve">
+    <value>At least once a month</value>
   </data>
-  <data name="Drugs" xml:space="preserve">
-    <value>Do you use drugs?</value>
+  <data name="Headache4" xml:space="preserve">
+    <value>At least once a week</value>
   </data>
-  <data name="Drugs1" xml:space="preserve">
-    <value>Never taked</value>
+  <data name="Insomnia" xml:space="preserve">
+    <value>Do you have insomnia or do you oversleep?</value>
   </data>
-  <data name="Drugs2" xml:space="preserve">
+  <data name="Insomnia1" xml:space="preserve">
+    <value>No problems, I sleep about 8 ours a day</value>
+  </data>
+  <data name="Insomnia2" xml:space="preserve">
+    <value>I sleep less than 8 hours a day</value>
+  </data>
+  <data name="Insomnia3" xml:space="preserve">
+    <value>I always take a nap after launch</value>
+  </data>
+  <data name="Insomnia4" xml:space="preserve">
+    <value>I have serious difficulties to fall asleep every night</value>
+  </data>
+  <data name="Painic1" xml:space="preserve">
+    <value>Never</value>
+  </data>
+  <data name="Panic" xml:space="preserve">
+    <value>Have you panick attacks for no apparent reason?</value>
+  </data>
+  <data name="Panic2" xml:space="preserve">
     <value>Sometimes</value>
   </data>
-  <data name="Drugs3" xml:space="preserve">
-    <value>Usually</value>
+  <data name="Panic3" xml:space="preserve">
+    <value>Often</value>
   </data>
-  <data name="Food" xml:space="preserve">
-    <value>What kind of diet do you follow?</value>
+  <data name="Panic4" xml:space="preserve">
+    <value>Always</value>
   </data>
-  <data name="Food1" xml:space="preserve">
-    <value>Mediterranean</value>
+  <data name="Phobia" xml:space="preserve">
+    <value>Are you afraid of a particular animal, or by doing some activity?</value>
   </data>
-  <data name="Food2" xml:space="preserve">
-    <value>I eat everything</value>
+  <data name="Phobia1" xml:space="preserve">
+    <value>Yes</value>
   </data>
-  <data name="Food3" xml:space="preserve">
-    <value>Fat is good</value>
+  <data name="Phobia2" xml:space="preserve">
+    <value>No</value>
   </data>
-  <data name="Food4" xml:space="preserve">
-    <value>Vegetarian</value>
+  <data name="SelfEsteem" xml:space="preserve">
+    <value>How much do you self esteem?</value>
   </data>
-  <data name="Height" xml:space="preserve">
-    <value>Insert your height (in)</value>
+  <data name="SelfEsteem1" xml:space="preserve">
+    <value>I am less than a 0</value>
   </data>
-  <data name="Sports" xml:space="preserve">
-    <value>Do you do some sport?</value>
+  <data name="SelfEsteem2" xml:space="preserve">
+    <value>Low</value>
   </data>
-  <data name="Sports1" xml:space="preserve">
-    <value>Not so much / never</value>
+  <data name="SelfEsteem3" xml:space="preserve">
+    <value>I am realistic</value>
   </data>
-  <data name="Sports2" xml:space="preserve">
-    <value>Weekly</value>
+  <data name="SelfEsteem4" xml:space="preserve">
+    <value>High</value>
   </data>
-  <data name="Sports3" xml:space="preserve">
-    <value>Daily</value>
+  <data name="SelfEsteem5" xml:space="preserve">
+    <value>I am the best</value>
   </data>
-  <data name="Weight" xml:space="preserve">
-    <value>Insert your weight (lb)</value>
+  <data name="Stress" xml:space="preserve">
+    <value>Are you under stress?</value>
+  </data>
+  <data name="Stress1" xml:space="preserve">
+    <value>Never</value>
+  </data>
+  <data name="Stress2" xml:space="preserve">
+    <value>Occasionally</value>
+  </data>
+  <data name="Stress3" xml:space="preserve">
+    <value>Frequently</value>
+  </data>
+  <data name="Stress4" xml:space="preserve">
+    <value>Every day</value>
   </data>
 </root>

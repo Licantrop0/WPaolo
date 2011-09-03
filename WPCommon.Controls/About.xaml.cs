@@ -13,12 +13,12 @@ namespace WPCommon.Controls
         }
         private void Facebook_Click(object sender, RoutedEventArgs e)
         {
-            new WebBrowserTask() { URL = "http://m.facebook.com/pages/WP-Mobile-Entertainment/192414040771354" }.Show();
+            new WebBrowserTask() {  Uri = new Uri("http://m.facebook.com/pages/WP-Mobile-Entertainment/192414040771354") }.Show();
         }
 
         private void Twitter_Click(object sender, RoutedEventArgs e)
         {
-            new WebBrowserTask() { URL = "http://mobile.twitter.com/wp7me" }.Show();
+            new WebBrowserTask() { Uri = new Uri("http://mobile.twitter.com/wp7me") }.Show();
         }
 
         private void Mail_Click(object sender, RoutedEventArgs e)

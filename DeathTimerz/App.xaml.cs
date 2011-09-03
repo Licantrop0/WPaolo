@@ -37,22 +37,25 @@ namespace DeathTimerz
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            if (!isf.FileExists("Questions.xml"))
+            CopyFileToStorage("Test1.xml");
+            CopyFileToStorage("Test2.xml");
+
+            SoundManager.Instance.RestoreMusicStatus();
+        }
+
+        private void CopyFileToStorage(string fileName)
+        {
+            if (!isf.FileExists(fileName))
             {
-                using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.CreateNew, FileAccess.Write, isf))
+                using (var fs = new IsolatedStorageFileStream(fileName, FileMode.CreateNew, FileAccess.Write, isf))
                 {
                     StreamResourceInfo sri = Application.GetResourceStream(
-                        new Uri("DeathTimerz;component/Questions.xml", UriKind.Relative));
+                        new Uri("DeathTimerz;component/" + fileName, UriKind.Relative));
                     byte[] bytesInStream = new byte[sri.Stream.Length];
                     sri.Stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
                     fs.Write(bytesInStream, 0, bytesInStream.Length);
                 }
             }
-
-            using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
-                Settings.Test1 = XDocument.Load(fs);
-
-            SoundManager.Instance.RestoreMusicStatus();
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -61,9 +64,6 @@ namespace DeathTimerz
         {
             if (!e.IsApplicationInstancePreserved)
             {
-                using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Open, FileAccess.Read, isf))
-                    Settings.Test1 = XDocument.Load(fs);
-
                 SoundManager.Instance.RestoreMusicStatus();
             }
         }
@@ -78,6 +78,16 @@ namespace DeathTimerz
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            //TODO: testare il tombstoning
+            using (var fs = new IsolatedStorageFileStream("Test1.xml", FileMode.Create, FileAccess.Write, isf))
+            {
+                Settings.Test1.Save(fs);
+            }
+
+            using (var fs = new IsolatedStorageFileStream("Test2.xml", FileMode.Create, FileAccess.Write, isf))
+            {
+                Settings.Test2.Save(fs);
+            }
         }
 
         // Code to execute if a navigation fails

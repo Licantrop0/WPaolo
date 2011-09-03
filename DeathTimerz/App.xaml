@@ -12,6 +12,11 @@
             <GradientStop Color="Red" Offset="0" />
             <GradientStop Color="#C8503232" Offset="1" />
         </LinearGradientBrush>
+        
+        <LinearGradientBrush x:Key="RedWhiteGradientBrush" StartPoint="0.5,0.2" EndPoint="0.5,1">
+        	<GradientStop Color="Red" Offset="0" />
+        	<GradientStop Color="#CDC09696" Offset="1" />
+        </LinearGradientBrush>
 
         <sys:FontFamily x:Key="DefaultFont"
                     xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows" >
@@ -25,6 +30,7 @@
         </Style>
 
             <Style x:Key="RedChillerTest" TargetType="TextBlock" BasedOn="{StaticResource RedChiller}">
+            <Setter Property="Foreground" Value="{StaticResource RedWhiteGradientBrush}" />
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Margin" Value="0,28,0,0" />
@@ -34,7 +40,7 @@
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
-            <Setter Property="Foreground" Value="{StaticResource RedGradientBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource RedWhiteGradientBrush}" />
         </Style>
 
         <Style x:Key="RedChillerButton" TargetType="Button"  BasedOn="{StaticResource RedChillerContentControl}" >

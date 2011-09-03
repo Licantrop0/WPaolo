@@ -11,6 +11,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using DeathTimerz.Localization;
 using System.Collections.Generic;
+using System.Resources;
 
 namespace DeathTimerz
 {
@@ -19,16 +20,87 @@ namespace DeathTimerz
         public TestPage()
         {
             InitializeComponent();
+        }
+
+        XDocument CurrentTest;
+        ResourceManager CurrentResources;
+
+        private void TestListbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TestListbox.SelectedIndex == 0)
+            {
+                CurrentTest = Settings.Test1;
+                CurrentResources = Test1.ResourceManager;
+            }
+            else
+            {
+                CurrentTest = Settings.Test2;
+                CurrentResources = Test2.ResourceManager;
+            }
+
+            PopupBorder.Visibility = Visibility.Collapsed;
             BuildTest();
+        }
+
+        private void BuildTest()
+        {
+            foreach (var el in CurrentTest.Descendants("Question")) //ciclo su ogni domanda
+            {
+                //Domanda
+                TestStackPanel.Children.Add(new TextBlock()
+                {
+                    Text = CurrentResources.GetString(el.Attribute("Name").Value),
+                    TextWrapping = TextWrapping.Wrap,
+                    Style = (Style)Application.Current.Resources["RedChillerTest"],
+                });
+
+                //Risposta Multipla
+                if (el.Attribute("Type").Value == "MultipleChoice")
+                {
+                    foreach (var answ in el.Elements("Answer")) //ciclo su ogni risposta
+                    {
+                        TestStackPanel.Children.Add(new RadioButton()
+                        {
+                            Name = answ.Attribute("Name").Value,
+                            Content = CurrentResources.GetString(answ.Attribute("Name").Value),
+                            GroupName = el.Attribute("Name").Value,
+                            Style = (Style)Application.Current.Resources["RedChillerContentControl"],
+                            IsChecked = bool.Parse(answ.Attribute("IsChecked").Value)
+                        });
+                    }
+                }
+                else //Risposta Aperta (textbox)
+                {
+                    InputScope Numbers = new InputScope();
+                    Numbers.Names.Add(new InputScopeName() { NameValue = InputScopeNameValue.TelephoneNumber });
+                    var answTextBox = new TextBox()
+                    {
+                        Name = el.Element("Answer").Attribute("Name").Value,
+                        Text = el.Element("Answer").Attribute("Text").Value,
+                        //Style = (Style)Application.Current.Resources["RedChiller"],
+                        InputScope = Numbers
+                    };
+                    answTextBox.KeyDown += (sender, e) => { e.Handled = CheckDigits(e); };
+                    TestStackPanel.Children.Add(answTextBox);
+                }
+            }
+
+            TestStackPanel.Children.Add(new TextBlock()
+            {
+                Text = "[Premi back per salvare e vedere il Risultato]",
+                TextWrapping = TextWrapping.Wrap,
+                Style = (Style)Application.Current.Resources["RedChillerTest"],
+            });
+
         }
 
         private void SaveAnswers()
         {
             //resetto le risposte precedentemente salvate
-            foreach (var el in Settings.Test1.Descendants("Answer"))
+            foreach (var el in CurrentTest.Descendants("Answer"))
             {
                 el.Attributes("IsChecked").ForEach(a => a.Value = "False");
-                el.Attributes("Content").ForEach(a => a.Value = string.Empty);
+                el.Attributes("Text").ForEach(a => a.Value = string.Empty);
             }
 
             //imposto l'attributo IsChecked alle risposte selezionate nell'XML
@@ -38,7 +110,7 @@ namespace DeathTimerz
                 .Where(rb => rb.IsChecked.Value)
                 .Select(rb => rb.Name)
                 .ForEach(ans =>
-                    Settings.Test1.Descendants("Answer")
+                    CurrentTest.Descendants("Answer")
                     .Where(el => el.Attribute("Name").Value == ans).First()
                     .Attribute("IsChecked").Value = "True");
 
@@ -47,15 +119,9 @@ namespace DeathTimerz
                 .Where(ctrl => ctrl is TextBox)
                 .Cast<TextBox>()
                 .ForEach(ans =>
-                    Settings.Test1.Descendants("Answer")
+                    CurrentTest.Descendants("Answer")
                     .Where(el => el.Attribute("Name").Value == ans.Name).First()
-                    .Attribute("Content").Value = ans.Text);
-
-            IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
-            using (var fs = new IsolatedStorageFileStream("Questions.xml", FileMode.Create, FileAccess.Write, isf))
-            {
-                Settings.Test1.Save(fs);
-            }
+                    .Attribute("Text").Value = ans.Text);
         }
 
         private void StimateDeathAge()
@@ -64,6 +130,7 @@ namespace DeathTimerz
 
             Settings.EstimatedDeathAge +=
                  (from q in Settings.Test1.Descendants("Question")
+                      .Concat(Settings.Test2.Descendants("Question"))
                   where q.Attribute("Type").Value == "MultipleChoice"
                   from ans in q.Elements("Answer")
                   where ans.Attribute("IsChecked").Value == "True"
@@ -71,38 +138,46 @@ namespace DeathTimerz
                     double.Parse(ans.Attribute("Value").Value, CultureInfo.InvariantCulture))).
                     Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
 
-            var Weight = (from el in Settings.Test1.Descendants("Answer")
-                          where el.Attribute("Name").Value == "Weight1"
-                          select double.Parse(el.Attribute("Content").Value)).First();
+            #region Test1-Specific evaluation (BMI + Cigarettes)
 
-            var Height = (from el in Settings.Test1.Descendants("Answer")
-                          where el.Attribute("Name").Value == "Height1"
-                          select double.Parse(el.Attribute("Content").Value)).First();
+            double Weight, Height;
+            if (double.TryParse(Settings.Test1.Descendants("Answer")
+                .First(el => el.Attribute("Name").Value == "Weight1")
+                .Attribute("Text").Value, out Weight)
+                &&
+                double.TryParse(Settings.Test1.Descendants("Answer")
+                .First(el => el.Attribute("Name").Value == "Height1")
+                .Attribute("Text").Value, out Height))
+            {
+                double bmi;
+                if (CultureInfo.CurrentUICulture.Name == "en-US")
+                    bmi = Weight * 703 / Math.Pow(Height, 2); //lb-in
+                else
+                    bmi = Weight / Math.Pow(Height * .01, 2); //kg-cm
 
-            double bmi;
-            if (CultureInfo.CurrentUICulture.Name == "en-US")
-                bmi = Weight * 703 / Math.Pow(Height, 2); //lb-in
-            else
-                bmi = Weight / Math.Pow(Height * .01, 2); //kg-cm
+                if (bmi >= 18 && bmi <= 27)
+                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
+                else if (bmi > 27 && bmi <= 35)
+                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-2);
+                else if (bmi < 18 || bmi > 35)
+                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
+            }
 
-            if (bmi >= 18 && bmi <= 27)
-                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
-            else if (bmi > 27 && bmi <= 35)
-                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-2);
-            else if (bmi < 18 || bmi > 35)
-                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
+            double cigarettes;
+            if (double.TryParse(Settings.Test1.Descendants("Answer")
+                .First(el => el.Attribute("Name").Value == "Cigarettes1")
+                .Attribute("Text").Value, out cigarettes))
+            {
+                //TODO: elaborare meglio sulle sigarette
+                if (cigarettes <= 0)
+                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
+                else if (cigarettes > 0 && cigarettes <= 5)
+                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-1);
+                else if (cigarettes > 5)
+                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
+            }
 
-            var cigarettes = (from el in Settings.Test1.Descendants("Answer")
-                              where el.Attribute("Name").Value == "Cigarettes1"
-                              select double.Parse(el.Attribute("Content").Value)).First();
-
-            //elaborare meglio sulle sigarette
-            if (cigarettes <= 0)
-                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
-            else if (cigarettes > 0 && cigarettes <= 5)
-                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-1);
-            else if (cigarettes > 5)
-                Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
+            #endregion
         }
 
         bool IsTestFilled()
@@ -124,59 +199,6 @@ namespace DeathTimerz
                     where !double.TryParse(t.Text, out temp)
                     select t).Count() == 0;
         }
-
-        private void BuildTest()
-        {
-            foreach (var el in Settings.Test1.Descendants("Question")) //ciclo su ogni domanda
-            {
-                //Domanda
-                TestStackPanel.Children.Add(new TextBlock()
-                {
-                    Text = Test1.ResourceManager.GetString(el.Attribute("Name").Value),
-                    TextWrapping = TextWrapping.Wrap,
-                    Style = (Style)Application.Current.Resources["RedChillerTest"],
-                });
-
-                //Risposta Multipla
-                if (el.Attribute("Type").Value == "MultipleChoice")
-                {
-                    foreach (var answ in el.Elements("Answer")) //ciclo su ogni risposta
-                    {
-                        TestStackPanel.Children.Add(new RadioButton()
-                        {
-                            Name = answ.Attribute("Name").Value,
-                            Content = Test1.ResourceManager.GetString(answ.Attribute("Name").Value),
-                            GroupName = el.Attribute("Name").Value,
-                            Style = (Style)Application.Current.Resources["RedChillerContentControl"],
-                            IsChecked = bool.Parse(answ.Attribute("IsChecked").Value)
-                        });
-                    }
-                }
-                else //Risposta Aperta (textbox)
-                {
-                    InputScope Numbers = new InputScope();
-                    Numbers.Names.Add(new InputScopeName() { NameValue = InputScopeNameValue.TelephoneNumber });
-                    var answTextBox = new TextBox()
-                    {
-                        Name = el.Element("Answer").Attribute("Name").Value,
-                        Text = el.Element("Answer").Attribute("Content").Value,
-                        //Style = (Style)Application.Current.Resources["RedChiller"],
-                        InputScope = Numbers
-                    };
-                    answTextBox.KeyDown += (sender, e) => { e.Handled = CheckDigits(e); };
-                    TestStackPanel.Children.Add(answTextBox);
-                }
-            }
-
-            TestStackPanel.Children.Add(new TextBlock()
-            {
-                Text = "[Premi back per salvare e vedere il Risultato]",
-                TextWrapping = TextWrapping.Wrap,
-                Style = (Style)Application.Current.Resources["RedChillerTest"],
-            });
-
-        }
-
 
         private static bool CheckDigits(KeyEventArgs e)
         {

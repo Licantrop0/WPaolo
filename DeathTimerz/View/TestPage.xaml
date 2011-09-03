@@ -12,8 +12,27 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+    <Grid>
+        <ScrollViewer>
+            <StackPanel Name="TestStackPanel" Margin="12,0" />
+        </ScrollViewer>
 
-    <ScrollViewer>
-        <StackPanel Name="TestStackPanel" Margin="12,0" />
-    </ScrollViewer>
+        <Border Name="PopupBorder"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                BorderBrush="{StaticResource RedWhiteGradientBrush}"
+                BorderThickness="8" CornerRadius="8">
+            <ListBox Name="TestListbox" Margin="12,10,12,30" SelectionChanged="TestListbox_SelectionChanged">
+                <ListBoxItem HorizontalAlignment="Center">
+                    <TextBlock Text="Physical" FontSize="100"
+                               Style="{StaticResource RedChillerTest}" />
+                </ListBoxItem>
+
+                <ListBoxItem HorizontalAlignment="Center">
+                    <TextBlock Text="Psicological" FontSize="100"
+                               Style="{StaticResource RedChillerTest}" />
+                </ListBoxItem>
+
+            </ListBox>
+        </Border>
+    </Grid>
 </phone:PhoneApplicationPage>

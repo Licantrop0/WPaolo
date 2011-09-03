@@ -2,7 +2,7 @@
 <Questions>
   
   <Question Name="Cigarettes" Type="Number" >
-    <Answer Name="Cigarettes1" Content="" />
+    <Answer Name="Cigarettes1" Text="" />
   </Question>
   
   <Question Name="Alcohol" Type="MultipleChoice">
@@ -24,11 +24,11 @@
   </Question>
 
   <Question Name="Height" Type="Number">
-    <Answer Name="Height1" Content="" />
+    <Answer Name="Height1" Text="" />
   </Question>
 
   <Question Name="Weight" Type="Number" >
-    <Answer Name="Weight1" Content="" />
+    <Answer Name="Weight1" Text="" />
   </Question>
   
   <Question Name="ClinicChecks" Type="MultipleChoice">
@@ -48,12 +48,6 @@
     <Answer Name="Food2" Value="0" IsChecked="False" />
     <Answer Name="Food3" Value="-3" IsChecked="False" />
     <Answer Name="Food4" Value="-1" IsChecked="False" />
-  </Question>
-
-  <Question Name="Stress" Type="MultipleChoice">
-    <Answer Name="Stress1" Value="1" IsChecked="False" />
-    <Answer Name="Stress2" Value="-1" IsChecked="False" />
-    <Answer Name="Stress3" Value="-2" IsChecked="False" />
   </Question>
  
 </Questions>

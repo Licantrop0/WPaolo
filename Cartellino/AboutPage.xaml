@@ -8,16 +8,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
     xmlns:vm="clr-namespace:Cartellino.ViewModel"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
+    FontSize="{StaticResource PhoneFontSizeMedium}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
+   
     <phone:PhoneApplicationPage.Resources>
         <vm:AboutViewModel
             x:Key="AboutVM"
             AppId=""
+            DefaultFont="/Cartellino;component/Fonts/Fonts.zip#Andy"
+            DefaultForeground="Yellow"
             MinFontSize="34"
             LogoMargin="30" >
             <vm:AboutViewModel.DefaultBackground>
@@ -25,6 +26,7 @@
             </vm:AboutViewModel.DefaultBackground>
         </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>
+
 
     <wpc:About DataContext="{StaticResource AboutVM}" />
 </phone:PhoneApplicationPage>

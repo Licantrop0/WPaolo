@@ -20,7 +20,8 @@ namespace Capra
         {
             InitializeComponent();
             var name = Assembly.GetExecutingAssembly().FullName;
-            WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString(); 
+            //sere: vecchia versione libraria wpcommon
+            //WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString(); 
         }
     }
 }

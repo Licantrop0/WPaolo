@@ -199,6 +199,9 @@ De toute façon... touche du bois!</value>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Veux-tu arrêter ta musique pour écouter la lugubre musique de cette app?</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Confirmer</value>
   </data>
@@ -211,8 +214,17 @@ De toute façon... touche du bois!</value>
   <data name="Settings" xml:space="preserve">
     <value>Options</value>
   </data>
+  <data name="Suggestion" xml:space="preserve">
+    <value>Suggestion</value>
+  </data>
   <data name="TakeTest" xml:space="preserve">
     <value>Fais le test!</value>
+  </data>
+  <data name="Test1" xml:space="preserve">
+    <value>Physiques</value>
+  </data>
+  <data name="Test2" xml:space="preserve">
+    <value>Psychologiques</value>
   </data>
   <data name="TestNotCompleted" xml:space="preserve">
     <value>Réponds à toutes les questions, s'il vous plaît!</value>

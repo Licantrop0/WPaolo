@@ -129,8 +129,12 @@
   <data name="Alcohol3" xml:space="preserve">
     <value>Tous les jours</value>
   </data>
-  <data name="Cigarettes" xml:space="preserve">
+  <data name="Cigarettes1" xml:space="preserve">
     <value>Combien de cigarettes fumes-tu par jour?</value>
+  </data>
+  <data name="Cigarettes2" xml:space="preserve">
+    <value>Da quanti anni fumi?</value>
+    <comment>ANCORA DA TRADURRE!</comment>
   </data>
   <data name="ClinicChecks" xml:space="preserve">
     <value>Fais-tu des visites médicales?</value>
@@ -198,18 +202,6 @@ trouve</value>
   </data>
   <data name="Sports3" xml:space="preserve">
     <value>Tous les jours</value>
-  </data>
-  <data name="Stress" xml:space="preserve">
-    <value>Es-tu stressé(e)?</value>
-  </data>
-  <data name="Stress1" xml:space="preserve">
-    <value>Jamais</value>
-  </data>
-  <data name="Stress2" xml:space="preserve">
-    <value>Quelquefois</value>
-  </data>
-  <data name="Stress3" xml:space="preserve">
-    <value>Souvent</value>
   </data>
   <data name="Weight" xml:space="preserve">
     <value>Ton poids (kg)</value>

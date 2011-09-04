@@ -99,9 +99,18 @@ namespace DeathTimerz.Localization {
         /// <summary>
         ///   Looks up a localized string similar to How many cigarettes do you smoke daily?.
         /// </summary>
-        internal static string Cigarettes {
+        internal static string Cigarettes1 {
             get {
-                return ResourceManager.GetString("Cigarettes", resourceCulture);
+                return ResourceManager.GetString("Cigarettes1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For how many years do you smoke?.
+        /// </summary>
+        internal static string Cigarettes2 {
+            get {
+                return ResourceManager.GetString("Cigarettes2", resourceCulture);
             }
         }
         

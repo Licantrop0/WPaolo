@@ -1,10 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Questions>
   
-  <Question Name="Cigarettes" Type="Number" >
+  <Question Name="Cigarettes1" Type="Number" >
     <Answer Name="Cigarettes1" Text="" />
   </Question>
   
+  <Question Name="Cigarettes2" Type="Number" >
+    <Answer Name="Cigarettes2" Text="" />
+  </Question>
+
   <Question Name="Alcohol" Type="MultipleChoice">
     <Answer Name="Alcohol1" Value="1" IsChecked="False" />
     <Answer Name="Alcohol2" Value="-0.3" IsChecked="False" />

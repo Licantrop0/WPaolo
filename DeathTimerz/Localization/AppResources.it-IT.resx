@@ -199,6 +199,9 @@ Comunque... toccati le palle!</value>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Vuoi interrompere la musica corrente e riprodurre la lugubre musica di questa app?</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profilo</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Salva</value>
   </data>
@@ -211,8 +214,17 @@ Comunque... toccati le palle!</value>
   <data name="Settings" xml:space="preserve">
     <value>Settaggi</value>
   </data>
+  <data name="Suggestion" xml:space="preserve">
+    <value>Suggerimento</value>
+  </data>
   <data name="TakeTest" xml:space="preserve">
     <value>Fai il test!</value>
+  </data>
+  <data name="Test1" xml:space="preserve">
+    <value>Fisico</value>
+  </data>
+  <data name="Test2" xml:space="preserve">
+    <value>Psicologico</value>
   </data>
   <data name="TestNotCompleted" xml:space="preserve">
     <value>Per favore rispondi a tutte le domande</value>

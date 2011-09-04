@@ -305,6 +305,15 @@ namespace DeathTimerz.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        public static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -341,11 +350,38 @@ namespace DeathTimerz.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Suggestion.
+        /// </summary>
+        public static string Suggestion {
+            get {
+                return ResourceManager.GetString("Suggestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Take the test!.
         /// </summary>
         public static string TakeTest {
             get {
                 return ResourceManager.GetString("TakeTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Physical.
+        /// </summary>
+        public static string Test1 {
+            get {
+                return ResourceManager.GetString("Test1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Psicological.
+        /// </summary>
+        public static string Test2 {
+            get {
+                return ResourceManager.GetString("Test2", resourceCulture);
             }
         }
         

@@ -199,6 +199,9 @@ Anyway... knock on wood!</value>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Do you want to stop the current music and play the gloomy background music of this app?</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -211,8 +214,17 @@ Anyway... knock on wood!</value>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Suggestion" xml:space="preserve">
+    <value>Suggestion</value>
+  </data>
   <data name="TakeTest" xml:space="preserve">
     <value>Take the test!</value>
+  </data>
+  <data name="Test1" xml:space="preserve">
+    <value>Physical</value>
+  </data>
+  <data name="Test2" xml:space="preserve">
+    <value>Psicological</value>
   </data>
   <data name="TestNotCompleted" xml:space="preserve">
     <value>Please respond to all questions</value>

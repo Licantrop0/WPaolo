@@ -17,10 +17,13 @@
     <phone:PhoneApplicationPage.Resources>
         <vm:AboutViewModel
             x:Key="AboutVM"
-            AppName="Penality Card"
             AppId=""
             MinFontSize="34"
-            LogoMargin="30" />
+            LogoMargin="30" >
+            <vm:AboutViewModel.DefaultBackground>
+                <ImageBrush ImageSource="Images/background.jpg" />
+            </vm:AboutViewModel.DefaultBackground>
+        </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>
 
     <wpc:About DataContext="{StaticResource AboutVM}" />

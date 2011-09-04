@@ -13,10 +13,10 @@
     <AssemblyName>Cartellino</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
-    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>en-US;it-IT;fr-FR;</SupportedCultures>
+    <SupportedCultures>en-US;it-IT;fr-FR;de-DE;es-ES</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>Cartellino.xap</XapFilename>
@@ -72,6 +72,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Persistance.cs" />
+    <Compile Include="Localization\AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -94,6 +100,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppResLib.dll.0407.mui" />
+    <Content Include="AppResLib.dll.0409.mui" />
+    <Content Include="AppResLib.dll.040c.mui" />
+    <Content Include="AppResLib.dll.0410.mui" />
+    <Content Include="AppResLib.dll.0c0a.mui" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
@@ -103,11 +114,15 @@
     <Content Include="ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="AppResLib.dll" />
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Images\giallo.png" />
     <Resource Include="Images\rosso.png" />
+    <Content Include="Images\background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\help.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -122,6 +137,17 @@
       <Project>{7CF377DB-129E-4C84-A23D-5758F01DC6F1}</Project>
       <Name>WPCommon.Helpers</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\AppResources.de-DE.resx" />
+    <EmbeddedResource Include="Localization\AppResources.es-ES.resx" />
+    <EmbeddedResource Include="Localization\AppResources.fr-FR.resx" />
+    <EmbeddedResource Include="Localization\AppResources.it-IT.resx" />
+    <EmbeddedResource Include="Localization\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

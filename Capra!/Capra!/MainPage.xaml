@@ -45,16 +45,28 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Button Content="Capra!" Click="Capra_Click" Grid.Row="0"
-                Height="180" Width="300" Foreground="#FFFFEB50"
-                Style="{StaticResource CapraButtonStyle}" />
+        <Button Content="Capra!" Click="Capra_Click" Height="180" Width="300" Foreground="#FFFFEB50"
+                Style="{StaticResource CapraButtonStyle}" Margin="87,184,93,436" />
         
-        <Button Content="Curiosità" Click="FunFact_Click" Grid.Row="1"
-                Height="100" Width="240" FontSize="36"
-                Background="#7A000000" Style="{StaticResource CapraButtonStyle}" />
+        <Button Content="Curiosità" Click="FunFact_Click" Height="100" Width="240" FontSize="36"
+                Background="#7A000000" Style="{StaticResource CapraButtonStyle}" Margin="12,370,228,330" />
         
-        <Button Content="About" Click="About_Click" Grid.Row="2"
-                Height="100" Width="240" FontSize="36"
-                Background="#7A000000" Style="{StaticResource CapraButtonStyle}" />
+        <Button Content="About" Click="About_Click" Height="100" Width="240" FontSize="36"
+                Background="#7A000000" Style="{StaticResource CapraButtonStyle}" Margin="240,370,0,330" />
+
+        <!--<Button Content="Capra non ti basta? 
+Prova nuovi insulti con SgarbiMix!" Click="Sgarbi_Click" FontSize="26"
+                Background="#7A000000" Style="{StaticResource CapraButtonStyle}" Margin="12,692,0,0" />-->
+
+        <HyperlinkButton Content="Prova nuovi insulti con SgarbiMix!" Height="104" HorizontalAlignment="Left" Margin="-31,0,0,-12" Name="hyperlinkButton1" VerticalAlignment="Bottom" Width="523" Click="Sgarbi_Click" Background="#AC000000" FontSize="28" Grid.RowSpan="3">
+            <HyperlinkButton.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFF6E00" Offset="0" />
+                    <GradientStop Color="#FFFFD800" Offset="1" />
+                </LinearGradientBrush>
+            </HyperlinkButton.Foreground>
+        </HyperlinkButton>
+
     </Grid>
+
 </phone:PhoneApplicationPage>

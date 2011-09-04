@@ -16,12 +16,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using WPCommon.Helpers;
 
 namespace Capra
 {
     public partial class App : Application
     {
-        public static bool AlreadyOpenedToday;
+        // sere: tolta demo e trial, app free
+        //public static bool AlreadyOpenedToday;
 
         // Provides easy access to the root frame of the Phone Application.
         public PhoneApplicationFrame RootFrame { get; private set; }
@@ -57,7 +59,8 @@ namespace Capra
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            AlreadyOpenedToday = WPCommon.TrialManagement.AlreadyOpenedToday;
+            // sere: tolta demo e trial, app free
+            //AlreadyOpenedToday = WPCommon.TrialManagement.AlreadyOpenedToday;
         }
 
         // Code to execute when the application is activated (brought to foreground)

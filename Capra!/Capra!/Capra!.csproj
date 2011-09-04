@@ -13,7 +13,7 @@
     <AssemblyName>Capra!</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
-    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
     <SupportedCultures>
@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.cs" />
+    <Compile Include="ViewModel\AboutViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -194,6 +195,14 @@
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\WPCommon.Controls\WPCommon.Controls.csproj">
+      <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
+      <Name>WPCommon.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WPCommon.Helpers\WPCommon.Helpers.csproj">
+      <Project>{7CF377DB-129E-4C84-A23D-5758F01DC6F1}</Project>
+      <Name>WPCommon.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\WPCommon\WPCommon.csproj">
       <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
       <Name>WPCommon</Name>

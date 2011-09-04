@@ -11,6 +11,7 @@ using System.Xml.Linq;
 using Microsoft.Phone.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Phone.Tasks;
 using WPCommon;
 
 
@@ -117,9 +118,10 @@ namespace Capra
 
         private void FunFact_Click(object sender, RoutedEventArgs e)
         {
-            if (TrialManagement.IsTrialMode)
+            // Sere: rendendola free, liberiamo anche le curiosità
+            /*if (TrialManagement.IsTrialMode)
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-            else
+            else*/
                 NavigationService.Navigate(new Uri("/FunFactPage.xaml", UriKind.Relative));
         }
 
@@ -132,12 +134,26 @@ namespace Capra
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && (App.AlreadyOpenedToday || Settings.CountCapre >= 3))
+            // Sere: eliminiamo demo e trial. l'app diventa free
+            /*if (TrialManagement.IsTrialMode && (App.AlreadyOpenedToday || Settings.CountCapre >= 3))
             {
                 NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
                 return false;
-            }
+            }*/
             return true;
+        }
+
+        private void Sgarbi_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                new MarketplaceDetailTask()
+                {
+                    ContentIdentifier = "5925f9d6-483d-e011-854c-00237de2db9e"
+                }.Show();
+            }
+            catch (InvalidOperationException)
+            { /*do nothing */ }
         }
 
     }

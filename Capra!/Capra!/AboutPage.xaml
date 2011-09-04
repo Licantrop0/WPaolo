@@ -7,14 +7,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:wpcommon="clr-namespace:WPCommon;assembly=WPCommon"
+    xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
+    xmlns:vm="clr-namespace:Capra.ViewModel"
     FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
-    <toolkit:TransitionService.NavigationInTransition>
+    
+    <!--<toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
                 <toolkit:SlideTransition Mode="SlideRightFadeIn" />
@@ -45,7 +47,44 @@
                 <GradientStop Color="#FFFFEB50"  Offset="1" />
             </LinearGradientBrush>
         </wpcommon:AboutControl.Foreground>
-    </wpcommon:AboutControl>
+    </wpcommon:AboutControl>-->
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <phone:PhoneApplicationPage.Resources>
+        <vm:AboutViewModel
+            x:Key="AboutVM"
+            AppName="Capra!"
+            AppId="5925f9d6-483d-e011-854c-00237de2db9e"
+            MinFontSize="30"
+            DefaultBackground="{StaticResource DarkerBackground}"
+            DefaultFont="{StaticResource DefaultFont}"
+            DefaultForeground="{StaticResource DefaultForeground}"
+            HeaderForeground="{StaticResource HeaderForeground}"
+            LogoMargin="24" >
+        </vm:AboutViewModel>
+    </phone:PhoneApplicationPage.Resources>
+
+    <wpc:About DataContext="{StaticResource AboutVM}"  />
 
 
 </phone:PhoneApplicationPage>

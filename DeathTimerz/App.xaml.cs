@@ -79,15 +79,15 @@ namespace DeathTimerz
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             //TODO: testare il tombstoning
-            using (var fs = new IsolatedStorageFileStream("Test1.xml", FileMode.Create, FileAccess.Write, isf))
-            {
-                Settings.Test1.Save(fs);
-            }
+            //using (var fs = new IsolatedStorageFileStream("Test1.xml", FileMode.Create, FileAccess.Write, isf))
+            //{
+            //    Settings.Test1.Save(fs);
+            //}
 
-            using (var fs = new IsolatedStorageFileStream("Test2.xml", FileMode.Create, FileAccess.Write, isf))
-            {
-                Settings.Test2.Save(fs);
-            }
+            //using (var fs = new IsolatedStorageFileStream("Test2.xml", FileMode.Create, FileAccess.Write, isf))
+            //{
+            //    Settings.Test2.Save(fs);
+            //}
         }
 
         // Code to execute if a navigation fails

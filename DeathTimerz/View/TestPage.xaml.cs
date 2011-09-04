@@ -97,11 +97,16 @@ namespace DeathTimerz
         private void SaveAnswers()
         {
             //resetto le risposte precedentemente salvate
-            foreach (var el in CurrentTest.Descendants("Answer"))
-            {
-                el.Attributes("IsChecked").ForEach(a => a.Value = "False");
-                el.Attributes("Text").ForEach(a => a.Value = string.Empty);
-            }
+            if (CurrentTest == null) return;
+
+            CurrentTest.Descendants("Question")
+            .Where(question => question.Attribute("Type").Value == "MultipleChoice")
+            .ForEach(ans => ans.Descendants()
+                .ForEach(el => el.Attribute("IsChecked").Value = "False"));
+
+            CurrentTest.Descendants("Question")
+            .Where(question => question.Attribute("Type").Value == "Number")
+            .ForEach(ans => ans.Element("Answer").Attribute("Text").Value = string.Empty);
 
             //imposto l'attributo IsChecked alle risposte selezionate nell'XML
             TestStackPanel.Children
@@ -132,11 +137,11 @@ namespace DeathTimerz
                  (from q in Settings.Test1.Descendants("Question")
                       .Concat(Settings.Test2.Descendants("Question"))
                   where q.Attribute("Type").Value == "MultipleChoice"
-                  from ans in q.Elements("Answer")
-                  where ans.Attribute("IsChecked").Value == "True"
-                  select ExtensionMethods.TimeSpanFromYears(
-                    double.Parse(ans.Attribute("Value").Value, CultureInfo.InvariantCulture))).
-                    Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
+                      from ans in q.Elements("Answer")
+                      where ans.Attribute("IsChecked").Value == "True"
+                      select ExtensionMethods.TimeSpanFromYears(
+                        double.Parse(ans.Attribute("Value").Value, CultureInfo.InvariantCulture))).
+                        Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
 
             #region Test1-Specific evaluation (BMI + Cigarettes)
 
@@ -163,18 +168,22 @@ namespace DeathTimerz
                     Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
             }
 
-            double cigarettes;
+            double cigarettesNum, cigaretteYears;
             if (double.TryParse(Settings.Test1.Descendants("Answer")
                 .First(el => el.Attribute("Name").Value == "Cigarettes1")
-                .Attribute("Text").Value, out cigarettes))
+                .Attribute("Text").Value, out cigarettesNum)
+                &&
+                double.TryParse(Settings.Test1.Descendants("Answer")
+                .First(el => el.Attribute("Name").Value == "Cigarettes2")
+                .Attribute("Text").Value, out cigaretteYears))
             {
-                //TODO: elaborare meglio sulle sigarette
-                if (cigarettes <= 0)
-                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
-                else if (cigarettes > 0 && cigarettes <= 5)
-                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-1);
-                else if (cigarettes > 5)
-                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
+
+                //Ogni sigaretta toglie 11 minuti di vita http://www.rense.com/health3/smoking_h.htm
+                var TotalSmokingPeriod =
+                    ExtensionMethods.TimeSpanFromYears(cigaretteYears) + //anni che ha fumato finora
+                    Settings.EstimatedDeathAge - DateTime.Now.Subtract(Settings.BirthDay); //anni ancora da vivere
+
+                Settings.EstimatedDeathAge -= TimeSpan.FromMinutes(TotalSmokingPeriod.Value.TotalDays * cigarettesNum * 11);
             }
 
             #endregion

@@ -129,8 +129,11 @@
   <data name="Alcohol3" xml:space="preserve">
     <value>Every day</value>
   </data>
-  <data name="Cigarettes" xml:space="preserve">
+  <data name="Cigarettes1" xml:space="preserve">
     <value>How many cigarettes do you smoke daily?</value>
+  </data>
+  <data name="Cigarettes2" xml:space="preserve">
+    <value>For how many years do you smoke?</value>
   </data>
   <data name="ClinicChecks" xml:space="preserve">
     <value>How often you make clinic check?</value>

@@ -37,6 +37,7 @@
 
     <Grid Background="{StaticResource SfondoCapre}">
         
+        
         <!--SERE, PER ALLINEARE I CONTROLLI USA LE ROWDEFINITIONS COME NELLE ALTRE PAGINE!-->
         
         <TextBlock Name="textProgress" Height="85" Width="456"
@@ -64,6 +65,11 @@
                    Width="456" Height="499" Margin="0,0,0,44"
                    VerticalAlignment="Bottom" FontSize="32"
                    Foreground="#FFFFF9B8" TextWrapping="Wrap" />
+        <Button Height="124" HorizontalAlignment="Stretch" Margin="-14,688,-22,0" Name="button1" VerticalAlignment="Top" BorderThickness="0" Padding="0" BorderBrush="{x:Null}" AllowDrop="False" Click="button1_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Capra!;component/Images/banner_capra_1.jpg" />
+            </Button.Background>
+        </Button>
     </Grid>
 
 

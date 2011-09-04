@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.Windows.Resources;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 using System.Xml.Linq;
 
 namespace Capra
@@ -33,7 +34,9 @@ namespace Capra
 
             if (Settings.TotCapre <= 10)
             {
-                textProgress.Text = "Hai detto Capra! solo " + Settings.TotCapre + "/1000 volte! \nContinua per sbloccare gli extra!";
+                // sere
+                // textProgress.Text = "Hai detto Capra! solo " + Settings.TotCapre + "/1000 volte! \nContinua per sbloccare gli extra!";
+                textProgress.Text = "Hai detto Capra! solo " + Settings.TotCapre + " volte! \nContinua per sbloccare gli extra!";
                 progressBar.Value = (double)(Settings.TotCapre);
 
                 titleTextBox.Text = "";
@@ -47,7 +50,7 @@ namespace Capra
                 if (sbloccati == 0) sbloccati = 1;
 
                 textProgress.Text = "Hai detto Capra! " + Settings.TotCapre 
-                    + "/1000 volte! \n Contenuti extra "+ sbloccati + "/"+ FunFacts.Count +" sbloccati!";
+                    + " volte! \n Contenuti extra "+ sbloccati + "/"+ FunFacts.Count +" sbloccati!";
                 progressBar.Value = (double)(Settings.TotCapre);
 
                 // ne mostro uno a caso
@@ -57,7 +60,7 @@ namespace Capra
             }
             else
             {
-                textProgress.Text = "Hai detto Capra! " + Settings.TotCapre + "/1000 volte! \nHai sbloccato tutto!";
+                textProgress.Text = "Hai detto Capra! " + Settings.TotCapre + " volte! \nHai sbloccato tutto!";
                 progressBar.Value = 1000.00;
 
                 titleTextBox.Text = "MASTRO CAPRAIO";
@@ -70,6 +73,19 @@ namespace Capra
             
 
 
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                new MarketplaceDetailTask()
+                {
+                    ContentIdentifier = "5925f9d6-483d-e011-854c-00237de2db9e"
+                }.Show();
+            }
+            catch (InvalidOperationException)
+            { /*do nothing */ }
         }
 
         //===============================================================================

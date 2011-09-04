@@ -9,45 +9,11 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
     xmlns:vm="clr-namespace:Capra.ViewModel"
-    FontFamily="/Capra!;component/Fonts/Fonts.zip#Forte"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
-    
-    <!--<toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
-
-    <wpcommon:AboutControl Name="WPMEAbout" ApplicationName="Capra!" MinFontSize="40"
-                           GetOtherAppsText="Guarda le altre app di WPME!" ApplicationVersion="v. 1.1"
-                           BackgroundStackPanel="{StaticResource SfondoCapre}">
-     
-        <wpcommon:AboutControl.Foreground>
-            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                <GradientStop Color="#FFF5F5E1" Offset="0" />
-                <GradientStop Color="#FFFFEB50"  Offset="1" />
-            </LinearGradientBrush>
-        </wpcommon:AboutControl.Foreground>
-    </wpcommon:AboutControl>-->
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -74,17 +40,15 @@
         <vm:AboutViewModel
             x:Key="AboutVM"
             AppName="Capra!"
-            AppId="5925f9d6-483d-e011-854c-00237de2db9e"
-            MinFontSize="30"
-            DefaultBackground="{StaticResource DarkerBackground}"
-            DefaultFont="{StaticResource DefaultFont}"
-            DefaultForeground="{StaticResource DefaultForeground}"
-            HeaderForeground="{StaticResource HeaderForeground}"
+            AppId="d86ce488-8c2c-e011-854c-00237de2db9e"
+            MinFontSize="40"
+            DefaultBackground="{StaticResource SfondoCapre}"
+            DefaultFont="/Capra!;component/Fonts/Fonts.zip#Forte"
+            DefaultForeground="#FFFFEBAC"
             LogoMargin="24" >
         </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>
 
     <wpc:About DataContext="{StaticResource AboutVM}"  />
-
 
 </phone:PhoneApplicationPage>

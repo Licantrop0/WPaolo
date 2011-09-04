@@ -19,9 +19,6 @@ namespace Capra
         public AboutPage()
         {
             InitializeComponent();
-            var name = Assembly.GetExecutingAssembly().FullName;
-            //sere: vecchia versione libraria wpcommon
-            //WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString(); 
         }
     }
 }

@@ -1,20 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Windows.Resources;
-using System.Windows.Threading;
+using System.Xml.Linq;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
-using System.Xml.Linq;
 
 namespace Capra
 {
@@ -27,52 +17,48 @@ namespace Capra
         {
             InitializeComponent();
 
-            //Carica i FunFacts
+            //Carica tutti i FunFacts
             XDocument XFunFacts = XDocument.Load("funFacts.xml");
-            FunFacts = XFunFacts.Descendants("FunFact").Select(ff =>
-                new FunFact(ff.Attribute("Type").Value, ff.Attribute("Text").Value)).ToList();
+            FunFacts = XFunFacts.Descendants("FunFact")
+                .Select(ff => new FunFact(
+                    ff.Attribute("Type").Value,
+                    ff.Attribute("Text").Value)
+                ).ToList();
 
             if (Settings.TotCapre <= 10)
             {
-                // sere
-                // textProgress.Text = "Hai detto Capra! solo " + Settings.TotCapre + "/1000 volte! \nContinua per sbloccare gli extra!";
-                textProgress.Text = "Hai detto Capra! solo " + Settings.TotCapre + " volte! \nContinua per sbloccare gli extra!";
+                textProgress.Text = "Hai detto Capra! solo " + Settings.TotCapre +
+                    " volte!\nContinua per sbloccare gli extra!";
+                
                 progressBar.Value = (double)(Settings.TotCapre);
 
                 titleTextBox.Text = "";
                 textFunFact.Text = "Non hai invocato abbastanza capre per poterne scoprire i segreti. Continua...";
-   
+
             }
-            else if ((Settings.TotCapre > 10) && (Settings.TotCapre <= 1000))
+            else if ((Settings.TotCapre > 10) && (Settings.TotCapre <= 999))
             {
                 // sblocco dei contenuti solo ogni tot 
-                int sbloccati = FunFacts.Count * Settings.TotCapre / 999;
+                int sbloccati = FunFacts.Count * Settings.TotCapre / 800;
                 if (sbloccati == 0) sbloccati = 1;
 
-                textProgress.Text = "Hai detto Capra! " + Settings.TotCapre 
-                    + " volte! \n Contenuti extra "+ sbloccati + "/"+ FunFacts.Count +" sbloccati!";
+                textProgress.Text = "Hai detto Capra! " + Settings.TotCapre
+                    + " volte!\nContenuti extra " + sbloccati + "/" + FunFacts.Count + " sbloccati!";
                 progressBar.Value = (double)(Settings.TotCapre);
 
-                // ne mostro uno a caso
-                int randomFact = Rnd.Next(sbloccati);
-                titleTextBox.Text = FunFacts[randomFact].Type;
-                textFunFact.Text = FunFacts[randomFact].Text; 
+                //ne mostro uno a caso tra i primi sbloccati
+                var randomFact = FunFacts[Rnd.Next(sbloccati)];
+                titleTextBox.Text = randomFact.Type;
+                textFunFact.Text = randomFact.Text;
             }
             else
             {
-                textProgress.Text = "Hai detto Capra! " + Settings.TotCapre + " volte! \nHai sbloccato tutto!";
+                textProgress.Text = "Hai detto Capra! " + Settings.TotCapre + " volte!\nHai sbloccato tutto!";
                 progressBar.Value = 1000.00;
 
                 titleTextBox.Text = "MASTRO CAPRAIO";
-                textFunFact.Text = "La tua conoscenza sulle capre ha raggiunto un livello tale da fare invidia a Wikipedia :) ";
-
-                // non mostro piu' niente
-                // o forse mostriamo qcosa? lupo possiamo mostrarli in un'altra pagina??
-                // come aggiornamento semmai.. ci penseremo..
+                textFunFact.Text = "La tua conoscenza sulle capre ha raggiunto un livello tale da fare invidia a Wikipedia :)";
             }
-            
-
-
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

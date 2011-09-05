@@ -23,7 +23,7 @@ namespace DeathTimerz
             get
             {
                 if (!IsolatedStorageSettings.ApplicationSettings.Contains("birthday"))
-                    IsolatedStorageSettings.ApplicationSettings["birthday"] = DateTime.Now;
+                    IsolatedStorageSettings.ApplicationSettings["birthday"] = DateTime.Now.AddYears(-30);
                 return (DateTime)IsolatedStorageSettings.ApplicationSettings["birthday"];
             }
             set

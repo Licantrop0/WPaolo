@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using System.ComponentModel;
 using System.IO.IsolatedStorage;
-using DeathTimerz.Localization;
+using System.Windows;
 using System.Windows.Threading;
+using DeathTimerz.Localization;
 
 namespace DeathTimerz.ViewModel
 {
@@ -48,7 +40,6 @@ namespace DeathTimerz.ViewModel
             set
             {
                 if (BirthDay == value) return;
-                if (!CheckBirthday(value)) return;
 
                 Settings.BirthDay = value;
 
@@ -57,25 +48,6 @@ namespace DeathTimerz.ViewModel
                 RaisePropertyChanged("AgeText");
             }
         }
-
-        private bool CheckBirthday(DateTime value)
-        {
-            if (value >= DateTime.Today)
-            {
-                MessageBox.Show(AppResources.ErrorFutureBirthday);
-                return false;
-            }
-
-            //Trick per evitare il bug del DatePicker quando si imposta 1600 come anno
-            if (value < DateTime.Now.AddYears(-130))
-            {
-                MessageBox.Show(AppResources.ErrorTooOldBirthday);
-                BirthDay = DateTime.Now.AddYears(-50);
-                return false;
-            }
-
-            return true;
-       }
 
         public string DaysToBirthDay
         {

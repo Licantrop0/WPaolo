@@ -108,9 +108,9 @@
                     <TextBlock Text="{Binding Path=LocalizedResources.InsertBirthday, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
 
-                    <toolkit:DatePicker Background="Gray"
+                    <toolkit:DatePicker Name="BirthDayDatePicker" Background="Gray"
                                 FontFamily="/DeathTimerz;component/Fonts/Fonts.zip#Chiller"
-                                Foreground="{StaticResource RedGradientBrush}" Value="{Binding BirthDay, Mode=TwoWay}" />
+                                Foreground="{StaticResource RedGradientBrush}" Value="{Binding BirthDay, Mode=TwoWay}" ValueChanged="DatePicker_ValueChanged" />
                     <toolkit:TimePicker Background="Gray"
                                 Foreground="{StaticResource RedGradientBrush}" Value="{Binding BirthDay, Mode=TwoWay}"
                                 FontFamily="/DeathTimerz;component/Fonts/Fonts.zip#Chiller" />
@@ -130,8 +130,10 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
-                              ForegroundColor="#FFBE0000" BackgroundColor="#FF171717"  />
+        <shell:ApplicationBar IsVisible="True" 
+                              ForegroundColor="#FFBE0000"
+                              BackgroundColor="#FF171717"
+                              Mode="Minimized" IsMenuEnabled="True" />
     </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

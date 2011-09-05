@@ -16,7 +16,7 @@
     <phone:PhoneApplicationPage.Resources>
         <vm:AboutViewModel
             x:Key="AboutVM"
-            AppId=""
+            AppId="88f32d5b-aa2c-4f03-b7ed-91c178f0e973"
             DefaultFont="/Cartellino;component/Fonts/Fonts.zip#Andy"
             DefaultForeground="Yellow"
             MinFontSize="34"

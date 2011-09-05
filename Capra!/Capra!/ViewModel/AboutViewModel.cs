@@ -22,6 +22,11 @@ namespace Capra.ViewModel
         public IEnumerable<AppTile> AppList
         {
             get { return _appList; }
+            private set
+            {
+                _appList = value;
+                RaisePropertyChanged("AppList");
+            }
         }
 
         public AboutViewModel()
@@ -39,20 +44,19 @@ namespace Capra.ViewModel
             wc.OpenReadCompleted += (sender, e) =>
             {
                 if (e.Error != null) return;
-                if (_appList != null) return;
+                if (AppList != null) return;
 
                 XDocument response = XDocument.Load(e.Result);
-                _appList = from n in response.Descendants(nsAtom + "entry")
-                           let imageId = n.Element(nsZune + "image")
-                               .Element(nsZune + "id").Value.Substring(9) //rimozione di "urn:uuid:"
-                           let appId = n.Element(nsAtom + "id").Value.Substring(9)
-                           where appId != AppId
-                           select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
-                               string.Format("http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
-                                   cultureName, imageId)));
+                AppList = from n in response.Descendants(nsAtom + "entry")
+                          let imageId = n.Element(nsZune + "image")
+                              .Element(nsZune + "id").Value.Substring(9) //rimozione di "urn:uuid:"
+                          let appId = n.Element(nsAtom + "id").Value.Substring(9)
+                          where appId != AppId
+                          select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
+                              string.Format("http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
+                                  cultureName, imageId)));
             };
         }
-
         #region App Data
         /// <summary>Set this value to the Marketplace Product ID</summary>
         public string AppId { get; set; }

@@ -22,38 +22,21 @@ namespace SheldonMix
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        List<SoundContainerMP3> suoni;
+        WPCommon.Helpers.XNAAsyncDispatcher musicXNa;
+
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+            suoni = new List<SoundContainerMP3>();
+            musicXNa = new WPCommon.Helpers.XNAAsyncDispatcher();
 
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
 
-            // no advertisement
-            //if (WPCommon.Helpers.TrialManagement.IsTrialMode)
-            //{
-            //    AdPlaceHolder.Children.Add(new AdDuplex.AdControl() { AppId = "", IsTest = true });
-            //    var BuyFullMenuItem = new ApplicationBarMenuItem("Rimuovi la pubblicità");
-            //    BuyFullMenuItem.Click += (sender, e) =>
-            //    {
-            //        //Rimando a Sgarbimix senza Ad a pagamento
-            //        var detailTask = new MarketplaceDetailTask() { ContentIdentifier = "5925f9d6-483d-e011-854c-00237de2db9e" };
-            //        detailTask.Show();
-            //    };
-            //    ApplicationBar.MenuItems.Add(BuyFullMenuItem);
-            //}
         }
-
-        //// Load data for the ViewModel Items
-        //private void MainPage_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    if (!App.ViewModel.IsDataLoaded)
-        //    {
-        //        App.ViewModel.LoadData();
-        //    }
-        //}
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -62,36 +45,33 @@ namespace SheldonMix
                 return;
 
             WPCommon.Helpers.ExtensionMethods.StartTrace("carico risorse");
-            //prendo la risorsa dei suoni castandola in un array ordinato
+            //prendo la risorsa dei suoni castandola in un array
             var sr = SoundsResources.ResourceManager
                 .GetResourceSet(CultureInfo.CurrentCulture, true, true)
                 .Cast<DictionaryEntry>()
-                .OrderBy(de => de.Key.ToString().Length)
                 .ToArray();
             WPCommon.Helpers.ExtensionMethods.EndTrace();
 
-            var bw = new BackgroundWorker() { WorkerReportsProgress = true };
+            //var bw = new BackgroundWorker() { WorkerReportsProgress = true };
 
-            //Configuro l'evento DoWork
-            bw.DoWork += (s, evt) =>
-            {
-                WPCommon.Helpers.ExtensionMethods.StartTrace("ciclo sulla lista");
+            ////Configuro l'evento DoWork
+            //bw.DoWork += (s, evt) =>
+            //{
+            //    WPCommon.Helpers.ExtensionMethods.StartTrace("ciclo sulla lista");
                 for (int i = 0; i < sr.Length; i++)
                 {
                     //Aggiungo il suono alla lista dei suoni
-                    //App.Sounds.Add(new SoundContainer(sr[i].Key.ToString(), (UnmanagedMemoryStream)sr[i].Value));
-                    App.Sounds.Add(new SoundContainerMP3(sr[i].Key.ToString()));
-                    bw.ReportProgress(i);
+                    suoni.Add(new SoundContainerMP3(sr[i].Key.ToString()));
+                    //bw.ReportProgress(i);
                 }
-                WPCommon.Helpers.ExtensionMethods.EndTrace();
-            };
+            //    WPCommon.Helpers.ExtensionMethods.EndTrace();
+            //};
 
             //Creo il bottone corrispondende al suono non appena caricato
-            bw.ProgressChanged += (s, evt) =>
+            for (int i = 0; i < sr.Length; i++)
             {
-                var i = evt.ProgressPercentage;
-                var text = App.Sounds[i].ToString();
-                var type = App.Sounds[i].Type();
+                var text = suoni[i].ToString();
+                var type = suoni[i].Type();
                 var b = new Button()
                 {
                     Tag = i, //ATTENZIONE: creo un tag per recuperare l'i-esimo sound
@@ -104,7 +84,7 @@ namespace SheldonMix
                 {
                     //ATTENZIONE: uso il tag per recuperare l'i-esimo sound
                     var SoundIndex = (int)((Button)button).Tag;
-                    App.Sounds[SoundIndex].Play();
+                    suoni[SoundIndex].Play();
                 };
 
                 if (type == 1)
@@ -117,7 +97,8 @@ namespace SheldonMix
                 { /*some error */}
             };
 
-            bw.RunWorkerAsync();
+            //bw.RunWorkerAsync();
+            
         }
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)

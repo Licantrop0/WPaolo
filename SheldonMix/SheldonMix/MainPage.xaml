@@ -52,8 +52,8 @@
         <controls:PivotItem Header="TBBT" Margin="6,6,6,0" >
             <ScrollViewer>
                 <toolkit:WrapPanel Name="TBBTPlayButtonsStackPanel">
-
-                        <TextBlock Name="ThemeLyricsText" TextWrapping="Wrap">
+                    
+                    <TextBlock Name="ThemeLyricsText" TextWrapping="Wrap" Foreground="Black">
 Our whole universe was in a hot dense state,
 <LineBreak />
 Then nearly fourteen billion years ago expansion started. Wait... 

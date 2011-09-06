@@ -26,7 +26,7 @@
             <ImageBrush ImageSource="images/sfondo3.jpg" Stretch="None" AlignmentY="Top"/>
         </Grid.Background>
 
-        <controls:Pivot Title="{x:Null}" Margin="0,-30,0,0" Grid.Row="0">
+        <controls:Pivot Title="{x:Null}" Margin="0,-20,0,0" Grid.Row="0" FontFamily="{StaticResource DefaultFont}" Foreground="{StaticResource HeaderForeground}" >
             <!-- Pivot item 1 -->
             <controls:PivotItem Header="Classic" Margin="6,6,6,0" >
                 <ScrollViewer>

@@ -5,9 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SheldonMix", "SheldonMix.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers", "..\..\WPCommon.Helpers\WPCommon.Helpers.csproj", "{7CF377DB-129E-4C84-A23D-5758F01DC6F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
@@ -16,6 +18,9 @@ Global
 		SccProjectUniqueName2 = ..\\..\\WPCommon.Helpers\\WPCommon.Helpers.csproj
 		SccProjectName2 = ../../WPCommon.Helpers
 		SccLocalPath2 = ..\\..\\WPCommon.Helpers
+		SccProjectUniqueName3 = ..\\..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName3 = ../../WPCommon.Controls
+		SccLocalPath3 = ..\\..\\WPCommon.Controls
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +37,10 @@ Global
 		{7CF377DB-129E-4C84-A23D-5758F01DC6F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CF377DB-129E-4C84-A23D-5758F01DC6F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CF377DB-129E-4C84-A23D-5758F01DC6F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

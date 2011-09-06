@@ -83,7 +83,7 @@ namespace SheldonMix
                 _type = 4;
 
             //Convenzione: "_" = spazio, "1" = punto esclamativo  "2" = punto interrogativo
-            _name = rawName.Replace("_", " ").Replace("1", "!").Replace("2", "?");
+            _name = rawName.Substring(5).Replace("_", " ").Replace("1", "!").Replace("2", "?");
             _rawName = rawName;
             }
 

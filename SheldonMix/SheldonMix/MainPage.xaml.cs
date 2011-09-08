@@ -13,13 +13,6 @@ namespace SheldonMix
             InitializeComponent();
         }
 
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            var b = sender as Button;
-            var sound = b.DataContext as Model.SoundContainerMP3;
-            sound.Play();
-        }
-
         private void Base1ApplicationBar_Click(object sender, EventArgs e)
         {
             PlayBase("base1");
@@ -33,6 +26,11 @@ namespace SheldonMix
         private void Base3ApplicationBar_Click(object sender, EventArgs e)
         {
             PlayBase("base3");
+        }
+
+        private void AboutAppBarMenu_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
 
         private static void PlayBase(string baseName)
@@ -55,11 +53,6 @@ namespace SheldonMix
                 true :
                 MessageBox.Show("Do you want to stop your music and play the music to mix Sheldon?",
                     "SheldonMix", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
-        }
-
-        private void AboutAppBarMenu_Click(object sender, EventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
     }
 }

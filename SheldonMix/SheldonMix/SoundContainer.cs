@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Media;
+using System.Windows.Input;
 
 namespace SheldonMix.Model
 {
@@ -29,6 +30,15 @@ namespace SheldonMix.Model
             //"2" = punto interrogativo
             _name = rawName.Substring(5).Replace("_", " ").Replace("1", "!").Replace("2", "?");
         }
+
+        RelayCommand _playCommand;
+        public ICommand PlayCommand
+        {
+            get
+            {
+                return _playCommand ?? (_playCommand = new RelayCommand(param => Play()));
+            }
+        } 
 
         public void Play()
         {

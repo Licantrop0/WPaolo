@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using System.Windows;
-using Microsoft.Xna.Framework.Media;
 using SheldonMix.Model;
 
 namespace SheldonMix.ViewModel
@@ -61,36 +59,12 @@ namespace SheldonMix.ViewModel
             }
         }
 
-
-        public void PlayBase(string baseName)
-        {
-            if (AskAndPlayMusic())
-            {
-                if (MediaPlayer.Queue.Count == 1 && MediaPlayer.Queue.ActiveSong.Name == baseName && MediaPlayer.State == MediaState.Playing)
-                    MediaPlayer.Stop();
-                else
-                {
-                    MediaPlayer.Play(Song.FromUri(baseName, new Uri("sounds/" + baseName + ".mp3", UriKind.Relative)));
-                    MediaPlayer.IsRepeating = true;
-                }
-            }
-        }
-
-        private static bool AskAndPlayMusic()
-        {
-            return MediaPlayer.GameHasControl ?
-                true :
-                MessageBox.Show("Vuoi interrompere la canzone corrente e riprodurre la base su cui mixare le frasi di Sgarbi?",
-                    "SgarbiMix", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
+            if (PropertyChanged != null)
             {
-                handler(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

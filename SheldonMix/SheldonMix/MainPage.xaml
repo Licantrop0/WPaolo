@@ -13,7 +13,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="PortraitOrLandscape"  Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}">
@@ -21,7 +21,7 @@
             <vm:MainViewModel x:Key="MainVM" />
             <DataTemplate x:Key="PlayButtonDataTemplate">
                 <Button Style="{StaticResource PlayButtonStyle}"
-                        Click="PlayButton_Click"
+                        Command="{Binding PlayCommand}"
                         Content="{Binding}" />
             </DataTemplate>
             <ItemsPanelTemplate x:Key="PlayButtonItemsPanelTemplate">

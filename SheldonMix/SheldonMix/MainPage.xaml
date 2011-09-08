@@ -44,7 +44,7 @@
             <controls:PivotItem Header="Classic" Margin="6,6,6,0" >
                 <ListBox ItemsSource="{Binding SuoniCLAS}"
                          ItemTemplate="{StaticResource PlayButtonDataTemplate}"
-                         ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" />
+                         ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" FontFamily="Showcard Gothic" />
             </controls:PivotItem>
 
             <!-- Pivot item 2 -->

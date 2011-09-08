@@ -6,8 +6,6 @@ namespace Capra
 {
     public static class Settings
     {
-        public static int CountCapre;
-
         public static int TotCapre
         {
             get

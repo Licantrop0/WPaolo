@@ -59,8 +59,6 @@ namespace Capra
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            // sere: tolta demo e trial, app free
-            //AlreadyOpenedToday = WPCommon.TrialManagement.AlreadyOpenedToday;
         }
 
         // Code to execute when the application is activated (brought to foreground)

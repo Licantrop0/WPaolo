@@ -1,68 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Resources;
 using System.Windows.Threading;
-using System.Xml.Linq;
 using Microsoft.Phone.Controls;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Phone.Tasks;
+using Microsoft.Xna.Framework.Audio;
 using WPCommon;
-
-
-/* 
-    Copyright (c) 2010-2011 WPME
-*/
 
 namespace Capra
 {
     public partial class MainPage : PhoneApplicationPage
     {
         Random Rnd = new Random();
-        List<BitmapImage> CapreImages = new List<BitmapImage>();
-        SoundEffect CapraSound;
-        SoundEffect IgnoranteComeCapraSound;
-        int curImg;
-
-        //---------------------------------------------------
-        private bool _bCanExecuteSound = true;
+        List<BitmapImage> CapreImages;
+        private bool SoundCanExecute = true;
         private ShakeDetector sd = new ShakeDetector();
         private DispatcherTimer tmr = new DispatcherTimer();
-        //------------------------------------------------
+        int curImg;
+
+        SoundEffect _capraSound;
+        public SoundEffect CapraSound
+        {
+            get
+            {
+                if (_capraSound == null)
+                    _capraSound = SoundEffect.FromStream(App.GetResourceStream(
+                        new Uri("Sounds/capra_b.wav", UriKind.Relative)).Stream);
+                return _capraSound;
+            }
+        }
+
+        SoundEffect _ignoranteComeCapraSound;
+        public SoundEffect IgnoranteComeCapraSound
+        {
+            get
+            {
+                if (_ignoranteComeCapraSound == null)
+                    _ignoranteComeCapraSound = SoundEffect.FromStream(App.GetResourceStream(
+                        new Uri("Sounds/ignorante_come_capra.wav", UriKind.Relative)).Stream);
+                return _ignoranteComeCapraSound;
+            }
+        }
+
 
         public MainPage()
         {
             InitializeComponent();
-            InitializeSound();
 
-            // PS
-            /*shakeDetector.ShakeDetected += CapraIgnorante_Shake;
-            shakeDetector.Start();*/
-
-            //var sd = new ShakeDetector();
             sd.ShakeDetected += (sender, e) =>
             {
                 Dispatcher.BeginInvoke(() => { CapraIgnorante_Shake(); });
             };
             sd.Start();
+
+            tmr.Interval = TimeSpan.FromMilliseconds(700);
+            tmr.Tick += (sender, e) =>
+            {
+                tmr.Stop();
+                SoundCanExecute = true;
+            };
         }
 
-        private void InitializeSound()
+        private void CapraIgnorante_Shake()
         {
-            StreamResourceInfo SoundFileInfo = App.GetResourceStream(new Uri("Sounds/capra_b.wav", UriKind.Relative));
-            CapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
-            SoundFileInfo = App.GetResourceStream(new Uri("Sounds/ignorante_come_capra.wav", UriKind.Relative));
-            IgnoranteComeCapraSound = SoundEffect.FromStream(SoundFileInfo.Stream);
+            if (SoundCanExecute)
+                IgnoranteComeCapraSound.Play();
+
+            SoundCanExecute = false;
+            tmr.Start();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             //Carica le immagini delle capre
+
+            CapreImages =  new List<BitmapImage>();
             for (int i = 0; i <= 17; i++)
                 CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".jpg", UriKind.Relative)));
         }
@@ -72,75 +85,21 @@ namespace Capra
             // a volte ri-genera a caso l'img precedente
             // controllo l'index per evitarlo
             int nextImg;
-            do { nextImg = Rnd.Next(CapreImages.Count); }
+            do
+            {
+                nextImg = Rnd.Next(CapreImages.Count);
+            }
             while (curImg == nextImg);
 
             CapraImage.ImageSource = CapreImages[nextImg];
             curImg = nextImg;
         }
 
-        #region Click Events
-
         private void Capra_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckTrial())
-            {
-                CapraSound.Play();
-                SetNewCapraImage();
-                Settings.CountCapre++;
-                Settings.TotCapre++;
-            }
-        }
-
-        private void CapraIgnorante_Shake(/*object sender, EventArgs e*/)
-        {
-            if (CheckTrial())
-            {
-                if (_bCanExecuteSound)
-                    IgnoranteComeCapraSound.Play();
-                //SetNewCapraImage();
-                Settings.CountCapre++;
-
-                // ----------------------------------------------------
-                _bCanExecuteSound = false;
-                tmr.Interval = TimeSpan.FromMilliseconds(500);
-                tmr.Tick += OnTimerTick;
-                tmr.Start();
-                //---------------------------------------------------- 
-            }
-        }
-
-        private void OnTimerTick(object sender, EventArgs e)
-        {
-            tmr.Stop();
-            _bCanExecuteSound = true;
-        }
-
-        private void FunFact_Click(object sender, RoutedEventArgs e)
-        {
-            // Sere: rendendola free, liberiamo anche le curiosità
-            /*if (TrialManagement.IsTrialMode)
-                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-            else*/
-                NavigationService.Navigate(new Uri("/FunFactPage.xaml", UriKind.Relative));
-        }
-
-        private void About_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
-        } 
-
-        #endregion
-
-        private bool CheckTrial()
-        {
-            // Sere: eliminiamo demo e trial. l'app diventa free
-            /*if (TrialManagement.IsTrialMode && (App.AlreadyOpenedToday || Settings.CountCapre >= 3))
-            {
-                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-                return false;
-            }*/
-            return true;
+            CapraSound.Play();
+            SetNewCapraImage();
+            Settings.TotCapre++;
         }
 
         private void Sgarbi_Click(object sender, RoutedEventArgs e)

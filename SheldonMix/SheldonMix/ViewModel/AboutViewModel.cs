@@ -22,6 +22,11 @@ namespace SheldonMix.ViewModel
         public IEnumerable<AppTile> AppList
         {
             get { return _appList; }
+            private set
+            {
+                _appList = value;
+                RaisePropertyChanged("AppList");
+            }
         }
 
         public AboutViewModel()
@@ -42,7 +47,7 @@ namespace SheldonMix.ViewModel
                 if (_appList != null) return;
 
                 XDocument response = XDocument.Load(e.Result);
-                _appList = from n in response.Descendants(nsAtom + "entry")
+                AppList = from n in response.Descendants(nsAtom + "entry")
                            let imageId = n.Element(nsZune + "image")
                                .Element(nsZune + "id").Value.Substring(9) //rimozione di "urn:uuid:"
                            let appId = n.Element(nsAtom + "id").Value.Substring(9)

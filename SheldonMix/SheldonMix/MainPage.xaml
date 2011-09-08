@@ -13,10 +13,10 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}">
         <Grid.Resources>
             <vm:MainViewModel x:Key="MainVM" />
             <DataTemplate x:Key="PlayButtonDataTemplate">
@@ -28,89 +28,91 @@
                 <toolkit:WrapPanel />
             </ItemsPanelTemplate>
         </Grid.Resources>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <Grid.Background>
-            <ImageBrush ImageSource="images/sfondo3.jpg" Stretch="None" AlignmentY="Top"/>
-        </Grid.Background>
-
-        <controls:Pivot Title="{x:Null}" DataContext="{StaticResource MainVM}"
-                        FontFamily="{StaticResource DefaultFont}"
-                        Foreground="{StaticResource HeaderForeground}" >
-            <!-- Pivot item 1 -->
-            <controls:PivotItem Header="Classic" Margin="6,6,6,0" >
+        
+        <controls:Pivot Title="{x:Null}" DataContext="{StaticResource MainVM}" >
+            <!-- Classic -->
+            <controls:PivotItem Margin="0">
+                <controls:PivotItem.Header>
+                    <TextBlock Text="Classic" Style="{StaticResource HeaderStyle}" />
+                </controls:PivotItem.Header>
                 <ListBox ItemsSource="{Binding SuoniCLAS}"
                          ItemTemplate="{StaticResource PlayButtonDataTemplate}"
-                         ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" FontFamily="Showcard Gothic" />
+                         ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" FontFamily="/SheldonMix;component/Fonts/Fonts.zip#Showcard Gothic" />
             </controls:PivotItem>
 
-            <!-- Pivot item 2 -->
-            <controls:PivotItem Header="Bazinga" Margin="6,6,6,0" >
-                <ListBox ItemsSource="{Binding SuoniTBBT}"
-                         HorizontalAlignment="Center"
-                         ItemTemplate="{StaticResource PlayButtonDataTemplate}"
-                         ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" />
-            </controls:PivotItem>
+            <!-- Bazinga -->
+            <controls:PivotItem Margin="0">
+                <controls:PivotItem.Header>
+                    <TextBlock Text="Zazzy" Style="{StaticResource HeaderStyle}" />
+                </controls:PivotItem.Header>
 
-            <!-- Pivot item 3 -->
-            <controls:PivotItem Header="Zazzy" Margin="6,6,6,0" >
                 <ListBox ItemsSource="{Binding SuoniZAZZ}"
                          ItemTemplate="{StaticResource PlayButtonDataTemplate}"
                          ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" />
             </controls:PivotItem>
 
-            <!-- Pivot item 3 -->
-            <controls:PivotItem Header="TBBT" Margin="6" >
-                <ScrollViewer>
-                    <TextBlock TextWrapping="Wrap" Foreground="Black">
-                        Our whole universe was in a hot dense state,<LineBreak />
-                        Then nearly fourteen billion years ago expansion started. Wait...<LineBreak />
-                        The Earth began to cool,<LineBreak />
-                        The autotrophs began to drool,<LineBreak />
-                        Neanderthals developed tools,<LineBreak />
-                        We built a wall (we built the pyramids),<LineBreak />
-                        Math, science, history, unravelling the mystery,<LineBreak />
-                        That all started with the big bang! BANG!<LineBreak />
-                        <LineBreak />
-                        Since the dawn of man is really not that long,<LineBreak />
-                        As every galaxy was formed in less time<LineBreak />
-                        than it takes to sing this song.<LineBreak />
-                        A fraction of a second and the elements were made.<LineBreak />
-                        The bipeds stood up straight,<LineBreak />
-                        The dinosaurs all met their fate,<LineBreak />
-                        They tried to leap but they were late<LineBreak />
-                        And they all died (they froze their asses off)<LineBreak />
-                        <LineBreak />
-                        The oceans and Pangaea<LineBreak />
-                        See ya, wouldn't wanna be ya!<LineBreak />
-                        Set in motion by the same big bang!<LineBreak />
-                        It all started with a big BANG!<LineBreak />
-                        <LineBreak />
-                        It's expanding ever outward but one day<LineBreak />
-                        It will pause, then start to go the other way,<LineBreak />
-                        Collapsing ever inward,<LineBreak />
-                        we won't be here, it wont be heard<LineBreak />
-                        Our best and brightest figure that<LineBreak />
-                        it'll make an even bigger bang!<LineBreak />
-                        <LineBreak />
-                        Australopithecus would really have been sick of us<LineBreak />
-                        Debating how we're here,<LineBreak />
-                        they're catching deer (we're catching viruses)<LineBreak />
-                        Religion or astronomy, Encarta, Deuteronomy<LineBreak />
-                        It all started with a big bang!<LineBreak />
-                        <LineBreak />
-                        Music and mythology, Einstein and astrology<LineBreak />
-                        It all started with a big bang!<LineBreak />
-                        It all started with a big BANG!"
-                    </TextBlock>
-                </ScrollViewer>
+            <!-- TBBT -->
+            <controls:PivotItem Margin="0">
+                <controls:PivotItem.Header>
+                    <TextBlock Text="TBBT" Style="{StaticResource HeaderStyle}" />
+                </controls:PivotItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ListBox ItemsSource="{Binding SuoniTBBT}"
+                         HorizontalAlignment="Center"
+                         ItemTemplate="{StaticResource PlayButtonDataTemplate}"
+                         ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" />
+                    <ScrollViewer Grid.Row="1">
+                        <TextBlock TextWrapping="Wrap" Foreground="Black"
+                                   TextAlignment="Center"
+                                   FontFamily="{StaticResource DefaultFont}">
+                            Our whole universe was in a hot dense state,<LineBreak />
+                            Then nearly fourteen billion years ago expansion started. Wait...<LineBreak />
+                            The Earth began to cool,<LineBreak />
+                            The autotrophs began to drool,<LineBreak />
+                            Neanderthals developed tools,<LineBreak />
+                            We built a wall (we built the pyramids),<LineBreak />
+                            Math, science, history, unravelling the mystery,<LineBreak />
+                            That all started with the big bang! BANG!<LineBreak />
+                            <LineBreak />
+                            Since the dawn of man is really not that long,<LineBreak />
+                            As every galaxy was formed in less time<LineBreak />
+                            than it takes to sing this song.<LineBreak />
+                            A fraction of a second and the elements were made.<LineBreak />
+                            The bipeds stood up straight,<LineBreak />
+                            The dinosaurs all met their fate,<LineBreak />
+                            They tried to leap but they were late<LineBreak />
+                            And they all died (they froze their asses off)<LineBreak />
+                            <LineBreak />
+                            The oceans and Pangaea<LineBreak />
+                            See ya, wouldn't wanna be ya!<LineBreak />
+                            Set in motion by the same big bang!<LineBreak />
+                            It all started with a big BANG!<LineBreak />
+                            <LineBreak />
+                            It's expanding ever outward but one day<LineBreak />
+                            It will pause, then start to go the other way,<LineBreak />
+                            Collapsing ever inward,<LineBreak />
+                            we won't be here, it wont be heard<LineBreak />
+                            Our best and brightest figure that<LineBreak />
+                            it'll make an even bigger bang!<LineBreak />
+                            <LineBreak />
+                            Australopithecus would really have been sick of us<LineBreak />
+                            Debating how we're here,<LineBreak />
+                            they're catching deer (we're catching viruses)<LineBreak />
+                            Religion or astronomy, Encarta, Deuteronomy<LineBreak />
+                            It all started with a big bang!<LineBreak />
+                            <LineBreak />
+                            Music and mythology, Einstein and astrology<LineBreak />
+                            It all started with a big bang!<LineBreak />
+                            It all started with a big BANG!"
+                        </TextBlock>
+                    </ScrollViewer>
+                </Grid>
             </controls:PivotItem>
         </controls:Pivot>
-
-        <StackPanel Name="AdPlaceHolder" Grid.Row="1" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

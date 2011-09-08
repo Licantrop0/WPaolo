@@ -6,11 +6,9 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers" >
 
-
-    <!--Application Resources-->
     <Application.Resources>
         
-        <FontFamily x:Key="DefaultFont" >Showcard Gothic</FontFamily>
+        <FontFamily x:Key="DefaultFont" >/SheldonMix;component/Fonts/Fonts.zip#Showcard Gothic</FontFamily>
 
         <ImageBrush x:Key="DarkerBackground" ImageSource="images/sfondo3.jpg"
                     Stretch="None" AlignmentY="Top" Opacity="0.4" />
@@ -32,6 +30,11 @@
         <Style x:Key="TextBlockBaseStyle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
             <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+        </Style>
+
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+            <Setter Property="Foreground" Value="{StaticResource HeaderForeground}" />
         </Style>
 
         <Style x:Key="PlayButtonStyle" TargetType="Button">

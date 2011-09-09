@@ -9,7 +9,7 @@
 
     <Application.Resources>
         
-        <FontFamily x:Key="DefaultFont" >/SheldonMix;component/Fonts/Fonts.zip#Showcard Gothic</FontFamily>
+        <FontFamily x:Key="DefaultFont" >Showcard Gothic</FontFamily>
 
         <ImageBrush x:Key="DarkerBackground" ImageSource="images/sfondo3.jpg"
                     Stretch="None" AlignmentY="Top" Opacity="0.4" />

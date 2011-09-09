@@ -37,7 +37,7 @@
                 </controls:PivotItem.Header>
                 <ListBox ItemsSource="{Binding SuoniCLAS}"
                          ItemTemplate="{StaticResource PlayButtonDataTemplate}"
-                         ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" FontFamily="/SheldonMix;component/Fonts/Fonts.zip#Showcard Gothic" />
+                         ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" />
             </controls:PivotItem>
 
             <!-- Bazinga -->

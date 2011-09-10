@@ -33,7 +33,6 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,10 +58,10 @@
     <None Include="AdDuplex.AdControl.Silverlight.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="OpenXLive\OpenXLive.dll" />
+    <None Include="OpenXLiveSilverlight\OpenXLive.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="OpenXLive\OpenXLive.Silverlight.dll" />
+    <None Include="OpenXLiveSilverlight\OpenXLive.Silverlight.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MVVM Light\GalaSoft.MvvmLight.Extras.WP7.dll" />
@@ -70,6 +69,11 @@
     <None Include="MVVM Light\GalaSoft.MvvmLight.WP7.dll" />
     <None Include="MVVM Light\GalaSoft.MvvmLight.WP7.XML" />
     <None Include="MVVM Light\System.Windows.Interactivity.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="OpenXLiveXNA\OpenXLive.dll" />
+    <None Include="OpenXLiveXNA\OpenXLive.Form.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

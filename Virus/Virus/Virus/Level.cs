@@ -108,6 +108,8 @@ namespace Virus
                     // main background
                     Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("polmoni0");
                     Texture2D backgroundTexture1 = contentManager.Load<Texture2D>("polmoni1");
+                    MovingBackgroundConfig[] mainBackGroundConfig =
+                        new MovingBackgroundConfig();
                     _mainbackground = new MovingBackground(new Texture2D[2] { backgroundTexture0, backgroundTexture1 }, 30, 30);
                     _mainbackground.Speed = 15f;    // [px/sec]
 

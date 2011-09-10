@@ -17,11 +17,7 @@
         <ImageBrush x:Key="DefaultBackground" ImageSource="images/sfondo3.jpg"
                     Stretch="None" AlignmentY="Top" />
 
-        <LinearGradientBrush x:Key="DefaultForeground" EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FFF1FF00" Offset="0.42"/>
-            <GradientStop Color="#FFFBFBFB" Offset="0.773"/>
-            <GradientStop Color="#FFFDFDFD" Offset="0.252"/>
-        </LinearGradientBrush>
+        <SolidColorBrush x:Key="DefaultForeground" Color="Black"/>
 
         <LinearGradientBrush x:Key="HeaderForeground" EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFF0FD00" Offset="1"/>
@@ -44,19 +40,28 @@
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
             <Setter Property="FontSize" Value="22" />
             <Setter Property="BorderThickness" Value="6,4" />
-            <Setter Property="Opacity" Value="0.8" />
+            <Setter Property="Opacity" Value="0.99" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Margin" Value="6, -6" />
             <Setter Property="Height" Value="80" />
             <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-            <Setter Property="BorderBrush" Value="Red"/>
-            <Setter Property="Background">
-                <Setter.Value>
+            <Setter Property="BorderBrush">
+            	<Setter.Value>
             		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-            			<GradientStop Color="#FFDC0000" Offset="0.987"/>
-            			<GradientStop Color="#ACFF0000" Offset="0.017"/>
-            			<GradientStop Color="#BCD60000" Offset="0.328"/>
-            			<GradientStop Color="#89F72200" Offset="0.448"/>
+            			<GradientStop Color="#FFFB1206" Offset="1"/>
+            			<GradientStop Color="#FFF1FF00" Offset="0"/>
+            			<GradientStop Color="#FFF76903" Offset="0.853"/>
+            		</LinearGradientBrush>
+            	</Setter.Value>
+            </Setter>
+            <Setter Property="Background">
+            	<Setter.Value>
+            		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            			<GradientStop Color="#FFDADC00" Offset="1"/>
+            			<GradientStop Color="#FFFFEA00" Offset="0.349"/>
+            			<GradientStop Color="#FFD6C400" Offset="0.599"/>
+            			<GradientStop Color="#FFF7E200" Offset="0.477"/>
+            			<GradientStop Color="#FFCBD600" Offset="0"/>
             		</LinearGradientBrush>
             	</Setter.Value>
             </Setter>

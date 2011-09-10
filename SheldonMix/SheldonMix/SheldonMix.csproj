@@ -125,12 +125,12 @@
     <Content Include="sounds\base2.mp3" />
     <Content Include="sounds\base3.mp3" />
     <Content Include="sounds\CLAS_bazinga_1.mp3" />
-    <Content Include="sounds\CLAS_bazinga_you_ve_fallen_in_one_of_my_jokes.mp3" />
+    <Content Include="sounds\CLAS_bazinga_one_of_my_jokes.mp3" />
     <Content Include="sounds\CLAS_knock_knock_Penny.mp3" />
     <Content Include="sounds\CLAS_sheldon_soft_kitty.mp3" />
     <Content Include="sounds\ZAZZ_brave_leonard_song.mp3" />
     <Content Include="sounds\CLAS_change_is_never_fine.mp3" />
-    <Content Include="sounds\CLAS_dr_sheldon_cooper_FTW.mp3" />
+    <Content Include="sounds\ZAZZ_dr_sheldon_cooper_FTW.mp3" />
     <Content Include="sounds\ZAZZ_Engineering_oompa_loompas_of_science.mp3" />
     <Content Include="sounds\ZAZZ_hello_honeypuffs.mp3" />
     <Content Include="sounds\ZAZZ_It_s_a_trap1.mp3" />

@@ -121,14 +121,8 @@
   <data name="CLAS_bazinga_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\CLAS_bazinga_1.mp3;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="CLAS_bazinga_you_ve_fallen_in_one_of_my_jokes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sounds\CLAS_bazinga_you_ve_fallen_in_one_of_my_jokes.mp3;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
-  </data>
   <data name="CLAS_change_is_never_fine" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\CLAS_change_is_never_fine.mp3;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
-  </data>
-  <data name="CLAS_dr_sheldon_cooper_FTW" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sounds\CLAS_dr_sheldon_cooper_FTW.mp3;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="CLAS_knock_knock_Penny" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\CLAS_knock_knock_Penny.mp3;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
@@ -183,5 +177,11 @@
   </data>
   <data name="ZAZZ_to_sheldon_live_long_and_prosper" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\ZAZZ_to_sheldon_live_long_and_prosper.mp3;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
+  </data>
+  <data name="CLAS_bazinga_one_of_my_jokes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sounds\CLAS_bazinga_one_of_my_jokes.mp3;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
+  </data>
+  <data name="ZAZZ_dr_sheldon_cooper_FTW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sounds\ZAZZ_dr_sheldon_cooper_FTW.mp3;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
 </root>

@@ -16,58 +16,58 @@
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}">
-        <Grid.Resources>
-            <vm:MainViewModel x:Key="MainVM" />
+    <phone:PhoneApplicationPage.Resources>
+        <vm:MainViewModel x:Key="MainVM" />
+    </phone:PhoneApplicationPage.Resources>
+
+    <controls:Pivot Title="{x:Null}" DataContext="{StaticResource MainVM}"
+                    Background="{StaticResource DefaultBackground}" >
+
+        <controls:Pivot.Resources>
             <DataTemplate x:Key="PlayButtonDataTemplate">
-                <Button Style="{StaticResource PlayButtonStyle}"
-                        Command="{Binding PlayCommand}"
+                <Button Command="{Binding PlayCommand}"
                         Content="{Binding}" />
             </DataTemplate>
-            <ItemsPanelTemplate x:Key="PlayButtonItemsPanelTemplate">
-                <toolkit:WrapPanel />
-            </ItemsPanelTemplate>
-        </Grid.Resources>
-        
-        <controls:Pivot Title="{x:Null}" DataContext="{StaticResource MainVM}" >
-            <!-- Classic -->
-            <controls:PivotItem Margin="0">
-                <controls:PivotItem.Header>
-                    <TextBlock Text="Classic" Style="{StaticResource HeaderStyle}" />
-                </controls:PivotItem.Header>
-                <ListBox ItemsSource="{Binding SuoniCLAS}"
-                         ItemTemplate="{StaticResource PlayButtonDataTemplate}"
-                         ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" />
-            </controls:PivotItem>
 
-            <!-- Bazinga -->
-            <controls:PivotItem Margin="0">
-                <controls:PivotItem.Header>
-                    <TextBlock Text="Zazzy" Style="{StaticResource HeaderStyle}" />
-                </controls:PivotItem.Header>
+            <Style TargetType="ListBoxItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            </Style>
+        </controls:Pivot.Resources>
 
-                <ListBox ItemsSource="{Binding SuoniZAZZ}"
-                         ItemTemplate="{StaticResource PlayButtonDataTemplate}"
-                         ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" />
-            </controls:PivotItem>
+        <!-- Classic -->
+        <controls:PivotItem Margin="0">
+            <controls:PivotItem.Header>
+                <TextBlock Text="Classic" Style="{StaticResource HeaderStyle}" />
+            </controls:PivotItem.Header>
+            <ListBox ItemsSource="{Binding SuoniCLAS}"
+                     ItemTemplate="{StaticResource PlayButtonDataTemplate}" />
+        </controls:PivotItem>
 
-            <!-- TBBT -->
-            <controls:PivotItem Margin="0">
-                <controls:PivotItem.Header>
-                    <TextBlock Text="TBBT" Style="{StaticResource HeaderStyle}" />
-                </controls:PivotItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <ListBox ItemsSource="{Binding SuoniTBBT}"
-                         HorizontalAlignment="Center"
-                         ItemTemplate="{StaticResource PlayButtonDataTemplate}"
-                         ItemsPanel="{StaticResource PlayButtonItemsPanelTemplate}" />
-                    <ScrollViewer Grid.Row="1">
-                        <TextBlock TextWrapping="Wrap" Foreground="Black"
-                                   TextAlignment="Center"
+        <!-- Bazinga -->
+        <controls:PivotItem Margin="0">
+            <controls:PivotItem.Header>
+                <TextBlock Text="Zazzy" Style="{StaticResource HeaderStyle}" />
+            </controls:PivotItem.Header>
+
+            <ListBox ItemsSource="{Binding SuoniZAZZ}"
+                     ItemTemplate="{StaticResource PlayButtonDataTemplate}" />
+        </controls:PivotItem>
+
+        <!-- TBBT -->
+        <controls:PivotItem Margin="0">
+            <controls:PivotItem.Header>
+                <TextBlock Text="TBBT" Style="{StaticResource HeaderStyle}" />
+            </controls:PivotItem.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <ListBox ItemsSource="{Binding SuoniTBBT}"
+                         ItemTemplate="{StaticResource PlayButtonDataTemplate}" />
+                <ScrollViewer Grid.Row="1">
+                    <TextBlock TextWrapping="Wrap" Foreground="Black"
+                                   TextAlignment="Center" Margin="6"
                                    FontFamily="{StaticResource DefaultFont}">
                             Our whole universe was in a hot dense state,<LineBreak />
                             Then nearly fourteen billion years ago expansion started. Wait...<LineBreak />
@@ -108,12 +108,11 @@
                             Music and mythology, Einstein and astrology<LineBreak />
                             It all started with a big bang!<LineBreak />
                             It all started with a big BANG!"
-                        </TextBlock>
-                    </ScrollViewer>
-                </Grid>
-            </controls:PivotItem>
-        </controls:Pivot>
-    </Grid>
+                    </TextBlock>
+                </ScrollViewer>
+            </Grid>
+        </controls:PivotItem>
+    </controls:Pivot>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="True">

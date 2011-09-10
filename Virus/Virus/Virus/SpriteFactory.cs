@@ -435,9 +435,9 @@ namespace Virus
 					ScheduleCreatePeriodicalBonus(actualTime);
 					break;
 
-                case GameEventType.changeBonusSpeed:
-                    BonusSpeed = (int)gameEvent.Params[0];
-                    break;
+				case GameEventType.changeBonusSpeed:
+					BonusSpeed = (int)gameEvent.Params[0];
+					break;
 
 				default:
 					throw new Exception("W Blaze Baley!");

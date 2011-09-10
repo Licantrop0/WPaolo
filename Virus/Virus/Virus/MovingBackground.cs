@@ -14,9 +14,17 @@ namespace Virus
         trembling
     }
 
+    public class MovingBackgroundConfig
+    {
+        public Texture2D Texture { get; set; }
+        public int Repetitions { get; set; }
+    }
+
     public class MovingBackground
     {
-        Texture2D[] _backgroundTextureArray;
+        //Texture2D[] _backgroundTextureArray;
+        MovingBackgroundConfig[] _backgroundTextures;
+        int[] _cumulativeIndexLookUp;
 
         // general state data
         float _cursor;       
@@ -41,14 +49,27 @@ namespace Virus
 
         public float Speed { get {return _speed;} set {_speed = value;} }
 
-        public MovingBackground(Texture2D[] textureArray, float startOffset, float endOffset)
+        public MovingBackground(MovingBackgroundConfig[] textureArray, float startOffset, float endOffset)
         {
-            _backgroundTextureArray = textureArray;
+            _backgroundTextures = textureArray;
+
+            _cumulativeIndexLookUp = new int[_backgroundTextures.Sum(p => p.Repetitions)];
+            int index = 0;
+            for (int i = 0; i < _backgroundTextures.Length; i++)
+            {
+                for (int j = 0; j < _backgroundTextures[i].Repetitions; j++)
+                {
+                    _cumulativeIndexLookUp[index] = i;
+                    index++;
+                }
+            }
+            
             _speed = 0;
             _effects = BackgroundEffects.none;
 
-            _frameHeight = _backgroundTextureArray[0].Height;
-            _cursor = _frameHeight * _backgroundTextureArray.Length - 800 - startOffset;     // offset is an offset used to have some "room" for effect like trembling and such...
+            _frameHeight = _backgroundTextures[0].Texture.Height;
+            // offset is an offset used to have some "room" for effect like trembling and such...
+            _cursor = _frameHeight * _backgroundTextures.Length - 800 - startOffset;     
             _goalLine = endOffset;
         }
 
@@ -64,7 +85,7 @@ namespace Virus
             _effects = BackgroundEffects.trembling;
         }
 
-        private void DrawWindow(SpriteBatch spriteBatch, float position, float alphaBlending)
+        /*private void DrawWindow(SpriteBatch spriteBatch, float position, float alphaBlending)
         {
             int cursor = (int)Math.Round(position);
 
@@ -95,6 +116,42 @@ namespace Virus
 
                 Rectangle botWindow = new Rectangle(1, 1, 480, 800 - (_frameHeight - top));
                 spriteBatch.Draw(_backgroundTextureArray[frameIndexBot], new Vector2(0, _frameHeight - top), botWindow, new Color(1f, 1f, 1f, alphaBlending), 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
+            }
+        }*/
+
+        private void DrawWindow(SpriteBatch spriteBatch, float position, float alphaBlending)
+        {
+            int cursor = (int)Math.Round(position);
+
+            int absoluteFrameIndexTop, absoluteFrameIndexBot, frameIndexTop, frameIndexBot;
+
+            absoluteFrameIndexTop = (int)(position / _frameHeight);
+            frameIndexTop = _cumulativeIndexLookUp[absoluteFrameIndexTop];
+
+            absoluteFrameIndexBot = (int)((position + 800) / _frameHeight);
+            frameIndexBot = _cumulativeIndexLookUp[absoluteFrameIndexBot];
+
+            int top = cursor % _frameHeight;
+
+            if (top == 0)   // flickering avoid!
+            {
+                frameIndexTop = frameIndexBot;
+            }
+
+            // se i due punti appartengono allo stesso frame faccio un unico disegno
+            if (frameIndexTop == frameIndexBot)
+            {
+                Rectangle window = new Rectangle(1, top, 480, 800);
+                spriteBatch.Draw(_backgroundTextures[frameIndexTop].Texture, Vector2.Zero, window, new Color(1f, 1f, 1f, alphaBlending), 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
+            }
+            else
+            // altrimenti devo spezzare in due disegni
+            {
+                Rectangle topWindow = new Rectangle(1, top, 480, _frameHeight - top);
+                spriteBatch.Draw(_backgroundTextures[frameIndexTop].Texture, Vector2.Zero, topWindow, new Color(1f, 1f, 1f, alphaBlending), 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
+
+                Rectangle botWindow = new Rectangle(1, 1, 480, 800 - (_frameHeight - top));
+                spriteBatch.Draw(_backgroundTextures[frameIndexBot].Texture, new Vector2(0, _frameHeight - top), botWindow, new Color(1f, 1f, 1f, alphaBlending), 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
             }
         }
 

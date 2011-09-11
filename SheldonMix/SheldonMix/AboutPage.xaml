@@ -45,12 +45,11 @@
             MinFontSize="30"
             DefaultBackground="{StaticResource DarkerBackground}"
             DefaultFont="{StaticResource DefaultFont}"
-            DefaultForeground="{StaticResource DefaultForeground}"
-            HeaderForeground="{StaticResource HeaderForeground}"
+            DefaultForeground="{StaticResource HeaderForeground}"
             LogoMargin="24" >
         </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>
 
-    <wpc:About DataContext="{StaticResource AboutVM}"  />
+    <wpc:About DataContext="{StaticResource AboutVM}" />
 
 </phone:PhoneApplicationPage>

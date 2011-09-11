@@ -13,7 +13,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
@@ -26,7 +26,7 @@
         <controls:Pivot.Resources>
             <DataTemplate  x:Key="PlayButtonDataTemplate">
                 <Button Command="{Binding PlayCommand}"
-                        Content="{Binding}" 
+                        Content="{Binding Name}" 
                         Style="{StaticResource PlayButtonStyle}"/>
             </DataTemplate>
 
@@ -67,7 +67,8 @@
                 <ListBox ItemsSource="{Binding SuoniTBBT}"
                          ItemTemplate="{StaticResource PlayButtonDataTemplate}" />
                 <ScrollViewer Grid.Row="1">
-                    <TextBlock TextWrapping="Wrap" Foreground="Black"
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap" Foreground="Black"
                                    TextAlignment="Center" Margin="6"
                                    FontFamily="{StaticResource DefaultFont}">
                             Our whole universe was in a hot dense state,<LineBreak />
@@ -109,8 +110,12 @@
                             Music and mythology, Einstein and astrology<LineBreak />
                             It all started with a big bang!<LineBreak />
                             It all started with a big BANG!"
-                    </TextBlock>
+                        </TextBlock>
+                        <Button Content="Set intro as Ringtone!"
+                                Style="{StaticResource PlayButtonStyle}" Click="SetRingtone_Click" />
+                    </StackPanel>
                 </ScrollViewer>
+
             </Grid>
         </controls:PivotItem>
 
@@ -119,54 +124,43 @@
             <controls:PivotItem.Header>
                 <TextBlock Text="More?" Style="{StaticResource HeaderStyle}" />
             </controls:PivotItem.Header>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+
+            <StackPanel>
                 <TextBlock TextWrapping="Wrap" Foreground="Black"
-                                   TextAlignment="Center" Margin="10,30,10,10"
-                                   FontFamily="{StaticResource DefaultFont}">
-                    This is an unofficial app for Sheldon lovers and the Big bang theory fans.
-                </TextBlock>
-
-                <TextBlock Grid.Row="1" TextWrapping="Wrap" Foreground="Black"
-                                   TextAlignment="Center" Margin="6"
-                                   FontFamily="{StaticResource DefaultFont}">
+                           TextAlignment="Center" Margin="12"
+                           FontFamily="{StaticResource DefaultFont}">
+                    This is an unofficial app for Sheldon lovers and Big bang theory fans.<LineBreak />
                     The big Bang theory is owned by cbs. <LineBreak />
-                    Sheldon Cooper is played by Jim Parson. <LineBreak />
+                    Sheldon Cooper is played by Jim Parson.
                 </TextBlock>
-                
-                <HyperlinkButton Grid.Row="2" Foreground="Crimson" FontFamily="{StaticResource DefaultFont}"
-                                   Content="Official CBS page of TBBT " Click="HyperlinkButton_Click_2" />
-                
-                <HyperlinkButton Grid.Row="3" Foreground="DarkOrange" FontFamily="{StaticResource DefaultFont}"
-                                 Content="Official Twitter page of CBS - TBBT" Click="HyperlinkButton_Click_1" />
 
-                <HyperlinkButton Grid.Row="4" Foreground="MediumVioletRed" FontFamily="{StaticResource DefaultFont}"
-                                Content="Jim Parson page on IMDB" Click="HyperlinkButton_Click_3" />
+                <HyperlinkButton Content="Official CBS page of TBBT" Margin="6"
+                                 Foreground="Crimson" FontFamily="{StaticResource DefaultFont}"
+                                  Click="HyperlinkButton_Click_2" />
 
-                <HyperlinkButton Grid.Row="5" Foreground="OrangeRed" FontFamily="{StaticResource DefaultFont}"
-                                 Content="Jim Parson wins Golden Globe 2011" Click="HyperlinkButton_Click" />
+                <HyperlinkButton Content="Official Twitter page of CBS - TBBT" Margin="6"
+                                 Foreground="DarkOrange" FontFamily="{StaticResource DefaultFont}"
+                                 Click="HyperlinkButton_Click_1" />
 
-                <TextBlock Grid.Row="6" TextWrapping="Wrap" Foreground="Black" Margin="0,30,0,0"
-                                   TextAlignment="Center" 
-                                   FontFamily="{StaticResource DefaultFont}">
-                    Something missing in this app? 
-                    Please send us your suggestions, we do really consider feedback 
-                    for upgrades and future releases.
+                <HyperlinkButton Content="Jim Parson page on IMDB" Margin="6"
+                                 Foreground="MediumVioletRed" FontFamily="{StaticResource DefaultFont}"
+                                 Click="HyperlinkButton_Click_3" />
+
+                <HyperlinkButton Content="Jim Parson wins Golden Globe 2011" Margin="6"
+                                 Foreground="OrangeRed" FontFamily="{StaticResource DefaultFont}"
+                                 Click="HyperlinkButton_Click" />
+
+                <TextBlock TextWrapping="Wrap" Foreground="Black" Margin="12"
+                           TextAlignment="Center" FontFamily="{StaticResource DefaultFont}">
+                    Something missing in this app?<LineBreak />
+                    Please send us your suggestions, we do really consider feedback for upgrades and future releases.
                 </TextBlock>
-                <TextBox Grid.Row="7" Name="SuggerimentoTextBox" TextWrapping="Wrap" Height="140" AcceptsReturn="True"
-                             Text="Dear WPME, please add this feature to Sheldon Mix: " FontSize="18" />
-                <Button Grid.Row="8" Content="Send!" FontFamily="{StaticResource DefaultFont}" Click="Suggersci_Click" Background="#E7D3DD00" BorderBrush="{x:Null}" BorderThickness="0" Foreground="Black" Height="80" Width="140" />
-            </Grid>
+                <TextBox Name="SuggerimentoTextBox" TextWrapping="Wrap" Height="140" AcceptsReturn="True"
+                         Text="Dear WPME, please add this feature to Sheldon Mix: " FontSize="18" />
+
+                <Button Content="Send!" FontFamily="{StaticResource DefaultFont}"
+                        Click="Suggersci_Click" Style="{StaticResource PlayButtonStyle}" />
+            </StackPanel>
         </controls:PivotItem>
 
     </controls:Pivot>

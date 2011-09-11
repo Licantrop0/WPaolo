@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Virus
 {
@@ -109,8 +110,9 @@ namespace Virus
                     Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("polmoni0");
                     Texture2D backgroundTexture1 = contentManager.Load<Texture2D>("polmoni1");
                     MovingBackgroundConfig[] mainBackGroundConfig =
-                        new MovingBackgroundConfig();
-                    _mainbackground = new MovingBackground(new Texture2D[2] { backgroundTexture0, backgroundTexture1 }, 30, 30);
+                        new MovingBackgroundConfig[2] { new MovingBackgroundConfig(backgroundTexture0, 1), new MovingBackgroundConfig(backgroundTexture1, 1) };
+                        
+                    _mainbackground = new MovingBackground(mainBackGroundConfig, 30, 30);
                     _mainbackground.Speed = 15f;    // [px/sec]
 
                     // create first plan background
@@ -118,7 +120,10 @@ namespace Virus
                     Texture2D firstPlanBackground1 = contentManager.Load<Texture2D>("b1");
                     Texture2D firstPlanBackground2 = contentManager.Load<Texture2D>("b2");
                     Texture2D firstPlanBackground3 = contentManager.Load<Texture2D>("b3");
-                    _firstPlanBackground = new MovingBackground(new Texture2D[4] { firstPlanBackground0, firstPlanBackground1, firstPlanBackground2, firstPlanBackground3 }, 60, 60);
+                    MovingBackgroundConfig[] firstPlanBackgroundConfig =
+                        new MovingBackgroundConfig[4] { new MovingBackgroundConfig(firstPlanBackground0, 1), new MovingBackgroundConfig(firstPlanBackground1, 1),
+                                                        new MovingBackgroundConfig(firstPlanBackground2, 1), new MovingBackgroundConfig(firstPlanBackground3, 1) };
+                    _firstPlanBackground = new MovingBackground(firstPlanBackgroundConfig, 60, 60);
                     _firstPlanBackground.Speed = 30f;   // [px/sec]
 
                     break;
@@ -201,6 +206,27 @@ namespace Virus
             CreateBackground(level);
             CreateMonsterFactory(level);
             CreateBonusFactory(level);
+            LoadSounds(level);
+        }
+
+        private void LoadSounds(int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    SoundManager.SoundFXs.Add("barf", contentManager.Load<SoundEffect>("Sounds/barf"));
+                    SoundManager.SoundFXs.Add("hit", contentManager.Load<SoundEffect>("Sounds/hit"));
+                    SoundManager.SoundFXs.Add("miss", contentManager.Load<SoundEffect>("Sounds/miss"));
+                    SoundManager.SoundFXs.Add("powerup-hit", contentManager.Load<SoundEffect>("Sounds/powerup-hit"));
+                    SoundManager.SoundFXs.Add("powerup", contentManager.Load<SoundEffect>("Sounds/powerup"));
+                    SoundManager.SoundFXs.Add("small-mouth-death", contentManager.Load<SoundEffect>("Sounds/small-mouth-death"));
+                    SoundManager.SoundFXs.Add("small-mouth-opens", contentManager.Load<SoundEffect>("Sounds/small-mouth-opens"));
+                    SoundManager.SoundFXs.Add("virus-bomb", contentManager.Load<SoundEffect>("Sounds/virus-bomb"));
+                    SoundManager.SoundFXs.Add("virus-hit", contentManager.Load<SoundEffect>("Sounds/virus-hit"));
+
+                    break;
+                
+            }
         }
 
         private void ScheduleEvents(int level)
@@ -269,6 +295,7 @@ namespace Virus
 
                     // send bomHit event to each enemy
                     _enemies.ForEach(wg => wg.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit)));
+                    SoundManager.Play("virus-bomb");
 
                     // send bombHit event to each bonus, 
                     foreach (GoToVirusBonus b in _bonuses)
@@ -308,6 +335,15 @@ namespace Virus
                 _bossContainer[0].HandleUserTouch(_touchPoint, ref enemiesKilled);
             }
 
+            if (enemiesKilled > 0)
+            {
+                SoundManager.Play("hit");
+            }
+            else
+            {
+                SoundManager.Play("miss");
+            }
+
             // ammo bonus handling
             _enemiesKilledByAmmoCounter += enemiesKilled;
             if (_enemiesKilledByAmmoCounter >= _enemiesKilledByAmmoTriggerNumber)
@@ -323,6 +359,8 @@ namespace Virus
                 if (b.Touched(_touchPoint))
                 {
                     b.AddBodyEvent(new BodyEvent((int)BodyEventCode.fingerHit));
+                    SoundManager.Play("powerup-hit");
+
                     if (b.Type == BonusType.ammo)
                         recreateAmmoBonus = true;
                 }
@@ -444,6 +482,7 @@ namespace Virus
         public void Update(GameTime gameTime)
         {
             // handle user input
+            _touchPoint = Vector2.Zero;
             if (_virus != null)
                 GetUserTouch();
 

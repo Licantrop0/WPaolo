@@ -54,6 +54,11 @@ namespace Virus
                     }
                     else if (_actBodyEvent != null && (_actBodyEvent.Code == BodyEventCode.fingerHit || _actBodyEvent.Code == BodyEventCode.bombHit))
                     {
+                        /*if (_actBodyEvent.Code == BodyEventCode.fingerHit)
+                        {
+                            SoundManager.Play("hit");
+                        }*/
+
                         _state = GlobuloState.falling;
                         Touchable = false;
                         Speed = Vector2.Zero;

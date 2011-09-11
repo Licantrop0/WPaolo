@@ -115,6 +115,7 @@
     <Compile Include="GameEvent.cs" />
     <Compile Include="GoToVirusBonus.cs" />
     <Compile Include="Interfaces\ITouchable.cs" />
+    <Compile Include="SoundManager.cs" />
     <Compile Include="SpriteFactory.cs" />
     <Compile Include="DynamicalSystem.cs" />
     <Compile Include="MovingBackground.cs" />

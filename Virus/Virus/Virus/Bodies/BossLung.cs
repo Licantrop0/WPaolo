@@ -239,6 +239,7 @@ namespace Virus
 			{
 				enemiesHit++;
 				this.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
+                //SoundManager.Play("hit");
 			}
 
 			// contact with mouths

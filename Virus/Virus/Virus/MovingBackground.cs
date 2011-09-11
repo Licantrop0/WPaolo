@@ -18,6 +18,12 @@ namespace Virus
     {
         public Texture2D Texture { get; set; }
         public int Repetitions { get; set; }
+
+        public MovingBackgroundConfig(Texture2D texture, int rep)
+        {
+            Texture = texture;
+            Repetitions = rep;
+        }
     }
 
     public class MovingBackground
@@ -69,7 +75,7 @@ namespace Virus
 
             _frameHeight = _backgroundTextures[0].Texture.Height;
             // offset is an offset used to have some "room" for effect like trembling and such...
-            _cursor = _frameHeight * _backgroundTextures.Length - 800 - startOffset;     
+            _cursor = _frameHeight * _cumulativeIndexLookUp.Length - 800 - startOffset;     
             _goalLine = endOffset;
         }
 
@@ -139,7 +145,7 @@ namespace Virus
             }
 
             // se i due punti appartengono allo stesso frame faccio un unico disegno
-            if (frameIndexTop == frameIndexBot)
+            if (absoluteFrameIndexTop == absoluteFrameIndexBot)
             {
                 Rectangle window = new Rectangle(1, top, 480, 800);
                 spriteBatch.Draw(_backgroundTextures[frameIndexTop].Texture, Vector2.Zero, window, new Color(1f, 1f, 1f, alphaBlending), 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);

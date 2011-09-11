@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace SheldonMix
+namespace WPCommon.Helpers
 {
     public class RelayCommand : ICommand
     {
@@ -11,8 +11,7 @@ namespace SheldonMix
         readonly Predicate<object> _canExecute;
 
 
-        public RelayCommand(
-                            Action<object> execute,
+        public RelayCommand(Action<object> execute,
                             Predicate<object> canExecute = null)
         {
             if (execute == null)

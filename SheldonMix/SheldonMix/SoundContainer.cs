@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Media;
 using System.Windows.Input;
+using WPCommon.Helpers;
+using System.Windows;
 
 namespace SheldonMix.Model
 {
@@ -13,7 +15,7 @@ namespace SheldonMix.Model
 
     public class SoundContainerMP3
     {
-        private string _name;
+        public string Name { get; private set; }
         public SoundType Category { get; private set; }
         private string _rawName;
 
@@ -28,7 +30,7 @@ namespace SheldonMix.Model
             //"_" = spazio
             //"1" = punto esclamativo
             //"2" = punto interrogativo
-            _name = rawName.Substring(5).Replace("_", " ").Replace("1", "!").Replace("2", "?");
+            Name = rawName.Substring(5).Replace("_", " ").Replace("1", "!").Replace("2", "?");
         }
 
         RelayCommand _playCommand;
@@ -42,49 +44,19 @@ namespace SheldonMix.Model
 
         public void Play()
         {
-            var sound = Song.FromUri(_rawName, new Uri("sounds/" + _rawName + ".mp3", UriKind.Relative));            
-            MediaPlayer.Play(sound);
-
-            MediaPlayer.IsRepeating = false;
+            if (AskAndPlayMusic())
+            {
+                var sound = Song.FromUri(_rawName, new Uri("sounds/" + _rawName + ".mp3", UriKind.Relative));
+                MediaPlayer.Play(sound);
+            }
         }
 
-        public override string ToString()
+        public static bool AskAndPlayMusic()
         {
-            return _name;
+            return MediaPlayer.GameHasControl ?
+                true :
+                MessageBox.Show("Do you want to stop your music and hear what Sheldon have to say??",
+                    "SheldonMix", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
         }
     }
-
-    //public class SoundContainer
-    //{
-    //    public SoundType Category { get; private set; }
-    //    private SoundEffect _sound;
-    //    private string _name;
-    //    private UnmanagedMemoryStream _rawSound;
-
-    //    public SoundContainer(string rawName, UnmanagedMemoryStream rawSound)
-    //    {
-    //        //Convenzione per classificare: la prime tre lettere definiscono la classe
-    //        Category = (SoundType)Enum.Parse(typeof(SoundType), rawName.Split('_')[0], false);
-
-    //        //Convenzioni:
-    //        //"_" = spazio
-    //        //"1" = punto esclamativo
-    //        //"2" = punto interrogativo
-    //        _name = rawName.Remove(4).Replace("_", " ").Replace("1", "!").Replace("2", "?");
-    //        _rawSound = rawSound;
-    //    }
-
-    //    public bool Play()
-    //    {
-    //        if (_sound == null)
-    //            _sound = SoundEffect.FromStream(_rawSound);
-
-    //        return _sound.Play();
-    //    }
-
-    //    public override string ToString()
-    //    {
-    //        return _name;
-    //    }
-    //}
 }

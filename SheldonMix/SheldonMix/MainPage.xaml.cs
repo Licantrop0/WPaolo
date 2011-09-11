@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
 using Microsoft.Xna.Framework.Media;
+using System.Net;
+using Microsoft.Phone.Tasks;
 
 namespace SheldonMix
 {
@@ -11,21 +13,6 @@ namespace SheldonMix
         public MainPage()
         {
             InitializeComponent();
-        }
-
-        private void Base1ApplicationBar_Click(object sender, EventArgs e)
-        {
-            PlayBase("base1");
-        }
-
-        private void Base2ApplicationBar_Click(object sender, EventArgs e)
-        {
-            PlayBase("base2");
-        }
-
-        private void Base3ApplicationBar_Click(object sender, EventArgs e)
-        {
-            PlayBase("base3");
         }
 
         private void AboutAppBarMenu_Click(object sender, EventArgs e)
@@ -53,6 +40,46 @@ namespace SheldonMix
                 true :
                 MessageBox.Show("Do you want to stop your music and play the music to mix Sheldon?",
                     "SheldonMix", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
+        }
+
+        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            new WebBrowserTask() { Uri = new Uri("http://www.youtube.com/watch?v=SifGskrY_UY") }.Show();
+        }
+
+        private void HyperlinkButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            new WebBrowserTask() { Uri = new Uri("http://twitter.com/#!/BigBang_CBS") }.Show();
+        }
+
+        private void HyperlinkButton_Click_2(object sender, RoutedEventArgs e)
+        {
+            new WebBrowserTask() { Uri = new Uri("http://www.cbs.com/shows/big_bang_theory") }.Show();    
+        }
+
+        private void Suggersci_Click(object sender, RoutedEventArgs e)
+        {
+            new EmailComposeTask()
+            {
+                Subject = "[SheldonMix] Feedback and request for upgrades",
+                To = "wpmobile@hotmail.it",
+                Body = SuggerimentoTextBox.Text
+            }.Show();
+        }
+
+        private void HyperlinkButton_Click_3(object sender, RoutedEventArgs e)
+        {
+            new WebBrowserTask() { Uri = new Uri("http://www.imdb.com/name/nm1433588/") }.Show();       
+        }
+
+        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new MarketplaceReviewTask().Show();
+            }
+            catch (InvalidOperationException)
+            { /*do nothing */ }
         }
     }
 }

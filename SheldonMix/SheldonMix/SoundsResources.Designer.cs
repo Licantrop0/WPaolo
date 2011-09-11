@@ -109,13 +109,6 @@ namespace SheldonMix {
             }
         }
         
-        internal static byte[] CLAS_peace_out {
-            get {
-                object obj = ResourceManager.GetObject("CLAS_peace_out", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
         internal static byte[] CLAS_sheldon_laugh_1 {
             get {
                 object obj = ResourceManager.GetObject("CLAS_sheldon_laugh_1", resourceCulture);
@@ -133,13 +126,6 @@ namespace SheldonMix {
         internal static byte[] CLAS_there_there {
             get {
                 object obj = ResourceManager.GetObject("CLAS_there_there", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        internal static byte[] CLAS_we_re_taking_the_train {
-            get {
-                object obj = ResourceManager.GetObject("CLAS_we_re_taking_the_train", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -200,6 +186,13 @@ namespace SheldonMix {
             }
         }
         
+        internal static byte[] ZAZZ_peace_out {
+            get {
+                object obj = ResourceManager.GetObject("ZAZZ_peace_out", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] ZAZZ_Sheldon_drunk_sings {
             get {
                 object obj = ResourceManager.GetObject("ZAZZ_Sheldon_drunk_sings", resourceCulture);
@@ -210,6 +203,13 @@ namespace SheldonMix {
         internal static byte[] ZAZZ_to_sheldon_live_long_and_prosper {
             get {
                 object obj = ResourceManager.GetObject("ZAZZ_to_sheldon_live_long_and_prosper", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] ZAZZ_we_re_taking_the_train {
+            get {
+                object obj = ResourceManager.GetObject("ZAZZ_we_re_taking_the_train", resourceCulture);
                 return ((byte[])(obj));
             }
         }

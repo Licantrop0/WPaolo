@@ -35,7 +35,7 @@
             <Setter Property="Foreground" Value="{StaticResource HeaderForeground}" />
         </Style>
 
-        <Style TargetType="Button">
+        <Style x:Key="PlayButtonStyle"  TargetType="Button">
             <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
             <Setter Property="FontSize" Value="22" />

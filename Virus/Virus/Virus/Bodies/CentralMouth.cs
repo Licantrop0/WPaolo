@@ -99,6 +99,7 @@ namespace Virus.Sprites
                     Sprite.ChangeAnimation("death");
                     Sprite.FramePerSecond = 10;
                     _state = MouthState.dying;
+                    SoundManager.Play("small-mouth-death");
                 }
                 // state in which mouth is open or partially opened
                 else if (_state == MouthState.opening ||
@@ -118,6 +119,7 @@ namespace Virus.Sprites
             {
                 _hitPoints--;
                 StartBlinking(0.3f, 30, Color.Transparent);
+                //SoundManager.Play("hit");
             }
             // handle bomb
             else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.bombHit)
@@ -135,6 +137,8 @@ namespace Virus.Sprites
                         Sprite.ChangeAnimation("opening");
                         Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
                         _state = MouthState.opening;
+
+                        SoundManager.Play("small-mouth-opens");
                     }
 
                     break;
@@ -195,6 +199,7 @@ namespace Virus.Sprites
                         Sprite.ChangeAnimation("death");
                         Sprite.FramePerSecond = 10;
                         _state = MouthState.dying;
+                        SoundManager.Play("small-mouth-death");
                     }
 
                     break;

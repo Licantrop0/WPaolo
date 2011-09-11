@@ -53,11 +53,14 @@ namespace Virus
                     {
                         Lifes--;
                         Angle = (float)(_actBodyEvent.Params[0]);
+                        SoundManager.Play("virus-hit");
 
                         StartBlinking(1.5f, 30, Color.Transparent);
                     }
                     else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.virusBonusCollision)
                     {
+                        SoundManager.Play("powerup");
+
                         switch ((BonusType)_actBodyEvent.Params[0])
                         {
                             case BonusType.oneUp:

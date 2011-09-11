@@ -75,6 +75,7 @@ namespace Virus.Sprites
                     Sprite.ChangeAnimation("death");
                     Sprite.FramePerSecond = 10;
                     _state = MouthState.dying;
+                    SoundManager.Play("small-mouth-death");
                 }
                 // state in which mouth is open or partially opened
                 else if (_state == MouthState.closing || _state == MouthState.opening ||
@@ -144,6 +145,8 @@ namespace Virus.Sprites
                         // initialize variables for first mouth opening
                         Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
                         _state = MouthState.opening;
+
+                        SoundManager.Play("small-mouth-opens");
                     }
 
                     break;
@@ -214,6 +217,8 @@ namespace Virus.Sprites
                     {
                         Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
                         _state = MouthState.opening;
+
+                        SoundManager.Play("small-mouth-opens");
                     }
 
                     break;
@@ -255,6 +260,7 @@ namespace Virus.Sprites
                         Sprite.ChangeAnimation("death");
                         Sprite.FramePerSecond = 10;
                         _state = MouthState.dying;
+                        SoundManager.Play("small-mouth-death");
                     }
 
                     break;

@@ -69,7 +69,7 @@ namespace Cartellino
             double y = Math.Abs(e.TotalManipulation.Translation.Y);
 
             // orientamento dello scrolling -- orizzontale o verticale
-            System.Windows.Controls.Orientation? scrollingOrientation; ;
+            System.Windows.Controls.Orientation? scrollingOrientation;
 
             // se ci siamo spostati maggiormente sull'ascissa, allora si tratta di uno scrolling orizzontale
             if (Math.Max(x, y) == x)

@@ -126,8 +126,8 @@ namespace Virus
 
 		// valori cablati
 		const float VIRUS_RADIUS = 37;
-		float GLOBULO_RADIUS = 29;
-		float GLOBULO_TOUCH_RADIUS = 34;
+		float GLOBULO_RADIUS = 31;
+		float GLOBULO_TOUCH_RADIUS = 36;
 		
 		// configuration
 		AnimationFactory _animationFactory;

@@ -239,7 +239,6 @@ namespace Virus
 			{
 				enemiesHit++;
 				this.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
-                //SoundManager.Play("hit");
 			}
 
 			// contact with mouths
@@ -340,6 +339,7 @@ namespace Virus
 						Sprite.FramePerSecond = 3.5f;
 						Sprite.AnimationVerse = true;
 						_state = BossLungState.vomiting;
+                        SoundManager.Play("barf");
 					}
 
 					break;
@@ -361,6 +361,7 @@ namespace Virus
 								Sprite.AnimationVerse = false;
 								Sprite.FramePerSecond = 3.5f;
 								_state = BossLungState.vomitingback;
+                                SoundManager.Stop("barf");
 
 								break;
 							}
@@ -371,6 +372,8 @@ namespace Virus
 							Sprite.AnimationVerse = false;
 							Sprite.FramePerSecond = 3.5f;
 							_state = BossLungState.vomitingback;
+                            SoundManager.Stop("barf");
+
 							break;
 						}
 					}

@@ -36,7 +36,7 @@ namespace Virus
             _state = ViruState.tranquil;
             Ammo = 80;
             Bombs = 2;
-            Lifes = 3;
+            Lifes = 6;
         }
 
         public override void Update(GameTime elapsedTime)

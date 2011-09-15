@@ -107,11 +107,14 @@ namespace Virus
             {
                 case 1:
                     // main background
-                    Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("polmoni0");
+                   /* Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("polmoni0");
                     Texture2D backgroundTexture1 = contentManager.Load<Texture2D>("polmoni1");
                     MovingBackgroundConfig[] mainBackGroundConfig =
-                        new MovingBackgroundConfig[2] { new MovingBackgroundConfig(backgroundTexture0, 1), new MovingBackgroundConfig(backgroundTexture1, 1) };
-                        
+                        new MovingBackgroundConfig[2] { new MovingBackgroundConfig(backgroundTexture0, 1), new MovingBackgroundConfig(backgroundTexture1, 1) };*/
+                    Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("SfondoCarne");
+                    MovingBackgroundConfig[] mainBackGroundConfig =
+                        new MovingBackgroundConfig[1] { new MovingBackgroundConfig(backgroundTexture0, 2) };
+    
                     _mainbackground = new MovingBackground(mainBackGroundConfig, 30, 30);
                     _mainbackground.Speed = 15f;    // [px/sec]
 
@@ -192,7 +195,7 @@ namespace Virus
                     _levelDifficultyPack[2] = new Level1DifficultyPackEnemies(TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(2500),
                                                                               TimeSpan.FromMilliseconds(100), TimeSpan.FromMilliseconds(1000),
                                                                               1.9f, 3.2f,
-                                                                              3, 5);
+                                                                              3, 4);
 
                     break;
 
@@ -214,18 +217,17 @@ namespace Virus
             switch (level)
             {
                 case 1:
-                    SoundManager.SoundFXs.Add("barf", contentManager.Load<SoundEffect>("Sounds/barf"));
-                    SoundManager.SoundFXs.Add("hit", contentManager.Load<SoundEffect>("Sounds/hit"));
-                    SoundManager.SoundFXs.Add("miss", contentManager.Load<SoundEffect>("Sounds/miss"));
-                    SoundManager.SoundFXs.Add("powerup-hit", contentManager.Load<SoundEffect>("Sounds/powerup-hit"));
-                    SoundManager.SoundFXs.Add("powerup", contentManager.Load<SoundEffect>("Sounds/powerup"));
-                    SoundManager.SoundFXs.Add("small-mouth-death", contentManager.Load<SoundEffect>("Sounds/small-mouth-death"));
-                    SoundManager.SoundFXs.Add("small-mouth-opens", contentManager.Load<SoundEffect>("Sounds/small-mouth-opens"));
-                    SoundManager.SoundFXs.Add("virus-bomb", contentManager.Load<SoundEffect>("Sounds/virus-bomb"));
-                    SoundManager.SoundFXs.Add("virus-hit", contentManager.Load<SoundEffect>("Sounds/virus-hit"));
+                    SoundManager.Load("barf", contentManager.Load<SoundEffect>("Sounds/barf"));
+                    SoundManager.Load("hit", contentManager.Load<SoundEffect>("Sounds/hit"));
+                    SoundManager.Load("miss", contentManager.Load<SoundEffect>("Sounds/miss"));
+                    SoundManager.Load("powerup-hit", contentManager.Load<SoundEffect>("Sounds/powerup-hit"));
+                    SoundManager.Load("powerup", contentManager.Load<SoundEffect>("Sounds/powerup"));
+                    SoundManager.Load("small-mouth-death", contentManager.Load<SoundEffect>("Sounds/small-mouth-death"));
+                    SoundManager.Load("small-mouth-opens", contentManager.Load<SoundEffect>("Sounds/small-mouth-opens"));
+                    SoundManager.Load("virus-bomb", contentManager.Load<SoundEffect>("Sounds/virus-bomb"));
+                    SoundManager.Load("virus-hit", contentManager.Load<SoundEffect>("Sounds/virus-hit"));
 
                     break;
-                
             }
         }
 

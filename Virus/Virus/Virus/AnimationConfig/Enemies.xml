@@ -2,7 +2,7 @@
 <SpriteAnimations>
   <Sprite Name="WhiteGlobulo">
     <Animation Name="main" Type="Simple" FramesNum="7" Looping="True" Origin="default">
-      <Texture Path ="Sprites\WhiteGlobulos\whiteGlobulosBiggest"/>
+      <Texture Path ="Sprites\WhiteGlobulos\whiteGlobulos"/>
     </Animation>
   </Sprite>
   <Sprite Name="Mouth">

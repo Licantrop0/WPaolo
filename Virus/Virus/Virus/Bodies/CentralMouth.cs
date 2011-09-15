@@ -119,7 +119,6 @@ namespace Virus.Sprites
             {
                 _hitPoints--;
                 StartBlinking(0.3f, 30, Color.Transparent);
-                //SoundManager.Play("hit");
             }
             // handle bomb
             else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.bombHit)

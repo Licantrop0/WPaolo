@@ -70,7 +70,9 @@
     <None Include="MVVM Light\GalaSoft.MvvmLight.WP7.XML" />
     <None Include="MVVM Light\System.Windows.Interactivity.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ShakeGestures.dll" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="OpenXLiveXNA\OpenXLive.dll" />
     <None Include="OpenXLiveXNA\OpenXLive.Form.dll" />

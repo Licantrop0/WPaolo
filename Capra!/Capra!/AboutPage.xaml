@@ -44,7 +44,8 @@
             MinFontSize="40"
             DefaultBackground="{StaticResource SfondoCapre}"
             DefaultFont="{StaticResource DefaultFont}"
-            DefaultForeground="#FFFFEBAC"
+            DefaultForeground="{StaticResource DefaultForeground}"
+            HeaderForeground="{StaticResource HeaderForeground}"
             LogoMargin="24" >
         </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>

@@ -5,7 +5,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
-using Microsoft.Xna.Framework.Audio;
+using Capra.Sounds;
 using WPCommon;
 
 namespace Capra
@@ -14,68 +14,28 @@ namespace Capra
     {
         Random Rnd = new Random();
         List<BitmapImage> CapreImages;
-        private bool SoundCanExecute = true;
-        private ShakeDetector sd = new ShakeDetector();
-        private DispatcherTimer tmr = new DispatcherTimer();
         int curImg;
-
-        SoundEffect _capraSound;
-        public SoundEffect CapraSound
-        {
-            get
-            {
-                if (_capraSound == null)
-                    _capraSound = SoundEffect.FromStream(App.GetResourceStream(
-                        new Uri("Sounds/capra_b.wav", UriKind.Relative)).Stream);
-                return _capraSound;
-            }
-        }
-
-        SoundEffect _ignoranteComeCapraSound;
-        public SoundEffect IgnoranteComeCapraSound
-        {
-            get
-            {
-                if (_ignoranteComeCapraSound == null)
-                    _ignoranteComeCapraSound = SoundEffect.FromStream(App.GetResourceStream(
-                        new Uri("Sounds/ignorante_come_capra.wav", UriKind.Relative)).Stream);
-                return _ignoranteComeCapraSound;
-            }
-        }
-
 
         public MainPage()
         {
             InitializeComponent();
+            InitializeShaker();
+            InitializeImages();
+        }
 
+        private void InitializeShaker()
+        {
+            var sd = new ShakeDetector();
             sd.ShakeDetected += (sender, e) =>
             {
-                Dispatcher.BeginInvoke(() => { CapraIgnorante_Shake(); });
+                SoundManager.PlayIgnoranteComeCapra();
             };
             sd.Start();
-
-            tmr.Interval = TimeSpan.FromMilliseconds(700);
-            tmr.Tick += (sender, e) =>
-            {
-                tmr.Stop();
-                SoundCanExecute = true;
-            };
         }
 
-        private void CapraIgnorante_Shake()
+        private void InitializeImages()
         {
-            if (SoundCanExecute)
-                IgnoranteComeCapraSound.Play();
-
-            SoundCanExecute = false;
-            tmr.Start();
-        }
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            //Carica le immagini delle capre
-
-            CapreImages =  new List<BitmapImage>();
+            CapreImages = new List<BitmapImage>();
             for (int i = 0; i <= 17; i++)
                 CapreImages.Add(new BitmapImage(new Uri("Images\\capra" + i + ".jpg", UriKind.Relative)));
         }
@@ -97,7 +57,7 @@ namespace Capra
 
         private void Capra_Click(object sender, RoutedEventArgs e)
         {
-            CapraSound.Play();
+            SoundManager.PlayCapra();
             SetNewCapraImage();
             Settings.TotCapre++;
         }

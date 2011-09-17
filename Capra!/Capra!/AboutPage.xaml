@@ -43,7 +43,7 @@
             AppId="d86ce488-8c2c-e011-854c-00237de2db9e"
             MinFontSize="40"
             DefaultBackground="{StaticResource SfondoCapre}"
-            DefaultFont="/Capra!;component/Fonts/Fonts.zip#Forte"
+            DefaultFont="{StaticResource DefaultFont}"
             DefaultForeground="#FFFFEBAC"
             LogoMargin="24" >
         </vm:AboutViewModel>

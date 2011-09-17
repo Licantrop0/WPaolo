@@ -16,24 +16,24 @@ namespace Capra.ViewModel
 
         public FunFactsViewModel()
         {
-            if (DesignerProperties.IsInDesignTool)            
+            if (DesignerProperties.IsInDesignTool)
             {
                 FunFacts = new List<FunFact>();
                 FunFacts.Add(new FunFact("TEST FunFact Type", "Test FunFact Text\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."));
                 return;
             }
 
-            sbloccati = TotFunFacts * Settings.TotCapre / 800;
+            sbloccati = TotFunFacts * Settings.TotCapre / 1000;
             if (sbloccati > 0)
             {
                 FunFacts = XDocument.Load("funFacts.xml").Descendants("FunFact")
                     .Select(ff => new FunFact(ff.Attribute("Type").Value, ff.Attribute("Text").Value))
-                    .Take(sbloccati).Reverse().ToList();
+                    .Take(sbloccati).Reverse().ToList(); //La funzione reverse è geniale: ti fa sempre vedere l'ultimo sbloccato!
             }
             else
             {
                 FunFacts = new List<FunFact>();
-                FunFacts.Add(new FunFact("", "Non hai invocato abbastanza capre per poterne scoprire i segreti. Continua..."));
+                FunFacts.Add(new FunFact(string.Empty, "Non hai invocato abbastanza capre per poterne scoprire i segreti. Continua..."));
             }
         }
 
@@ -45,12 +45,12 @@ namespace Capra.ViewModel
                 {
                     return "Test Progress Description";
                 }
-                else if (Settings.TotCapre <= 10)
+                else if (sbloccati == 0)
                 {
                     return "Hai detto Capra! solo " + Settings.TotCapre +
                         " volte!\nContinua per sbloccare gli extra!";
                 }
-                else if (Settings.TotCapre <= 999)
+                else if (Settings.TotCapre < 1000)
                 {
 
                     return "Hai detto Capra! " + Settings.TotCapre +
@@ -93,14 +93,11 @@ namespace Capra.ViewModel
             }
         }
 
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
     }
 }

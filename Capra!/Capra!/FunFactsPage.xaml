@@ -52,8 +52,9 @@
             <controls:Pivot.Title>
                 <StackPanel>
                     <TextBlock Text="{Binding ProgressDescription}"
-                               Height="85" Margin="10" FontSize="28" Foreground="#FFFFEB50"
-                               TextAlignment="Center" TextWrapping="Wrap" />
+                               Margin="10" FontSize="28" TextAlignment="Center"
+                               Foreground="{StaticResource HeaderForeground}"
+                               TextWrapping="Wrap" />
 
                     <ProgressBar Name="progressBar" Value="{Binding ProgressValue}"
                                  Width="456" Height="4"
@@ -73,20 +74,19 @@
 
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Type}" FontFamily="{StaticResource DefaultFont}"
-                               Width="456" Height="85" FontSize="56"
-                               Foreground="#FFFFEB50" />
+                    <TextBlock Text="{Binding Type}" FontSize="56"
+                               FontFamily="{StaticResource DefaultFont}"
+                               Foreground="{StaticResource HeaderForeground}" />
                 </DataTemplate>
             </controls:Pivot.HeaderTemplate>
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Name="textFunFact" Text="{Binding Text}"
-                               FontSize="32" Foreground="#FFFFF9B8" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Text}" FontSize="32"
+                               Foreground="{StaticResource DefaultForeground}"
+                               TextWrapping="Wrap" />
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>
-
-
 
         <Button VerticalAlignment="Bottom" Command="{Binding BuySgarbiMix}"
                 toolkit:TiltEffect.IsTiltEnabled="True" Grid.Row="1">

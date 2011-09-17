@@ -38,8 +38,8 @@
                         Stretch="UniformToFill" />
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.4*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -47,8 +47,12 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button Content="Capra!" Click="Capra_Click" Grid.ColumnSpan="2" VerticalAlignment="Bottom"
-                Height="150" Width="320" Style="{StaticResource CapraButtonStyle}" />
+        <Button Content="Capra!" Click="Capra_Click"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Bottom"
+                Height="150" Width="320"
+                Foreground="{StaticResource HeaderForeground}"
+                Style="{StaticResource CapraButtonStyle}" />
         
         <Button Content="Curiosità" Height="100" Width="240" FontSize="36"
                 Background="#7A000000" Style="{StaticResource CapraButtonStyle}"

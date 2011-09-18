@@ -50,15 +50,15 @@
 
         <controls:Pivot ItemsSource="{Binding FunFacts}">
             <controls:Pivot.Title>
-                <StackPanel>
+                <StackPanel Margin="-24,0,0,0">
                     <TextBlock Text="{Binding ProgressDescription}"
                                Margin="10" FontSize="28" TextAlignment="Center"
                                Foreground="{StaticResource HeaderForeground}"
                                TextWrapping="Wrap" />
 
                     <ProgressBar Name="progressBar" Value="{Binding ProgressValue}"
-                                 Width="456" Height="4"
-                                 IsHitTestVisible="False" Maximum="1000" Margin="0,0,0,28" >
+                                 Height="4" IsHitTestVisible="False"
+                                 Maximum="1000" Margin="10,0,10,30" >
                         <ProgressBar.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFFFF9B8" Offset="0"/>
@@ -88,14 +88,8 @@
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>
 
-        <Button VerticalAlignment="Bottom" Command="{Binding BuySgarbiMix}"
-                toolkit:TiltEffect.IsTiltEnabled="True" Grid.Row="1">
-            <Button.Template>
-                <ControlTemplate>
-                    <Image Source="Images/banner_SgarbiMix.jpg" />
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+        <Button Command="{Binding BuySgarbiMix}" Grid.Row="1"
+                Style="{StaticResource BuySgarbiMixButtonStyle}" />
     </Grid>
 
 

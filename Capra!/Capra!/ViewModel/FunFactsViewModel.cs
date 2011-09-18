@@ -69,28 +69,30 @@ namespace Capra.ViewModel
         {
             get
             {
-                return (double)Settings.TotCapre;
+                if (DesignerProperties.IsInDesignTool)
+                    return 450;
+                else
+                    return Settings.TotCapre;
             }
         }
 
         private RelayCommand _buySgarbiMix;
         public RelayCommand BuySgarbiMix
         {
-            get
+            get { return _buySgarbiMix ?? (_buySgarbiMix = new RelayCommand(BuySgarbiMixAction)); }
+        }
+
+        private void BuySgarbiMixAction(object parameter)
+        {
+            try
             {
-                return _buySgarbiMix ?? (_buySgarbiMix = new RelayCommand(buy =>
+                new MarketplaceDetailTask()
                 {
-                    try
-                    {
-                        new MarketplaceDetailTask()
-                        {
-                            ContentIdentifier = "5925f9d6-483d-e011-854c-00237de2db9e"
-                        }.Show();
-                    }
-                    catch (InvalidOperationException)
-                    { /*do nothing */ }
-                }));
+                    ContentIdentifier = "5925f9d6-483d-e011-854c-00237de2db9e"
+                }.Show();
             }
+            catch (InvalidOperationException)
+            { /*do nothing */ }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

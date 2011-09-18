@@ -8,14 +8,14 @@
     xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers" >
 
     <Application.Resources>
-        <ImageBrush x:Key="SfondoCapre" ImageSource="Images\sfondo_about.jpg" />
+        <ImageBrush x:Key="SfondoCapre" ImageSource="SplashScreenImage.jpg" />
         <SolidColorBrush x:Key="DefaultForeground" Color="#FFFFEBAC" />
         <SolidColorBrush x:Key="HeaderForeground" Color="#FFFFEB50" />
 
         <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
             /Capra!;component/Fonts/Fonts.zip#Forte
         </sys:FontFamily>
-        
+
         <Style x:Key="CapraButtonStyle" TargetType="Button">
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background" Value="#8B000000" />
@@ -23,6 +23,17 @@
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
             <Setter Property="FontSize" Value="56" />
             <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True"/>
+        </Style>
+
+        <Style x:Key="BuySgarbiMixButtonStyle" TargetType="Button">
+            <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Image Source="Images\banner_SgarbiMix.jpg" Stretch="None" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </Application.Resources>

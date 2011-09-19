@@ -62,69 +62,35 @@ namespace SheldonMix
             { /*do nothing */ }
         }
 
-        private void SetRingtone_Click(object sender, RoutedEventArgs e)
-        {
-            //Ringtone files must be of type MP3 or WMA.
-            //Ringtone files must be less than 40 seconds in length.
-            //Ringtone files must not have digital rights management (DRM) protection.
-            //Ringtone files must be less than 1 MB in size.
+        ////Ringtone files must be of type MP3 or WMA.
+        ////Ringtone files must be less than 40 seconds in length.
+        ////Ringtone files must not have digital rights management (DRM) protection.
+        ////Ringtone files must be less than 1 MB in size.
+        //private void SetRingtone_Click(object sender, RoutedEventArgs e)
+        //{
 
-            var RingtonePath = "TBBT ringtone path";
-            this.SaveFileToIsolatedStorage(RingtonePath);
-            var saveRingtoneTask = new SaveRingtoneTask();
-            saveRingtoneTask.Completed += (sender1, e1) =>
-            {
-                if (e1.TaskResult == TaskResult.OK)
-                    MessageBox.Show("Ringone Saved.");
-                else
-                    MessageBox.Show("Save canceled.");
-            };
+        //    var RingtonePath = "TBBT ringtone path";
+        //    WPCommon.Helpers.Persistance.SaveFileToIsolatedStorage(RingtonePath);
+        //    var saveRingtoneTask = new SaveRingtoneTask();
+        //    saveRingtoneTask.Completed += (sender1, e1) =>
+        //    {
+        //        if (e1.TaskResult == TaskResult.OK)
+        //            MessageBox.Show("Ringone saved.");
+        //        else
+        //            MessageBox.Show("Save canceled.");
+        //    };
 
-            try
-            {
-                saveRingtoneTask.Source = new Uri("isostore:/" + RingtonePath);
-                saveRingtoneTask.DisplayName = "TBBT Intro Song";
-                saveRingtoneTask.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void SaveFileToIsolatedStorage(string fileName)
-        {
-            var streamResourceInfo = Application.GetResourceStream(new Uri(fileName, UriKind.Relative));
-            using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                if (myIsolatedStorage.FileExists(fileName))
-                {
-                    myIsolatedStorage.DeleteFile(fileName);
-                }
-                using (IsolatedStorageFileStream fileStream = new IsolatedStorageFileStream(fileName, FileMode.Create, myIsolatedStorage))
-                {
-                    using (var writer = new BinaryWriter(fileStream))
-                    {
-                        var resourceStream = streamResourceInfo.Stream;
-                        long length = resourceStream.Length;
-                        byte[] buffer = new byte[32];
-                        int readCount = 0;
-                        using (var reader = new BinaryReader(streamResourceInfo.Stream))
-                        {
-                            // read file in chunks in order to reduce memory consumption and increase performance
-                            while (readCount < length)
-                            {
-                                int actual = reader.Read(buffer, 0, buffer.Length);
-                                readCount += actual;
-                                writer.Write(buffer, 0, actual);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
+        //    try
+        //    {
+        //        saveRingtoneTask.Source = new Uri("isostore:/" + RingtonePath);
+        //        saveRingtoneTask.DisplayName = "TBBT Intro Song";
+        //        saveRingtoneTask.Show();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
     }
 }

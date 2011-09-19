@@ -111,8 +111,9 @@
                             It all started with a big bang!<LineBreak />
                             It all started with a big BANG!"
                         </TextBlock>
-                        <Button Content="Set intro as Ringtone!"
-                                Style="{StaticResource PlayButtonStyle}" Click="SetRingtone_Click" />
+                        <!--<Button Content="Set Intro as Ringtone!"
+                                    Click="SetRingtone_Click"
+                                    Style="{StaticResource PlayButtonStyle}" />-->
                     </StackPanel>
                 </ScrollViewer>
 

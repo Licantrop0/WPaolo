@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Media;
 using System.Windows.Input;
-using WPCommon.Helpers;
 using System.Windows;
+using WPCommon.Helpers;
 
 namespace SheldonMix.Model
 {
@@ -40,15 +40,23 @@ namespace SheldonMix.Model
             {
                 return _playCommand ?? (_playCommand = new RelayCommand(param => Play()));
             }
-        } 
+        }
 
         public void Play()
         {
-            if (AskAndPlayMusic())
+            if (!AskAndPlayMusic())
+                return;
+
+            if (Category == SoundType.TBBT &&
+                MediaPlayer.State == MediaState.Playing &&
+                MediaPlayer.Queue.ActiveSong.Name == _rawName)
             {
-                var sound = Song.FromUri(_rawName, new Uri("sounds/" + _rawName + ".mp3", UriKind.Relative));
-                MediaPlayer.Play(sound);
+                MediaPlayer.Stop();
+                return;
             }
+
+            var sound = Song.FromUri(_rawName, new Uri("sounds/" + _rawName + ".mp3", UriKind.Relative));
+            MediaPlayer.Play(sound);
         }
 
         public static bool AskAndPlayMusic()

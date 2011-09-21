@@ -74,6 +74,11 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Localization\HealthAdvices.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HealthAdvices.resx</DependentUpon>
+    </Compile>
     <Compile Include="Localization\Test1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -180,12 +185,20 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\HealthAdvices.fr-FR.resx" />
+    <EmbeddedResource Include="Localization\HealthAdvices.it-IT.resx" />
+    <EmbeddedResource Include="Localization\HealthAdvices.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>HealthAdvices.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Localization\Test1.fr-FR.resx" />
     <EmbeddedResource Include="Localization\Test1.it-IT.resx" />
     <EmbeddedResource Include="Localization\Test1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Test1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Test2.fr-FR.resx" />
+    <EmbeddedResource Include="Localization\Test2.it-IT.resx" />
     <EmbeddedResource Include="Localization\Test2.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Test2.Designer.cs</LastGenOutput>

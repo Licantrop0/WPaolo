@@ -44,7 +44,7 @@
                      ItemTemplate="{StaticResource PlayButtonDataTemplate}" />
         </controls:PivotItem>
 
-        <!-- Bazinga -->
+        <!-- Zazzy -->
         <controls:PivotItem Margin="0">
             <controls:PivotItem.Header>
                 <TextBlock Text="Zazzy" Style="{StaticResource HeaderStyle}" />
@@ -135,19 +135,23 @@
                     Sheldon Cooper is played by Jim Parson.
                 </TextBlock>
 
-                <HyperlinkButton Content="Official CBS page of TBBT" Margin="6"
+                <HyperlinkButton Content="Official CBS page of TBBT" Margin="0,8"
                                  Foreground="Crimson" FontFamily="{StaticResource DefaultFont}"
                                   Click="HyperlinkButton_Click_2" />
 
-                <HyperlinkButton Content="Official Twitter page of CBS - TBBT" Margin="6"
+                <HyperlinkButton Content="Official Twitter page of CBS - TBBT" Margin="0,8"
                                  Foreground="DarkOrange" FontFamily="{StaticResource DefaultFont}"
                                  Click="HyperlinkButton_Click_1" />
 
-                <HyperlinkButton Content="Jim Parson page on IMDB" Margin="6"
+                <HyperlinkButton Content="Jim Parson page on IMDB" Margin="0,8"
                                  Foreground="MediumVioletRed" FontFamily="{StaticResource DefaultFont}"
                                  Click="HyperlinkButton_Click_3" />
 
-                <HyperlinkButton Content="Jim Parson wins Golden Globe 2011" Margin="6"
+                <HyperlinkButton Content="Jim Parson wins Emmy 2011" Margin="0,8"
+                                 Foreground="#FF0F46A2" FontFamily="{StaticResource DefaultFont}"
+                                 Click="HyperlinkButton_Click_4" />
+
+                <HyperlinkButton Content="Jim Parson wins Golden Globe 2011" Margin="0,8"
                                  Foreground="OrangeRed" FontFamily="{StaticResource DefaultFont}"
                                  Click="HyperlinkButton_Click" />
 
@@ -156,11 +160,17 @@
                     Something missing in this app?<LineBreak />
                     Please send us your suggestions, we do really consider feedback for upgrades and future releases.
                 </TextBlock>
-                <TextBox Name="SuggerimentoTextBox" TextWrapping="Wrap" Height="140" AcceptsReturn="True"
-                         Text="Dear WPME, please add this feature to Sheldon Mix: " FontSize="18" />
+                
+                <StackPanel Orientation="Horizontal">
+                <TextBox Name="SuggerimentoTextBox" TextWrapping="Wrap"
+                         Height="140" Width="350"
+                         AcceptsReturn="True" FontSize="22" 
+                         Text="Dear WPME, please add this feature to Sheldon Mix: "/>
 
                 <Button Content="Send!" FontFamily="{StaticResource DefaultFont}"
-                        Click="Suggersci_Click" Style="{StaticResource PlayButtonStyle}" />
+                        Height="140" Click="Suggersci_Click"
+                        Style="{StaticResource PlayButtonStyle}" />
+         </StackPanel>
             </StackPanel>
         </controls:PivotItem>
 

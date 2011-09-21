@@ -22,9 +22,14 @@ namespace SheldonMix
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
 
+        private void HyperlinkButton_Click_4(object sender, RoutedEventArgs e)
+        {
+            new WebBrowserTask() { Uri = new Uri("http://m.youtube.com/watch?v=LYwF2JLCHWg") }.Show();
+        }
+
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
-            new WebBrowserTask() { Uri = new Uri("http://www.youtube.com/watch?v=SifGskrY_UY") }.Show();
+            new WebBrowserTask() { Uri = new Uri("http://m.youtube.com/watch?v=SifGskrY_UY") }.Show();
         }
 
         private void HyperlinkButton_Click_1(object sender, RoutedEventArgs e)

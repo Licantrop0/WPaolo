@@ -59,5 +59,59 @@ namespace DeathTimerz.Localization {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eat less.
+        /// </summary>
+        internal static string Advice1 {
+            get {
+                return ResourceManager.GetString("Advice1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you are stupid you live less.
+        /// </summary>
+        internal static string Advice2 {
+            get {
+                return ResourceManager.GetString("Advice2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t eat fat.
+        /// </summary>
+        internal static string Advice3 {
+            get {
+                return ResourceManager.GetString("Advice3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make exercise every day.
+        /// </summary>
+        internal static string Advice4 {
+            get {
+                return ResourceManager.GetString("Advice4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to swim.
+        /// </summary>
+        internal static string Advice5 {
+            get {
+                return ResourceManager.GetString("Advice5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make sex.
+        /// </summary>
+        internal static string Advice6 {
+            get {
+                return ResourceManager.GetString("Advice6", resourceCulture);
+            }
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO.IsolatedStorage;
-using System.Windows;
+using System.Linq;
 using System.Windows.Threading;
 using DeathTimerz.Localization;
 
@@ -9,10 +11,21 @@ namespace DeathTimerz.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private DispatcherTimer dt = new DispatcherTimer();
+        string[] Advices;
 
         public MainViewModel()
         {
+            InitializeTimer();
+            Advices = HealthAdvices.ResourceManager
+                .GetResourceSet(CultureInfo.CurrentCulture, true, true)
+                .Cast<DictionaryEntry>()
+                .Select(item => item.Value.ToString())
+                .ToArray();
+        }
+
+        private void InitializeTimer()
+        {
+            var dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMinutes(1);
             dt.Tick += (sender, e) => RaisePropertyChanged("AgeText");
             dt.Start();
@@ -78,7 +91,6 @@ namespace DeathTimerz.ViewModel
                     Days.ToString("0") + " " + (Days == 1 ? AppResources.Day : AppResources.Days) + "\n" +
                     Age.Hours.ToString("0") + " " + (Age.Hours == 1 ? AppResources.Hour : AppResources.Hours) + "\n" +
                     Age.Minutes.ToString("0") + " " + (Age.Minutes == 1 ? AppResources.Minute : AppResources.Minutes);
-                // + "\n" + Age.Seconds.ToString("0") + " " + (Age.Seconds == 1 ? AppResources.Second : AppResources.Seconds);
             }
         }
 
@@ -109,7 +121,7 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                return "Se sei scemo vivi di meno!";
+                return Advices[DateTime.Today.DayOfYear % Advices.Length];
             }
         }
 

@@ -5,8 +5,8 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
 
-    <!--Application Resources-->
     <Application.Resources>
+        <ImageBrush x:Key="DefaultBackground" ImageSource="img/sfondo_bao.jpg" />
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

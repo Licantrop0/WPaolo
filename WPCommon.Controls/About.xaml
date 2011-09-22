@@ -14,8 +14,15 @@
     d:DesignHeight="800" d:DesignWidth="480">
 
     <UserControl.Resources>
-    <!--xmlns:vm="clr-namespace:WPCommon.Controls.ViewModel"
-        <vm:AboutViewModel x:Key="AboutVM" />-->
+    <!--1) Ricordarsi di impostare Build Action = Compile
+        2) copiare xmlns:vm="clr-namespace:WPCommon.Controls.ViewModel"
+        e  xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
+        3) copiare:
+    <phone:PhoneApplicationPage.Resources>
+        <vm:AboutViewModel x:Key="AboutVM" />
+    </phone:PhoneApplicationPage.Resources>
+        4) copiare  <vm:AboutViewModel x:Key="AboutVM" />
+        5) copiare <wpc:About DataContext="{StaticResource AboutVM}" /> -->
         <ResourceDictionary Source="Resources.xaml"/>
     </UserControl.Resources>
 

@@ -63,7 +63,7 @@
         <Button Content="Yes" Height="70" HorizontalAlignment="Left" Margin="444,404,0,0" Name="playNyumbaYesButton" VerticalAlignment="Top" Width="80" Grid.RowSpan="2" Visibility="Collapsed" BorderBrush="Yellow" Foreground="Yellow" FontSize="17" Click="playNyumbaYesButton_Click" />
         <Button BorderBrush="Yellow" Content="No" FontSize="17" Foreground="Yellow" Height="70" HorizontalAlignment="Right" Margin="0,404,211,0" Name="playNyumbaNoButton" VerticalAlignment="Top" Visibility="Collapsed" Width="80" Grid.RowSpan="2" Click="playNyumbaNoButton_Click" />
         <Grid.Background>
-            <ImageBrush ImageSource="img\bao_table_1.jpg" />
+            <ImageBrush ImageSource="..\img\bao_table_1.jpg" />
         </Grid.Background>
     </Grid>
  

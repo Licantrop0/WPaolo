@@ -98,7 +98,7 @@ namespace BaoGame
 
             for (int i = 0; i < 21; i++)
             {
-                _imageSourceArray[i] = new ImageSourceConverter().ConvertFromString("img/semini_" + i.ToString() + ".png") as ImageSource; 
+                _imageSourceArray[i] = new ImageSourceConverter().ConvertFromString("../img/semini_" + i.ToString() + ".png") as ImageSource; 
             }
 
             _sa = new Queue<ScreenAction>();
@@ -143,9 +143,9 @@ namespace BaoGame
                     boxImage.VerticalAlignment = VerticalAlignment.Center;
 
                     if ((i == 1 && j == 4) || (i == 2 && j == 5))
-                        boxImage.Source = new ImageSourceConverter().ConvertFromString("img/nyumba_85x85.png") as ImageSource;
+                        boxImage.Source = new ImageSourceConverter().ConvertFromString("../img/nyumba_85x85.png") as ImageSource;
                     else
-                        boxImage.Source = new ImageSourceConverter().ConvertFromString("img/shimo_85x85.png") as ImageSource;
+                        boxImage.Source = new ImageSourceConverter().ConvertFromString("../img/shimo_85x85.png") as ImageSource;
 
                     ImageBrush dummy = new ImageBrush();
                     dummy.ImageSource = boxImage.Source;

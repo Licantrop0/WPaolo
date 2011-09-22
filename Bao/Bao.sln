@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaoGame", "BaoGame\BaoGame.csproj", "{F8B9B041-C129-46C4-AC28-AF4AF84290FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game", "Game\Game.csproj", "{F8B9B041-C129-46C4-AC28-AF4AF84290FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers", "..\WPCommon.Helpers\WPCommon.Helpers.csproj", "{7CF377DB-129E-4C84-A23D-5758F01DC6F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaoUtil", "BaoUtil\BaoUtil.csproj", "{467DEE00-05B0-4E57-8912-BE4ECFA90747}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utililties\Utilities.csproj", "{467DEE00-05B0-4E57-8912-BE4ECFA90747}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -15,18 +15,18 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = BaoGame\\BaoGame.csproj
-		SccProjectName1 = BaoGame
-		SccLocalPath1 = BaoGame
-		SccProjectUniqueName2 = ..\\WPCommon.Helpers\\WPCommon.Helpers.csproj
-		SccProjectName2 = ../WPCommon.Helpers
-		SccLocalPath2 = ..\\WPCommon.Helpers
-		SccProjectUniqueName3 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
-		SccProjectName3 = ../WPCommon.Controls
-		SccLocalPath3 = ..\\WPCommon.Controls
-		SccProjectUniqueName4 = BaoUtil\\BaoUtil.csproj
-		SccProjectName4 = BaoUtil
-		SccLocalPath4 = BaoUtil
+		SccProjectUniqueName1 = ..\\WPCommon.Helpers\\WPCommon.Helpers.csproj
+		SccProjectName1 = ../WPCommon.Helpers
+		SccLocalPath1 = ..\\WPCommon.Helpers
+		SccProjectUniqueName2 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName2 = ../WPCommon.Controls
+		SccLocalPath2 = ..\\WPCommon.Controls
+		SccProjectUniqueName3 = Game\\Game.csproj
+		SccProjectName3 = Game
+		SccLocalPath3 = Game
+		SccProjectUniqueName4 = Utililties\\Utilities.csproj
+		SccProjectName4 = Utililties
+		SccLocalPath4 = Utililties
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

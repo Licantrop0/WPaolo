@@ -75,7 +75,7 @@
         </Button>
 
         <Button Style="{StaticResource BuySgarbiMixButtonStyle}"
-                Grid.ColumnSpan="2" Grid.Row="2" />
+                Grid.ColumnSpan="2" Grid.Row="2" Click="Sgarbi_Click" />
     </Grid>
 
 </phone:PhoneApplicationPage>

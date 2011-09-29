@@ -118,72 +118,72 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="images\smile.png" />
-    <EmbeddedResource Include="sounds\CLAS_Bazinga1.mp3">
+    <None Include="sounds\CLAS_Bazinga1.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\CLAS_bazinga_one_of_my_jokes.mp3">
+    </None>
+    <None Include="sounds\CLAS_bazinga_one_of_my_jokes.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\CLAS_knock_knock_knock_Penny.mp3">
+    </None>
+    <None Include="sounds\CLAS_knock_knock_knock_Penny.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\CLAS_Sheldon_soft_kitty.mp3">
+    </None>
+    <None Include="sounds\CLAS_Sheldon_soft_kitty.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\ZAZZ_brave_leonard_song.mp3">
+    </None>
+    <None Include="sounds\ZAZZ_brave_leonard_song.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\CLAS_change_is_never_fine.mp3">
+    </None>
+    <None Include="sounds\CLAS_change_is_never_fine.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\ZAZZ_Dr_Sheldon_Cooper_FTW.mp3">
+    </None>
+    <None Include="sounds\ZAZZ_Dr_Sheldon_Cooper_FTW.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\ZAZZ_Engineering_oompa_loompas_of_science.mp3">
+    </None>
+    <None Include="sounds\ZAZZ_Engineering_oompa_loompas_of_science.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\ZAZZ_hello_honeypuffs.mp3">
+    </None>
+    <None Include="sounds\ZAZZ_hello_honeypuffs.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\ZAZZ_It_s_a_trap1.mp3">
+    </None>
+    <None Include="sounds\ZAZZ_It_s_a_trap1.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\ZAZZ_i_possess_the_dna_of_leonard_nimoy.mp3">
+    </None>
+    <None Include="sounds\ZAZZ_i_possess_the_dna_of_leonard_nimoy.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\CLAS_mua_ah_ah.mp3">
+    </None>
+    <None Include="sounds\CLAS_mua_ah_ah.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\CLAS_not_bad_it_s_horrible.mp3">
+    </None>
+    <None Include="sounds\CLAS_not_bad_it_s_horrible.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\CLAS_oouh.mp3">
+    </None>
+    <None Include="sounds\CLAS_oouh.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\ZAZZ_peace_out.mp3">
+    </None>
+    <None Include="sounds\ZAZZ_peace_out.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\CLAS_Sheldon_laugh.mp3">
+    </None>
+    <None Include="sounds\CLAS_Sheldon_laugh.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\TBBT_theme_end.mp3">
+    </None>
+    <None Include="sounds\TBBT_theme_end.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\TBBT_theme_full.mp3">
+    </None>
+    <None Include="sounds\TBBT_theme_full.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\CLAS_there_there.mp3">
+    </None>
+    <None Include="sounds\CLAS_there_there.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\ZAZZ_Sheldon_drunk_sings.mp3">
+    </None>
+    <None Include="sounds\ZAZZ_Sheldon_drunk_sings.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\ZAZZ_To_Sheldon_live_long_and_prosper.mp3">
+    </None>
+    <None Include="sounds\ZAZZ_To_Sheldon_live_long_and_prosper.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sounds\ZAZZ_we_re_taking_the_train.mp3">
+    </None>
+    <None Include="sounds\ZAZZ_we_re_taking_the_train.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </None>
     <Content Include="TBBT Ringtone.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

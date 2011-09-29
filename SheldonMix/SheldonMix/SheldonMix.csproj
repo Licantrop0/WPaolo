@@ -54,11 +54,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Advertising.Mobile, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -78,11 +81,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SoundContainer.cs" />
-    <Compile Include="SoundsResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SoundsResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
   </ItemGroup>
@@ -120,35 +118,76 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="images\smile.png" />
-    <Content Include="sounds\CLAS_bazinga_1.mp3" />
-    <Content Include="sounds\CLAS_bazinga_one_of_my_jokes.mp3" />
-    <Content Include="sounds\CLAS_knock_knock_Penny.mp3" />
-    <Content Include="sounds\CLAS_sheldon_soft_kitty.mp3" />
-    <Content Include="sounds\ZAZZ_brave_leonard_song.mp3" />
-    <Content Include="sounds\CLAS_change_is_never_fine.mp3" />
-    <Content Include="sounds\ZAZZ_dr_sheldon_cooper_FTW.mp3" />
-    <Content Include="sounds\ZAZZ_Engineering_oompa_loompas_of_science.mp3" />
-    <Content Include="sounds\ZAZZ_hello_honeypuffs.mp3" />
-    <Content Include="sounds\ZAZZ_It_s_a_trap1.mp3" />
-    <Content Include="sounds\ZAZZ_i_possess_the_dna_of_leonard_nimoy.mp3" />
-    <Content Include="sounds\CLAS_mua_ah_ah.mp3" />
-    <Content Include="sounds\CLAS_not_bad_it_s_horrible.mp3" />
-    <Content Include="sounds\CLAS_oouh.mp3" />
-    <Content Include="sounds\ZAZZ_peace_out.mp3" />
-    <Content Include="sounds\CLAS_sheldon_laugh_1.mp3" />
-    <Content Include="sounds\TBBT_theme_end.mp3" />
-    <Content Include="sounds\TBBT_theme_full.mp3" />
-    <Content Include="sounds\CLAS_there_there.mp3" />
-    <Content Include="sounds\ZAZZ_Sheldon_drunk_sings.mp3" />
-    <Content Include="sounds\ZAZZ_to_sheldon_live_long_and_prosper.mp3" />
-    <Content Include="sounds\ZAZZ_we_re_taking_the_train.mp3" />
-    <Content Include="SplashScreenImage.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="SoundsResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SoundsResources.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="sounds\CLAS_Bazinga1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="sounds\CLAS_bazinga_one_of_my_jokes.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\CLAS_knock_knock_knock_Penny.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\CLAS_Sheldon_soft_kitty.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\ZAZZ_brave_leonard_song.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\CLAS_change_is_never_fine.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\ZAZZ_Dr_Sheldon_Cooper_FTW.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\ZAZZ_Engineering_oompa_loompas_of_science.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\ZAZZ_hello_honeypuffs.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\ZAZZ_It_s_a_trap1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\ZAZZ_i_possess_the_dna_of_leonard_nimoy.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\CLAS_mua_ah_ah.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\CLAS_not_bad_it_s_horrible.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\CLAS_oouh.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\ZAZZ_peace_out.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\CLAS_Sheldon_laugh.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\TBBT_theme_end.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\TBBT_theme_full.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\CLAS_there_there.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\ZAZZ_Sheldon_drunk_sings.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\ZAZZ_To_Sheldon_live_long_and_prosper.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sounds\ZAZZ_we_re_taking_the_train.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="TBBT Ringtone.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\WPCommon.Controls\WPCommon.Controls.csproj">

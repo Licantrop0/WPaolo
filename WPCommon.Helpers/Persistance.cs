@@ -7,32 +7,27 @@ namespace WPCommon.Helpers
 {
     public static class Persistance
     {
+        private static IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
+
         public static void SaveFileToIsolatedStorage(string fileName)
         {
             var streamResourceInfo = Application.GetResourceStream(new Uri(fileName, UriKind.Relative));
-            using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            using (var fileStream = new IsolatedStorageFileStream(fileName, FileMode.Create, isf))
             {
-                if (myIsolatedStorage.FileExists(fileName))
+                using (var writer = new BinaryWriter(fileStream))
                 {
-                    myIsolatedStorage.DeleteFile(fileName);
-                }
-                using (IsolatedStorageFileStream fileStream = new IsolatedStorageFileStream(fileName, FileMode.Create, myIsolatedStorage))
-                {
-                    using (var writer = new BinaryWriter(fileStream))
+                    var resourceStream = streamResourceInfo.Stream;
+                    long length = resourceStream.Length;
+                    byte[] buffer = new byte[32];
+                    int readCount = 0;
+                    using (var reader = new BinaryReader(streamResourceInfo.Stream))
                     {
-                        var resourceStream = streamResourceInfo.Stream;
-                        long length = resourceStream.Length;
-                        byte[] buffer = new byte[32];
-                        int readCount = 0;
-                        using (var reader = new BinaryReader(streamResourceInfo.Stream))
+                        //read file in chunks in order to reduce memory consumption and increase performance
+                        while (readCount < length)
                         {
-                            //read file in chunks in order to reduce memory consumption and increase performance
-                            while (readCount < length)
-                            {
-                                int actual = reader.Read(buffer, 0, buffer.Length);
-                                readCount += actual;
-                                writer.Write(buffer, 0, actual);
-                            }
+                            int actual = reader.Read(buffer, 0, buffer.Length);
+                            readCount += actual;
+                            writer.Write(buffer, 0, actual);
                         }
                     }
                 }

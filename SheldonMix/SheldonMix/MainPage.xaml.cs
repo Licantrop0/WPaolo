@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using Microsoft.Phone.Controls;
-using Microsoft.Xna.Framework.Media;
-using System.Net;
-using Microsoft.Phone.Tasks;
-using System.IO.IsolatedStorage;
-using System.IO;
-using Microsoft.Advertising.Mobile.UI;
 using System.Device.Location;
+using System.Windows;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace SheldonMix
 {

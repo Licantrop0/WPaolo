@@ -64,18 +64,21 @@
     <None Include="OpenXLiveSilverlight\OpenXLive.Silverlight.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MVVM Light\GalaSoft.MvvmLight.Extras.WP7.dll" />
-    <None Include="MVVM Light\GalaSoft.MvvmLight.Extras.WP7.XML" />
-    <None Include="MVVM Light\GalaSoft.MvvmLight.WP7.dll" />
-    <None Include="MVVM Light\GalaSoft.MvvmLight.WP7.XML" />
-    <None Include="MVVM Light\System.Windows.Interactivity.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ShakeGestures.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OpenXLiveXNA\OpenXLive.dll" />
     <None Include="OpenXLiveXNA\OpenXLive.Form.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MVVM Light\GalaSoft.MvvmLight.Extras.WP71.dll" />
+    <Content Include="MVVM Light\GalaSoft.MvvmLight.Extras.WP71.xml" />
+    <Content Include="MVVM Light\GalaSoft.MvvmLight.WP71.dll" />
+    <Content Include="MVVM Light\GalaSoft.MvvmLight.WP71.xml" />
+    <Content Include="MVVM Light\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="MVVM Light\Microsoft.Practices.ServiceLocation.xml" />
+    <Content Include="MVVM Light\System.Windows.Interactivity.dll" />
+    <Content Include="MVVM Light\System.Windows.Interactivity.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

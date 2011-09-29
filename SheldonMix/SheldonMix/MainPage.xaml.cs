@@ -7,14 +7,33 @@ using System.Net;
 using Microsoft.Phone.Tasks;
 using System.IO.IsolatedStorage;
 using System.IO;
+using Microsoft.Advertising.Mobile.UI;
+using System.Device.Location;
 
 namespace SheldonMix
 {
+
     public partial class MainPage : PhoneApplicationPage
     {
+        private GeoCoordinateWatcher gcw;
+
         public MainPage()
         {
             InitializeComponent();
+            this.gcw = new GeoCoordinateWatcher();
+            this.gcw.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(gcw_PositionChanged);
+            this.gcw.Start();
+        }
+
+        private void gcw_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            this.gcw.Stop();
+
+            adControl1.Latitude = e.Position.Location.Latitude;
+            adControl1.Longitude = e.Position.Location.Longitude;
+
+            gcw.Dispose();
+            gcw = null;
         }
 
         private void AboutAppBarMenu_Click(object sender, EventArgs e)
@@ -67,35 +86,27 @@ namespace SheldonMix
             { /*do nothing */ }
         }
 
-        ////Ringtone files must be of type MP3 or WMA.
-        ////Ringtone files must be less than 40 seconds in length.
-        ////Ringtone files must not have digital rights management (DRM) protection.
-        ////Ringtone files must be less than 1 MB in size.
-        //private void SetRingtone_Click(object sender, RoutedEventArgs e)
-        //{
+        //Ringtone files must be of type MP3 or WMA.
+        //Ringtone files must be less than 40 seconds in length.
+        //Ringtone files must not have digital rights management (DRM) protection.
+        //Ringtone files must be less than 1 MB in size.
+        private void SetRingtone_Click(object sender, RoutedEventArgs e)
+        {
 
-        //    var RingtonePath = "TBBT ringtone path";
-        //    WPCommon.Helpers.Persistance.SaveFileToIsolatedStorage(RingtonePath);
-        //    var saveRingtoneTask = new SaveRingtoneTask();
-        //    saveRingtoneTask.Completed += (sender1, e1) =>
-        //    {
-        //        if (e1.TaskResult == TaskResult.OK)
-        //            MessageBox.Show("Ringone saved.");
-        //        else
-        //            MessageBox.Show("Save canceled.");
-        //    };
-
-        //    try
-        //    {
-        //        saveRingtoneTask.Source = new Uri("isostore:/" + RingtonePath);
-        //        saveRingtoneTask.DisplayName = "TBBT Intro Song";
-        //        saveRingtoneTask.Show();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+            var RingtonePath = "TBBT Ringtone.mp3";
+            WPCommon.Helpers.Persistance.SaveFileToIsolatedStorage(RingtonePath);
+            var saveRingtoneTask = new SaveRingtoneTask();
+            try
+            {
+                saveRingtoneTask.Source = new Uri("isostore:/" + RingtonePath);
+                saveRingtoneTask.DisplayName = "TBBT Intro Song";
+                saveRingtoneTask.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
     }
 }

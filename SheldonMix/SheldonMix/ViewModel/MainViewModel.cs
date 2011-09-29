@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using SheldonMix.Model;
+using System.IO;
+using System.Reflection;
 
 namespace SheldonMix.ViewModel
 {
@@ -16,12 +18,14 @@ namespace SheldonMix.ViewModel
             get
             {
                 if (_soundResources == null)
-                    _soundResources = (from de in SoundsResources.ResourceManager
-                                          .GetResourceSet(CultureInfo.CurrentCulture, true, true)
-                                          .Cast<DictionaryEntry>()
-                                       orderby de.Key
-                                       select new SoundContainerMP3(de.Key.ToString())
-                                      ).ToArray();
+                {
+                    var app = Assembly.GetExecutingAssembly();
+                    _soundResources = (from res in app.GetManifestResourceNames()
+                                      where res.StartsWith("SheldonMix.sounds")
+                                      let name = res.Substring(18)
+                                      orderby name
+                                      select new SoundContainerMP3(name)).ToArray();
+                }
                 return _soundResources;
             }
         }

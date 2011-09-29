@@ -26,11 +26,10 @@ namespace SheldonMix.Model
             //Convenzione per classificare: la prime 4 lettere definiscono la classe
             Category = (SoundType)Enum.Parse(typeof(SoundType), rawName.Split('_')[0], false);
 
-            //Convenzioni:
-            //"_" = spazio
-            //"1" = punto esclamativo
-            //"2" = punto interrogativo
-            Name = rawName.Substring(5).Replace("_", " ").Replace("1", "!").Replace("2", "?");
+            Name = rawName.Substring(5, rawName.Length - 9) //9 = 5 (_tag) + 4 (.mp3)
+                .Replace("_", " ") //"_" = spazio
+                .Replace("1", "!") //"1" = punto esclamativo
+                .Replace("2", "?"); //"2" = punto interrogativo
         }
 
         RelayCommand _playCommand;
@@ -55,7 +54,7 @@ namespace SheldonMix.Model
                 return;
             }
 
-            var sound = Song.FromUri(_rawName, new Uri("sounds/" + _rawName + ".mp3", UriKind.Relative));
+            var sound = Song.FromUri(_rawName, new Uri("sounds/" + _rawName, UriKind.Relative));
             MediaPlayer.Play(sound);
         }
 

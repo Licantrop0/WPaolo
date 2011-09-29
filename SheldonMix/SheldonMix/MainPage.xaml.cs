@@ -61,16 +61,6 @@ namespace SheldonMix
             new WebBrowserTask() { Uri = new Uri("http://www.cbs.com/shows/big_bang_theory") }.Show();
         }
 
-        private void Suggersci_Click(object sender, RoutedEventArgs e)
-        {
-            new EmailComposeTask()
-            {
-                Subject = "[SheldonMix] Feedback and request for upgrades",
-                To = "wpmobile@hotmail.it",
-                Body = SuggerimentoTextBox.Text
-            }.Show();
-        }
-
         private void HyperlinkButton_Click_3(object sender, RoutedEventArgs e)
         {
             new WebBrowserTask() { Uri = new Uri("http://www.imdb.com/name/nm1433588/") }.Show();

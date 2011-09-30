@@ -1,30 +1,35 @@
 ﻿using GalaSoft.MvvmLight;
-using EasyCall1.Model;
+using System.Linq;
 using Microsoft.Phone.UserData;
 using System;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
-namespace EasyCall1.ViewModel
+namespace EasyCall.ViewModel
 {
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
-    /// </para>
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm/getstarted
-    /// </para>
-    /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        public MainViewModel(IDataService dataService)
-        {
-            cons = new Contacts();
+        private IEnumerable<ContactViewModel> ContactsVM { get; set; }
+        public ObservableCollection<ContactViewModel> SearchedContacts { get; set; }
 
-            //Identify the method that runs after the asynchronous search completes.
-            cons.SearchCompleted += new EventHandler<ContactsSearchEventArgs>(cons_SearchCompleted);
+        public MainViewModel()
+        {
+            if (!IsInDesignMode)
+                LoadContacts();
         }
-        Contacts cons;
+
+        private void LoadContacts()
+        {
+            Contacts cons = new Contacts();
+            cons.SearchCompleted += (sender, e) =>
+            {
+              ContactsVM = e.Results.Select(c => new ContactViewModel(c.DisplayName,
+                    c.PhoneNumbers.Select(n => n.PhoneNumber)));
+            };
+            cons.SearchAsync(string.Empty, FilterKind.None, string.Empty);
+        }
+
 
         private string _searchText;
         public string SearchText
@@ -35,24 +40,31 @@ namespace EasyCall1.ViewModel
             }
             set
             {
+                if (_searchText == value) return;
                 _searchText = value;
-                //Start the asynchronous search.
-                cons.SearchAsync(value, FilterKind.DisplayName, string.Empty);
+                Filter(value);
             }
         }
 
 
-        void cons_SearchCompleted(object sender, ContactsSearchEventArgs e)
+        private void Filter(string searchedText)
         {
-            SearchedContacts = new ObservableCollection<Contact>();
-            foreach (var contact in e.Results)
+            SearchedContacts = new ObservableCollection<ContactViewModel>();
+
+            var contacts = ContactsVM.Where(c => c.NumberRepresentation.StartsWith(searchedText));
+                
+                
+                //(from c in Contacts
+                //           from n in c.Numbers
+                //           where n.StartsWith(searchedText)
+                //           select c).Union(Contacts.Where(c=> c.NumberRepresentation.StartsWith(searchedText)));
+
+            foreach (var contact in contacts)
             {
                 SearchedContacts.Add(contact);
             }
             RaisePropertyChanged("SearchedContacts");
         }
-
-        public ObservableCollection<Contact> SearchedContacts { get; set; }
 
     }
 }

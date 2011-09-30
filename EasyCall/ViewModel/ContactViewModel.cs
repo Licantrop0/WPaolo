@@ -30,6 +30,9 @@ namespace EasyCall
             for (var w = 0; w < output.Length; w++)
             {
                 var word = output[w].ToCharArray();
+                //Regex.Replace(word, "[abc]", "2");
+                //Regex.Replace(word, "[def]", "3");
+
                 for (int i = 0; i < word.Length; i++)
                 {
                     if (word[i] == '+') word[i] = '0';

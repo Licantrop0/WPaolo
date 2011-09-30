@@ -12,9 +12,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using EasyCall1.ViewModel;
+using EasyCall.ViewModel;
 
-namespace EasyCall1
+namespace EasyCall
 {
     /// <summary>
     /// Interaction logic for App.xaml

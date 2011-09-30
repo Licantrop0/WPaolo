@@ -5,6 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Microsoft.Phone.Tasks;
 
 namespace EasyCall.ViewModel
 {
@@ -12,24 +13,44 @@ namespace EasyCall.ViewModel
     {
         private IEnumerable<ContactViewModel> ContactsVM { get; set; }
         public ObservableCollection<ContactViewModel> SearchedContacts { get; set; }
+        PhoneCallTask CallTask;        
 
         public MainViewModel()
         {
-            if (!IsInDesignMode)
+            if (IsInDesignMode)
+                SearchedContacts = new ObservableCollection<ContactViewModel>(new[]
+                {
+                    new ContactViewModel("Luca Spolidoro", new[] {"393 3714189", "010 311540"}),
+                    new ContactViewModel("Pino Quercia", new[] {"+39 384 30572194", "+39 02 365688"}),
+                    new ContactViewModel("Sapporo Piloro", new[] {"347 5840382", "02 7039 2650"})
+                });
+            else
+            {
                 LoadContacts();
+                CallTask = new PhoneCallTask();
+            }
         }
 
         private void LoadContacts()
         {
-            Contacts cons = new Contacts();
+            SearchedContacts = new ObservableCollection<ContactViewModel>();
+            var cons = new Contacts();
             cons.SearchCompleted += (sender, e) =>
             {
-              ContactsVM = e.Results.Select(c => new ContactViewModel(c.DisplayName,
-                    c.PhoneNumbers.Select(n => n.PhoneNumber)));
+                ContactsVM = from c in e.Results
+                             where c.PhoneNumbers.Any()
+                             select new ContactViewModel(c.DisplayName,
+                                 c.PhoneNumbers.Select(n => n.PhoneNumber));
             };
-            cons.SearchAsync(string.Empty, FilterKind.None, string.Empty);
+            cons.SearchAsync(string.Empty, FilterKind.None, null);
         }
 
+        public void Call(string name, string number)
+        {
+            CallTask.DisplayName = name;
+            CallTask.PhoneNumber = number;
+            CallTask.Show();
+        }
 
         private string _searchText;
         public string SearchText
@@ -46,23 +67,24 @@ namespace EasyCall.ViewModel
             }
         }
 
-
         private void Filter(string searchedText)
         {
-            SearchedContacts = new ObservableCollection<ContactViewModel>();
-
-            var contacts = ContactsVM.Where(c => c.NumberRepresentation.StartsWith(searchedText));
-                
-                
-                //(from c in Contacts
-                //           from n in c.Numbers
-                //           where n.StartsWith(searchedText)
-                //           select c).Union(Contacts.Where(c=> c.NumberRepresentation.StartsWith(searchedText)));
-
-            foreach (var contact in contacts)
+            if (string.IsNullOrEmpty(searchedText))
             {
-                SearchedContacts.Add(contact);
+                SearchedContacts.Clear();
+                RaisePropertyChanged("SearchedContacts");
+                return;
             }
+
+            if (ContactsVM == null)
+                return;
+
+            SearchedContacts = new ObservableCollection<ContactViewModel>(
+                from c in ContactsVM
+                where c.NumberRepresentation.Any(nr => nr.StartsWith(searchedText)) ||
+                c.Numbers.Any(n => n.Contains(searchedText))
+                select c);
+
             RaisePropertyChanged("SearchedContacts");
         }
 

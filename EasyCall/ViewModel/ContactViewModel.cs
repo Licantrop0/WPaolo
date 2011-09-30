@@ -1,42 +1,53 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using GalaSoft.MvvmLight;
 
 namespace EasyCall
 {
-    public class ContactViewModel
+    public class ContactViewModel : ViewModelBase
     {
         public string DisplayName { get; set; }
-        public string NumberRepresentation { get; set; }
-        public IEnumerable<string> Numbers { get; set; }
+        public string[] NumberRepresentation { get; set; }
+        public string[] Numbers { get; set; }
 
         public ContactViewModel(string displayName, IEnumerable<string> numbers)
         {
             DisplayName = displayName;
             NumberRepresentation = TextToNum(displayName);
-            Numbers = numbers.Select(n => Regex.Replace(n,
-                @"^(00|\+)(1|2[078]|2[1234569][0-9]|3[0123469]|3[578][0-9]|4[013456789]|42[0-9]|5[09][0-9]|5[12345678]|6[0123456]|6[789][0-9]|7|8[0578][0-9]|8[123469]|9[0123458]|9[679][0-9])", "0")
-                .Replace(" ", ""));
+            Numbers = numbers.Select(n => n.Replace(" ", "")).ToArray();
         }
 
-        private string TextToNum(string input)
+        private string[] TextToNum(string input)
         {
-            if (input == null) return string.Empty;
-            string output = string.Empty;
-            foreach (char c in input)
+            if (string.IsNullOrEmpty(input))
+                return new string[0];
+            
+            input = input.ToLower();
+            var output = input.Split(' ');            
+
+            for (var w = 0; w < output.Length; w++)
             {
-                if (c == '+') output += 0;
-                if (c == ' ') output += 1;
-                if (c == 'a' || c == 'b' || c == 'c') output += 2;
-                if (c == 'd' || c == 'e' || c == 'f') output += 3;
-                if (c == 'g' || c == 'h' || c == 'i') output += 4;
-                if (c == 'j' || c == 'k' || c == 'l') output += 5;
-                if (c == 'm' || c == 'n' || c == 'o') output += 6;
-                if (c == 'p' || c == 'q' || c == 'r' || c == 's') output += 7;
-                if (c == 't' || c == 'u' || c == 'v') output += 8;
-                if (c == 'w' || c == 'x' || c == 'y' || c == 'z') output += 9;
+                var word = output[w].ToCharArray();
+                for (int i = 0; i < word.Length; i++)
+                {
+                    if (word[i] == '+') word[i] = '0';
+                    else if (word[i] == 'a' || word[i] == 'b' || word[i] == 'c') word[i] = '2';
+                    else if (word[i] == 'd' || word[i] == 'e' || word[i] == 'f') word[i] = '3';
+                    else if (word[i] == 'g' || word[i] == 'h' || word[i] == 'i') word[i] = '4';
+                    else if (word[i] == 'j' || word[i] == 'k' || word[i] == 'l') word[i] = '5';
+                    else if (word[i] == 'm' || word[i] == 'n' || word[i] == 'o') word[i] = '6';
+                    else if (word[i] == 'p' || word[i] == 'q' || word[i] == 'r' || word[i] == 's') word[i] = '7';
+                    else if (word[i] == 't' || word[i] == 'u' || word[i] == 'v') word[i] = '8';
+                    else if (word[i] == 'w' || word[i] == 'x' || word[i] == 'y' || word[i] == 'z') word[i] = '9';
+                }
+
+                output[w] = new string(word);
             }
+
             return output;
         }
+
     }
 }

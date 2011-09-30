@@ -5,9 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Libraries", "..\WP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCall", "EasyCall.csproj", "{7EA6A6BA-D3DC-40FF-A3B7-FF164D339815}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
@@ -16,6 +18,9 @@ Global
 		SccLocalPath1 = ..\\WPCommon.Libraries
 		SccProjectUniqueName2 = EasyCall.csproj
 		SccLocalPath2 = .
+		SccProjectUniqueName3 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName3 = ../WPCommon.Controls
+		SccLocalPath3 = ..\\WPCommon.Controls
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +37,10 @@ Global
 		{7EA6A6BA-D3DC-40FF-A3B7-FF164D339815}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EA6A6BA-D3DC-40FF-A3B7-FF164D339815}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7EA6A6BA-D3DC-40FF-A3B7-FF164D339815}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

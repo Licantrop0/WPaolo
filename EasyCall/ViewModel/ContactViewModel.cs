@@ -16,7 +16,7 @@ namespace EasyCall
         {
             DisplayName = displayName;
             NumberRepresentation = TextToNum(displayName);
-            Numbers = numbers.Select(n => n.Replace(" ", "")).ToArray();
+            Numbers = numbers.Select(n => Regex.Replace(n, @"[\s\-\(\)]", string.Empty)).ToArray();
         }
 
         private string[] TextToNum(string input)

@@ -106,10 +106,10 @@
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ApplicationIcon.jpg" />
-    <Resource Include="Background.jpg" />
     <Resource Include="Images\call.png" />
     <Resource Include="Images\CircleCall.png" />
+    <Resource Include="ApplicationIcon.png" />
+    <Resource Include="Background.png" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -69,15 +69,15 @@ namespace EasyCall.ViewModel
 
         private void Filter(string searchedText)
         {
+            if (ContactsVM == null)
+                return;
+
             if (string.IsNullOrEmpty(searchedText))
             {
                 SearchedContacts.Clear();
                 RaisePropertyChanged("SearchedContacts");
                 return;
             }
-
-            if (ContactsVM == null)
-                return;
 
             SearchedContacts = new ObservableCollection<ContactViewModel>(
                 from c in ContactsVM

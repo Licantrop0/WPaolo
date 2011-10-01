@@ -11,24 +11,23 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
     shell:SystemTray.IsVisible="True"
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     Loaded="PhoneApplicationPage_Loaded">
 
-    <Grid x:Name="LayoutRoot" >
+    <Grid x:Name="LayoutRoot">
         <Grid.Resources>
+
+            <ControlTemplate x:Key="CallButtonTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Images\CircleCall.png" Height="48" Width="48" Margin="8" />
+                    <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+                </StackPanel>
+            </ControlTemplate>
+
             <DataTemplate x:Key="NumberDataTemplate" >
-                <Button Click="Call_Click" >
-                    <Button.Template>
-                        <ControlTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="Images\CircleCall.png" Margin="8"/>
-                                <TextBlock Text="{Binding}" VerticalAlignment="Center" />
-                            </StackPanel>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                <Button Click="Call_Click" Template="{StaticResource CallButtonTemplate}" />
             </DataTemplate>
 
             <ControlTemplate x:Key="ContactItemTemplate" TargetType="ListBoxItem">
@@ -37,7 +36,7 @@
                                FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
                     <ListBox ItemsSource="{Binding Numbers}" toolkit:TiltEffect.IsTiltEnabled="True"
                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                             ItemTemplate="{StaticResource NumberDataTemplate}" />
+                             ItemTemplate="{StaticResource NumberDataTemplate}"/>
                 </StackPanel>
             </ControlTemplate>
         </Grid.Resources>
@@ -59,4 +58,12 @@
             </ListBox.ItemContainerStyle>
         </ListBox>
     </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="About" Click="About_Click" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
 </phone:PhoneApplicationPage>

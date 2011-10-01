@@ -76,5 +76,10 @@ namespace EasyCall
         {
             SearchTextBox.SelectAll();
         }
+
+        private void About_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+        }
     }
 }

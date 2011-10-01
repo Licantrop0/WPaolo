@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Reflection;
 
-namespace WPCommon.ViewModel
+namespace EasyCall.ViewModel
 {
     public class AboutViewModel : INotifyPropertyChanged
     {
@@ -64,9 +64,6 @@ namespace WPCommon.ViewModel
         public string AppId { get; set; }
 
         public string AppName { get; set; }
-        //{
-        //    get { return AppResources.AppName; }
-        //}
 
         private string _appVersion;
         public string AppVersion

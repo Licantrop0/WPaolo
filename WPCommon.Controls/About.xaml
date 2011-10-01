@@ -7,40 +7,54 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="800" d:DesignWidth="480">
+    d:DesignHeight="800" d:DesignWidth="480" Loaded="UserControl_Loaded">
 
+    <!--
+    1) Ricordarsi di impostare Build Action = Compile su AboutViewModel.cs
+    2) copiare negli header:
+        xmlns:vm="clr-namespace:WPCommon.Controls.ViewModel"
+        xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
+    3) copiare in pagina:
+        <phone:PhoneApplicationPage.Resources>
+            <vm:AboutViewModel x:Name="AboutVM"
+                               AppId="" />
+        </phone:PhoneApplicationPage.Resources>
+        <wpc:About DataContext="{StaticResource AboutVM}" />    
+    -->
+
+    <!--
+    xmlns:vm="clr-namespace:WPCommon.ViewModel"
     <UserControl.Resources>
-    <!--1) Ricordarsi di impostare Build Action = Compile
-        2) copiare xmlns:vm="clr-namespace:WPCommon.Controls.ViewModel"
-        e  xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
-        3) copiare:
-    <phone:PhoneApplicationPage.Resources>
-        <vm:AboutViewModel x:Key="AboutVM" />
-    </phone:PhoneApplicationPage.Resources>
-        4) copiare  <vm:AboutViewModel x:Key="AboutVM" />
-        5) copiare <wpc:About DataContext="{StaticResource AboutVM}" /> -->
-        <ResourceDictionary Source="Resources.xaml"/>
+        <vm:AboutViewModel x:Key="AboutVM"/>
     </UserControl.Resources>
+    DataContext="{StaticResource AboutVM}"
+   -->
 
     <controls:Pivot Name="LayoutRoot"
                     Background="{Binding DefaultBackground}"
                     Foreground="{Binding DefaultForeground}"
                     FontFamily="{Binding DefaultFont}" >
-        <controls:PivotItem >
+
+        <controls:Pivot.Resources>
+            <ResourceDictionary Source="Resources.xaml"/>
+        </controls:Pivot.Resources>
+        
+        <controls:PivotItem Margin="0,24,0,0">
             <controls:PivotItem.Header>
                 <TextBlock Text="{Binding ApplicationText}"
                            FontFamily="{Binding DefaultFont}"
                            Foreground="{Binding HeaderForeground}" />
             </controls:PivotItem.Header>
             <ScrollViewer>
-                <Grid>
+                <Grid Name="MainGrid">
                     <StackPanel>
                         <TextBlock Name="AppNameTextBlock"
-                                   Text="{Binding AppName}"
+                                   Text="{Binding AppName, TargetNullValue='App Name'}"
                                    TextAlignment="Center" TextWrapping="Wrap"
                                    FontSize="{Binding AppNameFontSize}" />
 
@@ -61,6 +75,7 @@
                         <TextBlock Text="{Binding CustomText}" TextWrapping="Wrap"
                                    FontSize="{Binding AppVersionFontSize}" />
                     </StackPanel>
+                    
                     <Image Source="{Binding CustomLogo}" Stretch="None"
                        HorizontalAlignment="Left" VerticalAlignment="Top"
                        Margin="{Binding CustomLogoMargin}" />

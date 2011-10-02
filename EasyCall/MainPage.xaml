@@ -21,8 +21,14 @@
 
             <ControlTemplate x:Key="CallButtonTemplate">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Images\CircleCall.png" Height="48" Width="48" Margin="8" />
-                    <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+                    <Rectangle Height="48" Width="48" Margin="8"
+                               Fill="{StaticResource PhoneForegroundBrush}">
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="Images\CircleCall.png"/>
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Text="{Binding}" VerticalAlignment="Center"
+                               Foreground="{StaticResource PhoneAccentBrush}" />
                 </StackPanel>
             </ControlTemplate>
 
@@ -59,7 +65,8 @@
         </ListBox>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized"
+                              ForegroundColor="{StaticResource PhoneAccentColor}">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="About" Click="About_Click" />
             </shell:ApplicationBar.MenuItems>

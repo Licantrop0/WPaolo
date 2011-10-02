@@ -9,9 +9,6 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
 
     mc:Ignorable="d"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="800" d:DesignWidth="480" Loaded="UserControl_Loaded">
 
     <!--
@@ -36,9 +33,9 @@
    -->
 
     <controls:Pivot Name="LayoutRoot"
-                    Background="{Binding DefaultBackground}"
-                    Foreground="{Binding DefaultForeground}"
-                    FontFamily="{Binding DefaultFont}" >
+                    Background="{Binding DefaultBackground, TargetNullValue={StaticResource PhoneBackgroundBrush}}"
+                    Foreground="{Binding DefaultForeground, TargetNullValue={StaticResource PhoneForegroundBrush}}"
+                    FontFamily="{Binding DefaultFont, TargetNullValue={StaticResource PhoneFontFamilyNormal}}" >
 
         <controls:Pivot.Resources>
             <ResourceDictionary Source="Resources.xaml"/>
@@ -47,7 +44,7 @@
         <controls:PivotItem Margin="0,24,0,0">
             <controls:PivotItem.Header>
                 <TextBlock Text="{Binding ApplicationText}"
-                           FontFamily="{Binding DefaultFont}"
+                           FontFamily="{Binding DefaultFont, TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
                            Foreground="{Binding HeaderForeground}" />
             </controls:PivotItem.Header>
             <ScrollViewer>
@@ -86,12 +83,12 @@
         <controls:PivotItem >
             <controls:PivotItem.Header>
                 <TextBlock Text="{Binding ContactUsText}"
-                           FontFamily="{Binding DefaultFont}"
+                           FontFamily="{Binding DefaultFont, TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
                            Foreground="{Binding HeaderForeground}" />
             </controls:PivotItem.Header>
 
-            <StackPanel HorizontalAlignment="Center" toolkit:TiltEffect.IsTiltEnabled="True" >
-                <Button Click="Mail_Click">
+            <StackPanel HorizontalAlignment="Center">
+                <Button Click="Mail_Click" toolkit:TiltEffect.IsTiltEnabled="True">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="/WPCommon.Controls;component/Img/hotmail.png"
@@ -118,10 +115,10 @@
             </StackPanel>
         </controls:PivotItem>
 
-        <controls:PivotItem >
+        <controls:PivotItem>
             <controls:PivotItem.Header>
                 <TextBlock Text="{Binding OtherAppsText}"
-                           FontFamily="{Binding DefaultFont}"
+                           FontFamily="{Binding DefaultFont, TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
                            Foreground="{Binding HeaderForeground}" />
             </controls:PivotItem.Header>
 
@@ -149,6 +146,7 @@
                                         <Grid>
                                             <Image Source="{Binding Thumbnail}" />
                                             <TextBlock Text="{Binding Name}"
+                                                       Foreground="White"
                                                        VerticalAlignment="Bottom"
                                                        FontSize="{StaticResource PhoneFontSizeSmall}" />
                                         </Grid>

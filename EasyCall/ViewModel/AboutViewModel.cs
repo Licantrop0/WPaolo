@@ -79,25 +79,17 @@ namespace EasyCall.ViewModel
             }
         }
 
-        private string _customText;
-        public string CustomText
-        {
-            get { return _customText; }
-            set { _customText = value; }
-        }
-
         #endregion
 
         #region Visual
 
-        private ImageSource _customLogo;
-        public ImageSource CustomLogo
-        {
-            get { return _customLogo; }
-            set { _customLogo = value; }
-        }
+        public FontFamily DefaultFont { get; set; }
 
-        private Thickness _logoMargin = new Thickness(24);
+        public string CustomText { get; set; }
+
+        public ImageSource CustomLogo { get; set; }
+
+        private Thickness _logoMargin = new Thickness(12);
         public Thickness LogoMargin
         {
             get { return _logoMargin; }
@@ -111,32 +103,15 @@ namespace EasyCall.ViewModel
             set { _customLogoMargin = value; }
         }
 
-        private Brush _defaultBackground = new SolidColorBrush(Colors.Black);
-        public Brush DefaultBackground
-        {
-            get { return _defaultBackground; }
-            set { _defaultBackground = value; }
-        }
+        public Brush DefaultBackground { get; set; }
 
-        private Brush _defaultForeground = new SolidColorBrush(Colors.White);
-        public Brush DefaultForeground
-        {
-            get { return _defaultForeground; }
-            set { _defaultForeground = value; }
-        }
+        public Brush DefaultForeground { get; set; }
 
         private Brush _headerForeground;
         public Brush HeaderForeground
         {
-            get { return _headerForeground ?? _defaultForeground; }
+            get { return _headerForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
             set { _headerForeground = value; }
-        }
-
-        private FontFamily _defaultFont = new FontFamily("Segoe WP SemiLight");
-        public FontFamily DefaultFont
-        {
-            get { return _defaultFont; }
-            set { _defaultFont = value; }
         }
 
         private double _minFontSize = 19;

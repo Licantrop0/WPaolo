@@ -107,22 +107,22 @@ namespace Virus
             {
                 case 1:
                     // main background
-                   /* Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("polmoni0");
-                    Texture2D backgroundTexture1 = contentManager.Load<Texture2D>("polmoni1");
-                    MovingBackgroundConfig[] mainBackGroundConfig =
-                        new MovingBackgroundConfig[2] { new MovingBackgroundConfig(backgroundTexture0, 1), new MovingBackgroundConfig(backgroundTexture1, 1) };*/
-                    Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("SfondoCarne");
+                    Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("NuoviSfondi\\SfondoCarne (bora)");
                     MovingBackgroundConfig[] mainBackGroundConfig =
                         new MovingBackgroundConfig[1] { new MovingBackgroundConfig(backgroundTexture0, 2) };
-    
+
+                    /*Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("NuoviSfondi\\polmoni(boraprova)_0");
+                    Texture2D backgroundTexture1 = contentManager.Load<Texture2D>("NuoviSfondi\\polmoni(boraprova)_1");
+                    MovingBackgroundConfig[] mainBackGroundConfig =
+                        new MovingBackgroundConfig[2] { new MovingBackgroundConfig(backgroundTexture0, 1), new MovingBackgroundConfig(backgroundTexture1, 1) };*/
                     _mainbackground = new MovingBackground(mainBackGroundConfig, 30, 30);
                     _mainbackground.Speed = 15f;    // [px/sec]
 
                     // create first plan background
-                    Texture2D firstPlanBackground0 = contentManager.Load<Texture2D>("b0");
-                    Texture2D firstPlanBackground1 = contentManager.Load<Texture2D>("b1");
-                    Texture2D firstPlanBackground2 = contentManager.Load<Texture2D>("b2");
-                    Texture2D firstPlanBackground3 = contentManager.Load<Texture2D>("b3");
+                    Texture2D firstPlanBackground0 = contentManager.Load<Texture2D>("NuoviSfondi\\polmoni primo piano(bora)_0");
+                    Texture2D firstPlanBackground1 = contentManager.Load<Texture2D>("NuoviSfondi\\polmoni primo piano(bora)_1");
+                    Texture2D firstPlanBackground2 = contentManager.Load<Texture2D>("NuoviSfondi\\polmoni primo piano(bora)_2");
+                    Texture2D firstPlanBackground3 = contentManager.Load<Texture2D>("NuoviSfondi\\polmoni primo piano(bora)_3");
                     MovingBackgroundConfig[] firstPlanBackgroundConfig =
                         new MovingBackgroundConfig[4] { new MovingBackgroundConfig(firstPlanBackground0, 1), new MovingBackgroundConfig(firstPlanBackground1, 1),
                                                         new MovingBackgroundConfig(firstPlanBackground2, 1), new MovingBackgroundConfig(firstPlanBackground3, 1) };

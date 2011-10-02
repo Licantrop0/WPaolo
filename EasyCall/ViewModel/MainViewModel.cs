@@ -13,7 +13,7 @@ namespace EasyCall.ViewModel
     {
         private IEnumerable<ContactViewModel> ContactsVM { get; set; }
         public ObservableCollection<ContactViewModel> SearchedContacts { get; set; }
-        PhoneCallTask CallTask;        
+        PhoneCallTask CallTask;
 
         public MainViewModel()
         {
@@ -41,6 +41,10 @@ namespace EasyCall.ViewModel
                              where c.PhoneNumbers.Any()
                              select new ContactViewModel(c.DisplayName,
                                  c.PhoneNumbers.Select(n => n.PhoneNumber));
+
+                if (!string.IsNullOrEmpty(SearchText) &&
+                    !SearchedContacts.Any())
+                    Filter(SearchText);
             };
             cons.SearchAsync(string.Empty, FilterKind.None, null);
         }

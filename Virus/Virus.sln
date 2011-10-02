@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirusGame", "Virus\Virus\VirusGame.csproj", "{B4EC0289-9245-4C12-9EFF-87089BF00FF9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirusContent", "Virus\VirusContent\VirusContent.contentproj", "{9778A463-3B75-4584-A94F-41B6BF2B4562}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Libraries", "..\WPCommon.Libraries\WPCommon.Libraries.csproj", "{B3072132-A92C-4800-A18F-793C868AC7DD}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
@@ -19,9 +17,6 @@ Global
 		SccProjectUniqueName2 = ..\\WPCommon.Libraries\\WPCommon.Libraries.csproj
 		SccProjectName2 = ../WPCommon.Libraries
 		SccLocalPath2 = ..\\WPCommon.Libraries
-		SccProjectUniqueName3 = Virus\\Virus\\VirusGame.csproj
-		SccProjectName3 = Virus/Virus
-		SccLocalPath3 = Virus\\Virus
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,20 +27,6 @@ Global
 		Release|Windows Phone = Release|Windows Phone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Debug|Any CPU.ActiveCfg = Debug|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Debug|Mixed Platforms.Build.0 = Debug|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Debug|Mixed Platforms.Deploy.0 = Debug|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Debug|Windows Phone.Deploy.0 = Debug|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Release|Any CPU.ActiveCfg = Release|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Release|Mixed Platforms.ActiveCfg = Release|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Release|Mixed Platforms.Build.0 = Release|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Release|Mixed Platforms.Deploy.0 = Release|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Release|Windows Phone.Build.0 = Release|Windows Phone
-		{B4EC0289-9245-4C12-9EFF-87089BF00FF9}.Release|Windows Phone.Deploy.0 = Release|Windows Phone
 		{9778A463-3B75-4584-A94F-41B6BF2B4562}.Debug|Any CPU.ActiveCfg = Debug|Windows Phone
 		{9778A463-3B75-4584-A94F-41B6BF2B4562}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Phone
 		{9778A463-3B75-4584-A94F-41B6BF2B4562}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Virus", "Virus\Virus\Virus.csproj", "{B4EC0289-9245-4C12-9EFF-87089BF00FF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirusGame", "Virus\Virus\VirusGame.csproj", "{B4EC0289-9245-4C12-9EFF-87089BF00FF9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirusContent", "Virus\VirusContent\VirusContent.contentproj", "{9778A463-3B75-4584-A94F-41B6BF2B4562}"
 EndProject
@@ -13,15 +13,15 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Virus\\Virus\\Virus.csproj
-		SccProjectName1 = Virus/Virus
-		SccLocalPath1 = Virus\\Virus
-		SccProjectUniqueName2 = Virus\\VirusContent\\VirusContent.contentproj
-		SccProjectName2 = Virus/VirusContent
-		SccLocalPath2 = Virus\\VirusContent
-		SccProjectUniqueName3 = ..\\WPCommon.Libraries\\WPCommon.Libraries.csproj
-		SccProjectName3 = ../WPCommon.Libraries
-		SccLocalPath3 = ..\\WPCommon.Libraries
+		SccProjectUniqueName1 = Virus\\VirusContent\\VirusContent.contentproj
+		SccProjectName1 = Virus/VirusContent
+		SccLocalPath1 = Virus\\VirusContent
+		SccProjectUniqueName2 = ..\\WPCommon.Libraries\\WPCommon.Libraries.csproj
+		SccProjectName2 = ../WPCommon.Libraries
+		SccLocalPath2 = ..\\WPCommon.Libraries
+		SccProjectUniqueName3 = Virus\\Virus\\VirusGame.csproj
+		SccProjectName3 = Virus/Virus
+		SccLocalPath3 = Virus\\Virus
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

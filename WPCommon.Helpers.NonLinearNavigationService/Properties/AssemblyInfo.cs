@@ -6,12 +6,12 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FillTheSquare")]
+[assembly: AssemblyTitle("WPCommon.Helpers.NonLinearNavigationService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("WPME")]
-[assembly: AssemblyProduct("Phil the Square")]
-[assembly: AssemblyCopyright("Copyright © WPME 2011")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("WPCommon.Helpers.NonLinearNavigationService")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,7 +21,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d2f9660c-cc50-4fe7-949a-93f658f016ce")]
+[assembly: Guid("c9ff0f3e-e25f-4ec1-ae25-c3d26e9120e0")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,6 +32,6 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.4.0")]
-[assembly: AssemblyFileVersion("1.4.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]

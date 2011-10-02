@@ -6,7 +6,7 @@ using System.Windows.Threading;
 namespace WPCommon.Helpers
 {
     //Riga da inserire dentro <Application.ApplicationLifetimeObjects> nell'App.xaml
-    //<wph:XNAAsyncDispatcher xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers"/>
+    //<wph:XNAAsyncDispatcher xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher"/>
 
     public class XNAAsyncDispatcher : IApplicationService
     {

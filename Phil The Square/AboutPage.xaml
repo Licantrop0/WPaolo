@@ -15,21 +15,21 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
-    
+
     <phone:PhoneApplicationPage.Resources>
-        <vm:AboutViewModel x:Name="AboutVM"
-                           DefaultFont="/FillTheSquare;component/Fonts/Fonts.zip#Brecht"
-                           MinFontSize="50"
-                           DefaultForeground="{StaticResource ForegroundGradientBrush}"
-                           DefaultBackground="{StaticResource BackgroundImageBrush}"
-                           AppId="e8c0eab4-0b6d-e011-81d2-78e7d1fa76f8"
-                           LogoMargin="20"
-                           CustomLogo="/FillTheSquare;component/Phil/phil_con_logo_new.png"
-                           CustomLogoMargin="265, 390, 0, 0" />
+        <vm:AboutViewModel
+            x:Name="AboutVM"
+            MinFontSize="50"
+            LogoMargin="20"
+            CustomLogo="/FillTheSquare;component/Phil/phil_con_logo_new.png"
+            CustomLogoMargin="274, 390, 0, 0"
+            DefaultFont="{StaticResource DefaultFont}"
+            DefaultForeground="{StaticResource ForegroundGradientBrush}"
+            DefaultBackground="{StaticResource BackgroundImageBrush}"
+            AppId="e8c0eab4-0b6d-e011-81d2-78e7d1fa76f8" />
     </phone:PhoneApplicationPage.Resources>
 
-    <wpc:About DataContext="{StaticResource AboutVM}"  />
-    <!--<HyperlinkButton Grid.Row="1" FontFamily="" Content="Watch on YouTube!!"
-                         FontSize="{StaticResource PhoneFontSizeLarge}"
+    <wpc:About DataContext="{StaticResource AboutVM}" AdUnitId="10022422" />
+    <!--<HyperlinkButton Grid.Row="1" Content="Watch on YouTube!!"                         
                          Click="Youtube_Click" Foreground="#FFE5E55E" Background="#00F2D9D9" />-->
 </phone:PhoneApplicationPage>

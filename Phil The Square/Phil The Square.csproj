@@ -215,6 +215,10 @@
       <Project>{A8C19415-8A63-42D1-862D-DBEC3C524857}</Project>
       <Name>WPCommon.Helpers.ExtensionMethods</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WPCommon.Helpers.NonLinearNavigationService\WPCommon.Helpers.NonLinearNavigationService.csproj">
+      <Project>{704697E4-9B5A-43B1-B4C5-0E2EC0475DEE}</Project>
+      <Name>WPCommon.Helpers.NonLinearNavigationService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj">
       <Project>{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}</Project>
       <Name>WPCommon.Helpers.XNAAsyncDispatcher</Name>

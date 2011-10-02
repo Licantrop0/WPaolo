@@ -19,7 +19,7 @@
         <vm:AboutViewModel x:Name="AboutVM"
                            AppName="Easy Call"
                            MinFontSize="40"
-                           AppId="" />
+                           AppId="3e922788-f63f-4d20-b0f6-a3b7002a4f38" />
     </phone:PhoneApplicationPage.Resources>
 
     <wpc:About Margin="0,-20,0,0" DataContext="{StaticResource AboutVM}" />

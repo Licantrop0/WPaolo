@@ -62,7 +62,7 @@
 
                         <HyperlinkButton Content="{Binding RateText}"
                                          FontSize="{Binding HyperLinkFontSize}"
-                                         Foreground="{Binding DefaultForeground}"
+                                         Foreground="{Binding DefaultForeground, TargetNullValue={StaticResource PhoneForegroundBrush}}"
                                          Style="{StaticResource HyperlinkWrappingStyle}"
                                          Click="Rate_Click" />
 
@@ -130,7 +130,7 @@
                 <HyperlinkButton Content="{Binding GetOtherAppsText}"
                                  Click="OtherAppsHyperLink_Click"
                                  Style="{StaticResource HyperlinkWrappingStyle}"
-                                 Foreground="{Binding DefaultForeground}"
+                                 Foreground="{Binding DefaultForeground, TargetNullValue={StaticResource PhoneForegroundBrush}}"
                                  FontSize="{Binding HyperLinkFontSize}"
                                  Grid.Row="0" Margin="0,0,0,12" />
                 <ListBox Name="AppListBox"

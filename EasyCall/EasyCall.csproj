@@ -130,6 +130,10 @@
       <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
       <Name>WPCommon.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WPCommon.Helpers.TrialManagement\WPCommon.Helpers.TrialManagement.csproj">
+      <Project>{157C676B-46A4-4099-936E-BBDFB93BB735}</Project>
+      <Name>WPCommon.Helpers.TrialManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using EasyCall.ViewModel;
 using Microsoft.Phone.Controls;
+using WPCommon.Helpers;
 
 namespace EasyCall
 {
@@ -45,6 +46,11 @@ namespace EasyCall
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if (TrialManagement.IsTrialMode)
+                if(MessageBox.Show("Hi! Welcome to the Trial Mode.\nTo get rid of the nag screen and call limitations, press ok to buy this app.",
+                    "Trial Mode", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    TrialManagement.Buy();
+
             SearchTextBox.Focus();
         }
 

@@ -19,19 +19,20 @@ namespace WPCommon.Helpers
             }
         }
 
-        private static DateTime LastOpen
+        public static int Counter
         {
             get
             {
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("last_open"))
-                    IsolatedStorageSettings.ApplicationSettings["last_open"] = DateTime.Today.AddDays(-1);
-                return (DateTime)IsolatedStorageSettings.ApplicationSettings["last_open"];
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("counter"))
+                    IsolatedStorageSettings.ApplicationSettings.Add("counter", 0);
+
+                return (int)IsolatedStorageSettings.ApplicationSettings["counter"];
             }
-            set
-            {
-                if (LastOpen != value)
-                    IsolatedStorageSettings.ApplicationSettings["last_open"] = value;
-            }
+        }
+
+        public static void IncrementCounter()
+        {
+            IsolatedStorageSettings.ApplicationSettings["counter"] = Counter + 1;
         }
 
         public static bool AlreadyOpenedToday
@@ -47,5 +48,23 @@ namespace WPCommon.Helpers
                 }
             }
         }
+
+        private static DateTime LastOpen
+        {
+            get
+            {
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("last_open"))
+                    IsolatedStorageSettings.ApplicationSettings.Add("last_open", DateTime.Today.AddDays(-1));
+
+                return (DateTime)IsolatedStorageSettings.ApplicationSettings["last_open"];
+            }
+            set
+            {
+                if (LastOpen != value)
+                    IsolatedStorageSettings.ApplicationSettings["last_open"] = value;
+            }
+        }
+
+
     }
 }

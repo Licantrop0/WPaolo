@@ -1,0 +1,35 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="FillTheSquare.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:vm="clr-namespace:FillTheSquare.ViewModel"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+    
+    <phone:PhoneApplicationPage.Resources>
+        <vm:AboutViewModel x:Name="AboutVM"
+                           DefaultFont="/FillTheSquare;component/Fonts/Fonts.zip#Brecht"
+                           MinFontSize="50"
+                           DefaultForeground="{StaticResource ForegroundGradientBrush}"
+                           DefaultBackground="{StaticResource BackgroundImageBrush}"
+                           AppId="e8c0eab4-0b6d-e011-81d2-78e7d1fa76f8"
+                           LogoMargin="20"
+                           CustomLogo="/FillTheSquare;component/Phil/phil_con_logo_new.png"
+                           CustomLogoMargin="265, 390, 0, 0" />
+    </phone:PhoneApplicationPage.Resources>
+
+    <wpc:About DataContext="{StaticResource AboutVM}"  />
+    <!--<HyperlinkButton Grid.Row="1" FontFamily="" Content="Watch on YouTube!!"
+                         FontSize="{StaticResource PhoneFontSizeLarge}"
+                         Click="Youtube_Click" Foreground="#FFE5E55E" Background="#00F2D9D9" />-->
+</phone:PhoneApplicationPage>

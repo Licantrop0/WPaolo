@@ -1,22 +1,32 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirusContent", "Virus\VirusContent\VirusContent.contentproj", "{9778A463-3B75-4584-A94F-41B6BF2B4562}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Libraries", "..\WPCommon.Libraries\WPCommon.Libraries.csproj", "{B3072132-A92C-4800-A18F-793C868AC7DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Virus", "Virus\Virus\Virus.csproj", "{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirusLib", "Virus\VirusLib\VirusLib.csproj", "{B7A56658-3681-4A57-931C-DB435C2C1E04}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "VirusLibContent", "Virus\VirusLibContent\VirusLibContent.contentproj", "{37DA2C57-09D7-4A20-83AA-71F02710572D}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Virus\\VirusContent\\VirusContent.contentproj
-		SccProjectName1 = Virus/VirusContent
-		SccLocalPath1 = Virus\\VirusContent
-		SccProjectUniqueName2 = ..\\WPCommon.Libraries\\WPCommon.Libraries.csproj
-		SccProjectName2 = ../WPCommon.Libraries
-		SccLocalPath2 = ..\\WPCommon.Libraries
+		SccProjectUniqueName1 = ..\\WPCommon.Libraries\\WPCommon.Libraries.csproj
+		SccProjectName1 = ../WPCommon.Libraries
+		SccLocalPath1 = ..\\WPCommon.Libraries
+		SccProjectUniqueName2 = Virus\\Virus\\Virus.csproj
+		SccProjectName2 = Virus/Virus
+		SccLocalPath2 = Virus\\Virus
+		SccProjectUniqueName3 = Virus\\VirusLib\\VirusLib.csproj
+		SccProjectName3 = Virus/VirusLib
+		SccLocalPath3 = Virus\\VirusLib
+		SccProjectUniqueName4 = Virus\\VirusLibContent\\VirusLibContent.contentproj
+		SccProjectName4 = Virus/VirusLibContent
+		SccLocalPath4 = Virus\\VirusLibContent
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,12 +37,6 @@ Global
 		Release|Windows Phone = Release|Windows Phone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9778A463-3B75-4584-A94F-41B6BF2B4562}.Debug|Any CPU.ActiveCfg = Debug|Windows Phone
-		{9778A463-3B75-4584-A94F-41B6BF2B4562}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Phone
-		{9778A463-3B75-4584-A94F-41B6BF2B4562}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
-		{9778A463-3B75-4584-A94F-41B6BF2B4562}.Release|Any CPU.ActiveCfg = Release|Windows Phone
-		{9778A463-3B75-4584-A94F-41B6BF2B4562}.Release|Mixed Platforms.ActiveCfg = Release|Windows Phone
-		{9778A463-3B75-4584-A94F-41B6BF2B4562}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
 		{B3072132-A92C-4800-A18F-793C868AC7DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B3072132-A92C-4800-A18F-793C868AC7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3072132-A92C-4800-A18F-793C868AC7DD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -43,6 +47,36 @@ Global
 		{B3072132-A92C-4800-A18F-793C868AC7DD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B3072132-A92C-4800-A18F-793C868AC7DD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B3072132-A92C-4800-A18F-793C868AC7DD}.Release|Windows Phone.ActiveCfg = Release|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Debug|Windows Phone.ActiveCfg = Debug|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{D1805A87-11B8-4A35-AB40-AF81C89A3D0F}.Release|Windows Phone.ActiveCfg = Release|Any CPU
+		{B7A56658-3681-4A57-931C-DB435C2C1E04}.Debug|Any CPU.ActiveCfg = Debug|Windows Phone
+		{B7A56658-3681-4A57-931C-DB435C2C1E04}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Phone
+		{B7A56658-3681-4A57-931C-DB435C2C1E04}.Debug|Mixed Platforms.Build.0 = Debug|Windows Phone
+		{B7A56658-3681-4A57-931C-DB435C2C1E04}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{B7A56658-3681-4A57-931C-DB435C2C1E04}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
+		{B7A56658-3681-4A57-931C-DB435C2C1E04}.Release|Any CPU.ActiveCfg = Release|Windows Phone
+		{B7A56658-3681-4A57-931C-DB435C2C1E04}.Release|Mixed Platforms.ActiveCfg = Release|Windows Phone
+		{B7A56658-3681-4A57-931C-DB435C2C1E04}.Release|Mixed Platforms.Build.0 = Release|Windows Phone
+		{B7A56658-3681-4A57-931C-DB435C2C1E04}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{B7A56658-3681-4A57-931C-DB435C2C1E04}.Release|Windows Phone.Build.0 = Release|Windows Phone
+		{37DA2C57-09D7-4A20-83AA-71F02710572D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37DA2C57-09D7-4A20-83AA-71F02710572D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{37DA2C57-09D7-4A20-83AA-71F02710572D}.Debug|Windows Phone.ActiveCfg = Debug|Any CPU
+		{37DA2C57-09D7-4A20-83AA-71F02710572D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{37DA2C57-09D7-4A20-83AA-71F02710572D}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{37DA2C57-09D7-4A20-83AA-71F02710572D}.Release|Windows Phone.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

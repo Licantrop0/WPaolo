@@ -1,0 +1,120 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+    
+    x:Class="FillTheSquare.MainPage"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImageBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Style="{StaticResource SquareTitleStyle}"
+                   Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
+                   Margin="0,12" />
+
+        <Canvas x:Name="ContentPanel" Margin="12" Grid.Row="1" >
+            <Image Source="Phil/saluta.png"
+                   Stretch="None" IsHitTestVisible="False"
+                   Canvas.Left="217" Canvas.Top="577" >
+                <Image.RenderTransform>
+                    <RotateTransform Angle="-35" />
+                </Image.RenderTransform>
+            </Image>
+
+            <Button Content="{Binding LocalizedResources.Easy, Source={StaticResource LocalizedStrings}}" 
+                    Click="SquareFiveButton_Click"
+                    Style="{StaticResource HomeButtonStyle2}"
+                    Width="240" Height="150"
+                    Canvas.Left="-12" Canvas.Top="0"/>
+
+            <Button Content="{Binding LocalizedResources.Hard, Source={StaticResource LocalizedStrings}}" 
+                    Click="SquareTenButton_Click"
+                    Style="{StaticResource HomeButtonStyle2}"                    
+                    Width="240" Height="150"
+                    Canvas.Left="228" Canvas.Top="0" />
+
+            <Button Content="{Binding LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
+                    Height="100" Width="250"
+                    Style="{StaticResource HomeButtonStyle}"
+                    d:LayoutRounding="Auto"
+                    Canvas.Left="57" Canvas.Top="203">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="-10" />
+                </Button.RenderTransform>
+                <Custom:Interaction.Triggers>
+                    <Custom:EventTrigger EventName="Click">
+                        <ic:NavigateToPageAction TargetPage="/RecordsPage.xaml"/>
+                    </Custom:EventTrigger>
+                </Custom:Interaction.Triggers>
+            </Button>
+
+            <Button Content="{Binding LocalizedResources.Instructions, Source={StaticResource LocalizedStrings}}"
+                    Height="100" Width="280" 
+                    Style="{StaticResource HomeButtonStyle}"
+                    Canvas.Left="218" Canvas.Top="272" >
+                <Button.RenderTransform>
+                    <RotateTransform Angle="22" />
+                </Button.RenderTransform>
+                <Custom:Interaction.Triggers>
+                    <Custom:EventTrigger EventName="Click">
+                        <ic:NavigateToPageAction TargetPage="/InstructionsPage.xaml"/>
+                    </Custom:EventTrigger>
+                </Custom:Interaction.Triggers>
+            </Button>
+
+            <!--<Button Canvas.Left="0" Canvas.Top="382"
+                    Content="congratulations" Click="Button_Click" />
+            <Button Content="Achievements"
+                    Canvas.Left="249" Canvas.Top="240" >
+                <Custom:Interaction.Triggers>
+                    <Custom:EventTrigger EventName="Click">
+                        <ic:NavigateToPageAction TargetPage="/AchievementsPage.xaml"/>
+                    </Custom:EventTrigger>
+                </Custom:Interaction.Triggers>
+            </Button>-->
+
+            <Button Content="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"
+                    Height="80" Width="200"
+                    Style="{StaticResource HomeButtonStyle}"
+                    Canvas.Left="13" Canvas.Top="550" >
+                <Custom:Interaction.Triggers>
+                    <Custom:EventTrigger EventName="Click">
+                        <ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
+                    </Custom:EventTrigger>
+                </Custom:Interaction.Triggers>
+                <Button.RenderTransform>
+                    <RotateTransform Angle="15" />
+                </Button.RenderTransform>
+            </Button>
+
+            <Button Content="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
+            	Height="91.685" Width="256"
+            	Style="{StaticResource HomeButtonStyle}"
+            	Canvas.Left="31.673" Canvas.Top="481.763" UseLayoutRounding="False" d:LayoutRounding="Auto" >
+            	<Custom:Interaction.Triggers>
+            		<Custom:EventTrigger EventName="Click">
+            			<ic:NavigateToPageAction TargetPage="/SettingsPage.xaml"/>
+            		</Custom:EventTrigger>
+            	</Custom:Interaction.Triggers>
+            	<Button.RenderTransform>
+            		<CompositeTransform Rotation="-15"/>
+            	</Button.RenderTransform>
+            </Button>
+        </Canvas>
+    </Grid>
+</phone:PhoneApplicationPage>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO.IsolatedStorage;
 using Microsoft.Phone.Marketplace;
+using Microsoft.Phone.Tasks;
 
 namespace WPCommon.Helpers
 {
@@ -33,6 +34,16 @@ namespace WPCommon.Helpers
         public static void IncrementCounter()
         {
             IsolatedStorageSettings.ApplicationSettings["counter"] = Counter + 1;
+        }
+
+        public static void Buy()
+        {
+            try
+            {
+                new MarketplaceDetailTask().Show();
+            }
+            catch (InvalidOperationException)
+            { /*do nothing */ }
         }
 
         public static bool AlreadyOpenedToday

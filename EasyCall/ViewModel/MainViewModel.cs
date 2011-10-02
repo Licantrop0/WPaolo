@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.Phone.Tasks;
+using WPCommon.Helpers;
+using System.Windows;
 
 namespace EasyCall.ViewModel
 {
@@ -21,8 +23,8 @@ namespace EasyCall.ViewModel
                 SearchedContacts = new ObservableCollection<ContactViewModel>(new[]
                 {
                     new ContactViewModel("Luca Spolidoro", new[] {"393 3714189", "010 311540"}),
-                    new ContactViewModel("Pino Quercia", new[] {"+39 384 30572194", "+39 02 365688"}),
-                    new ContactViewModel("Sapporo Piloro", new[] {"347 5840382", "02 7039 2650"})
+                    new ContactViewModel("Pino Quercia", new[] {"+39 384 30572194", "+39 02 365688", "02 074 234456"}),
+                    new ContactViewModel("Sapporo Piloro", new[] {"347 5840382"})
                 });
             else
             {
@@ -51,9 +53,28 @@ namespace EasyCall.ViewModel
 
         public void Call(string name, string number)
         {
+            if (!CheckTrial()) return;
+
             CallTask.DisplayName = name;
             CallTask.PhoneNumber = number;
             CallTask.Show();
+        }
+
+        private bool CheckTrial()
+        {
+            if (TrialManagement.IsTrialMode)
+            {
+                if (TrialManagement.Counter >= 5)
+                {
+                    MessageBox.Show("I'm sorry, you called too many times for this trial, now it's time to pay!", "Trial Mode", MessageBoxButton.OK);
+                    TrialManagement.Buy();
+                    return false;
+                }
+
+                TrialManagement.IncrementCounter();
+                MessageBox.Show("You have " + (6 - TrialManagement.Counter) + " calls left for this demo", "Trial Mode", MessageBoxButton.OK);
+            }
+            return true;
         }
 
         private string _searchText;

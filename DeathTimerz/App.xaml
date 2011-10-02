@@ -75,7 +75,6 @@
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
-        <!--<wp:XNAAsyncDispatcher xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"/>-->
         <shell:PhoneApplicationService 
             Launching="Application_Launching" Closing="Application_Closing" 
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>

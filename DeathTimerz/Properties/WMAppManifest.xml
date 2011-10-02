@@ -2,14 +2,16 @@
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
   <App xmlns="" ProductID="{5132ae33-6f63-4a52-b4c7-e2f474b1a5ff}"
        Title="@AppResLib.dll,-100"
-       Author="Licantrop0"
        RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"
        Description="With Death Timerz you can calculate your age with accurate precision and predict your death date"
-       Publisher="WPME">
+       Author="Licantrop0" Publisher="WPME">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_MEDIALIB" />
       <Capability Name="ID_CAP_NETWORKING" />
+      <Capability Name="ID_CAP_IDENTITY_USER" />
+      <Capability Name="ID_CAP_PHONEDIALER" />
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="View/DeathTimerzPanorama.xaml" />

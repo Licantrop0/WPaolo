@@ -132,9 +132,6 @@
   <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="DontMakePhilSad" xml:space="preserve">
-    <value>Please, don't make Phil sad!</value>
-  </data>
   <data name="PleaseInsertName" xml:space="preserve">
     <value>Please insert your Name</value>
   </data>
@@ -167,9 +164,6 @@
   <data name="NoMoreMoves" xml:space="preserve">
     <value>No more moves available</value>
   </data>
-  <data name="PhilWillBeHappy" xml:space="preserve">
-    <value>so Phil will be always happy and you will have no limits in the play!</value>
-  </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Do you want to stop the current music and play the background music of this app?</value>
   </data>
@@ -188,9 +182,6 @@
   <data name="Size" xml:space="preserve">
     <value>Size</value>
   </data>
-  <data name="ThisIsADemo" xml:space="preserve">
-    <value>Ouch! This is a Demo!</value>
-  </data>
   <data name="Time" xml:space="preserve">
     <value>Time</value>
   </data>
@@ -208,5 +199,12 @@
   </data>
   <data name="SoundEffects" xml:space="preserve">
     <value>Sound Effects</value>
+  </data>
+  <data name="Philled" xml:space="preserve">
+    <value>I Philled the {0} square in {1} seconds!
+Could you do better?</value>
+  </data>
+  <data name="ShareOnFacebook" xml:space="preserve">
+    <value>Share on Facebook!</value>
   </data>
 </root>

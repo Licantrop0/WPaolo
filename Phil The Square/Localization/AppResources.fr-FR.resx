@@ -206,4 +206,11 @@
   <data name="SoundEffects" xml:space="preserve">
     <value>Effets Sonores</value>
   </data>
+  <data name="Philled" xml:space="preserve">
+    <value>J'ai rempli le {0} carré en {1} secondes!
+Pourriez-vous faire mieux?</value>
+  </data>
+  <data name="ShareOnFacebook" xml:space="preserve">
+    <value>Partager sur Facebook</value>
+  </data>
 </root>

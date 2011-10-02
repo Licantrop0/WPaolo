@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phil The Square", "Phil The Square.csproj", "{D867E2BB-CEEA-4CFA-B653-04231AF123C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Libraries", "..\WPCommon.Libraries\WPCommon.Libraries.csproj", "{B3072132-A92C-4800-A18F-793C868AC7DD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.ExtensionMethods", "..\WPCommon.Helpers.ExtensionMethods\WPCommon.Helpers.ExtensionMethods.csproj", "{A8C19415-8A63-42D1-862D-DBEC3C524857}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.XNAAsyncDispatcher", "..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj", "{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.NonLinearNavigationService", "..\WPCommon.Helpers.NonLinearNavigationService\WPCommon.Helpers.NonLinearNavigationService.csproj", "{704697E4-9B5A-43B1-B4C5-0E2EC0475DEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -17,20 +17,20 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
-		SccProjectName1 = ../WPCommon.Controls
-		SccLocalPath1 = ..\\WPCommon.Controls
-		SccProjectUniqueName2 = ..\\WPCommon.Libraries\\WPCommon.Libraries.csproj
-		SccProjectName2 = ../WPCommon.Libraries
-		SccLocalPath2 = ..\\WPCommon.Libraries
-		SccProjectUniqueName3 = Phil\u0020The\u0020Square.csproj
-		SccLocalPath3 = .
-		SccProjectUniqueName4 = ..\\WPCommon.Helpers.ExtensionMethods\\WPCommon.Helpers.ExtensionMethods.csproj
-		SccProjectName4 = ../WPCommon.Helpers.ExtensionMethods
-		SccLocalPath4 = ..\\WPCommon.Helpers.ExtensionMethods
-		SccProjectUniqueName5 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
-		SccProjectName5 = ../WPCommon.Helpers.XNAAsyncDispatcher
-		SccLocalPath5 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
+		SccProjectUniqueName1 = Phil\u0020The\u0020Square.csproj
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = ..\\WPCommon.Helpers.ExtensionMethods\\WPCommon.Helpers.ExtensionMethods.csproj
+		SccProjectName2 = ../WPCommon.Helpers.ExtensionMethods
+		SccLocalPath2 = ..\\WPCommon.Helpers.ExtensionMethods
+		SccProjectUniqueName3 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
+		SccProjectName3 = ../WPCommon.Helpers.XNAAsyncDispatcher
+		SccLocalPath3 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
+		SccProjectUniqueName4 = ..\\WPCommon.Helpers.NonLinearNavigationService\\WPCommon.Helpers.NonLinearNavigationService.csproj
+		SccProjectName4 = ../WPCommon.Helpers.NonLinearNavigationService
+		SccLocalPath4 = ..\\WPCommon.Helpers.NonLinearNavigationService
+		SccProjectUniqueName5 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName5 = ../WPCommon.Controls
+		SccLocalPath5 = ..\\WPCommon.Controls
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,14 +43,6 @@ Global
 		{D867E2BB-CEEA-4CFA-B653-04231AF123C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D867E2BB-CEEA-4CFA-B653-04231AF123C4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D867E2BB-CEEA-4CFA-B653-04231AF123C4}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8C19415-8A63-42D1-862D-DBEC3C524857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8C19415-8A63-42D1-862D-DBEC3C524857}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8C19415-8A63-42D1-862D-DBEC3C524857}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,6 +51,14 @@ Global
 		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{704697E4-9B5A-43B1-B4C5-0E2EC0475DEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{704697E4-9B5A-43B1-B4C5-0E2EC0475DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{704697E4-9B5A-43B1-B4C5-0E2EC0475DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{704697E4-9B5A-43B1-B4C5-0E2EC0475DEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -48,7 +48,7 @@
                 <ListBox.Resources>
                     <wp:ShortTimeSpanTextConverter
                         x:Key="ShortTimeSpanTextConverter"
-                        xmlns:wp="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers" />
+                        xmlns:wp="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.ExtensionMethods" />
                 </ListBox.Resources>
                 <ListBox.ItemTemplate>
                     <DataTemplate>

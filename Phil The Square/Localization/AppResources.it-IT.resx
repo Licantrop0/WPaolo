@@ -208,4 +208,11 @@ con i numeri in sequenza</value>
   <data name="SoundEffects" xml:space="preserve">
     <value>Effetti Sonori</value>
   </data>
+  <data name="Philled" xml:space="preserve">
+    <value>Ho completato il quadrato {0} in {1} secondi!
+Riusciresti a fare di meglio?!</value>
+  </data>
+  <data name="ShareOnFacebook" xml:space="preserve">
+    <value>Condividi su Facebook!</value>
+  </data>
 </root>

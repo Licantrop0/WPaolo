@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Globalization;
-using System.IO;
-using System.IO.IsolatedStorage;
 using System.Linq;
+using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Xml.Linq;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using DeathTimerz.Localization;
-using System.Collections.Generic;
-using System.Resources;
+using Microsoft.Phone.Controls;
 
 namespace DeathTimerz
 {

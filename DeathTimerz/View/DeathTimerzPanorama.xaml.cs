@@ -86,7 +86,7 @@ namespace DeathTimerz
         private void DatePicker_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
             if(e.NewDateTime.HasValue && !CheckBirthday(e.NewDateTime.Value))
-                BirthDayDatePicker.Value = DateTime.Now.AddYears(-50);
+              ((DatePicker)sender).Value = DateTime.Now.AddYears(-50);
         }
 
         public bool CheckBirthday(DateTime value)

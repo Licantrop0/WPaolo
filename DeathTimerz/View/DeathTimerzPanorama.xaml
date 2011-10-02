@@ -17,9 +17,9 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
-             <vm:MainViewModel x:Key="MainVM" />
+            <vm:MainViewModel x:Key="MainVM" />
         </Grid.Resources>
-        
+
         <controls:Panorama x:Name="MainPanorama"  DataContext="{StaticResource MainVM}"
                            SelectionChanged="MainPanorama_SelectionChanged" >
             <controls:Panorama.Title>
@@ -108,12 +108,15 @@
                     <TextBlock Text="{Binding Path=LocalizedResources.InsertBirthday, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
 
-                    <toolkit:DatePicker Name="BirthDayDatePicker" Background="Gray"
-                                FontFamily="/DeathTimerz;component/Fonts/Fonts.zip#Chiller"
-                                Foreground="{StaticResource RedGradientBrush}" Value="{Binding BirthDay, Mode=TwoWay}" ValueChanged="DatePicker_ValueChanged" />
+                    <toolkit:DatePicker Background="Gray"
+                                        FontFamily="{StaticResource DefaultFont}"
+                                        Foreground="{StaticResource RedGradientBrush}"
+                                        Value="{Binding BirthDay, Mode=TwoWay}"
+                                        ValueChanged="DatePicker_ValueChanged" />
                     <toolkit:TimePicker Background="Gray"
-                                Foreground="{StaticResource RedGradientBrush}" Value="{Binding BirthDay, Mode=TwoWay}"
-                                FontFamily="/DeathTimerz;component/Fonts/Fonts.zip#Chiller" />
+                                        Foreground="{StaticResource RedGradientBrush}"
+                                        Value="{Binding BirthDay, Mode=TwoWay}"
+                                        FontFamily="{StaticResource DefaultFont}" />
 
                     <TextBlock Text="{Binding DaysToBirthDay}"
                                HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
@@ -125,8 +128,10 @@
 
         </controls:Panorama>
 
-        <AdDuplex:AdControl xmlns:AdDuplex="clr-namespace:AdDuplex;assembly=AdDuplex.AdControl.Silverlight"
-                            AppId="2835" IsTest="False" VerticalAlignment="Bottom" />
+        <ads:AdControl Name="adControl1" AdUnitId="10022419"
+                       ApplicationId="d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2"
+                       Height="80" VerticalAlignment="Bottom"
+                       xmlns:ads="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

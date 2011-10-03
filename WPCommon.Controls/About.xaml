@@ -71,6 +71,8 @@
 
                         <TextBlock Text="{Binding CustomText}" TextWrapping="Wrap"
                                    FontSize="{Binding AppVersionFontSize}" />
+                        
+                        <!-- AdControl Placeholder (created in Code Behind) -->
                     </StackPanel>
                     
                     <Image Source="{Binding CustomLogo}" Stretch="None"

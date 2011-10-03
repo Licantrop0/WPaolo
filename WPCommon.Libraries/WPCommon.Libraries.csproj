@@ -78,9 +78,6 @@
     <None Include="MVVM Light\System.Windows.Interactivity.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Microsoft.Phone.Controls.Toolkit.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="AsyncCtpLibrary_Phone.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

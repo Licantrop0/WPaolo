@@ -40,46 +40,45 @@
         <controls:Pivot.Resources>
             <ResourceDictionary Source="Resources.xaml"/>
         </controls:Pivot.Resources>
-        
+
         <controls:PivotItem Margin="0,24,0,0">
             <controls:PivotItem.Header>
                 <TextBlock Text="{Binding ApplicationText}"
                            FontFamily="{Binding DefaultFont, TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
                            Foreground="{Binding HeaderForeground}" />
             </controls:PivotItem.Header>
-            <ScrollViewer>
-                <Grid Name="MainGrid">
-                    <StackPanel>
-                        <TextBlock Name="AppNameTextBlock"
+            <Grid Name="MainGrid">
+                <StackPanel>
+                    <TextBlock Name="AppNameTextBlock"
                                    Text="{Binding AppName, TargetNullValue='App Name'}"
                                    TextAlignment="Center" TextWrapping="Wrap"
                                    FontSize="{Binding AppNameFontSize}" />
 
-                        <TextBlock Name="AppVersionTextBlock"
+                    <TextBlock Name="AppVersionTextBlock"
                                    Text="{Binding AppVersion}"
                                    FontSize="{Binding AppVersionFontSize}"
                                    TextAlignment="Center" Margin="0,8" />
 
-                        <HyperlinkButton Content="{Binding RateText}"
+                    <HyperlinkButton Content="{Binding RateText}"
                                          FontSize="{Binding HyperLinkFontSize}"
                                          Foreground="{Binding DefaultForeground, TargetNullValue={StaticResource PhoneForegroundBrush}}"
                                          Style="{StaticResource HyperlinkWrappingStyle}"
                                          Click="Rate_Click" />
 
-                        <Image Source="Img/logo.png" Stretch="None"
-                               Margin="{Binding LogoMargin}" />
+                    <Image Source="Img/logo.png" Stretch="None"
+                           Margin="{Binding LogoMargin}" />
 
-                        <TextBlock Text="{Binding CustomText}" TextWrapping="Wrap"
-                                   FontSize="{Binding AppVersionFontSize}" />
-                        
-                        <!-- AdControl Placeholder (created in Code Behind) -->
-                    </StackPanel>
-                    
-                    <Image Source="{Binding CustomLogo}" Stretch="None"
+                    <TextBlock Text="{Binding CustomText}"
+                               TextAlignment="Center" TextWrapping="Wrap"
+                               FontSize="{Binding AppVersionFontSize}" />
+
+                    <!-- AdControl Placeholder (created in Code Behind) -->
+                </StackPanel>
+
+                <Image Source="{Binding CustomLogo}" Stretch="None"
                        HorizontalAlignment="Left" VerticalAlignment="Top"
                        Margin="{Binding CustomLogoMargin}" />
-                </Grid>
-            </ScrollViewer>
+            </Grid>
         </controls:PivotItem>
 
         <controls:PivotItem >

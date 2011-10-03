@@ -20,7 +20,7 @@ namespace EasyCall
             get
             {
                 if (_VM == null)
-                    _VM = (MainViewModel)this.DataContext;
+                    _VM = (MainViewModel)LayoutRoot.DataContext;
 
                 return _VM;
             }
@@ -47,7 +47,7 @@ namespace EasyCall
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             if (TrialManagement.IsTrialMode)
-                if(MessageBox.Show("Hi! Welcome to the Trial Mode.\nTo get rid of the nag screen and call limitations, press ok to buy this app.",
+                if (MessageBox.Show("Hi! Welcome to the Trial Mode.\nTo get rid of the nag screen and call limitations, press ok to buy this app.",
                     "Trial Mode", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     TrialManagement.Buy();
 
@@ -64,18 +64,12 @@ namespace EasyCall
             if (VM.SearchedContacts.Any())
             {
                 var contact = VM.SearchedContacts.First();
-                VM.Call(contact.DisplayName, contact.Numbers.First());
+                CallHelper.Call(contact.DisplayName, contact.Numbers.First());
             }
             else
             {
-                VM.Call(null, SearchTextBox.Text);
+                CallHelper.Call(null, SearchTextBox.Text);
             }
-        }
-
-        private void Call_Click(object sender, RoutedEventArgs e)
-        {
-            var num = ((Button)sender).DataContext as string;
-            VM.Call(null, num);
         }
 
         private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -86,6 +80,16 @@ namespace EasyCall
         private void About_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+        }
+
+        private void LongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ContactsLongListSelector.SelectedItem != null)
+            {
+                var number = (string)ContactsLongListSelector.SelectedItem;
+                CallHelper.Call(null, number);
+                ContactsLongListSelector.SelectedItem = null;
+            }
         }
     }
 }

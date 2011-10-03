@@ -8,8 +8,7 @@ namespace EasyCall.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private ContactViewModel[] ContactsVM { get; set; }
-        public IEnumerable<ContactViewModel> SearchedContacts { get; set; }
+        #region INotifyPropertyChanged Implementation
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName)
@@ -17,6 +16,11 @@ namespace EasyCall.ViewModel
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
+
+        private ContactViewModel[] ContactsVM { get; set; }
+        public IEnumerable<ContactViewModel> SearchedContacts { get; set; }
 
         public MainViewModel()
         {
@@ -80,10 +84,11 @@ namespace EasyCall.ViewModel
             }
 
             //Da rendere Async
-            SearchedContacts = from c in ContactsVM
-                               where c.NumberRepresentation.Any(nr => nr.StartsWith(searchedText)) ||
-                                     c.Numbers.Any(n => n.Contains(searchedText))
-                               select c;
+            SearchedContacts = from contact in ContactsVM
+                               where contact.NumberRepresentation.Any(nr => nr.StartsWith(searchedText)) ||
+                                     contact.Numbers.Any(n => n.Contains(searchedText))
+                               select contact;
+ 
 
             RaisePropertyChanged("SearchedContacts");
         }

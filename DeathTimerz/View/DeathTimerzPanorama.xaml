@@ -128,9 +128,9 @@
 
         </controls:Panorama>
 
-        <ads:AdControl Name="adControl1" AdUnitId="10022419"
+        <ads:AdControl AdUnitId="10022419"
                        ApplicationId="d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2"
-                       Height="80" VerticalAlignment="Bottom"
+                       Height="80" Width="480" VerticalAlignment="Bottom"
                        xmlns:ads="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" />
     </Grid>
 

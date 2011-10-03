@@ -12,16 +12,16 @@
     <Application.Resources>
 
         <DataTemplate x:Key="groupItemHeader">
-            <StackPanel Orientation="Horizontal" Margin="0,24,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,24,0,0" >
                 <Image Source="{Binding Bitmap}" Width="48" Height="48"
                        Stretch="Fill" Margin="8,0" />
                 <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center"
                            FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
             </StackPanel>
         </DataTemplate>
-        
+
         <DataTemplate x:Key="NumberDataTemplate">
-            <StackPanel Orientation="Horizontal" Margin="64,0,0,0">
+            <StackPanel Orientation="Horizontal" Margin="60,0,0,0">
                 <Rectangle Height="48" Width="48" Margin="8"
                            Fill="{StaticResource PhoneForegroundBrush}">
                     <Rectangle.OpacityMask>

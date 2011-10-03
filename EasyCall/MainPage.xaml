@@ -38,6 +38,8 @@
             GroupHeaderTemplate="{StaticResource groupItemHeader}"
             ItemTemplate="{StaticResource NumberDataTemplate}"
             SelectionChanged="LongListSelector_SelectionChanged" />
+        
+        
         <!--SelectedItem="{Binding SelectedNumber}"-->
     </Grid>
 

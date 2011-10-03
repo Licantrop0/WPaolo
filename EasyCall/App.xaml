@@ -8,10 +8,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     mc:Ignorable="d" >
-    
+
     <Application.Resources>
-        <DataTemplate x:Key="NumberDataTemplate" >
-            <StackPanel Orientation="Horizontal" >
+
+        <DataTemplate x:Key="groupItemHeader">
+            <StackPanel Orientation="Horizontal" Margin="0,24,0,0">
+                <Image Source="{Binding Bitmap}" Width="48" Height="48"
+                       Stretch="Fill" Margin="8,0" />
+                <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center"
+                           FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
+            </StackPanel>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="NumberDataTemplate">
+            <StackPanel Orientation="Horizontal" Margin="64,0,0,0">
                 <Rectangle Height="48" Width="48" Margin="8"
                            Fill="{StaticResource PhoneForegroundBrush}">
                     <Rectangle.OpacityMask>
@@ -23,28 +33,6 @@
                            Foreground="{StaticResource PhoneAccentBrush}" />
             </StackPanel>
         </DataTemplate>
-
-        <Style x:Key="ContactItemStyle" TargetType="ListBoxItem">
-            <Setter Property="Template" >
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <StackPanel Margin="8">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding Bitmap}" Width="48" Height="48"
-                                       Stretch="Fill" Margin="8,0" />
-                                <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center"
-                                           FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
-                            </StackPanel>
-                            <ListBox ItemsSource="{Binding Numbers}" HorizontalAlignment="Left"
-                                     SelectedItem="{Binding SelectedNumber, Mode=TwoWay}"
-                                     toolkit:TiltEffect.IsTiltEnabled="True"
-                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                     ItemTemplate="{StaticResource NumberDataTemplate}" />
-                        </StackPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
 
     </Application.Resources>
 

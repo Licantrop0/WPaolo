@@ -10,19 +10,33 @@ using EasyCall.ViewModel;
 
 namespace EasyCall
 {
-    public class ContactViewModel : INotifyPropertyChanged
+    public class ContactViewModel : INotifyPropertyChanged, IGrouping<string, string>
     {
+        #region INotifyPropertyChanged Implementation
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
         public string DisplayName { get; set; }
         public string[] NumberRepresentation { get; set; }
         public string[] Numbers { get; set; }
+        private Stream _imageStream;
         private WriteableBitmap _bitmap;
         public WriteableBitmap Bitmap
         {
-            get { return _bitmap; }
-            set
+            get
             {
-                _bitmap = value;
-                RaisePropertyChanged("Bitmap");
+                if (_bitmap == null && _imageStream != null)
+                    //da rendere async
+                    _bitmap = PictureDecoder.DecodeJpeg(_imageStream);
+
+                return _bitmap;
             }
         }
 
@@ -31,22 +45,19 @@ namespace EasyCall
             DisplayName = displayName;
             NumberRepresentation = TextToNum(displayName);
             Numbers = numbers.Select(n => Regex.Replace(n, @"[\s\-\(\)]", string.Empty)).ToArray();
-            if (imageStream != null)
-            {
-                //da rendere async
-                Bitmap = PictureDecoder.DecodeJpeg(imageStream);
-            }
+            _imageStream = imageStream;
         }
 
-        public string SelectedNumber
-        {
-            get { return null; }
-            set
-            {
-                RaisePropertyChanged("SelectedNumber");
-                CallHelper.Call(DisplayName, value);
-            }
-        }
+        //Todo: quando il LongListSelector supporterà il binding...
+        //public string SelectedNumber
+        //{
+        //    get { return null; }
+        //    set
+        //    {
+        //        RaisePropertyChanged("SelectedNumber");
+        //        CallHelper.Call(DisplayName, value);
+        //    }
+        //}
 
         private string[] TextToNum(string input)
         {
@@ -86,12 +97,24 @@ namespace EasyCall
             return output;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string propertyName)
+        #region IGrouping Implementation
+
+        public string Key
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            get { return DisplayName; }
         }
 
+        public IEnumerator<string> GetEnumerator()
+        {
+            foreach (string n in Numbers)
+                yield return n;
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return this.Numbers.GetEnumerator();
+        }
+
+        #endregion
     }
 }

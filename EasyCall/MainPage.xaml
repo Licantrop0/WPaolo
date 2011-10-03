@@ -18,42 +18,6 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:MainViewModel x:Key="MainVM" />
-
-        <DataTemplate x:Key="NumberDataTemplate" >
-            <StackPanel Orientation="Horizontal" >
-                <Rectangle Height="48" Width="48" Margin="8"
-                           Fill="{StaticResource PhoneForegroundBrush}">
-                    <Rectangle.OpacityMask>
-                        <ImageBrush ImageSource="Images\CircleCall.png"/>
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-                <TextBlock Text="{Binding}" VerticalAlignment="Center"
-                           FontSize="{StaticResource PhoneFontSizeMedium}"
-                           Foreground="{StaticResource PhoneAccentBrush}" />
-            </StackPanel>
-        </DataTemplate>
-
-        <Style x:Key="ContactItemStyle" TargetType="ListBoxItem">
-            <Setter Property="Template" >
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <StackPanel Margin="8">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding Bitmap}" Width="48" Height="48"
-                                       Stretch="Fill" Margin="8,0" />
-                                <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center"
-                                           FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
-                            </StackPanel>
-                            <ListBox ItemsSource="{Binding Numbers}" HorizontalAlignment="Left"
-                                     SelectedItem="{Binding SelectedNumber, Mode=TwoWay}"
-                                     toolkit:TiltEffect.IsTiltEnabled="True"
-                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                     ItemTemplate="{StaticResource NumberDataTemplate}" />
-                        </StackPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" DataContext="{StaticResource MainVM}">

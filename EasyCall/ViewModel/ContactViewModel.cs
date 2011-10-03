@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone;
+using EasyCall.ViewModel;
 
 namespace EasyCall
 {
@@ -14,7 +15,6 @@ namespace EasyCall
         public string DisplayName { get; set; }
         public string[] NumberRepresentation { get; set; }
         public string[] Numbers { get; set; }
-
         private WriteableBitmap _bitmap;
         public WriteableBitmap Bitmap
         {

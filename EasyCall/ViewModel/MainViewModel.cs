@@ -66,14 +66,10 @@ namespace EasyCall.ViewModel
             set
             {
                 if (_searchText == value) return;
-
-                UseOptimization = (value.Length > SearchText.Length) && SearchedContacts != null;
                 _searchText = value;
                 Filter(value);
             }
         }
-
-        private bool UseOptimization = false;
 
         private void Filter(string searchedText)
         {
@@ -88,7 +84,7 @@ namespace EasyCall.ViewModel
             }
 
             //Da rendere Async
-            SearchedContacts = from contact in UseOptimization ? SearchedContacts : ContactsVM
+            SearchedContacts = from contact in ContactsVM
                                where contact.NumberRepresentation.Any(nr => nr.StartsWith(searchedText)) ||
                                      contact.Numbers.Any(n => n.Contains(searchedText))
                                select contact;

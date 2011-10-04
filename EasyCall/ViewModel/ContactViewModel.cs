@@ -24,8 +24,8 @@ namespace EasyCall
         #endregion
 
         public string DisplayName { get; set; }
-        public string[] NumberRepresentation { get; set; }
-        public string[] Numbers { get; set; }
+        public IEnumerable<string> NumberRepresentation { get; set; }
+        public IEnumerable<string> Numbers { get; set; }
         private Stream _imageStream;
         private WriteableBitmap _bitmap;
         public WriteableBitmap Bitmap
@@ -59,7 +59,7 @@ namespace EasyCall
         //    }
         //}
 
-        private string[] TextToNum(string input)
+        private IEnumerable<string> TextToNum(string input)
         {
             if (string.IsNullOrEmpty(input))
                 return new string[0];
@@ -76,8 +76,8 @@ namespace EasyCall
                 else if (output[i] == 't' || output[i] == 'u' || output[i] == 'v') output[i] = '8';
                 else if (output[i] == 'w' || output[i] == 'x' || output[i] == 'y' || output[i] == 'z') output[i] = '9';
             }
-
-            return new string(output).Split(' ');
+            //var a = new List<string> { new string(output) };
+            return new string(output).Split(' ');//.Concat(a);
 
             ////Anche se più leggibile, NON è più performante di circa 100 ms
             //Regex.Replace(input, "[abc]", "2", RegexOptions.IgnoreCase);

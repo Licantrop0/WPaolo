@@ -82,14 +82,13 @@ namespace EasyCall
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
 
-        private void LongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void NumberButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ContactsLongListSelector.SelectedItem != null)
-            {
-                var number = (string)ContactsLongListSelector.SelectedItem;
-                CallHelper.Call(null, number);
-                ContactsLongListSelector.SelectedItem = null;
-            }
+            var number = ((Button)sender).DataContext.ToString();
+            var name = (from c in VM.SearchedContacts
+                        where c.Numbers.Contains(number)
+                        select c.DisplayName).First();
+            CallHelper.Call(name, number);
         }
     }
 }

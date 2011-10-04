@@ -26,20 +26,27 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <Grid.Resources>
+            <DataTemplate x:Key="NumberDataTemplate">
+                <Button HorizontalAlignment="Left" Click="NumberButton_Click"
+                        toolkit:TiltEffect.IsTiltEnabled="True" Margin="60,0,0,0"
+                        Template="{StaticResource ContactNumberTemplate}" />
+            </DataTemplate>
+        </Grid.Resources>
+
         <toolkit:PhoneTextBox
             Name="SearchTextBox" InputScope="TelephoneNumber" KeyUp="SearchTextBox_KeyUp"
             ActionIcon="Images\call.png" ActionIconTapped="SearchTextBox_ActionIconTapped"
             Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
-            GotFocus="SearchTextBox_GotFocus" />
+            GotFocus="SearchTextBox_GotFocus" LengthIndicatorVisible="False" />
 
         <toolkit:LongListSelector Grid.Row="1"
             Name="ContactsLongListSelector"
             ItemsSource="{Binding SearchedContacts}"
             GroupHeaderTemplate="{StaticResource groupItemHeader}"
-            ItemTemplate="{StaticResource NumberDataTemplate}"
-            SelectionChanged="LongListSelector_SelectionChanged" />
-        
-        
+            ItemTemplate="{StaticResource NumberDataTemplate}" />
+
+
         <!--SelectedItem="{Binding SelectedNumber}"-->
     </Grid>
 

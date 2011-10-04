@@ -9,26 +9,25 @@ namespace SheldonMix
 
     public partial class MainPage : PhoneApplicationPage
     {
-        private GeoCoordinateWatcher gcw;
-
         public MainPage()
         {
             InitializeComponent();
-            this.gcw = new GeoCoordinateWatcher();
-            this.gcw.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(gcw_PositionChanged);
-            this.gcw.Start();
+            //this.gcw = new GeoCoordinateWatcher();
+            //this.gcw.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(gcw_PositionChanged);
+            //this.gcw.Start();
         }
 
-        private void gcw_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
-        {
-            this.gcw.Stop();
+        //private GeoCoordinateWatcher gcw;
+        //private void gcw_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        //{
+        //    this.gcw.Stop();
 
-            adControl1.Latitude = e.Position.Location.Latitude;
-            adControl1.Longitude = e.Position.Location.Longitude;
+        //    adControl1.Latitude = e.Position.Location.Latitude;
+        //    adControl1.Longitude = e.Position.Location.Longitude;
 
-            gcw.Dispose();
-            gcw = null;
-        }
+        //    gcw.Dispose();
+        //    gcw = null;
+        //}
 
         private void AboutAppBarMenu_Click(object sender, EventArgs e)
         {

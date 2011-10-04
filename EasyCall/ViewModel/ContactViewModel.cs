@@ -64,17 +64,6 @@ namespace EasyCall
             if (string.IsNullOrEmpty(input))
                 return new string[0];
 
-            //Sarà più performante?
-            //Regex.Replace(input, "[abc]", "2", RegexOptions.IgnoreCase);
-            //Regex.Replace(input, "[def]", "3", RegexOptions.IgnoreCase);
-            //Regex.Replace(input, "[ghi]", "4", RegexOptions.IgnoreCase);
-            //Regex.Replace(input, "[jkl]", "5", RegexOptions.IgnoreCase);
-            //Regex.Replace(input, "[mno]", "6", RegexOptions.IgnoreCase);
-            //Regex.Replace(input, "[pqrs]", "7", RegexOptions.IgnoreCase);
-            //Regex.Replace(input, "[tuv]", "8", RegexOptions.IgnoreCase);
-            //Regex.Replace( input, "[wxyz]", "9", RegexOptions.IgnoreCase);
-            //return input.Split(' ');
-
             var output = input.ToLower().ToCharArray();
             for (int i = 0; i < output.Length; i++)
             {
@@ -87,8 +76,19 @@ namespace EasyCall
                 else if (output[i] == 't' || output[i] == 'u' || output[i] == 'v') output[i] = '8';
                 else if (output[i] == 'w' || output[i] == 'x' || output[i] == 'y' || output[i] == 'z') output[i] = '9';
             }
-            
+
             return new string(output).Split(' ');
+
+            ////Anche se più leggibile, NON è più performante di circa 100 ms
+            //Regex.Replace(input, "[abc]", "2", RegexOptions.IgnoreCase);
+            //Regex.Replace(input, "[def]", "3", RegexOptions.IgnoreCase);
+            //Regex.Replace(input, "[ghi]", "4", RegexOptions.IgnoreCase);
+            //Regex.Replace(input, "[jkl]", "5", RegexOptions.IgnoreCase);
+            //Regex.Replace(input, "[mno]", "6", RegexOptions.IgnoreCase);
+            //Regex.Replace(input, "[pqrs]", "7", RegexOptions.IgnoreCase);
+            //Regex.Replace(input, "[tuv]", "8", RegexOptions.IgnoreCase);
+            //Regex.Replace(input, "[wxyz]", "9", RegexOptions.IgnoreCase);
+            //return input.Split(' ');
         }
 
         #region IGrouping Implementation

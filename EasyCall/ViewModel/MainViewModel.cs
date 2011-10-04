@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using Microsoft.Phone.UserData;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace EasyCall.ViewModel
 {
@@ -39,37 +40,40 @@ namespace EasyCall.ViewModel
 
         private void LoadContacts()
         {
-            SearchedContacts = new ObservableCollection<ContactViewModel>();
             var cons = new Contacts();
             cons.SearchCompleted += (sender, e) =>
             {
                 //Da rendere Async
                 ContactsVM = (from c in e.Results
                               where c.PhoneNumbers.Any()
-                              select new ContactViewModel(
-                                  c.DisplayName,
+                              select new ContactViewModel(c.DisplayName,
                                   c.PhoneNumbers.Select(n => n.PhoneNumber),
                                   c.GetPicture())
                              ).ToArray();
 
                 if (!string.IsNullOrEmpty(SearchText) &&
-                    !SearchedContacts.Any())
+                    SearchedContacts == null)
                     Filter(SearchText);
             };
+
             cons.SearchAsync(string.Empty, FilterKind.None, null);
         }
 
-        private string _searchText;
+        private string _searchText = string.Empty;
         public string SearchText
         {
             get { return _searchText; }
             set
             {
                 if (_searchText == value) return;
+
+                UseOptimization = (value.Length > SearchText.Length) && SearchedContacts != null;
                 _searchText = value;
                 Filter(value);
             }
         }
+
+        private bool UseOptimization = false;
 
         private void Filter(string searchedText)
         {
@@ -84,11 +88,10 @@ namespace EasyCall.ViewModel
             }
 
             //Da rendere Async
-            SearchedContacts = from contact in ContactsVM
+            SearchedContacts = from contact in UseOptimization ? SearchedContacts : ContactsVM
                                where contact.NumberRepresentation.Any(nr => nr.StartsWith(searchedText)) ||
                                      contact.Numbers.Any(n => n.Contains(searchedText))
                                select contact;
- 
 
             RaisePropertyChanged("SearchedContacts");
         }

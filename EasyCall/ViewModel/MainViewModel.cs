@@ -83,7 +83,6 @@ namespace EasyCall.ViewModel
                 return;
             }
 
-            //Da rendere Async
             SearchedContacts = from contact in ContactsVM
                                where contact.NumberRepresentation.Any(nr => nr.StartsWith(searchedText)) ||
                                      contact.Numbers.Any(n => n.Contains(searchedText))

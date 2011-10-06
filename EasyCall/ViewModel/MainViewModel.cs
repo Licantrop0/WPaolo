@@ -21,7 +21,7 @@ namespace EasyCall.ViewModel
         #endregion
 
         private ContactViewModel[] ContactsVM { get; set; }
-        public IEnumerable<ContactViewModel> SearchedContacts { get; set; }
+        public ContactViewModel[] SearchedContacts { get; set; }
 
         public MainViewModel()
         {
@@ -40,6 +40,7 @@ namespace EasyCall.ViewModel
 
         private void LoadContacts()
         {
+            SearchedContacts = new ContactViewModel[0];
             var cons = new Contacts();
             cons.SearchCompleted += (sender, e) =>
             {
@@ -52,7 +53,7 @@ namespace EasyCall.ViewModel
                              ).ToArray();
 
                 if (!string.IsNullOrEmpty(SearchText) &&
-                    SearchedContacts == null)
+                    !SearchedContacts.Any())
                     Filter(SearchText);
             };
 
@@ -78,15 +79,15 @@ namespace EasyCall.ViewModel
 
             if (string.IsNullOrEmpty(searchedText))
             {
-                SearchedContacts = null;
+                SearchedContacts = new ContactViewModel[0];
                 RaisePropertyChanged("SearchedContacts");
                 return;
             }
 
-            SearchedContacts = from contact in ContactsVM
+            SearchedContacts = (from contact in ContactsVM
                                where contact.NumberRepresentation.Any(nr => nr.StartsWith(searchedText)) ||
                                      contact.Numbers.Any(n => n.Contains(searchedText))
-                               select contact;
+                               select contact).ToArray();
 
             RaisePropertyChanged("SearchedContacts");
         }

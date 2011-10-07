@@ -5,6 +5,7 @@ using System.Windows.Input;
 using IDecide.Localization;
 using IDecide.ViewModel;
 using Microsoft.Phone.Controls;
+using System.Linq;
 
 namespace IDecide
 {
@@ -28,15 +29,14 @@ namespace IDecide
 
         private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
         {
-            if (VM.EditMode)
-                return;
-
+            //se non esiste il group name rimuovo l'entry
             if (string.IsNullOrEmpty(GroupNameTextBox.Text))
             {
-                e.Cancel = true;
-                MessageBox.Show(AppResources.InsertGroupNameAlert);
-                GroupNameTextBox.Focus();
-                return;
+                if (MessageBox.Show("GROUPNAME NON INSERITO, VUOI RIMUOVERE IL GRUPPO?", "ATTENZIONE", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    AppContext.Groups.Remove(VM.CurrentChoiceGroup);
+                    AppContext.Groups.First(g => g.Model.IsDefault).Model.IsSelected = true;
+                }
             }
         }
 

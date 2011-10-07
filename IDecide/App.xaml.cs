@@ -12,6 +12,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.IO.IsolatedStorage;
+using System.Collections.ObjectModel;
+using IDecide.Model;
 
 namespace IDecide
 {
@@ -56,24 +59,49 @@ namespace IDecide
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            LoadGroups();
+        }
+
+        private static void LoadGroups()
+        {
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains("choices_group"))
+                IsolatedStorageSettings.ApplicationSettings.Add("choices_group", new List<ChoiceGroup>());
+
+            foreach (var group in IsolatedStorageSettings.ApplicationSettings["choices_group"] as List<ChoiceGroup>)
+            {
+                AppContext.Groups.Add(new ViewModel.ChoiceGroupViewModel(group));
+            }
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            if (!e.IsApplicationInstancePreserved)
+            {
+                LoadGroups();
+            }
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            SaveGroup();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            SaveGroup();
+        }
+
+        private static void SaveGroup()
+        {
+            var groups = AppContext.Groups.Select(g => g.Model).ToList();
+            IsolatedStorageSettings.ApplicationSettings["choices_group"] = groups;
+                
         }
 
         // Code to execute if a navigation fails

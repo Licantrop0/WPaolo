@@ -33,22 +33,6 @@ namespace IDecide
         //    }
         //}
 
-
-        //public static ChoiceGroup SelectedGroup { get; set; }
-        //{
-        //    get
-        //    {
-        //        if (!IsolatedStorageSettings.ApplicationSettings.Contains("selected_group"))
-        //            IsolatedStorageSettings.ApplicationSettings["selected_group"] = "MagicBall";
-        //        return (ChoiceGroup)IsolatedStorageSettings.ApplicationSettings["selected_group"];
-        //    }
-        //    set
-        //    {
-        //        if (SelectedGroup != value)
-        //            IsolatedStorageSettings.ApplicationSettings["selected_group"] = value;
-        //    }
-        //}
-
         public static ObservableCollection<ChoiceGroupViewModel> GetDefaultChoices()
         {
             var Choices = new ObservableCollection<ChoiceGroupViewModel>();

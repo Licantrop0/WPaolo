@@ -14,7 +14,7 @@
         <RadialGradientBrush x:Key="DefaultBackground"
                              Center="0.5,0.5" GradientOrigin="0,0"
                              RadiusY="0.5" RadiusX="0.5">
-            <GradientStop Color="{StaticResource PhoneForegroundBrush}"  Offset="0.75"/>
+            <GradientStop Color="{StaticResource PhoneBackgroundColor}"  Offset="0.75"/>
             <GradientStop Color="#F4232323"/>
         </RadialGradientBrush>
 
@@ -26,8 +26,8 @@
                     </Rectangle.OpacityMask>
                 </Rectangle>
                 <ContentPresenter
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
             </Grid>
         </ControlTemplate>
 

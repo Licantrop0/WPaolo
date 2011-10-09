@@ -15,6 +15,9 @@ namespace IDecide.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        [DataMember]
+        public bool IsDefault { get; set; }
+
         private string _name;
         [DataMember]
         public string Name
@@ -45,14 +48,10 @@ namespace IDecide.Model
                 RaisePropertyChanged("IsSelected");
             }
         }
-        [DataMember]
-        public bool IsDefault { get; set; }
 
-        public ChoiceGroup()
-        {
-            this.IsSelected = false;
-            this.IsDefault = false;
-            Choices = new List<string>();
-        }
+        //public ChoiceGroup()
+        //{
+        //    Choices = new List<string>();
+        //}
     }
 }

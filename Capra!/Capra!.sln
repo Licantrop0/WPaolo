@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers", "..\WPCommon.Helpers\WPCommon.Helpers.csproj", "{7CF377DB-129E-4C84-A23D-5758F01DC6F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.XNAAsyncDispatcher", "..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj", "{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
@@ -22,6 +24,9 @@ Global
 		SccProjectUniqueName3 = ..\\WPCommon.Helpers\\WPCommon.Helpers.csproj
 		SccProjectName3 = ../WPCommon.Helpers
 		SccLocalPath3 = ..\\WPCommon.Helpers
+		SccProjectUniqueName4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
+		SccProjectName4 = ../WPCommon.Helpers.XNAAsyncDispatcher
+		SccLocalPath4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +47,10 @@ Global
 		{7CF377DB-129E-4C84-A23D-5758F01DC6F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CF377DB-129E-4C84-A23D-5758F01DC6F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CF377DB-129E-4C84-A23D-5758F01DC6F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

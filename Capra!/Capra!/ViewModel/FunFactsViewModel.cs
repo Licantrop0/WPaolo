@@ -10,16 +10,15 @@ namespace Capra.ViewModel
 {
     public class FunFactsViewModel : INotifyPropertyChanged
     {
-        public List<FunFact> FunFacts { get; set; }
-        private int sbloccati;
+        public IEnumerable<FunFact> FunFacts { get; set; }
         private const int TotFunFacts = 56;
+        private int sbloccati;
 
         public FunFactsViewModel()
         {
             if (DesignerProperties.IsInDesignTool)
             {
-                FunFacts = new List<FunFact>();
-                FunFacts.Add(new FunFact("TEST FunFact Type", "Test FunFact Text\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."));
+                FunFacts = new List<FunFact>() { new FunFact("TEST FunFact Type", "Test FunFact Text\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.") };
                 return;
             }
 
@@ -28,12 +27,11 @@ namespace Capra.ViewModel
             {
                 FunFacts = XDocument.Load("funFacts.xml").Descendants("FunFact")
                     .Select(ff => new FunFact(ff.Attribute("Type").Value, ff.Attribute("Text").Value))
-                    .Take(sbloccati).Reverse().ToList(); //La funzione reverse è geniale: ti fa sempre vedere l'ultimo sbloccato!
+                    .Take(sbloccati).Reverse(); //La funzione reverse è geniale: ti fa sempre vedere l'ultimo sbloccato!
             }
             else
             {
-                FunFacts = new List<FunFact>();
-                FunFacts.Add(new FunFact(string.Empty, "Non hai invocato abbastanza capre per poterne scoprire i segreti. Continua..."));
+                FunFacts = new List<FunFact>() { new FunFact(string.Empty, "Non hai invocato abbastanza capre per poterne scoprire i segreti. Continua...") };
             }
         }
 
@@ -95,11 +93,15 @@ namespace Capra.ViewModel
             { /*do nothing */ }
         }
 
+        #region INPC Implementation
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }

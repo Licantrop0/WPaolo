@@ -1,8 +1,4 @@
-﻿/* 
-    Copyright (c) 2010 Serena Ivaldi - serena.ivaldi@gmail.com
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -17,6 +13,9 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WPCommon.Helpers;
+using WPCommon;
+using Capra.Sounds;
+using System.Threading;
 
 namespace Capra
 {
@@ -59,12 +58,25 @@ namespace Capra
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            InitializeShaker();
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+        }
+
+        private void InitializeShaker()
+        {
+            var sd = new MagnitudeDetector();
+            sd.ShakeDetected += (sender, e) =>
+            {
+                SoundManager.PlayIgnoranteComeCapra();
+                Settings.TotCapre++;
+                Thread.Sleep(TimeSpan.FromSeconds(2));
+                sd.Start();
+            };
         }
 
         // Code to execute when the application is deactivated (sent to background)

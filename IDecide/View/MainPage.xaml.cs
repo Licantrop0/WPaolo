@@ -26,8 +26,8 @@ namespace IDecide
 
 		private void DecideButton_Click(object sender, RoutedEventArgs e)
 		{
-			var selectedChoices = AppContext.Groups.Where(g => g.Model.IsSelected).Single().Choices;
-			AnswerTextBlock.Text = selectedChoices.Count > 0 ?
+			var selectedChoices = AppContext.Groups.Where(g => g.Model.IsSelected).Single().Model.Choices.ToList();
+			AnswerTextBlock.Text = selectedChoices.Any() ?
 				selectedChoices[rnd.Next(selectedChoices.Count)] :
 				AppResources.NothingToDecide;
 			RotateButton.Begin();
@@ -39,8 +39,8 @@ namespace IDecide
 			EditChoicesAppBarButton.Text = AppResources.EditChoices;
 			EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
 			EditChoicesAppBarButton.Click += (sender, e) => {
-                NavigationService.Navigate(new Uri("/View/ChoicesGroupPage.xaml", UriKind.Relative));
-            };
+				NavigationService.Navigate(new Uri("/View/ChoicesGroupPage.xaml", UriKind.Relative));
+			};
 			ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
 
 			var AboutAppBarMenuItem = new ApplicationBarMenuItem();

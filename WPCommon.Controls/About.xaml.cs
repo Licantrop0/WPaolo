@@ -9,7 +9,7 @@ namespace WPCommon.Controls
     public partial class About : UserControl
     {
         private string _adUnitId = "10022566";
-        /// <summary>Set this value to the Ad Unit ID to serve Ads</summary>
+        /// <summary>Set this value to serve Ads for a specific AdUnit</summary>
         public string AdUnitId
         {
             get { return _adUnitId; }

@@ -46,11 +46,10 @@
             DefaultBackground="{StaticResource DarkerBackground}"
             DefaultFont="{StaticResource DefaultFont}"
             DefaultForeground="{StaticResource DefaultForeground}"
-            HeaderForeground="{StaticResource HeaderForeground}"
-            LogoMargin="24" >
+            HeaderForeground="{StaticResource HeaderForeground}" >
         </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>
 
-    <wpc:About DataContext="{StaticResource AboutVM}"  />
+    <wpc:About DataContext="{StaticResource AboutVM}" AdUnitId="10022581"  />
 
 </phone:PhoneApplicationPage>

@@ -36,6 +36,11 @@ namespace WPCommon.Helpers
             IsolatedStorageSettings.ApplicationSettings["counter"] = Counter + 1;
         }
 
+        public static void ResetCounter()
+        {
+            IsolatedStorageSettings.ApplicationSettings["counter"] = 0;
+        }
+
         public static void Buy()
         {
             try

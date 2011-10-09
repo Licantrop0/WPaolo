@@ -7,13 +7,12 @@ using Microsoft.Phone.Tasks;
 using SgarbiMix.ViewModel;
 using WPCommon;
 using WPCommon.Helpers;
+using Microsoft.Advertising.Mobile.UI;
 
 namespace SgarbiMix
 {
     public partial class PlayButtonsPivotPage : PhoneApplicationPage
     {
-        private int counter;
-
         PlayButtonsViewModel _vm;
         public PlayButtonsViewModel VM
         {
@@ -29,58 +28,35 @@ namespace SgarbiMix
         {
             InitializeComponent();
             InizializeShaker();
+
+            if (TrialManagement.IsTrialMode)
+                InitializeAd();
+        }
+
+        private void InitializeAd()
+        {
+            var ad1 = new AdControl("c175f6ba-cb10-4fe3-a1de-a96480a03d3a", "10022581", true)
+            {
+                Height = 80,
+                Width = 480
+            };
+
+            ad1.SetValue(Grid.RowProperty, 1);
+            LayoutRoot.Children.Add(ad1);
         }
 
         private void InizializeShaker()
         {
-            var _bCanExecuteSound = true;
             var sd = new ShakeDetector();
-            var tmr = new DispatcherTimer();
             var rnd = new Random();
-
-            tmr.Interval = TimeSpan.FromMilliseconds(700);
-            tmr.Tick += (sender, e) =>
-            {
-                tmr.Stop();
-                _bCanExecuteSound = true;
-            };
 
             sd.ShakeDetected += (sender, e) =>
             {
-                if (!CheckTrial()) return;
-
-                Dispatcher.BeginInvoke(() =>
-                {
-                    if (_bCanExecuteSound)
-                        VM.SoundResources[rnd.Next(VM.SoundResources.Length)].Play();
-
-                    _bCanExecuteSound = false;
-                    tmr.Start();
-                });
+                var RandomSound = VM.SoundResources[rnd.Next(VM.SoundResources.Length)];
+                RandomSound.PlayCommand.Execute(null);
             };
 
             sd.Start();
-        }
-
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!CheckTrial()) return;
-            var b = sender as Button;
-            var sound = b.DataContext as Model.SoundContainer;
-            sound.Play();
-        }
-
-
-        private bool CheckTrial()
-        {
-            if (TrialManagement.IsTrialMode && (App.alreadyOpen || counter > 5))
-            {
-                NavigationService.Navigate(new Uri("/DemoPage.xaml", UriKind.Relative));
-                return false;
-            }
-            //incremento ogni volta che chiamo checkTrial - cioè ad ogni click di suono
-            counter++;
-            return true;
         }
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)
@@ -100,12 +76,12 @@ namespace SgarbiMix
 
         private void DisclaimerAppBarMenu_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/DisclaimerPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/DisclaimerPage.xaml", UriKind.Relative));
         }
 
         private void AboutAppBarMenu_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
         }
 
         private void Suggersci_Click(object sender, RoutedEventArgs e)

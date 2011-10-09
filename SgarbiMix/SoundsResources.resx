@@ -127,7 +127,7 @@
   <data name="Ateo_fasullo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Ateo fasullo!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Avete_rotto_i_coglioni" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Avete_rotto_i..." type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Avete_rotto_i_coglioni.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="Capra1" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -160,9 +160,6 @@
   <data name="Ma_guarda_che_roba1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Ma guarda che roba!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Mi_state_sui_coglioni_di_principio1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sounds\Mi state sui coglioni di principio!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
-  </data>
   <data name="Non_dici_frasi_ma_stronzate1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\non_dici_frasi_ma_stronzate.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
@@ -172,10 +169,10 @@
   <data name="Non_gliene_importa_niente1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\non_gliene_importa_niente.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Non_ha_fatto_mai_un_cazzo..." type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Non_ha_fatto_mai_un_..." type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\Non ha mai fatto un cazzo in vita sua.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Non_sputtanare_l'italia1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Non_spu...are_l'italia1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\non_sputtanare_l_italia.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="Pagato1" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -216,5 +213,8 @@
   </data>
   <data name="È_un_crimine1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sounds\È un crimine!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
+  </data>
+  <data name="Mi_state_sui_..._di_principio1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Sounds\Mi state sui coglioni di principio!.wav;System.IO.MemoryStream, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
 </root>

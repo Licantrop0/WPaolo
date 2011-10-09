@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Media;
 using System.Xml.Linq;
 using WPCommon.Controls.Model;
-using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows;
-using System.Reflection;
 
 namespace SgarbiMix.ViewModel
 {
@@ -22,6 +21,11 @@ namespace SgarbiMix.ViewModel
         public IEnumerable<AppTile> AppList
         {
             get { return _appList; }
+            private set
+            {
+                _appList = value;
+                RaisePropertyChanged("AppList");
+            }
         }
 
         public AboutViewModel()
@@ -39,17 +43,17 @@ namespace SgarbiMix.ViewModel
             wc.OpenReadCompleted += (sender, e) =>
             {
                 if (e.Error != null) return;
-                if (_appList != null) return;
+                if (AppList != null) return;
 
                 XDocument response = XDocument.Load(e.Result);
-                _appList = from n in response.Descendants(nsAtom + "entry")
-                           let imageId = n.Element(nsZune + "image")
-                               .Element(nsZune + "id").Value.Substring(9) //rimozione di "urn:uuid:"
-                           let appId = n.Element(nsAtom + "id").Value.Substring(9)
-                           where appId != AppId
-                           select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
-                               string.Format("http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
-                                   cultureName, imageId)));
+                AppList = from n in response.Descendants(nsAtom + "entry")
+                          let imageId = n.Element(nsZune + "image")
+                              .Element(nsZune + "id").Value.Substring(9) //rimozione di "urn:uuid:"
+                          let appId = n.Element(nsAtom + "id").Value.Substring(9)
+                          where appId != AppId
+                          select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
+                              string.Format("http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
+                                  cultureName, imageId)));
             };
         }
 
@@ -149,11 +153,15 @@ namespace SgarbiMix.ViewModel
 
         #endregion
 
+        #region INPC Implementation
+        
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }

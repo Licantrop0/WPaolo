@@ -12,7 +12,7 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" >
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <phone:PhoneApplicationPage.Resources>
         <vm:PlayButtonsViewModel x:Name="PlayButtonsViewModel" />
@@ -25,8 +25,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <controls:Pivot Margin="0,-30,0,0" Grid.Row="0">
-            <controls:PivotItem Margin="0,-10,0,0">
+        <controls:Pivot Margin="0,-12,0,0" Grid.Row="0">
+            <controls:PivotItem Margin="0">
                 <controls:PivotItem.Header>
                     <TextBlock Text="Corti" FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource HeaderForeground}" />
@@ -48,7 +48,7 @@
                     </ListBox.ItemsPanel>
                 </ListBox>
             </controls:PivotItem>
-            <controls:PivotItem Margin="0,-10,0,0">
+            <controls:PivotItem Margin="0">
                 <controls:PivotItem.Header>
                     <TextBlock Text="Lunghi" FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource HeaderForeground}" />
@@ -64,7 +64,7 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </controls:PivotItem>
-            <controls:PivotItem Margin="0,-10,0,0">
+            <controls:PivotItem >
                 <controls:PivotItem.Header>
                     <TextBlock Text="Suggerisci!" FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource HeaderForeground}" />
@@ -82,6 +82,8 @@
                 </StackPanel>
             </controls:PivotItem>
         </controls:Pivot>
+        
+        <StackPanel Name="AdPlaceHolder" Grid.Row="1" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

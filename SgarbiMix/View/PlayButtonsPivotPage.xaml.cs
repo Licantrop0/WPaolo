@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Threading;
+using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using SgarbiMix.ViewModel;
 using WPCommon;
 using WPCommon.Helpers;
-using Microsoft.Advertising.Mobile.UI;
 
 namespace SgarbiMix
 {
@@ -28,35 +28,40 @@ namespace SgarbiMix
         {
             InitializeComponent();
             InizializeShaker();
+        }
 
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
             if (TrialManagement.IsTrialMode)
                 InitializeAd();
         }
 
         private void InitializeAd()
         {
+            if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
+                return;
+
             var ad1 = new AdControl("c175f6ba-cb10-4fe3-a1de-a96480a03d3a", "10022581", true)
             {
                 Height = 80,
                 Width = 480
             };
 
-            ad1.SetValue(Grid.RowProperty, 1);
-            LayoutRoot.Children.Add(ad1);
+            AdPlaceHolder.Children.Add(ad1);
         }
 
         private void InizializeShaker()
         {
-            var sd = new ShakeDetector();
-            var rnd = new Random();
-
+            var sd = new MagnitudeDetector();
             sd.ShakeDetected += (sender, e) =>
-            {
-                var RandomSound = VM.SoundResources[rnd.Next(VM.SoundResources.Length)];
-                RandomSound.PlayCommand.Execute(null);
+            {                
+                var snd = AppContext.GetRandomSound();
+                Dispatcher.BeginInvoke(() =>
+                {
+                    snd.PlayCommand.Execute(null);
+                });
+                Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300)); //Questa sleep viene fatta nel thread dell'accelerometro, non blocca la UI
             };
-
-            sd.Start();
         }
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)

@@ -8,9 +8,9 @@
 
     <Application.Resources>
         <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
-            Fonts/segoepr.ttf#Segoe Print
+            Georgia
         </sys:FontFamily>
-
+<!--Fonts/segoepr.ttf#Segoe Print-->
         <ImageBrush x:Key="DefaultBackground" ImageSource="SplashScreenImage.jpg"
                     Stretch="None" AlignmentY="Top" />
 

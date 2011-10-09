@@ -1,33 +1,15 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using Microsoft.Xna.Framework.Media;
-using SgarbiMix.Model;
 
 namespace SgarbiMix.ViewModel
 {
     public class PlayButtonsViewModel
     {
-        private SoundViewModel[] _soundResources;
-        public SoundViewModel[] SoundResources
-        {
-            get
-            {
-                if (_soundResources == null)
-                    _soundResources = (from de in SoundsResources.ResourceManager
-                                          .GetResourceSet(CultureInfo.CurrentCulture, true, true)
-                                          .Cast<DictionaryEntry>()
-                                       orderby de.Key
-                                       select new SoundViewModel(de.Key.ToString(),
-                                           (UnmanagedMemoryStream)de.Value)
-                                      ).ToArray();
-                return _soundResources;
-            }
-        }
+
+        private const int LenghtSeparator = 18;
 
         private IEnumerable<SoundViewModel> _suoniCorti;
         public IEnumerable<SoundViewModel> SuoniCorti
@@ -35,7 +17,7 @@ namespace SgarbiMix.ViewModel
             get
             {
                 if (_suoniCorti == null)
-                    _suoniCorti = SoundResources.Where(s => s.Name.Length <= 17);
+                    _suoniCorti = AppContext.SoundResources.Where(s => s.Name.Length <= LenghtSeparator);
                 return _suoniCorti;
             }
         }
@@ -46,11 +28,10 @@ namespace SgarbiMix.ViewModel
             get
             {
                 if (_suoniLunghi == null)
-                    _suoniLunghi = SoundResources.Where(s => s.Name.Length > 17);
+                    _suoniLunghi = AppContext.SoundResources.Where(s => s.Name.Length > LenghtSeparator);
                 return _suoniLunghi;
             }
         }
-
 
         public void PlayBase(string baseName)
         {

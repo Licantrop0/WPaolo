@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace SgarbiMix.Model
 {
-    public class SoundContainer
+    public class SoundViewModel
     {
         public string Name { get; set; }
         UnmanagedMemoryStream _rawSound;
@@ -19,7 +19,7 @@ namespace SgarbiMix.Model
             }
         }
 
-        public SoundContainer(string rawName, UnmanagedMemoryStream rawSound)
+        public SoundViewModel(string rawName, UnmanagedMemoryStream rawSound)
         {
             //Convenzione: "_" = spazio, "1" = punto esclamativo
             Name = rawName.Replace("_", " ").Replace("1", "!");

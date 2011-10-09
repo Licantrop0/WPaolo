@@ -75,7 +75,6 @@ namespace SheldonMix
         //Ringtone files must be less than 1 MB in size.
         private void SetRingtone_Click(object sender, RoutedEventArgs e)
         {
-
             var RingtonePath = "TBBT Ringtone.mp3";
             WPCommon.Helpers.Persistance.SaveFileToIsolatedStorage(RingtonePath);
             var saveRingtoneTask = new SaveRingtoneTask();

@@ -7,7 +7,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:wtxt="clr-namespace:System.Windows.Controls;assembly=WindowsPhoneWatermarkTextBoxControl"
     xmlns:vm="clr-namespace:IDecide.ViewModel"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -25,18 +24,19 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <wtxt:WatermarkTextBox Name="GroupNameTextBox"
-                               Text="{Binding CurrentChoiceGroup.Model.Name, Mode=TwoWay}" Grid.Row="0"
-                               WatermarkText="{Binding Path=LocalizedResources.InsertGroupName, Source={StaticResource LocalizedStrings}}" KeyDown="GroupNameTextBox_KeyDown" />
+        <toolkit:PhoneTextBox Name="GroupNameTextBox"
+                              Text="{Binding CurrentChoiceGroup.Model.Name, Mode=TwoWay}" Grid.Row="0"
+                              Hint="{Binding Path=LocalizedResources.InsertGroupName, Source={StaticResource LocalizedStrings}}" KeyDown="GroupNameTextBox_KeyDown" />
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <wtxt:WatermarkTextBox
+            <toolkit:PhoneTextBox
                 Name="ChoiceTextBox" KeyDown="ChoiceTextBox_KeyDown"
                 InputScope="Text" Grid.Column="0"
-                WatermarkText="{Binding Path=LocalizedResources.AddChoice, Source={StaticResource LocalizedStrings}}" />
+                Hint="{Binding Path=LocalizedResources.AddChoice, Source={StaticResource LocalizedStrings}}"
+                ActionIcon="..\Toolkit.Content\add_white.png" />
 
             <Rectangle Fill="{StaticResource PhoneAccentBrush}"
                        HorizontalAlignment="Right"

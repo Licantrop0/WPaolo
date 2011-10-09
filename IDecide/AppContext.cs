@@ -19,19 +19,8 @@ namespace IDecide
             }
             set { _groups = value; }
         }
-        //{
-        //    get
-        //    {
-        //        if (!IsolatedStorageSettings.ApplicationSettings.Contains("choices_group"))
-        //            IsolatedStorageSettings.ApplicationSettings["choices_group"] = GetDefaultChoices();
-        //        return (ObservableCollection<ChoiceGroup>)IsolatedStorageSettings.ApplicationSettings["choices_group"];
-        //    }
-        //    set
-        //    {
-        //        if (Groups != value)
-        //            IsolatedStorageSettings.ApplicationSettings["choices_group"] = value;
-        //    }
-        //}
+
+
 
         public static ObservableCollection<ChoiceGroupViewModel> GetDefaultChoices()
         {

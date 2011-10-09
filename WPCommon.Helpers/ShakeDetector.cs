@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Threading;
 using Microsoft.Devices.Sensors;
+using System.Threading;
 
 namespace WPCommon
 {
@@ -21,13 +21,6 @@ namespace WPCommon
         {
             get { return _minimumShakeTime; }
             set { _minimumShakeTime = value; }
-        }
-
-        private TimeSpan _delay = TimeSpan.FromSeconds(1);
-        public TimeSpan Delay
-        {
-            get { return _delay; }
-            set { _delay = value; }
         }
 
         public event EventHandler<EventArgs> ShakeDetected = null;
@@ -73,7 +66,7 @@ namespace WPCommon
                 {
                     _accelerometer = new Accelerometer();
                     _accelerometer.CurrentValueChanged += new EventHandler<SensorReadingEventArgs<AccelerometerReading>>(_accelerometer_CurrentValueChanged);
-                        //.ReadingChanged += new EventHandler<AccelerometerReadingEventArgs>(_accelerometer_ReadingChanged);
+                    //.ReadingChanged += new EventHandler<AccelerometerReadingEventArgs>(_accelerometer_ReadingChanged);
                     _accelerometer.Start();
                 }
             }
@@ -148,7 +141,6 @@ namespace WPCommon
             if ((_shakeRecordList[endIndex].EventTime.Subtract(_shakeRecordList[startIndex].EventTime)) <= MinimumShakeTime)
             {
                 OnShakeDetected();
-                Thread.Sleep(Delay);
             }
         }
 
@@ -245,4 +237,47 @@ namespace WPCommon
     //                (deltaY > threshold && deltaZ > threshold);
     //    }
     //}
+
+    public class MagnitudeDetector
+    {
+        private Accelerometer _accelerometer;
+        public event EventHandler<EventArgs> ShakeDetected = null;
+        protected void OnShakeDetected()
+        {
+            if (ShakeDetected != null)
+            {
+                ShakeDetected(this, EventArgs.Empty);
+            }
+        }
+
+        public MagnitudeDetector()
+        {
+            if (!Accelerometer.IsSupported)
+                return;
+
+            _accelerometer = new Accelerometer();
+            //_accelerometer.TimeBetweenUpdates = TimeSpan.FromMilliseconds(20);
+
+            Start();
+        }
+
+        void _accelerometer_CurrentValueChanged(object sender, SensorReadingEventArgs<AccelerometerReading> e)
+        {
+            var acc = e.SensorReading.Acceleration;
+
+            double f = Math.Sqrt(acc.X * acc.X + acc.Y * acc.Y + acc.Z * acc.Z);
+            if (f > 1.5)
+            {
+                OnShakeDetected();
+                _accelerometer.Stop();
+            }
+        }
+
+        public void Start()
+        {
+            _accelerometer.CurrentValueChanged += new EventHandler<SensorReadingEventArgs<AccelerometerReading>>(_accelerometer_CurrentValueChanged);
+            _accelerometer.Start();
+        }
+
+    }
 }

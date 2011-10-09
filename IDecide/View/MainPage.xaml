@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage
+﻿<phone:PhoneApplicationPage xmlns:my="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" 
 	x:Class="IDecide.MainPage"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,6 +13,7 @@
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	shell:SystemTray.IsVisible="False">
+	
 	<phone:PhoneApplicationPage.Resources>
 		<Storyboard x:Name="RotateButton" AutoReverse="True">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AskAndShakeTextBlock">
@@ -35,6 +36,7 @@
 			<DoubleAnimation Duration="0:0:0.6" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AnswerTextBlock" d:IsOptimized="True"/>
 		</Storyboard>
 	</phone:PhoneApplicationPage.Resources>
+	
 	<Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -82,8 +84,8 @@
 				</TextBlock>
 			</Grid>
 		</Button>
-		<adduplex:AdControl xmlns:adduplex="clr-namespace:AdDuplex;assembly=AdDuplex.AdControl.Silverlight"
-					Grid.Row="2" AppId="3087" IsTest="True" />
+		<my:AdControl AdUnitId="Image480_80" ApplicationId="test_client"
+					  Height="80"  Width="480" Grid.Row="2" />
 	</Grid>
 
 	<phone:PhoneApplicationPage.ApplicationBar>

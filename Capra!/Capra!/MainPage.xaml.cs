@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
+using Capra.Sounds;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
-using Capra.Sounds;
-using WPCommon;
 
 namespace Capra
 {
@@ -19,18 +17,7 @@ namespace Capra
         public MainPage()
         {
             InitializeComponent();
-            InitializeShaker();
             InitializeImages();
-        }
-
-        private void InitializeShaker()
-        {
-            var sd = new ShakeDetector();
-            sd.ShakeDetected += (sender, e) =>
-            {
-                SoundManager.PlayIgnoranteComeCapra();
-            };
-            sd.Start();
         }
 
         private void InitializeImages()

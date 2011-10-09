@@ -61,10 +61,8 @@
       <DependentUpon>AchievementListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Achievement.cs" />
-    <Compile Include="FacebookSharer.cs" />
     <Compile Include="Model\AppTile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShakeDetector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="AchievementListControl.xaml">

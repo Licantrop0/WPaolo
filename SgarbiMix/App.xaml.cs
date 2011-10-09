@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -9,8 +9,6 @@ namespace SgarbiMix
 {
     public partial class App : Application
     {
-        public static bool alreadyOpen;
-
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -49,14 +47,15 @@ namespace SgarbiMix
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            alreadyOpen = TrialManagement.AlreadyOpenedToday;
+            if (TrialManagement.IsTrialMode &&
+                !TrialManagement.AlreadyOpenedToday)
+                TrialManagement.ResetCounter();
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            alreadyOpen = TrialManagement.AlreadyOpenedToday;
         }
 
         // Code to execute when the application is deactivated (sent to background)
@@ -104,7 +103,8 @@ namespace SgarbiMix
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new PhoneApplicationFrame();
+            //RootFrame = new PhoneApplicationFrame();
+            RootFrame = new TransitionFrame { Background = new SolidColorBrush(Colors.Transparent) };
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures

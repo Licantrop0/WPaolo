@@ -1,13 +1,26 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Windows.Input;
 using Microsoft.Xna.Framework.Audio;
+using WPCommon.Helpers;
 
 namespace SgarbiMix.Model
 {
     public class SoundViewModel
     {
-        public string Name { get; set; }
-        UnmanagedMemoryStream _rawSound;
+        private INavigationService _navigationService;
+        public INavigationService NavigationService
+        {
+            get
+            {
+                if (_navigationService == null)
+                    _navigationService = new NavigationService();
+                return _navigationService;
+            }
+        }
 
+        public string Name { get; private set; }
+        private UnmanagedMemoryStream _rawSound;
         private SoundEffect _sound;
         private SoundEffect Sound
         {
@@ -26,14 +39,30 @@ namespace SgarbiMix.Model
             _rawSound = rawSound;
         }
 
-        public bool Play()
+        RelayCommand _playCommand;
+        public ICommand PlayCommand
         {
-            return Sound.Play();
+            get
+            {
+                return _playCommand ?? (_playCommand = new RelayCommand(param => Play()));
+            }
         }
 
-        public override string ToString()
+        private void Play()
         {
-            return Name;
+            if (!CheckTrial()) return;
+            Sound.Play();
+        }
+
+        private bool CheckTrial()
+        {
+            if (TrialManagement.IsTrialMode && TrialManagement.Counter > 4)
+            {
+                NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
+                return false;
+            }
+            TrialManagement.IncrementCounter();
+            return true;
         }
     }
 }

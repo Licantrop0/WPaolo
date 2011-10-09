@@ -10,10 +10,9 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:vm="clr-namespace:SgarbiMix.ViewModel"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" Background="Black" Foreground="#DEFFFFFF">
+    shell:SystemTray.IsVisible="False" >
 
     <phone:PhoneApplicationPage.Resources>
         <vm:PlayButtonsViewModel x:Name="PlayButtonsViewModel" />
@@ -37,7 +36,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource PlayButtonStyle}"
-                                    Click="PlayButton_Click"
+                                    Command="{Binding PlayCommand}"
                                     Content="{Binding Name}"
                                     Width="252" />
                         </DataTemplate>
@@ -58,7 +57,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource PlayButtonStyle}"
-                                    Click="PlayButton_Click"
+                                    Command="{Binding PlayCommand}"
                                     Content="{Binding Name}"
                                     Width="468" />
                         </DataTemplate>
@@ -73,13 +72,13 @@
                 <StackPanel>
                     <TextBlock FontSize="24" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
                    TextWrapping="Wrap" FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
-                        C'é una frase famosa o un insulto di Sgarbi che manca a questa app?
+                        C'è una frase famosa o un insulto di Sgarbi che manca a questa app?
                         Suggeriscila!<LineBreak/>
                         Provvederemo ad inserirla nel prossimo update!
                     </TextBlock>
                     <TextBox Name="SuggerimentoTextBox" TextWrapping="Wrap" Height="200" AcceptsReturn="True"
                              Text="Cara WPME, aggiungete in SgarbiMix questa frase: " />
-                    <Button Style="{StaticResource PlayButtonStyle}" Content="SUGGERISCI!!" Click="Suggersci_Click" />
+                    <Button Style="{StaticResource PlayButtonStyle}" Content="SUGGERISCI!" Click="Suggersci_Click" />
                 </StackPanel>
             </controls:PivotItem>
         </controls:Pivot>

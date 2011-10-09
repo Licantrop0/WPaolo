@@ -13,7 +13,7 @@
     <AssemblyName>SgarbiMix</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
-    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
     <SupportedCultures>it-IT</SupportedCultures>
@@ -53,10 +53,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Advertising.Mobile, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Phone.Reactive" />
     <Reference Include="Microsoft.Xna.Framework" />
@@ -69,23 +71,23 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutPage.xaml.cs">
+    <Compile Include="View\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DemoPage.xaml.cs">
+    <Compile Include="View\DemoPage.xaml.cs">
       <DependentUpon>DemoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DisclaimerPage.xaml.cs">
+    <Compile Include="View\DisclaimerPage.xaml.cs">
       <DependentUpon>DisclaimerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PlayButtonsPivotPage.xaml.cs">
+    <Compile Include="View\PlayButtonsPivotPage.xaml.cs">
       <DependentUpon>PlayButtonsPivotPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\SoundContainer.cs" />
+    <Compile Include="ViewModel\SoundViewModel.cs" />
     <Compile Include="SoundsResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -99,19 +101,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="AboutPage.xaml">
+    <Page Include="View\AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DemoPage.xaml">
+    <Page Include="View\DemoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DisclaimerPage.xaml">
+    <Page Include="View\DisclaimerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PlayButtonsPivotPage.xaml">
+    <Page Include="View\PlayButtonsPivotPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,71 +125,74 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Fonts\segoepr.ttf" />
-    <Content Include="images\bianco.png" />
+    <Content Include="Images\bianco.png" />
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
-    <None Include="sounds\Ateo fasullo!.wav" />
-    <None Include="sounds\capra.wav" />
-    <None Include="sounds\e1crimine.wav" />
-    <None Include="sounds\Valori del buco del culo.wav" />
-    <None Include="sounds\Pagato!.wav" />
-    <None Include="sounds\Altro che valori.wav" />
-    <None Include="sounds\TACI.wav" />
-    <None Include="sounds\Abbia_ognuno_il_pudore_della_propria_vita.wav" />
-    <Content Include="sounds\Avete_rotto_i_coglioni.wav" />
-    <Content Include="sounds\base1.mp3">
+    <None Include="Sounds\Ateo fasullo!.wav" />
+    <None Include="Sounds\capra.wav" />
+    <None Include="Sounds\e1crimine.wav" />
+    <None Include="Sounds\Valori del buco del culo.wav" />
+    <None Include="Sounds\Pagato!.wav" />
+    <None Include="Sounds\Altro che valori.wav" />
+    <None Include="Sounds\TACI.wav" />
+    <None Include="Sounds\Abbia_ognuno_il_pudore_della_propria_vita.wav" />
+    <None Include="Sounds\Avete_rotto_i_coglioni.wav" />
+    <Content Include="Sounds\base1.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sounds\base2.mp3">
+    <Content Include="Sounds\base2.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sounds\base3.mp3">
+    <Content Include="Sounds\base3.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="sounds\non_dici_frasi_ma_stronzate.wav" />
-    <None Include="sounds\non_gliene_importa_niente.wav" />
-    <None Include="sounds\non_sputtanare_l_italia.wav" />
-    <Content Include="sounds\quella_è_la_merda.wav" />
-    <None Include="sounds\se_lo_vuol_prendere_da_quella_parte.wav" />
-    <None Include="sounds\voglio_essere_processato.wav" />
+    <None Include="Sounds\non_dici_frasi_ma_stronzate.wav" />
+    <None Include="Sounds\non_gliene_importa_niente.wav" />
+    <None Include="Sounds\non_sputtanare_l_italia.wav" />
+    <None Include="Sounds\quella_è_la_merda.wav" />
+    <None Include="Sounds\se_lo_vuol_prendere_da_quella_parte.wav" />
+    <None Include="Sounds\voglio_essere_processato.wav" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="sounds\Capra ignorante!.wav" />
-    <None Include="sounds\Capra!.wav" />
-    <None Include="sounds\Criminale!.wav" />
-    <None Include="sounds\Culattoni raccomandati!.wav" />
-    <None Include="sounds\E tu sei un pirla!.wav" />
-    <None Include="sounds\Fascista!.wav" />
-    <None Include="sounds\Io sono convinto che vi debbano licenziare.wav" />
-    <None Include="sounds\Legga Dante! Legga Manzoni!.wav" />
-    <None Include="sounds\Leggi! Studia!.wav" />
-    <None Include="sounds\Lo mangerei vivo!.wav" />
-    <None Include="sounds\Ma guarda che roba!.wav" />
-    <None Include="sounds\Mi state sui coglioni di principio!.wav" />
-    <None Include="sounds\Non dire cretinate!.wav" />
-    <None Include="sounds\Non ha mai fatto un cazzo in vita sua.wav" />
-    <None Include="sounds\Ridicolo sei, e lo sei sempre stato!.wav" />
-    <None Include="sounds\Ridicolo!.wav" />
-    <None Include="sounds\Sei ignorante come una capra!.wav" />
-    <None Include="sounds\Vai a studiare!.wav" />
-    <None Include="sounds\Vergogna!.wav" />
-    <None Include="sounds\È insopportabile!.wav" />
-    <None Include="sounds\È un crimine!.wav" />
+    <None Include="Sounds\Capra ignorante!.wav" />
+    <None Include="Sounds\Capra!.wav" />
+    <None Include="Sounds\Criminale!.wav" />
+    <None Include="Sounds\Culattoni raccomandati!.wav" />
+    <None Include="Sounds\E tu sei un pirla!.wav" />
+    <None Include="Sounds\Fascista!.wav" />
+    <None Include="Sounds\Io sono convinto che vi debbano licenziare.wav" />
+    <None Include="Sounds\Legga Dante! Legga Manzoni!.wav" />
+    <None Include="Sounds\Leggi! Studia!.wav" />
+    <None Include="Sounds\Lo mangerei vivo!.wav" />
+    <None Include="Sounds\Ma guarda che roba!.wav" />
+    <None Include="Sounds\Mi state sui coglioni di principio!.wav" />
+    <None Include="Sounds\Non dire cretinate!.wav" />
+    <None Include="Sounds\Non ha mai fatto un cazzo in vita sua.wav" />
+    <None Include="Sounds\Ridicolo sei, e lo sei sempre stato!.wav" />
+    <None Include="Sounds\Ridicolo!.wav" />
+    <None Include="Sounds\Sei ignorante come una capra!.wav" />
+    <None Include="Sounds\Vai a studiare!.wav" />
+    <None Include="Sounds\Vergogna!.wav" />
+    <None Include="Sounds\È insopportabile!.wav" />
+    <None Include="Sounds\È un crimine!.wav" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WPCommon.Controls\WPCommon.Controls.csproj">
       <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
       <Name>WPCommon.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WPCommon.Helpers.TrialManagement\WPCommon.Helpers.TrialManagement.csproj">
+      <Project>{157C676B-46A4-4099-936E-BBDFB93BB735}</Project>
+      <Name>WPCommon.Helpers.TrialManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj">
+      <Project>{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}</Project>
+      <Name>WPCommon.Helpers.XNAAsyncDispatcher</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WPCommon.Helpers\WPCommon.Helpers.csproj">
       <Project>{7CF377DB-129E-4C84-A23D-5758F01DC6F1}</Project>
       <Name>WPCommon.Helpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WPCommon\WPCommon.csproj">
-      <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
-      <Name>WPCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +202,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

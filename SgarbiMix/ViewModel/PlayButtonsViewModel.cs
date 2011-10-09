@@ -12,8 +12,8 @@ namespace SgarbiMix.ViewModel
 {
     public class PlayButtonsViewModel
     {
-        private SoundContainer[] _soundResources;
-        public SoundContainer[] SoundResources
+        private SoundViewModel[] _soundResources;
+        public SoundViewModel[] SoundResources
         {
             get
             {
@@ -22,15 +22,15 @@ namespace SgarbiMix.ViewModel
                                           .GetResourceSet(CultureInfo.CurrentCulture, true, true)
                                           .Cast<DictionaryEntry>()
                                        orderby de.Key
-                                       select new SoundContainer(de.Key.ToString(),
+                                       select new SoundViewModel(de.Key.ToString(),
                                            (UnmanagedMemoryStream)de.Value)
                                       ).ToArray();
                 return _soundResources;
             }
         }
 
-        private IEnumerable<SoundContainer> _suoniCorti;
-        public IEnumerable<SoundContainer> SuoniCorti
+        private IEnumerable<SoundViewModel> _suoniCorti;
+        public IEnumerable<SoundViewModel> SuoniCorti
         {
             get
             {
@@ -40,8 +40,8 @@ namespace SgarbiMix.ViewModel
             }
         }
 
-        private IEnumerable<SoundContainer> _suoniLunghi;
-        public IEnumerable<SoundContainer> SuoniLunghi
+        private IEnumerable<SoundViewModel> _suoniLunghi;
+        public IEnumerable<SoundViewModel> SuoniLunghi
         {
             get
             {

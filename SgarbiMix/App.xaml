@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers" >
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" >
 
     <Application.Resources>
         <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
@@ -36,7 +35,7 @@
         </Style>
 
         <Style x:Key="PlayButtonStyle" TargetType="Button">
-            <!--<Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />-->
+            <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
             <Setter Property="FontSize" Value="22" />
             <Setter Property="BorderThickness" Value="6,4" />
@@ -71,9 +70,8 @@
 
     <Application.ApplicationLifetimeObjects>
 
-        <wph:XNAAsyncDispatcher />
+        <wph:XNAAsyncDispatcher xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher" />
 
-        <!--Required object that handles lifetime events for the application-->
         <shell:PhoneApplicationService 
             Launching="Application_Launching" Closing="Application_Closing" 
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>

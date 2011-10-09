@@ -54,9 +54,14 @@ namespace SgarbiMix.ViewModel
         }
 
         #region App Data
+
         /// <summary>Set this value to the Marketplace Product ID</summary>
         public string AppId { get; set; }
+
         public string AppName { get; set; }
+        //{
+        //    get { return AppResources.AppName; }
+        //}
 
         private string _appVersion;
         public string AppVersion
@@ -72,20 +77,21 @@ namespace SgarbiMix.ViewModel
             }
         }
 
-        public string CustomText
-        {
-            get { return ""; }
-        }
-
         #endregion
 
         #region Visual
 
-        private ImageSource _customLogo;
-        public ImageSource CustomLogo
+        public FontFamily DefaultFont { get; set; }
+
+        public string CustomText { get; set; }
+
+        public ImageSource CustomLogo { get; set; }
+
+        private Thickness _logoMargin = new Thickness(24);
+        public Thickness LogoMargin
         {
-            get { return _customLogo; }
-            set { _customLogo = value; }
+            get { return _logoMargin; }
+            set { _logoMargin = value; }
         }
 
         private Thickness _customLogoMargin = new Thickness(0);
@@ -95,39 +101,15 @@ namespace SgarbiMix.ViewModel
             set { _customLogoMargin = value; }
         }
 
-        private Thickness _logoMargin = new Thickness(0);
-        public Thickness LogoMargin
-        {
-            get { return _logoMargin; }
-            set { _logoMargin = value; }
-        }
+        public Brush DefaultBackground { get; set; }
 
-        private Brush _defaultBackground = new SolidColorBrush(Colors.Black);
-        public Brush DefaultBackground
-        {
-            get { return _defaultBackground; }
-            set { _defaultBackground = value; }
-        }
-
-        private Brush _defaultForeground = new SolidColorBrush(Colors.White);
-        public Brush DefaultForeground
-        {
-            get { return _defaultForeground; }
-            set { _defaultForeground = value; }
-        }
+        public Brush DefaultForeground { get; set; }
 
         private Brush _headerForeground;
         public Brush HeaderForeground
         {
-            get { return _headerForeground ?? _defaultForeground; }
+            get { return _headerForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
             set { _headerForeground = value; }
-        }
-
-        private FontFamily _defaultFont = new FontFamily("Segoe WP SemiLight");
-        public FontFamily DefaultFont
-        {
-            get { return _defaultFont; }
-            set { _defaultFont = value; }
         }
 
         private double _minFontSize = 19;

@@ -6,7 +6,6 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
@@ -43,10 +42,11 @@
                    Foreground="{StaticResource HeaderForeground}"
                    FontSize="80" TextAlignment="Center" FontWeight="SemiBold" />
 
-        <TextBlock Grid.Row="1" FontSize="26" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
-                   TextWrapping="Wrap" FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
+        <TextBlock Grid.Row="1" FontSize="26" VerticalAlignment="Center" Margin="24"
+                   TextAlignment="Center" TextWrapping="Wrap" FontWeight="SemiBold"
+                   Style="{StaticResource TextBlockBaseStyle}" >
             Questa è solo una demo.<LineBreak/>
-            Puoi gridare le frasi di Sgarbi solo 6 volte al giorno!<LineBreak/>
+            Puoi gridare le frasi di Sgarbi solo 5 volte al giorno!<LineBreak/>
             Se vuoi dire<LineBreak/>
             "Capra!" o "Ignorante!"<LineBreak/>
             in continuazione come Sgarbi, devi comprare la versione completa.<LineBreak/>

@@ -50,6 +50,6 @@
         </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>
 
-    <wpc:About DataContext="{StaticResource AboutVM}" AdUnitId="10022581"  />
+    <wpc:About DataContext="{StaticResource AboutVM}" AdUnitId="10022581" />
 
 </phone:PhoneApplicationPage>

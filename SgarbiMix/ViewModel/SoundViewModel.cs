@@ -4,12 +4,12 @@ using System.Windows.Input;
 using Microsoft.Xna.Framework.Audio;
 using WPCommon.Helpers;
 
-namespace SgarbiMix.Model
+namespace SgarbiMix.ViewModel
 {
     public class SoundViewModel
     {
         private INavigationService _navigationService;
-        public INavigationService NavigationService
+        private INavigationService NavigationService
         {
             get
             {
@@ -20,6 +20,8 @@ namespace SgarbiMix.Model
         }
 
         public string Name { get; private set; }
+        public TimeSpan Duration { get { return Sound.Duration; } }
+
         private UnmanagedMemoryStream _rawSound;
         private SoundEffect _sound;
         private SoundEffect Sound
@@ -31,6 +33,7 @@ namespace SgarbiMix.Model
                 return _sound;
             }
         }
+
 
         public SoundViewModel(string rawName, UnmanagedMemoryStream rawSound)
         {

@@ -16,20 +16,38 @@ namespace WPCommon.Controls
             set { _adUnitId = value; }
         }
 
+        private string _applicationId = "21ecdf14-8a3e-49e6-b19a-a94b96b2eb0e" ;
+        /// <summary>Set this value to serve Ads for a specific Application ID</summary>
+        public string ApplicationId
+        {
+            get { return _applicationId; }
+            set { _applicationId = value; }
+        }
+
         public About()
         {
             InitializeComponent();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        //Call in OnNavigatedTo
+        public void AddAdvertising()
         {
-            var ad1 = new AdControl("21ecdf14-8a3e-49e6-b19a-a94b96b2eb0e", AdUnitId, true)
+            if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
+                return;
+
+            var ad1 = new AdControl(ApplicationId, AdUnitId, true)
             {
-                Height = 80, Width = 480,
-                VerticalAlignment = VerticalAlignment.Bottom
+                Height = 80,
+                Width = 480,
             };
 
-            MainGrid.Children.Add(ad1);
+            AdPlaceHolder.Children.Add(ad1);
+        }
+
+        //Call in OnNavigatedFrom
+        public void RemoveAdvertising()
+        {
+            AdPlaceHolder.Children.Clear();
         }
 
         private void Facebook_Click(object sender, RoutedEventArgs e)
@@ -91,6 +109,5 @@ namespace WPCommon.Controls
             catch (InvalidOperationException)
             { /*do nothing */ }
         }
-
     }
 }

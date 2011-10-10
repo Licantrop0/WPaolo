@@ -27,13 +27,17 @@ namespace SgarbiMix
         public PlayButtonsPivotPage()
         {
             InitializeComponent();
-            InizializeShaker();
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             if (TrialManagement.IsTrialMode)
                 InitializeAd();
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            AdPlaceHolder.Children.Clear();
         }
 
         private void InitializeAd()
@@ -48,20 +52,6 @@ namespace SgarbiMix
             };
 
             AdPlaceHolder.Children.Add(ad1);
-        }
-
-        private void InizializeShaker()
-        {
-            var sd = new MagnitudeDetector();
-            sd.ShakeDetected += (sender, e) =>
-            {                
-                var snd = AppContext.GetRandomSound();
-                Dispatcher.BeginInvoke(() =>
-                {
-                    snd.PlayCommand.Execute(null);
-                });
-                Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300)); //Questa sleep viene fatta nel thread dell'accelerometro, non blocca la UI
-            };
         }
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)

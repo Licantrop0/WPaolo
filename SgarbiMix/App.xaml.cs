@@ -4,6 +4,10 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WPCommon.Helpers;
+using WPCommon;
+using System.Windows.Threading;
+using System.Threading;
+using System;
 
 namespace SgarbiMix
 {
@@ -50,6 +54,22 @@ namespace SgarbiMix
             if (TrialManagement.IsTrialMode &&
                 !TrialManagement.AlreadyOpenedToday)
                 TrialManagement.ResetCounter();
+            
+            InizializeShaker();
+        }
+
+        private void InizializeShaker()
+        {
+            var sd = new ShakeDetector();
+            sd.ShakeDetected += (sender, e) =>
+            {
+                var snd = AppContext.GetRandomSound();
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    snd.PlayCommand.Execute(null);
+                });
+                Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300)); //Questa sleep viene fatta nel thread dell'accelerometro, non blocca la UI
+            };
         }
 
         // Code to execute when the application is activated (brought to foreground)

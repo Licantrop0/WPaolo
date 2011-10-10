@@ -7,9 +7,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
-
-    mc:Ignorable="d"
-    d:DesignHeight="800" d:DesignWidth="480" Loaded="UserControl_Loaded">
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
 
     <!--
     1) Ricordarsi di impostare Build Action = Compile su AboutViewModel.cs
@@ -71,13 +69,13 @@
                     <TextBlock Text="{Binding CustomText}"
                                TextAlignment="Center" TextWrapping="Wrap"
                                FontSize="{Binding AppVersionFontSize}" />
-
-                    <!-- AdControl Placeholder (created in Code Behind) -->
                 </StackPanel>
 
                 <Image Source="{Binding CustomLogo}" Stretch="None"
                        HorizontalAlignment="Left" VerticalAlignment="Top"
                        Margin="{Binding CustomLogoMargin}" />
+                
+                <StackPanel Name="AdPlaceHolder" VerticalAlignment="Bottom" />
             </Grid>
         </controls:PivotItem>
 

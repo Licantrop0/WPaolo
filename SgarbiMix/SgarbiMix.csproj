@@ -129,6 +129,7 @@
     <Content Include="Images\bianco.png" />
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
+    <BlendEmbeddedFont Include="Fonts\segoepr.ttf" />
     <None Include="Sounds\Ateo fasullo!.wav" />
     <None Include="Sounds\capra.wav" />
     <None Include="Sounds\e1crimine.wav" />

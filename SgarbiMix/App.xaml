@@ -7,9 +7,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" >
 
     <Application.Resources>
-        <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
-            /SgarbiMix;component/Fonts/Fonts.zip#Segoe Print
-        </sys:FontFamily>
+        <FontFamily x:Key="DefaultFont" >Comic Sans MS</FontFamily>
 <!--Fonts/segoepr.ttf#Segoe Print-->
         <ImageBrush x:Key="DefaultBackground" ImageSource="SplashScreenImage.jpg"
                     Stretch="None" AlignmentY="Top" />

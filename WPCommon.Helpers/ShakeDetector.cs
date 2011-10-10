@@ -138,7 +138,7 @@ namespace WPCommon
 
             int endIndex = _shakeRecordIndex;
 
-            if ((_shakeRecordList[endIndex].EventTime.Subtract(_shakeRecordList[startIndex].EventTime)) <= MinimumShakeTime)
+            if (_shakeRecordList[endIndex].EventTime - _shakeRecordList[startIndex].EventTime <= MinimumShakeTime)
             {
                 OnShakeDetected();
             }
@@ -238,46 +238,46 @@ namespace WPCommon
     //    }
     //}
 
-    public class MagnitudeDetector
-    {
-        private Accelerometer _accelerometer;
-        public event EventHandler<EventArgs> ShakeDetected = null;
-        protected void OnShakeDetected()
-        {
-            if (ShakeDetected != null)
-            {
-                ShakeDetected(this, EventArgs.Empty);
-            }
-        }
+    //public class MagnitudeDetector
+    //{
+    //    private Accelerometer _accelerometer;
+    //    public event EventHandler<EventArgs> ShakeDetected = null;
+    //    protected void OnShakeDetected()
+    //    {
+    //        if (ShakeDetected != null)
+    //        {
+    //            ShakeDetected(this, EventArgs.Empty);
+    //        }
+    //    }
 
-        public MagnitudeDetector()
-        {
-            if (!Accelerometer.IsSupported)
-                return;
+    //    public MagnitudeDetector()
+    //    {
+    //        if (!Accelerometer.IsSupported)
+    //            return;
 
-            _accelerometer = new Accelerometer();
-            //_accelerometer.TimeBetweenUpdates = TimeSpan.FromMilliseconds(20);
+    //        _accelerometer = new Accelerometer();
+    //        //_accelerometer.TimeBetweenUpdates = TimeSpan.FromMilliseconds(20);
 
-            Start();
-        }
+    //        Start();
+    //    }
 
-        void _accelerometer_CurrentValueChanged(object sender, SensorReadingEventArgs<AccelerometerReading> e)
-        {
-            var acc = e.SensorReading.Acceleration;
+    //    void _accelerometer_CurrentValueChanged(object sender, SensorReadingEventArgs<AccelerometerReading> e)
+    //    {
+    //        var acc = e.SensorReading.Acceleration;
 
-            double f = Math.Sqrt(acc.X * acc.X + acc.Y * acc.Y + acc.Z * acc.Z);
-            if (f > 1.5)
-            {
-                OnShakeDetected();
-                _accelerometer.Stop();
-            }
-        }
+    //        double f = Math.Sqrt(acc.X * acc.X + acc.Y * acc.Y + acc.Z * acc.Z);
+    //        if (f > 1.5)
+    //        {
+    //            OnShakeDetected();
+    //            _accelerometer.Stop();
+    //        }
+    //    }
 
-        public void Start()
-        {
-            _accelerometer.CurrentValueChanged += new EventHandler<SensorReadingEventArgs<AccelerometerReading>>(_accelerometer_CurrentValueChanged);
-            _accelerometer.Start();
-        }
+    //    public void Start()
+    //    {
+    //        _accelerometer.CurrentValueChanged += new EventHandler<SensorReadingEventArgs<AccelerometerReading>>(_accelerometer_CurrentValueChanged);
+    //        _accelerometer.Start();
+    //    }
 
-    }
+    //}
 }

@@ -69,14 +69,14 @@ namespace Capra
 
         private void InitializeShaker()
         {
-            var sd = new MagnitudeDetector();
+            var sd = new ShakeDetector();
             sd.ShakeDetected += (sender, e) =>
             {
                 SoundManager.PlayIgnoranteComeCapra();
                 Settings.TotCapre++;
                 Thread.Sleep(TimeSpan.FromSeconds(2));
-                sd.Start();
             };
+            sd.Start();
         }
 
         // Code to execute when the application is deactivated (sent to background)

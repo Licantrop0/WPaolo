@@ -43,10 +43,10 @@ namespace Capra.ViewModel
 
             wc.OpenReadCompleted += (sender, e) =>
             {
-                if (e.Error != null) return;
                 if (AppList != null) return;
+                if (e.Error != null) return;
 
-                XDocument response = XDocument.Load(e.Result);
+                var response = XDocument.Load(e.Result);
                 AppList = from n in response.Descendants(nsAtom + "entry")
                           let imageId = n.Element(nsZune + "image")
                               .Element(nsZune + "id").Value.Substring(9) //rimozione di "urn:uuid:"
@@ -57,6 +57,7 @@ namespace Capra.ViewModel
                                   cultureName, imageId)));
             };
         }
+
         #region App Data
         /// <summary>Set this value to the Marketplace Product ID</summary>
         public string AppId { get; set; }

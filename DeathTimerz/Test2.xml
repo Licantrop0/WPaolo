@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<!--
-http://www.testcafe.com/anx/anx.html
-Soffri di stress? (nulla, poco, normale, molto, a bomba) (più ne soffri meno vivi)0 -1 -2 -3 -4 -5
-
-Hai una grande paura di qualcosa di particolare anche assurda? (se hai una fobia levi qualche anno) 0 -4
-
-Ci sono momenti in cui tutto ti sembra nero? (ovvero se soffri di depressione vivi di meno) 0 -6
-In caso di eventuali relazioni sessuali promiscue utilizzi sempre il preservativo? (ovvero hai una scarsa attenzione nella valutazione delle conseguenze delle tue azioni e vivi meno) 0 -5
-A che livello è la tua autostima? (sono meno di 0, bassa, realista, alta, sono il migliore di tutti) (il giusto è avere autostima ALTA, ma se uno crede di essere il migliore di tutti ha un problema quindi leva qualche anno anche lì) -3 -2 -1 0 -1
-Che animale preferisci tra cane, gatto e cavallo? (domanda che non ha alcun senso, la mettiamo perchè sembra celare chissà quale significato psicologico, magari se uno sceglie CANE tutti i valori del test psicologico, ovvero i vari + e - vengono moltiplicati per 0.9, se uno sceglie gatto per 1, se uno sceglie cavallo per 1.1 giusto per far vedere che i numeri cambiano)
-Esiste una persona per cui daresti la tua vita? (se esiste sei altruista e quindi hai qualche anno in più) sì = +2 no = 0
- -->
-
+<!--http://www.testcafe.com/anx/anx.html -->
 
 <Questions>
   <Question Name="Stress" Type="MultipleChoice">

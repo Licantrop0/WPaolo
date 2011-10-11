@@ -13,6 +13,7 @@ namespace DeathTimerz
 {
     public partial class DeathTimerzPanorama : PhoneApplicationPage
     {
+        ApplicationBarIconButton EditTestAppBarButton;
         private MainViewModel _vM;
         public MainViewModel VM
         {
@@ -34,33 +35,47 @@ namespace DeathTimerz
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (Settings.EstimatedDeathAge.HasValue)
+            if (AppContext.EstimatedDeathAge.HasValue)
                 TakeTestButton.Visibility = Visibility.Collapsed;
             else
                 TakeTestButton.Visibility = Visibility.Visible;
+
+            if (!AppContext.BirthDay.HasValue)
+                MainPanorama.DefaultItem = MainPanorama.Items[3];
         }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
         private void MainPanorama_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (MainPanorama.SelectedIndex == 2) //Death-Test
+            {
+                ApplicationBar.Buttons.Add(EditTestAppBarButton);
                 ApplicationBar.Mode = ApplicationBarMode.Default;
+            }
             else
+            {
                 ApplicationBar.Mode = ApplicationBarMode.Minimized;
+                ApplicationBar.Buttons.Remove(EditTestAppBarButton);
+            }
         }
 
         private void InitializeApplicationBar()
         {
-            var EditTestAppBarButton = new ApplicationBarIconButton();
+            EditTestAppBarButton = new ApplicationBarIconButton();
             EditTestAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_edit.png", UriKind.Relative);
             EditTestAppBarButton.Text = AppResources.EditTest;
             EditTestAppBarButton.Click += (sender, e) =>
             { NavigationService.Navigate(new Uri("/View/TestPage.xaml", UriKind.Relative)); };
-            ApplicationBar.Buttons.Add(EditTestAppBarButton);
 
-            
+
             var SettingsAppBarMenuItem = new ApplicationBarMenuItem();
             SettingsAppBarMenuItem.Text = Sounds.SoundManager.Instance.MusicEnabled ?
-                AppResources.DisableMusic: AppResources.EnableMusic;
+                AppResources.DisableMusic : AppResources.EnableMusic;
 
             SettingsAppBarMenuItem.Click += (sender, e) =>
             {
@@ -85,8 +100,8 @@ namespace DeathTimerz
 
         private void DatePicker_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
-            if(e.NewDateTime.HasValue && !CheckBirthday(e.NewDateTime.Value))
-              ((DatePicker)sender).Value = DateTime.Now.AddYears(-50);
+            if (e.NewDateTime.HasValue && !CheckBirthday(e.NewDateTime.Value))
+                ((DatePicker)sender).Value = DateTime.Now.AddYears(-50);
         }
 
         public bool CheckBirthday(DateTime value)
@@ -106,7 +121,6 @@ namespace DeathTimerz
 
             return true;
         }
-
     }
 
 }

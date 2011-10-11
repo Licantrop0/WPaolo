@@ -13,7 +13,7 @@
     xmlns:vm="clr-namespace:DeathTimerz.ViewModel"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" >
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>

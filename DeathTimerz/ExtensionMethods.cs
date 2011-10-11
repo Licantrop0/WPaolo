@@ -26,7 +26,7 @@ namespace DeathTimerz
 
         public static TimeSpan TimeSpanFromYears(double year)
         {
-            return TimeSpan.FromDays(year * Settings.AverageYear);
+            return TimeSpan.FromDays(year * AppContext.AverageYear);
         }
 
         public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)

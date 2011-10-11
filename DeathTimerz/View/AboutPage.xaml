@@ -24,5 +24,6 @@
             </vm:AboutViewModel.DefaultBackground>
         </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>
-    <wpc:About DataContext="{StaticResource AboutVM}" />
+    <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}" AdUnitId="10022419" 
+                       ApplicationId="d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2" />
 </phone:PhoneApplicationPage>

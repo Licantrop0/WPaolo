@@ -11,17 +11,6 @@ namespace SgarbiMix
 {
     public partial class PlayButtonsPivotPage : PhoneApplicationPage
     {
-        PlayButtonsViewModel _vm;
-        public PlayButtonsViewModel VM
-        {
-            get
-            {
-                if (_vm == null)
-                    _vm = LayoutRoot.DataContext as PlayButtonsViewModel;
-                return _vm;
-            }
-        }
-
         public PlayButtonsPivotPage()
         {
             InitializeComponent();
@@ -53,17 +42,17 @@ namespace SgarbiMix
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)
         {
-            VM.PlayBase("base1");
+            PlayButtonsViewModel.PlayBase("base1");
         }
 
         private void Base2ApplicationBar_Click(object sender, EventArgs e)
         {
-            VM.PlayBase("base2");
+            PlayButtonsViewModel.PlayBase("base2");
         }
 
         private void Base3ApplicationBar_Click(object sender, EventArgs e)
         {
-            VM.PlayBase("base3");
+            PlayButtonsViewModel.PlayBase("base3");
         }
 
         private void DisclaimerAppBarMenu_Click(object sender, EventArgs e)

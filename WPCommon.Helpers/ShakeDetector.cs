@@ -23,7 +23,7 @@ namespace WPCommon
             set { _minimumShakeTime = value; }
         }
 
-        public event EventHandler<EventArgs> ShakeDetected = null;
+        public event EventHandler<EventArgs> ShakeDetected;
         protected void OnShakeDetected()
         {
             if (ShakeDetected != null)
@@ -76,7 +76,6 @@ namespace WPCommon
         {
             //Does the currenet acceleration vector meet the minimum magnitude that we care about?
             var acc = e.SensorReading.Acceleration;
-
             if ((acc.X * acc.X + acc.Y * acc.Y) > MinMagnitudeSquared)
             {
                 //In the following direction will contain the direction
@@ -97,6 +96,7 @@ namespace WPCommon
 
                 CheckForShakes();
             }
+
         }
 
         public void Stop()
@@ -136,9 +136,8 @@ namespace WPCommon
             int startIndex = _shakeRecordIndex - 1;
             if (startIndex < 0) startIndex = _minimumShakes - 1;
 
-            int endIndex = _shakeRecordIndex;
-
-            if (_shakeRecordList[endIndex].EventTime - _shakeRecordList[startIndex].EventTime <= MinimumShakeTime)
+            if (_shakeRecordList[_shakeRecordIndex].EventTime -
+                _shakeRecordList[startIndex].EventTime <= MinimumShakeTime)
             {
                 OnShakeDetected();
             }

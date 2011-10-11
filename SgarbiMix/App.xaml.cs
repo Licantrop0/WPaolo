@@ -1,13 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Threading;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using WPCommon.Helpers;
 using WPCommon;
-using System.Windows.Threading;
-using System.Threading;
-using System;
+using WPCommon.Helpers;
 
 namespace SgarbiMix
 {
@@ -51,14 +50,14 @@ namespace SgarbiMix
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            InizializeShaker();
+
             if (TrialManagement.IsTrialMode &&
                 !TrialManagement.AlreadyOpenedToday)
                 TrialManagement.ResetCounter();
-            
-            InizializeShaker();
         }
 
-        private void InizializeShaker()
+        private static void InizializeShaker()
         {
             var sd = new ShakeDetector();
             sd.ShakeDetected += (sender, e) =>
@@ -68,7 +67,9 @@ namespace SgarbiMix
                 {
                     snd.PlayCommand.Execute(null);
                 });
-                Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300)); //Questa sleep viene fatta nel thread dell'accelerometro, non blocca la UI
+
+                //Questa sleep viene fatta nel thread dell'accelerometro, non blocca la UI
+                Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300));
             };
             sd.Start();
         }

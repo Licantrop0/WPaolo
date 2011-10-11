@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Xml.Linq;
 using WPCommon.Controls.Model;
+using System.Globalization;
 
 namespace SgarbiMix.ViewModel
 {
@@ -15,7 +16,6 @@ namespace SgarbiMix.ViewModel
     {
         XNamespace nsAtom = "http://www.w3.org/2005/Atom";
         XNamespace nsZune = "http://schemas.zune.net/catalog/apps/2008/02";
-        string cultureName = System.Globalization.CultureInfo.CurrentUICulture.Name;
 
         private IEnumerable<AppTile> _appList;
         public IEnumerable<AppTile> AppList
@@ -36,9 +36,9 @@ namespace SgarbiMix.ViewModel
         private void InitializeWPMEApps()
         {
             var wc = new WebClient();
-            wc.OpenReadAsync(new Uri(string.Format(
+            wc.OpenReadAsync(new Uri(string.Format(CultureInfo.CurrentCulture,
                  "http://catalog.zune.net/v3.2/{0}/apps?q=WPME&clientType=WinMobile%207.1&store=zest",
-                 cultureName)));
+                 CultureInfo.CurrentCulture.Name)));
 
             wc.OpenReadCompleted += (sender, e) =>
             {
@@ -52,8 +52,9 @@ namespace SgarbiMix.ViewModel
                           let appId = n.Element(nsAtom + "id").Value.Substring(9)
                           where appId != AppId
                           select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
-                              string.Format("http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
-                                  cultureName, imageId)));
+                              string.Format(CultureInfo.CurrentCulture,
+                                "http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
+                                CultureInfo.CurrentCulture.Name, imageId)));
             };
         }
 

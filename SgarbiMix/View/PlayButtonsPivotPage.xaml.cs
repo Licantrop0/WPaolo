@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Threading;
 using System.Windows;
-using System.Windows.Threading;
+using System.Windows.Navigation;
 using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using SgarbiMix.ViewModel;
-using WPCommon;
 using WPCommon.Helpers;
 
 namespace SgarbiMix
@@ -29,15 +27,18 @@ namespace SgarbiMix
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (TrialManagement.IsTrialMode)
                 InitializeAd();
+
+            base.OnNavigatedTo(e);
         }
 
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             AdPlaceHolder.Children.Clear();
+            base.OnNavigatedFrom(e);
         }
 
         private void InitializeAd()
@@ -45,13 +46,9 @@ namespace SgarbiMix
             if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
                 return;
 
-            var ad1 = new AdControl("c175f6ba-cb10-4fe3-a1de-a96480a03d3a", "10022581", true)
-            {
-                Height = 80,
-                Width = 480
-            };
-
-            AdPlaceHolder.Children.Add(ad1);
+            AdPlaceHolder.Children.Add(
+                new AdControl("c175f6ba-cb10-4fe3-a1de-a96480a03d3a", "10022581", true)
+                { Height = 80, Width = 480 });
         }
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)

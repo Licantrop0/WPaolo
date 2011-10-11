@@ -25,7 +25,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <controls:Pivot Margin="0,-30,0,0" Grid.Row="0">
+        <controls:Pivot Grid.Row="0" Margin="0,-30,0,0">
             <controls:PivotItem Margin="0,-10,0,0">
                 <controls:PivotItem.Header>
                     <TextBlock Text="Corti" FontFamily="{StaticResource DefaultFont}"
@@ -48,7 +48,7 @@
                     </ListBox.ItemsPanel>
                 </ListBox>
             </controls:PivotItem>
-            <controls:PivotItem Margin="0">
+            <controls:PivotItem Margin="0,-10,0,0">
                 <controls:PivotItem.Header>
                     <TextBlock Text="Lunghi" FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource HeaderForeground}" />
@@ -70,14 +70,15 @@
                                Foreground="{StaticResource HeaderForeground}" />
                 </controls:PivotItem.Header>
                 <StackPanel>
-                    <TextBlock FontSize="24" VerticalAlignment="Center" Margin="24" TextAlignment="Center"
+                    <TextBlock FontSize="28" VerticalAlignment="Center" Margin="12" TextAlignment="Center"
                    TextWrapping="Wrap" FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
                         C'è una frase famosa o un insulto di Sgarbi che manca a questa app?
                         Suggeriscila!<LineBreak/>
                         Provvederemo ad inserirla nel prossimo update!
                     </TextBlock>
                     <TextBox Name="SuggerimentoTextBox" TextWrapping="Wrap" Height="200" AcceptsReturn="True"
-                             Text="Cara WPME, aggiungete in SgarbiMix questa frase: " />
+                             Text="Cara WPME, aggiungete in SgarbiMix questa frase: "
+                             FontFamily="{StaticResource DefaultFont}" />
                     <Button Style="{StaticResource PlayButtonStyle}" Content="SUGGERISCI!" Click="Suggersci_Click" />
                 </StackPanel>
             </controls:PivotItem>

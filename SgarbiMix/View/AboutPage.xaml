@@ -42,7 +42,7 @@
             x:Key="AboutVM"
             AppName="Sgarbi Mix"
             AppId="5925f9d6-483d-e011-854c-00237de2db9e"
-            MinFontSize="30"
+            MinFontSize="40"
             DefaultBackground="{StaticResource DarkerBackground}"
             DefaultFont="{StaticResource DefaultFont}"
             DefaultForeground="{StaticResource DefaultForeground}"

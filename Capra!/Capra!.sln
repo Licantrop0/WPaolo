@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capra!", "Capra!\Capra!.csproj", "{5B6840D8-694A-4191-BDBB-F7A5B9A17CFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capra!", "Capra!.csproj", "{5B6840D8-694A-4191-BDBB-F7A5B9A17CFB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
 EndProject
@@ -15,18 +15,17 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Capra!\\Capra!.csproj
-		SccProjectName1 = Capra!
-		SccLocalPath1 = Capra!
-		SccProjectUniqueName2 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
-		SccProjectName2 = ../WPCommon.Controls
-		SccLocalPath2 = ..\\WPCommon.Controls
-		SccProjectUniqueName3 = ..\\WPCommon.Helpers\\WPCommon.Helpers.csproj
-		SccProjectName3 = ../WPCommon.Helpers
-		SccLocalPath3 = ..\\WPCommon.Helpers
-		SccProjectUniqueName4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
-		SccProjectName4 = ../WPCommon.Helpers.XNAAsyncDispatcher
-		SccLocalPath4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
+		SccProjectUniqueName1 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName1 = ../WPCommon.Controls
+		SccLocalPath1 = ..\\WPCommon.Controls
+		SccProjectUniqueName2 = ..\\WPCommon.Helpers\\WPCommon.Helpers.csproj
+		SccProjectName2 = ../WPCommon.Helpers
+		SccLocalPath2 = ..\\WPCommon.Helpers
+		SccProjectUniqueName3 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
+		SccProjectName3 = ../WPCommon.Helpers.XNAAsyncDispatcher
+		SccLocalPath3 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
+		SccProjectUniqueName4 = Capra!.csproj
+		SccLocalPath4 = .
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

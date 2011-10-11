@@ -50,6 +50,8 @@
         </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>
 
-    <wpc:About DataContext="{StaticResource AboutVM}" AdUnitId="10022581" />
+    <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}"
+               ApplicationId="c175f6ba-cb10-4fe3-a1de-a96480a03d3a"
+               AdUnitId="10022581" />
 
 </phone:PhoneApplicationPage>

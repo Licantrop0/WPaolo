@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Capra.Sounds;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using WPCommon.Helpers;
 using WPCommon;
-using Capra.Sounds;
-using System.Threading;
 
 namespace Capra
 {
@@ -74,7 +65,7 @@ namespace Capra
             {
                 SoundManager.PlayIgnoranteComeCapra();
                 Settings.TotCapre++;
-                Thread.Sleep(TimeSpan.FromSeconds(2));
+                Thread.Sleep(TimeSpan.FromSeconds(1.3));
             };
             sd.Start();
         }

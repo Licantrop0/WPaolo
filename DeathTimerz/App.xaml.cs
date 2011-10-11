@@ -1,10 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.IO.IsolatedStorage;
 using System.Windows;
 using System.Windows.Navigation;
-using System.Windows.Resources;
-using System.Xml.Linq;
 using DeathTimerz.Sounds;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -37,26 +34,9 @@ namespace DeathTimerz
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            CopyFileToStorage("Test1.xml");
-            CopyFileToStorage("Test2.xml");
-
             SoundManager.Instance.RestoreMusicStatus();
         }
 
-        private void CopyFileToStorage(string fileName)
-        {
-            if (!isf.FileExists(fileName))
-            {
-                using (var fs = new IsolatedStorageFileStream(fileName, FileMode.CreateNew, FileAccess.Write, isf))
-                {
-                    StreamResourceInfo sri = Application.GetResourceStream(
-                        new Uri("DeathTimerz;component/" + fileName, UriKind.Relative));
-                    byte[] bytesInStream = new byte[sri.Stream.Length];
-                    sri.Stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
-                    fs.Write(bytesInStream, 0, bytesInStream.Length);
-                }
-            }
-        }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
@@ -71,14 +51,14 @@ namespace DeathTimerz
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
-        {
+        {            
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-            //TODO: testare il tombstoning
+            ////TODO: testare il tombstoning
             //using (var fs = new IsolatedStorageFileStream("Test1.xml", FileMode.Create, FileAccess.Write, isf))
             //{
             //    Settings.Test1.Save(fs);

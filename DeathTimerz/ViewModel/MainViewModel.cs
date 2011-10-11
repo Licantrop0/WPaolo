@@ -47,18 +47,20 @@ namespace DeathTimerz.ViewModel
             }
         }
 
-        public DateTime BirthDay
+        public DateTime? BirthDay
         {
-            get { return Settings.BirthDay; }
+            get { return AppContext.BirthDay; }
             set
             {
                 if (BirthDay == value) return;
 
-                Settings.BirthDay = value;
-
-                RaisePropertyChanged("BirthDay");
-                RaisePropertyChanged("DaysToBirthDay");
-                RaisePropertyChanged("AgeText");
+                if (value.HasValue)
+                {
+                    AppContext.BirthDay = value;
+                    RaisePropertyChanged("BirthDay");
+                    RaisePropertyChanged("DaysToBirthDay");
+                    RaisePropertyChanged("AgeText");
+                }
             }
         }
 
@@ -66,7 +68,9 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                var dtb = ExtensionMethods.GetNextBirthday(BirthDay).Subtract(DateTime.Now).Days;
+                if (!BirthDay.HasValue) return string.Empty;
+
+                var dtb = ExtensionMethods.GetNextBirthday(BirthDay.Value).Subtract(DateTime.Now).Days;
                 return string.Join(" ", AppResources.BirthdayAfter,
                     dtb.ToString(),
                     dtb == 1 ? AppResources.Day : AppResources.Days);
@@ -77,13 +81,15 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                //TODO: migliorare algoritmo
-                var Age = DateTime.Now.Subtract(BirthDay);
+                if (!BirthDay.HasValue) return AppResources.ErrorNoBirthay;
 
-                var Years = Math.Floor(Age.TotalDays / Settings.AverageYear);
-                var RemainingDays = Age.TotalDays - Years * Settings.AverageYear;
-                var Months = Math.Floor(RemainingDays / Settings.AverageMonth);
-                var Days = Math.Round(RemainingDays - Months * Settings.AverageMonth);
+                //TODO: migliorare algoritmo
+                var Age = DateTime.Now.Subtract(BirthDay.Value);
+
+                var Years = Math.Floor(Age.TotalDays / AppContext.AverageYear);
+                var RemainingDays = Age.TotalDays - Years * AppContext.AverageYear;
+                var Months = Math.Floor(RemainingDays / AppContext.AverageMonth);
+                var Days = Math.Round(RemainingDays - Months * AppContext.AverageMonth);
 
                 return
                     Years.ToString("#0") + " " + (Years == 1 ? AppResources.Year : AppResources.Years) + "\n" +
@@ -98,17 +104,18 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                if (!Settings.EstimatedDeathAge.HasValue) return string.Empty;
+                if (!AppContext.EstimatedDeathAge.HasValue) return string.Empty;
+                if (!BirthDay.HasValue) return string.Empty;
 
-                var EstimatedDeathDate = BirthDay.Add(Settings.EstimatedDeathAge.Value);
+                var EstimatedDeathDate = BirthDay.Value + AppContext.EstimatedDeathAge.Value;
 
                 if (EstimatedDeathDate > DateTime.Now)
                 {
-                    var TotalDaysLived = (DateTime.Now - BirthDay).TotalDays;
-                    var TotalLifeDays = (EstimatedDeathDate - BirthDay).TotalDays;
+                    var TotalDaysLived = (DateTime.Now - BirthDay.Value).TotalDays;
+                    var TotalLifeDays = (EstimatedDeathDate - BirthDay.Value).TotalDays;
                     return string.Format(AppResources.WillDie,
                         EstimatedDeathDate,
-                        Settings.EstimatedDeathAge.Value.TotalDays / Settings.AverageYear,
+                        AppContext.EstimatedDeathAge.Value.TotalDays / AppContext.AverageYear,
                         TotalDaysLived / TotalLifeDays * 100,
                         TotalLifeDays - TotalDaysLived);
                 }
@@ -125,12 +132,16 @@ namespace DeathTimerz.ViewModel
             }
         }
 
+        #region INPC Implementation
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 
 }

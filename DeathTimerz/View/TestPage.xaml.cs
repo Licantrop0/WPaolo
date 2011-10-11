@@ -25,12 +25,12 @@ namespace DeathTimerz
         {
             if (TestListbox.SelectedIndex == 0)
             {
-                CurrentTest = Settings.Test1;
+                CurrentTest = AppContext.Test1;
                 CurrentResources = Test1.ResourceManager;
             }
             else
             {
-                CurrentTest = Settings.Test2;
+                CurrentTest = AppContext.Test2;
                 CurrentResources = Test2.ResourceManager;
             }
 
@@ -127,11 +127,11 @@ namespace DeathTimerz
 
         private void StimateDeathAge()
         {
-            Settings.EstimatedDeathAge = ExtensionMethods.TimeSpanFromYears(Settings.AverageAge);
+            AppContext.EstimatedDeathAge = ExtensionMethods.TimeSpanFromYears(AppContext.AverageAge);
 
-            Settings.EstimatedDeathAge +=
-                 (from q in Settings.Test1.Descendants("Question")
-                      .Concat(Settings.Test2.Descendants("Question"))
+            AppContext.EstimatedDeathAge +=
+                 (from q in AppContext.Test1.Descendants("Question")
+                      .Concat(AppContext.Test2.Descendants("Question"))
                   where q.Attribute("Type").Value == "MultipleChoice"
                       from ans in q.Elements("Answer")
                       where ans.Attribute("IsChecked").Value == "True"
@@ -142,11 +142,11 @@ namespace DeathTimerz
             #region Test1-Specific evaluation (BMI + Cigarettes)
 
             double Weight, Height;
-            if (double.TryParse(Settings.Test1.Descendants("Answer")
+            if (double.TryParse(AppContext.Test1.Descendants("Answer")
                 .First(el => el.Attribute("Name").Value == "Weight1")
                 .Attribute("Text").Value, out Weight)
                 &&
-                double.TryParse(Settings.Test1.Descendants("Answer")
+                double.TryParse(AppContext.Test1.Descendants("Answer")
                 .First(el => el.Attribute("Name").Value == "Height1")
                 .Attribute("Text").Value, out Height))
             {
@@ -157,19 +157,19 @@ namespace DeathTimerz
                     bmi = Weight / Math.Pow(Height * .01, 2); //kg-cm
 
                 if (bmi >= 18 && bmi <= 27)
-                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
+                    AppContext.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
                 else if (bmi > 27 && bmi <= 35)
-                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-2);
+                    AppContext.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-2);
                 else if (bmi < 18 || bmi > 35)
-                    Settings.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
+                    AppContext.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
             }
 
             double cigarettesNum, cigaretteYears;
-            if (double.TryParse(Settings.Test1.Descendants("Answer")
+            if (double.TryParse(AppContext.Test1.Descendants("Answer")
                 .First(el => el.Attribute("Name").Value == "Cigarettes1")
                 .Attribute("Text").Value, out cigarettesNum)
                 &&
-                double.TryParse(Settings.Test1.Descendants("Answer")
+                double.TryParse(AppContext.Test1.Descendants("Answer")
                 .First(el => el.Attribute("Name").Value == "Cigarettes2")
                 .Attribute("Text").Value, out cigaretteYears))
             {
@@ -177,9 +177,9 @@ namespace DeathTimerz
                 //Ogni sigaretta toglie 11 minuti di vita http://www.rense.com/health3/smoking_h.htm
                 var TotalSmokingPeriod =
                     ExtensionMethods.TimeSpanFromYears(cigaretteYears) + //anni che ha fumato finora
-                    Settings.EstimatedDeathAge - DateTime.Now.Subtract(Settings.BirthDay); //anni ancora da vivere
+                    AppContext.EstimatedDeathAge - (DateTime.Now - AppContext.BirthDay.Value); //anni ancora da vivere
 
-                Settings.EstimatedDeathAge -= TimeSpan.FromMinutes(TotalSmokingPeriod.Value.TotalDays * cigarettesNum * 11);
+                AppContext.EstimatedDeathAge -= TimeSpan.FromMinutes(TotalSmokingPeriod.Value.TotalDays * cigarettesNum * 11);
             }
 
             #endregion

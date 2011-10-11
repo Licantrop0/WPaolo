@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Advice1" xml:space="preserve">
-    <value>Eat less</value>
+    <value>Mangia tante verdure</value>
   </data>
   <data name="Advice2" xml:space="preserve">
-    <value>If you are stupid you live less</value>
+    <value>Se sei stupido vivi di meno</value>
   </data>
   <data name="Advice3" xml:space="preserve">
-    <value>Don't eat fat</value>
+    <value>Non mangiare grasso</value>
   </data>
   <data name="Advice4" xml:space="preserve">
-    <value>Make exercise every day</value>
+    <value>Fai esercizi tutti i giorni</value>
   </data>
   <data name="Advice5" xml:space="preserve">
-    <value>Go to swim</value>
+    <value>Vai a nuotare</value>
   </data>
   <data name="Advice6" xml:space="preserve">
-    <value>Make sex</value>
+    <value>Bevi un bicchiere di vino al giorno</value>
   </data>
 </root>

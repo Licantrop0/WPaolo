@@ -64,14 +64,14 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </controls:PivotItem>
-            <controls:PivotItem >
+            <controls:PivotItem Margin="0">
                 <controls:PivotItem.Header>
                     <TextBlock Text="Suggerisci!" FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource HeaderForeground}" />
                 </controls:PivotItem.Header>
-                <StackPanel>
-                    <TextBlock FontSize="28" VerticalAlignment="Center" Margin="12" TextAlignment="Center"
-                   TextWrapping="Wrap" FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
+                <StackPanel VerticalAlignment="Top">
+                    <TextBlock FontSize="26" VerticalAlignment="Center" Margin="12" TextAlignment="Center"
+                               TextWrapping="Wrap" FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
                         C'è una frase famosa o un insulto di Sgarbi che manca a questa app?
                         Suggeriscila!<LineBreak/>
                         Provvederemo ad inserirla nel prossimo update!
@@ -79,11 +79,12 @@
                     <TextBox Name="SuggerimentoTextBox" TextWrapping="Wrap" Height="200" AcceptsReturn="True"
                              Text="Cara WPME, aggiungete in SgarbiMix questa frase: "
                              FontFamily="{StaticResource DefaultFont}" />
-                    <Button Style="{StaticResource PlayButtonStyle}" Content="SUGGERISCI!" Click="Suggersci_Click" />
+                    <Button Style="{StaticResource PlayButtonStyle}" Content="Invia suggerimento"
+                            FontSize="36" Click="Suggersci_Click" />
                 </StackPanel>
             </controls:PivotItem>
         </controls:Pivot>
-        
+
         <StackPanel Name="AdPlaceHolder" Grid.Row="1" />
     </Grid>
 

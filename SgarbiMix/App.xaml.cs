@@ -70,6 +70,7 @@ namespace SgarbiMix
                 });
                 Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300)); //Questa sleep viene fatta nel thread dell'accelerometro, non blocca la UI
             };
+            sd.Start();
         }
 
         // Code to execute when the application is activated (brought to foreground)

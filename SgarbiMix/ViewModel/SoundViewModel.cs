@@ -29,7 +29,10 @@ namespace SgarbiMix.ViewModel
             get
             {
                 if (_sound == null)
+                {
                     _sound = SoundEffect.FromStream(_rawSound);
+                    _rawSound.Dispose();
+                }
                 return _sound;
             }
         }
@@ -37,6 +40,9 @@ namespace SgarbiMix.ViewModel
 
         public SoundViewModel(string rawName, UnmanagedMemoryStream rawSound)
         {
+            if (string.IsNullOrEmpty(rawName))
+                throw new ArgumentException("the sound name is null or empty", "rawName");
+
             //Convenzione: "_" = spazio, "1" = punto esclamativo
             Name = rawName.Replace("_", " ").Replace("1", "!");
             _rawSound = rawSound;
@@ -59,7 +65,7 @@ namespace SgarbiMix.ViewModel
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && TrialManagement.Counter > 4)
+            if (TrialManagement.IsTrialMode && TrialManagement.Counter >= 5)
             {
                 NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
                 return false;

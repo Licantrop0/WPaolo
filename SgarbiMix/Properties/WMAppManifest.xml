@@ -1,19 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{ee74f6d6-0ad3-4723-b871-9758e92a5a13}" Title="SgarbiMix" RuntimeType="Silverlight"
-       Version="1.0.0.0" Genre="apps.normal" Author="Licantrop0" Description="SgarbiMix" Publisher="WPME">
+  <App xmlns="" ProductID="{ee74f6d6-0ad3-4723-b871-9758e92a5a13}" Title="SgarbiMix" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Licantrop0" Description="SgarbiMix" Publisher="WPME">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
-      <!--<Capability Name="ID_CAP_GAMERSERVICES" />
-      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
-      <Capability Name="ID_CAP_LOCATION" />-->
-
-      <Capability Name="ID_CAP_IDENTITY_USER"/>
+      <Capability Name="ID_CAP_IDENTITY_USER" />
       <Capability Name="ID_CAP_SENSORS" />
       <Capability Name="ID_CAP_MEDIALIB" />
       <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_PHONEDIALER"/>
-      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT"/>
+      <Capability Name="ID_CAP_PHONEDIALER" />
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="View/PlayButtonsPivotPage.xaml" />
@@ -23,7 +18,7 @@
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>Sgarbi Mix</Title>
+          <Title>SgarbiMix</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>

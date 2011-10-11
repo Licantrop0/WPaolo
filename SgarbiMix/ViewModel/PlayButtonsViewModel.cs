@@ -8,7 +8,6 @@ namespace SgarbiMix.ViewModel
 {
     public class PlayButtonsViewModel
     {
-
         private const int LenghtSeparator = 18;
 
         private IEnumerable<SoundViewModel> _suoniCorti;
@@ -33,7 +32,7 @@ namespace SgarbiMix.ViewModel
             }
         }
 
-        public void PlayBase(string baseName)
+        public static void PlayBase(string baseName)
         {
             if (AskAndPlayMusic())
             {

@@ -50,7 +50,7 @@
             Se vuoi dire<LineBreak/>
             "Capra!" o "Ignorante!"<LineBreak/>
             in continuazione come Sgarbi, devi comprare la versione completa.<LineBreak/>
-            Costa meno di un caffè, non perdere questa occasione!
+            Costa meno di un caffè, non puoi perdere questa occasione!
         </TextBlock>
 
         <HyperlinkButton Name="BuyButton" Content="Clicca e comprala!"

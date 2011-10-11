@@ -7,8 +7,10 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" >
 
     <Application.Resources>
-        <FontFamily x:Key="DefaultFont" >/SgarbiMix;component/Fonts/Fonts.zip#Segoe Print</FontFamily>
-<!--Fonts/segoepr.ttf#Segoe Print-->
+        <FontFamily x:Key="DefaultFont">
+            Consolas
+        </FontFamily>
+<!--/SgarbiMix;component/Font/Fonts.zip#Segoe Print Fonts/segoepr.ttf#Segoe Print-->
         <ImageBrush x:Key="DefaultBackground" ImageSource="SplashScreenImage.jpg"
                     Stretch="None" AlignmentY="Top" />
 

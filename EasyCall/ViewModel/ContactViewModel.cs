@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Media.Imaging;
-using Microsoft.Phone;
+using EasyCall.Model;
 
 namespace EasyCall
 {
@@ -20,25 +20,42 @@ namespace EasyCall
 
         #endregion
 
-        public Model.Contact Model { get; private set; }
+        public Contact Model { get; private set; }
         public string SearchText { get; private set; }
+        private int _indexName;
 
-        private WriteableBitmap _bitmap;
-        public WriteableBitmap Bitmap
+        public string Name1
         {
             get
             {
-                if (_bitmap == null && Model.ImageStream != null)
-                    _bitmap = PictureDecoder.DecodeJpeg(Model.ImageStream);
-
-                return _bitmap;
+                if (_indexName == -1) return Model.DisplayName;
+                return Model.DisplayName.Substring(0, _indexName);
             }
         }
 
-        public ContactViewModel(Model.Contact contact, string searchText)
+        public string Name2
+        {
+            get
+            {
+                if (_indexName == -1) return string.Empty;
+                return Model.DisplayName.Substring(_indexName, SearchText.Length); 
+            }
+        }
+
+        public string Name3
+        {
+            get
+            {
+                if (_indexName == -1) return string.Empty;
+                return Model.DisplayName.Substring(_indexName + SearchText.Length);
+            }
+        }
+        
+        public ContactViewModel(Contact contact, string searchText)
         {
             Model = contact;
             SearchText = searchText;
+            _indexName = contact.FullNumberRepresentation.IndexOf(searchText);
         }
 
         #region IGrouping Implementation
@@ -68,7 +85,7 @@ namespace EasyCall
         //    set
         //    {
         //        RaisePropertyChanged("SelectedNumber");
-        //        CallHelper.Call(DisplayName, value);
+        //        CallHelper.Call(Model);
         //    }
         //}
 

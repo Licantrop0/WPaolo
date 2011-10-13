@@ -2,6 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Media.Imaging;
+using Microsoft.Phone;
 
 namespace EasyCall.Model
 {
@@ -9,15 +11,16 @@ namespace EasyCall.Model
     {
         public string DisplayName { get; private set; }
         private IEnumerable<string> _numberRepresentation;
-        public Stream ImageStream  { get; private set; }
         public IList<string> Numbers { get; private set; }
+        public WriteableBitmap Bitmap  { get; private set; }
 
         public Contact(string displayName, IEnumerable<string> numbers, Stream imageStream)
         {
             DisplayName = displayName;
             _numberRepresentation = TextToNum(displayName);
             Numbers = numbers.Select(n => Regex.Replace(n, @"[\s\-\(\)]", string.Empty)).ToList();
-            ImageStream = imageStream;
+            if (imageStream != null)
+                Bitmap = PictureDecoder.DecodeJpeg(imageStream);
         }
 
         private List<string> TextToNum(string input)
@@ -60,7 +63,13 @@ namespace EasyCall.Model
         }
 
         public string FirstNumber
-        { get { return Numbers.First(); } }
+        {
+            get { return Numbers.First(); }
+        }
 
+        public string FullNumberRepresentation
+        {
+            get { return _numberRepresentation.First(); }
+        }
     }
 }

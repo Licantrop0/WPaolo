@@ -1,12 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Microsoft.Phone.UserData;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
-using System;
-using System.Windows.Threading;
 using System.Windows;
 
 namespace EasyCall.ViewModel
@@ -24,44 +19,25 @@ namespace EasyCall.ViewModel
 
         #endregion
 
-        private IList<Model.Contact> Contacts { get; set; }
-        public List<ContactViewModel> SearchedContacts { get; set; }
-
         public MainViewModel()
         {
             if (DesignerProperties.IsInDesignTool)
-                SearchedContacts = new List<ContactViewModel>()
-                {
-                    new ContactViewModel(new Model.Contact("Luca Spolidoro", new[] {"393 3714189", "010 311540"}, null), ""),
-                    new ContactViewModel(new Model.Contact("Pino Quercia", new[] {"+39 384 30572194", "+39 02 365688", "02 074 234456"}, null), ""),
-                    new ContactViewModel(new Model.Contact("Sapporo Piloro", new[] {"347 5840382"}, null), "")
-                };
-            else
             {
-                LoadContacts();
+                SearchedContacts = AppContext.GetFakeContacts();
             }
         }
 
-        private void LoadContacts()
+        private IList<ContactViewModel> _searchedContacts;
+        public IList<ContactViewModel> SearchedContacts
         {
-            SearchedContacts = new List<ContactViewModel>();
-            var cons = new Contacts();
-            cons.SearchCompleted += (sender, e) =>
+            get { return _searchedContacts; }
+            set
             {
-                //Da rendere Async
-                Contacts = (from c in e.Results
-                              where c.PhoneNumbers.Any()
-                              select new Model.Contact(c.DisplayName,
-                                  c.PhoneNumbers.Select(n => n.PhoneNumber),
-                                  c.GetPicture())
-                             ).ToList();
+                if (_searchedContacts == value) return;
+                _searchedContacts = value;
 
-                if (!string.IsNullOrEmpty(SearchText) &&
-                    !SearchedContacts.Any())
-                    Filter(SearchText);
-            };
-
-            cons.SearchAsync(string.Empty, FilterKind.None, null);
+                Deployment.Current.Dispatcher.BeginInvoke(() => RaisePropertyChanged("SearchedContacts"));           
+            }
         }
 
         private string _searchText = string.Empty;
@@ -72,32 +48,10 @@ namespace EasyCall.ViewModel
             {
                 if (_searchText == value) return;
                 _searchText = value;
-                Filter(value);
+
+                new Thread(() => { SearchedContacts =  AppContext.Filter(value); }).Start();
             }
         }
 
-        private void Filter(string searchedText)
-        {
-            if (Contacts == null)
-                return;
-
-            if (string.IsNullOrEmpty(searchedText))
-            {
-                SearchedContacts = new List<ContactViewModel>();
-                RaisePropertyChanged("SearchedContacts");
-                return;
-            }
-
-            new Thread(() =>
-            {
-                SearchedContacts = (from contact in Contacts
-                                    where contact.ContainsName(searchedText) ||
-                                          contact.ContainsNumber(searchedText)
-                                    select new ContactViewModel(contact, searchedText)
-                                    ).ToList();
-
-               Deployment.Current.Dispatcher.BeginInvoke(() => RaisePropertyChanged("SearchedContacts"));
-            }).Start();
-        }
     }
 }

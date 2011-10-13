@@ -37,7 +37,7 @@ namespace EasyCall
         private void InitializeTimer()
         {
             tmr = new DispatcherTimer();
-            tmr.Interval = TimeSpan.FromMilliseconds(100);
+            tmr.Interval = TimeSpan.FromMilliseconds(50);
             tmr.Tick += (sender, e) =>
             {
                 SearchTextBox.GetBindingExpression(

@@ -7,6 +7,8 @@ using System.Windows.Threading;
 using EasyCall.ViewModel;
 using Microsoft.Phone.Controls;
 using WPCommon.Helpers;
+using System.Collections.Generic;
+using System.Windows.Documents;
 
 namespace EasyCall
 {
@@ -35,12 +37,12 @@ namespace EasyCall
         private void InitializeTimer()
         {
             tmr = new DispatcherTimer();
-            tmr.Interval = TimeSpan.FromMilliseconds(500);
+            tmr.Interval = TimeSpan.FromMilliseconds(100);
             tmr.Tick += (sender, e) =>
             {
-                tmr.Stop();
                 SearchTextBox.GetBindingExpression(
                     TextBox.TextProperty).UpdateSource();
+                tmr.Stop();
             };
         }
 
@@ -63,8 +65,7 @@ namespace EasyCall
         {
             if (VM.SearchedContacts.Any())
             {
-                var contact = VM.SearchedContacts.First();
-                CallHelper.Call(contact.DisplayName, contact.Numbers.First());
+                CallHelper.Call(VM.SearchedContacts.First().Model);
             }
             else
             {
@@ -84,11 +85,10 @@ namespace EasyCall
 
         private void NumberButton_Click(object sender, RoutedEventArgs e)
         {
+            //SCHIFEZZAAA!
             var number = ((Button)sender).DataContext.ToString();
-            var name = (from c in VM.SearchedContacts
-                        where c.Numbers.Contains(number)
-                        select c.DisplayName).First();
-            CallHelper.Call(name, number);
+            var contact = VM.SearchedContacts.Where(c => c.Model.Numbers.Contains(number)).First();
+            CallHelper.Call(contact.Model);
         }
     }
 }

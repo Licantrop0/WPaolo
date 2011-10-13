@@ -8,6 +8,11 @@ namespace EasyCall
     {
         private static PhoneCallTask CallTask = new PhoneCallTask();
 
+        public static void Call(Model.Contact contact)
+        {
+            Call(contact.DisplayName, contact.FirstNumber);
+        }
+
         public static void Call(string name, string number)
         {
             if (!CheckTrial()) return;

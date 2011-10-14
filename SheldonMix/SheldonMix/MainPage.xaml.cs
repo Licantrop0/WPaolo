@@ -3,6 +3,7 @@ using System.Device.Location;
 using System.Windows;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
+using Microsoft.Advertising.Mobile.UI;
 
 namespace SheldonMix
 {
@@ -28,6 +29,29 @@ namespace SheldonMix
         //    gcw.Dispose();
         //    gcw = null;
         //}
+
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
+                return;
+
+            var ad1 = new AdControl("04e2ad45-3752-4d8c-867c-b1eb0cf4a3e1", "10022426", true)
+            {
+                Height = 80,
+                Width = 480,
+            };
+
+            AdPlaceHolder.Children.Add(ad1);
+
+            base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            AdPlaceHolder.Children.Clear();
+            base.OnNavigatedFrom(e);
+        }
 
         private void AboutAppBarMenu_Click(object sender, EventArgs e)
         {

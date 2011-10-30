@@ -11,7 +11,7 @@ namespace NascondiChiappe.ViewModel
 {
     public class AddRenameAlbumViewModel : ViewModelBase
     {
-        public INavigationService NavigationService { get; set; }
+        public WPCommon.Helpers.INavigationService NavigationService { get; set; }
         public Visibility OneAlbumNecessary
         {
             get

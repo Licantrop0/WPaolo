@@ -13,7 +13,7 @@
     <AssemblyName>NascondiChiappe</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
-    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
     <SupportedCultures>en-US;it-IT;fr-FR</SupportedCultures>
@@ -64,7 +64,9 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=3.7.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+      <HintPath>packages\SilverlightToolkitWP.4.2011.8.17\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Input.Touch" />
@@ -82,8 +84,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppContext.cs" />
-    <Compile Include="Helpers\INavigationService.cs" />
-    <Compile Include="Helpers\NavigationService.cs" />
     <Compile Include="Helpers\PhotoHelper.cs" />
     <Compile Include="Helpers\RotationConverter.cs" />
     <Compile Include="Localization\AppResources.Designer.cs">
@@ -221,6 +221,14 @@
     <ProjectReference Include="..\WPCommon.Controls\WPCommon.Controls.csproj">
       <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
       <Name>WPCommon.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPCommon.Helpers.ExtensionMethods\WPCommon.Helpers.ExtensionMethods.csproj">
+      <Project>{A8C19415-8A63-42D1-862D-DBEC3C524857}</Project>
+      <Name>WPCommon.Helpers.ExtensionMethods</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPCommon.Helpers.TrialManagement\WPCommon.Helpers.TrialManagement.csproj">
+      <Project>{157C676B-46A4-4099-936E-BBDFB93BB735}</Project>
+      <Name>WPCommon.Helpers.TrialManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\WPCommon.Helpers\WPCommon.Helpers.csproj">
       <Project>{7CF377DB-129E-4C84-A23D-5758F01DC6F1}</Project>

@@ -4,84 +4,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
              xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:localization="clr-namespace:NascondiChiappe.Localization"
-             xmlns:helpers="clr-namespace:NascondiChiappe.Helpers"
-             xmlns:vm="clr-namespace:NascondiChiappe.ViewModel" mc:Ignorable="d">
-
-    <Application.Resources>
-        <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
-        <localization:LocalizedStrings x:Key="LocalizedStrings" />
-        <helpers:RotationConverter x:Key="RotationConverter" />
-
-        <ImageBrush x:Name="BackgroundImage" ImageSource="/NascondiChiappe;component/SplashScreenImage.jpg" Stretch="None" />
-        <SolidColorBrush x:Name="DefaultForeground" Color="WhiteSmoke" />
-        <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
+             xmlns:helpers="clr-namespace:NascondiChiappe.Helpers" >
+  <Application.Resources>
+        <vm:ViewModelLocator xmlns:vm="clr-namespace:NascondiChiappe.ViewModel"
+                                   x:Key="Locator" />
+        <localization:LocalizedStrings x:Key="LocalizedStrings"  />
+    <helpers:RotationConverter x:Key="RotationConverter" />
+    <ImageBrush x:Name="BackgroundImage" ImageSource="/NascondiChiappe;component/SplashScreenImage.jpg" Stretch="None" />
+    <SolidColorBrush x:Name="DefaultForeground" Color="WhiteSmoke"  />
+    <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows" >
             /NascondiChiappe;component/Fonts/Fonts.zip#Harlow Solid Italic
         </sys:FontFamily>
-
-        <Style x:Key="BaseStyle" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
-            <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-        </Style>
-
-        <Style x:Key="TitleStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
-            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraExtraLarge}" />
-        </Style>
-
-        <Style x:Key="TextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
-            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-        </Style>
-
-        <Style x:Key="HintTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
-            <Setter Property="Width" Value="400" />
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="IsHitTestVisible" Value="False" />
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="FontStyle" Value="Italic"/>
-            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
-        </Style>
-
-        <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
-            <Setter Property="PasswordChar" Value="#" />
-            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
-            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
-            <Setter Property="Foreground" Value="Black" />
-        </Style>
-
-        <Style x:Key="TextBoxStyle" TargetType="TextBox">
-            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
-            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
-            <Setter Property="Foreground" Value="Black" />
-        </Style>
-
-        <Style x:Key="HyperlinkStyle" TargetType="HyperlinkButton">
-            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
-            <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
-            <Setter Property="HorizontalAlignment" Value="Left" />
-        </Style>
-
-        <Style x:Key="ListBoxItemStyle1" TargetType="ListBoxItem">            
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Grid Background="{TemplateBinding Background}">
-                            <ContentControl x:Name="ContentContainer"
-                                            Content="{TemplateBinding Content}"
-                                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                                            HorizontalContentAlignment="Center"
-                                            VerticalContentAlignment="Center"
-                                            Foreground="{TemplateBinding Foreground}"
-                                            Margin="{TemplateBinding Padding}" />
-                            <CheckBox x:Name="SelectionCheckBox"
-                                      IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected, Mode=TwoWay}"                                
-                                      VerticalAlignment="Top" HorizontalAlignment="Left" />
-    
-                            <!--<VisualStateManager.VisualStateGroups>
+    <Style x:Key="BaseStyle" TargetType="TextBlock" >
+      <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+      <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+    </Style>
+    <Style x:Key="TitleStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}" >
+      <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraExtraLarge}" />
+    </Style>
+    <Style x:Key="TextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}" >
+      <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style x:Key="HintTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}" >
+      <Setter Property="Width" Value="400" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+      <Setter Property="IsHitTestVisible" Value="False" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+      <Setter Property="TextAlignment" Value="Center" />
+      <Setter Property="FontStyle" Value="Italic" />
+      <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
+    </Style>
+    <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox" >
+      <Setter Property="PasswordChar" Value="#" />
+      <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
+      <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+      <Setter Property="Foreground" Value="Black" />
+    </Style>
+    <Style x:Key="TextBoxStyle" TargetType="TextBox" >
+      <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
+      <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+      <Setter Property="Foreground" Value="Black" />
+    </Style>
+    <Style x:Key="HyperlinkStyle" TargetType="HyperlinkButton" >
+      <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}" />
+      <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+      <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+      <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+    <Style x:Key="ListBoxItemStyle1" TargetType="ListBoxItem" >
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ListBoxItem">
+            <Grid Background="{TemplateBinding Background}">
+              <ContentControl x:Name="ContentContainer" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}" />
+              <CheckBox x:Name="SelectionCheckBox" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Left" />
+              <!--<VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="SelectionStates">
                                     <VisualState x:Name="Unselected">
                                         <Storyboard>
@@ -102,19 +81,14 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>-->
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-    </Application.Resources>
-    <Application.ApplicationLifetimeObjects>
-        <!--Required object that handles lifetime events for the application-->
-        <shell:PhoneApplicationService
-            Launching="Application_Launching"
-            Closing="Application_Closing"
-            Activated="Application_Activated"
-            Deactivated="Application_Deactivated" />
-    </Application.ApplicationLifetimeObjects>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </Application.Resources>
+  <Application.ApplicationLifetimeObjects>
+    <!--Required object that handles lifetime events for the application-->
+    <shell:PhoneApplicationService Launching="Application_Launching" Closing="Application_Closing" Activated="Application_Activated" Deactivated="Application_Deactivated" />
+  </Application.ApplicationLifetimeObjects>
 </Application>

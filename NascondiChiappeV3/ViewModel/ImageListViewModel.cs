@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using NascondiChiappe.Helpers;
-using NascondiChiappe.Model;
-using System.Collections;
-using System.Linq;
-using System.Windows.Controls;
-using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Messaging;
-using System.Windows.Media.Imaging;
 using NascondiChiappe.Messages;
+using NascondiChiappe.Model;
 
 namespace NascondiChiappe.ViewModel
 {
@@ -44,8 +41,7 @@ namespace NascondiChiappe.ViewModel
             };            
         }
 
-        public ObservableCollection<Photo> SelectedPhotos
-        { get; set; }
+        public ObservableCollection<Photo> SelectedPhotos { get; set; }
 
         public Visibility HintVisibility
         {

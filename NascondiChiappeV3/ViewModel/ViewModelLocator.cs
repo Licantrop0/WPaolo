@@ -14,6 +14,7 @@
 
 using GalaSoft.MvvmLight;
 using NascondiChiappe.Helpers;
+using WPCommon.Helpers;
 
 namespace NascondiChiappe.ViewModel
 {

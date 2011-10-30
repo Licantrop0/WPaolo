@@ -10,14 +10,13 @@ using Microsoft.Phone.Tasks;
 using NascondiChiappe.Helpers;
 using NascondiChiappe.Localization;
 using NascondiChiappe.Model;
-using WPCommon.Helpers;
 using System.ComponentModel;
 
 namespace NascondiChiappe.ViewModel
 {
     public class AlbumsViewModel : ViewModelBase
     {
-        public INavigationService NavigationService { get; set; }
+        public WPCommon.Helpers.INavigationService NavigationService { get; set; }
         public bool ArePhotosSelected { get { return SelectedAlbum.SelectedPhotos.Count > 0; } }
 
         private bool _isBusy = false;
@@ -95,7 +94,7 @@ namespace NascondiChiappe.ViewModel
 
         private void NewAlbumAction()
         {
-            if (TrialManagement.IsTrialMode && Albums.Count > 0)
+            if (WPCommon.Helpers.TrialManagement.IsTrialMode && Albums.Count > 0)
             {
                 NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
                 return;
@@ -267,7 +266,7 @@ namespace NascondiChiappe.ViewModel
 
         private bool IsTrialWithCheck()
         {
-            if (TrialManagement.IsTrialMode && SelectedAlbum.Model.Photos.Count >= 4)
+            if (WPCommon.Helpers.TrialManagement.IsTrialMode && SelectedAlbum.Model.Photos.Count >= 4)
             {
                 NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
                 return true;

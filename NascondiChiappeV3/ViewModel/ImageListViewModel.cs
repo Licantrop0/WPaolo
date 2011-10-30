@@ -19,13 +19,13 @@ namespace NascondiChiappe.ViewModel
     {
         public Album Model { get; private set; }
 
-        INavigationService _navigationService;
-        public INavigationService NavigationService
+        WPCommon.Helpers.INavigationService _navigationService;
+        public WPCommon.Helpers.INavigationService NavigationService
         {
             get
             {
                 if (_navigationService == null)
-                    _navigationService = new NavigationService();
+                    _navigationService = new WPCommon.Helpers.NavigationService();
                 return _navigationService;
             }
         }

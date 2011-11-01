@@ -12,10 +12,16 @@
         <Style TargetType="HyperlinkButton" x:Key="HyperLinkButtonStyle">
             <Setter Property="Margin" Value="0,0,0,12" />
         </Style>
+        
+        <Style TargetType="TextBlock" x:Key="DescriptionStyle">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Margin" Value="8" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
-        <!--Required object that handles lifetime events for the application-->
+
         <shell:PhoneApplicationService Launching="Application_Launching"
                                        Closing="Application_Closing"
                                        Activated="Application_Activated"

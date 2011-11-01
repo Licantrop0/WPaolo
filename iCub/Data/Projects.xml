@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Projects>
-  <Project Name="errwee" Logo="Images\Logo1.png" Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof" />
-  <Project Name="errwee" Logo="Images\Logo1.png" Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof" />
-  <Project Name="errwee" Logo="Images\Logo1.png" Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof" />
-  <Project Name="errwee" Logo="Images\Logo1.png" Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof" />
+  <Project Name="Project 1" Logo="Images\Logos\Robotcub.png" Url="http://www.icub.org"
+           Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof sf jasòfjaosifaosifj asoifhjsaeoighfaso ghdaoghasdogih asòifh asòohif asoghi saoògih asòoigh asoeghi asoeigh asoegi" />
+  <Project Name="Project 2" Logo="Images\Logos\Robotcub.png" Url="http://www.icub.org"
+           Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof sf jasòfjaosifaosifj asoifhjsaeoighfaso ghdaoghasdogih asòifh asòohif asoghi saoògih asòoigh asoeghi asoeigh asoegi" />
+  <Project Name="Project 3" Logo="Images\Logos\Robotcub.png" Url="http://www.icub.org"
+           Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof sf jasòfjaosifaosifj asoifhjsaeoighfaso ghdaoghasdogih asòifh asòohif asoghi saoògih asòoigh asoeghi asoeigh asoegi" />
+  <Project Name="Project 4" Logo="Images\Logos\Robotcub.png" Url="http://www.icub.org"
+           Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof sf jasòfjaosifaosifj asoifhjsaeoighfaso ghdaoghasdogih asòifh asòohif asoghi saoògih asòoigh asoeghi asoeigh asoegi" />
 </Projects>

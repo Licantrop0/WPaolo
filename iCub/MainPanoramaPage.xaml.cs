@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
+using iCub.Helpers;
 
 namespace iCub
 {
@@ -22,27 +23,26 @@ namespace iCub
         }
 
 
-
         #region Url Click Events
 
         private void Twitter_Click(object sender, RoutedEventArgs e)
         {
-            OpenWebBrowser(new Uri("http://mobile.twitter.com/iCub"));
+            WebBrowserHelper.Open(new Uri("http://mobile.twitter.com/iCub"));
         }
 
         private void YouTube_Click(object sender, RoutedEventArgs e)
         {
-            OpenWebBrowser(new Uri("http://m.youtube.com/robotcub"));
+            WebBrowserHelper.Open(new Uri("http://m.youtube.com/robotcub"));
         }
 
         private void Facebook_Click(object sender, RoutedEventArgs e)
         {
-            OpenWebBrowser(new Uri("http://m.facebook.com/pages/iCub-the-humanoid-robot/10150110507640327"));
+            WebBrowserHelper.Open(new Uri("http://m.facebook.com/pages/iCub-the-humanoid-robot/10150110507640327"));
         }
 
         private void OfficialSite_Click(object sender, RoutedEventArgs e)
         {
-
+            WebBrowserHelper.Open(new Uri("http://www.icub.org/"));
         }
 
         private void IIT_Click(object sender, RoutedEventArgs e)
@@ -71,12 +71,5 @@ namespace iCub
         }
 
         #endregion
-
-
-        private void OpenWebBrowser(Uri url)
-        {
-            new WebBrowserTask() { Uri = url }.Show();
-        }
-
     }
 }

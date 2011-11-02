@@ -1,11 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Papers>
-  <Paper Title="Paper 1" Url="http://www.microsoft.com"
-         Abstract="lsa ifsaodf hsdof hasopfh asouhf weouhf asolufhaselh aseiofhi aweofhi waofhi waoehif awoeihf asoehif akjh" />
-  <Paper Title="Paper 2" Url="http://www.microsoft.com"
-         Abstract="lsa ifsaodf hsdof hasopfh asouhf weouhf asolufhaselh aseiofhi aweofhi waofhi waoehif awoeihf asoehif akjh" />
-  <Paper Title="Paper 3" Url="http://www.microsoft.com"
-         Abstract="lsa ifsaodf hsdof hasopfh asouhf weouhf asolufhaselh aseiofhi aweofhi waofhi waoehif awoeihf asoehif akjh" />
-  <Paper Title="Paper 4" Url="http://www.microsoft.com"
-         Abstract="lsa ifsaodf hsdof hasopfh asouhf weouhf asolufhaselh aseiofhi aweofhi waofhi waoehif awoeihf asoehif akjh" />
+  <Paper Title="Ivaldi, S. and Fumagalli, M. and Randazzo, M. and Nori, F. and Metta, G. and Sandini, G. (2011). Computing robot internal/external wrenches by means of inertial, tactile and F/T sensors: theory and implementation on the iCub .
+Proc. of the 11th IEEE-RAS International Conference on Humanoid Robots - HUMANOIDS'11. Bled, Slovenia." 
+         Url="http://www.microsoft.com"
+         Abstract="iDyn - GPL dynamics library, whole body dynamics of iCub" />
+  
+  <Paper Title="Berret, B. and Ivaldi, S. and Nori, F. and Sandini, G. (2011). Stochastic optimal control with variable impedance manipulators in presence of uncertainties and delayed feedback.
+Proceedings of the 2011 IEEE/RSJ International Conference on Intelligent Robots and Systems - IROS 2011. San Francisco, CA, USA." 
+         Url="http://www.microsoft.com"
+         Abstract="Variable impedance control on the iCub arm" />
+  
+  <Paper Title="Randazzo M., Fumagalli M., Nori F., Natale L., Metta G. and Sandini G. (2011) A comparison between joint level torque sensing and proximal F/T sensor torque estimation: implementation on the iCub.
+Proceedings of the 2011 IEEE/RSJ International Conference on Intelligent Robots and Systems - IROS 2011. San Francisco, CA, USA." 
+         Url="http://www.microsoft.com"
+         Abstract="Joint torque sensors, proximal Force/Torque sensors, iCub arm v2" />
+  
+  <Paper Title="Pattacini U., Nori F., Natale L., Metta G. and Sandini G. (2010) An Experimental Evaluation of a Novel Minimum-Jerk Cartesian Controller for Humanoid Robots,  IEEE/RSJ International Conference on Intelligent Robots and Systems - IROS 2010.  Taipei, Taiwan." 
+         Url="http://www.microsoft.com"
+         Abstract="iKin - GPL kinematics library, inverse kinematics of iCub" />
 </Papers>

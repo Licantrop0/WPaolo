@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Projects>
-  <Project Name="Project 1" Logo="Images\Logos\Robotcub.png" Url="http://www.icub.org"
-           Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof sf jasòfjaosifaosifj asoifhjsaeoighfaso ghdaoghasdogih asòifh asòohif asoghi saoògih asòoigh asoeghi asoeigh asoegi" />
-  <Project Name="Project 2" Logo="Images\Logos\Robotcub.png" Url="http://www.icub.org"
-           Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof sf jasòfjaosifaosifj asoifhjsaeoighfaso ghdaoghasdogih asòifh asòohif asoghi saoògih asòoigh asoeghi asoeigh asoegi" />
-  <Project Name="Project 3" Logo="Images\Logos\Robotcub.png" Url="http://www.icub.org"
-           Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof sf jasòfjaosifaosifj asoifhjsaeoighfaso ghdaoghasdogih asòifh asòohif asoghi saoògih asòoigh asoeghi asoeigh asoegi" />
-  <Project Name="Project 4" Logo="Images\Logos\Robotcub.png" Url="http://www.icub.org"
-           Description="asfpoasifapofiapsdoifpsofi asfiafsapfoi aspfoi aspofi aspof sf jasòfjaosifaosifj asoifhjsaeoighfaso ghdaoghasdogih asòifh asòohif asoghi saoògih asòoigh asoeghi asoeigh asoegi" />
+  <Project Name="RobotCub" Logo="Images\Logos\Robotcub.png" Url="http://www.robotcub.org/"
+           Description="The goal of RobotCub was to study cognition through the implementation of a humanoid robot the size of a 3.5 year old child: the iCub. This is a fully open source &amp; hardware project, one of a kind! This is the project that started the iCub both in hardware and software." />
+  <Project Name="EFAA" Logo="Images\Logos\Efaa.png" Url="http://efaa.upf.edu/"
+           Description="The Experimental Functional Android Assistant (EFAA) project will contribute to the development of socially intelligent humanoids by advancing the state of the art in both single human-like social capabilities and in their integration in a consistent architecture." />
+  <Project Name="Xperience" Logo="Images\Logos\Xperience.png" Url="http://www.xperience.org/"
+           Description="Xperience will demonstrate that state-of-the-art enactive systems can be significantly extended by using structural bootstrapping to generate new knowledge. This process is founded on explorative knowledge acquisition, and subsequently validated through experience-based generalization." />
 </Projects>

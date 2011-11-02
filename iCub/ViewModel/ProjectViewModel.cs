@@ -23,6 +23,21 @@ namespace iCub.ViewModel
             Url = url;
         }
 
+        private bool _isExpanded;
+        public bool IsExpanded
+        {
+            get { return _isExpanded; }
+
+            set
+            {
+                if (_isExpanded == value)
+                    return;
+
+                _isExpanded = value;
+                RaisePropertyChanged("IsExpanded");
+            }
+        }
+
         private RelayCommand _openUrl;
         public RelayCommand OpenUrl
         {

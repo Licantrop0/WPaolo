@@ -19,70 +19,96 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:MainPanoramaViewModel x:Name="MainPanoramaVM" xmlns:vm="clr-namespace:iCub.ViewModel" />
+        <Storyboard x:Name="ImageCycleStoryboard" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                       Storyboard.TargetName="iCubImage2">
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+
+                <EasingDoubleKeyFrame KeyTime="0:0:9" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:9.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                       Storyboard.TargetName="iCubImage3">
+                <EasingDoubleKeyFrame KeyTime="0:0:7" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:8" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+
+                <EasingDoubleKeyFrame KeyTime="0:0:12" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:13" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </phone:PhoneApplicationPage.Resources>
 
 
     <Grid x:Name="LayoutRoot" DataContext="{StaticResource MainPanoramaVM}">
         <controls:Panorama Title="iCub the Humanoid Robot">
             <controls:PanoramaItem Header="The Robot">
-                <controls:PanoramaItem.Resources>
-                    <Storyboard x:Name="ImageCycle1Storyboard" RepeatBehavior="Forever">
-                        <DoubleAnimation Duration="0:0:0.5" To="1"
-                                         BeginTime="0:0:5"
-                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                         Storyboard.TargetName="iCubImage2"
-                                         d:IsOptimized="True">
-                            <DoubleAnimation.EasingFunction>
-                                <CubicEase EasingMode="EaseIn"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                    </Storyboard>
-                </controls:PanoramaItem.Resources>
-
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger>
-                        <im:ControlStoryboardAction Storyboard="{StaticResource ImageCycle1Storyboard}"/>
+                        <im:ControlStoryboardAction Storyboard="{StaticResource ImageCycleStoryboard}"/>
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
 
                 <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                    <Image Name="iCubImage1" Source="Images\iCub1.png" VerticalAlignment="Top" />
-                    <Image Name="iCubImage2" Source="Images\iCub2.png" VerticalAlignment="Top" Opacity="0" />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="1" Style="{StaticResource DescriptionStyle}">
-                        iCub bla bla mega robot bla<LineBreak />
-                        iCub bla bla bla troppo forte<LineBreak />
-                        iCub bla bla bla bla bla yea
-                    </TextBlock>
-                    
+                    <Image Name="iCubImage1" Source="Images\iCub1.jpg" />
+                    <Image Name="iCubImage2" Source="Images\iCub2.jpg" Opacity="0" />
+                    <Image Name="iCubImage3" Source="Images\iCub3.jpg" Opacity="0" />
+
+                    <ScrollViewer Grid.Row="1" >
+                        <TextBlock Style="{StaticResource DescriptionStyle}">
+                            iCub bla bla mega robot bla<LineBreak />
+                            iCub bla bla bla troppo forte<LineBreak />
+                            iCub bla bla bla bla bla yea
+                        </TextBlock>
+                    </ScrollViewer>
+
                     <HyperlinkButton Content="Official Site" Click="OfficialSite_Click" Grid.Row="2"
                                      Style="{StaticResource HyperLinkButtonStyle}"/>
                 </Grid>
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="Projects">
-                <ListBox ItemsSource="{Binding Projects}">
+                <ListBox ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject, Mode=TwoWay}">
                     <ListBox.ItemTemplate>
-                        <DataTemplate>                            
-                            <!--Sei sicura di volere un ExpanderView?
-                                Dove si clicca per aprire la pagina del progetto?-->
-                            <toolkit:ExpanderView Width="400" >
+                        <DataTemplate>
+                            <toolkit:ExpanderView IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
                                 <toolkit:ExpanderView.Header>
-                                    <StackPanel Orientation="Horizontal" Height="48" >
-                                        <Image Source="{Binding Logo}" Height="48" Margin="8,0"  />
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
-                                    </StackPanel>
+                                    <Grid Width="400">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Name}" Margin="8" FontWeight="Bold"
+                                                   FontSize="{StaticResource PhoneFontSizeMedium}" />
+                                        <Image Source="{Binding Logo}" Height="64" Margin="8"
+                                               Grid.Column="1" HorizontalAlignment="Right"  />
+                                    </Grid>
                                 </toolkit:ExpanderView.Header>
                                 <toolkit:ExpanderView.Items>
                                     <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,8"/>
+                                    <HyperlinkButton Content="Open the Project's Site" Command="{Binding OpenUrl}"
+                                                     HorizontalAlignment="Left"/>
                                 </toolkit:ExpanderView.Items>
                             </toolkit:ExpanderView>
-
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -103,10 +129,31 @@
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="Social">
+                <!--Anche se non vedi le immagini del bottone in realtà ci sono!, le vedi con Blend-->
                 <StackPanel>
-                    <HyperlinkButton Content="Twitter" Click="Twitter_Click" Style="{StaticResource HyperLinkButtonStyle}" />
-                    <HyperlinkButton Content="YouTube" Click="YouTube_Click" Style="{StaticResource HyperLinkButtonStyle}"/>
-                    <HyperlinkButton Content="Facebook" Click="Facebook_Click" Style="{StaticResource HyperLinkButtonStyle}"/>
+                    <Button Click="Twitter_Click" Margin="0,12" toolkit:TiltEffect.IsTiltEnabled="True">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Source="Images/twitter.png" Stretch="None" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Click="Facebook_Click" Margin="0,12" toolkit:TiltEffect.IsTiltEnabled="True">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Source="Images/facebook.png" Stretch="None" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Click="YouTube_Click" Margin="0,12" toolkit:TiltEffect.IsTiltEnabled="True">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Source="Images/youtube.png" Stretch="None" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </StackPanel>
             </controls:PanoramaItem>
 

@@ -41,7 +41,7 @@ namespace iCub.ViewModel
         private RelayCommand _openUrl;
         public RelayCommand OpenUrl
         {
-            get { return _openUrl ?? (_openUrl = new RelayCommand(() => WebBrowserHelper.Open(Url))); }
+            get { return _openUrl ?? (_openUrl = new RelayCommand(() => LinksHelper.OpenUrl(Url))); }
         }
     }
 }

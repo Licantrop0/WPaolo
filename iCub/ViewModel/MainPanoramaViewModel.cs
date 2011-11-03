@@ -10,11 +10,13 @@ namespace iCub.ViewModel
     {
         public IEnumerable<PaperViewModel> Papers { get; private set; }
         public ObservableCollection<ProjectViewModel> Projects { get; private set; }
+        public IEnumerable<ContactViewModel> Contacts { get; private set; }
 
         public MainPanoramaViewModel()
         {
             Papers = DataService.GetPapers();
             Projects = new ObservableCollection<ProjectViewModel>(DataService.GetProjects());
+            Contacts = DataService.GetContacts();
         }
 
         public ProjectViewModel SelectedProject

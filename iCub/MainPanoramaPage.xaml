@@ -19,6 +19,7 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:MainPanoramaViewModel x:Name="MainPanoramaVM" xmlns:vm="clr-namespace:iCub.ViewModel" />
+        
         <Storyboard x:Name="ImageCycleStoryboard" RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
                                                        Storyboard.TargetName="iCubImage2">
@@ -52,10 +53,18 @@
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
 
-
     <Grid x:Name="LayoutRoot" DataContext="{StaticResource MainPanoramaVM}">
-        <controls:Panorama Title="iCub the Humanoid Robot">
-            <controls:PanoramaItem Header="The Robot">
+        <controls:Panorama>
+            <controls:Panorama.Title>
+                <TextBlock Text="iCub the Humanoid Robot" />
+            </controls:Panorama.Title>
+
+            <!--THE ROBOT-->
+            <controls:PanoramaItem Margin="0,-40,0,0">
+                <controls:PanoramaItem.Header>
+                    <TextBlock Text="The Robot" Margin="0, -15" />
+                </controls:PanoramaItem.Header>
+
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger>
                         <im:ControlStoryboardAction Storyboard="{StaticResource ImageCycleStoryboard}"/>
@@ -75,7 +84,7 @@
 
                     <ScrollViewer Grid.Row="1" >
                         <TextBlock Style="{StaticResource DescriptionStyle}">
-                            iCub bla bla mega robot bla<LineBreak />
+                            iCub bla bla uber mega robot<LineBreak />
                             iCub bla bla bla troppo forte<LineBreak />
                             iCub bla bla bla bla bla yea
                         </TextBlock>
@@ -86,8 +95,13 @@
                 </Grid>
             </controls:PanoramaItem>
 
-            <controls:PanoramaItem Header="Projects">
-                <ListBox ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject, Mode=TwoWay}">
+            <!--PROJECTS-->
+            <controls:PanoramaItem Margin="0,-40,0,0">
+                <controls:PanoramaItem.Header>
+                    <TextBlock Text="Projects" Margin="0, -15" />
+                </controls:PanoramaItem.Header>
+                <ListBox ItemsSource="{Binding Projects}"
+                         SelectedItem="{Binding SelectedProject, Mode=TwoWay}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <toolkit:ExpanderView IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
@@ -114,21 +128,59 @@
                 </ListBox>
             </controls:PanoramaItem>
 
-            <controls:PanoramaItem Header="Papers">
+            <!--PAPERS-->
+            <controls:PanoramaItem Margin="0,-40,0,0">
+                <controls:PanoramaItem.Header>
+                    <TextBlock Text="Papers" Margin="0, -15" />
+                </controls:PanoramaItem.Header>
                 <ListBox ItemsSource="{Binding Papers}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <HyperlinkButton Content="{Binding Title}" Command="{Binding OpenUrl}"
-                                                 HorizontalAlignment="Left" />
-                                <TextBlock Text="{Binding Abstr}" TextWrapping="Wrap" />
-                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="{Binding Title}" TextWrapping="Wrap"
+                                           TextAlignment="Center" FontWeight="Bold"
+                                           FontSize="{StaticResource PhoneFontSizeMedium}"
+                                           Grid.ColumnSpan="2" Margin="8" />
+
+                                <TextBlock Text="Authors:" Grid.Row="1" />
+                                <TextBlock Text="{Binding Authors}" TextWrapping="Wrap"
+                                           Grid.Row="1" Grid.Column="1"
+                                           FontStyle="Italic" />
+
+                                <TextBlock Text="Abstract:  " Grid.Row="3" />
+                                <TextBlock Text="{Binding Abstr}" TextWrapping="Wrap"
+                                           Grid.Row="3" Grid.Column="1" />
+
+                                <TextBlock Text="Year:" Grid.Row="2" />
+                                <TextBlock Text="{Binding Year}"
+                                           Grid.Row="2" Grid.Column="1"/>
+
+                                <HyperlinkButton Content="Read the Paper" Command="{Binding OpenUrl}"
+                                                 HorizontalAlignment="Left" Margin="0,0,0,24"
+                                                 Grid.Row="4" Grid.ColumnSpan="2"/>
+                            </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
             </controls:PanoramaItem>
 
-            <controls:PanoramaItem Header="Social">
+            <!--SOCIAL-->
+            <controls:PanoramaItem Margin="0,-40,0,0">
+                <controls:PanoramaItem.Header>
+                    <TextBlock Text="Social" Margin="0, -15" />
+                </controls:PanoramaItem.Header>
                 <!--Anche se non vedi le immagini del bottone in realtà ci sono!, le vedi con Blend-->
                 <StackPanel>
                     <Button Click="Twitter_Click" Margin="0,12" toolkit:TiltEffect.IsTiltEnabled="True">
@@ -156,15 +208,35 @@
                     </Button>
                 </StackPanel>
             </controls:PanoramaItem>
-
-            <controls:PanoramaItem Header="Contacts">
-                <StackPanel>
-                    <HyperlinkButton Content="IIT Genoa" Click="IIT_Click" Style="{StaticResource HyperLinkButtonStyle}"/>
-                    <HyperlinkButton Content="Giorgio Metta" Click="GiorgioMetta_Click" Style="{StaticResource HyperLinkButtonStyle}" />
-                    <HyperlinkButton Content="iCub Support" Click="iCubSupport_Click" Style="{StaticResource HyperLinkButtonStyle}" />
-                    <HyperlinkButton Content="HackerList" Click="HackerList_Click" Style="{StaticResource HyperLinkButtonStyle}" />
-                    <HyperlinkButton Content="Serena Ivaldi - This App" Click="SerenaIvaldi_Click" Style="{StaticResource HyperLinkButtonStyle}" />
-                </StackPanel>
+            
+            <!--CONTACTS-->
+            <controls:PanoramaItem Margin="0,-40,0,0">
+                <controls:PanoramaItem.Header>
+                    <TextBlock Text="Contacts" Margin="0, -15" />
+                </controls:PanoramaItem.Header>
+                <!--Anche se non vedi le immagini del bottone in realtà ci sono!, le vedi con Blend-->
+                <ListBox ItemsSource="{Binding Contacts}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding SendMail}" Margin="24"
+                                    toolkit:TiltEffect.IsTiltEnabled="True">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <Image Source="{Binding Image}" Stretch="None" />
+                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
+                                        </StackPanel>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <toolkit:WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
             </controls:PanoramaItem>
         </controls:Panorama>
 

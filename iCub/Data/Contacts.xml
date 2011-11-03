@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Contacts>
+  <Contact Name="Serena Ivaldi" Image="Images\Contacts\Serena Ivaldi.jpg" Mail="serena.ivaldi@gmail.it" />
+  <Contact Name="IIT Genoa" Image="Images\Contacts\IIT.png" Mail="iit@iit.it" />
+  <Contact Name="Giorgio Metta" Image="Images\Contacts\Giorgio Metta.jpg" Mail="giorgio.metta@iit.it" />
+  <Contact Name="iCub Support" Image="Images\Contacts\iCub Support.jpg" Mail="support@icub.org" />
+  <Contact Name="HackerList" Image="Images\Contacts\Serena Ivaldi.jpg" Mail="hackerlist@icub.org" />
+</Contacts>

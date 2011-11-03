@@ -87,10 +87,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\WebBrowserHelper.cs" />
+    <Compile Include="Helpers\LinksHelper.cs" />
     <Compile Include="MainPanoramaPage.xaml.cs">
       <DependentUpon>MainPanoramaPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ContactViewModel.cs" />
     <Compile Include="ViewModel\ProjectViewModel.cs" />
     <Compile Include="ViewModel\PaperViewModel.cs" />
     <Compile Include="Data\DataService.cs" />
@@ -118,6 +119,7 @@
     <Content Include="Background.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\Contacts.xml" />
     <Content Include="Data\Papers.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -134,6 +136,10 @@
     <Resource Include="Images\Logos\Xperience.png" />
     <Resource Include="Images\twitter.png" />
     <Resource Include="Images\youtube.png" />
+    <Resource Include="Images\Contacts\IIT.png" />
+    <Resource Include="Images\Contacts\Serena Ivaldi.jpg" />
+    <Resource Include="Images\Contacts\Giorgio Metta.jpg" />
+    <Resource Include="Images\Contacts\iCub Support.jpg" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

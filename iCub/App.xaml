@@ -14,6 +14,7 @@
     	        
         <Style TargetType="HyperlinkButton" x:Key="HyperLinkButtonStyle">
             <Setter Property="Margin" Value="0,0,0,12" />
+            <Setter Property="Foreground" Value="#FF008EFC" />
         </Style>
         
         <Style TargetType="TextBlock" x:Key="DescriptionStyle">

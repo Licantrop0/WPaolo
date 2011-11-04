@@ -1,27 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Tasks;
 using iCub.Helpers;
+using Microsoft.Advertising.Mobile.UI;
+using Microsoft.Phone.Controls;
 
 namespace iCub
 {
     public partial class MainPanoramaPage : PhoneApplicationPage
     {
+        private AdControl AdControl1;
+
         public MainPanoramaPage()
         {
             InitializeComponent();
+            AdControl1 = new AdControl("1f60dbed-6964-46b6-b0ea-b847a6306ce2", "10022720", true)
+            {
+                Height = 80,
+                Width = 480
+            };
         }
 
+        //Hack per evitare il crash dell'AdControl quando si naviga
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            AdPlaceholder.Children.Add(AdControl1);
+            base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            AdPlaceholder.Children.Clear();
+            base.OnNavigatedFrom(e);
+        }
 
         #region Url Click Events
 

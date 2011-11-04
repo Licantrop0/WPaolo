@@ -140,6 +140,19 @@
     <Resource Include="Images\Contacts\Serena Ivaldi.jpg" />
     <Resource Include="Images\Contacts\Giorgio Metta.jpg" />
     <Resource Include="Images\Contacts\iCub Support.jpg" />
+    <Resource Include="Images\Logos\Amarsi.png" />
+    <Resource Include="Images\Logos\Chris.png" />
+    <Resource Include="Images\Logos\Darwin.png" />
+    <Resource Include="Images\Logos\Emorph.png" />
+    <Resource Include="Images\Logos\Imclever.png" />
+    <Resource Include="Images\Logos\Italk.png" />
+    <Resource Include="Images\Logos\Macsi.png" />
+    <Resource Include="Images\Logos\Poeticon.png" />
+    <Resource Include="Images\Logos\Roboskin.png" />
+    <Resource Include="Images\Logos\Robotdoc.png" />
+    <Resource Include="Images\Logos\rossi.png" />
+    <Resource Include="Images\Contacts\icub2.jpg" />
+    <Resource Include="Images\Contacts\icub.jpg" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

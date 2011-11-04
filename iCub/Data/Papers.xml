@@ -5,26 +5,26 @@
          Abstract="iDyn - GPL dynamics library, whole body dynamics of iCub"
          Location="Proc. of the 11th IEEE-RAS International Conference on Humanoid Robots - HUMANOIDS'11. Bled, Slovenia."
          Year="2011"
-         Url="http://www.microsoft.com" />
+         Url="http://people.liralab.it/iron/Papers/conference/780_Ivaldi_etal2011.pdf" />
   
   <Paper Title="Stochastic optimal control with variable impedance manipulators in presence of uncertainties and delayed feedback"
          Authors="Berret, B. and Ivaldi, S. and Nori, F. and Sandini, G."
          Abstract="Variable impedance control on the iCub arm"
          Location="Proceedings of the 2011 IEEE/RSJ International Conference on Intelligent Robots and Systems - IROS 2011. San Francisco, CA, USA."
          Year="2011"
-         Url="http://www.microsoft.com" />
+         Url="http://people.liralab.it/iron/Papers/conference/941_Berret_etal2011.pdf" />
   
   <Paper Title="A comparison between joint level torque sensing and proximal F/T sensor torque estimation: implementation on the iCub"
          Authors="Randazzo M., Fumagalli M., Nori F., Natale L., Metta G. and Sandini G."
          Abstract="Joint torque sensors, proximal Force/Torque sensors, iCub arm v2"
          Location="Proceedings of the 2011 IEEE/RSJ International Conference on Intelligent Robots and Systems - IROS 2011. San Francisco, CA, USA." 
          Year="2011"
-         Url="http://www.microsoft.com" />
+         Url="http://people.liralab.it/iron/Papers/conference/956_Randazzo_etal2011.pdf" />
   
   <Paper Title="An Experimental Evaluation of a Novel Minimum-Jerk Cartesian Controller for Humanoid Robots"
          Authors="Pattacini U., Nori F., Natale L., Metta G. and Sandini G."
          Abstract="iKin - GPL kinematics library, inverse kinematics of iCub"
          Location="IEEE/RSJ International Conference on Intelligent Robots and Systems - IROS 2010. Taipei, Taiwan." 
          Year="2010"
-         Url="http://www.microsoft.com" />
+         Url="http://eris.liralab.it/viki/images/c/cf/CartesianControllersEvaluation.pdf" />
 </Papers>

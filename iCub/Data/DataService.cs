@@ -44,7 +44,8 @@ namespace iCub.Data
                 new ContactViewModel(
                     p.Attribute("Name").Value,
                     new Uri(p.Attribute("Image").Value, UriKind.Relative),
-                    p.Attribute("Mail").Value
+                    p.Attribute("Mail").Value,
+                    p.Attribute("Keyword").Value
                     ));
         }
 

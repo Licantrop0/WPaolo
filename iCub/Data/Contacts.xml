@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Contacts>
-  <Contact Name="Serena Ivaldi" Image="Images\Contacts\Serena Ivaldi.jpg" Mail="serena.ivaldi@gmail.it" />
-  <Contact Name="IIT Genoa" Image="Images\Contacts\IIT.png" Mail="iit@iit.it" />
-  <Contact Name="Giorgio Metta" Image="Images\Contacts\Giorgio Metta.jpg" Mail="giorgio.metta@iit.it" />
-  <Contact Name="iCub Support" Image="Images\Contacts\iCub Support.jpg" Mail="support@icub.org" />
-  <Contact Name="HackerList" Image="Images\Contacts\Serena Ivaldi.jpg" Mail="hackerlist@icub.org" />
+  <Contact Name="iCub.org" Image="Images\Contacts\icub.jpg" Mail="info@icub.org" Keyword="Official contact" />
+  <Contact Name="iCub Support" Image="Images\Contacts\iCub Support.jpg" Mail="support@icub.org" Keyword="Official support service" />
+  <Contact Name="RobotCub Hacker List" Image="Images\Contacts\icub2.jpg" Mail="robotcub-hackers@lists.sourceforge.net" Keyword="Official mailing list for iCub and YARP users" />
+  <Contact Name="Serena Ivaldi" Image="Images\Contacts\Serena Ivaldi.jpg" Mail="serena.ivaldi@gmail.com" Keyword="About this app" />
+  <Contact Name="Giorgio Metta" Image="Images\Contacts\Giorgio Metta.jpg" Mail="giorgio.metta@iit.it" Keyword="The father of the iCub" />
 </Contacts>

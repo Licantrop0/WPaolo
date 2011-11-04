@@ -54,9 +54,9 @@
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" DataContext="{StaticResource MainPanoramaVM}">
-        <controls:Panorama>
+        <controls:Panorama Foreground="#FF010202" Background="White" VerticalAlignment="Stretch" VerticalContentAlignment="Bottom">
             <controls:Panorama.Title>
-                <TextBlock Text="iCub the Humanoid Robot" />
+                <TextBlock Text="iCub the Humanoid Robot" FontSize="187" />
             </controls:Panorama.Title>
 
             <!--THE ROBOT-->
@@ -84,14 +84,15 @@
 
                     <ScrollViewer Grid.Row="1" >
                         <TextBlock Style="{StaticResource DescriptionStyle}">
-                            iCub bla bla uber mega robot<LineBreak />
-                            iCub bla bla bla troppo forte<LineBreak />
-                            iCub bla bla bla bla bla yea
+                            The iCub is the humanoid robot developed as part of the EU project RobotCub and subsequently adopted by more than 20 laboratories worldwide. <LineBreak />
+                            It has 53 motors that move the head, arms and hands, waist, and legs. <LineBreak />
+                            It can see and hear, it has the sense of proprioception (body configuration) and movement (using accelerometers and gyroscopes). <LineBreak />
+                            He has the sense of touch (capacitive tactile skin) and can compute how much force it exerts on the environment (force/torque sensors).
                         </TextBlock>
                     </ScrollViewer>
 
-                    <HyperlinkButton Content="Official Site" Click="OfficialSite_Click" Grid.Row="2"
-                                     Style="{StaticResource HyperLinkButtonStyle}"/>
+                    <HyperlinkButton Content="www.icub.org" Click="OfficialSite_Click" Grid.Row="2"
+                                     Style="{StaticResource HyperLinkButtonStyle}" Foreground="#FF008EFC" />
                 </Grid>
             </controls:PanoramaItem>
 
@@ -101,7 +102,7 @@
                     <TextBlock Text="Projects" Margin="0, -15" />
                 </controls:PanoramaItem.Header>
                 <ListBox ItemsSource="{Binding Projects}"
-                         SelectedItem="{Binding SelectedProject, Mode=TwoWay}">
+                         SelectedItem="{Binding SelectedProject, Mode=TwoWay}" Foreground="#FF1287D2">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <toolkit:ExpanderView IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
@@ -120,7 +121,7 @@
                                 <toolkit:ExpanderView.Items>
                                     <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,8"/>
                                     <HyperlinkButton Content="Open the Project's Site" Command="{Binding OpenUrl}"
-                                                     HorizontalAlignment="Left"/>
+                                                     HorizontalAlignment="Left" Foreground="Black" />
                                 </toolkit:ExpanderView.Items>
                             </toolkit:ExpanderView>
                         </DataTemplate>
@@ -149,25 +150,25 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Text="{Binding Title}" TextWrapping="Wrap"
+                                <TextBlock Text="{Binding Title}" Foreground="#FF068EE5" TextWrapping="Wrap"
                                            TextAlignment="Center" FontWeight="Bold"
                                            FontSize="{StaticResource PhoneFontSizeMedium}"
                                            Grid.ColumnSpan="2" Margin="8" />
 
-                                <TextBlock Text="Authors:" Grid.Row="1" />
-                                <TextBlock Text="{Binding Authors}" TextWrapping="Wrap"
+                                <TextBlock Text="Authors:" Grid.Row="1" Foreground="#FF030303" />
+                                <TextBlock Text="{Binding Authors}" Foreground="#FF030303" TextWrapping="Wrap"
                                            Grid.Row="1" Grid.Column="1"
                                            FontStyle="Italic" />
 
-                                <TextBlock Text="Abstract:  " Grid.Row="3" />
-                                <TextBlock Text="{Binding Abstr}" TextWrapping="Wrap"
+                                <TextBlock Text="Keywords:  " Foreground="#FF030303" Grid.Row="3" />
+                                <TextBlock Text="{Binding Abstr}" Foreground="#FF030303" TextWrapping="Wrap"
                                            Grid.Row="3" Grid.Column="1" />
 
-                                <TextBlock Text="Year:" Grid.Row="2" />
-                                <TextBlock Text="{Binding Year}"
+                                <TextBlock Text="Year:" Grid.Row="2" Foreground="#FF030303" />
+                                <TextBlock Text="{Binding Year}" Foreground="#FF030303"
                                            Grid.Row="2" Grid.Column="1"/>
 
-                                <HyperlinkButton Content="Read the Paper" Command="{Binding OpenUrl}"
+                                <HyperlinkButton Content="Read the Paper" Foreground="#FF030303" Command="{Binding OpenUrl}"
                                                  HorizontalAlignment="Left" Margin="0,0,0,24"
                                                  Grid.Row="4" Grid.ColumnSpan="2"/>
                             </Grid>
@@ -215,7 +216,7 @@
                     <TextBlock Text="Contacts" Margin="0, -15" />
                 </controls:PanoramaItem.Header>
                 <!--Anche se non vedi le immagini del bottone in realtà ci sono!, le vedi con Blend-->
-                <ListBox ItemsSource="{Binding Contacts}">
+                <ListBox ItemsSource="{Binding Contacts}" Foreground="Black">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Button Command="{Binding SendMail}" Margin="24"
@@ -224,7 +225,8 @@
                                     <ControlTemplate>
                                         <StackPanel HorizontalAlignment="Center">
                                             <Image Source="{Binding Image}" Stretch="None" />
-                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
+                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Foreground="#FF070707" />
+                                            <TextBlock Text="{Binding Keyword}" HorizontalAlignment="Center" Foreground="#FF070707" FontSize="16" />
                                         </StackPanel>
                                     </ControlTemplate>
                                 </Button.Template>

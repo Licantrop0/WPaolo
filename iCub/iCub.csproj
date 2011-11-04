@@ -153,6 +153,10 @@
     <Resource Include="Images\Logos\rossi.png" />
     <Resource Include="Images\Contacts\icub2.jpg" />
     <Resource Include="Images\Contacts\icub.jpg" />
+    <Resource Include="Images\173.png" />
+    <Resource Include="Images\200.png" />
+    <Resource Include="Images\62.png" />
+    <Resource Include="Images\99.png" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

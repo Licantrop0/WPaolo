@@ -45,31 +45,6 @@ namespace iCub
             LinksHelper.OpenUrl(new Uri("http://www.icub.org/"));
         }
 
-        private void IIT_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void GiorgioMetta_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void iCubSupport_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void HackerList_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void SerenaIvaldi_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         #endregion
     }
 }

@@ -10,14 +10,14 @@ namespace iCub.ViewModel
         public string Name { get; private set; }
         public Uri Image { get; private set; }
         public string Mail { get; private set; }
-        public string Keyword { get; private set; }
+        public string Description { get; private set; }
 
-        public ContactViewModel(string name, Uri image, string mail, string key)
+        public ContactViewModel(string name, Uri image, string mail, string description)
         {
             Name = name;
             Image = image;
             Mail = mail;
-            Keyword = key;
+            Description = description;
         }
 
         private RelayCommand _sendMail;

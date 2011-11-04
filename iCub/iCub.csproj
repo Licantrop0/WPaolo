@@ -29,6 +29,8 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.30816.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -130,33 +132,33 @@
     <Resource Include="Images\iCub1.jpg" />
     <Resource Include="Images\iCub2.jpg" />
     <Resource Include="Images\iCub3.jpg" />
-    <Resource Include="Images\Logos\Efaa.png" />
-    <Resource Include="Images\facebook.png" />
-    <Resource Include="Images\Logos\Robotcub.png" />
-    <Resource Include="Images\Logos\Xperience.png" />
-    <Resource Include="Images\twitter.png" />
-    <Resource Include="Images\youtube.png" />
+    <Resource Include="Images\Projects\Efaa.png" />
+    <Resource Include="Images\Social\facebook.png" />
+    <Resource Include="Images\Projects\Robotcub.png" />
+    <Resource Include="Images\Projects\Xperience.png" />
+    <Resource Include="Images\Social\twitter.png" />
+    <Resource Include="Images\Social\youtube.png" />
     <Resource Include="Images\Contacts\IIT.png" />
     <Resource Include="Images\Contacts\Serena Ivaldi.jpg" />
     <Resource Include="Images\Contacts\Giorgio Metta.jpg" />
     <Resource Include="Images\Contacts\iCub Support.jpg" />
-    <Resource Include="Images\Logos\Amarsi.png" />
-    <Resource Include="Images\Logos\Chris.png" />
-    <Resource Include="Images\Logos\Darwin.png" />
-    <Resource Include="Images\Logos\Emorph.png" />
-    <Resource Include="Images\Logos\Imclever.png" />
-    <Resource Include="Images\Logos\Italk.png" />
-    <Resource Include="Images\Logos\Macsi.png" />
-    <Resource Include="Images\Logos\Poeticon.png" />
-    <Resource Include="Images\Logos\Roboskin.png" />
-    <Resource Include="Images\Logos\Robotdoc.png" />
-    <Resource Include="Images\Logos\rossi.png" />
+    <Resource Include="Images\Projects\Amarsi.png" />
+    <Resource Include="Images\Projects\Chris.png" />
+    <Resource Include="Images\Projects\Darwin.png" />
+    <Resource Include="Images\Projects\Emorph.png" />
+    <Resource Include="Images\Projects\Imclever.png" />
+    <Resource Include="Images\Projects\Italk.png" />
+    <Resource Include="Images\Projects\Macsi.png" />
+    <Resource Include="Images\Projects\Poeticon.png" />
+    <Resource Include="Images\Projects\Roboskin.png" />
+    <Resource Include="Images\Projects\Robotdoc.png" />
+    <Resource Include="Images\Projects\rossi.png" />
     <Resource Include="Images\Contacts\icub2.jpg" />
     <Resource Include="Images\Contacts\icub.jpg" />
-    <Resource Include="Images\173.png" />
-    <Resource Include="Images\200.png" />
-    <Resource Include="Images\62.png" />
-    <Resource Include="Images\99.png" />
+    <None Include="Images\Icons\173.png" />
+    <None Include="Images\Icons\200.png" />
+    <None Include="Images\Icons\62.png" />
+    <None Include="Images\Icons\99.png" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

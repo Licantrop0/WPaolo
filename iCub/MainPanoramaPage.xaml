@@ -13,13 +13,12 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" >
 
     <phone:PhoneApplicationPage.Resources>
         <vm:MainPanoramaViewModel x:Name="MainPanoramaVM" xmlns:vm="clr-namespace:iCub.ViewModel" />
-        
+
         <Storyboard x:Name="ImageCycleStoryboard" RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
                                                        Storyboard.TargetName="iCubImage2">
@@ -53,8 +52,14 @@
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" DataContext="{StaticResource MainPanoramaVM}" Background="White">
-        <controls:Panorama Foreground="#FF010202" >
+    <Grid DataContext="{StaticResource MainPanoramaVM}"
+          Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <controls:Panorama Foreground="Black">
             <controls:Panorama.Title>
                 <TextBlock Text="iCub the Humanoid Robot" FontSize="187" />
             </controls:Panorama.Title>
@@ -92,7 +97,7 @@
                     </ScrollViewer>
 
                     <HyperlinkButton Content="www.icub.org" Click="OfficialSite_Click" Grid.Row="2"
-                                     Style="{StaticResource HyperLinkButtonStyle}" Foreground="#FF008EFC" />
+                                     Style="{StaticResource HyperLinkButtonStyle}" />
                 </Grid>
             </controls:PanoramaItem>
 
@@ -184,54 +189,58 @@
                 <controls:PanoramaItem.Header>
                     <TextBlock Text="Social" Margin="0, -15" />
                 </controls:PanoramaItem.Header>
-                <StackPanel>
-                    <Button Click="Twitter_Click" Margin="0,12" toolkit:TiltEffect.IsTiltEnabled="True">
+                <toolkit:WrapPanel HorizontalAlignment="Center" >
+                    <Button Click="Twitter_Click" Margin="24" toolkit:TiltEffect.IsTiltEnabled="True">
                         <Button.Template>
-                            <ControlTemplate>
-                                <Image Source="Images/Social/twitter.png" Stretch="None" />
-                            </ControlTemplate>
+                            <ControlTemplate />
                         </Button.Template>
+                        <Image Source="Images/Social/twitter.png" Stretch="None" />
                     </Button>
 
-                    <Button Click="Facebook_Click" Margin="0,12" toolkit:TiltEffect.IsTiltEnabled="True">
+                    <Button Click="Facebook_Click" Margin="24" toolkit:TiltEffect.IsTiltEnabled="True">
                         <Button.Template>
-                            <ControlTemplate>
-                                <Image Source="Images/Social/facebook.png" Stretch="None" />
-                            </ControlTemplate>
+                            <ControlTemplate />
                         </Button.Template>
+                        <Image Source="Images/Social/facebook.png" Stretch="None" />
                     </Button>
 
-                    <Button Click="YouTube_Click" Margin="0,12" toolkit:TiltEffect.IsTiltEnabled="True">
+                    <Button Click="YouTube_Click" Margin="24" toolkit:TiltEffect.IsTiltEnabled="True">
                         <Button.Template>
-                            <ControlTemplate>
-                                <Image Source="Images/Social/youtube.png" Stretch="None" />
-                            </ControlTemplate>
+                            <ControlTemplate />
                         </Button.Template>
+                        <Image Source="Images/Social/youtube.png" Stretch="None" />
                     </Button>
-                </StackPanel>
+
+                    <HyperlinkButton Margin="24" NavigateUri="/Labs.xaml"
+                                     toolkit:TiltEffect.IsTiltEnabled="True" >
+                        <HyperlinkButton.Template>
+                            <ControlTemplate />
+                        </HyperlinkButton.Template>
+                        <Image Source="Images/Social/maps.png" Stretch="None" />
+                    </HyperlinkButton>
+                </toolkit:WrapPanel>
             </controls:PanoramaItem>
-            
+
             <!--CONTACTS-->
             <controls:PanoramaItem Margin="0,-40,0,0">
                 <controls:PanoramaItem.Header>
                     <TextBlock Text="Contacts" Margin="0, -15" />
                 </controls:PanoramaItem.Header>
-                <ListBox ItemsSource="{Binding Contacts}" Foreground="Black">
+                <ListBox ItemsSource="{Binding Contacts}" HorizontalAlignment="Center">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Button Command="{Binding SendMail}" Margin="24"
+                            <Button Command="{Binding SendMail}" Margin="24,12"
                                     toolkit:TiltEffect.IsTiltEnabled="True">
                                 <Button.Template>
-                                    <ControlTemplate>
-                                        <StackPanel HorizontalAlignment="Center">
-                                            <Image Source="{Binding Image}" Stretch="None" />
-                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"
-                                                       Foreground="#FF1287D2" />
-                                            <TextBlock Text="{Binding Description}" HorizontalAlignment="Center"
-                                                       Foreground="#FF070707" FontSize="16" />
-                                        </StackPanel>
-                                    </ControlTemplate>
+                                    <ControlTemplate />
                                 </Button.Template>
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Image Source="{Binding Image}" Stretch="None" />
+                                    <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"
+                                               Foreground="#FF1287D2" />
+                                    <TextBlock Text="{Binding Description}" HorizontalAlignment="Center"
+                                               Foreground="Black" FontSize="16" />
+                                </StackPanel>
                             </Button>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -243,7 +252,7 @@
                 </ListBox>
             </controls:PanoramaItem>
         </controls:Panorama>
-
+        <StackPanel Name="AdPlaceholder" Grid.Row="1" Height="80" />
     </Grid>
 
 </phone:PhoneApplicationPage>

@@ -1,0 +1,28 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="iCub.Labs"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Landscape" Orientation="Landscape"
+    mc:Ignorable="d" d:DesignHeight="480" d:DesignWidth="728"
+    shell:SystemTray.IsVisible="True"
+    xmlns:m="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
+    xmlns:loc="clr-namespace:System.Device.Location;assembly=System.Device">
+
+    <Grid Background="Transparent">
+        <m:Map ZoomLevel="4" Center="47,16"
+               CredentialsProvider="Ar63BcuMwVFrLtMVbjYlX_vTTm5XtcW9BF5P9JAKSRVStRL-_c8GH1M78uf2Ejel" >
+            <m:Pushpin Location="47,16" Content="Laboratory 1" />
+            <m:Pushpin Location="49,-1" Content="Laboratory 2" />
+            <m:Pushpin Location="40,10" Content="Laboratory 3" />
+            <m:Pushpin Location="43,21" Content="Laboratory 4" />
+        </m:Map>
+    </Grid>
+ 
+</phone:PhoneApplicationPage>

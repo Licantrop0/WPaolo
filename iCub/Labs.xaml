@@ -18,9 +18,9 @@
     <Grid Background="Transparent">
         <m:Map ZoomLevel="4" Center="47,16"
                CredentialsProvider="Ar63BcuMwVFrLtMVbjYlX_vTTm5XtcW9BF5P9JAKSRVStRL-_c8GH1M78uf2Ejel" >
-            <m:Pushpin Location="47,16" Content="Laboratory 1" />
-            <m:Pushpin Location="49,-1" Content="Laboratory 2" />
-            <m:Pushpin Location="40,10" Content="Laboratory 3" />
+            <m:Pushpin Location="47,16.834" Content="Laboratory 1" />
+            <m:Pushpin Location="49.3436,-1" Content="Laboratory 2" />
+            <m:Pushpin Location="40.456,9.545" Content="Laboratory 3" />
             <m:Pushpin Location="43,21" Content="Laboratory 4" />
         </m:Map>
     </Grid>

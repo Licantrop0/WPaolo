@@ -53,8 +53,8 @@
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" DataContext="{StaticResource MainPanoramaVM}">
-        <controls:Panorama Foreground="#FF010202" Background="White" VerticalAlignment="Stretch" VerticalContentAlignment="Bottom">
+    <Grid x:Name="LayoutRoot" DataContext="{StaticResource MainPanoramaVM}" Background="White">
+        <controls:Panorama Foreground="#FF010202" >
             <controls:Panorama.Title>
                 <TextBlock Text="iCub the Humanoid Robot" FontSize="187" />
             </controls:Panorama.Title>
@@ -102,10 +102,11 @@
                     <TextBlock Text="Projects" Margin="0, -15" />
                 </controls:PanoramaItem.Header>
                 <ListBox ItemsSource="{Binding Projects}"
-                         SelectedItem="{Binding SelectedProject, Mode=TwoWay}" Foreground="#FF1287D2">
+                         SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
+                         Foreground="#FF1287D2">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <toolkit:ExpanderView IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
+                            <toolkit:ExpanderView IsExpanded="{Binding IsExpanded, Mode=TwoWay}" Style="{StaticResource ExpanderViewStyle1}" >
                                 <toolkit:ExpanderView.Header>
                                     <Grid Width="400">
                                         <Grid.ColumnDefinitions>
@@ -115,11 +116,12 @@
                                         <TextBlock Text="{Binding Name}" Margin="8" FontWeight="Bold"
                                                    FontSize="{StaticResource PhoneFontSizeMedium}" />
                                         <Image Source="{Binding Logo}" Height="64" Margin="8"
-                                               Grid.Column="1" HorizontalAlignment="Right"  />
+                                               Grid.Column="1" HorizontalAlignment="Right" />
                                     </Grid>
                                 </toolkit:ExpanderView.Header>
                                 <toolkit:ExpanderView.Items>
-                                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,8"/>
+                                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap"
+                                               Foreground="Black" Margin="0,8" />
                                     <HyperlinkButton Content="Open the Project's Site" Command="{Binding OpenUrl}"
                                                      HorizontalAlignment="Left" Foreground="Black" />
                                 </toolkit:ExpanderView.Items>
@@ -182,12 +184,11 @@
                 <controls:PanoramaItem.Header>
                     <TextBlock Text="Social" Margin="0, -15" />
                 </controls:PanoramaItem.Header>
-                <!--Anche se non vedi le immagini del bottone in realtà ci sono!, le vedi con Blend-->
                 <StackPanel>
                     <Button Click="Twitter_Click" Margin="0,12" toolkit:TiltEffect.IsTiltEnabled="True">
                         <Button.Template>
                             <ControlTemplate>
-                                <Image Source="Images/twitter.png" Stretch="None" />
+                                <Image Source="Images/Social/twitter.png" Stretch="None" />
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
@@ -195,7 +196,7 @@
                     <Button Click="Facebook_Click" Margin="0,12" toolkit:TiltEffect.IsTiltEnabled="True">
                         <Button.Template>
                             <ControlTemplate>
-                                <Image Source="Images/facebook.png" Stretch="None" />
+                                <Image Source="Images/Social/facebook.png" Stretch="None" />
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
@@ -203,7 +204,7 @@
                     <Button Click="YouTube_Click" Margin="0,12" toolkit:TiltEffect.IsTiltEnabled="True">
                         <Button.Template>
                             <ControlTemplate>
-                                <Image Source="Images/youtube.png" Stretch="None" />
+                                <Image Source="Images/Social/youtube.png" Stretch="None" />
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
@@ -215,7 +216,6 @@
                 <controls:PanoramaItem.Header>
                     <TextBlock Text="Contacts" Margin="0, -15" />
                 </controls:PanoramaItem.Header>
-                <!--Anche se non vedi le immagini del bottone in realtà ci sono!, le vedi con Blend-->
                 <ListBox ItemsSource="{Binding Contacts}" Foreground="Black">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -225,8 +225,10 @@
                                     <ControlTemplate>
                                         <StackPanel HorizontalAlignment="Center">
                                             <Image Source="{Binding Image}" Stretch="None" />
-                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Foreground="#FF070707" />
-                                            <TextBlock Text="{Binding Keyword}" HorizontalAlignment="Center" Foreground="#FF070707" FontSize="16" />
+                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"
+                                                       Foreground="#FF1287D2" />
+                                            <TextBlock Text="{Binding Description}" HorizontalAlignment="Center"
+                                                       Foreground="#FF070707" FontSize="16" />
                                         </StackPanel>
                                     </ControlTemplate>
                                 </Button.Template>

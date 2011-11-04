@@ -45,7 +45,7 @@ namespace iCub.Data
                     p.Attribute("Name").Value,
                     new Uri(p.Attribute("Image").Value, UriKind.Relative),
                     p.Attribute("Mail").Value,
-                    p.Attribute("Keyword").Value
+                    p.Attribute("Description").Value
                     ));
         }
 

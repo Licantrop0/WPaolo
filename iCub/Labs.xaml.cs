@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using iCub.Helpers;
 using Microsoft.Phone.Controls;
 
 namespace iCub
@@ -19,5 +11,41 @@ namespace iCub
         {
             InitializeComponent();
         }
+
+        private void ScuolaSuperioreSantAnna_Click(object sender, RoutedEventArgs e)
+        {
+            LinksHelper.OpenUrl(new Uri("http://www.sssup.it/"));
+        }
+
+        private void IIT_Click(object sender, RoutedEventArgs e)
+        {
+            LinksHelper.OpenUrl(new Uri("http://www.iit.it/"));
+        }
+
+        private void ConsiglioNazionaleRicerche_Click(object sender, RoutedEventArgs e)
+        {
+            LinksHelper.OpenUrl(new Uri("http://www.cnr.it/"));
+        }
+
+        private void UMPC_Click(object sender, RoutedEventArgs e)
+        {
+            LinksHelper.OpenUrl(new Uri("http://www.upmc.fr/"));
+        }
+
+        private void INSERM_Click(object sender, RoutedEventArgs e)
+        {
+            LinksHelper.OpenUrl(new Uri("http://www.inserm.fr/"));
+        }
+
+        private void ImperialCollegeLondon_Click(object sender, RoutedEventArgs e)
+        {
+            LinksHelper.OpenUrl(new Uri("http://www3.imperial.ac.uk/"));
+        }
+
+        private void AberystwythUniversity_Click(object sender, RoutedEventArgs e)
+        {
+            LinksHelper.OpenUrl(new Uri("http://www.aber.ac.uk/en/"));
+        }
+
     }
 }

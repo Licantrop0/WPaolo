@@ -16,13 +16,44 @@
     xmlns:loc="clr-namespace:System.Device.Location;assembly=System.Device">
 
     <Grid Background="Transparent">
-        <m:Map ZoomLevel="4" Center="47,16"
+        <m:Map ZoomLevel="5" Center="48,11"
                CredentialsProvider="Ar63BcuMwVFrLtMVbjYlX_vTTm5XtcW9BF5P9JAKSRVStRL-_c8GH1M78uf2Ejel" >
-            <m:Pushpin Location="47,16.834" Content="Laboratory 1" />
-            <m:Pushpin Location="49.3436,-1" Content="Laboratory 2" />
-            <m:Pushpin Location="40.456,9.545" Content="Laboratory 3" />
-            <m:Pushpin Location="43,21" Content="Laboratory 4" />
+            
+            <m:Pushpin Location="41.901095,12.512051" >
+                <HyperlinkButton Content="Consiglio Nazionale delle Ricerche"
+                                 Click="ConsiglioNazionaleRicerche_Click" />
+            </m:Pushpin>
+            
+            <m:Pushpin Location="43.720032,10.404094" >
+                <HyperlinkButton Content="Scuola Superiore Sant'Anna"
+                                 Click="ScuolaSuperioreSantAnna_Click" />
+            </m:Pushpin>
+            
+            <m:Pushpin Location="44.474945,8.906623" >
+                <HyperlinkButton Content="IIT"
+                                 Click="IIT_Click" />
+            </m:Pushpin>
+            
+            <m:Pushpin Location="48.827082,2.365319" >
+                <HyperlinkButton Content="INSERM"
+                                 Click="INSERM_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="48.846898,2.354418" >
+                <HyperlinkButton Content="UMPC"
+                                 Click="UMPC_Click" />
+            </m:Pushpin>
+            <m:Pushpin Location="51.498725,-0.174801" >
+                <HyperlinkButton Content="Imperial College London"
+                                 Click="ImperialCollegeLondon_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="52.415,-4.087773" >
+                <HyperlinkButton Content="Aberystwyth University"
+                                 Click="AberystwythUniversity_Click" />
+            </m:Pushpin>
+            
         </m:Map>
     </Grid>
- 
+
 </phone:PhoneApplicationPage>

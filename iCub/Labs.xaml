@@ -16,16 +16,16 @@
     xmlns:loc="clr-namespace:System.Device.Location;assembly=System.Device">
 
     <Grid Background="Transparent">
-        <m:Map ZoomLevel="5" Center="48,11"
+        <m:Map ZoomLevel="4" Center="48,11"
                CredentialsProvider="Ar63BcuMwVFrLtMVbjYlX_vTTm5XtcW9BF5P9JAKSRVStRL-_c8GH1M78uf2Ejel" >
             
             <m:Pushpin Location="41.901095,12.512051" >
-                <HyperlinkButton Content="Consiglio Nazionale delle Ricerche"
+                <HyperlinkButton Content="CNR"
                                  Click="ConsiglioNazionaleRicerche_Click" />
             </m:Pushpin>
             
             <m:Pushpin Location="43.720032,10.404094" >
-                <HyperlinkButton Content="Scuola Superiore Sant'Anna"
+                <HyperlinkButton Content="SSSA"
                                  Click="ScuolaSuperioreSantAnna_Click" />
             </m:Pushpin>
             
@@ -40,19 +40,79 @@
             </m:Pushpin>
 
             <m:Pushpin Location="48.846898,2.354418" >
-                <HyperlinkButton Content="UMPC"
+                <HyperlinkButton Content="ISIR-UPMC"
                                  Click="UMPC_Click" />
             </m:Pushpin>
             <m:Pushpin Location="51.498725,-0.174801" >
-                <HyperlinkButton Content="Imperial College London"
+                <HyperlinkButton Content="Imperial College"
                                  Click="ImperialCollegeLondon_Click" />
             </m:Pushpin>
 
             <m:Pushpin Location="52.415,-4.087773" >
-                <HyperlinkButton Content="Aberystwyth University"
+                <HyperlinkButton Content="Aberystwyth"
                                  Click="AberystwythUniversity_Click" />
             </m:Pushpin>
-            
+
+            <m:Pushpin Location="40.1090951263905,-88.2302208244801" >
+                <HyperlinkButton Content="University of Illinois - Urbana Campaign"
+                                 Click="Urbana_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="38.735557,-9.138522" >
+                <HyperlinkButton Content="IST"
+                                 Click="Lisbona_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="50.375015,-4.137275" >
+                <HyperlinkButton Content="University of Plymouth"
+                                 Click="Plymouth_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="51.751849,-0.238266" >
+                <HyperlinkButton Content="Hertfordshire"
+                                 Click="Hertfordshire_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="39.862976,32.62948" >
+                <HyperlinkButton Content="METU"
+                                 Click="Turkey_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="45.738777,4.885654" >
+                <HyperlinkButton Content="INSERM"
+                                 Click="Inserm_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="41.378773,2.179391" >
+                <HyperlinkButton Content="UPF"
+                                 Click="Upf_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="46.519599,6.565747" >
+                <HyperlinkButton Content="LASA - EPFL"
+                                 Click="Lasa_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="46.02334,8.91695" >
+                <HyperlinkButton Content="IDSIA"
+                                 Click="Idsia_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="50.117276,8.653278" >
+                <HyperlinkButton Content="FIAS"
+                                 Click="Fias_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="52.038422,8.495436" >
+                <HyperlinkButton Content="Universitat Bielefeld"
+                                 Click="Bielefeld_Click" />
+            </m:Pushpin>
+
+            <m:Pushpin Location="48.148808,11.56796" >
+                <HyperlinkButton Content="TUM"
+                                 Click="Tum_Click" />
+            </m:Pushpin>
+
         </m:Map>
     </Grid>
 

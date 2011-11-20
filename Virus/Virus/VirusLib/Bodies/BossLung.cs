@@ -35,7 +35,7 @@ namespace VirusLib
 
 		#region private members mouths relationships
 
-		AnimationFactory _mouthAnimationFactory;
+		SpritePrototypeContainer _mouthAnimationFactory;
 
 		// mouth structures
 		// lateral mouths
@@ -64,7 +64,7 @@ namespace VirusLib
 
 		#region constructors
 
-		public BossLung(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, AnimationFactory mouthAnimationFactory, GameEventsManager gm, MonsterFactory mf)
+		public BossLung(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, SpritePrototypeContainer mouthAnimationFactory, GameEventsManager gm, MonsterFactory mf)
 			: base(dynamicSystem, sprite, shape)
 		{
 			Touchable = true;
@@ -85,21 +85,21 @@ namespace VirusLib
 			for (i = 0; i < _mouthsPerQueue; i++)
 			{
 				_idleLeftMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
-													 new Sprite(_mouthAnimationFactory.CreateAnimations("Mouth")),
+													 _mouthAnimationFactory.Sprites["Mouth"].Clone(),
 													 new CircularShape(40, 40)));
 			}
 
 			for (i = 0; i < _mouthsPerQueue; i++)
 			{
 				_idleBottomMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
-													   new Sprite(_mouthAnimationFactory.CreateAnimations("Mouth")),
+													   _mouthAnimationFactory.Sprites["Mouth"].Clone(),
 													   new CircularShape(40, 40)));
 			}
 
 			for (i = 0; i < _mouthsPerQueue; i++)
 			{
 				_idleRightMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
-													  new Sprite(_mouthAnimationFactory.CreateAnimations("Mouth")),
+													  _mouthAnimationFactory.Sprites["Mouth"].Clone(),
 													  new CircularShape(40, 40)));
 			}
 
@@ -111,7 +111,7 @@ namespace VirusLib
 			for (i = 0; i < 2; i++)
 			{
 				_centralMouths.Add(new CentralMouth(new MassDoubleIntegratorDynamicSystem(),
-													new Sprite(_mouthAnimationFactory.CreateAnimations("CentralMouth")),
+													_mouthAnimationFactory.Sprites["CentralMouth"].Clone(),
 													new CircularShape(40, 40),
 													this, i == 0));
 			}
@@ -339,7 +339,7 @@ namespace VirusLib
 						Sprite.FramePerSecond = 3.5f;
 						Sprite.AnimationVerse = true;
 						_state = BossLungState.vomiting;
-                        SoundManager.Play("barf");
+						SoundManager.Play("barf");
 					}
 
 					break;
@@ -361,7 +361,7 @@ namespace VirusLib
 								Sprite.AnimationVerse = false;
 								Sprite.FramePerSecond = 3.5f;
 								_state = BossLungState.vomitingback;
-                                SoundManager.Stop("barf");
+								SoundManager.Stop("barf");
 
 								break;
 							}
@@ -372,7 +372,7 @@ namespace VirusLib
 							Sprite.AnimationVerse = false;
 							Sprite.FramePerSecond = 3.5f;
 							_state = BossLungState.vomitingback;
-                            SoundManager.Stop("barf");
+							SoundManager.Stop("barf");
 
 							break;
 						}

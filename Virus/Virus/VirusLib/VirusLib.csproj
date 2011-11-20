@@ -93,7 +93,7 @@
     <Compile Include="Animation&amp;SpriteBase\Animation\SpriteSheetAnimation.cs" />
     <Compile Include="Animation&amp;SpriteBase\Sprite\Sprite.cs" />
     <Compile Include="Animation&amp;SpriteBase\TimingBehaviouralBody.cs" />
-    <Compile Include="AnimationFactory\AnimationFactory.cs" />
+    <Compile Include="AnimationFactory\SpritePrototypeContainer.cs" />
     <Compile Include="AnimationFactory\AnimationUtil.cs" />
     <Compile Include="Bodies\BossLung.cs" />
     <Compile Include="Bodies\CentralMouth.cs" />
@@ -116,6 +116,7 @@
     <Compile Include="GoToVirusBonus.cs" />
     <Compile Include="Interfaces\ITouchable.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="LoadingScreen.cs" />
     <Compile Include="MovingBackground.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shape.cs" />

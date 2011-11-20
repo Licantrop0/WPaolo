@@ -11,8 +11,5 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False">
-    
-    <!--No XAML content is required as the page is rendered entirely with the XNA Framework-->
-
+    shell:SystemTray.IsVisible="False">    
 </phone:PhoneApplicationPage>

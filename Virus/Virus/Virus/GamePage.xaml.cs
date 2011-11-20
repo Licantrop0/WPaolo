@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -19,7 +13,9 @@ namespace Virus
 {
     public partial class GamePage : PhoneApplicationPage
     {
-        ContentManager contentManager;
+        ContentManager contentManager { get { return  (Application.Current as App).Content;} }
+        public AppServiceProvider AppServices { get { return (Application.Current as App).Services; } }
+
         GameTimer timer;
         SpriteBatch spriteBatch;
 
@@ -43,17 +39,11 @@ namespace Virus
         {
             InitializeComponent();
 
-            // Get the content manager from the application
-            contentManager = (Application.Current as App).Content;
-
             // Create a timer for this page
             timer = new GameTimer();
-            //timer.UpdateInterval = TimeSpan.FromTicks(333333);
             timer.UpdateInterval = TimeSpan.FromSeconds(1 / 30);
             timer.Update += OnUpdate;
             timer.Draw += OnDraw;
-
-            // Initialize game logic and load content
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -63,8 +53,6 @@ namespace Virus
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(SharedGraphicsDeviceManager.Current.GraphicsDevice);
-
-            // TODO: use this.content to load your game content here
 
             // create score and debug fonts and ammo bar
             _bombString = contentManager.Load<SpriteFont>("Segoe20");
@@ -76,15 +64,17 @@ namespace Virus
             Texture2D virusTexture = contentManager.Load<Texture2D>("Sprites/Virus/virusMedium");
             Dictionary<string, Animation> virusAnimations = new Dictionary<string, Animation>();
             virusAnimations.Add("main", new SpriteSheetAnimation(7, true, virusTexture));
-            _virus = new VirusLib.Virus(new MassDoubleIntegratorDynamicSystem(),
-                               new Sprite(virusAnimations),
-                               new CircularShape(40, 40));
+            
+            _virus = new VirusLib.Virus(
+                new MassDoubleIntegratorDynamicSystem(),
+                new Sprite(virusAnimations),
+                new CircularShape(40, 40));
 
             // create life virus
             _virusLifeTexture = contentManager.Load<Texture2D>("virusLifeLittle");
 
             // fa il load content del primo livello -> va fatto una volta scelto il livello...
-            _currentLevel = new Level((Application.Current as App).Services, spriteBatch, 1, _virus);
+            _currentLevel = new Level(AppServices, spriteBatch, 1, _virus);
             _currentLevel.InitializeLevel(1);
 
             // Start the timer

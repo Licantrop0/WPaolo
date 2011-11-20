@@ -346,13 +346,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuBackground.jpg">
-      <Name>MenuBackground</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="OpenXLive.jpg">
       <Name>OpenXLive</Name>
       <Importer>TextureImporter</Importer>

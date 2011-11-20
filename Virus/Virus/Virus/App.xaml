@@ -6,8 +6,25 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
      xmlns:xna="clr-namespace:Microsoft.Xna.Framework;assembly=Microsoft.Xna.Framework.Interop">
 
-    <!--Application Resources-->
     <Application.Resources>
+        <ImageBrush x:Key="MenuBackground" ImageSource="Images\MenuBackground.jpg" Stretch="None" />
+        <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows" >
+            Comic Sans MS
+        </sys:FontFamily>
+
+        <Style x:Key="HeaderTextStyle" BasedOn="{StaticResource PhoneTextTitle1Style}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Yellow" />
+            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+        </Style>
+        
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="Yellow" />
+            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="Background" Value="BlueViolet" />
+        </Style>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
@@ -17,8 +34,8 @@
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>
 
 
-    <!--The SharedGraphicsDeviceManager is used to render with the XNA Graphics APIs-->
-    <xna:SharedGraphicsDeviceManager />
+        <!--The SharedGraphicsDeviceManager is used to render with the XNA Graphics APIs-->
+        <xna:SharedGraphicsDeviceManager />
     </Application.ApplicationLifetimeObjects>
 
 </Application>

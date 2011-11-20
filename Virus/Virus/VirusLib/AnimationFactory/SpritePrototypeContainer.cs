@@ -24,7 +24,7 @@ namespace VirusLib
         private XElement[] _items;
         private int _position = -1;
         public int TotalItems { get; private set; }
-        private Dictionary<string, Sprite> _sprites;
+        private Dictionary<string, Sprite> _sprites = new Dictionary<string,Sprite>();
 
         public Dictionary<string, Sprite> Sprites
         {

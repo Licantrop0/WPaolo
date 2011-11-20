@@ -142,7 +142,7 @@ namespace VirusLib
                 case 1:
 
                     // create Bonus Factory
-                    _bonusFactory = new BonusFactory(_eventsManager, _bonuses, new AnimationFactory(contentManager, "AnimationConfig/Bonuses.xml"))
+                    _bonusFactory = new BonusFactory(_eventsManager, _bonuses, new SpritePrototypeContainer(contentManager, "AnimationConfig/Bonuses.xml"))
                     {
                         VirusPosition = new Vector2(240, 400),
                         BonusSpeed = 50
@@ -163,10 +163,14 @@ namespace VirusLib
                 case 1:
 
                     // create Monster Factory
-                    _monsterFactory = new MonsterFactory(_eventsManager, _enemies, _bossContainer, new AnimationFactory(contentManager, "AnimationConfig/Enemies.xml"))
+                    _monsterFactory = new MonsterFactory(_eventsManager, _enemies, _bossContainer, new SpritePrototypeContainer(contentManager, "AnimationConfig/Enemies.xml"))
                     {
                         VirusPosition = new Vector2(240, 400),
                     };
+
+                    LoadingScreen pippo = new LoadingScreen(contentManager, spriteBatch);
+                    pippo.Load();
+                    
 
                     break;
 
@@ -205,6 +209,7 @@ namespace VirusLib
 
         private void LoadContent(int level)
         {
+            // 
             CreateBackground(level);
             CreateMonsterFactory(level);
             CreateBonusFactory(level);

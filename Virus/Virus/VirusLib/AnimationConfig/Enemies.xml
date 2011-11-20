@@ -25,16 +25,16 @@
     </Animation>
   </Sprite>
   <Sprite Name="BossLung">
-    <Animation Name="main" Type="BigPortrait" FramesNum="8" Looping="True" Origin="240 128">
+    <Animation Name="main" Type="BigPortrait" FramesNum="8" Looping="True" Origin="240,128">
       <Texture Path="Sprites\bossLung\bossLungMain"/>
     </Animation>
-    <Animation Name="vomit" Type="BigPortrait" FramesNum="27" Looping="False" Origin="240 128">
+    <Animation Name="vomit" Type="BigPortrait" FramesNum="27" Looping="False" Origin="240,128">
       <Texture Path="Sprites\bossLung\VomitoNew1"/>
       <Texture Path="Sprites\bossLung\VomitoNew2"/>
       <Texture Path="Sprites\bossLung\VomitoNew3"/>
       <Texture Path="Sprites\bossLung\VomitoNew4"/>
     </Animation>
-    <Animation Name="death" Type="BigPortrait" FramesNum="14" Looping="False" Origin="240 128">
+    <Animation Name="death" Type="BigPortrait" FramesNum="14" Looping="False" Origin="240,128">
       <Texture Path="Sprites\bossLung\bossLungDeath1"/>
       <Texture Path="Sprites\bossLung\bossLungDeath2"/>
     </Animation>

@@ -73,7 +73,7 @@ namespace Virus
             // create life virus
             _virusLifeTexture = contentManager.Load<Texture2D>("virusLifeLittle");
 
-            // fa il load content del primo livello -> va fatto una volta scelto il livello...
+            // fa il lo ad content del primo livello -> va fatto una volta scelto il livello...
             _currentLevel = new Level(AppServices, spriteBatch, 1, _virus);
             _currentLevel.InitializeLevel(1);
 

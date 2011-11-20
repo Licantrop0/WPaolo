@@ -54,7 +54,7 @@ namespace VirusLib
         }
 
         public int AnimationFrames
-        { 
+        {
             get { return _currentAnimation.FramesNum; }
         }
 
@@ -74,6 +74,17 @@ namespace VirusLib
             _currentAnimation = _animations[_animations.Keys.First()];
             _tint = Color.White;
             Scale = Vector2.One;
+        }
+
+        public Sprite Clone()
+        {
+            Dictionary<string, Animation> animationDictionary = new Dictionary<string,Animation>();
+            foreach (var animation in _animations)
+            {
+                animationDictionary.Add(animation.Key, animation.Value);
+            }
+
+            return new Sprite(animationDictionary);
         }
 
         #endregion

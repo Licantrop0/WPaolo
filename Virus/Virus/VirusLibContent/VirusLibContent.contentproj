@@ -346,13 +346,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OpenXLive.jpg">
-      <Name>OpenXLive</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="polmoni0.png">
       <Name>polmoni0</Name>
       <Importer>TextureImporter</Importer>
@@ -390,6 +383,20 @@
   <ItemGroup>
     <Compile Include="whiteGlobulosEx.png">
       <Name>whiteGlobulosEx</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pixel.png">
+      <Name>pixel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Loading.png">
+      <Name>Loading</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

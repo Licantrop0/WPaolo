@@ -2,27 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows.Media.Imaging;
 using EasyCall.Model;
 
 namespace EasyCall
 {
     public class ContactViewModel : INotifyPropertyChanged, IGrouping<string, string>
     {
-        #region INotifyPropertyChanged Implementation
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion
-
         public Contact Model { get; private set; }
         public string SearchText { get; private set; }
         private int _indexName;
+
+        public ContactViewModel(Contact contact, string searchText)
+        {
+            Model = contact;
+            SearchText = searchText;
+            _indexName = contact.FullNumberRepresentation.IndexOf(searchText);
+        }
 
         public string Name1
         {
@@ -51,13 +46,6 @@ namespace EasyCall
             }
         }
         
-        public ContactViewModel(Contact contact, string searchText)
-        {
-            Model = contact;
-            SearchText = searchText;
-            _indexName = contact.FullNumberRepresentation.IndexOf(searchText);
-        }
-
         #region IGrouping Implementation
 
         public string Key
@@ -77,17 +65,15 @@ namespace EasyCall
         }
 
         #endregion
+        #region INotifyPropertyChanged Implementation
 
-        //Todo: quando il LongListSelector supporterà il binding sul SelectedItem...
-        //public string SelectedNumber
-        //{
-        //    get { return null; }
-        //    set
-        //    {
-        //        RaisePropertyChanged("SelectedNumber");
-        //        CallHelper.Call(Model);
-        //    }
-        //}
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
 
+        #endregion
     }
 }

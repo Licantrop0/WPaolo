@@ -8,17 +8,6 @@ namespace EasyCall.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        #region INotifyPropertyChanged Implementation
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion
-
         public MainViewModel()
         {
             if (DesignerProperties.IsInDesignTool)
@@ -36,9 +25,21 @@ namespace EasyCall.ViewModel
                 if (_searchedContacts == value) return;
                 _searchedContacts = value;
 
-                Deployment.Current.Dispatcher.BeginInvoke(() => RaisePropertyChanged("SearchedContacts"));           
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    RaisePropertyChanged("SearchedContacts"));           
             }
         }
+
+        public string SelectedNumber
+        {
+            get { return null; }
+            set
+            {
+                RaisePropertyChanged("SelectedNumber");
+                CallHelper.Call(null, value);
+            }
+        }
+
 
         private string _searchText = string.Empty;
         public string SearchText
@@ -53,5 +54,15 @@ namespace EasyCall.ViewModel
             }
         }
 
+        #region INotifyPropertyChanged Implementation
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
     }
 }

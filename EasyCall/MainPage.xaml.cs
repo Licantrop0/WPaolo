@@ -7,15 +7,11 @@ using System.Windows.Threading;
 using EasyCall.ViewModel;
 using Microsoft.Phone.Controls;
 using WPCommon.Helpers;
-using System.Collections.Generic;
-using System.Windows.Documents;
 
 namespace EasyCall
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        DispatcherTimer tmr;
-
         MainViewModel _VM;
         public MainViewModel VM
         {
@@ -31,19 +27,6 @@ namespace EasyCall
         public MainPage()
         {
             InitializeComponent();
-            InitializeTimer();
-        }
-
-        private void InitializeTimer()
-        {
-            tmr = new DispatcherTimer();
-            tmr.Interval = TimeSpan.FromMilliseconds(50);
-            tmr.Tick += (sender, e) =>
-            {
-                SearchTextBox.GetBindingExpression(
-                    TextBox.TextProperty).UpdateSource();
-                tmr.Stop();
-            };
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -58,7 +41,8 @@ namespace EasyCall
 
         private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            tmr.Start();
+            SearchTextBox.GetBindingExpression(
+                TextBox.TextProperty).UpdateSource();
         }
 
         private void SearchTextBox_ActionIconTapped(object sender, EventArgs e)

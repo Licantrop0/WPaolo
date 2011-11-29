@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:ecc="clr-namespace:EasyCall.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -28,7 +29,7 @@
 
         <Grid.Resources>
             <DataTemplate x:Key="NumberDataTemplate">
-                <Button HorizontalAlignment="Left" Click="NumberButton_Click"
+                <Button HorizontalAlignment="Left" 
                         toolkit:TiltEffect.IsTiltEnabled="True" Margin="60,0,0,0"
                         Template="{StaticResource ContactNumberTemplate}" />
             </DataTemplate>
@@ -40,13 +41,11 @@
             Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
             GotFocus="SearchTextBox_GotFocus" LengthIndicatorVisible="False" />
 
-        <toolkit:LongListSelector Grid.Row="1"
-            Name="ContactsLongListSelector"
+        <ecc:LongListSelector Grid.Row="1"
             ItemsSource="{Binding SearchedContacts}"
+            SelectedItem="{Binding SelectedNumber, Mode=TwoWay}"
             GroupHeaderTemplate="{StaticResource groupItemHeader}"
             ItemTemplate="{StaticResource NumberDataTemplate}" />
-
-        <!--SelectedItem="{Binding SelectedNumber}"-->
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

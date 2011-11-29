@@ -78,10 +78,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppContext.cs" />
-    <Compile Include="CallHelper.cs">
+    <Compile Include="Helpers\CallHelper.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Contact.cs" />
+    <Compile Include="Helpers\LongListSelector.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\ContactViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">

@@ -32,15 +32,17 @@
 				   Margin="0,12" Style="{StaticResource SquareTitleStyle}" />
 		<StackPanel Orientation="Horizontal">
 			<TextBlock Text="{Binding LocalizedResources.InstructionsText1, Source={StaticResource LocalizedStrings}}"
-					   Foreground="{StaticResource ForegroundGradientBrush}" FontSize="36" Width="220"
+					   Foreground="{StaticResource ForegroundGradientBrush}"
+                       FontSize="36" Width="220"
 					   VerticalAlignment="Center" TextAlignment="Center"
-					   TextWrapping="Wrap" Margin="12" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Brecht"/>
-			<Image Stretch="None" Source="Phil/libro_colore.png" />
+					   TextWrapping="Wrap" Margin="12"
+                       FontFamily="{StaticResource DefaultFont}"/>
+			<Image Stretch="None" Source="..\Phil\libro_colore.png" />
 		</StackPanel>
 		<TextBlock Text="{Binding LocalizedResources.InstructionsText2, Source={StaticResource LocalizedStrings}}"
 			Foreground="{StaticResource ForegroundGradientBrush}" FontSize="32"
-				   TextWrapping="Wrap" Margin="12" FontFamily="/FillTheSquare;component/Fonts/Fonts.zip#Brecht"/>
-		<Image x:Name="image" Source="Phil\istruzione.png" Stretch="None" RenderTransformOrigin="0.5,0.5" >
+				   TextWrapping="Wrap" Margin="12" FontFamily="{StaticResource DefaultFont}"/>
+		<Image x:Name="image" Source="..\Phil\istruzione.png" Stretch="None" RenderTransformOrigin="0.5,0.5" >
 			<Image.RenderTransform>
 				<CompositeTransform/>
 			</Image.RenderTransform>

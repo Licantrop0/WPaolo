@@ -40,14 +40,14 @@ namespace FillTheSquare
             SoundManager.PlayStart();
             Settings.SetGridState(new Stack<GridPoint>());
             Settings.CurrentElapsedTime = TimeSpan.Zero;
-            NavigationService.Navigate(new Uri("/SquarePage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/SquarePage.xaml", UriKind.Relative));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Settings.AddFakeRecords();
             var id = Settings.Records.Last().Id;
-            NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + id, UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/CongratulationsPage.xaml?id=" + id, UriKind.Relative));
         }
 
     }

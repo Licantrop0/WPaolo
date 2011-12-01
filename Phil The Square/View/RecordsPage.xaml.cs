@@ -15,14 +15,13 @@ namespace FillTheSquare
 
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            //Settings.AddFakeRecords();
             RecordListBox.ItemsSource = Settings.Records.OrderBy(r => r.ElapsedTime);
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/MainPage.xaml", UriKind.Relative));
         }
     }
 }

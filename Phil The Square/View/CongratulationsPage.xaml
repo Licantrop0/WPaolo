@@ -63,7 +63,7 @@
 		</StackPanel>
 
 		<Canvas x:Name="ContentPanel" Grid.Row="1" >
-			<Image x:Name="BouncingPhilImage" Source="Phil\bravorecords.png"
+			<Image x:Name="BouncingPhilImage" Source="..\Phil\bravorecords.png"
 				   IsHitTestVisible="False" Width="200"
 				   RenderTransformOrigin="0,0" Canvas.Left="133" >
 				<Image.RenderTransform>
@@ -81,9 +81,10 @@
 
 				<StackPanel Orientation="Horizontal">
 					<TextBlock Text="{Binding LocalizedResources.Time, Source={StaticResource LocalizedStrings}}"
-					   Style="{StaticResource SquareHeadingStyle}" />
+							   Style="{StaticResource SquareHeadingStyle}" />
 					<TextBlock Text=": " Style="{StaticResource SquareHeadingStyle}" />
-					<TextBlock Text="{Binding ElapsedTime, Converter={StaticResource ShortTimeSpanTextConverter}}" Style="{StaticResource SquareHeadingStyle}" />
+					<TextBlock Text="{Binding ElapsedTime, Converter={StaticResource ShortTimeSpanTextConverter}}"
+							   Style="{StaticResource SquareHeadingStyle}" />
 				</StackPanel>
 			</StackPanel>
 

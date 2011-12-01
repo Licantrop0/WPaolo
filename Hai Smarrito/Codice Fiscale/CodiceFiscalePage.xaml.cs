@@ -11,18 +11,13 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
-namespace HaiSmarrito
+namespace HaiSmarrito.Codice_Fiscale
 {
-    public partial class CarteDiCreditoPage : PhoneApplicationPage
+    public partial class CodiceFiscalePage : PhoneApplicationPage
     {
-        public CarteDiCreditoPage()
+        public CodiceFiscalePage()
         {
             InitializeComponent();
-        }
-
-        private void AppBarInfoButton_Click(object sender, EventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/Carte Di Credito/InfoPage.xaml", UriKind.Relative));
         }
     }
 }

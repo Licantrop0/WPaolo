@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Microsoft.Phone.Tasks;
+using WPCommon.Helpers;
 
 namespace HaiSmarrito
 {
@@ -18,19 +19,14 @@ namespace HaiSmarrito
 
         private static bool CheckTrial()
         {
-            //if (TrialManagement.IsTrialMode)
-            //{
-            //    if (TrialManagement.Counter >= 5)
-            //    {
-            //        MessageBox.Show("I'm sorry, you called too many times for this trial, now it's time to pay!", "Trial Mode", MessageBoxButton.OK);
-            //        TrialManagement.Buy();
-            //        return false;
-            //    }
+            if (!TrialManagement.IsTrialMode)
+                return true;
 
-            //    TrialManagement.IncrementCounter();
-            //    MessageBox.Show("You have " + (6 - TrialManagement.Counter) + " calls left for this demo", "Trial Mode", MessageBoxButton.OK);
-            //}
-            return true;
+            if (MessageBox.Show("Questa è la versione Trial, per chiamare devi acquistare l'app",
+                "Trial Mode", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                TrialManagement.Buy();
+
+            return false;
         }
     }
 }

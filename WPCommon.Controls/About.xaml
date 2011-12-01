@@ -75,7 +75,8 @@
                        HorizontalAlignment="Left" VerticalAlignment="Top"
                        Margin="{Binding CustomLogoMargin}" />
                 
-                <StackPanel Name="AdPlaceHolder" VerticalAlignment="Bottom" />
+                <StackPanel Name="AdPlaceHolder" Height="80"
+                            VerticalAlignment="Bottom" />
             </Grid>
         </controls:PivotItem>
 

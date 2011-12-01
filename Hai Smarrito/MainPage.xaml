@@ -1,0 +1,97 @@
+﻿<phone:PhoneApplicationPage
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+	xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+	x:Class="HaiSmarrito.MainPage"
+	FontFamily="{StaticResource PhoneFontFamilyNormal}"
+	FontSize="{StaticResource PhoneFontSizeNormal}"
+	Foreground="{StaticResource PhoneForegroundBrush}"
+	SupportedOrientations="Portrait" Orientation="Portrait"
+	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+	shell:SystemTray.IsVisible="True" >
+
+	<toolkit:TransitionService.NavigationInTransition>
+		<toolkit:NavigationInTransition>
+			<toolkit:NavigationInTransition.Backward>
+				<toolkit:SlideTransition Mode="SlideRightFadeIn" />
+			</toolkit:NavigationInTransition.Backward>
+		</toolkit:NavigationInTransition>
+	</toolkit:TransitionService.NavigationInTransition>
+	<toolkit:TransitionService.NavigationOutTransition>
+		<toolkit:NavigationOutTransition>
+			<toolkit:NavigationOutTransition.Backward>
+				<toolkit:SlideTransition Mode="SlideRightFadeOut" />
+			</toolkit:NavigationOutTransition.Backward>
+			<toolkit:NavigationOutTransition.Forward>
+				<toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+			</toolkit:NavigationOutTransition.Forward>
+		</toolkit:NavigationOutTransition>
+	</toolkit:TransitionService.NavigationOutTransition>
+
+	<Grid x:Name="LayoutRoot"
+		  Background="Transparent">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0" Margin="24,24,0,12">
+			<TextBlock Text="Hai Smarrito" Style="{StaticResource PhoneTextTitle1Style}" />
+		</StackPanel>
+
+		<ScrollViewer Grid.Row="1" >
+			<StackPanel Margin="12,0" toolkit:TiltEffect.IsTiltEnabled="True">
+				<Button HorizontalContentAlignment="Left">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="Click">
+							<ec:NavigateToPageAction TargetPage="/Carte Di Credito/CarteDiCreditoPage.xaml"/>
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+					<StackPanel Orientation="Horizontal">
+						<Image Source="Images\carte.png" />
+						<TextBlock Text="Carta di Credito" Style="{StaticResource ListTextStyle}" />
+					</StackPanel>
+				</Button>
+
+				<Button HorizontalContentAlignment="Left">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="Click">
+							<ec:NavigateToPageAction TargetPage="/Bancomat/BancomatPage.xaml"/>
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+					<StackPanel Orientation="Horizontal">
+						<Image Source="Images\carte.png" />
+						<TextBlock Text="Bancomat" Style="{StaticResource ListTextStyle}" />
+					</StackPanel>
+				</Button>
+
+				<Button HorizontalContentAlignment="Left">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="Click">
+							<ec:NavigateToPageAction TargetPage="/Carta Identità/CartaIdentitàPage.xaml"/>
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+					<StackPanel Orientation="Horizontal">
+						<Image Source="Images\carte.png" />
+						<TextBlock Text="Carta d'identità" Style="{StaticResource ListTextStyle}" />
+					</StackPanel>
+				</Button>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
+			<shell:ApplicationBar.MenuItems>
+				<shell:ApplicationBarMenuItem Text="About" Click="ApplicationBarMenuItem_Click" />
+			</shell:ApplicationBar.MenuItems>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

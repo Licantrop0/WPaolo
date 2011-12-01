@@ -10,6 +10,7 @@ using FillTheSquare.Localization;
 using FillTheSquare.Model;
 using FillTheSquare.Sounds;
 using FillTheSquare.ViewModel;
+using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using WPCommon.Helpers;
 
@@ -56,6 +57,11 @@ namespace FillTheSquare
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            if (AdPlaceHolder.Children.Count == 0)
+                AdPlaceHolder.Children.Add(new AdControl(
+                    "75c2778e-42d6-4d37-a5d4-c7c159716e13",
+                    "10022422", true) { Height = 80, Width = 480, });
+
             if (Square.IsEmpty)
                 return;
 
@@ -78,15 +84,19 @@ namespace FillTheSquare
                 PhilPiangeAppear.Begin();
                 NoMoreMovesTextBlock.Visibility = Visibility.Visible;
             }
+
             else if (points.Length > 0)
                 sw.Start();
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
+            AdPlaceHolder.Children.Clear();
+
             //salvo lo stato della griglia e del timer
             Settings.SetGridState(Square.PositionHistory);
             Settings.CurrentElapsedTime = sw.Elapsed;
+            sw.Stop();
         }
 
         private void InitializeTimers()
@@ -130,7 +140,7 @@ namespace FillTheSquare
                         dt.Stop();
                         var r = new Record(Square.Size, DateTime.Now, sw.Elapsed);
                         Settings.Records.Add(r);
-                        NavigationService.Navigate(new Uri("/CongratulationsPage.xaml?id=" + r.Id, UriKind.Relative));
+                        NavigationService.Navigate(new Uri("/View/CongratulationsPage.xaml?id=" + r.Id, UriKind.Relative));
                         break;
                     }
 
@@ -186,10 +196,10 @@ namespace FillTheSquare
 
             Square.Clear();
 
-            MagicGrid.Children
-                .Where(ctrl => ctrl is Border)
-                .Cast<Border>()
-                .ForEach(b => ClearBorder(b));
+            foreach (Border b in MagicGrid.Children)
+            {
+                ClearBorder(b);
+            }
         }
 
 
@@ -275,5 +285,6 @@ namespace FillTheSquare
 
 
         #endregion
+
     }
 }

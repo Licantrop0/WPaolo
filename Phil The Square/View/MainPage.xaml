@@ -28,7 +28,7 @@
                    Margin="0,12" />
 
         <Canvas x:Name="ContentPanel" Margin="12" Grid.Row="1" >
-            <Image Source="Phil/saluta.png"
+            <Image Source="..\Phil\saluta.png"
                    Stretch="None" IsHitTestVisible="False"
                    Canvas.Left="217" Canvas.Top="577" >
                 <Image.RenderTransform>
@@ -58,7 +58,7 @@
                 </Button.RenderTransform>
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
-                        <ic:NavigateToPageAction TargetPage="/RecordsPage.xaml"/>
+                        <ic:NavigateToPageAction TargetPage="/View/RecordsPage.xaml"/>
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
             </Button>
@@ -72,7 +72,7 @@
                 </Button.RenderTransform>
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
-                        <ic:NavigateToPageAction TargetPage="/InstructionsPage.xaml"/>
+                        <ic:NavigateToPageAction TargetPage="/View/InstructionsPage.xaml"/>
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
             </Button>
@@ -83,7 +83,7 @@
                     Canvas.Left="249" Canvas.Top="240" >
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
-                        <ic:NavigateToPageAction TargetPage="/AchievementsPage.xaml"/>
+                        <ic:NavigateToPageAction TargetPage="/View/AchievementsPage.xaml"/>
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
             </Button>-->
@@ -94,7 +94,7 @@
                     Canvas.Left="13" Canvas.Top="550" >
                 <Custom:Interaction.Triggers>
                     <Custom:EventTrigger EventName="Click">
-                        <ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
+                        <ic:NavigateToPageAction TargetPage="/View/AboutPage.xaml"/>
                     </Custom:EventTrigger>
                 </Custom:Interaction.Triggers>
                 <Button.RenderTransform>
@@ -108,7 +108,7 @@
             	Canvas.Left="31.673" Canvas.Top="481.763" UseLayoutRounding="False" d:LayoutRounding="Auto" >
             	<Custom:Interaction.Triggers>
             		<Custom:EventTrigger EventName="Click">
-            			<ic:NavigateToPageAction TargetPage="/SettingsPage.xaml"/>
+            			<ic:NavigateToPageAction TargetPage="/View/SettingsPage.xaml"/>
             		</Custom:EventTrigger>
             	</Custom:Interaction.Triggers>
             	<Button.RenderTransform>

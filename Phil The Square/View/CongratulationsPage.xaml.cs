@@ -3,12 +3,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Microsoft.Phone.Controls;
-using WPCommon.Helpers;
-using Microsoft.Xna.Framework.Audio;
 using FillTheSquare.Localization;
 using FillTheSquare.Sounds;
+using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
+using WPCommon.Helpers;
 
 namespace FillTheSquare
 {
@@ -57,7 +56,7 @@ namespace FillTheSquare
             if (string.IsNullOrEmpty(NameTextBox.Text))
                 MessageBox.Show(AppResources.PleaseInsertName);
             else
-                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/View/MainPage.xaml", UriKind.Relative));
         }
 
         private void GoToRecords_Click(object sender, RoutedEventArgs e)
@@ -65,7 +64,7 @@ namespace FillTheSquare
             if (string.IsNullOrEmpty(NameTextBox.Text))
                 MessageBox.Show(AppResources.PleaseInsertName);
             else
-                NavigationService.Navigate(new Uri("/RecordsPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/View/RecordsPage.xaml", UriKind.Relative));
         }
 
         private void NameTextBox_KeyDown(object sender, KeyEventArgs e)

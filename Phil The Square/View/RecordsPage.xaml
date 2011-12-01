@@ -22,8 +22,9 @@
 
         <Grid Grid.Row="0"  Margin="12" >
             <TextBlock Text="Records" FontSize="48" HorizontalAlignment="Left"
-                       Style="{StaticResource SquareTitleStyle}" Margin="28,29,0,29" VerticalAlignment="Stretch" d:LayoutOverrides="Height" />
-            <Image Source="Phil\bravorecords.png" HorizontalAlignment="Right"
+                       Style="{StaticResource SquareTitleStyle}" Margin="28,29,0,29"
+                       VerticalAlignment="Stretch" d:LayoutOverrides="Height" />
+            <Image Source="..\Phil\bravorecords.png" HorizontalAlignment="Right"
                    Stretch="Uniform" Height="100" Margin="12,0" />
         </Grid>
 
@@ -39,9 +40,12 @@
                 <ColumnDefinition Width="140" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="{Binding Path=LocalizedResources.Size, Source={StaticResource LocalizedStrings}}" Grid.Column="0" Style="{StaticResource SquareHeadingStyle}" FontSize="32" />
-            <TextBlock Text="{Binding Path=LocalizedResources.Name, Source={StaticResource LocalizedStrings}}" Grid.Column="1" Style="{StaticResource SquareHeadingStyle}" FontSize="32"/>
-            <TextBlock Text="{Binding Path=LocalizedResources.Time, Source={StaticResource LocalizedStrings}}" Grid.Column="2" Style="{StaticResource SquareHeadingStyle}" FontSize="32"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.Size, Source={StaticResource LocalizedStrings}}"
+                       Grid.Column="0" Style="{StaticResource SquareHeadingStyle}" FontSize="32" />
+            <TextBlock Text="{Binding Path=LocalizedResources.Name, Source={StaticResource LocalizedStrings}}"
+                       Grid.Column="1" Style="{StaticResource SquareHeadingStyle}" FontSize="32"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.Time, Source={StaticResource LocalizedStrings}}"
+                       Grid.Column="2" Style="{StaticResource SquareHeadingStyle}" FontSize="32"/>
 
             <ListBox Name="RecordListBox" FontSize="20" 
                      Grid.Row="1" Grid.ColumnSpan="3" >
@@ -59,9 +63,15 @@
                                 <ColumnDefinition Width="206" />
                                 <ColumnDefinition Width="140" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Path=Size}" Grid.Column="0" Style="{StaticResource SquareHeadingStyle}" FontSize="30" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Path=Name}" Grid.Column="1" Style="{StaticResource SquareHeadingStyle}" FontSize="30" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Path=ElapsedTime, Converter={StaticResource ShortTimeSpanTextConverter}}" Grid.Column="2" Style="{StaticResource SquareHeadingStyle}" FontSize="30" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Path=Size}" Grid.Column="0"
+                                       Style="{StaticResource SquareHeadingStyle}"
+                                       FontSize="30" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Path=Name}" Grid.Column="1"
+                                       Style="{StaticResource SquareHeadingStyle}"
+                                       FontSize="30" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Path=ElapsedTime, Converter={StaticResource ShortTimeSpanTextConverter}}"
+                                       Grid.Column="2" Style="{StaticResource SquareHeadingStyle}"
+                                       FontSize="30" FontWeight="Bold" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

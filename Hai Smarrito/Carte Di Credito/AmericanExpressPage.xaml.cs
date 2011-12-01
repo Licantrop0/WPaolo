@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
 namespace HaiSmarrito.Carte_Di_Credito
@@ -22,12 +13,12 @@ namespace HaiSmarrito.Carte_Di_Credito
 
         private void Italia_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("American Express Italia", "800 383838383");
         }
 
         private void Estero_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/Carte Di Credito/NazioniPage.xaml?type=amex", UriKind.Relative));
         }
     }
 }

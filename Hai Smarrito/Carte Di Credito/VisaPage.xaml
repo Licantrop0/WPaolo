@@ -41,16 +41,15 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Hai Smarrito una carta di credito"
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,0">
+            <TextBlock Text="Hai Smarrito una carta di credito Visa"
                        Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Visa" Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}"/>
+            <Image Source="..\Images\visa.png" Stretch="None"
+                   Margin="12"  />
         </StackPanel>
 
         <ScrollViewer Grid.Row="1">
             <StackPanel Margin="12,0">
-                <Image Source="../Images/carte.png" Stretch="None" />
                 <TextBlock Style="{StaticResource DescriptionTextStyle}" >
                     <Run Text="Blocca tutti i tipi di carte del circuito " />
                     <Run Text="Visa" FontWeight="Bold" />

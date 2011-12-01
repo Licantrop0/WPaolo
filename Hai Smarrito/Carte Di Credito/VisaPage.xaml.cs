@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Microsoft.Phone.Controls;
+using System;
 
 namespace HaiSmarrito.Carte_Di_Credito
 {
@@ -22,7 +23,7 @@ namespace HaiSmarrito.Carte_Di_Credito
 
         private void AltriPaesi_Click(object sender, RoutedEventArgs e)
         {
-            CallHelper.Call("Visa Altri Paesi", "800 383838383");
+            NavigationService.Navigate(new Uri("/Carte Di Credito/NazioniPage.xaml?type=visa", UriKind.Relative));
         }
     }
 }

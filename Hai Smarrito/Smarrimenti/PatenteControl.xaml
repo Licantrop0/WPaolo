@@ -12,7 +12,17 @@
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                <Run Text="In caso di furto o smarrimento della Patente è necessario deninciare il fatto presso l'ufficio di Polizia nel nostro comune di appartenenza (Polizia di stato, Carabinieri o Polizia Comunale) portando con sé 2 foto tessere e un documento d'identità valido (Carta d'identità o Passaporto)* ti verrà rilasciato un Permesso Provvisorio di guida. " />
+                <Run Text="In caso di furto o smarrimento della Patente è necessario deninciare il fatto presso l'ufficio di Polizia nel nostro comune di appartenenza (Polizia di stato, Carabinieri o Polizia Comunale) portando con sé 2 foto tessere e un documento d'identità valido (Carta d'identità o Passaporto)* ti verrà rilasciato un Permesso Provvisorio di guida." />
+                <LineBreak />
+                <LineBreak />
+                Il Permesso Provvisorio di guida sostituirà in tutto e per tutto la Patente di guida, fino al momento in cui non riceverai a casa il duplicato per assicurata.
+                <LineBreak />
+                <LineBreak />
+                <Run Text="Attenzione" FontWeight="Bold" />
+                : se ci si trova all'estero, nel momento dello smarrimento, è necessario fare una prima denuncia presso un ufficio di Polizia locale e poi quando si torna in Italia, bisogna rifare la denuncia seguendo la procedura sopra descritta.
+                <LineBreak />
+                <LineBreak />
+                <Run Text="*Se si dovesse aver smarrito anche la Carta d'identità, bisogna necessariamente procedere prima con il rinnovo di questo documento." FontWeight="Bold" />
             </TextBlock>
         </StackPanel>
     </ScrollViewer>

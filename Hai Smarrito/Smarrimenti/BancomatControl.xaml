@@ -18,6 +18,12 @@
                 <Run Text=" (Cirrus, Maestro, PagoBancomat o V-Pay) a seconda di dove ti trovi:"/>
             </TextBlock>
             <Button Content="Italia" />
+            <Button Content="Estero*" />
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                <Run Text="*In caso di problemi, utilizzare il numero della voce " />
+                <Run Text="Altri paesi non in elenco" FontWeight="Bold" />
+                <Run Text=" per qualsiasi Paese in cui vi troviate" />
+            </TextBlock>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

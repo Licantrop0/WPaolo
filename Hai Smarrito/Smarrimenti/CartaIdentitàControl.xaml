@@ -12,10 +12,10 @@
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                Descrizione Carta d'identità
+                Istruzioni in casi di smarrimento della Carta d'Identità a seconda di dove ti trovi:
             </TextBlock>
-            <Button Content="pirpoirweo" />
-            <TextBlock Text="spdfuos foiasu" />
+            <Button Content="Italia" />
+            <Button Content="Estero" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

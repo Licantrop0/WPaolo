@@ -12,8 +12,10 @@
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                descrizione Passsaporto
+                Istruzioni in caso di smarrimento del Passaporto a seconda di dove ti trovi 
             </TextBlock>
+            <Button Content="Italia" />
+            <Button Content="Estero" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

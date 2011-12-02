@@ -14,7 +14,14 @@
         
         <Style x:Name="ButtonStyle" TargetType="Button" >
             <Setter Property="BorderBrush" Value="{x:Null}" />
-            
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="{StaticResource PhoneBackgroundColor}" Offset="1"/>
+                        <GradientStop Color="{StaticResource PhoneForegroundColor}" Offset="0.2"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style x:Name="DescriptionTextStyle" TargetType="TextBlock">

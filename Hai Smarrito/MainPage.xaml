@@ -47,100 +47,101 @@
 
         <ScrollViewer Grid.Row="1" >
             <StackPanel Margin="12,0" toolkit:TiltEffect.IsTiltEnabled="True">
+
                 <Button HorizontalContentAlignment="Left" Style="{StaticResource ButtonStyle}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="Images\carte.png" />
-                        <TextBlock Text="Carta di Credito"  Style="{StaticResource ListTextStyle}" />
-                    </StackPanel>
                     <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=0"/>
-                        </i:EventTrigger>
+                    	<i:EventTrigger EventName="Click">
+                    		<ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=0"/>
+                    	</i:EventTrigger>
                     </i:Interaction.Triggers>
+                	<StackPanel Orientation="Horizontal">
+                		<Image Source="Images\carte.png" />
+                		<TextBlock Text="Carta di Credito"  Style="{StaticResource ListTextStyle}" />
+                	</StackPanel>
                 </Button>
 
-                <Button HorizontalContentAlignment="Left">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="Images\carte.png" />
-                        <TextBlock Text="Bancomat" Style="{StaticResource ListTextStyle}" />
-                    </StackPanel>
+                <Button HorizontalContentAlignment="Left" Style="{StaticResource ButtonStyle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=1"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </Button>
-
-                <Button HorizontalContentAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Carta d'identità" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Bancomat" Style="{StaticResource ListTextStyle}" />
                     </StackPanel>
+                </Button>
+
+                <Button HorizontalContentAlignment="Left" Style="{StaticResource ButtonStyle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=2"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </Button>
-
-                <Button HorizontalContentAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Passaporto" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Carta d'identità" Style="{StaticResource ListTextStyle}" />
                     </StackPanel>
+                </Button>
+
+                <Button HorizontalContentAlignment="Left" Style="{StaticResource ButtonStyle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=3"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </Button>
-
-                <Button HorizontalContentAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Patente" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Passaporto" Style="{StaticResource ListTextStyle}" />
                     </StackPanel>
+                </Button>
+
+                <Button HorizontalContentAlignment="Left" Style="{StaticResource ButtonStyle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=4"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </Button>
-
-                <Button HorizontalContentAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Codice Fiscale" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Patente" Style="{StaticResource ListTextStyle}" />
                     </StackPanel>
+                </Button>
+
+                <Button HorizontalContentAlignment="Left" Style="{StaticResource ButtonStyle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=5"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </Button>
-
-                <Button HorizontalContentAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Libretto Assegni" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Codice Fiscale" Style="{StaticResource ListTextStyle}" />
                     </StackPanel>
+                </Button>
+
+                <Button HorizontalContentAlignment="Left" Style="{StaticResource ButtonStyle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=6"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </Button>
-                
-                <Button HorizontalContentAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Telepass / Viacard" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Libretto Assegni" Style="{StaticResource ListTextStyle}" />
                     </StackPanel>
+                </Button>
+
+                <Button HorizontalContentAlignment="Left" Style="{StaticResource ButtonStyle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=7"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Images\carte.png" />
+                        <TextBlock Text="Telepass / Viacard" Style="{StaticResource ListTextStyle}" />
+                    </StackPanel>
                 </Button>
             </StackPanel>
         </ScrollViewer>

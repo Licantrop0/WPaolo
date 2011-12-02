@@ -13,8 +13,11 @@
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                Descrizione Bancomat
+                <Run Text="Per bloccare tutti i tipi di " />
+                <Run Text="Bancomat" FontWeight="Bold" />
+                <Run Text=" (Cirrus, Maestro, PagoBancomat o V-Pay) a seconda di dove ti trovi:"/>
             </TextBlock>
+            <Button Content="Italia" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

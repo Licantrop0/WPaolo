@@ -11,6 +11,11 @@
         <Style x:Name="ListTextStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextTitle2Style}">
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+        
+        <Style x:Name="ButtonStyle" TargetType="Button" >
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            
+        </Style>
 
         <Style x:Name="DescriptionTextStyle" TargetType="TextBlock">
             <Setter Property="TextWrapping" Value="Wrap" />

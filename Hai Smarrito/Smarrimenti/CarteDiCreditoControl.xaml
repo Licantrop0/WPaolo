@@ -21,7 +21,7 @@
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/AmericanExpressPage.xaml"/>
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=0"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
@@ -33,7 +33,7 @@
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/VisaPage.xaml"/>
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=1"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

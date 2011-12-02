@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="HaiSmarrito.Carte_Di_Credito.VisaControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
+
+    <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
+        <StackPanel Margin="12,0">
+            <TextBlock Style="{StaticResource DescriptionTextStyle}" >
+                <Run Text="Blocca tutti i tipi di carte del circuito " />
+                <Run Text="Visa" FontWeight="Bold" />
+                <Run Text=" a seconda di dove ti trovi:" />
+            </TextBlock>
+            <Button Content="Italia*" Click="Italia_Click" />
+            <TextBlock Style="{StaticResource DescriptionTextStyle}" FontWeight="Bold">
+                *Attenzione: alcuni operatori telefonici non permettono le chiamate verso i numero verdi
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                    <LineBreak />
+                    Se invece ti trovi in uno dei seguenti Paesi:
+                    Anguilla, Antigua, Bahamas, Barbados, Bermuda, Dominica, Grenada, Isole Cayman,
+                    Isole Vergini Britanniche, Isole Vergini Statunitensi, Montserrat, Nevis,
+                    Puerto Rico, Repubblica Dominicana, Saba, St. Eustatius, St. Kitts/Nevis,
+                    Saint Maarten, Trinidad/Tobago.
+            </TextBlock>
+            <Button Content="Area Caraibica" Click="AreaCaraibica_Click" />
+
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                    <LineBreak />
+                    Per tutti gli altri Paesi:
+            </TextBlock>
+            <Button Content="Altri Paesi" Click="AltriPaesi_Click" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

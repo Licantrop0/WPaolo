@@ -12,7 +12,22 @@
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                descrizione codice fiscale
+                Ormai il Codice Fiscale non esiste più ed è stato sostituito dalla Tessera 
+                Sanitaria che comprende il Codice Fiscale.
+                <LineBreak />
+                <LineBreak />
+                In caso di furto o smarrimento della Tessera Sanitaria è necessario denunciare 
+                il fatto presso l'Ufficio di Polizia del tuo comune di appartenenza 
+                (Polizia di Stato o Carabinieri o Polizia Comunale) 
+                <Run Text=" all'estero presso un ufficio di Polizia locale." FontWeight="Bold" />
+                <LineBreak />
+                <LineBreak />
+                Dopo la denuncia è possibile richiedere un duplicato presso un qualsiasi
+                <Run Text=" ufficio dell'Agenzia delle Entrate" FontWeight="Bold" />
+                , presso la propria
+                <Run Text=" ASL" FontWeight="Bold" />
+                o via internet sul sito dell'
+                <Run Text="Agenzia delle Entrate." FontWeight="Bold" />  
             </TextBlock>
         </StackPanel>
     </ScrollViewer>

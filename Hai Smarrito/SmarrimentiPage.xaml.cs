@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
+using System.Windows.Navigation;
 
 namespace HaiSmarrito
 {
@@ -13,8 +14,11 @@ namespace HaiSmarrito
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            if (e.NavigationMode == NavigationMode.Back)
+                return;
+
             int id;
-            if(int.TryParse(NavigationContext.QueryString["id"], out id))
+            if (int.TryParse(NavigationContext.QueryString["id"], out id))
                 SmarrimentiPivot.SelectedIndex = id;
 
             base.OnNavigatedTo(e);

@@ -12,7 +12,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="800" d:DesignWidth="480">
 
-    <ScrollViewer Grid.Row="1" Background="{StaticResource PhoneBackgroundBrush}">
+    <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0" toolkit:TiltEffect.IsTiltEnabled="True">
             <Button HorizontalContentAlignment="Left">
                 <StackPanel Orientation="Horizontal">
@@ -46,6 +46,18 @@
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
                         <ec:NavigateToPageAction TargetPage="/Carte Di Credito/MastercardPage.xaml"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <Button HorizontalContentAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/dinersclub.png" />
+                    <TextBlock Text="Diners Club" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/DinersClubPage.xaml"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

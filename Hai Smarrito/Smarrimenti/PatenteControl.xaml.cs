@@ -9,13 +9,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
 
-namespace HaiSmarrito.Passaporto
+namespace HaiSmarrito.Smarrimenti
 {
-    public partial class PassaportoPage : PhoneApplicationPage
+    public partial class PatenteControl : UserControl
     {
-        public PassaportoPage()
+        public PatenteControl()
         {
             InitializeComponent();
         }

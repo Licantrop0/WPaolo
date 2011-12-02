@@ -75,15 +75,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Bancomat\BancomatPage.xaml.cs">
-      <DependentUpon>BancomatPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CallHelper.cs" />
-    <Compile Include="Carta Identità\CartaIdentitàPage.xaml.cs">
-      <DependentUpon>CartaIdentitàPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Carte Di Credito\AmericanExpressPage.xaml.cs">
       <DependentUpon>AmericanExpressPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\DinersClubPage.xaml.cs">
+      <DependentUpon>DinersClubPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Carte Di Credito\InfoPage.xaml.cs">
       <DependentUpon>InfoPage.xaml</DependentUpon>
@@ -97,30 +94,36 @@
     <Compile Include="Carte Di Credito\VisaPage.xaml.cs">
       <DependentUpon>VisaPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Codice Fiscale\CodiceFiscalePage.xaml.cs">
-      <DependentUpon>CodiceFiscalePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Libretto Assegni\LibrettoAssegniPage.xaml.cs">
-      <DependentUpon>LibrettoAssegniPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Passaporto\PassaportoPage.xaml.cs">
-      <DependentUpon>PassaportoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Patente\PatentePage.xaml.cs">
-      <DependentUpon>PatentePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmarrimentiPage.xaml.cs">
       <DependentUpon>SmarrimentiPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Smarrimenti\BancomatControl.xaml.cs">
+      <DependentUpon>BancomatControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Smarrimenti\CartaIdentitàControl.xaml.cs">
+      <DependentUpon>CartaIdentitàControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Smarrimenti\CarteDiCreditoControl.xaml.cs">
       <DependentUpon>CarteDiCreditoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telepass Viacard\TelepassViacardPage.xaml.cs">
-      <DependentUpon>TelepassViacardPage.xaml</DependentUpon>
+    <Compile Include="Smarrimenti\CodiceFiscaleControl.xaml.cs">
+      <DependentUpon>CodiceFiscaleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Smarrimenti\LibrettoAssegniControl.xaml.cs">
+      <DependentUpon>LibrettoAssegniControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Smarrimenti\PassaportoControl.xaml.cs">
+      <DependentUpon>PassaportoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Smarrimenti\PatenteControl.xaml.cs">
+      <DependentUpon>PatenteControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Smarrimenti\TelepassViacardControl.xaml.cs">
+      <DependentUpon>TelepassViacardControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AboutViewModel.cs" />
   </ItemGroup>
@@ -133,15 +136,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Bancomat\BancomatPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Carta Identità\CartaIdentitàPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Carte Di Credito\AmericanExpressPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\DinersClubPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,27 +160,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Codice Fiscale\CodiceFiscalePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Libretto Assegni\LibrettoAssegniPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Passaporto\PassaportoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Patente\PatentePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="SmarrimentiPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Smarrimenti\BancomatControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Smarrimenti\CartaIdentitàControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,7 +180,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telepass Viacard\TelepassViacardPage.xaml">
+    <Page Include="Smarrimenti\CodiceFiscaleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Smarrimenti\LibrettoAssegniControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Smarrimenti\PassaportoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Smarrimenti\PatenteControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Smarrimenti\TelepassViacardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,6 +223,7 @@
     <Resource Include="Images\Flags\argentina.png" />
     <Resource Include="Images\Flags\australia.png" />
     <Resource Include="Images\Flags\samoa.png" />
+    <Resource Include="Images\dinersclub.png" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -44,7 +44,7 @@
         <StackPanel Grid.Row="0" Margin="12,17,0,0">
             <TextBlock Text="Hai Smarrito una Carta American Express"
                        Style="{StaticResource PhoneTextNormalStyle}"/>
-            <Image Source="..\Images\amex.png" Stretch="None"
+            <Image Source="/HaiSmarrito;component/Images/amex.png" Stretch="None"
                    Margin="12"  />
         </StackPanel>
 

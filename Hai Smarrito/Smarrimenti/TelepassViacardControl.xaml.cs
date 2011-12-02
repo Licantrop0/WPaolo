@@ -9,13 +9,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
 
-namespace HaiSmarrito.Codice_Fiscale
+namespace HaiSmarrito.Smarrimenti
 {
-    public partial class CodiceFiscalePage : PhoneApplicationPage
+    public partial class TelepassViacardControl : UserControl
     {
-        public CodiceFiscalePage()
+        public TelepassViacardControl()
         {
             InitializeComponent();
         }

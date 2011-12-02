@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="HaiSmarrito.CartaIdentitàPage"
+    x:Class="HaiSmarrito.Carte_Di_Credito.DinersClubPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -41,18 +41,24 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Hai Smarrito" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Carta d'identità" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        <StackPanel Grid.Row="0" Margin="12,17,0,0">
+            <TextBlock Text="Hai Smarrito una Carta Diners Club"
+                       Style="{StaticResource PhoneTextNormalStyle}"/>
+            <Image Source="/HaiSmarrito;component/Images/dinersclub.png" Stretch="None"
+                   Margin="12"  />
         </StackPanel>
 
         <ScrollViewer Grid.Row="1">
             <StackPanel Margin="12,0">
-                <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                    Hai perso la carta d'identità? Sei un babbo.
+                <TextBlock Style="{StaticResource DescriptionTextStyle}" >
+                    <Run Text="Blocca tutti i tipi di carte del circuito " />
+                    <Run Text="Diners Club" FontWeight="Bold" />
+                    <Run Text=" a seconda di dove ti trovi:" />
                 </TextBlock>
+
+                <Button Content="Italia" Click="Italia_Click" />
+                <Button Content="Estero" Click="Estero_Click" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
-
 </phone:PhoneApplicationPage>

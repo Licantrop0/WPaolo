@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using Microsoft.Phone.Controls;
 
 namespace HaiSmarrito.Carte_Di_Credito
 {
     public partial class NazioniPage : PhoneApplicationPage
     {
+        private string _cardType;
+
         public NazioniPage()
         {
             InitializeComponent();
@@ -22,7 +14,9 @@ namespace HaiSmarrito.Carte_Di_Credito
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            switch (NavigationContext.QueryString["type"])
+            _cardType = NavigationContext.QueryString["type"];
+
+            switch (_cardType)
             {
                 case "amex":
                     this.Title1Textbox.Text = "American Express";
@@ -32,6 +26,9 @@ namespace HaiSmarrito.Carte_Di_Credito
                     break;
                 case "mastercard":
                     this.Title1Textbox.Text = "Mastercard";
+                    break;
+                case "dinersclub":
+                    this.Title1Textbox.Text = "Diners Club";
                     break;
 
                 default:
@@ -44,7 +41,23 @@ namespace HaiSmarrito.Carte_Di_Credito
 
         private void AmericanSamoa_Click(object sender, RoutedEventArgs e)
         {
-
+            switch (_cardType)
+            {
+                case "amex":
+                    CallHelper.Call("American Express American Samoa", "800 383838383");
+                    break;
+                case "visa":
+                    CallHelper.Call("Visa American Samoa", "800 383838383");
+                    break;
+                case "mastercard":
+                    CallHelper.Call("Mastercard American Samoa", "800 383838383");
+                    break;
+                case "dinersclub":
+                    CallHelper.Call("Diners Club American Samoa", "800 383838383");
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void Argentina_Click(object sender, RoutedEventArgs e)

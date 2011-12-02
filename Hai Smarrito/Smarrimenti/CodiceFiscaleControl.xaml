@@ -25,7 +25,7 @@
                 Dopo la denuncia è possibile richiedere un duplicato presso un qualsiasi
                 <Run Text=" ufficio dell'Agenzia delle Entrate" FontWeight="Bold" />
                 , presso la propria
-                <Run Text=" ASL" FontWeight="Bold" />
+                <Run Text=" ASL " FontWeight="Bold" />
                 o via internet sul sito dell'
                 <Run Text="Agenzia delle Entrate." FontWeight="Bold" />  
             </TextBlock>

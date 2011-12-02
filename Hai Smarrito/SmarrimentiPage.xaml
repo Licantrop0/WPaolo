@@ -37,10 +37,9 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <!--Pivot Control-->
-        <controls:Pivot Name="SmarrimentiPivot" Title="Hai smarrito" SelectionChanged="SmarrimentiPivot_SelectionChanged">
+        <controls:Pivot Name="SmarrimentiPivot" Title="Hai smarrito"
+                        SelectionChanged="SmarrimentiPivot_SelectionChanged">
             <!--Carte di Credito-->
             <controls:PivotItem Header="Carte di Credito">
                 <sm:CarteDiCreditoControl />
@@ -48,19 +47,38 @@
 
             <!--Bancomat-->
             <controls:PivotItem Header="Bancomat">
-                <Grid/>
+                <sm:BancomatControl />
             </controls:PivotItem>
 
             <!--Carta d'Identità-->
             <controls:PivotItem Header="Carta d'Identità">
-                <Grid/>
+                <sm:CartaIdentitàControl />
             </controls:PivotItem>
 
             <!--Passaporto-->
             <controls:PivotItem Header="Passaporto">
-                <Grid/>
+                <sm:PassaportoControl />
+            </controls:PivotItem>
+            
+            <!--Patente-->
+            <controls:PivotItem Header="Patente">
+                <sm:PatenteControl />
             </controls:PivotItem>
 
+            <!--Codice Fiscale-->
+            <controls:PivotItem Header="Codice Fiscale">
+                <sm:CodiceFiscaleControl />
+            </controls:PivotItem>
+
+            <!--Libretto Assegni-->
+            <controls:PivotItem Header="Libretto Assegni">
+                <sm:LibrettoAssegniControl />
+            </controls:PivotItem>
+
+            <!--Telepass / Viacard-->
+            <controls:PivotItem Header="Telepass Viacard">
+                <sm:TelepassViacardControl />
+            </controls:PivotItem>
         </controls:Pivot>
     </Grid>
     

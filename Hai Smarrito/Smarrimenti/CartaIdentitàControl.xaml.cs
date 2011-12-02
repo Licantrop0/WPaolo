@@ -9,13 +9,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
 
-namespace HaiSmarrito.Libretto_Assegni
+namespace HaiSmarrito.Smarrimenti
 {
-    public partial class LibrettoAssegniPage : PhoneApplicationPage
+    public partial class CartaIdentitàControl : UserControl
     {
-        public LibrettoAssegniPage()
+        public CartaIdentitàControl()
         {
             InitializeComponent();
         }

@@ -76,8 +76,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="CallHelper.cs" />
-    <Compile Include="Carte Di Credito\AmericanExpressPage.xaml.cs">
-      <DependentUpon>AmericanExpressPage.xaml</DependentUpon>
+    <Compile Include="Carte Di Credito\AmericanExpressControl.xaml.cs">
+      <DependentUpon>AmericanExpressControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\CartePage.xaml.cs">
+      <DependentUpon>CartePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Carte Di Credito\DinersClubPage.xaml.cs">
       <DependentUpon>DinersClubPage.xaml</DependentUpon>
@@ -91,8 +94,8 @@
     <Compile Include="Carte Di Credito\NazioniPage.xaml.cs">
       <DependentUpon>NazioniPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Carte Di Credito\VisaPage.xaml.cs">
-      <DependentUpon>VisaPage.xaml</DependentUpon>
+    <Compile Include="Carte Di Credito\VisaControl.xaml.cs">
+      <DependentUpon>VisaControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -136,7 +139,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Carte Di Credito\AmericanExpressPage.xaml">
+    <Page Include="Carte Di Credito\AmericanExpressControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\CartePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,7 +163,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Carte Di Credito\VisaPage.xaml">
+    <Page Include="Carte Di Credito\VisaControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,12 +1,15 @@
-﻿using System.Windows;
-using Microsoft.Phone.Controls;
-using System;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace HaiSmarrito.Carte_Di_Credito
 {
-    public partial class VisaPage : PhoneApplicationPage
+    public partial class VisaControl : UserControl
     {
-        public VisaPage()
+        public event EventHandler<NavigationEventArgs> Navigate;
+
+        public VisaControl()
         {
             InitializeComponent();
         }
@@ -23,7 +26,10 @@ namespace HaiSmarrito.Carte_Di_Credito
 
         private void AltriPaesi_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Carte Di Credito/NazioniPage.xaml?type=visa", UriKind.Relative));
+            var navigateTo = new NavigationEventArgs(this,
+                new Uri("/Carte Di Credito/NazioniPage.xaml?type=visa", UriKind.Relative));
+            Navigate.Invoke(this, navigateTo);
         }
+
     }
 }

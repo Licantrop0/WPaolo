@@ -22,14 +22,14 @@
                 <toolkit:SlideTransition Mode="SlideRightFadeIn" />
             </toolkit:NavigationInTransition.Backward>
             <toolkit:NavigationInTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+                <toolkit:SlideTransition Mode="SlideUpFadeIn" />
             </toolkit:NavigationInTransition.Forward>
         </toolkit:NavigationInTransition>
     </toolkit:TransitionService.NavigationInTransition>
     <toolkit:TransitionService.NavigationOutTransition>
         <toolkit:NavigationOutTransition>
             <toolkit:NavigationOutTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
+                <toolkit:SlideTransition Mode="SlideDownFadeOut" />
             </toolkit:NavigationOutTransition.Backward>
             <toolkit:NavigationOutTransition.Forward>
                 <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
@@ -48,7 +48,7 @@
                         <TextBlock Text="American Express" />
                     </StackPanel>
                 </controls:PivotItem.Header>
-                <card:AmericanExpressControl  Navigate="Execute_Navigation" />
+                <card:AmericanExpressControl />
             </controls:PivotItem>
 
             <!--Visa-->
@@ -60,10 +60,34 @@
                         <TextBlock Text="Visa" />
                     </StackPanel>
                 </controls:PivotItem.Header>
-                <card:VisaControl Navigate="Execute_Navigation" />
+                <card:VisaControl />
             </controls:PivotItem>
-        </controls:Pivot>
 
+            <!--Mastercard-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/mastercard.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Mastercard" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:MastercardControl />
+            </controls:PivotItem>
+
+            <!--Diners Club-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/dinersclub.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Diners Club" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:DinersClubControl />
+            </controls:PivotItem>
+
+        </controls:Pivot>        
     </Grid>
 
 </phone:PhoneApplicationPage>

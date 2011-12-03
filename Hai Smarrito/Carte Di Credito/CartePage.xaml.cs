@@ -10,7 +10,6 @@ namespace HaiSmarrito.Carte_Di_Credito
             InitializeComponent();
         }
 
-
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             int id;
@@ -18,12 +17,6 @@ namespace HaiSmarrito.Carte_Di_Credito
                 CartePivot.SelectedIndex = id;
 
             base.OnNavigatedTo(e);
-        }
-
-
-        private void Execute_Navigation(object sender, NavigationEventArgs e)
-        {
-            NavigationService.Navigate(e.Uri);
         }
     }
 }

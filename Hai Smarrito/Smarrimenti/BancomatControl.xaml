@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -13,17 +15,28 @@
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                <Run Text="Per bloccare tutti i tipi di " />
-                <Run Text="Bancomat" FontWeight="Bold" />
-                <Run Text=" (Cirrus, Maestro, PagoBancomat o V-Pay) a seconda di dove ti trovi:"/>
+                Per bloccare tutti i tipi di&#32;<Bold>Bancomat</Bold>&#32;
+                (Cirrus, Maestro, PagoBancomat o V-Pay) a seconda di dove ti trovi:
             </TextBlock>
-            <Button Content="Italia" />
-            <Button Content="Estero*" />
+            
+            <Button Content="Italia" Click="Italia_Click" />
+            
+            <Button Content="Estero*" Click="Estero_Click" />
+            
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                <Run Text="*In caso di problemi, utilizzare il numero della voce " />
-                <Run Text="Altri paesi non in elenco" FontWeight="Bold" />
-                <Run Text=" per qualsiasi Paese in cui vi troviate" />
+                In caso di problemi, utilizzare il numero della voce&#32;
+                <Bold>Altri paesi non in elenco</Bold>&#32;
+                per qualsiasi Paese in cui vi troviate.
             </TextBlock>
+
+            <Button Content="Consigli utili per il blocco" Height="100"
+                    Style="{StaticResource ButtonStyle}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Smarrimenti/BancomatBlockPage.xaml"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

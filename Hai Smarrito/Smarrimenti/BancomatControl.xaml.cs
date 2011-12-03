@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace HaiSmarrito.Smarrimenti
 {
@@ -17,6 +8,16 @@ namespace HaiSmarrito.Smarrimenti
         public BancomatControl()
         {
             InitializeComponent();
+        }
+
+        private void Italia_Click(object sender, RoutedEventArgs e)
+        {
+            CallHelper.Call("Bancomat Italia", "800 383838383");
+        }
+
+        private void Estero_Click(object sender, RoutedEventArgs e)
+        {
+            CallHelper.Call("Bancomat Estero", "800 383838383");
         }
     }
 }

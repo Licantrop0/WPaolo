@@ -18,16 +18,14 @@
                 <LineBreak />
                 In caso di furto o smarrimento della Tessera Sanitaria è necessario denunciare 
                 il fatto presso l'Ufficio di Polizia del tuo comune di appartenenza 
-                (Polizia di Stato o Carabinieri o Polizia Comunale) 
-                <Run Text=" all'estero presso un ufficio di Polizia locale." FontWeight="Bold" />
+                (Polizia di Stato o Carabinieri o Polizia Comunale)&#32;
+                <Bold>all'estero presso un ufficio di Polizia locale.</Bold>&#32;
                 <LineBreak />
                 <LineBreak />
-                Dopo la denuncia è possibile richiedere un duplicato presso un qualsiasi
-                <Run Text=" ufficio dell'Agenzia delle Entrate" FontWeight="Bold" />
-                , presso la propria
-                <Run Text=" ASL " FontWeight="Bold" />
-                o via internet sul sito dell'
-                <Run Text="Agenzia delle Entrate." FontWeight="Bold" />  
+                Dopo la denuncia è possibile richiedere un duplicato presso un qualsiasi&#32;
+                <Bold>ufficio dell'Agenzia delle Entrate</Bold>,
+                presso la propria&#32;<Bold>ASL</Bold>&#32;o via internet
+                sul sito dell'<Bold>Agenzia delle Entrate</Bold>.  
             </TextBlock>
         </StackPanel>
     </ScrollViewer>

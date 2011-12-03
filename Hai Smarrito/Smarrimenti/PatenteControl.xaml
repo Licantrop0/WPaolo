@@ -22,16 +22,16 @@
                 fino al momento in cui non riceverai a casa il duplicato per assicurata.
                 <LineBreak />
                 <LineBreak />
-                <Run Text="Attenzione: " FontWeight="Bold" />
+                <Bold>Attenzione:</Bold>&#32;
                 se ci si trova all'estero, nel momento dello smarrimento, è necessario fare una prima
                 denuncia presso un ufficio di Polizia locale e poi quando si torna in Italia, bisogna
                 rifare la denuncia seguendo la procedura sopra descritta.
                 <LineBreak />
                 <LineBreak />
-                <Run FontWeight="Bold">
+                <Bold>
                     *Se si dovesse aver smarrito anche la Carta d'identità,
                     bisogna necessariamente procedere prima con il rinnovo di questo documento.
-                </Run> 
+                </Bold> 
             </TextBlock>
         </StackPanel>
     </ScrollViewer>

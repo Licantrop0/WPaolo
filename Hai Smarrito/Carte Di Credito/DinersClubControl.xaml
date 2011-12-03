@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="HaiSmarrito.Carte_Di_Credito.AmericanExpressControl"
+﻿<UserControl x:Class="HaiSmarrito.Carte_Di_Credito.DinersClubControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,18 +12,17 @@
 
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
-            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+            <TextBlock Style="{StaticResource DescriptionTextStyle}" >
                 Blocca tutti i tipi di carte del circuito&#32;
-                <Bold>American Express</Bold>&#32;
-                a seconda di dove ti trovi:
+                <Bold>Diners Club</Bold>&#32;a seconda di dove ti trovi:
             </TextBlock>
 
             <Button Content="Italia" Click="Italia_Click" />
-            
+
             <Button Content="Estero" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/NazioniPage.xaml?type=amex"/>
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/NazioniPage.xaml?type=dinersclub"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

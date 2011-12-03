@@ -1,12 +1,11 @@
 ﻿using System.Windows;
-using Microsoft.Phone.Controls;
-using System;
+using System.Windows.Controls;
 
 namespace HaiSmarrito.Carte_Di_Credito
 {
-    public partial class MastercardPage : PhoneApplicationPage
+    public partial class MastercardControl : UserControl
     {
-        public MastercardPage()
+        public MastercardControl()
         {
             InitializeComponent();
         }
@@ -19,11 +18,6 @@ namespace HaiSmarrito.Carte_Di_Credito
         private void AreaCaraibica_Click(object sender, RoutedEventArgs e)
         {
             CallHelper.Call("Mastercard Area Caraibica", "800 383838383");
-        }
-
-        private void AltriPaesi_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/Carte Di Credito/NazioniPage.xaml?type=mastercard", UriKind.Relative));
         }
     }
 }

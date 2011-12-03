@@ -49,17 +49,17 @@
 		<ScrollViewer Grid.Row="1">
 			<StackPanel Margin="12,0">
 				<TextBlock Style="{StaticResource DescriptionTextStyle}">
-					<Run Text="È importante sapere che è possibile procedere al blocco di tutte le proprie Carte di pagamento anche " />
-					<Run Text="rivolgendosi alla propria agenzia" FontWeight="Bold"/>
-					<Run Text=" (banca, posta o istituto di credito), " />
-					<Run Text="per telefono o andandoci personalmente" FontWeight="Bold" />
-					<Run Text="." />
+					È importante sapere che è possibile procedere al blocco
+                    di tutte le proprie Carte di pagamento anche&#32;
+                    <Bold>rivolgendosi alla propria agenzia</Bold>&#32;
+					(banca, posta o istituto di credito),&#32;
+					<Bold>per telefono o andandoci personalmente</Bold>.
 					<LineBreak />
-					<Run Text="Nell’elenco delle "/>
-					<Run Text="Carte di Credito" FontWeight="Bold"/>
-					<Run Text=" sono presenti alcune tra le più utilizzate in circolazione, "/>
-					se la Carta in vostro possesso non dovesse trovarsi in questo elenco, non preoccupatevi,
-					potete ugualmente procedere al blocco telefonando direttamente al circuito della vostra Carta.
+					Nell’elenco delle&#32;<Bold>Carte di Credito</Bold>&#32;
+					sono presenti alcune tra le più utilizzate in circolazione,
+					se la Carta in vostro possesso non dovesse trovarsi in questo elenco,
+                    non preoccupatevi, potete ugualmente procedere al blocco telefonando
+                    direttamente al circuito della vostra Carta.
 					<LineBreak />
 					L’unica cosa da sapere, quindi, è a quale dei seguenti circuiti appartiene la vostra carta:
 				</TextBlock>

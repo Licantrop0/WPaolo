@@ -82,14 +82,14 @@
     <Compile Include="Carte Di Credito\CartePage.xaml.cs">
       <DependentUpon>CartePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Carte Di Credito\DinersClubPage.xaml.cs">
-      <DependentUpon>DinersClubPage.xaml</DependentUpon>
+    <Compile Include="Carte Di Credito\DinersClubControl.xaml.cs">
+      <DependentUpon>DinersClubControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Carte Di Credito\InfoPage.xaml.cs">
       <DependentUpon>InfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Carte Di Credito\MastercardPage.xaml.cs">
-      <DependentUpon>MastercardPage.xaml</DependentUpon>
+    <Compile Include="Carte Di Credito\MastercardControl.xaml.cs">
+      <DependentUpon>MastercardControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Carte Di Credito\NazioniPage.xaml.cs">
       <DependentUpon>NazioniPage.xaml</DependentUpon>
@@ -104,11 +104,20 @@
     <Compile Include="SmarrimentiPage.xaml.cs">
       <DependentUpon>SmarrimentiPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Smarrimenti\BancomatBlockPage.xaml.cs">
+      <DependentUpon>BancomatBlockPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Smarrimenti\BancomatControl.xaml.cs">
       <DependentUpon>BancomatControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Smarrimenti\CartaIdentitàControl.xaml.cs">
       <DependentUpon>CartaIdentitàControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Smarrimenti\CartaIdentitàEsteroPage.xaml.cs">
+      <DependentUpon>CartaIdentitàEsteroPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Smarrimenti\CartaIdentitàItaliaPage.xaml.cs">
+      <DependentUpon>CartaIdentitàItaliaPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Smarrimenti\CarteDiCreditoControl.xaml.cs">
       <DependentUpon>CarteDiCreditoControl.xaml</DependentUpon>
@@ -121,6 +130,12 @@
     </Compile>
     <Compile Include="Smarrimenti\PassaportoControl.xaml.cs">
       <DependentUpon>PassaportoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Smarrimenti\PassaportoEsteroPage.xaml.cs">
+      <DependentUpon>PassaportoEsteroPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Smarrimenti\PassaportoItaliaPage.xaml.cs">
+      <DependentUpon>PassaportoItaliaPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Smarrimenti\PatenteControl.xaml.cs">
       <DependentUpon>PatenteControl.xaml</DependentUpon>
@@ -147,7 +162,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Carte Di Credito\DinersClubPage.xaml">
+    <Page Include="Carte Di Credito\DinersClubControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,7 +170,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Carte Di Credito\MastercardPage.xaml">
+    <Page Include="Carte Di Credito\MastercardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,11 +190,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Smarrimenti\BancomatBlockPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Smarrimenti\BancomatControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Smarrimenti\CartaIdentitàControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Smarrimenti\CartaIdentitàEsteroPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Smarrimenti\CartaIdentitàItaliaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,6 +223,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Smarrimenti\PassaportoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Smarrimenti\PassaportoEsteroPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Smarrimenti\PassaportoItaliaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

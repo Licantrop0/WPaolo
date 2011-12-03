@@ -14,7 +14,8 @@
 
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0" toolkit:TiltEffect.IsTiltEnabled="True">
-            <Button HorizontalContentAlignment="Left">
+            
+            <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/HaiSmarrito;component/Images/amex.png" />
                     <TextBlock Text="American Express" Style="{StaticResource ListTextStyle}" />
@@ -26,7 +27,7 @@
                 </i:Interaction.Triggers>
             </Button>
 
-            <Button HorizontalContentAlignment="Left">
+            <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/HaiSmarrito;component/Images/visa.png" />
                     <TextBlock Text="Visa" Style="{StaticResource ListTextStyle}" />
@@ -38,26 +39,26 @@
                 </i:Interaction.Triggers>
             </Button>
 
-            <Button HorizontalContentAlignment="Left">
+            <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/HaiSmarrito;component/Images/mastercard.png" />
                     <TextBlock Text="Mastercard" Style="{StaticResource ListTextStyle}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/MastercardPage.xaml"/>
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=2"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
 
-            <Button HorizontalContentAlignment="Left">
+            <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/HaiSmarrito;component/Images/dinersclub.png" />
                     <TextBlock Text="Diners Club" Style="{StaticResource ListTextStyle}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/DinersClubPage.xaml"/>
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=3"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

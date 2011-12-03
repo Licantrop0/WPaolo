@@ -13,6 +13,7 @@
         </Style>
         
         <Style x:Name="ButtonStyle" TargetType="Button" >
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="BorderBrush" Value="{x:Null}" />
             <Setter Property="Background" >
                 <Setter.Value>

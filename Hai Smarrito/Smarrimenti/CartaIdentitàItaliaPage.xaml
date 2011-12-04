@@ -50,10 +50,25 @@
         <ScrollViewer Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Margin="12,0">
                 <TextBlock Style="{StaticResource DescriptionTextStyle}" >
-                    Consigli utili&#32;<Bold>testo in grassetto</Bold>&#32;
-                    altro testo bla bla...
+                    In caso di furto o smarrimento della Carta d'identità è necessario
+                    denunciare il fatto presso l'Ufficio di Polizia del nostro comune
+                    di appartenenza (Polizia o Carabinieri o Polizia Comunale).
                     <LineBreak />
-                    Linea a capo
+                    Successivamente sarà possibile recarsi all'ufficio anagrafico del 
+                    comune di residenza, per chiedere un nuovo documento, portando con sè:
+                    <LineBreak />
+                    <LineBreak />
+                    - l'originale e una fotocopia della denuncia
+                    <LineBreak />
+                    - 3 foto tessera
+                    <LineBreak />
+                    - un altro documento d'identità valido, come per esempio il passaporto. 
+                    In caso di assenza di questo, è necessario avere con sè due testimoni 
+                    che abbiano con loro un documento d'identità valido.
+                    <LineBreak />
+                    <LineBreak />
+                    In genere, la Carta d'identità viene rilasciata in giornata o, al più tardi, 
+                    due giorni dopo.                    
                 </TextBlock>
             </StackPanel>
         </ScrollViewer>

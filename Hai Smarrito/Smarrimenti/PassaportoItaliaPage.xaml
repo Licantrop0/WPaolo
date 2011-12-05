@@ -50,10 +50,32 @@
         <ScrollViewer Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Margin="12,0">
                 <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                    Consigli utili&#32;<Bold>testo in grassetto</Bold>&#32;
-                    altro testo bla bla...
+                    In caso di furto o smarrimanto del Passaporto è necessario denunciare il fatto
+                    presso l'Ufficio di Polizia del nostro comune di appartenenza (Polizia di Stato
+                    o Carabinieri o Polizia Comunale).
                     <LineBreak />
-                    Linea a capo
+                    <LineBreak />
+                    Successivamente sarà possibile ottenere il rilascio di un duplicato. La richiesta
+                    di duplicato può essere presentata presso la Questura, il Commissario di Pubblica 
+                    Sicurezza, i Carabinieri e gli uffici postali portando con sé:
+                    <LineBreak />
+                    <LineBreak />
+                    - originale della denuncia di furto o smarrimento
+                    <LineBreak />
+                    - un documento di riconoscimento valido
+                    <LineBreak />
+                    - 2 foto tessera identiche e recenti
+                    <LineBreak />
+                    - l'assenso del coniuge o del convivente se si tratta di figli minori
+                    <LineBreak />
+                    - 1 contrassegno telematico da €40,29*
+                    <LineBreak />
+                    - attestazione di versamento di €42,50 per il libretto a 48 pagine (chiudere la 
+                    disponibilità presso la propria Questura)*
+                    <LineBreak />
+                    <LineBreak />                    
+                    &#32;<Bold>*Maggiori informazioni sui versamenti e gli importi si possono 
+                    richiedere al momento della denuncia di smarrimento.</Bold>&#32;                    
                 </TextBlock>
             </StackPanel>
         </ScrollViewer>

@@ -50,10 +50,40 @@
         <ScrollViewer Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Margin="12,0">
                 <TextBlock Style="{StaticResource DescriptionTextStyle}" >
-                    Consigli utili&#32;<Bold>testo in grassetto</Bold>&#32;
-                    altro testo bla bla...
+                    Nel caso in cui il furto o smarrimento dei documenti avvenga all'estero è necessario
+                    recarsi, prima possibile, presso un Ufficio di Polizia locale e fare denuncia di smarrimento 
+                    o di furto del proprio Passaporto e/o del proprio documento d'identità.
                     <LineBreak />
-                    Linea a capo
+                    <LineBreak />
+                    Bisogna assolutamente ricordare di farsi rilasciare una &#32;<Bold>copia della denuncia</Bold>&#32;,
+                    che servirà poi per richiedere il documento sostitutivo per rientrare nel proprio paese.
+                    <LineBreak />
+                    <LineBreak />
+                    Una volta in possesso della denuncia, bisogna recarsi presso il Consolato o l'Ambasciata del proprio 
+                    Paese. Se vi trovate in uno stato in cui non esiste un ufficio di rappresentanza italiano, quello di 
+                    uno qualsiasi fra i Paesi dell'Unione Europea lo può sostituire nello svolgere le stesse funzioni.
+                    <LineBreak />
+                    Sul sito del Ministero degli Esteri troverete gli indirizzi e i numeri di telefono di tutti gli organi 
+                    diplomatici italiani all'estero.
+                    <LineBreak />
+                    <LineBreak />
+                    Al consolato si può procedere con la richiesta di un documento sostitutivo. Per ottenerlo, sono necessari 
+                    questi documenti:
+                    <LineBreak />
+                    <LineBreak />
+                    - la denuncia di smarrimento
+                    <LineBreak />
+                    - 2 foto tessera
+                    <LineBreak />
+                    - documenti personali disponibili (codice fiscale, patente, tessera sanitaria...)
+                    <LineBreak />
+                    - fotocopia della carta d'identità o di altri documenti personali (se in vostro possesso)
+                    <LineBreak />
+                    <LineBreak />
+                    Qualora i tempi siano troppo brevi per riuscire a portare a termine tutta la procedura, il Consolato vi 
+                    rilascerà un&#32;<Bold>Documento di viaggio</Bold>&#32;provvisorio con il quale potrete tornare in Italia.
+                    &#32;<Bold>Attenzione: questo documento è valido soltanto per il rimpatrio. Se avevate in programma di 
+                    continuare il viaggio, magari spostandovi in un altro paese, questo non sarà possibile</Bold>&#32;
                 </TextBlock>
             </StackPanel>
         </ScrollViewer>

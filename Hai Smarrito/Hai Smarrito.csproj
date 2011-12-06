@@ -104,6 +104,9 @@
     <Compile Include="SmarrimentiPage.xaml.cs">
       <DependentUpon>SmarrimentiPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Smarrimenti\AssegniCompilatiPage.xaml.cs">
+      <DependentUpon>AssegniCompilatiPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Smarrimenti\BancomatBlockPage.xaml.cs">
       <DependentUpon>BancomatBlockPage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +190,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SmarrimentiPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Smarrimenti\AssegniCompilatiPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

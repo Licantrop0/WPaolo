@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -12,26 +14,29 @@
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                Nel caso di furto o smarrimento del proprio libretto degli assegni o di un 
-                singolo assegno:
+                Nel caso di furto o smarrimento del proprio libretto degli assegni o di un singolo assegno:
+                <LineBreak /><LineBreak />
+                <Bold>1) Segnalare immediatamente l'accaduto alla filiale del proprio istituto di credito</Bold>,
+                per attivare i blocchi (ordine di non pagare gli assegni sul proprio conto 
+                corrente) sulla Centrale d'Allarme Interbancaria
                 <LineBreak />
+                <Bold>2) Denunciare l'accaduto presso l'ufficio di Polizia del nostro comune di appartenenza</Bold>&#32;
+                (Polizia di Stato o Carabinieri o Polizia Comunale),&#32;
+                <Bold>all'estero presso un ufficio di Polizia locale</Bold>
                 <LineBreak />
-                <Run Text="1) Segnalare immediatamente l'accaduto alla filiale del proprio istituto di credito" FontWeight="Bold" />
-                , per attivare i blocchi (ordine di non pagare gli assegni sul proprio conto 
-                corrente) sulla Centrale d'Allarme Interbancaria;
-                <LineBreak />
-                <Run Text="2) Denunciare l'accaduto presso l'ufficio di Polizia del nostro comune di appartenenza" FontWeight="Bold" />
-                 (Polizia di Stato o Carabinieri o Polizia Comunale),
-                <Run Text="all'estero presso un ufficio di Polizia locale" FontWeight="Bold" />
-                ;
-                <LineBreak />
-                <Run Text="3) Trasmettere copia della denuncia" FontWeight="Bold" />
-                , tramite raccomandata con ricevuta di ritorno, 
-                <Run Text=" al proprio istituto di credito" FontWeight="Bold" />
-                , oppure consegnarla direttamente alla filiale della banca dove si è titolari 
+                <Bold>3) Trasmettere copia della denuncia</Bold>,
+                tramite raccomandata con ricevuta di ritorno,&#32;
+                <Bold>al proprio istituto di credito</Bold>,
+                oppure consegnarla direttamente alla filiale della banca dove si è titolari 
                 del conto corrente.
             </TextBlock>
-            <Button Content="Assegni già compilati" />
+            <Button Content="Assegni già compilati">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Smarrimenti/AssegniCompilatiPage.xaml"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

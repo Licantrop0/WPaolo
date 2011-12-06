@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="HaiSmarrito.Smarrimenti.BancomatBlockPage"
+    x:Class="HaiSmarrito.Smarrimenti.AssegniCompilatiPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -45,32 +45,15 @@
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="Hai Smarrito" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Bancomat" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Assegni Compilati" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <ScrollViewer Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Margin="12,0">
                 <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                    È importante sapere che, se ci si trova in Italia, è possibile procedere al blocco del proprio Bancomat
-                    anche rivolgendosi alla prorpia agenzia (banca, posta o istituto di credito),
-                    per telefono o andarci personalmente.
-                    <LineBreak />
-                    <LineBreak />
-                    Quanto si telefona per chiedere il blocco del Bancomat, annotatevi la data,
-                    l'ora, il nome della persona addetta al blocco della carta e, se è previsto,
-                    anche il codice del blocco.
-                    <LineBreak />
-                    <LineBreak />
-                    Dopo aver predisposto il blocco della carta ci si deve recare immediatamente
-                    presso l'Ufficio di Polizia del nostro comune di appartenenza (Polizia di Stato 
-                    o Carabinieri o Polizia Comunale, &#32;<Bold>all'estero presso un Ufficio di Polizia locale</Bold>&#32;)
-                    per presentare una denuncia di furto o smarrimento della stessa. Il passo
-                    successivo prevede la consegna di una copia della denuncia all'agenzia 
-                    (banca, posta o istituto di credito) presso cui avete il conto corrente.
+                    
                 </TextBlock>
-
             </StackPanel>
         </ScrollViewer>
-
     </Grid>
 
 </phone:PhoneApplicationPage>

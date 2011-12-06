@@ -12,7 +12,21 @@
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                Descrizione Telepass / Viacard
+                In caso di furto o smarrimento del &#32;<Bold>Passaporto o Viacard</Bold>&#32; 
+                è necessario denunciare il fatto presso l'Ufficio di Polizia del nostro comune 
+                di appartenenza (Polizia di Stato o Carabinieri o Polizia Comunale), e contestualmente, 
+                al fine di attivare le idonee procedure di blocco, occorre dare tempestiva comunicazione a
+                &#32;<Bold>Telepass S.p.A.</Bold>&#32;telefonando a seconda di dove ti trovi:
+                <LineBreak />                
+            </TextBlock>
+            <Button Content="Italia" Click="Italia_Click" />
+
+            <Button Content="Estero*" Click="Estero_Click" />
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                In alternativa, ci si può collegare al sito&#32;
+                <Bold>Telepass.it</Bold>&#32;, o recarsi direttamente presso un&#32;
+                <Bold>Punto Blu</Bold>&#32;o un&#32;
+                <Bold>Centro Servizi</Bold>&#32;delegato a tale attività.                
             </TextBlock>
         </StackPanel>
     </ScrollViewer>

@@ -20,8 +20,7 @@
                 <LineBreak />                
             </TextBlock>
             <Button Content="Italia" Click="Italia_Click" />
-
-            <Button Content="Estero*" Click="Estero_Click" />
+            <Button Content="Estero" Click="Estero_Click" />
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
                 In alternativa, ci si può collegare al sito&#32;
                 <Bold>Telepass.it</Bold>&#32;, o recarsi direttamente presso un&#32;

@@ -18,5 +18,15 @@ namespace HaiSmarrito.Smarrimenti
         {
             InitializeComponent();
         }
+
+        private void Italia_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Estero_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

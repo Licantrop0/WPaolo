@@ -31,7 +31,7 @@ namespace IDecide
 				selectedChoices[rnd.Next(selectedChoices.Count)] :
 				AppResources.NothingToDecide;
 
-        }
+		}
 
 		private void CreateAppBar()
 		{

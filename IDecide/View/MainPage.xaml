@@ -10,7 +10,7 @@
     xmlns:hlp="clr-namespace:IDecide.Helpers"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
+    FontSize="{StaticResource PhoneFontSizeLarge}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
@@ -26,25 +26,38 @@
         </Grid.RowDefinitions>
 
         <Canvas>
-            <Image Name="IDecide_LogoImage" Source="/IDecide;component/Images/IDecide_logo.png" Opacity="0" />
 
-            <Image Name="Man_ThinkingImage" Source="/IDecide;component/Images/Man_Thinking.png"
+            <Image Name="Man_ThinkingImage"  Stretch="None"
+                   Source="/IDecide;component/Images/Man_Thinking.png"
                    Canvas.Left="170" Canvas.Top="357" />
+            
+            <Image Name="Question_MarkImage"  Stretch="None"
+                   Source="/IDecide;component/Images/Question_Mark.png"
+                   Canvas.Left="208" Canvas.Top="231" />
 
-            <Image Name="Cloud1Image" Source="/IDecide;component/Images/cloud1.png"
+            <Image Name="Cloud1Image"  Stretch="None" Opacity="0"
+                   Source="/IDecide;component/Images/cloud1.png"
                    Canvas.Left="281" Canvas.Top="319" />
-            <Image Name="Cloud2Image" Source="/IDecide;component/Images/cloud2.png"
+            <Image Name="Cloud2Image"  Stretch="None" Opacity="0"
+                   Source="/IDecide;component/Images/cloud2.png"
                    Canvas.Left="281" Canvas.Top="266" />
-            <Image Name="Cloud3Image" Source="/IDecide;component/Images/cloud3.png"
+            <Image Name="Cloud3Image"  Stretch="None" Opacity="0"
+                   Source="/IDecide;component/Images/cloud3.png"
                    Canvas.Left="6" Canvas.Top="31" />
-            <Grid  Canvas.Left="67" Canvas.Top="100" Width="356" Height="100">
-                <TextBlock x:Name="AnswerTextBlock" TextWrapping="Wrap" TextAlignment="Center"
-                        Text="dfsdfsdf" Foreground="{StaticResource DefaultForeground}" FontFamily="{StaticResource DefaultFont}" />                
+
+            <Grid Canvas.Left="67" Canvas.Top="100" Width="356" Height="100">
+                <TextBlock x:Name="AnswerTextBlock" TextWrapping="Wrap"
+                           VerticalAlignment="Center" TextAlignment="Center"
+                           Foreground="{StaticResource DefaultForeground}"
+                           FontFamily="{StaticResource DefaultFont}"
+                           FontSize="{StaticResource PhoneFontSizeLarge}" />
             </Grid>
-          
+            
+            <Image Name="IDecide_LogoImage" Stretch="None"
+                   Source="/IDecide;component/Images/IDecide_logo.png"
+                   Canvas.Left="14" Canvas.Top="6" />
         </Canvas>
-        <Button x:Name="DecideButton"
-                Grid.Row="1"
+        <Button x:Name="DecideButton" Grid.Row="1" Opacity="0"
                 Click="DecideButton_Click"
                 toolkit:TiltEffect.IsTiltEnabled="True" >
             <Button.Template>
@@ -54,10 +67,7 @@
                 <Image Stretch="None"
                     Source="{Binding LocalizedResources.Shake,
                     Source={StaticResource LocalizedStrings},
-                    Converter={StaticResource ByteArrayToBitmapImageConverter}}" Margin="12"/>
-
-                <TextBlock x:Name="AskAndShakeTextBlock" Text="{Binding LocalizedResources.AskAndShake, Source={StaticResource LocalizedStrings}}"
-                               TextAlignment="Center" VerticalAlignment="Bottom"/>
+                    Converter={StaticResource ByteArrayToBitmapImageConverter}}" Margin="12" />
             </Grid>
         </Button>
 

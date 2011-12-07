@@ -17,7 +17,7 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:AboutViewModel x:Name="AboutVM"
-                           MinFontSize="50"
+                           MinFontSize="45"
                            DefaultBackground="{StaticResource DefaultBackground}"
                            DefaultForeground="{StaticResource DefaultForeground}"
                            DefaultFont="{StaticResource DefaultFont}"

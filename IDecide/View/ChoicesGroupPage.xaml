@@ -1,63 +1,73 @@
 ﻿<phone:PhoneApplicationPage 
-	x:Class="IDecide.ChoicesGroupPage"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:hlp="clr-namespace:IDecide.Helpers"
-	xmlns:vm="clr-namespace:IDecide.ViewModel"
-	FontFamily="{StaticResource PhoneFontFamilyNormal}"
-	FontSize="{StaticResource PhoneFontSizeNormal}"
-	Foreground="{StaticResource PhoneForegroundBrush}"
-	SupportedOrientations="Portrait" Orientation="Portrait"
-	mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
-	shell:SystemTray.IsVisible="False">
+    x:Class="IDecide.ChoicesGroupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+    xmlns:hlp="clr-namespace:IDecide.Helpers"
+    xmlns:vm="clr-namespace:IDecide.ViewModel"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
 
-	<phone:PhoneApplicationPage.Resources>
-			<hlp:ResourceTranslatorConverter x:Key="ResourceTranslator"/>   
-	</phone:PhoneApplicationPage.Resources>
+    <phone:PhoneApplicationPage.Resources>
+        <hlp:ResourceTranslatorConverter x:Key="ResourceTranslator"/>
+    </phone:PhoneApplicationPage.Resources>
 
-	<Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
-		  DataContext="{Binding Path=ChoicesGroupVM, Source={StaticResource Locator}}">
-		
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
+    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
+          DataContext="{Binding Path=ChoicesGroupVM, Source={StaticResource Locator}}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
         <Image Name="IDecide_LogoImage" Grid.Row="0" Stretch="None" Margin="0,12"
                Source="/IDecide;component/Images/IDecide_logo.png" />
 
-		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-			<ListBox Name="GroupChoicesListBox" ItemsSource="{Binding Groups}">
-				<ListBox.ItemTemplate>
-					<DataTemplate>
-						<StackPanel Orientation="Horizontal">
-							<RadioButton GroupName="Groups"
-										 IsChecked="{Binding Model.IsSelected, Mode=TwoWay}" />
-							<Button Width="320" Click="EditChoicesButton_Click"
-									IsEnabled="{Binding ButtonEnabled}"                                    
-									toolkit:TiltEffect.IsTiltEnabled="{Binding ButtonEnabled}">
-								<TextBlock Text="{Binding Model.Name, Converter={StaticResource ResourceTranslator}}"
-										   TextWrapping="Wrap" TextAlignment="Center"/>
-							</Button>
-							<Button Template="{StaticResource RemoveButtonTemplate}"
-									Width="48" Height="48" Margin="6"
-									Visibility="{Binding CanDeleteVisibility}"
-									IsEnabled="{Binding ButtonEnabled}"
-									Click="RemoveButton_Click" />
-						</StackPanel>
-					</DataTemplate>
-				</ListBox.ItemTemplate>
-			</ListBox>
-		</Grid>
-	</Grid>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ListBox Name="GroupChoicesListBox" ItemsSource="{Binding Groups}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton GroupName="Groups"
+                                         IsChecked="{Binding Model.IsSelected, Mode=TwoWay}" />
+                            <Button Width="320" Style="{StaticResource ButtonStyle}"
+                                    IsEnabled="{Binding ButtonEnabled}"
+                                    Command="{Binding EditGroup}"
+                                    toolkit:TiltEffect.IsTiltEnabled="{Binding ButtonEnabled}">
+                                <TextBlock Text="{Binding Model.Name,
+                                    Converter={StaticResource ResourceTranslator}}"
+                                           TextWrapping="Wrap" TextAlignment="Center" />
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <ec:NavigateToPageAction TargetPage="/View/AddEditChoicesPage.xaml"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
 
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="False"
-							  ForegroundColor="{StaticResource PhoneAccentColor}" />
-	</phone:PhoneApplicationPage.ApplicationBar>
+                            <Button Template="{StaticResource RemoveButtonTemplate}"
+                                    Width="48" Height="48" Margin="6"
+                                    Visibility="{Binding CanDeleteVisibility}"
+                                    IsEnabled="{Binding ButtonEnabled}"
+                                    Command="{Binding RemoveGroup}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False"
+                              ForegroundColor="{StaticResource MainColor}" />
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

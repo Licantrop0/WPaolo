@@ -6,6 +6,7 @@ using System.Windows.Navigation;
 using IDecide.Model;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Collections.ObjectModel;
 
 namespace IDecide
 {
@@ -58,9 +59,14 @@ namespace IDecide
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("choices_group"))
                 IsolatedStorageSettings.ApplicationSettings.Add("choices_group", new List<ChoiceGroup>());
 
-            foreach (var group in IsolatedStorageSettings.ApplicationSettings["choices_group"] as List<ChoiceGroup>)
+            var groups = IsolatedStorageSettings.ApplicationSettings["choices_group"] as List<ChoiceGroup>;
+
+            if (groups.Count == 0)
+                AppContext.Groups = AppContext.GetDefaultChoices();
+            else
             {
-                AppContext.Groups.Add(new ViewModel.ChoiceGroupViewModel(group));
+                AppContext.Groups = new ObservableCollection<ViewModel.ChoiceGroupViewModel>(
+                    groups.Select(g => new ViewModel.ChoiceGroupViewModel(g)));
             }
         }
 
@@ -92,7 +98,6 @@ namespace IDecide
         {
             var groups = AppContext.Groups.Select(g => g.Model).ToList();
             IsolatedStorageSettings.ApplicationSettings["choices_group"] = groups;
-                
         }
 
         // Code to execute if a navigation fails

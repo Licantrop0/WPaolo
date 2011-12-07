@@ -6,6 +6,8 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:vm="clr-namespace:IDecide.ViewModel"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -13,7 +15,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+    shell:SystemTray.IsVisible="False">
 
     <Grid x:Name="LayoutRoot"
           DataContext="{Binding Path=AddEditChoicesVM, Source={StaticResource Locator}}"
@@ -24,29 +26,22 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <toolkit:PhoneTextBox Name="GroupNameTextBox"
-                              Text="{Binding CurrentChoiceGroup.Model.Name, Mode=TwoWay}" Grid.Row="0"
-                              Hint="{Binding Path=LocalizedResources.InsertGroupName, Source={StaticResource LocalizedStrings}}" KeyDown="GroupNameTextBox_KeyDown" />
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <toolkit:PhoneTextBox
-                Name="ChoiceTextBox" KeyDown="ChoiceTextBox_KeyDown"
-                InputScope="Text" Grid.Column="0"
-                Hint="{Binding Path=LocalizedResources.AddChoice, Source={StaticResource LocalizedStrings}}"
-                ActionIcon="..\Toolkit.Content\add_white.png" />
+        <toolkit:PhoneTextBox            
+            Text="{Binding CurrentChoiceGroup.Name, Mode=TwoWay}" Grid.Row="0"
+            Hint="{Binding Path=LocalizedResources.InsertGroupName, Source={StaticResource LocalizedStrings}}"
+            KeyDown="GroupNameTextBox_KeyDown" />
 
-            <Rectangle Fill="{StaticResource PhoneAccentBrush}"
-                       HorizontalAlignment="Right"
-                       Grid.Column="1" Margin="6" Width="48" Height="48"
-                       MouseLeftButtonUp="AddButton_Click">
-                <Rectangle.OpacityMask>
-                    <ImageBrush ImageSource="..\Toolkit.Content\add_white.png" />
-                </Rectangle.OpacityMask>
-            </Rectangle>
-        </Grid>
+        <toolkit:PhoneTextBox Name="ChoiceTextBox" Grid.Row="1"
+            KeyDown="ChoiceTextBox_KeyDown" InputScope="Text"
+            Hint="{Binding Path=LocalizedResources.AddChoice, Source={StaticResource LocalizedStrings}}"
+            ActionIcon="..\Toolkit.Content\add_orange.png">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ActionIconTapped">
+                    <cmd:EventToCommand Command="{Binding Path=AddChoice}"
+                                        CommandParameter="{Binding ElementName=ChoiceTextBox, Path=Text}"  />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </toolkit:PhoneTextBox>
 
         <ListBox Name="ChoicesListBox" ItemsSource="{Binding CurrentChoiceGroup.Choices}" Grid.Row="2" >
             <ListBox.ItemTemplate>

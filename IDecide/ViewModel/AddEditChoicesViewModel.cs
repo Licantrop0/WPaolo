@@ -1,18 +1,8 @@
-﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using IDecide.Model;
 using NascondiChiappe.Helpers;
-using System.Linq;
 
 namespace IDecide.ViewModel
 {
@@ -22,8 +12,8 @@ namespace IDecide.ViewModel
 
         public bool EditMode { get; private set; }
 
-        private ChoiceGroupViewModel _currentChoiceGroup;
-        public ChoiceGroupViewModel CurrentChoiceGroup
+        private ChoiceGroup _currentChoiceGroup;
+        public ChoiceGroup CurrentChoiceGroup
         {
             get { return _currentChoiceGroup; }
             set
@@ -35,11 +25,11 @@ namespace IDecide.ViewModel
 
         public AddEditChoicesViewModel()
         {
-            Messenger.Default.Register<NotificationMessage<ChoiceGroupViewModel>>(
+            Messenger.Default.Register<NotificationMessage<ChoiceGroup>>(
                 this, m => ReadMessage(m));
         }
 
-        private void ReadMessage(NotificationMessage<ChoiceGroupViewModel> message)
+        private void ReadMessage(NotificationMessage<ChoiceGroup> message)
         {
             EditMode = message.Notification == "Edit";
             CurrentChoiceGroup = message.Content;
@@ -52,7 +42,7 @@ namespace IDecide.ViewModel
         }
         private void AddChoiceAction(string choice)
         {
-           // CurrentChoiceGroup.Choices.Insert(0, choice);
+           CurrentChoiceGroup.Choices.Insert(0, choice);
         }
 
         private RelayCommand<string> _deleteChoice;
@@ -62,7 +52,7 @@ namespace IDecide.ViewModel
         }
         private void DeleteChoiceAction(string choice)
         {
-           // CurrentChoiceGroup.Choices.Remove(choice);
+           CurrentChoiceGroup.Choices.Remove(choice);
         }
     }
 }

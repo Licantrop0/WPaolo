@@ -18,10 +18,15 @@
     <phone:PhoneApplicationPage.Resources>
         <vm:AboutViewModel x:Name="AboutVM"
                            MinFontSize="50"
+                           DefaultBackground="{StaticResource DefaultBackground}"
+                           DefaultForeground="{StaticResource DefaultForeground}"
+                           DefaultFont="{StaticResource DefaultFont}"
                            AppId="34d447d5-60fe-df11-9264-00237de2db9e"
                            LogoMargin="20" />
     </phone:PhoneApplicationPage.Resources>
 
-    <wpc:About DataContext="{StaticResource AboutVM}"  />
+    <wpc:About DataContext="{StaticResource AboutVM}"
+               ApplicationId="572ef47c-fdda-4d58-ba1c-9cfd93c12d43"
+               AdUnitId="10027370"/>
     
 </phone:PhoneApplicationPage>

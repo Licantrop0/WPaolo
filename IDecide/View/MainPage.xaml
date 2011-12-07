@@ -39,7 +39,7 @@
                    Canvas.Left="6" Canvas.Top="31" />
             <Grid  Canvas.Left="67" Canvas.Top="100" Width="356" Height="100">
                 <TextBlock x:Name="AnswerTextBlock" TextWrapping="Wrap" TextAlignment="Center"
-                        Text="dfsdfsdf" />                
+                        Text="dfsdfsdf" Foreground="{StaticResource DefaultForeground}" FontFamily="{StaticResource DefaultFont}" />                
             </Grid>
           
         </Canvas>

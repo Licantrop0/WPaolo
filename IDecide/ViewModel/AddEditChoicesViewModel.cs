@@ -52,7 +52,7 @@ namespace IDecide.ViewModel
         }
         private void AddChoiceAction(string choice)
         {
-            CurrentChoiceGroup.Choices.Insert(0, choice);
+           // CurrentChoiceGroup.Choices.Insert(0, choice);
         }
 
         private RelayCommand<string> _deleteChoice;
@@ -62,7 +62,7 @@ namespace IDecide.ViewModel
         }
         private void DeleteChoiceAction(string choice)
         {
-            CurrentChoiceGroup.Choices.Remove(choice);
+           // CurrentChoiceGroup.Choices.Remove(choice);
         }
     }
 }

@@ -144,9 +144,6 @@
   <data name="ClearChoices" xml:space="preserve">
     <value>Clear choices</value>
   </data>
-  <data name="AskAndShake" xml:space="preserve">
-    <value>Ask and Shake!</value>
-  </data>
   <data name="AddGroup" xml:space="preserve">
     <value>Add Group</value>
   </data>
@@ -166,5 +163,9 @@
   </data>
   <data name="InsertGroupNameAlert" xml:space="preserve">
     <value>The Group Name name is required, please insert it</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Shake" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Shake_IT-it_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
 </root>

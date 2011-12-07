@@ -30,8 +30,8 @@ namespace IDecide
 			AnswerTextBlock.Text = selectedChoices.Any() ?
 				selectedChoices[rnd.Next(selectedChoices.Count)] :
 				AppResources.NothingToDecide;
-			RotateButton.Begin();
-		}
+
+        }
 
 		private void CreateAppBar()
 		{

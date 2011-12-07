@@ -28,10 +28,8 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
-		<StackPanel Grid.Row="0" Margin="12,17,0,28">
-			<TextBlock Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-			<TextBlock Text="{Binding LocalizedResources.SubTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-		</StackPanel>
+        <Image Name="IDecide_LogoImage" Grid.Row="0" Stretch="None" Margin="0,12"
+               Source="/IDecide;component/Images/IDecide_logo.png" />
 
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 			<ListBox Name="GroupChoicesListBox" ItemsSource="{Binding Groups}">

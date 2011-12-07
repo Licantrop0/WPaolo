@@ -1,23 +1,13 @@
-﻿using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
 
 namespace IDecide.Model
 {
     [DataContract]
     public class ChoiceGroup : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        [DataMember]
-        public bool IsDefault { get; set; }
-
         private string _name;
         [DataMember]
         public string Name
@@ -33,8 +23,11 @@ namespace IDecide.Model
         }
 
         [DataMember]
-        public IEnumerable<string> Choices { get; set; }
-        
+        public ObservableCollection<string> Choices { get; set; }
+
+        [DataMember]
+        public bool IsDefault { get; set; }
+
         private bool _isSelected;
         [DataMember]
         public bool IsSelected
@@ -49,9 +42,20 @@ namespace IDecide.Model
             }
         }
 
-        //public ChoiceGroup()
-        //{
-        //    Choices = new List<string>();
-        //}
+        public ChoiceGroup()
+        {
+            Choices = new ObservableCollection<string>();
+        }
+
+        #region INPC Implementation
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        
+        #endregion
     }
 }

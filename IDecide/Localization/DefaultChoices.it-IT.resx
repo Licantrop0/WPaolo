@@ -222,4 +222,7 @@
   <data name="YesNoMaybe" xml:space="preserve">
     <value>Sì, No, Forse?</value>
   </data>
+  <data name="Dice" xml:space="preserve">
+    <value>Dado</value>
+  </data>
 </root>

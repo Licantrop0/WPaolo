@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Shapes;
 using IDecide.Localization;
+using IDecide.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using IDecide.Model;
-using IDecide.ViewModel;
 
 namespace IDecide
 {
@@ -30,18 +25,6 @@ namespace IDecide
             CreateAppBar();
         }
 
-        private void RemoveButton_Click(object sender, RoutedEventArgs e)
-        {
-            var selectedGroup = ((Button)sender).DataContext as ChoiceGroupViewModel;
-            VM.DeleteGroup.Execute(selectedGroup);
-        }
-
-        private void EditChoicesButton_Click(object sender, RoutedEventArgs e)
-        {
-            var selectedGroup = ((Button)sender).DataContext as ChoiceGroupViewModel;
-            VM.EditGroup.Execute(selectedGroup);
-        }
-
         private void CreateAppBar()
         {
             var AddChoiceGroupAppBarButton = new ApplicationBarIconButton();
@@ -50,6 +33,5 @@ namespace IDecide
             AddChoiceGroupAppBarButton.Click += (sender, e) => { VM.AddGroup.Execute(null); };
             ApplicationBar.Buttons.Add(AddChoiceGroupAppBarButton);
         }
-
     }
 }

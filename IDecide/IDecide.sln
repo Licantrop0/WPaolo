@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDecide", "IDecide.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Libraries", "..\WPCommon.Libraries\WPCommon.Libraries.csproj", "{B3072132-A92C-4800-A18F-793C868AC7DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.ShakeGestures", "..\WPCommon.ShakeGestures\WPCommon.ShakeGestures.csproj", "{F5CE25E6-CF76-43AE-BBB2-2C98B21BCCD8}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -18,9 +18,9 @@ Global
 		SccProjectUniqueName2 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
 		SccProjectName2 = ../WPCommon.Controls
 		SccLocalPath2 = ..\\WPCommon.Controls
-		SccProjectUniqueName3 = ..\\WPCommon.Libraries\\WPCommon.Libraries.csproj
-		SccProjectName3 = ../WPCommon.Libraries
-		SccLocalPath3 = ..\\WPCommon.Libraries
+		SccProjectUniqueName3 = ..\\WPCommon.ShakeGestures\\WPCommon.ShakeGestures.csproj
+		SccProjectName3 = ../WPCommon.ShakeGestures
+		SccLocalPath3 = ..\\WPCommon.ShakeGestures
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,10 +37,10 @@ Global
 		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5CE25E6-CF76-43AE-BBB2-2C98B21BCCD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5CE25E6-CF76-43AE-BBB2-2C98B21BCCD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5CE25E6-CF76-43AE-BBB2-2C98B21BCCD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5CE25E6-CF76-43AE-BBB2-2C98B21BCCD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

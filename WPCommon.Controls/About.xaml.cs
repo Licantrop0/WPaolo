@@ -47,13 +47,11 @@ namespace WPCommon.Controls
             if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
                 return;
 
-            var ad1 = new AdControl(ApplicationId, AdUnitId, true)
+            AdPlaceHolder.Children.Add(new AdControl(ApplicationId, AdUnitId, true)
             {
                 Height = 80,
                 Width = 480,
-            };
-
-            AdPlaceHolder.Children.Add(ad1);
+            });
         }
 
         //Call in OnNavigatedFrom

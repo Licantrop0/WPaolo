@@ -12,17 +12,23 @@
         <vm:ViewModelLocator x:Key="Locator" xmlns:vm="clr-namespace:IDecide.ViewModel" />
         <loc:LocalizedStrings x:Key="LocalizedStrings"
             xmlns:loc="clr-namespace:IDecide.Localization" />
-
-        <SolidColorBrush x:Key="DefaultBackground"  Color="#148DE2"  />
-        <SolidColorBrush x:Key="DefaultForeground" Color="#FF841F" />
-
+        
         <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows" >
             /IDecide;component/Fonts/Fonts.zip#Ravie
         </sys:FontFamily>
 
+        <Color x:Key="MainColor">#FF841F</Color>
+        <SolidColorBrush x:Key="DefaultBackground"  Color="#148DE2"  />
+        <SolidColorBrush x:Key="DefaultForeground" Color="{StaticResource MainColor}" />
+        
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+            <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+        </Style>
+        
         <ControlTemplate x:Key="RemoveButtonTemplate" TargetType="Button" >
             <Grid>
-                <Rectangle Fill="{StaticResource PhoneAccentBrush}">
+                <Rectangle Fill="{StaticResource DefaultForeground}">
                     <Rectangle.OpacityMask>
                         <ImageBrush ImageSource="..\Toolkit.Content\remove_white.png" />
                     </Rectangle.OpacityMask>

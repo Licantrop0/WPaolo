@@ -152,9 +152,16 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\IDecide Logo.png" />
-    <Resource Include="Images\IDecide Back.png" />
-    <Content Include="SplashScreenImage.jpg" />
+    <None Include="Images\Shake_IT-it_png" />
+    <Resource Include="SplashScreenImage.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\cloud1.png" />
+    <Resource Include="Images\cloud2.png" />
+    <Resource Include="Images\cloud3.png" />
+    <Resource Include="Images\IDecide_logo.png" />
+    <Resource Include="Images\man_thinking.png" />
+    <Resource Include="Images\question_mark.png" />
     <Content Include="Toolkit.Content\add_white.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

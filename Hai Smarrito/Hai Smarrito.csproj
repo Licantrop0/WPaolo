@@ -75,7 +75,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CallHelper.cs" />
+    <Compile Include="Helpers\CallHelper.cs" />
     <Compile Include="Carte Di Credito\AmericanExpressControl.xaml.cs">
       <DependentUpon>AmericanExpressControl.xaml</DependentUpon>
     </Compile>
@@ -97,9 +97,16 @@
     <Compile Include="Carte Di Credito\VisaControl.xaml.cs">
       <DependentUpon>VisaControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Images\Flags\FlagsResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlagsResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="ViewModel\FlagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmarrimentiPage.xaml.cs">
       <DependentUpon>SmarrimentiPage.xaml</DependentUpon>
@@ -147,6 +154,7 @@
       <DependentUpon>TelepassViacardControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\NazioniViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -252,6 +260,80 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon Archive.url" />
+    <None Include="Images\Flags\Austria_png" />
+    <None Include="Images\Flags\Bahrain_png" />
+    <None Include="Images\Flags\Belgium_png" />
+    <None Include="Images\Flags\Bolivia_png" />
+    <None Include="Images\Flags\Brazil_png" />
+    <None Include="Images\Flags\Canada_png" />
+    <None Include="Images\Flags\Chile_png" />
+    <None Include="Images\Flags\China_png" />
+    <None Include="Images\Flags\Colombia_png" />
+    <None Include="Images\Flags\Costa_Rica_png" />
+    <None Include="Images\Flags\Cyprus_png" />
+    <None Include="Images\Flags\Czech_Republic_png" />
+    <None Include="Images\Flags\Denmark_png" />
+    <None Include="Images\Flags\Egypt_png" />
+    <None Include="Images\Flags\Estonia_png" />
+    <None Include="Images\Flags\Finland_png" />
+    <None Include="Images\Flags\France_png" />
+    <None Include="Images\Flags\Germany_png" />
+    <None Include="Images\Flags\Gibraltar_png" />
+    <None Include="Images\Flags\Greece_png" />
+    <None Include="Images\Flags\Guam_png" />
+    <None Include="Images\Flags\Guatemala_png" />
+    <None Include="Images\Flags\Haiti_png" />
+    <None Include="Images\Flags\Honduras_png" />
+    <None Include="Images\Flags\Hong_Kong_png" />
+    <None Include="Images\Flags\Hungary_png" />
+    <None Include="Images\Flags\India_png" />
+    <None Include="Images\Flags\Indonesia_png" />
+    <None Include="Images\Flags\Ireland_png" />
+    <None Include="Images\Flags\Israel_png" />
+    <None Include="Images\Flags\Jamaica_png" />
+    <None Include="Images\Flags\Japan_png" />
+    <None Include="Images\Flags\Jordan_png" />
+    <None Include="Images\Flags\Kazakhstan_png" />
+    <None Include="Images\Flags\Kenya_png" />
+    <None Include="Images\Flags\Korea_png" />
+    <None Include="Images\Flags\Latvia_png" />
+    <None Include="Images\Flags\Lebanon_png" />
+    <None Include="Images\Flags\Liechtenstein_png" />
+    <None Include="Images\Flags\Luxembourg_png" />
+    <None Include="Images\Flags\Macedonia_png" />
+    <None Include="Images\Flags\Malaysia_png" />
+    <None Include="Images\Flags\Mauritius_png" />
+    <None Include="Images\Flags\Mexico_png" />
+    <None Include="Images\Flags\Monaco_png" />
+    <None Include="Images\Flags\Montserrat_png" />
+    <None Include="Images\Flags\Netherlands_png" />
+    <None Include="Images\Flags\New_Zealand_png" />
+    <None Include="Images\Flags\Norway_png" />
+    <None Include="Images\Flags\Panama_png" />
+    <None Include="Images\Flags\Peru_png" />
+    <None Include="Images\Flags\Philippines_png" />
+    <None Include="Images\Flags\Poland_png" />
+    <None Include="Images\Flags\Portugal_png" />
+    <None Include="Images\Flags\Qatar_png" />
+    <None Include="Images\Flags\Romania_png" />
+    <None Include="Images\Flags\Russia_png" />
+    <None Include="Images\Flags\Saudi_Arabia_png" />
+    <None Include="Images\Flags\Singapore_png" />
+    <None Include="Images\Flags\Slovakia_png" />
+    <None Include="Images\Flags\South_Africa_png" />
+    <None Include="Images\Flags\Spain_png" />
+    <None Include="Images\Flags\Sweden_png" />
+    <None Include="Images\Flags\Switzerland_png" />
+    <None Include="Images\Flags\Taiwan_png" />
+    <None Include="Images\Flags\Thailand_png" />
+    <None Include="Images\Flags\Turkey_png" />
+    <None Include="Images\Flags\Turks_and_Caicos_Islands_icon_png" />
+    <None Include="Images\Flags\Ukraine_png" />
+    <None Include="Images\Flags\United_Kingdom_png" />
+    <None Include="Images\Flags\United_States_png" />
+    <None Include="Images\Flags\Uruguay_png" />
+    <None Include="Images\Flags\Venezuela_png" />
+    <None Include="Images\Flags\Vietnam_png" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
@@ -269,9 +351,9 @@
     </Content>
     <Resource Include="Images\mastercard.png" />
     <Resource Include="Images\visa.png" />
-    <Resource Include="Images\Flags\argentina.png" />
-    <Resource Include="Images\Flags\australia.png" />
-    <Resource Include="Images\Flags\samoa.png" />
+    <None Include="Images\Flags\Argentina_png" />
+    <None Include="Images\Flags\Australia_png" />
+    <None Include="Images\Flags\American_Samoa_png" />
     <Resource Include="Images\dinersclub.png" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -287,7 +369,13 @@
       <Name>WPCommon.Helpers.TrialManagement</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Flags\FlagsResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FlagsResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

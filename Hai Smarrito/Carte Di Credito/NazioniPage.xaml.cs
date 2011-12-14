@@ -1,12 +1,13 @@
 ﻿using System.Windows;
 using Microsoft.Phone.Controls;
+using System.Reflection;
+using HaiSmarrito.Helpers;
+using HaiSmarrito.ViewModel;
 
 namespace HaiSmarrito.Carte_Di_Credito
 {
     public partial class NazioniPage : PhoneApplicationPage
     {
-        private string _cardType;
-
         public NazioniPage()
         {
             InitializeComponent();
@@ -14,9 +15,10 @@ namespace HaiSmarrito.Carte_Di_Credito
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            _cardType = NavigationContext.QueryString["type"];
+            var VM = (NazioniViewModel)LayoutRoot.DataContext;
+            VM.CardType = NavigationContext.QueryString["type"];
 
-            switch (_cardType)
+            switch (VM.CardType)
             {
                 case "amex":
                     this.Title1Textbox.Text = "American Express";
@@ -37,39 +39,5 @@ namespace HaiSmarrito.Carte_Di_Credito
 
             base.OnNavigatedTo(e);
         }
-
-
-        private void AmericanSamoa_Click(object sender, RoutedEventArgs e)
-        {
-            switch (_cardType)
-            {
-                case "amex":
-                    CallHelper.Call("American Express American Samoa", "800 383838383");
-                    break;
-                case "visa":
-                    CallHelper.Call("Visa American Samoa", "800 383838383");
-                    break;
-                case "mastercard":
-                    CallHelper.Call("Mastercard American Samoa", "800 383838383");
-                    break;
-                case "dinersclub":
-                    CallHelper.Call("Diners Club American Samoa", "800 383838383");
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void Argentina_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Australia_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
     }
 }

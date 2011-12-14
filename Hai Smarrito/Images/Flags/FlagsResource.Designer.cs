@@ -60,9 +60,9 @@ namespace HaiSmarrito.Images.Flags {
             }
         }
         
-        internal static byte[] American_Samoa {
+        internal static byte[] American_Samoa_24423664__09485034958 {
             get {
-                object obj = ResourceManager.GetObject("American_Samoa", resourceCulture);
+                object obj = ResourceManager.GetObject("American_Samoa|24423664||09485034958", resourceCulture);
                 return ((byte[])(obj));
             }
         }

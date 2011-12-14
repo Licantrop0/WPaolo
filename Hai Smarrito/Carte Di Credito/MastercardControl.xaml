@@ -40,7 +40,7 @@
             <Button Content="Altri Paesi" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/NazioniPage.xaml?type=/Carte Di Credito/NazioniPage.xaml?type=mastercard"/>
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/NazioniPage.xaml?type=mastercard"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

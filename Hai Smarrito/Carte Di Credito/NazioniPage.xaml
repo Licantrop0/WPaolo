@@ -57,7 +57,7 @@
                     <Button Style="{StaticResource ButtonStyle}" Width="480"
                             Command="{Binding Call}" CommandParameter="{Binding CardType, Source={StaticResource NazioniVM}}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Height="100"  Source="{Binding FlagPic}" Stretch="Uniform">
+                            <Image Height="80"  Source="{Binding FlagPic}" Stretch="Uniform">
                                 <!--<Image.Source>
                                     <BitmapImage UriSource="{Binding Value}" CreateOptions="BackgroundCreation"/>
                                 </Image.Source>-->

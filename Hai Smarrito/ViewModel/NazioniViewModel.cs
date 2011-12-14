@@ -13,7 +13,17 @@ namespace HaiSmarrito.ViewModel
     public class NazioniViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<FlagViewModel> Flags { get; set; }
-        public string CardType { get; set; }
+
+        private string _cardType;
+
+        public string CardType
+        {
+            get { return _cardType; }
+            set
+            {
+                _cardType = value;
+            }
+        }
 
         public NazioniViewModel()
         {

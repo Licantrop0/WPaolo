@@ -328,8 +328,8 @@
   <data name="Turkey" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Turkey_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Turks_and_Caicos_Islands_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Turks_and_Caicos_Islands_icon_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
+  <data name="Turks_and_Caicos_Islands_png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Turks_and_Caicos_Islands_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="Ukraine" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Ukraine_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>

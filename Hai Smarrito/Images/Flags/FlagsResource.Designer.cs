@@ -550,9 +550,9 @@ namespace HaiSmarrito.Images.Flags {
             }
         }
         
-        internal static byte[] Turks_and_Caicos_Islands_icon {
+        internal static byte[] Turks_and_Caicos_Islands_png {
             get {
-                object obj = ResourceManager.GetObject("Turks_and_Caicos_Islands_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("Turks_and_Caicos_Islands_png", resourceCulture);
                 return ((byte[])(obj));
             }
         }

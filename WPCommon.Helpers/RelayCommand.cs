@@ -10,9 +10,7 @@ namespace WPCommon.Helpers
         readonly Action<object> _execute;
         readonly Predicate<object> _canExecute;
 
-
-        public RelayCommand(Action<object> execute,
-                            Predicate<object> canExecute = null)
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
         {
             if (execute == null)
                 throw new ArgumentNullException("execute");
@@ -21,19 +19,16 @@ namespace WPCommon.Helpers
             _canExecute = canExecute;
         }
 
-
         public void UpdateCanExecuteCommand()
         {
             if (CanExecuteChanged != null)
                 CanExecuteChanged(this, new EventArgs());
         }
 
-
         public bool CanExecute(object parameter)
         {
             return _canExecute == null ? true : _canExecute(parameter);
         }
-
 
         public void Execute(object parameter)
         {

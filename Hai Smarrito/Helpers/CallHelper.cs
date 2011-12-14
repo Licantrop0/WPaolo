@@ -2,7 +2,7 @@
 using Microsoft.Phone.Tasks;
 using WPCommon.Helpers;
 
-namespace HaiSmarrito
+namespace HaiSmarrito.Helpers
 {
     public static class CallHelper
     {

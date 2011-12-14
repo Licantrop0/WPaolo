@@ -8,23 +8,12 @@ namespace HaiSmarrito.ViewModel
     {
         public string Name { get; private set; }
         public BitmapImage FlagPic { get; private set; }
+        public string Number { get; set; }
 
-        public string Type { get; set; }
-        public string AmexNum { get; set; }
-        public string VisaNum { get; set; }
-        public string MasterCardNum { get; set; }
-
-        public FlagViewModel(string rawName, byte[] rawImage)
+        public FlagViewModel(string rawName, string number, byte[] rawImage)
         {
-            var values = rawName.Split('|');
-            Name = values[0].Replace("_", " ");
-
-            if (values.Length > 2)
-            {
-                AmexNum = values[1];
-                VisaNum = values[2];
-                MasterCardNum = values[3];
-            }
+            Name = rawName.Replace("_", " ");
+            Number = number;
             FlagPic = new BitmapImage();
             FlagPic.SetSource(new MemoryStream(rawImage));
         }
@@ -43,13 +32,13 @@ namespace HaiSmarrito.ViewModel
             switch (cardType)
             {
                 case "amex":
-                    CallHelper.Call("American Express " + Name, AmexNum);
+                    CallHelper.Call("American Express " + Name, Number);
                     break;
                 case "visa":
-                    CallHelper.Call("Visa " + Name, VisaNum);
+                    CallHelper.Call("Visa " + Name, Number);
                     break;
                 case "mastercard":
-                    CallHelper.Call("MasterCard " + Name, MasterCardNum);
+                    CallHelper.Call("Master Card " + Name, Number);
                     break;
                 default:
                     break;

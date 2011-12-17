@@ -141,6 +141,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Images\Shake_EN-us_png" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
@@ -165,6 +166,9 @@
       <Punctuation>True</Punctuation>
     </BlendEmbeddedFont>
     <Resource Include="Images\crow1.png" />
+    <Resource Include="Images\crow2.png" />
+    <Resource Include="Images\lamp.png" />
+    <Resource Include="Images\man2.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Resource Include="Images\cloud1.png" />
     <Resource Include="Images\cloud2.png" />

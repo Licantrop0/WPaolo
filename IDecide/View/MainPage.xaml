@@ -18,12 +18,14 @@
             <DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="IDecide_LogoImage" d:IsOptimized="True"/>
             <DoubleAnimation Duration="0:0:0.5" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="DecideButton" d:IsOptimized="True"/>
         </Storyboard>
+        
         <Storyboard x:Name="AppearCloudStoryboard" AutoReverse="True">
             <DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Question_MarkImage" d:IsOptimized="True"/>
             <DoubleAnimation Duration="0:0:0.6" From="0" To="1" d:IsOptimized="True"
                              Storyboard.TargetProperty="(UIElement.Opacity)"
                              Storyboard.TargetName="Cloud1Image"
                              Completed="DoubleAnimationUsingKeyFrames_Completed" />
+            
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Cloud2Image">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>

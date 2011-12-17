@@ -11,17 +11,6 @@ namespace IDecide.ViewModel
     public class ChoiceGroupViewModel : ViewModelBase
     {
         public ChoiceGroup Model { get; private set; }
-        public bool ButtonEnabled { get { return !Model.IsDefault; } }
-
-        public Visibility CanDeleteVisibility
-        {
-            get
-            {
-                return Model.IsDefault ?
-                    Visibility.Collapsed :
-                    Visibility.Visible;
-            }
-        }
 
         public ChoiceGroupViewModel(ChoiceGroup model)
         {
@@ -52,13 +41,14 @@ namespace IDecide.ViewModel
         }
         private void RemoveGroupAction()
         {
-            if (MessageBox.Show(string.Format(AppResources.Cancel, Model.Name),
+            if (MessageBox.Show(string.Format(AppResources.RemoveGroup, Model.Name),
                 AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                if (Model.IsSelected)
-                    AppContext.Groups.First(g => g.Model.IsDefault).Model.IsSelected = true;
-
                 AppContext.Groups.Remove(this);
+                if (AppContext.Groups.Count > 0 && !AppContext.Groups.Any(g => g.Model.IsSelected))
+                {
+                    AppContext.Groups.First().Model.IsSelected = true;
+                }
             }
         }
     }

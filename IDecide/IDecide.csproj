@@ -164,6 +164,7 @@
       <Numbers>True</Numbers>
       <Punctuation>True</Punctuation>
     </BlendEmbeddedFont>
+    <Resource Include="Images\crow1.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Resource Include="Images\cloud1.png" />
     <Resource Include="Images\cloud2.png" />

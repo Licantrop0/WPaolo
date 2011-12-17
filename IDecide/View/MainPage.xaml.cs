@@ -8,24 +8,44 @@ using Microsoft.Advertising.Mobile.UI;
 using System.Threading;
 using ShakeGestures;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace IDecide
 {
     public partial class MainPage : PhoneApplicationPage
     {
         Random rnd = new Random();
+        DispatcherTimer tmr;
+
         public MainPage()
         {
             InitializeComponent();
             CreateAppBar();
+            InitializeTimer();
+            InizializeShaker();
+        }
 
+        private void InitializeTimer()
+        {
+            tmr = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(10) };
+            tmr.Tick += (sender, e) =>
+            {
+                CrowStoryboard.Begin();
+            };
+            
+            tmr.Start();
+        }
+
+        private void InizializeShaker()
+        {
             ShakeGesturesHelper.Instance.ShakeGesture += (sender, e) =>
             {
                 Dispatcher.BeginInvoke(() =>
                 {
+                    CrowStoryboard.Stop();
                     AppearCloudStoryboard.Begin();
                 });
-                Thread.Sleep(TimeSpan.FromSeconds(1.5));
+                Thread.Sleep(TimeSpan.FromSeconds(2));
             };
 
             ShakeGesturesHelper.Instance.MinimumRequiredMovesForShake = 4;
@@ -70,10 +90,19 @@ namespace IDecide
 
         private void DoubleAnimationUsingKeyFrames_Completed(object sender, EventArgs e)
         {
-            var selectedChoices = AppContext.Groups.Where(g => g.Model.IsSelected).Single().Model.Choices.ToList();
-            AnswerTextBlock.Text = selectedChoices.Any() ?
-                selectedChoices[rnd.Next(selectedChoices.Count)] :
-                AppResources.NothingToDecide;
+            tmr.Start();
+
+            if (AppContext.Groups.Count == 0)
+            {
+                AnswerTextBlock.Text = AppResources.NothingToDecide;
+            }
+            else
+            {
+                var selectedChoices = AppContext.Groups.Where(g => g.Model.IsSelected).Single().Model.Choices.ToList();
+                AnswerTextBlock.Text = selectedChoices.Any() ?
+                    selectedChoices[rnd.Next(selectedChoices.Count)] :
+                    AppResources.NothingToDecide;
+            }
         }
     }
 }

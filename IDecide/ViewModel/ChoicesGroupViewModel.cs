@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -28,9 +27,6 @@ namespace IDecide.ViewModel
         }
         private void AddGroupAction()
         {
-            //Deseleziono il gruppo precedentenente selezionato
-            Groups.Single(g => g.Model.IsSelected).Model.IsSelected = false;
-
             //Creo e seleziono il nuovo gruppo creato, e lo aggiungo alla lista
             var choiceGroup = new Model.ChoiceGroup() { IsSelected = true };
             Groups.Insert(0, new ChoiceGroupViewModel(choiceGroup));

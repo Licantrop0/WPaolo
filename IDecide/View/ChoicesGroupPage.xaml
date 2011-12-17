@@ -41,7 +41,6 @@
                             <RadioButton GroupName="Groups"
                                          IsChecked="{Binding Model.IsSelected, Mode=TwoWay}" />
                             <Button Width="320" Style="{StaticResource ButtonStyle}"
-                                    IsEnabled="{Binding ButtonEnabled}"
                                     Command="{Binding EditGroup}"
                                     toolkit:TiltEffect.IsTiltEnabled="{Binding ButtonEnabled}">
                                 <TextBlock Text="{Binding Model.Name,
@@ -56,8 +55,6 @@
 
                             <Button Template="{StaticResource RemoveButtonTemplate}"
                                     Width="48" Height="48" Margin="6"
-                                    Visibility="{Binding CanDeleteVisibility}"
-                                    IsEnabled="{Binding ButtonEnabled}"
                                     Command="{Binding RemoveGroup}" />
                         </StackPanel>
                     </DataTemplate>

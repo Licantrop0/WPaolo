@@ -178,6 +178,15 @@ namespace IDecide.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to remove the group {0}?.
+        /// </summary>
+        public static string RemoveGroup {
+            get {
+                return ResourceManager.GetString("RemoveGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {

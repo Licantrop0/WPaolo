@@ -34,14 +34,8 @@
         <toolkit:PhoneTextBox Name="ChoiceTextBox" Grid.Row="1"
             KeyDown="ChoiceTextBox_KeyDown" InputScope="Text"
             Hint="{Binding Path=LocalizedResources.AddChoice, Source={StaticResource LocalizedStrings}}"
-            ActionIcon="..\Toolkit.Content\add_orange.png">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="ActionIconTapped">
-                    <cmd:EventToCommand Command="{Binding Path=AddChoice}"
-                                        CommandParameter="{Binding ElementName=ChoiceTextBox, Path=Text}"  />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </toolkit:PhoneTextBox>
+            ActionIcon="..\Toolkit.Content\add_orange.png"
+            ActionIconTapped="ChoiceTextBox_ActionIconTapped" />
 
         <ListBox Name="ChoicesListBox" ItemsSource="{Binding CurrentChoiceGroup.Choices}" Grid.Row="2" >
             <ListBox.ItemTemplate>

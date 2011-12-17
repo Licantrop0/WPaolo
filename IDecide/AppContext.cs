@@ -18,7 +18,6 @@ namespace IDecide
             Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
             {
                 Name = "MagicBall",
-                IsDefault = true,
                 IsSelected = true,
                 Choices = new ObservableCollection<string>(
                     Enumerable.Range(1, 20).Select(i =>
@@ -28,7 +27,6 @@ namespace IDecide
             Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
             {
                 Name = "Dice",
-                IsDefault = true,
                 Choices = new ObservableCollection<string>(
                     Enumerable.Range(1, 6).Select(i => i.ToString()))
             }));
@@ -37,7 +35,6 @@ namespace IDecide
             Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
             {
                 Name = "HeadTail",
-                IsDefault = true,
                 Choices = new ObservableCollection<string>(new[]
                 {
                     DefaultChoices.Head,
@@ -48,7 +45,6 @@ namespace IDecide
             Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
             {
                 Name = "YesNoMaybe",
-                IsDefault = true,
                 Choices = new ObservableCollection<string>(new[]
                 { 
                     DefaultChoices.Yes,
@@ -60,7 +56,6 @@ namespace IDecide
             Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
             {
                 Name = "RPSLS",
-                IsDefault = true,
                 Choices = new ObservableCollection<string>(new[]
                 {
                     DefaultChoices.Rock, DefaultChoices.Paper, DefaultChoices.Scissor,
@@ -71,7 +66,6 @@ namespace IDecide
             Choices.Add(new ChoiceGroupViewModel(new ChoiceGroup()
             {
                 Name = "Percentage",
-                IsDefault = true,
                 Choices = new ObservableCollection<string>(
                     Enumerable.Range(0, 100).Select(i => i + "%"))
             }));

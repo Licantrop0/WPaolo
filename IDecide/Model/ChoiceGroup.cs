@@ -25,9 +25,6 @@ namespace IDecide.Model
         [DataMember]
         public ObservableCollection<string> Choices { get; set; }
 
-        [DataMember]
-        public bool IsDefault { get; set; }
-
         private bool _isSelected;
         [DataMember]
         public bool IsSelected

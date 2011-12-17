@@ -15,11 +15,11 @@
     shell:SystemTray.IsVisible="False">
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="OpeningStoryboard">
-            <DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Question_MarkImage" d:IsOptimized="True"/>
             <DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="IDecide_LogoImage" d:IsOptimized="True"/>
             <DoubleAnimation Duration="0:0:0.5" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="DecideButton" d:IsOptimized="True"/>
         </Storyboard>
         <Storyboard x:Name="AppearCloudStoryboard" AutoReverse="True">
+            <DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Question_MarkImage" d:IsOptimized="True"/>
             <DoubleAnimation Duration="0:0:0.6" From="0" To="1" d:IsOptimized="True"
                              Storyboard.TargetProperty="(UIElement.Opacity)"
                              Storyboard.TargetName="Cloud1Image"
@@ -29,18 +29,26 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
-            
+
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Cloud3Image">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
-            
+
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:2.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Name="CrowStoryboard">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)"
+                                           Storyboard.TargetName="CrowGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-74"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="481"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
@@ -95,6 +103,10 @@
                            FontFamily="{StaticResource DefaultFont}"
                            FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
             </Grid>
+            <Grid x:Name="CrowGrid" Canvas.Top="108" Canvas.Left="-74" IsHitTestVisible="False">
+                <Image x:Name="Crow1Image" Source="/IDecide;component/Images/crow1.png" Stretch="None" />
+                <Image x:Name="Crow2Image" Source="/IDecide;component/Images/crow1.png" Stretch="None" />
+            </Grid>
 
         </Canvas>
         <Button x:Name="DecideButton"
@@ -102,22 +114,22 @@
                 toolkit:TiltEffect.IsTiltEnabled="True" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Click">
+                    <eim:ControlStoryboardAction ControlStoryboardOption="Stop" Storyboard="{StaticResource CrowStoryboard}"/>
                     <eim:ControlStoryboardAction Storyboard="{StaticResource AppearCloudStoryboard}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <Button.Template>
-                <ControlTemplate />
+                <ControlTemplate>
+                    <Image Stretch="None" Source="{Binding LocalizedResources.Shake,
+                        Converter={StaticResource ByteArrayToBitmapImageConverter},
+                        Source={StaticResource LocalizedStrings}}" Margin="12" />
+                </ControlTemplate>
             </Button.Template>
-            <Grid>
-                <Image Stretch="None" Source="{Binding LocalizedResources.Shake,
-                    Converter={StaticResource ByteArrayToBitmapImageConverter},
-                    Source={StaticResource LocalizedStrings}}" Margin="12" />
-            </Grid>
         </Button>
 
         <StackPanel x:Name="AdPlaceHolder" Grid.Row="2" Height="80" />
     </Grid>
-    
+
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"							  
                               ForegroundColor="{StaticResource MainColor}" />

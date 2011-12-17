@@ -27,12 +27,13 @@ namespace IDecide
 
         private void InitializeTimer()
         {
-            tmr = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(10) };
+            tmr = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(15) };
             tmr.Tick += (sender, e) =>
             {
                 CrowStoryboard.Begin();
+                CrowAnimation.Begin();
             };
-            
+
             tmr.Start();
         }
 
@@ -45,7 +46,9 @@ namespace IDecide
                     CrowStoryboard.Stop();
                     AppearCloudStoryboard.Begin();
                 });
-                Thread.Sleep(TimeSpan.FromSeconds(2));
+                ShakeGesturesHelper.Instance.Active = false;
+                Thread.Sleep(TimeSpan.FromSeconds(4));
+                ShakeGesturesHelper.Instance.Active = true;
             };
 
             ShakeGesturesHelper.Instance.MinimumRequiredMovesForShake = 4;
@@ -76,22 +79,26 @@ namespace IDecide
             var EditChoicesAppBarButton = new ApplicationBarIconButton();
             EditChoicesAppBarButton.Text = AppResources.EditChoices;
             EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
-            EditChoicesAppBarButton.Click += (sender, e) => {
+            EditChoicesAppBarButton.Click += (sender, e) =>
+            {
                 NavigationService.Navigate(new Uri("/View/ChoicesGroupPage.xaml", UriKind.Relative));
             };
             ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
 
             var AboutAppBarMenuItem = new ApplicationBarMenuItem();
             AboutAppBarMenuItem.Text = AppResources.About;
-            AboutAppBarMenuItem.Click += (sender, e) => {
-                NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative)); };
+            AboutAppBarMenuItem.Click += (sender, e) =>
+            {
+                NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
+            };
             ApplicationBar.MenuItems.Add(AboutAppBarMenuItem);
         }
 
-        private void DoubleAnimationUsingKeyFrames_Completed(object sender, EventArgs e)
+        private void AppearCloud_Completed(object sender, EventArgs e)
         {
+            tmr.Stop();
             tmr.Start();
-
+            
             if (AppContext.Groups.Count == 0)
             {
                 AnswerTextBlock.Text = AppResources.NothingToDecide;
@@ -103,6 +110,11 @@ namespace IDecide
                     selectedChoices[rnd.Next(selectedChoices.Count)] :
                     AppResources.NothingToDecide;
             }
+        }
+
+        private void CrowStoryboard_Completed(object sender, EventArgs e)
+        {
+            CrowAnimation.Stop();
         }
     }
 }

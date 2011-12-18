@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Virus", "Virus2\Virus2\Virus.csproj", "{2B7015C7-A837-436D-9414-F6D0724DAB7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirusContent", "Virus2\Virus2Content\VirusContent.contentproj", "{0B829D68-0E8D-40F7-8ABA-6B117D079530}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStateManagement", "Virus2\GameStateManagement\GameStateManagement.csproj", "{D613ECAD-5F4D-44E6-8FB7-7ECAFF3D02D5}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Virus2\\GameStateManagement\\GameStateManagement.csproj
+		SccProjectName1 = Virus2/GameStateManagement
+		SccLocalPath1 = Virus2\\GameStateManagement
+		SccProjectUniqueName2 = Virus2\\Virus2\\Virus.csproj
+		SccProjectName2 = Virus2/Virus2
+		SccLocalPath2 = Virus2\\Virus2
+		SccProjectUniqueName3 = Virus2\\Virus2Content\\VirusContent.contentproj
+		SccProjectName3 = Virus2/Virus2Content
+		SccLocalPath3 = Virus2\\Virus2Content
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Windows Phone = Debug|Windows Phone
+		Release|Windows Phone = Release|Windows Phone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B7015C7-A837-436D-9414-F6D0724DAB7A}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{2B7015C7-A837-436D-9414-F6D0724DAB7A}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
+		{2B7015C7-A837-436D-9414-F6D0724DAB7A}.Debug|Windows Phone.Deploy.0 = Debug|Windows Phone
+		{2B7015C7-A837-436D-9414-F6D0724DAB7A}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{2B7015C7-A837-436D-9414-F6D0724DAB7A}.Release|Windows Phone.Build.0 = Release|Windows Phone
+		{2B7015C7-A837-436D-9414-F6D0724DAB7A}.Release|Windows Phone.Deploy.0 = Release|Windows Phone
+		{0B829D68-0E8D-40F7-8ABA-6B117D079530}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{0B829D68-0E8D-40F7-8ABA-6B117D079530}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{D613ECAD-5F4D-44E6-8FB7-7ECAFF3D02D5}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{D613ECAD-5F4D-44E6-8FB7-7ECAFF3D02D5}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
+		{D613ECAD-5F4D-44E6-8FB7-7ECAFF3D02D5}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{D613ECAD-5F4D-44E6-8FB7-7ECAFF3D02D5}.Release|Windows Phone.Build.0 = Release|Windows Phone
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
 
         <toolkit:PhoneTextBox            
-            Text="{Binding CurrentChoiceGroup.Name, Mode=TwoWay}" Grid.Row="0"
+            Text="{Binding LocGroupName, Mode=TwoWay}" Grid.Row="0"
             Hint="{Binding Path=LocalizedResources.InsertGroupName, Source={StaticResource LocalizedStrings}}"
             KeyDown="GroupNameTextBox_KeyDown" />
 

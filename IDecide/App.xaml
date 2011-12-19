@@ -6,41 +6,37 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    mc:Ignorable="d">
-
-    <Application.Resources>
-        <vm:ViewModelLocator x:Key="Locator" xmlns:vm="clr-namespace:IDecide.ViewModel" />
-        <loc:LocalizedStrings x:Key="LocalizedStrings"
-            xmlns:loc="clr-namespace:IDecide.Localization" />
-        
-        <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows" >
+    mc:Ignorable="d" xmlns:vm="clr-namespace:IDecide.ViewModel">
+    
+  <Application.Resources>
+    <vm:ViewModelLocator x:Key="Locator" xmlns:vm="clr-namespace:IDecide.ViewModel" d:IsDataSource="True" />
+    <loc:LocalizedStrings x:Key="LocalizedStrings" xmlns:loc="clr-namespace:IDecide.Localization" />
+    <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
             /IDecide;component/Fonts/Fonts.zip#Ravie
         </sys:FontFamily>
-
-        <Color x:Key="MainColor">#FF841F</Color>
-        <SolidColorBrush x:Key="DefaultBackground"  Color="#148DE2"  />
-        <SolidColorBrush x:Key="DefaultForeground" Color="{StaticResource MainColor}" />
-        
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
-            <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-        </Style>
-        
-        <ControlTemplate x:Key="RemoveButtonTemplate" TargetType="Button" >
-            <Grid>
-                <Rectangle Fill="{StaticResource DefaultForeground}">
-                    <Rectangle.OpacityMask>
-                        <ImageBrush ImageSource="..\Toolkit.Content\remove_white.png" />
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-            </Grid>
-        </ControlTemplate>
-    </Application.Resources>
-    <Application.ApplicationLifetimeObjects>
-        <shell:PhoneApplicationService
+      
+    <Color x:Key="MainColor">#FF841F</Color>
+      
+    <SolidColorBrush x:Key="DefaultBackground" Color="#148DE2" />
+    <SolidColorBrush x:Key="DefaultForeground" Color="{StaticResource MainColor}" />
+      
+    <Style x:Key="ButtonStyle" TargetType="Button">
+      <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+      <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+    </Style>
+      
+    <ControlTemplate x:Key="RemoveButtonTemplate" TargetType="Button">
+        <Rectangle Fill="{StaticResource DefaultForeground}">
+          <Rectangle.OpacityMask>
+            <ImageBrush ImageSource="..\Toolkit.Content\remove_white.png" />
+          </Rectangle.OpacityMask>
+        </Rectangle>
+    </ControlTemplate>
+      
+  </Application.Resources>
+  <Application.ApplicationLifetimeObjects>
+    <shell:PhoneApplicationService
         Launching="Application_Launching" Closing="Application_Closing"
         Activated="Application_Activated" Deactivated="Application_Deactivated" />
-    </Application.ApplicationLifetimeObjects>
+  </Application.ApplicationLifetimeObjects>
 </Application>

@@ -127,7 +127,7 @@
     <value>Lizard</value>
   </data>
   <data name="MagicBall" xml:space="preserve">
-    <value>Magic Ball</value>
+    <value>Magic 8-Ball</value>
   </data>
   <data name="MagicBall1" xml:space="preserve">
     <value>As I see it, yes</value>
@@ -223,6 +223,24 @@
     <value>Yes, No, Maybe?</value>
   </data>
   <data name="Dice" xml:space="preserve">
-    <value>Dice</value>
+    <value>6-Dice</value>
+  </data>
+  <data name="Dice1" xml:space="preserve">
+    <value>One</value>
+  </data>
+  <data name="Dice2" xml:space="preserve">
+    <value>Two</value>
+  </data>
+  <data name="Dice3" xml:space="preserve">
+    <value>Three</value>
+  </data>
+  <data name="Dice4" xml:space="preserve">
+    <value>Four</value>
+  </data>
+  <data name="Dice5" xml:space="preserve">
+    <value>Five</value>
+  </data>
+  <data name="Dice6" xml:space="preserve">
+    <value>Six</value>
   </data>
 </root>

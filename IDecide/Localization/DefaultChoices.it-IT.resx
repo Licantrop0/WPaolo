@@ -127,7 +127,7 @@
     <value>Lucertola</value>
   </data>
   <data name="MagicBall" xml:space="preserve">
-    <value>Palla 8</value>
+    <value>Palla da 8</value>
   </data>
   <data name="MagicBall1" xml:space="preserve">
     <value>I segni indicano di sì</value>
@@ -223,6 +223,24 @@
     <value>Sì, No, Forse?</value>
   </data>
   <data name="Dice" xml:space="preserve">
-    <value>Dado</value>
+    <value>Dado da 6</value>
+  </data>
+  <data name="Dice1" xml:space="preserve">
+    <value>Uno</value>
+  </data>
+  <data name="Dice2" xml:space="preserve">
+    <value>Due</value>
+  </data>
+  <data name="Dice3" xml:space="preserve">
+    <value>Tre</value>
+  </data>
+  <data name="Dice4" xml:space="preserve">
+    <value>Quattro</value>
+  </data>
+  <data name="Dice5" xml:space="preserve">
+    <value>Cinque</value>
+  </data>
+  <data name="Dice6" xml:space="preserve">
+    <value>Sei</value>
   </data>
 </root>

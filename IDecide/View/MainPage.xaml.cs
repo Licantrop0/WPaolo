@@ -44,14 +44,16 @@ namespace IDecide
                 Dispatcher.BeginInvoke(() =>
                 {
                     CrowStoryboard.Stop();
-                    AppearCloudStoryboard.Begin();
+                    CloudAppearStoryboard.Begin();
+                    LampAppearStoryboard.Begin();
                 });
                 ShakeGesturesHelper.Instance.Active = false;
-                Thread.Sleep(TimeSpan.FromSeconds(4));
+                Thread.Sleep(TimeSpan.FromSeconds(5));
                 ShakeGesturesHelper.Instance.Active = true;
             };
 
             ShakeGesturesHelper.Instance.MinimumRequiredMovesForShake = 4;
+            ShakeGesturesHelper.Instance.ShakeMagnitudeWithoutGravitationThreshold = 0.3;
             ShakeGesturesHelper.Instance.Active = true;
         }
 

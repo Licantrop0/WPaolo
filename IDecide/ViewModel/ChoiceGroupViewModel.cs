@@ -27,8 +27,7 @@ namespace IDecide.ViewModel
         }
         private void EditGroupAction()
         {
-            Messenger.Default.Send<NotificationMessage<ChoiceGroup>>(
-                new NotificationMessage<ChoiceGroup>(Model, "Edit"));
+            Messenger.Default.Send<ChoiceGroup>(this.Model);
         }
 
         private RelayCommand _removeGroup;
@@ -41,10 +40,13 @@ namespace IDecide.ViewModel
         }
         private void RemoveGroupAction()
         {
-            if (MessageBox.Show(string.Format(AppResources.RemoveGroup, Model.Name),
+            string locGroupName = DefaultChoices.ResourceManager.GetString(Model.Name) ?? Model.Name;
+            if (MessageBox.Show(string.Format(AppResources.RemoveGroup, locGroupName),
                 AppResources.Confirm, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 AppContext.Groups.Remove(this);
+
+                //se ci sono elementi nella lista e di questi non ce n'è nessuno selezionato, seleziono il primo
                 if (AppContext.Groups.Count > 0 && !AppContext.Groups.Any(g => g.Model.IsSelected))
                 {
                     AppContext.Groups.First().Model.IsSelected = true;

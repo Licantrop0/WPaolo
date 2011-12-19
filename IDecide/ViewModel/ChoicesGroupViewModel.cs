@@ -27,12 +27,11 @@ namespace IDecide.ViewModel
         }
         private void AddGroupAction()
         {
-            //Creo e seleziono il nuovo gruppo creato, e lo aggiungo alla lista
+            //Creo il nuovo gruppo, lo seleziono e lo aggiungo alla lista
             var choiceGroup = new Model.ChoiceGroup() { IsSelected = true };
             Groups.Insert(0, new ChoiceGroupViewModel(choiceGroup));
 
-            Messenger.Default.Send<NotificationMessage<ChoiceGroup>>(
-                new NotificationMessage<ChoiceGroup>(choiceGroup, "Add"));
+            Messenger.Default.Send<ChoiceGroup>(choiceGroup);
 
             NavigationService.Navigate(new Uri("/View/AddEditChoicesPage.xaml", UriKind.Relative));
         }

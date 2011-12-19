@@ -28,7 +28,8 @@ namespace IDecide
             {
                 Name = "Dice",
                 Choices = new ObservableCollection<string>(
-                    Enumerable.Range(1, 6).Select(i => i.ToString()))
+                    Enumerable.Range(1, 6).Select(i =>
+                    DefaultChoices.ResourceManager.GetString("Dice" + i)))
             }));
 
 

@@ -1,12 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using IDecide.Localization;
 using IDecide.ViewModel;
 using Microsoft.Phone.Controls;
-using System.Linq;
-using System;
 
 namespace IDecide
 {
@@ -42,7 +39,7 @@ namespace IDecide
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            var selectedChoice = ((Button)sender).DataContext as string;
+            var selectedChoice = (((Button)sender).DataContext).ToString();
             VM.DeleteChoice.Execute(selectedChoice);
         }
 

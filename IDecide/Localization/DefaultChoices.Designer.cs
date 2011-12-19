@@ -61,11 +61,65 @@ namespace IDecide.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dice.
+        ///   Looks up a localized string similar to 6-Dice.
         /// </summary>
         internal static string Dice {
             get {
                 return ResourceManager.GetString("Dice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One.
+        /// </summary>
+        internal static string Dice1 {
+            get {
+                return ResourceManager.GetString("Dice1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two.
+        /// </summary>
+        internal static string Dice2 {
+            get {
+                return ResourceManager.GetString("Dice2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Three.
+        /// </summary>
+        internal static string Dice3 {
+            get {
+                return ResourceManager.GetString("Dice3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Four.
+        /// </summary>
+        internal static string Dice4 {
+            get {
+                return ResourceManager.GetString("Dice4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Five.
+        /// </summary>
+        internal static string Dice5 {
+            get {
+                return ResourceManager.GetString("Dice5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Six.
+        /// </summary>
+        internal static string Dice6 {
+            get {
+                return ResourceManager.GetString("Dice6", resourceCulture);
             }
         }
         
@@ -97,7 +151,7 @@ namespace IDecide.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Magic Ball.
+        ///   Looks up a localized string similar to Magic 8-Ball.
         /// </summary>
         internal static string MagicBall {
             get {

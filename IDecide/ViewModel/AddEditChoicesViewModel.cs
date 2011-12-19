@@ -3,14 +3,13 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using IDecide.Model;
 using NascondiChiappe.Helpers;
+using IDecide.Localization;
 
 namespace IDecide.ViewModel
 {
     public class AddEditChoicesViewModel : ViewModelBase
     {
         public INavigationService NavigationService { get; set; }
-
-        public bool EditMode { get; private set; }
 
         private ChoiceGroup _currentChoiceGroup;
         public ChoiceGroup CurrentChoiceGroup
@@ -25,14 +24,22 @@ namespace IDecide.ViewModel
 
         public AddEditChoicesViewModel()
         {
-            Messenger.Default.Register<NotificationMessage<ChoiceGroup>>(
-                this, m => ReadMessage(m));
+            Messenger.Default.Register<ChoiceGroup>(
+                this, cg => CurrentChoiceGroup = cg);
         }
 
-        private void ReadMessage(NotificationMessage<ChoiceGroup> message)
+        public string LocGroupName
         {
-            EditMode = message.Notification == "Edit";
-            CurrentChoiceGroup = message.Content;
+            get
+            {
+                return DefaultChoices.ResourceManager.GetString(
+                    CurrentChoiceGroup.Name) ?? CurrentChoiceGroup.Name;
+            }
+            set
+            {
+                if (value == LocGroupName) return;
+                CurrentChoiceGroup.Name = value;
+            }
         }
 
         private RelayCommand<string> _addChoice;

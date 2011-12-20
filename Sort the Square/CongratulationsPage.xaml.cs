@@ -8,6 +8,7 @@ using WPCommon;
 using Microsoft.Xna.Framework.Audio;
 using SortTheSquare.Localization;
 using SortTheSquare.Sounds;
+using WPCommon.Helpers;
 
 namespace SortTheSquare
 {

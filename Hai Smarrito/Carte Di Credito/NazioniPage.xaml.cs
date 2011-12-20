@@ -17,26 +17,6 @@ namespace HaiSmarrito.Carte_Di_Credito
         {
             var VM = (NazioniViewModel)LayoutRoot.DataContext;
             VM.CardType = NavigationContext.QueryString["type"];
-
-            switch (VM.CardType)
-            {
-                case "amex":
-                    this.Title1Textbox.Text = "American Express";
-                    break;
-                case "visa":
-                    this.Title1Textbox.Text = "Visa";
-                    break;
-                case "mastercard":
-                    this.Title1Textbox.Text = "Mastercard";
-                    break;
-                case "dinersclub":
-                    this.Title1Textbox.Text = "Diners Club";
-                    break;
-
-                default:
-                    break;
-            }
-
             base.OnNavigatedTo(e);
         }
     }

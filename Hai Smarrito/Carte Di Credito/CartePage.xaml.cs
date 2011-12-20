@@ -12,6 +12,9 @@ namespace HaiSmarrito.Carte_Di_Credito
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            if (e.NavigationMode == NavigationMode.Back)
+                return;
+
             int id;
             if (int.TryParse(NavigationContext.QueryString["id"], out id))
                 CartePivot.SelectedIndex = id;

@@ -25,24 +25,14 @@ namespace HaiSmarrito.ViewModel
             {
                 return _call ?? (_call = new RelayCommand<string>(CallAction));
             }
-        }
+        }       
 
         private void CallAction(string cardType)
         {
-            switch (cardType)
-            {
-                case "amex":
-                    CallHelper.Call("American Express " + Name, Number);
-                    break;
-                case "visa":
-                    CallHelper.Call("Visa " + Name, Number);
-                    break;
-                case "mastercard":
-                    CallHelper.Call("Master Card " + Name, Number);
-                    break;
-                default:
-                    break;
-            }
+            string callName = string.Format("{0} {1}",
+                CreditCardHelper.GetName(cardType), Name);
+
+            CallHelper.Call(callName, Number);
         }
 
     }

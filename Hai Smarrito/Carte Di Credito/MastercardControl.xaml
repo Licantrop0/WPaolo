@@ -19,12 +19,10 @@
 
             <Button Content="Italia*" Click="Italia_Click" />
 
-            <TextBlock Style="{StaticResource DescriptionTextStyle}" FontWeight="Bold">
-                *Attenzione: alcuni operatori telefonici non permettono le chiamate verso i numero verdi
-            </TextBlock>
-
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                    <LineBreak />
+                <Bold>*Attenzione: alcuni operatori telefonici non 
+                    permettono le chiamate verso i numero verdi</Bold>
+                <LineBreak /><LineBreak />
                     Se invece ti trovi in uno dei seguenti Paesi:
                     Anguilla, Antigua, Bahamas, Barbados, Bermuda, Dominica, Grenada, Isole Cayman,
                     Isole Vergini Britanniche, Isole Vergini Statunitensi, Montserrat, Nevis,

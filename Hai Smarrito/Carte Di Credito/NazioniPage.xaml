@@ -47,7 +47,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="Title1Textbox" Text=" " Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="{Binding CreditCardName}" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Altri Paesi" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
@@ -57,9 +57,9 @@
                     <Button Style="{StaticResource ButtonStyle}" Width="480"
                             Command="{Binding Call}" CommandParameter="{Binding CardType, Source={StaticResource NazioniVM}}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Height="80"  Source="{Binding FlagPic}" Stretch="Uniform">
+                            <Image Height="80" Stretch="Uniform" Source="{Binding FlagPic}">
                                 <!--<Image.Source>
-                                    <BitmapImage UriSource="{Binding Value}" CreateOptions="BackgroundCreation"/>
+                                    <BitmapImage UriSource="{Binding FlagPic}" CreateOptions="BackgroundCreation" />
                                 </Image.Source>-->
                             </Image>
                             <TextBlock Text="{Binding Name}" Style="{StaticResource ListTextStyle}" />

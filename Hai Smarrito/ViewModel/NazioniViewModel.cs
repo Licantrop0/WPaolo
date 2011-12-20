@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using HaiSmarrito.Helpers;
 using HaiSmarrito.Images.Flags;
 
 namespace HaiSmarrito.ViewModel
@@ -22,18 +23,15 @@ namespace HaiSmarrito.ViewModel
             }
         }
 
-        private int CardIndex
+        public string CreditCardName
         {
-            get
-            {
-                if (CardType == "amex") return 1;
-                else if (CardType == "visa") return 2;
-                else return 3; //CardType == "mastercard"
-            }
+            get { return CreditCardHelper.GetName(CardType); }
         }
 
         private void LoadFlags()
         {
+            var CardIndex = CreditCardHelper.GetIndex(CardType);
+
             Flags = new ObservableCollection<FlagViewModel>(
                 from de in FlagsResource.ResourceManager
                     .GetResourceSet(CultureInfo.CurrentCulture, true, true)

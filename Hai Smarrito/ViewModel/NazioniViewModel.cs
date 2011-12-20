@@ -1,12 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Windows.Media.Imaging;
 using HaiSmarrito.Images.Flags;
-using System.Collections.ObjectModel;
 
 namespace HaiSmarrito.ViewModel
 {
@@ -24,49 +21,27 @@ namespace HaiSmarrito.ViewModel
                 LoadFlags();
             }
         }
-       
+
+        private int CardIndex
+        {
+            get
+            {
+                if (CardType == "amex") return 1;
+                else if (CardType == "visa") return 2;
+                else return 3; //CardType == "mastercard"
+            }
+        }
+
         private void LoadFlags()
         {
-            var resources = from de in FlagsResource.ResourceManager
-                                .GetResourceSet(CultureInfo.CurrentCulture, true, true)
-                                .Cast<DictionaryEntry>()
-                            orderby de.Key
-                            select new { values = de.Key.ToString().Split('|'), bytes = (byte[])de.Value };
-
-            Flags = new ObservableCollection<FlagViewModel>();
-            foreach (var res in resources)
-            {
-                string number = string.Empty;
-                switch (CardType)
-                {
-                    case "amex":
-                        if (string.IsNullOrEmpty(res.values[1]))
-                            continue;
-                        else
-                            number = res.values[1];
-                        break;
-
-                    case "visa":
-                        if (string.IsNullOrEmpty(res.values[2]))
-                            continue;
-                        else
-                            number = res.values[2];
-                        break;
-
-                    case "mastercard":
-                        if (string.IsNullOrEmpty(res.values[3])) 
-                            continue;
-                        else
-                            number = res.values[3];
-                        break;
-
-                    default:
-                        break;
-                }
-
-                Flags.Add(new FlagViewModel(res.values[0], number, res.bytes));
-            }
-
+            Flags = new ObservableCollection<FlagViewModel>(
+                from de in FlagsResource.ResourceManager
+                    .GetResourceSet(CultureInfo.CurrentCulture, true, true)
+                    .Cast<DictionaryEntry>()
+                let values = de.Key.ToString().Split('|')
+                where !string.IsNullOrEmpty(values[CardIndex])
+                orderby values[0]
+                select new FlagViewModel(values[0], values[CardIndex], (byte[])de.Value));
         }
 
         #region INPC Implementation

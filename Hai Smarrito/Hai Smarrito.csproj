@@ -97,6 +97,7 @@
     <Compile Include="Carte Di Credito\VisaControl.xaml.cs">
       <DependentUpon>VisaControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CreditCardHelper.cs" />
     <Compile Include="Images\Flags\FlagsResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -345,16 +346,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Images\carte.png" />
-    <Resource Include="Images\amex.png" />
+    <Resource Include="Images\Cards\amex.png" />
     <Content Include="Images\appbar_info.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\mastercard.png" />
-    <Resource Include="Images\visa.png" />
+    <Resource Include="Images\Cards\mastercard.png" />
+    <Resource Include="Images\Cards\visa.png" />
     <None Include="Images\Flags\Argentina_png" />
     <None Include="Images\Flags\Australia_png" />
     <None Include="Images\Flags\American_Samoa_png" />
-    <Resource Include="Images\dinersclub.png" />
+    <Resource Include="Images\Cards\dinersclub.png" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

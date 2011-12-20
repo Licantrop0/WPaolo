@@ -24,11 +24,6 @@ namespace HaiSmarrito
             base.OnNavigatedTo(e);
         }
 
-        private void Execute_Navigation(object sender, NavigationEventArgs e)
-        {
-            NavigationService.Navigate(e.Uri);
-        }
-
         private void AppBarInfoButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Carte Di Credito/InfoPage.xaml", UriKind.Relative));

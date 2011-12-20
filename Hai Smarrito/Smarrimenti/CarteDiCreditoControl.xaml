@@ -17,7 +17,7 @@
             
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/HaiSmarrito;component/Images/amex.png" />
+                    <Image Source="/HaiSmarrito;component/Images/Cards/amex.png" />
                     <TextBlock Text="American Express" Style="{StaticResource ListTextStyle}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -29,7 +29,7 @@
 
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/HaiSmarrito;component/Images/visa.png" />
+                    <Image Source="/HaiSmarrito;component/Images/Cards/visa.png" />
                     <TextBlock Text="Visa" Style="{StaticResource ListTextStyle}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -41,7 +41,7 @@
 
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/HaiSmarrito;component/Images/mastercard.png" />
+                    <Image Source="/HaiSmarrito;component/Images/Cards/mastercard.png" />
                     <TextBlock Text="Mastercard" Style="{StaticResource ListTextStyle}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -53,7 +53,7 @@
 
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/HaiSmarrito;component/Images/dinersclub.png" />
+                    <Image Source="/HaiSmarrito;component/Images/Cards/dinersclub.png" />
                     <TextBlock Text="Diners Club" Style="{StaticResource ListTextStyle}" />
                 </StackPanel>
                 <i:Interaction.Triggers>

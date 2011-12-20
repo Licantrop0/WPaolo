@@ -39,11 +39,11 @@
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <controls:Pivot Name="CartePivot" Title="Hai Smarrito una carta di credito">
-            <!--Pivot American Express-->
+            <!--American Express-->
             <controls:PivotItem>
                 <controls:PivotItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/HaiSmarrito;component/Images/amex.png"
+                        <Image Source="/HaiSmarrito;component/Images/Cards/amex.png"
                                Stretch="None" Margin="12"  />
                         <TextBlock Text="American Express" />
                     </StackPanel>
@@ -55,7 +55,7 @@
             <controls:PivotItem>
                 <controls:PivotItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/HaiSmarrito;component/Images/visa.png"
+                        <Image Source="/HaiSmarrito;component/Images/Cards/visa.png"
                                Stretch="None" Margin="12"  />
                         <TextBlock Text="Visa" />
                     </StackPanel>
@@ -67,7 +67,7 @@
             <controls:PivotItem>
                 <controls:PivotItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/HaiSmarrito;component/Images/mastercard.png"
+                        <Image Source="/HaiSmarrito;component/Images/Cards/mastercard.png"
                                Stretch="None" Margin="12"  />
                         <TextBlock Text="Mastercard" />
                     </StackPanel>
@@ -79,7 +79,7 @@
             <controls:PivotItem>
                 <controls:PivotItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/HaiSmarrito;component/Images/dinersclub.png"
+                        <Image Source="/HaiSmarrito;component/Images/Cards/dinersclub.png"
                                Stretch="None" Margin="12"  />
                         <TextBlock Text="Diners Club" />
                     </StackPanel>

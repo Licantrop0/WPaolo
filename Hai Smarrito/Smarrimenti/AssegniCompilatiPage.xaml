@@ -47,7 +47,7 @@
             <TextBlock Text="Hai Smarrito" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Assegni Compilati" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
-        <ScrollViewer Grid.Row="1" Margin="12,0,12,0">
+        <ScrollViewer Grid.Row="1" Margin="12,0">
             <StackPanel Margin="12,0">
                 <TextBlock Style="{StaticResource DescriptionTextStyle}">
                 &#32;<Bold>Furto o smarrimento di assegni già compilati di cui si è beneficiari.</Bold>&#32;
@@ -61,14 +61,14 @@
                     e chiedergli di bloccarlo presso la sua banca;
                     <LineBreak />                    
                     &#32;<Bold>2) Denunciare l'accaduto all'Autorità di Polizia, all'estero presso un ufficio 
-                    di Polizia locale</Bold>&#32;;
+                    di Polizia locale</Bold>;
                     <LineBreak />
-                    &#32;<Bold>3)</Bold>&#32; Se l'assegno è trasferibile, richiedere al traente dell'assegno 
-                    l'emissione di un nuovo assegno dietro rilascio di &#32;<Bold>lettera di manleva</Bold>&#32;
-                    ; nel caso il traente non sia disponibile occorre, per ottenere il pagamento, attivare la 
+                    3) Se l'assegno è trasferibile, richiedere al traente dell'assegno 
+                    l'emissione di un nuovo assegno dietro rilascio di &#32;<Bold>lettera di manleva</Bold>;
+                    nel caso il traente non sia disponibile occorre, per ottenere il pagamento, attivare la 
                     &#32;<Bold>procedura di ammortamento</Bold>&#32; con ricorso al Presidente del Tribunale del 
-                    luogo in cui l'assegno è pagabile. Se l'assegno non è trasferibile, si ha diritto di 
-                    &#32;<Bold>ottenere a proprie spese un duplicato</Bold>&#32;, denunciando al traente il furto, 
+                    luogo in cui l'assegno è pagabile. Se l'assegno non è trasferibile, si ha diritto di &#32;
+                    <Bold>ottenere a proprie spese un duplicato</Bold>, denunciando al traente il furto, 
                     lo smarrimento o la distruzione dell'assegno.
                 </TextBlock>
             </StackPanel>

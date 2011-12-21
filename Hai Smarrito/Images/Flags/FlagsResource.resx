@@ -163,7 +163,7 @@
   <data name="Cyprus|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Cyprus_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Czech_Republic|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Repubblica_Ceca||800142121|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Czech_Republic_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="Danimarca||80010277|" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -217,7 +217,7 @@
   <data name="Hong_Kong||800967025|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Hong_Kong_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Hungary|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Ungheria||0680017682|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Hungary_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="India||0008001001219|" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -289,64 +289,64 @@
   <data name="Portogallo||800811824|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Portugal_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Qatar|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Qatar||080001177|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Qatar_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Romania|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Romania||0808034288|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Romania_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Russia|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Russia||8108001101011|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Russia_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Singapore|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Singapore||8001100344|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Singapore_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Slovakia|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Slovacchia||0800000101|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Slovakia_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="South_Africa|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Sud_Africa||0800990475|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>South_Africa_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Spain|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Spagna||900991124|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Spain_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
   <data name="Sud_Corea||00798119088212|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Korea_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Sweden|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Svezia||020795675|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Sweden_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Switzerland|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Svizzera||0800894732|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Switzerland_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Taiwan|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Taiwan||00801103008|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Taiwan_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Thailand|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Tailandia||001800115350660|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Thailand_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Turkey|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Turchia||00800135350900|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Turkey_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Turks_and_Caicos_Islands_png|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Turks_and_Caicos||018008472911|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Turks_and_Caicos_Islands_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Ukraine|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Ucraina||810011|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Ukraine_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="United_Kingdom|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Regno_Unito||0800891725|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>United_Kingdom_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Uruguay|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Uruguay||0004119407915|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Uruguay_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="USA|01180026392279||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="USA|01180026392279|18008472911|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>United_States_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Venezuela|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Venezuela||08001002167|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Venezuela_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
-  <data name="Vietnam|||" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Vietnam||12010288|" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Vietnam_png;System.Byte[], mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</value>
   </data>
 </root>

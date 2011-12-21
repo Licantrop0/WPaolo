@@ -165,13 +165,6 @@ namespace HaiSmarrito.Images.Flags {
             }
         }
         
-        internal static byte[] Czech_Republic___ {
-            get {
-                object obj = ResourceManager.GetObject("Czech_Republic|||", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
         internal static byte[] Danimarca__80010277_ {
             get {
                 object obj = ResourceManager.GetObject("Danimarca||80010277|", resourceCulture);
@@ -287,13 +280,6 @@ namespace HaiSmarrito.Images.Flags {
         internal static byte[] Hong_Kong__800967025_ {
             get {
                 object obj = ResourceManager.GetObject("Hong_Kong||800967025|", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        internal static byte[] Hungary___ {
-            get {
-                object obj = ResourceManager.GetObject("Hungary|||", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -459,51 +445,65 @@ namespace HaiSmarrito.Images.Flags {
             }
         }
         
-        internal static byte[] Qatar___ {
+        internal static byte[] Qatar__080001177_ {
             get {
-                object obj = ResourceManager.GetObject("Qatar|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Qatar||080001177|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Romania___ {
+        internal static byte[] Regno_Unito__0800891725_ {
             get {
-                object obj = ResourceManager.GetObject("Romania|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Regno_Unito||0800891725|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Russia___ {
+        internal static byte[] Repubblica_Ceca__800142121_ {
             get {
-                object obj = ResourceManager.GetObject("Russia|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Repubblica_Ceca||800142121|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Singapore___ {
+        internal static byte[] Romania__0808034288_ {
             get {
-                object obj = ResourceManager.GetObject("Singapore|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Romania||0808034288|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Slovakia___ {
+        internal static byte[] Russia__8108001101011_ {
             get {
-                object obj = ResourceManager.GetObject("Slovakia|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Russia||8108001101011|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] South_Africa___ {
+        internal static byte[] Singapore__8001100344_ {
             get {
-                object obj = ResourceManager.GetObject("South_Africa|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Singapore||8001100344|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Spain___ {
+        internal static byte[] Slovacchia__0800000101_ {
             get {
-                object obj = ResourceManager.GetObject("Spain|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Slovacchia||0800000101|", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Spagna__900991124_ {
+            get {
+                object obj = ResourceManager.GetObject("Spagna||900991124|", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Sud_Africa__0800990475_ {
+            get {
+                object obj = ResourceManager.GetObject("Sud_Africa||0800990475|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -515,86 +515,86 @@ namespace HaiSmarrito.Images.Flags {
             }
         }
         
-        internal static byte[] Sweden___ {
+        internal static byte[] Svezia__020795675_ {
             get {
-                object obj = ResourceManager.GetObject("Sweden|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Svezia||020795675|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Switzerland___ {
+        internal static byte[] Svizzera__0800894732_ {
             get {
-                object obj = ResourceManager.GetObject("Switzerland|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Svizzera||0800894732|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Taiwan___ {
+        internal static byte[] Tailandia__001800115350660_ {
             get {
-                object obj = ResourceManager.GetObject("Taiwan|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Tailandia||001800115350660|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Thailand___ {
+        internal static byte[] Taiwan__00801103008_ {
             get {
-                object obj = ResourceManager.GetObject("Thailand|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Taiwan||00801103008|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Turkey___ {
+        internal static byte[] Turchia__00800135350900_ {
             get {
-                object obj = ResourceManager.GetObject("Turkey|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Turchia||00800135350900|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Turks_and_Caicos_Islands_png___ {
+        internal static byte[] Turks_and_Caicos__018008472911_ {
             get {
-                object obj = ResourceManager.GetObject("Turks_and_Caicos_Islands_png|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Turks_and_Caicos||018008472911|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Ukraine___ {
+        internal static byte[] Ucraina__810011_ {
             get {
-                object obj = ResourceManager.GetObject("Ukraine|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Ucraina||810011|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] United_Kingdom___ {
+        internal static byte[] Ungheria__0680017682_ {
             get {
-                object obj = ResourceManager.GetObject("United_Kingdom|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Ungheria||0680017682|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Uruguay___ {
+        internal static byte[] Uruguay__0004119407915_ {
             get {
-                object obj = ResourceManager.GetObject("Uruguay|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Uruguay||0004119407915|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] USA_01180026392279__ {
+        internal static byte[] USA_01180026392279_18008472911_ {
             get {
-                object obj = ResourceManager.GetObject("USA|01180026392279||", resourceCulture);
+                object obj = ResourceManager.GetObject("USA|01180026392279|18008472911|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Venezuela___ {
+        internal static byte[] Venezuela__08001002167_ {
             get {
-                object obj = ResourceManager.GetObject("Venezuela|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Venezuela||08001002167|", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Vietnam___ {
+        internal static byte[] Vietnam__12010288_ {
             get {
-                object obj = ResourceManager.GetObject("Vietnam|||", resourceCulture);
+                object obj = ResourceManager.GetObject("Vietnam||12010288|", resourceCulture);
                 return ((byte[])(obj));
             }
         }

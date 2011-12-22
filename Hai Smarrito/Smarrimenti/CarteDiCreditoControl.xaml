@@ -14,7 +14,8 @@
 
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0" toolkit:TiltEffect.IsTiltEnabled="True">
-            
+
+            <!--American Express-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/HaiSmarrito;component/Images/Cards/amex.png" />
@@ -27,6 +28,7 @@
                 </i:Interaction.Triggers>
             </Button>
 
+            <!--Visa-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/HaiSmarrito;component/Images/Cards/visa.png" />
@@ -39,6 +41,7 @@
                 </i:Interaction.Triggers>
             </Button>
 
+            <!--Mastercard-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/HaiSmarrito;component/Images/Cards/mastercard.png" />
@@ -51,6 +54,7 @@
                 </i:Interaction.Triggers>
             </Button>
 
+            <!--Diners Club-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/HaiSmarrito;component/Images/Cards/dinersclub.png" />
@@ -62,6 +66,176 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
+
+            <!--Agos-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/agos.png" />
+                    <TextBlock Text="Agos" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=4"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <!--Bancoposta-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/bancoposta.png" />
+                    <TextBlock Text="Bancoposta" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=5"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <!--Barclay-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/barclay.png" />
+                    <TextBlock Text="Barclay" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=6"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <!--BPM-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/bpm.png" />
+                    <TextBlock Text="BPM" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=7"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <!--BCC-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/bcc.png" />
+                    <TextBlock Text="Carta BCC" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=8"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <!--CartaSì-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/cartasì.png" />
+                    <TextBlock Text="CartaSì" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=9"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <!--Deutsche-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/deutsche.png" />
+                    <TextBlock Text="Deutsche Credit Card" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=10"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            
+            <!--Findomestic-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/findomestic.png" />
+                    <TextBlock Text="Findomestic" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=11"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            
+            <!--Fineco-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/fineco.png" />
+                    <TextBlock Text="Fineco" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=12"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            
+            <!--Intesa San Paolo-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/intesasanpaolo.png" />
+                    <TextBlock Text="Intesa San Paolo" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=13"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            
+            <!--IwBank-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/iwbank.png" />
+                    <TextBlock Text="IwBank" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=14"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            
+            <!--PayPal-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/paypal.png" />
+                    <TextBlock Text="PayPal" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=15"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            
+            <!--UniCredit-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/HaiSmarrito;component/Images/Cards/unicredit.png" />
+                    <TextBlock Text="UniCreditCard" Style="{StaticResource ListTextStyle}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=16"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
 
         </StackPanel>
     </ScrollViewer>

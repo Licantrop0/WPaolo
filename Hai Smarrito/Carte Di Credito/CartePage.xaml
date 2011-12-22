@@ -87,7 +87,165 @@
                 <card:DinersClubControl />
             </controls:PivotItem>
 
-        </controls:Pivot>        
+            <!--Agos-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/agos.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Agos" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:AgosControl />
+            </controls:PivotItem>
+
+            <!--Bancoposta-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/bancoposta.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Bancoposta" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:BancopostaControl />
+            </controls:PivotItem>
+
+            <!--BarclayCard-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/barclay.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Barclay Card" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:BarclayControl />
+            </controls:PivotItem>
+
+
+            <!--BPM-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/bpm.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="BPM" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:BPMControl />
+            </controls:PivotItem>
+
+
+            <!--Carta Bcc-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/bcc.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Carta BCC" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:BCCControl />
+            </controls:PivotItem>
+
+            <!--CartaSì-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/cartasì.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="CartaSì" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:CartaSìControl />
+            </controls:PivotItem>
+
+            <!--Deutsche Credit-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/deutsche.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Deutsche Credit Card" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:DeutscheControl />
+            </controls:PivotItem>
+
+            <!--Carta Findomestic-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/findomestic.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Findomestic" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:FindomesticControl />
+            </controls:PivotItem>
+
+            <!--Fineco-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/fineco.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Fineco" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:FinecoControl />
+            </controls:PivotItem>
+
+            <!--Intesa San Paolo-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/intesasanpaolo.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Intesa San Paolo" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:IntesaSanPaoloControl />
+            </controls:PivotItem>
+            
+            <!--IwBank-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/iwbank.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="IwBank" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:IwBankControl />
+            </controls:PivotItem>
+
+            <!--PayPal-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/paypal.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Paypal" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:PayPalControl />
+            </controls:PivotItem>
+            
+            <!--UniCredit-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/HaiSmarrito;component/Images/Cards/unicredit.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="UniCreditCard" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:UniCreditControl />
+            </controls:PivotItem>
+            
+        </controls:Pivot>
     </Grid>
 
 </phone:PhoneApplicationPage>

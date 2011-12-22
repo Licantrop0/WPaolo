@@ -75,6 +75,45 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Carte Di Credito\AgosControl.xaml.cs">
+      <DependentUpon>AgosControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\BancopostaControl.xaml.cs">
+      <DependentUpon>BancopostaControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\BarclayControl.xaml.cs">
+      <DependentUpon>BarclayControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\BCCControl.xaml.cs">
+      <DependentUpon>BCCControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\BPMControl.xaml.cs">
+      <DependentUpon>BPMControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\CartaSìControl.xaml.cs">
+      <DependentUpon>CartaSìControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\DeutscheControl.xaml.cs">
+      <DependentUpon>DeutscheControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\FindomesticControl.xaml.cs">
+      <DependentUpon>FindomesticControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\FinecoControl.xaml.cs">
+      <DependentUpon>FinecoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\IntesaSanPaoloControl.xaml.cs">
+      <DependentUpon>IntesaSanPaoloControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\IwBankControl.xaml.cs">
+      <DependentUpon>IwBankControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\PayPalControl.xaml.cs">
+      <DependentUpon>PayPalControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Carte Di Credito\UniCreditControl.xaml.cs">
+      <DependentUpon>UniCreditControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\CallHelper.cs" />
     <Compile Include="Carte Di Credito\AmericanExpressControl.xaml.cs">
       <DependentUpon>AmericanExpressControl.xaml</DependentUpon>
@@ -166,7 +205,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Carte Di Credito\AgosControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Carte Di Credito\AmericanExpressControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\BancopostaControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\BarclayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\BCCControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\BPMControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\CartaSìControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,11 +237,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Carte Di Credito\DeutscheControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Carte Di Credito\DinersClubControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Carte Di Credito\FindomesticControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\FinecoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Carte Di Credito\InfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\IntesaSanPaoloControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\IwBankControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,6 +270,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Carte Di Credito\NazioniPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\PayPalControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\UniCreditControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

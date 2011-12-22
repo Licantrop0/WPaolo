@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="HaiSmarrito.Carte_Di_Credito.IntesaSanPaoloControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
+
+    <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
+        <StackPanel Margin="12,0">
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                Blocca tutti i tipi di carte del circuito&#32;
+                <Bold></Bold>&#32;
+                a seconda di dove ti trovi:
+            </TextBlock>
+
+            <Button Content="Italia" Click="Italia_Click" />
+            <Button Content="Estero*" Click="Estero_Click" />
+
+            <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                bla bla&#32;<Bold>bla bla</Bold>&#32;
+            </TextBlock>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

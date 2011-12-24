@@ -159,6 +159,8 @@
                 <i:EventTrigger EventName="Click">
                     <eim:ControlStoryboardAction ControlStoryboardOption="Stop"
                                                  Storyboard="{StaticResource CrowStoryboard}"/>
+                    <eim:ControlStoryboardAction ControlStoryboardOption="Stop"
+                                                 Storyboard="{StaticResource CrowAnimation}"/>
                     <eim:ControlStoryboardAction Storyboard="{StaticResource CloudAppearStoryboard}"/>
                     <eim:ControlStoryboardAction Storyboard="{StaticResource LampAppearStoryboard}"/>
                 </i:EventTrigger>

@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Collections;
-using System.ComponentModel;
 using System.Globalization;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using System.Windows;
 using System.Windows.Threading;
 using DeathTimerz.Localization;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace DeathTimerz.ViewModel
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : ViewModelBase
     {
-        string[] Advices;
-
         public MainViewModel()
         {
             InitializeTimer();
-            Advices = HealthAdvices.ResourceManager
-                .GetResourceSet(CultureInfo.CurrentCulture, true, true)
-                .Cast<DictionaryEntry>()
-                .Select(item => item.Value.ToString())
-                .ToArray();
+            Messenger.Default.Register<NotificationMessage>(this,
+                m => { if (m.Notification == "TestUpdated") UpdateTest(); });
+        }
+
+        private void UpdateTest()
+        {
+            RaisePropertyChanged("TestButtonVisibility");
+            RaisePropertyChanged("EstimatedDeathAgeText");
         }
 
         private void InitializeTimer()
@@ -44,6 +47,7 @@ namespace DeathTimerz.ViewModel
                 if (IsMale == value) return;
                 IsolatedStorageSettings.ApplicationSettings["is_male"] = value;
                 RaisePropertyChanged("IsMale");
+                RaisePropertyChanged("EstimatedDeathAgeText");
             }
         }
 
@@ -54,21 +58,60 @@ namespace DeathTimerz.ViewModel
             {
                 if (BirthDay == value) return;
 
-                if (value.HasValue)
+                if (value.HasValue && CheckBirthday(value.Value))
                 {
                     AppContext.BirthDay = value;
-                    RaisePropertyChanged("BirthDay");
                     RaisePropertyChanged("DaysToBirthDay");
                     RaisePropertyChanged("AgeText");
+                    RaisePropertyChanged("EstimatedDeathAgeText");
+                    RaisePropertyChanged("TestButtonVisibility");
                 }
+                RaisePropertyChanged("BirthDay");
+                RaisePropertyChanged("BirthDayInserted");
+                RaisePropertyChanged("BirthdayCakeVisibility");
             }
+        }
+
+        public bool BirthDayInserted
+        {
+            get { return AppContext.BirthDay.HasValue; }
+        }
+
+        public Visibility BirthdayCakeVisibility
+        {
+            get
+            {
+                if (!AppContext.BirthDay.HasValue)
+                    return Visibility.Collapsed;
+
+                return AppContext.BirthDay.Value.SameBirthDay(DateTime.Today) ?
+                    Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        public bool CheckBirthday(DateTime value)
+        {
+            if (value >= DateTime.Today)
+            {
+                MessageBox.Show(AppResources.ErrorFutureBirthday);
+                return false;
+            }
+
+            //Trick per evitare il bug del DatePicker quando si imposta 1600 come anno
+            if (value < DateTime.Now.AddYears(-130))
+            {
+                MessageBox.Show(AppResources.ErrorTooOldBirthday);
+                return false;
+            }
+
+            return true;
         }
 
         public string DaysToBirthDay
         {
             get
             {
-                if (!BirthDay.HasValue) return string.Empty;
+                if (!BirthDayInserted) return string.Empty;
 
                 var dtb = ExtensionMethods.GetNextBirthday(BirthDay.Value).Subtract(DateTime.Now).Days;
                 return string.Join(" ", AppResources.BirthdayAfter,
@@ -81,7 +124,7 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                if (!BirthDay.HasValue) return AppResources.ErrorNoBirthay;
+                if (!BirthDayInserted) return AppResources.ErrorNoBirthay;
 
                 //TODO: migliorare algoritmo
                 var Age = DateTime.Now.Subtract(BirthDay.Value);
@@ -104,10 +147,13 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                if (!AppContext.EstimatedDeathAge.HasValue) return string.Empty;
-                if (!BirthDay.HasValue) return string.Empty;
+                if (!BirthDayInserted) return AppResources.InsertBirthday;
+                if (!AppContext.TimeToDeath.HasValue) return string.Empty;
 
-                var EstimatedDeathDate = BirthDay.Value + AppContext.EstimatedDeathAge.Value;
+                var EstimateDeathAge = AppContext.TimeToDeath.Value +
+                    ExtensionMethods.TimeSpanFromYears(AppContext.AverageAge);
+
+                var EstimatedDeathDate = BirthDay.Value + EstimateDeathAge;
 
                 if (EstimatedDeathDate > DateTime.Now)
                 {
@@ -115,12 +161,22 @@ namespace DeathTimerz.ViewModel
                     var TotalLifeDays = (EstimatedDeathDate - BirthDay.Value).TotalDays;
                     return string.Format(AppResources.WillDie,
                         EstimatedDeathDate,
-                        AppContext.EstimatedDeathAge.Value.TotalDays / AppContext.AverageYear,
+                        EstimateDeathAge.TotalDays / AppContext.AverageYear,
                         TotalDaysLived / TotalLifeDays * 100,
                         TotalLifeDays - TotalDaysLived);
                 }
                 else
                     return AppResources.YetAlive;
+            }
+        }
+
+        public Visibility TestButtonVisibility
+        {
+            get
+            {
+                return AppContext.TimeToDeath.HasValue ||
+                    !AppContext.BirthDay.HasValue ?
+                    Visibility.Collapsed : Visibility.Visible;
             }
         }
 
@@ -132,16 +188,22 @@ namespace DeathTimerz.ViewModel
             }
         }
 
-        #region INPC Implementation
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string propertyName)
+        private string[] _advices;
+        private string[] Advices
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            get
+            {
+                if (_advices == null)
+                    _advices = HealthAdvices.ResourceManager
+                        .GetResourceSet(CultureInfo.CurrentCulture, true, true)
+                        .Cast<DictionaryEntry>()
+                        .Select(item => item.Value.ToString())
+                        .ToArray();
+
+                return _advices;
+            }
         }
 
-        #endregion
     }
 
 }

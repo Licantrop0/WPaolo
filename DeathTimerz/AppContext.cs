@@ -35,8 +35,7 @@ namespace DeathTimerz
             }
         }
 
-
-        public static TimeSpan? EstimatedDeathAge
+        public static TimeSpan? TimeToDeath
         {
             get
             {
@@ -46,7 +45,7 @@ namespace DeathTimerz
             }
             set
             {
-                if (EstimatedDeathAge == value) return;
+                if (TimeToDeath == value) return;
                 IsolatedStorageSettings.ApplicationSettings["estimated_death_age"] = value;
             }
         }

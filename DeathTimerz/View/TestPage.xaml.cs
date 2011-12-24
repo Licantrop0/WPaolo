@@ -8,6 +8,8 @@ using System.Windows.Input;
 using System.Xml.Linq;
 using DeathTimerz.Localization;
 using Microsoft.Phone.Controls;
+using GalaSoft.MvvmLight.Messaging;
+using System.ComponentModel;
 
 namespace DeathTimerz
 {
@@ -76,7 +78,7 @@ namespace DeathTimerz
                         //Style = (Style)Application.Current.Resources["RedChiller"],
                         InputScope = Numbers
                     };
-                    answTextBox.KeyDown += (sender, e) => { e.Handled = CheckDigits(e); };
+                    answTextBox.KeyDown += new KeyEventHandler(answTextBox_KeyDown);
                     TestStackPanel.Children.Add(answTextBox);
                 }
             }
@@ -87,8 +89,8 @@ namespace DeathTimerz
                 TextWrapping = TextWrapping.Wrap,
                 Style = (Style)Application.Current.Resources["RedChillerTest"],
             });
-
         }
+
 
         private void SaveAnswers()
         {
@@ -127,16 +129,16 @@ namespace DeathTimerz
 
         private void StimateDeathAge()
         {
-            AppContext.EstimatedDeathAge = ExtensionMethods.TimeSpanFromYears(AppContext.AverageAge);
+            AppContext.TimeToDeath = TimeSpan.Zero;
 
-            AppContext.EstimatedDeathAge +=
+            AppContext.TimeToDeath +=
                  (from q in AppContext.Test1.Descendants("Question")
                       .Concat(AppContext.Test2.Descendants("Question"))
                   where q.Attribute("Type").Value == "MultipleChoice"
-                      from ans in q.Elements("Answer")
-                      where ans.Attribute("IsChecked").Value == "True"
-                      select ExtensionMethods.TimeSpanFromYears(
-                        double.Parse(ans.Attribute("Value").Value, CultureInfo.InvariantCulture))).
+                  from ans in q.Elements("Answer")
+                  where ans.Attribute("IsChecked").Value == "True"
+                  select ExtensionMethods.TimeSpanFromYears(
+                    double.Parse(ans.Attribute("Value").Value, CultureInfo.InvariantCulture))).
                         Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
 
             #region Test1-Specific evaluation (BMI + Cigarettes)
@@ -157,11 +159,11 @@ namespace DeathTimerz
                     bmi = Weight / Math.Pow(Height * .01, 2); //kg-cm
 
                 if (bmi >= 18 && bmi <= 27)
-                    AppContext.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(2);
+                    AppContext.TimeToDeath += ExtensionMethods.TimeSpanFromYears(2);
                 else if (bmi > 27 && bmi <= 35)
-                    AppContext.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-2);
+                    AppContext.TimeToDeath += ExtensionMethods.TimeSpanFromYears(-2);
                 else if (bmi < 18 || bmi > 35)
-                    AppContext.EstimatedDeathAge += ExtensionMethods.TimeSpanFromYears(-4);
+                    AppContext.TimeToDeath += ExtensionMethods.TimeSpanFromYears(-4);
             }
 
             double cigarettesNum, cigaretteYears;
@@ -177,12 +179,16 @@ namespace DeathTimerz
                 //Ogni sigaretta toglie 11 minuti di vita http://www.rense.com/health3/smoking_h.htm
                 var TotalSmokingPeriod =
                     ExtensionMethods.TimeSpanFromYears(cigaretteYears) + //anni che ha fumato finora
-                    AppContext.EstimatedDeathAge - (DateTime.Now - AppContext.BirthDay.Value); //anni ancora da vivere
+                    AppContext.TimeToDeath - (DateTime.Now - AppContext.BirthDay.Value); //anni ancora da vivere
 
-                AppContext.EstimatedDeathAge -= TimeSpan.FromMinutes(TotalSmokingPeriod.Value.TotalDays * cigarettesNum * 11);
+                AppContext.TimeToDeath -= TimeSpan.FromMinutes(TotalSmokingPeriod.Value.TotalDays * cigarettesNum * 11);
             }
-
             #endregion
+
+
+            //Mando messaggio al MainViewModel con la property da aggiornare
+            Messenger.Default.Send<NotificationMessage>(
+                new NotificationMessage("TestUpdated"));
         }
 
         bool IsTestFilled()
@@ -205,26 +211,34 @@ namespace DeathTimerz
                     select t).Count() == 0;
         }
 
-        private static bool CheckDigits(KeyEventArgs e)
+        void answTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Space || e.Key == Key.D8 || e.Key == Key.D3) //* o #
-                return true;
-            if (e.PlatformKeyCode == 188 && CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator != ",")
-                return true;
-            if (e.PlatformKeyCode == 190 && CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator != ".")
-                return true;
-
-            return false;
+            switch (e.PlatformKeyCode)
+            {
+                case 187: case 189: case 222://* - #
+                    e.Handled = true;
+                    break;
+                case 188: case 190: //, .
+                    var t = (TextBox)sender;
+                    t.Text += CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+                    t.SelectionStart = t.Text.Length; //riposiziona il cursore in fondo alla textbox
+                    e.Handled = true;
+                    break;
+                case 32: //spazio
+                    this.Focus();
+                    e.Handled = true;
+                    break;
+            }
         }
 
-        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
         {
             SaveAnswers();
             if (IsTestFilled())
             {
                 StimateDeathAge();
             }
-
         }
     }
 }

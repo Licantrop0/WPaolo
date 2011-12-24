@@ -1,9 +1,13 @@
-﻿<Application 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application
     x:Class="DeathTimerz.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:DeathTimerz.ViewModel" mc:Ignorable="d">
 
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:DeathTimerz.Localization" x:Key="LocalizedStrings" />
@@ -14,36 +18,34 @@
         </LinearGradientBrush>
         
         <LinearGradientBrush x:Key="RedWhiteGradientBrush" StartPoint="0.5,0.2" EndPoint="0.5,1">
-        	<GradientStop Color="Red" Offset="0" />
-        	<GradientStop Color="#CDC09696" Offset="1" />
+            <GradientStop Color="Red" Offset="0" />
+            <GradientStop Color="#CDC09696" Offset="1" />
         </LinearGradientBrush>
-
-        <sys:FontFamily x:Key="DefaultFont"
-                    xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows" >
+        
+        <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
             /DeathTimerz;component/Fonts/CHILLER.TTF#Chiller
         </sys:FontFamily>
-
-
+        
         <Style x:Key="RedChiller" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
-            <Setter Property="Foreground" Value="{StaticResource RedGradientBrush}" />            
+            <Setter Property="Foreground" Value="{StaticResource RedGradientBrush}" />
         </Style>
-
-            <Style x:Key="RedChillerTest" TargetType="TextBlock" BasedOn="{StaticResource RedChiller}">
+        
+        <Style x:Key="RedChillerTest" TargetType="TextBlock" BasedOn="{StaticResource RedChiller}">
             <Setter Property="Foreground" Value="{StaticResource RedWhiteGradientBrush}" />
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Margin" Value="0,28,0,0" />
         </Style>
-
-        <Style x:Key="RedChillerContentControl" TargetType="ContentControl" >
+        
+        <Style x:Key="RedChillerContentControl" TargetType="ContentControl">
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
             <Setter Property="Foreground" Value="{StaticResource RedWhiteGradientBrush}" />
         </Style>
-
-        <Style x:Key="RedChillerButton" TargetType="Button"  BasedOn="{StaticResource RedChillerContentControl}" >
+        
+        <Style x:Key="RedChillerButton" TargetType="Button" BasedOn="{StaticResource RedChillerContentControl}">
             <Setter Property="Foreground">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
@@ -56,28 +58,23 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
-                            <Image Source="/DeathTimerz;component/Images/blood.png"
-                                   Stretch="Fill"
-                                   Margin="-182,-101,-121,-113" />
-                            <ContentPresenter
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Image Source="/DeathTimerz;component/Images/blood.png" Stretch="Fill" Margin="-182,-101,-121,-113" />
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraExtraLarge}" />
             <Setter Property="Height" Value="110" />
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Content" Value="Button"/>
-        </Style>		
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Content" Value="Button" />
+        </Style>
     </Application.Resources>
-
+    
     <Application.ApplicationLifetimeObjects>
-        <shell:PhoneApplicationService 
-            Launching="Application_Launching" Closing="Application_Closing" 
-            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
+        <shell:PhoneApplicationService
+            Launching="Application_Launching" Closing="Application_Closing"
+            Activated="Application_Activated" Deactivated="Application_Deactivated" />
     </Application.ApplicationLifetimeObjects>
-
 </Application>

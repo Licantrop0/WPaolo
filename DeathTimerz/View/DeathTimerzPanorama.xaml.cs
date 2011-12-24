@@ -1,66 +1,65 @@
 ﻿using System;
-using System.Linq;
-using System.Windows;
 using System.Windows.Navigation;
-using System.Windows.Threading;
 using DeathTimerz.Localization;
+using DeathTimerz.ViewModel;
+using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using System.Windows.Media;
-using DeathTimerz.ViewModel;
+using System.Windows.Controls;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace DeathTimerz
 {
     public partial class DeathTimerzPanorama : PhoneApplicationPage
     {
         ApplicationBarIconButton EditTestAppBarButton;
-        private MainViewModel _vM;
-        public MainViewModel VM
-        {
-            get
-            {
-                if (_vM == null)
-                    _vM = MainPanorama.DataContext as MainViewModel;
-                return _vM;
-            }
-        }
-
 
         public DeathTimerzPanorama()
         {
             InitializeComponent();
             InitializeApplicationBar();
-        }
+            Messenger.Default.Register<NotificationMessage>(this, m =>
+            {
+                if (m.Notification == "TestUpdated")
+                    EditTestAppBarButton.IsEnabled = true;
+            });
 
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (AppContext.EstimatedDeathAge.HasValue)
-                TakeTestButton.Visibility = Visibility.Collapsed;
-            else
-                TakeTestButton.Visibility = Visibility.Visible;
-
             if (!AppContext.BirthDay.HasValue)
                 MainPanorama.DefaultItem = MainPanorama.Items[3];
+
+            if (AdPlaceHolder.Children.Count == 0)
+            {
+                var ad1 = new AdControl("d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2",
+                    "10022419", true) { Height = 80, Width = 480 };
+
+                AdPlaceHolder.Children.Add(ad1);
+            }
+            base.OnNavigatedTo(e);
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-
+            AdPlaceHolder.Children.Clear();
+            base.OnNavigatedFrom(e);
         }
 
-
-        private void MainPanorama_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void MainPanorama_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (MainPanorama.SelectedIndex == 2) //Death-Test
             {
                 ApplicationBar.Buttons.Add(EditTestAppBarButton);
                 ApplicationBar.Mode = ApplicationBarMode.Default;
+                AdPlaceHolder.Height = 122; //80 + (72px - 30) dell'ApplicationBar
             }
             else
             {
                 ApplicationBar.Mode = ApplicationBarMode.Minimized;
                 ApplicationBar.Buttons.Remove(EditTestAppBarButton);
+                AdPlaceHolder.Height = 80;
             }
         }
 
@@ -68,6 +67,7 @@ namespace DeathTimerz
         {
             EditTestAppBarButton = new ApplicationBarIconButton();
             EditTestAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_edit.png", UriKind.Relative);
+            EditTestAppBarButton.IsEnabled = AppContext.TimeToDeath.HasValue;
             EditTestAppBarButton.Text = AppResources.EditTest;
             EditTestAppBarButton.Click += (sender, e) =>
             { NavigationService.Navigate(new Uri("/View/TestPage.xaml", UriKind.Relative)); };
@@ -76,7 +76,6 @@ namespace DeathTimerz
             var SettingsAppBarMenuItem = new ApplicationBarMenuItem();
             SettingsAppBarMenuItem.Text = Sounds.SoundManager.Instance.MusicEnabled ?
                 AppResources.DisableMusic : AppResources.EnableMusic;
-
             SettingsAppBarMenuItem.Click += (sender, e) =>
             {
                 Sounds.SoundManager.Instance.MusicEnabled = !Sounds.SoundManager.Instance.MusicEnabled;
@@ -96,30 +95,6 @@ namespace DeathTimerz
             DisclaimerAppBarMenuItem.Click += (sender, e) =>
             { NavigationService.Navigate(new Uri("/View/DisclaimerPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(DisclaimerAppBarMenuItem);
-        }
-
-        private void DatePicker_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
-        {
-            if (e.NewDateTime.HasValue && !CheckBirthday(e.NewDateTime.Value))
-                ((DatePicker)sender).Value = DateTime.Now.AddYears(-50);
-        }
-
-        public bool CheckBirthday(DateTime value)
-        {
-            if (value >= DateTime.Today)
-            {
-                MessageBox.Show(AppResources.ErrorFutureBirthday);
-                return false;
-            }
-
-            //Trick per evitare il bug del DatePicker quando si imposta 1600 come anno
-            if (value < DateTime.Now.AddYears(-130))
-            {
-                MessageBox.Show(AppResources.ErrorTooOldBirthday);
-                return false;
-            }
-
-            return true;
         }
     }
 

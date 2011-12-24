@@ -179,7 +179,7 @@ Anyway... knock on wood!</value>
     <value>Male</value>
   </data>
   <data name="MaleOrFemale" xml:space="preserve">
-    <value>Insert your gender</value>
+    <value>Select your gender</value>
   </data>
   <data name="Minute" xml:space="preserve">
     <value>Minute</value>
@@ -215,7 +215,7 @@ Anyway... knock on wood!</value>
     <value>Settings</value>
   </data>
   <data name="Suggestion" xml:space="preserve">
-    <value>Suggestion</value>
+    <value>Health Suggestion</value>
   </data>
   <data name="TakeTest" xml:space="preserve">
     <value>Take the test!</value>

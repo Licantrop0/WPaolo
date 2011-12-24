@@ -13,15 +13,15 @@
     xmlns:vm="clr-namespace:DeathTimerz.ViewModel"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+    shell:SystemTray.IsVisible="False">
 
+    <phone:PhoneApplicationPage.Resources>
+        <vm:MainViewModel x:Key="MainVM" />
+    </phone:PhoneApplicationPage.Resources>
+    
     <Grid x:Name="LayoutRoot">
-        <Grid.Resources>
-            <vm:MainViewModel x:Key="MainVM" />
-        </Grid.Resources>
-
-        <controls:Panorama x:Name="MainPanorama"  DataContext="{StaticResource MainVM}"
-                           SelectionChanged="MainPanorama_SelectionChanged" >
+        <controls:Panorama x:Name="MainPanorama" SelectionChanged="MainPanorama_SelectionChanged"
+                           DataContext="{StaticResource MainVM}">
             <controls:Panorama.Title>
                 <TextBlock Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource RedChiller}" Margin="0,45,0,0" />
@@ -32,10 +32,10 @@
             </controls:Panorama.Background>
 
             <!--SuggestionText-->
-            <controls:PanoramaItem Margin="0,-60,0,0">
+            <controls:PanoramaItem Margin="0,-60,0,0" >
                 <controls:PanoramaItem.Header>
                     <TextBlock Text="{Binding LocalizedResources.Suggestion, Source={StaticResource LocalizedStrings}}"
-                               Style="{StaticResource RedChiller}" />
+                               TextWrapping="Wrap" Style="{StaticResource RedChiller}" />
                 </controls:PanoramaItem.Header>
                 <Grid  Margin="0,-30,0,80">
                     <TextBlock Text="{Binding SuggestionText}" 
@@ -45,7 +45,6 @@
                                Style="{StaticResource RedChiller}" />
                 </Grid>
             </controls:PanoramaItem>
-
 
             <!--Age-->
             <controls:PanoramaItem Margin="0,-60,0,0">
@@ -58,6 +57,9 @@
                                TextWrapping="Wrap" Margin="40,0,0,0"
                                FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
                                Style="{StaticResource RedChiller}" />
+                    <Image Visibility="{Binding BirthdayCakeVisibility}"
+                           VerticalAlignment="Top" HorizontalAlignment="Right"                           
+                           Source="/DeathTimerz;component/Images/halloween_cake.png" Stretch="None" />
                 </Grid>
             </controls:PanoramaItem>
 
@@ -67,7 +69,7 @@
                     <TextBlock Text="{Binding LocalizedResources.TimeToDeath, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource RedChiller}" />
                 </controls:PanoramaItem.Header>
-                <Grid Margin="0,-30,0,80">
+                <Grid Margin="0,-30,0,122">
                     <ScrollViewer>
                         <TextBlock Text="{Binding EstimatedDeathAgeText}" HorizontalAlignment="Left"
                                    Margin="10,0" TextWrapping="Wrap"
@@ -75,8 +77,10 @@
                                    Style="{StaticResource RedChiller}"/>
                     </ScrollViewer>
 
-                    <Button x:Name="TakeTestButton" Content="{Binding LocalizedResources.TakeTest, Source={StaticResource LocalizedStrings}}"
-                            Visibility="Collapsed" toolkit:TiltEffect.IsTiltEnabled="True"
+                    <Button Content="{Binding LocalizedResources.TakeTest,
+                            Source={StaticResource LocalizedStrings}}"
+                            Visibility="{Binding TestButtonVisibility}"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
                             Style="{StaticResource RedChillerButton}" >
                         <Custom:Interaction.Triggers>
                             <Custom:EventTrigger EventName="Click">
@@ -97,12 +101,17 @@
                     <TextBlock Text="{Binding Path=LocalizedResources.MaleOrFemale, Source={StaticResource LocalizedStrings}}"                       
                            Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="{Binding Path=LocalizedResources.Male, Source={StaticResource LocalizedStrings}}"
-                         Style="{StaticResource RedChillerContentControl}"
-                         GroupName="MaleOrFemale" Margin="0,-10" IsChecked="{Binding IsMale, Mode=TwoWay}" />
-                        <RadioButton Content="{Binding Path=LocalizedResources.Female, Source={StaticResource LocalizedStrings}}"
-                         Style="{StaticResource RedChillerContentControl}"
-                         GroupName="MaleOrFemale" Margin="20,-10" IsChecked="True" />
+                        <RadioButton Content="{Binding Path=LocalizedResources.Male,
+                                        Source={StaticResource LocalizedStrings}}"
+                                     Foreground="{StaticResource RedGradientBrush}"
+                                     Style="{StaticResource RedChillerContentControl}"
+                                     GroupName="MaleOrFemale" Margin="0,-10" IsChecked="{Binding IsMale, Mode=TwoWay}" />
+
+                        <RadioButton Content="{Binding Path=LocalizedResources.Female,
+                                        Source={StaticResource LocalizedStrings}}"
+                                     Foreground="{StaticResource RedGradientBrush}"
+                                     Style="{StaticResource RedChillerContentControl}"
+                                     GroupName="MaleOrFemale" Margin="20,-10" IsChecked="True" />
                     </StackPanel>
 
                     <TextBlock Text="{Binding Path=LocalizedResources.InsertBirthday, Source={StaticResource LocalizedStrings}}"
@@ -111,8 +120,7 @@
                     <toolkit:DatePicker Background="Gray"
                                         FontFamily="{StaticResource DefaultFont}"
                                         Foreground="{StaticResource RedGradientBrush}"
-                                        Value="{Binding BirthDay, Mode=TwoWay}"
-                                        ValueChanged="DatePicker_ValueChanged" />
+                                        Value="{Binding BirthDay, Mode=TwoWay}" />
                     <toolkit:TimePicker Background="Gray"
                                         Foreground="{StaticResource RedGradientBrush}"
                                         Value="{Binding BirthDay, Mode=TwoWay}"
@@ -125,13 +133,9 @@
 
                 </StackPanel>
             </controls:PanoramaItem>
-
         </controls:Panorama>
-
-        <ads:AdControl AdUnitId="10022419"
-                       ApplicationId="d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2"
-                       Height="80" Width="480" VerticalAlignment="Bottom"
-                       xmlns:ads="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" />
+        
+        <StackPanel Name="AdPlaceHolder" Height="80" VerticalAlignment="Bottom" />        
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

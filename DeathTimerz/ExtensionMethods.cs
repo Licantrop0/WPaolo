@@ -24,6 +24,12 @@ namespace DeathTimerz
                 birthDay.AddYears(DateTime.Today.Year - birthDay.Year + 1);
         }
 
+        public static bool SameBirthDay(this DateTime date1, DateTime date2)
+        {
+            return date1.Day == date2.Day &&
+                date1.Month == date2.Month;        
+        }
+
         public static TimeSpan TimeSpanFromYears(double year)
         {
             return TimeSpan.FromDays(year * AppContext.AverageYear);

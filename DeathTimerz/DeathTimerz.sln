@@ -5,11 +5,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathTimerz", "DeathTimerz.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Libraries", "..\WPCommon.Libraries\WPCommon.Libraries.csproj", "{B3072132-A92C-4800-A18F-793C868AC7DD}"
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
@@ -18,9 +16,6 @@ Global
 		SccProjectUniqueName2 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
 		SccProjectName2 = ../WPCommon.Controls
 		SccLocalPath2 = ..\\WPCommon.Controls
-		SccProjectUniqueName3 = ..\\WPCommon.Libraries\\WPCommon.Libraries.csproj
-		SccProjectName3 = ../WPCommon.Libraries
-		SccLocalPath3 = ..\\WPCommon.Libraries
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,10 +32,6 @@ Global
 		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3072132-A92C-4800-A18F-793C868AC7DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

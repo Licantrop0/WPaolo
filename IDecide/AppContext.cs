@@ -4,12 +4,32 @@ using System.Linq;
 using IDecide.Localization;
 using IDecide.Model;
 using IDecide.ViewModel;
+using System;
 
 namespace IDecide
 {
-    public class AppContext
+    public static class AppContext
     {
         public static ObservableCollection<ChoiceGroupViewModel> Groups { get; set; }
+
+        public static string GetRandomChoice()
+        {
+            if (!Groups.Any())
+                return AppResources.NothingToDecide;
+
+            var selectedChoices = Groups
+                .Select(m => m.Model)
+                .Where(c => c.IsSelected)
+                .Single().Choices
+                .ToList();
+
+            if (!selectedChoices.Any())
+                return AppResources.NothingToDecide;
+
+            var rnd = new Random();
+            return selectedChoices[rnd.Next(selectedChoices.Count)];
+                
+        }
 
         public static ObservableCollection<ChoiceGroupViewModel> GetDefaultChoices()
         {
@@ -73,5 +93,6 @@ namespace IDecide
 
             return Choices;
         }
+
     }
 }

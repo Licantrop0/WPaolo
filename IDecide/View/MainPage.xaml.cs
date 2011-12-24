@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Linq;
-using System.Windows;
+using System.Threading;
+using System.Windows.Navigation;
+using System.Windows.Threading;
 using IDecide.Localization;
+using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Microsoft.Advertising.Mobile.UI;
-using System.Threading;
 using ShakeGestures;
-using System.Windows.Controls;
-using System.Windows.Threading;
 
 namespace IDecide
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        Random rnd = new Random();
         DispatcherTimer tmr;
 
         public MainPage()
@@ -44,6 +41,8 @@ namespace IDecide
                 Dispatcher.BeginInvoke(() =>
                 {
                     CrowStoryboard.Stop();
+                    CrowAnimation.Stop();
+
                     CloudAppearStoryboard.Begin();
                     LampAppearStoryboard.Begin();
                 });
@@ -57,23 +56,16 @@ namespace IDecide
             ShakeGesturesHelper.Instance.Active = true;
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        private void AppearCloud_Completed(object sender, EventArgs e)
         {
-            if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
-                return;
-
-            AdPlaceHolder.Children.Add(new AdControl("572ef47c-fdda-4d58-ba1c-9cfd93c12d43", "10027370", true)
-            {
-                Height = 80,
-                Width = 480,
-            });
-            base.OnNavigatedTo(e);
+            tmr.Stop();
+            tmr.Start();
+            AnswerTextBlock.Text = AppContext.GetRandomChoice();
         }
 
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        private void CrowStoryboard_Completed(object sender, EventArgs e)
         {
-            AdPlaceHolder.Children.Clear();
-            base.OnNavigatedFrom(e);
+            CrowAnimation.Stop();
         }
 
         private void CreateAppBar()
@@ -96,27 +88,27 @@ namespace IDecide
             ApplicationBar.MenuItems.Add(AboutAppBarMenuItem);
         }
 
-        private void AppearCloud_Completed(object sender, EventArgs e)
+        #region Ad Inizialization
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            tmr.Stop();
-            tmr.Start();
-            
-            if (AppContext.Groups.Count == 0)
+            if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
+                return;
+
+            AdPlaceHolder.Children.Add(new AdControl("572ef47c-fdda-4d58-ba1c-9cfd93c12d43", "10027370", true)
             {
-                AnswerTextBlock.Text = AppResources.NothingToDecide;
-            }
-            else
-            {
-                var selectedChoices = AppContext.Groups.Where(g => g.Model.IsSelected).Single().Model.Choices.ToList();
-                AnswerTextBlock.Text = selectedChoices.Any() ?
-                    selectedChoices[rnd.Next(selectedChoices.Count)] :
-                    AppResources.NothingToDecide;
-            }
+                Height = 80,
+                Width = 480,
+            });
+            base.OnNavigatedTo(e);
         }
 
-        private void CrowStoryboard_Completed(object sender, EventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            CrowAnimation.Stop();
-        }
+            AdPlaceHolder.Children.Clear();
+            base.OnNavigatedFrom(e);
+        } 
+
+        #endregion
     }
 }

@@ -28,7 +28,7 @@ namespace IDecide.ViewModel
         private void AddGroupAction()
         {
             //Creo il nuovo gruppo, lo seleziono e lo aggiungo alla lista
-            var choiceGroup = new Model.ChoiceGroup() { IsSelected = true };
+            var choiceGroup = new ChoiceGroup() { IsSelected = true };
             Groups.Insert(0, new ChoiceGroupViewModel(choiceGroup));
 
             Messenger.Default.Send<ChoiceGroup>(choiceGroup);

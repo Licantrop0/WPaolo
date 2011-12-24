@@ -42,6 +42,7 @@ namespace IDecide.Model
         public ChoiceGroup()
         {
             Choices = new ObservableCollection<string>();
+            Name = string.Empty;
         }
 
         #region INPC Implementation

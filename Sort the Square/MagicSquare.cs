@@ -36,17 +36,29 @@ namespace SortTheSquare
             InitializeRandomSequence();
         }
 
-        //TODO: se si fa completamente random, potrebbe uscire fuori un quadrato non risolvibie
         private void InitializeRandomSequence()
         {
-            Random rnd = new Random();
-            var unordered = new Queue<int>(
-                Enumerable.Range(0, Size * Size)
-                .OrderBy(n => rnd.Next()));
+            //Inizializza i valori ordinati
+            for (int counter = 0; counter < Size * Size -1; counter++)
+            {
+                Grid[counter % Size, counter / Size] = counter + 1;
+            }
 
-            for (int i = 0; i < Size; i++)
-                for (int j = 0; j < Size; j++)
-                    Grid[i, j] = unordered.Dequeue();
+            Random rnd = new Random();
+            var SwapNumber = Size * Size;
+            if (SwapNumber % 2 != 0)
+                SwapNumber += 1;
+
+            //ANCORA BUG! Effettua un numero pari di scambi
+            for (int i = 0; i < 2; i++)
+            {
+                var a = new GridPoint(rnd.Next(Size), rnd.Next(Size));
+                var b = new GridPoint(rnd.Next(Size), rnd.Next(Size));
+
+                var temp = Grid[a.X, a.Y];
+                Grid[a.X, a.Y] = Grid[b.X, b.Y];
+                Grid[b.X, b.Y] = temp;
+            }
         }
 
         private GridPoint? SetN(GridPoint p)

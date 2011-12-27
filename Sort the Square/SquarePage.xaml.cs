@@ -7,7 +7,7 @@ using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using SortTheSquare.Localization;
 using SortTheSquare.Sounds;
-using WPCommon;
+using WPCommon.Helpers;
 using System.Linq;
 
 namespace SortTheSquare
@@ -119,8 +119,8 @@ namespace SortTheSquare
             if (AdPlaceHolder.Children.Count == 1)
                 return;
 
-            var GoogleAd = new Google.AdMob.Ads.WindowsPhone7.WPF.BannerAd() { AdUnitID = "a14da9d2bde5aea" };
-            AdPlaceHolder.Children.Add(GoogleAd);
+            //var GoogleAd = new Google.AdMob.Ads.WindowsPhone7.WPF.BannerAd() { AdUnitID = "a14da9d2bde5aea" };
+            //AdPlaceHolder.Children.Add(GoogleAd);
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)

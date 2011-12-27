@@ -6,6 +6,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework.Media;
 using WPCommon;
 using SortTheSquare.Localization;
+using WPCommon.Helpers;
 
 namespace SortTheSquare
 {

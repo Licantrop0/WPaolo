@@ -17,7 +17,7 @@ namespace SortTheSquare
 
         private void SquareEasyButton_Click(object sender, RoutedEventArgs e)
         {
-            Settings.CurrentGridSize = 3;
+            Settings.CurrentGridSize = 2;
             GoPlay();
         }
 

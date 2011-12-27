@@ -61,56 +61,740 @@ namespace DeathTimerz.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eat less.
+        ///   Looks up a localized string similar to Yoga offers postures that increase flexibility and strength.
         /// </summary>
-        internal static string Advice1 {
+        internal static string String01 {
             get {
-                return ResourceManager.GetString("Advice1", resourceCulture);
+                return ResourceManager.GetString("String01", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you are stupid you live less.
+        ///   Looks up a localized string similar to Indian cuisine helps to combat heart disease, cancer and Alzheimer’s disease.
         /// </summary>
-        internal static string Advice2 {
+        internal static string String02 {
             get {
-                return ResourceManager.GetString("Advice2", resourceCulture);
+                return ResourceManager.GetString("String02", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t eat fat.
+        ///   Looks up a localized string similar to Sports and physical exercises help against the cellulite.
         /// </summary>
-        internal static string Advice3 {
+        internal static string String03 {
             get {
-                return ResourceManager.GetString("Advice3", resourceCulture);
+                return ResourceManager.GetString("String03", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Make exercise every day.
+        ///   Looks up a localized string similar to Green tea + lemon = A Healthy Heart.
         /// </summary>
-        internal static string Advice4 {
+        internal static string String04 {
             get {
-                return ResourceManager.GetString("Advice4", resourceCulture);
+                return ResourceManager.GetString("String04", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Go to swim.
+        ///   Looks up a localized string similar to Broccoli + Tomatoes = Prevention of Cancer.
         /// </summary>
-        internal static string Advice5 {
+        internal static string String05 {
             get {
-                return ResourceManager.GetString("Advice5", resourceCulture);
+                return ResourceManager.GetString("String05", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Make sex.
+        ///   Looks up a localized string similar to Red bell peppers + black beans = Stronger immunity.
         /// </summary>
-        internal static string Advice6 {
+        internal static string String06 {
             get {
-                return ResourceManager.GetString("Advice6", resourceCulture);
+                return ResourceManager.GetString("String06", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Egg + Mango = A nice leather.
+        /// </summary>
+        internal static string String07 {
+            get {
+                return ResourceManager.GetString("String07", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avocado + lettuce = Complete Protection.
+        /// </summary>
+        internal static string String08 {
+            get {
+                return ResourceManager.GetString("String08", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yogurt + Wheat bran = Better Digestion.
+        /// </summary>
+        internal static string String09 {
+            get {
+                return ResourceManager.GetString("String09", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Even a few pounds overweight increases the risk of chronic diseases in the elderly.
+        /// </summary>
+        internal static string String10 {
+            get {
+                return ResourceManager.GetString("String10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Physical activity (even just regular walking) is one of the main stakes for health and longevity.
+        /// </summary>
+        internal static string String11 {
+            get {
+                return ResourceManager.GetString("String11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fish oil may help slow the progression of osteoarthritis.
+        /// </summary>
+        internal static string String12 {
+            get {
+                return ResourceManager.GetString("String12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop sweet drinks: no carbonated, juices, compote, tea / coffee with sugar.
+        /// </summary>
+        internal static string String13 {
+            get {
+                return ResourceManager.GetString("String13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you are excited or under stress,  take 10 deep breaths.
+        /// </summary>
+        internal static string String14 {
+            get {
+                return ResourceManager.GetString("String14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drink green tea instead of coffee.
+        /// </summary>
+        internal static string String15 {
+            get {
+                return ResourceManager.GetString("String15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whole grain foods helps regulating blood pressure and heart health.
+        /// </summary>
+        internal static string String16 {
+            get {
+                return ResourceManager.GetString("String16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consume more vegetables and fruits: they are an indispensable source of vitamins and minerals.
+        /// </summary>
+        internal static string String17 {
+            get {
+                return ResourceManager.GetString("String17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Four cups of milk daily reduces the risk of fractures.
+        /// </summary>
+        internal static string String18 {
+            get {
+                return ResourceManager.GetString("String18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The caffeine has the ability to block the harmful effects of cholesterol.
+        /// </summary>
+        internal static string String19 {
+            get {
+                return ResourceManager.GetString("String19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Long term use of pain killers can adversely affect kidneys.
+        /// </summary>
+        internal static string String20 {
+            get {
+                return ResourceManager.GetString("String20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eating junk food twice a week makes you heavier by 10 lbs than those having it once a week.
+        /// </summary>
+        internal static string String21 {
+            get {
+                return ResourceManager.GetString("String21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adults who drink eight or more glasses of water per day burn more calories than those who drink less.
+        /// </summary>
+        internal static string String22 {
+            get {
+                return ResourceManager.GetString("String22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to People who eat breakfast every morning are more likely to maintain a healthy weight.
+        /// </summary>
+        internal static string String23 {
+            get {
+                return ResourceManager.GetString("String23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick diets can slow down your metabolism. But once over, you will regain more than the lost weight!.
+        /// </summary>
+        internal static string String24 {
+            get {
+                return ResourceManager.GetString("String24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yoghurt and protein rich food can serve as an ideal &quot;pre-workout&quot; meal.
+        /// </summary>
+        internal static string String25 {
+            get {
+                return ResourceManager.GetString("String25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Garlic help lower blood sugar and decrease cholesterol levels.
+        /// </summary>
+        internal static string String26 {
+            get {
+                return ResourceManager.GetString("String26", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sleep and wake up at the same time everyday helps maintaining a regular metabolism rate.
+        /// </summary>
+        internal static string String27 {
+            get {
+                return ResourceManager.GetString("String27", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prefer frozen over canned one as it has more nutrients, less salt or sugar, and less contaminants.
+        /// </summary>
+        internal static string String28 {
+            get {
+                return ResourceManager.GetString("String28", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taking time out to relax quietly for even just few minutes will refresh your mind and body.
+        /// </summary>
+        internal static string String29 {
+            get {
+                return ResourceManager.GetString("String29", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alcohol stimulates appetite: the more you drink, the more hungry you feel.
+        /// </summary>
+        internal static string String30 {
+            get {
+                return ResourceManager.GetString("String30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take time to savor your meal, don’t be in such a rush to eat.
+        /// </summary>
+        internal static string String31 {
+            get {
+                return ResourceManager.GetString("String31", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eat an apple, orange or banana a few minutes before it’s time to eat as an appetizer.
+        /// </summary>
+        internal static string String32 {
+            get {
+                return ResourceManager.GetString("String32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The healthy fat in avocado contributes to healthy blood flow to the brain and can also help lower blood pressure.
+        /// </summary>
+        internal static string String33 {
+            get {
+                return ResourceManager.GetString("String33", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salmon contains lots of omega-3s which are essential for brain function.
+        /// </summary>
+        internal static string String34 {
+            get {
+                return ResourceManager.GetString("String34", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blueberrie helps protect your brain from stress or age-related conditions.
+        /// </summary>
+        internal static string String35 {
+            get {
+                return ResourceManager.GetString("String35", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shrimps are a great source of protein and selenium though high in cholesterol.
+        /// </summary>
+        internal static string String36 {
+            get {
+                return ResourceManager.GetString("String36", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guava is one of the richest sources of Vitamin C that provides protection against colds and viral infections.
+        /// </summary>
+        internal static string String37 {
+            get {
+                return ResourceManager.GetString("String37", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beans and lentils are a rich source of soluble fibers that can help lower bad cholesterol.
+        /// </summary>
+        internal static string String38 {
+            get {
+                return ResourceManager.GetString("String38", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smoking can cause wrinkles at an earlier age.
+        /// </summary>
+        internal static string String39 {
+            get {
+                return ResourceManager.GetString("String39", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almonds are a rich source of Vitamin E and helpful in reducing cholesterol.
+        /// </summary>
+        internal static string String40 {
+            get {
+                return ResourceManager.GetString("String40", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cracking knuckles is generally regarded a bad habit but it doesn&apos;t cause arthritis..
+        /// </summary>
+        internal static string String41 {
+            get {
+                return ResourceManager.GetString("String41", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drinking plenty of water protects against kidney stones and urinary tract infections.
+        /// </summary>
+        internal static string String42 {
+            get {
+                return ResourceManager.GetString("String42", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vegetarians are at greater risk of iron deficiency than non-vegetarians..
+        /// </summary>
+        internal static string String43 {
+            get {
+                return ResourceManager.GetString("String43", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apples are a rich source of antioxidant compounds that can protect against brain diseases like Alzheimer&apos;s.
+        /// </summary>
+        internal static string String44 {
+            get {
+                return ResourceManager.GetString("String44", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smoking damages your arteries and worsens the bad effect of all other heart disease risk factors.
+        /// </summary>
+        internal static string String45 {
+            get {
+                return ResourceManager.GetString("String45", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to People with heart disease should receive flu and pneumonia vaccines as they are at increased risk of complications due to these diseases.
+        /// </summary>
+        internal static string String46 {
+            get {
+                return ResourceManager.GetString("String46", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use heart healthy cooking oils such as olive oil, canola oil or mustard oil. Avoid sunflower oil, safflower oil, ghee, butter, margaraine.
+        /// </summary>
+        internal static string String47 {
+            get {
+                return ResourceManager.GetString("String47", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make sure that you are meeting your daily Vitamin C and E requirement as they are vital to protect and repair your arteries.
+        /// </summary>
+        internal static string String48 {
+            get {
+                return ResourceManager.GetString("String48", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try switching your alcoholic drink choices to red wine and dark beer for maximum heart protection.
+        /// </summary>
+        internal static string String49 {
+            get {
+                return ResourceManager.GetString("String49", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have heat rash, do not use a towel after a shower and allow your body to air dry. The rash will disappear faster.
+        /// </summary>
+        internal static string String50 {
+            get {
+                return ResourceManager.GetString("String50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Give your eyes a break when working on a computer or doing detailed work. Look away into the distance every 15 minutes.
+        /// </summary>
+        internal static string String51 {
+            get {
+                return ResourceManager.GetString("String51", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wait for five minutes after applying anti-dandruff shampoo. Medicated shampoos don&apos;t work if washed off immediately.
+        /// </summary>
+        internal static string String52 {
+            get {
+                return ResourceManager.GetString("String52", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply cool compresses with a wet towel on the nape of your neck and forehead to cool down fast on a hot afternoon.
+        /// </summary>
+        internal static string String53 {
+            get {
+                return ResourceManager.GetString("String53", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hummus (a Middle Eastern dip with chickpeas and olive oil) is a heart healthy substitute for greasy dips to go with your starters.
+        /// </summary>
+        internal static string String54 {
+            get {
+                return ResourceManager.GetString("String54", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A healthy breakfast should include complex carbohydrates such as whole grain breads, oatmeal, or broken wheat porridge.
+        /// </summary>
+        internal static string String55 {
+            get {
+                return ResourceManager.GetString("String55", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not lick your chapped lips as saliva is not a moisturizer. It will only dry your lips much more, apply Vaseline instead.
+        /// </summary>
+        internal static string String56 {
+            get {
+                return ResourceManager.GetString("String56", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consuming yoghurt or curd can enhance your immunity because it contains good bacteria that stimulate the immune cells.
+        /// </summary>
+        internal static string String57 {
+            get {
+                return ResourceManager.GetString("String57", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can have a protein rich but low fat diet by consuming fish, seafood, egg whites, pulses, beans, and soy products.
+        /// </summary>
+        internal static string String58 {
+            get {
+                return ResourceManager.GetString("String58", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To get a good amount of vitamin C add guavas, papayas, oranges, and melon to your diet.
+        /// </summary>
+        internal static string String59 {
+            get {
+                return ResourceManager.GetString("String59", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To prevent aches and pains after long hours of computer use, take periodic breaks to do stretch exercises at your desk.
+        /// </summary>
+        internal static string String60 {
+            get {
+                return ResourceManager.GetString("String60", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seafood such as oysters, sardines, clams, crab and fish produce a mood enhancing effect by supplying plenty of selenium.
+        /// </summary>
+        internal static string String61 {
+            get {
+                return ResourceManager.GetString("String61", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spicy foods, foods high in fat and fiber, or excess amounts of caffeine can all precipitate indigestion.
+        /// </summary>
+        internal static string String62 {
+            get {
+                return ResourceManager.GetString("String62", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excess salt can make you feel bloated and contributes to high blood pressure.
+        /// </summary>
+        internal static string String63 {
+            get {
+                return ResourceManager.GetString("String63", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increase intake of biotin foods like brown rice, bran cereals, yeast, nuts, beans, peas, cauliflower to reduce hair loss and promote hair growth.
+        /// </summary>
+        internal static string String64 {
+            get {
+                return ResourceManager.GetString("String64", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A pack of frozen peas makes a handy ice pack. Applying it quickly to a bruised area can prevent it from turning black.
+        /// </summary>
+        internal static string String65 {
+            get {
+                return ResourceManager.GetString("String65", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beans are a good choice if you are trying to lose weight because they keep blood sugar levels even and suppress hunger.
+        /// </summary>
+        internal static string String66 {
+            get {
+                return ResourceManager.GetString("String66", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you are feeling low, have low-fat carbs such as a baked potato. It elevates serotonin levels in your brain and also your spirits.
+        /// </summary>
+        internal static string String67 {
+            get {
+                return ResourceManager.GetString("String67", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Be a vegetarian twice a week: vegetarian diet is low in fat and helps reduce the waist.
+        /// </summary>
+        internal static string String68 {
+            get {
+                return ResourceManager.GetString("String68", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit smoking and alcohol abuse can significantly prolong life.
+        /// </summary>
+        internal static string String69 {
+            get {
+                return ResourceManager.GetString("String69", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One glass of red wine per day is useful to work the cardiovascular system.
+        /// </summary>
+        internal static string String70 {
+            get {
+                return ResourceManager.GetString("String70", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not forget to brush your teeth at least twice a day and use threads.
+        /// </summary>
+        internal static string String71 {
+            get {
+                return ResourceManager.GetString("String71", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eat dark chocolate, it contains antioxidants (flavonoids) that help fight aging.
+        /// </summary>
+        internal static string String72 {
+            get {
+                return ResourceManager.GetString("String72", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get dried Fruits, Nuts and Seeds: reduce levels of bad cholesterol and prevent some cancer.
+        /// </summary>
+        internal static string String73 {
+            get {
+                return ResourceManager.GetString("String73", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get at least and no more than 7-8 hours of sleep a day: it helps to focus attention and regulates weight.
+        /// </summary>
+        internal static string String74 {
+            get {
+                return ResourceManager.GetString("String74", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloudy days make many people feel depressed. Stand in the sunshine whenever the sun is out to lift your spirits.
+        /// </summary>
+        internal static string String75 {
+            get {
+                return ResourceManager.GetString("String75", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you sit in your office chair, rest your feet flat on the floor and keep your thighs parallel to the ground to avoid low back strain.
+        /// </summary>
+        internal static string String76 {
+            get {
+                return ResourceManager.GetString("String76", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chicken soup relieve cold and flu symptoms by acting as an anti-inflammatory agent and relieving congestion.
+        /// </summary>
+        internal static string String77 {
+            get {
+                return ResourceManager.GetString("String77", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you suffer from body odor, an antibacterial soap will help you more than non-medicated soaps with strong fragrance.
+        /// </summary>
+        internal static string String78 {
+            get {
+                return ResourceManager.GetString("String78", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exercise is not only good for your physical health but also improves your concentration and thinking thereby making you more productive.
+        /// </summary>
+        internal static string String79 {
+            get {
+                return ResourceManager.GetString("String79", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soda is a common source of extra calories with no nutritional benefits. Have water in place of soda as far as possible.
+        /// </summary>
+        internal static string String80 {
+            get {
+                return ResourceManager.GetString("String80", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you want to cut calories, switch from orange juice to tomato juice. It is equally nutritious and has half the calories.
+        /// </summary>
+        internal static string String81 {
+            get {
+                return ResourceManager.GetString("String81", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To avoid a hangover, consume something fatty before u drink, take your drinks slowly and take a glass of water before going to bed.
+        /// </summary>
+        internal static string String82 {
+            get {
+                return ResourceManager.GetString("String82", resourceCulture);
             }
         }
     }

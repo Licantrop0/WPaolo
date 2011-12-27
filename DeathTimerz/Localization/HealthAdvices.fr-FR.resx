@@ -117,7 +117,250 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Advice1" xml:space="preserve">
-    <value>mangier le omelette du formage</value>
+  <data name="String1" xml:space="preserve">
+    <value>Yoga offre des postures qui augmentent la flexibilité et la force</value>
+  </data>
+  <data name="String10" xml:space="preserve">
+    <value>Même quelques kilos en surpoids augmente le risque de maladies chroniques chez les personnes âgées</value>
+  </data>
+  <data name="String11" xml:space="preserve">
+    <value>L'activité physique (même juste la marche régulière) est l'un des principaux enjeux pour la santé et la longévité</value>
+  </data>
+  <data name="String12" xml:space="preserve">
+    <value>L'huile de poisson peut aider à ralentir la progression de l'arthrose</value>
+  </data>
+  <data name="String13" xml:space="preserve">
+    <value>Arrêtez les boissons sucrées: pas de café, gazeuses, jus, compote, thé / avec le sucre</value>
+  </data>
+  <data name="String14" xml:space="preserve">
+    <value>Quand vous êtes excité ou stressé, prenez 10 respirations profondes</value>
+  </data>
+  <data name="String15" xml:space="preserve">
+    <value>Boire du thé vert au lieu du café</value>
+  </data>
+  <data name="String16" xml:space="preserve">
+    <value>Les aliments de grains complets contribue régulation de la pression artérielle et la santé cardiaque</value>
+  </data>
+  <data name="String17" xml:space="preserve">
+    <value>Consommer plus de légumes et de fruits: ils sont une source indispensable de vitamines et de minéraux</value>
+  </data>
+  <data name="String18" xml:space="preserve">
+    <value>Quatre tasses de lait par jour réduit le risque de fractures</value>
+  </data>
+  <data name="String19" xml:space="preserve">
+    <value>La caféine a la possibilité de bloquer les effets néfastes du cholestérol</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>La cuisine indienne contribue à combattre les maladies cardiaques, le cancer et la maladie d'Alzheimer</value>
+  </data>
+  <data name="String20" xml:space="preserve">
+    <value>L'utilisation à long terme d'analgésiques peut affecter les reins</value>
+  </data>
+  <data name="String21" xml:space="preserve">
+    <value>Manger de la malbouffe deux fois par semaine vous rend plus lourd de 5 kg que ceux l'ayant une fois par semaine</value>
+  </data>
+  <data name="String22" xml:space="preserve">
+    <value>Les adultes qui boivent plus de huit verres d'eau par jour brûler plus de calories que celles qui boivent moins</value>
+  </data>
+  <data name="String23" xml:space="preserve">
+    <value>Ceux qui déjeunent chaque matin sont plus susceptibles de maintenir un poids correct</value>
+  </data>
+  <data name="String24" xml:space="preserve">
+    <value>Diètes rapides peuvent ralentir votre métabolisme. Mais une fois de plus, vous pourrez retrouver plus que le poids perdu!</value>
+  </data>
+  <data name="String25" xml:space="preserve">
+    <value>Yaourt et aliments riches en protéines peuvent servir un idéal «pré-entraînement" repas</value>
+  </data>
+  <data name="String26" xml:space="preserve">
+    <value>L'ail aide à diminuer la glycémie et le cholestérol</value>
+  </data>
+  <data name="String27" xml:space="preserve">
+    <value>Dormir et se réveiller à la même heure chaque jour permet de maintenir un taux de métabolisme régulière</value>
+  </data>
+  <data name="String28" xml:space="preserve">
+    <value>Préférez les surgelés aux conservés car il a plus de nutriments, moins de sel ou de sucre, et moins polluants</value>
+  </data>
+  <data name="String29" xml:space="preserve">
+    <value>Prendre le temps de se détendre tranquillement, même pour quelques minutes, va vous rafraîchir l'esprit et le corps</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>L'activité physique aide contre la cellulite</value>
+  </data>
+  <data name="String30" xml:space="preserve">
+    <value>L'alcool stimule l'appétit: plus vous buvez, plus vous avez faim</value>
+  </data>
+  <data name="String31" xml:space="preserve">
+    <value>Prenez le temps de savourer votre repas, ne pas être dans une telle précipitation à manger</value>
+  </data>
+  <data name="String32" xml:space="preserve">
+    <value>Mangez une pomme, une orange ou une banane quelques minutes avant le repas</value>
+  </data>
+  <data name="String33" xml:space="preserve">
+    <value>La graisse saine dans les avocats contribue à l'écoulement du sang sain pour le cerveau et peut également aider à abaisser la pression artérielle</value>
+  </data>
+  <data name="String34" xml:space="preserve">
+    <value>Le saumon contient beaucoup d'oméga-3 qui sont essentiels pour le fonctionnement du cerveau</value>
+  </data>
+  <data name="String35" xml:space="preserve">
+    <value>Les myrtilles aident à protéger votre cerveau contre le stress et les maladies liées à l'âge</value>
+  </data>
+  <data name="String36" xml:space="preserve">
+    <value>Les crevettes sont une excellente source de protéines et de sélénium, pourtant riches en cholestérol</value>
+  </data>
+  <data name="String37" xml:space="preserve">
+    <value>La goyave est une des plus riches sources de vitamine C qui offre une protection contre les rhumes et les infections virales</value>
+  </data>
+  <data name="String38" xml:space="preserve">
+    <value>Les haricots et les lentilles sont une riche source de fibres solubles qui peuvent contribuer à abaisser le mauvais cholestérol</value>
+  </data>
+  <data name="String39" xml:space="preserve">
+    <value>Fumer peut provoquer des rides à un âge précoce</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>Thé vert + citron = Un coeur en santé</value>
+  </data>
+  <data name="String40" xml:space="preserve">
+    <value>Les amandes sont une riche source de vitamine E et elles sont utiles pour réduire le cholestérol</value>
+  </data>
+  <data name="String41" xml:space="preserve">
+    <value>Craquer les jointures est généralement considéré une mauvaise habitude, mais elle ne cause pas l'arthrite.</value>
+  </data>
+  <data name="String42" xml:space="preserve">
+    <value>Boire beaucoup d'eau protège contre les calculs rénaux et les infections urinaires</value>
+  </data>
+  <data name="String43" xml:space="preserve">
+    <value>Les végétariens sont plus à risque de carence en fer que les non-végétariens.</value>
+  </data>
+  <data name="String44" xml:space="preserve">
+    <value>Les pommes sont une riche source de composés antioxydants qui peuvent protéger contre les maladies du cerveau comme la maladie d'Alzheimer</value>
+  </data>
+  <data name="String45" xml:space="preserve">
+    <value>Fumer nuit à vos artères et aggrave l'effet néfaste de tous les facteurs de risque de maladies cardiaques d'autres</value>
+  </data>
+  <data name="String46" xml:space="preserve">
+    <value>Les personnes atteintes de maladies cardiaques devraient recevoir les vaccins contre la grippe et la pneumonie comme ils sont à risque accru de complications dues à ces maladies</value>
+  </data>
+  <data name="String47" xml:space="preserve">
+    <value>Utilisez des huiles de cuisine saine tels que l'huile d'olive, huile de canola ou de moutarde. Evitez l'huile de tournesol, huile de carthame, le ghee, le beurre, la margarine</value>
+  </data>
+  <data name="String48" xml:space="preserve">
+    <value>Assurez-vous que vous allez rencontrer votre quotidien de vitamine C et E car elles sont vitales pour protéger et réparer vos artères</value>
+  </data>
+  <data name="String49" xml:space="preserve">
+    <value>Essayez de changer vos boisson alcoolisée au vin rouge et la bière brune pour une protection cardiaque maximale</value>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>Brocolis + Tomates = Prévention du cancer</value>
+  </data>
+  <data name="String50" xml:space="preserve">
+    <value>Si vous avez des éruptions de chaleur, n'utilisez pas une serviette après la douche, mais séchez votre corps à l'air sec. L'éruption disparaîtra plus vite</value>
+  </data>
+  <data name="String51" xml:space="preserve">
+    <value>Donnez à vos yeux une pause lorsque vous travaillez sur un ordinateur ou faire un travail détaillé. Regarde au loin toutes les 15 minutes</value>
+  </data>
+  <data name="String52" xml:space="preserve">
+    <value>Attendez cinq minutes après l'application de shampoing antipelliculaire. Les shampoings médicamenteux ne fonctionnent pas s'ils sont lavés immédiatement</value>
+  </data>
+  <data name="String53" xml:space="preserve">
+    <value>Appliquer des compresses fraîches avec une serviette humide sur la nuque de votre cou et du front de refroidir rapidement dans une chaude après-midi</value>
+  </data>
+  <data name="String54" xml:space="preserve">
+    <value>Houmous (trempette Moyen-Orient avec des pois chiches et d'huile d'olive) est un substitut des sauces grasses de l'apéro et des entrées, qui va bien pour votre cœur sain</value>
+  </data>
+  <data name="String55" xml:space="preserve">
+    <value>Un petit déjeuner sain doit inclure des glucides complexes tels que les pains de grains entiers, du gruau, ou bouillie de blé cassés</value>
+  </data>
+  <data name="String56" xml:space="preserve">
+    <value>Ne pas se lécher les lèvres gercées comme la salive n'est pas une crème hydratante. Il ne fera que vos lèvres sèches beaucoup plus, appliquer la vaseline au lieu</value>
+  </data>
+  <data name="String57" xml:space="preserve">
+    <value>Consommer yaourt ou lait caillé peut améliorer votre immunité, car il contient de bonnes bactéries qui stimulent les cellules immunitaires</value>
+  </data>
+  <data name="String58" xml:space="preserve">
+    <value>Vous pouvez avoir un régime protéiné riche mais faible en matières grasses en consommant du poisson, fruits de mer, les blancs d'œufs, de légumineuses, de haricots, de soja et les produits</value>
+  </data>
+  <data name="String59" xml:space="preserve">
+    <value>Pour obtenir une bonne quantité de vitamine C ajouter les goyaves, les papayes, les oranges et le melon à votre alimentation</value>
+  </data>
+  <data name="String6" xml:space="preserve">
+    <value>Poivrons rouges + haricots noirs = Système immunitaire plus fort</value>
+  </data>
+  <data name="String60" xml:space="preserve">
+    <value>Pour éviter les douleurs après de longues heures d'utilisation de l'ordinateur, prenez des pauses régulières pour faire des exercices étirer à votre bureau</value>
+  </data>
+  <data name="String61" xml:space="preserve">
+    <value>Fruits de mer comme les huîtres, les sardines, palourdes, crabes et poissons produisent un effet de rehausser les humeurs en fournissant suffisamment de sélénium</value>
+  </data>
+  <data name="String62" xml:space="preserve">
+    <value>Les aliments épicés, les aliments riches en gras et en fibres, ou des quantités excessives de caféine peut précipiter tous les indigestions</value>
+  </data>
+  <data name="String63" xml:space="preserve">
+    <value>L'excès de sel peut vous faire sentir ballonné et contribue à l'hypertension artérielle</value>
+  </data>
+  <data name="String64" xml:space="preserve">
+    <value>Augmenter l'apport d'aliments comme le riz brun biotine, les céréales de son, de la levure, les noix, les haricots, les pois, les choux-fleurs pour réduire la perte des cheveux et favoriser la croissance des cheveux</value>
+  </data>
+  <data name="String65" xml:space="preserve">
+    <value>Un paquet de petits pois surgelés fait un paquet de glace à portée de main. Son application rapidement à une région meurtrie peut l'empêcher de tourner en noir</value>
+  </data>
+  <data name="String66" xml:space="preserve">
+    <value>Les haricots sont un bon choix si vous essayez de perdre du poids parce qu'ils gardent le taux de glycémie, et aident à supprimer la faim</value>
+  </data>
+  <data name="String67" xml:space="preserve">
+    <value>Si vous vous sentez faible, mangez glucides avec une faible teneur en matières grasses comme les pommes de terre cuites. Elles élèvent les niveaux de sérotonine dans le cerveau et aussi vos esprits</value>
+  </data>
+  <data name="String68" xml:space="preserve">
+    <value>Soyez un végétarien deux fois par semaine: l'alimentation végétarienne est faible en gras et aide à réduire la taille</value>
+  </data>
+  <data name="String69" xml:space="preserve">
+    <value>Absence de fume et d'alcool peuvent considérablement prolonger la vie</value>
+  </data>
+  <data name="String7" xml:space="preserve">
+    <value>Œuf + Mango + = Belle peau</value>
+  </data>
+  <data name="String70" xml:space="preserve">
+    <value>Un verre de vin rouge par jour est utile pour travailler le système cardio-vasculaire</value>
+  </data>
+  <data name="String71" xml:space="preserve">
+    <value>N'oubliez pas de vous brosser les dents au moins deux fois par jour</value>
+  </data>
+  <data name="String72" xml:space="preserve">
+    <value>Mangez du chocolat noir, il contient des antioxydants (flavonoïdes) qui aident à lutter contre le vieillissement</value>
+  </data>
+  <data name="String73" xml:space="preserve">
+    <value>Les fruits secs, noix et graines réduisent les niveaux de mauvais cholestérol et préviennent certains cancers</value>
+  </data>
+  <data name="String74" xml:space="preserve">
+    <value>Obtenez au moins et pas plus de 7-8 heures de sommeil par jour: il permet de concentrer l'attention et régule le poids</value>
+  </data>
+  <data name="String75" xml:space="preserve">
+    <value>Dans les jours nuageux beaucoup de gens se sentent déprimés. Tenez-vous au soleil lorsque le soleil est là pour vous remonter le moral</value>
+  </data>
+  <data name="String76" xml:space="preserve">
+    <value>Lorsque vous êtes assis dans votre chaise de bureau, reposer vos pieds à plat sur le sol et garder vos cuisses parallèles au sol pour éviter la fatigue au bas du dos</value>
+  </data>
+  <data name="String77" xml:space="preserve">
+    <value>La soupe de poulet soulage les symptômes du rhume et de grippe, en agissant comme un agent anti-inflammatoire et décongestionnant</value>
+  </data>
+  <data name="String78" xml:space="preserve">
+    <value>Si vous avez un odeur de corps puissante, un savon antibactérien vous aidera plus que les non-médicamenteux savons avec parfum puissant</value>
+  </data>
+  <data name="String79" xml:space="preserve">
+    <value>L'exercice est non seulement bon pour votre santé physique, mais améliore votre concentration et de réflexion ainsi vous rend plus productif</value>
+  </data>
+  <data name="String8" xml:space="preserve">
+    <value>Avocat + salade verte = protection complète</value>
+  </data>
+  <data name="String80" xml:space="preserve">
+    <value>La soda (boisson) est une source commune de calories supplémentaires sans les avantages nutritionnels. Avoir de l'eau à la place de la soda, autant que possible</value>
+  </data>
+  <data name="String81" xml:space="preserve">
+    <value>Si vous voulez réduire les calories, passer du jus d'orange à jus de tomate. Il est tout aussi nutritif et a la moitié des calories</value>
+  </data>
+  <data name="String82" xml:space="preserve">
+    <value>Pour éviter la gueule de bois, de consommer quelque chose de gras avant boire, prenez votre boissons lentement et de prenez un verre d'eau avant d'aller au lit</value>
+  </data>
+  <data name="String9" xml:space="preserve">
+    <value>Yaourt + son de blé = meilleure digestion</value>
   </data>
 </root>

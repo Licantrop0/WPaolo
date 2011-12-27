@@ -163,7 +163,7 @@
     <value>Do you have insomnia or do you oversleep?</value>
   </data>
   <data name="Insomnia1" xml:space="preserve">
-    <value>No, I sleep about 8 ours a day</value>
+    <value>No, I sleep about 8 hours a day</value>
   </data>
   <data name="Insomnia2" xml:space="preserve">
     <value>I sleep less than 8 hours a day</value>

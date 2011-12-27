@@ -27,23 +27,22 @@
                            Style="{StaticResource RedChiller}" Margin="0,45,0,0" />
             </controls:Panorama.Title>
             <controls:Panorama.Background>
-                <ImageBrush ImageSource="../Images/DeathBackground.jpg"
-                            Stretch="None" />
+                <ImageBrush ImageSource="/DeathTimerz;component/Images/DeathBackground.jpg" Stretch="None" />
             </controls:Panorama.Background>
-
+            
             <!--SuggestionText-->
             <controls:PanoramaItem Margin="0,-60,0,0" >
                 <controls:PanoramaItem.Header>
                     <TextBlock Text="{Binding LocalizedResources.Suggestion, Source={StaticResource LocalizedStrings}}"
                                TextWrapping="Wrap" Style="{StaticResource RedChiller}" />
                 </controls:PanoramaItem.Header>
-                <Grid  Margin="0,-30,0,80">
+                <ScrollViewer Margin="0,-30,0,80">
                     <TextBlock Text="{Binding SuggestionText}" 
                                TextWrapping="Wrap" Margin="10,0,0,0"
                                TextAlignment="Center" VerticalAlignment="Center"
                                FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
                                Style="{StaticResource RedChiller}" />
-                </Grid>
+                </ScrollViewer>
             </controls:PanoramaItem>
 
             <!--Age-->
@@ -114,14 +113,16 @@
                                      GroupName="MaleOrFemale" Margin="20,-10" IsChecked="True" />
                     </StackPanel>
 
-                    <TextBlock Text="{Binding Path=LocalizedResources.InsertBirthday, Source={StaticResource LocalizedStrings}}"
-                           Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
+                    <TextBlock Text="{Binding Path=LocalizedResources.InsertBirthday,
+                                    Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource RedChiller}"
+                               FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
 
-                    <toolkit:DatePicker Background="Gray"
+                    <toolkit:DatePicker Background="#B4555555"
                                         FontFamily="{StaticResource DefaultFont}"
                                         Foreground="{StaticResource RedGradientBrush}"
                                         Value="{Binding BirthDay, Mode=TwoWay}" />
-                    <toolkit:TimePicker Background="Gray"
+                    <toolkit:TimePicker Background="#B4555555"
                                         Foreground="{StaticResource RedGradientBrush}"
                                         Value="{Binding BirthDay, Mode=TwoWay}"
                                         FontFamily="{StaticResource DefaultFont}" />
@@ -130,7 +131,6 @@
                                HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
                                FontSize="{StaticResource PhoneFontSizeLarge}"
                                Style="{StaticResource RedChiller}"/>
-
                 </StackPanel>
             </controls:PanoramaItem>
         </controls:Panorama>

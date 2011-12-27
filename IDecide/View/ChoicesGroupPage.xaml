@@ -38,6 +38,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
+
                             <RadioButton GroupName="Groups"
                                          IsChecked="{Binding Model.IsSelected, Mode=TwoWay}" />
                             <Button Width="320" Style="{StaticResource ButtonStyle}"
@@ -68,3 +69,4 @@
                               ForegroundColor="{StaticResource MainColor}" />
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>
+ 

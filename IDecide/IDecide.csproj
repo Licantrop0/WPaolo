@@ -191,9 +191,7 @@
     <Content Include="Toolkit.Content\appbar_settings.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Toolkit.Content\remove_white.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Toolkit.Content\remove_white.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\AppResources.it-IT.resx">

@@ -38,10 +38,9 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-
-                            <RadioButton GroupName="Groups"
+                            <RadioButton GroupName="Groups" Template="{StaticResource SwichTemplate}"
                                          IsChecked="{Binding Model.IsSelected, Mode=TwoWay}" />
-                            <Button Width="320" Style="{StaticResource ButtonStyle}"
+                            <Button Width="300" Style="{StaticResource ButtonStyle}"
                                     Command="{Binding EditGroup}"
                                     toolkit:TiltEffect.IsTiltEnabled="{Binding ButtonEnabled}">
                                 <TextBlock Text="{Binding Model.Name,

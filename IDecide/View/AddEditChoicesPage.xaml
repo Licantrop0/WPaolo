@@ -25,7 +25,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
+        
         <toolkit:PhoneTextBox            
             Text="{Binding LocGroupName, Mode=TwoWay}"
             InputScope="Text" Grid.Row="0"

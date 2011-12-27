@@ -45,6 +45,9 @@ namespace IDecide.ViewModel
             get { return _choicesGroupVM; }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
         public AddEditChoicesViewModel AddEditChoicesVM
         {
             get { return _addEditChoicesVM; }

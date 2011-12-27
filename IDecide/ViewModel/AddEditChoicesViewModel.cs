@@ -42,14 +42,25 @@ namespace IDecide.ViewModel
             }
         }
 
-        private RelayCommand<string> _addChoice;
-        public RelayCommand<string> AddChoice
+        private string _choice;
+        public string Choice
         {
-            get { return _addChoice ?? (_addChoice = new RelayCommand<string>(AddChoiceAction)); }
+            get { return _choice; }
+            set {
+                _choice = value;
+                RaisePropertyChanged("Choice");
+            }
         }
-        private void AddChoiceAction(string choice)
+
+        private RelayCommand _addChoice;
+        public RelayCommand AddChoice
         {
-           CurrentChoiceGroup.Choices.Insert(0, choice);
+            get { return _addChoice ?? (_addChoice = new RelayCommand(AddChoiceAction)); }
+        }
+        private void AddChoiceAction()
+        {
+            CurrentChoiceGroup.Choices.Insert(0, Choice);
+            Choice = string.Empty;
         }
 
         private RelayCommand<string> _deleteChoice;

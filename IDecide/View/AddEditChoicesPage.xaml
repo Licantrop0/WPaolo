@@ -27,13 +27,17 @@
         </Grid.RowDefinitions>
 
         <toolkit:PhoneTextBox            
-            Text="{Binding LocGroupName, Mode=TwoWay}" Grid.Row="0"
-            Hint="{Binding Path=LocalizedResources.InsertGroupName, Source={StaticResource LocalizedStrings}}"
+            Text="{Binding LocGroupName, Mode=TwoWay}"
+            InputScope="Text" Grid.Row="0"
+            Hint="{Binding Path=LocalizedResources.InsertGroupName,
+            Source={StaticResource LocalizedStrings}}"
             KeyDown="GroupNameTextBox_KeyDown" />
 
-        <toolkit:PhoneTextBox Name="ChoiceTextBox" Grid.Row="1"
-            KeyDown="ChoiceTextBox_KeyDown" InputScope="Text"
-            Hint="{Binding Path=LocalizedResources.AddChoice, Source={StaticResource LocalizedStrings}}"
+        <toolkit:PhoneTextBox Name="ChoiceTextBox"
+            Text="{Binding Choice, Mode=TwoWay}" Grid.Row="1"
+            KeyDown="ChoiceTextBox_KeyDown" InputScope="Text"                              
+            Hint="{Binding Path=LocalizedResources.AddChoice,
+            Source={StaticResource LocalizedStrings}}"
             ActionIcon="..\Toolkit.Content\add_orange.png"
             ActionIconTapped="ChoiceTextBox_ActionIconTapped" />
 

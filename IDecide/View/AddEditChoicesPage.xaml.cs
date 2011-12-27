@@ -45,8 +45,7 @@ namespace IDecide
 
         private void ChoiceTextBox_ActionIconTapped(object sender, EventArgs e)
         {
-            VM.AddChoice.Execute(ChoiceTextBox.Text);
-            ChoiceTextBox.Text = string.Empty;
+            VM.AddChoice.Execute(null);
             ChoiceTextBox.Focus();
         }
     }

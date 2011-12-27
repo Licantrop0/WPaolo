@@ -184,7 +184,10 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                return Advices[DateTime.Today.DayOfYear % Advices.Length];
+                //return Advices[DateTime.Today.DayOfYear % Advices.Length];
+                var rnd = new Random();
+                return Advices[rnd.Next(Advices.Length)];
+
             }
         }
 

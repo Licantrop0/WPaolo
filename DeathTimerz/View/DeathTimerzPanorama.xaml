@@ -40,7 +40,7 @@
                     <TextBlock Text="{Binding SuggestionText}" 
                                TextWrapping="Wrap" Margin="10,0,0,0"
                                TextAlignment="Center" VerticalAlignment="Center"
-                               FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
+                               FontSize="60"
                                Style="{StaticResource RedChiller}" />
                 </ScrollViewer>
             </controls:PanoramaItem>
@@ -120,10 +120,10 @@
 
                     <toolkit:DatePicker Background="#B4555555"
                                         FontFamily="{StaticResource DefaultFont}"
-                                        Foreground="{StaticResource RedGradientBrush}"
+                                        Foreground="{StaticResource RedWhiteGradientBrush}"
                                         Value="{Binding BirthDay, Mode=TwoWay}" />
                     <toolkit:TimePicker Background="#B4555555"
-                                        Foreground="{StaticResource RedGradientBrush}"
+                                        Foreground="{StaticResource RedWhiteGradientBrush}"
                                         Value="{Binding BirthDay, Mode=TwoWay}"
                                         FontFamily="{StaticResource DefaultFont}" />
 

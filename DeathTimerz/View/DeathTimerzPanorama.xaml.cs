@@ -7,6 +7,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
+using System.Linq;
 
 namespace DeathTimerz
 {

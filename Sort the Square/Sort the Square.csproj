@@ -13,7 +13,7 @@
     <AssemblyName>SortTheSquare</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
-    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
     <SupportedCultures>en-US;it-IT;fr-FR</SupportedCultures>
@@ -53,12 +53,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.AdMob.Ads.WindowsPhone7">
-      <HintPath>..\WPCommon\ADMob SDK\Google.AdMob.Ads.WindowsPhone7.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone" />
-    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+      <HintPath>packages\SilverlightToolkitWP.4.2011.12.13\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Input.Touch" />
@@ -135,6 +134,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
@@ -184,9 +184,21 @@
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WPCommon\WPCommon.csproj">
-      <Project>{22700591-5E34-4D4D-A01F-6B8C2153B270}</Project>
-      <Name>WPCommon</Name>
+    <ProjectReference Include="..\WPCommon.Controls\WPCommon.Controls.csproj">
+      <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
+      <Name>WPCommon.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPCommon.Helpers.ExtensionMethods\WPCommon.Helpers.ExtensionMethods.csproj">
+      <Project>{A8C19415-8A63-42D1-862D-DBEC3C524857}</Project>
+      <Name>WPCommon.Helpers.ExtensionMethods</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPCommon.Helpers.NonLinearNavigationService\WPCommon.Helpers.NonLinearNavigationService.csproj">
+      <Project>{704697E4-9B5A-43B1-B4C5-0E2EC0475DEE}</Project>
+      <Name>WPCommon.Helpers.NonLinearNavigationService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj">
+      <Project>{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}</Project>
+      <Name>WPCommon.Helpers.XNAAsyncDispatcher</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

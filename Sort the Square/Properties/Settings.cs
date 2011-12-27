@@ -54,7 +54,7 @@ namespace SortTheSquare
                     TimeSpan.FromSeconds(rnd.Next(1000) + 8)) { Name = "Phil" + i });
             }
 
-            Records.AddRange(temp.OrderBy(r => r.Date));
+            //Records.AddRange(temp.OrderBy(r => r.Date));
         }
 
     }

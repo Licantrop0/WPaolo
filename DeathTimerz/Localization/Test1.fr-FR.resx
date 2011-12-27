@@ -133,8 +133,7 @@
     <value>Combien de cigarettes fumes-tu par jour?</value>
   </data>
   <data name="Cigarettes2" xml:space="preserve">
-    <value>Da quanti anni fumi?</value>
-    <comment>ANCORA DA TRADURRE!</comment>
+    <value>Combien d'années fumez-vous?</value>
   </data>
   <data name="ClinicChecks" xml:space="preserve">
     <value>Fais-tu des visites médicales?</value>

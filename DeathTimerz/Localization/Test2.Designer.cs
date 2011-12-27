@@ -196,7 +196,7 @@ namespace DeathTimerz.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No, I sleep about 8 ours a day.
+        ///   Looks up a localized string similar to No, I sleep about 8 hours a day.
         /// </summary>
         internal static string Insomnia1 {
             get {

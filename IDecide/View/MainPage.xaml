@@ -104,6 +104,14 @@
         </Grid.RowDefinitions>
 
         <Canvas>
+            <!--Corvo-->
+            <TextBlock Canvas.Top="76" Text="• • • • • • • •" FontSize="93" Foreground="Black" Visibility="Visible" />
+            <Grid x:Name="CrowGrid" Canvas.Top="108" Canvas.Left="-74" IsHitTestVisible="False" Visibility="Visible">
+                <Rectangle Fill="{StaticResource DefaultBackground}" Height="73" Width="554" />
+                <Image x:Name="Crow2Image" Source="/IDecide;component/Images/crow2.png" Stretch="None" HorizontalAlignment="Left" />
+                <Image x:Name="Crow1Image" Source="/IDecide;component/Images/crow1.png" Stretch="None" Opacity="0" HorizontalAlignment="Left" />
+            </Grid>
+            
             <Image x:Name="IDecide_LogoImage" Stretch="None"
                    Source="/IDecide;component/Images/IDecide_logo.png"
                    Canvas.Left="14" Canvas.Top="6" />
@@ -124,13 +132,6 @@
                    Source="/IDecide;component/Images/lamp.png"
                    Stretch="Fill" Canvas.Top="226" Width="102" Opacity="0"/>
 
-            <!--Corvo-->
-            <TextBlock Canvas.Top="76" Text="• • • • • • • •" FontSize="93" Foreground="Black" />
-            <Grid x:Name="CrowGrid" Canvas.Top="108" Canvas.Left="-74" IsHitTestVisible="False" >
-                <Rectangle Fill="{StaticResource DefaultBackground}" Height="73" Width="554" />
-                <Image x:Name="Crow2Image" Source="/IDecide;component/Images/crow2.png" Stretch="None" HorizontalAlignment="Left" />
-                <Image x:Name="Crow1Image" Source="/IDecide;component/Images/crow1.png" Stretch="None" Opacity="0" HorizontalAlignment="Left" />
-            </Grid>
 
             <!--Nuvoletta-->
             <Image x:Name="Cloud1Image"  Stretch="None" Opacity="0"
@@ -179,7 +180,8 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"							  
-                              ForegroundColor="{StaticResource MainColor}" />
+                              ForegroundColor="{StaticResource MainColor}"
+                              BackgroundColor="#FF26313B" />
     </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using IDecide.ViewModel;
 using Microsoft.Phone.Controls;
+using System.Windows.Data;
 
 namespace IDecide
 {
@@ -45,6 +46,7 @@ namespace IDecide
 
         private void ChoiceTextBox_ActionIconTapped(object sender, EventArgs e)
         {
+            ChoiceTextBox.GetBindingExpression(PhoneTextBox.TextProperty).UpdateSource();
             VM.AddChoice.Execute(null);
             ChoiceTextBox.Focus();
         }

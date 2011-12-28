@@ -65,7 +65,8 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False"
-                              ForegroundColor="{StaticResource MainColor}" />
+                              ForegroundColor="{StaticResource MainColor}"
+                              BackgroundColor="#FF26313B" />
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>
  

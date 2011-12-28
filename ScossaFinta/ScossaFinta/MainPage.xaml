@@ -6,22 +6,22 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:local="clr-namespace:ScossaFinta" 
-    xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon"
+	xmlns:wp="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.ExtensionMethods"
 	xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
+	xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
 	x:Class="ScossaFinta.MainPage"
 	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	shell:SystemTray.IsVisible="False">
-    <phone:PhoneApplicationPage.Resources>
-        <wp:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-        <SolidColorBrush x:Key="ObiettiviBrush" Color="Black"/>
-    </phone:PhoneApplicationPage.Resources>
+	<phone:PhoneApplicationPage.Resources>
+		<wp:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+		<SolidColorBrush x:Key="ObiettiviBrush" Color="Black"/>
+	</phone:PhoneApplicationPage.Resources>
 
 	<Grid>
-        <Grid.RowDefinitions>
+		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
@@ -70,13 +70,13 @@
 			</Border.Background>
 		</Border>
 
-        <TextBlock x:Name="AchievementsText" Text="Launch more shocks to unlock new powers!" Foreground="{StaticResource ForegroundTextParts}"
+		<TextBlock x:Name="AchievementsText" Text="Launch more shocks to unlock new powers!" Foreground="{StaticResource ForegroundTextParts}"
 			FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#SpacePatrol"
 			FontSize="22" 
 			Grid.ColumnSpan="3" Grid.Row="1"
 			HorizontalAlignment="Center" />
 
-        <ToggleButton x:Name="ThunderButton"
+		<ToggleButton x:Name="ThunderButton"
 			Click="ThunderButton_Click"
 			Height="126"  Width="126"
 			Grid.Row="4"
@@ -116,15 +116,10 @@
 			Grid.Column="2" Grid.Row="3"
 			HorizontalAlignment="Center" Style="{StaticResource HoldTextStyle}" />
 
-        <local:AchievementUnlocked x:Name="PopupAchievementUnlocked"
-                                   Grid.ColumnSpan="3" Grid.Row="2" >
-        </local:AchievementUnlocked>
+		<local:AchievementUnlocked x:Name="PopupAchievementUnlocked"
+								   Grid.ColumnSpan="3" Grid.Row="2" >
+		</local:AchievementUnlocked>
 
-		<google:BannerAd
-			xmlns:google="clr-namespace:Google.AdMob.Ads.WindowsPhone7.WPF;assembly=Google.AdMob.Ads.WindowsPhone7"
-			AdUnitID="a14da86f2609897"
-			Grid.Row="5" Grid.ColumnSpan="3"
-			LocationDescription="{Binding ElementName=Location, Mode=OneWay}"/>
 		<Image Grid.Column="1" Grid.Row="4" Source="Resources/logo.png" Height="80">
 			<Custom:Interaction.Triggers>
 				<Custom:EventTrigger EventName="MouseLeftButtonDown">

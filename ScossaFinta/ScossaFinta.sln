@@ -5,18 +5,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScossaFinta", "ScossaFinta\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon", "..\WPCommon\WPCommon.csproj", "{22700591-5E34-4D4D-A01F-6B8C2153B270}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.ExtensionMethods", "..\WPCommon.Helpers.ExtensionMethods\WPCommon.Helpers.ExtensionMethods.csproj", "{A8C19415-8A63-42D1-862D-DBEC3C524857}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.XNAAsyncDispatcher", "..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj", "{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
-		SccProjectUniqueName0 = ..\\WPCommon\\WPCommon.csproj
-		SccProjectName0 = ../WPCommon
-		SccLocalPath0 = ..\\WPCommon
-		SccLocalPath1 = .
-		SccProjectUniqueName2 = ScossaFinta\\ScossaFinta.csproj
-		SccProjectName2 = ScossaFinta
-		SccLocalPath2 = ScossaFinta
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ScossaFinta\\ScossaFinta.csproj
+		SccProjectName1 = ScossaFinta
+		SccLocalPath1 = ScossaFinta
+		SccProjectUniqueName2 = ..\\WPCommon\\WPCommon.csproj
+		SccProjectName2 = ../WPCommon
+		SccLocalPath2 = ..\\WPCommon
+		SccProjectUniqueName3 = ..\\WPCommon.Helpers.ExtensionMethods\\WPCommon.Helpers.ExtensionMethods.csproj
+		SccProjectName3 = ../WPCommon.Helpers.ExtensionMethods
+		SccLocalPath3 = ..\\WPCommon.Helpers.ExtensionMethods
+		SccProjectUniqueName4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
+		SccProjectName4 = ../WPCommon.Helpers.XNAAsyncDispatcher
+		SccLocalPath4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +43,14 @@ Global
 		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8C19415-8A63-42D1-862D-DBEC3C524857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8C19415-8A63-42D1-862D-DBEC3C524857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8C19415-8A63-42D1-862D-DBEC3C524857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8C19415-8A63-42D1-862D-DBEC3C524857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

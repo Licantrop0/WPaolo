@@ -14,13 +14,5 @@
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
 
-    <wp:AboutControl Name="WPMEAbout"
-                     ApplicationName="Shock Master"
-                     FontFamily="/ScossaFinta;component/Fonts/Fonts.zip#SpacePatrol"
-                     Foreground="{StaticResource ForegroundTextParts}" MinFontSize="40" >
-        <wp:AboutControl.BackgroundStackPanel>
-            <ImageBrush ImageSource="Resources\fulmineTandy1.jpg" />
-        </wp:AboutControl.BackgroundStackPanel>
-    </wp:AboutControl>
 
 </phone:PhoneApplicationPage>

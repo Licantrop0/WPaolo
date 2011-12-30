@@ -11,7 +11,7 @@ namespace FillTheSquare.Sounds
 {
     public static class SoundManager
     {
-        public static SoundEffect _moveSound;
+        private static SoundEffect _moveSound;
         public static void PlayMove()
         {
             if (!SettingsViewModel.Instance.SoundEffectsEnabled)
@@ -59,7 +59,7 @@ namespace FillTheSquare.Sounds
             if (_victorySound == null)
                 _victorySound = SoundEffect.FromStream(App.GetResourceStream(
                     new Uri("Sounds\\Victory.wav", UriKind.Relative)).Stream);
-            
+
             _victorySound.Play();
         }
 
@@ -80,11 +80,11 @@ namespace FillTheSquare.Sounds
         {
             if (!SettingsViewModel.Instance.SoundEffectsEnabled)
                 return;
-            
+
             if (_startSound == null)
                 _startSound = SoundEffect.FromStream(App.GetResourceStream(
                     new Uri("Sounds\\start.wav", UriKind.Relative)).Stream);
-           
+
             _startSound.Play();
         }
 

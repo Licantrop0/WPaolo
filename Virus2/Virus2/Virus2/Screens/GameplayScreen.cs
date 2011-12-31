@@ -15,6 +15,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using GameStateManagement;
+using Microsoft.Xna.Framework.Input.Touch;
+using System.Collections.Generic;
 #endregion
 
 namespace Virus
@@ -24,26 +26,24 @@ namespace Virus
     /// placeholder to get the idea across: you'll probably want to
     /// put some more interesting gameplay in here!
     /// </summary>
-    class GameplayScreen : GameScreen
+    public class GameplayScreen : GameScreen
     {
         #region Fields
 
         ContentManager content;
-        SpriteFont gameFont;
-
-        Vector2 playerPosition = new Vector2(100, 100);
-        Vector2 enemyPosition = new Vector2(100, 100);
-
-        Random random = new Random();
 
         float pauseAlpha;
 
         InputAction pauseAction;
 
+        VirusLevel level;
+
+        bool tapped;           // they are passed to level logic
+        Vector2 tapPosition;
+
         #endregion
 
         #region Initialization
-
 
         /// <summary>
         /// Constructor.
@@ -57,6 +57,9 @@ namespace Virus
                 new Buttons[] { Buttons.Start, Buttons.Back },
                 new Keys[] { Keys.Escape },
                 true);
+
+            // PS enable tap as gesture
+            EnabledGestures = GestureType.Tap;
         }
 
 
@@ -68,38 +71,34 @@ namespace Virus
             if (!instancePreserved)
             {
                 if (content == null)
-                    content = new ContentManager(ScreenManager.Game.Services, "Content");
+                    content = new ContentManager(ScreenManager.Game.Services, "Content");  // VirusContent ?
 
-                gameFont = content.Load<SpriteFont>("gamefont");
-
-                // A real game would probably have more content than this sample, so
-                // it would take longer to load. We simulate that by delaying for a
-                // while, giving you a chance to admire the beautiful loading screen.
-                Thread.Sleep(8000);
+                level = new VirusLevel(GameGlobalState.ActualLevel, GameGlobalState.Virus, ScreenManager.SpriteBatch, content);
 
                 // once the load has finished, we use ResetElapsedTime to tell the game's
                 // timing mechanism that we have just finished a very long frame, and that
                 // it should not try to catch up.
-                ScreenManager.Game.ResetElapsedTime();
+                ScreenManager.Game.ResetElapsedTime();      // PS che succede in caso di resume per il monster e bonus generator ?
             }
 
-#if WINDOWS_PHONE
             if (Microsoft.Phone.Shell.PhoneApplicationService.Current.State.ContainsKey("PlayerPosition"))
             {
-                playerPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"];
-                enemyPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"];
+                /*playerPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"];
+                enemyPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"];*/
+
+                // PS TODO: qua devo mettere il salvataggio di tutto lo stato (posizione nel livello, stato eventi, stato e posizione
+                // mostri, dovrò implementare nella classe body il metodo Resume() che faccia riprendere tutti dallo stato in cui
+                // erano
             }
-#endif
         }
 
 
         public override void Deactivate()
         {
-#if WINDOWS_PHONE
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"] = playerPosition;
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"] = enemyPosition;
-#endif
+           /* Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"] = playerPosition;
+            Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"] = enemyPosition;*/
 
+            // PS TODO salvare lo stato del livello
             base.Deactivate();
         }
 
@@ -141,21 +140,7 @@ namespace Virus
 
             if (IsActive)
             {
-                // Apply some random jitter to make the enemy move around.
-                const float randomization = 10;
-
-                enemyPosition.X += (float)(random.NextDouble() - 0.5) * randomization;
-                enemyPosition.Y += (float)(random.NextDouble() - 0.5) * randomization;
-
-                // Apply a stabilizing force to stop the enemy moving off the screen.
-                Vector2 targetPosition = new Vector2(
-                    ScreenManager.GraphicsDevice.Viewport.Width / 2 - gameFont.MeasureString("Insert Gameplay Here").X / 2, 
-                    200);
-
-                enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.05f);
-
-                // TODO: this game isn't very fun! You could probably improve
-                // it by inserting something more interesting in this space :-)
+                level.Update(gameTime, tapped, tapPosition);
             }
         }
 
@@ -185,46 +170,27 @@ namespace Virus
             PlayerIndex player;
             if (pauseAction.Evaluate(input, ControllingPlayer, out player) || gamePadDisconnected)
             {
-#if WINDOWS_PHONE
                 ScreenManager.AddScreen(new PhonePauseScreen(), ControllingPlayer);
-#else
-                ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
-#endif
             }
             else
             {
-                // Otherwise move the player position.
-                Vector2 movement = Vector2.Zero;
-
-                if (keyboardState.IsKeyDown(Keys.Left))
-                    movement.X--;
-
-                if (keyboardState.IsKeyDown(Keys.Right))
-                    movement.X++;
-
-                if (keyboardState.IsKeyDown(Keys.Up))
-                    movement.Y--;
-
-                if (keyboardState.IsKeyDown(Keys.Down))
-                    movement.Y++;
-
-                Vector2 thumbstick = gamePadState.ThumbSticks.Left;
-
-                movement.X += thumbstick.X;
-                movement.Y -= thumbstick.Y;
-
-                if (input.TouchState.Count > 0)
+                // PS handle tap gesture
+                bool auxTouch = false;
+                foreach (GestureSample gesture in input.Gestures)
                 {
-                    Vector2 touchPosition = input.TouchState[0].Position;
-                    Vector2 direction = touchPosition - playerPosition;
-                    direction.Normalize();
-                    movement += direction;
+                    // If we have a tap
+                    if (gesture.GestureType == GestureType.Tap)
+                    {
+                        tapped = true;
+                        auxTouch = true;
+                        tapPosition = gesture.Position;
+                        break;
+                    }
                 }
-
-                if (movement.Length() > 1)
-                    movement.Normalize();
-
-                playerPosition += movement * 8f;
+                if (auxTouch == false)
+                {
+                    tapped = false;
+                }
             }
         }
 
@@ -238,17 +204,7 @@ namespace Virus
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
                                                Color.CornflowerBlue, 0, 0);
 
-            // Our player and enemy are both actually just text strings.
-            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-
-            spriteBatch.Begin();
-
-            spriteBatch.DrawString(gameFont, "// TODO", playerPosition, Color.Green);
-
-            spriteBatch.DrawString(gameFont, "Insert Gameplay Here",
-                                   enemyPosition, Color.DarkRed);
-
-            spriteBatch.End();
+            level.Draw(gameTime);
 
             // If the game is transitioning on or off, fade it out to black.
             if (TransitionPosition > 0 || pauseAlpha > 0)

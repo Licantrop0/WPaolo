@@ -45,7 +45,7 @@ namespace Virus
 		}
 	}
 
-	public class SpriteFactory : GameEventHandler
+	public class SpriteGenerator : GameEventHandler
 	{
 		protected Random _dice = new Random(DateTime.Now.Millisecond);
 		protected Vector2 _virusPosition;
@@ -54,7 +54,7 @@ namespace Virus
 		const int W = 480;
 		const int H = 800;
 
-		public SpriteFactory(GameEventsManager eventManager)
+		public SpriteGenerator(GameEventsManager eventManager)
 			:base(eventManager)
 		{
 
@@ -119,7 +119,7 @@ namespace Virus
 		}
 	} 
 
-	public class MonsterFactory : SpriteFactory
+	public class MonsterGenerator : SpriteGenerator
 	{
 		List<Enemy> _enemies;                // reference to the game enemies list
 		List<Boss> _bossContainer;                   
@@ -145,7 +145,7 @@ namespace Virus
 		protected int _numberOfMonstersMin;
 		protected int _numberOfMonstersMax;
 
-		public MonsterFactory(GameEventsManager eventManager, List<Enemy> enemies, List<Boss> bossContainer, SpritePrototypeContainer animationFactory)
+		public MonsterGenerator(GameEventsManager eventManager, List<Enemy> enemies, List<Boss> bossContainer, SpritePrototypeContainer animationFactory)
 			:base(eventManager)
 		{
 			_enemies = enemies;
@@ -376,7 +376,7 @@ namespace Virus
 		}
 	}
 
-	public class BonusFactory : SpriteFactory
+	public class BonusGenerator : SpriteGenerator
 	{
 		List<GoToVirusBonus> _bonuses;   // reference to bonus list
 
@@ -393,7 +393,7 @@ namespace Virus
 		float _bombBonusCreationPeriodMin;
 		float _bombBonusCreationPeriodMax;
 
-		public BonusFactory(GameEventsManager eventManager, List<GoToVirusBonus> bonuses, SpritePrototypeContainer animationFactory)
+		public BonusGenerator(GameEventsManager eventManager, List<GoToVirusBonus> bonuses, SpritePrototypeContainer animationFactory)
 			:base(eventManager)
 		{
 			_bonuses = bonuses;

@@ -21,26 +21,25 @@ namespace Virus
         finished
     }
 
-    public class Level : GameScreen
+    public class VirusLevel
     {
         // graphics manager and sprite batch (references to game graphics)
        // GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // content manager
+        ContentManager contentManager;
+
         // condition of level finished
         //public bool Finished { get; set; }
         public LevelState State { get; set; }
         
-
         bool _bossDead = false;
         //float  _bossDeath; 
 
-        // content manager
-        ContentManager contentManager;
-
         // monster and globulos factory, initialized from level number
-        MonsterFactory _monsterFactory;
-        BonusFactory _bonusFactory;
+        MonsterGenerator _monsterFactory;
+        BonusGenerator _bonusFactory;
 
         // event scheduler
         GameEventsManager _eventsManager = new GameEventsManager();
@@ -67,79 +66,25 @@ namespace Virus
         LevelDifficultyPack[] _levelDifficultyPack;
 
         // touch point
-        Vector2 _touchPoint;
+        // Vector2 _touchPoint;   // PS mi arriva dal GamePlayScreen
+        List<GestureSample> _gestures;
 
         // virus ammo management
         int _enemiesKilledByAmmoCounter;
         int _enemiesKilledByAmmoTriggerNumber;
         int _ammoQuantityPerBonus;
 
-        public Level(int level, Virus virus)
+        public VirusLevel(int level, Virus virus, SpriteBatch spriteBatch, ContentManager contentManager)
         {
             _virus = virus;
+            this.spriteBatch = spriteBatch;
+            this.contentManager = contentManager;
 
             State = LevelState.loading;
 
-            pauseAction = new InputAction(
-                new Buttons[] { Buttons.Start, Buttons.Back },
-                new Keys[] { Keys.Escape },
-                true);
-
+            LoadLevel(level);
+            InitializeLevel(level);
         }
-
-
-
-        /// <summary>
-        /// Load graphics content for the game.
-        /// </summary>
-        public override void Activate(bool instancePreserved)
-        {
-            if (!instancePreserved)
-            {
-                if (contentManager == null)
-                    contentManager = new ContentManager(ScreenManager.Game.Services, "Content");
-
-             spriteBatch = ScreenManager.SpriteBatch;
-               LoadLevel(1);
-
-
-                // once the load has finished, we use ResetElapsedTime to tell the game's
-                // timing mechanism that we have just finished a very long frame, and that
-                // it should not try to catch up.
-                ScreenManager.Game.ResetElapsedTime();
-
-                
-            }
-
-            if (Microsoft.Phone.Shell.PhoneApplicationService.Current.State.ContainsKey("PlayerPosition"))
-            {
-                //playerPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"];
-                //enemyPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"];
-            }
-        }
-
-
-        public override void Deactivate()
-        {
-            //Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"] = playerPosition;
-            //Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"] = enemyPosition;
-
-            base.Deactivate();
-        }
-
-
-        /// <summary>
-        /// Unload graphics content used by the game.
-        /// </summary>
-        public override void Unload()
-        {
-            contentManager.Unload();
-
-            //Microsoft.Phone.Shell.PhoneApplicationService.Current.State.Remove("PlayerPosition");
-            //Microsoft.Phone.Shell.PhoneApplicationService.Current.State.Remove("EnemyPosition");
-        }
-
-
 
         public void InitializeLevel(int level)
         {
@@ -154,11 +99,7 @@ namespace Virus
         {
             LoadContent(level);
             CreateDifficulty(level);
-
-            EnabledGestures = GestureType.Tap;
-
         }
-
 
         private void CreateBackground(int level)
         {
@@ -202,7 +143,7 @@ namespace Virus
                 case 1:
 
                     // create Bonus Factory
-                    _bonusFactory = new BonusFactory(_eventsManager, _bonuses, new SpritePrototypeContainer(contentManager, "AnimationConfig/Bonuses.xml"))
+                    _bonusFactory = new BonusGenerator(_eventsManager, _bonuses, new SpritePrototypeContainer(contentManager, "AnimationConfig/Bonuses.xml"))
                     {
                         VirusPosition = new Vector2(240, 400),
                         BonusSpeed = 50
@@ -223,14 +164,10 @@ namespace Virus
                 case 1:
 
                     // create Monster Factory
-                    _monsterFactory = new MonsterFactory(_eventsManager, _enemies, _bossContainer, new SpritePrototypeContainer(contentManager, "AnimationConfig/Enemies.xml"))
+                    _monsterFactory = new MonsterGenerator(_eventsManager, _enemies, _bossContainer, new SpritePrototypeContainer(contentManager, "AnimationConfig/Enemies.xml"))
                     {
                         VirusPosition = new Vector2(240, 400),
                     };
-
-                    MyLoadingScreen pippo = new MyLoadingScreen(contentManager, spriteBatch);
-                    pippo.Load();
-                    
 
                     break;
 
@@ -323,67 +260,7 @@ namespace Virus
             _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(153), GameEventType.createBossLung, _monsterFactory));
         }
 
-        #region user input handle
-
-        public override void HandleInput(GameTime gameTime, InputState input)
-        {
-            if (input == null)
-                throw new ArgumentNullException("input");
-
-            // Look up inputs for the active player profile.
-            int playerIndex = (int)ControllingPlayer.Value;
-
-            //KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
-            //GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
-
-
-            // Read in our gestures
-            foreach (GestureSample gesture in input.Gestures)
-            {
-                // If we have a tap
-                if (gesture.GestureType == GestureType.Tap)
-                {
-                    _touchPoint = gesture.Position;
-                }
-                else
-                {
-                    _touchPoint = Vector2.Zero;
-                }
-
-            }
-
-
-            //TouchCollection touches = TouchPanel.GetState();
-            //if (_virus.Ammo > 0 && touches.Count > 0 && touches[0].State == TouchLocationState.Pressed)
-            //{
-            //    // convert the touch position into a Point for hit testing
-            //    _touchPoint = new Vector2(touches[0].Position.X, touches[0].Position.Y);
-            //    _virus.Ammo--;
-            //}
-            //else
-            //{
-            //    _touchPoint = Vector2.Zero;
-            //}
-
-            PlayerIndex player;
-            if (pauseAction.Evaluate(input, ControllingPlayer, out player))
-            {
-                ScreenManager.AddScreen(new PhonePauseScreen(), ControllingPlayer);
-            }
-        }
-
-
-
-        private void GetUserTouch()
-        {
-            // we use raw touch points for selection, since they are more appropriate
-            // for that use than gestures. so we need to get that raw touch data
-
-            // see if we have a new primary point down. when the first touch
-            // goes down, we do hit detection to try and select one of our enemies
-        }
-
-        private void DetectTouchCollisions()
+        private void DetectTouchCollisions(Vector2 tapPosition)
         {
             bool recreateAmmoBonus = false;
             int enemiesKilled = 0;
@@ -391,7 +268,7 @@ namespace Virus
             // if virus has been touched, a bomb explodes!
             if (_virus != null)
             {
-                if (_virus.Touched(_touchPoint) && _virus.Bombs > 0)
+                if (_virus.Touched(tapPosition) && _virus.Bombs > 0)
                 {
                     // bomb explosion handling!
                     _virus.Bombs--;
@@ -426,7 +303,7 @@ namespace Virus
             // iterate our enemied sprites to find which sprite is being touched.
             foreach (Enemy e in _enemies)
             {
-                if (e.Touched(_touchPoint))
+                if (e.Touched(tapPosition))
                 {
                     e.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
                     enemiesKilled++;
@@ -436,7 +313,7 @@ namespace Virus
             // iterate boss hittable sprites to find which sprite is being touched
             if (_bossContainer.Count != 0)
             {
-                _bossContainer[0].HandleUserTouch(_touchPoint, ref enemiesKilled);
+                _bossContainer[0].HandleUserTouch(tapPosition, ref enemiesKilled);
             }
 
             if (enemiesKilled > 0)
@@ -456,11 +333,10 @@ namespace Virus
                 _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(1), GameEventType.createAmmoBonus, _bonusFactory));
             }
 
-
             // iterate our bonus sprites to find which sprite is being touched
             foreach (GoToVirusBonus b in _bonuses)
             {
-                if (b.Touched(_touchPoint))
+                if (b.Touched(tapPosition))
                 {
                     b.AddBodyEvent(new BodyEvent((int)BodyEventCode.fingerHit));
                     SoundManager.Play("powerup-hit");
@@ -476,8 +352,6 @@ namespace Virus
             }
 
         }
-
-        #endregion
 
         #region collisions detections
 
@@ -583,17 +457,14 @@ namespace Virus
             }
         }
 
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus,
-                                                       bool coveredByOtherScreen)
+        // PS taglio via altre gestures che si possono implementare in futuro, TODO definizione più generale
+        public void Update(GameTime gameTime, bool tapped, Vector2 tapPosition)
         {
-            // handle user input
-            _touchPoint = Vector2.Zero;
-            if (_virus != null)
-                GetUserTouch();
-
             // detect touch collisions
-            if (_touchPoint != Vector2.Zero)
-                DetectTouchCollisions();
+            if (tapped)
+            {
+                DetectTouchCollisions(tapPosition);
+            }
 
             // detect collisions between our friend virus and evil globulos, and bonuses
             DetectVirusCollision();
@@ -649,7 +520,7 @@ namespace Virus
             _eventsManager.ManageCurrentEvent(gameTime.TotalGameTime);    // total time
         }
 
-        public override void Draw(GameTime gameTime)
+        public void Draw(GameTime gameTime)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
 

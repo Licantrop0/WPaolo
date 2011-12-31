@@ -98,9 +98,10 @@
     <Compile Include="GameEvent.cs" />
     <Compile Include="GameEventHandler.cs" />
     <Compile Include="GameEventsManager.cs" />
+    <Compile Include="GameGlobalState.cs" />
     <Compile Include="GoToVirusBonus.cs" />
     <Compile Include="Interfaces\ITouchable.cs" />
-    <Compile Include="Level.cs" />
+    <Compile Include="VirusLevel.cs" />
     <Compile Include="MyLoadingScreen.cs" />
     <Compile Include="MovingBackground.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,7 +122,7 @@
     <Compile Include="Screens\PlayerIndexEventArgs.cs" />
     <Compile Include="Shape.cs" />
     <Compile Include="SoundManager.cs" />
-    <Compile Include="SpriteFactory.cs" />
+    <Compile Include="SpriteGenerator.cs" />
     <Compile Include="Utilities.cs" />
     <None Include="Properties\AppManifest.xml">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>

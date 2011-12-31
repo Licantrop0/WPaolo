@@ -37,32 +37,40 @@ namespace Virus
             _items = XDocument.Load(xmlFilePath).Descendants("Sprite").ToArray();
             TotalItems = _items.Length;
             _position = TotalItems > 0 ? 0 : -1;
-            //LoadAllSprites(contentManager, xmlDB);
+
+            // se voglio il caricamento "poco alla volta" questa non deve essere chiamata, ma deve essere chiamata
+            // dall'esterno la LoadCurrentElement
+            LoadAllSprites(contentManager);
         }
 
-        //private void LoadAllSprites(ContentManager contentManager, XDocument xmlDB)
-        //{
-        //    _sprites = (from spriteConfig in xmlDB.Descendants("Sprite")
-        //                let spriteName = spriteConfig.Attribute("Name").Value
-        //                let anim = (from animationConfig in spriteConfig.Descendants("Animation")
-        //                            select new AnimationConfig()
-        //                            {
-        //                                Name = animationConfig.Attribute("Name").Value,
-        //                                FramesNum = int.Parse(animationConfig.Attribute("FramesNum").Value),
-        //                                Type = animationConfig.Attribute("Type").Value,
-        //                                Looping = bool.Parse(animationConfig.Attribute("Looping").Value),
-        //                                Origin = animationConfig.Attribute("Origin").Value,
-        //                                Textures = (from t in animationConfig.Descendants("Texture")
-        //                                            select contentManager.Load<Texture2D>(t.Attribute("Path").Value)).ToArray()
-        //                            }).ToDictionary(key => key.Name)
-        //                select new
-        //                {
-        //                    key = spriteName,
-        //                    value = anim
-        //                }).ToDictionary(item => item.key, item => item.value);
-        //}
+        private void LoadAllSprites(ContentManager contentManager/*, XDocument xmlDB*/)
+        {
+            //_sprites = (from spriteConfig in xmlDB.Descendants("Sprite")
+            //            let spriteName = spriteConfig.Attribute("Name").Value
+            //            let anim = (from animationConfig in spriteConfig.Descendants("Animation")
+            //                        select new AnimationConfig()
+            //                        {
+            //                            Name = animationConfig.Attribute("Name").Value,
+            //                            FramesNum = int.Parse(animationConfig.Attribute("FramesNum").Value),
+            //                            Type = animationConfig.Attribute("Type").Value,
+            //                            Looping = bool.Parse(animationConfig.Attribute("Looping").Value),
+            //                            Origin = animationConfig.Attribute("Origin").Value,
+            //                            Textures = (from t in animationConfig.Descendants("Texture")
+            //                                        select contentManager.Load<Texture2D>(t.Attribute("Path").Value)).ToArray()
+            //                        }).ToDictionary(key => key.Name)
+            //            select new
+            //            {
+            //                key = spriteName,
+            //                value = anim
+            //            }).ToDictionary(item => item.key, item => item.value);
 
+            for (int i = 0; i < TotalItems; i++)
+            {
+                LoadCurrentElement(contentManager);
+            }
+        }
 
+        // PS NON USATE, POSSONO SERVIRE PER IL CARICAMENTO "POCO ALLA VOLTA" PER BARRA DI CARICAMENTO 
         public bool LoadCurrentElement(ContentManager contentManager)
         {
             Dictionary<string, Animation> animationDictionary = new Dictionary<string, Animation>();

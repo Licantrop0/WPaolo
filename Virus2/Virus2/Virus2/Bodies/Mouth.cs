@@ -28,7 +28,7 @@ namespace Virus.Sprites
         #region static members
 
         static public GameEventsManager GameManager { set; get; }
-        static public MonsterFactory MonsterFactory { set; get; }
+        static public MonsterGenerator MonsterFactory { set; get; }
 
         #endregion
 

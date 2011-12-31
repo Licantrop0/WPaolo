@@ -64,7 +64,7 @@ namespace Virus
 
 		#region constructors
 
-		public BossLung(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, SpritePrototypeContainer mouthAnimationFactory, GameEventsManager gm, MonsterFactory mf)
+		public BossLung(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, SpritePrototypeContainer mouthAnimationFactory, GameEventsManager gm, MonsterGenerator mf)
 			: base(dynamicSystem, sprite, shape)
 		{
 			Touchable = true;

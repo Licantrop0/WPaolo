@@ -146,7 +146,7 @@
                    Source="/IDecide;component/Images/cloud3.png"
                    Canvas.Left="6" Canvas.Top="31" />
             <Grid x:Name="grid" Canvas.Left="60" Opacity="0"
-                  Canvas.Top="83" Width="383" Height="144">
+                  Canvas.Top="83" Width="372" Height="144">
                 <TextBlock x:Name="AnswerTextBlock" TextWrapping="Wrap"
             		VerticalAlignment="Center" TextAlignment="Center"
             		Foreground="{StaticResource DefaultForeground}"

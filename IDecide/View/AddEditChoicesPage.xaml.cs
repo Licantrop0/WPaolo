@@ -5,6 +5,8 @@ using System.Windows.Input;
 using IDecide.ViewModel;
 using Microsoft.Phone.Controls;
 using System.Windows.Data;
+using System.ComponentModel;
+using System.Linq;
 
 namespace IDecide
 {
@@ -49,6 +51,11 @@ namespace IDecide
             ChoiceTextBox.GetBindingExpression(PhoneTextBox.TextProperty).UpdateSource();
             VM.AddChoice.Execute(null);
             ChoiceTextBox.Focus();
+        }
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
+        {
+            VM.SaveGroup();
         }
     }
 }

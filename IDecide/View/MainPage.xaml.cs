@@ -17,11 +17,12 @@ namespace IDecide
     public partial class MainPage : PhoneApplicationPage
     {
         DispatcherTimer tmr;
+        ShakeGesturesHelper Shaker;
 
         public MainPage()
         {
             InitializeComponent();
-            CreateAppBar();
+            InitializeAppBar();
             InizializeShaker();
             InitializeTimer();
         }
@@ -54,7 +55,10 @@ namespace IDecide
             CrowAnimation.Stop();
         }
 
-        private void CreateAppBar()
+
+        #region Inizializations
+
+        private void InitializeAppBar()
         {
             var EditChoicesAppBarButton = new ApplicationBarIconButton();
             EditChoicesAppBarButton.Text = AppResources.EditChoices;
@@ -74,12 +78,9 @@ namespace IDecide
             ApplicationBar.MenuItems.Add(AboutAppBarMenuItem);
         }
 
-        #region Inizializations
-
         private void InizializeShaker()
         {
-            var Shaker = ShakeGesturesHelper.Instance;
-
+            Shaker = ShakeGesturesHelper.Instance;
             Shaker.ShakeGesture += (sender, e) =>
             {
                 Dispatcher.BeginInvoke(() => DecideButton_Click(Shaker, null));
@@ -90,7 +91,6 @@ namespace IDecide
 
             Shaker.MinimumRequiredMovesForShake = 4;
             Shaker.ShakeMagnitudeWithoutGravitationThreshold = 0.3;
-            Shaker.Active = true;
         }
 
         private void InitializeTimer()
@@ -110,6 +110,7 @@ namespace IDecide
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             tmr.Start();
+            Shaker.Active = true;
 
             if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
                 return;
@@ -125,6 +126,7 @@ namespace IDecide
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             tmr.Stop();
+            Shaker.Active = false;
             AdPlaceHolder.Children.Clear();
             base.OnNavigatedFrom(e);
         } 

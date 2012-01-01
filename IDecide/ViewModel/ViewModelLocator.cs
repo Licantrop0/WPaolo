@@ -34,7 +34,6 @@ namespace IDecide.ViewModel
             _addEditChoicesVM = new AddEditChoicesViewModel();
 
             ChoicesGroupVM.NavigationService = new NavigationService();
-            AddEditChoicesVM.NavigationService = new NavigationService();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",

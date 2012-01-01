@@ -22,8 +22,8 @@ namespace IDecide
         {
             InitializeComponent();
             CreateAppBar();
-            InitializeTimer();
             InizializeShaker();
+            InitializeTimer();
         }
 
         private void ManGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

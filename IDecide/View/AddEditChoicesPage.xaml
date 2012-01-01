@@ -15,7 +15,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
     <Grid x:Name="LayoutRoot"
           DataContext="{Binding Path=AddEditChoicesVM, Source={StaticResource Locator}}"
@@ -26,22 +26,26 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <toolkit:PhoneTextBox            
+        <toolkit:PhoneTextBox
             Text="{Binding LocGroupName, Mode=TwoWay}"
             InputScope="Text" Grid.Row="0"
             Hint="{Binding Path=LocalizedResources.InsertGroupName,
             Source={StaticResource LocalizedStrings}}"
-            KeyDown="GroupNameTextBox_KeyDown" MaxLength="48" />
+            KeyDown="GroupNameTextBox_KeyDown" MaxLength="48"
+            Style="{StaticResource PhoneTextBoxStyle}" />
 
         <toolkit:PhoneTextBox Name="ChoiceTextBox"
-            Text="{Binding Choice, Mode=TwoWay}" Grid.Row="1"
-            KeyDown="ChoiceTextBox_KeyDown" InputScope="Text"                              
+            Text="{Binding Choice, Mode=TwoWay}"
+            InputScope="Text" Grid.Row="1"
             Hint="{Binding Path=LocalizedResources.AddChoice,
             Source={StaticResource LocalizedStrings}}"
             ActionIcon="..\Toolkit.Content\add_orange.png"
-            ActionIconTapped="ChoiceTextBox_ActionIconTapped" MaxLength="48" />
+            ActionIconTapped="ChoiceTextBox_ActionIconTapped"
+            KeyDown="ChoiceTextBox_KeyDown" MaxLength="48"
+            Style="{StaticResource PhoneTextBoxStyle}" />
 
-        <ListBox Name="ChoicesListBox" ItemsSource="{Binding CurrentChoiceGroup.Choices}" Grid.Row="2" >
+        <ListBox Name="ChoicesListBox" Grid.Row="2"
+                 ItemsSource="{Binding CurrentChoiceGroup.Choices}" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -50,7 +54,7 @@
                                 Click="RemoveButton_Click" />
                         <TextBlock Text="{Binding}"
                                    Style="{StaticResource PhoneTextTitle2Style}"
-                                   VerticalAlignment="Center" />
+                                   Foreground="White" VerticalAlignment="Center" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

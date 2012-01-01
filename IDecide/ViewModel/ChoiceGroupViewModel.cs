@@ -14,7 +14,7 @@ namespace IDecide.ViewModel
 
         public ChoiceGroupViewModel(ChoiceGroup model)
         {
-            this.Model = model;
+            Model = model;
         }
 
         private RelayCommand _editGroup;
@@ -27,7 +27,8 @@ namespace IDecide.ViewModel
         }
         private void EditGroupAction()
         {
-            Messenger.Default.Send<ChoiceGroup>(this.Model);
+            Messenger.Default.Send<NotificationMessage<ChoiceGroup>>(
+                new NotificationMessage<ChoiceGroup>(Model, "edit"));
         }
 
         private RelayCommand _removeGroup;

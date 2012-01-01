@@ -22,6 +22,15 @@
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
             <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+            <Setter Property="BorderBrush" Value="White" />
+        </Style>
+
+        <Style x:Key="PhoneTextBoxStyle" TargetType="toolkit:PhoneTextBox">
+            <Setter Property="Background" Value="#BFFFFFFF" />
+            <Setter Property="BorderBrush" Value="#BFFFFFFF" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="SelectionBackground" Value="#FF1BA1E2" />
+            <Setter Property="SelectionForeground" Value="White" />
         </Style>
 
         <ControlTemplate x:Key="RemoveButtonTemplate" TargetType="Button">
@@ -73,14 +82,16 @@
                         <Grid x:Name="SwitchBottom" Height="32">
                             <Rectangle x:Name="SwitchBackground" Fill="{StaticResource DefaultBackground}"
                                        HorizontalAlignment="Center" Height="22" VerticalAlignment="Center" Width="78" />
-                            <Border BorderBrush="{StaticResource PhoneBackgroundBrush}" BorderThickness="4"/>
+                            <Border BorderBrush="Black" BorderThickness="4"/>
                         </Grid>
-                        <Border x:Name="SwitchThumb" BorderBrush="{StaticResource PhoneBackgroundBrush}"
-                                BorderThickness="4,2" HorizontalAlignment="Left" Height="36" Margin="-4,0" Width="28">
+                        <Border x:Name="SwitchThumb" BorderBrush="Black"
+                                BorderThickness="4,2" HorizontalAlignment="Left"
+                                Height="36" Width="28" Margin="-4,0">
                             <Border.RenderTransform>
                                 <TranslateTransform x:Name="ThumbTranslation"/>
                             </Border.RenderTransform>
-                            <Border x:Name="ThumbCenter" BorderBrush="{StaticResource PhoneForegroundBrush}" BorderThickness="2" Background="White"/>
+                            <Border x:Name="ThumbCenter" BorderBrush="White"
+                                    BorderThickness="2" Background="White"/>
                         </Border>
                     </Grid>
                 </Grid>

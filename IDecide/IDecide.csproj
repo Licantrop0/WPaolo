@@ -105,6 +105,7 @@
       <DependentUpon>DefaultChoices.resx</DependentUpon>
     </Compile>
     <Compile Include="Model\ChoiceGroup.cs" />
+    <Compile Include="Sounds\SoundManager.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\AddEditChoicesViewModel.cs" />
     <Compile Include="ViewModel\ChoiceGroupViewModel.cs" />
@@ -179,12 +180,14 @@
     <Resource Include="Images\crow2.png" />
     <Resource Include="Images\lamp.png" />
     <Resource Include="Images\man2.png" />
+    <Content Include="Sounds\crow.wav" />
+    <Content Include="Sounds\ding.wav" />
     <Content Include="SplashScreenImage.jpg" />
     <Resource Include="Images\cloud1.png" />
     <Resource Include="Images\cloud2.png" />
     <Resource Include="Images\cloud3.png" />
     <Resource Include="Images\IDecide_logo.png" />
-    <Resource Include="Images\man_thinking.png" />
+    <Resource Include="Images\man1.png" />
     <Resource Include="Images\question_mark.png" />
     <Resource Include="Toolkit.Content\add_orange.png" />
     <Content Include="Toolkit.Content\add_white.png">
@@ -214,11 +217,16 @@
       <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
       <Name>WPCommon.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj">
+      <Project>{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}</Project>
+      <Name>WPCommon.Helpers.XNAAsyncDispatcher</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WPCommon.ShakeGestures\WPCommon.ShakeGestures.csproj">
       <Project>{F5CE25E6-CF76-43AE-BBB2-2C98B21BCCD8}</Project>
       <Name>WPCommon.ShakeGestures</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

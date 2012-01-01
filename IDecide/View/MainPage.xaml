@@ -13,14 +13,14 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
-    
+
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="OpeningStoryboard">
             <DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="IDecide_LogoImage" d:IsOptimized="True"/>
             <DoubleAnimation Duration="0:0:0.5" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="DecideButton" d:IsOptimized="True"/>
         </Storyboard>
 
-        <Storyboard x:Name="CloudAppearStoryboard" AutoReverse="True">
+        <Storyboard x:Name="CloudAppearStoryboard" AutoReverse="True" FillBehavior="Stop">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Cloud1Image" Completed="AppearCloud_Completed">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="0"/>
@@ -111,18 +111,20 @@
                 <Image x:Name="Crow2Image" Source="/IDecide;component/Images/crow2.png" Stretch="None" HorizontalAlignment="Left" />
                 <Image x:Name="Crow1Image" Source="/IDecide;component/Images/crow1.png" Stretch="None" Opacity="0" HorizontalAlignment="Left" />
             </Grid>
-            
+
             <Image x:Name="IDecide_LogoImage" Stretch="None"
                    Source="/IDecide;component/Images/IDecide_logo.png"
                    Canvas.Left="14" Canvas.Top="6" />
 
             <!--Omino-->
-            <Image x:Name="Man_ThinkingImage"  Stretch="None"
-                   Source="/IDecide;component/Images/Man_Thinking.png"
-                   Canvas.Left="170" Canvas.Top="357" />
-            <Image x:Name="Man_IdeaImage" Height="185" Canvas.Left="170"
-                   Source="/IDecide;component/Images/man2.png"
-                   Stretch="Fill" Canvas.Top="357" Width="143" Opacity="0"/>
+            <Grid Canvas.Left="170" Canvas.Top="357"
+                  MouseLeftButtonDown="ManGrid_MouseLeftButtonDown">
+                <Image x:Name="Man_ThinkingImage" Stretch="None"
+                       Source="/IDecide;component/Images/man1.png" />
+                <Image x:Name="Man_IdeaImage" Stretch="None"
+                       Source="/IDecide;component/Images/man2.png"
+                       Opacity="0"/>
+            </Grid>
 
             <!--Dubbio o Idea-->
             <Image x:Name="Question_MarkImage"  Stretch="None"
@@ -154,18 +156,8 @@
         </Canvas>
 
         <Button x:Name="DecideButton"
-                Grid.Row="1" Opacity="0"
+                Grid.Row="1" Opacity="0" Click="DecideButton_Click"
                 toolkit:TiltEffect.IsTiltEnabled="True" >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Click">
-                    <eim:ControlStoryboardAction ControlStoryboardOption="Stop"
-                                                 Storyboard="{StaticResource CrowStoryboard}"/>
-                    <eim:ControlStoryboardAction ControlStoryboardOption="Stop"
-                                                 Storyboard="{StaticResource CrowAnimation}"/>
-                    <eim:ControlStoryboardAction Storyboard="{StaticResource CloudAppearStoryboard}"/>
-                    <eim:ControlStoryboardAction Storyboard="{StaticResource LampAppearStoryboard}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
             <Button.Template>
                 <ControlTemplate>
                     <Image Stretch="None" Source="{Binding LocalizedResources.Shake,

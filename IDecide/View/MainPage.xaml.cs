@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Threading;
 using IDecide.Localization;
@@ -7,6 +8,9 @@ using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ShakeGestures;
+using IDecide.Sounds;
+using System.Windows;
+using System.Windows.Input;
 
 namespace IDecide
 {
@@ -27,8 +31,12 @@ namespace IDecide
             tmr = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(15) };
             tmr.Tick += (sender, e) =>
             {
-                CrowStoryboard.Begin();
-                CrowAnimation.Begin();
+                if (CloudAppearStoryboard.GetCurrentState() == ClockState.Stopped)
+                {
+                    CrowStoryboard.Begin();
+                    CrowAnimation.Begin();
+                    SoundManager.PlayCrow();
+                }
             };
 
             tmr.Start();
@@ -36,24 +44,35 @@ namespace IDecide
 
         private void InizializeShaker()
         {
-            ShakeGesturesHelper.Instance.ShakeGesture += (sender, e) =>
-            {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    CrowStoryboard.Stop();
-                    CrowAnimation.Stop();
+            var Shaker = ShakeGesturesHelper.Instance;
 
-                    CloudAppearStoryboard.Begin();
-                    LampAppearStoryboard.Begin();
-                });
-                ShakeGesturesHelper.Instance.Active = false;
+            Shaker.ShakeGesture += (sender, e) =>
+            {
+                Dispatcher.BeginInvoke(() => DecideButton_Click(Shaker, null));
+                Shaker.Active = false;
                 Thread.Sleep(TimeSpan.FromSeconds(5));
-                ShakeGesturesHelper.Instance.Active = true;
+                Shaker.Active = true;
             };
 
-            ShakeGesturesHelper.Instance.MinimumRequiredMovesForShake = 4;
-            ShakeGesturesHelper.Instance.ShakeMagnitudeWithoutGravitationThreshold = 0.3;
-            ShakeGesturesHelper.Instance.Active = true;
+            Shaker.MinimumRequiredMovesForShake = 4;
+            Shaker.ShakeMagnitudeWithoutGravitationThreshold = 0.3;
+            Shaker.Active = true;
+        }
+
+        private void ManGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DecideButton_Click(sender, null);
+        }
+
+        private void DecideButton_Click(object sender, RoutedEventArgs e)
+        {
+            CrowStoryboard.Stop();
+            CrowAnimation.Stop();
+            SoundManager.StopCrow();
+            SoundManager.PlayDing();
+
+            CloudAppearStoryboard.Begin();
+            LampAppearStoryboard.Begin();
         }
 
         private void AppearCloud_Completed(object sender, EventArgs e)

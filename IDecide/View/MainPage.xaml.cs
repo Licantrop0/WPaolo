@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Threading;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Threading;
 using IDecide.Localization;
+using IDecide.Sounds;
 using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ShakeGestures;
-using IDecide.Sounds;
-using System.Windows;
-using System.Windows.Input;
 
 namespace IDecide
 {
@@ -24,39 +24,6 @@ namespace IDecide
             CreateAppBar();
             InitializeTimer();
             InizializeShaker();
-        }
-
-        private void InitializeTimer()
-        {
-            tmr = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(15) };
-            tmr.Tick += (sender, e) =>
-            {
-                if (CloudAppearStoryboard.GetCurrentState() == ClockState.Stopped)
-                {
-                    CrowStoryboard.Begin();
-                    CrowAnimation.Begin();
-                    SoundManager.PlayCrow();
-                }
-            };
-
-            tmr.Start();
-        }
-
-        private void InizializeShaker()
-        {
-            var Shaker = ShakeGesturesHelper.Instance;
-
-            Shaker.ShakeGesture += (sender, e) =>
-            {
-                Dispatcher.BeginInvoke(() => DecideButton_Click(Shaker, null));
-                Shaker.Active = false;
-                Thread.Sleep(TimeSpan.FromSeconds(5));
-                Shaker.Active = true;
-            };
-
-            Shaker.MinimumRequiredMovesForShake = 4;
-            Shaker.ShakeMagnitudeWithoutGravitationThreshold = 0.3;
-            Shaker.Active = true;
         }
 
         private void ManGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -107,10 +74,43 @@ namespace IDecide
             ApplicationBar.MenuItems.Add(AboutAppBarMenuItem);
         }
 
-        #region Ad Inizialization
+        #region Inizializations
+
+        private void InizializeShaker()
+        {
+            var Shaker = ShakeGesturesHelper.Instance;
+
+            Shaker.ShakeGesture += (sender, e) =>
+            {
+                Dispatcher.BeginInvoke(() => DecideButton_Click(Shaker, null));
+                Shaker.Active = false;
+                Thread.Sleep(TimeSpan.FromSeconds(5));
+                Shaker.Active = true;
+            };
+
+            Shaker.MinimumRequiredMovesForShake = 4;
+            Shaker.ShakeMagnitudeWithoutGravitationThreshold = 0.3;
+            Shaker.Active = true;
+        }
+
+        private void InitializeTimer()
+        {
+            tmr = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(15) };
+            tmr.Tick += (sender, e) =>
+            {
+                if (CloudAppearStoryboard.GetCurrentState() == ClockState.Stopped)
+                {
+                    CrowStoryboard.Begin();
+                    CrowAnimation.Begin();
+                    SoundManager.PlayCrow();
+                }
+            };
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            tmr.Start();
+
             if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
                 return;
 
@@ -124,6 +124,7 @@ namespace IDecide
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            tmr.Stop();
             AdPlaceHolder.Children.Clear();
             base.OnNavigatedFrom(e);
         } 

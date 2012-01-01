@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
@@ -6,7 +7,6 @@ using System.Windows.Navigation;
 using IDecide.Model;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using System.Collections.ObjectModel;
 
 namespace IDecide
 {
@@ -47,13 +47,6 @@ namespace IDecide
             InitializePhoneApplication();
         }
 
-        // Code to execute when the application is launching (eg, from Start)
-        // This code will not execute when the application is reactivated
-        private void Application_Launching(object sender, LaunchingEventArgs e)
-        {
-            LoadGroups();
-        }
-
         private static void LoadGroups()
         {
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("choices_group"))
@@ -69,6 +62,20 @@ namespace IDecide
                     groups.Select(g => new ViewModel.ChoiceGroupViewModel(g)));
             }
         }
+
+        private static void SaveGroup()
+        {
+            var groups = AppContext.Groups.Select(g => g.Model).ToList();
+            IsolatedStorageSettings.ApplicationSettings["choices_group"] = groups;
+        }
+
+        // Code to execute when the application is launching (eg, from Start)
+        // This code will not execute when the application is reactivated
+        private void Application_Launching(object sender, LaunchingEventArgs e)
+        {
+            LoadGroups();
+        }
+
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
@@ -92,12 +99,6 @@ namespace IDecide
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             SaveGroup();
-        }
-
-        private static void SaveGroup()
-        {
-            var groups = AppContext.Groups.Select(g => g.Model).ToList();
-            IsolatedStorageSettings.ApplicationSettings["choices_group"] = groups;
         }
 
         // Code to execute if a navigation fails

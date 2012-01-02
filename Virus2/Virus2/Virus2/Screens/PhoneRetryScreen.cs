@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using GameStateManagement;
+using Microsoft.Xna.Framework.Input;
 
 namespace Virus
 {
@@ -9,6 +11,8 @@ namespace Virus
     class PhoneRetryScreen : PhoneMenuScreen
     {
         VirusLevel level;  // reference to current level
+
+        InputAction exitAction;
 
         public PhoneRetryScreen(VirusLevel level)
             : base("Game Over")
@@ -23,6 +27,11 @@ namespace Virus
             Button backToMainMenuButton = new Button("Back to main menu");
             backToMainMenuButton.Tapped += backToMainMenuButton_Tapped;
             MenuButtons.Add(backToMainMenuButton);
+
+            exitAction = new InputAction(
+               new Buttons[] { Buttons.Start, Buttons.Back },
+               new Keys[] { Keys.Escape },
+               true);
         }
 
         /// <summary>

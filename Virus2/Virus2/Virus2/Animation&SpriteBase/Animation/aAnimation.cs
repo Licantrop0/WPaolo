@@ -86,6 +86,8 @@ namespace Virus
             _looping = looping;
         }
 
+        public abstract Animation Clone();
+
         #endregion
 
         #region virtual and abstract methods

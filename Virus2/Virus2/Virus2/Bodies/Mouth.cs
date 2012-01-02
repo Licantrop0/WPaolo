@@ -64,7 +64,7 @@ namespace Virus.Sprites
 
         #region virtual methods
 
-        protected abstract void FireGlobulo(TimeSpan t);
+        protected abstract void FireGlobulo();
 
         #endregion
 

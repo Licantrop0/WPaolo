@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Audio;
 using GameStateManagement;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace Virus
 {
@@ -18,6 +19,7 @@ namespace Virus
         loading,
         running,
         lost,
+        lostAndStopped,
         finished
     }
 
@@ -33,13 +35,11 @@ namespace Virus
         // condition of level finished
         //public bool Finished { get; set; }
         public LevelState State { get; set; }
+        float _levelTimer = 0;
+        float _stopTimer = 0;
         
-        bool _bossDead = false;
-        //float  _bossDeath; 
-
-        // monster and globulos factory, initialized from level number
-        MonsterGenerator _monsterFactory;
-        BonusGenerator _bonusFactory;
+        MonsterGenerator _monsterGenerator;
+        BonusGenerator _bonusGenerator;
 
         // event scheduler
         GameEventsManager _eventsManager = new GameEventsManager();
@@ -53,10 +53,13 @@ namespace Virus
         // boss
         List<Boss> _bossContainer = new List<Boss>();
 
-        InputAction pauseAction;
-
-        // virus (reference)
+        // virus
         Virus _virus;
+        Texture2D _virusLifeTexture;
+
+        // writings and indicators
+        SpriteFont _infoString;
+        AmmoBar _ammoBar;
       
         // background
         MovingBackground _mainbackground;
@@ -65,18 +68,15 @@ namespace Virus
         // difficulty parameters
         LevelDifficultyPack[] _levelDifficultyPack;
 
-        // touch point
-        // Vector2 _touchPoint;   // PS mi arriva dal GamePlayScreen
-        List<GestureSample> _gestures;
-
         // virus ammo management
         int _enemiesKilledByAmmoCounter;
         int _enemiesKilledByAmmoTriggerNumber;
         int _ammoQuantityPerBonus;
 
-        public VirusLevel(int level, Virus virus, SpriteBatch spriteBatch, ContentManager contentManager)
+        #region constructor
+
+        public VirusLevel(int level, SpriteBatch spriteBatch, ContentManager contentManager)
         {
-            _virus = virus;
             this.spriteBatch = spriteBatch;
             this.contentManager = contentManager;
 
@@ -86,19 +86,44 @@ namespace Virus
             InitializeLevel(level);
         }
 
-        public void InitializeLevel(int level)
-        {
-            _eventsManager.ClearAllEvents();
-            ScheduleEvents(level);
-            
-            _enemiesKilledByAmmoTriggerNumber = 50;
-            State = LevelState.running;
-        }
+        #endregion
+
+        #region LoadContent
 
         private void LoadLevel(int level)
         {
-            LoadContent(level);
+            CreateVirus();
+            CreateBackground(level);
+            CreateMonsterFactory(level);
+            CreateBonusFactory(level);
+            LoadSounds(level);
             CreateDifficulty(level);
+        }
+
+        private void CreateVirus()
+        {
+            Texture2D virusTexture = contentManager.Load<Texture2D>("Sprites/Virus/virusMedium");
+
+            Dictionary<string, Animation> virusAnimations = new Dictionary<string, Animation>();
+            virusAnimations.Add("main", new SpriteSheetAnimation(7, true, virusTexture));
+
+            _virus = new Virus(
+                new MassDoubleIntegratorDynamicSystem(),
+                new Sprite(virusAnimations),
+                new CircularShape(40, 40))
+            {
+                Ammo = 80,
+                Bombs = 5,
+                Lifes = GameGlobalState.VirusLives
+            };
+
+            // create life virus
+            _virusLifeTexture = contentManager.Load<Texture2D>("virusLifeLittle");
+
+            // create virus info (ammobar, lives and bombs indicator)
+            _infoString = contentManager.Load<SpriteFont>("Segoe20");
+            _ammoBar = new AmmoBar(contentManager.Load<Texture2D>("ammobar"));
+
         }
 
         private void CreateBackground(int level)
@@ -143,12 +168,12 @@ namespace Virus
                 case 1:
 
                     // create Bonus Factory
-                    _bonusFactory = new BonusGenerator(_eventsManager, _bonuses, new SpritePrototypeContainer(contentManager, "AnimationConfig/Bonuses.xml"))
+                    _bonusGenerator = new BonusGenerator(_eventsManager, _bonuses, new SpritePrototypeContainer(contentManager, "AnimationConfig/Bonuses.xml"))
                     {
                         VirusPosition = new Vector2(240, 400),
                         BonusSpeed = 50
                     };
-                    _bonusFactory.SetBombBonusTimePeriod(30, 50);
+                    _bonusGenerator.SetBombBonusTimePeriod(30, 50);
 
                     break;
 
@@ -164,7 +189,7 @@ namespace Virus
                 case 1:
 
                     // create Monster Factory
-                    _monsterFactory = new MonsterGenerator(_eventsManager, _enemies, _bossContainer, new SpritePrototypeContainer(contentManager, "AnimationConfig/Enemies.xml"))
+                    _monsterGenerator = new MonsterGenerator(_eventsManager, _enemies, _bossContainer, new SpritePrototypeContainer(contentManager, "AnimationConfig/Enemies.xml"))
                     {
                         VirusPosition = new Vector2(240, 400),
                     };
@@ -174,43 +199,6 @@ namespace Virus
                 default:
                     throw new ArgumentException("Level not valid", "level");
             }
-        }
-
-        private void CreateDifficulty(int level)
-        {
-            switch (level)
-            {
-                case 1:
-
-                    _levelDifficultyPack = new Level1DifficultyPackEnemies[3];
-
-                    _levelDifficultyPack[0] = new Level1DifficultyPackEnemies(TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(2500),
-                                                                      TimeSpan.FromMilliseconds(100), TimeSpan.FromMilliseconds(1000),
-                                                                      2.4f, 3.2f,
-                                                                      2, 3);
-                    _levelDifficultyPack[1] = new Level1DifficultyPackEnemies(TimeSpan.FromMilliseconds(1750), TimeSpan.FromMilliseconds(2500),
-                                                                              TimeSpan.FromMilliseconds(100), TimeSpan.FromMilliseconds(1000),
-                                                                              2.1f, 3.2f,
-                                                                              2, 5);
-                    _levelDifficultyPack[2] = new Level1DifficultyPackEnemies(TimeSpan.FromMilliseconds(2000), TimeSpan.FromMilliseconds(2500),
-                                                                              TimeSpan.FromMilliseconds(100), TimeSpan.FromMilliseconds(1000),
-                                                                              1.9f, 3.2f,
-                                                                              3, 4);
-
-                    break;
-
-                default:
-                    throw new ArgumentException("Level not valid", "level");
-            }
-        }
-
-        private void LoadContent(int level)
-        {
-            // 
-            CreateBackground(level);
-            CreateMonsterFactory(level);
-            CreateBonusFactory(level);
-            LoadSounds(level);
         }
 
         private void LoadSounds(int level)
@@ -232,97 +220,152 @@ namespace Virus
             }
         }
 
-        private void ScheduleEvents(int level)
+        private void CreateDifficulty(int level)
         {
-            //// set difficulty
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _levelDifficultyPack[0] }));
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(30), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _levelDifficultyPack[1] }));
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(100), GameEventType.ChangeLevel1Difficulty, _monsterFactory, new Object[] { _levelDifficultyPack[2] }));
+            switch (level)
+            {
+                case 1:
+
+                    _levelDifficultyPack = new Level1DifficultyPackEnemies[3];
+
+                    _levelDifficultyPack[0] = new Level1DifficultyPackEnemies(2, 2.5f, 0.1f, 1, 2.4f, 3.2f, 2, 3);
+
+                    _levelDifficultyPack[1] = new Level1DifficultyPackEnemies(1.75f, 2.5f, 0.1f, 1, 2.1f, 3.2f, 2, 5);
+
+                    _levelDifficultyPack[2] = new Level1DifficultyPackEnemies(2, 2.5f, 0.1f, 1, 1.9f, 3.2f, 3, 4);
+
+                    break;
+
+                default:
+                    throw new ArgumentException("Level not valid", "level");
+            }
+        }
+
+        #endregion
+
+        #region Initialize
+
+        public void InitializeLevel(int level)
+        {
+            _eventsManager.ClearAllEvents();
+            _virus.Position = new Vector2(240, 400);
+            _virus.Lifes = 5;
+            _virus.Ammo = 80;
+            _virus.Bombs = 5;
+            _virus.State = ViruState.tranquil;
+            _bonuses.Clear();
+            _enemies.Clear();
+            _bossContainer.Clear();
+
+            ScheduleFixedEvents(level);
+
+            _enemiesKilledByAmmoTriggerNumber = 50;
+            State = LevelState.running;
+            _levelTimer = 0;
+
+            GC.Collect();
+        }
+
+        private void ScheduleFixedEvents(int level)
+        {
+            // set difficulty
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ChangeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[0] }), 0);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ChangeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[1] }), 30);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ChangeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[2] }), 100);
 
             // schedule and go on scheduling white globulos creation
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(3), GameEventType.scheduleSimpleEnemyCreation, _monsterFactory));
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleSimpleEnemyCreation, _monsterGenerator), 3);
 
             // create bonusbomb every 30/50 seconds (as set up before)
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(0), GameEventType.ScheduleBombBonusCreation, _bonusFactory));
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ScheduleBombBonusCreation, _bonusGenerator), 0);
 
-            // create bombplus at 45 and 130 seconds
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(45), GameEventType.createBombPlusBonus, _bonusFactory));
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(130), GameEventType.createBombPlusBonus, _bonusFactory));
+            // create bomb plus at 45 and 130 seconds
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.createBombPlusBonus, _bonusGenerator), 45);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.createBombPlusBonus, _bonusGenerator), 130);
 
             // create one up bonus at 135 seconds
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(135), GameEventType.createOneUpBonus, _bonusFactory));        
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.createOneUpBonus, _bonusGenerator), 135);
 
             // boss arrives
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(149), GameEventType.createOneUpBonus, _bonusFactory)); 
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(150), GameEventType.changeBonusSpeed, _bonusFactory, new object[] { 180 }));
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(150), GameEventType.clearEvents, _monsterFactory, new object[] { new GameEventType[] { GameEventType.createSimpleEnemy, GameEventType.scheduleSimpleEnemyCreation }}));
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.createOneUpBonus, _bonusGenerator), 149);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.changeBonusSpeed, _bonusGenerator, new object[] { 180 }), 150);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.clearEvents, _monsterGenerator, new object[] { new GameEventType[] { GameEventType.createSimpleEnemy, GameEventType.scheduleSimpleEnemyCreation } }), 150);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.clearEvents, _bonusGenerator, new object[] { new GameEventType[] { GameEventType.ScheduleBombBonusCreation } }), 150);
 
-            _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(153), GameEventType.createBossLung, _monsterFactory));
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.createBossLung, _monsterGenerator), 153);
         }
+
+        #endregion
 
         private void DetectTouchCollisions(Vector2 tapPosition)
         {
             bool recreateAmmoBonus = false;
             int enemiesKilled = 0;
 
+            _virus.Ammo--;
+
             // if virus has been touched, a bomb explodes!
-            if (_virus != null)
+            if (_virus.Touched(tapPosition) && _virus.Bombs > 0)
             {
-                if (_virus.Touched(tapPosition) && _virus.Bombs > 0)
+                // bomb explosion handling!
+                _virus.Bombs--;
+                _virus.Ammo++;
+                enemiesKilled++;
+
+                // send bomHit event to each enemy
+                _enemies.ForEach(wg => wg.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit)));
+                SoundManager.Play("virus-bomb");
+
+                // send bombHit event to each bonus, 
+                foreach (GoToVirusBonus b in _bonuses)
                 {
-                    // bomb explosion handling!
-                    _virus.Bombs--;
-                    enemiesKilled++;
-
-                    // send bomHit event to each enemy
-                    _enemies.ForEach(wg => wg.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit)));
-                    SoundManager.Play("virus-bomb");
-
-                    // send bombHit event to each bonus, 
-                    foreach (GoToVirusBonus b in _bonuses)
-                    {
-                        b.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit));
-                        if (b.Type == BonusType.ammo && b.State == BonusState.moving)
-                            recreateAmmoBonus = true;
-                    }
-
-                    // send bombHit event to the boss
-                    if (_bossContainer.Count != 0)
-                    {
-                        _bossContainer[0].AddBodyEvent(new BodyEvent(BodyEventCode.bombHit));
-                    }
-
-                    // make the screen tremble
-                    CustomTimeVariable trembleAmplitude = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 60), new Vector2(1, 60), new Vector2(1.25f, 0) });
-                    CustomTimeVariable trembleAmplitude2 = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 30), new Vector2(1, 30), new Vector2(1.25f, 0) });
-                    _mainbackground.Tremble(2, trembleAmplitude, 30, (float)Math.PI, false);
-                    _firstPlanBackground.Tremble(2, trembleAmplitude2, 60, (float)Math.PI, false);
+                    b.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit));
+                    if (b.Type == BonusType.ammo && b.State == BonusState.moving)
+                        recreateAmmoBonus = true;
                 }
+
+                // send bombHit event to the boss
+                if (_bossContainer.Count != 0)
+                {
+                    _bossContainer[0].AddBodyEvent(new BodyEvent(BodyEventCode.bombHit));
+                }
+
+                // make the screen tremble
+                CustomTimeVariable trembleAmplitude = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 60), new Vector2(1, 60), new Vector2(1.25f, 0) });
+                CustomTimeVariable trembleAmplitude2 = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 30), new Vector2(1, 30), new Vector2(1.25f, 0) });
+                _mainbackground.Tremble(2, trembleAmplitude, 30, (float)Math.PI, false);
+                _firstPlanBackground.Tremble(2, trembleAmplitude2, 60, (float)Math.PI, false);
             }
 
             // iterate our enemied sprites to find which sprite is being touched.
-            foreach (Enemy e in _enemies)
+            if (_virus.Ammo > 0)
             {
-                if (e.Touched(tapPosition))
+                foreach (Enemy e in _enemies)
                 {
-                    e.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
-                    enemiesKilled++;
+                    if (e.Touched(tapPosition))
+                    {
+                        e.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
+                        enemiesKilled++;
+                    }
+                }
+
+                // iterate boss hittable sprites to find which sprite is being touched
+                if (_bossContainer.Count != 0)
+                {
+                    _bossContainer[0].HandleUserTouch(tapPosition, ref enemiesKilled);
                 }
             }
-
-            // iterate boss hittable sprites to find which sprite is being touched
-            if (_bossContainer.Count != 0)
-            {
-                _bossContainer[0].HandleUserTouch(tapPosition, ref enemiesKilled);
-            }
-
+            
             if (enemiesKilled > 0)
             {
                 SoundManager.Play("hit");
             }
             else
             {
-                SoundManager.Play("miss");
+                if (_virus.Ammo > 0)
+                    SoundManager.Play("miss");
+                else
+                    SoundManager.Play("miss");  // must be "outOfAmmo"
             }
 
             // ammo bonus handling
@@ -330,7 +373,7 @@ namespace Virus
             if (_enemiesKilledByAmmoCounter >= _enemiesKilledByAmmoTriggerNumber)
             {
                 _enemiesKilledByAmmoCounter = 0;
-                _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(1), GameEventType.createAmmoBonus, _bonusFactory));
+                _eventsManager.ScheduleEventNow(new GameEvent(GameEventType.createAmmoBonus, _bonusGenerator));
             }
 
             // iterate our bonus sprites to find which sprite is being touched
@@ -348,7 +391,7 @@ namespace Virus
 
             if (recreateAmmoBonus)
             {
-                _eventsManager.ScheduleEvent(new GameEvent(TimeSpan.FromSeconds(1), GameEventType.createAmmoBonus, _bonusFactory));
+                _eventsManager.ScheduleEventNow(new GameEvent(GameEventType.createAmmoBonus, _bonusGenerator));
             }
 
         }
@@ -384,31 +427,28 @@ namespace Virus
 
         private void DetectVirusCollision()
         {
-            if (_virus != null)
+            foreach (Enemy e in _enemies)
             {
-                foreach (Enemy e in _enemies)
+                if (e.Moving &&
+                    CollisionDetector.CircularBodyGeneralBodyCollision(_virus.Position, _virus.Shape.GetShapeSize().X, e.Position, e.Angle, e.Shape))
                 {
-                    if (e.Moving &&
-                        CollisionDetector.CircularBodyGeneralBodyCollision(_virus.Position, _virus.Shape.GetShapeSize().X, e.Position, e.Angle, e.Shape))
-                    {
-                        // collision occurred, calculate angle of impact
-                        float collisionAngle = (float)Math.Atan2(e.Position.Y - _virus.Position.Y, e.Position.X - _virus.Position.X);
+                    // collision occurred, calculate angle of impact
+                    float collisionAngle = (float)Math.Atan2(e.Position.Y - _virus.Position.Y, e.Position.X - _virus.Position.X);
 
-                        _virus.AddBodyEvent(new BodyEvent(BodyEventCode.virusGlobuloCollision, new Object[] { collisionAngle }));
-                        e.AddBodyEvent(new BodyEvent(BodyEventCode.virusGlobuloCollision));
-                    }
+                    _virus.AddBodyEvent(new BodyEvent(BodyEventCode.virusGlobuloCollision, new Object[] { collisionAngle }));
+                    e.AddBodyEvent(new BodyEvent(BodyEventCode.virusGlobuloCollision));
                 }
+            }
 
-                foreach (GoToVirusBonus b in _bonuses)
+            foreach (GoToVirusBonus b in _bonuses)
+            {
+                if ((b.State == BonusState.moving) &&
+                    CollisionDetector.CirularBodyCollision(_virus.Position, _virus.Shape.GetShapeSize().X, b.Position, b.Shape.GetShapeSize().X))
                 {
-                    if ((b.State == BonusState.moving) &&
-                        CollisionDetector.CirularBodyCollision(_virus.Position, _virus.Shape.GetShapeSize().X, b.Position, b.Shape.GetShapeSize().X))
-                    {
-                        BonusType param = b.Type;
+                    BonusType param = b.Type;
 
-                        _virus.AddBodyEvent(new BodyEvent(BodyEventCode.virusBonusCollision, new Object[] { param }));
-                        b.AddBodyEvent(new BodyEvent(BodyEventCode.virusBonusCollision));
-                    }
+                    _virus.AddBodyEvent(new BodyEvent(BodyEventCode.virusBonusCollision, new Object[] { param }));
+                    b.AddBodyEvent(new BodyEvent(BodyEventCode.virusBonusCollision));
                 }
             }
         }
@@ -420,11 +460,8 @@ namespace Virus
             // see if boss has delivered the special move
             if (_bossContainer[0].SpecialMoveHit)
             {
-                if (_virus != null)
-                {
-                    _virus.AddBodyEvent(new BodyEvent(BodyEventCode.virusGlobuloCollision, new Object[] { (float)(Math.PI / 2) }));
-                    _bossContainer[0].SpecialMoveHit = false;
-                }
+                _virus.AddBodyEvent(new BodyEvent(BodyEventCode.virusGlobuloCollision, new Object[] { (float)(Math.PI / 2) }));
+                _bossContainer[0].SpecialMoveHit = false;
             }
         }
 
@@ -457,40 +494,51 @@ namespace Virus
             }
         }
 
-        // PS taglio via altre gestures che si possono implementare in futuro, TODO definizione più generale
+        // PS per adesso taglio via altre gestures che si possono implementare in futuro, TODO definizione più generale
         public void Update(GameTime gameTime, bool tapped, Vector2 tapPosition)
         {
+            // update level timer and event manager clock
+            _levelTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _eventsManager.Timer = _levelTimer;
+
+            // manage current event (if any)
+            _eventsManager.ManageCurrentEvent();
+
             // detect touch collisions
             if (tapped)
-            {
                 DetectTouchCollisions(tapPosition);
-            }
 
             // detect collisions between our friend virus and evil globulos, and bonuses
-            DetectVirusCollision();
+            if (_virus.State != ViruState.dead)
+                DetectVirusCollision();
 
             if (_bossContainer.Count != 0)
                 HandleBossSpecialMove();
-
+            
             DetectGlobulosBorderCollision();
 
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             // scroll the background
-            _mainbackground.Update(gameTime.ElapsedGameTime);
-            _firstPlanBackground.Update(gameTime.ElapsedGameTime);
+            _mainbackground.Update(dt);
+            _firstPlanBackground.Update(dt);
 
             // update the enemies
-            _enemies.ForEach(wg => wg.Update(gameTime.ElapsedGameTime));
+            _enemies.ForEach(wg => wg.Update(dt));
 
             // update the bonuses
-            _bonuses.ForEach(b => b.Update(gameTime.ElapsedGameTime));
+            _bonuses.ForEach(b => b.Update(dt));
 
             // udpate boss
             if (_bossContainer.Count != 0)
-                _bossContainer[0].Update(gameTime.ElapsedGameTime);
+                _bossContainer[0].Update(dt);
 
-            // animate our friend virus
-            if (_virus != null)
-                _virus.Update(gameTime.ElapsedGameTime);
+            // update our friend virus
+            _virus.Update(dt);
+
+            // update writings and indicators
+            if (_virus.State != ViruState.dead)
+                _ammoBar.Update(_virus.Ammo);
 
             // clear enemies
             ClearOutOfBoundOrDeadEnemies();
@@ -498,26 +546,33 @@ namespace Virus
             // clear bonuses
             ClearBonuses();
 
-            // clear virus  :-( DEVO FINIRE IL LIVELLO ANCHE SE MUORE VIRUS, NEL QUAL CASO PERO' DEVO FARE IL ROLLBACK DI TUTTO (METEODO PER FARE IL ROLLBACK DEL LIVELLO!!!)
-            if (_virus != null && _virus.State == ViruState.died)
-                _virus = null;
-
             if (_bossContainer.Count != 0 && _bossContainer[0].Died)
             {
                 _bossContainer.RemoveAt(0);
                 _virus.AddBodyEvent(new BodyEvent(BodyEventCode.go));
-                _bossDead = true;
-                //_bossDeath = (float)gameTime.TotalSeconds;
             }
 
-            //if (_bossDead && (gameTime.TotalSeconds - _bossDeath > 5))
-            if (_virus != null && _virus.Position.Y < -50f)
+            // switch state conditions
+            // virus id dead :-(
+            if (State == LevelState.running && _virus.State == ViruState.dead)
+            {
+                State = LevelState.lost;
+                _eventsManager.ClearAllEvents();
+                _stopTimer = 0;
+            }
+            // finish level condition: virus is out of screen after epic movement
+            else if (_virus.Position.Y < -50f)
             {
                 State = LevelState.finished;
             }
-
-            // manage current event (if any)
-            _eventsManager.ManageCurrentEvent(gameTime.TotalGameTime);    // total time
+            // handle transition between lost and stopped, when the timer expires
+            // state is switched to lostAndStopped, GamePlayScreen will load the retry pop up
+            else if (State == LevelState.lost)
+            {
+                _stopTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (_stopTimer >= 3)
+                    State = LevelState.lostAndStopped;
+            } 
         }
 
         public void Draw(GameTime gameTime)
@@ -538,9 +593,15 @@ namespace Virus
             // draw enemies
             _enemies.ForEach(e => e.Draw(spriteBatch));
 
-            // draw our friend virus
-            if (_virus != null)
+            // draw our friend virus and its info
+            if (_virus.State != ViruState.dead)
+            {
                 _virus.Draw(spriteBatch);
+                spriteBatch.DrawString(_infoString, _virus.Bombs.ToString(), new Vector2(30, 4), Color.Yellow);
+                _ammoBar.Draw(spriteBatch);
+                spriteBatch.Draw(_virusLifeTexture, new Vector2(400, 15), Color.White);
+                spriteBatch.DrawString(_infoString, "x" + _virus.Lifes.ToString(), new Vector2(425, 4), Color.Yellow);
+            }
 
             spriteBatch.End();
         }

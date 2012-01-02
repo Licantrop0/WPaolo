@@ -11,9 +11,9 @@ namespace Virus.Sprites
         #region private members parameters
 
         // fixed
-        float _closingTime = 0.3f;
-        float _idlePeriodMin = 0.5f;
-        float _idlePeriodMax = 1.5f;
+        float _closingTime = 0.3f; //= 10;   //0.3f;
+        float _idlePeriodMin = 0.5f;//= 5;  //0.5f;
+        float _idlePeriodMax = 1.5f;//= 10; //1.5f;
 
         // to be initialized properly (they depend on left flag)
         bool _left;
@@ -42,8 +42,8 @@ namespace Virus.Sprites
             _state = MouthState.idle;
             _left = left;
             _bossLung = bossLung;
-            _openingTime = 0.5f;
-            _mouthOpenTime = 0.1f;
+            _openingTime = 0.5f; //8; //0.5f;
+            _mouthOpenTime = 0.1f; //3; // 0.1f;
             _globulosSpeed = 150;
             Position = new Vector2(-100, -100);
 
@@ -69,19 +69,19 @@ namespace Virus.Sprites
 
         #region update and auxiliary methods
 
-        protected override void FireGlobulo(TimeSpan t)
+        protected override void FireGlobulo()
         {
             float shootingAngle = (float)_dice.RandomDouble(_shootingAngleMin, _shootingAngleMax);
 
             Vector2 speedVersor = new Vector2((float)Math.Cos(shootingAngle), (float)Math.Sin(shootingAngle));
             Vector2 position = Position + 0 * speedVersor;
-            GameManager.ScheduleEvent(new GameEvent(t, GameEventType.createMouthBullet, MonsterFactory,
+            GameManager.ScheduleEventNow(new GameEvent(GameEventType.createMouthBullet, MonsterFactory,
                 new Object[] { position, speedVersor * _globulosSpeed }));
         }
 
-        public override void Update(TimeSpan gameTime)
+        public override void Update(float elapsedTime)
         {
-            base.Update(gameTime);
+            base.Update(elapsedTime);
 
             // set position
             Position = _bossLung.Position + _deltaPosition;
@@ -102,8 +102,7 @@ namespace Virus.Sprites
                     SoundManager.Play("small-mouth-death");
                 }
                 // state in which mouth is open or partially opened
-                else if (_state == MouthState.opening ||
-                    _state == MouthState.mouthOpenAfter || _state == MouthState.mouthOpenBefore)
+                else if (_state == MouthState.opening || _state == MouthState.mouthOpenAfter || _state == MouthState.mouthOpenBefore)
                 {
                     Sprite.AnimationVerse = false;
                     Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
@@ -160,7 +159,7 @@ namespace Virus.Sprites
                     if (Exceeded())
                     {
                         ResetAndStartTimer(_mouthOpenTime);
-                        FireGlobulo(gameTime);
+                        FireGlobulo();
                         _state = MouthState.mouthOpenAfter;
                     }
 

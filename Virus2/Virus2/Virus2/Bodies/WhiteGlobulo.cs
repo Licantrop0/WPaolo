@@ -35,9 +35,9 @@ namespace Virus
             ((MassDoubleIntegratorDynamicSystem)DynamicSystem).SetResultantForce(Vector2.Zero);
         }
 
-        public override void Update(TimeSpan gameTime)
+        public override void Update(float elapsedTime)
         {
-            base.Update(gameTime);
+            base.Update(elapsedTime);
 
             switch (_state)
             {
@@ -47,18 +47,12 @@ namespace Virus
                     {
                         _state = GlobuloState.fading;
                         Touchable = false;
-                        //Speed = Vector2.Normalize(Speed) * 45;
                         Speed = Vector2.Zero;
                         Sprite.FadeSpeed = 0.6f;
                         _utilityTimer = 0;
                     }
                     else if (_actBodyEvent != null && (_actBodyEvent.Code == BodyEventCode.fingerHit || _actBodyEvent.Code == BodyEventCode.bombHit))
                     {
-                        /*if (_actBodyEvent.Code == BodyEventCode.fingerHit)
-                        {
-                            SoundManager.Play("hit");
-                        }*/
-
                         _state = GlobuloState.falling;
                         Touchable = false;
                         Speed = Vector2.Zero;
@@ -82,7 +76,7 @@ namespace Virus
 
                     Sprite.Fade();
                     Traslate();
-                    _utilityTimer += _elapsedTime;
+                    _utilityTimer += elapsedTime;
                     if (_utilityTimer > 10)
                     {
                         _state = GlobuloState.died;
@@ -94,7 +88,7 @@ namespace Virus
 
                     Resize();
                     Rotate();
-                    _utilityTimer += _elapsedTime;
+                    _utilityTimer += elapsedTime;
                     if (_utilityTimer > 1)
                     {
                         _state = GlobuloState.died;
@@ -140,9 +134,9 @@ namespace Virus
             
         }
 
-        public override void Update(TimeSpan gameTime)
+        public override void Update(float elapsedTime)
         {
-            base.Update(gameTime);
+            base.Update(elapsedTime);
 
             if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.borderCollision)
             {

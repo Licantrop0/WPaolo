@@ -160,12 +160,12 @@ namespace Virus
             _bodyEventQueque.Enqueue(evnt);
         }
 
-        public virtual void Update(TimeSpan gameTime)
+        public virtual void Update(float elapsedTime)
         {
-            _elapsedTime = (float)gameTime.TotalSeconds;
-            _sprite.Tick(_elapsedTime);
+            _elapsedTime = elapsedTime;
+            _sprite.Tick(elapsedTime);
             _actBodyEvent = _bodyEventQueque.Count > 0 ? _bodyEventQueque.Dequeue() : null;
-            _lifeTime += _elapsedTime;
+            _lifeTime += elapsedTime;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

@@ -168,12 +168,12 @@ namespace Virus
 			awakenMouth.AddBodyEvent(new BodyEvent(BodyEventCode.awake));
 		}
 
-		private void HandleCentralMouths(TimeSpan gameTime)
+		private void HandleCentralMouths(float elapsedTime)
 		{
-			_centralMouths.ForEach(cm => cm.Update(gameTime));
+			_centralMouths.ForEach(cm => cm.Update(elapsedTime));
 		}
 
-		private void HandleLateralMouths(TimeSpan gameTime)
+		private void HandleLateralMouths(float elapsedTime)
 		{
 			if (_lateralMouthCall && !_mouthsFreezed)
 				_lateralMouthsTimer += _elapsedTime;
@@ -187,9 +187,9 @@ namespace Virus
 			}
 
 			// call update on every active mouth!
-			_activeLeftMouths.ForEach(m => m.Update(gameTime));
-			_activeBottomMouths.ForEach(m => m.Update(gameTime));
-			_activeRightMouths.ForEach(m => m.Update(gameTime));
+			_activeLeftMouths.ForEach(m => m.Update(elapsedTime));
+			_activeBottomMouths.ForEach(m => m.Update(elapsedTime));
+			_activeRightMouths.ForEach(m => m.Update(elapsedTime));
 
 			// idle mouths in active list are brought back to idle queues
 			BringBackIdleMouthsToIdleQueque(_activeLeftMouths, _idleLeftMouths);
@@ -277,9 +277,9 @@ namespace Virus
 
 		#region update
 
-		public override void Update(TimeSpan gameTime)
+		public override void Update(float elapsedTime)
 		{
-			base.Update(gameTime);
+			base.Update(elapsedTime);
 
 			// handle mouth freezed timer
 			if (_mouthsFreezed)
@@ -309,8 +309,8 @@ namespace Virus
 				_lateralMouthCall = true;
 			}
 
-			HandleLateralMouths(gameTime);
-			HandleCentralMouths(gameTime);
+			HandleLateralMouths(elapsedTime);
+			HandleCentralMouths(elapsedTime);
 
 			Animate();
 

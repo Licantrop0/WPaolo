@@ -61,18 +61,18 @@ namespace Virus
             _timer -= _endingTime;
         }
 
-        public override void Update(TimeSpan gameTime)
+        public override void Update(float elapsedTime)
         {
-            base.Update(gameTime);
+            base.Update(elapsedTime);
 
             // handle main timer
             if (_timerRunning)
             {
-                _timer += _elapsedTime;
+                _timer += elapsedTime;
             }
 
             // handle behaviours
-            HandleBehaviours(_elapsedTime);
+            HandleBehaviours(elapsedTime);
         }
 
         private void FinalizeBehaviour(BehaviourCode code)

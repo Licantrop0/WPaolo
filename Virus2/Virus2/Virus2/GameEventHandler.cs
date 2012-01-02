@@ -13,7 +13,7 @@ namespace Virus
 
         protected GameEventsManager _eventsManager;    // reference to the game manager
 
-        public virtual void HandleEvent(GameEvent ge)
+        public virtual void HandleEvent(GameEventRecord ger)
         {
             
         }

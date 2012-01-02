@@ -41,18 +41,6 @@ namespace Virus
             // TODO: il livello dipenderà dal pulsante, per ora lo cablo a 1
             GameGlobalState.ActualLevel = 1;
 
-            // PS TODO: spostare l'inizializzazione di Virus, andrebbe nella classe game penso, quella che viene passata allo
-            // Screen Manager, oppure vediamo...
-            Texture2D virusTexture = ScreenManager.Game.Content.Load<Texture2D>("Sprites/Virus/virusMedium");
-            
-            Dictionary<string, Animation> virusAnimations = new Dictionary<string, Animation>();
-            virusAnimations.Add("main", new SpriteSheetAnimation(7, true, virusTexture));
-
-            GameGlobalState.Virus = new Virus(
-                new MassDoubleIntegratorDynamicSystem(),
-                new Sprite(virusAnimations),
-                new CircularShape(40, 40));
-
             // When the "Play" button is tapped, we load the GameplayScreen
             LoadingScreen.Load(ScreenManager, true, PlayerIndex.One, new GameplayScreen());
         }

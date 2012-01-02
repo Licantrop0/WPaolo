@@ -12,7 +12,7 @@ namespace Virus
         leaving,
         //shocked,
         //happy,
-        died
+        dead
     }
  
     public class Virus : TimingBehaviouralBody
@@ -33,13 +33,10 @@ namespace Virus
             Sprite.FramePerSecond = 4f;
             Position = new Vector2(240, 400);
             Speed = Vector2.Zero;
-            _state = ViruState.tranquil;
-            Ammo = 80;
-            Bombs = 2;
-            Lifes = 6;
+            _state = ViruState.tranquil; 
         }
 
-        public override void Update(TimeSpan elapsedTime)
+        public override void Update(float elapsedTime)
         {
             base.Update(elapsedTime);
 
@@ -83,17 +80,19 @@ namespace Virus
                     else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.go)
                     {
                         Speed = new Vector2(0, -100);
+                        Touchable = false;
                         _state = ViruState.leaving;
                     }
 
                     break;
 
                 case ViruState.leaving:
+
                     Traslate();
                     Animate();
                     break;
 
-                case ViruState.died:
+                case ViruState.dead:
                     break;
 
                 default:
@@ -103,7 +102,8 @@ namespace Virus
             if (Lifes <= 0)
             {
                 Ammo = 0;
-                _state = ViruState.died;
+                Touchable = false;
+                _state = ViruState.dead;
             }
 
         }

@@ -1,6 +1,8 @@
 using System;
 using GameStateManagement;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Virus
 {
@@ -24,7 +26,8 @@ namespace Virus
             Content.RootDirectory = "Content";
 
             graphics = new GraphicsDeviceManager(this);
-            TargetElapsedTime = TimeSpan.FromTicks(333333);
+            //TargetElapsedTime = TimeSpan.FromTicks(333333);
+            TargetElapsedTime = TimeSpan.FromTicks(200000);
 
             graphics.IsFullScreen = true;
 
@@ -35,6 +38,9 @@ namespace Virus
             // Create the screen factory and add it to the Services
             screenFactory = new ScreenFactory();    
             Services.AddService(typeof(IScreenFactory), screenFactory);
+
+            // Initialize global content
+            GameGlobalState.VirusLives = 5;
 
             // Create the screen manager component.
             screenManager = new ScreenManager(this);

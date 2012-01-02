@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework.Input;
 using GameStateManagement;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Collections.Generic;
+using System.Diagnostics;
 #endregion
 
 namespace Virus
@@ -58,7 +59,6 @@ namespace Virus
                 new Keys[] { Keys.Escape },
                 true);
 
-            // PS enable tap as gesture
             EnabledGestures = GestureType.Tap;
         }
 
@@ -73,7 +73,7 @@ namespace Virus
                 if (content == null)
                     content = new ContentManager(ScreenManager.Game.Services, "Content");  // VirusContent ?
 
-                level = new VirusLevel(GameGlobalState.ActualLevel, GameGlobalState.Virus, ScreenManager.SpriteBatch, content);
+                level = new VirusLevel(GameGlobalState.ActualLevel, ScreenManager.SpriteBatch, content);
 
                 // once the load has finished, we use ResetElapsedTime to tell the game's
                 // timing mechanism that we have just finished a very long frame, and that
@@ -141,6 +141,11 @@ namespace Virus
             if (IsActive)
             {
                 level.Update(gameTime, tapped, tapPosition);
+
+                if (level.State == LevelState.lostAndStopped)
+                {
+                    ScreenManager.AddScreen(new PhoneRetryScreen(level), ControllingPlayer);
+                }
             }
         }
 

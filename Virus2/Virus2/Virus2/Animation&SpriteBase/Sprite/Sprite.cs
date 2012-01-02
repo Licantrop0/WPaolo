@@ -81,7 +81,7 @@ namespace Virus
             Dictionary<string, Animation> animationDictionary = new Dictionary<string,Animation>();
             foreach (var animation in _animations)
             {
-                animationDictionary.Add(animation.Key, animation.Value);
+                animationDictionary.Add(animation.Key, animation.Value.Clone());
             }
 
             return new Sprite(animationDictionary);

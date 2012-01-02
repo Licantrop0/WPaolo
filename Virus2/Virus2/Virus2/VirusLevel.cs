@@ -256,6 +256,7 @@ namespace Virus
             _bonuses.Clear();
             _enemies.Clear();
             _bossContainer.Clear();
+            // TODO riavviare lo schermo, dopo i Liggia lo faccio!!!
 
             ScheduleFixedEvents(level);
 

@@ -248,6 +248,9 @@ namespace Virus
         public void InitializeLevel(int level)
         {
             _eventsManager.ClearAllEvents();
+            _mainbackground.Reset(30);
+            _firstPlanBackground.Reset(60);
+            _virus.Touchable = true;
             _virus.Position = new Vector2(240, 400);
             _virus.Lifes = 5;
             _virus.Ammo = 80;
@@ -256,7 +259,6 @@ namespace Virus
             _bonuses.Clear();
             _enemies.Clear();
             _bossContainer.Clear();
-            // TODO riavviare lo schermo, dopo i Liggia lo faccio!!!
 
             ScheduleFixedEvents(level);
 

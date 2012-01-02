@@ -79,6 +79,11 @@ namespace Virus
             _goalLine = endOffset;
         }
 
+        public void Reset(float startOffset)
+        {
+            _cursor = _frameHeight * _cumulativeIndexLookUp.Length - 800 - startOffset;
+        }
+
         public void Tremble(float duration, CustomTimeVariable amplitude, float frequency, float phase, bool separationDistortion)
         {
             _trembleTime = duration;
@@ -90,40 +95,6 @@ namespace Virus
             _utilityTimer = 0;
             _effects = BackgroundEffects.trembling;
         }
-
-        /*private void DrawWindow(SpriteBatch spriteBatch, float position, float alphaBlending)
-        {
-            int cursor = (int)Math.Round(position);
-
-            // determino la texture a cui appartiene il cursore
-            int frameIndexTop = (int)(position / _frameHeight);
-
-            // determino la texture a cui appartiene il punto Bottom della finestra
-            int frameIndexBot = (int)((position + 800) / _frameHeight);
-
-            int top = cursor % _frameHeight;
-
-            if (top == 0)   // flickering avoid!
-            {
-                frameIndexTop = frameIndexBot;
-            }
-
-            // se i due punti appartengono allo stesso frame faccio un unico disegno
-            if (frameIndexTop == frameIndexBot)
-            {
-                Rectangle window = new Rectangle(1, top, 480, 800);
-                spriteBatch.Draw(_backgroundTextureArray[frameIndexTop], Vector2.Zero, window, new Color(1f, 1f, 1f, alphaBlending), 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
-            }
-            else
-            // altrimenti devo spezzare in due disegni
-            {
-                Rectangle topWindow = new Rectangle(1, top, 480, _frameHeight - top);
-                spriteBatch.Draw(_backgroundTextureArray[frameIndexTop], Vector2.Zero, topWindow, new Color(1f, 1f, 1f, alphaBlending), 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
-
-                Rectangle botWindow = new Rectangle(1, 1, 480, 800 - (_frameHeight - top));
-                spriteBatch.Draw(_backgroundTextureArray[frameIndexBot], new Vector2(0, _frameHeight - top), botWindow, new Color(1f, 1f, 1f, alphaBlending), 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
-            }
-        }*/
 
         private void DrawWindow(SpriteBatch spriteBatch, float position, float alphaBlending)
         {

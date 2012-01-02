@@ -9,35 +9,29 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="Red"
-    Background="Black"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="{Binding Path=LocalizedResources.Disclaimer, Source={StaticResource LocalizedStrings}}"
-                       Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" />
-        </StackPanel>
+        <TextBlock Text="{Binding Path=LocalizedResources.Disclaimer, Source={StaticResource LocalizedStrings}}"
+                   Margin="12" Style="{StaticResource RedChiller}" FontSize="155" />
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock Text="{Binding Path=LocalizedResources.DisclaimerText, Source={StaticResource LocalizedStrings}}"
-                       Margin="9,-7,0,0" Style="{StaticResource RedChillerTest}"
-                       TextWrapping="Wrap" TextAlignment="Center" Foreground="{StaticResource RedWhiteGradientBrush}"/>
-            <Button Name="OkButton" Content="Ok" VerticalAlignment="Bottom" Margin="0,48"
-                    Click="OkButton_Click" Style="{StaticResource RedChillerButton}"
-                    toolkit:TiltEffect.IsTiltEnabled="True"
-                    Foreground="Black" />
-        </Grid>
+        <TextBlock Text="{Binding Path=LocalizedResources.DisclaimerText, Source={StaticResource LocalizedStrings}}"
+                   Style="{StaticResource RedChillerTest}"
+                   FontSize="50" Margin="12,0" Grid.Row="1"
+                   TextWrapping="Wrap" TextAlignment="Center"
+                   Foreground="{StaticResource RedWhiteGradientBrush}"/>
+
+        <Button Content="Ok" Margin="0,48" Click="OkButton_Click"
+                Style="{StaticResource RedChillerButton}"
+                toolkit:TiltEffect.IsTiltEnabled="True" Grid.Row="2" />
     </Grid>
 
 </phone:PhoneApplicationPage>

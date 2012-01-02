@@ -117,250 +117,250 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="String" xml:space="preserve">
+    <value>Fare Yoga aumenta la flessibilità e la forza</value>
+  </data>
   <data name="String1" xml:space="preserve">
-    <value>Yoga offre posture che aumentano la flessibilità e la forza</value>
+    <value>La cucina indiana aiuta a combattere le malattie cardiache, cancro e morbo di Alzheimer</value>
   </data>
   <data name="String10" xml:space="preserve">
-    <value>Anche qualche chilo in sovrappeso aumenta il rischio di malattie croniche negli anziani</value>
+    <value>L'attività fisica (anche solo camminare regolarmente) è uno dei principali fattori chiave per la salute e la longevità</value>
   </data>
   <data name="String11" xml:space="preserve">
-    <value>L'attività fisica (anche solo camminando regolare) è uno dei principali posta in gioco per la salute e la longevità</value>
-  </data>
-  <data name="String12" xml:space="preserve">
     <value>L'olio di pesce può aiutare a rallentare la progressione dell'artrosi</value>
   </data>
+  <data name="String12" xml:space="preserve">
+    <value>Non bere troppe bevande dolcificate: bevande gassate, succhi di frutta, conserve di frutta, tè o caffè con zucchero</value>
+  </data>
   <data name="String13" xml:space="preserve">
-    <value>Smettere di bevande dolci: niente caffè gassate, succhi di frutta, conserve di frutta, tè / con zucchero</value>
+    <value>Quando si è eccitati o sotto stress, prendi 10 respiri profondi</value>
   </data>
   <data name="String14" xml:space="preserve">
-    <value>Quando si è eccitato o sotto stress, prendere 10 respiri profondi</value>
+    <value>Bevi il tè verde al posto del caffè</value>
   </data>
   <data name="String15" xml:space="preserve">
-    <value>Bere il tè verde al posto del caffè</value>
+    <value>I cibi integrali aiutano a regolare la pressione sanguigna e la salute del cuore</value>
   </data>
   <data name="String16" xml:space="preserve">
-    <value>Cibi integrali aiuta a regolare la pressione sanguigna e la salute del cuore</value>
+    <value>Consuma più verdura e frutta: sono una fonte indispensabile di vitamine e minerali</value>
   </data>
   <data name="String17" xml:space="preserve">
-    <value>Consumare più verdura e frutta: sono una fonte indispensabile di vitamine e minerali</value>
+    <value>Quattro tazze di latte al giorno riducono il rischio di fratture</value>
   </data>
   <data name="String18" xml:space="preserve">
-    <value>Quattro tazze di latte al giorno riduce il rischio di fratture</value>
-  </data>
-  <data name="String19" xml:space="preserve">
     <value>La caffeina ha la capacità di bloccare gli effetti nocivi del colesterolo</value>
   </data>
+  <data name="String19" xml:space="preserve">
+    <value>L'uso a lungo termine di antidolorifici può danneggiare i reni</value>
+  </data>
   <data name="String2" xml:space="preserve">
-    <value>Cucina indiana aiuta a combattere le malattie cardiache, cancro e morbo di Alzheimer</value>
+    <value>Sport ed esercizio fisico aiutano a combattere la cellulite</value>
   </data>
   <data name="String20" xml:space="preserve">
-    <value>Uso a lungo termine di antidolorifici possono influenzare negativamente i reni</value>
+    <value>Mangiare al fast food due volte a settimana ti fa ingrassare di 5kg in più di chi ne mangia una volta alla settimana</value>
   </data>
   <data name="String21" xml:space="preserve">
-    <value>Mangiare cibo spazzatura due volte a settimana ti rende più pesante di 10 libbre. di quelli che hanno una volta alla settimana</value>
+    <value>Gli adulti che bevono otto o più bicchieri di acqua al giorno bruciano più calorie di quelli che ne bevono di meno</value>
   </data>
   <data name="String22" xml:space="preserve">
-    <value>Gli adulti che bere otto o più bicchieri di acqua al giorno bruciano più calorie di quelle che bevono di meno</value>
+    <value>Le persone che fanno colazione tutte le mattine sono più propense a mantenere un peso sano</value>
   </data>
   <data name="String23" xml:space="preserve">
-    <value>Le persone che fanno colazione tutte le mattine sono più propensi a mantenere un peso sano</value>
+    <value>Le dieta veloci possono rallentare il metabolismo. Ma una volta finite, si riprende più del peso perso!</value>
   </data>
   <data name="String24" xml:space="preserve">
-    <value>Dieta veloce può rallentare il metabolismo. Ma una volta finita, si ritroverà più il peso perso!</value>
+    <value>Yogurt e alimenti ricchi di proteine possono servire come un ideale pasto "pre-allenamento"</value>
   </data>
   <data name="String25" xml:space="preserve">
-    <value>Yogurt e alimenti ricchi di proteine può servire come un ideale pasto "pre-allenamento"</value>
+    <value>L'aglio regola lo zucchero nel sangue, e diminuisce i livelli di colesterolo</value>
   </data>
   <data name="String26" xml:space="preserve">
-    <value>L'aglio aiuta di zucchero nel sangue più bassi e diminuire i livelli di colesterolo</value>
+    <value>Dormire e svegliarsi alla stessa ora ogni giorno aiuta a mantenere un ritmo regolare del metabolismo</value>
   </data>
   <data name="String27" xml:space="preserve">
-    <value>Dormire e svegliarsi alla stessa ora ogni giorno aiuta a mantenere un ritmo regolare il metabolismo</value>
+    <value>Preferisci cibi congelati a quelli in scatola in quanto hanno più sostanze nutritive, meno sale o zucchero, e meno conservanti</value>
   </data>
   <data name="String28" xml:space="preserve">
-    <value>Preferisco congelati oltre un scatola in quanto ha più sostanze nutritive, meno sale o zucchero, e meno inquinanti</value>
+    <value>Prendersi del tempo per rilassarsi tranquillamente anche solo per pochi minuti rinfresca il corpo e la mente</value>
   </data>
   <data name="String29" xml:space="preserve">
-    <value>Prendersi del tempo per rilassarsi tranquillamente anche solo per pochi minuti si aggiorna il tuo corpo e la mente</value>
+    <value>L'alcool stimola l'appetito: più si beve, più si ha fame</value>
   </data>
   <data name="String3" xml:space="preserve">
-    <value>Sport ed esercizi fisici aiuto contro la cellulite</value>
+    <value>Tè verde + limone = cuore sano</value>
   </data>
   <data name="String30" xml:space="preserve">
-    <value>L'alcol stimola l'appetito: più si beve, ci si sente più fame</value>
+    <value>Prendi il giusto tempo per gustare il tuo pasto, non mangiate di fretta</value>
   </data>
   <data name="String31" xml:space="preserve">
-    <value>Prendetevi il tempo per gustare il vostro pasto, non essere in corsa per mangiare</value>
+    <value>Qualche minuto prima del pasto, mangia una mela, arancia o banana come antipasto</value>
   </data>
   <data name="String32" xml:space="preserve">
-    <value>Mangiare un qualche minuto prima che sia tempo di mela, arancia o banana da mangiare come antipasto</value>
+    <value>Il grasso sano dell'avocado contribuisce a migliorare il flusso di sangue al cervello, e può anche aiutare a mantenere la pressione sanguigna più bassa</value>
   </data>
   <data name="String33" xml:space="preserve">
-    <value>Il grasso sano in avocado contribuisce a flusso di sangue al cervello sano e può anche aiutare la pressione sanguigna più bassa</value>
+    <value>Il salmone contiene molti omega-3 che sono essenziali per le funzioni cerebrali</value>
   </data>
   <data name="String34" xml:space="preserve">
-    <value>Salmone contiene molti omega-3 che sono essenziali per le funzioni cerebrali</value>
+    <value>I mirtilli aiutano a proteggere il cervello dallo stress o dalle malattie legate all'età</value>
   </data>
   <data name="String35" xml:space="preserve">
-    <value>Mirtilli aiuta a proteggere il cervello dallo stress o legate all'età condizioni</value>
+    <value>I gamberi sono una grande fonte di proteine e selenio anche se ad alto contenuto di colesterolo</value>
   </data>
   <data name="String36" xml:space="preserve">
-    <value>Gamberi sono una grande fonte di proteine e selenio anche se alto contenuto di colesterolo</value>
+    <value>La guava è una delle fonti più ricche di vitamina C che fornisce protezione contro i raffreddori e le infezioni virali</value>
   </data>
   <data name="String37" xml:space="preserve">
-    <value>Guava è una delle fonti più ricche di vitamina C che fornisce protezione contro i raffreddori e le infezioni virali</value>
+    <value>I fagioli e le lenticchie sono una ricca fonte di fibre solubili che possono aiutare a ridurre il colesterolo cattivo</value>
   </data>
   <data name="String38" xml:space="preserve">
-    <value>Fagioli e lenticchie sono una ricca fonte di fibre solubili che possono aiutare a ridurre il colesterolo cattivo</value>
-  </data>
-  <data name="String39" xml:space="preserve">
     <value>Il fumo può causare le rughe in età più giovane</value>
   </data>
+  <data name="String39" xml:space="preserve">
+    <value>Le mandorle sono una ricca fonte di vitamina E, e aiutano a ridurre il colesterolo</value>
+  </data>
   <data name="String4" xml:space="preserve">
-    <value>Il tè verde + limone = Un cuore sano</value>
+    <value>Broccoli + Pomodori = prevenzione del Cancro</value>
   </data>
   <data name="String40" xml:space="preserve">
-    <value>Le mandorle sono una ricca fonte di vitamina E e utile nel ridurre il colesterolo</value>
+    <value>Scrocchiarsi le dita è generalmente considerata una cattiva abitudine, ma non provoca l'artrite</value>
   </data>
   <data name="String41" xml:space="preserve">
-    <value>Nocche Cracking è generalmente considerata una cattiva abitudine, ma non provoca l'artrite.</value>
-  </data>
-  <data name="String42" xml:space="preserve">
     <value>Bere molta acqua protegge contro i calcoli renali e le infezioni del tratto urinario</value>
   </data>
+  <data name="String42" xml:space="preserve">
+    <value>I vegetariani sono a maggior rischio di carenza di ferro rispetto ai non-vegetariani</value>
+  </data>
   <data name="String43" xml:space="preserve">
-    <value>I vegetariani sono a maggior rischio di carenza di ferro rispetto ai non-vegetariani.</value>
+    <value>Le mele sono una ricca fonte di antiossidanti in grado di proteggere dalle malattie del cervello come l'Alzheimer</value>
   </data>
   <data name="String44" xml:space="preserve">
-    <value>Le mele sono una ricca fonte di composti antiossidanti in grado di proteggere dalle malattie del cervello come l'Alzheimer</value>
+    <value>Fumare danneggia le arterie e peggiora l'effetto cattivo di tutti gli altri fattori di rischio delle malattie cardiache</value>
   </data>
   <data name="String45" xml:space="preserve">
-    <value>Fumare danneggia le arterie e peggiora l'effetto cattivo di tutti gli altri fattori di rischio malattie cardiache</value>
+    <value>Le persone con malattie cardiache dovrebbero ricevere vaccini contro l'influenza e la polmonite in quanto sono ad aumentato rischio di complicazioni</value>
   </data>
   <data name="String46" xml:space="preserve">
-    <value>Persone con malattie cardiache dovrebbero ricevere vaccini contro l'influenza e la polmonite in quanto sono ad aumentato rischio di complicazioni a causa di queste malattie</value>
+    <value>Utilizzare oli da cucina sani come l'olio d'oliva, olio di colza o olio di senape. Evitare di olio di girasole, burro, o margarina</value>
   </data>
   <data name="String47" xml:space="preserve">
-    <value>Utilizzare oli da cucina sana cuore come l'olio d'oliva, olio di colza o olio di senape. Evitare di olio di girasole, olio di cartamo, ghee, burro, margarina</value>
+    <value>Assicurarsi di assumere la giusta quantità quotidiana di vitamina C ed E in quanto sono vitali per proteggere e riparare le arterie</value>
   </data>
   <data name="String48" xml:space="preserve">
-    <value>Assicurarsi che si sono riuniti il vostro quotidiano di vitamina C ed E requisito in quanto sono vitali per proteggere e riparare le arterie</value>
+    <value>Provate a cambiare le vostre bevande alcoliche preferendo vino rosso e birra scura per una maggiore protezione cardiaca</value>
   </data>
   <data name="String49" xml:space="preserve">
-    <value>Provare a cambiare le vostre scelte bevanda alcolica al vino rosso e birra scura per la protezione cardiaca massima</value>
+    <value>Se avete eruzioni cutanee di calore, non usate un asciugamano dopo la doccia e consentite al corpo di asciugarsi all'aria. Il bruciore scompare più velocemente</value>
   </data>
   <data name="String5" xml:space="preserve">
-    <value>Broccoli + Pomodori Prevenzione del Cancro =</value>
+    <value>Peperoni rossi + fagioli neri = difese immunitarie più forti</value>
   </data>
   <data name="String50" xml:space="preserve">
-    <value>Se si dispone di eruzione cutanea di calore, non usare un asciugamano dopo la doccia e consentire al corpo di aria secca. Il rash scompare più velocemente</value>
+    <value>Guarda in lontananza ogni 15 minuti quando lavori al computer o fai un lavoro con grande concentrazione.</value>
   </data>
   <data name="String51" xml:space="preserve">
-    <value>Date ai vostri occhi una pausa quando si lavora su un computer o facendo un lavoro dettagliato. Guardare in lontananza ogni 15 minuti</value>
+    <value>Attendi almeno cinque minuti dopo l'applicazione di uno shampoo anti-forfora</value>
   </data>
   <data name="String52" xml:space="preserve">
-    <value>Attendere cinque minuti dopo l'applicazione di shampoo anti-forfora. Shampoo medicati non funzionano se lavato via immediatamente</value>
+    <value>Se vuoi rinfrescarti velocemente in una giornata calda, applica un asciugamano bagnato sulla nuca e sulla fronte</value>
   </data>
   <data name="String53" xml:space="preserve">
-    <value>Applicare impacchi freddi con un asciugamano bagnato sulla nuca e sulla fronte per raffreddare velocemente in un caldo pomeriggio</value>
+    <value>Hummus (un tuffo del Medio Oriente con ceci e olio d'oliva) è un sostituto piu' sano delle salse grasse per i vostri antipasti</value>
   </data>
   <data name="String54" xml:space="preserve">
-    <value>Hummus (un tuffo del Medio Oriente con ceci e olio d'oliva) è un sostituto cuore sano per tuffi grasse per andare con il vostro antipasti</value>
-  </data>
-  <data name="String55" xml:space="preserve">
     <value>Una sana prima colazione dovrebbe includere carboidrati complessi come pane integrale, avena, o porridge di grano spezzato</value>
   </data>
+  <data name="String55" xml:space="preserve">
+    <value>Non leccarsi le labbra screpolate: la saliva non è una crema idratante, serve solo ad asciugare le labbra molto di più. Usate la vaselina al suo posto.</value>
+  </data>
   <data name="String56" xml:space="preserve">
-    <value>Non leccarsi le labbra screpolate, come la saliva non è una crema idratante. Sarà solo asciugare le labbra molto di più, applicare vaselina invece</value>
+    <value>Il consumo di yogurt o cagliata possono migliorare la vostra immunità perché contengono batteri buoni che stimolano le cellule del sistema immunitario</value>
   </data>
   <data name="String57" xml:space="preserve">
-    <value>Il consumo di yogurt o cagliata possono migliorare la vostra immunità perché contiene batteri buoni che stimolano le cellule del sistema immunitario</value>
+    <value>Si può avere una ricca dieta di proteine ma a basso contenuto di grassi, consumando pesce, crostacei, albume d'uovo, legumi, fagioli, soia</value>
   </data>
   <data name="String58" xml:space="preserve">
-    <value>Si può avere una ricca dieta a basso contenuto di grassi, ma proteine da consumo di pesce, crostacei, albume d'uovo, legumi, fagioli, soia e prodotti</value>
+    <value>Per ottenere una buona quantità di vitamina C aggiungere, papaia, arance, melone e guava alla vostra dieta</value>
   </data>
   <data name="String59" xml:space="preserve">
-    <value>Per ottenere una buona quantità di vitamina C guaiave aggiungere, papaia, arance, melone e alla vostra dieta</value>
+    <value>Per evitare dolori e fastidi dopo lunghe ore di utilizzo del computer, fare pause periodiche per fare esercizi di stretching alla scrivania</value>
   </data>
   <data name="String6" xml:space="preserve">
-    <value>Peperoni rossi fagioli + nero = immunità più forte</value>
+    <value>Mango + uovo = Una pelle piu' bella</value>
   </data>
   <data name="String60" xml:space="preserve">
-    <value>Per evitare dolori e dolori dopo lunghe ore di utilizzo del computer, fare pause periodiche per fare esercizi di stretching alla scrivania</value>
+    <value>Frutti di mare e pesci come ostriche, sardine, vongole, granchi producono un effetto di migliorare l'umore, fornendo un sacco di selenio</value>
   </data>
   <data name="String61" xml:space="preserve">
-    <value>Frutti di mare come le ostriche, sardine, vongole, granchi e pesci producono un effetto di migliorare l'umore, fornendo un sacco di selenio</value>
+    <value>Cibi piccanti, cibi ricchi di grassi e fibre, o quantità in eccesso di caffeina possono rovinare la digestione</value>
   </data>
   <data name="String62" xml:space="preserve">
-    <value>Cibi piccanti, cibi ricchi di grassi e fibre, o quantità in eccesso di caffeina possono precipitare indigestione</value>
-  </data>
-  <data name="String63" xml:space="preserve">
     <value>L'eccesso di sale può farti sentire gonfio e contribuisce alla pressione alta</value>
   </data>
+  <data name="String63" xml:space="preserve">
+    <value>Aumentare l'assunzione di cibi ricchi di biotina, come riso integrale, cereali, crusca, lievito, noci, fagioli, piselli, cavolfiori per ridurre la perdita dei capelli e favorire la crescita dei capelli</value>
+  </data>
   <data name="String64" xml:space="preserve">
-    <value>Aumentare l'assunzione di cibi biotina, come riso integrale, cereali, crusca, lievito, noci, fagioli, piselli, cavolfiori per ridurre la perdita dei capelli e favorire la crescita dei capelli</value>
+    <value>Una confezione di piselli surgelati puo' diventare una pratica confezione di ghiaccio da applicare rapidamente in una zona ferita e può impedirne l'annerimento</value>
   </data>
   <data name="String65" xml:space="preserve">
-    <value>Una confezione di piselli surgelati fa una pratica confezione di ghiaccio. Applicare rapidamente in una zona ferita può impedire l'annerimento</value>
+    <value>I fagioli sono una buona scelta se si sta cercando di perdere peso perché mantengono bassi i livelli di zucchero nel sangue e aiutano anche a calmare la fame</value>
   </data>
   <data name="String66" xml:space="preserve">
-    <value>I fagioli sono una buona scelta se si sta cercando di perdere peso perché mantenere i livelli di zucchero nel sangue anche e sopprimere la fame</value>
+    <value>Se vi sentite giù, mangiate carboidrati a basso contenuto di grassi come una patata al forno. Alzano i livelli di serotonina nel cervello e anche il vostro spirito</value>
   </data>
   <data name="String67" xml:space="preserve">
-    <value>Se si sente giù, sono i carboidrati come una patata al forno basso contenuto di grassi. Si eleva i livelli di serotonina nel cervello e anche il vostro spirito</value>
+    <value>Siate vegetariani due volte la settimana: una dieta vegetariana è povera di grassi e contribuisce a ridurre il punto vita</value>
   </data>
   <data name="String68" xml:space="preserve">
-    <value>Essere vegetariani due volte la settimana: una dieta vegetariana è povera di grassi e contribuisce a ridurre il punto vita</value>
+    <value>Smettere di fumare e abusare d'alcol può significativamente prolungare la vita</value>
   </data>
   <data name="String69" xml:space="preserve">
-    <value>Smettere di fumare e l'abuso di alcol può significativamente prolungare la vita</value>
+    <value>Un bicchiere di vino rosso al giorno è utile per far lavorare il sistema cardiovascolare</value>
   </data>
   <data name="String7" xml:space="preserve">
-    <value>Mango uovo + = A pelle bella</value>
-  </data>
-  <data name="String70" xml:space="preserve">
-    <value>Un bicchiere di vino rosso al giorno è utile per lavorare il sistema cardiovascolare</value>
-  </data>
-  <data name="String71" xml:space="preserve">
-    <value>Non dimenticare di lavarsi i denti almeno due volte al giorno e le discussioni uso</value>
-  </data>
-  <data name="String72" xml:space="preserve">
-    <value>Mangiare cioccolato fondente, contiene antiossidanti (flavonoidi) che aiutano a combattere l'invecchiamento</value>
-  </data>
-  <data name="String73" xml:space="preserve">
-    <value>Ricevi Frutta secca, noci e semi: ridurre i livelli di colesterolo cattivo e prevenire alcuni tumori</value>
-  </data>
-  <data name="String74" xml:space="preserve">
-    <value>Ottenere almeno e non più di 7-8 ore di sonno al giorno: aiuta a focalizzare l'attenzione e regola il peso</value>
-  </data>
-  <data name="String75" xml:space="preserve">
-    <value>Giornate nuvolose rendono molte persone si sentono depresse. Stare al sole ogni volta che il sole è fuori per sollevare il morale</value>
-  </data>
-  <data name="String76" xml:space="preserve">
-    <value>Quando si sta seduti nella vostra sedia da ufficio, resto i piedi sul pavimento e tenere le cosce parallele al terreno per evitare gli sforzi di schiena</value>
-  </data>
-  <data name="String77" xml:space="preserve">
-    <value>Zuppa di pollo alleviare i sintomi del raffreddore e dell'influenza agendo come un agente anti-infiammatorio e la congestione</value>
-  </data>
-  <data name="String78" xml:space="preserve">
-    <value>Se lei soffre di odore del corpo, un sapone antibatterico vi aiuterà più di non-saponi medicati con profumo intenso</value>
-  </data>
-  <data name="String79" xml:space="preserve">
-    <value>Esercizio non è solo un bene per la vostra salute fisica, ma anche migliora la concentrazione e il pensiero rendendo così più produttivi</value>
-  </data>
-  <data name="String8" xml:space="preserve">
     <value>Avocado + insalata = Protezione completa</value>
   </data>
+  <data name="String70" xml:space="preserve">
+    <value>Non dimenticare di lavarsi i denti almeno due volte al giorno e usare il filo interdentale</value>
+  </data>
+  <data name="String71" xml:space="preserve">
+    <value>Il cioccolato fondente contiene antiossidanti (flavonoidi) che aiutano a combattere l'invecchiamento</value>
+  </data>
+  <data name="String72" xml:space="preserve">
+    <value>Frutta secca, noci e semi riducono i livelli di colesterolo cattivo e aiutano a prevenire alcuni tumori</value>
+  </data>
+  <data name="String73" xml:space="preserve">
+    <value>Dormire almeno e non più di 7-8 ore di sonno al giorno aiuta a focalizzare l'attenzione e regola il peso</value>
+  </data>
+  <data name="String74" xml:space="preserve">
+    <value>Durante le giornate nuvolose molte persone si sentono depresse. Stare al sole ogni volta che si puo' aiuta a sollevare il morale</value>
+  </data>
+  <data name="String75" xml:space="preserve">
+    <value>Quando si é seduti, posare i piedi sul pavimento e tenere le cosce parallele al terreno per evitare gli sforzi di schiena</value>
+  </data>
+  <data name="String76" xml:space="preserve">
+    <value>Il brodo di pollo allevia i sintomi del raffreddore e dell'influenza agendo come un agente anti-infiammatorio</value>
+  </data>
+  <data name="String77" xml:space="preserve">
+    <value>Se il vostro corpo odora molto, un sapone antibatterico vi aiuterà più dei saponi non-farmaceutici  pieni di profumo</value>
+  </data>
+  <data name="String78" xml:space="preserve">
+    <value>L'esercizio fisico non è solo un bene per la vostra salute, ma migliora la concentrazione e il pensiero rendendo più produttivi</value>
+  </data>
+  <data name="String79" xml:space="preserve">
+    <value>Le bevande gassate sono una comune fonte di calorie in eccesso senza benefici nutrizionali. Bere l'acqua al posto delle bevande gassate per quanto possibile</value>
+  </data>
+  <data name="String8" xml:space="preserve">
+    <value>Yogurt + crusca di frumento = migliore digestione</value>
+  </data>
   <data name="String80" xml:space="preserve">
-    <value>Soda è una comune fonte di calorie in eccesso senza benefici nutrizionali. Avere l'acqua al posto della soda per quanto possibile</value>
+    <value>Per diminuire le calorie, passare da succo d'arancia al succo di pomodoro. E 'altrettanto nutriente e ha la metà delle calorie</value>
   </data>
   <data name="String81" xml:space="preserve">
-    <value>Se si vuole tagliare le calorie, passare da succo d'arancia al succo di pomodoro. E 'altrettanto nutriente e ha la metà delle calorie</value>
-  </data>
-  <data name="String82" xml:space="preserve">
-    <value>Per evitare una sbornia, consumare qualcosa di grassi prima di bere u, prendere il vostro drink lentamente e prendere un bicchiere d'acqua prima di andare a letto</value>
+    <value>Per evitare una sbornia, mangiate qualcosa di grasso prima di bere, bevete il vostro drink lentamente e prendete un bicchiere d'acqua prima di andare a letto</value>
   </data>
   <data name="String9" xml:space="preserve">
-    <value>Yogurt + crusca di frumento = migliore digestione</value>
+    <value>Anche qualche chilo in sovrappeso aumenta il rischio di malattie croniche negli anziani</value>
   </data>
 </root>

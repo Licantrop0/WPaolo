@@ -186,10 +186,9 @@ namespace Virus
             }  
         }
 
-        public void Update(TimeSpan gameTime)
+        public void Update(float dt)
         {
             // normal scrolling
-            float dt = (float)gameTime.TotalSeconds;
             _cursor = _cursor - _speed * dt;
 
             // goal line range check!

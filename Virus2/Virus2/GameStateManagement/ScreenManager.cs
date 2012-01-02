@@ -128,7 +128,8 @@ namespace GameStateManagement
         {
             // Load content belonging to the screen manager.
             ContentManager content = Game.Content;
-
+            
+            // Initialize menu content
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = content.Load<SpriteFont>("menufont");
             blankTexture = content.Load<Texture2D>("blank");

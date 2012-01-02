@@ -66,7 +66,9 @@ namespace Virus
 
         public void Update(int virusAmmo)
         {
+            //int lookUpIndex = MathHelper.Clamp(virusAmmo, 0, 99);
             int lookUpIndex = virusAmmo < 100 ? virusAmmo : 99;
+            lookUpIndex = lookUpIndex > 0 ? lookUpIndex : 0;
 
             _ammoBarColor = _ammobarLookUp[lookUpIndex];
             _scaleX = (float)virusAmmo / 100f;

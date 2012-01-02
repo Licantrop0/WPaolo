@@ -25,5 +25,10 @@ namespace Virus
 
             _origin = new Vector2(_frameWidth / 2, _frameHeight / 2);
         }
+
+        public override Animation Clone()
+        {
+            return new SpriteSheetAnimation(_frames, _looping, _sourceTexture);
+        }
     }
 }

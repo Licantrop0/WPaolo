@@ -49,17 +49,17 @@ namespace Virus.Sprites
 
         #region update and auxiliary methods
 
-        protected override void FireGlobulo(TimeSpan t)
+        protected override void FireGlobulo()
         {
             Vector2 speedVersor = new Vector2((float)Math.Cos(Angle), (float)Math.Sin(Angle));
             Vector2 position = Position + 30 * speedVersor;
-            GameManager.ScheduleEvent(new GameEvent(t, GameEventType.createMouthBullet, MonsterFactory,
+            GameManager.ScheduleEventNow(new GameEvent(GameEventType.createMouthBullet, MonsterFactory,
                 new Object[] { position, speedVersor * _globulosSpeed }));
         }
 
-        public override void Update(TimeSpan gameTime)
+        public override void Update(float elapsedTime)
         {
-            base.Update(gameTime);
+            base.Update(elapsedTime);
 
             // handle death transition
             if (_hitPoints <= 0)
@@ -172,7 +172,7 @@ namespace Virus.Sprites
                         ResetAndStartTimer(_mouthOpenTime / 2);
                         _spittedGlobulos++;
                         _spitAngle = Angle;
-                        FireGlobulo(gameTime);
+                        FireGlobulo();
                         _state = MouthState.mouthOpenAfter;
                     }
 

@@ -16,6 +16,8 @@ namespace Virus
     {
         public static int ActualLevel = 0;
 
-        public static Virus Virus = null;
+        public static int VirusLives = 0;
+
+        public static bool[] LevelsCompleted = new bool[3];
     }
 }

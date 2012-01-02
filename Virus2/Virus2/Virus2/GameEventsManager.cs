@@ -5,47 +5,89 @@ using System.Text;
 
 namespace Virus
 {
+    public class GameEventRecord
+    {
+        public float Time;
+        public GameEvent GameEvent;
+    }
+
     public class GameEventsManager
     {
-        List<GameEvent> _gameEvents = new List<GameEvent>();
+        List<GameEventRecord> _gameEvents = new List<GameEventRecord>();
+        public float Timer { get; set; }
 
-        public void ScheduleEvent(GameEvent ge)
+        private void InsertIntoList(GameEventRecord ger)
         {
             int count = _gameEvents.Count;
 
             if (count == 0)
             {
-                _gameEvents.Add(ge);
+                _gameEvents.Add(ger);
             }
             else
             {
                 int i = 0;
-                while (i < count && ge.GameTimer > _gameEvents[i].GameTimer)
+                while (i < count && ger.Time > _gameEvents[i].Time)
                 {
                     i++;
                 }
 
                 if (i != count)
                 {
-                    _gameEvents.Insert(i, ge);
+                    _gameEvents.Insert(i, ger);
                 }
                 else
                 {
-                    _gameEvents.Add(ge);
+                    _gameEvents.Add(ger);
                 }
             }
         }
 
-        public void ManageCurrentEvent(TimeSpan gameTimer)
+        // schedule now
+        public void ScheduleEventNow(GameEvent ge)
+        {
+            GameEventRecord ger = new GameEventRecord()
+            {
+                Time = Timer,
+                GameEvent = ge
+            };
+
+            InsertIntoList(ger);
+        }
+
+        // schedule at given timer
+        public void ScheduleEventAtTime(GameEvent ge, float scheduledEventTime)
+        {
+            GameEventRecord ger = new GameEventRecord()
+            {
+                Time = scheduledEventTime,
+                GameEvent = ge
+            };
+
+            InsertIntoList(ger);
+        }
+
+        public void ScheduleEventInTime(GameEvent ge, float seconds)
+        {
+            GameEventRecord ger = new GameEventRecord()
+            {
+                Time = Timer + seconds,
+                GameEvent = ge
+            };
+
+            InsertIntoList(ger);
+        }
+
+        public void ManageCurrentEvent()
         {
             if (_gameEvents.Count > 0)
             {
-                GameEvent curEvent = _gameEvents[0];
-                if (gameTimer > curEvent.GameTimer)
+                GameEventRecord curEventRecord = _gameEvents[0];
+                if (Timer > curEventRecord.Time)
                 {
-                    GameEventHandler handler = curEvent.Subscriber;
+                    GameEventHandler handler = curEventRecord.GameEvent.Subscriber;
                     _gameEvents.RemoveAt(0);
-                    handler.HandleEvent(curEvent);
+                    handler.HandleEvent(curEventRecord);
                 }
             }
         }
@@ -59,7 +101,7 @@ namespace Virus
         {
             for (int i = 0; i < _gameEvents.Count; i++)
             {
-                if (eventTypes.Contains(_gameEvents[i].EventType))
+                if (eventTypes.Contains(_gameEvents[i].GameEvent.EventType))
                 {
                     _gameEvents.RemoveAt(i);
                     i--;

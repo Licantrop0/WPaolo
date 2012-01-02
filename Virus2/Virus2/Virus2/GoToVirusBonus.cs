@@ -50,10 +50,10 @@ namespace Virus
             _type = type;
         }
 
-        public override void Update(TimeSpan gameTime)
+        public override void Update(float elapsedTime)
         {
             // it sets _elapsedTime and _actSpriteEvent
-            base.Update(gameTime);
+            base.Update(elapsedTime);
 
             switch (_state)
             {
@@ -90,7 +90,7 @@ namespace Virus
                 case BonusState.fading:
 
                     Sprite.Fade();
-                    _utilityTimer += _elapsedTime;
+                    _utilityTimer += elapsedTime;
                     if (_utilityTimer > 1)
                     {
                         _state = BonusState.toBeCleared;
@@ -102,7 +102,7 @@ namespace Virus
 
                     Resize();
                     Rotate();
-                    _utilityTimer += _elapsedTime;
+                    _utilityTimer += elapsedTime;
                     if (_utilityTimer > 1)
                     {
                         _state = BonusState.toBeCleared;

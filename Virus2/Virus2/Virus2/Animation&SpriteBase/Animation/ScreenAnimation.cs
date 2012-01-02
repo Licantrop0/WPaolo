@@ -37,6 +37,11 @@ namespace Virus
             _origin = origin;
         }
 
+        public override Animation Clone()
+        {
+            return new ScreenAnimation(_frames, _looping, _isPortrait, _textureArray, _origin);
+        }
+
         private void Initialize(int frames, bool isPortrait, Texture2D[] textureArray)
         {
             _textureArray = textureArray;

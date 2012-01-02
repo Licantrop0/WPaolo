@@ -16,11 +16,11 @@ namespace Virus
 
 	public class Level1DifficultyPackEnemies : LevelDifficultyPack
 	{
-		public TimeSpan SimpleEnemySchedulingTimeIntervalMin { get; set; }
-		public TimeSpan SimpleEnemySchedulingTimeIntervalMax { get; set; }
+		public float SimpleEnemySchedulingTimeIntervalMin { get; set; }
+		public float SimpleEnemySchedulingTimeIntervalMax { get; set; }
 
-		public TimeSpan SimpleEnemyCreationTimeIntervalMin { get; set; }
-		public TimeSpan SimpleEnemyCreationTimeIntervalMax { get; set; }
+		public float SimpleEnemyCreationTimeIntervalMin { get; set; }
+		public float SimpleEnemyCreationTimeIntervalMax { get; set; }
 
 		public float TimeToReachMin { get; set; }
 		public float TimeToReachMax { get; set; }
@@ -28,7 +28,7 @@ namespace Virus
 		public int NumberOfMonstersMin { get; set; }
 		public int NumberOfMonstersMax { get; set; }
 
-		public Level1DifficultyPackEnemies (TimeSpan schedTimeMin, TimeSpan schedTimeMax, TimeSpan createMin, TimeSpan createMax,
+		public Level1DifficultyPackEnemies (float schedTimeMin, float schedTimeMax, float createMin, float createMax,
 			float timeToReachMin, float timeToReachMax, int numMonstersMin, int numMonstersMax)
 		{
 			SimpleEnemySchedulingTimeIntervalMin = schedTimeMin;
@@ -117,6 +117,11 @@ namespace Virus
 				return new Vector2(p2 - borderPosition - DELTA_BORDER, H + DELTA_BORDER); ;
 			}
 		}
+
+		protected void ClearEvents(GameEventType[] gameEventType)
+		{
+			_eventsManager.ClearEventsType(gameEventType);
+		}
 	} 
 
 	public class MonsterGenerator : SpriteGenerator
@@ -133,11 +138,11 @@ namespace Virus
 		SpritePrototypeContainer _animationFactory;
 
 		// difficulty parameters
-		protected TimeSpan _simpleEnemySchedulingTimeIntervalMin;
-		protected TimeSpan _simpleEnemySchedulingTimeIntervalMax;
+		protected float _simpleEnemySchedulingTimeIntervalMin;
+		protected float _simpleEnemySchedulingTimeIntervalMax;
 
-		protected TimeSpan _simpleEnemyCreationTimeIntervalMin;
-		protected TimeSpan _simpleEnemyCreationTimeIntervalMax;
+		protected float _simpleEnemyCreationTimeIntervalMin;
+		protected float _simpleEnemyCreationTimeIntervalMax;
 
 		protected float _timeToReachMin;
 		protected float _timeToReachMax;
@@ -168,9 +173,10 @@ namespace Virus
 			_numberOfMonstersMax = difficulty.NumberOfMonstersMax;
 		}
 
-		public override void HandleEvent(GameEvent gameEvent)
+		public override void HandleEvent(GameEventRecord gameEventRecord)
 		{
-			TimeSpan actualTime = gameEvent.GameTimer;
+			float actualTime = gameEventRecord.Time;
+			GameEvent gameEvent = gameEventRecord.GameEvent;
 
 			switch (gameEvent.EventType)
 			{
@@ -206,15 +212,15 @@ namespace Virus
 					break;
 
 				case GameEventType.scheduleSimpleEnemyCreation:
-					ScheduleSimpleEnemyCreation(actualTime);
+					ScheduleSimpleEnemyCreation();
 					break;
 
 				case GameEventType.scheduleAcceleratedEnemyCreation:
-					ScheduleAcceleratedEnemyCreation(actualTime);
+					ScheduleAcceleratedEnemyCreation();
 					break;
 
 				case GameEventType.scheduleOrbitalEnemyCreation:
-					ScheduleOrbitalEnemyCreation(actualTime);
+					ScheduleOrbitalEnemyCreation();
 					break;
 
 				case GameEventType.ChangeLevel1Difficulty:
@@ -226,12 +232,7 @@ namespace Virus
 			}
 		}
 
-		private void ClearEvents(GameEventType[] gameEventType)
-		{
-			_eventsManager.ClearEventsType(gameEventType);
-		}
-
-		private void ScheduleSimpleEnemyCreation(TimeSpan actualTime)
+		private void ScheduleSimpleEnemyCreation()
 		{
 			int numOfMonsterToCreate = _dice.Next(_numberOfMonstersMin, _numberOfMonstersMax + 1);
 			double deltaT = 0;
@@ -239,43 +240,37 @@ namespace Virus
 			// schedule monster creation
 			for (int i = 0; i < numOfMonsterToCreate; i++)
 			{
-				deltaT = DoubleDiceResult(_simpleEnemyCreationTimeIntervalMin.TotalMilliseconds, _simpleEnemyCreationTimeIntervalMax.TotalMilliseconds);
+				deltaT = DoubleDiceResult(_simpleEnemyCreationTimeIntervalMin, _simpleEnemyCreationTimeIntervalMax);
 
-				_eventsManager.ScheduleEvent(new GameEvent(actualTime + TimeSpan.FromMilliseconds(deltaT), GameEventType.createSimpleEnemy, this));
+				_eventsManager.ScheduleEventInTime(new GameEvent(GameEventType.createSimpleEnemy, this), (float)deltaT);
 			}
 
 			// schedule monster creation schedule
-			deltaT = DoubleDiceResult(_simpleEnemySchedulingTimeIntervalMin.TotalMilliseconds, _simpleEnemySchedulingTimeIntervalMax.TotalMilliseconds);
+			deltaT = DoubleDiceResult(_simpleEnemySchedulingTimeIntervalMin, _simpleEnemySchedulingTimeIntervalMax);
 
-			_eventsManager.ScheduleEvent(new GameEvent(actualTime + TimeSpan.FromMilliseconds(deltaT), GameEventType.scheduleSimpleEnemyCreation, this));
+			_eventsManager.ScheduleEventInTime(new GameEvent(GameEventType.scheduleSimpleEnemyCreation, this), (float)deltaT);
 		}
 
 		// da rivedere
-		private void ScheduleAcceleratedEnemyCreation(TimeSpan actualTime)
+		private void ScheduleAcceleratedEnemyCreation()
 		{
 			// schedule creation of accelerated monster
-			GameEvent ge = new GameEvent(actualTime + TimeSpan.FromSeconds(0.2), GameEventType.createAcceleratedEnemy, this);
-			_eventsManager.ScheduleEvent(ge);
+			_eventsManager.ScheduleEventInTime(new GameEvent(GameEventType.createAcceleratedEnemy, this), 0.2f);
 
 			// schedule accelerated monster creation schedule
-			double deltaT = (2000 +
-				_dice.NextDouble() * (5000 - 2000));
-			ge = new GameEvent(actualTime + TimeSpan.FromMilliseconds(deltaT), GameEventType.scheduleAcceleratedEnemyCreation, this);
-			_eventsManager.ScheduleEvent(ge);
+			double deltaT = DoubleDiceResult(2, 5);
+			_eventsManager.ScheduleEventInTime(new GameEvent(GameEventType.scheduleAcceleratedEnemyCreation, this), (float)deltaT);
 		}
 
 		// da rivedere
-		private void ScheduleOrbitalEnemyCreation(TimeSpan actualTime)
+		private void ScheduleOrbitalEnemyCreation()
 		{
 			// temp! schedule creation of orbital monster
-			GameEvent ge = new GameEvent(actualTime + TimeSpan.FromSeconds(1.0), GameEventType.createOrbitalEnemy, this);
-			_eventsManager.ScheduleEvent(ge);
+			_eventsManager.ScheduleEventInTime(new GameEvent(GameEventType.createOrbitalEnemy, this), 1);
 
 			// schedule orbital monster creation schedule
-			double deltaT = (3000 +
-				_dice.NextDouble() * (7000 - 3000));
-			ge = new GameEvent(actualTime + TimeSpan.FromMilliseconds(deltaT), GameEventType.scheduleOrbitalEnemyCreation, this);
-			_eventsManager.ScheduleEvent(ge);
+			double deltaT = DoubleDiceResult(3, 7);
+			_eventsManager.ScheduleEventInTime(new GameEvent(GameEventType.scheduleOrbitalEnemyCreation, this), (float)deltaT);
 		}
 
 		private void CreateSimpleEnemy()
@@ -406,13 +401,18 @@ namespace Virus
 			_bombBonusCreationPeriodMax = periodMax;
 		}
 
-		public override void HandleEvent(GameEvent gameEvent)
+		public override void HandleEvent(GameEventRecord gameEventRecord)
 		{
-			TimeSpan actualTime = gameEvent.GameTimer;
+			//float actualTime = gameEventRecord.Time;
+			GameEvent gameEvent = gameEventRecord.GameEvent;
 
-			switch (gameEvent.EventType)
+			switch (gameEventRecord.GameEvent.EventType)
 			{
 				case GameEventType.undefined:
+					break;
+
+				case GameEventType.clearEvents:
+					ClearEvents((GameEventType[])gameEvent.Params[0]);
 					break;
 
 				case GameEventType.createBombBonus:
@@ -432,7 +432,7 @@ namespace Virus
 					break;
 
 				case GameEventType.ScheduleBombBonusCreation:
-					ScheduleCreatePeriodicalBonus(actualTime);
+					ScheduleCreatePeriodicalBonus();
 					break;
 
 				case GameEventType.changeBonusSpeed:
@@ -461,12 +461,12 @@ namespace Virus
 			_bonuses.Add(bonus);
 		}
 
-		private void ScheduleCreatePeriodicalBonus(TimeSpan actualTime)
+		private void ScheduleCreatePeriodicalBonus()
 		{
 			CreateBonus("Bomb", BonusType.bomb);
 
 			double deltaT = DoubleDiceResult(_bombBonusCreationPeriodMin, _bombBonusCreationPeriodMax);
-			_eventsManager.ScheduleEvent(new GameEvent(actualTime + TimeSpan.FromSeconds(deltaT), GameEventType.ScheduleBombBonusCreation, this));
+			_eventsManager.ScheduleEventInTime(new GameEvent(GameEventType.ScheduleBombBonusCreation, this), (float)deltaT);
 		}
 	}
 }

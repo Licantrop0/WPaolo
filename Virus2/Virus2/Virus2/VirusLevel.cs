@@ -132,7 +132,8 @@ namespace Virus
             {
                 case 1:
                     // main background
-                    Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("NuoviSfondi\\SfondoCarne (bora)");
+                    //Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("NuoviSfondi\\SfondoCarne (bora)");
+                    Texture2D backgroundTexture0 = contentManager.Load<Texture2D>("SfondoCarne");
                     MovingBackgroundConfig[] mainBackGroundConfig =
                         new MovingBackgroundConfig[1] { new MovingBackgroundConfig(backgroundTexture0, 2) };
 

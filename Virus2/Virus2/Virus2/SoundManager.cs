@@ -57,5 +57,10 @@ namespace Virus
         {
             _soundFXs[soundName].Stop();
         }
+
+        public static void Reset()
+        {
+            _soundFXs.Clear();
+        }
     }
 }

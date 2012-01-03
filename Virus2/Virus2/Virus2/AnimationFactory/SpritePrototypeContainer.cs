@@ -32,6 +32,12 @@ namespace Virus
             set { _sprites = value; }
         }
 
+        /*public void Reset()
+        {
+            _position = -1;
+            
+        }*/
+
         public SpritePrototypeContainer(ContentManager contentManager, string xmlFilePath)
         {
             _items = XDocument.Load(xmlFilePath).Descendants("Sprite").ToArray();

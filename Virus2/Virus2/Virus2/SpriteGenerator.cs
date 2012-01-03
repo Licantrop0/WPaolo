@@ -135,7 +135,7 @@ namespace Virus
 		float GLOBULO_TOUCH_RADIUS = 36;
 		
 		// configuration
-		SpritePrototypeContainer _animationFactory;
+		SpritePrototypeContainer _spritePrototypesDictionary;
 
 		// difficulty parameters
 		protected float _simpleEnemySchedulingTimeIntervalMin;
@@ -155,7 +155,7 @@ namespace Virus
 		{
 			_enemies = enemies;
 			_bossContainer = bossContainer;
-			_animationFactory = animationFactory;
+			_spritePrototypesDictionary = animationFactory;
 		}
 
 		public void SetDifficulty(Level1DifficultyPackEnemies difficulty)
@@ -277,7 +277,7 @@ namespace Virus
 		{
 			// create simple enemy
 			var enemy = new WhiteGlobulo(new MassDoubleIntegratorDynamicSystem(),
-										 _animationFactory.Sprites["WhiteGlobulo"].Clone(),
+										 _spritePrototypesDictionary.Sprites["WhiteGlobulo"].Clone(),
 										 new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS));
 
 			Vector2 enemyPosition = SetSpriteInitialPositionOnScreenBorder();
@@ -300,9 +300,9 @@ namespace Virus
 		{
 			// create boss
 			BossLung boss = new BossLung(new MassDoubleIntegratorDynamicSystem(),
-										 _animationFactory.Sprites["BossLung"].Clone(),
+										 _spritePrototypesDictionary.Sprites["BossLung"].Clone(),
 										 new RectangularShape(240, 178, 240, 178),
-										 _animationFactory, _eventsManager, this);
+										 _spritePrototypesDictionary, _eventsManager, this);
 
 			_bossContainer.Add(boss);
 		}
@@ -347,7 +347,7 @@ namespace Virus
 		{
 			// create bouncing enemy
 			BouncingWhiteGlobulo enemy = new BouncingWhiteGlobulo(new MassDoubleIntegratorDynamicSystem(),
-																  _animationFactory.Sprites["WhiteGlobulo"].Clone(),
+																  _spritePrototypesDictionary.Sprites["WhiteGlobulo"].Clone(),
 																  new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS))
 			{
 				Position = position,
@@ -360,7 +360,7 @@ namespace Virus
 		private void CreateMouthBullet(Vector2 position, Vector2 speed)
 		{
 			WhiteGlobulo enemy = new WhiteGlobulo(new MassDoubleIntegratorDynamicSystem(),
-												  _animationFactory.Sprites["WhiteGlobulo"].Clone(),
+												  _spritePrototypesDictionary.Sprites["WhiteGlobulo"].Clone(),
 												  new CircularShape(GLOBULO_RADIUS, GLOBULO_TOUCH_RADIUS))
 			{
 				Position = position,

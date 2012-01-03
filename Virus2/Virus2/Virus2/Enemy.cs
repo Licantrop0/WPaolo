@@ -9,6 +9,7 @@ namespace Virus
     {
         public abstract bool Moving { get; }
         public abstract bool Died { get; }
+        public abstract int WorthPoints { get; }
 
         public Enemy(DynamicSystem dynamicSystem, Sprite sprite, Shape shape)
             :base(dynamicSystem, sprite, shape)

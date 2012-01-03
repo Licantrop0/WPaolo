@@ -77,5 +77,10 @@ namespace Virus.Sprites
         {
             get { return (_state == MouthState.died); }
         }
+
+        public override int WorthPoints
+        {
+            get { return 100; }
+        }
     }
 }

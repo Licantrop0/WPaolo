@@ -124,6 +124,11 @@ namespace Virus
                 return (_state == GlobuloState.died);
             }
         }
+
+        public override int WorthPoints
+        {
+            get { return 5; }
+        }
     }
 
     public class BouncingWhiteGlobulo : WhiteGlobulo

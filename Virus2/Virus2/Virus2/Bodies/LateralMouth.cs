@@ -39,7 +39,7 @@ namespace Virus.Sprites
         {
             _hitPoints = 3;
             _state = MouthState.idle;
-            _globulosSpeed = 250;
+            _globulosSpeed = 230;
             _openingTime = 0.3f;
             _mouthOpenTime = 0.3f;
             Position = new Vector2(-100, -100);

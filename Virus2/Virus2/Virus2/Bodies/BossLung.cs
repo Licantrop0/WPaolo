@@ -35,7 +35,7 @@ namespace Virus
 
 		#region private members mouths relationships
 
-		SpritePrototypeContainer _mouthAnimationFactory;
+		SpritePrototypeContainer _mouthPrototypeDictionary;
 
 		// mouth structures
 		// lateral mouths
@@ -55,7 +55,7 @@ namespace Virus
 
 		float _lateralMouthsTimer = 0;
 		float _lateralMouthsTimeToCall;
-		int _mouthsPerQueue = 10;
+		int _mouthsPerQueue = 7;
 
 		// central mouths
 		List<CentralMouth> _centralMouths = new List<CentralMouth>();
@@ -64,7 +64,7 @@ namespace Virus
 
 		#region constructors
 
-		public BossLung(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, SpritePrototypeContainer mouthAnimationFactory, GameEventsManager gm, MonsterGenerator mf)
+		public BossLung(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, SpritePrototypeContainer mouthPrototypeDictionary, GameEventsManager gm, MonsterGenerator mf)
 			: base(dynamicSystem, sprite, shape)
 		{
 			Touchable = true;
@@ -74,9 +74,9 @@ namespace Virus
 
 			Sprite.FramePerSecond = 3.5f;
 
-			_mouthAnimationFactory = mouthAnimationFactory;
+			_mouthPrototypeDictionary = mouthPrototypeDictionary;
 
-			// initialize lateral mouths
+			// initialize lateral mouths static references
 			Mouth.GameManager = gm;
 			Mouth.MonsterFactory = mf;
 
@@ -85,21 +85,15 @@ namespace Virus
 			for (i = 0; i < _mouthsPerQueue; i++)
 			{
 				_idleLeftMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
-													 _mouthAnimationFactory.Sprites["Mouth"].Clone(),
+													 _mouthPrototypeDictionary.Sprites["Mouth"].Clone(),
 													 new CircularShape(40, 40)));
-			}
 
-			for (i = 0; i < _mouthsPerQueue; i++)
-			{
 				_idleBottomMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
-													   _mouthAnimationFactory.Sprites["Mouth"].Clone(),
+													   _mouthPrototypeDictionary.Sprites["Mouth"].Clone(),
 													   new CircularShape(40, 40)));
-			}
 
-			for (i = 0; i < _mouthsPerQueue; i++)
-			{
 				_idleRightMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
-													  _mouthAnimationFactory.Sprites["Mouth"].Clone(),
+													  _mouthPrototypeDictionary.Sprites["Mouth"].Clone(),
 													  new CircularShape(40, 40)));
 			}
 
@@ -111,7 +105,7 @@ namespace Virus
 			for (i = 0; i < 2; i++)
 			{
 				_centralMouths.Add(new CentralMouth(new MassDoubleIntegratorDynamicSystem(),
-													_mouthAnimationFactory.Sprites["CentralMouth"].Clone(),
+													_mouthPrototypeDictionary.Sprites["CentralMouth"].Clone(),
 													new CircularShape(40, 40),
 													this, i == 0));
 			}
@@ -148,21 +142,28 @@ namespace Virus
 			idleMouthsList.RemoveAt(mouthPickedIndex);
 
 			// set position and speed of chosen mouth and awake it!
-			float position;
-
 			// position is always taken randomly
-			position = (float)_dice.RandomDouble(variablePositionMin, variablePositionMax);
+			float position = (float)_dice.RandomDouble(variablePositionMin, variablePositionMax);
 
 			if (vertical)
+			{
 				awakenMouth.Position = new Vector2(fixedPosition, position);
+			}
 			else
+			{
 				awakenMouth.Position = new Vector2(position, fixedPosition);
+			}
+
+			Vector2 verse = new Vector2(240, 400) - awakenMouth.Position;
+
+			// set rotational speed in a way that turn always to Virus
+			int sign = Math.Sign(verse.X * verse.Y);
+			awakenMouth.AngularSpeed = sign > 0 ? _rotatingSpeed : -_rotatingSpeed;
+			awakenMouth.AngularSpeed = vertical ? awakenMouth.AngularSpeed : -awakenMouth.AngularSpeed;
+			//awakenMouth.AngularSpeed = (int)position % 2 == 0 ? _rotatingSpeed : -_rotatingSpeed;  // come era prima si gira a caso
 
 			// set linear speed
 			awakenMouth.Speed = speedVersor * _approchingSpeed;
-
-			// set rotational speed
-			awakenMouth.AngularSpeed = (int)position % 2 == 0 ? _rotatingSpeed : -_rotatingSpeed;
 
 			// awake!
 			awakenMouth.AddBodyEvent(new BodyEvent(BodyEventCode.awake));

@@ -22,6 +22,7 @@ namespace Virus
         public int Ammo { get; set; }
         public int Bombs { get; set; }
         public int Lifes { get; set; }
+        public int Score { get; set; }
 
         public ViruState State
         { get { return _state; } set { _state = value; } }

@@ -171,8 +171,7 @@ namespace Virus
                     // create Bonus Factory
                     _bonusGenerator = new BonusGenerator(_eventsManager, _bonuses, new SpritePrototypeContainer(contentManager, "AnimationConfig/Bonuses.xml"))
                     {
-                        VirusPosition = new Vector2(240, 400),
-                        BonusSpeed = 50
+                        VirusPosition = new Vector2(240, 400)
                     };
                     _bonusGenerator.SetBombBonusTimePeriod(30, 50);
 
@@ -279,11 +278,14 @@ namespace Virus
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ChangeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[1] }), 30);
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ChangeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[2] }), 100);
 
+            // initialize bonus speed
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.changeBonusSpeed, _bonusGenerator, new object[] { 50 }), 0);
+
             // schedule and go on scheduling white globulos creation
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleSimpleEnemyCreation, _monsterGenerator), 3);
 
             // create bonusbomb every 30/50 seconds (as set up before)
-            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ScheduleBombBonusCreation, _bonusGenerator), 0);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ScheduleBombBonusCreation, _bonusGenerator), 1);
 
             // create bomb plus at 45 and 130 seconds
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.createBombPlusBonus, _bonusGenerator), 45);
@@ -477,9 +479,14 @@ namespace Virus
             int iterations = _enemies.Count;
             for (int i = 0, j = 0; i < iterations; i++, j++)
             {
-                if (_enemies[j].Died ||
-                    _enemies[j].Position.X < -250 || _enemies[j].Position.X > 730 ||
-                    _enemies[j].Position.Y < -250 || _enemies[j].Position.Y > 1050)
+                if (_enemies[j].Died)
+                {
+                    _virus.Score += _enemies[j].WorthPoints;
+                    _enemies.RemoveAt(j);
+                    j--;
+                }
+                else if(_enemies[j].Position.X < -250 || _enemies[j].Position.X > 730 ||
+                        _enemies[j].Position.Y < -250 || _enemies[j].Position.Y > 1050  ) 
                 {
                     _enemies.RemoveAt(j);
                     j--;

@@ -12,8 +12,6 @@ namespace Virus
     {
         VirusLevel level;  // reference to current level
 
-        InputAction exitAction;
-
         public PhoneRetryScreen(VirusLevel level)
             : base("Game Over")
         {
@@ -24,39 +22,27 @@ namespace Virus
             retryButton.Tapped += retryButton_Tapped;
             MenuButtons.Add(retryButton);
 
-            Button backToMainMenuButton = new Button("Back to main menu");
-            backToMainMenuButton.Tapped += backToMainMenuButton_Tapped;
-            MenuButtons.Add(backToMainMenuButton);
-
-            exitAction = new InputAction(
-               new Buttons[] { Buttons.Start, Buttons.Back },
-               new Keys[] { Keys.Escape },
-               true);
+            Button exitButton = new Button("Exit");
+            exitButton.Tapped += exitButton_Tapped;
+            MenuButtons.Add(exitButton);
         }
 
         /// <summary>
-        /// The "Retry" button handler just calls the OnCancel method so that 
-        /// pressing the "Resume" button is the same as pressing the hardware back button.
         /// </summary>
         void retryButton_Tapped(object sender, EventArgs e)
         {
-            OnRetry();
+            level.InitializeLevel(GameGlobalState.ActualLevel);
+            ExitScreen();
+            //base.OnCancel();
         }
 
         /// <summary>
         /// The "Exit" button handler uses the LoadingScreen to take the user out to the main menu.
         /// </summary>
-        void backToMainMenuButton_Tapped(object sender, EventArgs e)
+        void exitButton_Tapped(object sender, EventArgs e)
         {
             LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(),
                                                            new PhoneMainMenuScreen());
-        }
-
-        private void OnRetry()
-        {
-            level.InitializeLevel(GameGlobalState.ActualLevel);
-            ExitScreen();
-            base.OnCancel();
         }
     }
 }

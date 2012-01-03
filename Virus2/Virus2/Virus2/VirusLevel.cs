@@ -94,8 +94,8 @@ namespace Virus
         {
             CreateVirus();
             CreateBackground(level);
-            CreateMonsterFactory(level);
-            CreateBonusFactory(level);
+            CreateMonsterGenerator(level);
+            CreateBonusGenerator(level);
             LoadSounds(level);
             CreateDifficulty(level);
         }
@@ -161,7 +161,7 @@ namespace Virus
             }
         }
 
-        private void CreateBonusFactory(int level)
+        private void CreateBonusGenerator(int level)
         {
             switch (level)
             {
@@ -182,7 +182,7 @@ namespace Virus
             }
         }
 
-        private void CreateMonsterFactory(int level)
+        private void CreateMonsterGenerator(int level)
         {
             switch (level)
             {
@@ -203,6 +203,8 @@ namespace Virus
 
         private void LoadSounds(int level)
         {
+            SoundManager.Reset();
+
             switch (level)
             {
                 case 1:

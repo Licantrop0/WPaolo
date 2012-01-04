@@ -20,4 +20,9 @@
       <Texture Path ="Sprites\Bonuses\1up"/>
     </Animation>
   </Sprite>
+  <Sprite Name="Points10">
+    <Animation Name="main" Type="Simple" FramesNum="1" Looping="True" Origin="default">
+      <Texture Path ="Sprites\Bonuses\bonus10Points"/>
+    </Animation>
+  </Sprite>
 </SpriteAnimations>

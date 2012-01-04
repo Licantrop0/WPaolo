@@ -274,18 +274,26 @@ namespace Virus
         private void ScheduleFixedEvents(int level)
         {
             // set difficulty
-            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ChangeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[0] }), 0);
-            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ChangeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[1] }), 30);
-            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ChangeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[2] }), 100);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.changeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[0] }), 0);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.changeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[1] }), 30);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.changeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[2] }), 100);
 
             // initialize bonus speed
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.changeBonusSpeed, _bonusGenerator, new object[] { 50 }), 0);
+
+            // create bonus points (time periods reflect difficulty changes)
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBonusPointsDistribution, _bonusGenerator, new object[] { 5.0f, 15.0f}), 0);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBonusPointsDistribution, _bonusGenerator, new object[] { 5.0f, 15.0f }), 15);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBonusPointsDistribution, _bonusGenerator, new object[] { 4.0f, 35.0f }), 30);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBonusPointsDistribution, _bonusGenerator, new object[] { 4.0f, 35.0f }), 65);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBonusPointsDistribution, _bonusGenerator, new object[] { 3.0f, 20.0f }), 100);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBonusPointsDistribution, _bonusGenerator, new object[] { 3.0f, 20.0f }), 120);
 
             // schedule and go on scheduling white globulos creation
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleSimpleEnemyCreation, _monsterGenerator), 3);
 
             // create bonusbomb every 30/50 seconds (as set up before)
-            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.ScheduleBombBonusCreation, _bonusGenerator), 1);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBombBonusCreation, _bonusGenerator), 1);
 
             // create bomb plus at 45 and 130 seconds
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.createBombPlusBonus, _bonusGenerator), 45);
@@ -298,7 +306,7 @@ namespace Virus
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.createOneUpBonus, _bonusGenerator), 149);
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.changeBonusSpeed, _bonusGenerator, new object[] { 180 }), 150);
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.clearEvents, _monsterGenerator, new object[] { new GameEventType[] { GameEventType.createSimpleEnemy, GameEventType.scheduleSimpleEnemyCreation } }), 150);
-            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.clearEvents, _bonusGenerator, new object[] { new GameEventType[] { GameEventType.ScheduleBombBonusCreation } }), 150);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.clearEvents, _bonusGenerator, new object[] { new GameEventType[] { GameEventType.scheduleBombBonusCreation } }), 150);
 
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.createBossLung, _monsterGenerator), 153);
         }
@@ -610,10 +618,13 @@ namespace Virus
             if (_virus.State != ViruState.dead)
             {
                 _virus.Draw(spriteBatch);
-                spriteBatch.DrawString(_infoString, _virus.Bombs.ToString(), new Vector2(30, 4), Color.Yellow);
-                _ammoBar.Draw(spriteBatch);
-                spriteBatch.Draw(_virusLifeTexture, new Vector2(400, 15), Color.White);
-                spriteBatch.DrawString(_infoString, "x" + _virus.Lifes.ToString(), new Vector2(425, 4), Color.Yellow);
+                spriteBatch.Draw(_virusLifeTexture, new Vector2(10, 15), Color.White);
+                spriteBatch.DrawString(_infoString, "x" + _virus.Lifes.ToString(), new Vector2(35, 4), Color.White);
+                spriteBatch.DrawString(_infoString, _virus.Bombs.ToString(), new Vector2(75, 4), Color.White);
+                // in realtà nei giochi viene allineato a dx il punteggio, quindi bisognerà prevedere un qualche tipo di logica
+                spriteBatch.DrawString(_infoString, _virus.Score.ToString(), new Vector2(380, 4), Color.White);
+
+                _ammoBar.Draw(spriteBatch);  
             }
 
             spriteBatch.End();

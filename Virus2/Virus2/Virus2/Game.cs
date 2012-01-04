@@ -27,7 +27,7 @@ namespace Virus
 
             graphics = new GraphicsDeviceManager(this);
             //TargetElapsedTime = TimeSpan.FromTicks(333333);
-            TargetElapsedTime = TimeSpan.FromTicks(200000);
+            TargetElapsedTime = TimeSpan.FromTicks(100000);
 
             graphics.IsFullScreen = true;
 

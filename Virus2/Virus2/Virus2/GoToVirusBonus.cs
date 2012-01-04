@@ -19,7 +19,8 @@ namespace Virus
         oneUp,
         bomb,
         ammo,
-        bombAmmo
+        bombAmmo,
+        points10
     }
 
     public class GoToVirusBonus : TimingBehaviouralBody

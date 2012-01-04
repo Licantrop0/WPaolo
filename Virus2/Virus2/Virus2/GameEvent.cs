@@ -18,12 +18,14 @@ namespace Virus
         createAmmoBonus,
         createOneUpBonus,
         createBombPlusBonus,
+        create10PointsBonus,
         changeBonusSpeed,
         scheduleSimpleEnemyCreation,
         scheduleAcceleratedEnemyCreation,
         scheduleOrbitalEnemyCreation,
-        ScheduleBombBonusCreation,
-        ChangeLevel1Difficulty,
+        scheduleBombBonusCreation,
+        scheduleBonusPointsDistribution,
+        changeLevel1Difficulty,
         clearEvents
     }
 

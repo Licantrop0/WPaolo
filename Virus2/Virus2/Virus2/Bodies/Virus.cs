@@ -74,6 +74,9 @@ namespace Virus
                                 Bombs++;
                                 Ammo += 5;
                                 break;
+                            case BonusType.points10:
+                                Score += 10;
+                                break;
                             default:
                                 break;
                         }

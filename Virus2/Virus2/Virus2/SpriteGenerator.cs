@@ -223,7 +223,7 @@ namespace Virus
 					ScheduleOrbitalEnemyCreation();
 					break;
 
-				case GameEventType.ChangeLevel1Difficulty:
+				case GameEventType.changeLevel1Difficulty:
 					SetDifficulty((Level1DifficultyPackEnemies)gameEvent.Params[0]);
 					break;
 
@@ -431,13 +431,21 @@ namespace Virus
 					CreateBonus("BombPlus", BonusType.bombAmmo);
 					break;
 
-				case GameEventType.ScheduleBombBonusCreation:
+                case GameEventType.create10PointsBonus:
+                    CreateBonus("Points10", BonusType.points10);
+                    break;
+
+				case GameEventType.scheduleBombBonusCreation:
 					ScheduleCreatePeriodicalBonus();
 					break;
 
 				case GameEventType.changeBonusSpeed:
 					BonusSpeed = (int)gameEvent.Params[0];
 					break;
+
+                case GameEventType.scheduleBonusPointsDistribution:
+                    ScheduleCreatePointsBonus((float)gameEvent.Params[0], (float)gameEvent.Params[1]);
+                    break;
 
 				default:
 					throw new Exception("W Blaze Baley!");
@@ -461,12 +469,23 @@ namespace Virus
 			_bonuses.Add(bonus);
 		}
 
-		private void ScheduleCreatePeriodicalBonus()
-		{
-			CreateBonus("Bomb", BonusType.bomb);
+        private void ScheduleCreatePeriodicalBonus()
+        {
+            CreateBonus("Bomb", BonusType.bomb);
 
-			double deltaT = DoubleDiceResult(_bombBonusCreationPeriodMin, _bombBonusCreationPeriodMax);
-			_eventsManager.ScheduleEventInTime(new GameEvent(GameEventType.ScheduleBombBonusCreation, this), (float)deltaT);
+            double deltaT = DoubleDiceResult(_bombBonusCreationPeriodMin, _bombBonusCreationPeriodMax);
+            _eventsManager.ScheduleEventInTime(new GameEvent(GameEventType.scheduleBombBonusCreation, this), (float)deltaT);
+        }
+
+        private void ScheduleCreatePointsBonus(float period, float lasting)
+		{
+            int nBonusToCreate = (int)Math.Round(lasting / period);
+
+            for (int i = 0; i < nBonusToCreate; i++)
+            {
+                _eventsManager.ScheduleEventInTime(new GameEvent(GameEventType.create10PointsBonus, this), (float)(_dice.NextDouble() * lasting));
+            }
 		}
+
 	}
 }

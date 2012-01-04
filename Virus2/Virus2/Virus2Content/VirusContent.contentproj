@@ -143,8 +143,8 @@
       <Processor>TextureProcessor</Processor>
       <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
     </Compile>
-    <Compile Include="Sprites\Bonuses\bonusAmmo.png">
-      <Name>bonusAmmo</Name>
+    <Compile Include="Sprites\Bonuses\bonus10Points.png">
+      <Name>bonus10Points</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>

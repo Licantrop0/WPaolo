@@ -21,12 +21,12 @@ namespace HaiSmarrito.Carte_Di_Credito
 
         private void Italia_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("Agos Italia", "800822056");
         }
 
         private void Estero_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("Agos estero", "00390245403768");
         }
     }
 }

@@ -31,6 +31,8 @@
     <SccProvider>SAK</SccProvider>
     <Utf8Output>true</Utf8Output>
     <ExpressionBlendVersion>4.0.30816.0</ExpressionBlendVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\Hai Smarrito\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -478,4 +480,5 @@
   </Target>
   -->
   <ProjectExtensions />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
 </Project>

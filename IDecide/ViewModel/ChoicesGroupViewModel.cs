@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using IDecide.Model;
 using NascondiChiappe.Helpers;
 
 namespace IDecide.ViewModel
@@ -27,9 +26,9 @@ namespace IDecide.ViewModel
         }
         private void AddGroupAction()
         {
-            var choiceGroup = new ChoiceGroup() { IsSelected = true };
-            Messenger.Default.Send<NotificationMessage<ChoiceGroup>>(
-                new NotificationMessage<ChoiceGroup>(choiceGroup, "add"));
+            var choiceGroup = new ChoiceGroupViewModel() { IsSelected = true };
+            Messenger.Default.Send<NotificationMessage<ChoiceGroupViewModel>>(
+                new NotificationMessage<ChoiceGroupViewModel>(choiceGroup, "add"));
             NavigationService.Navigate(new Uri("/View/AddEditChoicesPage.xaml", UriKind.Relative));
         }
     }

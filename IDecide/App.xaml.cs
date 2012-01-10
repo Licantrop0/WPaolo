@@ -4,9 +4,9 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
 using System.Windows.Navigation;
-using IDecide.Model;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using IDecide.ViewModel;
 
 namespace IDecide
 {
@@ -50,23 +50,19 @@ namespace IDecide
         private static void LoadGroups()
         {
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("choices_group"))
-                IsolatedStorageSettings.ApplicationSettings.Add("choices_group", new List<ChoiceGroup>());
+                IsolatedStorageSettings.ApplicationSettings.Add("choices_group", new ObservableCollection<ChoiceGroupViewModel>());
 
-            var groups = IsolatedStorageSettings.ApplicationSettings["choices_group"] as List<ChoiceGroup>;
+            var groups = IsolatedStorageSettings.ApplicationSettings["choices_group"] as ObservableCollection<ChoiceGroupViewModel>;
 
-            if (groups.Count == 0)
-                AppContext.Groups = AppContext.GetDefaultChoices();
+            if (groups.Any())
+                AppContext.Groups = groups;
             else
-            {
-                AppContext.Groups = new ObservableCollection<ViewModel.ChoiceGroupViewModel>(
-                    groups.Select(g => new ViewModel.ChoiceGroupViewModel(g)));
-            }
+                AppContext.Groups = AppContext.GetDefaultChoices();
         }
 
         private static void SaveGroup()
         {
-            var groups = AppContext.Groups.Select(g => g.Model).ToList();
-            IsolatedStorageSettings.ApplicationSettings["choices_group"] = groups;
+            IsolatedStorageSettings.ApplicationSettings["choices_group"] = AppContext.Groups;
         }
 
         // Code to execute when the application is launching (eg, from Start)

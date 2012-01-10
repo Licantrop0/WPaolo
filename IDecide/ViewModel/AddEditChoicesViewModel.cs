@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using IDecide.Model;
 using NascondiChiappe.Helpers;
 using IDecide.Localization;
 using System.Linq;
@@ -12,8 +11,8 @@ namespace IDecide.ViewModel
     {
         private bool IsEditMode;
 
-        private ChoiceGroup _currentChoiceGroup;
-        public ChoiceGroup CurrentChoiceGroup
+        private ChoiceGroupViewModel _currentChoiceGroup;
+        public ChoiceGroupViewModel CurrentChoiceGroup
         {
             get { return _currentChoiceGroup; }
             set
@@ -26,7 +25,7 @@ namespace IDecide.ViewModel
         public AddEditChoicesViewModel()
         {
             Messenger.Default
-                .Register<NotificationMessage<ChoiceGroup>>(this, m =>
+                .Register<NotificationMessage<ChoiceGroupViewModel>>(this, m =>
                 {
                     CurrentChoiceGroup = m.Content;
                     IsEditMode = m.Notification == "edit";
@@ -84,8 +83,7 @@ namespace IDecide.ViewModel
             //Se è un nuovo gruppo e sono state inserite scelte, allora lo aggiunge alla lista
             if (!IsEditMode && CurrentChoiceGroup.Choices.Any())
             {
-                AppContext.Groups.Insert(0,
-                    new ChoiceGroupViewModel(CurrentChoiceGroup));
+                AppContext.Groups.Insert(0, CurrentChoiceGroup);
             }
         }
     }

@@ -34,16 +34,18 @@
                Source="/IDecide;component/Images/IDecide_logo.png" />
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Name="GroupChoicesListBox" ItemsSource="{Binding Groups}">
+            <ListBox Name="GroupChoicesListBox" ItemsSource="{Binding Groups}" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <RadioButton GroupName="Groups" Template="{StaticResource SwichTemplate}"
-                                         IsChecked="{Binding Model.IsSelected, Mode=TwoWay}" />
+                            <RadioButton GroupName="Groups" VerticalAlignment="Center"
+                                         IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                         Template="{StaticResource SwichTemplate}">
+                            </RadioButton>
                             <Button Width="300" Style="{StaticResource ButtonStyle}"
                                     Command="{Binding EditGroup}"
                                     toolkit:TiltEffect.IsTiltEnabled="{Binding ButtonEnabled}">
-                                <TextBlock Text="{Binding Model.Name,
+                                <TextBlock Text="{Binding Name,
                                     Converter={StaticResource ResourceTranslator}}"
                                            TextWrapping="Wrap" TextAlignment="Center" />
                                 <i:Interaction.Triggers>

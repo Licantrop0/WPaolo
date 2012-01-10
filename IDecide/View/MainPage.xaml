@@ -90,13 +90,10 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid>
+    <Grid Background="{StaticResource DefaultBackground}">
         <Grid.Resources>
             <hlp:ByteArrayToBitmapImage x:Key="ByteArrayToBitmapImageConverter" />
         </Grid.Resources>
-        <Grid.Background>
-            <StaticResource ResourceKey="DefaultBackground"/>
-        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto" />
@@ -133,7 +130,6 @@
             <Image x:Name="LampImage" Height="109" Canvas.Left="223"
                    Source="/IDecide;component/Images/lamp.png"
                    Stretch="Fill" Canvas.Top="226" Width="102" Opacity="0"/>
-
 
             <!--Nuvoletta-->
             <Image x:Name="Cloud1Image"  Stretch="None" Opacity="0"

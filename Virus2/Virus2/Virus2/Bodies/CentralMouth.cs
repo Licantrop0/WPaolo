@@ -35,15 +35,17 @@ namespace Virus.Sprites
 
         #region constructors
 
-        public CentralMouth(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, BossLung bossLung, bool left)
-            : base(dynamicSystem, sprite, shape)
+        public CentralMouth(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, 
+                            Sprite whiteGlobuloSpritePrototype, List<Enemy> enemies,
+                            BossLung bossLung, bool left)
+            : base(dynamicSystem, sprite, shape, whiteGlobuloSpritePrototype, enemies)
         {
             _hitPoints = 20;
             _state = MouthState.idle;
             _left = left;
             _bossLung = bossLung;
-            _openingTime = 0.5f; //8; //0.5f;
-            _mouthOpenTime = 0.1f; //3; // 0.1f;
+            _openingTime = 0.5f; 
+            _mouthOpenTime = 0.1f;
             _globulosSpeed = 150;
             Position = new Vector2(-100, -100);
 
@@ -51,13 +53,13 @@ namespace Virus.Sprites
             {
                 _deltaPosition = new Vector2(-172, 48);
                 _shootingAngleMax = -1.75f * (float)Math.PI;
-                _shootingAngleMin = -1.5f * (float)Math.PI;
+                _shootingAngleMin = -1.5f  * (float)Math.PI;
                 _dice = new Random(DateTime.Now.Millisecond);
             }
             else
             {
                 _deltaPosition = new Vector2(192, 40);
-                _shootingAngleMax = -1.5f * (float)Math.PI;
+                _shootingAngleMax = -1.5f  * (float)Math.PI;
                 _shootingAngleMin = -1.25f * (float)Math.PI;
                 _dice = new Random(DateTime.Now.Minute);
             }
@@ -72,11 +74,18 @@ namespace Virus.Sprites
         protected override void FireGlobulo()
         {
             float shootingAngle = (float)_dice.RandomDouble(_shootingAngleMin, _shootingAngleMax);
-
             Vector2 speedVersor = new Vector2((float)Math.Cos(shootingAngle), (float)Math.Sin(shootingAngle));
             Vector2 position = Position + 0 * speedVersor;
-            GameManager.ScheduleEventNow(new GameEvent(GameEventType.createMouthBullet, MonsterFactory,
-                new Object[] { position, speedVersor * _globulosSpeed }));
+
+            WhiteGlobulo enemy = new BulletWhiteGlobulo(new MassDoubleIntegratorDynamicSystem(),
+                                                       _whiteGlobuloSpritePrototype.Clone(),
+                                                        new CircularShape(Global.GLOBULO_RADIUS, Global.GLOBULO_TOUCH_RADIUS))
+            {
+                Position = position,
+                Speed = speedVersor * _globulosSpeed
+            };
+
+            _enemies.Add(enemy);
         }
 
         public override void Update(float elapsedTime)
@@ -114,7 +123,7 @@ namespace Virus.Sprites
                 }
             }
             // hanlde hit
-            else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.fingerHit)
+            else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.tap)
             {
                 _hitPoints--;
                 StartBlinking(0.3f, 30, Color.Transparent);
@@ -208,8 +217,8 @@ namespace Virus.Sprites
 
                     if (Sprite.AnimationFinished())
                     {
-                        Touchable = false;
                         _state = MouthState.died;
+                        Touchable = false;
                     }
 
                     break;

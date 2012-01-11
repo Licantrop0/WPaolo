@@ -99,9 +99,11 @@
     <Compile Include="GameEventHandler.cs" />
     <Compile Include="GameEventsManager.cs" />
     <Compile Include="GameGlobalState.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="GoToVirusBonus.cs" />
     <Compile Include="Interfaces\ITouchable.cs" />
     <Compile Include="Screens\PhoneRetryScreen.cs" />
+    <Compile Include="Statistics.cs" />
     <Compile Include="VirusLevel.cs" />
     <Compile Include="MyLoadingScreen.cs" />
     <Compile Include="MovingBackground.cs" />

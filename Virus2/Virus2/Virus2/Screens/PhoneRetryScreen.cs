@@ -31,7 +31,7 @@ namespace Virus
         /// </summary>
         void retryButton_Tapped(object sender, EventArgs e)
         {
-            level.InitializeLevel(GameGlobalState.ActualLevel);
+            level.InitializeLevel(GameGlobalState.ActualLevel, false);
             ExitScreen();
             //base.OnCancel();
         }

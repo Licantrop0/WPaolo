@@ -50,6 +50,7 @@ namespace Virus
                     if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.virusGlobuloCollision)
                     {
                         Lifes--;
+                        Statistics.LifesLost++;
                         Angle = (float)(_actBodyEvent.Params[0]);
                         SoundManager.Play("virus-hit");
 

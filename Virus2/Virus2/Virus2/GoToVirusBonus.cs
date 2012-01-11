@@ -68,7 +68,7 @@ namespace Virus
                         Sprite.FadeSpeed = 1.0f;
                         _utilityTimer = 0;
                     }
-                    else if (_actBodyEvent != null && (_actBodyEvent.Code == BodyEventCode.fingerHit || _actBodyEvent.Code == BodyEventCode.bombHit))
+                    else if (_actBodyEvent != null && (_actBodyEvent.Code == BodyEventCode.tap || _actBodyEvent.Code == BodyEventCode.bombHit))
                     {
                         _state = BonusState.falling;
                         Touchable = false;

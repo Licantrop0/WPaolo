@@ -6,298 +6,305 @@ using Microsoft.Xna.Framework;
 
 namespace Virus.Sprites
 {
-    public class LateralMouth : Mouth
-    {
-        #region constants
-
-        const float DELTA_SPACE = 80;
-        const float DELTA_ANGLE = (float)Math.PI * (100f / 180f);
-
-        #endregion
-
-        # region private parameters
-
-        // fixed
-        int _globulosToSpit = 4;
-        
-        #endregion
-
-        #region private memebers state
-
-        Vector2 _initialPosition;
-        Vector2 _leavingSpeed;
-        float _spitAngle;
-        float _initialAngle;
-        int _spittedGlobulos;
-
-        #endregion
-
-        #region constructors
-
-        public LateralMouth(DynamicSystem dynamicSystem, Sprite sprite, Shape shape)
-            : base(dynamicSystem, sprite, shape)
-        {
-            _hitPoints = 3;
-            _state = MouthState.idle;
-            _globulosSpeed = 230;
-            _openingTime = 0.3f;
-            _mouthOpenTime = 0.3f;
-            Position = new Vector2(-100, -100);
-        }
-
-        #endregion
-
-        #region update and auxiliary methods
-
-        protected override void FireGlobulo()
-        {
-            Vector2 speedVersor = new Vector2((float)Math.Cos(Angle), (float)Math.Sin(Angle));
-            Vector2 position = Position + 30 * speedVersor;
-            GameManager.ScheduleEventNow(new GameEvent(GameEventType.createMouthBullet, MonsterFactory,
-                new Object[] { position, speedVersor * _globulosSpeed }));
-        }
-
-        public override void Update(float elapsedTime)
-        {
-            base.Update(elapsedTime);
-
-            // handle death transition
-            if (_hitPoints <= 0)
-            {
-                if (Freezed)
-                {
-                    EndFreeze();
-                }
-                // state in which mouth is closed
-                if (_state == MouthState.approching || _state == MouthState.leaving ||
-                    _state == MouthState.preRotating || _state == MouthState.rotating || _state == MouthState.postRotating)
-                {
-                    Sprite.ChangeAnimation("death");
-                    Sprite.FramePerSecond = 10;
-                    _state = MouthState.dying;
-                    SoundManager.Play("small-mouth-death");
-                }
-                // state in which mouth is open or partially opened
-                else if (_state == MouthState.closing || _state == MouthState.opening ||
-                    _state == MouthState.mouthOpenAfter || _state == MouthState.mouthOpenBefore)
-                {
-                    Sprite.AnimationVerse = false;
-                    Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
-                    _state = MouthState.dyingMouthClosing;
-                }
-            }
-            // hanlde hit
-            else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.fingerHit)
-            {
-                _hitPoints--;
-                StartBlinking(0.3f, 30, Color.Transparent);
-            }
-            // handle bomb
-            else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.bombHit)
-            {
-                StartFreeze(2);
-            }
-
-            // handle standard state machine
-            switch (_state)
-            {
-                case MouthState.idle:
-
-                    if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.awake)
-                    {
-                        // assign leaving speed
-                        _leavingSpeed = -Speed;
+	public class LateralMouth : Mouth
+	{
+		#region constants
+
+		const float DELTA_SPACE = 80;
+		const float DELTA_ANGLE = (float)Math.PI * (100f / 180f);
+
+		#endregion
+
+		# region private parameters
+
+		// fixed
+		int _globulosToSpit = 4;
+		
+		#endregion
+
+		#region private memebers state
+
+		Vector2 _initialPosition;
+		Vector2 _leavingSpeed;
+		float _spitAngle;
+		float _initialAngle;
+		int _spittedGlobulos;
+
+		#endregion
+
+		#region constructors
+
+		public LateralMouth(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, 
+							Sprite whiteGlobuloSpritePrototype, List<Enemy> enemies)
+			: base(dynamicSystem, sprite, shape, whiteGlobuloSpritePrototype, enemies)
+		{
+			_hitPoints = 3;
+			_state = MouthState.idle;
+			_globulosSpeed = 230;
+			_openingTime = 0.3f;
+			_mouthOpenTime = 0.3f;
+			Position = new Vector2(-100, -100);
+		}
+
+		#endregion
+
+		#region update and auxiliary methods
+
+		protected override void FireGlobulo()
+		{
+			Vector2 speedVersor = new Vector2((float)Math.Cos(Angle), (float)Math.Sin(Angle));
+			Vector2 position = Position + 30 * speedVersor;
+
+			WhiteGlobulo enemy = new BulletWhiteGlobulo(new MassDoubleIntegratorDynamicSystem(),
+													   _whiteGlobuloSpritePrototype.Clone(),
+														new CircularShape(Global.GLOBULO_RADIUS, Global.GLOBULO_TOUCH_RADIUS))
+			{
+				Position = position,
+				Speed = speedVersor * _globulosSpeed
+			};
+
+			_enemies.Add(enemy);
+		}
+
+		public override void Update(float elapsedTime)
+		{
+			base.Update(elapsedTime);
+
+			// handle death transition
+			if (_hitPoints <= 0)
+			{
+				if (Freezed)
+				{
+					EndFreeze();
+				}
+				// state in which mouth is closed
+				if (_state == MouthState.approching || _state == MouthState.leaving ||
+					_state == MouthState.preRotating || _state == MouthState.rotating || _state == MouthState.postRotating)
+				{
+					Sprite.ChangeAnimation("death");
+					Sprite.FramePerSecond = 10;
+					_state = MouthState.dying;
+					SoundManager.Play("small-mouth-death");
+				}
+				// state in which mouth is open or partially opened
+				else if (_state == MouthState.closing || _state == MouthState.opening ||
+					_state == MouthState.mouthOpenAfter || _state == MouthState.mouthOpenBefore)
+				{
+					Sprite.AnimationVerse = false;
+					Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
+					_state = MouthState.dyingMouthClosing;
+				}
+			}
+			// hanlde hit
+			else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.tap)
+			{
+				_hitPoints--;
+				StartBlinking(0.3f, 30, Color.Transparent);
+			}
+			// handle bomb
+			else if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.bombHit)
+			{
+				StartFreeze(2);
+			}
+
+			// handle standard state machine
+			switch (_state)
+			{
+				case MouthState.idle:
 
-                        _initialPosition = Position;
-                        Angle = (float)Math.Atan2(Speed.Y, Speed.X);
-                        _initialAngle = Angle;
+					if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.awake)
+					{
+						// assign leaving speed
+						_leavingSpeed = -Speed;
 
-                        // initialize and change state
-                        _spittedGlobulos = 0;
-                        Sprite.ChangeAnimation("opening");
-                        Sprite.FramePerSecond = 0;
+						_initialPosition = Position;
+						Angle = (float)Math.Atan2(Speed.Y, Speed.X);
+						_initialAngle = Angle;
 
-                        Touchable = true;
-                        _state = MouthState.approching;
-                    }
-                    break;
+						// initialize and change state
+						_spittedGlobulos = 0;
+						Sprite.ChangeAnimation("opening");
+						Sprite.FramePerSecond = 0;
 
-                case MouthState.approching:
+						_state = MouthState.approching;
+					}
+					break;
 
-                    Traslate();
+				case MouthState.approching:
 
-                    if (Vector2.Distance(Position, _initialPosition) >= DELTA_SPACE)
-                    {
-                        _state = MouthState.preRotating;
-                    }
+					Traslate();
 
-                    break;
+					if (Vector2.Distance(Position, _initialPosition) >= DELTA_SPACE)
+					{
+						_state = MouthState.preRotating;
+					}
 
-                case MouthState.preRotating:
+					break;
 
-                    Rotate();
+				case MouthState.preRotating:
 
-                    if (Math.Abs(_initialAngle - Angle) >= DELTA_ANGLE / 2)
-                    {
-                        // reverse rotation asped for rotating state
-                        AngularSpeed = -AngularSpeed;
+					Rotate();
 
-                        // initialize variables for first mouth opening
-                        Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
-                        _state = MouthState.opening;
+					if (Math.Abs(_initialAngle - Angle) >= DELTA_ANGLE / 2)
+					{
+						// reverse rotation asped for rotating state
+						AngularSpeed = -AngularSpeed;
 
-                        SoundManager.Play("small-mouth-opens");
-                    }
+						// initialize variables for first mouth opening
+						Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
+						_state = MouthState.opening;
 
-                    break;
+						SoundManager.Play("small-mouth-opens");
+					}
 
-                case MouthState.opening:
+					break;
 
-                    Animate();
+				case MouthState.opening:
 
-                    if (Sprite.AnimationFinished())
-                    {
-                        Sprite.AnimationVerse = false;
-                        Sprite.FramePerSecond = 0;
-                        ResetAndStartTimer(_mouthOpenTime / 2);
-                        _state = MouthState.mouthOpenBefore;
-                    }
+					Animate();
 
-                    break;
+					if (Sprite.AnimationFinished())
+					{
+						Sprite.AnimationVerse = false;
+						Sprite.FramePerSecond = 0;
+						ResetAndStartTimer(_mouthOpenTime / 2);
+						_state = MouthState.mouthOpenBefore;
+					}
 
-                case MouthState.mouthOpenBefore:
+					break;
 
-                    if (Exceeded())
-                    {
-                        ResetAndStartTimer(_mouthOpenTime / 2);
-                        _spittedGlobulos++;
-                        _spitAngle = Angle;
-                        FireGlobulo();
-                        _state = MouthState.mouthOpenAfter;
-                    }
+				case MouthState.mouthOpenBefore:
 
-                    break;
+					if (Exceeded())
+					{
+						ResetAndStartTimer(_mouthOpenTime / 2);
+						_spittedGlobulos++;
+						_spitAngle = Angle;
+						FireGlobulo();
+						_state = MouthState.mouthOpenAfter;
+					}
 
-                case MouthState.mouthOpenAfter:
+					break;
 
-                    if (Exceeded())
-                    {
-                        Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
-                        _state = MouthState.closing;
-                    }
+				case MouthState.mouthOpenAfter:
 
-                    break;
+					if (Exceeded())
+					{
+						Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
+						_state = MouthState.closing;
+					}
 
-                case MouthState.closing:
+					break;
 
-                    Animate();
+				case MouthState.closing:
 
-                    if (Sprite.AnimationFinished())
-                    {
-                        Sprite.AnimationVerse = true;
+					Animate();
 
-                        if (_spittedGlobulos == _globulosToSpit)
-                        {
-                            AngularSpeed = -AngularSpeed;
-                            _state = MouthState.postRotating;
-                        }
-                        else
-                        {
-                            _state = MouthState.rotating;
-                        }
-                    }
+					if (Sprite.AnimationFinished())
+					{
+						Sprite.AnimationVerse = true;
 
-                    break;
+						if (_spittedGlobulos == _globulosToSpit)
+						{
+							AngularSpeed = -AngularSpeed;
+							_state = MouthState.postRotating;
+						}
+						else
+						{
+							_state = MouthState.rotating;
+						}
+					}
 
-                case MouthState.rotating:
+					break;
 
-                    Rotate();
+				case MouthState.rotating:
 
-                    if (Math.Abs(Angle - _spitAngle) >= DELTA_ANGLE / (_globulosToSpit - 1))
-                    {
-                        Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
-                        _state = MouthState.opening;
+					Rotate();
 
-                        SoundManager.Play("small-mouth-opens");
-                    }
+					if (Math.Abs(Angle - _spitAngle) >= DELTA_ANGLE / (_globulosToSpit - 1))
+					{
+						Sprite.FramePerSecond = Sprite.AnimationFrames / _openingTime;
+						_state = MouthState.opening;
 
-                    break;
+						SoundManager.Play("small-mouth-opens");
+					}
 
-                case MouthState.postRotating:
+					break;
 
-                    if (Math.Abs(Angle - _initialAngle) < 0.01)
-                    {
-                        Speed = _leavingSpeed;
-                        _state = MouthState.leaving;
-                    }
-                    else
-                    {
-                        Rotate();
-                    }
+				case MouthState.postRotating:
 
-                    break;
+					if (Math.Abs(Angle - _initialAngle) < 0.01)
+					{
+						Speed = _leavingSpeed;
+						_state = MouthState.leaving;
+					}
+					else
+					{
+						Rotate();
+					}
 
-                case MouthState.leaving:
+					break;
 
-                    if (Math.Abs(Vector2.Distance(Position, _initialPosition)) < 3)
-                    {
-                        Touchable = false;
-                        _state = MouthState.idle;
-                    }
-                    else
-                    {
-                        Traslate();
-                    }
+				case MouthState.leaving:
 
-                    break;
+					if (Math.Abs(Vector2.Distance(Position, _initialPosition)) < 3)
+					{
+						_state = MouthState.idle;
+					}
+					else
+					{
+						Traslate();
+					}
 
-                case MouthState.dyingMouthClosing:
+					break;
 
-                    Animate();
+				case MouthState.dyingMouthClosing:
 
-                    if (Sprite.AnimationFinished())
-                    {
-                        Sprite.ChangeAnimation("death");
-                        Sprite.FramePerSecond = 10;
-                        _state = MouthState.dying;
-                        SoundManager.Play("small-mouth-death");
-                    }
+					Animate();
 
-                    break;
+					if (Sprite.AnimationFinished())
+					{
+						Sprite.ChangeAnimation("death");
+						Sprite.FramePerSecond = 10;
+						_state = MouthState.dying;
+						SoundManager.Play("small-mouth-death");
+					}
 
-                case MouthState.dying:
+					break;
 
-                    Animate();
+				case MouthState.dying:
 
-                    if (Sprite.AnimationFinished())
-                    {
-                        ResetAndStartTimer(1);
-                        Sprite.FadeSpeed = 1f;
-                        Touchable = false;
-                        _state = MouthState.fading;
-                    }
+					Animate();
 
-                    break;
+					if (Sprite.AnimationFinished())
+					{
+						ResetAndStartTimer(1);
+						Sprite.FadeSpeed = 1f;
+						Touchable = false;
+						_state = MouthState.fading;
+					}
 
-                case MouthState.fading:
+					break;
 
-                    Sprite.Fade();
+				case MouthState.fading:
 
-                    if (Exceeded())
-                    {
-                        _state = MouthState.died;
-                    }
+					Sprite.Fade();
 
-                    break;
+					if (Exceeded())
+					{
+						_state = MouthState.died;
+					}
 
-                case MouthState.died:
-                    break;
+					break;
 
-                default:
-                    break;
-            }
-        }
+				case MouthState.died:
+					break;
 
-        #endregion    
-    }
+				default:
+					break;
+			}
+		}
+
+		#endregion    
+	}
 }

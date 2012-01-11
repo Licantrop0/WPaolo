@@ -32,6 +32,13 @@ namespace Virus
         // content manager
         ContentManager contentManager;
 
+        // used for debug purpouses
+        Texture2D _debugSquare;
+        Vector2 _debugPos1;
+        Vector2 _debugPos2;
+        bool _drawDebug;
+        int _debugCounter = 0;
+
         // condition of level finished
         //public bool Finished { get; set; }
         public LevelState State { get; set; }
@@ -69,9 +76,9 @@ namespace Virus
         LevelDifficultyPack[] _levelDifficultyPack;
 
         // virus ammo management
-        int _enemiesKilledByAmmoCounter;
+        //int _enemiesKilledByAmmoCounter;
         int _enemiesKilledByAmmoTriggerNumber;
-        int _ammoQuantityPerBonus;
+        //int _ammoQuantityPerBonus;
 
         #region constructor
 
@@ -83,7 +90,7 @@ namespace Virus
             State = LevelState.loading;
 
             LoadLevel(level);
-            InitializeLevel(level);
+            InitializeLevel(level, false);
         }
 
         #endregion
@@ -98,6 +105,9 @@ namespace Virus
             CreateBonusGenerator(level);
             LoadSounds(level);
             CreateDifficulty(level);
+
+            // debug
+            _debugSquare = contentManager.Load<Texture2D>("debugSpot");
         }
 
         private void CreateVirus()
@@ -112,7 +122,7 @@ namespace Virus
                 new Sprite(virusAnimations),
                 new CircularShape(40, 40))
             {
-                Ammo = 80,
+                Ammo = 70,
                 Bombs = 5,
                 Lifes = GameGlobalState.VirusLives
             };
@@ -169,10 +179,9 @@ namespace Virus
                 case 1:
 
                     // create Bonus Factory
-                    _bonusGenerator = new BonusGenerator(_eventsManager, _bonuses, new SpritePrototypeContainer(contentManager, "AnimationConfig/Bonuses.xml"))
-                    {
-                        VirusPosition = new Vector2(240, 400)
-                    };
+                    _bonusGenerator = new BonusGenerator(_eventsManager, _virus,
+                                                        _bonuses, new SpritePrototypeContainer(contentManager, "AnimationConfig/Bonuses.xml"));
+
                     _bonusGenerator.SetBombBonusTimePeriod(30, 50);
 
                     break;
@@ -189,10 +198,8 @@ namespace Virus
                 case 1:
 
                     // create Monster Factory
-                    _monsterGenerator = new MonsterGenerator(_eventsManager, _enemies, _bossContainer, new SpritePrototypeContainer(contentManager, "AnimationConfig/Enemies.xml"))
-                    {
-                        VirusPosition = new Vector2(240, 400),
-                    };
+                    _monsterGenerator = new MonsterGenerator(_eventsManager, _virus,
+                                                            _enemies, _bossContainer, new SpritePrototypeContainer(contentManager, "AnimationConfig/Enemies.xml"));
 
                     break;
 
@@ -247,7 +254,7 @@ namespace Virus
 
         #region Initialize
 
-        public void InitializeLevel(int level)
+        public void InitializeLevel(int level, bool keepScoring)
         {
             _eventsManager.ClearAllEvents();
             _mainbackground.Reset(30);
@@ -255,8 +262,11 @@ namespace Virus
             _virus.Touchable = true;
             _virus.Position = new Vector2(240, 400);
             _virus.Lifes = 5;
-            _virus.Ammo = 80;
+            _virus.Ammo = 70;
             _virus.Bombs = 5;
+            Statistics.Reset();
+            if (!keepScoring)
+                _virus.Score = 0;
             _virus.State = ViruState.tranquil;
             _bonuses.Clear();
             _enemies.Clear();
@@ -273,6 +283,10 @@ namespace Virus
 
         private void ScheduleFixedEvents(int level)
         {
+            //_eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleMassEnemyCycleCreation, _monsterGenerator), 5);
+            //_eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleMassEnemyAllTogetherCreation, _monsterGenerator), 15);
+            //_eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleMassEnemyAllTogetherCreation, _monsterGenerator), 16.0f);
+
             // set difficulty
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.changeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[0] }), 0);
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.changeLevel1Difficulty, _monsterGenerator, new Object[] { _levelDifficultyPack[1] }), 30);
@@ -282,7 +296,7 @@ namespace Virus
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.changeBonusSpeed, _bonusGenerator, new object[] { 50 }), 0);
 
             // create bonus points (time periods reflect difficulty changes)
-            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBonusPointsDistribution, _bonusGenerator, new object[] { 5.0f, 15.0f}), 0);
+            _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBonusPointsDistribution, _bonusGenerator, new object[] { 5.0f, 15.0f }), 0);
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBonusPointsDistribution, _bonusGenerator, new object[] { 5.0f, 15.0f }), 15);
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBonusPointsDistribution, _bonusGenerator, new object[] { 4.0f, 35.0f }), 30);
             _eventsManager.ScheduleEventAtTime(new GameEvent(GameEventType.scheduleBonusPointsDistribution, _bonusGenerator, new object[] { 4.0f, 35.0f }), 65);
@@ -313,83 +327,68 @@ namespace Virus
 
         #endregion
 
-        private void DetectTouchCollisions(Vector2 tapPosition)
+        private void HandleBombExplosion()
         {
-            bool recreateAmmoBonus = false;
-            int enemiesKilled = 0;
+            // let the earth temble!
+            SoundManager.Play("virus-bomb");
+            //(TODO si fa un po' meglio on i behaviour anche per gli schermi)
+            CustomTimeVariable trembleAmplitude = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 60), new Vector2(1, 60), new Vector2(1.25f, 0) });
+            CustomTimeVariable trembleAmplitude2 = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 30), new Vector2(1, 30), new Vector2(1.25f, 0) });
+            _mainbackground.Tremble(2, trembleAmplitude, 30, (float)Math.PI, false);
+            _firstPlanBackground.Tremble(2, trembleAmplitude2, 60, (float)Math.PI, false);
 
-            _virus.Ammo--;
+            // decrement virus bomb counter
+            _virus.Bombs--;
 
-            // if virus has been touched, a bomb explodes!
-            if (_virus.Touched(tapPosition) && _virus.Bombs > 0)
+            // send bomHit event to each enemy
+            _enemies.ForEach(wg => wg.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit)));
+
+            // send bombHit event to each bonus, 
+            foreach (GoToVirusBonus b in _bonuses)
             {
-                // bomb explosion handling!
-                _virus.Bombs--;
-                _virus.Ammo++;
-                enemiesKilled++;
-
-                // send bomHit event to each enemy
-                _enemies.ForEach(wg => wg.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit)));
-                SoundManager.Play("virus-bomb");
-
-                // send bombHit event to each bonus, 
-                foreach (GoToVirusBonus b in _bonuses)
+                b.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit));
+                if (b.Type == BonusType.ammo && b.State == BonusState.moving)
                 {
-                    b.AddBodyEvent(new BodyEvent(BodyEventCode.bombHit));
-                    if (b.Type == BonusType.ammo && b.State == BonusState.moving)
-                        recreateAmmoBonus = true;
-                }
-
-                // send bombHit event to the boss
-                if (_bossContainer.Count != 0)
-                {
-                    _bossContainer[0].AddBodyEvent(new BodyEvent(BodyEventCode.bombHit));
-                }
-
-                // make the screen tremble
-                CustomTimeVariable trembleAmplitude = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 60), new Vector2(1, 60), new Vector2(1.25f, 0) });
-                CustomTimeVariable trembleAmplitude2 = new CustomTimeVariable(new Vector2[4] { new Vector2(0, 0), new Vector2(0.25f, 30), new Vector2(1, 30), new Vector2(1.25f, 0) });
-                _mainbackground.Tremble(2, trembleAmplitude, 30, (float)Math.PI, false);
-                _firstPlanBackground.Tremble(2, trembleAmplitude2, 60, (float)Math.PI, false);
+                    _eventsManager.ScheduleEventNow(new GameEvent(GameEventType.createAmmoBonus, _bonusGenerator));
+                }       
             }
 
-            // iterate our enemied sprites to find which sprite is being touched.
-            if (_virus.Ammo > 0)
+            // send bombHit event to the boss
+            if (_bossContainer.Count != 0)
             {
-                foreach (Enemy e in _enemies)
-                {
-                    if (e.Touched(tapPosition))
-                    {
-                        e.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
-                        enemiesKilled++;
-                    }
-                }
-
-                // iterate boss hittable sprites to find which sprite is being touched
-                if (_bossContainer.Count != 0)
-                {
-                    _bossContainer[0].HandleUserTouch(tapPosition, ref enemiesKilled);
-                }
+                _bossContainer[0].AddBodyEvent(new BodyEvent(BodyEventCode.bombHit));
             }
             
-            if (enemiesKilled > 0)
+        }
+
+        private void DetectTapCollisions(Vector2 tapPosition)
+        {
+            if (_virus.Ammo <= 0)
             {
-                SoundManager.Play("hit");
-            }
-            else
-            {
-                if (_virus.Ammo > 0)
-                    SoundManager.Play("miss");
-                else
-                    SoundManager.Play("miss");  // must be "outOfAmmo"
+                // TODO: play the sound out of ammo or display a warning, something...
+                SoundManager.Play("miss");
+                return;
             }
 
-            // ammo bonus handling
-            _enemiesKilledByAmmoCounter += enemiesKilled;
-            if (_enemiesKilledByAmmoCounter >= _enemiesKilledByAmmoTriggerNumber)
+            bool hit = false;
+            bool bonusHit = false;
+            _virus.Ammo--;
+
+            // iterate our enemied sprites to find which sprite is being touched
+            foreach (Enemy e in _enemies)
             {
-                _enemiesKilledByAmmoCounter = 0;
-                _eventsManager.ScheduleEventNow(new GameEvent(GameEventType.createAmmoBonus, _bonusGenerator));
+                if (e.Touched(tapPosition))
+                {
+                    e.AddBodyEvent(new BodyEvent(BodyEventCode.tap));
+                    Statistics.Hit++;
+                    hit = true;
+                }
+            }
+
+            // iterate boss hittable sprites to find which sprite is being touched
+            if (_bossContainer.Count != 0)
+            {
+                _bossContainer[0].HandleUserTap(tapPosition, ref hit);
             }
 
             // iterate our bonus sprites to find which sprite is being touched
@@ -397,19 +396,25 @@ namespace Virus
             {
                 if (b.Touched(tapPosition))
                 {
-                    b.AddBodyEvent(new BodyEvent((int)BodyEventCode.fingerHit));
+                    b.AddBodyEvent(new BodyEvent((int)BodyEventCode.tap));
+                    hit = true;
                     SoundManager.Play("powerup-hit");
-
+                    
                     if (b.Type == BonusType.ammo)
-                        recreateAmmoBonus = true;
+                    {
+                        _eventsManager.ScheduleEventNow(new GameEvent(GameEventType.createAmmoBonus, _bonusGenerator));
+                    }
                 }
             }
 
-            if (recreateAmmoBonus)
+            if (!hit && !bonusHit)
             {
-                _eventsManager.ScheduleEventNow(new GameEvent(GameEventType.createAmmoBonus, _bonusGenerator));
+                SoundManager.Play("miss");
             }
-
+            else if (hit)
+            {
+                SoundManager.Play("hit");
+            }
         }
 
         #region collisions detections
@@ -471,13 +476,12 @@ namespace Virus
 
         #endregion
 
-        private void HandleBossSpecialMove()
+        private void AmmoBonusHandling()
         {
-            // see if boss has delivered the special move
-            if (_bossContainer[0].SpecialMoveHit)
+            if (Statistics.Hit >= _enemiesKilledByAmmoTriggerNumber)
             {
-                _virus.AddBodyEvent(new BodyEvent(BodyEventCode.virusGlobuloCollision, new Object[] { (float)(Math.PI / 2) }));
-                _bossContainer[0].SpecialMoveHit = false;
+                _enemiesKilledByAmmoTriggerNumber += 50;
+                _eventsManager.ScheduleEventNow(new GameEvent(GameEventType.createAmmoBonus, _bonusGenerator));
             }
         }
 
@@ -516,25 +520,53 @@ namespace Virus
         }
 
         // PS per adesso taglio via altre gestures che si possono implementare in futuro, TODO definizione più generale
-        public void Update(GameTime gameTime, bool tapped, Vector2 tapPosition)
+        public void Update(GameTime gameTime,
+                           bool tapped, Vector2 tapPosition,
+                           bool protectionGesture, Vector2 protectionStartPosition, Vector2 protectionEndPosition)
         {
             // update level timer and event manager clock
             _levelTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             _eventsManager.Timer = _levelTimer;
 
+            // temp, draw something in protection gesture position to debug the gesture!
+            /*------------------------------------------------------------------------*/
+            if (protectionGesture)
+            {
+                _debugPos1 = protectionStartPosition;
+                _debugPos2 = protectionEndPosition;
+                _drawDebug = true;
+                _debugCounter++;
+            }
+            else
+            {
+                _drawDebug = false;
+            }
+            /*-------------------------------------------------------------------------*/
+
+            AmmoBonusHandling();
+
             // manage current event (if any)
             _eventsManager.ManageCurrentEvent();
 
-            // detect touch collisions
+            // detect tap effects
             if (tapped)
-                DetectTouchCollisions(tapPosition);
-
+            {
+                // if virus has been tapped, a bomb explodes!
+                if (_virus.Touched(tapPosition) && _virus.Bombs > 0)
+                {
+                    Statistics.BombsUsed++;
+                    HandleBombExplosion();
+                }
+                else
+                {
+                    Statistics.Tap++;
+                    DetectTapCollisions(tapPosition);
+                }  
+            }
+                
             // detect collisions between our friend virus and evil globulos, and bonuses
             if (_virus.State != ViruState.dead)
                 DetectVirusCollision();
-
-            if (_bossContainer.Count != 0)
-                HandleBossSpecialMove();
             
             DetectGlobulosBorderCollision();
 
@@ -554,6 +586,14 @@ namespace Virus
             if (_bossContainer.Count != 0)
                 _bossContainer[0].Update(dt);
 
+            // check boss death
+            if (_bossContainer.Count != 0 && _bossContainer[0].Died)
+            {
+                _virus.Score += _bossContainer[0].WorthPoints;
+                _bossContainer.RemoveAt(0);
+                _virus.AddBodyEvent(new BodyEvent(BodyEventCode.go));
+            }
+
             // update our friend virus
             _virus.Update(dt);
 
@@ -566,12 +606,6 @@ namespace Virus
 
             // clear bonuses
             ClearBonuses();
-
-            if (_bossContainer.Count != 0 && _bossContainer[0].Died)
-            {
-                _bossContainer.RemoveAt(0);
-                _virus.AddBodyEvent(new BodyEvent(BodyEventCode.go));
-            }
 
             // switch state conditions
             // virus id dead :-(
@@ -591,7 +625,7 @@ namespace Virus
             else if (State == LevelState.lost)
             {
                 _stopTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (_stopTimer >= 3)
+                if (_stopTimer >= 2.5f)
                     State = LevelState.lostAndStopped;
             } 
         }
@@ -623,8 +657,17 @@ namespace Virus
                 spriteBatch.DrawString(_infoString, _virus.Bombs.ToString(), new Vector2(75, 4), Color.White);
                 // in realtà nei giochi viene allineato a dx il punteggio, quindi bisognerà prevedere un qualche tipo di logica
                 spriteBatch.DrawString(_infoString, _virus.Score.ToString(), new Vector2(380, 4), Color.White);
+                spriteBatch.DrawString(_infoString, _debugCounter.ToString(), new Vector2(20, 700), Color.Yellow);
+                spriteBatch.DrawString(_infoString, Statistics.Hit.ToString(), new Vector2(430, 680), Color.Yellow);
+                spriteBatch.DrawString(_infoString, Statistics.Tap.ToString(), new Vector2(430, 700), Color.Yellow);
 
                 _ammoBar.Draw(spriteBatch);  
+            }
+
+            if (_drawDebug)
+            {
+                spriteBatch.Draw(_debugSquare, _debugPos1, Color.White);
+                spriteBatch.Draw(_debugSquare, _debugPos2, Color.White);
             }
 
             spriteBatch.End();

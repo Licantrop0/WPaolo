@@ -12,7 +12,8 @@ namespace Virus
         fading,
         falling,
         stopped,
-        died
+        died,
+        faded
     }
 
     public class WhiteGlobulo : Enemy
@@ -28,6 +29,11 @@ namespace Virus
 
             Sprite.FramePerSecond = 6;
             _state = GlobuloState.moving;
+        }
+
+        protected virtual void HowManyPoints()
+        {
+            WorthPoints = 5;
         }
 
         protected virtual void SetForce()
@@ -51,7 +57,7 @@ namespace Virus
                         Sprite.FadeSpeed = 0.6f;
                         _utilityTimer = 0;
                     }
-                    else if (_actBodyEvent != null && (_actBodyEvent.Code == BodyEventCode.fingerHit || _actBodyEvent.Code == BodyEventCode.bombHit))
+                    else if (_actBodyEvent != null && (_actBodyEvent.Code == BodyEventCode.tap || _actBodyEvent.Code == BodyEventCode.bombHit))
                     {
                         _state = GlobuloState.falling;
                         Touchable = false;
@@ -77,9 +83,9 @@ namespace Virus
                     Sprite.Fade();
                     Traslate();
                     _utilityTimer += elapsedTime;
-                    if (_utilityTimer > 10)
+                    if (_utilityTimer > 3)
                     {
-                        _state = GlobuloState.died;
+                        _state = GlobuloState.faded;
                     }
 
                     break;
@@ -92,11 +98,8 @@ namespace Virus
                     if (_utilityTimer > 1)
                     {
                         _state = GlobuloState.died;
+                        HowManyPoints();
                     }
-
-                    break;
-
-                case GlobuloState.stopped:
 
                     break;
 
@@ -125,9 +128,26 @@ namespace Virus
             }
         }
 
-        public override int WorthPoints
+        public override bool ToBeCleared
         {
-            get { return 5; }
+            get
+            {
+                return (_state == GlobuloState.died || _state == GlobuloState.faded);
+            }
+        }
+    }
+
+    public class BulletWhiteGlobulo : WhiteGlobulo
+    {
+        public BulletWhiteGlobulo(DynamicSystem dynamicSystem, Sprite sprite, Shape shape)
+            :base(dynamicSystem, sprite, shape)
+        {
+
+        }
+
+        protected override void HowManyPoints()
+        {
+            WorthPoints = 0;
         }
     }
 

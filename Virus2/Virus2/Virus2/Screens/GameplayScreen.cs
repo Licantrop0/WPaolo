@@ -22,6 +22,97 @@ using System.Diagnostics;
 
 namespace Virus
 {
+    public enum ProtectionBarrierState
+    {
+        waitForTouch,
+        trackTouching,
+        released
+    }
+
+    public class ProtectionBarrierGesture
+    {
+        public bool IsAccomplished;
+        public ProtectionBarrierState State;
+        public int TouchId;
+        public Vector2 StartPosition;
+        public Vector2 EndPosition;
+
+        public ProtectionBarrierGesture()
+        {
+            IsAccomplished = false;
+            State = ProtectionBarrierState.waitForTouch;
+            TouchId = -1;
+        }
+
+        public void Reset()
+        {
+            IsAccomplished = false;
+            State = ProtectionBarrierState.waitForTouch;
+            TouchId = -1;
+        }
+
+        public void Update(TouchCollection touchState)
+        {
+            switch (State)
+            {
+                case ProtectionBarrierState.waitForTouch:
+
+                    // look for single user press
+                    if (touchState.Count == 1 && touchState[0].State == TouchLocationState.Pressed)
+                    {
+                        TouchId = touchState[0].Id;
+                        StartPosition = touchState[0].Position;
+                        State = ProtectionBarrierState.trackTouching;
+                    }
+
+                    break;
+
+                case ProtectionBarrierState.trackTouching:
+
+                    // keep track of touch state id
+                    if (touchState.Count == 1 && touchState[0].Id == TouchId) 
+                    {
+                        // touch state can be moved or release, if it is moved we keep waiting,
+                        // if it is release we check actual position, if it is far enough from
+                        // start position we accomplished the gesture
+                        if (touchState[0].State == TouchLocationState.Released)
+                        {
+                            Vector2 releasePosition = touchState[0].Position;
+                            if (Vector2.Distance(StartPosition, releasePosition) > 75)
+                            {
+                                IsAccomplished = true;
+                                EndPosition = releasePosition;
+                                State = ProtectionBarrierState.released;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Reset();
+                    }
+
+                    break;
+
+                case ProtectionBarrierState.released:
+
+                    Reset();
+
+                    break;
+            }
+        }
+
+        public bool Triggered (ref Vector2 startPosition, ref Vector2 endPosition)
+        {
+            if (IsAccomplished)
+            {
+                startPosition = StartPosition;
+                endPosition = EndPosition;
+            }
+
+            return IsAccomplished;
+        }
+    }
+
     /// <summary>
     /// This screen implements the actual game logic. It is just a
     /// placeholder to get the idea across: you'll probably want to
@@ -39,8 +130,18 @@ namespace Virus
 
         VirusLevel level;
 
-        bool tapped;           // they are passed to level logic
+        // input logic (it is passed to level logic)
+        // tap
+        bool tapped;          
         Vector2 tapPosition;
+
+        // protection barrier
+        bool isProtectionBarrierTriggered;
+        Vector2 protectionBarrierStartPosition;
+        Vector2 protectionBarrierEndPosition;
+
+        // protection barrier detection
+        ProtectionBarrierGesture protectionBarrier = new ProtectionBarrierGesture();
 
         #endregion
 
@@ -140,7 +241,7 @@ namespace Virus
 
             if (IsActive)
             {
-                level.Update(gameTime, tapped, tapPosition);
+                level.Update(gameTime, tapped, tapPosition, isProtectionBarrierTriggered, protectionBarrierStartPosition, protectionBarrierEndPosition);
 
                 if (level.State == LevelState.lostAndStopped)
                 {
@@ -196,6 +297,10 @@ namespace Virus
                 {
                     tapped = false;
                 }
+
+                // PS hanlde protection barrier gesture 
+                protectionBarrier.Update(input.TouchState);
+                isProtectionBarrierTriggered = protectionBarrier.Triggered(ref protectionBarrierStartPosition, ref protectionBarrierEndPosition);
             }
         }
 

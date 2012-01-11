@@ -20,7 +20,7 @@ namespace Virus
 
 	public class BossLung :  Boss
 	{
-		#region privare members states
+		#region private members states
 
 		int _reverseVomitingHitPoints = 0;
 		BossLungState _state = BossLungState.approaching;
@@ -34,8 +34,6 @@ namespace Virus
 		#endregion
 
 		#region private members mouths relationships
-
-		SpritePrototypeContainer _mouthPrototypeDictionary;
 
 		// mouth structures
 		// lateral mouths
@@ -64,8 +62,11 @@ namespace Virus
 
 		#region constructors
 
-		public BossLung(DynamicSystem dynamicSystem, Sprite sprite, Shape shape, SpritePrototypeContainer mouthPrototypeDictionary, GameEventsManager gm, MonsterGenerator mf)
-			: base(dynamicSystem, sprite, shape)
+		public BossLung(DynamicSystem dynamicSystem, Sprite sprite, Shape shape,
+						Virus virus,
+						Sprite mouthCentralPrototype, Sprite mounthLateralPrototype, Sprite whiteGlobuloSpritePrototype,
+						List<Enemy> enemies)
+			: base(dynamicSystem, sprite, shape, virus)
 		{
 			Touchable = true;
 
@@ -74,27 +75,27 @@ namespace Virus
 
 			Sprite.FramePerSecond = 3.5f;
 
-			_mouthPrototypeDictionary = mouthPrototypeDictionary;
-
-			// initialize lateral mouths static references
-			Mouth.GameManager = gm;
-			Mouth.MonsterFactory = mf;
-
 			int i = 0;
 			// create lateral mouths
 			for (i = 0; i < _mouthsPerQueue; i++)
 			{
 				_idleLeftMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
-													 _mouthPrototypeDictionary.Sprites["Mouth"].Clone(),
-													 new CircularShape(40, 40)));
+													 mounthLateralPrototype.Clone(),
+													 new CircularShape(40, 40),
+													 whiteGlobuloSpritePrototype,
+													 enemies));
 
 				_idleBottomMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
-													   _mouthPrototypeDictionary.Sprites["Mouth"].Clone(),
-													   new CircularShape(40, 40)));
+													   mounthLateralPrototype.Clone(),
+													   new CircularShape(40, 40),
+													   whiteGlobuloSpritePrototype,
+													   enemies));
 
 				_idleRightMouths.Add(new LateralMouth(new MassDoubleIntegratorDynamicSystem(),
-													  _mouthPrototypeDictionary.Sprites["Mouth"].Clone(),
-													  new CircularShape(40, 40)));
+													  mounthLateralPrototype.Clone(),
+													  new CircularShape(40, 40),
+													  whiteGlobuloSpritePrototype,
+													  enemies));
 			}
 
 			// lateral mouths will be called when central mouths are all dead!
@@ -105,8 +106,10 @@ namespace Virus
 			for (i = 0; i < 2; i++)
 			{
 				_centralMouths.Add(new CentralMouth(new MassDoubleIntegratorDynamicSystem(),
-													_mouthPrototypeDictionary.Sprites["CentralMouth"].Clone(),
+													mouthCentralPrototype.Clone(),
 													new CircularShape(40, 40),
+													whiteGlobuloSpritePrototype,
+													enemies,
 													this, i == 0));
 			}
 		}
@@ -233,43 +236,46 @@ namespace Virus
 
 		#region interface with user inputs
 
-		public override void HandleUserTouch(Vector2 _touchPoint, ref int enemiesHit)
+		public override void HandleUserTap(Vector2 _touchPoint, ref bool hit)
 		{
 			// contact with main blob
 			if (Touched(_touchPoint))
 			{
-				enemiesHit++;
-				this.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
+				hit = true;
+				this.AddBodyEvent(new BodyEvent(BodyEventCode.tap));
+				Statistics.Hit++;
 			}
 
 			// contact with mouths
-			HandleFingerContactWidthMouthQueque(_touchPoint, _activeLeftMouths, ref enemiesHit);
-			HandleFingerContactWidthMouthQueque(_touchPoint, _activeBottomMouths, ref enemiesHit);
-			HandleFingerContactWidthMouthQueque(_touchPoint, _activeRightMouths, ref enemiesHit);
+			HandleTapContactWidthMouthQueque(_touchPoint, _activeLeftMouths, ref hit);
+			HandleTapContactWidthMouthQueque(_touchPoint, _activeBottomMouths, ref hit);
+			HandleTapContactWidthMouthQueque(_touchPoint, _activeRightMouths, ref hit);
 
-			HandleFingerContactWithCentralMouths(_touchPoint, _centralMouths, ref enemiesHit);
+			HandleTapWithCentralMouths(_touchPoint, _centralMouths, ref hit);
 		}
 
-		private void HandleFingerContactWithCentralMouths(Vector2 touchPoint, List<CentralMouth> Mouths, ref int enemiesHit)
+		private void HandleTapWithCentralMouths(Vector2 touchPoint, List<CentralMouth> Mouths, ref bool hit)
 		{
 			foreach (CentralMouth m in Mouths)
 			{
 				if (m.Touched(touchPoint))
 				{
-					m.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
-					enemiesHit++;
+					m.AddBodyEvent(new BodyEvent(BodyEventCode.tap));
+					Statistics.Hit++;
+					hit = true;
 				}
 			}
 		}
 
-		private void HandleFingerContactWidthMouthQueque(Vector2 touchPoint, List<LateralMouth> Mouths, ref int enemiesHit)
+		private void HandleTapContactWidthMouthQueque(Vector2 touchPoint, List<LateralMouth> Mouths, ref bool hit)
 		{
 			foreach (LateralMouth m in Mouths)
 			{
 				if (m.Touched(touchPoint))
 				{
-					m.AddBodyEvent(new BodyEvent(BodyEventCode.fingerHit));
-					enemiesHit++;
+					m.AddBodyEvent(new BodyEvent(BodyEventCode.tap));
+					Statistics.Hit++;
+					hit = true;
 				}
 			}
 		}
@@ -340,6 +346,7 @@ namespace Virus
 						Sprite.FramePerSecond = 3.5f;
 						Sprite.AnimationVerse = true;
 						_state = BossLungState.vomiting;
+
 						SoundManager.Play("barf");
 					}
 
@@ -350,7 +357,7 @@ namespace Virus
 					// condition to reverse vomiting
 					if (Sprite.FrameIndex() <= 5)
 					{
-						if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.fingerHit)
+						if (_actBodyEvent != null && _actBodyEvent.Code == BodyEventCode.tap)
 						{
 							Sprite.DelayAnimation();
 							StartBlinking(0.3f, 30, Color.Transparent);
@@ -389,7 +396,7 @@ namespace Virus
 					}
 					else if (Sprite.FrameIndex() == 24 && !_specialMoveFlag)
 					{
-						SpecialMoveHit = true;
+						_virus.AddBodyEvent(new BodyEvent(BodyEventCode.virusGlobuloCollision, new Object[] { (float)(Math.PI / 2) }));
 						_specialMoveFlag = true;
 					}
 					else if (Sprite.AnimationFinished())
@@ -429,6 +436,7 @@ namespace Virus
 					if (Sprite.AnimationFinished())
 					{
 						_state = BossLungState.died;
+						WorthPoints = 750;
 					}
 
 					break;

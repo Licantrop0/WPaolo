@@ -7,7 +7,7 @@ namespace Virus
 {
     public enum BodyEventCode
     {
-        fingerHit,
+        tap,
         bombHit,
         virusGlobuloCollision,
         virusBonusCollision,

@@ -25,14 +25,10 @@ namespace Virus.Sprites
 
     public abstract class Mouth : Enemy
     {
-        #region static members
-
-        static public GameEventsManager GameManager { set; get; }
-        static public MonsterGenerator MonsterFactory { set; get; }
-
-        #endregion
-
         #region protected members parameters
+
+        protected Sprite _whiteGlobuloSpritePrototype;
+        protected List<Enemy> _enemies;  // reference to enemies list
 
         protected float _openingTime;  
         protected float _mouthOpenTime; 
@@ -54,9 +50,13 @@ namespace Virus.Sprites
 
         #region costructors
 
-        public Mouth(DynamicSystem dynamicSystem, Sprite sprite, Shape shape)
+        public Mouth(DynamicSystem dynamicSystem, Sprite sprite, Shape shape,
+                     Sprite whiteGlobuloSpritePrototype, List<Enemy> enemies)
             :base(dynamicSystem, sprite, shape)
         {
+            _whiteGlobuloSpritePrototype = whiteGlobuloSpritePrototype;
+            _enemies = enemies;
+
             Touchable = true;
         }
 
@@ -78,9 +78,9 @@ namespace Virus.Sprites
             get { return (_state == MouthState.died); }
         }
 
-        public override int WorthPoints
+        public override bool ToBeCleared
         {
-            get { return 100; }
+            get { return (_state == MouthState.died); }
         }
     }
 }

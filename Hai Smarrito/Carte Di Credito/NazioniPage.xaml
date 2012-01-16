@@ -13,8 +13,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -45,18 +45,18 @@
         <ItemsPanelTemplate x:Key="itemsPanel">
             <toolkit:WrapPanel Orientation="Horizontal"/>
         </ItemsPanelTemplate>
-        
-         <DataTemplate x:Key="groupItemTemplate">
+
+        <DataTemplate x:Key="groupItemTemplate">
             <Border Background="{Binding Converter={StaticResource GroupBackground}}"                    
                     Margin="6" Height="99" Width="99" >
-                
+
                 <TextBlock Text="{Binding Key}" FontSize="48"
                            VerticalAlignment="Bottom"
                            FontFamily="{StaticResource PhoneFontFamilySemiBold}"
                            Foreground="{Binding Converter={StaticResource GroupForeground}}" />
-            </Border>            
+            </Border>
         </DataTemplate>
-       
+
         <DataTemplate x:Key="groupHeaderTemplate">
             <Border Background="{StaticResource PhoneAccentBrush}"
                     Height="62" Width="62" HorizontalAlignment="Left"
@@ -67,37 +67,42 @@
                            VerticalAlignment="Bottom"/>
             </Border>
         </DataTemplate>
-        
-        
+
+
         <DataTemplate x:Key="itemTemplate">
             <Button Command="{Binding Call}" HorizontalContentAlignment="Left"
                                 CommandParameter="{Binding CardType, Source={StaticResource NazioniVM}}">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="{Binding FlagPic}" Height="62">
+                <StackPanel Orientation="Horizontal" Margin="12" >
+                    <Image Source="{Binding FlagPic}" Width="62">
                         <!--<Image.Source>
                                     <BitmapImage UriSource="{Binding FlagPic}"
                                             CreateOptions="BackgroundCreation" />
                                 </Image.Source>-->
                     </Image>
-                    <TextBlock Text="{Binding Name}" Style="{StaticResource ListTextStyle}"
-                                           VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding Name}"
+                               Style="{StaticResource ListTextStyle}"
+                               VerticalAlignment="Center" />
                 </StackPanel>
+                <Button.Template>
+                    <ControlTemplate />
+                </Button.Template>
             </Button>
         </DataTemplate>
 
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{StaticResource NazioniVM}">
+    <Grid x:Name="LayoutRoot" Background="Transparent" 
+          DataContext="{StaticResource NazioniVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel Grid.Row="0" Margin="12">
             <TextBlock Text="{Binding CreditCardName}" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Altri Paesi" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
-            <toolkit:LongListSelector
+        <toolkit:LongListSelector Margin="12,0"
                 ItemsSource="{Binding Flags}" Grid.Row="1"
                 toolkit:TiltEffect.IsTiltEnabled="True" 
                 GroupHeaderTemplate="{StaticResource groupHeaderTemplate}"

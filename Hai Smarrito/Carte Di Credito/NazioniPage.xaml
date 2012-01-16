@@ -108,6 +108,6 @@
                 GroupHeaderTemplate="{StaticResource groupHeaderTemplate}"
                 GroupItemTemplate="{StaticResource groupItemTemplate}"
                 GroupItemsPanel="{StaticResource itemsPanel}"
-                ItemTemplate="{StaticResource itemTemplate}" />
+                ItemTemplate="{StaticResource itemTemplate}"/>
     </Grid>
 </phone:PhoneApplicationPage>

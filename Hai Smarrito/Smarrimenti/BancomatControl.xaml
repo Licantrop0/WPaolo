@@ -27,16 +27,17 @@
                 In caso di problemi, utilizzare il numero della voce&#32;
                 <Bold>Altri paesi non in elenco</Bold>&#32;
                 per qualsiasi Paese in cui vi troviate.
+                <LineBreak />
             </TextBlock>
 
-            <Button Content="Consigli utili per il blocco" Height="100"
-                    Style="{StaticResource ButtonStyle}">
+            <HyperlinkButton Content="Consigli utili per il blocco"
+                             FontSize="{StaticResource PhoneFontSizeLarge}" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
                         <ec:NavigateToPageAction TargetPage="/Smarrimenti/BancomatBlockPage.xaml"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-            </Button>
+            </HyperlinkButton>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

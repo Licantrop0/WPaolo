@@ -43,17 +43,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Hai smarrito" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Assegni Compilati" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        <StackPanel Grid.Row="0" Margin="12">
+            <TextBlock Text="Hai smarrito un assegno" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="già compilato" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <ScrollViewer Grid.Row="1" Margin="12,0">
-            <StackPanel Margin="12,0">
                 <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                &#32;<Bold>Furto o smarrimento di assegni già compilati di cui si è beneficiari.</Bold>&#32;
+                <Bold>Furto o smarrimento di assegni già compilati di cui si è beneficiari.</Bold>&#32;
                     <LineBreak />
                     <LineBreak />
-                    Nel caso di furto o smarrimento di assegni per cui si ha diritto di credito 
+                    &#32;Nel caso di furto o smarrimento di assegni per cui si ha diritto di credito 
                     (ossia assegni già compilati di cui si è beneficiari) occorre:
                     <LineBreak />
                     <LineBreak />
@@ -71,7 +70,6 @@
                     <Bold>ottenere a proprie spese un duplicato</Bold>, denunciando al traente il furto, 
                     lo smarrimento o la distruzione dell'assegno.
                 </TextBlock>
-            </StackPanel>
         </ScrollViewer>
     </Grid>
 

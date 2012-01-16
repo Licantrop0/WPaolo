@@ -146,7 +146,7 @@
             </toolkit:WrapPanel>
         </ScrollViewer>
         
-        <StackPanel Name="AdPlaceHolder" Grid.Row="2" Height="80" />
+        <StackPanel Name="AdPlaceHolder" Grid.Row="2" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

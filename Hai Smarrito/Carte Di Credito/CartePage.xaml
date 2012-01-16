@@ -37,8 +37,8 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Pivot Name="CartePivot" Title="Hai Smarrito una carta di credito">
+    <Grid Background="Transparent">
+        <controls:Pivot Name="CartePivot" Title="Hai smarrito una carta di credito">
             <!--American Express-->
             <controls:PivotItem>
                 <controls:PivotItem.Header>

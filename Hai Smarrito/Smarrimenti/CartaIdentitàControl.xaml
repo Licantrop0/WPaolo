@@ -19,14 +19,14 @@
             <Button Content="Italia">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:NavigateToPageAction TargetPage="/Smarrimenti/CartaIdentitàItaliaPage.xaml"/>
+                        <ec:NavigateToPageAction TargetPage="/Smarrimenti/CartaIdentitàPage.xaml?id=0"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
             <Button Content="Estero">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:NavigateToPageAction TargetPage="/Smarrimenti/CartaIdentitàEsteroPage.xaml"/>
+                        <ec:NavigateToPageAction TargetPage="/Smarrimenti/CartaIdentitàPage.xaml?id=1"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

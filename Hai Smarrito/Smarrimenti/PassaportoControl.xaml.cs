@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
-namespace HaiSmarrito.Smarrimenti
+namespace NientePanico.Smarrimenti
 {
     public partial class PassaportoControl : UserControl
     {

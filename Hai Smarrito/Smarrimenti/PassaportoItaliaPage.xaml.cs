@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
-namespace HaiSmarrito.Smarrimenti
+namespace NientePanico.Smarrimenti
 {
     public partial class PassaportoItaliaPage : PhoneApplicationPage
     {

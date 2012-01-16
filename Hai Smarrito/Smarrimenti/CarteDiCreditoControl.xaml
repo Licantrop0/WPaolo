@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="HaiSmarrito.Smarrimenti.CarteDiCreditoControl"
+﻿<UserControl x:Class="NientePanico.Smarrimenti.CarteDiCreditoControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,11 +13,12 @@
     d:DesignHeight="800" d:DesignWidth="480">
 
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
-        <toolkit:WrapPanel Margin="20,0" toolkit:TiltEffect.IsTiltEnabled="True">
+        <toolkit:WrapPanel HorizontalAlignment="Center"
+                           toolkit:TiltEffect.IsTiltEnabled="True">
             <!--American Express-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/amex.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/amex.png" />
                     <TextBlock Text="American Express" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -30,7 +31,7 @@
             <!--Visa-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/visa.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/visa.png" />
                     <TextBlock Text="Visa" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -43,7 +44,7 @@
             <!--Mastercard-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/mastercard.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/mastercard.png" />
                     <TextBlock Text="Mastercard" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -56,7 +57,7 @@
             <!--Diners Club-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/dinersclub.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/dinersclub.png" />
                     <TextBlock Text="Diners Club" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -69,7 +70,7 @@
             <!--Agos-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/agos.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/agos.png" />
                     <TextBlock Text="Agos" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -82,7 +83,7 @@
             <!--Bancoposta-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/bancoposta.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/bancoposta.png" />
                     <TextBlock Text="Bancoposta" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -95,7 +96,7 @@
             <!--Barclay-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/barclay.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/barclay.png" />
                     <TextBlock Text="Barclay" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -108,7 +109,7 @@
             <!--BPM-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/bpm.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/bpm.png" />
                     <TextBlock Text="BPM" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -121,7 +122,7 @@
             <!--BCC-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/bcc.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/bcc.png" />
                     <TextBlock Text="Carta BCC" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -134,7 +135,7 @@
             <!--CartaSì-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/cartasì.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/cartasì.png" />
                     <TextBlock Text="CartaSì" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -147,7 +148,7 @@
             <!--Deutsche-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/deutsche.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/deutsche.png" />
                     <TextBlock Text="Deutsche Credit Card" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -160,7 +161,7 @@
             <!--Findomestic-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/findomestic.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/findomestic.png" />
                     <TextBlock Text="Findomestic" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -173,7 +174,7 @@
             <!--Fineco-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/fineco.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/fineco.png" />
                     <TextBlock Text="Fineco" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -186,7 +187,7 @@
             <!--Intesa San Paolo-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/intesasanpaolo.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/intesasanpaolo.png" />
                     <TextBlock Text="Intesa San Paolo" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -199,7 +200,7 @@
             <!--IwBank-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/iwbank.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/iwbank.png" />
                     <TextBlock Text="IwBank" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -212,7 +213,7 @@
             <!--PayPal-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/paypal.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/paypal.png" />
                     <TextBlock Text="PayPal" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
@@ -225,7 +226,7 @@
             <!--UniCredit-->
             <Button Style="{StaticResource ButtonStyle}">
                 <StackPanel>
-                    <Image Source="/HaiSmarrito;component/Images/Cards/unicredit.png" />
+                    <Image Source="/NientePanico;component/Images/Cards/unicredit.png" />
                     <TextBlock Text="UniCreditCard" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>

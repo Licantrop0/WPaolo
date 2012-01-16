@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HaiSmarrito.Helpers
+namespace NientePanico.Helpers
 {
     public static class CreditCardHelper
     {

@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace HaiSmarrito.Smarrimenti
+namespace NientePanico.Smarrimenti
 {
     public partial class LibrettoAssegniControl : UserControl
     {

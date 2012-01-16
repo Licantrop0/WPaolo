@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{ac5b5d62-573c-4134-b290-0ad4f678ad7f}" Title="Hai Smarrito" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Licantrop0" Description="Sample description" Publisher="WPME">
+  <App xmlns="" ProductID="{ac5b5d62-573c-4134-b290-0ad4f678ad7f}" Title="Niente Panico"
+       RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Licantrop0"
+       Description="Niente Panico" Publisher="WPME">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES" />
@@ -26,7 +28,7 @@
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>Hai Smarrito</Title>
+          <Title>Niente Panico</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>

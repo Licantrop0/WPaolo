@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Reflection;
 
-namespace HaiSmarrito.ViewModel
+namespace NientePanico.ViewModel
 {
     public class AboutViewModel : INotifyPropertyChanged
     {

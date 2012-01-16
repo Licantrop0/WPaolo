@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace HaiSmarrito.Helpers
+namespace NientePanico.Helpers
 {
     public class RelayCommand<T> : ICommand
     {

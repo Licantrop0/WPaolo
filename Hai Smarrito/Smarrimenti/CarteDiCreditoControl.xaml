@@ -13,13 +13,12 @@
     d:DesignHeight="800" d:DesignWidth="480">
 
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
-        <StackPanel Margin="12,0" toolkit:TiltEffect.IsTiltEnabled="True">
-
+        <toolkit:WrapPanel Margin="20,0" toolkit:TiltEffect.IsTiltEnabled="True">
             <!--American Express-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/amex.png" />
-                    <TextBlock Text="American Express" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="American Express" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -30,9 +29,9 @@
 
             <!--Visa-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/visa.png" />
-                    <TextBlock Text="Visa" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="Visa" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -43,9 +42,9 @@
 
             <!--Mastercard-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/mastercard.png" />
-                    <TextBlock Text="Mastercard" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="Mastercard" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -56,9 +55,9 @@
 
             <!--Diners Club-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/dinersclub.png" />
-                    <TextBlock Text="Diners Club" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="Diners Club" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -69,9 +68,9 @@
 
             <!--Agos-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/agos.png" />
-                    <TextBlock Text="Agos" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="Agos" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -82,9 +81,9 @@
 
             <!--Bancoposta-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/bancoposta.png" />
-                    <TextBlock Text="Bancoposta" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="Bancoposta" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -95,9 +94,9 @@
 
             <!--Barclay-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/barclay.png" />
-                    <TextBlock Text="Barclay" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="Barclay" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -108,9 +107,9 @@
 
             <!--BPM-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/bpm.png" />
-                    <TextBlock Text="BPM" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="BPM" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -121,9 +120,9 @@
 
             <!--BCC-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/bcc.png" />
-                    <TextBlock Text="Carta BCC" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="Carta BCC" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -134,9 +133,9 @@
 
             <!--CartaSì-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/cartasì.png" />
-                    <TextBlock Text="CartaSì" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="CartaSì" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -147,9 +146,9 @@
 
             <!--Deutsche-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/deutsche.png" />
-                    <TextBlock Text="Deutsche Credit Card" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="Deutsche Credit Card" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -160,9 +159,9 @@
             
             <!--Findomestic-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/findomestic.png" />
-                    <TextBlock Text="Findomestic" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="Findomestic" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -173,9 +172,9 @@
             
             <!--Fineco-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/fineco.png" />
-                    <TextBlock Text="Fineco" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="Fineco" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -186,9 +185,9 @@
             
             <!--Intesa San Paolo-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/intesasanpaolo.png" />
-                    <TextBlock Text="Intesa San Paolo" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="Intesa San Paolo" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -199,9 +198,9 @@
             
             <!--IwBank-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/iwbank.png" />
-                    <TextBlock Text="IwBank" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="IwBank" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -212,9 +211,9 @@
             
             <!--PayPal-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/paypal.png" />
-                    <TextBlock Text="PayPal" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="PayPal" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -225,9 +224,9 @@
             
             <!--UniCredit-->
             <Button Style="{StaticResource ButtonStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel>
                     <Image Source="/HaiSmarrito;component/Images/Cards/unicredit.png" />
-                    <TextBlock Text="UniCreditCard" Style="{StaticResource ListTextStyle}" />
+                    <TextBlock Text="UniCreditCard" Style="{StaticResource TileText}" />
                 </StackPanel>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -235,9 +234,7 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
-
-
-        </StackPanel>
+        </toolkit:WrapPanel>        
     </ScrollViewer>
 
 </UserControl>

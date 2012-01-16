@@ -34,8 +34,7 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot"
-          Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -45,8 +44,8 @@
             <TextBlock Text="Hai Smarrito" Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
-        <ScrollViewer Grid.Row="1" >
-            <StackPanel Margin="12,0" toolkit:TiltEffect.IsTiltEnabled="True">
+        <ScrollViewer Grid.Row="1" Margin="20, 0">
+            <toolkit:WrapPanel Margin="12,0" toolkit:TiltEffect.IsTiltEnabled="True">
 
                 <Button Style="{StaticResource ButtonStyle}">
                     <i:Interaction.Triggers>
@@ -54,9 +53,9 @@
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=0"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Carta di Credito"  Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Carta di Credito"  Style="{StaticResource TileText}" />
                     </StackPanel>
                 </Button>
 
@@ -66,9 +65,9 @@
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=1"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Bancomat" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Bancomat" Style="{StaticResource TileText}" />
                     </StackPanel>
                 </Button>
 
@@ -78,9 +77,9 @@
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=2"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Carta d'identità" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Carta d'identità" Style="{StaticResource TileText}" />
                     </StackPanel>
                 </Button>
 
@@ -90,9 +89,9 @@
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=3"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Passaporto" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Passaporto" Style="{StaticResource TileText}" />
                     </StackPanel>
                 </Button>
 
@@ -102,9 +101,9 @@
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=4"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Patente" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Patente" Style="{StaticResource TileText}" />
                     </StackPanel>
                 </Button>
 
@@ -114,9 +113,9 @@
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=5"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Codice Fiscale" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Codice Fiscale" Style="{StaticResource TileText}" />
                     </StackPanel>
                 </Button>
 
@@ -126,9 +125,9 @@
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=6"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Libretto Assegni" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Libretto Assegni" Style="{StaticResource TileText}" />
                     </StackPanel>
                 </Button>
 
@@ -138,12 +137,12 @@
                             <ec:NavigateToPageAction TargetPage="/SmarrimentiPage.xaml?id=7"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Telepass / Viacard" Style="{StaticResource ListTextStyle}" />
+                        <TextBlock Text="Telepass / Viacard" Style="{StaticResource TileText}" />
                     </StackPanel>
                 </Button>
-            </StackPanel>
+            </toolkit:WrapPanel>
         </ScrollViewer>
     </Grid>
 

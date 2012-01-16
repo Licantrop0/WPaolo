@@ -19,7 +19,7 @@
             <Button Content="Italia">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:NavigateToPageAction TargetPage="/Smarrimenti/PassaportoItaliaPage.xaml"/>
+                        <ec:NavigateToPageAction TargetPage="/Smarrimenti/PassaportoPage.xaml?id=0"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
@@ -27,7 +27,7 @@
             <Button Content="Estero">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <ec:NavigateToPageAction TargetPage="/Smarrimenti/PassaportoEsteroPage.xaml"/>
+                        <ec:NavigateToPageAction TargetPage="/Smarrimenti/PassaportoPage.xaml?id=1"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

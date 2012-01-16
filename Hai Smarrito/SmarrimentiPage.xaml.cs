@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using Microsoft.Phone.Controls;
 using System.Windows.Navigation;
 using Microsoft.Advertising.Mobile.UI;
+using WPCommon.Helpers;
 
 namespace NientePanico
 {
@@ -16,11 +17,11 @@ namespace NientePanico
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            AdPlaceHolder.Children.Add(new AdControl("test_client", "Image480_80", true)
+            if (TrialManagement.IsTrialMode)
             {
-                Height = 80,
-                Width = 480
-            });
+                AdPlaceHolder.Children.Add(new AdControl("test_client", "Image480_80", true)
+                { Height = 80, Width = 480 });
+            }
 
             if (e.NavigationMode == NavigationMode.Back)
                 return;
@@ -28,7 +29,6 @@ namespace NientePanico
             int id;
             if (int.TryParse(NavigationContext.QueryString["id"], out id))
                 SmarrimentiPivot.SelectedIndex = id;
-
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)

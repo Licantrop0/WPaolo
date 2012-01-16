@@ -23,9 +23,9 @@
             <Button Content="Estero" Click="Estero_Click" />
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
                 In alternativa, ci si può collegare al sito&#32;
-                <Bold>Telepass.it</Bold>&#32;, o recarsi direttamente presso un&#32;
-                <Bold>Punto Blu</Bold>&#32;o un&#32;
-                <Bold>Centro Servizi</Bold>&#32;delegato a tale attività.                
+                <Bold>Telepass.it</Bold>, o recarsi direttamente presso un&#32;
+                <Bold>Punto Blu</Bold>&#32;o un &#32;<Bold>Centro Servizi</Bold>&#32;
+                delegato a tale attività.                
             </TextBlock>
         </StackPanel>
     </ScrollViewer>

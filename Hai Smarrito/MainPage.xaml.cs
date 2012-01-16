@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System;
 using Microsoft.Advertising.Mobile.UI;
+using WPCommon.Helpers;
 
 namespace NientePanico
 {
@@ -20,11 +21,10 @@ namespace NientePanico
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            AdPlaceHolder.Children.Add(new AdControl("test_client", "Image480_80", true)
+            if (TrialManagement.IsTrialMode)
             {
-                Height=80,
-                Width=480
-            });
+                AdPlaceHolder.Children.Add(new AdControl("test_client", "Image480_80", true) { Height = 80, Width = 480 });
+            }
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)

@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="NientePanico.Smarrimenti.PassaportoEsteroPage"
+    x:Class="NientePanico.Smarrimenti.PassaportoPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -8,7 +8,6 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:sm="clr-namespace:NientePanico.Smarrimenti"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -38,19 +37,43 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Hai smarrito" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Passaporto Estero" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
-        <ScrollViewer Grid.Row="1" Margin="12,0,12,0">
-            <StackPanel Margin="12,0">
-                <TextBlock Style="{StaticResource DescriptionTextStyle}" >
-                    Nel caso in cui il furto o smarrimento dei documenti avvenga all'estero è necessario
+        <controls:Pivot Name="PassaportoPivot" Title="Hai smarrito un Passaporto">
+            <controls:PivotItem Header="in Italia" Margin="12,0">
+                <ScrollViewer>
+                    <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                    In caso di furto o smarrimanto del Passaporto è necessario denunciare il fatto
+                    presso l'Ufficio di Polizia del nostro comune di appartenenza (Polizia di Stato
+                    o Carabinieri o Polizia Comunale).
+                    <LineBreak />
+                    <LineBreak />
+                    Successivamente sarà possibile ottenere il rilascio di un duplicato. La richiesta
+                    di duplicato può essere presentata presso la Questura, il Commissario di Pubblica 
+                    Sicurezza, i Carabinieri e gli uffici postali portando con sé:
+                    <LineBreak />
+                    <LineBreak />
+                    - Originale della denuncia di furto o smarrimento
+                    <LineBreak />
+                    - Un documento di riconoscimento valido
+                    <LineBreak />
+                    - 2 foto tessera identiche e recenti
+                    <LineBreak />
+                    - L'assenso del coniuge o del convivente se si tratta di figli minori
+                    <LineBreak />
+                    - 1 contrassegno telematico da €40,29*
+                    <LineBreak />
+                    - Attestazione di versamento di €42,50* per il libretto a 48 pagine (chiudere la 
+                    disponibilità presso la propria Questura)
+                    <LineBreak />
+                    <LineBreak />
+                    <Bold>* Maggiori informazioni sui versamenti e gli importi si possono 
+                    richiedere al momento della denuncia di smarrimento.</Bold>
+                    </TextBlock>
+                </ScrollViewer>
+            </controls:PivotItem>
+            <controls:PivotItem Header="all'estero" Margin="12,0">
+                <ScrollViewer Grid.Row="1" >
+                    <TextBlock Style="{StaticResource DescriptionTextStyle}" >
+                    &#32;Nel caso in cui il furto o smarrimento dei documenti avvenga all'estero è necessario
                     recarsi, prima possibile, presso un Ufficio di Polizia locale e fare denuncia di smarrimento 
                     o di furto del proprio Passaporto e/o del proprio documento d'identità.
                     <LineBreak />
@@ -59,7 +82,7 @@
                     che servirà poi per richiedere il documento sostitutivo per rientrare nel proprio paese.
                     <LineBreak />
                     <LineBreak />
-                    Una volta in possesso della denuncia, bisogna recarsi presso il Consolato o l'Ambasciata del proprio 
+                    &#32;Una volta in possesso della denuncia, bisogna recarsi presso il Consolato o l'Ambasciata del proprio 
                     Paese. Se vi trovate in uno stato in cui non esiste un ufficio di rappresentanza italiano, quello di 
                     uno qualsiasi fra i Paesi dell'Unione Europea lo può sostituire nello svolgere le stesse funzioni.
                     <LineBreak />
@@ -71,22 +94,25 @@
                     questi documenti:
                     <LineBreak />
                     <LineBreak />
-                    - la denuncia di smarrimento
+                    - La denuncia di smarrimento
                     <LineBreak />
                     - 2 foto tessera
                     <LineBreak />
-                    - documenti personali disponibili (codice fiscale, patente, tessera sanitaria...)
+                    - Documenti personali disponibili (codice fiscale, patente, tessera sanitaria...)
                     <LineBreak />
-                    - fotocopia della carta d'identità o di altri documenti personali (se in vostro possesso)
+                    - Fotocopia della carta d'identità o di altri documenti personali (se in vostro possesso)
                     <LineBreak />
                     <LineBreak />
                     Qualora i tempi siano troppo brevi per riuscire a portare a termine tutta la procedura, il Consolato vi 
                     rilascerà un&#32;<Bold>Documento di viaggio</Bold>&#32;provvisorio con il quale potrete tornare in Italia.
-                    &#32;<Bold>Attenzione: questo documento è valido soltanto per il rimpatrio. Se avevate in programma di 
-                    continuare il viaggio, magari spostandovi in un altro paese, questo non sarà possibile</Bold>&#32;
-                </TextBlock>
-            </StackPanel>
-        </ScrollViewer>
+                    <Bold>Attenzione:</Bold>
+                    <LineBreak />
+                    Questo documento è valido soltanto per il rimpatrio.
+                    <LineBreak />
+                    Se avevate in programma di continuare il viaggio, magari spostandovi in un altro paese, questo non sarà possibile.
+                    </TextBlock>
+                </ScrollViewer>
+            </controls:PivotItem>
+        </controls:Pivot>
     </Grid>
-
 </phone:PhoneApplicationPage>

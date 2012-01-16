@@ -151,6 +151,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Smarrimenti\CartaIdentitàPage.xaml.cs">
+      <DependentUpon>CartaIdentitàPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Smarrimenti\PassaportoPage.xaml.cs">
+      <DependentUpon>PassaportoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\FlagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmarrimentiPage.xaml.cs">
@@ -168,12 +174,6 @@
     <Compile Include="Smarrimenti\CartaIdentitàControl.xaml.cs">
       <DependentUpon>CartaIdentitàControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Smarrimenti\CartaIdentitàEsteroPage.xaml.cs">
-      <DependentUpon>CartaIdentitàEsteroPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Smarrimenti\CartaIdentitàItaliaPage.xaml.cs">
-      <DependentUpon>CartaIdentitàItaliaPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Smarrimenti\CarteDiCreditoControl.xaml.cs">
       <DependentUpon>CarteDiCreditoControl.xaml</DependentUpon>
     </Compile>
@@ -185,12 +185,6 @@
     </Compile>
     <Compile Include="Smarrimenti\PassaportoControl.xaml.cs">
       <DependentUpon>PassaportoControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Smarrimenti\PassaportoEsteroPage.xaml.cs">
-      <DependentUpon>PassaportoEsteroPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Smarrimenti\PassaportoItaliaPage.xaml.cs">
-      <DependentUpon>PassaportoItaliaPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Smarrimenti\PatenteControl.xaml.cs">
       <DependentUpon>PatenteControl.xaml</DependentUpon>
@@ -314,11 +308,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Smarrimenti\CartaIdentitàEsteroPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Smarrimenti\CartaIdentitàItaliaPage.xaml">
+    <Page Include="Smarrimenti\CartaIdentitàPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -338,11 +328,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Smarrimenti\PassaportoEsteroPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Smarrimenti\PassaportoItaliaPage.xaml">
+    <Page Include="Smarrimenti\PassaportoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using NientePanico.Helpers;
 
 namespace NientePanico.Smarrimenti
 {
@@ -21,12 +13,12 @@ namespace NientePanico.Smarrimenti
 
         private void Italia_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("Telepass Italia", "000000");
         }
 
         private void Estero_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("Telepass Estero", "000000");
         }
     }
 }

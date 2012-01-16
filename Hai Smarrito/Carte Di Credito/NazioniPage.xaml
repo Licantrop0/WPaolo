@@ -60,7 +60,7 @@
         <DataTemplate x:Key="groupHeaderTemplate">
             <Border Background="{StaticResource PhoneAccentBrush}"
                     Height="62" Width="62" HorizontalAlignment="Left"
-                    Padding="8,0,0,0" Margin="12,0" >
+                    Padding="8,0,0,0" Margin="12,6" >
                 <TextBlock Text="{Binding Key}"
                            Foreground="#FFFFFF" FontSize="48"
                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"
@@ -72,7 +72,7 @@
         <DataTemplate x:Key="itemTemplate">
             <Button Command="{Binding Call}" HorizontalContentAlignment="Left"
                                 CommandParameter="{Binding CardType, Source={StaticResource NazioniVM}}">
-                <StackPanel Orientation="Horizontal" Margin="12" >
+                <StackPanel Orientation="Horizontal" Margin="12,6" >
                     <Image Source="{Binding FlagPic}" Width="62">
                         <!--<Image.Source>
                                     <BitmapImage UriSource="{Binding FlagPic}"

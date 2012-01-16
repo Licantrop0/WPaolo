@@ -1,10 +1,14 @@
 ﻿using System.IO;
 using System.Windows.Media.Imaging;
-using HaiSmarrito.Helpers;
+using NientePanico.Helpers;
+using System.ComponentModel;
+using System.Linq;
+using System.Collections.Generic;
+using System.Collections;
 
-namespace HaiSmarrito.ViewModel
+namespace NientePanico.ViewModel
 {
-    public class FlagViewModel
+    public class FlagViewModel : INotifyPropertyChanged
     {
         public string Name { get; private set; }
         public BitmapImage FlagPic { get; private set; }
@@ -34,6 +38,17 @@ namespace HaiSmarrito.ViewModel
 
             CallHelper.Call(callName, Number);
         }
+
+        #region INotifyPropertyChanged Implementation
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
 
     }
 }

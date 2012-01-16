@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hai Smarrito", "Hai Smarrito.csproj", "{7BE62C1B-251C-4ABC-B5CF-6F5C7F290204}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Niente Panico", "Niente Panico.csproj", "{7BE62C1B-251C-4ABC-B5CF-6F5C7F290204}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
 EndProject
@@ -18,15 +18,15 @@ Global
 		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Hai\u0020Smarrito.csproj
-		SccLocalPath1 = .
-		SccProjectUniqueName2 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
-		SccProjectName2 = ../WPCommon.Controls
-		SccLocalPath2 = ..\\WPCommon.Controls
-		SccProjectUniqueName3 = ..\\WPCommon.Helpers.TrialManagement\\WPCommon.Helpers.TrialManagement.csproj
-		SccProjectName3 = ../WPCommon.Helpers.TrialManagement
-		SccLocalPath3 = ..\\WPCommon.Helpers.TrialManagement
+		SccProjectUniqueName0 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName0 = ../WPCommon.Controls
+		SccLocalPath0 = ..\\WPCommon.Controls
+		SccProjectUniqueName1 = ..\\WPCommon.Helpers.TrialManagement\\WPCommon.Helpers.TrialManagement.csproj
+		SccProjectName1 = ../WPCommon.Helpers.TrialManagement
+		SccLocalPath1 = ..\\WPCommon.Helpers.TrialManagement
+		SccProjectUniqueName2 = Niente\u0020Panico.csproj
+		SccLocalPath2 = .
+		SccLocalPath3 = .
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

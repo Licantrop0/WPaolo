@@ -1,8 +1,8 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
-using HaiSmarrito.Helpers;
+using NientePanico.Helpers;
 
-namespace HaiSmarrito.Carte_Di_Credito
+namespace NientePanico.Carte_Di_Credito
 {
     public partial class DinersClubControl : UserControl
     {

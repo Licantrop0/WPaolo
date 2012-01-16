@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace HaiSmarrito.Carte_Di_Credito
+namespace NientePanico.Carte_Di_Credito
 {
     public partial class BancopostaControl : UserControl
     {

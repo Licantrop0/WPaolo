@@ -1,6 +1,6 @@
 ﻿using Microsoft.Phone.Controls;
 
-namespace HaiSmarrito
+namespace NientePanico
 {
     public partial class AboutPage : PhoneApplicationPage
     {

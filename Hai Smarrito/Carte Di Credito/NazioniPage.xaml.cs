@@ -1,13 +1,25 @@
 ﻿using System.Windows;
 using Microsoft.Phone.Controls;
 using System.Reflection;
-using HaiSmarrito.Helpers;
-using HaiSmarrito.ViewModel;
+using NientePanico.Helpers;
+using NientePanico.ViewModel;
 
-namespace HaiSmarrito.Carte_Di_Credito
+namespace NientePanico.Carte_Di_Credito
 {
     public partial class NazioniPage : PhoneApplicationPage
     {
+        private NazioniViewModel _vM;
+        public NazioniViewModel VM
+        {
+            get
+            {
+                if (_vM == null)
+                    _vM = (NazioniViewModel)LayoutRoot.DataContext;
+
+                return _vM;
+            }
+        }
+
         public NazioniPage()
         {
             InitializeComponent();
@@ -15,7 +27,6 @@ namespace HaiSmarrito.Carte_Di_Credito
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            var VM = (NazioniViewModel)LayoutRoot.DataContext;
             VM.CardType = NavigationContext.QueryString["type"];
             base.OnNavigatedTo(e);
         }

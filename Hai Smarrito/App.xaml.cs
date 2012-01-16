@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace HaiSmarrito
+namespace NientePanico
 {
     /// <summary>
     /// Interaction logic for App.xaml

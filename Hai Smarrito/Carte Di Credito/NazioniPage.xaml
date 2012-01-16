@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="HaiSmarrito.Carte_Di_Credito.NazioniPage"
+    x:Class="NientePanico.Carte_Di_Credito.NazioniPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -7,7 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:vm="clr-namespace:HaiSmarrito.ViewModel"
+    xmlns:vm="clr-namespace:NientePanico.ViewModel"
+    xmlns:hlp="clr-namespace:NientePanico.Helpers"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -38,6 +39,52 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:NazioniViewModel x:Key="NazioniVM" />
+        <hlp:GroupToForegroundBrushValueConverter x:Key="GroupForeground"/>
+        <hlp:GroupToBackgroundBrushValueConverter x:Key="GroupBackground"/>
+
+        <ItemsPanelTemplate x:Key="itemsPanel">
+            <toolkit:WrapPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+        
+         <DataTemplate x:Key="groupItemTemplate">
+            <Border Background="{Binding Converter={StaticResource GroupBackground}}"                    
+                    Margin="6" Height="99" Width="99" >
+                
+                <TextBlock Text="{Binding Key}" FontSize="48"
+                           VerticalAlignment="Bottom"
+                           FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                           Foreground="{Binding Converter={StaticResource GroupForeground}}" />
+            </Border>            
+        </DataTemplate>
+       
+        <DataTemplate x:Key="groupHeaderTemplate">
+            <Border Background="{StaticResource PhoneAccentBrush}"
+                    Height="62" Width="62" HorizontalAlignment="Left"
+                    Padding="8,0,0,0" Margin="12,0" >
+                <TextBlock Text="{Binding Key}"
+                           Foreground="#FFFFFF" FontSize="48"
+                           FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                           VerticalAlignment="Bottom"/>
+            </Border>
+        </DataTemplate>
+        
+        
+        <DataTemplate x:Key="itemTemplate">
+            <Button Command="{Binding Call}" HorizontalContentAlignment="Left"
+                                CommandParameter="{Binding CardType, Source={StaticResource NazioniVM}}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding FlagPic}" Height="62">
+                        <!--<Image.Source>
+                                    <BitmapImage UriSource="{Binding FlagPic}"
+                                            CreateOptions="BackgroundCreation" />
+                                </Image.Source>-->
+                    </Image>
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource ListTextStyle}"
+                                           VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </DataTemplate>
+
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{StaticResource NazioniVM}">
@@ -50,23 +97,12 @@
             <TextBlock Text="{Binding CreditCardName}" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Altri Paesi" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
-
-        <ListBox Grid.Row="1" toolkit:TiltEffect.IsTiltEnabled="True" ItemsSource="{Binding Flags}" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Button Style="{StaticResource ButtonStyle}" Width="480"
-                            Command="{Binding Call}" CommandParameter="{Binding CardType, Source={StaticResource NazioniVM}}">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Height="80" Stretch="Uniform" Source="{Binding FlagPic}">
-                                <!--<Image.Source>
-                                    <BitmapImage UriSource="{Binding FlagPic}" CreateOptions="BackgroundCreation" />
-                                </Image.Source>-->
-                            </Image>
-                            <TextBlock Text="{Binding Name}" Style="{StaticResource ListTextStyle}" />
-                        </StackPanel>
-                    </Button>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            <toolkit:LongListSelector
+                ItemsSource="{Binding Flags}" Grid.Row="1"
+                toolkit:TiltEffect.IsTiltEnabled="True" 
+                GroupHeaderTemplate="{StaticResource groupHeaderTemplate}"
+                GroupItemTemplate="{StaticResource groupItemTemplate}"
+                GroupItemsPanel="{StaticResource itemsPanel}"
+                ItemTemplate="{StaticResource itemTemplate}" />
     </Grid>
 </phone:PhoneApplicationPage>

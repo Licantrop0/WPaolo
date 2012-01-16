@@ -2,8 +2,9 @@
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
 using System.Windows.Navigation;
+using Microsoft.Advertising.Mobile.UI;
 
-namespace HaiSmarrito
+namespace NientePanico
 {
     public partial class SmarrimentiPage : PhoneApplicationPage
     {
@@ -14,6 +15,13 @@ namespace HaiSmarrito
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
+            AdPlaceHolder.Children.Add(new AdControl("test_client", "Image480_80", true)
+            {
+                Height = 80,
+                Width = 480
+            });
+
             if (e.NavigationMode == NavigationMode.Back)
                 return;
 
@@ -21,7 +29,12 @@ namespace HaiSmarrito
             if (int.TryParse(NavigationContext.QueryString["id"], out id))
                 SmarrimentiPivot.SelectedIndex = id;
 
-            base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            AdPlaceHolder.Children.Clear();
         }
 
         private void AppBarInfoButton_Click(object sender, EventArgs e)

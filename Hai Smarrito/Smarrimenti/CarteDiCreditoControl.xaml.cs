@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace HaiSmarrito.Smarrimenti
+namespace NientePanico.Smarrimenti
 {
     public partial class CarteDiCreditoControl : UserControl
     {

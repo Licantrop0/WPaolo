@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
-namespace HaiSmarrito.Carte_Di_Credito
+namespace NientePanico.Carte_Di_Credito
 {
     public partial class InfoPage : PhoneApplicationPage
     {

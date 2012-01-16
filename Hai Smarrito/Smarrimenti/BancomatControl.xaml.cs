@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using HaiSmarrito.Helpers;
+using NientePanico.Helpers;
 
-namespace HaiSmarrito.Smarrimenti
+namespace NientePanico.Smarrimenti
 {
     public partial class BancomatControl : UserControl
     {

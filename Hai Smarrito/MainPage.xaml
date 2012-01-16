@@ -8,7 +8,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
-    x:Class="HaiSmarrito.MainPage"
+    x:Class="NientePanico.MainPage"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -38,14 +38,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="24,24,0,12">
-            <TextBlock Text="Hai Smarrito" Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
+        <TextBlock Text="Niente Panico" Grid.Row="0" Margin="24,0"
+                   Style="{StaticResource PhoneTextTitle1Style}" />
 
-        <ScrollViewer Grid.Row="1" Margin="20, 0">
-            <toolkit:WrapPanel Margin="12,0" toolkit:TiltEffect.IsTiltEnabled="True">
+        <ScrollViewer Grid.Row="1">
+            <toolkit:WrapPanel HorizontalAlignment="Center"
+                               toolkit:TiltEffect.IsTiltEnabled="True">
 
                 <Button Style="{StaticResource ButtonStyle}">
                     <i:Interaction.Triggers>
@@ -144,6 +145,8 @@
                 </Button>
             </toolkit:WrapPanel>
         </ScrollViewer>
+        
+        <StackPanel Name="AdPlaceHolder" Grid.Row="2" Height="80" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

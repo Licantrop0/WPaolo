@@ -235,6 +235,20 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
+
+            <!--Carta  non in elenco-->
+            <Button Style="{StaticResource ButtonStyle}">
+                <StackPanel>
+                    <Image Source="/NientePanico;component/Images/Cards/unknown.png" />
+                    <TextBlock Text="Carta non in Elenco" Style="{StaticResource TileText}" />
+                </StackPanel>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=17"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
         </toolkit:WrapPanel>        
     </ScrollViewer>
 

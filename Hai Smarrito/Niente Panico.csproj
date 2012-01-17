@@ -97,6 +97,9 @@
     <Compile Include="Carte Di Credito\CartaSìControl.xaml.cs">
       <DependentUpon>CartaSìControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Carte Di Credito\CartaUnknownControl.xaml.cs">
+      <DependentUpon>CartaUnknownControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Carte Di Credito\DeutscheControl.xaml.cs">
       <DependentUpon>DeutscheControl.xaml</DependentUpon>
     </Compile>
@@ -229,6 +232,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Carte Di Credito\CartaSìControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Carte Di Credito\CartaUnknownControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

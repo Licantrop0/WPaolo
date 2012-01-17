@@ -244,7 +244,19 @@
                 </controls:PivotItem.Header>
                 <card:UniCreditControl />
             </controls:PivotItem>
-            
+
+            <!--Unknown-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/NientePanico;component/Images/Cards/unknown.png"
+                               Stretch="None" Margin="12"  />
+                        <TextBlock Text="Non in elenco" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <card:CartaUnknownControl />
+            </controls:PivotItem>
+
         </controls:Pivot>
     </Grid>
 

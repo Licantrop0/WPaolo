@@ -20,7 +20,7 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>HaiSmarrito.xap</XapFilename>
+    <XapFilename>NientePanico.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>NientePanico.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>

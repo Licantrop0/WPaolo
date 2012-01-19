@@ -13,17 +13,14 @@
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                Blocca tutti i tipi di carte del circuito&#32;
-                <Bold></Bold>&#32;
+                Blocca tutti i tipi di carte &#32;<Bold>Barclay</Bold>&#32;
                 a seconda di dove ti trovi:
             </TextBlock>
 
             <Button Content="Italia" Click="Italia_Click" />
-            <Button Content="Estero*" Click="Estero_Click" />
+            <Button Content="Estero" Click="Estero_Click" />
 
-            <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                bla bla&#32;<Bold>bla bla</Bold>&#32;
-            </TextBlock>
+            
 
         </StackPanel>
     </ScrollViewer>

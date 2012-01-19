@@ -22,12 +22,17 @@ namespace NientePanico.Carte_Di_Credito
 
         private void Italia_Click(object sender, RoutedEventArgs e)
         {
-            CallHelper.Call("", "");
+            CallHelper.Call("Barclay Italia", "800908069");
         }
 
         private void Estero_Click(object sender, RoutedEventArgs e)
         {
-            CallHelper.Call("", "");
+            CallHelper.Call("Barclay Estero", "0035314339430");
+        }
+
+        private void BarclayItalia_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

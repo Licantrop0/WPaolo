@@ -16,25 +16,25 @@
                 Blocca tutti i tipi di carte del circuito&#32;
                 <Bold></Bold>&#32;
                 a seconda di dove ti trovi: <LineBreak/><LineBreak/>
-                &#32;<Bold>- Postepay standard, Twin, NewGift, Gift, PosteMobile</Bold>&#32;
+                <Bold>- Postepay standard, Twin, NewGift, Gift, PosteMobile</Bold>&#32;
                 
             </TextBlock>
 
-            <Button Content="Italia" Click="Italia_Click" />
-            <Button Content="Estero" Click="Estero_Click" />
+            <Button Content="Italia" Click="PostePayItalia_Click" />
+            <Button Content="Estero" Click="PostePayEstero_Click" />
 
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                &#32;<Bold>- Postamat Maestro<LineBreak/>
-                - Postamat Click</Bold>&#32;
+                <Bold>- Postamat Maestro<LineBreak/>
+                - Postamat Click</Bold>
             </TextBlock>
-            <Button Content="Italia" Click="Italia_Click" />
-            <Button Content="Estero" Click="Estero_Click" />
+            <Button Content="Italia" Click="PostamatItalia_Click" />
+            <Button Content="Estero" Click="PostamatEstero_Click" />
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-            &#32;<Bold>- BancoPosta Classica<LineBreak/>
-                - BancoPosta Oro o CREDit-easy</Bold> &#32;
+            <Bold>- BancoPosta Classica<LineBreak/>
+                - BancoPosta Oro o CREDit-easy</Bold>
             </TextBlock>
-            <Button Content="Italia" Click="Italia_Click" />
-            <Button Content="Estero" Click="Estero_Click" />
+            <Button Content="Italia" Click="BancoPostaItalia_Click" />
+            <Button Content="Estero" Click="BancoPostaEstero_Click" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

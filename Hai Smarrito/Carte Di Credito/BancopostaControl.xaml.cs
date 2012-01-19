@@ -19,14 +19,35 @@ namespace NientePanico.Carte_Di_Credito
             InitializeComponent();
         }
 
-        private void Italia_Click(object sender, RoutedEventArgs e)
+        private void PostePayItalia_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Estero_Click(object sender, RoutedEventArgs e)
+        private void PostePayEstero_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+        private void PostamatItalia_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PostamatEstero_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BancoPostaItalia_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BancoPostaEstero_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

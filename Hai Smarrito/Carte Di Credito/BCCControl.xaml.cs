@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using NientePanico.Helpers;
 
 namespace NientePanico.Carte_Di_Credito
 {
@@ -19,14 +20,34 @@ namespace NientePanico.Carte_Di_Credito
             InitializeComponent();
         }
 
-        private void Italia_Click(object sender, RoutedEventArgs e)
+        private void BccItalia_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("Bcc Italia", "800086531");
         }
 
-        private void Estero_Click(object sender, RoutedEventArgs e)
+        private void BccEstero_Click(object sender, RoutedEventArgs e)
         {
+            CallHelper.Call("Bcc Estero", "00390687419901");
+        }
 
+        private void VisaItalia_Click(object sender, RoutedEventArgs e)
+        {
+            CallHelper.Call("Visa Italia", "800086530");
+        }
+
+        private void VisaEstero_Click(object sender, RoutedEventArgs e)
+        {
+            CallHelper.Call("Visa Estero", "00390647825280");
+        }
+
+        private void MastercadItalia_Click(object sender, RoutedEventArgs e)
+        {
+            CallHelper.Call("Mastercard Italia", "800904470");
+        }
+
+        private void MastercardEstero_Click(object sender, RoutedEventArgs e)
+        {
+            CallHelper.Call("Mastercard Estero", "00390260843760");
         }
     }
 }

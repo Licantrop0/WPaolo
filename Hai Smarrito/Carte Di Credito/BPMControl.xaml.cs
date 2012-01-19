@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using NientePanico.Helpers;
 
 namespace NientePanico.Carte_Di_Credito
 {
@@ -21,12 +22,12 @@ namespace NientePanico.Carte_Di_Credito
 
         private void Italia_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("BPM Italia", "800207167");
         }
 
         private void Estero_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("BPM Estero", "00390432744106");
         }
     }
 }

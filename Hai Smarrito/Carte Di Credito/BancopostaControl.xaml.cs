@@ -40,11 +40,5 @@ namespace NientePanico.Carte_Di_Credito
         {
             CallHelper.Call("BancoPostaEstero", "00390432744106");
         }
-
-        private void Italia_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }

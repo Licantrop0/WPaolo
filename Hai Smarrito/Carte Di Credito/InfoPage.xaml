@@ -7,6 +7,8 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+	xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
@@ -50,21 +52,96 @@
 			<StackPanel Margin="12,0">
 				<TextBlock Style="{StaticResource DescriptionTextStyle}">
 					È importante sapere che è possibile procedere al blocco
-                    di tutte le proprie Carte di pagamento anche&#32;
-                    <Bold>rivolgendosi alla propria agenzia</Bold>&#32;
+					di tutte le proprie Carte di pagamento anche&#32;
+					<Bold>rivolgendosi alla propria agenzia</Bold>&#32;
 					(banca, posta o istituto di credito),&#32;
 					<Bold>per telefono o andandoci personalmente</Bold>.
 					<LineBreak />
 					Nell’elenco delle&#32;<Bold>Carte di Credito</Bold>&#32;
 					sono presenti alcune tra le più utilizzate in circolazione,
 					se la Carta in vostro possesso non dovesse trovarsi in questo elenco,
-                    non preoccupatevi, potete ugualmente procedere al blocco telefonando
-                    direttamente al circuito della vostra Carta.
+					non preoccupatevi, potete ugualmente procedere al blocco telefonando
+					direttamente al circuito della vostra Carta.
 					<LineBreak />
 					L’unica cosa da sapere, quindi, è a quale dei seguenti circuiti appartiene la vostra carta:
+				</TextBlock>
+				<toolkit:WrapPanel HorizontalAlignment="Center"
+						   toolkit:TiltEffect.IsTiltEnabled="True">
+					<!--American Express-->
+					<Button Style="{StaticResource ButtonStyle}">
+						<StackPanel>
+							<Image Source="/NientePanico;component/Images/Cards/amex.png" />
+							<TextBlock Text="American Express" Style="{StaticResource TileText}" />
+						</StackPanel>
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Click">
+								<ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=0"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+					</Button>
+
+					<!--Visa-->
+					<Button Style="{StaticResource ButtonStyle}">
+						<StackPanel>
+							<Image Source="/NientePanico;component/Images/Cards/visa.png" />
+							<TextBlock Text="Visa" Style="{StaticResource TileText}" />
+						</StackPanel>
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Click">
+								<ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=1"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+					</Button>
+
+					<!--Mastercard-->
+					<Button Style="{StaticResource ButtonStyle}">
+						<StackPanel>
+							<Image Source="/NientePanico;component/Images/Cards/mastercard.png" />
+							<TextBlock Text="Mastercard" Style="{StaticResource TileText}" />
+						</StackPanel>
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Click">
+								<ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=2"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+					</Button>
+
+					<!--Diners Club-->
+					<Button Style="{StaticResource ButtonStyle}">
+						<StackPanel>
+							<Image Source="/NientePanico;component/Images/Cards/dinersclub.png" />
+							<TextBlock Text="Diners Club" Style="{StaticResource TileText}" />
+						</StackPanel>
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Click">
+								<ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=3"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+					</Button>
+
+				</toolkit:WrapPanel>
+				<TextBlock Style="{StaticResource DescriptionTextStyle}">
+					• Quando si telefona per richiedere il
+					blocco della Carta di Credito annotatevi
+					la data, l’ora, il nome della persona
+					addetta al blocco della carta e, se è
+					previsto, anche il codice del blocco.
+					<LineBreak />
+					• Dopo aver predisposto il blocco della
+					carta ci si deve recare immediatamente
+					presso l’Ufficio di Polizia del nostro
+					Comune di appartenenza (Polizia di
+					Stato o Carabinieri o Polizia Comunale,
+					&#32;<Bold>all’estero presso un ufficio di Polizia
+					locale</Bold>) per presentare una denuncia di
+					furto o di smarrimento della stessa.
+					Il passo successivo prevede la
+					consegna di una copia della denuncia
+					all’agenzia (banca, posta o istituto di
+					credito) presso cui avete il conto corrente.
 				</TextBlock>
 			</StackPanel>
 		</ScrollViewer>
 	</Grid>
- 
+
 </phone:PhoneApplicationPage>

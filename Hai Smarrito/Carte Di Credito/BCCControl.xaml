@@ -14,19 +14,18 @@
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
                 Blocca tutti i tipi di carte &#32;
-                <Bold>Bcc*</Bold>&#32;
-                a seconda di dove ti trovi:
+                <Bold>Bcc*</Bold>&#32;a seconda di dove ti trovi:
             </TextBlock>
 
             <Button Content="Italia" Click="BccItalia_Click" />
             <Button Content="Estero" Click="BccEstero_Click" />
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                *In caso di carta Bcc "<Bold>Prepagata Visa</Bold>"&#32;
+                *In caso di carta Bcc "<Bold>Prepagata Visa</Bold>
             </TextBlock>
             <Button Content="Italia" Click="VisaItalia_Click" />
             <Button Content="Estero" Click="VisaEstero_Click" />
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                *In caso di carta Bcc "<Bold>Prepagata Mastercard</Bold>"&#32;
+                *In caso di carta Bcc "<Bold>Prepagata Mastercard</Bold>
             </TextBlock>
             <Button Content="Italia" Click="MastercardItalia_Click" />
             <Button Content="Estero" Click="MastercardEstero_Click" />

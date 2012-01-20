@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using NientePanico.Helpers;
 
 namespace NientePanico.Carte_Di_Credito
@@ -40,7 +31,7 @@ namespace NientePanico.Carte_Di_Credito
             CallHelper.Call("Visa Estero", "00390647825280");
         }
 
-        private void MastercadItalia_Click(object sender, RoutedEventArgs e)
+        private void MastercardItalia_Click(object sender, RoutedEventArgs e)
         {
             CallHelper.Call("Mastercard Italia", "800904470");
         }

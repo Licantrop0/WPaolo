@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using NientePanico.Helpers;
 
 namespace NientePanico.Carte_Di_Credito
 {
@@ -19,14 +20,15 @@ namespace NientePanico.Carte_Di_Credito
             InitializeComponent();
         }
 
-        private void Italia_Click(object sender, RoutedEventArgs e)
+        private void PayPalItalia_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("PayPal Italia", "800822056");
         }
 
-        private void Estero_Click(object sender, RoutedEventArgs e)
+        private void PayPalEstero_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("PayPal Italia", "00390245403768");
         }
+
     }
 }

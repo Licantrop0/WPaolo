@@ -18,12 +18,8 @@
                 a seconda di dove ti trovi:
             </TextBlock>
 
-            <Button Content="Italia" Click="Italia_Click" />
-            <Button Content="Estero" Click="Estero_Click" />
-
-            <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                bla bla&#32;<Bold>bla bla</Bold>&#32;
-            </TextBlock>
+            <Button Content="Italia" Click="IntesaItalia_Click" />
+            <Button Content="Estero" Click="IntesaEstero_Click" />
 
         </StackPanel>
     </ScrollViewer>

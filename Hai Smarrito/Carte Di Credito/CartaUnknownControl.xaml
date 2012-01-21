@@ -14,14 +14,34 @@
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                Blocca tutti i tipi di carte del circuito&#32;
-                <Bold>booh</Bold>
+                È importante sapere che è possibile procedere al blocco di tutte le proprie
+                Carte di pagamento anche&#32;
+                <Bold>rivolgendosi alla propria agenzia</Bold>&#32;(banca, posta o istituto di credito),
+                per telefono o andandoci personalmente. <LineBreak /><LineBreak />
+                Nell'elenco delle carte di credito sono presenti alcune tra le più utilizzate in circolazione,
+                 se la Carta in vostro possesso non dovesse trovarsi in questo elenco, non preoccupatevi,
+                potete ugualmente procedere al blocco telefonando direttamente al circuito
+                della vostra Carta.<LineBreak />
+                L'unica cosra da sapere, quindi, è a quale dei seguenti circuiti appartiene la vostra Carta:<LineBreak />
+                
             </TextBlock>
 
-            <Button Content="bottone" />
+            <Button Content="Visa" />
+            <Button Content="MasterCard" />
+            <Button Content="American Express" />
+            <Button Content="Diners Club" />
 
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                bla bla&#32;<Bold>bla bla</Bold>
+                Quando si telefona per richiedere il blocco della Carta di Credito <LineBreak />
+                annotatevi la data, l'ora, il nome della persona addetta al blocco e,
+                se è previsto, anche il codice di blocco. <LineBreak /><LineBreak />
+                Dopo aver predisposto il blocco della Carta, ci si deve recare immediatamente presso
+                l'ufficio di Polizia del nostro Comune di appartenenza (Polizia di Stato o 
+                Carabinieri o Polizia Comunale, all'estero presso un ufficio di Polizia locale)
+                per presentare una denuncia di furto o di smarrimento della stessa.
+                Il passo successivo prevede la consegna di una copia della denuncia
+                all'agenzia (banca, posta o istituto di credito) presso cui avere il conto corrente.
+                
             </TextBlock>
 
         </StackPanel>

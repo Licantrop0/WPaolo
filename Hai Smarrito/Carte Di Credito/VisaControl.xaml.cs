@@ -15,12 +15,12 @@ namespace NientePanico.Carte_Di_Credito
 
         private void Italia_Click(object sender, RoutedEventArgs e)
         {
-            CallHelper.Call("Visa Italia", "800 383838383");
+            CallHelper.Call("Visa Italia", "800819014");
         }
 
         private void AreaCaraibica_Click(object sender, RoutedEventArgs e)
         {
-            CallHelper.Call("Visa Area Caraibica", "800 383838383");
+            CallHelper.Call("Visa Area Caraibica", "18008472911");
         }
     }
 }

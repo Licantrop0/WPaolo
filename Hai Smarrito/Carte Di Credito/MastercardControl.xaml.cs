@@ -13,12 +13,12 @@ namespace NientePanico.Carte_Di_Credito
 
         private void Italia_Click(object sender, RoutedEventArgs e)
         {
-            CallHelper.Call("Mastercard Italia", "800 383838383");
+            CallHelper.Call("Mastercard Italia", "800870866");
         }
 
         private void AreaCaraibica_Click(object sender, RoutedEventArgs e)
         {
-            CallHelper.Call("Mastercard Area Caraibica", "800 383838383");
+            CallHelper.Call("Mastercard Area Caraibica", "18003077309");
         }
     }
 }

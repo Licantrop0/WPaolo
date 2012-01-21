@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using NientePanico.Helpers;
 
 namespace NientePanico.Carte_Di_Credito
 {
@@ -19,19 +20,19 @@ namespace NientePanico.Carte_Di_Credito
             InitializeComponent();
         }
 
-        private void Italia_Click(object sender, RoutedEventArgs e)
+        private void CartasiItalia_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("Cartasi Italia", "800151616");
         }
 
-        private void Estero_Click(object sender, RoutedEventArgs e)
+        private void CartasiEstero_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("Cartasi Estero", "00390234980020");
         }
 
-        private void USA_Click(object sender, RoutedEventArgs e)
+        private void CartasiUSA_Click(object sender, RoutedEventArgs e)
         {
-
+            CallHelper.Call("Cartasi USA", "18004736896");
         }
     }
 }

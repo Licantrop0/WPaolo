@@ -13,12 +13,12 @@ namespace NientePanico.Smarrimenti
 
         private void Italia_Click(object sender, RoutedEventArgs e)
         {
-            CallHelper.Call("Telepass Italia", "000000");
+            CallHelper.Call("Telepass Italia", "840043043");
         }
 
         private void Estero_Click(object sender, RoutedEventArgs e)
         {
-            CallHelper.Call("Telepass Estero", "000000");
+            CallHelper.Call("Telepass Estero", "0039064353333");
         }
     }
 }

@@ -24,7 +24,7 @@
             <Button Content="Estero*" Click="Estero_Click" />
             
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                In caso di problemi, utilizzare il numero della voce&#32;
+                *In caso di problemi, utilizzare il numero della voce&#32;
                 <Bold>Altri paesi non in elenco</Bold>&#32;
                 per qualsiasi Paese in cui vi troviate.
                 <LineBreak />

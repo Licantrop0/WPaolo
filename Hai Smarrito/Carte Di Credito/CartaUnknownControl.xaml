@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -23,13 +24,62 @@
                 potete ugualmente procedere al blocco telefonando direttamente al circuito
                 della vostra Carta.<LineBreak />
                 L'unica cosra da sapere, quindi, è a quale dei seguenti circuiti appartiene la vostra Carta:<LineBreak />
-                
             </TextBlock>
 
-            <Button Content="Visa" />
-            <Button Content="MasterCard" />
-            <Button Content="American Express" />
-            <Button Content="Diners Club" />
+            <toolkit:WrapPanel HorizontalAlignment="Center"
+                           toolkit:TiltEffect.IsTiltEnabled="True">
+                <!--American Express-->
+                <Button Style="{StaticResource ButtonStyle}">
+                    <StackPanel>
+                        <Image Source="/NientePanico;component/Images/Cards/amex.png" />
+                        <TextBlock Text="American Express" Style="{StaticResource TileText}" />
+                    </StackPanel>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=0"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <!--Visa-->
+                <Button Style="{StaticResource ButtonStyle}">
+                    <StackPanel>
+                        <Image Source="/NientePanico;component/Images/Cards/visa.png" />
+                        <TextBlock Text="Visa" Style="{StaticResource TileText}" />
+                    </StackPanel>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=1"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <!--Mastercard-->
+                <Button Style="{StaticResource ButtonStyle}">
+                    <StackPanel>
+                        <Image Source="/NientePanico;component/Images/Cards/mastercard.png" />
+                        <TextBlock Text="Mastercard" Style="{StaticResource TileText}" />
+                    </StackPanel>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=2"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <!--Diners Club-->
+                <Button Style="{StaticResource ButtonStyle}">
+                    <StackPanel>
+                        <Image Source="/NientePanico;component/Images/Cards/dinersclub.png" />
+                        <TextBlock Text="Diners Club" Style="{StaticResource TileText}" />
+                    </StackPanel>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ec:NavigateToPageAction TargetPage="/Carte Di Credito/CartePage.xaml?id=3"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </toolkit:WrapPanel>
 
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
                 Quando si telefona per richiedere il blocco della Carta di Credito <LineBreak />

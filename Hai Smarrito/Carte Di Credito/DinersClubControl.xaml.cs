@@ -13,12 +13,12 @@ namespace NientePanico.Carte_Di_Credito
 
         private void Italia_Click(object sender, RoutedEventArgs e)
         {
-            CallHelper.Call("Diners Club Italia", "800 383838383");
+            CallHelper.Call("Diners Club Italia", "800393939");
         }
 
         private void Estero_Click(object sender, RoutedEventArgs e)
         {
-            CallHelper.Call("Diners Club Estero", "800 383838383");
+            CallHelper.Call("Diners Club Estero", "00390232162656");
         }
 
     }

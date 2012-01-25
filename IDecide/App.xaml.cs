@@ -1,12 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using IDecide.ViewModel;
 
 namespace IDecide
 {
@@ -47,29 +42,11 @@ namespace IDecide
             InitializePhoneApplication();
         }
 
-        private static void LoadGroups()
-        {
-            if (!IsolatedStorageSettings.ApplicationSettings.Contains("choices_group"))
-                IsolatedStorageSettings.ApplicationSettings.Add("choices_group", new ObservableCollection<ChoiceGroupViewModel>());
-
-            var groups = IsolatedStorageSettings.ApplicationSettings["choices_group"] as ObservableCollection<ChoiceGroupViewModel>;
-
-            if (groups.Any())
-                AppContext.Groups = groups;
-            else
-                AppContext.Groups = AppContext.GetDefaultChoices();
-        }
-
-        private static void SaveGroup()
-        {
-            IsolatedStorageSettings.ApplicationSettings["choices_group"] = AppContext.Groups;
-        }
-
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            LoadGroups();
+            AppContext.LoadData();
         }
 
 
@@ -79,7 +56,7 @@ namespace IDecide
         {
             if (!e.IsApplicationInstancePreserved)
             {
-                LoadGroups();
+                AppContext.LoadData();
             }
         }
 
@@ -87,14 +64,14 @@ namespace IDecide
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
-            SaveGroup();
+            AppContext.PersistData();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-            SaveGroup();
+            AppContext.PersistData();
         }
 
         // Code to execute if a navigation fails

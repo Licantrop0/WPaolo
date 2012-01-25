@@ -12,7 +12,8 @@ namespace IDecide.Sounds
                 _crowSound = SoundEffect.FromStream(App.GetResourceStream(
                     new Uri("Sounds\\crow.wav", UriKind.Relative)).Stream).CreateInstance();
 
-            _crowSound.Play();
+            if (AppContext.SoundEnabled)
+                _crowSound.Play();
         }
         public static void StopCrow()
         {
@@ -29,7 +30,8 @@ namespace IDecide.Sounds
                 _dingSound = SoundEffect.FromStream(App.GetResourceStream(
                     new Uri("Sounds\\ding.wav", UriKind.Relative)).Stream);
 
-            _dingSound.Play();
+            if (AppContext.SoundEnabled)
+                _dingSound.Play();
         }
     }
 }

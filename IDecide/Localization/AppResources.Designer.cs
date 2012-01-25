@@ -195,6 +195,15 @@ namespace IDecide.Localization {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
         public static byte[] Shake {
             get {
                 object obj = ResourceManager.GetObject("Shake", resourceCulture);
@@ -203,11 +212,20 @@ namespace IDecide.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For the man who never has to decide!.
+        ///   Looks up a localized string similar to Sound Effects.
         /// </summary>
-        public static string SubTitle {
+        public static string SoundEffects {
             get {
-                return ResourceManager.GetString("SubTitle", resourceCulture);
+                return ResourceManager.GetString("SoundEffects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vibration.
+        /// </summary>
+        public static string Vibration {
+            get {
+                return ResourceManager.GetString("Vibration", resourceCulture);
             }
         }
     }

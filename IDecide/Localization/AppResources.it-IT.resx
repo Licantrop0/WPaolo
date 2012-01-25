@@ -138,9 +138,6 @@
   <data name="Save" xml:space="preserve">
     <value>Salva</value>
   </data>
-  <data name="SubTitle" xml:space="preserve">
-    <value>Per l'uomo che non deve decidere mai!</value>
-  </data>
   <data name="ClearChoices" xml:space="preserve">
     <value>Cancella le scelte</value>
   </data>
@@ -170,5 +167,14 @@
   </data>
   <data name="RemoveGroup" xml:space="preserve">
     <value>Vuoi rimuovere il gruppo {0}?</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="SoundEffects" xml:space="preserve">
+    <value>Effetti Sonori</value>
+  </data>
+  <data name="Vibration" xml:space="preserve">
+    <value>Vibrazione</value>
   </data>
 </root>

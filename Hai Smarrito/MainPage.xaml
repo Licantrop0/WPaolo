@@ -40,9 +40,10 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <TextBlock Text="Niente Panico" Grid.Row="0" Margin="24,0"
-                   Style="{StaticResource PhoneTextTitle1Style}" />
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Niente Panico!" Style="{StaticResource PhoneTextTitle1Style}" />            
+             <TextBlock Text="Che cosa hai smarrito?" Style="{StaticResource PhoneTextNormalStyle}"/>
+       </StackPanel>
 
         <ScrollViewer Grid.Row="1">
             <toolkit:WrapPanel HorizontalAlignment="Center"
@@ -56,7 +57,7 @@
                     </i:Interaction.Triggers>
                     <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Carta di Credito"  Style="{StaticResource TileText}" />
+                        <TextBlock Text="Carta di Credito"  Style="{StaticResource TileTextStyle}" />
                     </StackPanel>
                 </Button>
 
@@ -68,7 +69,7 @@
                     </i:Interaction.Triggers>
                     <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Bancomat" Style="{StaticResource TileText}" />
+                        <TextBlock Text="Bancomat" Style="{StaticResource TileTextStyle}" />
                     </StackPanel>
                 </Button>
 
@@ -80,7 +81,7 @@
                     </i:Interaction.Triggers>
                     <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Carta d'identità" Style="{StaticResource TileText}" />
+                        <TextBlock Text="Carta d'identità" Style="{StaticResource TileTextStyle}" />
                     </StackPanel>
                 </Button>
 
@@ -92,7 +93,7 @@
                     </i:Interaction.Triggers>
                     <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Passaporto" Style="{StaticResource TileText}" />
+                        <TextBlock Text="Passaporto" Style="{StaticResource TileTextStyle}" />
                     </StackPanel>
                 </Button>
 
@@ -104,7 +105,7 @@
                     </i:Interaction.Triggers>
                     <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Patente" Style="{StaticResource TileText}" />
+                        <TextBlock Text="Patente" Style="{StaticResource TileTextStyle}" />
                     </StackPanel>
                 </Button>
 
@@ -116,7 +117,7 @@
                     </i:Interaction.Triggers>
                     <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Codice Fiscale" Style="{StaticResource TileText}" />
+                        <TextBlock Text="Codice Fiscale" Style="{StaticResource TileTextStyle}" />
                     </StackPanel>
                 </Button>
 
@@ -128,7 +129,7 @@
                     </i:Interaction.Triggers>
                     <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Libretto Assegni" Style="{StaticResource TileText}" />
+                        <TextBlock Text="Libretto Assegni" Style="{StaticResource TileTextStyle}" />
                     </StackPanel>
                 </Button>
 
@@ -140,12 +141,25 @@
                     </i:Interaction.Triggers>
                     <StackPanel>
                         <Image Source="Images\carte.png" />
-                        <TextBlock Text="Telepass / Viacard" Style="{StaticResource TileText}" />
+                        <TextBlock Text="Telepass / Viacard" Style="{StaticResource TileTextStyle}" />
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource ButtonStyle}" Width="388" HorizontalContentAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ec:NavigateToPageAction TargetPage="/PasswordPage.xaml"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <StackPanel>
+                        <Image Source="Images\carte.png" Height="100" />
+                        <TextBlock Text="Aggiungi le tue Info" VerticalAlignment="Bottom"
+                                   Style="{StaticResource TileTextStyle}" />
                     </StackPanel>
                 </Button>
             </toolkit:WrapPanel>
         </ScrollViewer>
-        
+
         <StackPanel Name="AdPlaceHolder" Grid.Row="2" />
     </Grid>
 

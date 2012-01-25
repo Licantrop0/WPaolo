@@ -11,6 +11,7 @@ using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ShakeGestures;
+using Microsoft.Devices;
 
 namespace IDecide
 {
@@ -38,16 +39,14 @@ namespace IDecide
             CrowAnimation.Stop();
             SoundManager.StopCrow();
             SoundManager.PlayDing();
-
-            CloudAppearStoryboard.Begin();
-            LampAppearStoryboard.Begin();
-        }
-
-        private void AppearCloud_Completed(object sender, EventArgs e)
-        {
             tmr.Stop();
             tmr.Start();
             AnswerTextBlock.Text = AppContext.GetRandomChoice();
+            
+            if(AppContext.VibrationEnabled)
+                VibrateController.Default.Start(TimeSpan.FromMilliseconds(100));
+
+            CloudAppearStoryboard.Begin();
         }
 
         private void CrowStoryboard_Completed(object sender, EventArgs e)
@@ -68,6 +67,15 @@ namespace IDecide
                 NavigationService.Navigate(new Uri("/View/ChoicesGroupPage.xaml", UriKind.Relative));
             };
             ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
+
+            var SettingsAppBarMenuItem = new ApplicationBarMenuItem();
+            SettingsAppBarMenuItem.Text = AppResources.Settings;
+            SettingsAppBarMenuItem.Click += (sender, e) =>
+            {
+                NavigationService.Navigate(new Uri("/View/SettingsPage.xaml", UriKind.Relative));
+            };
+            ApplicationBar.MenuItems.Add(SettingsAppBarMenuItem);
+
 
             var AboutAppBarMenuItem = new ApplicationBarMenuItem();
             AboutAppBarMenuItem.Text = AppResources.About;

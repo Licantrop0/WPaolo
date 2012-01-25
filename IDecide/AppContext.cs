@@ -4,12 +4,15 @@ using System.Linq;
 using IDecide.Localization;
 using IDecide.ViewModel;
 using System;
+using System.IO.IsolatedStorage;
 
 namespace IDecide
 {
     public static class AppContext
     {
         public static ObservableCollection<ChoiceGroupViewModel> Groups { get; set; }
+        public static bool SoundEnabled { get; set; }
+        public static bool VibrationEnabled { get; set; }
 
         public static string GetRandomChoice()
         {
@@ -32,6 +35,34 @@ namespace IDecide
             return selectedChoices[rnd.Next(selectedChoices.Count)];
                 
         }
+
+        internal static void LoadData()
+        {
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains("choices_group"))
+                IsolatedStorageSettings.ApplicationSettings.Add("choices_group", new ObservableCollection<ChoiceGroupViewModel>());
+
+            var groups = (ObservableCollection<ChoiceGroupViewModel>)IsolatedStorageSettings.ApplicationSettings["choices_group"];
+            if (groups.Any())
+                Groups = groups;
+            else
+                Groups = GetDefaultChoices();
+
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains("sound_enabled"))
+                IsolatedStorageSettings.ApplicationSettings.Add("sound_enabled", true);
+            SoundEnabled = (bool)IsolatedStorageSettings.ApplicationSettings["sound_enabled"];
+
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains("vibration_enabled"))
+                IsolatedStorageSettings.ApplicationSettings.Add("vibration_enabled", true);
+            VibrationEnabled = (bool)IsolatedStorageSettings.ApplicationSettings["vibration_enabled"];
+        }
+
+        internal static void PersistData()
+        {
+            IsolatedStorageSettings.ApplicationSettings["choices_group"] = Groups;
+            IsolatedStorageSettings.ApplicationSettings["sound_enabled"] = SoundEnabled;
+            IsolatedStorageSettings.ApplicationSettings["vibration_enabled"] = VibrationEnabled;
+        }
+
 
         public static ObservableCollection<ChoiceGroupViewModel> GetDefaultChoices()
         {

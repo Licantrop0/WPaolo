@@ -14,28 +14,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
+    Style="{StaticResource SlidePage}"
     shell:SystemTray.IsVisible="True" >
-
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideDownFadeIn" />
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideUpFadeOut" />
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
@@ -63,7 +43,7 @@
             <controls:PivotItem Header="Passaporto">
                 <sm:PassaportoControl />
             </controls:PivotItem>
-            
+
             <!--Patente-->
             <controls:PivotItem Header="Patente">
                 <sm:PatenteControl />
@@ -86,7 +66,7 @@
         </controls:Pivot>
         <StackPanel Name="AdPlaceHolder" Grid.Row="1" />
     </Grid>
-    
+
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" >
             <shell:ApplicationBarIconButton

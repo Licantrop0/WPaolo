@@ -71,7 +71,7 @@
 					<Button Style="{StaticResource ButtonStyle}">
 						<StackPanel>
 							<Image Source="/NientePanico;component/Images/Cards/amex.png" />
-							<TextBlock Text="American Express" Style="{StaticResource TileText}" />
+							<TextBlock Text="American Express" Style="{StaticResource TileTextStyle}" />
 						</StackPanel>
 						<i:Interaction.Triggers>
 							<i:EventTrigger EventName="Click">
@@ -84,7 +84,7 @@
 					<Button Style="{StaticResource ButtonStyle}">
 						<StackPanel>
 							<Image Source="/NientePanico;component/Images/Cards/visa.png" />
-							<TextBlock Text="Visa" Style="{StaticResource TileText}" />
+							<TextBlock Text="Visa" Style="{StaticResource TileTextStyle}" />
 						</StackPanel>
 						<i:Interaction.Triggers>
 							<i:EventTrigger EventName="Click">
@@ -97,7 +97,7 @@
 					<Button Style="{StaticResource ButtonStyle}">
 						<StackPanel>
 							<Image Source="/NientePanico;component/Images/Cards/mastercard.png" />
-							<TextBlock Text="Mastercard" Style="{StaticResource TileText}" />
+							<TextBlock Text="Mastercard" Style="{StaticResource TileTextStyle}" />
 						</StackPanel>
 						<i:Interaction.Triggers>
 							<i:EventTrigger EventName="Click">
@@ -110,7 +110,7 @@
 					<Button Style="{StaticResource ButtonStyle}">
 						<StackPanel>
 							<Image Source="/NientePanico;component/Images/Cards/dinersclub.png" />
-							<TextBlock Text="Diners Club" Style="{StaticResource TileText}" />
+							<TextBlock Text="Diners Club" Style="{StaticResource TileTextStyle}" />
 						</StackPanel>
 						<i:Interaction.Triggers>
 							<i:EventTrigger EventName="Click">

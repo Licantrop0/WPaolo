@@ -6,8 +6,8 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"  
- xmlns:vm="clr-namespace:IDecide.ViewModel"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:vm="clr-namespace:IDecide.ViewModel"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -28,16 +28,17 @@
 
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
-                       Style="{StaticResource PhoneTextNormalStyle}" />
+                       Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource DefaultForeground}" />
             <TextBlock Text="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
-                       Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+                       Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"
+                       Foreground="{StaticResource DefaultForeground}" FontFamily="{StaticResource DefaultFont}" />
         </StackPanel>
 
         <StackPanel Margin="12,0" Grid.Row="1">
             <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SoundEffects, Source={StaticResource LocalizedStrings}}"
-                                  IsChecked="{Binding SoundEnabled, Mode=TwoWay}" />
+                                  IsChecked="{Binding SoundEnabled, Mode=TwoWay}" Foreground="White" />
             <toolkit:ToggleSwitch Header="{Binding LocalizedResources.Vibration, Source={StaticResource LocalizedStrings}}"
-                                  IsChecked="{Binding VibrationEnabled, Mode=TwoWay}" />
+                                  IsChecked="{Binding VibrationEnabled, Mode=TwoWay}" Foreground="White" />
         </StackPanel>
         
     </Grid>

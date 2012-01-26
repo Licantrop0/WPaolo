@@ -17,9 +17,8 @@
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="OpeningStoryboard">
             <DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="IDecide_LogoImage" d:IsOptimized="True"/>
-            <DoubleAnimation Duration="0:0:0.5" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="DecideButton" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:0.5" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ButtonPanel" d:IsOptimized="True"/>
         </Storyboard>
-
         <Storyboard x:Name="CloudAppearStoryboard" FillBehavior="Stop">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LampImage">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
@@ -67,7 +66,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:5.6" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:6" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            
+
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Man_ThinkingImage">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
@@ -75,14 +74,13 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:5.0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:6" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
-            
+
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Question_MarkImage">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:5.6" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:6" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-
         <Storyboard x:Name="CrowStoryboard" Completed="CrowStoryboard_Completed">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)"
                                            Storyboard.TargetName="CrowGrid" FillBehavior="Stop">
@@ -124,31 +122,13 @@
                    Source="/IDecide;component/Images/IDecide_logo.png"
                    Canvas.Left="14" Canvas.Top="6" />
 
-            <!--Omino-->
-            <Grid Canvas.Left="170" Canvas.Top="357"
-                  MouseLeftButtonDown="ManGrid_MouseLeftButtonDown">
-                <Image x:Name="Man_ThinkingImage" Stretch="None"
-                       Source="/IDecide;component/Images/man1.png" />
-                <Image x:Name="Man_IdeaImage" Stretch="None"
-                       Source="/IDecide;component/Images/man2.png"
-                       Opacity="0"/>
-            </Grid>
-
-            <!--Dubbio o Idea-->
-            <Image x:Name="Question_MarkImage"  Stretch="None"
-                   Source="/IDecide;component/Images/Question_Mark.png"
-                   Canvas.Left="208" Canvas.Top="231" />
-            <Image x:Name="LampImage" Height="109" Canvas.Left="223"
-                   Source="/IDecide;component/Images/lamp.png"
-                   Stretch="Fill" Canvas.Top="226" Width="102" Opacity="0"/>
-
             <!--Nuvoletta-->
             <Image x:Name="Cloud1Image"  Stretch="None" Opacity="0"
                    Source="/IDecide;component/Images/cloud1.png"
-                   Canvas.Left="281" Canvas.Top="319" />
+                   Canvas.Left="281" Canvas.Top="300" />
             <Image x:Name="Cloud2Image"  Stretch="None" Opacity="0"
                    Source="/IDecide;component/Images/cloud2.png"
-                   Canvas.Left="281" Canvas.Top="266" />
+                   Canvas.Left="281" Canvas.Top="260" />
             <Image x:Name="Cloud3Image"  Stretch="None" Opacity="0"
                    Source="/IDecide;component/Images/cloud3.png"
                    Canvas.Left="6" Canvas.Top="31" />
@@ -160,19 +140,44 @@
             		FontFamily="{StaticResource DefaultFont}"
             		FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
             </Grid>
-        </Canvas>
 
-        <Button x:Name="DecideButton"
-                Grid.Row="1" Opacity="0" Click="DecideButton_Click"
+            <!--Dubbio o Idea-->
+            <Grid Canvas.Top="210" Canvas.Left="200">
+                <Image x:Name="Question_MarkImage"  Stretch="None"
+                       Source="/IDecide;component/Images/Question_Mark.png" />
+                <Image x:Name="LampImage" Stretch="None"
+                       Source="/IDecide;component/Images/lamp.png"
+                       Opacity="0" />
+            </Grid>
+            
+            <!--Omino-->
+            <Grid Canvas.Top="328" Canvas.Left="170"
+                  MouseLeftButtonDown="ManGrid_MouseLeftButtonDown">
+                <Image x:Name="Man_ThinkingImage" Stretch="None"
+                       Source="/IDecide;component/Images/man1.png" />
+                <Image x:Name="Man_IdeaImage" Stretch="None"
+                       Source="/IDecide;component/Images/man2.png"
+                       Opacity="0"/>
+            </Grid>
+        </Canvas>
+        <StackPanel Grid.Row="1" Opacity="0" x:Name="ButtonPanel" >
+            <TextBlock Text="{Binding LocalizedResources.AskQuestion,                        
+                        Source={StaticResource LocalizedStrings}}"
+                       TextAlignment="Center"
+                       FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                       FontFamily="{StaticResource DefaultFont}"
+                       Foreground="{StaticResource DefaultForeground}" />
+            <Button Click="DecideButton_Click"
                 toolkit:TiltEffect.IsTiltEnabled="True" >
-            <Button.Template>
-                <ControlTemplate>
-                    <Image Stretch="None" Source="{Binding LocalizedResources.Shake,
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Stretch="None" Source="{Binding LocalizedResources.Shake,
                         Converter={StaticResource ByteArrayToBitmapImageConverter},
                         Source={StaticResource LocalizedStrings}}" Margin="12" />
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
 
         <StackPanel x:Name="AdPlaceHolder" Grid.Row="2" Height="80" />
     </Grid>

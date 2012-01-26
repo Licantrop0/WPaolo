@@ -97,6 +97,15 @@ namespace IDecide.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ask a question and....
+        /// </summary>
+        public static string AskQuestion {
+            get {
+                return ResourceManager.GetString("AskQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {

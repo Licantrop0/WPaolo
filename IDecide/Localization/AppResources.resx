@@ -177,4 +177,7 @@
   <data name="Vibration" xml:space="preserve">
     <value>Vibration</value>
   </data>
+  <data name="AskQuestion" xml:space="preserve">
+    <value>Ask a question and...</value>
+  </data>
 </root>

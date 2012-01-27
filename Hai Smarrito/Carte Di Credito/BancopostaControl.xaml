@@ -13,24 +13,33 @@
     <ScrollViewer Background="{StaticResource PhoneBackgroundBrush}">
         <StackPanel Margin="12,0">
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                Blocca tutti i tipi di carte del circuito 
-                a seconda di dove ti trovi: <LineBreak/><LineBreak/>
-                <Bold>- Postepay standard, Twin, NewGift, Gift, PosteMobile</Bold>&#32;
-                
+                Blocca tutti i tipi di carte di BancoPosta 
+                a seconda di dove ti trovi:<LineBreak/>
+                <LineBreak/>
+                <Bold>
+                    - Postepay standard<LineBreak/>
+                    - PosteMobile<LineBreak/>
+                    - Twin, NewGift, Gift</Bold>
             </TextBlock>
 
             <Button Content="Italia" Click="PostePayItalia_Click" />
             <Button Content="Estero" Click="PostePayEstero_Click" />
 
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-                <Bold>- Postamat Maestro<LineBreak/>
-                - Postamat Click</Bold>
+                <LineBreak/>
+                <Bold>
+                    - Postamat Maestro<LineBreak/>
+                    - Postamat Click
+                </Bold>
             </TextBlock>
             <Button Content="Italia" Click="PostamatItalia_Click" />
             <Button Content="Estero" Click="PostamatEstero_Click" />
             <TextBlock Style="{StaticResource DescriptionTextStyle}">
-            <Bold>- BancoPosta Classica<LineBreak/>
-                - BancoPosta Oro o CREDit-easy</Bold> &#32;
+                <LineBreak/>
+                <Bold>
+                    - BancoPosta Classica<LineBreak/>
+                    - BancoPosta Oro o CREDit-easy
+                </Bold>
             </TextBlock>
             <Button Content="Italia" Click="BancoPostaItalia_Click" />
             <Button Content="Estero" Click="BancoPostaEstero_Click" />

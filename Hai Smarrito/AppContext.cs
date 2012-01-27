@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO.IsolatedStorage;
 using NientePanico.ViewModel;
+using NientePanico.Model;
 
 namespace NientePanico
 {
@@ -9,7 +10,7 @@ namespace NientePanico
     {
         //TODO: Implementare encription
         public static string Password { get; set; }
-        public static ObservableCollection<CardDataViewModel> Cards { get; set; }
+        public static ObservableCollection<CardData> Cards { get; set; }
 
         internal static void SaveData()
         {
@@ -25,9 +26,9 @@ namespace NientePanico
                 Password = (string)IsolatedStorageSettings.ApplicationSettings["password"];
 
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("cards"))
-                IsolatedStorageSettings.ApplicationSettings.Add("cards", new ObservableCollection<CardDataViewModel>());
+                IsolatedStorageSettings.ApplicationSettings.Add("cards", new ObservableCollection<CardData>());
             if(Cards == null)
-                Cards = (ObservableCollection<CardDataViewModel>)IsolatedStorageSettings.ApplicationSettings["cards"];
+                Cards = (ObservableCollection<CardData>)IsolatedStorageSettings.ApplicationSettings["cards"];
         }
 
 

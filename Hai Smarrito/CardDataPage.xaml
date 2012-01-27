@@ -16,12 +16,7 @@
     shell:SystemTray.IsVisible="False"
     BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
-    <phone:PhoneApplicationPage.Resources>
-        <vm:CardDataViewModel x:Key="CardDataVM" />
-    </phone:PhoneApplicationPage.Resources>
-
-    <Grid x:Name="LayoutRoot" Background="Transparent"
-          DataContext="{StaticResource CardDataVM}">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />

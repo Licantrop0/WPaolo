@@ -9,22 +9,22 @@ using WPCommon.Helpers;
 
 namespace NientePanico.ViewModel
 {
- public class CardDataViewModel : INotifyPropertyChanged
- {
-     public CardData CurrentCard { get; set; }
-     public bool IsEditMode { get; set; }
+    public class CardDataViewModel : INotifyPropertyChanged
+    {
+        public CardData CurrentCard { get; set; }
+        public bool IsEditMode { get; set; }
 
-     public CardDataViewModel()
-     {
-         CurrentCard = new CardData();
-         IsEditMode = false;
-     }
+        public CardDataViewModel()
+        {
+            CurrentCard = new CardData();
+            IsEditMode = false;
+        }
 
-     public CardDataViewModel(CardData currentCard)
-     {
-         CurrentCard = currentCard;
-         IsEditMode = true;
-     }
+        public CardDataViewModel(CardData currentCard)
+        {
+            CurrentCard = currentCard;
+            IsEditMode = true;
+        }
 
         private RelayCommand _takePicture;
         public RelayCommand TakePicture
@@ -35,12 +35,12 @@ namespace NientePanico.ViewModel
         private void TakePictureAction(object isFront)
         {
             var cameraCaptureTask = new CameraCaptureTask();
-            cameraCaptureTask.Completed += (sender1, e1) =>
+            cameraCaptureTask.Completed += (sender, e) =>
             {
-                if (e1.TaskResult != TaskResult.OK)
+                if (e.TaskResult != TaskResult.OK)
                     return;
 
-                using (var pic = e1.ChosenPhoto)
+                using (var pic = e.ChosenPhoto)
                 {
                     SetPhoto(pic, bool.Parse(isFront.ToString()));
                 }
@@ -49,28 +49,25 @@ namespace NientePanico.ViewModel
             {
                 cameraCaptureTask.Show();
             }
-            catch (InvalidOperationException) { };
+            catch (InvalidOperationException)
+            { /*non posso farci niente */ };
         }
 
         public void SetPhoto(Stream stream, bool isFront)
         {
-            var ImageName = Guid.NewGuid().ToString();
             var bitmap = new BitmapImage();
             bitmap.SetSource(stream);
-
-            if (isFront)
-            {
+            CurrentCard.CacheImage(stream, isFront);
+            
+            var ImageName = Guid.NewGuid().ToString();
+            if (isFront) //this raise the PropertyChanged
                 CurrentCard.FrontImageName = ImageName;
-                PhotoHelper.SavePhoto(ImageName, bitmap);
-                RaisePropertyChanged("FrontBitmap");
-            }
             else
-            {
                 CurrentCard.BackImageName = ImageName;
-                PhotoHelper.SavePhoto(ImageName, bitmap);
-                RaisePropertyChanged("BackBitmap");
-            }
-        }
+
+            //Actually save the photo to the IsolatedStorage
+            PhotoHelper.SavePhoto(ImageName, bitmap);
+       }
 
 
         #region INotifyPropertyChanged Implementation

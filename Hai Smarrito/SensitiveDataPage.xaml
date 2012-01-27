@@ -41,13 +41,15 @@
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox ItemsSource="{Binding Cards}" >
+            <ListBox Name="CardsListBox" ItemsSource="{Binding Cards}"
+                     SelectionChanged="CardsListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding FrontBitmap}" Margin="12" Width="100" />                        
-                            <TextBlock Text="{Binding Name}" />
-                            
+                            <Image Source="{Binding FrontBitmap}" Margin="6" Width="100" />                        
+                            <TextBlock Text="{Binding Name}" Margin="6" />
+                            <TextBlock Text="{Binding Pin}" Margin="6" />
+                            <TextBlock Text="{Binding Expire}" Margin="6" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

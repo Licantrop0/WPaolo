@@ -9,19 +9,16 @@ namespace NientePanico.ViewModel
 {
     public class SensitiveDataViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<CardDataViewModel> Cards
+        public ObservableCollection<CardData> Cards
         {
             get
             {
                 if (DesignerProperties.IsInDesignTool)
-                    return new ObservableCollection<CardDataViewModel>(new[]
+                    return new ObservableCollection<CardData>(new[]
                     {
-                        new CardDataViewModel(new CardData()
-                        { Name= "Visa Bancomat", Pin="3432", Code="1231231312312", Expire = new DateTime(2015, 3, 23) }),
-                        new CardDataViewModel(new CardData()
-                        { Name= "American Express", Code="4356656654", Expire = new DateTime(2015, 3, 23) }),
-                        new CardDataViewModel(new CardData()
-                        { Name= "Patente", Code="66333", Expire = new DateTime(2013, 2, 2) })
+                        new CardData() { Name= "Visa Bancomat", Pin="3432", Code="1231231312312", Expire = new DateTime(2015, 3, 23) },
+                        new CardData() { Name= "American Express", Code="4356656654", Expire = new DateTime(2015, 3, 23) },
+                        new CardData() { Name= "Patente", Code="66333", Expire = new DateTime(2013, 2, 2) }
                     });
                 else
                     return AppContext.Cards;

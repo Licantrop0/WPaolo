@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using WPCommon.Helpers;
 using Microsoft.Phone.Tasks;
 using System;
+using NientePanico.Model;
 
 namespace NientePanico.ViewModel
 {
@@ -10,36 +11,35 @@ namespace NientePanico.ViewModel
     {
         public ObservableCollection<CardDataViewModel> Cards
         {
-            get { return AppContext.Cards; }
-        }
-
-        private RelayCommand _takePicture;
-        public RelayCommand TakePicture
-        {
-            get { return _takePicture ?? (_takePicture = new RelayCommand(TakePictureAction)); }
-        }
-
-        private void TakePictureAction(object args)
-        {
-            var cameraCaptureTask = new CameraCaptureTask();
-            cameraCaptureTask.Completed += (sender1, e1) =>
+            get
             {
-                if (e1.TaskResult == TaskResult.OK)
-                {
-                    var newCard = new CardDataViewModel();
-                    using (var pic = e1.ChosenPhoto)
+                if (DesignerProperties.IsInDesignTool)
+                    return new ObservableCollection<CardDataViewModel>(new[]
                     {
-                        newCard.SetPhoto(pic);
-                        Cards.Add(newCard);
-                    }
-                }
-            };
-            try
-            {
-                cameraCaptureTask.Show();
+                        new CardDataViewModel(new CardData()
+                        { Name= "Visa Bancomat", Pin="3432", Code="1231231312312", Expire = new DateTime(2015, 3, 23) }),
+                        new CardDataViewModel(new CardData()
+                        { Name= "American Express", Code="4356656654", Expire = new DateTime(2015, 3, 23) }),
+                        new CardDataViewModel(new CardData()
+                        { Name= "Patente", Code="66333", Expire = new DateTime(2013, 2, 2) })
+                    });
+                else
+                    return AppContext.Cards;
             }
-            catch (InvalidOperationException) { };
         }
+
+        private RelayCommand _addDocument;
+        public RelayCommand AddDocument
+        {
+            get { return _addDocument ?? (_addDocument = new RelayCommand(AddDocumentAction)); }
+        }
+
+        private void AddDocumentAction(object args)
+        {
+
+        }
+
+
 
         #region INotifyPropertyChanged Implementation
 

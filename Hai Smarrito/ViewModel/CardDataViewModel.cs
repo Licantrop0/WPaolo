@@ -1,45 +1,75 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Windows.Media.Imaging;
+using Microsoft.Phone.Tasks;
 using NientePanico.Helpers;
+using NientePanico.Model;
+using WPCommon.Helpers;
 
 namespace NientePanico.ViewModel
 {
-    [DataContract]
-    public class CardDataViewModel : INotifyPropertyChanged
-    {
-        [DataMember]
-        public string Name { get; set; }
-        [DataMember]
-        public string Code { get; set; }
-        [DataMember]
-        public DateTime Expire { get; set; }
-        [DataMember]
-        public string ImageName { get; set; }
+ public class CardDataViewModel : INotifyPropertyChanged
+ {
+     public CardData CurrentCard { get; set; }
+     public bool IsEditMode { get; set; }
 
-        private BitmapImage _bitmap;
-        public BitmapImage Bitmap
+     public CardDataViewModel()
+     {
+         CurrentCard = new CardData();
+         IsEditMode = false;
+     }
+
+     public CardDataViewModel(CardData currentCard)
+     {
+         CurrentCard = currentCard;
+         IsEditMode = true;
+     }
+
+        private RelayCommand _takePicture;
+        public RelayCommand TakePicture
         {
-            get
-            {
-                if (_bitmap == null)
-                    _bitmap = PhotoHelper.GetPhoto(ImageName);
-
-                return _bitmap;
-            }
+            get { return _takePicture ?? (_takePicture = new RelayCommand(TakePictureAction)); }
         }
 
-        public bool SetPhoto(Stream stream)
+        private void TakePictureAction(object isFront)
         {
-            var _bitmap = new BitmapImage();
-            _bitmap.SetSource(stream);
-            RaisePropertyChanged("Bitmap");
+            var cameraCaptureTask = new CameraCaptureTask();
+            cameraCaptureTask.Completed += (sender1, e1) =>
+            {
+                if (e1.TaskResult != TaskResult.OK)
+                    return;
 
-            //Salvo la foto nell'IS
-            ImageName = Guid.NewGuid().ToString();
-            return PhotoHelper.SavePhoto(ImageName, _bitmap);
+                using (var pic = e1.ChosenPhoto)
+                {
+                    SetPhoto(pic, bool.Parse(isFront.ToString()));
+                }
+            };
+            try
+            {
+                cameraCaptureTask.Show();
+            }
+            catch (InvalidOperationException) { };
+        }
+
+        public void SetPhoto(Stream stream, bool isFront)
+        {
+            var ImageName = Guid.NewGuid().ToString();
+            var bitmap = new BitmapImage();
+            bitmap.SetSource(stream);
+
+            if (isFront)
+            {
+                CurrentCard.FrontImageName = ImageName;
+                PhotoHelper.SavePhoto(ImageName, bitmap);
+                RaisePropertyChanged("FrontBitmap");
+            }
+            else
+            {
+                CurrentCard.BackImageName = ImageName;
+                PhotoHelper.SavePhoto(ImageName, bitmap);
+                RaisePropertyChanged("BackBitmap");
+            }
         }
 
 

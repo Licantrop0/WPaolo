@@ -37,6 +37,7 @@ namespace NientePanico.Helpers
         public static BitmapImage GetPhoto(string name)
         {
             var photo = new BitmapImage();
+            if (string.IsNullOrEmpty(name)) return photo;
 
             try
             {

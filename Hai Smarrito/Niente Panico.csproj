@@ -81,6 +81,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppContext.cs" />
+    <Compile Include="CardDataPage.xaml.cs">
+      <DependentUpon>CardDataPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Carte Di Credito\AgosControl.xaml.cs">
       <DependentUpon>AgosControl.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Model\CardData.cs" />
     <Compile Include="PasswordPage.xaml.cs">
       <DependentUpon>PasswordPage.xaml</DependentUpon>
     </Compile>
@@ -216,6 +220,10 @@
     </ApplicationDefinition>
     <Page Include="AboutPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CardDataPage.xaml">
+      <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Carte Di Credito\AgosControl.xaml">

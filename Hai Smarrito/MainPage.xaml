@@ -48,6 +48,19 @@
         <ScrollViewer Grid.Row="1">
             <toolkit:WrapPanel HorizontalAlignment="Center"
                                toolkit:TiltEffect.IsTiltEnabled="True">
+                
+                <Button Style="{StaticResource ButtonStyle}" Width="388" HorizontalContentAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ec:NavigateToPageAction TargetPage="/PasswordPage.xaml"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <StackPanel>
+                        <Image Source="Images\carte.png" Height="100" />
+                        <TextBlock Text="Aggiungi o visualizza le tue Info" VerticalAlignment="Bottom"
+                                   Style="{StaticResource TileTextStyle}" />
+                    </StackPanel>
+                </Button>
 
                 <Button Style="{StaticResource ButtonStyle}">
                     <i:Interaction.Triggers>
@@ -142,19 +155,6 @@
                     <StackPanel>
                         <Image Source="Images\carte.png" />
                         <TextBlock Text="Telepass / Viacard" Style="{StaticResource TileTextStyle}" />
-                    </StackPanel>
-                </Button>
-
-                <Button Style="{StaticResource ButtonStyle}" Width="388" HorizontalContentAlignment="Center">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <ec:NavigateToPageAction TargetPage="/PasswordPage.xaml"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <StackPanel>
-                        <Image Source="Images\carte.png" Height="100" />
-                        <TextBlock Text="Aggiungi le tue Info" VerticalAlignment="Bottom"
-                                   Style="{StaticResource TileTextStyle}" />
                     </StackPanel>
                 </Button>
             </toolkit:WrapPanel>

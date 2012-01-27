@@ -4,6 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:NientePanico.ViewModel"
@@ -28,14 +31,24 @@
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="Niente Panico" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Dati Sensibili" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-            <Button Content="Aggiungi foto" Command="{Binding TakePicture}" />
+            <Button Content="Aggiungi Documento o Carta" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ec:NavigateToPageAction TargetPage="/CardDataPage.xaml"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ListBox ItemsSource="{Binding Cards}" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Image Source="{Binding Bitmap}" Margin="12" />                        
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding FrontBitmap}" Margin="12" Width="100" />                        
+                            <TextBlock Text="{Binding Name}" />
+                            
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 

@@ -48,12 +48,15 @@
 
         <DataTemplate x:Key="groupItemTemplate">
             <Border Background="{Binding Converter={StaticResource GroupBackground}}"                    
-                    Margin="6" Height="99" Width="99" >
+                    Margin="6" Padding="8,0,0,0" Height="99" Width="99" >
 
                 <TextBlock Text="{Binding Key}" FontSize="48"
                            VerticalAlignment="Bottom"
                            FontFamily="{StaticResource PhoneFontFamilySemiBold}"
                            Foreground="{Binding Converter={StaticResource GroupForeground}}" />
+                <Border.Projection>
+                    <PlaneProjection RotationX="-60"/>
+                </Border.Projection>
             </Border>
         </DataTemplate>
 
@@ -108,6 +111,8 @@
                 GroupHeaderTemplate="{StaticResource groupHeaderTemplate}"
                 GroupItemTemplate="{StaticResource groupItemTemplate}"
                 GroupItemsPanel="{StaticResource itemsPanel}"
-                ItemTemplate="{StaticResource itemTemplate}"/>
+                ItemTemplate="{StaticResource itemTemplate}"
+                GroupViewOpened="LongListSelector_GroupViewOpened" 
+                GroupViewClosing="LongListSelector_GroupViewClosing" />
     </Grid>
 </phone:PhoneApplicationPage>

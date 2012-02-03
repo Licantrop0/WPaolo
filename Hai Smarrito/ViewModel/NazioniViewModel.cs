@@ -10,14 +10,16 @@ namespace NientePanico.ViewModel
 {
     public class NazioniViewModel : INotifyPropertyChanged
     {
+        private static readonly string letters = "#abcdefghijklmnopqrstuvwxyz";
+
         public string CardType { get; set; }
         public string CreditCardName
         {
             get { return CreditCardHelper.GetName(CardType); }
         }
 
-        private ILookup<char, FlagViewModel> _flags;
-        public ILookup<char, FlagViewModel> Flags
+        private IEnumerable<PublicGrouping<char, FlagViewModel>> _flags;
+        public IEnumerable<PublicGrouping<char, FlagViewModel>> Flags
         {
             get
             {
@@ -40,11 +42,11 @@ namespace NientePanico.ViewModel
                 CardType = "amex";
         }
 
-        private ILookup<char, FlagViewModel> LoadFlags()
+        private IEnumerable<PublicGrouping<char, FlagViewModel>> LoadFlags()
         {
             var CardIndex = CreditCardHelper.GetIndex(CardType);
 
-            return (from de in FlagsResource.ResourceManager
+            var groups = (from de in FlagsResource.ResourceManager
                        .GetResourceSet(CultureInfo.CurrentCulture, true, true)
                        .Cast<DictionaryEntry>()
                     let values = de.Key.ToString().Split('|')
@@ -52,6 +54,11 @@ namespace NientePanico.ViewModel
                     orderby values[0]
                     select new FlagViewModel(values[0], values[CardIndex], (byte[])de.Value))
                    .ToLookup(k => char.ToLower(k.Name[0]), v => v);
+
+            var mancanti = letters.Where(l => !groups.Contains(l));
+            //ora dovrei aggiungere i mancanti alla lista...
+
+            return groups.Select(g => new PublicGrouping<char, FlagViewModel>(g));
         }
 
         #region INPC Implementation

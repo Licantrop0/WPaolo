@@ -39,6 +39,11 @@ namespace NientePanico.ViewModel
             CallHelper.Call(callName, Number);
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         #region INotifyPropertyChanged Implementation
 
         public event PropertyChangedEventHandler PropertyChanged;

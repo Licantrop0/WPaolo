@@ -18,14 +18,14 @@ namespace NientePanico.ViewModel
             get { return CreditCardHelper.GetName(CardType); }
         }
 
-        private IEnumerable<PublicGrouping<char, FlagViewModel>> _flags;
-        public IEnumerable<PublicGrouping<char, FlagViewModel>> Flags
+        private IEnumerable<LLSGroup<FlagViewModel>> _flags;
+        public IEnumerable<LLSGroup<FlagViewModel>> Flags
         {
             get
             {
                 if (_flags == null)
                     _flags = LoadFlags();
-                
+
                 return _flags;
             }
             set
@@ -42,23 +42,21 @@ namespace NientePanico.ViewModel
                 CardType = "amex";
         }
 
-        private IEnumerable<PublicGrouping<char, FlagViewModel>> LoadFlags()
+        private IEnumerable<LLSGroup<FlagViewModel>> LoadFlags()
         {
             var CardIndex = CreditCardHelper.GetIndex(CardType);
 
-            var groups = (from de in FlagsResource.ResourceManager
-                       .GetResourceSet(CultureInfo.CurrentCulture, true, true)
-                       .Cast<DictionaryEntry>()
+            return (from de in FlagsResource.ResourceManager
+                        .GetResourceSet(CultureInfo.CurrentCulture, true, true)
+                        .Cast<DictionaryEntry>()
                     let values = de.Key.ToString().Split('|')
                     where !string.IsNullOrEmpty(values[CardIndex])
-                    orderby values[0]
-                    select new FlagViewModel(values[0], values[CardIndex], (byte[])de.Value))
-                   .ToLookup(k => char.ToLower(k.Name[0]), v => v);
-
-            var mancanti = letters.Where(l => !groups.Contains(l));
-            //ora dovrei aggiungere i mancanti alla lista...
-
-            return groups.Select(g => new PublicGrouping<char, FlagViewModel>(g));
+                    let flag = new FlagViewModel(values[0], values[CardIndex], (byte[])de.Value)
+                    orderby flag.Name //ordino le bandierine per nome
+                    group flag by char.ToLower(flag.Name[0]) into g //le raggruppo per iniziale
+                    select new LLSGroup<FlagViewModel>(g))
+                    .Union(letters.Select(l => new LLSGroup<FlagViewModel>(l))) //ci aggiungo le lettere mancanti
+                    .OrderBy(g => g.Key); //ordino per iniziale del gruppo
         }
 
         #region INPC Implementation

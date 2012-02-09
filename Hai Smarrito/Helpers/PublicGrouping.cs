@@ -11,18 +11,29 @@ namespace NientePanico.Helpers
     /// </summary>
     /// <typeparam name="TKey">The type of the key.</typeparam>
     /// <typeparam name="TElement">The type of the items.</typeparam>
-    public class PublicGrouping<TKey, TElement> : IGrouping<TKey, TElement>
+    public class LLSGroup<T> : IGrouping<char, T>, IEnumerable<T>
     {
-        private readonly IGrouping<TKey, TElement> _internalGrouping;
+        public char Key { get; set; }
+        public bool HasElements { get { return _elements.Any(); } }
 
-        public PublicGrouping(IGrouping<TKey, TElement> internalGrouping)
+        private readonly IEnumerable<T> _elements;
+
+        public LLSGroup(IGrouping<char, T> internalGrouping)
         {
-            _internalGrouping = internalGrouping;
+            Key = internalGrouping.Key;
+            _elements = internalGrouping;
+        }
+
+        public LLSGroup(char key)
+        {
+            //creates an empty group
+            Key = key;
+            _elements = Enumerable.Empty<T>();
         }
 
         public override bool Equals(object obj)
         {
-            PublicGrouping<TKey, TElement> that = obj as PublicGrouping<TKey, TElement>;
+            var that = obj as LLSGroup<T>;
 
             return (that != null) && (this.Key.Equals(that.Key));
         }
@@ -32,29 +43,17 @@ namespace NientePanico.Helpers
             return Key.GetHashCode();
         }
 
-        #region IGrouping<TKey,TElement> Members
-
-        public TKey Key
-        {
-            get { return _internalGrouping.Key; }
-        }
-
-        #endregion
-
-        #region IEnumerable<TElement> Members
-
-        public IEnumerator<TElement> GetEnumerator()
-        {
-            return _internalGrouping.GetEnumerator();
-        }
-
-        #endregion
 
         #region IEnumerable Members
-
+        
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _internalGrouping.GetEnumerator();
+            return _elements.GetEnumerator();
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return _elements.GetEnumerator();
         }
 
         #endregion

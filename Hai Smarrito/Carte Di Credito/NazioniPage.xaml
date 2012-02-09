@@ -48,7 +48,8 @@
 
         <DataTemplate x:Key="groupItemTemplate">
             <Border Background="{Binding Converter={StaticResource GroupBackground}}"                    
-                    Margin="6" Padding="8,0,0,0" Height="99" Width="99" >
+                    Margin="6" Padding="8,0,0,0" Height="99" Width="99"
+                    IsHitTestVisible="{Binding HasElements}">
 
                 <TextBlock Text="{Binding Key}" FontSize="48"
                            VerticalAlignment="Bottom"

@@ -1,23 +1,30 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using SgarbiMix.ViewModel;
+using ShakeGestures;
 using WPCommon.Helpers;
 
 namespace SgarbiMix
 {
     public partial class PlayButtonsPivotPage : PhoneApplicationPage
     {
+        ShakeGesturesHelper Shaker;
+
         public PlayButtonsPivotPage()
         {
             InitializeComponent();
+            InitializeShaker();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            Shaker.Active = true;
+
             if (TrialManagement.IsTrialMode)
                 InitializeAd();
 
@@ -26,6 +33,7 @@ namespace SgarbiMix
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            Shaker.Active = false;
             AdPlaceHolder.Children.Clear();
             base.OnNavigatedFrom(e);
         }
@@ -38,6 +46,27 @@ namespace SgarbiMix
             AdPlaceHolder.Children.Add(
                 new AdControl("c175f6ba-cb10-4fe3-a1de-a96480a03d3a", "10022581", true)
                 { Height = 80, Width = 480 });
+        }
+
+        private void InitializeShaker()
+        {
+            Shaker = ShakeGesturesHelper.Instance;
+            Shaker.ShakeGesture += (sender, e) =>
+            {
+                Shaker.Active = false;
+                var snd = AppContext.GetRandomSound();
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    snd.PlayCommand.Execute(null);
+                });
+
+                //Questa sleep viene fatta nel thread dell'accelerometro, non blocca la UI
+                Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300));
+                Shaker.Active = true;
+            };
+
+            Shaker.MinimumRequiredMovesForShake = 4;
+            Shaker.ShakeMagnitudeWithoutGravitationThreshold = 0.3;
         }
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)

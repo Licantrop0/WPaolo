@@ -64,9 +64,6 @@ namespace SgarbiMix
                 Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300));
                 Shaker.Active = true;
             };
-
-            Shaker.MinimumRequiredMovesForShake = 4;
-            Shaker.ShakeMagnitudeWithoutGravitationThreshold = 0.3;
         }
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)

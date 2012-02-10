@@ -10,8 +10,8 @@ namespace SgarbiMix
 {
     public static class AppContext
     {
-        private static List<SoundViewModel> _soundResources;
-        public static List<SoundViewModel>  SoundResources
+        private static SoundViewModel[] _soundResources;
+        public static SoundViewModel[]  SoundResources
         {
             get
             {
@@ -22,7 +22,7 @@ namespace SgarbiMix
                                        orderby de.Key
                                        select new SoundViewModel(de.Key.ToString(),
                                            (UnmanagedMemoryStream)de.Value)
-                                      ).ToList();
+                                      ).ToArray();
                 return _soundResources;
             }
         }
@@ -30,7 +30,7 @@ namespace SgarbiMix
         private static Random rnd = new Random();
         public static SoundViewModel GetRandomSound()
         {
-            return SoundResources[rnd.Next(SoundResources.Count)];
+            return SoundResources[rnd.Next(SoundResources.Length)];
         }
     }
 }

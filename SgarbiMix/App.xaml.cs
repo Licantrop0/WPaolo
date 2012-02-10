@@ -1,11 +1,8 @@
-﻿using System;
-using System.Threading;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using WPCommon;
 using WPCommon.Helpers;
 
 namespace SgarbiMix
@@ -50,28 +47,9 @@ namespace SgarbiMix
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            InizializeShaker();
-
             if (TrialManagement.IsTrialMode &&
                 !TrialManagement.AlreadyOpenedToday)
                 TrialManagement.ResetCounter();
-        }
-
-        private static void InizializeShaker()
-        {
-            var sd = new ShakeDetector();
-            sd.ShakeDetected += (sender, e) =>
-            {
-                var snd = AppContext.GetRandomSound();
-                Deployment.Current.Dispatcher.BeginInvoke(() =>
-                {
-                    snd.PlayCommand.Execute(null);
-                });
-
-                //Questa sleep viene fatta nel thread dell'accelerometro, non blocca la UI
-                Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300));
-            };
-            sd.Start();
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -125,7 +103,6 @@ namespace SgarbiMix
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            //RootFrame = new PhoneApplicationFrame();
             RootFrame = new TransitionFrame { Background = new SolidColorBrush(Colors.Transparent) };
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 

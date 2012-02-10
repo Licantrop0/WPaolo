@@ -151,7 +151,7 @@
     <Compile Include="Helpers\Converters.cs" />
     <Compile Include="Helpers\CreditCardHelper.cs" />
     <Compile Include="Helpers\PhotoHelper.cs" />
-    <Compile Include="Helpers\PublicGrouping.cs" />
+    <Compile Include="Helpers\LLSGroup.cs" />
     <Compile Include="Images\Flags\FlagsResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

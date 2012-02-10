@@ -43,7 +43,6 @@ namespace NientePanico.Helpers
             return Key.GetHashCode();
         }
 
-
         #region IEnumerable Members
         
         IEnumerator IEnumerable.GetEnumerator()

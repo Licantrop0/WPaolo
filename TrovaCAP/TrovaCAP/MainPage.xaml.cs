@@ -88,7 +88,7 @@ namespace TrovaCAP
             AcbFrazioni.TextFilter = AcbFilterStartsWithExtended;
             AcbComuni.IsEnabled = true;
             AcbFrazioni.IsManualDropDownOpen = true;
-            if (WPCommon.TrialManagement.IsTrialMode)
+            if (WPCommon.Helpers.TrialManagement.IsTrialMode)
                 TrialHyperlinkButton.Visibility = Visibility.Visible;
         }
 
@@ -121,7 +121,7 @@ namespace TrovaCAP
 
             }
 
-            if (WPCommon.TrialManagement.IsTrialMode)
+            if (WPCommon.Helpers.TrialManagement.IsTrialMode)
                 sResultCAP = sResultCAP.Substring(0, 4) + "?";
 
             TbCapResult.Text = sResultCAP;

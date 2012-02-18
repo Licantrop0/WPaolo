@@ -19,7 +19,7 @@
                            DefaultFont="/DeathTimerz;component/Fonts/CHILLER.TTF#Chiller"
                            DefaultForeground="{StaticResource RedGradientBrush}" >
             <vm:AboutViewModel.DefaultBackground>
-                <ImageBrush ImageSource="../Images/DeathBackground.jpg"
+                <ImageBrush ImageSource="/DeathTimerz;component/Images/DeathBackground.jpg"
                         Stretch="None" AlignmentX="Center" />
             </vm:AboutViewModel.DefaultBackground>
         </vm:AboutViewModel>

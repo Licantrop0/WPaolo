@@ -5,131 +5,131 @@
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:acb="clr-namespace:Microsoft.Phone.Controls;assembly=CustomACB"
-    xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
-    x:Class="TrovaCAP.MainPage"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+	xmlns:acb="clr-namespace:Microsoft.Phone.Controls;assembly=CustomACB"
+	xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+	xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
+	x:Class="TrovaCAP.MainPage"
+	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	shell:SystemTray.IsVisible="False" >
 
-    <Grid Margin="8,0">
-        <Grid.Resources>
-            <local:ByteArrayToImageBrushConverter x:Key="ByteArrayToImageBrush" xmlns:local="clr-namespace:TrovaCAP" />
-        </Grid.Resources>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+	<Grid Margin="8,0">
+		<Grid.Resources>
+			<local:ByteArrayToImageBrushConverter x:Key="ByteArrayToImageBrush" xmlns:local="clr-namespace:TrovaCAP" />
+		</Grid.Resources>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="50" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
 
-        <Border Background="{StaticResource BlueGradientBrush}"
-                Margin="0,12" Grid.Row="0" Height="50" VerticalAlignment="Bottom">
-            <Border.OpacityMask>
-                <ImageBrush ImageSource="/images/C_indirizzo.png" Stretch="Uniform" />
-            </Border.OpacityMask>
-        </Border>
+		<Border Background="{StaticResource BlueGradientBrush}"
+				Margin="0,12" Grid.Row="0" Height="50" VerticalAlignment="Bottom">
+			<Border.OpacityMask>
+				<ImageBrush ImageSource="/images/C_indirizzo.png" Stretch="Uniform" />
+			</Border.OpacityMask>
+		</Border>
 
-        <StackPanel Grid.Row="0" Grid.Column="1" Margin="0">
-            <TextBlock Text="{Binding Path=LocalizedResources.Comune, Source={StaticResource LocalizedStrings}}"
-                       Style="{StaticResource CommonTextStyle}" />
-            <acb:AutoCompleteBox x:Name="AcbComuni"
-                                 FilterMode="StartsWith"
-                                 IsDicotomicSearchEnabled="True"
-                                 SelectionChanged="AcbComuni_SelectionChanged"
-                                 MinimumPopulateDelay="1000"
-                                 LostFocus="AcbComuni_LostFocus"
-                                 TextBoxStyle="{StaticResource TextWrappingStyle}"
-                                 MouseLeftButtonDown="AcbComuni_MouseLeftButtonDown"
-                                 FontSize="32" MinimumPrefixLength="2"
-                                 ItemTemplate="{StaticResource TextWrappingItemTemplate}"
-                                 TextChanged="AcbComuni_TextChanged"  />
-        </StackPanel>
+		<StackPanel Grid.Row="0" Grid.Column="1" Margin="0">
+			<TextBlock Text="{Binding Path=LocalizedResources.Comune, Source={StaticResource LocalizedStrings}}"
+					   Style="{StaticResource CommonTextStyle}" />
+			<acb:AutoCompleteBox x:Name="AcbComuni"
+								 FilterMode="StartsWith"
+								 IsDicotomicSearchEnabled="True"
+								 SelectionChanged="AcbComuni_SelectionChanged"
+								 MinimumPopulateDelay="1000"
+								 LostFocus="AcbComuni_LostFocus"
+								 TextBoxStyle="{StaticResource TextWrappingStyle}"
+								 MouseLeftButtonDown="AcbComuni_MouseLeftButtonDown"
+								 FontSize="32" MinimumPrefixLength="2"
+								 ItemTemplate="{StaticResource TextWrappingItemTemplate}"
+								 TextChanged="AcbComuni_TextChanged"  />
+		</StackPanel>
 
-        <Border Background="{StaticResource BlueGradientBrush}"
-                Margin="0,12" Grid.Row="1" Height="60" VerticalAlignment="Bottom">
-            <Border.OpacityMask>
-                <ImageBrush ImageSource="/images/C_frazioni.png" Stretch="Uniform" />
-            </Border.OpacityMask>
-        </Border>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="{Binding Path=LocalizedResources.FrazioneQuartiere, Source={StaticResource LocalizedStrings}}"
-                       Style="{StaticResource CommonTextStyle}" />
-            <acb:AutoCompleteBox x:Name="AcbFrazioni"
-                                 FilterMode="Custom"
-                                 MinimumPrefixLength="0"
-                                 GotFocus="AcbFrazioni_GotFocus"
-                                 SelectionChanged="AcbFrazioni_SelectionChanged"
-                                 LostFocus="AcbFrazioni_LostFocus"
-                                 MouseLeftButtonDown="AcbFrazioni_MouseLeftButtonDown"
-                                 FontSize="32"
-                                 TextBoxStyle="{StaticResource TextWrappingStyle}"
-                                 ItemTemplate="{StaticResource TextWrappingItemTemplate}"
-                                 IsEnabled="False" />
-        </StackPanel>
+		<Border Background="{StaticResource BlueGradientBrush}"
+				Margin="0,12" Grid.Row="1" Height="60" VerticalAlignment="Bottom">
+			<Border.OpacityMask>
+				<ImageBrush ImageSource="/images/C_frazioni.png" Stretch="Uniform" />
+			</Border.OpacityMask>
+		</Border>
+		<StackPanel Grid.Row="1" Grid.Column="1">
+			<TextBlock Text="{Binding Path=LocalizedResources.FrazioneQuartiere, Source={StaticResource LocalizedStrings}}"
+					   Style="{StaticResource CommonTextStyle}" />
+			<acb:AutoCompleteBox x:Name="AcbFrazioni"
+								 FilterMode="Custom"
+								 MinimumPrefixLength="0"
+								 GotFocus="AcbFrazioni_GotFocus"
+								 SelectionChanged="AcbFrazioni_SelectionChanged"
+								 LostFocus="AcbFrazioni_LostFocus"
+								 MouseLeftButtonDown="AcbFrazioni_MouseLeftButtonDown"
+								 FontSize="32"
+								 TextBoxStyle="{StaticResource TextWrappingStyle}"
+								 ItemTemplate="{StaticResource TextWrappingItemTemplate}"
+								 IsEnabled="False" />
+		</StackPanel>
 
-        <Border Background="{StaticResource BlueGradientBrush}"
-                Margin="0,12" Grid.Row="2" Height="80" >
-            <Border.OpacityMask>
-                <ImageBrush ImageSource="/images/C_citta.png" Stretch="Uniform" />
-            </Border.OpacityMask>
-        </Border>
+		<Border Background="{StaticResource BlueGradientBrush}"
+				Margin="0,6" Grid.Row="2" Height="80" >
+			<Border.OpacityMask>
+				<ImageBrush ImageSource="/images/C_citta.png" Stretch="Uniform" />
+			</Border.OpacityMask>
+		</Border>
 
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <TextBlock Text="{Binding Path=LocalizedResources.Indirizzo, Source={StaticResource LocalizedStrings}}"
-                       Style="{StaticResource CommonTextStyle}" />
-            <acb:AutoCompleteBox x:Name="AcbIndirizzi"
-                                 IsCacheEnabled="True"
-                                 TextBoxStyle="{StaticResource TextWrappingStyle}"
-                                 ItemTemplate="{StaticResource TextWrappingItemTemplate}"
-                                 FilterMode="Custom" MinimumPrefixLength="2"
-                                 SelectionChanged="AcbIndirizzi_SelectionChanged"
-                                 MinimumPopulateDelay="2000"
-                                 LostFocus="AcbIndirizzi_LostFocus"                          
-                                 FontSize="32"
-                                 MouseLeftButtonDown="AcbIndirizzi_MouseLeftButtonDown"
-                                 GotFocus="AcbIndirizzi_GotFocus"
-                                 TextChanged="AcbIndirizzi_TextChanged"
-                                 IsEnabled="False" Populating="AcbIndirizzi_Populating" />
-            <TextBlock Name="TbLoading" FontSize="20" 
-                       Style="{StaticResource CommonTextStyle}" />
-        </StackPanel>
+		<StackPanel Grid.Row="2" Grid.Column="1">
+			<TextBlock Text="{Binding Path=LocalizedResources.Indirizzo, Source={StaticResource LocalizedStrings}}"
+					   Style="{StaticResource CommonTextStyle}" />
+			<acb:AutoCompleteBox x:Name="AcbIndirizzi"
+								 IsCacheEnabled="True"
+								 TextBoxStyle="{StaticResource TextWrappingStyle}"
+								 ItemTemplate="{StaticResource TextWrappingItemTemplate}"
+								 FilterMode="Custom" MinimumPrefixLength="2"
+								 SelectionChanged="AcbIndirizzi_SelectionChanged"
+								 MinimumPopulateDelay="2000"
+								 LostFocus="AcbIndirizzi_LostFocus"                          
+								 FontSize="32"
+								 MouseLeftButtonDown="AcbIndirizzi_MouseLeftButtonDown"
+								 GotFocus="AcbIndirizzi_GotFocus"
+								 TextChanged="AcbIndirizzi_TextChanged"
+								 IsEnabled="False" Populating="AcbIndirizzi_Populating" />
+			<TextBlock Name="TbLoading" FontSize="20" 
+					   Style="{StaticResource CommonTextStyle}" />
+		</StackPanel>
 
-        <TextBox x:Name="TbCapResult" TextAlignment="Center"
-                 Grid.Row="3" Grid.ColumnSpan="2" Text=""
-                 Style="{StaticResource CapTextBoxStyle}"
-                 VerticalAlignment="Center"
-                 GotFocus="tbCapResult_GotFocus" />
+		<TextBox x:Name="TbCapResult" TextAlignment="Center"
+				 Grid.Row="3" Grid.ColumnSpan="2" Text=""
+				 Style="{StaticResource CapTextBoxStyle}"
+				 VerticalAlignment="Center"
+				 GotFocus="tbCapResult_GotFocus" />
 
-        <Grid Grid.ColumnSpan="2" Grid.Row="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+		<Grid Grid.ColumnSpan="2" Grid.Row="4">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
 
-            <HyperlinkButton Name="TrialHyperlinkButton" Click="TrialHyperlinkButton_Click" Visibility="Collapsed"
-                             Content="{Binding Path=LocalizedResources.TrialMode, Source={StaticResource LocalizedStrings}}"
-                             Style="{StaticResource HyperlinkButtonWrappingStyle}" />
+			<HyperlinkButton Name="TrialHyperlinkButton" Click="TrialHyperlinkButton_Click" Visibility="Collapsed"
+							 Content="{Binding Path=LocalizedResources.TrialMode, Source={StaticResource LocalizedStrings}}"
+							 Style="{StaticResource HyperlinkButtonWrappingStyle}" />
 
-            <Rectangle Height="170" Width="170" Grid.Column="1" Fill="{StaticResource BlueGradientBrush}"
-                OpacityMask="{Binding Path=LocalizedResources.Bollo, Source={StaticResource LocalizedStrings}, Converter={StaticResource ByteArrayToImageBrush}}">
-                <Custom:Interaction.Triggers>
-                    <Custom:EventTrigger EventName="MouseLeftButtonDown">
-                        <ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
-                    </Custom:EventTrigger>
-                </Custom:Interaction.Triggers>
-            </Rectangle>
-        </Grid>
+			<Rectangle Height="170" Width="170" Grid.Column="1" Fill="{StaticResource BlueGradientBrush}"
+				OpacityMask="{Binding Path=LocalizedResources.Bollo, Source={StaticResource LocalizedStrings}, Converter={StaticResource ByteArrayToImageBrush}}">
+				<Custom:Interaction.Triggers>
+					<Custom:EventTrigger EventName="MouseLeftButtonDown">
+						<ic:NavigateToPageAction TargetPage="/AboutPage.xaml"/>
+					</Custom:EventTrigger>
+				</Custom:Interaction.Triggers>
+			</Rectangle>
+		</Grid>
 
-    </Grid>
+	</Grid>
 
 </phone:PhoneApplicationPage>

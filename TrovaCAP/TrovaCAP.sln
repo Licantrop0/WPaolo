@@ -5,15 +5,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrovaCAP", "TrovaCAP\TrovaC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomACB", "CustomACB\CustomACB.csproj", "{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon", "..\WPCommon\WPCommon.csproj", "{22700591-5E34-4D4D-A01F-6B8C2153B270}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB Util", "TrovaCapUtil\DB Util.csproj", "{15FC531C-B46D-45E4-849C-C26406AF60A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteSerializedFile", "WriteSerializedFile\WriteSerializedFile.csproj", "{EAA2DA7D-D067-4495-B07D-0590674AE741}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.XNAAsyncDispatcher", "..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj", "{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.TrialManagement", "..\WPCommon.Helpers.TrialManagement\WPCommon.Helpers.TrialManagement.csproj", "{157C676B-46A4-4099-936E-BBDFB93BB735}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 8
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
@@ -23,15 +27,21 @@ Global
 		SccProjectUniqueName2 = CustomACB\\CustomACB.csproj
 		SccProjectName2 = CustomACB
 		SccLocalPath2 = CustomACB
-		SccProjectUniqueName3 = ..\\WPCommon\\WPCommon.csproj
-		SccProjectName3 = ../WPCommon
-		SccLocalPath3 = ..\\WPCommon
-		SccProjectUniqueName4 = TrovaCapUtil\\DB\u0020Util.csproj
-		SccProjectName4 = TrovaCapUtil
-		SccLocalPath4 = TrovaCapUtil
-		SccProjectUniqueName5 = WriteSerializedFile\\WriteSerializedFile.csproj
-		SccProjectName5 = WriteSerializedFile
-		SccLocalPath5 = WriteSerializedFile
+		SccProjectUniqueName3 = TrovaCapUtil\\DB\u0020Util.csproj
+		SccProjectName3 = TrovaCapUtil
+		SccLocalPath3 = TrovaCapUtil
+		SccProjectUniqueName4 = WriteSerializedFile\\WriteSerializedFile.csproj
+		SccProjectName4 = WriteSerializedFile
+		SccLocalPath4 = WriteSerializedFile
+		SccProjectUniqueName5 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
+		SccProjectName5 = ../WPCommon.Helpers.XNAAsyncDispatcher
+		SccLocalPath5 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
+		SccProjectUniqueName6 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName6 = ../WPCommon.Controls
+		SccLocalPath6 = ..\\WPCommon.Controls
+		SccProjectUniqueName7 = ..\\WPCommon.Helpers.TrialManagement\\WPCommon.Helpers.TrialManagement.csproj
+		SccProjectName7 = ../WPCommon.Helpers.TrialManagement
+		SccLocalPath7 = ..\\WPCommon.Helpers.TrialManagement
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,16 +76,6 @@ Global
 		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FA97CD38-1BF1-4C49-8A0E-DD1BE7C8B655}.Release|x86.ActiveCfg = Release|Any CPU
-		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Any CPU.Build.0 = Release|Any CPU
-		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{22700591-5E34-4D4D-A01F-6B8C2153B270}.Release|x86.ActiveCfg = Release|Any CPU
 		{15FC531C-B46D-45E4-849C-C26406AF60A8}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{15FC531C-B46D-45E4-849C-C26406AF60A8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{15FC531C-B46D-45E4-849C-C26406AF60A8}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -96,6 +96,36 @@ Global
 		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Release|Mixed Platforms.Build.0 = Release|x86
 		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Release|x86.ActiveCfg = Release|x86
 		{EAA2DA7D-D067-4495-B07D-0590674AE741}.Release|x86.Build.0 = Release|x86
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|x86.ActiveCfg = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|x86.ActiveCfg = Release|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

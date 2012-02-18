@@ -6,7 +6,6 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:wpcommon="clr-namespace:WPCommon;assembly=WPCommon"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -14,11 +13,6 @@
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
 
-    <wpcommon:AboutControl Name="WPMEAbout" Foreground="{StaticResource BlueGradientBrush}">
-        <!--<wpcommon:AboutControl.BackgroundStackPanel>
-            <ImageBrush ImageSource="Images\sfondo_about.jpg" />
-        </wpcommon:AboutControl.BackgroundStackPanel>-->
-    </wpcommon:AboutControl>
 
 </phone:PhoneApplicationPage>
 

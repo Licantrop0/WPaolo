@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:wp="clr-namespace:WPCommon;assembly=WPCommon" >
+    xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher" >
 
     <Application.Resources>
 
@@ -103,7 +103,7 @@
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
-        <wp:XNAAsyncDispatcher />
+        <wph:XNAAsyncDispatcher />
 
         <shell:PhoneApplicationService 
             Launching="Application_Launching" Closing="Application_Closing" 

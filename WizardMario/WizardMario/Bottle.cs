@@ -11,8 +11,8 @@ namespace WizardMario
         playerControlPillow,
         stop,
         destruction,
+        fallingStones
     }
-
 
     public struct GridPosition
     {
@@ -31,7 +31,6 @@ namespace WizardMario
             Col = gridPosition.Col;
         }
     }
-
 
     class GridPositionComparer : IEqualityComparer<GridPosition>
     {
@@ -62,10 +61,21 @@ namespace WizardMario
         float _bottleTimer = 0;
         float _fallingTime;
         float _stopTime;
+        float _autoFallingTime;
 
         #endregion
 
         #region public methods
+
+        public void Initialize(int level)
+        {
+            // TODO logica incredibile che inizializzi il board a seconda del numero del livello
+
+            // HARD CABLED!
+            _board[14, 3] = new Monster(ElementColor.red);
+            _board[10, 7] = new Monster(ElementColor.yellow);
+            _board[12, 2] = new Monster(ElementColor.blue);
+        }
 
         public void Update(float dt, string action)
         {
@@ -160,7 +170,30 @@ namespace WizardMario
 
                 case BottleState.destruction:
 
-                    CheckForFallingStones();
+                    if (CheckForFallingStones())
+                    {
+                        _state = BottleState.fallingStones;
+                    }
+
+                    break;
+
+                case BottleState.fallingStones:
+
+                    if (_bottleTimer >= _autoFallingTime)
+                    {
+                        _bottleTimer = 0;
+
+
+
+                        if (CheckTetris())
+                        {
+                            _state = BottleState.destruction;
+                        }
+                        else
+                        {
+                            _state = BottleState.idle;
+                        }
+                    }
 
                     break;
 
@@ -176,36 +209,74 @@ namespace WizardMario
 
         private bool CheckForFallingStones()
         {
+            _fallingStones.Clear();
+
             for (int i = 1; i < 16; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
                     if (_board[i,j] != null && _board[i,j].GetType().ToString() == "Stone")
                     {
+                        Stone currentStone = (Stone)_board[i,j];
+
                         // current element is a stone
                         // the stone is falling if:
                         // - it is not linked and the element underneath is either void or a falling stone
                         // - it is linked and both the elements underneath it and underneath the linked stone
                         //   are either void or falling stone
-                        if ( ((Stone)_board[i,j]).LinkedTo == null )
+                        if ( currentStone.LinkedTo == null )
                         {
                             if (_board[i-1,j] == null || _board[i-1, j].Floating)
                             {
-                                _board[i,j].Floating = true;
-                                _fallingStones.Add((Stone)_board[i,j]);
+                                currentStone.Floating = true;
+                                _fallingStones.Add(currentStone);
                             }
                         }
                         else
                         {
-                            int linked
+                            Stone linkedStone = currentStone.LinkedTo;
+                            
+                            // we can distinguish west, south, east and north
+                            if (linkedStone.Col == j - 1)       // west
+                            {
+                                if (linkedStone.Floating)
+                                {
+                                    currentStone.Floating = true;
+                                    _fallingStones.Add(currentStone);
+                                }
+                            }
+                            else if (linkedStone.Row == i - 1)  // south
+                            {
+                                if (linkedStone.Floating)
+                                {
+                                    currentStone.Floating = true;
+                                    _fallingStones.Add(currentStone);
+                                }
+                            }
+                            else if (linkedStone.Col == j + 1)  // east
+                            {
+                                if ( (_board[i-1, j] == null || _board[i-1, j].Floating) && 
+                                     (_board[i-1, linkedStone.Col] == null || _board[i-1, linkedStone.Col].Floating) )
+                                {
+                                    currentStone.Floating = true;
+                                    _fallingStones.Add(currentStone);
+                                }
+                            }
+                            else if (linkedStone.Row == i + 1)  // north
+                            {
+                                if (_board[i - 1, j] == null || _board[i - 1, j].Floating)
+                                {
+                                    currentStone.Floating = true;
+                                    _fallingStones.Add(currentStone);
+                                }
+                            }
                         }
                         
                     }
-
                 }
             }
 
-            return true;
+            return (_fallingStones.Count > 0);
         }
 
         private bool CheckAndMoveLeft()
@@ -573,5 +644,10 @@ namespace WizardMario
 
         #endregion
 
+
+        internal void Draw()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

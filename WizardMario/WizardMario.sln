@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardMario", "WizardMario\WizardMario.csproj", "{F7EA3A67-074F-45A6-A3F9-A5602038D40D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardMarioContent", "WizardMarioContent\WizardMarioContent.contentproj", "{96FF84DA-9BAD-4D0E-89B7-4FFC94FB4FC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Sprite", "..\WPCommon.Sprite\WPCommon.Sprite.csproj", "{4F41A262-CCF3-4A97-B0DF-8D8C9145938F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStateManagement", "..\WPCommon.GameStateManagement\GameStateManagement.csproj", "{D613ECAD-5F4D-44E6-8FB7-7ECAFF3D02D5}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WizardMario\\WizardMario.csproj
+		SccProjectName1 = WizardMario
+		SccLocalPath1 = WizardMario
+		SccProjectUniqueName2 = WizardMarioContent\\WizardMarioContent.contentproj
+		SccProjectName2 = WizardMarioContent
+		SccLocalPath2 = WizardMarioContent
+		SccProjectUniqueName3 = ..\\WPCommon.Sprite\\WPCommon.Sprite.csproj
+		SccProjectName3 = ../WPCommon.Sprite
+		SccLocalPath3 = ..\\WPCommon.Sprite
+		SccProjectUniqueName4 = ..\\WPCommon.GameStateManagement\\GameStateManagement.csproj
+		SccProjectName4 = ../WPCommon.GameStateManagement
+		SccLocalPath4 = ..\\WPCommon.GameStateManagement
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Windows Phone = Debug|Windows Phone
+		Release|Windows Phone = Release|Windows Phone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7EA3A67-074F-45A6-A3F9-A5602038D40D}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{F7EA3A67-074F-45A6-A3F9-A5602038D40D}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
+		{F7EA3A67-074F-45A6-A3F9-A5602038D40D}.Debug|Windows Phone.Deploy.0 = Debug|Windows Phone
+		{F7EA3A67-074F-45A6-A3F9-A5602038D40D}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{F7EA3A67-074F-45A6-A3F9-A5602038D40D}.Release|Windows Phone.Build.0 = Release|Windows Phone
+		{F7EA3A67-074F-45A6-A3F9-A5602038D40D}.Release|Windows Phone.Deploy.0 = Release|Windows Phone
+		{96FF84DA-9BAD-4D0E-89B7-4FFC94FB4FC7}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{96FF84DA-9BAD-4D0E-89B7-4FFC94FB4FC7}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{4F41A262-CCF3-4A97-B0DF-8D8C9145938F}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{4F41A262-CCF3-4A97-B0DF-8D8C9145938F}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
+		{4F41A262-CCF3-4A97-B0DF-8D8C9145938F}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{4F41A262-CCF3-4A97-B0DF-8D8C9145938F}.Release|Windows Phone.Build.0 = Release|Windows Phone
+		{D613ECAD-5F4D-44E6-8FB7-7ECAFF3D02D5}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{D613ECAD-5F4D-44E6-8FB7-7ECAFF3D02D5}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
+		{D613ECAD-5F4D-44E6-8FB7-7ECAFF3D02D5}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{D613ECAD-5F4D-44E6-8FB7-7ECAFF3D02D5}.Release|Windows Phone.Build.0 = Release|Windows Phone
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

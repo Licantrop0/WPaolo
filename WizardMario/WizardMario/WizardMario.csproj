@@ -56,6 +56,7 @@
     <XnaCompressContent>false</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Phone, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Game" />
     <Reference Include="Microsoft.Xna.Framework.Graphics" />
@@ -63,17 +64,33 @@
     <Reference Include="Microsoft.Xna.Framework.Input.Touch" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e, processorArchitecture=MSIL" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.cs" />
+    <Compile Include="Bottle.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="Pillow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sprite.cs" />
+    <Compile Include="Screens\BackgroundScreen.cs" />
+    <Compile Include="Screens\Button.cs" />
+    <Compile Include="Screens\GameplayScreen.cs" />
+    <Compile Include="Screens\LoadingScreen.cs" />
+    <Compile Include="Screens\MainMenuScreen.cs" />
+    <Compile Include="Screens\MenuEntry.cs" />
+    <Compile Include="Screens\MenuScreen.cs" />
+    <Compile Include="Screens\MessageBoxScreen.cs" />
+    <Compile Include="Screens\OptionsMenuScreen.cs" />
+    <Compile Include="Screens\PauseMenuScreen.cs" />
+    <Compile Include="Screens\PhoneMainMenuScreen.cs" />
+    <Compile Include="Screens\PhoneMenuScreen.cs" />
+    <Compile Include="Screens\PhonePauseScreen.cs" />
+    <Compile Include="Screens\PhoneRetryScreen.cs" />
+    <Compile Include="Screens\PlayerIndexEventArgs.cs" />
+    <Compile Include="Screens\ScreenFactory.cs" />
     <Compile Include="Stone.cs" />
     <Compile Include="iWizardMarioElement.cs" />
     <None Include="Properties\AppManifest.xml">
@@ -83,7 +100,6 @@
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </None>
     <Compile Include="Program.cs" />
-    <Compile Include="Game1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
@@ -95,6 +111,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\WPCommon.GameStateManagement\GameStateManagement.csproj">
+      <Project>{D613ECAD-5F4D-44E6-8FB7-7ECAFF3D02D5}</Project>
+      <Name>GameStateManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WPCommon.Sprite\WPCommon.Sprite.csproj">
+      <Project>{4F41A262-CCF3-4A97-B0DF-8D8C9145938F}</Project>
+      <Name>WPCommon.Sprite</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WizardMarioContent\WizardMarioContent.contentproj">
       <Name>WizardMarioContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>

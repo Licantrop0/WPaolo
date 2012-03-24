@@ -11,6 +11,11 @@ namespace WizardMario
 
         bool _floating = false;
 
+        public Monster(ElementColor color)
+        {
+            _color = color;
+        }
+
         public ElementColor Color
         {
             get { return _color; }
@@ -25,6 +30,8 @@ namespace WizardMario
 
         public void Destroy()
         {
+            Floating = true;   // oppure posso gestirlo con la cancellazione dal board...
+
             throw new NotImplementedException();
         }
     }

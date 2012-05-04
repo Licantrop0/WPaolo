@@ -66,6 +66,9 @@ namespace NascondiChiappe
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            //chiedo sempre la password anche se l'instance è preserved
+            //AppContext.IsPasswordInserted = false;
+
             if (PhoneApplicationService.Current.State.ContainsKey("albums"))
                 LoadAlbums(PhoneApplicationService.Current.State["albums"] as List<Album>);
         }

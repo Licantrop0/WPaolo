@@ -52,6 +52,7 @@ namespace NascondiChiappe.View
             if (!AppContext.IsPasswordInserted)
             {
                 NavigationService.Navigate(new Uri("/View/PasswordPage.xaml", UriKind.Relative));
+                NavigationService.RemoveBackEntry();
                 return;
             }
             if (VM.Albums.Count == 0)

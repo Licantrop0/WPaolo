@@ -5,6 +5,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NascondiChiappe.Localization;
 using System.IO.IsolatedStorage;
+using System.Windows.Navigation;
 
 namespace NascondiChiappe
 {
@@ -56,13 +57,10 @@ namespace NascondiChiappe
             ApplicationBar.MenuItems.Add(ChangePasswordAppBarMenuItem);
         }
 
-        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            if (!AppContext.IsPasswordInserted & !IsChangePasswordMode)
-            {
-                IsolatedStorageSettings.ApplicationSettings.Save();
-                throw new Exception("ForceExit");
-            }
+            //La pagina della password non deve stare nel back-stack
+            NavigationService.RemoveBackEntry();
         }
 
         private void InitializeApplicationBar()
@@ -131,7 +129,7 @@ namespace NascondiChiappe
 
             AppContext.IsPasswordInserted = true;
             //Go to Albums Page
-            NavigationService.GoBack();
+            NavigationService.Navigate(new Uri("/View/AlbumsPage.xaml", UriKind.Relative));
         }
 
         private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
@@ -159,7 +157,7 @@ namespace NascondiChiappe
             else if (e.Key == Key.Back && string.IsNullOrEmpty(NewPasswordBox.Password))
             {
                 OldPasswordBox.Focus();
-            }                
+            }
         }
 
         private void ConfirmPasswordBox_KeyDown(object sender, KeyEventArgs e)
@@ -171,5 +169,6 @@ namespace NascondiChiappe
                 NewPasswordBox.Focus();
             }
         }
+
     }
 }

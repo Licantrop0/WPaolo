@@ -155,6 +155,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="NascondiChiappe_2012_05_04_10_33_43.sap" />
+    <None Include="NascondiChiappe_2012_05_04_10_40_42.sap" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml">
       <SubType>Designer</SubType>

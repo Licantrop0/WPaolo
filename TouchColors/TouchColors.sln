@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouchColors", "TouchColors\TouchColors.csproj", "{6B2FA1F5-923F-4E71-BDC6-A1A410E31AED}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TouchColors\\TouchColors.csproj
+		SccProjectName1 = TouchColors
+		SccLocalPath1 = TouchColors
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B2FA1F5-923F-4E71-BDC6-A1A410E31AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B2FA1F5-923F-4E71-BDC6-A1A410E31AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B2FA1F5-923F-4E71-BDC6-A1A410E31AED}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6B2FA1F5-923F-4E71-BDC6-A1A410E31AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B2FA1F5-923F-4E71-BDC6-A1A410E31AED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B2FA1F5-923F-4E71-BDC6-A1A410E31AED}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

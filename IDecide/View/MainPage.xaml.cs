@@ -38,7 +38,6 @@ namespace IDecide
             CrowStoryboard.Stop();
             CrowAnimation.Stop();
             SoundManager.StopCrow();
-            SoundManager.PlayDing();
             tmr.Stop();
             tmr.Start();
             AnswerTextBlock.Text = AppContext.GetRandomChoice();
@@ -46,7 +45,15 @@ namespace IDecide
             if(AppContext.VibrationEnabled)
                 VibrateController.Default.Start(TimeSpan.FromMilliseconds(100));
 
-            CloudAppearStoryboard.Begin();
+            if (AppContext.RapidResponse)
+            {
+                RapidResponseStoryboard.Begin();
+            }
+            else
+            {
+                SoundManager.PlayDing();
+                CloudAppearStoryboard.Begin();
+            }
         }
 
         private void CrowStoryboard_Completed(object sender, EventArgs e)
@@ -61,20 +68,21 @@ namespace IDecide
         {
             var EditChoicesAppBarButton = new ApplicationBarIconButton();
             EditChoicesAppBarButton.Text = AppResources.EditChoices;
-            EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
+            EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_choices.png", UriKind.Relative);
             EditChoicesAppBarButton.Click += (sender, e) =>
             {
                 NavigationService.Navigate(new Uri("/View/ChoicesGroupPage.xaml", UriKind.Relative));
             };
             ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
 
-            var SettingsAppBarMenuItem = new ApplicationBarMenuItem();
-            SettingsAppBarMenuItem.Text = AppResources.Settings;
-            SettingsAppBarMenuItem.Click += (sender, e) =>
+            var SettingsAppBarButton = new ApplicationBarIconButton();
+            SettingsAppBarButton.Text = AppResources.Settings;
+            SettingsAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
+            SettingsAppBarButton.Click += (sender, e) =>
             {
                 NavigationService.Navigate(new Uri("/View/SettingsPage.xaml", UriKind.Relative));
             };
-            ApplicationBar.MenuItems.Add(SettingsAppBarMenuItem);
+            ApplicationBar.Buttons.Add(SettingsAppBarButton);
 
 
             var AboutAppBarMenuItem = new ApplicationBarMenuItem();
@@ -106,7 +114,8 @@ namespace IDecide
             tmr = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(15) };
             tmr.Tick += (sender, e) =>
             {
-                if (CloudAppearStoryboard.GetCurrentState() == ClockState.Stopped)
+                if (CloudAppearStoryboard.GetCurrentState() == ClockState.Stopped &&
+                    RapidResponseStoryboard.GetCurrentState() == ClockState.Stopped)
                 {
                     CrowStoryboard.Begin();
                     CrowAnimation.Begin();

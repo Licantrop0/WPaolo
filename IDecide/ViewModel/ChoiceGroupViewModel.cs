@@ -11,7 +11,7 @@ using System.Runtime.Serialization;
 namespace IDecide.ViewModel
 {
     [DataContract]
-    public class ChoiceGroupViewModel : ViewModelBase
+    public class ChoiceGroupViewModel
     {
         private string _name = string.Empty;
         [DataMember]
@@ -85,5 +85,16 @@ namespace IDecide.ViewModel
                 }
             }
         }
+
+        #region Interface Implementations
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
     }
 }

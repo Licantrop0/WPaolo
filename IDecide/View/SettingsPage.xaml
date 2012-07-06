@@ -39,6 +39,8 @@
                                   IsChecked="{Binding SoundEnabled, Mode=TwoWay}" Foreground="White" />
             <toolkit:ToggleSwitch Header="{Binding LocalizedResources.Vibration, Source={StaticResource LocalizedStrings}}"
                                   IsChecked="{Binding VibrationEnabled, Mode=TwoWay}" Foreground="White" />
+            <toolkit:ToggleSwitch Header="{Binding LocalizedResources.RapidResponse, Source={StaticResource LocalizedStrings}}"
+                                  IsChecked="{Binding RapidResponse, Mode=TwoWay}" Foreground="White" />
         </StackPanel>
         
     </Grid>

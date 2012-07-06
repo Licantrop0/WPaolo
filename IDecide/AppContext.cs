@@ -13,6 +13,7 @@ namespace IDecide
         public static ObservableCollection<ChoiceGroupViewModel> Groups { get; set; }
         public static bool SoundEnabled { get; set; }
         public static bool VibrationEnabled { get; set; }
+        public static bool RapidResponse { get; set; }
 
         public static string GetRandomChoice()
         {
@@ -54,6 +55,10 @@ namespace IDecide
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("vibration_enabled"))
                 IsolatedStorageSettings.ApplicationSettings.Add("vibration_enabled", true);
             VibrationEnabled = (bool)IsolatedStorageSettings.ApplicationSettings["vibration_enabled"];
+
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains("rapid_response"))
+                IsolatedStorageSettings.ApplicationSettings.Add("rapid_response", true);
+            RapidResponse = (bool)IsolatedStorageSettings.ApplicationSettings["rapid_response"];
         }
 
         internal static void PersistData()
@@ -61,6 +66,7 @@ namespace IDecide
             IsolatedStorageSettings.ApplicationSettings["choices_group"] = Groups;
             IsolatedStorageSettings.ApplicationSettings["sound_enabled"] = SoundEnabled;
             IsolatedStorageSettings.ApplicationSettings["vibration_enabled"] = VibrationEnabled;
+            IsolatedStorageSettings.ApplicationSettings["rapid_response"] = RapidResponse;
         }
 
 
@@ -126,6 +132,5 @@ namespace IDecide
 
             return Choices;
         }
-
     }
 }

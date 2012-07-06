@@ -44,7 +44,7 @@
                             </RadioButton>
                             <Button Width="300" Style="{StaticResource ButtonStyle}"
                                     Command="{Binding EditGroup}"
-                                    toolkit:TiltEffect.IsTiltEnabled="{Binding ButtonEnabled}">
+                                    toolkit:TiltEffect.IsTiltEnabled="True">
                                 <TextBlock Text="{Binding Name,
                                     Converter={StaticResource ResourceTranslator}}"
                                            TextWrapping="Wrap" TextAlignment="Center" />

@@ -9,11 +9,12 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace Scudetti.Model
 {
     [DataContract]
-    public class Shield
+    public class Shield : INotifyPropertyChanged
     {
         [DataMember]
         public string Name { get; set; }
@@ -24,15 +25,35 @@ namespace Scudetti.Model
         [DataMember]
         public int Level { get; set; }
 
+        private bool _isValidated = false;
         [DataMember]
-        public bool IsValidated { get; set; }
+        public bool IsValidated
+        {
+            get { return _isValidated; }
+            set
+            {
+                if (IsValidated == value) return;
+                _isValidated = value;
+                RaisePropertyChanged("IsValidated");
+            }
+        }
 
         public Shield(string name, int level, string image)
         {
             Name = name;
             Image = image;
             Level = level;
-            IsValidated = false;
         }
+
+        #region Interface Implementations
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
     }
 }

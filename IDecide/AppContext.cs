@@ -57,7 +57,7 @@ namespace IDecide
             VibrationEnabled = (bool)IsolatedStorageSettings.ApplicationSettings["vibration_enabled"];
 
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("rapid_response"))
-                IsolatedStorageSettings.ApplicationSettings.Add("rapid_response", true);
+                IsolatedStorageSettings.ApplicationSettings.Add("rapid_response", false);
             RapidResponse = (bool)IsolatedStorageSettings.ApplicationSettings["rapid_response"];
         }
 

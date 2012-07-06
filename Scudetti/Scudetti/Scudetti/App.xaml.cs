@@ -63,6 +63,7 @@ namespace Scudetti
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            AppContext.Shields = AppContext.GetScudetti();
         }
 
         // Code to execute when the application is activated (brought to foreground)

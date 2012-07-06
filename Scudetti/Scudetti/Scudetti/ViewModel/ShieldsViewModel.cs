@@ -20,7 +20,7 @@ namespace Scudetti.ViewModel
             }
         }
 
-        public IEnumerable<Shield> Shields { get; set; }
+        public IEnumerable<Shield> Shields { get { return AppContext.Shields; } }
 
         public Shield SelectedShield
         {
@@ -29,13 +29,18 @@ namespace Scudetti.ViewModel
             {
                 NavigationService.Navigate(new Uri("/View/ShieldPage.xaml", UriKind.Relative));
                 MessengerInstance.Send<Shield>(value);
+                RaisePropertyChanged("SelectedShield");
             }
         }
 
         public ShieldsViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
-            Shields = AppContext.GetScudetti();
+            MessengerInstance.Register<String>(this, (m) =>
+            {
+                if (m == "UpdateScudetti")
+                    RaisePropertyChanged("Progress");
+            });
         }
     }
 }

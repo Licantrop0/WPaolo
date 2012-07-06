@@ -12,27 +12,20 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="false">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid x:Name="ContentPanel" Margin="12,0">
         <Grid.Resources>
             <hlp:ImagePathConverter x:Key="ImagePathConv" />
         </Grid.Resources>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}" />
-            <TextBox Name="ShieldNameTextbox" Grid.Row="1" Text="{Binding ShieldName, Mode=TwoWay}" />
-        </Grid>
+            <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}" Stretch="None" />
+            <TextBox Name="ShieldNameTextbox" VerticalAlignment="Bottom"
+                     Grid.Row="1" Text="{Binding ShieldName, Mode=TwoWay}" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

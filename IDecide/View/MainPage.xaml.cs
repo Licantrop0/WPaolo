@@ -47,6 +47,7 @@ namespace IDecide
 
             if (AppContext.RapidResponse)
             {
+                SoundManager.PlayRapidDing();
                 RapidResponseStoryboard.Begin();
             }
             else
@@ -66,15 +67,6 @@ namespace IDecide
 
         private void InitializeAppBar()
         {
-            var EditChoicesAppBarButton = new ApplicationBarIconButton();
-            EditChoicesAppBarButton.Text = AppResources.EditChoices;
-            EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_choices.png", UriKind.Relative);
-            EditChoicesAppBarButton.Click += (sender, e) =>
-            {
-                NavigationService.Navigate(new Uri("/View/ChoicesGroupPage.xaml", UriKind.Relative));
-            };
-            ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
-
             var SettingsAppBarButton = new ApplicationBarIconButton();
             SettingsAppBarButton.Text = AppResources.Settings;
             SettingsAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_settings.png", UriKind.Relative);
@@ -84,6 +76,14 @@ namespace IDecide
             };
             ApplicationBar.Buttons.Add(SettingsAppBarButton);
 
+            var EditChoicesAppBarButton = new ApplicationBarIconButton();
+            EditChoicesAppBarButton.Text = AppResources.EditChoices;
+            EditChoicesAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_choices.png", UriKind.Relative);
+            EditChoicesAppBarButton.Click += (sender, e) =>
+            {
+                NavigationService.Navigate(new Uri("/View/ChoicesGroupPage.xaml", UriKind.Relative));
+            };
+            ApplicationBar.Buttons.Add(EditChoicesAppBarButton);
 
             var AboutAppBarMenuItem = new ApplicationBarMenuItem();
             AboutAppBarMenuItem.Text = AppResources.About;

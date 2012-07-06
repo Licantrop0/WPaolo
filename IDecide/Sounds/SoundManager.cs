@@ -33,5 +33,16 @@ namespace IDecide.Sounds
             if (AppContext.SoundEnabled)
                 _dingSound.Play();
         }
+
+        private static SoundEffect _rapidDingSound;
+        public static void PlayRapidDing()
+        {
+            if (_rapidDingSound == null)
+                _rapidDingSound = SoundEffect.FromStream(App.GetResourceStream(
+                    new Uri("Sounds\\rapidDing.wav", UriKind.Relative)).Stream);
+
+            if (AppContext.SoundEnabled)
+                _rapidDingSound.Play();
+        }
     }
 }

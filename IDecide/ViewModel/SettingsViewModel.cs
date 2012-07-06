@@ -17,5 +17,10 @@ namespace IDecide.ViewModel
             set { AppContext.VibrationEnabled = value; }
         }
 
+        public bool RapidResponse
+        {
+            get { return AppContext.RapidResponse; }
+            set { AppContext.RapidResponse = value; }
+        }
     }
 }

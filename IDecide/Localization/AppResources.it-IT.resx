@@ -180,4 +180,7 @@
   <data name="AskQuestion" xml:space="preserve">
     <value>Fai una domanda e...</value>
   </data>
+  <data name="RapidResponse" xml:space="preserve">
+    <value>Risposta istantanea</value>
+  </data>
 </root>

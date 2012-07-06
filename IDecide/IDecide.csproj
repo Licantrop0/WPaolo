@@ -74,9 +74,6 @@
       <HintPath>packages\SilverlightToolkitWP.4.2011.12.13\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\WPCommon.Libraries\MVVM Light\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
@@ -189,6 +186,7 @@
     <Resource Include="Images\man2.png" />
     <Content Include="Sounds\crow.wav" />
     <Content Include="Sounds\ding.wav" />
+    <Content Include="Sounds\rapidDing.wav" />
     <Content Include="SplashScreenImage.jpg" />
     <Resource Include="Images\cloud1.png" />
     <Resource Include="Images\cloud2.png" />
@@ -198,6 +196,9 @@
     <Resource Include="Images\question_mark.png" />
     <Resource Include="Toolkit.Content\add_orange.png" />
     <Content Include="Toolkit.Content\add_white.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Toolkit.Content\appbar_choices.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Toolkit.Content\appbar_settings.png">

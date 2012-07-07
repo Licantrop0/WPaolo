@@ -1,35 +1,24 @@
-﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using System.Runtime.Serialization;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace Scudetti.Model
 {
-    [DataContract]
     public class Shield : INotifyPropertyChanged
     {
-        [DataMember]
+        [XmlAttribute]
         public int Id { get; set; }
 
-        [DataMember]
+        [XmlAttribute]
         public string Name { get; set; }
-        
-        [DataMember]
+
+        [XmlAttribute]
         public string Image { get; set; }
-        
-        [DataMember]
+
+        [XmlAttribute]
         public int Level { get; set; }
 
         private bool _isValidated = false;
-        [DataMember]
+        [XmlAttribute]
         public bool IsValidated
         {
             get { return _isValidated; }
@@ -39,14 +28,6 @@ namespace Scudetti.Model
                 _isValidated = value;
                 RaisePropertyChanged("IsValidated");
             }
-        }
-
-        public Shield(int id, string name, int level, string image)
-        {
-            Id = id;
-            Name = name;
-            Image = image;
-            Level = level;
         }
 
         #region Interface Implementations

@@ -32,22 +32,28 @@ namespace Scudetti.View
             InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            var id = int.Parse(NavigationContext.QueryString["id"]);
+            VM.CurrentShield = AppContext.Shields.Where(s => s.Id == id).Single();
+            base.OnNavigatedTo(e);
+        }
+        
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            ShieldNameTextbox.Focus();
+        }
+
         private void Ok_Click(object sender, EventArgs e)
         {
             ShieldNameTextbox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             VM.Validate();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        private void ShieldNameTextbox_KeyDown(object sender, KeyEventArgs e)
         {
-            var id = int.Parse(NavigationContext.QueryString["id"]);
-            VM.CurrentShield = AppContext.Shields.Where(s=> s.Id == id).Single();
-            base.OnNavigatedTo(e);
-        }
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            ShieldNameTextbox.Focus();
+            if (e.Key == Key.Enter)
+                Ok_Click(sender, EventArgs.Empty);
         }
     }
 }

@@ -17,6 +17,9 @@ namespace Scudetti.Model
     public class Shield : INotifyPropertyChanged
     {
         [DataMember]
+        public int Id { get; set; }
+
+        [DataMember]
         public string Name { get; set; }
         
         [DataMember]
@@ -38,8 +41,9 @@ namespace Scudetti.Model
             }
         }
 
-        public Shield(string name, int level, string image)
+        public Shield(int id, string name, int level, string image)
         {
+            Id = id;
             Name = name;
             Image = image;
             Level = level;
@@ -55,5 +59,6 @@ namespace Scudetti.Model
             }
         }
         #endregion
+
     }
 }

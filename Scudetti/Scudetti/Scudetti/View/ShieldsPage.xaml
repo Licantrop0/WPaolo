@@ -7,19 +7,25 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Scudetti.ViewModel"
     xmlns:hlp="clr-namespace:Scudetti.Helper"
-    DataContext="{Binding Source={StaticResource Locator}, Path=ShieldsVM}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
+    
+    <phone:PhoneApplicationPage.Resources>
+        <vm:ShieldsViewModel x:Key="ShieldsVM" />            
+    <!--DataContext="{Binding Source={StaticResource Locator}, Path=ShieldsVM}"-->
+    </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{StaticResource ShieldsVM}">
 
         <Grid.Resources>
             <hlp:ImagePathConverter x:Key="ImagePathConv" />
+            <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -36,12 +42,13 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                      <Border BorderBrush="Aqua" BorderThickness="5"
+                        <Border BorderBrush="Aqua" BorderThickness="6"
                                 Margin="6,6,0,0" Height="150" Width="150">
-                        <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" />
-                    </Border>
-                        <Image Source="Toolkit.Content/ApplicationBar.Check.png"
-                               VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+                            <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" />
+                        </Border>
+                        <Line X1="12" Y1="12" X2="150" Y2="150"
+                              Stroke="Red" StrokeThickness="5" StrokeStartLineCap="Triangle" StrokeEndLineCap="Triangle"
+                               Visibility="{Binding IsValidated, Converter={StaticResource BooleanVisibilityConv}}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -51,19 +58,5 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-
     </Grid>
-
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
-
 </phone:PhoneApplicationPage>

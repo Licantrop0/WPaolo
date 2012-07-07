@@ -82,6 +82,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppContext.cs" />
+    <Compile Include="Helper\BooleanToVisibilityConverter.cs" />
     <Compile Include="Helper\ImagePathConverter.cs" />
     <Compile Include="Helper\INavigationService.cs" />
     <Compile Include="Helper\NavigationService.cs" />

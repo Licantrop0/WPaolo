@@ -9,7 +9,7 @@ namespace Scudetti.ViewModel
 {
     public class ShieldsViewModel : ViewModelBase
     {
-        public INavigationService NavigationService { get; set; }
+        //public INavigationService NavigationService { get; set; }
 
         public string Livello { get { return "Livello " + Shields.First().Level; } }
         public string Progress
@@ -27,18 +27,22 @@ namespace Scudetti.ViewModel
             get { return null; }
             set
             {
-                NavigationService.Navigate(new Uri("/View/ShieldPage.xaml", UriKind.Relative));
-                MessengerInstance.Send<Shield>(value);
+                if (value.IsValidated) return;
+                MessengerInstance.Send<Uri>(new Uri("/View/ShieldPage.xaml?id=" + value.Id, UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedShield");
             }
         }
 
-        public ShieldsViewModel(INavigationService navigationService)
+        public ShieldsViewModel()//INavigationService navigationService)
         {
-            NavigationService = navigationService;
+            //NavigationService = navigationService;
+            if (IsInDesignMode)
+            {
+            }
+
             MessengerInstance.Register<String>(this, (m) =>
             {
-                if (m == "UpdateScudetti")
+                if (m == "UpdateProgress")
                     RaisePropertyChanged("Progress");
             });
         }

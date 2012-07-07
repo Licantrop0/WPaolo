@@ -7,15 +7,22 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:hlp="clr-namespace:Scudetti.Helper"
-    DataContext="{Binding Source={StaticResource Locator}, Path=ShieldVM}"
+    xmlns:vm="clr-namespace:Scudetti.ViewModel"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="false">
+    shell:SystemTray.IsVisible="false" Loaded="PhoneApplicationPage_Loaded">
 
-        <Grid x:Name="ContentPanel" Margin="12,0">
+    <phone:PhoneApplicationPage.Resources>
+        <vm:ShieldViewModel x:Key="ShieldVM" />
+        <!--DataContext="{Binding Source={StaticResource Locator}, Path=ShieldVM}"-->
+    </phone:PhoneApplicationPage.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent"
+          DataContext="{StaticResource ShieldVM}" Margin="12,0">
+
         <Grid.Resources>
             <hlp:ImagePathConverter x:Key="ImagePathConv" />
         </Grid.Resources>

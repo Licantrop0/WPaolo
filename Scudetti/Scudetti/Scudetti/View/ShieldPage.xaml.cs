@@ -22,7 +22,7 @@ namespace Scudetti.View
             get
             {
                 if (_vM == null)
-                    _vM = this.DataContext as ShieldViewModel;
+                    _vM = LayoutRoot.DataContext as ShieldViewModel;
                 return _vM;
             }
         }
@@ -36,6 +36,18 @@ namespace Scudetti.View
         {
             ShieldNameTextbox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             VM.Validate();
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            var id = int.Parse(NavigationContext.QueryString["id"]);
+            VM.CurrentShield = AppContext.Shields.Where(s=> s.Id == id).Single();
+            base.OnNavigatedTo(e);
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            ShieldNameTextbox.Focus();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Scudetti.ViewModel
 {
     public class ShieldViewModel : ViewModelBase
     {
-        public INavigationService NavigationService { get; set; }
+        //public INavigationService NavigationService { get; set; }
 
         private Shield _currentShield;
         public Shield CurrentShield
@@ -25,12 +25,10 @@ namespace Scudetti.ViewModel
 
         public string ShieldName { get; set; }
 
-        public ShieldViewModel(INavigationService navigationService)
+        public ShieldViewModel()//INavigationService navigationService)
         {
-            NavigationService = navigationService;
+            //NavigationService = navigationService;
             ShieldName = string.Empty;
-            MessengerInstance.Register<Shield>(this, (m) =>
-                CurrentShield = m);
         }
 
         public void Validate()
@@ -39,8 +37,10 @@ namespace Scudetti.ViewModel
             {
                 case 0:
                     CurrentShield.IsValidated = true;
-                    NavigationService.GoBack();
-                    //MessengerInstance.Send<string>("UpdateScudetti");
+                    //NavigationService.GoBack();
+                    MessengerInstance.Send<string>("goback", "navigation");
+
+                    MessengerInstance.Send<string>("UpdateProgress");
                     break;
                 case 1:
                     MessageBox.Show("quasi!");

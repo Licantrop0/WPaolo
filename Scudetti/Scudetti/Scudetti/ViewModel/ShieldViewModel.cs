@@ -3,6 +3,7 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using NascondiChiappe.Helpers;
 using System.Windows;
+using System;
 
 namespace Scudetti.ViewModel
 {
@@ -24,10 +25,12 @@ namespace Scudetti.ViewModel
         }
 
         public string ShieldName { get; set; }
-
-        public ShieldViewModel()//INavigationService navigationService)
+        public ShieldViewModel()
         {
-            //NavigationService = navigationService;
+            if (IsInDesignMode)
+            {
+                CurrentShield = new Shield() { Id = 1, Level = 1, Name = "Barcellona", Image = "barcellona.png", IsValidated = false };
+            }
             ShieldName = string.Empty;
         }
 

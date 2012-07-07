@@ -1,0 +1,8 @@
+﻿<?xml version="1.0"?>
+<ArrayOfShield xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Shield Level="1" Id="1" Name="Ajax" Image="ajax.png" IsValidated="false" />
+  <Shield Level="1" Id="2" Name="Arsenal" Image="Arsenal.png" IsValidated="false" />
+  <Shield Level="1" Id="3" Name="Barcellona" Image="Barcellona.png" IsValidated="false" />
+  <Shield Level="1" Id="4" Name="Bayern Monaco" Image="Bayern_Munich.png" IsValidated="false" />
+  <Shield Level="2" Id="5" Name="boca" Image="boca.png" IsValidated="false" />
+</ArrayOfShield>

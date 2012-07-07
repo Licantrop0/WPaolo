@@ -17,22 +17,18 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:ShieldViewModel x:Key="ShieldVM" />
-        <!--DataContext="{Binding Source={StaticResource Locator}, Path=ShieldVM}"-->
+        <hlp:ImagePathConverter x:Key="ImagePathConv" />
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="Transparent"
           DataContext="{StaticResource ShieldVM}" Margin="12,0">
 
-        <Grid.Resources>
-            <hlp:ImagePathConverter x:Key="ImagePathConv" />
-        </Grid.Resources>
-        <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}" Stretch="None" />
+        <StackPanel>
+            <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
+                    Stretch="None" />
             <TextBox Name="ShieldNameTextbox" VerticalAlignment="Bottom"
-                     Grid.Row="1" Text="{Binding ShieldName, Mode=TwoWay}" />
+                     Text="{Binding ShieldName, Mode=TwoWay}" KeyDown="ShieldNameTextbox_KeyDown" />
+        </StackPanel>
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

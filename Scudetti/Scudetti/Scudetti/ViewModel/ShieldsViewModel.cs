@@ -9,9 +9,20 @@ namespace Scudetti.ViewModel
 {
     public class ShieldsViewModel : ViewModelBase
     {
-        //public INavigationService NavigationService { get; set; }
+        public int Level { get; set; }
+        public string LevelText { get { return "Livello " + Level; } }
 
-        public string Livello { get { return "Livello " + Shields.First().Level; } }
+        private IEnumerable<Shield> _shields;
+        public IEnumerable<Shield> Shields
+        {
+            get
+            {
+                if (_shields == null)
+                    _shields = AppContext.Shields.Where(s => s.Level == Level);
+                return _shields;
+            }
+        }
+
         public string Progress
         {
             get
@@ -20,7 +31,6 @@ namespace Scudetti.ViewModel
             }
         }
 
-        public IEnumerable<Shield> Shields { get { return AppContext.Shields; } }
 
         public Shield SelectedShield
         {
@@ -28,14 +38,14 @@ namespace Scudetti.ViewModel
             set
             {
                 if (value.IsValidated) return;
-                MessengerInstance.Send<Uri>(new Uri("/View/ShieldPage.xaml?id=" + value.Id, UriKind.Relative), "navigation");
+                MessengerInstance.Send<Uri>(new Uri("/View/ShieldPage.xaml?id="
+                    + value.Id, UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedShield");
             }
         }
 
-        public ShieldsViewModel()//INavigationService navigationService)
+        public ShieldsViewModel()
         {
-            //NavigationService = navigationService;
             if (IsInDesignMode)
             {
             }

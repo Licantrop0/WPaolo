@@ -129,4 +129,7 @@
   <data name="Shields" xml:space="preserve">
     <value>Scudetti</value>
   </data>
+  <data name="Wrong" xml:space="preserve">
+    <value>Sbagliato!</value>
+  </data>
 </root>

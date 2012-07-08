@@ -79,6 +79,15 @@ namespace Scudetti.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Shields needed to unlock the level.
+        /// </summary>
+        public static string Locked {
+            get {
+                return ResourceManager.GetString("Locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shield.
         /// </summary>
         public static string Shield {

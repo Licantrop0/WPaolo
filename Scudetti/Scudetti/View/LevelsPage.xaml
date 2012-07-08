@@ -34,30 +34,26 @@
                  SelectedItem="{Binding SelectedLevel, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                        <Grid Width="480">
-                        	<Grid.RowDefinitions>
-                        		<RowDefinition Height="Auto"/>
-                        		<RowDefinition Height="Auto"/>
-                        		<RowDefinition Height="Auto"/>
-                        	</Grid.RowDefinitions>
-                            <TextBlock Text="{Binding Key, StringFormat='Livello \{0\}'}"
-                                       VerticalAlignment="Center" Foreground="Blue" FontSize="64" />
-                            <Rectangle Fill="#FF2D2D2D" VerticalAlignment="Bottom" Height="10" Margin="12,0,12,3" Grid.Row="1"/>
-                            <ProgressBar Maximum="{Binding Count}"
-                                         Value="{Binding Completed}"
+                    <Grid Width="480">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding LevelName}"
+                                   VerticalAlignment="Center" Foreground="Blue" FontSize="64" />
+                        <Rectangle Fill="#FF2D2D2D" VerticalAlignment="Bottom"
+                                   Height="10" Margin="12,0,12,3"
+                                   Grid.Row="1"/>
+                        <ProgressBar Maximum="{Binding TotalShields}"
+                                         Value="{Binding CompletedShields}"
                                          VerticalAlignment="Bottom" Margin="0,0,0,6" RenderTransformOrigin="0.5,0.5" Background="#FFE2A41B" Foreground="#FFC0B000" Grid.Row="1" >
-                            	<ProgressBar.RenderTransform>
-                            		<CompositeTransform ScaleY="2.5"/>
-                            	</ProgressBar.RenderTransform>
-                            </ProgressBar>
-                            <StackPanel Margin="12,0" Orientation="Horizontal" Grid.Row="2" d:LayoutOverrides="Height">
-                            	<TextBlock Text="{Binding Completed}"
-                            		VerticalAlignment="Center" Foreground="Blue" Margin="0" />
-                            	<TextBlock Text="/"
-                            		VerticalAlignment="Center" Foreground="Blue" Margin="0" />
-                            	<TextBlock Text="{Binding Count}"
-                            		VerticalAlignment="Center" Foreground="Blue" Margin="0" />
-                            </StackPanel>
+                            <ProgressBar.RenderTransform>
+                                <CompositeTransform ScaleY="2.5"/>
+                            </ProgressBar.RenderTransform>
+                        </ProgressBar>
+                        <TextBlock Text="{Binding StatusText}" Grid.Row="2" FontSize="30"
+                                   VerticalAlignment="Center" Foreground="Blue" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

@@ -22,4 +22,6 @@
   <Shield Level="1" Id="20" Name="Santos" Image="santos.png" IsValidated="false" />
   <Shield Level="1" Id="21" Name="Liverpool" Image="liverpool.png" IsValidated="false" />
 
+  <Shield Level="2" Id="22" Name="Liverpool" Image="liverpool.png" IsValidated="false" />
+
 </ArrayOfShield>

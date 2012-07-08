@@ -97,11 +97,11 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Localization\LocalizedStrings.cs" />
-    <Compile Include="Model\Level.cs" />
     <Compile Include="Model\ShieldService.cs" />
     <Compile Include="Model\Shield.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\LevelsViewModel.cs" />
+    <Compile Include="ViewModel\LevelViewModel.cs" />
     <Compile Include="ViewModel\ShieldsViewModel.cs" />
     <Compile Include="ViewModel\ShieldViewModel.cs" />
     <Compile Include="View\LevelsPage.xaml.cs">

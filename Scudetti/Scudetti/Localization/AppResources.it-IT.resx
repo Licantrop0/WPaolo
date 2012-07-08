@@ -123,6 +123,9 @@
   <data name="Levels" xml:space="preserve">
     <value>Livelli</value>
   </data>
+  <data name="Locked" xml:space="preserve">
+    <value>Mancano {0} scudetti per sbloccare il livello</value>
+  </data>
   <data name="Shield" xml:space="preserve">
     <value>Scudetto</value>
   </data>

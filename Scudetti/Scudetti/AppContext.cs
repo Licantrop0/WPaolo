@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Scudetti.Model;
+using System.Linq;
 
 namespace Scudetti
 {
@@ -15,5 +16,9 @@ namespace Scudetti
                 return _shields;
             }
         }
+
+        public static int TotalShieldUnlocked
+        { get { return Shields.Count(s => s.IsUnlocked); } }
+
     }
 }

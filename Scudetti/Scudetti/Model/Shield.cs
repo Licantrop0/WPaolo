@@ -19,12 +19,12 @@ namespace Scudetti.Model
 
         private bool _isValidated = false;
         [XmlAttribute]
-        public bool IsValidated
+        public bool IsUnlocked
         {
             get { return _isValidated; }
             set
             {
-                if (IsValidated == value) return;
+                if (IsUnlocked == value) return;
                 _isValidated = value;
                 RaisePropertyChanged("IsValidated");
             }

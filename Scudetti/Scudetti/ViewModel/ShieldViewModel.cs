@@ -30,7 +30,7 @@ namespace Scudetti.ViewModel
         {
             if (IsInDesignMode)
             {
-                CurrentShield = new Shield() { Id = 1, Level = 1, Name = "Barcellona", Image = "barcellona.png", IsValidated = false };
+                CurrentShield = new Shield() { Id = 1, Level = 1, Name = "Barcellona", Image = "barcellona.png", IsUnlocked = false };
             }
             ShieldName = string.Empty;
         }
@@ -39,7 +39,7 @@ namespace Scudetti.ViewModel
         {
             if (string.Compare(CurrentShield.Name, ShieldName, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                CurrentShield.IsValidated = true;
+                CurrentShield.IsUnlocked = true;
                 MessengerInstance.Send<string>("goback", "navigation");
                 MessengerInstance.Send<string>("UpdateProgress");
             }

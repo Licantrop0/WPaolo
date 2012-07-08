@@ -123,6 +123,9 @@
   <data name="Levels" xml:space="preserve">
     <value>Levels</value>
   </data>
+  <data name="Locked" xml:space="preserve">
+    <value>{0} Shields needed to unlock the level</value>
+  </data>
   <data name="Shield" xml:space="preserve">
     <value>Shield</value>
   </data>

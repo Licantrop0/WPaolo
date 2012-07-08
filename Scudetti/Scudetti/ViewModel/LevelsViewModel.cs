@@ -9,8 +9,8 @@ namespace Scudetti.ViewModel
 {
     public class LevelsViewModel : ViewModelBase
     {
-        private IEnumerable<Level> _levels;
-        public IEnumerable<Level> Levels
+        private IEnumerable<LevelViewModel> _levels;
+        public IEnumerable<LevelViewModel> Levels
         {
             get
             {
@@ -18,23 +18,20 @@ namespace Scudetti.ViewModel
                 {
                     _levels = AppContext.Shields
                         .GroupBy(s => s.Level)
-                        .Select(g => new Level(g));
+                        .Select(g => new LevelViewModel(g));
                 }
                 return _levels;
             }
             private set { _levels = value; }
         }
 
-        public int TotalShieldUnlocked
-        { get { return Levels.Sum(l => l.Completed); } }
-
-        public Level SelectedLevel
+        public LevelViewModel SelectedLevel
         {
             get { return null; }
             set
             {
                 MessengerInstance.Send<Uri>(new Uri("/View/ShieldsPage.xaml?level="
-                    + value.Key, UriKind.Relative), "navigation");
+                    + value.Number, UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedLevel");
             }
         }
@@ -45,24 +42,7 @@ namespace Scudetti.ViewModel
             {
                 Levels = DesignTimeData.GetShields()
                         .GroupBy(s => s.Level)
-                        .Select(g => new Level(g));
-            }
-
-            //Level Unlocking
-            foreach (var level in Levels)
-            {
-                if (level.Key == 1)
-                {
-                    level.IsUnlocked = true;
-                }
-                else
-                {
-                    level.PropertyChanged += (sender, e) =>
-                    {
-                        if (e.PropertyName == "Completed")
-                            level.IsUnlocked = TotalShieldUnlocked == (level.Key - 1) * 15;
-                    };
-                }
+                        .Select(g => new LevelViewModel(g));
             }
         }
     }

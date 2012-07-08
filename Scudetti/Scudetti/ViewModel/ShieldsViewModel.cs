@@ -31,7 +31,7 @@ namespace Scudetti.ViewModel
             {
                 return string.Format("{0} {1}/{2}",
                     AppResources.Shields,
-                    Shields.Count(s => s.IsValidated),
+                    Shields.Count(s => s.IsUnlocked),
                     Shields.Count());
             }
         }
@@ -42,7 +42,7 @@ namespace Scudetti.ViewModel
             get { return null; }
             set
             {
-                if (value.IsValidated) return;
+                if (value.IsUnlocked) return;
                 MessengerInstance.Send<Uri>(new Uri("/View/ShieldPage.xaml?id="
                     + value.Id, UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedShield");

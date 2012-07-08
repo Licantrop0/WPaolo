@@ -4,13 +4,15 @@ using Scudetti.Model;
 using System.Linq;
 using NascondiChiappe.Helpers;
 using System;
+using Scudetti.Localization;
+using Scudetti.Data;
 
 namespace Scudetti.ViewModel
 {
     public class ShieldsViewModel : ViewModelBase
     {
         public int Level { get; set; }
-        public string LevelText { get { return "Livello " + Level; } }
+        public string LevelText { get { return string.Format("{0} {1}", AppResources.Level, Level); } }
 
         private IEnumerable<Shield> _shields;
         public IEnumerable<Shield> Shields
@@ -27,7 +29,10 @@ namespace Scudetti.ViewModel
         {
             get
             {
-                return "Scudetti " + Shields.Count(s => s.IsValidated) + " / " + Shields.Count();
+                return string.Format("{0} {1}/{2}",
+                    AppResources.Shields,
+                    Shields.Count(s => s.IsValidated),
+                    Shields.Count());
             }
         }
 
@@ -48,6 +53,8 @@ namespace Scudetti.ViewModel
         {
             if (IsInDesignMode)
             {
+                Level = 1;
+                _shields = DesignTimeData.GetShields().Where(s => s.Level == Level);
             }
 
             MessengerInstance.Register<String>(this, (m) =>

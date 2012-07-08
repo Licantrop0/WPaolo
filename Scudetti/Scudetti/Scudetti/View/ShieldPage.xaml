@@ -20,7 +20,7 @@
         <hlp:ImagePathConverter x:Key="ImagePathConv" />
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="Transparent"
+    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
           DataContext="{StaticResource ShieldVM}" Margin="12,0">
 
         <StackPanel>

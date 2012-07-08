@@ -15,24 +15,22 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False">
-    
+
     <phone:PhoneApplicationPage.Resources>
-        <vm:ShieldsViewModel x:Key="ShieldsVM" />            
-    <!--DataContext="{Binding Source={StaticResource Locator}, Path=ShieldsVM}"-->
+        <vm:ShieldsViewModel x:Key="ShieldsVM" />
+        <hlp:ImagePathConverter x:Key="ImagePathConv" />
+        <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
+        <hlp:BooleanNegationConverter x:Key="BooleanNegationConv" />
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{StaticResource ShieldsVM}">
-
-        <Grid.Resources>
-            <hlp:ImagePathConverter x:Key="ImagePathConv" />
-            <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
-        </Grid.Resources>
+    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
+          DataContext="{StaticResource ShieldsVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="{Binding  Progress}" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="{Binding LevelText}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
@@ -41,7 +39,7 @@
                  SelectedItem="{Binding SelectedShield, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsValidated, Converter={StaticResource BooleanNegationConv}}">
                         <Border BorderBrush="Aqua" BorderThickness="6"
                                 Margin="6,6,0,0" Height="150" Width="150">
                             <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" />

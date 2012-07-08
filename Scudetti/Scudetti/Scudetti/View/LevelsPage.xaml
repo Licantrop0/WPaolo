@@ -6,40 +6,45 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:vm="clr-namespace:Scudetti.ViewModel"
+    xmlns:hlp="clr-namespace:Scudetti.Helper"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
     <phone:PhoneApplicationPage.Resources>
         <vm:LevelsViewModel x:Key="LevelsVM" />
+        <hlp:BooleanNegationConverter x:Key="BooleanNegationConv" />
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{StaticResource LevelsVM}">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
+          DataContext="{StaticResource LevelsVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Levels" Style="{StaticResource PhoneTextTitle1Style}"/>
+        <TextBlock Text="{Binding LocalizedResources.Levels,
+                          Source={StaticResource LocalizedStrings}}"
+                   Style="{StaticResource PhoneTextTitle1Style}"
+                   FontFamily="{StaticResource DefaultFont}"
+                   Foreground="{StaticResource DefaultForeground}" />
 
         <ListBox Grid.Row="1" ItemsSource="{Binding Levels}"
                  SelectedItem="{Binding SelectedLevel, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Border BorderBrush="Aqua" BorderThickness="6"
-                                Margin="6,6,0,0" Height="150" Width="150">
-                            <TextBlock Text="{Binding}" TextAlignment="Center"
-                                       Style="{StaticResource PhoneTextTitle1Style}" />
-                        </Border>
-                        <!--<Line X1="12" Y1="12" X2="150" Y2="150"
-                              Stroke="Red" StrokeThickness="5" StrokeStartLineCap="Triangle" StrokeEndLineCap="Triangle"
-                               Visibility="{Binding IsValidated, Converter={StaticResource BooleanVisibilityConv}}" />-->
-                    </Grid>
+                    <Border BorderBrush="Aqua" BorderThickness="6"
+                            Margin="6,6,0,0" Height="150" Width="150"
+                            toolkit:TiltEffect.IsTiltEnabled="{Binding IsValidated, Converter={StaticResource BooleanNegationConv}}">
+                        <Grid>
+                            <TextBlock Text="{Binding Key}" Style="{StaticResource PhoneTextTitle1Style}"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <ProgressBar Maximum="{Binding Count}"
+                                         Value="{Binding Completed}"
+                                         VerticalAlignment="Bottom" Margin="0,6" />
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
             <ListBox.ItemsPanel>

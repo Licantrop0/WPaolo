@@ -95,5 +95,14 @@ namespace Scudetti.Localization {
                 return ResourceManager.GetString("Shields", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong!.
+        /// </summary>
+        public static string Wrong {
+            get {
+                return ResourceManager.GetString("Wrong", resourceCulture);
+            }
+        }
     }
 }

@@ -40,13 +40,13 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsValidated, Converter={StaticResource BooleanNegationConv}}">
-                        <Border BorderBrush="Aqua" BorderThickness="6"
+                        <Border BorderBrush="Gold" Background="White" BorderThickness="6"
                                 Margin="6,6,0,0" Height="150" Width="150">
                             <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" />
                         </Border>
-                        <Line X1="12" Y1="12" X2="150" Y2="150"
-                              Stroke="Red" StrokeThickness="5" StrokeStartLineCap="Triangle" StrokeEndLineCap="Triangle"
-                               Visibility="{Binding IsValidated, Converter={StaticResource BooleanVisibilityConv}}" />
+                        <Image Source="..\Images\spunta.png"
+                               Visibility="{Binding IsValidated, Converter={StaticResource BooleanVisibilityConv}}"                                                              HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                               Width="50" Margin="0,0,6,6" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

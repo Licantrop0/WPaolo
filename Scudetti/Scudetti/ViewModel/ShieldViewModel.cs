@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using NascondiChiappe.Helpers;
 using System.Windows;
 using System;
+using Scudetti.Localization;
 
 namespace Scudetti.ViewModel
 {
@@ -36,21 +37,15 @@ namespace Scudetti.ViewModel
 
         public void Validate()
         {
-            switch (string.Compare(CurrentShield.Name, ShieldName, System.StringComparison.CurrentCultureIgnoreCase))
+            if (string.Compare(CurrentShield.Name, ShieldName, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                case 0:
-                    CurrentShield.IsValidated = true;
-                    //NavigationService.GoBack();
-                    MessengerInstance.Send<string>("goback", "navigation");
-
-                    MessengerInstance.Send<string>("UpdateProgress");
-                    break;
-                case 1:
-                    MessageBox.Show("quasi!");
-                    break;
-                default:
-                    MessageBox.Show("suca!");
-                    break;
+                CurrentShield.IsValidated = true;
+                MessengerInstance.Send<string>("goback", "navigation");
+                MessengerInstance.Send<string>("UpdateProgress");
+            }
+            else
+            {
+                MessageBox.Show(AppResources.Wrong);
             }
         }
     }

@@ -10,7 +10,7 @@ namespace Scudetti.Data
             return new[]
             {
                 new Shield(){ Id = 1, Level = 1, Name="Milan", Image="milan.png", IsValidated = true },
-                new Shield(){ Id = 2, Level = 1, Name="Ajax", Image="ajax.png", IsValidated = true },
+                new Shield(){ Id = 2, Level = 1, Name="Ajax", Image="ajax.png", IsValidated = false },
                 new Shield(){ Id = 3, Level = 1, Name="barcellona", Image="barcellona.png", IsValidated = true },
                 new Shield(){ Id = 4, Level = 1, Name="celtic", Image="celtic.png", IsValidated = true },
                 new Shield(){ Id = 5, Level = 1, Name="chelesa", Image="chelesa.png", IsValidated = false },

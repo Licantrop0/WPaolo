@@ -24,14 +24,26 @@ namespace Scudetti.Model
             }
         }
 
-
         public int Key
         {
             get { return key; }
         }
 
+        private bool _isUnlocked;
+        public bool IsUnlocked
+        {
+            get { return _isUnlocked; }
+            set
+            {
+                if (IsUnlocked == value) return;
+                _isUnlocked = value;
+                RaisePropertyChanged("IsUnlocked");
+            }
+        }
+
         public int Count { get { return shields.Count(); } }
         public int Completed { get { return shields.Count(s => s.IsValidated); } }
+
 
         public System.Collections.Generic.IEnumerator<Shield> GetEnumerator()
         {

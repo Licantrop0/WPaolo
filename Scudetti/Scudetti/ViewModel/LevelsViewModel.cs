@@ -15,14 +15,18 @@ namespace Scudetti.ViewModel
             get
             {
                 if (_levels == null)
+                {
                     _levels = AppContext.Shields
                         .GroupBy(s => s.Level)
                         .Select(g => new Level(g));
+                }
                 return _levels;
             }
             private set { _levels = value; }
         }
 
+        public int TotalShieldUnlocked
+        { get { return Levels.Sum(l => l.Completed); } }
 
         public Level SelectedLevel
         {
@@ -42,6 +46,23 @@ namespace Scudetti.ViewModel
                 Levels = DesignTimeData.GetShields()
                         .GroupBy(s => s.Level)
                         .Select(g => new Level(g));
+            }
+
+            //Level Unlocking
+            foreach (var level in Levels)
+            {
+                if (level.Key == 1)
+                {
+                    level.IsUnlocked = true;
+                }
+                else
+                {
+                    level.PropertyChanged += (sender, e) =>
+                    {
+                        if (e.PropertyName == "Completed")
+                            level.IsUnlocked = TotalShieldUnlocked == (level.Key - 1) * 15;
+                    };
+                }
             }
         }
     }

@@ -10,15 +10,30 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9F55B4
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.TrialManagement", "..\WPCommon.Helpers.TrialManagement\WPCommon.Helpers.TrialManagement.csproj", "{157C676B-46A4-4099-936E-BBDFB93BB735}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.XNAAsyncDispatcher", "..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj", "{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = Scudetti\\Scudetti.csproj
 		SccProjectName1 = Scudetti
 		SccLocalPath1 = Scudetti
+		SccProjectUniqueName2 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName2 = ../WPCommon.Controls
+		SccLocalPath2 = ..\\WPCommon.Controls
+		SccProjectUniqueName3 = ..\\WPCommon.Helpers.TrialManagement\\WPCommon.Helpers.TrialManagement.csproj
+		SccProjectName3 = ../WPCommon.Helpers.TrialManagement
+		SccLocalPath3 = ..\\WPCommon.Helpers.TrialManagement
+		SccProjectUniqueName4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
+		SccProjectName4 = ../WPCommon.Helpers.XNAAsyncDispatcher
+		SccLocalPath4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +46,18 @@ Global
 		{82AAC311-C6F4-4B68-8EAB-661DFDAE399E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82AAC311-C6F4-4B68-8EAB-661DFDAE399E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{82AAC311-C6F4-4B68-8EAB-661DFDAE399E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{157C676B-46A4-4099-936E-BBDFB93BB735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

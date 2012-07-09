@@ -6,28 +6,36 @@
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:vm="clr-namespace:Scudetti.ViewModel" mc:Ignorable="d">
+	mc:Ignorable="d">
 
 	<Application.Resources>
 		<loc:LocalizedStrings xmlns:loc="clr-namespace:Scudetti.Localization" x:Key="LocalizedStrings" />
 		<sys:FontFamily xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows"
 					x:Key="DefaultFont">Comic Sans MS</sys:FontFamily>
-<!--/IDecide;component/Fonts/Fonts.zip#Ravie-->
+		<!--/IDecide;component/Fonts/Fonts.zip#Ravie-->
 		<Color x:Key="MainColor">#FF841F</Color>
 		<ImageBrush x:Key="DefaultBackground" ImageSource="Images\sfondo.png" />
-		<!--<LinearGradientBrush x:Key="DefaultBackground"
-			StartPoint="1,0" EndPoint="0,1">
-			<GradientStop Color="#FFBBFFA9" Offset="1"/>
-			<GradientStop Color="#FF13FD13"/>
-		</LinearGradientBrush>-->
+
 		<SolidColorBrush x:Key="DefaultForeground" Color="{StaticResource MainColor}" />
+
+		<Style x:Key="TextBlockBase" TargetType="TextBlock">
+			<Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+			<Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+		</Style>
+
+		<Style x:Key="TitleTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
+			<Setter Property="Margin" Value="0,20,0,0" />
+			<Setter Property="TextAlignment" Value="Center" />
+			<Setter Property="FontSize" Value="80" />
+		</Style>
+
 	</Application.Resources>
 
 	<Application.ApplicationLifetimeObjects>
-	<shell:PhoneApplicationService
+		<shell:PhoneApplicationService
 		Launching="Application_Launching"
 		Closing="Application_Closing"
 		Activated="Application_Activated"
 		Deactivated="Application_Deactivated" />
-  </Application.ApplicationLifetimeObjects>
+	</Application.ApplicationLifetimeObjects>
 </Application>

@@ -6,12 +6,14 @@
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+	xmlns:eim="clr-namespace:Microsoft.Expression.Interactivity.Media;assembly=Microsoft.Expression.Interactions"
 	mc:Ignorable="d">
 
 	<Application.Resources>
 		<loc:LocalizedStrings xmlns:loc="clr-namespace:Scudetti.Localization" x:Key="LocalizedStrings" />
-		<sys:FontFamily xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows"
-					x:Key="DefaultFont">Comic Sans MS</sys:FontFamily>
+		<FontFamily xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows"
+					x:Key="DefaultFont">Comic Sans MS</FontFamily>
 		<!--/IDecide;component/Fonts/Fonts.zip#Ravie-->
 		<Color x:Key="MainColor">#FF841F</Color>
 		<ImageBrush x:Key="DefaultBackground" ImageSource="Images\sfondo.png" />
@@ -27,6 +29,39 @@
 			<Setter Property="Margin" Value="0,20,0,0" />
 			<Setter Property="TextAlignment" Value="Center" />
 			<Setter Property="FontSize" Value="80" />
+		</Style>
+		<Style x:Key="BallButtonStyle" TargetType="Button">
+			<Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+			<Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+			<Setter Property="FontSize" Value="50" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid x:Name="MainGrid">
+							<Grid.Resources>
+								<Storyboard x:Name="RotatingBallStoryboard" RepeatBehavior="Forever">
+									<DoubleAnimation Duration="0:0:4" To="360" FillBehavior="Stop"
+													 Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+													 Storyboard.TargetName="image" d:IsOptimized="True"/>
+								</Storyboard>
+							</Grid.Resources>
+							<!--<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Loaded">
+									<eim:ControlStoryboardAction Storyboard="{StaticResource RotatingBallStoryboard}"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>-->
+							<Image x:Name="image" Source="/Scudetti;component/Images/soccerball.png"
+								   RenderTransformOrigin="0.5,0.5">
+								<Image.RenderTransform>
+									<RotateTransform />
+								</Image.RenderTransform>
+							</Image>
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
 		</Style>
 
 	</Application.Resources>

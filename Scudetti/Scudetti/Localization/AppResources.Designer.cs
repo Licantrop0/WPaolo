@@ -61,6 +61,15 @@ namespace Scudetti.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Soccerama.
+        /// </summary>
+        public static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Level.
         /// </summary>
         public static string Level {
@@ -79,7 +88,7 @@ namespace Scudetti.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Shields needed to unlock the level.
+        ///   Looks up a localized string similar to {0} Shields needed to unlock.
         /// </summary>
         public static string Locked {
             get {

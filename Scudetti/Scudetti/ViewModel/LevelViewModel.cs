@@ -16,7 +16,7 @@ namespace Scudetti.ViewModel
         public int TotalShields { get { return Shields.Count(); } }
         public int CompletedShields { get { return Shields.Count(s => s.IsValidated); } }
 
-        private int LockTreshold = 3;
+        private int LockTreshold = 5;
 
         public bool IsUnlocked
         {
@@ -49,12 +49,15 @@ namespace Scudetti.ViewModel
             }
         }
 
-        public LevelViewModel()
+        public LevelViewModel() : this(1, DesignTimeData.Shields.Where(s => s.Level == 1))
+        { }
+
+        public LevelViewModel(int number, IEnumerable<Shield> shields)
         {
             if (IsInDesignMode)
             {
-                Number = 1;
-                Shields = DesignTimeData.Shields.Where(s => s.Level == Number);
+                Number = number;
+                Shields = shields;
             }
         }
 

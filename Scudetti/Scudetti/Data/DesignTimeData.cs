@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Scudetti.Model;
 using System.Linq;
+using Scudetti.ViewModel;
 
 namespace Scudetti.Data
 {
@@ -15,6 +16,28 @@ namespace Scudetti.Data
                     _shields = GetShields();
                 return _shields;
             }
+        }
+
+        private static List<LevelViewModel> _levels;
+        public static List<LevelViewModel> Levels
+        {
+            get
+            {
+                if (_levels == null)
+                    _levels = GetLevels();
+
+                return _levels;
+            }
+        }
+
+        private static List<LevelViewModel> GetLevels()
+        {
+            return new[]
+            {
+                new LevelViewModel(1, Shields.Where(s=> s.Level==1)),
+                new LevelViewModel(2, Shields.Where(s=> s.Level==2)),
+                new LevelViewModel(3, Shields.Where(s=> s.Level==3)),
+            }.ToList();
         }
 
         private static IEnumerable<Shield> GetShields()

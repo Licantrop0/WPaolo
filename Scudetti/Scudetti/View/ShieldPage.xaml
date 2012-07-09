@@ -18,6 +18,7 @@
     <phone:PhoneApplicationPage.Resources>
         <vm:ShieldViewModel x:Key="ShieldVM" />
         <hlp:ImagePathConverter x:Key="ImagePathConv" />
+        <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
@@ -27,7 +28,12 @@
             <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
                     Stretch="None" />
             <TextBox Name="ShieldNameTextbox" VerticalAlignment="Bottom"
-                     Text="{Binding ShieldName, Mode=TwoWay}" KeyDown="ShieldNameTextbox_KeyDown" />
+                     Text="{Binding ShieldName, Mode=TwoWay}"
+                     KeyDown="ShieldNameTextbox_KeyDown"
+                     Visibility="{Binding InputVisibile}"/>
+            <TextBlock Text="{Binding CurrentShield.Name}" Style="{StaticResource TitleTextBlock}"
+                       TextWrapping="Wrap" Visibility="{Binding CurrentShield.IsValidated,
+                Converter={StaticResource BooleanVisibilityConv}}" />
         </StackPanel>
     </Grid>
 

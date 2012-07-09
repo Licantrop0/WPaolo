@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Scudetti.Localization;
 using Scudetti.Data;
 using System;
+using Scudetti.Helper;
 
 namespace Scudetti.ViewModel
 {
@@ -42,7 +43,7 @@ namespace Scudetti.ViewModel
             get { return null; }
             set
             {
-                if (value.IsValidated) return;
+                //if (value.IsValidated) return;
                 MessengerInstance.Send<Uri>(new Uri("/View/ShieldPage.xaml?id="
                     + value.Id, UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedShield");
@@ -64,7 +65,9 @@ namespace Scudetti.ViewModel
         public LevelViewModel(IGrouping<int, Shield> group)
         {
             Number = group.Key;
-            Shields = group;
+            var list = group.ToList();
+            list.Shuffle();
+            Shields = list.OrderBy(s => s.IsValidated);
 
             foreach (var shield in AppContext.Shields)
             {
@@ -72,17 +75,12 @@ namespace Scudetti.ViewModel
                 {
                     if (e.PropertyName == "IsValidated")
                     {
-                        UpdateLockStatus();
+                        RaisePropertyChanged("CompletedShields");
+                        RaisePropertyChanged("IsUnlocked");
+                        RaisePropertyChanged("StatusText");
                     }
                 };
             }
-        }
-
-        public void UpdateLockStatus()
-        {
-            RaisePropertyChanged("CompletedShields");
-            RaisePropertyChanged("IsUnlocked");
-            RaisePropertyChanged("StatusText");
         }
     }
 }

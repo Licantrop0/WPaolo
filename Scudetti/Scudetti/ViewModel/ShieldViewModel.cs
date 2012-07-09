@@ -24,6 +24,8 @@ namespace Scudetti.ViewModel
             }
         }
 
+        public Visibility InputVisibile { get { return CurrentShield.IsValidated ? Visibility.Collapsed : Visibility.Visible; } }
+
         public ShieldViewModel()
         {
             if (IsInDesignMode)

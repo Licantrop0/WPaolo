@@ -96,10 +96,10 @@
     <Compile Include="Data\DesignTimeData.cs" />
     <Compile Include="Helper\BooleanNegationConverter.cs" />
     <Compile Include="Helper\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Helper\ExtensionMethods.cs" />
     <Compile Include="Helper\ImagePathConverter.cs" />
-    <Compile Include="Helper\INavigationService.cs" />
-    <Compile Include="Helper\NavigationService.cs" />
-    <Compile Include="Helper\Visual.cs" />
+    <None Include="Helper\INavigationService.cs" />
+    <None Include="Helper\NavigationService.cs" />
     <Compile Include="Localization\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

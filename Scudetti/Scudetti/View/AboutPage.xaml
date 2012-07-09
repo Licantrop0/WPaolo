@@ -16,8 +16,7 @@
     shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
-        <vm:AboutViewModel x:Name="AboutVM"
-                           MinFontSize="45"
+        <vm:AboutViewModel x:Name="AboutVM" MinFontSize="45"
                            DefaultBackground="{StaticResource DefaultBackground}"
                            DefaultForeground="{StaticResource DefaultForeground}"
                            DefaultFont="{StaticResource DefaultFont}"
@@ -25,10 +24,7 @@
                            LogoMargin="20" />
     </phone:PhoneApplicationPage.Resources>
 
-    <wpc:About DataContext="{StaticResource AboutVM}"
-               ApplicationId="572ef47c-fdda-4d58-ba1c-9cfd93c12d43"
-               AdUnitId="10027370"/>
-
-
-
+    <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}"
+               ApplicationId="489510bc-7ee7-4d2d-9bf1-9065ff63354d"
+               AdUnitId="10022566"/>
 </phone:PhoneApplicationPage>

@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows;
 using System.Reflection;
+using Scudetti.Localization;
 
 namespace Scudetti.ViewModel
 {
@@ -63,10 +64,10 @@ namespace Scudetti.ViewModel
         /// <summary>Set this value to the Marketplace Product ID</summary>
         public string AppId { get; set; }
 
-        public string AppName { get; set; }
-        //{
-        //    get { return AppResources.AppName; }
-        //}
+        public string AppName
+        {
+            get { return AppResources.AppName; }
+        }
 
         private string _appVersion;
         public string AppVersion

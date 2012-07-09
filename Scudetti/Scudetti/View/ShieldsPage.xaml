@@ -30,11 +30,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <TextBlock Text="{Binding StatusText}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="{Binding LevelName}" Style="{StaticResource TitleTextBlock}"/>
-        </StackPanel>
-
+        <TextBlock Text="{Binding StatusText}" Style="{StaticResource PhoneTextNormalStyle}"/>
+        <TextBlock Text="{Binding LevelName}" Style="{StaticResource TitleTextBlock}"/>
+        
         <ListBox Grid.Row="1" ItemsSource="{Binding Shields}"
                  SelectedItem="{Binding SelectedShield, Mode=TwoWay}">
             <ListBox.ItemTemplate>

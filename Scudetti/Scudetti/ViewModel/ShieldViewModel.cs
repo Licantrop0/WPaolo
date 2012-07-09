@@ -1,11 +1,10 @@
-﻿using Scudetti.Model;
+﻿using System;
 using System.Linq;
-using GalaSoft.MvvmLight;
-using NascondiChiappe.Helpers;
 using System.Windows;
-using System;
-using Scudetti.Localization;
+using GalaSoft.MvvmLight;
 using Scudetti.Data;
+using Scudetti.Localization;
+using Scudetti.Model;
 
 namespace Scudetti.ViewModel
 {

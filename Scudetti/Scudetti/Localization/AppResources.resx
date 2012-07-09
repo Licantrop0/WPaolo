@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppName" xml:space="preserve">
+    <value>Soccerama</value>
+  </data>
   <data name="Level" xml:space="preserve">
     <value>Level</value>
   </data>
@@ -124,7 +127,7 @@
     <value>Levels</value>
   </data>
   <data name="Locked" xml:space="preserve">
-    <value>{0} Shields needed to unlock the level</value>
+    <value>{0} Shields needed to unlock</value>
   </data>
   <data name="Shield" xml:space="preserve">
     <value>Shield</value>

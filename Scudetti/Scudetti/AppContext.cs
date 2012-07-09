@@ -28,7 +28,7 @@ namespace Scudetti
             {
                 if (_levels == null)
                 {
-                    _levels = AppContext.Shields
+                    _levels = Shields
                         .GroupBy(s => s.Level)
                         .Select(g => new LevelViewModel(g)).ToList();
                 }

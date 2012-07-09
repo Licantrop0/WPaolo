@@ -10,8 +10,7 @@ namespace Scudetti.ViewModel
 {
     public class ShieldViewModel : ViewModelBase
     {
-        //public INavigationService NavigationService { get; set; }
-
+        public string ShieldName { get; set; }
         private Shield _currentShield;
         public Shield CurrentShield
         {
@@ -25,7 +24,6 @@ namespace Scudetti.ViewModel
             }
         }
 
-        public string ShieldName { get; set; }
         public ShieldViewModel()
         {
             if (IsInDesignMode)

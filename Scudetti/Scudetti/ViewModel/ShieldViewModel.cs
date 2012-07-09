@@ -5,6 +5,7 @@ using NascondiChiappe.Helpers;
 using System.Windows;
 using System;
 using Scudetti.Localization;
+using Scudetti.Data;
 
 namespace Scudetti.ViewModel
 {
@@ -30,7 +31,7 @@ namespace Scudetti.ViewModel
         {
             if (IsInDesignMode)
             {
-                CurrentShield = new Shield() { Id = 1, Level = 1, Name = "Barcellona", Image = "barcellona.png", IsUnlocked = false };
+                CurrentShield = DesignTimeData.Shields.First();
             }
             ShieldName = string.Empty;
         }
@@ -39,9 +40,8 @@ namespace Scudetti.ViewModel
         {
             if (string.Compare(CurrentShield.Name, ShieldName, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                CurrentShield.IsUnlocked = true;
+                CurrentShield.IsValidated = true;
                 MessengerInstance.Send<string>("goback", "navigation");
-                MessengerInstance.Send<string>("UpdateProgress");
             }
             else
             {

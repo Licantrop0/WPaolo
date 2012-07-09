@@ -9,16 +9,14 @@ namespace Scudetti.ViewModel
 {
     public class LevelsViewModel : ViewModelBase
     {
-        private IEnumerable<LevelViewModel> _levels;
-        public IEnumerable<LevelViewModel> Levels
+        private List<LevelViewModel> _levels;
+        public List<LevelViewModel> Levels
         {
             get
             {
                 if (_levels == null)
                 {
-                    _levels = AppContext.Shields
-                        .GroupBy(s => s.Level)
-                        .Select(g => new LevelViewModel(g));
+                    _levels = AppContext.Levels;
                 }
                 return _levels;
             }
@@ -30,8 +28,9 @@ namespace Scudetti.ViewModel
             get { return null; }
             set
             {
+                if (!value.IsUnlocked) return;
                 MessengerInstance.Send<Uri>(new Uri("/View/ShieldsPage.xaml?level="
-                    + value.Number, UriKind.Relative), "navigation");
+                    + Levels.IndexOf(value), UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedLevel");
             }
         }
@@ -40,10 +39,12 @@ namespace Scudetti.ViewModel
         {
             if (IsInDesignMode)
             {
-                Levels = DesignTimeData.GetShields()
+                Levels = DesignTimeData.Shields
                         .GroupBy(s => s.Level)
-                        .Select(g => new LevelViewModel(g));
+                        .Select(g => new LevelViewModel(g)).ToList();
+                return;
             }
+
         }
     }
 }

@@ -17,22 +17,22 @@
     shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
-        <vm:ShieldsViewModel x:Key="ShieldsVM" />
+        <vm:LevelViewModel x:Key="LevelVM" />
         <hlp:ImagePathConverter x:Key="ImagePathConv" />
         <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
         <hlp:BooleanNegationConverter x:Key="BooleanNegationConv" />
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
-          DataContext="{StaticResource ShieldsVM}">
+          DataContext="{StaticResource LevelVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="{Binding  Progress}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="{Binding LevelText}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="{Binding StatusText}" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="{Binding LevelName}" Style="{StaticResource TitleTextBlock}"/>
         </StackPanel>
 
         <ListBox Grid.Row="1" ItemsSource="{Binding Shields}"
@@ -45,7 +45,7 @@
                             <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" />
                         </Border>
                         <Image Source="..\Images\spunta.png"
-                               Visibility="{Binding IsUnlocked, Converter={StaticResource BooleanVisibilityConv}}"                                                              HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                               Visibility="{Binding IsValidated, Converter={StaticResource BooleanVisibilityConv}}"                                                              HorizontalAlignment="Right" VerticalAlignment="Bottom" 
                                Width="50" Margin="0,0,6,6" />
                     </Grid>
                 </DataTemplate>

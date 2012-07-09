@@ -10,8 +10,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"    
+    shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
         <vm:LevelsViewModel x:Key="LevelsVM" />
@@ -26,37 +26,42 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="{Binding LocalizedResources.Levels, Source={StaticResource LocalizedStrings}}"
-                   Style="{StaticResource PhoneTextTitle1Style}"
-                   FontFamily="{StaticResource DefaultFont}"
-                   Foreground="{StaticResource DefaultForeground}" />
+                   Style="{StaticResource TitleTextBlock}" />
 
-        <ListBox Grid.Row="1" ItemsSource="{Binding Levels}"
+        <ListBox Grid.Row="1" ItemsSource="{Binding Levels}" Margin="34, 0"
                  SelectedItem="{Binding SelectedLevel, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="480">
+                    <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsUnlocked}"
+                          Margin="0,0,0,12">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="{Binding LevelName}"
-                                   VerticalAlignment="Center" Foreground="Blue" FontSize="64" />
+                        <TextBlock Text="{Binding LevelName}" VerticalAlignment="Center" 
+                                  Foreground="{StaticResource DefaultForeground}" FontSize="64" />
                         <Rectangle Fill="#FF2D2D2D" VerticalAlignment="Bottom"
                                    Height="10" Margin="12,0,12,3"
                                    Grid.Row="1"/>
                         <ProgressBar Maximum="{Binding TotalShields}"
                                          Value="{Binding CompletedShields}"
-                                         VerticalAlignment="Bottom" Margin="0,0,0,6" RenderTransformOrigin="0.5,0.5" Background="#FFE2A41B" Foreground="#FFC0B000" Grid.Row="1" >
+                                         VerticalAlignment="Bottom" Margin="0,0,0,6" RenderTransformOrigin="0.5,0.5"
+                                     Background="#FFE2A41B" Foreground="{StaticResource DefaultForeground}" Grid.Row="1" >
                             <ProgressBar.RenderTransform>
                                 <CompositeTransform ScaleY="2.5"/>
                             </ProgressBar.RenderTransform>
                         </ProgressBar>
                         <TextBlock Text="{Binding StatusText}" Grid.Row="2" FontSize="30"
-                                   VerticalAlignment="Center" Foreground="Blue" />
+                                   VerticalAlignment="Center" Foreground="{StaticResource DefaultForeground}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
         </ListBox>
 
     </Grid>

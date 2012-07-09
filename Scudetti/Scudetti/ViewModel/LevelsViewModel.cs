@@ -26,5 +26,10 @@ namespace Scudetti.ViewModel
                 RaisePropertyChanged("SelectedLevel");
             }
         }
+
+        public LevelsViewModel()
+        {
+            AppContext.LoadCompleted += (sender, e) => RaisePropertyChanged("Levels");
+        }
     }
 }

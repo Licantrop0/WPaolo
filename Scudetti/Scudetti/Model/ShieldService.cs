@@ -23,17 +23,21 @@ namespace Scudetti.Model
 
         public static IEnumerable<Shield> Load()
         {
+#if !DEBUG
             if (!storage.FileExists("Shields.xml"))
             {
-                using (var fs = new IsolatedStorageFileStream("Shields.xml", FileMode.CreateNew, FileAccess.Write, storage))
-                {
-                    StreamResourceInfo sri = Application.GetResourceStream(
-                        new Uri("Scudetti;component/Data/Shields.xml", UriKind.Relative));
-                    byte[] bytesInStream = new byte[sri.Stream.Length];
-                    sri.Stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
-                    fs.Write(bytesInStream, 0, bytesInStream.Length);
-                }
+#endif
+            using (var fs = new IsolatedStorageFileStream("Shields.xml", FileMode.Create, FileAccess.Write, storage))
+            {
+                StreamResourceInfo sri = Application.GetResourceStream(
+                    new Uri("Scudetti;component/Data/Shields.xml", UriKind.Relative));
+                byte[] bytesInStream = new byte[sri.Stream.Length];
+                sri.Stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
+                fs.Write(bytesInStream, 0, bytesInStream.Length);
             }
+#if !DEBUG
+            }
+#endif
 
             using (var stream = storage.OpenFile("Shields.xml", FileMode.Open))
             {

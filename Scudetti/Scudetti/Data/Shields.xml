@@ -102,10 +102,10 @@
   <Shield Level="5" Id="96" Name="metalist" Image="metalist_kharkiv-primary-.png" IsValidated="false" />
   <Shield Level="5" Id="97" Name="nottingham forest" Image="nottingham-forest.png" IsValidated="false" />
   <Shield Level="5" Id="98" Name="palmeiras" Image="palmeiras.png" IsValidated="false" />
-  <Shield Level="5" Id="99" Name="portsmouth" Image="portsmouth-fg.png" IsValidated="false" />
+  <Shield Level="5" Id="99" Name="portsmouth" Image="portsmouth-fc.png" IsValidated="false" />
   <Shield Level="5" Id="100" Name="queens park rangers" Image="queens-park-rangers.png" IsValidated="false" />
   <Shield Level="5" Id="101" Name="racing santander" Image="racing-santander.png" IsValidated="false" />
-  <Shield Level="5" Id="102" Name="real saragozza" Image="real-zaragozza.png" IsValidated="false" />
+  <Shield Level="5" Id="102" Name="real saragozza" Image="real-zaragoza.png" IsValidated="false" />
   <Shield Level="5" Id="103" Name="rubin kazan" Image="rubin_kazan.png" IsValidated="false" />
   <Shield Level="5" Id="104" Name="siena" Image="siena.png" IsValidated="false" />
   <Shield Level="5" Id="105" Name="stella rossa" Image="stellarossa.png" IsValidated="false" />

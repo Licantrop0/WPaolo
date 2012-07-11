@@ -110,26 +110,25 @@
   <Shield Level="5" Id="104" Name="Santos" Image="siena.png" IsValidated="false" />
   <Shield Level="5" Id="105" Name="Liverpool" Image="stellarossa.png" IsValidated="false" />
   
-  <Shield Level="6" Id="106" Name="Ajax" Image="ajax.png" IsValidated="false" />
-  <Shield Level="6" Id="107" Name="Arsenal" Image="Arsenal.png" IsValidated="false" />
-  <Shield Level="6" Id="108" Name="Barcellona" Image="Barcellona.png" IsValidated="false" />
-  <Shield Level="6" Id="109" Name="Bayern Monaco" Image="Bayern_Munich.png" IsValidated="false" />
-  <Shield Level="6" Id="110" Name="Boca Juniors" Image="boca.png" IsValidated="false" />
-  <Shield Level="6" Id="111" Name="Borussia Dortmund" Image="Borussia_Dortmund.png" IsValidated="false" />
-  <Shield Level="6" Id="112" Name="Celtic" Image="celtic.png" IsValidated="false" />
-  <Shield Level="6" Id="113" Name="Chelsea" Image="chelsea.png" IsValidated="false" />
-  <Shield Level="6" Id="114" Name="corinthians" Image="corinthians.png" IsValidated="false" />
-  <Shield Level="6" Id="115" Name="Fc Porto" Image="fc-porto.png" IsValidated="false" />
-  <Shield Level="6" Id="116" Name="Inter" Image="inter.png" IsValidated="false" />
-  <Shield Level="6" Id="117" Name="Juventus" Image="juventus.png" IsValidated="false" />
-  <Shield Level="6" Id="118" Name="Manchester united" Image="manchesterunited.png" IsValidated="false" />
-  <Shield Level="6" Id="119" Name="Manchester city" Image="manchester city.png" IsValidated="false" />
-  <Shield Level="6" Id="120" Name="milan" Image="milan.png" IsValidated="false" />
-  <Shield Level="6" Id="121" Name="Olympique marsiglia" Image="olympique-marseille.png" IsValidated="false" />
-  <Shield Level="6" Id="122" Name="Olympique lione" Image="olympique_lyonnais.png" IsValidated="false" />
-  <Shield Level="6" Id="123" Name="paris saint germain" Image="paris-saint-germain.png" IsValidated="false" />
-  <Shield Level="6" Id="124" Name="Real Madrid" Image="realmadrid.png" IsValidated="false" />
-  <Shield Level="6" Id="125" Name="Santos" Image="santos.png" IsValidated="false" />
-  <Shield Level="6" Id="126" Name="Liverpool" Image="liverpool.png" IsValidated="false" />
+  <Shield Level="6" Id="106" Name="AIK Stockholm" Image="AIK-Stockholm.png" IsValidated="false" />
+  <Shield Level="6" Id="107" Name="Anzhi Makhachkala" Image="Anzhi_Makhachkala.png" IsValidated="false" />
+  <Shield Level="6" Id="108" Name="Boavista" Image="Boavista.png" IsValidated="false" />
+  <Shield Level="6" Id="109" Name="colo colo" Image="colo colo.png" IsValidated="false" />
+  <Shield Level="6" Id="110" Name="CSKA Sofia" Image="CSKA_Sofia.png" IsValidated="false" />
+  <Shield Level="6" Id="111" Name="Derby County" Image="Derby-County.png" IsValidated="false" />
+  <Shield Level="6" Id="112" Name="Grasshoppers" Image="Grasshoppers.png" IsValidated="false" />
+  <Shield Level="6" Id="113" Name="Guangzhou Evergrande" Image="GuangzhouEvergrande.png" IsValidated="false" />
+  <Shield Level="6" Id="114" Name="Hajduk Split" Image="Hajduk-Split.png" IsValidated="false" />
+  <Shield Level="6" Id="115" Name="Heerenveen" Image="Heerenveen.png" IsValidated="false" />
+  <Shield Level="6" Id="116" Name="independiente" Image="independiente.png" IsValidated="false" />
+  <Shield Level="6" Id="117" Name="Jubilo Iwata" Image="Jubilo-Iwata.png" IsValidated="false" />
+  <Shield Level="6" Id="118" Name="KV Mechelen" Image="KV-Mechelen.png" IsValidated="false" />
+  <Shield Level="6" Id="119" Name="NK Maribor" Image="NK-Maribor.png" IsValidated="false" />
+  <Shield Level="6" Id="120" Name="OB Odense" Image="OB-Odense.png" IsValidated="false" />
+  <Shield Level="6" Id="121" Name="sheffield" Image="sheffield.png" IsValidated="false" />
+  <Shield Level="6" Id="122" Name="Sheriff Tiraspol" Image="Sheriff-Tiraspol.png" IsValidated="false" />
+  <Shield Level="6" Id="123" Name="Slavia Praha" Image="Slavia-Praha.png" IsValidated="false" />
+  <Shield Level="6" Id="124" Name="VfL Bochum" Image="VfL-Bochum.png" IsValidated="false" />
+  <Shield Level="6" Id="125" Name="Young Boys" Image="Young-Boys.png" IsValidated="false" />
 
 </ArrayOfShield>

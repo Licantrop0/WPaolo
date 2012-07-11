@@ -130,5 +130,6 @@
   <Shield Level="6" Id="123" Name="Slavia Praga" Image="Slavia-Praha.png" IsValidated="false" />
   <Shield Level="6" Id="124" Name="Bochum" Image="VfL-Bochum.png" IsValidated="false" />
   <Shield Level="6" Id="125" Name="Young Boys" Image="Young-Boys.png" IsValidated="false" />
+  <Shield Level="6" Id="126" Name="standard liegi" Image="standard-liege.png" IsValidated="false" />
 
 </ArrayOfShield>

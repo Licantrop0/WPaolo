@@ -23,8 +23,7 @@ namespace Scudetti.ViewModel
         {
             get
             {
-                return  Number == 1 ? true :
-                    AppContext.TotalShieldUnlocked >= (Number - 1) * LockTreshold;
+                return  Number == 1 || AppContext.TotalShieldUnlocked >= (Number - 1) * LockTreshold;
             }
         }
 
@@ -43,7 +42,6 @@ namespace Scudetti.ViewModel
             get { return null; }
             set
             {
-                //if (value.IsValidated) return;
                 MessengerInstance.Send<Uri>(new Uri("/View/ShieldPage.xaml?id="
                     + value.Id, UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedShield");

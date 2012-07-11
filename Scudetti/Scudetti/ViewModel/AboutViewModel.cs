@@ -15,9 +15,9 @@ namespace Scudetti.ViewModel
 {
     public class AboutViewModel : INotifyPropertyChanged
     {
-        XNamespace nsAtom = "http://www.w3.org/2005/Atom";
-        XNamespace nsZune = "http://schemas.zune.net/catalog/apps/2008/02";
-        string cultureName = System.Globalization.CultureInfo.CurrentUICulture.Name;
+        readonly XNamespace nsAtom = "http://www.w3.org/2005/Atom";
+        readonly XNamespace nsZune = "http://schemas.zune.net/catalog/apps/2008/02";
+        readonly string cultureName = System.Globalization.CultureInfo.CurrentUICulture.Name;
 
         private IEnumerable<AppTile> _appList;
         public IEnumerable<AppTile> AppList

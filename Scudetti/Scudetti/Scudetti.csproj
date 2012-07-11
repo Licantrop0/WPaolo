@@ -176,6 +176,7 @@
     <Resource Include="Images\Scudetti\AEKatene.png" />
     <Resource Include="Images\Scudetti\AIK-Stockholm.png" />
     <Resource Include="Images\Scudetti\aj-auxerre.png" />
+    <Resource Include="Images\logo.png" />
     <Content Include="Images\Scudetti\ajax.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

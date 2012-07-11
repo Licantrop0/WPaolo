@@ -172,166 +172,388 @@
     <Resource Include="Data\Shields.xml">
       <SubType>Designer</SubType>
     </Resource>
-    <Resource Include="Images\Scudetti\860-Munchen.png" />
-    <Resource Include="Images\Scudetti\AEKatene.png" />
-    <Resource Include="Images\Scudetti\AIK-Stockholm.png" />
-    <Resource Include="Images\Scudetti\aj-auxerre.png" />
+    <Content Include="Images\Scudetti\860-Munchen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\AEKatene.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\AIK-Stockholm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\aj-auxerre.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\logo.png" />
     <Content Include="Images\Scudetti\ajax.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\amburgo.png" />
-    <Resource Include="Images\Scudetti\Anderlecht.png" />
-    <Resource Include="Images\Scudetti\Anzhi_Makhachkala.png" />
+    <Content Include="Images\Scudetti\amburgo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Anderlecht.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Anzhi_Makhachkala.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\arsenal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\AS-Monaco.png" />
-    <Resource Include="Images\Scudetti\ASROMA.png" />
-    <Resource Include="Images\Scudetti\aston-villa.png" />
-    <Resource Include="Images\Scudetti\Athletic-Bilbao.png" />
-    <Resource Include="Images\Scudetti\atletico madrid.png" />
-    <Resource Include="Images\Scudetti\AZ-Alkmaar.png" />
+    <Content Include="Images\Scudetti\AS-Monaco.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\ASROMA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\aston-villa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Athletic-Bilbao.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\atletico madrid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\AZ-Alkmaar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\barcellona.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\Basilea.png" />
-    <Resource Include="Images\Scudetti\BATE-Borisov.png" />
-    <Resource Include="Images\Scudetti\bayerleverkusen.png" />
+    <Content Include="Images\Scudetti\Basilea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\BATE-Borisov.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\bayerleverkusen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\Bayern_Munich.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\Benfica.png" />
-    <Resource Include="Images\Scudetti\besiktas.png" />
-    <Resource Include="Images\Scudetti\Birmingham.png" />
-    <Resource Include="Images\Scudetti\Blackburn-Rovers.png" />
-    <Resource Include="Images\Scudetti\Boavista.png" />
+    <Content Include="Images\Scudetti\Benfica.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\besiktas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Birmingham.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Blackburn-Rovers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Boavista.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\boca.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Scudetti\Borussia_Dortmund.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\Celta-de-Vigo.png" />
+    <Content Include="Images\Scudetti\Celta-de-Vigo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\celtic.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\CFR-Cluj.png" />
+    <Content Include="Images\Scudetti\CFR-Cluj.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\chelsea.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\Club-Brugge.png" />
-    <Resource Include="Images\Scudetti\colo colo.png" />
+    <Content Include="Images\Scudetti\Club-Brugge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\colo colo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\corinthians.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\Crystal_Palace.png" />
-    <Resource Include="Images\Scudetti\CSKA-Moscow.png" />
-    <Resource Include="Images\Scudetti\CSKA_Sofia.png" />
-    <Resource Include="Images\Scudetti\DeportivoLaCoruna.png" />
-    <Resource Include="Images\Scudetti\Derby-County.png" />
-    <Resource Include="Images\Scudetti\Dinamo-Zagreb.png" />
-    <Resource Include="Images\Scudetti\dynamo-kiev1.png" />
-    <Resource Include="Images\Scudetti\Eintracht-Frankfurt.png" />
-    <Resource Include="Images\Scudetti\FC-Kobenhavn.png" />
-    <Resource Include="Images\Scudetti\FC-Nantes.png" />
+    <Content Include="Images\Scudetti\Crystal_Palace.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\CSKA-Moscow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\CSKA_Sofia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\DeportivoLaCoruna.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Derby-County.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Dinamo-Zagreb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\dynamo-kiev1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Eintracht-Frankfurt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\FC-Kobenhavn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\FC-Nantes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\fc-porto.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\Fenerbahce.png" />
-    <Resource Include="Images\Scudetti\Feyenoord.png" />
-    <Resource Include="Images\Scudetti\Fiorentina.png" />
-    <Resource Include="Images\Scudetti\Flamengo4.png" />
-    <Resource Include="Images\Scudetti\fulham-logo.png" />
-    <Resource Include="Images\Scudetti\galatasaray.png" />
-    <Resource Include="Images\Scudetti\galaxy.png" />
-    <Resource Include="Images\Scudetti\Genoa.png" />
-    <Resource Include="Images\Scudetti\Girondins-Bordeaux.png" />
-    <Resource Include="Images\Scudetti\Glasgow-Rangers.png" />
-    <Resource Include="Images\Scudetti\goteborg.png" />
-    <Resource Include="Images\Scudetti\Grasshoppers.png" />
-    <Resource Include="Images\Scudetti\GuangzhouEvergrande.png" />
-    <Resource Include="Images\Scudetti\Hajduk-Split.png" />
-    <Resource Include="Images\Scudetti\hearts.png" />
-    <Resource Include="Images\Scudetti\Heerenveen.png" />
-    <Resource Include="Images\Scudetti\HertaBerlino.png" />
-    <Resource Include="Images\Scudetti\independiente.png" />
+    <Content Include="Images\Scudetti\Fenerbahce.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Feyenoord.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Fiorentina.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Flamengo4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\fulham-logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\galatasaray.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\galaxy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Genoa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Girondins-Bordeaux.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Glasgow-Rangers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\goteborg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Grasshoppers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\GuangzhouEvergrande.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Hajduk-Split.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\hearts.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Heerenveen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\HertaBerlino.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\independiente.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\inter.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\Jubilo-Iwata.png" />
+    <Content Include="Images\Scudetti\Jubilo-Iwata.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\juventus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\KV-Mechelen.png" />
-    <Resource Include="Images\Scudetti\lazio.png" />
-    <Resource Include="Images\Scudetti\Leeds-United.png" />
-    <Resource Include="Images\Scudetti\lille.png" />
+    <Content Include="Images\Scudetti\KV-Mechelen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\lazio.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Leeds-United.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\lille.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\liverpool.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\Logo-Udinese1.png" />
-    <Resource Include="Images\Scudetti\maccabitelaviv.png" />
+    <Content Include="Images\Scudetti\Logo-Udinese1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\maccabitelaviv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Scudetti\manchester city.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Scudetti\manchesterunited.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Scudetti\metalist_kharkiv-primary-.png" />
-    <Content Include="Images\Scudetti\milan.png" />
+    <Content Include="Images\Scudetti\metalist_kharkiv-primary-.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\milan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\sfondo.png" />
     <Resource Include="Images\sfondo2.png" />
     <Resource Include="Images\soccerball.png" />
-    <Resource Include="Images\Scudetti\napoli.png" />
-    <Resource Include="Images\Scudetti\Newcastle-United.png" />
-    <Resource Include="Images\Scudetti\NK-Maribor.png" />
-    <Resource Include="Images\Scudetti\Nottingham-Forest.png" />
-    <Resource Include="Images\Scudetti\OB-Odense.png" />
-    <Resource Include="Images\Scudetti\olympiakos.png" />
-    <Content Include="Images\Scudetti\olympique-marseille.png" />
-    <Content Include="Images\Scudetti\Olympique_lyonnais.png" />
-    <Resource Include="Images\Scudetti\Palermo.png" />
-    <Resource Include="Images\Scudetti\palmeiras.png" />
-    <Content Include="Images\Scudetti\paris-saint-germain.png" />
-    <Resource Include="Images\Scudetti\Partizan-Belgrade.png" />
-    <Resource Include="Images\Scudetti\Portsmouth-FC.png" />
-    <Resource Include="Images\Scudetti\psv_eindhoven.png" />
-    <Resource Include="Images\Scudetti\queens-park-rangers.png" />
-    <Resource Include="Images\Scudetti\Racing-Santander.png" />
-    <Resource Include="Images\Scudetti\rapidvienna.png" />
-    <Resource Include="Images\Scudetti\RBK.png" />
-    <Resource Include="Images\Scudetti\Real-Sociedad.png" />
-    <Resource Include="Images\Scudetti\Real-Zaragoza.png" />
-    <Content Include="Images\Scudetti\realmadrid.png" />
-    <Resource Include="Images\Scudetti\River_Plate.png" />
-    <Resource Include="Images\Scudetti\rubin_kazan.png" />
-    <Content Include="Images\Scudetti\santos.png" />
-    <Resource Include="Images\Scudetti\Schalke_04.png" />
-    <Resource Include="Images\Scudetti\sevilla-logo.png" />
-    <Resource Include="Images\Scudetti\Shakhtar_donetsk.png" />
-    <Resource Include="Images\Scudetti\sheffield.png" />
-    <Resource Include="Images\Scudetti\Sheriff-Tiraspol.png" />
-    <Resource Include="Images\Scudetti\siena.png" />
-    <Resource Include="Images\Scudetti\Slavia-Praha.png" />
-    <Resource Include="Images\Scudetti\Sparta-Praha.png" />
-    <Resource Include="Images\Scudetti\spartak-mosca.png" />
-    <Resource Include="Images\Scudetti\SportingLisbon.png" />
-    <Resource Include="Images\Scudetti\Steaua.png" />
-    <Resource Include="Images\Scudetti\stellarossa.png" />
-    <Resource Include="Images\Scudetti\Torino.png" />
-    <Resource Include="Images\Scudetti\Tottenham_Hotspurs.png" />
-    <Resource Include="Images\Scudetti\twente.png" />
-    <Resource Include="Images\Scudetti\valencia.png" />
-    <Resource Include="Images\Scudetti\VfB-Stuttgart.png" />
-    <Resource Include="Images\Scudetti\VfL-Bochum.png" />
-    <Resource Include="Images\Scudetti\WerderBremen.png" />
-    <Resource Include="Images\Scudetti\west-ham-united.png" />
-    <Resource Include="Images\Scudetti\Wolfsburg.png" />
-    <Resource Include="Images\Scudetti\Wolverhampton-Wanderers.png" />
-    <Resource Include="Images\Scudetti\Young-Boys.png" />
-    <Resource Include="Images\Scudetti\zenita.png" />
-    <Resource Include="Images\Scudetti\Standard-Liege.png" />
+    <Content Include="Images\Scudetti\napoli.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Newcastle-United.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\NK-Maribor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Nottingham-Forest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\OB-Odense.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\olympiakos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\olympique-marseille.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Olympique_lyonnais.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Palermo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\palmeiras.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\paris-saint-germain.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Partizan-Belgrade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Portsmouth-FC.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\psv_eindhoven.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\queens-park-rangers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Racing-Santander.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\rapidvienna.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\RBK.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Real-Sociedad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Real-Zaragoza.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\realmadrid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\River_Plate.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\rubin_kazan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\santos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Schalke_04.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\sevilla-logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Shakhtar_donetsk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\sheffield.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Sheriff-Tiraspol.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\siena.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Slavia-Praha.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Sparta-Praha.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\spartak-mosca.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\SportingLisbon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Steaua.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\stellarossa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Torino.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Tottenham_Hotspurs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\twente.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\valencia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\VfB-Stuttgart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\VfL-Bochum.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\WerderBremen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\west-ham-united.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Wolfsburg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Wolverhampton-Wanderers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Young-Boys.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\zenita.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Scudetti\Standard-Liege.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\spunta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

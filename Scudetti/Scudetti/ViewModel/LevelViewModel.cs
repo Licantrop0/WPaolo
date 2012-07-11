@@ -17,7 +17,7 @@ namespace Scudetti.ViewModel
         public int TotalShields { get { return Shields.Count(); } }
         public int CompletedShields { get { return Shields.Count(s => s.IsValidated); } }
 
-        private const int LockTreshold = 5;
+        private const int LockTreshold = 15;
 
         public bool IsUnlocked
         {

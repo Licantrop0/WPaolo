@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using GalaSoft.MvvmLight;
-using Scudetti.Model;
+﻿using System;
 using System.Collections.Generic;
-using Scudetti.Localization;
+using System.Linq;
+using GalaSoft.MvvmLight;
 using Scudetti.Data;
-using System;
 using Scudetti.Helper;
+using Scudetti.Localization;
+using Scudetti.Model;
 
 namespace Scudetti.ViewModel
 {
@@ -17,7 +17,7 @@ namespace Scudetti.ViewModel
         public int TotalShields { get { return Shields.Count(); } }
         public int CompletedShields { get { return Shields.Count(s => s.IsValidated); } }
 
-        private int LockTreshold = 5;
+        private const int LockTreshold = 5;
 
         public bool IsUnlocked
         {
@@ -67,7 +67,7 @@ namespace Scudetti.ViewModel
             Number = group.Key;
             var list = group.ToList();
             list.Shuffle();
-            Shields = list.OrderBy(s => s.IsValidated);
+            Shields = list;
 
             foreach (var shield in AppContext.Shields)
             {

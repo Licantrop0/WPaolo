@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Scudetti.ViewModel;
 
@@ -17,14 +11,9 @@ namespace Scudetti.View
     public partial class ShieldPage : PhoneApplicationPage
     {
         private ShieldViewModel _vM;
-        public ShieldViewModel VM
+        private ShieldViewModel VM
         {
-            get
-            {
-                if (_vM == null)
-                    _vM = LayoutRoot.DataContext as ShieldViewModel;
-                return _vM;
-            }
+            get { return _vM ?? (_vM = LayoutRoot.DataContext as ShieldViewModel); }
         }
 
         public ShieldPage()
@@ -35,7 +24,7 @@ namespace Scudetti.View
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             var id = int.Parse(NavigationContext.QueryString["id"]);
-            VM.CurrentShield = AppContext.Shields.Where(s => s.Id == id).Single();
+            VM.CurrentShield = AppContext.Shields.Single(s => s.Id == id);
             base.OnNavigatedTo(e);
         }
         

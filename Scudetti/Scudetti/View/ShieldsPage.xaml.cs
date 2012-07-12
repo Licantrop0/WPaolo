@@ -1,5 +1,4 @@
 ﻿using Microsoft.Phone.Controls;
-using Scudetti.ViewModel;
 
 namespace Scudetti.View
 {
@@ -7,7 +6,7 @@ namespace Scudetti.View
     {
         public ShieldsPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

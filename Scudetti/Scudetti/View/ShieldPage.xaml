@@ -30,7 +30,7 @@
             <TextBox Name="ShieldNameTextbox" VerticalAlignment="Bottom"
                      Text="{Binding ShieldName, Mode=TwoWay}"
                      KeyDown="ShieldNameTextbox_KeyDown"
-                     Visibility="{Binding InputVisibile}"/>
+                     Visibility="{Binding InputVisibile}" x:FieldModifier="private" />
             <TextBlock Text="{Binding CurrentShield.Name}" Style="{StaticResource TitleTextBlock}"
                        TextWrapping="Wrap" Visibility="{Binding CurrentShield.IsValidated,
                 Converter={StaticResource BooleanVisibilityConv}}" />

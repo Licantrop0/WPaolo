@@ -28,7 +28,7 @@
   <Shield Level="2" Id="25" Name="Benfica" Image="Benfica.png" IsValidated="false" />
   <Shield Level="2" Id="26" Name="dynamo kiev" Image="dynamo-kiev1.png" IsValidated="false" />
   <Shield Level="2" Id="27" Name="galatasaray" Image="galatasaray.png" IsValidated="false" />
-  <Shield Level="2" Id="28" Name="Cglasgow rangers" Image="glasgow-rangers.png" IsValidated="false" />
+  <Shield Level="2" Id="28" Name="Glasgow rangers" Image="glasgow-rangers.png" IsValidated="false" />
   <Shield Level="2" Id="29" Name="lazio" Image="lazio.png" IsValidated="false" />
   <Shield Level="2" Id="30" Name="napoli" Image="napoli.png" IsValidated="false" />
   <Shield Level="2" Id="31" Name="newcastle" Image="newcastle-united.png" IsValidated="false" />

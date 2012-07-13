@@ -15,8 +15,8 @@
   <Shield Level="1" Id="13" Name="Manchester united" Image="manchesterunited.png" IsValidated="false" />
   <Shield Level="1" Id="14" Name="Manchester city" Image="manchester city.png" IsValidated="false" />
   <Shield Level="1" Id="15" Name="milan" Image="milan.png" IsValidated="false" />
-  <Shield Level="1" Id="16" Name="Olympique marsiglia" Image="olympique-marseille.png" IsValidated="false" />
-  <Shield Level="1" Id="17" Name="Olympique lione" Image="olympique_lyonnais.png" IsValidated="false" />
+  <Shield Level="1" Id="16" Name="Olympique marseille" Image="olympique-marseille.png" IsValidated="false" />
+  <Shield Level="1" Id="17" Name="Olympique lyon" Image="olympique_lyonnais.png" IsValidated="false" />
   <Shield Level="1" Id="18" Name="paris saint germain" Image="paris-saint-germain.png" IsValidated="false" />
   <Shield Level="1" Id="19" Name="Real Madrid" Image="realmadrid.png" IsValidated="false" />
   <Shield Level="1" Id="20" Name="Santos" Image="santos.png" IsValidated="false" />

@@ -31,10 +31,10 @@
             <TextBox Name="ShieldNameTextbox" VerticalAlignment="Bottom"
                      Text="{Binding InputShieldName, Mode=TwoWay}"
                      KeyDown="ShieldNameTextbox_KeyDown"
-                     Visibility="{Binding InputVisibile}" />
+                     Visibility="{Binding InputVisibile, Mode=OneTime}" />
             <TextBlock Text="{Binding OriginalName}" Style="{StaticResource TitleTextBlock}"
                        TextWrapping="Wrap" Visibility="{Binding CurrentShield.IsValidated,
-                Converter={StaticResource BooleanVisibilityConv}}" />
+                Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}" />
         </StackPanel>
     </Grid>
 

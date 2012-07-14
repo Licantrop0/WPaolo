@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Scudetti.Model;
+using System.Windows.Media;
 
 namespace Scudetti
 {
@@ -110,7 +111,7 @@ namespace Scudetti
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new PhoneApplicationFrame();
+            RootFrame = new TransitionFrame { Background = new SolidColorBrush(Colors.Transparent) };
 
             Messenger.Default.Register<Uri>(this, "navigation", (m) => RootFrame.Navigate(m));
             Messenger.Default.Register<string>(this, "navigation", (m) => { if (m == "goback") RootFrame.GoBack(); });

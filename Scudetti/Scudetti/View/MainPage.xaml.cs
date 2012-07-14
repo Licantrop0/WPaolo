@@ -3,6 +3,8 @@ using System.Windows.Media.Animation;
 using Microsoft.Phone.Controls;
 using System.Windows.Media;
 using Microsoft.Advertising.Mobile.UI;
+using Scudetti.Sound;
+using System;
 
 namespace Scudetti.View
 {
@@ -30,6 +32,18 @@ namespace Scudetti.View
         {
             AdPlaceHolder.Children.Clear();
             base.OnNavigatedFrom(e);
+        }
+
+        private void PlayButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SoundManager.PlayKick();
+            NavigationService.Navigate(new Uri("/View/LevelsPage.xaml", UriKind.Relative));
+        }
+
+        private void AboutButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SoundManager.PlayKick();
+            NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
         }
 
     }

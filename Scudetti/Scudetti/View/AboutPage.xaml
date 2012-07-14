@@ -13,6 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    Style="{StaticResource SlidePage}"
     shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>

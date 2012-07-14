@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using Scudetti.Data;
 using Scudetti.Localization;
 using Scudetti.Model;
-using System.Globalization;
 
 namespace Scudetti.ViewModel
 {
     public class ShieldViewModel : ViewModelBase
     {
-        public string ShieldName { get; set; }
+        public string InputShieldName { get; set; }
+        public Visibility InputVisibile { get { return CurrentShield.IsValidated ? Visibility.Collapsed : Visibility.Visible; } }
+        public string OriginalName { get { return ShieldResources.ResourceManager.GetString(CurrentShield.Id, new CultureInfo("en-US")); } }
+        
         private Shield _currentShield;
         public Shield CurrentShield
         {
@@ -25,23 +28,21 @@ namespace Scudetti.ViewModel
             }
         }
 
-        public Visibility InputVisibile { get { return CurrentShield.IsValidated ? Visibility.Collapsed : Visibility.Visible; } }
-
         public ShieldViewModel()
         {
             if (IsInDesignMode)
             {
                 CurrentShield = DesignTimeData.Shields.First();
             }
-            ShieldName = string.Empty;
+            InputShieldName = string.Empty;
         }
 
         public void Validate()
         {
-            var originalName = ShieldResources.ResourceManager.GetString(CurrentShield.Id, new CultureInfo("en-US"));
+            //TODO: Fare il compare sia con il nome originale che con il nome localizzato
             var LocalizedName = ShieldResources.ResourceManager.GetString(CurrentShield.Id);
 
-            if (string.Compare(originalName, ShieldName, StringComparison.InvariantCultureIgnoreCase) == 0)
+            if (string.Compare(OriginalName, InputShieldName, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
                 MessengerInstance.Send<string>("goback", "navigation");
                 CurrentShield.IsValidated = true;

@@ -13,6 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    Style="{StaticResource SlidePage}"
     shell:SystemTray.IsVisible="false" Loaded="PhoneApplicationPage_Loaded">
 
     <phone:PhoneApplicationPage.Resources>
@@ -28,10 +29,10 @@
             <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
                     Stretch="None" />
             <TextBox Name="ShieldNameTextbox" VerticalAlignment="Bottom"
-                     Text="{Binding ShieldName, Mode=TwoWay}"
+                     Text="{Binding InputShieldName, Mode=TwoWay}"
                      KeyDown="ShieldNameTextbox_KeyDown"
-                     Visibility="{Binding InputVisibile}" x:FieldModifier="private" />
-            <TextBlock Text="{Binding CurrentShield.Name}" Style="{StaticResource TitleTextBlock}"
+                     Visibility="{Binding InputVisibile}" />
+            <TextBlock Text="{Binding OriginalName}" Style="{StaticResource TitleTextBlock}"
                        TextWrapping="Wrap" Visibility="{Binding CurrentShield.IsValidated,
                 Converter={StaticResource BooleanVisibilityConv}}" />
         </StackPanel>

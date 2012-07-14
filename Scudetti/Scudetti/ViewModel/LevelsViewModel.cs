@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using Scudetti.Data;
+using Scudetti.Sound;
 
 namespace Scudetti.ViewModel
 {
@@ -21,6 +22,7 @@ namespace Scudetti.ViewModel
             set
             {
                 //if (!value.IsUnlocked) return;
+                SoundManager.PlayKick();
                 MessengerInstance.Send<Uri>(new Uri("/View/ShieldsPage.xaml?level="
                     + Levels.IndexOf(value), UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedLevel");

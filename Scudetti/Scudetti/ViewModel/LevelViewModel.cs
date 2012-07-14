@@ -6,6 +6,7 @@ using Scudetti.Data;
 using Scudetti.Helper;
 using Scudetti.Localization;
 using Scudetti.Model;
+using Scudetti.Sound;
 
 namespace Scudetti.ViewModel
 {
@@ -42,6 +43,7 @@ namespace Scudetti.ViewModel
             get { return null; }
             set
             {
+                SoundManager.PlayKick();
                 MessengerInstance.Send<Uri>(new Uri("/View/ShieldPage.xaml?id="
                     + value.Id, UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedShield");

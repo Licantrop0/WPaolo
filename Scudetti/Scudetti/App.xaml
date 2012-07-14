@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
@@ -12,6 +13,7 @@
 
 	<Application.Resources>
 		<loc:LocalizedStrings xmlns:loc="clr-namespace:Scudetti.Localization" x:Key="LocalizedStrings" />
+
 		<FontFamily xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows"
 					x:Key="DefaultFont">Comic Sans MS</FontFamily>
 		<!--/IDecide;component/Fonts/Fonts.zip#Ravie-->
@@ -30,6 +32,7 @@
 			<Setter Property="TextAlignment" Value="Center" />
 			<Setter Property="FontSize" Value="80" />
 		</Style>
+		
 		<Style x:Key="BallButtonStyle" TargetType="Button">
 			<Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
 			<Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
@@ -63,14 +66,39 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
+		
+		<Style x:Key="SlidePage" TargetType="phone:PhoneApplicationPage">
+			<Setter Property="toolkit:TransitionService.NavigationInTransition">
+				<Setter.Value>
+					<toolkit:NavigationInTransition>
+						<toolkit:NavigationInTransition.Backward>
+							<toolkit:SlideTransition Mode="SlideRightFadeIn" />
+						</toolkit:NavigationInTransition.Backward>
+						<toolkit:NavigationInTransition.Forward>
+							<toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+						</toolkit:NavigationInTransition.Forward>
+					</toolkit:NavigationInTransition>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="toolkit:TransitionService.NavigationOutTransition">
+				<Setter.Value>
+					<toolkit:NavigationOutTransition>
+						<toolkit:NavigationOutTransition.Backward>
+							<toolkit:SlideTransition Mode="SlideRightFadeOut" />
+						</toolkit:NavigationOutTransition.Backward>
+						<toolkit:NavigationOutTransition.Forward>
+							<toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+						</toolkit:NavigationOutTransition.Forward>
+					</toolkit:NavigationOutTransition>
+				</Setter.Value>
+			</Setter>
+		</Style>
 
 	</Application.Resources>
 
 	<Application.ApplicationLifetimeObjects>
-		<shell:PhoneApplicationService
-		Launching="Application_Launching"
-		Closing="Application_Closing"
-		Activated="Application_Activated"
-		Deactivated="Application_Deactivated" />
+		<shell:PhoneApplicationService Launching="Application_Launching" Closing="Application_Closing"
+									   Activated="Application_Activated" Deactivated="Application_Deactivated" />
+		<wph:XNAAsyncDispatcher xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher"/>
 	</Application.ApplicationLifetimeObjects>
 </Application>

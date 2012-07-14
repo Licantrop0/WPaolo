@@ -44,8 +44,8 @@ namespace Scudetti.ViewModel
             {
                 if (string.Compare(name, InputShieldName, StringComparison.InvariantCultureIgnoreCase) == 0)
                 {
-                    MessengerInstance.Send<string>("goback", "navigation");
                     CurrentShield.IsValidated = true;
+                    MessengerInstance.Send<string>("goback", "navigation");
                     return;
                 }
             }

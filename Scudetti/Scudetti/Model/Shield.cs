@@ -8,6 +8,9 @@ namespace Scudetti.Model
         [XmlAttribute]
         public string Id { get; set; }
 
+        [XmlElement]
+        public string[] Names { get; set; }
+
         [XmlAttribute]
         public string Image { get; set; }
 
@@ -29,7 +32,7 @@ namespace Scudetti.Model
 
         public override string ToString()
         {
-            return string.Format("{0}, Lv: {1}", Id, Level);
+            return string.Format("{0}, Lv: {1}", Names[0], Level);
         }
 
         #region Interface Implementations
@@ -42,6 +45,5 @@ namespace Scudetti.Model
             }
         }
         #endregion
-
     }
 }

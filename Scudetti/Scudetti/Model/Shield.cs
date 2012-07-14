@@ -6,10 +6,7 @@ namespace Scudetti.Model
     public class Shield : INotifyPropertyChanged
     {
         [XmlAttribute]
-        public int Id { get; set; }
-
-        [XmlAttribute]
-        public string Name { get; set; }
+        public string Id { get; set; }
 
         [XmlAttribute]
         public string Image { get; set; }
@@ -28,6 +25,11 @@ namespace Scudetti.Model
                 _isValidated = value;
                 RaisePropertyChanged("IsValidated");
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, Lv: {1}", Id, Level);
         }
 
         #region Interface Implementations

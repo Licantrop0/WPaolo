@@ -13,8 +13,8 @@ namespace Scudetti.ViewModel
     {
         public string InputShieldName { get; set; }
         public Visibility InputVisibile { get { return CurrentShield.IsValidated ? Visibility.Collapsed : Visibility.Visible; } }
-        public string OriginalName { get { return ShieldResources.ResourceManager.GetString(CurrentShield.Id, new CultureInfo("en-US")); } }
-        
+        public string OriginalName { get { return CurrentShield.Names[0]; } }
+
         private Shield _currentShield;
         public Shield CurrentShield
         {
@@ -39,18 +39,18 @@ namespace Scudetti.ViewModel
 
         public void Validate()
         {
-            //TODO: Fare il compare sia con il nome originale che con il nome localizzato
-            var LocalizedName = ShieldResources.ResourceManager.GetString(CurrentShield.Id);
+            //Fa il compare con tutti i vari nomi
+            foreach (var name in CurrentShield.Names)
+            {
+                if (string.Compare(name, InputShieldName, StringComparison.InvariantCultureIgnoreCase) == 0)
+                {
+                    MessengerInstance.Send<string>("goback", "navigation");
+                    CurrentShield.IsValidated = true;
+                    return;
+                }
+            }
 
-            if (string.Compare(OriginalName, InputShieldName, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                MessengerInstance.Send<string>("goback", "navigation");
-                CurrentShield.IsValidated = true;
-            }
-            else
-            {
-                MessageBox.Show(AppResources.Wrong);
-            }
+            MessageBox.Show(AppResources.Wrong);
         }
     }
 }

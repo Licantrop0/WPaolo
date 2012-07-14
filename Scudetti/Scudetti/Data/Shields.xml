@@ -1,134 +1,392 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ArrayOfShield>
-  <Shield Level="1" Id="Ajax" Image="ajax.png" IsValidated="false"/>
-  <Shield Level="1" Id="Arsenal" Image="Arsenal.png" IsValidated="false"/>
-  <Shield Level="1" Id="Barcelona" Image="Barcellona.png" IsValidated="false"/>
-  <Shield Level="1" Id="BayernMonaco" Image="Bayern_Munich.png" IsValidated="false"/>
-  <Shield Level="1" Id="BocaJuniors" Image="boca.png" IsValidated="false"/>
-  <Shield Level="1" Id="BorussiaDortmund" Image="Borussia_Dortmund.png" IsValidated="false"/>
-  <Shield Level="1" Id="Celtic" Image="celtic.png" IsValidated="false"/>
-  <Shield Level="1" Id="Chelsea" Image="chelsea.png" IsValidated="false"/>
-  <Shield Level="1" Id="Corinthians" Image="corinthians.png" IsValidated="false"/>
-  <Shield Level="1" Id="FcPorto" Image="fc-porto.png" IsValidated="false"/>
-  <Shield Level="1" Id="Inter" Image="inter.png" IsValidated="false"/>
-  <Shield Level="1" Id="Juventus" Image="juventus.png" IsValidated="false"/>
-  <Shield Level="1" Id="ManchesterUnited" Image="manchesterunited.png" IsValidated="false"/>
-  <Shield Level="1" Id="ManchesterCity" Image="manchester city.png" IsValidated="false"/>
-  <Shield Level="1" Id="Milan" Image="milan.png" IsValidated="false"/>
-  <Shield Level="1" Id="OlympiqueMarsiglia" Image="olympique-marseille.png" IsValidated="false"/>
-  <Shield Level="1" Id="OlympiqueLione" Image="olympique_lyonnais.png" IsValidated="false"/>
-  <Shield Level="1" Id="ParisSaintGermain" Image="paris-saint-germain.png" IsValidated="false"/>
-  <Shield Level="1" Id="RealMadrid" Image="realmadrid.png" IsValidated="false"/>
-  <Shield Level="1" Id="Santos" Image="santos.png" IsValidated="false"/>
-  <Shield Level="1" Id="Liverpool" Image="liverpool.png" IsValidated="false"/>
-  
-  <Shield Level="2" Id="Roma" Image="asroma.png" IsValidated="false"/>
-  <Shield Level="2" Id="AstonVilla" Image="Aston-villa.png" IsValidated="false"/>
-  <Shield Level="2" Id="AtleticoMadrid" Image="atletico madrid.png" IsValidated="false"/>
-  <Shield Level="2" Id="Benfica" Image="Benfica.png" IsValidated="false"/>
-  <Shield Level="2" Id="DynamoKiev" Image="dynamo-kiev1.png" IsValidated="false"/>
-  <Shield Level="2" Id="Galatasaray" Image="galatasaray.png" IsValidated="false"/>
-  <Shield Level="2" Id="CglasgowRangers" Image="glasgow-rangers.png" IsValidated="false"/>
-  <Shield Level="2" Id="Lazio" Image="lazio.png" IsValidated="false"/>
-  <Shield Level="2" Id="Napoli" Image="napoli.png" IsValidated="false"/>
-  <Shield Level="2" Id="Newcastle" Image="newcastle-united.png" IsValidated="false"/>
-  <Shield Level="2" Id="Olympiakos" Image="olympiakos.png" IsValidated="false"/>
-  <Shield Level="2" Id="PsvEindhoven" Image="psv_eindhoven.png" IsValidated="false"/>
-  <Shield Level="2" Id="Shalke04" Image="schalke_04.png" IsValidated="false"/>
-  <Shield Level="2" Id="Siviglia" Image="sevilla-logo.png" IsValidated="false"/>
-  <Shield Level="2" Id="ShakhtarDonetsk" Image="Shakhtar_donetsk.png" IsValidated="false"/>
-  <Shield Level="2" Id="SportingLisbona" Image="sportinglisbon.png" IsValidated="false"/>
-  <Shield Level="2" Id="TottenhamHotspurs" Image="Tottenham_Hotspurs.png" IsValidated="false"/>
-  <Shield Level="2" Id="Twente" Image="twente.png" IsValidated="false"/>
-  <Shield Level="2" Id="Valensia" Image="valencia.png" IsValidated="false"/>
-  <Shield Level="2" Id="WerderBrema" Image="werderbremen.png" IsValidated="false"/>
-  <Shield Level="2" Id="Zenit" Image="zenita.png" IsValidated="false"/>
-  
-  <Shield Level="3" Id="AekAtene" Image="aekatene.png" IsValidated="false"/>
-  <Shield Level="3" Id="Auxerre" Image="Aj-auxerre.png" IsValidated="false"/>
-  <Shield Level="3" Id="AzAlkmaar" Image="az-alkmaar.png" IsValidated="false"/>
-  <Shield Level="3" Id="Basilea" Image="Basilea.png" IsValidated="false"/>
-  <Shield Level="3" Id="BayerLeverkusen" Image="bayerleverkusen.png" IsValidated="false"/>
-  <Shield Level="3" Id="Besiktas" Image="Besiktas.png" IsValidated="false"/>
-  <Shield Level="3" Id="BlackburnRovers" Image="blackburn-rovers.png" IsValidated="false"/>
-  <Shield Level="3" Id="DeportivoLaCoruna" Image="deportivolacoruna.png" IsValidated="false"/>
-  <Shield Level="3" Id="Feyenoord" Image="feyenoord.png" IsValidated="false"/>
-  <Shield Level="3" Id="Fiorentina" Image="fiorentina.png" IsValidated="false"/>
-  <Shield Level="3" Id="Fulham" Image="fulham-logo.png" IsValidated="false"/>
-  <Shield Level="3" Id="Galaxy" Image="galaxy.png" IsValidated="false"/>
-  <Shield Level="3" Id="Genoa" Image="genoa.png" IsValidated="false"/>
-  <Shield Level="3" Id="Bordeaux" Image="Girondins-Bordeaux.png" IsValidated="false"/>
-  <Shield Level="3" Id="Lille" Image="lille.png" IsValidated="false"/>
-  <Shield Level="3" Id="Palermo" Image="palermo.png" IsValidated="false"/>
-  <Shield Level="3" Id="Rosenborg" Image="rbk.png" IsValidated="false"/>
-  <Shield Level="3" Id="RiverPlate" Image="river_plate.png" IsValidated="false"/>
-  <Shield Level="3" Id="SpartakMosca" Image="spartak-mosca.png" IsValidated="false"/>
-  <Shield Level="3" Id="SteauaBucarest" Image="steaua.png" IsValidated="false"/>
-  <Shield Level="3" Id="WestHam" Image="west-ham-united.png" IsValidated="false"/>
-  
-  <Shield Level="4" Id="Amburgo" Image="amburgo.png" IsValidated="false"/>
-  <Shield Level="4" Id="Anderlecht" Image="Anderlecht.png" IsValidated="false"/>
-  <Shield Level="4" Id="Monacò" Image="as-monaco.png" IsValidated="false"/>
-  <Shield Level="4" Id="AtleticoBilbao" Image="athletic-bilbao.png" IsValidated="false"/>
-  <Shield Level="4" Id="BirminghamCity" Image="birmingham.png" IsValidated="false"/>
-  <Shield Level="4" Id="CskaMosca" Image="cska-moscow.png" IsValidated="false"/>
-  <Shield Level="4" Id="EintrachtFrancoforte" Image="eintracht-frankfurt.png" IsValidated="false"/>
-  <Shield Level="4" Id="Copenaghen" Image="fc-kobenhavn.png" IsValidated="false"/>
-  <Shield Level="4" Id="Nantes" Image="fc-nantes.png" IsValidated="false"/>
-  <Shield Level="4" Id="Fenerbahce" Image="fenerbahce.png" IsValidated="false"/>
-  <Shield Level="4" Id="Flamengo" Image="flamengo4.png" IsValidated="false"/>
-  <Shield Level="4" Id="JhertaBerlino" Image="hertaberlino.png" IsValidated="false"/>
-  <Shield Level="4" Id="Udinese" Image="logo-udinese1.png" IsValidated="false"/>
-  <Shield Level="4" Id="PartizanBelgrado" Image="partizan-belgrade.png" IsValidated="false"/>
-  <Shield Level="4" Id="RapidVienna" Image="rapidvienna.png" IsValidated="false"/>
-  <Shield Level="4" Id="RealSociedad" Image="real-sociedad.png" IsValidated="false"/>
-  <Shield Level="4" Id="SpartaPraga" Image="sparta-praha.png" IsValidated="false"/>
-  <Shield Level="4" Id="Torino" Image="torino.png" IsValidated="false"/>
-  <Shield Level="4" Id="Stoccarda" Image="vfb-stuttgart.png" IsValidated="false"/>
-  <Shield Level="4" Id="Wolfsburg" Image="wolfsburg.png" IsValidated="false"/>
-  <Shield Level="4" Id="Wolverhampton" Image="Wolverhampton-Wanderers.png" IsValidated="false"/>
-  
-  <Shield Level="5" Id="Monaco1869" Image="860-munchen.png" IsValidated="false"/>
-  <Shield Level="5" Id="BateBorisov" Image="bate-borisov.png" IsValidated="false"/>
-  <Shield Level="5" Id="CeltaVigo" Image="celta-de-vigo.png" IsValidated="false"/>
-  <Shield Level="5" Id="Cluj" Image="cfr-cluj.png" IsValidated="false"/>
-  <Shield Level="5" Id="ClubBrugge" Image="club-brugge.png" IsValidated="false"/>
-  <Shield Level="5" Id="CrystalPalace" Image="crystal_palace.png" IsValidated="false"/>
-  <Shield Level="5" Id="DinamoZagabria" Image="dinamo-zagreb.png" IsValidated="false"/>
-  <Shield Level="5" Id="Goteborg" Image="goteborg.png" IsValidated="false"/>
-  <Shield Level="5" Id="Hearts" Image="hearts.png" IsValidated="false"/>
-  <Shield Level="5" Id="Leeds" Image="leeds-united.png" IsValidated="false"/>
-  <Shield Level="5" Id="Maccabi" Image="maccabitelaviv.png" IsValidated="false"/>
-  <Shield Level="5" Id="Metalist" Image="metalist_kharkiv-primary-.png" IsValidated="false"/>
-  <Shield Level="5" Id="NottinghamForest" Image="nottingham-forest.png" IsValidated="false"/>
-  <Shield Level="5" Id="Palmeiras" Image="palmeiras.png" IsValidated="false"/>
-  <Shield Level="5" Id="Portsmouth" Image="portsmouth-fc.png" IsValidated="false"/>
-  <Shield Level="5" Id="QueensParkRangers" Image="queens-park-rangers.png" IsValidated="false"/>
-  <Shield Level="5" Id="RacingSantander" Image="racing-santander.png" IsValidated="false"/>
-  <Shield Level="5" Id="RealSaragozza" Image="real-zaragoza.png" IsValidated="false"/>
-  <Shield Level="5" Id="RubinKazan" Image="rubin_kazan.png" IsValidated="false"/>
-  <Shield Level="5" Id="Siena" Image="siena.png" IsValidated="false"/>
-  <Shield Level="5" Id="StellaRossa" Image="stellarossa.png" IsValidated="false"/>
-  
-  <Shield Level="6" Id="AikStockholm" Image="AIK-Stockholm.png" IsValidated="false"/>
-  <Shield Level="6" Id="AnzhiMakhachkala" Image="Anzhi_Makhachkala.png" IsValidated="false"/>
-  <Shield Level="6" Id="Boavista" Image="Boavista.png" IsValidated="false"/>
-  <Shield Level="6" Id="ColoColo" Image="colo colo.png" IsValidated="false"/>
-  <Shield Level="6" Id="CskaSofia" Image="CSKA_Sofia.png" IsValidated="false"/>
-  <Shield Level="6" Id="DerbyCounty" Image="Derby-County.png" IsValidated="false"/>
-  <Shield Level="6" Id="Grasshoppers" Image="Grasshoppers.png" IsValidated="false"/>
-  <Shield Level="6" Id="GuangzhouEvergrande" Image="GuangzhouEvergrande.png" IsValidated="false"/>
-  <Shield Level="6" Id="HajdukSplit" Image="Hajduk-Split.png" IsValidated="false"/>
-  <Shield Level="6" Id="Heerenveen" Image="Heerenveen.png" IsValidated="false"/>
-  <Shield Level="6" Id="Independiente" Image="independiente.png" IsValidated="false"/>
-  <Shield Level="6" Id="JubiloIwata" Image="Jubilo-Iwata.png" IsValidated="false"/>
-  <Shield Level="6" Id="Mechelen" Image="KV-Mechelen.png" IsValidated="false"/>
-  <Shield Level="6" Id="Maribor" Image="NK-Maribor.png" IsValidated="false"/>
-  <Shield Level="6" Id="Odense" Image="OB-Odense.png" IsValidated="false"/>
-  <Shield Level="6" Id="Sheffield" Image="sheffield.png" IsValidated="false"/>
-  <Shield Level="6" Id="SheriffTiraspol" Image="Sheriff-Tiraspol.png" IsValidated="false"/>
-  <Shield Level="6" Id="SlaviaPraga" Image="Slavia-Praha.png" IsValidated="false"/>
-  <Shield Level="6" Id="Bochum" Image="VfL-Bochum.png" IsValidated="false"/>
-  <Shield Level="6" Id="YoungBoys" Image="Young-Boys.png" IsValidated="false"/>
-  <Shield Level="6" Id="StandardLiegi" Image="standard-liege.png" IsValidated="false"/>
+  <Shield Level="1" Id="Ajax" Image="ajax.png" IsValidated="false">
+    <Names>Ajax</Names>
+  </Shield>
+  <Shield Level="1" Id="Arsenal" Image="Arsenal.png" IsValidated="false">
+    <Names>Arsenal</Names>
+  </Shield>
+  <Shield Level="1" Id="Barcelona" Image="Barcellona.png" IsValidated="false">
+    <Names>Barcelona</Names>
+    <Names>Barcellona</Names>
+  </Shield>
+  <Shield Level="1" Id="BayernMonaco" Image="Bayern_Munich.png" IsValidated="false">
+    <Names>FC Bayern München</Names>
+    <Names>FC Bayern Munchen</Names>
+    <Names>Bayern München</Names>
+    <Names>Bayern Munchen</Names>
+    <Names>Bayern Monaco</Names>
+  </Shield>
+  <Shield Level="1" Id="BocaJuniors" Image="boca.png" IsValidated="false">
+    <Names>Boca Juniors</Names>
+  </Shield>
+  <Shield Level="1" Id="BorussiaDortmund" Image="Borussia_Dortmund.png" IsValidated="false">
+    <Names>Borussia Dortmund</Names>
+  </Shield>
+  <Shield Level="1" Id="Celtic" Image="celtic.png" IsValidated="false">
+    <Names>Celtic</Names>
+  </Shield>
+  <Shield Level="1" Id="Chelsea" Image="chelsea.png" IsValidated="false">
+    <Names>Chelsea</Names>
+  </Shield>
+  <Shield Level="1" Id="Corinthians" Image="corinthians.png" IsValidated="false">
+    <Names>Corinthians</Names>
+  </Shield>
+  <Shield Level="1" Id="FcPorto" Image="fc-porto.png" IsValidated="false">
+    <Names>FC Porto</Names>
+  </Shield>
+  <Shield Level="1" Id="Inter" Image="inter.png" IsValidated="false">
+    <Names>Inter</Names>
+  </Shield>
+  <Shield Level="1" Id="Juventus" Image="juventus.png" IsValidated="false">
+    <Names>Juventus</Names>
+  </Shield>
+  <Shield Level="1" Id="ManchesterUnited" Image="manchesterunited.png" IsValidated="false">
+    <Names>Manchester United</Names>
+  </Shield>
+  <Shield Level="1" Id="ManchesterCity" Image="manchester city.png" IsValidated="false">
+    <Names>Manchester City</Names>
+  </Shield>
+  <Shield Level="1" Id="Milan" Image="milan.png" IsValidated="false">
+    <Names>Milan</Names>
+  </Shield>
+  <Shield Level="1" Id="OlympiqueMarsiglia" Image="olympique-marseille.png" IsValidated="false">
+    <Names>Olympique Marsiglia</Names>
+  </Shield>
+  <Shield Level="1" Id="OlympiqueLione" Image="olympique_lyonnais.png" IsValidated="false">
+    <Names>Olympique Lione</Names>
+  </Shield>
+  <Shield Level="1" Id="ParisSaintGermain" Image="paris-saint-germain.png" IsValidated="false">
+    <Names>Paris Saint Germain</Names>
+  </Shield>
+  <Shield Level="1" Id="RealMadrid" Image="realmadrid.png" IsValidated="false">
+    <Names>Real Madrid</Names>
+  </Shield>
+  <Shield Level="1" Id="Santos" Image="santos.png" IsValidated="false">
+    <Names>Santos</Names>
+  </Shield>
+  <Shield Level="1" Id="Liverpool" Image="liverpool.png" IsValidated="false">
+    <Names>Liverpool</Names>
+  </Shield>
+
+  <Shield Level="2" Id="Roma" Image="asroma.png" IsValidated="false">
+    <Names>Roma</Names>
+  </Shield>
+  <Shield Level="2" Id="AstonVilla" Image="Aston-villa.png" IsValidated="false">
+    <Names>Aston Villa</Names>
+  </Shield>
+  <Shield Level="2" Id="AtleticoMadrid" Image="atletico madrid.png" IsValidated="false">
+    <Names>Atletico Madrid</Names>
+  </Shield>
+  <Shield Level="2" Id="Benfica" Image="Benfica.png" IsValidated="false">
+    <Names>Benfica</Names>
+  </Shield>
+  <Shield Level="2" Id="DynamoKiev" Image="dynamo-kiev1.png" IsValidated="false">
+    <Names>Dynamo Kiev</Names>
+  </Shield>
+  <Shield Level="2" Id="Galatasaray" Image="galatasaray.png" IsValidated="false">
+    <Names>Galatasaray</Names>
+  </Shield>
+  <Shield Level="2" Id="CglasgowRangers" Image="glasgow-rangers.png" IsValidated="false">
+    <Names></Names>
+  </Shield>
+  <Shield Level="2" Id="Lazio" Image="lazio.png" IsValidated="false">
+    <Names>Glasgow Rangers </Names>
+  </Shield>
+  <Shield Level="2" Id="Napoli" Image="napoli.png" IsValidated="false">
+    <Names>Napoli</Names>
+  </Shield>
+  <Shield Level="2" Id="Newcastle" Image="newcastle-united.png" IsValidated="false">
+    <Names>Newcastle</Names>
+  </Shield>
+  <Shield Level="2" Id="Olympiakos" Image="olympiakos.png" IsValidated="false">
+    <Names>Olympiakos</Names>
+  </Shield>
+  <Shield Level="2" Id="PsvEindhoven" Image="psv_eindhoven.png" IsValidated="false">
+    <Names>Psv Eindhoven</Names>
+  </Shield>
+  <Shield Level="2" Id="Shalke04" Image="schalke_04.png" IsValidated="false">
+    <Names>Shalke 04</Names>
+  </Shield>
+  <Shield Level="2" Id="Siviglia" Image="sevilla-logo.png" IsValidated="false">
+    <Names>Siviglia</Names>
+  </Shield>
+  <Shield Level="2" Id="ShakhtarDonetsk" Image="Shakhtar_donetsk.png" IsValidated="false">
+    <Names>Shakhtar Donetsk</Names>
+  </Shield>
+  <Shield Level="2" Id="SportingLisbona" Image="sportinglisbon.png" IsValidated="false">
+    <Names>Sporting Lisbona</Names>
+  </Shield>
+  <Shield Level="2" Id="TottenhamHotspurs" Image="Tottenham_Hotspurs.png" IsValidated="false">
+    <Names>Tottenham Hotspurs</Names>
+  </Shield>
+  <Shield Level="2" Id="Twente" Image="twente.png" IsValidated="false">
+    <Names>Twente</Names>
+  </Shield>
+  <Shield Level="2" Id="Valensia" Image="valencia.png" IsValidated="false">
+    <Names>Valensia</Names>
+  </Shield>
+  <Shield Level="2" Id="WerderBrema" Image="werderbremen.png" IsValidated="false">
+    <Names>Werder Brema</Names>
+  </Shield>
+  <Shield Level="2" Id="Zenit" Image="zenita.png" IsValidated="false">
+    <Names>Zenit</Names>
+  </Shield>
+
+  <Shield Level="3" Id="AekAtene" Image="aekatene.png" IsValidated="false">
+    <Names>Aek Atene</Names>
+  </Shield>
+  <Shield Level="3" Id="Auxerre" Image="Aj-auxerre.png" IsValidated="false">
+    <Names>Auxerre</Names>
+  </Shield>
+  <Shield Level="3" Id="AzAlkmaar" Image="az-alkmaar.png" IsValidated="false">
+    <Names>Az Alkmaar</Names>
+  </Shield>
+  <Shield Level="3" Id="Basilea" Image="Basilea.png" IsValidated="false">
+    <Names>Basilea</Names>
+  </Shield>
+  <Shield Level="3" Id="BayerLeverkusen" Image="bayerleverkusen.png" IsValidated="false">
+    <Names>Bayer Leverkusen</Names>
+  </Shield>
+  <Shield Level="3" Id="Besiktas" Image="Besiktas.png" IsValidated="false">
+    <Names>Besiktas</Names>
+  </Shield>
+  <Shield Level="3" Id="BlackburnRovers" Image="blackburn-rovers.png" IsValidated="false">
+    <Names>Blackburn Rovers</Names>
+  </Shield>
+  <Shield Level="3" Id="DeportivoLaCoruna" Image="deportivolacoruna.png" IsValidated="false">
+    <Names>Deportivo La Coruna</Names>
+  </Shield>
+  <Shield Level="3" Id="Feyenoord" Image="feyenoord.png" IsValidated="false">
+    <Names>Feyenoord</Names>
+  </Shield>
+  <Shield Level="3" Id="Fiorentina" Image="fiorentina.png" IsValidated="false">
+    <Names>Fiorentina</Names>
+  </Shield>
+  <Shield Level="3" Id="Fulham" Image="fulham-logo.png" IsValidated="false">
+    <Names>Fulham</Names>
+  </Shield>
+  <Shield Level="3" Id="Galaxy" Image="galaxy.png" IsValidated="false">
+    <Names>Galaxy</Names>
+  </Shield>
+  <Shield Level="3" Id="Genoa" Image="genoa.png" IsValidated="false">
+    <Names>Genoa</Names>
+  </Shield>
+  <Shield Level="3" Id="Bordeaux" Image="Girondins-Bordeaux.png" IsValidated="false">
+    <Names>Bordeaux</Names>
+  </Shield>
+  <Shield Level="3" Id="Lille" Image="lille.png" IsValidated="false">
+    <Names>Lille</Names>
+  </Shield>
+  <Shield Level="3" Id="Palermo" Image="palermo.png" IsValidated="false">
+    <Names>Palermo</Names>
+  </Shield>
+  <Shield Level="3" Id="Rosenborg" Image="rbk.png" IsValidated="false">
+    <Names>Rosenborg</Names>
+  </Shield>
+  <Shield Level="3" Id="RiverPlate" Image="river_plate.png" IsValidated="false">
+    <Names>RiverPlate</Names>
+  </Shield>
+  <Shield Level="3" Id="SpartakMosca" Image="spartak-mosca.png" IsValidated="false">
+    <Names>Spartak Mosca</Names>
+  </Shield>
+  <Shield Level="3" Id="SteauaBucarest" Image="steaua.png" IsValidated="false">
+    <Names>Steaua Bucarest</Names>
+  </Shield>
+  <Shield Level="3" Id="WestHam" Image="west-ham-united.png" IsValidated="false">
+    <Names>West Ham</Names>
+  </Shield>
+
+  <Shield Level="4" Id="Amburgo" Image="amburgo.png" IsValidated="false">
+    <Names>Amburgo</Names>
+  </Shield>
+  <Shield Level="4" Id="Anderlecht" Image="Anderlecht.png" IsValidated="false">
+    <Names>Anderlecht</Names>
+  </Shield>
+  <Shield Level="4" Id="Monacò" Image="as-monaco.png" IsValidated="false">
+    <Names>Monacò</Names>
+  </Shield>
+  <Shield Level="4" Id="AtleticoBilbao" Image="athletic-bilbao.png" IsValidated="false">
+    <Names>Atletico Bilbao</Names>
+  </Shield>
+  <Shield Level="4" Id="BirminghamCity" Image="birmingham.png" IsValidated="false">
+    <Names>Birmingham City</Names>
+  </Shield>
+  <Shield Level="4" Id="CskaMosca" Image="cska-moscow.png" IsValidated="false">
+    <Names>Cska Mosca</Names>
+  </Shield>
+  <Shield Level="4" Id="EintrachtFrancoforte" Image="eintracht-frankfurt.png" IsValidated="false">
+    <Names>Eintracht Francoforte</Names>
+  </Shield>
+  <Shield Level="4" Id="Copenaghen" Image="fc-kobenhavn.png" IsValidated="false">
+    <Names>Copenaghen</Names>
+  </Shield>
+  <Shield Level="4" Id="Nantes" Image="fc-nantes.png" IsValidated="false">
+    <Names>Nantes</Names>
+  </Shield>
+  <Shield Level="4" Id="Fenerbahce" Image="fenerbahce.png" IsValidated="false">
+    <Names>Fenerbahce</Names>
+  </Shield>
+  <Shield Level="4" Id="Flamengo" Image="flamengo4.png" IsValidated="false">
+    <Names>Flamengo</Names>
+  </Shield>
+  <Shield Level="4" Id="JhertaBerlino" Image="hertaberlino.png" IsValidated="false">
+    <Names>Jherta Berlino</Names>
+  </Shield>
+  <Shield Level="4" Id="Udinese" Image="logo-udinese1.png" IsValidated="false">
+    <Names>Udinese</Names>
+  </Shield>
+  <Shield Level="4" Id="PartizanBelgrado" Image="partizan-belgrade.png" IsValidated="false">
+    <Names>Partizan Belgrado</Names>
+  </Shield>
+  <Shield Level="4" Id="RapidVienna" Image="rapidvienna.png" IsValidated="false">
+    <Names>Rapid Vienna</Names>
+  </Shield>
+  <Shield Level="4" Id="RealSociedad" Image="real-sociedad.png" IsValidated="false">
+    <Names>Real Sociedad</Names>
+  </Shield>
+  <Shield Level="4" Id="SpartaPraga" Image="sparta-praha.png" IsValidated="false">
+    <Names>Sparta Praga</Names>
+  </Shield>
+  <Shield Level="4" Id="Torino" Image="torino.png" IsValidated="false">
+    <Names>Torino</Names>
+  </Shield>
+  <Shield Level="4" Id="Stoccarda" Image="vfb-stuttgart.png" IsValidated="false">
+    <Names>Stoccarda</Names>
+  </Shield>
+  <Shield Level="4" Id="Wolfsburg" Image="wolfsburg.png" IsValidated="false">
+    <Names>Wolfsburg</Names>
+  </Shield>
+  <Shield Level="4" Id="Wolverhampton" Image="Wolverhampton-Wanderers.png" IsValidated="false">
+    <Names>Wolverhampton</Names>
+  </Shield>
+
+  <Shield Level="5" Id="Monaco1869" Image="860-munchen.png" IsValidated="false">
+    <Names>Monaco 1869</Names>
+  </Shield>
+  <Shield Level="5" Id="BateBorisov" Image="bate-borisov.png" IsValidated="false">
+    <Names>Bate Borisov</Names>
+  </Shield>
+  <Shield Level="5" Id="CeltaVigo" Image="celta-de-vigo.png" IsValidated="false">
+    <Names>Celta Vigo</Names>
+  </Shield>
+  <Shield Level="5" Id="Cluj" Image="cfr-cluj.png" IsValidated="false">
+    <Names>Cluj</Names>
+  </Shield>
+  <Shield Level="5" Id="ClubBrugge" Image="club-brugge.png" IsValidated="false">
+    <Names>Club Brugge</Names>
+  </Shield>
+  <Shield Level="5" Id="CrystalPalace" Image="crystal_palace.png" IsValidated="false">
+    <Names>Crystal Palace</Names>
+  </Shield>
+  <Shield Level="5" Id="DinamoZagabria" Image="dinamo-zagreb.png" IsValidated="false">
+    <Names>Dinamo Zagabria</Names>
+  </Shield>
+  <Shield Level="5" Id="Goteborg" Image="goteborg.png" IsValidated="false">
+    <Names>Goteborg</Names>
+  </Shield>
+  <Shield Level="5" Id="Hearts" Image="hearts.png" IsValidated="false">
+    <Names>Hearts</Names>
+  </Shield>
+  <Shield Level="5" Id="Leeds" Image="leeds-united.png" IsValidated="false">
+    <Names>Leeds</Names>
+  </Shield>
+  <Shield Level="5" Id="Maccabi" Image="maccabitelaviv.png" IsValidated="false">
+    <Names>Maccabi</Names>
+  </Shield>
+  <Shield Level="5" Id="Metalist" Image="metalist_kharkiv-primary-.png" IsValidated="false">
+    <Names>Metalist</Names>
+  </Shield>
+  <Shield Level="5" Id="NottinghamForest" Image="nottingham-forest.png" IsValidated="false">
+    <Names>Nottingham Forest</Names>
+  </Shield>
+  <Shield Level="5" Id="Palmeiras" Image="palmeiras.png" IsValidated="false">
+    <Names>Palmeiras</Names>
+  </Shield>
+  <Shield Level="5" Id="Portsmouth" Image="portsmouth-fc.png" IsValidated="false">
+    <Names>Portsmouth</Names>
+  </Shield>
+  <Shield Level="5" Id="QueensParkRangers" Image="queens-park-rangers.png" IsValidated="false">
+    <Names>Queens Park Rangers</Names>
+  </Shield>
+  <Shield Level="5" Id="RacingSantander" Image="racing-santander.png" IsValidated="false">
+    <Names>Racing Santander</Names>
+  </Shield>
+  <Shield Level="5" Id="RealSaragozza" Image="real-zaragoza.png" IsValidated="false">
+    <Names>Real Saragozza</Names>
+    <Names>Real Saragoza</Names>
+  </Shield>
+  <Shield Level="5" Id="RubinKazan" Image="rubin_kazan.png" IsValidated="false">
+    <Names>Rubin Kazan</Names>
+  </Shield>
+  <Shield Level="5" Id="Siena" Image="siena.png" IsValidated="false">
+    <Names>Siena</Names>
+  </Shield>
+  <Shield Level="5" Id="StellaRossa" Image="stellarossa.png" IsValidated="false">
+    <Names>Stella Rossa</Names>
+  </Shield>
+
+  <Shield Level="6" Id="AikStockholm" Image="AIK-Stockholm.png" IsValidated="false">
+    <Names>Aik Stockholm</Names>
+  </Shield>
+  <Shield Level="6" Id="AnzhiMakhachkala" Image="Anzhi_Makhachkala.png" IsValidated="false">
+    <Names>Anzhi Makhachkala</Names>
+  </Shield>
+  <Shield Level="6" Id="Boavista" Image="Boavista.png" IsValidated="false">
+    <Names>Boavista</Names>
+  </Shield>
+  <Shield Level="6" Id="ColoColo" Image="colo colo.png" IsValidated="false">
+    <Names>ColoColo</Names>
+  </Shield>
+  <Shield Level="6" Id="CskaSofia" Image="CSKA_Sofia.png" IsValidated="false">
+    <Names>Cska Sofia</Names>
+  </Shield>
+  <Shield Level="6" Id="DerbyCounty" Image="Derby-County.png" IsValidated="false">
+    <Names>Derby County</Names>
+  </Shield>
+  <Shield Level="6" Id="Grasshoppers" Image="Grasshoppers.png" IsValidated="false">
+    <Names>Grasshoppers</Names>
+  </Shield>
+  <Shield Level="6" Id="GuangzhouEvergrande" Image="GuangzhouEvergrande.png" IsValidated="false">
+    <Names>Guangzhou Evergrande</Names>
+  </Shield>
+  <Shield Level="6" Id="HajdukSplit" Image="Hajduk-Split.png" IsValidated="false">
+    <Names>Hajduk Split</Names>
+  </Shield>
+  <Shield Level="6" Id="Heerenveen" Image="Heerenveen.png" IsValidated="false">
+    <Names>Heerenveen</Names>
+  </Shield>
+  <Shield Level="6" Id="Independiente" Image="independiente.png" IsValidated="false">
+    <Names>Independiente</Names>
+  </Shield>
+  <Shield Level="6" Id="JubiloIwata" Image="Jubilo-Iwata.png" IsValidated="false">
+    <Names>Jubilo Iwata</Names>
+  </Shield>
+  <Shield Level="6" Id="Mechelen" Image="KV-Mechelen.png" IsValidated="false">
+    <Names>Mechelen</Names>
+  </Shield>
+  <Shield Level="6" Id="Maribor" Image="NK-Maribor.png" IsValidated="false">
+    <Names>Maribor</Names>
+  </Shield>
+  <Shield Level="6" Id="Odense" Image="OB-Odense.png" IsValidated="false">
+    <Names>Odense</Names>
+  </Shield>
+  <Shield Level="6" Id="Sheffield" Image="sheffield.png" IsValidated="false">
+    <Names>Sheffield</Names>
+  </Shield>
+  <Shield Level="6" Id="SheriffTiraspol" Image="Sheriff-Tiraspol.png" IsValidated="false">
+    <Names>Sheriff Tiraspol</Names>
+  </Shield>
+  <Shield Level="6" Id="SlaviaPraga" Image="Slavia-Praha.png" IsValidated="false">
+    <Names>Slavia Praga</Names>
+  </Shield>
+  <Shield Level="6" Id="Bochum" Image="VfL-Bochum.png" IsValidated="false">
+    <Names>Bochum</Names>
+  </Shield>
+  <Shield Level="6" Id="YoungBoys" Image="Young-Boys.png" IsValidated="false">
+    <Names>Young Boys</Names>
+  </Shield>
+  <Shield Level="6" Id="StandardLiegi" Image="standard-liege.png" IsValidated="false">
+    <Names>Standard Liegi</Names>
+  </Shield>
 </ArrayOfShield>

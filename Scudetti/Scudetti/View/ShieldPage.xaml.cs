@@ -23,7 +23,7 @@ namespace Scudetti.View
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            var id = int.Parse(NavigationContext.QueryString["id"]);
+            var id = NavigationContext.QueryString["id"];
             VM.CurrentShield = AppContext.Shields.Single(s => s.Id == id);
             base.OnNavigatedTo(e);
         }

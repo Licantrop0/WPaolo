@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AekAtene" xml:space="preserve">
+    <value>Aek Atene</value>
+  </data>
+  <data name="AikStockholm" xml:space="preserve">
+    <value>Aik Stockholm</value>
+  </data>
+  <data name="Ajax" xml:space="preserve">
+    <value>Ajax</value>
+  </data>
+  <data name="Amburgo" xml:space="preserve">
+    <value>Amburgo</value>
+  </data>
+  <data name="Anderlecht" xml:space="preserve">
+    <value>Anderlecht</value>
+  </data>
+  <data name="AnzhiMakhachkala" xml:space="preserve">
+    <value>Anzhi Makhachkala</value>
+  </data>
+  <data name="Arsenal" xml:space="preserve">
+    <value>Arsenal</value>
+  </data>
+  <data name="AstonVilla" xml:space="preserve">
+    <value>Aston Villa</value>
+  </data>
+  <data name="AtleticoBilbao" xml:space="preserve">
+    <value>Atletico Bilbao</value>
+  </data>
+  <data name="AtleticoMadrid" xml:space="preserve">
+    <value>Atletico Madrid</value>
+  </data>
+  <data name="Auxerre" xml:space="preserve">
+    <value>Auxerre</value>
+  </data>
+  <data name="AzAlkmaar" xml:space="preserve">
+    <value>Az Alkmaar</value>
+  </data>
+  <data name="Barcelona" xml:space="preserve">
+    <value>Barcelona</value>
+  </data>
+  <data name="Basilea" xml:space="preserve">
+    <value>Basilea</value>
+  </data>
+  <data name="BateBorisov" xml:space="preserve">
+    <value>Bate Borisov</value>
+  </data>
+  <data name="BayerLeverkusen" xml:space="preserve">
+    <value>Bayer Leverkusen</value>
+  </data>
+  <data name="BayernMonaco" xml:space="preserve">
+    <value>Bayern Monaco</value>
+  </data>
+  <data name="Benfica" xml:space="preserve">
+    <value>Benfica</value>
+  </data>
+  <data name="Besiktas" xml:space="preserve">
+    <value>Besiktas</value>
+  </data>
+  <data name="BirminghamCity" xml:space="preserve">
+    <value>Birmingham City</value>
+  </data>
+  <data name="BlackburnRovers" xml:space="preserve">
+    <value>Blackburn Rovers</value>
+  </data>
+  <data name="Boavista" xml:space="preserve">
+    <value>Boavista</value>
+  </data>
+  <data name="BocaJuniors" xml:space="preserve">
+    <value>Boca Juniors</value>
+  </data>
+  <data name="Bochum" xml:space="preserve">
+    <value>Bochum</value>
+  </data>
+  <data name="Bordeaux" xml:space="preserve">
+    <value>Bordeaux</value>
+  </data>
+  <data name="BorussiaDortmund" xml:space="preserve">
+    <value>Borussia Dortmund</value>
+  </data>
+  <data name="CeltaVigo" xml:space="preserve">
+    <value>Celta Vigo</value>
+  </data>
+  <data name="Celtic" xml:space="preserve">
+    <value>Celtic</value>
+  </data>
+  <data name="CglasgowRangers" xml:space="preserve">
+    <value>Cglasgow Rangers</value>
+  </data>
+  <data name="Chelsea" xml:space="preserve">
+    <value>Chelsea</value>
+  </data>
+  <data name="ClubBrugge" xml:space="preserve">
+    <value>Club Brugge</value>
+  </data>
+  <data name="Cluj" xml:space="preserve">
+    <value>Cluj</value>
+  </data>
+  <data name="ColoColo" xml:space="preserve">
+    <value>Colo Colo</value>
+  </data>
+  <data name="Copenaghen" xml:space="preserve">
+    <value>Copenaghen</value>
+  </data>
+  <data name="Corinthians" xml:space="preserve">
+    <value>Corinthians</value>
+  </data>
+  <data name="CrystalPalace" xml:space="preserve">
+    <value>Crystal Palace</value>
+  </data>
+  <data name="CskaMosca" xml:space="preserve">
+    <value>Cska Mosca</value>
+  </data>
+  <data name="CskaSofia" xml:space="preserve">
+    <value>Cska Sofia</value>
+  </data>
+  <data name="DeportivoLaCoruna" xml:space="preserve">
+    <value>Deportivo La Coruna</value>
+  </data>
+  <data name="DerbyCounty" xml:space="preserve">
+    <value>Derby County</value>
+  </data>
+  <data name="DinamoZagabria" xml:space="preserve">
+    <value>Dinamo Zagabria</value>
+  </data>
+  <data name="DynamoKiev" xml:space="preserve">
+    <value>Dynamo Kiev</value>
+  </data>
+  <data name="EintrachtFrancoforte" xml:space="preserve">
+    <value>Eintracht Francoforte</value>
+  </data>
+  <data name="FcPorto" xml:space="preserve">
+    <value>Fc Porto</value>
+  </data>
+  <data name="Fenerbahce" xml:space="preserve">
+    <value>Fenerbahce</value>
+  </data>
+  <data name="Feyenoord" xml:space="preserve">
+    <value>Feyenoord</value>
+  </data>
+  <data name="Fiorentina" xml:space="preserve">
+    <value>Fiorentina</value>
+  </data>
+  <data name="Flamengo" xml:space="preserve">
+    <value>Flamengo</value>
+  </data>
+  <data name="Fulham" xml:space="preserve">
+    <value>Fulham</value>
+  </data>
+  <data name="Galatasaray" xml:space="preserve">
+    <value>Galatasaray</value>
+  </data>
+  <data name="Galaxy" xml:space="preserve">
+    <value>Galaxy</value>
+  </data>
+  <data name="Genoa" xml:space="preserve">
+    <value>Genoa</value>
+  </data>
+  <data name="Goteborg" xml:space="preserve">
+    <value>Goteborg</value>
+  </data>
+  <data name="Grasshoppers" xml:space="preserve">
+    <value>Grasshoppers</value>
+  </data>
+  <data name="GuangzhouEvergrande" xml:space="preserve">
+    <value>Guangzhou Evergrande</value>
+  </data>
+  <data name="HajdukSplit" xml:space="preserve">
+    <value>Hajduk Split</value>
+  </data>
+  <data name="Hearts" xml:space="preserve">
+    <value>Hearts</value>
+  </data>
+  <data name="Heerenveen" xml:space="preserve">
+    <value>Heerenveen</value>
+  </data>
+  <data name="Independiente" xml:space="preserve">
+    <value>Independiente</value>
+  </data>
+  <data name="Inter" xml:space="preserve">
+    <value>Inter</value>
+  </data>
+  <data name="JhertaBerlino" xml:space="preserve">
+    <value>Jherta Berlino</value>
+  </data>
+  <data name="JubiloIwata" xml:space="preserve">
+    <value>Jubilo Iwata</value>
+  </data>
+  <data name="Juventus" xml:space="preserve">
+    <value>Juventus</value>
+  </data>
+  <data name="Lazio" xml:space="preserve">
+    <value>Lazio</value>
+  </data>
+  <data name="Leeds" xml:space="preserve">
+    <value>Leeds</value>
+  </data>
+  <data name="Lille" xml:space="preserve">
+    <value>Lille</value>
+  </data>
+  <data name="Liverpool" xml:space="preserve">
+    <value>Liverpool</value>
+  </data>
+  <data name="Maccabi" xml:space="preserve">
+    <value>Maccabi</value>
+  </data>
+  <data name="ManchesterCity" xml:space="preserve">
+    <value>Manchester City</value>
+  </data>
+  <data name="ManchesterUnited" xml:space="preserve">
+    <value>Manchester United</value>
+  </data>
+  <data name="Maribor" xml:space="preserve">
+    <value>Maribor</value>
+  </data>
+  <data name="Mechelen" xml:space="preserve">
+    <value>Mechelen</value>
+  </data>
+  <data name="Metalist" xml:space="preserve">
+    <value>Metalist</value>
+  </data>
+  <data name="Milan" xml:space="preserve">
+    <value>Milan</value>
+  </data>
+  <data name="Monaco1869" xml:space="preserve">
+    <value>Monaco 1869</value>
+  </data>
+  <data name="Monacò" xml:space="preserve">
+    <value>Monacò</value>
+  </data>
+  <data name="Nantes" xml:space="preserve">
+    <value>Nantes</value>
+  </data>
+  <data name="Napoli" xml:space="preserve">
+    <value>Napoli</value>
+  </data>
+  <data name="Newcastle" xml:space="preserve">
+    <value>Newcastle</value>
+  </data>
+  <data name="NottinghamForest" xml:space="preserve">
+    <value>Nottingham Forest</value>
+  </data>
+  <data name="Odense" xml:space="preserve">
+    <value>Odense</value>
+  </data>
+  <data name="Olympiakos" xml:space="preserve">
+    <value>Olympiakos</value>
+  </data>
+  <data name="OlympiqueLione" xml:space="preserve">
+    <value>Olympique Lione</value>
+  </data>
+  <data name="OlympiqueMarsiglia" xml:space="preserve">
+    <value>Olympique Marsiglia</value>
+  </data>
+  <data name="Palermo" xml:space="preserve">
+    <value>Palermo</value>
+  </data>
+  <data name="Palmeiras" xml:space="preserve">
+    <value>Palmeiras</value>
+  </data>
+  <data name="ParisSaintGermain" xml:space="preserve">
+    <value>Paris Saint Germain</value>
+  </data>
+  <data name="PartizanBelgrado" xml:space="preserve">
+    <value>Partizan Belgrado</value>
+  </data>
+  <data name="Portsmouth" xml:space="preserve">
+    <value>Portsmouth</value>
+  </data>
+  <data name="PsvEindhoven" xml:space="preserve">
+    <value>Psv Eindhoven</value>
+  </data>
+  <data name="QueensParkRangers" xml:space="preserve">
+    <value>Queens Park Rangers</value>
+  </data>
+  <data name="RacingSantander" xml:space="preserve">
+    <value>Racing Santander</value>
+  </data>
+  <data name="RapidVienna" xml:space="preserve">
+    <value>Rapid Vienna</value>
+  </data>
+  <data name="RealMadrid" xml:space="preserve">
+    <value>Real Madrid</value>
+  </data>
+  <data name="RealSaragozza" xml:space="preserve">
+    <value>Real Saragozza</value>
+  </data>
+  <data name="RealSociedad" xml:space="preserve">
+    <value>Real Sociedad</value>
+  </data>
+  <data name="RiverPlate" xml:space="preserve">
+    <value>River Plate</value>
+  </data>
+  <data name="Roma" xml:space="preserve">
+    <value>Roma</value>
+  </data>
+  <data name="Rosenborg" xml:space="preserve">
+    <value>Rosenborg</value>
+  </data>
+  <data name="RubinKazan" xml:space="preserve">
+    <value>Rubin Kazan</value>
+  </data>
+  <data name="Santos" xml:space="preserve">
+    <value>Santos</value>
+  </data>
+  <data name="ShakhtarDonetsk" xml:space="preserve">
+    <value>Shakhtar Donetsk</value>
+  </data>
+  <data name="Shalke04" xml:space="preserve">
+    <value>Shalke 04</value>
+  </data>
+  <data name="Sheffield" xml:space="preserve">
+    <value>Sheffield</value>
+  </data>
+  <data name="SheriffTiraspol" xml:space="preserve">
+    <value>Sheriff Tiraspol</value>
+  </data>
+  <data name="Siena" xml:space="preserve">
+    <value>Siena</value>
+  </data>
+  <data name="Siviglia" xml:space="preserve">
+    <value>Siviglia</value>
+  </data>
+  <data name="SlaviaPraga" xml:space="preserve">
+    <value>Slavia Praga</value>
+  </data>
+  <data name="SpartakMosca" xml:space="preserve">
+    <value>Spartak Mosca</value>
+  </data>
+  <data name="SpartaPraga" xml:space="preserve">
+    <value>Sparta Praga</value>
+  </data>
+  <data name="SportingLisbona" xml:space="preserve">
+    <value>Sporting Lisbona</value>
+  </data>
+  <data name="StandardLiegi" xml:space="preserve">
+    <value>Standard Liegi</value>
+  </data>
+  <data name="SteauaBucarest" xml:space="preserve">
+    <value>Steaua Bucarest</value>
+  </data>
+  <data name="StellaRossa" xml:space="preserve">
+    <value>Stella Rossa</value>
+  </data>
+  <data name="Stoccarda" xml:space="preserve">
+    <value>Stoccarda</value>
+  </data>
+  <data name="Torino" xml:space="preserve">
+    <value>Torino</value>
+  </data>
+  <data name="TottenhamHotspurs" xml:space="preserve">
+    <value>Tottenham Hotspurs</value>
+  </data>
+  <data name="Twente" xml:space="preserve">
+    <value>Twente</value>
+  </data>
+  <data name="Udinese" xml:space="preserve">
+    <value>Udinese</value>
+  </data>
+  <data name="Valensia" xml:space="preserve">
+    <value>Valensia</value>
+  </data>
+  <data name="WerderBrema" xml:space="preserve">
+    <value>Werder Brema</value>
+  </data>
+  <data name="WestHam" xml:space="preserve">
+    <value>West Ham</value>
+  </data>
+  <data name="Wolfsburg" xml:space="preserve">
+    <value>Wolfsburg</value>
+  </data>
+  <data name="Wolverhampton" xml:space="preserve">
+    <value>Wolverhampton</value>
+  </data>
+  <data name="YoungBoys" xml:space="preserve">
+    <value>Young Boys</value>
+  </data>
+  <data name="Zenit" xml:space="preserve">
+    <value>Zenit</value>
+  </data>
+</root>

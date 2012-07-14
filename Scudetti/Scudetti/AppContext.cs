@@ -33,6 +33,7 @@ namespace Scudetti
                 Shields = ShieldService.Load();
                 _levels = Shields
                     .GroupBy(s => s.Level)
+                    .OrderBy(g => g.Key)
                     .Select(g => new LevelViewModel(g)).ToList();
             };
             bw.RunWorkerCompleted += (sender, e) => LoadCompleted(sender, e);

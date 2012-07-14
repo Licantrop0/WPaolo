@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight;
 using Scudetti.Data;
 using Scudetti.Localization;
 using Scudetti.Model;
+using System.Globalization;
 
 namespace Scudetti.ViewModel
 {
@@ -37,10 +38,13 @@ namespace Scudetti.ViewModel
 
         public void Validate()
         {
-            if (string.Compare(CurrentShield.Name, ShieldName, StringComparison.InvariantCultureIgnoreCase) == 0)
+            var originalName = ShieldResources.ResourceManager.GetString(CurrentShield.Id, new CultureInfo("en-US"));
+            var LocalizedName = ShieldResources.ResourceManager.GetString(CurrentShield.Id);
+
+            if (string.Compare(originalName, ShieldName, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                CurrentShield.IsValidated = true;
                 MessengerInstance.Send<string>("goback", "navigation");
+                CurrentShield.IsValidated = true;
             }
             else
             {

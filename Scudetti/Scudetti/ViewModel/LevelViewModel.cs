@@ -63,9 +63,7 @@ namespace Scudetti.ViewModel
         public LevelViewModel(IGrouping<int, Shield> group)
         {
             Number = group.Key;
-            var list = group.ToList();
-            list.Shuffle();
-            Shields = list;
+            Shields = group;
 
             foreach (var shield in AppContext.Shields)
             {

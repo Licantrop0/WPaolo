@@ -28,13 +28,23 @@ namespace Scudetti.ViewModel
             }
         }
 
+        public Uri LevelImage
+        {
+            get
+            {
+                return IsUnlocked ?
+                    new Uri("../Images/Levels/livello" + Number + ".png", UriKind.Relative) :
+                    new Uri("../Images/spunta.png", UriKind.Relative);
+            }
+        }
+
         public string StatusText
         {
             get
             {
                 return IsUnlocked ?
-                    string.Format("{0} {1}/{2}", AppResources.Shields, CompletedShields, TotalShields) :
-                    string.Format(AppResources.Locked, LockTreshold * (Number - 1) - AppContext.TotalShieldUnlocked);
+                    string.Format("{0}/{1}", CompletedShields, TotalShields) :
+                    (LockTreshold * (Number - 1) - AppContext.TotalShieldUnlocked).ToString();
             }
         }
 

@@ -20,28 +20,22 @@
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
           DataContext="{StaticResource LevelsVM}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding LocalizedResources.Levels, Source={StaticResource LocalizedStrings}}"
-                   Style="{StaticResource TitleTextBlock}" />
-
-        <ListBox Grid.Row="1" ItemsSource="{Binding Levels}" Margin="34, 0"
+        <ListBox ItemsSource="{Binding Levels}" Margin="34, 0"
                  SelectedItem="{Binding SelectedLevel, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsUnlocked}"
-                          Margin="0,0,0,12">
+                          Margin="12">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="{Binding LevelName}" VerticalAlignment="Center" 
-                                  Foreground="{StaticResource DefaultForeground}" FontSize="64" />
-                        <Rectangle Fill="#FF2D2D2D" VerticalAlignment="Bottom"
+                        
+                        <Image Source="{Binding LevelImage}" HorizontalAlignment="Center" Stretch="None" />
+                        
+                        <!--<Rectangle Fill="#FF2D2D2D" VerticalAlignment="Bottom"
                                    Height="10" Margin="12,0,12,3"
                                    Grid.Row="1"/>
                         <ProgressBar Maximum="{Binding TotalShields}"
@@ -51,12 +45,18 @@
                             <ProgressBar.RenderTransform>
                                 <CompositeTransform ScaleY="2.5"/>
                             </ProgressBar.RenderTransform>
-                        </ProgressBar>
+                        </ProgressBar>-->
                         <TextBlock Text="{Binding StatusText}" Grid.Row="2" FontSize="30"
-                                   VerticalAlignment="Center" Foreground="{StaticResource DefaultForeground}" />
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Foreground="{StaticResource DefaultForeground}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <toolkit:WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>

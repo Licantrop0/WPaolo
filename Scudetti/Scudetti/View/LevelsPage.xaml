@@ -21,19 +21,19 @@
     <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
           DataContext="{StaticResource LevelsVM}">
 
-        <ListBox ItemsSource="{Binding Levels}" Margin="34, 0"
+        <ListBox ItemsSource="{Binding Levels}" Margin="0,40"
                  SelectedItem="{Binding SelectedLevel, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsUnlocked}"
-                          Margin="12">
+                    <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsUnlocked}" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         
-                        <Image Source="{Binding LevelImage}" HorizontalAlignment="Center" Stretch="None" />
+                        <Image Source="{Binding LevelImage}" Stretch="None"
+                               Margin="0,0,0,6" />
                         
                         <!--<Rectangle Fill="#FF2D2D2D" VerticalAlignment="Bottom"
                                    Height="10" Margin="12,0,12,3"

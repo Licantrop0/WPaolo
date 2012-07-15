@@ -34,7 +34,7 @@ namespace Scudetti.ViewModel
             {
                 return IsUnlocked ?
                     new Uri("../Images/Levels/livello" + Number + ".png", UriKind.Relative) :
-                    new Uri("../Images/spunta.png", UriKind.Relative);
+                    new Uri("../Images/Levels/livello" + Number + "lock.png", UriKind.Relative);
             }
         }
 

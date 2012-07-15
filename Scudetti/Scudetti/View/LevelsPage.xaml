@@ -21,6 +21,10 @@
     <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
           DataContext="{StaticResource LevelsVM}">
 
+        <TextBlock Text="{Binding StatusText}"
+                   Style="{StaticResource StatusTextBlock}"
+                   VerticalAlignment="Bottom"  />
+
         <ListBox ItemsSource="{Binding Levels}" Margin="0,40"
                  SelectedItem="{Binding SelectedLevel, Mode=TwoWay}">
             <ListBox.ItemTemplate>

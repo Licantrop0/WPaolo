@@ -33,6 +33,12 @@
 			<Setter Property="FontSize" Value="80" />
 		</Style>
 		
+		<Style x:Key="StatusTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
+			<Setter Property="TextAlignment" Value="Center" />
+			<Setter Property="FontSize" Value="55" />
+            <Setter Property="Margin" Value="0,30" />
+		</Style>
+
 		<Style x:Key="BallButtonStyle" TargetType="Button">
 			<Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
 			<Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />

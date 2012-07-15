@@ -7,6 +7,7 @@ using Scudetti.Helper;
 using Scudetti.Localization;
 using Scudetti.Model;
 using Scudetti.Sound;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Scudetti.ViewModel
 {
@@ -76,19 +77,16 @@ namespace Scudetti.ViewModel
         {
             Number = group.Key;
             Shields = group;
-
-            foreach (var shield in AppContext.Shields)
+            MessengerInstance.Register<PropertyChangedMessage<bool>>(this, (m) =>
             {
-                shield.PropertyChanged += (sender, e) =>
+                if (m.PropertyName == "IsValidated")
                 {
-                    if (e.PropertyName == "IsValidated")
-                    {
-                        RaisePropertyChanged("CompletedShields");
-                        RaisePropertyChanged("IsUnlocked");
-                        RaisePropertyChanged("StatusText");
-                    }
-                };
-            }
+                    RaisePropertyChanged("CompletedShields");
+                    RaisePropertyChanged("IsUnlocked");
+                    RaisePropertyChanged("StatusText");
+                    RaisePropertyChanged("LevelImage");
+                }
+            });
         }
     }
 }

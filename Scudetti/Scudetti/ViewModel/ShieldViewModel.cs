@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight;
 using Scudetti.Data;
 using Scudetti.Localization;
 using Scudetti.Model;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Scudetti.ViewModel
 {
@@ -24,6 +25,15 @@ namespace Scudetti.ViewModel
                 if (CurrentShield == value)
                     return;
                 _currentShield = value;
+                _currentShield.PropertyChanged += (sender, e) =>
+                {
+                    if (e.PropertyName == "IsValidated")
+                    {
+                        MessengerInstance.Send<PropertyChangedMessage<bool>>(
+                            new PropertyChangedMessage<bool>(!_currentShield.IsValidated,
+                                _currentShield.IsValidated, e.PropertyName));
+                    }
+                };
                 RaisePropertyChanged("CurrentShield");
             }
         }

@@ -40,5 +40,18 @@ namespace Scudetti.Sound
             //if (AppContext.SoundEnabled)                
             _kicksSound[rnd.Next(_kicksSound.Length)].Play();
         }
+
+        private static SoundEffect _fischiettoSound;
+        public static void PlayFischietto()
+        {
+            if (_fischiettoSound == null)
+            {
+                _fischiettoSound = SoundEffect.FromStream(App.GetResourceStream(
+                        new Uri("Sound\\fischietto.wav", UriKind.Relative)).Stream);                        
+            }
+
+            _fischiettoSound.Play();
+        }
+
     }
 }

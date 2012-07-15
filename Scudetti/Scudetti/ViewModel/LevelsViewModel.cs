@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using Scudetti.Data;
 using Scudetti.Sound;
+using System.Linq;
+using Scudetti.Localization;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Scudetti.ViewModel
 {
@@ -16,13 +19,23 @@ namespace Scudetti.ViewModel
             }
         }
 
+        public string StatusText
+        {
+            get
+            {
+                return AppContext.Shields == null ? string.Empty :
+                    string.Format("{0}: {1}/{2}", AppResources.Shields,
+                        AppContext.TotalShieldUnlocked, AppContext.Shields.Count());
+            }
+        }
+
         public LevelViewModel SelectedLevel
         {
             get { return null; }
             set
             {
-                //if (!value.IsUnlocked) return;
-                SoundManager.PlayKick();
+                if (!value.IsUnlocked) return;
+                SoundManager.PlayFischietto();
                 MessengerInstance.Send<Uri>(new Uri("/View/ShieldsPage.xaml?level="
                     + Levels.IndexOf(value), UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedLevel");
@@ -32,6 +45,11 @@ namespace Scudetti.ViewModel
         public LevelsViewModel()
         {
             AppContext.LoadCompleted += (sender, e) => RaisePropertyChanged("Levels");
+            MessengerInstance.Register<PropertyChangedMessage<bool>>(this, (m) =>
+            {
+                if (m.PropertyName == "IsValidated")
+                    RaisePropertyChanged("StatusText");
+            });
         }
     }
 }

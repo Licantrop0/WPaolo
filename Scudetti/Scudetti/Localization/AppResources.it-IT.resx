@@ -135,6 +135,9 @@
   <data name="Shields" xml:space="preserve">
     <value>Scudetti</value>
   </data>
+  <data name="StartGame" xml:space="preserve">
+    <value>Clicca sul Livello 1</value>
+  </data>
   <data name="Wrong" xml:space="preserve">
     <value>Sbagliato!</value>
   </data>

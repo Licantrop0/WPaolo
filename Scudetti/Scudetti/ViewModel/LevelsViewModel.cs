@@ -23,7 +23,8 @@ namespace Scudetti.ViewModel
         {
             get
             {
-                return AppContext.Shields == null ? string.Empty :
+                return AppContext.Shields == null ?
+                    AppResources.StartGame :
                     string.Format("{0}: {1}/{2}", AppResources.Shields,
                         AppContext.TotalShieldUnlocked, AppContext.Shields.Count());
             }

@@ -197,99 +197,178 @@
     <Names>Sevilla</Names>
   </Shield>
   <Shield Level="2" Id="ShakhtarDonetsk" Image="Shakhtar_donetsk.png" IsValidated="false">
+    <Names>Futbol'nyj Klub Šachtar</Names>
+    <Names>FK Shakhtar Donetsk</Names>
     <Names>Shakhtar Donetsk</Names>
   </Shield>
   <Shield Level="2" Id="SportingLisbona" Image="sportinglisbon.png" IsValidated="false">
+    <Names>Sporting Clube de Portugal</Names>
     <Names>Sporting Lisbona</Names>
+    <Names>Sporting CP</Names>
   </Shield>
   <Shield Level="2" Id="TottenhamHotspurs" Image="Tottenham_Hotspurs.png" IsValidated="false">
+    <Names>Tottenham Hotspurs Football Club</Names>
     <Names>Tottenham Hotspurs</Names>
+    <Names>Tottenham</Names>
+    <Names>Tottenham FC</Names>
   </Shield>
   <Shield Level="2" Id="Twente" Image="twente.png" IsValidated="false">
+    <Names>Football Club Twente</Names>
+    <Names>FC Twente</Names>
     <Names>Twente</Names>
   </Shield>
   <Shield Level="2" Id="Valensia" Image="valencia.png" IsValidated="false">
-    <Names>Valensia</Names>
+    <Names>Valencia Club de Fútbol</Names>
+    <Names>Valencia</Names>
+    <Names>Valencia CF</Names>
   </Shield>
   <Shield Level="2" Id="WerderBrema" Image="werderbremen.png" IsValidated="false">
+    <Names>Sportverein Werder Bremen</Names>
+    <Names>Werder Bremen</Names>
     <Names>Werder Brema</Names>
   </Shield>
   <Shield Level="2" Id="Zenit" Image="zenita.png" IsValidated="false">
+    <Names>Futbol'nyj Klub Zenit Sankt-Peterburg</Names>
+    <Names>FK Zenit Sankt-Peterburg</Names>
+    <Names>Zenit San Pietroburgo</Names>
     <Names>Zenit</Names>
   </Shield>
 
   <Shield Level="3" Id="AekAtene" Image="aekatene.png" IsValidated="false">
+    <Names>Aek Athens FC</Names>
+    <Names>Aek Athens</Names>
     <Names>Aek Atene</Names>
   </Shield>
   <Shield Level="3" Id="Auxerre" Image="Aj-auxerre.png" IsValidated="false">
+    <Names>Association de la Jeunesse Auxerroise </Names>
+    <Names>AJ Auxerre</Names>
     <Names>Auxerre</Names>
   </Shield>
   <Shield Level="3" Id="AzAlkmaar" Image="az-alkmaar.png" IsValidated="false">
+    <Names>Alkmaar Zaanstreek</Names>
     <Names>Az Alkmaar</Names>
   </Shield>
   <Shield Level="3" Id="Basilea" Image="Basilea.png" IsValidated="false">
+    <Names>Fussballclub Basel 1893</Names>
+    <Names>FC Basilea</Names>
     <Names>Basilea</Names>
   </Shield>
   <Shield Level="3" Id="BayerLeverkusen" Image="bayerleverkusen.png" IsValidated="false">
+    <Names>Bayer 04 Leverkusen</Names>
     <Names>Bayer Leverkusen</Names>
+    <Names>Leverkusen</Names>
   </Shield>
   <Shield Level="3" Id="Besiktas" Image="Besiktas.png" IsValidated="false">
+    <Names>Beşiktaş Jimnastik Kulübü</Names>
+    <Names>Besiktas JK</Names>
     <Names>Besiktas</Names>
+    <Names>Beşiktaş</Names>
   </Shield>
   <Shield Level="3" Id="BlackburnRovers" Image="blackburn-rovers.png" IsValidated="false">
+    <Names>Blackburn Rovers Football Club</Names>
+    <Names>Blackburn Rovers FC</Names>
     <Names>Blackburn Rovers</Names>
   </Shield>
   <Shield Level="3" Id="DeportivoLaCoruna" Image="deportivolacoruna.png" IsValidated="false">
+    <Names>Real Club Deportivo de La Coruña</Names>
     <Names>Deportivo La Coruna</Names>
+    <Names>Deportivo La Coruña</Names>
+    <Names>RC Deportivo La Coruña</Names>
+    <Names>RC Deportivo La Coruna</Names>
   </Shield>
   <Shield Level="3" Id="Feyenoord" Image="feyenoord.png" IsValidated="false">
+    <Names>Feyenoord Rotterdam</Names>
     <Names>Feyenoord</Names>
   </Shield>
   <Shield Level="3" Id="Fiorentina" Image="fiorentina.png" IsValidated="false">
+    <Names>Associazione Calcio Fiorentina</Names>
+    <Names>AC Fiorentina</Names>
     <Names>Fiorentina</Names>
   </Shield>
   <Shield Level="3" Id="Fulham" Image="fulham-logo.png" IsValidated="false">
+    <Names>Fulham Football Club</Names>
+    <Names>Fulham FC</Names>
     <Names>Fulham</Names>
   </Shield>
   <Shield Level="3" Id="Galaxy" Image="galaxy.png" IsValidated="false">
+    <Names>Los Angeles Galaxy</Names>
+    <Names>LA Galaxy</Names>
     <Names>Galaxy</Names>
   </Shield>
   <Shield Level="3" Id="Genoa" Image="genoa.png" IsValidated="false">
+    <Names>Genoa Cricket and Football Club </Names>
+    <Names>Genoa CFC</Names>
     <Names>Genoa</Names>
   </Shield>
   <Shield Level="3" Id="Bordeaux" Image="Girondins-Bordeaux.png" IsValidated="false">
+    <Names>Football Club Girondins de Bordeaux</Names>
+    <Names>FC Girondins de Bordeaux</Names>
+    <Names>Girondins de Bordeaux</Names>
     <Names>Bordeaux</Names>
   </Shield>
   <Shield Level="3" Id="Lille" Image="lille.png" IsValidated="false">
+    <Names>LOSC Lille Métropole</Names>
     <Names>Lille</Names>
+    <Names>Lilla</Names>
   </Shield>
   <Shield Level="3" Id="Palermo" Image="palermo.png" IsValidated="false">
+    <Names>Unione Sportiva Città di Palermo</Names>
     <Names>Palermo</Names>
   </Shield>
   <Shield Level="3" Id="Rosenborg" Image="rbk.png" IsValidated="false">
+    <Names>Rosenborg Ballklub</Names>
+    <Names>Rosenborg BK</Names>
     <Names>Rosenborg</Names>
   </Shield>
   <Shield Level="3" Id="RiverPlate" Image="river_plate.png" IsValidated="false">
-    <Names>RiverPlate</Names>
+    <Names>Club Atlético River Plate</Names>
+    <Names>River Plate</Names>
+    <Names>River</Names>
   </Shield>
   <Shield Level="3" Id="SpartakMosca" Image="spartak-mosca.png" IsValidated="false">
+    <Names>Futbol'nyj Klub Spartak Moskva</Names>
+    <Names>FC Spartak Mosca</Names>
     <Names>Spartak Mosca</Names>
+    <Names>FC Spartak Moscow</Names>
+    <Names>Spartak Moscow</Names>
+    <Names>FK Spartak Moscow</Names>
   </Shield>
   <Shield Level="3" Id="SteauaBucarest" Image="steaua.png" IsValidated="false">
+    <Names>Fotbal Club Steaua București</Names>
+    <Names>Steaua Bucuresti</Names>
+    <Names>FC Steaua Bucuresti</Names>
+    <Names>FC Steaua Bucarest</Names>
     <Names>Steaua Bucarest</Names>
+    <Names>FC Steaua Bucharest</Names>
+    <Names>Steaua Bucharest</Names>
   </Shield>
   <Shield Level="3" Id="WestHam" Image="west-ham-united.png" IsValidated="false">
+    <Names>West Ham United Football Club</Names>
+    <Names>West Ham united FC</Names>
+    <Names>West Ham united</Names>
+    <Names>West Ham FC</Names>
     <Names>West Ham</Names>
   </Shield>
 
   <Shield Level="4" Id="Amburgo" Image="amburgo.png" IsValidated="false">
+    <Names>Hamburger Sport-Verein</Names>
+    <Names>Hamburger SV</Names>
+    <Names>Hamburger</Names>
     <Names>Amburgo</Names>
+    <Names>Hamburg</Names>
+    <Names>Hamburg SV</Names>
   </Shield>
   <Shield Level="4" Id="Anderlecht" Image="Anderlecht.png" IsValidated="false">
+    <Names>Royal Sporting Club Anderlecht</Names>
+    <Names>RSC Anderlecht</Names>
     <Names>Anderlecht</Names>
   </Shield>
   <Shield Level="4" Id="Monacò" Image="as-monaco.png" IsValidated="false">
+    <Names>Association Sportive de Monaco Football Club</Names>
     <Names>Monacò</Names>
+    <Names>as Monaco Fc</Names>
+    <Names>Monaco</Names>
+    <Names>as Monaco</Names>
   </Shield>
   <Shield Level="4" Id="AtleticoBilbao" Image="athletic-bilbao.png" IsValidated="false">
     <Names>Atletico Bilbao</Names>

@@ -8,9 +8,11 @@ namespace Scudetti
 {
     public static class AppContext
     {
+        public const int LockTreshold = 3;
         public static event RunWorkerCompletedEventHandler LoadCompleted;
         public static IEnumerable<Shield> Shields { get; set; }
         private static List<LevelViewModel> _levels;
+
         public static List<LevelViewModel> Levels
         {
             get

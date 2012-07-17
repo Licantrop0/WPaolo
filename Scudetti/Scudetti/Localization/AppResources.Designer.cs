@@ -97,6 +97,15 @@ namespace Scudetti.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Level Unlocked!.
+        /// </summary>
+        public static string NewLevel {
+            get {
+                return ResourceManager.GetString("NewLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shield.
         /// </summary>
         public static string Shield {

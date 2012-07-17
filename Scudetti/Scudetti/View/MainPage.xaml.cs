@@ -1,10 +1,7 @@
-﻿using System.Windows.Controls;
-using System.Windows.Media.Animation;
-using Microsoft.Phone.Controls;
-using System.Windows.Media;
+﻿using System;
 using Microsoft.Advertising.Mobile.UI;
+using Microsoft.Phone.Controls;
 using Scudetti.Sound;
-using System;
 
 namespace Scudetti.View
 {

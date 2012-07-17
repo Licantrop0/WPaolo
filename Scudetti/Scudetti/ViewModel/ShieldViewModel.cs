@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
+using Coding4Fun.Phone.Controls;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Scudetti.Data;
 using Scudetti.Localization;
 using Scudetti.Model;
-using GalaSoft.MvvmLight.Messaging;
 
 namespace Scudetti.ViewModel
 {
@@ -25,13 +26,15 @@ namespace Scudetti.ViewModel
                 if (CurrentShield == value)
                     return;
                 _currentShield = value;
+
                 _currentShield.PropertyChanged += (sender, e) =>
                 {
                     if (e.PropertyName == "IsValidated")
                     {
-                        MessengerInstance.Send<PropertyChangedMessage<bool>>(
-                            new PropertyChangedMessage<bool>(!_currentShield.IsValidated,
-                                _currentShield.IsValidated, e.PropertyName));
+                        MessengerInstance.Send(new PropertyChangedMessage<bool>(
+                            !_currentShield.IsValidated,
+                            _currentShield.IsValidated,
+                            e.PropertyName));
                     }
                 };
                 RaisePropertyChanged("CurrentShield");
@@ -49,18 +52,24 @@ namespace Scudetti.ViewModel
 
         public void Validate()
         {
-            //Fa il compare con tutti i vari nomi
-            foreach (var name in CurrentShield.Names)
+            if (CurrentShield.IsValidated)
             {
-                if (string.Compare(name, InputShieldName, StringComparison.InvariantCultureIgnoreCase) == 0)
-                {
-                    CurrentShield.IsValidated = true;
-                    MessengerInstance.Send<string>("goback", "navigation");
-                    return;
-                }
+                MessengerInstance.Send("goback", "navigation");
             }
+            else if (CurrentShield.Names.Any(name => CompareName(name, InputShieldName)))
+            {
+                CurrentShield.IsValidated = true;
+                MessengerInstance.Send("goback", "navigation");
+            }
+            else
+            {
+                MessageBox.Show(AppResources.Wrong);
+            }
+        }
 
-            MessageBox.Show(AppResources.Wrong);
+        private bool CompareName(string string1, string string2)
+        {
+            return string.Compare(string1, string2, StringComparison.InvariantCultureIgnoreCase) == 0;
         }
     }
 }

@@ -11,8 +11,8 @@ namespace Scudetti.Model
     public static class ShieldService
     {
         static readonly IsolatedStorageFile _storage = IsolatedStorageFile.GetUserStoreForApplication();
-        static readonly XmlSerializer _xml = new XmlSerializer(typeof(Shield[]));
-        static readonly Uri _xapUrl = new Uri("Scudetti;component/Data/Shields.xml", UriKind.Relative);
+         static readonly Uri _xapUrl = new Uri("Scudetti;component/Data/Shields.xml", UriKind.Relative);
+         static XmlSerializer _xml { get { return new XmlSerializer(typeof (Shield[])); } } 
 
         public static void Save(IEnumerable<Shield> scudetti)
         {

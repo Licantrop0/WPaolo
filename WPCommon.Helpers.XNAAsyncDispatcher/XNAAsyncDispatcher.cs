@@ -10,26 +10,25 @@ namespace WPCommon.Helpers
 
     public class XNAAsyncDispatcher : IApplicationService
     {
-        private DispatcherTimer frameworkDispatcherTimer;
+        private readonly DispatcherTimer _frameworkDispatcherTimer;
 
         public XNAAsyncDispatcher()
         {
-            frameworkDispatcherTimer = new DispatcherTimer();
-            frameworkDispatcherTimer.Interval = TimeSpan.FromSeconds(1);
-            frameworkDispatcherTimer.Tick += frameworkDispatcherTimer_Tick;
+            _frameworkDispatcherTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            _frameworkDispatcherTimer.Tick += frameworkDispatcherTimer_Tick;
             frameworkDispatcherTimer_Tick(this, EventArgs.Empty);
         }
 
         void IApplicationService.StartService(ApplicationServiceContext context)
         {
-            frameworkDispatcherTimer.Start();
+            _frameworkDispatcherTimer.Start();
         }
-        
+
         void IApplicationService.StopService()
         {
-            frameworkDispatcherTimer.Stop();
+            _frameworkDispatcherTimer.Stop();
         }
-        
+
         void frameworkDispatcherTimer_Tick(object sender, EventArgs e)
         {
             FrameworkDispatcher.Update();

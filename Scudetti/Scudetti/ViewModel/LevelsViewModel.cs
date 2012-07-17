@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using GalaSoft.MvvmLight;
-using Scudetti.Data;
-using Scudetti.Sound;
 using System.Linq;
-using Scudetti.Localization;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using Scudetti.Data;
+using Scudetti.Localization;
+using Scudetti.Sound;
 
 namespace Scudetti.ViewModel
 {
@@ -15,7 +15,7 @@ namespace Scudetti.ViewModel
         {
             get
             {
-                return IsInDesignMode ?  DesignTimeData.Levels : AppContext.Levels;
+                return IsInDesignMode ? DesignTimeData.Levels : AppContext.Levels;
             }
         }
 
@@ -37,7 +37,7 @@ namespace Scudetti.ViewModel
             {
                 if (!value.IsUnlocked) return;
                 SoundManager.PlayFischietto();
-                MessengerInstance.Send<Uri>(new Uri("/View/ShieldsPage.xaml?level="
+                MessengerInstance.Send(new Uri("/View/ShieldsPage.xaml?level="
                     + Levels.IndexOf(value), UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedLevel");
             }
@@ -45,8 +45,13 @@ namespace Scudetti.ViewModel
 
         public LevelsViewModel()
         {
-            AppContext.LoadCompleted += (sender, e) => RaisePropertyChanged("Levels");
-            MessengerInstance.Register<PropertyChangedMessage<bool>>(this, (m) =>
+            AppContext.LoadCompleted += (sender, e) =>
+            {
+                RaisePropertyChanged("Levels");
+                RaisePropertyChanged("StatusText");
+            };
+
+            MessengerInstance.Register<PropertyChangedMessage<bool>>(this, m =>
             {
                 if (m.PropertyName == "IsValidated")
                     RaisePropertyChanged("StatusText");

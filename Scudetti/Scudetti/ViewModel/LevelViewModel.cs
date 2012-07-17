@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media.Imaging;
+using Coding4Fun.Phone.Controls;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Phone.Shell;
 using Scudetti.Data;
-using Scudetti.Helper;
 using Scudetti.Localization;
 using Scudetti.Model;
 using Scudetti.Sound;
-using GalaSoft.MvvmLight.Messaging;
 
 namespace Scudetti.ViewModel
 {
@@ -19,13 +21,11 @@ namespace Scudetti.ViewModel
         public int TotalShields { get { return Shields.Count(); } }
         public int CompletedShields { get { return Shields.Count(s => s.IsValidated); } }
 
-        private const int LockTreshold = 15;
-
         public bool IsUnlocked
         {
             get
             {
-                return  Number == 1 || AppContext.TotalShieldUnlocked >= (Number - 1) * LockTreshold;
+                return  Number == 1 || AppContext.TotalShieldUnlocked >= (Number - 1) * AppContext.LockTreshold;
             }
         }
 
@@ -45,7 +45,7 @@ namespace Scudetti.ViewModel
             {
                 return IsUnlocked ?
                     string.Format("{0}/{1}", CompletedShields, TotalShields) :
-                    (LockTreshold * (Number - 1) - AppContext.TotalShieldUnlocked).ToString();
+                    (AppContext.LockTreshold * (Number - 1) - AppContext.TotalShieldUnlocked).ToString();
             }
         }
 
@@ -55,7 +55,7 @@ namespace Scudetti.ViewModel
             set
             {
                 SoundManager.PlayKick();
-                MessengerInstance.Send<Uri>(new Uri("/View/ShieldPage.xaml?id="
+                MessengerInstance.Send(new Uri("/View/ShieldPage.xaml?id="
                     + value.Id, UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedShield");
             }
@@ -66,11 +66,9 @@ namespace Scudetti.ViewModel
 
         public LevelViewModel(int number, IEnumerable<Shield> shields)
         {
-            if (IsInDesignMode)
-            {
-                Number = number;
-                Shields = shields;
-            }
+            if (!IsInDesignMode) return;
+            Number = number;
+            Shields = shields;
         }
 
         public LevelViewModel(IGrouping<int, Shield> group)
@@ -79,13 +77,12 @@ namespace Scudetti.ViewModel
             Shields = group;
             MessengerInstance.Register<PropertyChangedMessage<bool>>(this, (m) =>
             {
-                if (m.PropertyName == "IsValidated")
-                {
-                    RaisePropertyChanged("CompletedShields");
-                    RaisePropertyChanged("IsUnlocked");
-                    RaisePropertyChanged("StatusText");
-                    RaisePropertyChanged("LevelImage");
-                }
+                if (m.PropertyName != "IsValidated") return;
+
+                RaisePropertyChanged("CompletedShields");
+                RaisePropertyChanged("IsUnlocked");
+                RaisePropertyChanged("StatusText");
+                RaisePropertyChanged("LevelImage");
             });
         }
     }

@@ -129,6 +129,9 @@
   <data name="Locked" xml:space="preserve">
     <value>Mancano {0} scudetti per accedere</value>
   </data>
+  <data name="NewLevel" xml:space="preserve">
+    <value>Nuovo livello sbloccato!</value>
+  </data>
   <data name="Shield" xml:space="preserve">
     <value>Scudetto</value>
   </data>

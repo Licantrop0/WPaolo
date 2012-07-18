@@ -70,6 +70,24 @@ namespace Scudetti.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure?.
+        /// </summary>
+        public static string ConfirmReset {
+            get {
+                return ResourceManager.GetString("ConfirmReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are going to reset all results.
+        /// </summary>
+        public static string ConfirmResetTitle {
+            get {
+                return ResourceManager.GetString("ConfirmResetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Level.
         /// </summary>
         public static string Level {
@@ -97,11 +115,38 @@ namespace Scudetti.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Level Unlocked!.
+        ///   Looks up a localized string similar to Level {0} unlocked!.
         /// </summary>
         public static string NewLevel {
             get {
                 return ResourceManager.GetString("NewLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rules.
+        /// </summary>
+        public static string Rules {
+            get {
+                return ResourceManager.GetString("Rules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         
@@ -124,11 +169,11 @@ namespace Scudetti.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tap on Level 1.
+        ///   Looks up a localized string similar to Sounds.
         /// </summary>
-        public static string StartGame {
+        public static string Sounds {
             get {
-                return ResourceManager.GetString("StartGame", resourceCulture);
+                return ResourceManager.GetString("Sounds", resourceCulture);
             }
         }
         

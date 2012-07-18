@@ -24,9 +24,18 @@
 
 		<Canvas toolkit:TiltEffect.IsTiltEnabled="True">
 			<Button Content="Play" Style="{StaticResource BallButtonStyle}"
-					Width="240" Canvas.Left="43" Canvas.Top="170" Click="PlayButton_Click" />
+					Width="240" Canvas.Left="120" Canvas.Top="153" Click="PlayButton_Click" />
+
+			<Button Content="{Binding LocalizedResources.Settings,
+				Source={StaticResource LocalizedStrings}}" Style="{StaticResource BallButtonStyle}"
+					Width="160" Canvas.Left="50" Canvas.Top="507" Click="SettingsButton_Click"  />
+
+			<Button Content="{Binding LocalizedResources.Rules,
+				Source={StaticResource LocalizedStrings}}" Style="{StaticResource BallButtonStyle}"
+					Width="160" Canvas.Left="234" Canvas.Top="404" Click="RulesButton_Click"  />
+			
 			<Button Content="About" Style="{StaticResource BallButtonStyle}"
-					Width="160" Canvas.Left="279" Canvas.Top="484" Click="AboutButton_Click"  />
+					Width="160" Canvas.Left="279" Canvas.Top="599" Click="AboutButton_Click"  />
 		</Canvas>
 		<StackPanel x:Name="AdPlaceHolder" VerticalAlignment="Bottom"
 					Grid.Row="1" Height="80" />

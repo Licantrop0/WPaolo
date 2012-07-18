@@ -8,7 +8,7 @@ namespace Scudetti.Helper
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return string.Concat("/Images/Scudetti/", value);
+            return new Uri(string.Concat("/Images/Scudetti/", value), UriKind.Relative);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

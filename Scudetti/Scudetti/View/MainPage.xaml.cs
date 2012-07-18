@@ -37,11 +37,22 @@ namespace Scudetti.View
             NavigationService.Navigate(new Uri("/View/LevelsPage.xaml", UriKind.Relative));
         }
 
+        private void SettingsButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SoundManager.PlayKick();
+            NavigationService.Navigate(new Uri("/View/SettingsPage.xaml", UriKind.Relative));
+        }
+
+        private void RulesButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SoundManager.PlayKick();
+            NavigationService.Navigate(new Uri("/View/RulesPage.xaml", UriKind.Relative));
+        }
+
         private void AboutButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             SoundManager.PlayKick();
             NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
         }
-
     }
 }

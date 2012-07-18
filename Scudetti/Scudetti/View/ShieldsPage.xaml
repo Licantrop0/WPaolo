@@ -40,7 +40,13 @@
                     <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsValidated, Converter={StaticResource BooleanNegationConv}}">
                         <Border BorderBrush="Gold" Background="White" BorderThickness="6"
                                 Margin="6,6,0,0" Height="150" Width="150">
-                            <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" />
+                            <Image>
+                                <Image.Source>
+                                    <BitmapImage UriSource="{Binding Image, Converter={StaticResource ImagePathConv}}"
+                                                 CreateOptions="BackgroundCreation"/>
+                                </Image.Source>
+
+                            </Image>
                         </Border>
                         <Image Source="..\Images\spunta.png"
                                Visibility="{Binding IsValidated, Converter={StaticResource BooleanVisibilityConv}}"                                                              HorizontalAlignment="Right" VerticalAlignment="Bottom" 

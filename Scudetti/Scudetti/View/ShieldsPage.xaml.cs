@@ -19,12 +19,17 @@ namespace Scudetti.View
             var levelIndex = int.Parse(NavigationContext.QueryString["level"]);
             LayoutRoot.DataContext = AppContext.Levels[levelIndex];
 
-            if (AppContext.TotalShieldUnlocked != 0 && AppContext.TotalShieldUnlocked % AppContext.LockTreshold == 0)
+            var newLevelTreshold = AppContext.TotalShieldUnlocked % AppContext.LockTreshold;
+            int levelNumber = AppContext.TotalShieldUnlocked / AppContext.LockTreshold;
+
+            if (e.NavigationMode == NavigationMode.Back &&
+                AppContext.TotalShieldUnlocked != 0 &&
+                newLevelTreshold == 0)
             {
                 new ToastPrompt
                 {
-                    Message = AppResources.NewLevel,
-                    ImageSource = new BitmapImage(new Uri("..\\ApplicationIcon.png", UriKind.Relative))
+                    Message = string.Format(AppResources.NewLevel, levelNumber + 1),
+                    ImageSource = new BitmapImage(new Uri("..\\Images\\soccer icon.png", UriKind.Relative))
                 }.Show();
             }
 

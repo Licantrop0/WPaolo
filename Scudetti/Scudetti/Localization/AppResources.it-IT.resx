@@ -120,6 +120,12 @@
   <data name="AppName" xml:space="preserve">
     <value>Soccerama</value>
   </data>
+  <data name="ConfirmReset" xml:space="preserve">
+    <value>Sei proprio sicuro?</value>
+  </data>
+  <data name="ConfirmResetTitle" xml:space="preserve">
+    <value>Stai per cancellare tutti i progressi</value>
+  </data>
   <data name="Level" xml:space="preserve">
     <value>Livello</value>
   </data>
@@ -130,7 +136,16 @@
     <value>Mancano {0} scudetti per accedere</value>
   </data>
   <data name="NewLevel" xml:space="preserve">
-    <value>Nuovo livello sbloccato!</value>
+    <value>Livello {0} sbloccato!</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Ricomincia</value>
+  </data>
+  <data name="Rules" xml:space="preserve">
+    <value>Regole</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Impostazioni</value>
   </data>
   <data name="Shield" xml:space="preserve">
     <value>Scudetto</value>
@@ -138,8 +153,8 @@
   <data name="Shields" xml:space="preserve">
     <value>Scudetti</value>
   </data>
-  <data name="StartGame" xml:space="preserve">
-    <value>Clicca sul Livello 1</value>
+  <data name="Sounds" xml:space="preserve">
+    <value>Suoni</value>
   </data>
   <data name="Wrong" xml:space="preserve">
     <value>Sbagliato!</value>

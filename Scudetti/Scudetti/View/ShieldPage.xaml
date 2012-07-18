@@ -1,47 +1,58 @@
 ﻿<phone:PhoneApplicationPage x:Class="Scudetti.View.ShieldPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:hlp="clr-namespace:Scudetti.Helper"
-    xmlns:vm="clr-namespace:Scudetti.ViewModel"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    Style="{StaticResource SlidePage}"
-    shell:SystemTray.IsVisible="false" Loaded="PhoneApplicationPage_Loaded">
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:hlp="clr-namespace:Scudetti.Helper"
+	xmlns:vm="clr-namespace:Scudetti.ViewModel"
+	FontFamily="{StaticResource PhoneFontFamilyNormal}"
+	FontSize="{StaticResource PhoneFontSizeNormal}"
+	Foreground="{StaticResource PhoneForegroundBrush}"
+	SupportedOrientations="Portrait" Orientation="Portrait"
+	mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+	shell:SystemTray.IsVisible="false" Loaded="PhoneApplicationPage_Loaded">
 
-    <phone:PhoneApplicationPage.Resources>
-        <vm:ShieldViewModel x:Key="ShieldVM" />
-        <hlp:ImagePathConverter x:Key="ImagePathConv" />
-        <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
-    </phone:PhoneApplicationPage.Resources>
+	<toolkit:TransitionService.NavigationInTransition>
+		<toolkit:NavigationInTransition>
+			<toolkit:NavigationInTransition.Backward>
+				<toolkit:SlideTransition Mode="SlideRightFadeIn" />
+			</toolkit:NavigationInTransition.Backward>
+			<toolkit:NavigationInTransition.Forward>
+				<toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+			</toolkit:NavigationInTransition.Forward>
+		</toolkit:NavigationInTransition>
+	</toolkit:TransitionService.NavigationInTransition>
+	
+	<phone:PhoneApplicationPage.Resources>
+		<vm:ShieldViewModel x:Key="ShieldVM" />
+		<hlp:ImagePathConverter x:Key="ImagePathConv" />
+		<hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
+	</phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
-          DataContext="{StaticResource ShieldVM}" >
+	<Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
+		  DataContext="{StaticResource ShieldVM}" >
 
-        <StackPanel Margin="12,0">
-            <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
-                    Stretch="None" />
-            <TextBox Name="ShieldNameTextbox" VerticalAlignment="Bottom"
-                     Text="{Binding InputShieldName, Mode=TwoWay}"
-                     KeyDown="ShieldNameTextbox_KeyDown"
-                     Visibility="{Binding InputVisibile, Mode=OneTime}" />
-            <TextBlock Text="{Binding OriginalName}" Style="{StaticResource TitleTextBlock}"
-                       TextWrapping="Wrap" Visibility="{Binding CurrentShield.IsValidated,
-                Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}" />
-        </StackPanel>
-    </Grid>
+		<StackPanel Margin="12,0">
+			<Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
+					Stretch="None" />
+			<TextBox Name="ShieldNameTextbox" VerticalAlignment="Bottom"
+					 Text="{Binding InputShieldName, Mode=TwoWay}"
+					 KeyDown="ShieldNameTextbox_KeyDown"
+					 Visibility="{Binding InputVisibile, Mode=OneTime}" />
+			<TextBlock Text="{Binding OriginalName}" Style="{StaticResource TitleTextBlock}"
+					   TextWrapping="Wrap" Visibility="{Binding CurrentShield.IsValidated,
+				Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}" />
+		</StackPanel>
+	</Grid>
 
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False" Opacity="0.99">
-            <shell:ApplicationBarIconButton Text="Ok" Click="Ok_Click"
-                                            IconUri="/Toolkit.Content/ApplicationBar.Check.png" />
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="False" Opacity="0.99">
+			<shell:ApplicationBarIconButton Text="Ok" Click="Ok_Click"
+											IconUri="/Toolkit.Content/ApplicationBar.Check.png" />
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

@@ -38,33 +38,34 @@
     <Names>Die Borussen</Names>
   </Shield>
   <Shield Level="1" Id="Celtic" Image="celtic.png" IsValidated="false">
-    <Names>Celtic football club</Names>
-    <Names>Celtic</Names>
+    <Names>Celtic Football Club</Names>
     <Names>Celtic FC</Names>
+    <Names>Celtic</Names>
   </Shield>
   <Shield Level="1" Id="Chelsea" Image="chelsea.png" IsValidated="false">
     <Names>Chelsea Football Club</Names>
-    <Names>Chelsea fc</Names>
+    <Names>Chelsea FC</Names>
     <Names>Chelsea</Names>
   </Shield>
   <Shield Level="1" Id="Corinthians" Image="corinthians.png" IsValidated="false">
     <Names>Sport Club Corinthians Paulista</Names>
+    <Names>SC Corinthians Paulista</Names>
     <Names>Corinthians Paulista</Names>
     <Names>SC Corinthians</Names>
-    <Names>SC Corinthians Paulista</Names>
+    <Names>Corinthians</Names>
   </Shield>
   <Shield Level="1" Id="FcPorto" Image="fc-porto.png" IsValidated="false">
     <Names>Futebol Clube do Porto</Names>
-    <Names>Porto</Names>
     <Names>FC Porto</Names>
+    <Names>Porto</Names>
   </Shield>
   <Shield Level="1" Id="Inter" Image="inter.png" IsValidated="false">
     <Names>Football Club Internazionale Milano</Names>
     <Names>Inter</Names>
     <Names>Internazionale</Names>
     <Names>Internazionale milano</Names>
-    <Names>fc Inter</Names>
-    <Names>fc Internazionale</Names>
+    <Names>FC Inter</Names>
+    <Names>FC Internazionale</Names>
   </Shield>
   <Shield Level="1" Id="Juventus" Image="juventus.png" IsValidated="false">
     <Names>Juventus Football Club</Names>
@@ -94,8 +95,8 @@
   <Shield Level="1" Id="OlympiqueLione" Image="olympique_lyonnais.png" IsValidated="false">
     <Names>Olympique Lyonnais</Names>
     <Names>Olympique Lione</Names>
-    <Names>Lione</Names>
     <Names>Lyonnais</Names>
+    <Names>Lione</Names>
   </Shield>
   <Shield Level="1" Id="ParisSaintGermain" Image="paris-saint-germain.png" IsValidated="false">
     <Names>Paris Saint-Germain Football Club</Names>

@@ -3,12 +3,13 @@ using System.ComponentModel;
 using System.Linq;
 using Scudetti.Model;
 using Scudetti.ViewModel;
+using System.IO.IsolatedStorage;
 
 namespace Scudetti
 {
     public static class AppContext
     {
-        public const int LockTreshold = 3;
+        public const int LockTreshold = 5;
         public static event RunWorkerCompletedEventHandler LoadCompleted;
         public static IEnumerable<Shield> Shields { get; set; }
         private static List<LevelViewModel> _levels;
@@ -42,5 +43,27 @@ namespace Scudetti
             bw.RunWorkerAsync();
         }
 
+
+        private static bool? _soundEnabled;
+        public static bool SoundEnabled
+        {
+            get
+            {
+                if (!_soundEnabled.HasValue)
+                {
+                    if (!IsolatedStorageSettings.ApplicationSettings.Contains("sound_enabled"))
+                        IsolatedStorageSettings.ApplicationSettings.Add("sound_enabled", true);
+
+                    _soundEnabled = (bool)IsolatedStorageSettings.ApplicationSettings["sound_enabled"];
+                }
+                return _soundEnabled.Value;
+            }
+            set
+            {
+                if (SoundEnabled == value) return;
+                IsolatedStorageSettings.ApplicationSettings["sound_enabled"] = value;
+                _soundEnabled = value;
+            }
+        }
     }
 }

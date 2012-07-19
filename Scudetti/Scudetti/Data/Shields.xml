@@ -76,6 +76,7 @@
     <Names>Manchester United Football Club</Names>
     <Names>Manchester United FC</Names>
     <Names>Manchester United</Names>
+    <Names>Manchester Utd</Names>
   </Shield>
   <Shield Level="1" Id="ManchesterCity" Image="manchester city.png" IsValidated="false">
     <Names>Manchester City Football Club</Names>

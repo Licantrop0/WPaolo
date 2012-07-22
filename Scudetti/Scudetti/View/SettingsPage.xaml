@@ -28,7 +28,7 @@
 		<TextBlock Text="{Binding LocalizedResources.Settings,
 			Source={StaticResource LocalizedStrings}}" Style="{StaticResource TitleTextBlock}"/>
 
-		<StackPanel Grid.Row="1" Margin="30,0">
+		<StackPanel Grid.Row="1" Margin="32,0">
 			<toolkit:ToggleSwitch Header="{Binding LocalizedResources.Sounds,
 				Source={StaticResource LocalizedStrings}}" IsChecked="{Binding SoundEnabled, Mode=TwoWay}" />
 

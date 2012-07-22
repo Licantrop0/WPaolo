@@ -38,5 +38,20 @@ namespace Scudetti.Sound
 
             _fischiettoSound.Play();
         }
+
+        private static SoundEffect _goalSound;
+        public static void PlayGoal()
+        {
+            if (!AppContext.SoundEnabled) return;
+
+            if (_goalSound == null)
+            {
+                _goalSound = SoundEffect.FromStream(App.GetResourceStream(
+                        new Uri("Sound\\goal.wav", UriKind.Relative)).Stream);
+            }
+
+            _goalSound.Play();
+        }
+
     }
 }

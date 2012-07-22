@@ -34,7 +34,7 @@ namespace Scudetti.ViewModel
             get { return null; }
             set
             {
-                if (!value.IsUnlocked) return;
+                //if (!value.IsUnlocked) return;
                 SoundManager.PlayFischietto();
                 MessengerInstance.Send(new Uri("/View/ShieldsPage.xaml?level="
                     + Levels.IndexOf(value), UriKind.Relative), "navigation");

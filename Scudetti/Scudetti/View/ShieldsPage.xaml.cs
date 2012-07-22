@@ -4,6 +4,7 @@ using Coding4Fun.Phone.Controls;
 using Microsoft.Phone.Controls;
 using System.Windows.Navigation;
 using Scudetti.Localization;
+using Scudetti.Sound;
 
 namespace Scudetti.View
 {
@@ -26,6 +27,7 @@ namespace Scudetti.View
                 AppContext.TotalShieldUnlocked != 0 &&
                 newLevelTreshold == 0)
             {
+                SoundManager.PlayGoal();
                 new ToastPrompt
                 {
                     Message = string.Format(AppResources.NewLevel, levelNumber + 1),

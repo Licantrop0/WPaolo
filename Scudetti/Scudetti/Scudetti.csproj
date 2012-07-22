@@ -191,6 +191,12 @@
     <Resource Include="Data\Shields.xml">
       <SubType>Designer</SubType>
     </Resource>
+    <BlendEmbeddedFont Include="Fonts\mvboli.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+    </BlendEmbeddedFont>
+    <Resource Include="Images\about.png" />
     <Content Include="Images\Levels\livello1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -224,6 +230,9 @@
     <Content Include="Images\Levels\livello6lock.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\opzioni.png" />
+    <Resource Include="Images\play.png" />
+    <Resource Include="Images\Regole.png" />
     <Content Include="Images\Scudetti\860-Munchen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -458,7 +467,6 @@
     </Content>
     <Resource Include="Images\sfondo.png" />
     <Resource Include="Images\sfondo2.png" />
-    <Resource Include="Images\soccerball.png" />
     <Content Include="Images\Scudetti\napoli.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -611,6 +619,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Sound\fischietto.wav" />
+    <Content Include="Sound\goal.wav" />
     <Content Include="Sound\soccer1.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -672,4 +681,5 @@
   -->
   <ProjectExtensions />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\WindowsPhone\v7.1\Microsoft.Expression.Blend.WindowsPhone.targets" />
 </Project>

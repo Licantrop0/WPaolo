@@ -30,8 +30,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding StatusText}" Style="{StaticResource PhoneTextNormalStyle}"/>
-        <TextBlock Text="{Binding LevelName}" Style="{StaticResource TitleTextBlock}"/>
+        <TextBlock Text="{Binding LevelName}" Style="{StaticResource HeaderTextBlock}" />
+        <TextBlock Text="{Binding StatusText}" Style="{StaticResource HeaderTextBlock}" TextAlignment="Right" />
         
         <ListBox Grid.Row="1" ItemsSource="{Binding Shields}"
                  SelectedItem="{Binding SelectedShield, Mode=TwoWay}">

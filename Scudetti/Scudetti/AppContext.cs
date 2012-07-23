@@ -9,40 +9,34 @@ namespace Scudetti
 {
     public static class AppContext
     {
-        public const int LockTreshold = 5;
+        public const int LockTreshold = 15;
         public static event RunWorkerCompletedEventHandler LoadCompleted;
+        public static List<LevelViewModel> Levels { get; set; }
         public static IEnumerable<Shield> Shields { get; set; }
-        private static List<LevelViewModel> _levels;
-
-        public static List<LevelViewModel> Levels
-        {
-            get
-            {
-                if(_levels == null)
-                    LoadShieldsAsync();
-
-                return _levels;
-            }
-        }
 
         public static int TotalShieldUnlocked
         { get { return Shields.Count(s => s.IsValidated); } }
 
-        private static void LoadShieldsAsync()
+        public static void LoadShieldsAsync()
         {
             var bw = new BackgroundWorker();
             bw.DoWork += (sender, e) =>
             {
                 Shields = ShieldService.Load();
-                _levels = Shields
+                Levels = Shields
                     .GroupBy(s => s.Level)
                     .OrderBy(g => g.Key)
                     .Select(g => new LevelViewModel(g)).ToList();
             };
-            bw.RunWorkerCompleted += (sender, e) => LoadCompleted(sender, e);
+            bw.RunWorkerCompleted += (sender, e) => RaiseLoadCompleted(sender, e);
             bw.RunWorkerAsync();
         }
 
+        private static void RaiseLoadCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (LoadCompleted != null)
+                LoadCompleted(sender, e);
+        }
 
         private static bool? _soundEnabled;
         public static bool SoundEnabled

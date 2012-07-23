@@ -144,6 +144,9 @@
   <data name="Rules" xml:space="preserve">
     <value>Regole</value>
   </data>
+  <data name="RuleText" xml:space="preserve">
+    <value>Clicca su uno scudetto e scrivi il nome della squadra. Dimostra ai tuoi amici che sei un vero esperto di Calcio!</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Opzioni</value>
   </data>

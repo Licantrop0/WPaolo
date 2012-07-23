@@ -1,30 +1,33 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="Scudetti.View.RulesPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+	x:Class="Scudetti.View.RulesPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	FontFamily="{StaticResource PhoneFontFamilyNormal}"
+	FontSize="{StaticResource PhoneFontSizeNormal}"
+	Foreground="{StaticResource PhoneForegroundBrush}"
+	SupportedOrientations="Portrait" Orientation="Portrait"
+	mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
 	Style="{StaticResource SlidePage}"
 	shell:SystemTray.IsVisible="False">
 
-    <Grid Background="{StaticResource DefaultBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+	<Grid Background="{StaticResource DefaultBackground}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding LocalizedResources.Rules,
+		<TextBlock Text="{Binding LocalizedResources.Rules,
 			Source={StaticResource LocalizedStrings}}" Style="{StaticResource TitleTextBlock}"/>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="36,0">
-            <TextBlock Text="clicca e sei stupido" />
-        </Grid>
-    </Grid>
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="26,0">
+			<TextBlock Text="{Binding LocalizedResources.RuleText,
+			Source={StaticResource LocalizedStrings}}" TextAlignment="Center"
+					   FontSize="50" TextWrapping="Wrap"
+					   Style="{StaticResource TextBlockBase}" />
+		</Grid>
+	</Grid>
 </phone:PhoneApplicationPage>

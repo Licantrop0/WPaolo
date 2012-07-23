@@ -17,11 +17,14 @@
 		<FontFamily xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows"
 					x:Key="DefaultFont">/Scudetti;component/Fonts/Fonts.zip#MV Boli</FontFamily>
 		<Color x:Key="MainColor">#FF841F</Color>
-		<ImageBrush x:Key="DefaultBackground" ImageSource="Images\sfondo.png" />
+		<ImageBrush x:Key="DefaultBackground" ImageSource="Images\sfondo2.png" />
 
-		<SolidColorBrush x:Key="DefaultForeground" Color="{StaticResource MainColor}" />
-
-		<Style x:Key="TextBlockBase" TargetType="TextBlock">
+        <LinearGradientBrush x:Key="DefaultForeground" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Color="#FFFFA410" Offset="0.2"/>
+            <GradientStop Color="#FFCC3943" Offset="1"/>
+        </LinearGradientBrush>
+        
+        <Style x:Key="TextBlockBase" TargetType="TextBlock">
 			<Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
 			<Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
 		</Style>
@@ -40,7 +43,7 @@
 
 		<Style x:Key="HeaderTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
 			<Setter Property="FontSize" Value="40" />
-			<Setter Property="Margin" Value="46,24,48,0" />
+			<Setter Property="Margin" Value="24,34,24,0" />
 		</Style>
 
 		<Style x:Key="BallButtonStyle" TargetType="Button">

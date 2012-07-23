@@ -23,10 +23,7 @@ namespace Scudetti.ViewModel
             if (MessageBox.Show(AppResources.ConfirmReset, AppResources.ConfirmResetTitle,
                 MessageBoxButton.OKCancel) != MessageBoxResult.OK) return;
 
-            foreach (var shield in AppContext.Shields)
-            {
-                shield.IsValidated = false;
-            }
+            AppContext.ResetShields();
         }
     }
 }

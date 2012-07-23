@@ -72,7 +72,7 @@
 				</Button.Template>
 			</Button>
 		</Canvas>
-		<StackPanel x:Name="AdPlaceHolder" VerticalAlignment="Bottom"
+		<StackPanel Name="AdPlaceHolder" VerticalAlignment="Bottom"
 					Grid.Row="1" Height="80" />
 	</Grid>
 </phone:PhoneApplicationPage>

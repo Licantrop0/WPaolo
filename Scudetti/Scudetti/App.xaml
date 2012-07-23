@@ -19,12 +19,12 @@
 		<Color x:Key="MainColor">#FF841F</Color>
 		<ImageBrush x:Key="DefaultBackground" ImageSource="Images\sfondo2.png" />
 
-        <LinearGradientBrush x:Key="DefaultForeground" StartPoint="0.5,0" EndPoint="0.5,1">
-            <GradientStop Color="#FFFFA410" Offset="0.2"/>
-            <GradientStop Color="#FFCC3943" Offset="1"/>
-        </LinearGradientBrush>
-        
-        <Style x:Key="TextBlockBase" TargetType="TextBlock">
+		<LinearGradientBrush x:Key="DefaultForeground" StartPoint="0.5,0" EndPoint="0.5,1">
+			<GradientStop Color="#FFFFA410" Offset="0.2"/>
+			<GradientStop Color="#FFCC3943" Offset="1"/>
+		</LinearGradientBrush>
+		
+		<Style x:Key="TextBlockBase" TargetType="TextBlock">
 			<Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
 			<Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
 		</Style>
@@ -44,40 +44,6 @@
 		<Style x:Key="HeaderTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
 			<Setter Property="FontSize" Value="40" />
 			<Setter Property="Margin" Value="24,34,24,0" />
-		</Style>
-
-		<Style x:Key="BallButtonStyle" TargetType="Button">
-			<Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-			<Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
-			<Setter Property="FontSize" Value="50" />
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Button">
-						<Grid x:Name="MainGrid">
-							<Grid.Resources>
-								<Storyboard x:Name="RotatingBallStoryboard" RepeatBehavior="Forever">
-									<DoubleAnimation Duration="0:0:4" To="360" FillBehavior="Stop"
-													 Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
-													 Storyboard.TargetName="image" d:IsOptimized="True"/>
-								</Storyboard>
-							</Grid.Resources>
-							<!--<i:Interaction.Triggers>
-								<i:EventTrigger EventName="Loaded">
-									<eim:ControlStoryboardAction Storyboard="{StaticResource RotatingBallStoryboard}"/>
-								</i:EventTrigger>
-							</i:Interaction.Triggers>-->
-							<Image x:Name="image" Source="/Scudetti;component/Images/soccerball.png"
-								   RenderTransformOrigin="0.5,0.5">
-								<Image.RenderTransform>
-									<RotateTransform />
-								</Image.RenderTransform>
-							</Image>
-							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
 		</Style>
 		
 		<Style x:Key="SlidePage" TargetType="phone:PhoneApplicationPage">

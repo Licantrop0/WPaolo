@@ -11,11 +11,13 @@ namespace Scudetti
     {
         public const int LockTreshold = 15;
         public static event RunWorkerCompletedEventHandler LoadCompleted;
-        public static List<LevelViewModel> Levels { get; set; }
-        public static IEnumerable<Shield> Shields { get; set; }
+        public static List<LevelViewModel> Levels { get; private set; }
+        public static IEnumerable<Shield> Shields { get; private set; }
 
         public static int TotalShieldUnlocked
-        { get { return Shields.Count(s => s.IsValidated); } }
+        {
+            get { return Shields.Count(s => s.IsValidated); }
+        }
 
         public static void LoadShieldsAsync()
         {
@@ -28,8 +30,17 @@ namespace Scudetti
                     .OrderBy(g => g.Key)
                     .Select(g => new LevelViewModel(g)).ToList();
             };
-            bw.RunWorkerCompleted += (sender, e) => RaiseLoadCompleted(sender, e);
+            bw.RunWorkerCompleted += RaiseLoadCompleted;
             bw.RunWorkerAsync();
+        }
+
+        public static void ResetShields()
+        {
+            Shields = ShieldService.GetNew();
+            Levels = Shields
+               .GroupBy(s => s.Level)
+               .OrderBy(g => g.Key)
+               .Select(g => new LevelViewModel(g)).ToList();
         }
 
         private static void RaiseLoadCompleted(object sender, RunWorkerCompletedEventArgs e)

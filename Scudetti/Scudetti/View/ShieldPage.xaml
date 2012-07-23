@@ -33,7 +33,7 @@
 	</phone:PhoneApplicationPage.Resources>
 
 	<Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
-		  DataContext="{StaticResource ShieldVM}" >
+		  DataContext="{StaticResource ShieldVM}" ShowGridLines="False">
 
 		<StackPanel Margin="12,0">
 			<Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
@@ -42,10 +42,16 @@
 					 Text="{Binding InputShieldName, Mode=TwoWay}"
 					 KeyDown="ShieldNameTextbox_KeyDown"
 					 Visibility="{Binding InputVisibile, Mode=OneTime}" />
-			<TextBlock Text="{Binding OriginalName}" Style="{StaticResource TitleTextBlock}"
+            <TextBlock Text="{Binding OriginalName}"
+                       TextAlignment="Center" FontSize="70"
+                       Style="{StaticResource TextBlockBase}"
 					   TextWrapping="Wrap" Visibility="{Binding CurrentShield.IsValidated,
 				Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}" />
 		</StackPanel>
+		
+		<StackPanel Name="AdPlaceHolder" VerticalAlignment="Bottom"
+					Height="80" Margin="0,72" />
+
 	</Grid>
 
 	<phone:PhoneApplicationPage.ApplicationBar>

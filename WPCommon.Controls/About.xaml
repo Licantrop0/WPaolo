@@ -48,33 +48,36 @@
             <Grid Name="MainGrid">
                 <StackPanel>
                     <TextBlock Name="AppNameTextBlock"
-                                   Text="{Binding AppName, TargetNullValue='App Name'}"
-                                   TextAlignment="Center" TextWrapping="Wrap"
-                                   FontSize="{Binding AppNameFontSize}" />
+                               Text="{Binding AppName, TargetNullValue='App Name'}"
+                               TextAlignment="Center" TextWrapping="Wrap"
+                               FontSize="{Binding AppNameFontSize}"
+                               Margin="{Binding AppNameMargin}"/>
 
                     <TextBlock Name="AppVersionTextBlock"
-                                   Text="{Binding AppVersion}"
-                                   FontSize="{Binding AppVersionFontSize}"
-                                   TextAlignment="Center" Margin="0,8" />
+                               Text="{Binding AppVersion}"
+                               FontSize="{Binding AppVersionFontSize}"
+                               TextAlignment="Center" Margin="0,8" />
 
                     <HyperlinkButton Content="{Binding RateText}"
-                                         FontSize="{Binding HyperLinkFontSize}"
-                                         Foreground="{Binding DefaultForeground, TargetNullValue={StaticResource PhoneForegroundBrush}}"
-                                         Style="{StaticResource HyperlinkWrappingStyle}"
-                                         Click="Rate_Click" />
+                                     FontSize="{Binding HyperLinkFontSize}"
+                                     Foreground="{Binding DefaultForeground, TargetNullValue={StaticResource PhoneForegroundBrush}}"
+                                     Style="{StaticResource HyperlinkWrappingStyle}"
+                                     Click="Rate_Click" />
 
                     <Image Source="Img/logo.png" Stretch="None"
                            Margin="{Binding LogoMargin}" />
 
                     <TextBlock Text="{Binding CustomText}"
+                               FontFamily="{Binding CustomTextFontFamily}"
                                TextAlignment="Center" TextWrapping="Wrap"
-                               FontSize="{Binding AppVersionFontSize}" />
+                               FontSize="{Binding CustomTextFontSize}"
+                               Foreground="{Binding CustomTextForeground}"/>
                 </StackPanel>
 
                 <Image Source="{Binding CustomLogo}" Stretch="None"
                        HorizontalAlignment="Left" VerticalAlignment="Top"
                        Margin="{Binding CustomLogoMargin}" />
-                
+
                 <StackPanel Name="AdPlaceHolder" Height="80"
                             VerticalAlignment="Bottom" />
             </Grid>

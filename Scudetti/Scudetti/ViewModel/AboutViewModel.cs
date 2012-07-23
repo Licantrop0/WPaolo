@@ -91,6 +91,35 @@ namespace Scudetti.ViewModel
 
         public string CustomText { get; set; }
 
+        private FontFamily _customTextFontFamily;
+        public FontFamily CustomTextFontFamily
+        {
+            get { return _customTextFontFamily  ?? DefaultFont; }
+            set { _customTextFontFamily = value; }
+        }
+
+        private double? _customTextFontSize;
+        public double CustomTextFontSize
+        {
+            get { return _customTextFontSize ?? MinFontSize; }
+            set { _customTextFontSize = value; }
+        }
+
+        private Brush _customTextForeground;
+        public Brush CustomTextForeground
+        {
+            get { return _customTextForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
+            set { _customTextForeground = value; }
+        }
+
+
+        private Thickness _appNameMargin = new Thickness(0);
+        public Thickness AppNameMargin
+        {
+            get { return _appNameMargin; }
+            set { _appNameMargin = value; }
+        }
+
         public ImageSource CustomLogo { get; set; }
 
         private Thickness _logoMargin = new Thickness(24);
@@ -152,6 +181,7 @@ namespace Scudetti.ViewModel
 
         public string RateText
         { get { return WPCommon.Controls.Localization.AppResources.RateThisApp; } }
+
 
         #endregion
 

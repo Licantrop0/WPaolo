@@ -33,13 +33,12 @@
         <TextBlock Text="{Binding LevelName}" Style="{StaticResource HeaderTextBlock}" />
         <TextBlock Text="{Binding StatusText}" Style="{StaticResource HeaderTextBlock}" TextAlignment="Right" />
         
-        <ListBox Grid.Row="1" ItemsSource="{Binding Shields}"
+        <ListBox Grid.Row="1" ItemsSource="{Binding Shields}" HorizontalAlignment="Center"
                  SelectedItem="{Binding SelectedShield, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsValidated, Converter={StaticResource BooleanNegationConv}}">
-                        <Border BorderBrush="Gold" Background="White" BorderThickness="6"
-                                Margin="6,6,0,0" Height="150" Width="150">
+                        <Border Margin="3" Height="150" Width="150" Background="White">
                             <Image>
                                 <Image.Source>
                                     <BitmapImage UriSource="{Binding Image, Converter={StaticResource ImagePathConv}}"

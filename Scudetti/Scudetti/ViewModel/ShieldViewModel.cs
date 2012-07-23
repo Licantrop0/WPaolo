@@ -52,7 +52,7 @@ namespace Scudetti.ViewModel
 
         public void Validate()
         {
-            if (CurrentShield.IsValidated)
+            if (CurrentShield.IsValidated || string.IsNullOrEmpty(InputShieldName))
             {
                 MessengerInstance.Send("goback", "navigation");
             }

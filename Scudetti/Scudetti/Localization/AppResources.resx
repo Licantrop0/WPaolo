@@ -144,6 +144,9 @@
   <data name="Rules" xml:space="preserve">
     <value>Rules</value>
   </data>
+  <data name="RuleText" xml:space="preserve">
+    <value>Click on a soccer badge, and try to guess the name of the Team. Show to your friends that you are a real expert!</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Options</value>
   </data>

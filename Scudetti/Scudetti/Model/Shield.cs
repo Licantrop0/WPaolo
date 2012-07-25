@@ -15,6 +15,9 @@ namespace Scudetti.Model
         public string Image { get; set; }
 
         [XmlAttribute]
+        public string Hint { get; set; }
+
+        [XmlAttribute]
         public int Level { get; set; }
 
         private bool _isValidated = false;

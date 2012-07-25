@@ -162,4 +162,10 @@
   <data name="Wrong" xml:space="preserve">
     <value>Sbagliato!</value>
   </data>
+  <data name="NoHintsAvailable" xml:space="preserve">
+    <value>Hai finito tutti i suggerimenti, prova a sbloccare qualche altro scudetto!</value>
+  </data>
+  <data name="AvailableHints" xml:space="preserve">
+    <value>Suggerimenti disponibili: {0}</value>
+  </data>
 </root>

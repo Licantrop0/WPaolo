@@ -70,6 +70,15 @@ namespace Scudetti.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Available hints: {0}.
+        /// </summary>
+        public static string AvailableHints {
+            get {
+                return ResourceManager.GetString("AvailableHints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         public static string ConfirmReset {
@@ -120,6 +129,15 @@ namespace Scudetti.Localization {
         public static string NewLevel {
             get {
                 return ResourceManager.GetString("NewLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have finished all the available hints, try to unlock some other badges!.
+        /// </summary>
+        public static string NoHintsAvailable {
+            get {
+                return ResourceManager.GetString("NoHintsAvailable", resourceCulture);
             }
         }
         

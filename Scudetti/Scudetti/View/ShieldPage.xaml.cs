@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Scudetti.ViewModel;
+using Microsoft.Phone.Shell;
 
 namespace Scudetti.View
 {
@@ -26,6 +27,9 @@ namespace Scudetti.View
         {
             var id = NavigationContext.QueryString["id"];
             VM.CurrentShield = AppContext.Shields.Single(s => s.Id == id);
+
+            if (AppContext.AvailableHints > 0 && !VM.CurrentShield.IsValidated)
+                ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).IsEnabled = true;
 
             if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
                 return;
@@ -52,7 +56,8 @@ namespace Scudetti.View
         private void Ok_Click(object sender, EventArgs e)
         {
             ShieldNameTextbox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            VM.Validate();
+            if (!VM.Validate())
+                ShieldNameTextbox.SelectAll();
         }
 
         private void ShieldNameTextbox_KeyDown(object sender, KeyEventArgs e)
@@ -64,6 +69,7 @@ namespace Scudetti.View
         private void Hint_Click(object sender, EventArgs e)
         {
             VM.ShowHint();
+            ((ApplicationBarIconButton)sender).IsEnabled = false;
         }
     }
 }

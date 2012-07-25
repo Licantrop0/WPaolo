@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Media.Imaging;
-using Coding4Fun.Phone.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Scudetti.Data;
@@ -16,6 +14,20 @@ namespace Scudetti.ViewModel
         public string InputShieldName { get; set; }
         public Visibility InputVisibile { get { return CurrentShield.IsValidated ? Visibility.Collapsed : Visibility.Visible; } }
         public string OriginalName { get { return CurrentShield.Names[0]; } }
+        public int AvailableHints
+        {
+            get { return AppContext.AvailableHints; }
+            set
+            {
+                AppContext.AvailableHints = value;
+                RaisePropertyChanged("AvailableHintsText");
+            }
+        }
+
+        public string AvailableHintsText
+        {
+            get { return string.Format(AppResources.AvailableHints, AvailableHints); }
+        }
 
         private Shield _currentShield;
         public Shield CurrentShield
@@ -59,6 +71,9 @@ namespace Scudetti.ViewModel
             else if (CurrentShield.Names.Any(name => CompareName(name, InputShieldName)))
             {
                 CurrentShield.IsValidated = true;
+                if (AppContext.TotalShieldUnlocked % 5 == 0)
+                    AvailableHints++;
+
                 MessengerInstance.Send("goback", "navigation");
             }
             else
@@ -70,6 +85,19 @@ namespace Scudetti.ViewModel
         private bool CompareName(string string1, string string2)
         {
             return string.Compare(string1, string2, StringComparison.InvariantCultureIgnoreCase) == 0;
+        }
+
+        public void ShowHint()
+        {
+            if (AvailableHints > 0)
+            {
+                MessageBox.Show(CurrentShield.Hint);
+                AvailableHints--;
+            }
+            else
+            {
+                MessageBox.Show(AppResources.NoHintsAvailable);
+            }
         }
     }
 }

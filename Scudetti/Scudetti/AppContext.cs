@@ -70,5 +70,28 @@ namespace Scudetti
                 _soundEnabled = value;
             }
         }
+
+        private static int? _availableHints;
+        public static int AvailableHints
+        {
+            get
+            {
+                if (!_availableHints.HasValue)
+                {
+                    if (!IsolatedStorageSettings.ApplicationSettings.Contains("available_hints"))
+                        IsolatedStorageSettings.ApplicationSettings.Add("available_hints", 5);
+
+                    _availableHints = (int)IsolatedStorageSettings.ApplicationSettings["available_hints"];
+                }
+                return _availableHints.Value;
+            }
+            set
+            {
+                if (AvailableHints == value) return;
+                IsolatedStorageSettings.ApplicationSettings["available_hints"] = value;
+                _availableHints = value;
+            }
+        }
+
     }
 }

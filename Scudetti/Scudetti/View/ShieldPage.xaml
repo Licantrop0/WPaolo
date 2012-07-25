@@ -38,15 +38,21 @@
 		<StackPanel Margin="12,0">
 			<Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
 					Stretch="None" />
-			<TextBox Name="ShieldNameTextbox" VerticalAlignment="Bottom"
-					 Text="{Binding InputShieldName, Mode=TwoWay}"
+			<TextBox Name="ShieldNameTextbox" Text="{Binding InputShieldName, Mode=TwoWay}"
 					 KeyDown="ShieldNameTextbox_KeyDown"
 					 Visibility="{Binding InputVisibile, Mode=OneTime}" />
-            <TextBlock Text="{Binding OriginalName}"
-                       TextAlignment="Center" FontSize="70"
-                       Style="{StaticResource TextBlockBase}"
+			<TextBlock Text="{Binding OriginalName}"
+					   TextAlignment="Center" FontSize="70"
+					   Style="{StaticResource TextBlockBase}"
 					   TextWrapping="Wrap" Visibility="{Binding CurrentShield.IsValidated,
 				Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}" />
+
+			<TextBlock Text="{Binding AvailableHintsText}" 
+					   Visibility="{Binding InputVisibile, Mode=OneTime}"
+					   Style="{StaticResource StatusTextBlock}"
+					   Margin="0,-12"
+					   TextWrapping="Wrap" />
+
 		</StackPanel>
 		
 		<StackPanel Name="AdPlaceHolder" VerticalAlignment="Bottom"
@@ -58,6 +64,8 @@
 		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="False" Opacity="0.99">
 			<shell:ApplicationBarIconButton Text="Ok" Click="Ok_Click"
 											IconUri="/Toolkit.Content/ApplicationBar.Check.png" />
+			<shell:ApplicationBarIconButton Text="Hint" Click="Hint_Click"
+											IconUri="/Toolkit.Content/ApplicationBar.QuestionMark.png" />
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 

@@ -60,5 +60,10 @@ namespace Scudetti.View
             if (e.Key == Key.Enter)
                 Ok_Click(sender, EventArgs.Empty);
         }
+
+        private void Hint_Click(object sender, EventArgs e)
+        {
+            VM.ShowHint();
+        }
     }
 }

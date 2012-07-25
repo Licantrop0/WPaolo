@@ -162,4 +162,10 @@
   <data name="Wrong" xml:space="preserve">
     <value>Wrong!</value>
   </data>
+  <data name="NoHintsAvailable" xml:space="preserve">
+    <value>You have finished all the available hints, try to unlock some other badges!</value>
+  </data>
+  <data name="AvailableHints" xml:space="preserve">
+    <value>Available hints: {0}</value>
+  </data>
 </root>

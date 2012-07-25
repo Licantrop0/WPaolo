@@ -47,7 +47,7 @@
 					   TextWrapping="Wrap" Visibility="{Binding CurrentShield.IsValidated,
 				Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}" />
 
-			<TextBlock Text="{Binding AvailableHintsText}" 
+			<TextBlock Text="{Binding HintText}" 
 					   Visibility="{Binding InputVisibile, Mode=OneTime}"
 					   Style="{StaticResource StatusTextBlock}"
 					   Margin="0,-12"
@@ -64,7 +64,7 @@
 		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="False" Opacity="0.99">
 			<shell:ApplicationBarIconButton Text="Ok" Click="Ok_Click"
 											IconUri="/Toolkit.Content/ApplicationBar.Check.png" />
-			<shell:ApplicationBarIconButton Text="Hint" Click="Hint_Click"
+			<shell:ApplicationBarIconButton Text="Hint" Click="Hint_Click" IsEnabled="False"
 											IconUri="/Toolkit.Content/ApplicationBar.QuestionMark.png" />
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>

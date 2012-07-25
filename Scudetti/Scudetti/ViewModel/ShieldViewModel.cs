@@ -14,19 +14,16 @@ namespace Scudetti.ViewModel
         public string InputShieldName { get; set; }
         public Visibility InputVisibile { get { return CurrentShield.IsValidated ? Visibility.Collapsed : Visibility.Visible; } }
         public string OriginalName { get { return CurrentShield.Names[0]; } }
-        public int AvailableHints
+
+        private string _hintText = string.Format(AppResources.AvailableHints, AppContext.AvailableHints);
+        public string HintText
         {
-            get { return AppContext.AvailableHints; }
+            get { return _hintText; }
             set
             {
-                AppContext.AvailableHints = value;
-                RaisePropertyChanged("AvailableHintsText");
+                _hintText = value;
+                RaisePropertyChanged("HintText");
             }
-        }
-
-        public string AvailableHintsText
-        {
-            get { return string.Format(AppResources.AvailableHints, AvailableHints); }
         }
 
         private Shield _currentShield;
@@ -62,7 +59,7 @@ namespace Scudetti.ViewModel
             InputShieldName = string.Empty;
         }
 
-        public void Validate()
+        public bool Validate()
         {
             if (CurrentShield.IsValidated || string.IsNullOrEmpty(InputShieldName))
             {
@@ -72,14 +69,17 @@ namespace Scudetti.ViewModel
             {
                 CurrentShield.IsValidated = true;
                 if (AppContext.TotalShieldUnlocked % 5 == 0)
-                    AvailableHints++;
+                    AppContext.AvailableHints++;
 
                 MessengerInstance.Send("goback", "navigation");
             }
             else
             {
                 MessageBox.Show(AppResources.Wrong);
+                return false;
             }
+
+            return true;
         }
 
         private bool CompareName(string string1, string string2)
@@ -89,10 +89,10 @@ namespace Scudetti.ViewModel
 
         public void ShowHint()
         {
-            if (AvailableHints > 0)
+            if (AppContext.AvailableHints > 0)
             {
-                MessageBox.Show(CurrentShield.Hint);
-                AvailableHints--;
+                HintText = CurrentShield.Hint;
+                AppContext.AvailableHints--;
             }
             else
             {

@@ -23,9 +23,10 @@ namespace Scudetti.View
             var newLevelTreshold = AppContext.TotalShieldUnlocked % AppContext.LockTreshold;
             int levelNumber = AppContext.TotalShieldUnlocked / AppContext.LockTreshold;
 
-            if (e.NavigationMode == NavigationMode.Back &&
-                AppContext.TotalShieldUnlocked != 0 &&
-                newLevelTreshold == 0)
+            if(e.NavigationMode != NavigationMode.Back) return;
+            if(AppContext.TotalShieldUnlocked == 0) return;
+
+            if (newLevelTreshold == 0 && levelNumber < 6)
             {
                 SoundManager.PlayGoal();
                 new ToastPrompt

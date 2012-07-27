@@ -197,6 +197,9 @@
       <AutoFill>True</AutoFill>
     </BlendEmbeddedFont>
     <Resource Include="Images\about.png" />
+    <Resource Include="Data\Bonus.xml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Content Include="Toolkit.Content\ApplicationBar.QuestionMark.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

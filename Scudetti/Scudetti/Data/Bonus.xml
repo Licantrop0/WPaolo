@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ArrayOfShield>
+  <Shield Level="1" Id="Germany" Image="Germany.png" Hint="Germany" IsValidated="false">
+    <Names>Germany</Names>
+    <Names>Germania</Names>
+    <Names>hitlerandia</Names>
+  </Shield>  
+  <Shield Level="1" Id="Ajax" Image="ajax.png" Hint="Netherlands" IsValidated="false">
+    <Names>AFC Ajax</Names>
+    <Names>Ajax</Names>
+  </Shield>
+</ArrayOfShield>

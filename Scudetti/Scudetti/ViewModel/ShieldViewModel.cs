@@ -84,7 +84,7 @@ namespace Scudetti.ViewModel
 
         private bool CompareName(string string1, string string2)
         {
-            return string.Compare(string1, string2, StringComparison.InvariantCultureIgnoreCase) == 0;
+            return string.Compare(string1, string2.Trim(), StringComparison.InvariantCultureIgnoreCase) == 0;
         }
 
         public void ShowHint()

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
-using Microsoft.Phone.Shell;
 using Scudetti.Data;
 using Scudetti.Localization;
 using Scudetti.Model;

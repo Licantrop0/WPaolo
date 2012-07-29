@@ -10,7 +10,7 @@ namespace Scudetti
     public static class AppContext
     {
         public const int LockTreshold = 15;
-        public const int BonusTreshold = 60;
+        public const int BonusTreshold = 50;
 
         public static event RunWorkerCompletedEventHandler LoadCompleted;
         public static IEnumerable<Shield> Shields { get; private set; }
@@ -36,10 +36,19 @@ namespace Scudetti
 
         private static List<LevelViewModel> GroupLevels(IEnumerable<Shield> shields)
         {
-            return shields
+            var levels = shields
                 .GroupBy(s => s.Level)
                 .OrderBy(g => g.Key)
                 .Select(g => new LevelViewModel(g)).ToList();
+
+            var b1 = levels[6];
+            var b2 = levels[7];
+
+            levels.Insert(3, b1);
+            levels.Insert(5, b2);
+            levels.RemoveRange(8, 2);
+
+            return levels;
         }
 
         public static void ResetShields()

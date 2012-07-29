@@ -5,8 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
-using Scudetti.ViewModel;
 using Microsoft.Phone.Shell;
+using Scudetti.ViewModel;
 
 namespace Scudetti.View
 {

@@ -32,11 +32,26 @@
 			<toolkit:ToggleSwitch Header="{Binding LocalizedResources.Sounds,
 				Source={StaticResource LocalizedStrings}}" IsChecked="{Binding SoundEnabled, Mode=TwoWay}" />
 
-			<Button Command="{Binding ResetCommand}"
+            <Button Click="AboutButton_Click" FontSize="64" FontWeight="Bold"
+                    HorizontalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Scudetti;component/Images/about.png" Stretch="None" />
+                            <TextBlock Text="About"
+									   Style="{StaticResource TextBlockBase}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            
+			<Button Command="{Binding ResetCommand}" Margin="0,62"
 					toolkit:TiltEffect.IsTiltEnabled="True"
 					Content="{Binding LocalizedResources.Reset,
-				Source={StaticResource LocalizedStrings}}" />			
-		</StackPanel>
+				Source={StaticResource LocalizedStrings}}" />
+
+
+        </StackPanel>
 	</Grid>
 
 </phone:PhoneApplicationPage>

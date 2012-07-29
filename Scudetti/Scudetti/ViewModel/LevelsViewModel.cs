@@ -34,10 +34,11 @@ namespace Scudetti.ViewModel
             get { return null; }
             set
             {
+                if (value == null) return;
                 //if (!value.IsUnlocked) return;
                 SoundManager.PlayFischietto();
                 MessengerInstance.Send(new Uri("/View/ShieldsPage.xaml?level="
-                    + Levels.IndexOf(value), UriKind.Relative), "navigation");
+                    + (value.Number), UriKind.Relative), "navigation");
                 RaisePropertyChanged("SelectedLevel");
             }
         }

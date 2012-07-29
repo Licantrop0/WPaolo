@@ -13,6 +13,20 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:LevelsViewModel x:Key="LevelsVM" />
+        <DataTemplate x:Key="PlayerTemplate">
+            <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsUnlocked}" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Image Source="{Binding LevelImage}" Stretch="None" />
+                <TextBlock Text="{Binding StatusText}" Grid.Row="2" FontSize="30"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Style="{StaticResource TextBlockBase}" Margin="0,0,0,-24" />
+            </Grid>
+        </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
 
     <Grid Background="{StaticResource DefaultBackground}"
@@ -22,31 +36,15 @@
                    Style="{StaticResource StatusTextBlock}"
                    VerticalAlignment="Bottom"  />
 
-        <ListBox ItemsSource="{Binding Levels}" Margin="0,40"
-                 SelectedItem="{Binding SelectedLevel, Mode=TwoWay}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsUnlocked}" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Image Source="{Binding LevelImage}" Stretch="None" />
-                        <TextBlock Text="{Binding StatusText}" Grid.Row="2" FontSize="30"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Style="{StaticResource TextBlockBase}" Margin="0,0,0,-12" />
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+        <ListBox ItemsSource="{Binding Levels}" 
+                 SelectedItem="{Binding SelectedLevel, Mode=TwoWay}"
+                 ItemTemplate="{StaticResource PlayerTemplate}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <toolkit:WrapPanel />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-
     </Grid>
 
 </phone:PhoneApplicationPage>

@@ -5,6 +5,7 @@ using Microsoft.Phone.Controls;
 using System.Windows.Navigation;
 using Scudetti.Localization;
 using Scudetti.Sound;
+using System.Linq;
 
 namespace Scudetti.View
 {
@@ -18,7 +19,7 @@ namespace Scudetti.View
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var levelIndex = int.Parse(NavigationContext.QueryString["level"]);
-            LayoutRoot.DataContext = AppContext.Levels[levelIndex];
+            LayoutRoot.DataContext = AppContext.Levels.Single(l => l.Number == levelIndex);
 
             var newLevelTreshold = AppContext.TotalShieldUnlocked % AppContext.LockTreshold;
             int levelNumber = AppContext.TotalShieldUnlocked / AppContext.LockTreshold;

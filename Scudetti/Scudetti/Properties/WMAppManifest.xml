@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{2c5e383d-dd71-4c49-84a7-b459f082b621}" Title="Soccerama" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.games"
+  <App xmlns="" ProductID="{2c5e383d-dd71-4c49-84a7-b459f082b621}" Title="Soccerama" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"
        Author="Licantrop0" Description="The best Soccer badges app" Publisher="WPME">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>

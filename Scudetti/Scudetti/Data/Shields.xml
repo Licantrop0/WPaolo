@@ -104,6 +104,7 @@
     <Names>Paris Saint-Germain</Names>
     <Names>Paris Saint Germain</Names>
     <Names>Paris SG</Names>
+    <Names>PSG</Names>
   </Shield>
   <Shield Level="1" Id="RealMadrid" Image="realmadrid.png" Hint="Spain" IsValidated="false">
     <Names>Real Madrid Club de Fùtbol</Names>
@@ -212,6 +213,7 @@
     <Names>Sporting Clube de Portugal</Names>
     <Names>Sporting Lisbona</Names>
     <Names>Sporting CP</Names>
+    <Names>Sporting</Names>
   </Shield>
   <Shield Level="2" Id="TottenhamHotspurs" Image="Tottenham_Hotspurs.png" Hint="England" IsValidated="false">
     <Names>Tottenham Hotspurs Football Club</Names>
@@ -443,6 +445,7 @@
     <Names>SK Rapid</Names>
     <Names>Rapid wien</Names>
     <Names>Rapid Vienna</Names>
+    <Names>Rapid</Names>
   </Shield>
   <Shield Level="4" Id="RealSociedad" Image="real-sociedad.png" Hint="Spain" IsValidated="false">
     <Names>Real Sociedad de Fútbol</Names>
@@ -799,7 +802,7 @@
     <Names>Japão</Names>
   </Shield>
   <Shield Level="100" Id="New Zealand" Image="newzealandl.png" Hint="Oceania" IsValidated="false">
-    <Names>New zealand</Names>
+    <Names>New Zealand</Names>
     <Names>Neuseeland</Names>
     <Names>Nuova Zelanda</Names>
     <Names>Nueva Zelanda</Names>

@@ -15,7 +15,16 @@ namespace Scudetti.ViewModel
     public class LevelViewModel : ViewModelBase
     {
         public int Number { get; private set; }
-        public string LevelName { get { return string.Format("{0} {1}", AppResources.Level, Number); } }
+        public bool IsBonus { get; set; }
+        public string LevelName
+        {
+            get
+            {
+                return IsBonus ?
+                    string.Format("{0} {1} {2}", AppResources.Level, "Bonus", Number / 100) :
+                    string.Format("{0} {1}", AppResources.Level, Number);
+            }
+        }
         public IEnumerable<Shield> Shields { get; private set; }
         public int TotalShields { get { return Shields.Count(); } }
         public int CompletedShields { get { return Shields.Count(s => s.IsValidated); } }
@@ -24,7 +33,10 @@ namespace Scudetti.ViewModel
         {
             get
             {
-                return  Number == 1 || AppContext.TotalShieldUnlocked >= (Number - 1) * AppContext.LockTreshold;
+                if (IsBonus)
+                    return AppContext.TotalShieldUnlocked >= Number / 100 * AppContext.BonusTreshold;
+                else
+                    return Number == 1 || AppContext.TotalShieldUnlocked >= (Number - 1) * AppContext.LockTreshold;
             }
         }
 
@@ -44,7 +56,9 @@ namespace Scudetti.ViewModel
             {
                 return IsUnlocked ?
                     string.Format("{0}/{1}", CompletedShields, TotalShields) :
-                    (AppContext.LockTreshold * (Number - 1) - AppContext.TotalShieldUnlocked).ToString();
+                    IsBonus ?
+                        (AppContext.BonusTreshold * (Number / 100) - AppContext.TotalShieldUnlocked).ToString() :
+                        (AppContext.LockTreshold * (Number - 1) - AppContext.TotalShieldUnlocked).ToString();
             }
         }
 
@@ -60,19 +74,22 @@ namespace Scudetti.ViewModel
             }
         }
 
-        public LevelViewModel() : this(1, DesignTimeData.Shields.Where(s => s.Level == 1))
+        public LevelViewModel()
+            : this(1, DesignTimeData.Shields.Where(s => s.Level == 1))
         { }
 
         public LevelViewModel(int number, IEnumerable<Shield> shields)
         {
             if (!IsInDesignMode) return;
             Number = number;
+            IsBonus = number >= 100;
             Shields = shields;
         }
 
         public LevelViewModel(IGrouping<int, Shield> group)
         {
             Number = group.Key;
+            IsBonus = group.Key >= 100;
             Shields = group;
             MessengerInstance.Register<PropertyChangedMessage<bool>>(this, (m) =>
             {

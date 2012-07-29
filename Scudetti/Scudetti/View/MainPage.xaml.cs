@@ -48,11 +48,5 @@ namespace Scudetti.View
             SoundManager.PlayFischietto();
             NavigationService.Navigate(new Uri("/View/RulesPage.xaml", UriKind.Relative));
         }
-
-        private void AboutButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            SoundManager.PlayKick();
-            NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
-        }
     }
 }

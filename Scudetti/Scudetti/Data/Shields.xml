@@ -662,7 +662,7 @@
     <Names>KV Mechelen</Names>
     <Names>Mechelen</Names>
   </Shield>
-  <Shield Level="6" Id="Maribor" Image="NK-Maribor.png" Hint="" IsValidated="false">
+  <Shield Level="6" Id="Maribor" Image="NK-Maribor.png" Hint="Slovenia" IsValidated="false">
     <Names>Nogometni Klub Maribor</Names>
     <Names>NK Maribor</Names>
     <Names>Maribor</Names>
@@ -703,5 +703,283 @@
     <Names>Standard Luik</Names>
     <Names>Standard Lüttich</Names>
     <Names>Standard Liegi</Names>
+  </Shield>
+
+  <Shield Level="100" Id="Germany" Image="Germania.png" Hint="Europe" IsValidated="false">
+    <Names>Germany</Names>
+    <Names>Germania</Names>
+    <Names>Deutschland</Names>
+    <Names>Alemania</Names>
+    <Names>Allemagne</Names>
+    <Names>Alemanha</Names>
+  </Shield>
+  <Shield Level="100" Id="argentina" Image="argentina.png" Hint="South America" IsValidated="false">
+    <Names>Argentina</Names>
+    <Names>Argentinien</Names>
+    <Names>Argentine</Names>
+  </Shield>
+  <Shield Level="100" Id="Brazil" Image="Brasile.png" Hint="South America" IsValidated="false">
+    <Names>Brazil</Names>
+    <Names>Brazilien</Names>
+    <Names>Brasile</Names>
+    <Names>Brasil</Names>
+    <Names>Brésil</Names>
+  </Shield>
+  <Shield Level="100" Id="Canada" Image="canada.png" Hint="North America" IsValidated="false">
+    <Names>Canada</Names>
+    <Names>Kanada</Names>
+    <Names>Canadá</Names>
+  </Shield>
+  <Shield Level="100" Id="China" Image="China.png" Hint="Asia" IsValidated="false">
+    <Names>China</Names>
+    <Names>Chine</Names>
+    <Names>cina</Names>
+  </Shield>
+  <Shield Level="100" Id="South Korea" Image="coreasud.png" Hint="Asia" IsValidated="false">
+    <Names>South Korea</Names>
+    <Names>Südkorea</Names>
+    <Names>Corea del sud</Names>
+    <Names>Corea del sur</Names>
+    <Names>Corée du Sud</Names>
+    <Names>Coreia do Sul</Names>
+  </Shield>
+  <Shield Level="100" Id="Ivory Coast" Image="costadavorio.png" Hint="Africa" IsValidated="false">
+    <Names>Ivory Coast</Names>
+    <Names>Costa d'Avorio</Names>
+    <Names>Costa de Marfil</Names>
+    <Names>Côte d'Ivoire</Names>
+    <Names>Costa do Marfim</Names>
+  </Shield>
+  <Shield Level="100" Id="Croatia" Image="croatia.png" Hint="Europe" IsValidated="false">
+    <Names>Croatia</Names>
+    <Names>Kroatien</Names>
+    <Names>Croazia</Names>
+    <Names>Croacia</Names>
+    <Names>Croatie</Names>
+    <Names>Croácia</Names>
+    <Names>Hrvatska</Names>
+  </Shield>
+  <Shield Level="100" Id="england" Image="england.png" Hint="Europe" IsValidated="false">
+    <Names>England</Names>
+    <Names>Inghilterra</Names>
+    <Names>Inglaterra</Names>
+    <Names>Angleterre</Names>
+    <Names>Inglaterra</Names>
+  </Shield>
+  <Shield Level="100" Id="France" Image="Francia.png" Hint="Europe" IsValidated="false">
+    <Names>France</Names>
+    <Names>Frankreich</Names>
+    <Names>Francia</Names>
+    <Names>França</Names>
+  </Shield>
+  <Shield Level="100" Id="Greece" Image="grecia.png" Hint="Europe" IsValidated="false">
+    <Names>Greece</Names>
+    <Names>Griechenland</Names>
+    <Names>Grèce</Names>
+    <Names>Grécia</Names>
+    <Names>Grecia</Names>
+  </Shield>
+  <Shield Level="100" Id="Iran" Image="Iran.png" Hint="Asia" IsValidated="false">
+    <Names>Iran</Names>
+    <Names>Irán</Names>
+    <Names>Irã</Names>
+  </Shield>
+  <Shield Level="100" Id="Italy" Image="italia.png" Hint="Europe" IsValidated="false">
+    <Names>Italy</Names>
+    <Names>Italia</Names>
+    <Names>Italien</Names>
+    <Names>Italie</Names>
+    <Names>Itália</Names>
+  </Shield>
+  <Shield Level="100" Id="Japan" Image="Japan.png" Hint="Asia" IsValidated="false">
+    <Names>Japan</Names>
+    <Names>Giappone</Names>
+    <Names>Japón</Names>
+    <Names>Japon</Names>
+    <Names>Japão</Names>
+  </Shield>
+  <Shield Level="100" Id="New Zealand" Image="newzealandl.png" Hint="Oceania" IsValidated="false">
+    <Names>New zealand</Names>
+    <Names>Neuseeland</Names>
+    <Names>Nuova Zelanda</Names>
+    <Names>Nueva Zelanda</Names>
+    <Names>Nouvelle-Zélande</Names>
+    <Names>Nova Zelândia</Names>
+  </Shield>
+  <Shield Level="100" Id="holland" Image="olanda.png" Hint="Europe" IsValidated="false">
+    <Names>Holland</Names>
+    <Names>Niederlande</Names>
+    <Names>Holanda</Names>
+    <Names>Olanda</Names>
+    <Names>netherlands</Names>
+    <Names>Pays-Bas</Names>
+    <Names>Países Bajos</Names>
+    <Names>Países Baixos</Names>
+  </Shield>
+  <Shield Level="100" Id="portugal" Image="portugal.png" Hint="Europe" IsValidated="false">
+    <Names>Portugal</Names>
+    <Names>Portogallo</Names>
+  </Shield>
+  <Shield Level="100" Id="spain" Image="spain.png" Hint="Europe" IsValidated="false">
+    <Names>Spain</Names>
+    <Names>Spanien</Names>
+    <Names>Spagna</Names>
+    <Names>España</Names>
+    <Names>Espagne</Names>
+    <Names>Espanha</Names>
+  </Shield>
+  <Shield Level="100" Id="Sweden" Image="sweden.png" Hint="Europe" IsValidated="false">
+    <Names>Sweden</Names>
+    <Names>Schweden</Names>
+    <Names>Svezia</Names>
+    <Names>Suecia</Names>
+    <Names>Suède</Names>
+    <Names>Suécia</Names>
+  </Shield>
+  <Shield Level="100" Id="Uruguay" Image="uruguay.png" Hint="South America" IsValidated="false">
+    <Names>Uruguay</Names>
+    <Names>Uruguai</Names>
+  </Shield>
+  <Shield Level="100" Id="usa" Image="usa.png" Hint="North America" IsValidated="false">
+    <Names>USA</Names>
+    <Names>Estados Unidos</Names>
+    <Names>U.S.A.</Names>
+    <Names>United states</Names>
+    <Names>Estados Unidos da América</Names>
+    <Names>Stati Uniti</Names>
+  </Shield>
+
+  <Shield Level="200" Id="cameroon" Image="cameroon.png" Hint="Africa" IsValidated="false">
+    <Names>Cameroon</Names>
+    <Names>camerun</Names>
+    <Names>kamerun</Names>
+    <Names>Camerún</Names>
+    <Names>cameroun</Names>
+    <Names>Camarões</Names>
+  </Shield>
+  <Shield Level="200" Id="chile" Image="chile.png" Hint="South America" IsValidated="false">
+    <Names>Chile</Names>
+    <Names>cile</Names>
+    <Names>chili</Names>
+  </Shield>
+  <Shield Level="200" Id="costa rica" Image="costa-rica.png" Hint="Central America" IsValidated="false">
+    <Names>Costa Rica</Names>
+  </Shield>
+  <Shield Level="200" Id="Denmark" Image="danimarca.png" Hint="Europe" IsValidated="false">
+    <Names>Denmark</Names>
+    <Names>Danimarca</Names>
+    <Names>Dänemark</Names>
+    <Names>Dinamarca</Names>
+    <Names>Danemark</Names>
+  </Shield>
+  <Shield Level="200" Id="ghana" Image="ghana.png" Hint="Africa" IsValidated="false">
+    <Names>Ghana</Names>
+    <Names>Gana</Names>
+  </Shield>
+  <Shield Level="200" Id="ireland" Image="ireland.png" Hint="Europe" IsValidated="false">
+    <Names>Ireland</Names>
+    <Names>irland</Names>
+    <Names>irlanda</Names>
+    <Names>irlande</Names>
+  </Shield>
+  <Shield Level="200" Id="Mexico" Image="messico.png" Hint="North America" IsValidated="false">
+    <Names>Mexico</Names>
+    <Names>Mexiko</Names>
+    <Names>Messico</Names>
+    <Names>Mexique</Names>
+    <Names>México</Names>
+  </Shield>
+  <Shield Level="200" Id="morocco" Image="morocco.png" Hint="Africa" IsValidated="false">
+    <Names>Morocco</Names>
+    <Names>Marokko</Names>
+    <Names>marocco</Names>
+    <Names>Marruecos</Names>
+    <Names>Maroc</Names>
+    <Names>Marrocos</Names>
+  </Shield>
+  <Shield Level="200" Id="Nigeria" Image="nigerian.png" Hint="Africa" IsValidated="false">
+    <Names>Nigeria</Names>
+    <Names>Nigéria</Names>
+  </Shield>
+  <Shield Level="200" Id="paraguay" Image="paraguay.png" Hint="South America" IsValidated="false">
+    <Names>Paraguay</Names>
+    <Names>Paraguai</Names>
+  </Shield>
+  <Shield Level="200" Id="poland" Image="polonia.png" Hint="Europe" IsValidated="false">
+    <Names>Poland</Names>
+    <Names>Polen</Names>
+    <Names>Polonia</Names>
+    <Names>Pologne</Names>
+    <Names>Polônia</Names>
+  </Shield>
+  <Shield Level="200" Id="Russia" Image="Russia.png" Hint="Europe" IsValidated="false">
+    <Names>Russia</Names>
+    <Names>Russland</Names>
+    <Names>Rusia</Names>
+    <Names>Russie</Names>
+    <Names>Rússia</Names>
+  </Shield>
+  <Shield Level="200" Id="saudi arabia" Image="saudi-arabia.png" Hint="Asia" IsValidated="false">
+    <Names>Saudi Arabia</Names>
+    <Names>Saudi-Arabien</Names>
+    <Names>Arabia Saudita</Names>
+    <Names>Arabia Saudí</Names>
+    <Names>Arabie Saoudite</Names>
+    <Names>Arábia Saudita</Names>
+  </Shield>
+  <Shield Level="200" Id="scotland" Image="scotland.png" Hint="Europe" IsValidated="false">
+    <Names>Scotland</Names>
+    <Names>Schottland</Names>
+    <Names>Scozia</Names>
+    <Names>Escocia</Names>
+    <Names>Écosse</Names>
+    <Names>Escócia</Names>
+  </Shield>
+  <Shield Level="200" Id="Senegal" Image="senegal.png" Hint="Africa" IsValidated="false">
+    <Names>Senegal</Names>
+    <Names>Sénégal</Names>
+  </Shield>
+  <Shield Level="200" Id="Slovenia" Image="Slovenia.png" Hint="Europe" IsValidated="false">
+    <Names>Slovenia</Names>
+    <Names>Slowenien</Names>
+    <Names>Eslovenia</Names>
+    <Names>Slovénie</Names>
+    <Names>Eslovênia</Names>
+  </Shield>
+  <Shield Level="200" Id="South africa" Image="sudafrica.png" Hint="Africa" IsValidated="false">
+    <Names>South Africa</Names>
+    <Names>Südafrika</Names>
+    <Names>Sudáfrica</Names>
+    <Names>Afrique du Sud</Names>
+    <Names>África do Sul</Names>
+    <Names>Sud Africa</Names>
+  </Shield>
+  <Shield Level="200" Id="Switzerland" Image="svizzera.png" Hint="Europe" IsValidated="false">
+    <Names>Switzerland</Names>
+    <Names>Schweiz</Names>
+    <Names>Svizzera</Names>
+    <Names>Suiza</Names>
+    <Names>Suisse</Names>
+    <Names>Suíça</Names>
+  </Shield>
+  <Shield Level="200" Id="thailand" Image="thailand.png" Hint="Asia" IsValidated="false">
+    <Names>Thailand</Names>
+    <Names>Thailandia</Names>
+    <Names>Tailandia</Names>
+    <Names>Thaïlande</Names>
+    <Names>Tailândia</Names>
+  </Shield>
+  <Shield Level="200" Id="Tunisia" Image="Tunisian.png" Hint="Africa" IsValidated="false">
+    <Names>Tunisia</Names>
+    <Names>Tunesien</Names>
+    <Names>Túnez</Names>
+    <Names>Tunisie</Names>
+    <Names>Tunísia</Names>
+  </Shield>
+  <Shield Level="200" Id="Ukraine" Image="ukraine.png" Hint="Europa" IsValidated="false">
+    <Names>Ukraine</Names>
+    <Names>Ucraina</Names>
+    <Names>Ucrania</Names>
+    <Names>Ucrânia</Names>
   </Shield>
 </ArrayOfShield>

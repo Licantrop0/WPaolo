@@ -381,7 +381,7 @@
     <Names>as Monaco</Names>
   </Shield>
   <Shield Level="4" Id="AtleticoBilbao" Image="athletic-bilbao.png" Hint="Spain" IsValidated="false">
-    <Names>Atheltic Club</Names>
+    <Names>Athletic Club</Names>
     <Names>Atletico Bilbao</Names>
     <Names>Athletic</Names>
     <Names>Athletic Kluba</Names>

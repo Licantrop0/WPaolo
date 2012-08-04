@@ -614,7 +614,7 @@
     <Content Include="Images\Scudetti\milan.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\sfondo.png" />
+    <None Include="Images\sfondo.png" />
     <Resource Include="Images\sfondo2.png" />
     <Content Include="Images\Scudetti\napoli.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

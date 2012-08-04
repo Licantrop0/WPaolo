@@ -2,6 +2,8 @@
 using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Scudetti.Sound;
+using System.Linq;
+using System.Windows.Controls;
 
 namespace Scudetti.View
 {
@@ -14,6 +16,11 @@ namespace Scudetti.View
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            if (AppContext.Shields != null && AppContext.Shields.All(s => s.IsValidated))
+            {
+                PlayButton.Template = (ControlTemplate)this.Resources["WinButtonTemplate"];
+            }
+
             if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
                 return;
 
@@ -22,6 +29,7 @@ namespace Scudetti.View
                 Height = 80,
                 Width = 480,
             });
+
             base.OnNavigatedTo(e);
         }
 

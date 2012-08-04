@@ -7,6 +7,7 @@ using Microsoft.Phone.Controls;
 using Scudetti.Localization;
 using Scudetti.Sound;
 using Scudetti.ViewModel;
+using System.Windows;
 
 namespace Scudetti.View
 {
@@ -54,6 +55,19 @@ namespace Scudetti.View
                 int newLevelNumber = ((AppContext.TotalShieldUnlocked / AppContext.BonusTreshold)) * 100;
                 var level = AppContext.Levels.Single(l => l.Number == newLevelNumber);
                 ShowToast(level);
+            }
+            else if (AppContext.Shields.All(s => s.IsValidated)) //Gioco completato!
+            {
+                SoundManager.PlayGoal();
+                var toast = new ToastPrompt
+                {
+                    Title = AppResources.GameFinishedTitle,
+                    Message = AppResources.GameFinished,
+                    TextWrapping = TextWrapping.Wrap,
+                    MillisecondsUntilHidden = 8000,
+                    ImageSource = new BitmapImage(new Uri("..\\Images\\soccer icon.png", UriKind.Relative))
+                };
+                toast.Show();
             }
         }
 

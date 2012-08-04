@@ -171,4 +171,11 @@
   <data name="BonusLevel" xml:space="preserve">
     <value>Livello Bonus</value>
   </data>
+  <data name="GameFinished" xml:space="preserve">
+    <value>Hai finito il gioco, sei un vero esperto di Calcio!</value>
+  </data>
+  <data name="GameFinishedTitle" xml:space="preserve">
+    <value>Congratulazioni!
+</value>
+  </data>
 </root>

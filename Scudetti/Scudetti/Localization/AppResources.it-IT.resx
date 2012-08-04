@@ -136,7 +136,7 @@
     <value>Mancano {0} scudetti per accedere</value>
   </data>
   <data name="NewLevel" xml:space="preserve">
-    <value>Livello {0} sbloccato!</value>
+    <value>{0} sbloccato!</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Ricomincia</value>
@@ -167,5 +167,8 @@
   </data>
   <data name="AvailableHints" xml:space="preserve">
     <value>Suggerimenti: {0}</value>
+  </data>
+  <data name="BonusLevel" xml:space="preserve">
+    <value>Livello Bonus</value>
   </data>
 </root>

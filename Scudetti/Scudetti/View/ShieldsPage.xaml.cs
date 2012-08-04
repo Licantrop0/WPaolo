@@ -6,6 +6,7 @@ using Coding4Fun.Phone.Controls;
 using Microsoft.Phone.Controls;
 using Scudetti.Localization;
 using Scudetti.Sound;
+using Scudetti.ViewModel;
 
 namespace Scudetti.View
 {
@@ -20,46 +21,63 @@ namespace Scudetti.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            toastTapped = false;
-
             var levelIndex = int.Parse(NavigationContext.QueryString["level"]);
             LayoutRoot.DataContext = AppContext.Levels.Single(l => l.Number == levelIndex);
 
-            var newLevelTreshold = AppContext.TotalShieldUnlocked % AppContext.LockTreshold;
-            int levelNumber = AppContext.TotalShieldUnlocked / AppContext.LockTreshold;
-
+            //I calcoli successivi vanno fatti solo quando torno indietro da uno scudetto
             if (e.NavigationMode != NavigationMode.Back) return;
+
+            //e ho già sbloccato degli scudetti
             if (AppContext.TotalShieldUnlocked == 0) return;
+
+            var newLevelUnlocked = AppContext.TotalShieldUnlocked % AppContext.LockTreshold == 0;
+            var newBonusLevelUnlocked = AppContext.TotalShieldUnlocked % AppContext.BonusTreshold == 0;
+
+            //Se ho già mostrato il toast, non faccio niente
             if (AppContext.ToastDisplayed)
             {
-                AppContext.ToastDisplayed = newLevelTreshold == 0;
+                AppContext.ToastDisplayed = newLevelUnlocked || newBonusLevelUnlocked;
                 return;
             }
 
-            if (newLevelTreshold == 0 && levelNumber < 6)
+            if (newLevelUnlocked)
             {
-                SoundManager.PlayGoal();
-                var toast = new ToastPrompt
+                int newLevelNumber = (AppContext.TotalShieldUnlocked / AppContext.LockTreshold) + 1;
+                if (newLevelNumber <= 6)
                 {
-                    Message = string.Format(AppResources.NewLevel, levelNumber + 1),
-                    ImageSource = new BitmapImage(new Uri("..\\Images\\soccer icon.png", UriKind.Relative))
-                };
-                toast.Tap += (s1, e1) =>
-                {
-                    toastTapped = true;
-                    NavigationService.Navigate(new Uri("/View/ShieldsPage.xaml?level=" + (levelNumber + 1), UriKind.Relative));
-                };
-                toast.Show();
-                AppContext.ToastDisplayed = true;
+                    var level = AppContext.Levels.Single(l => l.Number == newLevelNumber);
+                    ShowToast(level);
+                }
             }
+            else if (newBonusLevelUnlocked)
+            {
+                int newLevelNumber = ((AppContext.TotalShieldUnlocked / AppContext.BonusTreshold)) * 100;
+                var level = AppContext.Levels.Single(l => l.Number == newLevelNumber);
+                ShowToast(level);
+            }
+        }
 
-            base.OnNavigatedTo(e);
+        private void ShowToast(LevelViewModel level)
+        {
+            SoundManager.PlayGoal();
+            var toast = new ToastPrompt
+            {
+                Message = string.Format(AppResources.NewLevel, level.LevelName),
+                ImageSource = new BitmapImage(new Uri("..\\Images\\soccer icon.png", UriKind.Relative))
+            };
+            toast.Tap += (s1, e1) =>
+            {
+                toastTapped = true;
+                NavigationService.Navigate(new Uri("/View/ShieldsPage.xaml?level=" + level.Number, UriKind.Relative));
+            };
+            toastTapped = false;
+            toast.Show();
+            AppContext.ToastDisplayed = true;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            if(toastTapped) NavigationService.RemoveBackEntry();
+            if (toastTapped) NavigationService.RemoveBackEntry();
         }
-
     }
 }

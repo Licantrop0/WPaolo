@@ -79,6 +79,15 @@ namespace Scudetti.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bonus Level.
+        /// </summary>
+        public static string BonusLevel {
+            get {
+                return ResourceManager.GetString("BonusLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         public static string ConfirmReset {
@@ -124,7 +133,7 @@ namespace Scudetti.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Level {0} unlocked!.
+        ///   Looks up a localized string similar to {0} unlocked!.
         /// </summary>
         public static string NewLevel {
             get {

@@ -19,7 +19,7 @@ namespace Scudetti.ViewModel
             get
             {
                 return IsBonus ?
-                    string.Format("{0} {1} {2}", AppResources.Level, "Bonus", Number / 100) :
+                    string.Format("{0} {1}", AppResources.BonusLevel, Number / 100) :
                     string.Format("{0} {1}", AppResources.Level, Number);
             }
         }

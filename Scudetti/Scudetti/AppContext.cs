@@ -9,7 +9,7 @@ namespace Scudetti
 {
     public static class AppContext
     {
-        public const int LockTreshold = 3;
+        public const int LockTreshold = 15;
         public const int BonusTreshold = 50;
         public static bool ToastDisplayed = false;
 
@@ -21,7 +21,6 @@ namespace Scudetti
         {
             get { return Shields.Count(s => s.IsValidated); }
         }
-
 
         public static void LoadShieldsAsync()
         {
@@ -56,6 +55,7 @@ namespace Scudetti
         {
             Shields = ShieldService.GetNew();
             Levels = GroupLevels(Shields);
+            AvailableHints = 5;
         }
 
         private static void RaiseLoadCompleted(object sender, RunWorkerCompletedEventArgs e)

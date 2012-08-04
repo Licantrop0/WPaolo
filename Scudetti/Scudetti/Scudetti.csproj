@@ -342,6 +342,7 @@
     <Content Include="Images\Scudetti\usa.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\WinBadge.png" />
     <Content Include="Toolkit.Content\ApplicationBar.QuestionMark.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -171,4 +171,11 @@
   <data name="BonusLevel" xml:space="preserve">
     <value>Bonus Level</value>
   </data>
+  <data name="GameFinished" xml:space="preserve">
+    <value>You have finished the Game, you are now a real Soccer Master!</value>
+  </data>
+  <data name="GameFinishedTitle" xml:space="preserve">
+    <value>Congratulations!
+</value>
+  </data>
 </root>

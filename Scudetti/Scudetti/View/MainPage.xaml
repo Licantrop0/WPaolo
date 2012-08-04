@@ -14,6 +14,23 @@
 	Style="{StaticResource SlidePage}"
 	shell:SystemTray.IsVisible="False">
 
+	<phone:PhoneApplicationPage.Resources>
+		
+		<ControlTemplate x:Key="PlayButtonTemplate">
+			<StackPanel Orientation="Horizontal">
+				<Image Source="/Scudetti;component/Images/play.png" Stretch="None" />
+				<TextBlock Text="Play" Style="{StaticResource TextBlockBase}" VerticalAlignment="Center" />
+			</StackPanel>
+		</ControlTemplate>
+		
+		<ControlTemplate x:Key="WinButtonTemplate">
+			<StackPanel Orientation="Horizontal">
+				<Image Source="/Scudetti;component/Images/WinBadge.png" Stretch="None" />
+				<TextBlock Text="Play" Style="{StaticResource TextBlockBase}" VerticalAlignment="Center" />
+			</StackPanel>
+		</ControlTemplate>
+
+	</phone:PhoneApplicationPage.Resources>
 
 	<Grid Background="{StaticResource DefaultBackground}">
 		<Grid.RowDefinitions>
@@ -24,19 +41,13 @@
 		<Image Source="/Scudetti;component/Images/logo.png" Stretch="None" />
 
 		<Canvas toolkit:TiltEffect.IsTiltEnabled="True">
-			
-			<Button Click="PlayButton_Click" FontSize="64" FontWeight="Bold" Canvas.Left="95" Canvas.Top="162" d:LayoutOverrides="VerticalAlignment">
-				<Button.Template>
-					<ControlTemplate>
-						<StackPanel Orientation="Horizontal">
-							<Image Source="/Scudetti;component/Images/play.png" Stretch="None" />
-							<TextBlock Text="Play" Style="{StaticResource TextBlockBase}" VerticalAlignment="Center" />
-						</StackPanel>
-					</ControlTemplate>
-				</Button.Template>
-			</Button>
 
-			<Button Click="SettingsButton_Click" FontSize="64" FontWeight="Bold" Canvas.Left="46" Canvas.Top="378" >
+			<Button Name="PlayButton" Click="PlayButton_Click"
+					Template="{StaticResource PlayButtonTemplate}"
+					FontSize="64" FontWeight="Bold"
+					Canvas.Left="73" Canvas.Top="167" />
+
+			<Button Click="SettingsButton_Click" FontSize="64" FontWeight="Bold" Canvas.Left="66" Canvas.Top="397" >
 				<Button.Template>
 					<ControlTemplate>
 						<StackPanel Orientation="Horizontal">
@@ -48,7 +59,7 @@
 				</Button.Template>
 			</Button>
 
-			<Button Click="RulesButton_Click" FontSize="64" FontWeight="Bold" Canvas.Left="55" Canvas.Top="502">
+			<Button Click="RulesButton_Click" FontSize="64" FontWeight="Bold" Canvas.Left="77" Canvas.Top="536">
 				<Button.Template>
 					<ControlTemplate>
 						<StackPanel Orientation="Horizontal">

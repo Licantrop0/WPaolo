@@ -106,6 +106,25 @@ namespace Scudetti.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have finished the Game, you are now a real Soccer Master!.
+        /// </summary>
+        public static string GameFinished {
+            get {
+                return ResourceManager.GetString("GameFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Congratulations!
+        ///.
+        /// </summary>
+        public static string GameFinishedTitle {
+            get {
+                return ResourceManager.GetString("GameFinishedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Level.
         /// </summary>
         public static string Level {

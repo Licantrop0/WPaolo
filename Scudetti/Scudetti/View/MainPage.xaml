@@ -11,11 +11,27 @@
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-	Style="{StaticResource SlidePage}"
 	shell:SystemTray.IsVisible="False">
+	
+	<toolkit:TransitionService.NavigationInTransition>
+		<toolkit:NavigationInTransition>
+			<toolkit:NavigationInTransition.Backward>
+				<toolkit:SlideTransition Mode="SlideRightFadeIn" />
+			</toolkit:NavigationInTransition.Backward>
+		</toolkit:NavigationInTransition>
+	</toolkit:TransitionService.NavigationInTransition>
+	<toolkit:TransitionService.NavigationOutTransition>
+		<toolkit:NavigationOutTransition>
+			<toolkit:NavigationOutTransition.Backward>
+				<toolkit:SlideTransition Mode="SlideRightFadeOut" />
+			</toolkit:NavigationOutTransition.Backward>
+			<toolkit:NavigationOutTransition.Forward>
+				<toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+			</toolkit:NavigationOutTransition.Forward>
+		</toolkit:NavigationOutTransition>
+	</toolkit:TransitionService.NavigationOutTransition>
 
-	<phone:PhoneApplicationPage.Resources>
-		
+	<phone:PhoneApplicationPage.Resources>		
 		<ControlTemplate x:Key="PlayButtonTemplate">
 			<StackPanel Orientation="Horizontal">
 				<Image Source="/Scudetti;component/Images/play.png" Stretch="None" />
@@ -45,9 +61,9 @@
 			<Button Name="PlayButton" Click="PlayButton_Click"
 					Template="{StaticResource PlayButtonTemplate}"
 					FontSize="64" FontWeight="Bold"
-					Canvas.Left="73" Canvas.Top="167" />
+					Canvas.Left="67" Canvas.Top="194" />
 
-			<Button Click="SettingsButton_Click" FontSize="64" FontWeight="Bold" Canvas.Left="66" Canvas.Top="397" >
+			<Button Click="SettingsButton_Click" FontSize="64" FontWeight="Bold" Canvas.Left="66" Canvas.Top="447" >
 				<Button.Template>
 					<ControlTemplate>
 						<StackPanel Orientation="Horizontal">
@@ -59,7 +75,7 @@
 				</Button.Template>
 			</Button>
 
-			<Button Click="RulesButton_Click" FontSize="64" FontWeight="Bold" Canvas.Left="77" Canvas.Top="536">
+			<Button Click="RulesButton_Click" FontSize="64" FontWeight="Bold" Canvas.Left="77" Canvas.Top="594">
 				<Button.Template>
 					<ControlTemplate>
 						<StackPanel Orientation="Horizontal">

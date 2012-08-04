@@ -136,7 +136,7 @@
     <value>{0} Shields needed to unlock</value>
   </data>
   <data name="NewLevel" xml:space="preserve">
-    <value>Level {0} unlocked!</value>
+    <value>{0} unlocked!</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
@@ -167,5 +167,8 @@
   </data>
   <data name="AvailableHints" xml:space="preserve">
     <value>Available hints: {0}</value>
+  </data>
+  <data name="BonusLevel" xml:space="preserve">
+    <value>Bonus Level</value>
   </data>
 </root>

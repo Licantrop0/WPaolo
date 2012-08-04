@@ -139,6 +139,7 @@
     <Compile Include="View\ShieldPage.xaml.cs">
       <DependentUpon>ShieldPage.xaml</DependentUpon>
     </Compile>
+    <None Include="Scudetti_2012_08_04_12_13_14.sap" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

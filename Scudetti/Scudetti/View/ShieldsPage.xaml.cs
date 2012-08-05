@@ -56,7 +56,7 @@ namespace Scudetti.View
                 var level = AppContext.Levels.Single(l => l.Number == newLevelNumber);
                 ShowToast(level);
             }
-            else if (AppContext.Shields.All(s => s.IsValidated)) //Gioco completato!
+			else if (AppContext.GameCompleted) //Gioco completato!
             {
                 SoundManager.PlayGoal();
                 var toast = new ToastPrompt

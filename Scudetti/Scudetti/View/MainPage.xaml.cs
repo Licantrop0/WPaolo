@@ -17,7 +17,7 @@ namespace Scudetti.View
 		protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
 		{
 			//se tutti gli scudetti sono completati, mostra lo scudetto al posto del pallone
-			if (AppContext.Shields != null && AppContext.Shields.All(s => s.IsValidated))
+			if (AppContext.GameCompleted)
 				PlayButton.Template = (ControlTemplate)this.Resources["WinButtonTemplate"];
 
 			if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già

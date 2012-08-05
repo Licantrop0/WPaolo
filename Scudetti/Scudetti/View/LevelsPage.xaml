@@ -24,7 +24,7 @@
                 <Image Source="{Binding LevelImage}" Stretch="None" />
                 <TextBlock Text="{Binding StatusText}" Grid.Row="2" FontSize="30"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Style="{StaticResource TextBlockBase}" Margin="0,0,0,-12" />
+                                   Style="{StaticResource TextBlockBase}" />
             </Grid>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
@@ -34,11 +34,12 @@
 
         <TextBlock Text="{Binding StatusText}"
                    Style="{StaticResource StatusTextBlock}"
-                   VerticalAlignment="Bottom"  />
+                   VerticalAlignment="Bottom" />
 
         <ListBox ItemsSource="{Binding Levels}" Margin="0,30"
                  SelectedItem="{Binding SelectedLevel, Mode=TwoWay}"
-                 ItemTemplate="{StaticResource PlayerTemplate}">
+                 ItemTemplate="{StaticResource PlayerTemplate}"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <toolkit:WrapPanel />

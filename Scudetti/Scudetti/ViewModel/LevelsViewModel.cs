@@ -36,6 +36,7 @@ namespace Scudetti.ViewModel
             {
                 if (value == null) return;
                 if (!value.IsUnlocked) return;
+
                 SoundManager.PlayFischietto();
                 MessengerInstance.Send(new Uri("/View/ShieldsPage.xaml?level="
                     + (value.Number), UriKind.Relative), "navigation");
@@ -53,8 +54,10 @@ namespace Scudetti.ViewModel
 
             MessengerInstance.Register<PropertyChangedMessage<bool>>(this, m =>
             {
-                if (m.PropertyName == "IsValidated")
-                    RaisePropertyChanged("StatusText");
+				if (m.PropertyName != "IsValidated") return;
+				//Aggiorna lo status text dei completed shields e se il gioco è stato completato
+				RaisePropertyChanged("StatusText");
+				AppContext.GameCompleted = AppContext.Shields.All(s => s.IsValidated);
             });
         }
     }

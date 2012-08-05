@@ -12,7 +12,7 @@
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
 	shell:SystemTray.IsVisible="False">
-	
+
 	<toolkit:TransitionService.NavigationInTransition>
 		<toolkit:NavigationInTransition>
 			<toolkit:NavigationInTransition.Backward>
@@ -31,14 +31,14 @@
 		</toolkit:NavigationOutTransition>
 	</toolkit:TransitionService.NavigationOutTransition>
 
-	<phone:PhoneApplicationPage.Resources>		
+	<phone:PhoneApplicationPage.Resources>
 		<ControlTemplate x:Key="PlayButtonTemplate">
 			<StackPanel Orientation="Horizontal">
 				<Image Source="/Scudetti;component/Images/play.png" Stretch="None" />
 				<TextBlock Text="Play" Style="{StaticResource TextBlockBase}" VerticalAlignment="Center" />
 			</StackPanel>
 		</ControlTemplate>
-		
+
 		<ControlTemplate x:Key="WinButtonTemplate">
 			<StackPanel Orientation="Horizontal">
 				<Image Source="/Scudetti;component/Images/WinBadge.png" Stretch="None" />

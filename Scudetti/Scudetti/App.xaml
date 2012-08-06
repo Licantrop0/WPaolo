@@ -17,7 +17,7 @@
 		<FontFamily xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows"
 					x:Key="DefaultFont">/Scudetti;component/Fonts/Fonts.zip#MV Boli</FontFamily>
 		<Color x:Key="MainColor">#FF841F</Color>
-		<ImageBrush x:Key="DefaultBackground" ImageSource="Images\sfondo2.png" />
+		<ImageBrush x:Key="DefaultBackground" ImageSource="Images\sfondo.jpg" />
 
 		<LinearGradientBrush x:Key="DefaultForeground" StartPoint="0.5,0" EndPoint="0.5,1">
 			<GradientStop Color="#FFFFA410" Offset="0.2"/>

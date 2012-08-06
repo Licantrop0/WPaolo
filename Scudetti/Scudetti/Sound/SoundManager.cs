@@ -53,5 +53,34 @@ namespace Scudetti.Sound
             _goalSound.Play();
         }
 
+        private static SoundEffect _boohSound;
+        public static void PlayBooh()
+        {
+            if (!AppContext.SoundEnabled) return;
+
+            if (_boohSound == null)
+            {
+                _boohSound = SoundEffect.FromStream(App.GetResourceStream(
+                        new Uri("Sound\\booh.wav", UriKind.Relative)).Stream);
+            }
+
+            _boohSound.Play();
+        }
+
+        private static SoundEffect _validatedSound;
+        public static void PlayValidated()
+        {
+            if (!AppContext.SoundEnabled) return;
+
+            if (_validatedSound == null)
+            {
+                _validatedSound = SoundEffect.FromStream(App.GetResourceStream(
+                        new Uri("Sound\\validated.wav", UriKind.Relative)).Stream);
+            }
+
+            _validatedSound.Play();
+        }
+
+
     }
 }

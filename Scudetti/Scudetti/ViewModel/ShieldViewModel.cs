@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Scudetti.Data;
 using Scudetti.Localization;
 using Scudetti.Model;
+using Scudetti.Sound;
 
 namespace Scudetti.ViewModel
 {
@@ -72,6 +73,7 @@ namespace Scudetti.ViewModel
 			}
 			else if (CurrentShield.Names.Any(name => CompareName(name, InputShieldName)))
 			{
+				SoundManager.PlayValidated();
 				CurrentShield.IsValidated = true;
 				if (AppContext.TotalShieldUnlocked % 5 == 0)
 					AppContext.AvailableHints++;
@@ -80,6 +82,7 @@ namespace Scudetti.ViewModel
 			}
 			else
 			{
+				SoundManager.PlayBooh();
 				MessageBox.Show(AppResources.Wrong);
 				return false;
 			}

@@ -342,6 +342,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Images\WinBadge.png" />
+    <Resource Include="Images\sfondo.jpg" />
     <Content Include="Sound\booh.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -619,8 +620,6 @@
     <Content Include="Images\Scudetti\milan.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Images\sfondo.png" />
-    <Resource Include="Images\sfondo2.png" />
     <Content Include="Images\Scudetti\napoli.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

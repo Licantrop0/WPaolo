@@ -92,6 +92,8 @@
     <Names>Olympique de Marseille</Names>
     <Names>Olympique Marseille</Names>
     <Names>Olympique Marsiglia</Names>
+    <Names>Marsiglia</Names>
+    <Names>Marseille</Names>
   </Shield>
   <Shield Level="1" Id="OlympiqueLione" Image="olympique_lyonnais.png" Hint="France" IsValidated="false">
     <Names>Olympique Lyonnais</Names>
@@ -136,6 +138,8 @@
     <Names>Club Atlético de Madrid</Names>
     <Names>Atletico Madrid</Names>
     <Names>Atlético Madrid</Names>
+    <Names>Atlético</Names>
+    <Names>Atletico</Names>
   </Shield>
   <Shield Level="2" Id="Benfica" Image="Benfica.png" Hint="Portugal" IsValidated="false">
     <Names>Sport Lisboa e Benfica</Names>
@@ -208,6 +212,7 @@
     <Names>Futbol'nyj Klub Šachtar</Names>
     <Names>FK Shakhtar Donetsk</Names>
     <Names>Shakhtar Donetsk</Names>
+    <Names>Shakhtar</Names>
   </Shield>
   <Shield Level="2" Id="SportingLisbona" Image="sportinglisbon.png" Hint="Portugal" IsValidated="false">
     <Names>Sporting Clube de Portugal</Names>
@@ -235,6 +240,7 @@
     <Names>Sportverein Werder Bremen</Names>
     <Names>Werder Bremen</Names>
     <Names>Werder Brema</Names>
+    <Names>Werder</Names>
   </Shield>
   <Shield Level="2" Id="Zenit" Image="zenita.png" Hint="Russia" IsValidated="false">
     <Names>Futbol'nyj Klub Zenit Sankt-Peterburg</Names>
@@ -278,6 +284,7 @@
     <Names>Blackburn Rovers Football Club</Names>
     <Names>Blackburn Rovers FC</Names>
     <Names>Blackburn Rovers</Names>
+    <Names>Blackburn</Names>
   </Shield>
   <Shield Level="3" Id="DeportivoLaCoruna" Image="deportivolacoruna.png" Hint="Spain" IsValidated="false">
     <Names>Real Club Deportivo de La Coruña</Names>
@@ -400,6 +407,9 @@
   <Shield Level="4" Id="EintrachtFrancoforte" Image="eintracht-frankfurt.png" Hint="Germany" IsValidated="false">
     <Names>Eintracht Frankfurt</Names>
     <Names>Eintracht Francoforte</Names>
+    <Names>Eintracht</Names>
+    <Names>Francoforte</Names>
+    <Names>Frankfurt</Names>
   </Shield>
   <Shield Level="4" Id="Copenaghen" Image="fc-kobenhavn.png" Hint="Denmark" IsValidated="false">
     <Names>Football Club København</Names>
@@ -429,6 +439,7 @@
     <Names>herta Berlino</Names>
     <Names>Hertha BSC Berlin</Names>
     <Names>Hertha Berlin</Names>
+    <Names>Hertha</Names>
   </Shield>
   <Shield Level="4" Id="Udinese" Image="logo-udinese1.png" Hint="Italy" IsValidated="false">
     <Names>Udinese Calcio</Names>
@@ -491,6 +502,7 @@
   <Shield Level="5" Id="BateBorisov" Image="bate-borisov.png" Hint="Belarus" IsValidated="false">
     <Names>FC BATE Borisov</Names>
     <Names>Bate Borisov</Names>
+    <Names>Bate</Names>
   </Shield>
   <Shield Level="5" Id="CeltaVigo" Image="celta-de-vigo.png" Hint="Spain" IsValidated="false">
     <Names>Real Club Celta de Vigo</Names>
@@ -568,6 +580,7 @@
     <Names>Queens Park Rangers Football Club</Names>
     <Names>Queens Park Rangers FC</Names>
     <Names>Queens Park Rangers</Names>
+    <Names>qpr</Names>
   </Shield>
   <Shield Level="5" Id="RacingSantander" Image="racing-santander.png" Hint="Spain" IsValidated="false">
     <Names>Real Racing Club de Santander</Names>
@@ -638,6 +651,7 @@
     <Names>Guangzhou Evergrande Football Club</Names>
     <Names>Guangzhou Evergrande FC</Names>
     <Names>Guangzhou Evergrande</Names>
+    <Names>Guangzhou</Names>
   </Shield>
   <Shield Level="6" Id="HajdukSplit" Image="Hajduk-Split.png" Hint="Croatia" IsValidated="false">
     <Names>Hrvatski Nogometni Klub Hajduk Split</Names>
@@ -685,11 +699,13 @@
     <Names>Football Club Sheriff Tiraspol</Names>
     <Names>FC Sheriff Tiraspol</Names>
     <Names>Sheriff Tiraspol</Names>
+    <Names>Sheriff</Names>
   </Shield>
   <Shield Level="6" Id="SlaviaPraga" Image="Slavia-Praha.png" Hint="Rep.Czech" IsValidated="false">
     <Names>Sportovní Klub Slavia Praha</Names>
     <Names>Slavia Praha</Names>
     <Names>Slavia Prague</Names>
+    <Names>Slavia Praga</Names>
   </Shield>
   <Shield Level="6" Id="Bochum" Image="VfL-Bochum.png" Hint="Germany" IsValidated="false">
     <Names>Verein für Leibesübungen Bochum 1848 Fußballgemeinschaft</Names>

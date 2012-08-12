@@ -44,7 +44,6 @@
                                     <BitmapImage UriSource="{Binding Image, Converter={StaticResource ImagePathConv}}"
                                                  CreateOptions="BackgroundCreation"/>
                                 </Image.Source>
-
                             </Image>
                         </Border>
                         <Image Source="..\Images\spunta.png"

@@ -37,15 +37,14 @@
                  SelectedItem="{Binding SelectedShield, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsValidated, Converter={StaticResource BooleanNegationConv}}">
-                        <Border Margin="3" Height="150" Width="150" Background="White">
+                    <Grid Margin="3" Height="150" Width="150" Background="White"
+                          toolkit:TiltEffect.IsTiltEnabled="{Binding IsValidated, Converter={StaticResource BooleanNegationConv}}">
                             <Image>
                                 <Image.Source>
                                     <BitmapImage UriSource="{Binding Image, Converter={StaticResource ImagePathConv}}"
                                                  CreateOptions="BackgroundCreation"/>
                                 </Image.Source>
                             </Image>
-                        </Border>
                         <Image Source="..\Images\spunta.png"
                                Visibility="{Binding IsValidated, Converter={StaticResource BooleanVisibilityConv}}"                                                              HorizontalAlignment="Right" VerticalAlignment="Bottom" 
                                Width="50" Margin="0,0,6,6" />

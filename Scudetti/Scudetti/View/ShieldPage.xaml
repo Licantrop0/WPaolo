@@ -41,13 +41,13 @@
 			<TextBox Name="ShieldNameTextbox" Text="{Binding InputShieldName, Mode=TwoWay}"
 					 KeyDown="ShieldNameTextbox_KeyDown"
 					 Visibility="{Binding InputVisibile, Mode=OneTime}" />
-			<TextBlock Text="{Binding OriginalName}"
-					   TextAlignment="Center" FontSize="70"
+			<TextBlock Text="{Binding OriginalName}" FontSize="70"
 					   Style="{StaticResource TextBlockBase}"
-					   TextWrapping="Wrap" Visibility="{Binding CurrentShield.IsValidated,
-				Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}" />
-
-			<TextBlock Text="{Binding HintText}" 
+					   Visibility="{Binding CurrentShield.IsValidated,
+						Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}"
+					   TextWrapping="Wrap" TextAlignment="Center"
+					   LineStackingStrategy="BlockLineHeight" LineHeight="80" />
+			<TextBlock Text="{Binding HintText}"
 					   Visibility="{Binding InputVisibile, Mode=OneTime}"
 					   Style="{StaticResource StatusTextBlock}"
 					   Margin="0,-12"

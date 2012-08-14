@@ -103,7 +103,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Localization\LocalizedStrings.cs" />
-    <Compile Include="Model\OldAlbum.cs" />
+    <Compile Include="Model\Album.cs" />
     <None Include="Model\Photo.cs" />
     <Compile Include="Model\PhotoService.cs" />
     <Compile Include="Model\UberPhoto.cs" />

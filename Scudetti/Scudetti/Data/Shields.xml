@@ -516,7 +516,7 @@
     <Names>Cluj</Names>
   </Shield>
   <Shield Level="5" Id="ClubBrugge" Image="club-brugge.png" Hint="Belgium" IsValidated="false">
-    <Names>Club Brugge Koninklijke Voetbalvereniging,</Names>
+    <Names>Club Brugge Koninklijke Voetbalvereniging</Names>
     <Names>Club Brugge KV</Names>
     <Names>Football Club Brugeois</Names>
     <Names>Club Brugeois</Names>
@@ -634,7 +634,7 @@
     <Names>Colo-Colo</Names>
     <Names>Colo Colo</Names>
   </Shield>
-  <Shield Level="6" Id="CskaSofia" Image="CSKA_Sofia.png" Hint="Slovakia" IsValidated="false">
+  <Shield Level="6" Id="CskaSofia" Image="CSKA_Sofia.png" Hint="Bulgaria" IsValidated="false">
     <Names>CSKA Sofia</Names>
   </Shield>
   <Shield Level="6" Id="DerbyCounty" Image="Derby-County.png" Hint="England" IsValidated="false">

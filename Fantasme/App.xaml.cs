@@ -64,16 +64,7 @@ namespace NascondiChiappe
                     a => isf.GetFileNames(a.DirectoryName + "\\*.*").Where(f => !f.EndsWith(".html")),
                     (a, file) => new UberPhoto(a.DirectoryName + "\\" + file, a.Name))
                     .ToList();
-
-                //AppContext.Photos = new List<UberPhoto>();
-                //foreach (var album in albums)
-                //{
-                //    foreach (var fileName in isf.GetFileNames(album.DirectoryName + "\\*.*"))
-                //    {
-                //        if (fileName.EndsWith(".html")) continue;
-                //        AppContext.Photos.Add(new UberPhoto(album.DirectoryName + "\\" + fileName, album.Name));
-                //    }
-                //}
+                
                 IsolatedStorageSettings.ApplicationSettings.Remove("albums");
                 return;
             }

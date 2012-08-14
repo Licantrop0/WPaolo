@@ -94,9 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppContext.cs" />
-    <Compile Include="Helpers\BooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\DecodeImageConverter.cs" />
-    <None Include="Helpers\RotatePhotoHelper.cs" />
     <Compile Include="Localization\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -164,6 +162,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="NascondiChiappe_2012_08_14_18_56_57.sap" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml">
       <SubType>Designer</SubType>

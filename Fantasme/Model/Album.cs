@@ -3,7 +3,7 @@
 namespace NascondiChiappe.Model
 {
     [DataContract]
-    public class OldAlbum
+    public class Album
     {
         [DataMember]
         public string Name { get; set; }

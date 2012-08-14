@@ -6,7 +6,6 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NascondiChiappe.Model;
-using NascondiChiappe.ViewModel;
 
 namespace NascondiChiappe
 {
@@ -51,15 +50,36 @@ namespace NascondiChiappe
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            //IsolatedStorage
-            if (!IsolatedStorageSettings.ApplicationSettings.Contains("albums"))
-                IsolatedStorageSettings.ApplicationSettings["albums"] = new List<Album>();
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains("photos"))
+                IsolatedStorageSettings.ApplicationSettings["photos"] = new List<UberPhoto>();
 
-            //Controllo se per caso esiste la chiave nel TombStone, se si carico quello
-            if (PhoneApplicationService.Current.State.ContainsKey("albums"))
-                LoadAlbums(PhoneApplicationService.Current.State["albums"] as List<Album>);
-            else
-                LoadAlbums(IsolatedStorageSettings.ApplicationSettings["albums"] as List<Album>);
+            #region Migration Procedure
+
+            if (IsolatedStorageSettings.ApplicationSettings.Contains("albums"))
+            {
+                var albums = IsolatedStorageSettings.ApplicationSettings["albums"] as List<OldAlbum>;
+                var isf = IsolatedStorageFile.GetUserStoreForApplication();
+                
+                AppContext.Photos = new List<UberPhoto>();
+
+                var p = albums.SelectMany(
+                    a => isf.GetFileNames(a.DirectoryName + "\\*.jpg"),
+                    (a, file) => new UberPhoto(a.DirectoryName + "\\" + file, a.Name));
+
+                //foreach (var album in albums)
+                //{
+                //    foreach (var fileName in isf.GetFileNames(album.DirectoryName + "\\*.jpg"))
+                //    {
+                //        AppContext.Photos.Add(new UberPhoto(album.DirectoryName + "\\" + fileName, album.Name));
+                //    }
+                //}
+                IsolatedStorageSettings.ApplicationSettings.Remove("albums");
+                return;
+            }
+
+            #endregion
+
+            AppContext.Photos = (List<UberPhoto>)IsolatedStorageSettings.ApplicationSettings["photos"];
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -68,32 +88,27 @@ namespace NascondiChiappe
         {
             //chiedo sempre la password anche se l'instance è preserved
             //AppContext.IsPasswordInserted = false;
-
-            if (PhoneApplicationService.Current.State.ContainsKey("albums"))
-                LoadAlbums(PhoneApplicationService.Current.State["albums"] as List<Album>);
+            if(AppContext.Photos == null)
+                AppContext.Photos = (List<UberPhoto>)IsolatedStorageSettings.ApplicationSettings["photos"];
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
-            PhoneApplicationService.Current.State["albums"] = AppContext.Albums.Select(a => a.Model).ToList();
+            SavePhotos();
         }
-
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-            IsolatedStorageSettings.ApplicationSettings["albums"] = AppContext.Albums.Select(a => a.Model).ToList();
+            SavePhotos();
         }
 
-        private void LoadAlbums(List<Album> albums)
+        private static void SavePhotos()
         {
-            if (AppContext.Albums.Count != 0)
-                return;
-
-            foreach (var a in albums)
-                AppContext.Albums.Add(new ImageListViewModel(a));
+            var photos = AppContext.Albums.SelectMany(a => a.Photos).ToList();
+            IsolatedStorageSettings.ApplicationSettings["photos"] = photos;
         }
 
         // Code to execute if a navigation fails

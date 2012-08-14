@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Windows.Media.Imaging;
 using ExifLib;
 
@@ -33,7 +32,6 @@ namespace NascondiChiappe.Model
 
                 _bitmap = value;
                 OnPropertyChanged(this, "Bitmap");
-
             }
         }
 
@@ -45,60 +43,33 @@ namespace NascondiChiappe.Model
             if (photo == null)
                 throw new ArgumentNullException("photo");
 
-            switch (name.Last())
+            photo.Position = 0;
+            switch (ExifReader.ReadJpeg(photo, name).Orientation)
             {
-                case '0':
-                    RotationAngle = 0d;
+                case ExifOrientation.TopRight:
+                    RotationAngle = 90;
                     break;
-                case '1':
-                    RotationAngle = 90d;
+                case ExifOrientation.BottomRight:
+                    RotationAngle = 180;
                     break;
-                case '2':
-                    RotationAngle = 180d;
-                    break;
-                case '3':
-                    RotationAngle = 270d;
+                case ExifOrientation.BottomLeft:
+                    RotationAngle = 270;
                     break;
                 default:
-                    throw new ArgumentException("FileName does not contain the correct rotation info", "name");
+                    RotationAngle = 0;
+                    break;
             }
 
             Name = name;
-            Bitmap = new BitmapImage();
+            Bitmap = new BitmapImage() { CreateOptions = BitmapCreateOptions.BackgroundCreation };            
             Bitmap.SetSource(photo);
         }
 
-        /// <summary>Aggiungo la info sulla rotation nel nome del file</summary>
-        /// <param name="originalFileName">Nome del file originale</param>
-        /// <param name="photo">MemoryStream che contiene la foto</param>
-        /// <returns>nuovo nome del file con Rotation Info</returns>
-        /// <remarks>da eliminare dopo aver implementato un ExifWriter</remarks>
-        public static string GetFileNameWithRotation(string originalFileName, Stream photo)
+        public Photo(string name, BitmapImage photo)
         {
-            if (string.IsNullOrEmpty(originalFileName))
-                throw new ArgumentNullException("originalFileName");
-
-            if (photo == null)
-                throw new ArgumentNullException("photo");
-
-            var fileName = Path.GetFileNameWithoutExtension(originalFileName);
-
-            switch (ExifReader.ReadJpeg(photo, fileName).Orientation)
-            {
-                case ExifOrientation.TopRight:
-                    fileName = fileName.Remove(fileName.Length - 1) + '1';
-                    break;
-                case ExifOrientation.BottomRight:
-                    fileName = fileName.Remove(fileName.Length - 1) + '2';
-                    break;
-                case ExifOrientation.BottomLeft:
-                    fileName = fileName.Remove(fileName.Length - 1) + '3';
-                    break;
-                default:
-                    fileName = fileName.Remove(fileName.Length - 1) + '0';
-                    break;
-            }
-            return fileName;
+            Name = name;
+            Bitmap = photo;
+            RotationAngle = 0;
         }
 
         #region INotifyPropertyChanged Members

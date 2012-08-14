@@ -7,6 +7,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NascondiChiappe.Localization;
 using NascondiChiappe.ViewModel;
+using NascondiChiappe.Model;
+using System.Windows.Navigation;
 
 namespace NascondiChiappe.View
 {
@@ -47,12 +49,11 @@ namespace NascondiChiappe.View
             });
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (!AppContext.IsPasswordInserted)
             {
                 NavigationService.Navigate(new Uri("/View/PasswordPage.xaml", UriKind.Relative));
-                NavigationService.RemoveBackEntry();
                 return;
             }
             if (VM.Albums.Count == 0)
@@ -60,6 +61,12 @@ namespace NascondiChiappe.View
                 VM.NewAlbum.Execute(null);
                 return;
             }
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (e.Uri.OriginalString == "/View/PasswordPage.xaml")
+                NavigationService.RemoveBackEntry();
         }
 
         private void UpdateSelectionButtons(bool areSelected)
@@ -90,11 +97,10 @@ namespace NascondiChiappe.View
             //Fix errore z-order GestureListener
             if (PopupBackground.Visibility == Visibility.Collapsed)
             {
-                var CurrentImage = sender as Image;
-                VM.SelectedAlbum.ShowImage.Execute(CurrentImage.Source);
+                var CurrentImage = ((Grid)sender).DataContext as UberPhoto;
+                NavigationService.Navigate(new Uri("/View/ViewPhotosPage.xaml?path=" + CurrentImage.Path, UriKind.Relative));
             }
         }
-
 
         void ShowOtherAlbumsListPopup(object sender, EventArgs e)
         {

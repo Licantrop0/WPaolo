@@ -11,15 +11,16 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+    shell:SystemTray.IsVisible="False"
+    Loaded="PhoneApplicationPage_Loaded"
+    BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
-        <StackPanel x:Name="LayoutRoot"
-                    DataContext="{Binding Source={StaticResource Locator}, Path=AddRenameAlbumVM}"
-                    Background="{StaticResource BackgroundImage}">
+    <StackPanel x:Name="LayoutRoot"
+                Background="{StaticResource BackgroundImage}">
         <TextBlock Style="{StaticResource TitleStyle}" Text="{Binding Title}" />
         <TextBox x:Name="AlbumNameTextBox" Style="{StaticResource TextBoxStyle}"
                      Text="{Binding SelectedAlbum.Name, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
-                     KeyDown="AlbumNameTextBox_KeyDown" Loaded="AlbumNameTextBox_Loaded" />
+                     KeyDown="AlbumNameTextBox_KeyDown" />
         <TextBlock Visibility="{Binding OneAlbumNecessary}"
                    Text="{Binding Path=LocalizedResources.OneAlbumNecessary, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource HintTextBlockStyle}" />

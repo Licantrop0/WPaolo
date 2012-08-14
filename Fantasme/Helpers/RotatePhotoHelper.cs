@@ -15,14 +15,12 @@ namespace NascondiChiappe.Helpers
         private MediaLibrary library = new MediaLibrary();
         public event RunWorkerCompletedEventHandler CopyToMediaLibraryCompleted;
 
-        private string DirectoryName;
-        private IList<Photo> Photos;
+        private IList<UberPhoto> Photos;
         private int counter;
 
-        public RotatePhotoHelper(IList<Photo> photos, string directoryName)
+        public RotatePhotoHelper(IList<UberPhoto> photos)
         {
             Photos = photos;
-            DirectoryName = directoryName;
             counter = 0;
         }
 
@@ -53,16 +51,10 @@ namespace NascondiChiappe.Helpers
         //TODO: da eliminare dopo aver implementato un ExifWriter
         public void SaveRotatedPhotoAsync(WriteableBitmap wbSource, double rotationAngle)
         {
-            WriteableBitmap wbTarget = null;
-            if (rotationAngle % 180 == 0)
-                wbTarget = new WriteableBitmap(wbSource.PixelWidth, wbSource.PixelHeight);
-            else
-                wbTarget = new WriteableBitmap(wbSource.PixelHeight, wbSource.PixelWidth);
-
             var bw = new BackgroundWorker();
             bw.DoWork += (sender, e) =>
             {
-                e.Result = RotateBitmap(wbSource, wbTarget, rotationAngle);
+                e.Result = RotateBitmap(wbSource, rotationAngle);
             };
 
             bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
@@ -70,8 +62,14 @@ namespace NascondiChiappe.Helpers
         }
 
         //727ms (average 4 samples)
-        private static MemoryStream RotateBitmap(WriteableBitmap wbSource, WriteableBitmap wbTarget, double rotationAngle)
+        private static MemoryStream RotateBitmap(WriteableBitmap wbSource, double rotationAngle)
         {
+            WriteableBitmap wbTarget = null;
+            if (rotationAngle % 180 == 0)
+                wbTarget = new WriteableBitmap(wbSource.PixelWidth, wbSource.PixelHeight);
+            else
+                wbTarget = new WriteableBitmap(wbSource.PixelHeight, wbSource.PixelWidth);
+
             switch (Convert.ToInt32(rotationAngle))
             {
                 case 90:

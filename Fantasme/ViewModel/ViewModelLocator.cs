@@ -1,20 +1,8 @@
-/*
-  In App.xaml:
-  <Application.Resources>
-      <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:NascondiChiappe"
-                                   x:Key="Locator" />
-  </Application.Resources>
-  
-  In the View:
-  DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
-
-  You can also use Blend to do all this with the tool's support.
-  See http://www.galasoft.ch/mvvm
-*/
-
 using GalaSoft.MvvmLight;
 using NascondiChiappe.Helpers;
 using WPCommon.Helpers;
+using Microsoft.Practices.ServiceLocation;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace NascondiChiappe.ViewModel
 {
@@ -24,21 +12,19 @@ namespace NascondiChiappe.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
-        private static AlbumsViewModel _albumsVM;
-        private static AddRenameAlbumViewModel _addRenameAlbumVM;
-        private static ViewPhotosViewModel _viewPhotosVM;
-
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
         public ViewModelLocator()
         {
-            _albumsVM = new AlbumsViewModel();
-            _addRenameAlbumVM = new AddRenameAlbumViewModel();
-            _viewPhotosVM = new ViewPhotosViewModel();
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            AlbumsVM.NavigationService = new NavigationService();
-            AddRenameAlbumVM.NavigationService = new NavigationService();
+            if (!ViewModelBase.IsInDesignModeStatic)
+            {
+                SimpleIoc.Default.Register<INavigationService, NavigationService>();
+            }
+
+            SimpleIoc.Default.Register<AlbumsViewModel>();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
@@ -46,17 +32,7 @@ namespace NascondiChiappe.ViewModel
             Justification = "This non-static member is needed for data binding purposes.")]
         public AlbumsViewModel AlbumsVM
         {
-            get { return _albumsVM; }
-        }
-
-        public AddRenameAlbumViewModel AddRenameAlbumVM
-        {
-            get { return _addRenameAlbumVM; }
-        }
-
-        public ViewPhotosViewModel ViewPhotosVM
-        {
-            get { return _viewPhotosVM; }
+            get { return SimpleIoc.Default.GetInstance<AlbumsViewModel>(); }
         }
     }
 }

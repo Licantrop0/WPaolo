@@ -129,25 +129,16 @@ namespace NascondiChiappe.ViewModel
         public void CopyToMediaLibraryAction()
         {
             IsBusy = true;
-            PhotoService.CopyToMediaLibrary(SelectedAlbum.SelectedPhotos);
-            IsBusy = false;
-            MessageBox.Show(SelectedAlbum.SelectedPhotos.Count == 1 ?
-                AppResources.PhotoCopied :
-                AppResources.PhotosCopied);
-
-            //var ph = new RotatePhotoHelper(SelectedAlbum.SelectedPhotos);
-
-            //ph.CopyToMediaLibraryCompleted += (sender, e) =>
-            //{
-            //    IsBusy = false;
-            //    if (e.Error == null)
-            //        MessageBox.Show(SelectedAlbum.SelectedPhotos.Count == 1 ?
-            //            AppResources.PhotoCopied :
-            //            AppResources.PhotosCopied);
-            //    else
-            //        MessageBox.Show(AppResources.ErrorSavingPhoto);
-            //};
-            //ph.CopyToMediaLibraryAsync();
+            var bw = new BackgroundWorker();
+            bw.DoWork += (sender, e) => PhotoService.CopyToMediaLibrary(SelectedAlbum.SelectedPhotos);
+            bw.RunWorkerCompleted += (sender, e) =>
+            {
+                IsBusy = false;
+                MessageBox.Show(SelectedAlbum.SelectedPhotos.Count == 1 ?
+                    AppResources.PhotoCopied :
+                    AppResources.PhotosCopied);
+            };
+            bw.RunWorkerAsync();
         }
 
         private RelayCommand _copyFromMediaLibrary;

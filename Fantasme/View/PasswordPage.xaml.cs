@@ -59,7 +59,7 @@ namespace NascondiChiappe
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            //La pagina della password non deve stare nel back-stack
+            //La pagina della password non deve mai stare nel back-stack
             NavigationService.RemoveBackEntry();
         }
 

@@ -1,17 +1,14 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using NascondiChiappe.Helpers;
-using NascondiChiappe.Model;
 using NascondiChiappe.Localization;
 
 namespace NascondiChiappe.ViewModel
 {
     public class AddRenameAlbumViewModel : ViewModelBase
     {
-        public WPCommon.Helpers.INavigationService NavigationService { get; set; }
+        private bool _isNewAlbumMode;
+
         public Visibility OneAlbumNecessary
         {
             get
@@ -26,34 +23,18 @@ namespace NascondiChiappe.ViewModel
         {
             get
             {
-                return IsNewAlbumMode ?
+                return _isNewAlbumMode ?
                     AppResources.AddAlbum :
                     AppResources.RenameAlbum;
             }
         }
 
-        public bool IsNewAlbumMode
-        { get { return string.IsNullOrEmpty(SelectedAlbum.DirectoryName); } }
 
-        private Album _selectedAlbum = new Album();
-        public Album SelectedAlbum
+        public AlbumViewModel SelectedAlbum { get; set; }
+        public AddRenameAlbumViewModel(AlbumViewModel album)
         {
-            get { return _selectedAlbum; } 
-            set
-            {
-                if (_selectedAlbum == value)
-                    return;
-
-                RaisePropertyChanged("SelectedAlbum");
-                _selectedAlbum = value;
-            }
-        }
-
-        public AddRenameAlbumViewModel()
-        {
-            Messenger.Default.Register<Album>(this,
-                "AddOrRename",
-                album => SelectedAlbum = album);
+            SelectedAlbum = album;
+            _isNewAlbumMode = string.IsNullOrEmpty(album.Name);
         }
 
         private RelayCommand _saveAlbum;
@@ -64,12 +45,17 @@ namespace NascondiChiappe.ViewModel
 
         private void SaveAlbumAction()
         {
-            if (IsNewAlbumMode)
+            if (_isNewAlbumMode)
             {
-                SelectedAlbum.DirectoryName = Guid.NewGuid().ToString();
-                AppContext.Albums.Add(new ImageListViewModel(SelectedAlbum));
+                AppContext.Albums.Add(SelectedAlbum);
             }
-            NavigationService.GoBack();
+            else
+            {
+                foreach (var photo in SelectedAlbum.Photos)
+                {
+                    photo.Album = SelectedAlbum.Name;
+                }
+            }
         }
 
     }

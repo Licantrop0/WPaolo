@@ -11,6 +11,7 @@
     xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
     xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.ExtensionMethods"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:hlp="clr-namespace:NascondiChiappe.Helpers"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -24,13 +25,14 @@
           Background="{StaticResource BackgroundImage}">
         <Grid.Resources>
             <wph:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+            <hlp:DecodeImageConverter x:Key="DecodeImage" />
         </Grid.Resources>
-        
-            <controls:Pivot x:Name="AlbumsPivot" ItemsSource="{Binding Albums}"
+
+        <controls:Pivot x:Name="AlbumsPivot" ItemsSource="{Binding Albums}"
                         SelectedItem="{Binding SelectedAlbum, Mode=TwoWay}" Margin="0,-1,0,1">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Model.Name}"
+                    <TextBlock Text="{Binding Name}"
                                Style="{StaticResource TitleStyle}" />
                 </DataTemplate>
             </controls:Pivot.HeaderTemplate>
@@ -41,28 +43,26 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        
+
                         <ListBox x:Name="ImagesListBox" Margin="0,-30,0,12"
-                                 ItemsSource="{Binding Model.Photos}"
+                                 ItemsSource="{Binding Photos}"
                                  ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
                                  SelectionMode="Multiple" >
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
-                                    <cmd:EventToCommand
-                                        Command="{Binding SelectionChangedCommand}"
-                                        PassEventArgsToCommand="True" />
+                                    <cmd:EventToCommand Command="{Binding SelectionChangedCommand}"
+                                                        PassEventArgsToCommand="True" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
 
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding Bitmap}" Margin="12"
-                                           RenderTransformOrigin="0.5,0.5"
-                                           RenderTransform="{Binding RotationAngle, Converter={StaticResource RotationConverter}}">
+                                    <Grid>
                                         <toolkit:GestureService.GestureListener>
                                             <toolkit:GestureListener DoubleTap="GestureListener_DoubleTap"  />
                                         </toolkit:GestureService.GestureListener>
-                                        <!--<toolkit:ContextMenuService.ContextMenu>
+                                        <Image Source="{Binding Path, Converter={StaticResource DecodeImage}}">
+                                            <!--<toolkit:ContextMenuService.ContextMenu>
                                             <toolkit:ContextMenu>
                                                 <toolkit:MenuItem Header="{Binding LocalizedResources.Delete, Source={StaticResource LocalizedStrings}}"
                                                                   Command="{Binding AlwaysCommand}"/>
@@ -71,12 +71,13 @@
                                                                   CommandParameter="param1"/>
                                             </toolkit:ContextMenu>
                                         </toolkit:ContextMenuService.ContextMenu>-->
-                                    </Image>
+                                        </Image>
+                                    </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <toolkit:WrapPanel ItemWidth="225" ItemHeight="225"/>
+                                    <toolkit:WrapPanel />
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
                         </ListBox>
@@ -96,7 +97,7 @@
 
         <Rectangle x:Name="PopupBackground" Fill="#CC000000"
                    Visibility="Collapsed" />
-        
+
         <Border x:Name="PopupBorder" Margin="0,0,0,72"
                 CornerRadius="10" Visibility="Collapsed"
                 BorderBrush="WhiteSmoke"
@@ -109,7 +110,7 @@
                      SelectedItem="{Binding MoveToAlbum, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Model.Name}"
+                        <TextBlock Text="{Binding Name}"
                                    HorizontalAlignment="Center"
                                    Margin="12,0" TextAlignment="Center"
                                    Style="{StaticResource TitleStyle}" />
@@ -117,7 +118,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Border>
-        
+
         <toolkit:PerformanceProgressBar Name="CopyPhotosProgressBar"
                                         IsHitTestVisible="False"
                                         IsIndeterminate="{Binding IsBusy}" />

@@ -154,7 +154,7 @@
     <value>The inserted Password is wrong</value>
   </data>
   <data name="SetPassword" xml:space="preserve">
-    <value>Set New Password</value>
+    <value>Set Password</value>
   </data>
   <data name="TakePhoto" xml:space="preserve">
     <value>Take Photo</value>
@@ -166,7 +166,7 @@
     <value>Export</value>
   </data>
   <data name="AddAlbum" xml:space="preserve">
-    <value>New Album</value>
+    <value>Add Album</value>
   </data>
   <data name="RenameAlbum" xml:space="preserve">
     <value>Rename Album</value>

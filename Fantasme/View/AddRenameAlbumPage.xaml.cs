@@ -7,21 +7,13 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NascondiChiappe.Localization;
 using NascondiChiappe.ViewModel;
+using System.ComponentModel;
 
 namespace NascondiChiappe.View
 {
     public partial class AddRenameAlbumPage : PhoneApplicationPage
     {
-        private AddRenameAlbumViewModel _vM;
-        public AddRenameAlbumViewModel VM
-        {
-            get
-            {
-                if (_vM == null)
-                    _vM = LayoutRoot.DataContext as AddRenameAlbumViewModel;
-                return _vM;
-            }
-        }
+        private AddRenameAlbumViewModel _vm;
 
         public AddRenameAlbumPage()
         {
@@ -34,10 +26,28 @@ namespace NascondiChiappe.View
             if (!AppContext.IsPasswordInserted)
             {
                 NavigationService.Navigate(new Uri("/View/PasswordPage.xaml", UriKind.Relative));
+                return;
             }
+
+            if (NavigationContext.QueryString.ContainsKey("id"))
+            {
+                var id = int.Parse(NavigationContext.QueryString["id"]);
+                _vm = new AddRenameAlbumViewModel(AppContext.Albums[id]);
+            }
+            else
+            {
+                _vm = new AddRenameAlbumViewModel(new AlbumViewModel());
+            }
+            LayoutRoot.DataContext = _vm;
         }
 
-        private void AlbumNameTextBox_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (e.Uri.OriginalString == "/View/PasswordPage.xaml")
+                NavigationService.RemoveBackEntry();
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             AlbumNameTextBox.Focus();
             AlbumNameTextBox.SelectAll();
@@ -58,7 +68,8 @@ namespace NascondiChiappe.View
             AlbumNameTextBox.GetBindingExpression(
                 TextBox.TextProperty).UpdateSource();
 
-            VM.SaveAlbum.Execute(null);
+            _vm.SaveAlbum.Execute(null);
+            NavigationService.GoBack();
         }
 
         private bool CheckAlbumName()
@@ -81,7 +92,7 @@ namespace NascondiChiappe.View
             ApplicationBar.Buttons.Add(SaveAppBarButton);
         }
 
-        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
         {
             if (AppContext.Albums.Count == 0)
                 throw new Exception("ForceExit");

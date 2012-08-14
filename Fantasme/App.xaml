@@ -63,10 +63,13 @@
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               HorizontalContentAlignment="Left" VerticalContentAlignment="Top"
                               Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}" />
-                            <Grid x:Name="SelectionCheck" Visibility="Collapsed">
-                                <Polygon Points="0,0 80,0 0,80 0,0"
-                                         IsHitTestVisible="False" Fill="{StaticResource PhoneAccentBrush}" />
-                                <TextBlock Text="V" />
+                            <Grid x:Name="SelectionCheck" Visibility="Collapsed" IsHitTestVisible="False">
+                                <Polygon Points="0,0 60,0 0,60 0,0"
+                                         Fill="{StaticResource PhoneAccentBrush}" />
+                                <Image Source="../Toolkit.Content/appbar_check.png"
+                                       VerticalAlignment="Top"
+                                       HorizontalAlignment="Left"
+                                       Margin="-6" Stretch="None" />
                             </Grid>
 
                             <VisualStateManager.VisualStateGroups>

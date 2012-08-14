@@ -45,6 +45,7 @@ namespace NascondiChiappe.View
             Messenger.Default.Register<bool>(this, "IsBusy", IsBusy =>
             {
                 ApplicationBar.IsVisible = !IsBusy;
+                HintFullScreenTextBlock.Visibility = IsBusy ? Visibility.Collapsed : Visibility.Visible;
                 PopupBackground.Visibility = IsBusy ? Visibility.Visible : Visibility.Collapsed;
             });
         }

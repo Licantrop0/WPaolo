@@ -39,11 +39,6 @@
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
                         <ListBox x:Name="ImagesListBox" Margin="0,-30,0,12"
                                  ItemsSource="{Binding Photos}"
                                  ItemContainerStyle="{StaticResource ListBoxItemStyle1}"
@@ -85,10 +80,6 @@
                         <TextBlock x:Name="AddPhotosHintTextBlock" Visibility="{Binding HintVisibility}"
                                    Text="{Binding LocalizedResources.AddPhotosHint, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HintTextBlockStyle}" />
-
-                        <TextBlock Name="FullScreenPhotoHintTextBlock" Grid.Row="1" Visibility="Visible"
-                                   Text="{Binding LocalizedResources.FullScreenPhotoHint, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource HintTextBlockStyle}" />
                     </Grid>
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
@@ -97,7 +88,6 @@
 
         <Rectangle x:Name="PopupBackground" Fill="#CC000000"
                    Visibility="Collapsed" />
-
         <Border x:Name="PopupBorder" Margin="0,0,0,72"
                 CornerRadius="10" Visibility="Collapsed"
                 BorderBrush="WhiteSmoke"
@@ -119,15 +109,17 @@
             </ListBox>
         </Border>
 
-        <toolkit:PerformanceProgressBar Name="CopyPhotosProgressBar"
-                                        IsHitTestVisible="False"
+        <toolkit:PerformanceProgressBar IsHitTestVisible="False"
                                         IsIndeterminate="{Binding IsBusy}" />
 
-        <TextBlock Name="PleaseWaitTextBlock" VerticalAlignment="Center" HorizontalAlignment="Center"
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                    Text="{Binding LocalizedResources.PleaseWait, Source={StaticResource LocalizedStrings}}"
                    Style="{StaticResource TextBlockStyle}" Margin="0,0,0,48"
                    Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibility}}" />
 
+        <TextBlock Name="HintFullScreenTextBlock"
+                   Text="{Binding LocalizedResources.FullScreenPhotoHint, Source={StaticResource LocalizedStrings}}"
+                   VerticalAlignment="Bottom" Style="{StaticResource HintTextBlockStyle}" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

@@ -2,13 +2,13 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NascondiChiappe.Localization;
-using NascondiChiappe.ViewModel;
 using NascondiChiappe.Model;
-using System.Windows.Navigation;
+using NascondiChiappe.ViewModel;
 
 namespace NascondiChiappe.View
 {
@@ -99,7 +99,9 @@ namespace NascondiChiappe.View
             if (PopupBackground.Visibility == Visibility.Collapsed)
             {
                 var CurrentImage = ((Grid)sender).DataContext as UberPhoto;
-                NavigationService.Navigate(new Uri("/View/ViewPhotosPage.xaml?path=" + CurrentImage.Path, UriKind.Relative));
+                var uriString = string.Format("/View/ViewPhotosPage.xaml?album={0}&index={1}",
+                    CurrentImage.Album, VM.SelectedAlbum.Photos.IndexOf(CurrentImage));
+                NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
             }
         }
 

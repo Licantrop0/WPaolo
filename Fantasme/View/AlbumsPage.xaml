@@ -52,7 +52,7 @@
 
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid>
+                                    <Grid toolkit:TiltEffect.IsTiltEnabled="True" >
                                         <toolkit:GestureService.GestureListener>
                                             <toolkit:GestureListener DoubleTap="GestureListener_DoubleTap"  />
                                         </toolkit:GestureService.GestureListener>
@@ -84,7 +84,6 @@
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>
-
 
         <Rectangle x:Name="PopupBackground" Fill="#CC000000"
                    Visibility="Collapsed" />

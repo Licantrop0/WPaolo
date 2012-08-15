@@ -10,5 +10,11 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     shell:SystemTray.IsVisible="False" >
-        <phone:WebBrowser Name="Wb" />
+    <phone:WebBrowser Name="Wb" />
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True"
+                              BackgroundColor="#BF000000"
+                              ForegroundColor="{StaticResource PhoneAccentColor}"
+                              Opacity="0.99" />
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

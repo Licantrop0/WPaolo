@@ -259,4 +259,10 @@ Il recupero password NON è disponibile.</value>
   <data name="AlbumNameDuplicated" xml:space="preserve">
     <value>C'è già un album con questo nome, scegline un altro</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Avanti</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Indietro</value>
+  </data>
 </root>

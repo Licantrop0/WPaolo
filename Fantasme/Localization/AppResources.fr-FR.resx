@@ -260,4 +260,10 @@ Si vous oubliez le mot de passe, vous perdez l'accés aux dossiers privés.</val
   <data name="AlbumNameDuplicated" xml:space="preserve">
     <value>Qu'il existe déjà un dossier avec ce nom, choisir un autre</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>suivant</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>précédent</value>
+  </data>
 </root>

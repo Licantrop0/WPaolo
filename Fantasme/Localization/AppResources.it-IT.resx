@@ -256,4 +256,7 @@ Il recupero password NON è disponibile.</value>
   <data name="FullScreenPhotoHint" xml:space="preserve">
     <value>Doppio-click su una foto per visualizzarla in full screen</value>
   </data>
+  <data name="AlbumNameDuplicated" xml:space="preserve">
+    <value>C'è già un album con questo nome, scegline un altro</value>
+  </data>
 </root>

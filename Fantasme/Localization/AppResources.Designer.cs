@@ -88,6 +88,15 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is already an album with this name, please choose another one.
+        /// </summary>
+        public static string AlbumNameDuplicated {
+            get {
+                return ResourceManager.GetString("AlbumNameDuplicated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Album name is required.
         /// </summary>
         public static string AlbumNameRequired {

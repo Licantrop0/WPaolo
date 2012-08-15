@@ -257,4 +257,7 @@ Si vous oubliez le mot de passe, vous perdez l'accés aux dossiers privés.</val
   <data name="FullScreenPhotoHint" xml:space="preserve">
     <value>Double-cliquez la photo pour visualizer en full screen</value>
   </data>
+  <data name="AlbumNameDuplicated" xml:space="preserve">
+    <value>Qu'il existe déjà un dossier avec ce nom, choisir un autre</value>
+  </data>
 </root>

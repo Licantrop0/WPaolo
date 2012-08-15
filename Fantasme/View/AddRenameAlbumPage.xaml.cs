@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -7,7 +9,6 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NascondiChiappe.Localization;
 using NascondiChiappe.ViewModel;
-using System.ComponentModel;
 
 namespace NascondiChiappe.View
 {
@@ -77,6 +78,13 @@ namespace NascondiChiappe.View
             if (string.IsNullOrEmpty(AlbumNameTextBox.Text))
             {
                 MessageBox.Show(AppResources.AlbumNameRequired);
+                AlbumNameTextBox.Focus();
+                return false;
+            }
+
+            if (AppContext.Albums.Any(a => a.Name == AlbumNameTextBox.Text))
+            {
+                MessageBox.Show(AppResources.AlbumNameDuplicated);
                 AlbumNameTextBox.Focus();
                 return false;
             }

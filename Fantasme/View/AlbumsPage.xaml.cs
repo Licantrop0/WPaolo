@@ -14,11 +14,6 @@ namespace NascondiChiappe.View
 {
     public partial class AlbumsPage : PhoneApplicationPage
     {
-        ApplicationBarIconButton CopyToMediaLibraryAppBarButton;
-        ApplicationBarIconButton DeletePhotosAppBarButton;
-        ApplicationBarIconButton CopyFromMediaLibraryAppBarButton;
-        ApplicationBarIconButton MovePhotosAppBarButton;
-
         private AlbumsViewModel _vM;
         public AlbumsViewModel VM
         {
@@ -74,9 +69,11 @@ namespace NascondiChiappe.View
         {
             if (areSelected)
             {
-                if (ApplicationBar.Buttons.Count != 2) return;
+                if (ApplicationBar.Buttons.Contains(CopyToMediaLibraryAppBarButton)) return;
 
+                ApplicationBar.Buttons.Remove(TakePictureAppBarButton);
                 ApplicationBar.Buttons.Remove(CopyFromMediaLibraryAppBarButton);
+
                 ApplicationBar.Buttons.Add(CopyToMediaLibraryAppBarButton);
                 ApplicationBar.Buttons.Add(DeletePhotosAppBarButton);
                 if (AppContext.Albums.Count > 1)
@@ -84,12 +81,15 @@ namespace NascondiChiappe.View
             }
             else
             {
-                if (ApplicationBar.Buttons.Count == 2) return;
+                if (ApplicationBar.Buttons.Contains(TakePictureAppBarButton)) return;
 
                 ApplicationBar.Buttons.Remove(CopyToMediaLibraryAppBarButton);
                 ApplicationBar.Buttons.Remove(DeletePhotosAppBarButton);
                 ApplicationBar.Buttons.Remove(MovePhotosAppBarButton);
+
+                ApplicationBar.Buttons.Add(TakePictureAppBarButton);
                 ApplicationBar.Buttons.Add(CopyFromMediaLibraryAppBarButton);
+
             }
         }
 
@@ -127,29 +127,45 @@ namespace NascondiChiappe.View
             }
         }
 
+        //Not sure about usability
+        //private void PopupBackground_Tap(object sender, GestureEventArgs e)
+        //{
+        //    if (PopupBorder.Visibility == Visibility.Visible)
+        //    {
+        //        PopupBackground.Visibility = Visibility.Collapsed;
+        //        PopupBorder.Visibility = Visibility.Collapsed;
+        //    }   
+        //}
+
+        ApplicationBarIconButton TakePictureAppBarButton;
+        ApplicationBarIconButton CopyFromMediaLibraryAppBarButton;
+        ApplicationBarIconButton CopyToMediaLibraryAppBarButton;
+        ApplicationBarIconButton DeletePhotosAppBarButton;
+        ApplicationBarIconButton MovePhotosAppBarButton;
+
         private void InitializeApplicationBar()
         {
-            var TakePictureAppBarButton = new ApplicationBarIconButton();
+            TakePictureAppBarButton = new ApplicationBarIconButton();
             TakePictureAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_camera.png", UriKind.Relative);
             TakePictureAppBarButton.Text = AppResources.TakePhoto;
-            TakePictureAppBarButton.Click += (sender, e) => { VM.TakePicture.Execute(null); };
-            ApplicationBar.Buttons.Add(TakePictureAppBarButton);
+            TakePictureAppBarButton.Click += (sender, e) => VM.TakePicture.Execute(null);
+            //ApplicationBar.Buttons.Add(TakePictureAppBarButton);
 
             CopyFromMediaLibraryAppBarButton = new ApplicationBarIconButton();
             CopyFromMediaLibraryAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_addpicture.png", UriKind.Relative);
             CopyFromMediaLibraryAppBarButton.Text = AppResources.CopyFromMediaLibrary;
-            CopyFromMediaLibraryAppBarButton.Click += (sender, e) => { VM.CopyFromMediaLibrary.Execute(null); };
-            ApplicationBar.Buttons.Add(CopyFromMediaLibraryAppBarButton);
+            CopyFromMediaLibraryAppBarButton.Click += (sender, e) => VM.CopyFromMediaLibrary.Execute(null);
+            //ApplicationBar.Buttons.Add(CopyFromMediaLibraryAppBarButton);
 
             CopyToMediaLibraryAppBarButton = new ApplicationBarIconButton();
             CopyToMediaLibraryAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_sendphoto.png", UriKind.Relative);
             CopyToMediaLibraryAppBarButton.Text = AppResources.CopyToMediaLibrary;
-            CopyToMediaLibraryAppBarButton.Click += (sender, e) => { VM.CopyToMediaLibrary.Execute(null); };
+            CopyToMediaLibraryAppBarButton.Click += (sender, e) => VM.CopyToMediaLibrary.Execute(null);
 
             DeletePhotosAppBarButton = new ApplicationBarIconButton();
             DeletePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_cancel.png", UriKind.Relative);
             DeletePhotosAppBarButton.Text = AppResources.DeleteSelectedPhotos;
-            DeletePhotosAppBarButton.Click += (sender1, e1) => { VM.DeletePhotos.Execute(null); };
+            DeletePhotosAppBarButton.Click += (sender1, e1) => VM.DeletePhotos.Execute(null);
 
             MovePhotosAppBarButton = new ApplicationBarIconButton();
             MovePhotosAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_move.png", UriKind.Relative);
@@ -158,23 +174,23 @@ namespace NascondiChiappe.View
 
             var AddAlbumAppBarMenuItem = new ApplicationBarMenuItem();
             AddAlbumAppBarMenuItem.Text = AppResources.AddAlbum;
-            AddAlbumAppBarMenuItem.Click += (sender, e) => { VM.NewAlbum.Execute(null); };
+            AddAlbumAppBarMenuItem.Click += (sender, e) => VM.NewAlbum.Execute(null);
             ApplicationBar.MenuItems.Add(AddAlbumAppBarMenuItem);
 
             var RenameAlbumAppBarMenuItem = new ApplicationBarMenuItem();
             RenameAlbumAppBarMenuItem.Text = AppResources.RenameAlbum;
-            RenameAlbumAppBarMenuItem.Click += (sender, e) => { VM.RenameAlbum.Execute(null); };
+            RenameAlbumAppBarMenuItem.Click += (sender, e) => VM.RenameAlbum.Execute(null);
             ApplicationBar.MenuItems.Add(RenameAlbumAppBarMenuItem);
 
             var DeleteAlbumAppBarMenuItem = new ApplicationBarMenuItem();
             DeleteAlbumAppBarMenuItem.Text = AppResources.DeleteAlbum;
-            DeleteAlbumAppBarMenuItem.Click += (sender, e) => { VM.DeleteAlbum.Execute(null); };
+            DeleteAlbumAppBarMenuItem.Click += (sender, e) => VM.DeleteAlbum.Execute(null);
             ApplicationBar.MenuItems.Add(DeleteAlbumAppBarMenuItem);
 
             var AboutAppBarMenuItem = new ApplicationBarMenuItem();
             AboutAppBarMenuItem.Text = AppResources.About;
             AboutAppBarMenuItem.Click += (sender, e) =>
-            { NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative)); };
+                NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
             ApplicationBar.MenuItems.Add(AboutAppBarMenuItem);
         }
     }

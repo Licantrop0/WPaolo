@@ -24,7 +24,7 @@ namespace NascondiChiappe.Model
                 using (var fs = isf.CreateFile(FileName))
                 {
                     wb.SaveJpeg(fs, wb.PixelWidth, wb.PixelHeight, 0, 85);
-                    album.Photos.Add(new UberPhoto(FileName, album.Name));
+                    album.Photos.Insert(0, new Photo(FileName, album.Name));
                 }
             }
             catch (IsolatedStorageException)
@@ -35,13 +35,13 @@ namespace NascondiChiappe.Model
             return true;
         }
 
-        public static void RemovePhoto(this AlbumViewModel album, UberPhoto photo)
+        public static void RemovePhoto(this AlbumViewModel album, Photo photo)
         {
             isf.DeleteFile(photo.Path);
             album.Photos.Remove(photo);
         }
 
-        public static void RemovePhotos(this AlbumViewModel album, IList<UberPhoto> photos)
+        public static void RemovePhotos(this AlbumViewModel album, IList<Photo> photos)
         {
             var n = photos.Count;
             for (int i = 0; i < n; i++)
@@ -53,21 +53,21 @@ namespace NascondiChiappe.Model
             RemovePhotos(album, album.Photos);
         }
 
-        public static void MovePhoto(this AlbumViewModel source, AlbumViewModel target, UberPhoto photo)
+        public static void MovePhoto(this AlbumViewModel source, AlbumViewModel target, Photo photo)
         {
             source.Photos.Remove(photo);
             photo.Album = target.Name;
             target.Photos.Add(photo);
         }
 
-        public static void MovePhotos(this AlbumViewModel source, AlbumViewModel target, IList<UberPhoto> photos)
+        public static void MovePhotos(this AlbumViewModel source, AlbumViewModel target, IList<Photo> photos)
         {
             var n = photos.Count;
             for (int i = 0; i < n; i++)
                 source.MovePhoto(target, photos[0]);
         }
 
-        public static void CopyToMediaLibrary(IEnumerable<UberPhoto> photos)
+        public static void CopyToMediaLibrary(IEnumerable<Photo> photos)
         {
             var library = new MediaLibrary();
 

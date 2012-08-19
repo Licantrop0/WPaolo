@@ -23,6 +23,8 @@
                            MinFontSize="34"
                            LogoMargin="30" />
     </phone:PhoneApplicationPage.Resources>
-    
-    <wpc:About DataContext="{StaticResource AboutVM}" />
+
+    <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}"
+               ApplicationId="21ecdf14-8a3e-49e6-b19a-a94b96b2eb0e"
+               AdUnitId="10041859"/>
 </phone:PhoneApplicationPage>

@@ -221,10 +221,10 @@ Password recovery is NOT available.</value>
     <value>Click here to buy it!</value>
   </data>
   <data name="DemoInfo" xml:space="preserve">
-    <value>To store more than four photos and organize them in more than one album, you have to buy the full version.</value>
+    <value>To hide more than 6 photos and organize them in more than one album, please buy the full version.</value>
   </data>
   <data name="DemoTitle" xml:space="preserve">
-    <value>This is a Demo</value>
+    <value>Demo Mode</value>
   </data>
   <data name="ConfirmPhotosDelete" xml:space="preserve">
     <value>Do you really want to delete selected Photos?</value>

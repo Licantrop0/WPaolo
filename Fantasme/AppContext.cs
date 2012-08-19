@@ -9,7 +9,7 @@ namespace NascondiChiappe
     public class AppContext
     {
         public static bool IsPasswordInserted = false;
-        public static IList<UberPhoto> Photos { get; set; }
+        public static IList<Photo> Photos { get; set; }
 
         private static ObservableCollection<AlbumViewModel> _albums;
         public static ObservableCollection<AlbumViewModel> Albums

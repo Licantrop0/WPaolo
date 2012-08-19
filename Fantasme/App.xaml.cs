@@ -51,7 +51,7 @@ namespace NascondiChiappe
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("photos"))
-                IsolatedStorageSettings.ApplicationSettings["photos"] = new List<UberPhoto>();
+                IsolatedStorageSettings.ApplicationSettings["photos"] = new List<Photo>();
 
             #region Migration Procedure
 
@@ -62,7 +62,7 @@ namespace NascondiChiappe
 
                 AppContext.Photos = albums.SelectMany(
                     a => isf.GetFileNames(a.DirectoryName + "\\*.*").Where(f => !f.EndsWith(".html")),
-                    (a, file) => new UberPhoto(a.DirectoryName + "\\" + file, a.Name))
+                    (a, file) => new Photo(a.DirectoryName + "\\" + file, a.Name))
                     .ToList();
                 
                 IsolatedStorageSettings.ApplicationSettings.Remove("albums");
@@ -71,7 +71,7 @@ namespace NascondiChiappe
 
             #endregion
 
-            AppContext.Photos = (List<UberPhoto>)IsolatedStorageSettings.ApplicationSettings["photos"];
+            AppContext.Photos = (List<Photo>)IsolatedStorageSettings.ApplicationSettings["photos"];
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -81,7 +81,7 @@ namespace NascondiChiappe
             //chiedo sempre la password anche se l'instance è preserved
             //AppContext.IsPasswordInserted = false;
             if (AppContext.Photos == null)
-                AppContext.Photos = (List<UberPhoto>)IsolatedStorageSettings.ApplicationSettings["photos"];
+                AppContext.Photos = (List<Photo>)IsolatedStorageSettings.ApplicationSettings["photos"];
         }
 
         // Code to execute when the application is deactivated (sent to background)

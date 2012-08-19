@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace NascondiChiappe.Model
 {
     [DataContract]
-    public class UberPhoto : INotifyPropertyChanged
+    public class Photo : INotifyPropertyChanged
     {
         private string _path;
         [DataMember]
@@ -32,26 +32,26 @@ namespace NascondiChiappe.Model
             }
         }
 
-        private bool _isSelected;
-        public bool IsSelected
-        {
-            get { return _isSelected; }
-            set
-            {
-                if (IsSelected == value) return;
-                _isSelected = value;
-                RaisePropertyChanged("IsSelected");
-            }
-        }
+        //private bool _isSelected;
+        //public bool IsSelected
+        //{
+        //    get { return _isSelected; }
+        //    set
+        //    {
+        //        if (IsSelected == value) return;
+        //        _isSelected = value;
+        //        RaisePropertyChanged("IsSelected");
+        //    }
+        //}
 
-        public UberPhoto()
+        public Photo()
         { }
 
-        public UberPhoto(string path, string directory)
+        public Photo(string path, string directory)
         {
             Path = path;
             Album = directory;
-            IsSelected = false;
+            //IsSelected = false;
         }
 
         #region INotifyPropertyChanged Members

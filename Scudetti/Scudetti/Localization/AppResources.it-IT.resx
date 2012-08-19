@@ -178,4 +178,14 @@
     <value>Congratulazioni!
 </value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Dettagli</value>
+  </data>
+  <data name="DetailsText" xml:space="preserve">
+    <value>Sblocca un nuovo livello ogni 15 scudetti.
+
+Sblocca un livello bonus ogni 50 scudetti.
+
+Sblocca un nuovo suggerimento ogni 5 scudetti.</value>
+  </data>
 </root>

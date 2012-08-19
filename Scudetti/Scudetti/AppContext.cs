@@ -1,17 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using Scudetti.Model;
 using Scudetti.ViewModel;
-using System.IO.IsolatedStorage;
 
 namespace Scudetti
 {
 	public static class AppContext
 	{
+        public const int HintsTreshold = 5;
 		public const int LockTreshold = 15;
 		public const int BonusTreshold = 50;
-		public static bool ToastDisplayed = false;
+
+        public static bool ToastDisplayed = false;
 
 		public static event RunWorkerCompletedEventHandler LoadCompleted;
 		public static IEnumerable<Shield> Shields { get; private set; }
@@ -55,7 +57,7 @@ namespace Scudetti
 		{
 			Shields = ShieldService.GetNew();
 			Levels = GroupLevels(Shields);
-			AvailableHints = 5;
+			AvailableHints = HintsTreshold;
 		}
 
 		private static void RaiseLoadCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -94,7 +96,7 @@ namespace Scudetti
 				if (!_availableHints.HasValue)
 				{
 					if (!IsolatedStorageSettings.ApplicationSettings.Contains("available_hints"))
-						IsolatedStorageSettings.ApplicationSettings.Add("available_hints", 5);
+						IsolatedStorageSettings.ApplicationSettings.Add("available_hints", HintsTreshold);
 
 					_availableHints = (int)IsolatedStorageSettings.ApplicationSettings["available_hints"];
 				}

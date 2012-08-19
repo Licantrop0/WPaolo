@@ -12,9 +12,10 @@
   <Shield Level="1" Id="Barcelona" Image="Barcellona.png" Hint="Spain" IsValidated="false">
     <Names>Futbol Club Barcelona</Names>
     <Names>FC Barcelona</Names>
+    <Names>FC Barcellona</Names>
     <Names>Barcelona</Names>
     <Names>Barcellona</Names>
-    <Names>FC Barcellona</Names>
+    <Names>Barça</Names>
   </Shield>
   <Shield Level="1" Id="BayernMonaco" Image="Bayern_Munich.png" Hint="Germany" IsValidated="false">
     <Names>Fußball-Club Bayern München</Names>
@@ -31,10 +32,11 @@
     <Names>Boca Juniors</Names>
   </Shield>
   <Shield Level="1" Id="BorussiaDortmund" Image="Borussia_Dortmund.png" Hint="Germany" IsValidated="false">
-    <Names>Ballspiel Verein Borussia 09</Names>
-    <Names>Borussia Dortmund</Names>
+    <Names>Ballspielverein Borussia 09 e. V. Dortmund</Names>
+    <Names>Ballspiel-Verein Borussia 09</Names>
     <Names>Borussia 09 Dortmund</Names>
-    <Names>Ballspiel-Verein Borussia 09 ev Dortmund</Names>
+    <Names>Borussia Dortmund</Names>
+    <Names>Die Schwarzgelben</Names>
     <Names>Die Borussen</Names>
   </Shield>
   <Shield Level="1" Id="Celtic" Image="celtic.png" Hint="Scotland" IsValidated="false">
@@ -61,16 +63,17 @@
   </Shield>
   <Shield Level="1" Id="Inter" Image="inter.png" Hint="Italy" IsValidated="false">
     <Names>Football Club Internazionale Milano</Names>
-    <Names>Inter</Names>
+    <Names>Internazionale Milano</Names>
     <Names>Internazionale</Names>
-    <Names>Internazionale milano</Names>
-    <Names>FC Inter</Names>
     <Names>FC Internazionale</Names>
+    <Names>FC Inter</Names>
+    <Names>Inter</Names>
   </Shield>
   <Shield Level="1" Id="Juventus" Image="juventus.png" Hint="Italy" IsValidated="false">
     <Names>Juventus Football Club</Names>
-    <Names>Juventus fc</Names>
+    <Names>Juventus FC</Names>
     <Names>Juventus</Names>
+    <Names>Juve</Names>
   </Shield>
   <Shield Level="1" Id="ManchesterUnited" Image="manchesterunited.png" Hint="England" IsValidated="false">
     <Names>Manchester United Football Club</Names>
@@ -193,8 +196,8 @@
   <Shield Level="2" Id="PsvEindhoven" Image="psv_eindhoven.png" Hint="Nederland" IsValidated="false">
     <Names>Philips Sport Vereniging Eindhoven</Names>
     <Names>Philips Sports Union</Names>
-    <Names>Psv Eindhoven</Names>
-    <Names>Psv</Names>
+    <Names>PSV Eindhoven</Names>
+    <Names>PSV</Names>
   </Shield>
   <Shield Level="2" Id="Shalke04" Image="schalke_04.png" Hint="Germany" IsValidated="false">
     <Names>Fußball-Club Gelsenkirchen-Schalke 04</Names>
@@ -204,9 +207,10 @@
   </Shield>
   <Shield Level="2" Id="Siviglia" Image="sevilla-logo.png" Hint="Spain" IsValidated="false">
     <Names>Sevilla Fútbol Club</Names>
-    <Names>Siviglia</Names>
     <Names>Sevilla FC</Names>
     <Names>Sevilla</Names>
+    <Names>Siviglia</Names>
+    <Names>Siviglia FC</Names>
   </Shield>
   <Shield Level="2" Id="ShakhtarDonetsk" Image="Shakhtar_donetsk.png" Hint="Ukraine" IsValidated="false">
     <Names>Futbol'nyj Klub Šachtar</Names>
@@ -252,8 +256,8 @@
   <Shield Level="3" Id="AekAtene" Image="aekatene.png" Hint="Greece" IsValidated="false">
     <Names>Aek Athens FC</Names>
     <Names>Aek Athens</Names>
-    <Names>Aek</Names>
     <Names>Aek Atene</Names>
+    <Names>Aek</Names>
   </Shield>
   <Shield Level="3" Id="Auxerre" Image="Aj-auxerre.png" Hint="France" IsValidated="false">
     <Names>Association de la Jeunesse Auxerroise </Names>
@@ -277,8 +281,8 @@
   <Shield Level="3" Id="Besiktas" Image="Besiktas.png" Hint="Turkey" IsValidated="false">
     <Names>Beşiktaş Jimnastik Kulübü</Names>
     <Names>Besiktas JK</Names>
-    <Names>Besiktas</Names>
     <Names>Beşiktaş</Names>
+    <Names>Besiktas</Names>
   </Shield>
   <Shield Level="3" Id="BlackburnRovers" Image="blackburn-rovers.png" Hint="England" IsValidated="false">
     <Names>Blackburn Rovers Football Club</Names>
@@ -288,10 +292,10 @@
   </Shield>
   <Shield Level="3" Id="DeportivoLaCoruna" Image="deportivolacoruna.png" Hint="Spain" IsValidated="false">
     <Names>Real Club Deportivo de La Coruña</Names>
-    <Names>Deportivo La Coruna</Names>
-    <Names>Deportivo La Coruña</Names>
     <Names>RC Deportivo La Coruña</Names>
     <Names>RC Deportivo La Coruna</Names>
+    <Names>Deportivo La Coruna</Names>
+    <Names>Deportivo La Coruña</Names>
   </Shield>
   <Shield Level="3" Id="Feyenoord" Image="feyenoord.png" Hint="Nederland" IsValidated="false">
     <Names>Feyenoord Rotterdam</Names>
@@ -383,15 +387,15 @@
   <Shield Level="4" Id="Monacò" Image="as-monaco.png" Hint="France" IsValidated="false">
     <Names>Association Sportive de Monaco Football Club</Names>
     <Names>Monacò</Names>
-    <Names>as Monaco Fc</Names>
+    <Names>AS Monaco FC</Names>
+    <Names>AS Monaco</Names>
     <Names>Monaco</Names>
-    <Names>as Monaco</Names>
   </Shield>
   <Shield Level="4" Id="AtleticoBilbao" Image="athletic-bilbao.png" Hint="Spain" IsValidated="false">
     <Names>Athletic Club</Names>
     <Names>Atletico Bilbao</Names>
-    <Names>Athletic</Names>
     <Names>Athletic Kluba</Names>
+    <Names>Athletic</Names>
   </Shield>
   <Shield Level="4" Id="BirminghamCity" Image="birmingham.png" Hint="England" IsValidated="false">
     <Names>Birmingham City Football Club</Names>
@@ -401,8 +405,8 @@
   </Shield>
   <Shield Level="4" Id="CskaMosca" Image="cska-moscow.png" Hint="Russia" IsValidated="false">
     <Names>PFC CSKA Moscow</Names>
-    <Names>Cska Mosca</Names>
-    <Names>Cska Moscow</Names>
+    <Names>CSKA Moscow</Names>
+    <Names>CSKA Mosca</Names>
   </Shield>
   <Shield Level="4" Id="EintrachtFrancoforte" Image="eintracht-frankfurt.png" Hint="Germany" IsValidated="false">
     <Names>Eintracht Frankfurt</Names>
@@ -413,10 +417,10 @@
   </Shield>
   <Shield Level="4" Id="Copenaghen" Image="fc-kobenhavn.png" Hint="Denmark" IsValidated="false">
     <Names>Football Club København</Names>
-    <Names>fc Copenaghen</Names>
+    <Names>FC Copenaghen</Names>
+    <Names>FC Copenhagen</Names>
     <Names>Copenaghen</Names>
     <Names>Copenhagen</Names>
-    <Names>Fc Copenhagen</Names>
   </Shield>
   <Shield Level="4" Id="Nantes" Image="fc-nantes.png" Hint="France" IsValidated="false">
     <Names>Football Club de Nantes</Names>
@@ -447,14 +451,14 @@
   </Shield>
   <Shield Level="4" Id="PartizanBelgrado" Image="partizan-belgrade.png" Hint="Serbia" IsValidated="false">
     <Names>Fudbalski klub Partizan</Names>
-    <Names>Partizan</Names>
     <Names>Partizan Belgrado</Names>
     <Names>Partizan Belgrade</Names>
+    <Names>Partizan</Names>
   </Shield>
   <Shield Level="4" Id="RapidVienna" Image="rapidvienna.png" Hint="Austria" IsValidated="false">
     <Names>Sportklub Rapid</Names>
     <Names>SK Rapid</Names>
-    <Names>Rapid wien</Names>
+    <Names>Rapid Wien</Names>
     <Names>Rapid Vienna</Names>
     <Names>Rapid</Names>
   </Shield>
@@ -464,7 +468,7 @@
   </Shield>
   <Shield Level="4" Id="SpartaPraga" Image="sparta-praha.png" Hint="Rep.Czeck" IsValidated="false">
     <Names>Athletic Club Sparta Praha fotbal</Names>
-    <Names>ac Sparta Praha</Names>
+    <Names>AC Sparta Praha</Names>
     <Names>Sparta Praha</Names>
     <Names>Sparta Praga</Names>
   </Shield>
@@ -520,8 +524,8 @@
     <Names>Club Brugge KV</Names>
     <Names>Football Club Brugeois</Names>
     <Names>Club Brugeois</Names>
-    <Names>bruges</Names>
     <Names>Club Brugge</Names>
+    <Names>bruges</Names>
   </Shield>
   <Shield Level="5" Id="CrystalPalace" Image="crystal_palace.png" Hint="England" IsValidated="false">
     <Names>Crystal Palace Football Club</Names>
@@ -631,6 +635,7 @@
   <Shield Level="6" Id="ColoColo" Image="colo colo.png" Hint="Chile" IsValidated="false">
     <Names>Club Social y Deportivo Colo-Colo</Names>
     <Names>Deportivo Colo-Colo</Names>
+    <Names>Deportivo Colo Colo</Names>
     <Names>Colo-Colo</Names>
     <Names>Colo Colo</Names>
   </Shield>
@@ -861,11 +866,13 @@
     <Names>Uruguai</Names>
   </Shield>
   <Shield Level="100" Id="usa" Image="usa.png" Hint="North America" IsValidated="false">
+    <Names>United States of America</Names>
+    <Names>United States</Names>
     <Names>USA</Names>
+    <Names>Estados Unidos da América</Names>
     <Names>Estados Unidos</Names>
     <Names>U.S.A.</Names>
-    <Names>United states</Names>
-    <Names>Estados Unidos da América</Names>
+    <Names>United States</Names>
     <Names>Stati Uniti</Names>
   </Shield>
 

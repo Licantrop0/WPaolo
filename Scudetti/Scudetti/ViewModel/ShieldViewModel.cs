@@ -75,7 +75,7 @@ namespace Scudetti.ViewModel
 			{
 				SoundManager.PlayValidated();
 				CurrentShield.IsValidated = true;
-				if (AppContext.TotalShieldUnlocked % 5 == 0)
+				if (AppContext.TotalShieldUnlocked % AppContext.HintsTreshold == 0)
 					AppContext.AvailableHints++;
 
 				MessengerInstance.Send("goback", "navigation");

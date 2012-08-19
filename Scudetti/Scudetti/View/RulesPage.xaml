@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
 	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -14,20 +15,37 @@
 	Style="{StaticResource SlidePage}"
 	shell:SystemTray.IsVisible="False">
 
-	<Grid Background="{StaticResource DefaultBackground}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
 
-		<TextBlock Text="{Binding LocalizedResources.Rules,
-			Source={StaticResource LocalizedStrings}}" Style="{StaticResource TitleTextBlock}"/>
-
-		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="26,0">
+	<controls:Pivot Background="{StaticResource DefaultBackground}">
+		<controls:Pivot.ItemContainerStyle>
+			<Style TargetType="controls:PivotItem">
+				<Setter Property="Margin" Value="12"/>
+			</Style>
+		</controls:Pivot.ItemContainerStyle>
+		<controls:PivotItem>
+			<controls:PivotItem.Header>
+				<TextBlock Style="{StaticResource TextBlockBase}" 
+					 Text="{Binding LocalizedResources.Rules,
+					Source={StaticResource LocalizedStrings}}" />
+			</controls:PivotItem.Header>
 			<TextBlock Text="{Binding LocalizedResources.RuleText,
-			Source={StaticResource LocalizedStrings}}" TextAlignment="Center"
+				Source={StaticResource LocalizedStrings}}" TextAlignment="Center"
 					   FontSize="50" TextWrapping="Wrap"
+					   LineStackingStrategy="BlockLineHeight" LineHeight="80"
 					   Style="{StaticResource TextBlockBase}" />
-		</Grid>
-	</Grid>
+		</controls:PivotItem>
+
+		<controls:PivotItem>
+			<controls:PivotItem.Header>
+				<TextBlock Style="{StaticResource TextBlockBase}" 
+					 Text="{Binding LocalizedResources.Details,
+		Source={StaticResource LocalizedStrings}}" />
+			</controls:PivotItem.Header>
+			<TextBlock Text="{Binding LocalizedResources.DetailsText,
+				Source={StaticResource LocalizedStrings}}" 
+					   FontSize="50" TextWrapping="Wrap"
+					   LineStackingStrategy="BlockLineHeight" LineHeight="60"
+					   Style="{StaticResource TextBlockBase}" />
+		</controls:PivotItem>
+	</controls:Pivot>
 </phone:PhoneApplicationPage>

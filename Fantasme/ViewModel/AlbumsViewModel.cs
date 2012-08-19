@@ -256,7 +256,7 @@ namespace NascondiChiappe.ViewModel
 
         private bool IsTrialWithCheck()
         {
-            if (WPCommon.Helpers.TrialManagement.IsTrialMode && SelectedAlbum.Photos.Count >= 4)
+            if (WPCommon.Helpers.TrialManagement.IsTrialMode && SelectedAlbum.Photos.Count >= 6)
             {
                 NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
                 return true;

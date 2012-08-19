@@ -4,11 +4,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NascondiChiappe.Localization;
 using NascondiChiappe.Model;
 using NascondiChiappe.ViewModel;
+using WPCommon.Helpers;
 
 namespace NascondiChiappe.View
 {
@@ -57,10 +59,25 @@ namespace NascondiChiappe.View
                 VM.NewAlbum.Execute(null);
                 return;
             }
+
+            if (!TrialManagement.IsTrialMode)
+                return;
+
+            if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
+                return;
+
+            AdPlaceHolder.Children.Add(new AdControl("4e17209f-3637-44ff-82b0-ed87b368a8fc", "10041859", true)
+            {
+                Height = 80,
+                Width = 480,
+            });
+
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            AdPlaceHolder.Children.Clear();
+
             if (e.Uri.OriginalString == "/View/PasswordPage.xaml")
                 NavigationService.RemoveBackEntry();
         }
@@ -89,7 +106,6 @@ namespace NascondiChiappe.View
 
                 ApplicationBar.Buttons.Add(TakePictureAppBarButton);
                 ApplicationBar.Buttons.Add(CopyFromMediaLibraryAppBarButton);
-
             }
         }
 
@@ -98,7 +114,7 @@ namespace NascondiChiappe.View
             //Fix errore z-order GestureListener
             if (PopupBackground.Visibility == Visibility.Collapsed)
             {
-                var CurrentImage = ((Grid)sender).DataContext as UberPhoto;
+                var CurrentImage = ((Grid)sender).DataContext as Photo;
                 var uriString = string.Format("/View/ViewPhotosPage.xaml?album={0}&index={1}",
                     CurrentImage.Album, VM.SelectedAlbum.Photos.IndexOf(CurrentImage));
                 NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
@@ -149,13 +165,11 @@ namespace NascondiChiappe.View
             TakePictureAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_camera.png", UriKind.Relative);
             TakePictureAppBarButton.Text = AppResources.TakePhoto;
             TakePictureAppBarButton.Click += (sender, e) => VM.TakePicture.Execute(null);
-            //ApplicationBar.Buttons.Add(TakePictureAppBarButton);
 
             CopyFromMediaLibraryAppBarButton = new ApplicationBarIconButton();
             CopyFromMediaLibraryAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_addpicture.png", UriKind.Relative);
             CopyFromMediaLibraryAppBarButton.Text = AppResources.CopyFromMediaLibrary;
             CopyFromMediaLibraryAppBarButton.Click += (sender, e) => VM.CopyFromMediaLibrary.Execute(null);
-            //ApplicationBar.Buttons.Add(CopyFromMediaLibraryAppBarButton);
 
             CopyToMediaLibraryAppBarButton = new ApplicationBarIconButton();
             CopyToMediaLibraryAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_sendphoto.png", UriKind.Relative);

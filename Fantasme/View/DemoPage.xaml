@@ -22,14 +22,14 @@
                    Text="{Binding LocalizedResources.DemoTitle, Source={StaticResource LocalizedStrings}}" />
 
         <StackPanel Grid.Row="1" VerticalAlignment="Center">
-            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="12,0"
+            <TextBlock Style="{StaticResource TextBlockStyle}" TextAlignment="Center" Margin="12,0"
                        Text="{Binding LocalizedResources.DemoInfo, Source={StaticResource LocalizedStrings}}"
                        FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
 
-            <HyperlinkButton Style="{StaticResource HyperlinkStyle}"
+            <HyperlinkButton Style="{StaticResource HyperlinkStyle}" HorizontalAlignment="Center"
                              FontSize="{StaticResource PhoneFontSizeExtraLarge}"
                              Content="{Binding LocalizedResources.ClickToBuy, Source={StaticResource LocalizedStrings}}" 
-                             Click="BuyAppClick"/>
+                             Click="BuyAppClick" Margin="12"/>
         </StackPanel>
     </Grid>
 </phone:PhoneApplicationPage>

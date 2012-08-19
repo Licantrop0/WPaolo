@@ -26,27 +26,27 @@ namespace NascondiChiappe.ViewModel
             }
         }
 
-        public ObservableCollection<UberPhoto> Photos { get; set; }
-        public ObservableCollection<UberPhoto> SelectedPhotos { get; set; }
+        public ObservableCollection<Photo> Photos { get; set; }
+        public ObservableCollection<Photo> SelectedPhotos { get; set; }
 
         public AlbumViewModel()
-            : this(string.Empty, Enumerable.Empty<UberPhoto>())
+            : this(string.Empty, Enumerable.Empty<Photo>())
         { }
 
-        public AlbumViewModel(IGrouping<string, UberPhoto> album)
+        public AlbumViewModel(IGrouping<string, Photo> album)
             : this(album.Key, album)
         { }
 
-        public AlbumViewModel(string name, IEnumerable<UberPhoto> photos)
+        public AlbumViewModel(string name, IEnumerable<Photo> photos)
         {
             Name = name;
-            Photos = new ObservableCollection<UberPhoto>(photos);
+            Photos = new ObservableCollection<Photo>(photos);
 
             Photos.CollectionChanged += (sender, e) =>
             {
                 RaisePropertyChanged("HintVisibility");
             };
-            SelectedPhotos = new ObservableCollection<UberPhoto>();
+            SelectedPhotos = new ObservableCollection<Photo>();
             SelectedPhotos.CollectionChanged += (sender, e) =>
             {
                 Messenger.Default.Send<bool>(SelectedPhotos.Count > 0, "SelectedPhotos");
@@ -76,10 +76,10 @@ namespace NascondiChiappe.ViewModel
 
         private void SelectionChangedAction(SelectionChangedEventArgs e)
         {
-            foreach (UberPhoto photo in e.RemovedItems)
+            foreach (Photo photo in e.RemovedItems)
                 SelectedPhotos.Remove(photo);
 
-            foreach (UberPhoto photo in e.AddedItems)
+            foreach (Photo photo in e.AddedItems)
                 SelectedPhotos.Add(photo);
         }
 

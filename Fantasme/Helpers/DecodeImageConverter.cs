@@ -23,7 +23,6 @@ namespace NascondiChiappe.Helpers
             }
             catch (IsolatedStorageException)
             {
-                
                 return null;
             }
         }

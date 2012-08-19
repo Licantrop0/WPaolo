@@ -221,10 +221,10 @@ Il recupero password NON è disponibile.</value>
     <value>Clicca qui per acquistarla!</value>
   </data>
   <data name="DemoInfo" xml:space="preserve">
-    <value>Per registrare più di quattro foto ed organizzarle in più di un album, devi acquistare la versione completa.</value>
+    <value>Per nascondere più di 6 foto ed organizzarle in più album, devi acquistare la versione completa.</value>
   </data>
   <data name="DemoTitle" xml:space="preserve">
-    <value>Questa è una Demo</value>
+    <value>Modalità Demo</value>
   </data>
   <data name="PhotosCopied" xml:space="preserve">
     <value>Le Foto sono state copiate nella tua MediaLibrary</value>

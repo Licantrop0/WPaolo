@@ -241,7 +241,7 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To store more than four photos and organize them in more than one album, you have to buy the full version..
+        ///   Looks up a localized string similar to To hide more than 6 photos and organize them in more than one album, please buy the full version..
         /// </summary>
         public static string DemoInfo {
             get {
@@ -250,7 +250,7 @@ namespace NascondiChiappe.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is a Demo.
+        ///   Looks up a localized string similar to Demo Mode.
         /// </summary>
         public static string DemoTitle {
             get {

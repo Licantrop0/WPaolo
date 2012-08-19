@@ -64,6 +64,7 @@ namespace NascondiChiappe.ViewModel
 
         /// <summary>Set this value to the Marketplace Product ID</summary>
         public string AppId { get; set; }
+
         public string AppName
         {
             get { return AppResources.AppName; }
@@ -83,20 +84,50 @@ namespace NascondiChiappe.ViewModel
             }
         }
 
-        public string CustomText
-        {
-            get { return string.Empty; }
-        }
-
         #endregion
 
         #region Visual
 
-        private ImageSource _customLogo;
-        public ImageSource CustomLogo
+        public FontFamily DefaultFont { get; set; }
+
+        public string CustomText { get; set; }
+
+        private FontFamily _customTextFontFamily;
+        public FontFamily CustomTextFontFamily
         {
-            get { return _customLogo; }
-            set { _customLogo = value; }
+            get { return _customTextFontFamily ?? DefaultFont; }
+            set { _customTextFontFamily = value; }
+        }
+
+        private double? _customTextFontSize;
+        public double CustomTextFontSize
+        {
+            get { return _customTextFontSize ?? MinFontSize; }
+            set { _customTextFontSize = value; }
+        }
+
+        private Brush _customTextForeground;
+        public Brush CustomTextForeground
+        {
+            get { return _customTextForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
+            set { _customTextForeground = value; }
+        }
+
+
+        private Thickness _appNameMargin = new Thickness(0);
+        public Thickness AppNameMargin
+        {
+            get { return _appNameMargin; }
+            set { _appNameMargin = value; }
+        }
+
+        public ImageSource CustomLogo { get; set; }
+
+        private Thickness _logoMargin = new Thickness(24);
+        public Thickness LogoMargin
+        {
+            get { return _logoMargin; }
+            set { _logoMargin = value; }
         }
 
         private Thickness _customLogoMargin = new Thickness(0);
@@ -106,39 +137,15 @@ namespace NascondiChiappe.ViewModel
             set { _customLogoMargin = value; }
         }
 
-        private Thickness _logoMargin = new Thickness(0);
-        public Thickness LogoMargin
-        {
-            get { return _logoMargin; }
-            set { _logoMargin = value; }
-        }
+        public Brush DefaultBackground { get; set; }
 
-        private Brush _defaultBackground = new SolidColorBrush(Colors.Black);
-        public Brush DefaultBackground
-        {
-            get { return _defaultBackground; }
-            set { _defaultBackground = value; }
-        }
-
-        private Brush _defaultForeground = new SolidColorBrush(Colors.White);
-        public Brush DefaultForeground
-        {
-            get { return _defaultForeground; }
-            set { _defaultForeground = value; }
-        }
+        public Brush DefaultForeground { get; set; }
 
         private Brush _headerForeground;
         public Brush HeaderForeground
         {
-            get { return _headerForeground ?? _defaultForeground; }
+            get { return _headerForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
             set { _headerForeground = value; }
-        }
-
-        private FontFamily _defaultFont = new FontFamily("Segoe WP SemiLight");
-        public FontFamily DefaultFont
-        {
-            get { return _defaultFont; }
-            set { _defaultFont = value; }
         }
 
         private double _minFontSize = 19;

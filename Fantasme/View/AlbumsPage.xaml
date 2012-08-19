@@ -56,17 +56,7 @@
                                         <toolkit:GestureService.GestureListener>
                                             <toolkit:GestureListener DoubleTap="GestureListener_DoubleTap"  />
                                         </toolkit:GestureService.GestureListener>
-                                        <Image Source="{Binding Path, Converter={StaticResource DecodeImage}}">
-                                            <!--<toolkit:ContextMenuService.ContextMenu>
-                                            <toolkit:ContextMenu>
-                                                <toolkit:MenuItem Header="{Binding LocalizedResources.Delete, Source={StaticResource LocalizedStrings}}"
-                                                                  Command="{Binding AlwaysCommand}"/>
-                                                <toolkit:MenuItem Header="{Binding LocalizedResources.Move, Source={StaticResource LocalizedStrings}}"
-                                                                  Command="{Binding AlwaysCommand}"
-                                                                  CommandParameter="param1"/>
-                                            </toolkit:ContextMenu>
-                                        </toolkit:ContextMenuService.ContextMenu>-->
-                                        </Image>
+                                        <Image Source="{Binding Path, Converter={StaticResource DecodeImage}}" />
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -86,7 +76,12 @@
         </controls:Pivot>
 
         <Rectangle x:Name="PopupBackground" Fill="#CC000000"
-                   Visibility="Collapsed" />
+                   Visibility="Collapsed">
+            <!--<toolkit:GestureService.GestureListener>
+                <toolkit:GestureListener Tap="PopupBackground_Tap"  />
+            </toolkit:GestureService.GestureListener>-->
+        </Rectangle>
+
         <Border x:Name="PopupBorder" Margin="0,0,0,72"
                 CornerRadius="10" Visibility="Collapsed"
                 BorderBrush="WhiteSmoke"

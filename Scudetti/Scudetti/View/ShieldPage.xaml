@@ -40,7 +40,10 @@
 					Stretch="None" />
 			<TextBox Name="ShieldNameTextbox" Text="{Binding InputShieldName, Mode=TwoWay}"
 					 KeyDown="ShieldNameTextbox_KeyDown"
-					 Visibility="{Binding InputVisibile, Mode=OneTime}" />
+					 Visibility="{Binding InputVisibile, Mode=OneTime}"
+					 Background="#BFFFFFFF" BorderBrush="#BFFFFFFF"
+					 Foreground="Black" SelectionBackground="#FF1BA1E2"
+					 SelectionForeground="White" />
 			<TextBlock Text="{Binding OriginalName}" FontSize="70"
 					   Style="{StaticResource TextBlockBase}"
 					   Visibility="{Binding CurrentShield.IsValidated,
@@ -52,12 +55,10 @@
 					   Style="{StaticResource StatusTextBlock}"
 					   Margin="0,-12"
 					   TextWrapping="Wrap" />
-
 		</StackPanel>
 		
 		<StackPanel Name="AdPlaceHolder" VerticalAlignment="Bottom"
 					Height="80" Margin="0,72" />
-
 	</Grid>
 
 	<phone:PhoneApplicationPage.ApplicationBar>

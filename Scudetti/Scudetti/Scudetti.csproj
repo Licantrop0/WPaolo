@@ -343,6 +343,7 @@
     </Content>
     <Resource Include="Images\WinBadge.png" />
     <Resource Include="Images\sfondo.jpg" />
+    <Resource Include="Images\sfondo-noborder.jpg" />
     <Content Include="Sound\booh.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

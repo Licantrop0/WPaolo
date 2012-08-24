@@ -30,7 +30,7 @@
 
 		<StackPanel Grid.Row="1" Margin="32,0">
 			<toolkit:ToggleSwitch Header="{Binding LocalizedResources.Sounds,
-				Source={StaticResource LocalizedStrings}}" IsChecked="{Binding SoundEnabled, Mode=TwoWay}" />
+				Source={StaticResource LocalizedStrings}}" IsChecked="{Binding SoundEnabled, Mode=TwoWay}" Background="Black" Foreground="White" SwitchForeground="#FF1BA1E2" />
 
             <Button Click="AboutButton_Click" FontSize="64" FontWeight="Bold"
                     HorizontalAlignment="Center">
@@ -48,7 +48,7 @@
 			<Button Command="{Binding ResetCommand}" Margin="0,62"
 					toolkit:TiltEffect.IsTiltEnabled="True"
 					Content="{Binding LocalizedResources.Reset,
-				Source={StaticResource LocalizedStrings}}" />
+				Source={StaticResource LocalizedStrings}}" Background="#33FFFFFF" BorderBrush="White" Foreground="White" />
 
 
         </StackPanel>

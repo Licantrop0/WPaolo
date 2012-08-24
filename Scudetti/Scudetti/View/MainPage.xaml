@@ -45,7 +45,6 @@
 				<TextBlock Text="Play" Style="{StaticResource TextBlockBase}" VerticalAlignment="Center" />
 			</StackPanel>
 		</ControlTemplate>
-
 	</phone:PhoneApplicationPage.Resources>
 
 	<Grid Background="{StaticResource DefaultBackground}">

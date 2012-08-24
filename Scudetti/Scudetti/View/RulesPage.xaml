@@ -15,8 +15,11 @@
 	Style="{StaticResource SlidePage}"
 	shell:SystemTray.IsVisible="False">
 
-
-	<controls:Pivot Background="{StaticResource DefaultBackground}">
+	<controls:Pivot>
+		<controls:Pivot.Background>
+			<ImageBrush ImageSource="/Scudetti;component/Images/sfondo-noborder.jpg"
+						Stretch="None" />
+		</controls:Pivot.Background>
 		<controls:Pivot.ItemContainerStyle>
 			<Style TargetType="controls:PivotItem">
 				<Setter Property="Margin" Value="12"/>

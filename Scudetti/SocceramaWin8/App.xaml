@@ -9,11 +9,7 @@
   <Application.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <!-- 
-                    Styles that define common aspects of the platform look and feel
-                    Required by Visual Studio project and item templates
-                 -->
-        <ResourceDictionary Source="Common/StandardStyles.xaml" />
+        <ResourceDictionary Source="Styles/MainStyles.xaml" />
       </ResourceDictionary.MergedDictionaries>
       <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
     </ResourceDictionary>

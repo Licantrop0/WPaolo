@@ -43,7 +43,7 @@ namespace SocceramaWin8.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<LevelViewModel>();
+            SimpleIoc.Default.Register<LevelsViewModel>();
         }
 
 
@@ -55,14 +55,13 @@ namespace SocceramaWin8.ViewModel
             }
         }
 
-        public LevelViewModel LevelVM
+        public LevelsViewModel LevelsVM
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<LevelViewModel>();
+                return ServiceLocator.Current.GetInstance<LevelsViewModel>();
             }
         }
-
         
         public static void Cleanup()
         {

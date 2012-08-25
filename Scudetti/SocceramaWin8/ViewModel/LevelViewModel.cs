@@ -11,48 +11,42 @@ namespace SocceramaWin8.ViewModel
 {
     public class LevelViewModel : ViewModelBase
     {
-
-        //private IEnumerable<IGrouping<int, Shield>> _levels;
-        //public IEnumerable<IGrouping<int, Shield>> Levels
-        //{
-        //    get { return _levels; }
-        //    set
-        //    {
-        //        _levels = value;
-        //        RaisePropertyChanged("Levels");
-        //    }
-        //}
-
-        //private IEnumerable<Shield> _shields;
-        //public IEnumerable<Shield> Shields
-        //{
-        //    get { return _shields; }
-        //    set
-        //    {
-        //        _shields = value;
-        //        RaisePropertyChanged("Shields");
-        //    }
-        //}
-
-        public CollectionViewSource cvs { get; set; }
-
-        public LevelViewModel()
+        int _levelNumber;
+        public int LevelNumber
         {
-            if (!IsInDesignMode)
+            get { return _levelNumber; }
+            set 
             {
-                LoadData();
+                _levelNumber = value;
+                RaisePropertyChanged("LevelNumber");
+                RaisePropertyChanged("LevelName");
             }
         }
 
-        async void LoadData()
+        public string LevelName { get { return "Livello " + LevelNumber; } }
+
+        private IEnumerable<Shield> _shields;
+        public IEnumerable<Shield> Shields
         {
-            var shields = await ShieldService.Load();
-            cvs = new CollectionViewSource()
+            get { return _shields; }
+            set
             {
-                IsSourceGrouped = true,
-                Source =  shields.GroupBy(s => s.Level)
-            };
-            RaisePropertyChanged("cvs");
+                _shields = value;
+                RaisePropertyChanged("Shields");
+            }
+        }
+
+        public LevelViewModel()
+        {
+            if (IsInDesignMode)
+            {
+                LevelNumber = 1;
+            }
+        }
+        public LevelViewModel(IGrouping<int, Shield> level)
+        {
+            LevelNumber = level.Key;
+            Shields = level;
         }
     }
 }

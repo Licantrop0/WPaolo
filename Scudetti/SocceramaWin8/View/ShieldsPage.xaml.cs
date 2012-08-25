@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Scudetti.Model;
+using SocceramaWin8.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -37,7 +39,7 @@ namespace SocceramaWin8.View
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            // TODO: Assign a collection of bindable groups to this.DefaultViewModel["Groups"]
+            this.DataContext = new LevelViewModel((IGrouping<int, Shield>)navigationParameter);
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hlp="using:SocceramaWin8.Helper">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="StandardStyles.xaml"/>
+        <ResourceDictionary Source="AppBarStyles.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <hlp:ImagePathConverter x:Key="ImagePathConv" />
+    
+    <DataTemplate x:Key="ShieldItemTemplate">
+        <Grid HorizontalAlignment="Left" Width="250" Height="250">
+            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Id}"/>
+            </Border>
+            <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                <TextBlock Text="{Binding Id}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
+                <TextBlock Text="{Binding}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

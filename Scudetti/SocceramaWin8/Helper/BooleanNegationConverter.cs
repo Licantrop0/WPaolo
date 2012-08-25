@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace SocceramaWin8.Common
+namespace SocceramaWin8.Helper
 {
     /// <summary>
     /// Value converter that translates true to false and vice versa.

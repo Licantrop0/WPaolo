@@ -1,39 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-
-  <Identity Name="7998604d-1e96-48f2-9466-3816de33e65c"
-            Publisher="CN=Luca"
-            Version="1.0.0.0" />
-
+  <Identity Name="7998604d-1e96-48f2-9466-3816de33e65c" Publisher="CN=Luca" Version="1.0.0.0" />
   <Properties>
     <DisplayName>SocceramaWin8</DisplayName>
     <PublisherDisplayName>Luca</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="SocceramaWin8.App">
-        <VisualElements
-            DisplayName="SocceramaWin8"
-            Logo="Assets\Logo.png"
-            SmallLogo="Assets\SmallLogo.png"
-            Description="SocceramaWin8"
-            ForegroundText="light"
-            BackgroundColor="#464646">
-            <DefaultTile ShowName="allLogos" />
-            <SplashScreen Image="Assets\SplashScreen.png" />
-        </VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="SocceramaWin8.App">
+      <VisualElements DisplayName="Soccerama" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Soccerama for Windows 8" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#467721" />
+      </VisualElements>
     </Application>
   </Applications>
   <Capabilities>

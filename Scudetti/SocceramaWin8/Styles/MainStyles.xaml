@@ -2,23 +2,52 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:hlp="using:SocceramaWin8.Helper">
-    
+
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="StandardStyles.xaml"/>
         <ResourceDictionary Source="AppBarStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
+
     <hlp:ImagePathConverter x:Key="ImagePathConv" />
-    
-    <DataTemplate x:Key="ShieldItemTemplate">
-        <Grid HorizontalAlignment="Left" Width="250" Height="250">
-            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Id}"/>
-            </Border>
+    <ImageBrush x:Key="DefaultBackground" ImageSource="ms-appx:///Assets/sfondo.jpg" />
+    <ImageBrush x:Key="DefaultSnappedBackground" ImageSource="ms-appx:///Assets/sfondo-snapped.jpg"
+                Stretch="None" AlignmentY="Center" />
+
+    <Style x:Key="DefaultLayoutRootStyle" TargetType="Panel">
+        <Setter Property="Background" Value="{StaticResource DefaultBackground}"/>
+        <Setter Property="ChildrenTransitions">
+            <Setter.Value>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DataTemplate x:Key="Shield250ItemTemplate">
+        <Grid HorizontalAlignment="Left" Width="250" Height="250" Background="White">
+            <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" Stretch="None" AutomationProperties.Name="{Binding Id}"/>
             <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
                 <TextBlock Text="{Binding Id}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
                 <TextBlock Text="{Binding}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
             </StackPanel>
         </Grid>
     </DataTemplate>
+
+    <DataTemplate x:Key="Shield80ItemTemplate">
+        <Grid Margin="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="White" Width="60" Height="60">
+                <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" Stretch="UniformToFill"/>
+            </Border>
+            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                <TextBlock Text="{Binding Id}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
+                <TextBlock Text="{Binding}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
 </ResourceDictionary>

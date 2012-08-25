@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
+using Scudetti.Model;
+using SocceramaWin8.Common;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+
+namespace SocceramaWin8.View
+{
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class LevelsPage : LayoutAwarePage
+    {
+        public LevelsPage()
+        {
+            this.InitializeComponent();
+
+            Messenger.Default.Register<IGrouping<int, Shield>>(this, m =>
+            {
+                this.Frame.Navigate(typeof(ShieldsPage), m);
+            });
+
+        }
+    }
+}

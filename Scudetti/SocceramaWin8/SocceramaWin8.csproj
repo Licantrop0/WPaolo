@@ -119,11 +119,12 @@
     <Compile Include="Model\Shield.cs" />
     <Compile Include="Model\ShieldService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\LevelsViewModel.cs" />
     <Compile Include="ViewModel\LevelViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="View\LevelsPage.xaml.cs">
+      <DependentUpon>LevelsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ShieldsPage.xaml.cs">
       <DependentUpon>ShieldsPage.xaml</DependentUpon>
@@ -676,7 +677,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\MainPage.xaml">
+    <Page Include="View\LevelsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

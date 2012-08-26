@@ -9,11 +9,11 @@ namespace Scudetti
 {
 	public static class AppContext
 	{
-        public const int HintsTreshold = 5;
+		public const int HintsTreshold = 5;
 		public const int LockTreshold = 15;
 		public const int BonusTreshold = 50;
 
-        public static bool ToastDisplayed = false;
+		public static bool ToastDisplayed = false;
 
 		public static event RunWorkerCompletedEventHandler LoadCompleted;
 		public static IEnumerable<Shield> Shields { get; private set; }

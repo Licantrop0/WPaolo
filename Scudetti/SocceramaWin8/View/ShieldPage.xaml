@@ -1,20 +1,27 @@
 ﻿<common:LayoutAwarePage
-    x:Name="pageRoot"
-    x:Class="SocceramaWin8.View.ShieldsPage"
+    x:Class="SocceramaWin8.View.ShieldPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:common="using:SocceramaWin8.Common"
+    xmlns:hlp="using:SocceramaWin8.Helper"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding Source={StaticResource Locator}, Path=ShieldsVM}"
-    mc:Ignorable="d">
+    xmlns:vm="using:SocceramaWin8.ViewModel"
+    mc:Ignorable="d" Loaded="LayoutAwarePage_Loaded">
 
-    <Grid Name="LayoutRoot" Style="{StaticResource DefaultLayoutRootStyle}">
+    <common:LayoutAwarePage.Resources>
+        <vm:ShieldViewModel x:Key="ShieldVM" />        
+    </common:LayoutAwarePage.Resources>
+
+    <Grid Name="LayoutRoot" DataContext="{StaticResource ShieldVM}"
+          Style="{StaticResource DefaultLayoutRootStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        <Grid.Resources>
+            <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
+        </Grid.Resources>
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
@@ -22,42 +29,32 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding LevelName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Text="{Binding OriginalName}" Grid.Column="1" IsHitTestVisible="false"
+                       Visibility="{Binding CurrentShield.IsValidated, Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}"
+                       Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-        <!-- Horizontal scrolling grid used in most view states -->
-        <GridView Name="itemGridView" Grid.Row="1"
-                  AutomationProperties.AutomationId="ItemGridView"
-                  AutomationProperties.Name="Grouped Items"
-                  Padding="100,0,40,0"
-                  ItemsSource="{Binding SelectedLevel.Shields}"
-                  ItemTemplate="{StaticResource Shield250ItemTemplate}"
-                  SelectionMode="None"
-                  IsSwipeEnabled="True"
-                  IsItemClickEnabled="True"
-                  ItemClick="itemGridView_ItemClick" >
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapGrid />
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-        </GridView>
+        <StackPanel Grid.Row="1" Margin="12,0">
+            <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
+					Stretch="None" />
+            <TextBox Name="ShieldNameTextbox" Text="{Binding InputShieldName, Mode=TwoWay}"
+					 KeyDown="ShieldNameTextbox_KeyDown"
+					 Visibility="{Binding InputVisibile, Mode=OneTime}" />
+            <hlp:BindableTextBox BindableText="{Binding InputShieldName, Mode=TwoWay}"
+                                 					 KeyDown="ShieldNameTextbox_KeyDown"
 
-        <!-- Vertical scrolling list only used when snapped -->
-        <ListView
-            x:Name="itemListView"
-            AutomationProperties.AutomationId="ItemListView"
-            AutomationProperties.Name="Grouped Items"
-            Grid.Row="1"
-            Visibility="Collapsed"
-            Margin="0,-10,0,0"
-            Padding="10,0,0,60"
-            ItemsSource="{Binding SelectedLevel.Shields}"
-            ItemTemplate="{StaticResource Shield80ItemTemplate}"
-            SelectionMode="None"
-            IsSwipeEnabled="false">
-        </ListView>
+					 Visibility="{Binding InputVisibile, Mode=OneTime}" />
 
+            <TextBlock Text="{Binding OriginalName}" FontSize="70"
+					   Style="{StaticResource TextBlockBase}"
+					   Visibility="{Binding CurrentShield.IsValidated,
+						Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}"
+					   TextWrapping="Wrap" TextAlignment="Center" />
+            <TextBlock Text="{Binding HintText}"
+					   Visibility="{Binding InputVisibile, Mode=OneTime}"
+					   Style="{StaticResource StatusTextBlock}"
+					   TextWrapping="Wrap" />
+        </StackPanel>
 
         <VisualStateManager.VisualStateGroups>
             <!-- Visual states reflect the application's view state -->
@@ -71,12 +68,8 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Padding">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="96,137,10,56"/>
-                        </ObjectAnimationUsingKeyFrames>
 
-                        <ObjectAnimationUsingKeyFrames
-                            Storyboard.TargetName="LayoutRoot"
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
                             Storyboard.TargetProperty="(Grid.Background).(ImageBrush.RelativeTransform).(RotateTransform.Angle)">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="90"/>
                         </ObjectAnimationUsingKeyFrames>
@@ -97,16 +90,10 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DefaultSnappedBackground}"/>
                         </ObjectAnimationUsingKeyFrames>
-
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
-                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+
     </Grid>
 </common:LayoutAwarePage>

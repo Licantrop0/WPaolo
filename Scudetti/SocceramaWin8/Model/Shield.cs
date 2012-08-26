@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Xml.Serialization;
+using GalaSoft.MvvmLight;
 
 namespace Scudetti.Model
 {
-    public class Shield : INotifyPropertyChanged
+    public class Shield : ObservableObject
     {
         [XmlAttribute]
         public string Id { get; set; }
@@ -37,16 +38,5 @@ namespace Scudetti.Model
         {
             return string.Format("{0}, Lv: {1}", Names[0], Level);
         }
-
-        #region Interface Implementations
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        #endregion
     }
 }

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
+using Scudetti.Model;
 using SocceramaWin8.View;
+using SocceramaWin8.ViewModel;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -51,9 +54,16 @@ namespace SocceramaWin8
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
-                if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                Messenger.Default.Register<LevelViewModel>(this, m =>
                 {
-                    //TODO: Load state from previously suspended application
+                    rootFrame.Navigate(typeof(ShieldsPage), m);
+                });
+                Messenger.Default.Register<string>(this, "navigation", (m) => { if (m == "goback") rootFrame.GoBack(); });
+
+                if (args.PreviousExecutionState != ApplicationExecutionState.Suspended)
+                {
+                    if (AppContext.Shields == null)
+                        AppContext.LoadShieldsAsync();
                 }
 
                 // Place the frame in the current Window
@@ -84,7 +94,7 @@ namespace SocceramaWin8
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+            ShieldService.Save(AppContext.Shields);
             deferral.Complete();
         }
     }

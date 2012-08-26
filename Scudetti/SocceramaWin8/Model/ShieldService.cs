@@ -57,7 +57,7 @@ namespace Scudetti.Model
         public static async Task<IEnumerable<Shield>> GetNew()
         {
             string myFile = Path.Combine(Package.Current.InstalledLocation.Path, "Data\\Shields.xml");
-            StorageFolder myFolder = await StorageFolder.GetFolderFromPathAsync(Path.GetDirectoryName(myFile));
+            var myFolder = await StorageFolder.GetFolderFromPathAsync(Path.GetDirectoryName(myFile));
 
             using (var stream = await myFolder.OpenStreamForReadAsync(Path.GetFileName(myFile)))
             {

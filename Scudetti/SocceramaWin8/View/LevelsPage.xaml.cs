@@ -5,6 +5,7 @@ using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
 using Scudetti.Model;
 using SocceramaWin8.Common;
+using SocceramaWin8.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -27,12 +28,6 @@ namespace SocceramaWin8.View
         public LevelsPage()
         {
             this.InitializeComponent();
-
-            Messenger.Default.Register<IGrouping<int, Shield>>(this, m =>
-            {
-                this.Frame.Navigate(typeof(ShieldsPage), m);
-            });
-
         }
     }
 }

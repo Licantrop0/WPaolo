@@ -9,7 +9,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <hlp:ImagePathConverter x:Key="ImagePathConv" />
-    
+    <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
     <ImageBrush x:Key="DefaultBackground" ImageSource="ms-appx:///Assets/sfondo.jpg" >
         <ImageBrush.RelativeTransform>
             <RotateTransform CenterX="0.5" CenterY="0.5" Angle="0" />
@@ -55,6 +55,11 @@
         <Grid HorizontalAlignment="Left" Width="250" Height="250" Background="White">
             <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}"
                    Stretch="None" AutomationProperties.Name="{Binding Id}"/>
+            <Image Source="ms-appx:///Assets/spunta.png"
+                   Visibility="{Binding IsValidated, Converter={StaticResource BooleanVisibilityConv}}"
+                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                   Width="50" Margin="0,0,6,6" />
+
         </Grid>
     </DataTemplate>
 

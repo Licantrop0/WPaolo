@@ -33,7 +33,8 @@ namespace SocceramaWin8.View
 
         private void itemGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.Frame.Navigate(typeof(ShieldPage), e.ClickedItem);
+            Messenger.Default.Send<Shield>((Shield)e.ClickedItem);
+            this.Frame.Navigate(typeof(ShieldPage));
         }
     }
 }

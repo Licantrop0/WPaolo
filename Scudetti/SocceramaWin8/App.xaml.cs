@@ -91,10 +91,10 @@ namespace SocceramaWin8
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            ShieldService.Save(AppContext.Shields);
+            await ShieldService.Save(AppContext.Shields);
             deferral.Complete();
         }
     }

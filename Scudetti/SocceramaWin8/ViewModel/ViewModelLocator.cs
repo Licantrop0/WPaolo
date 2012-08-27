@@ -42,19 +42,11 @@ namespace SocceramaWin8.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LevelsViewModel>();
             SimpleIoc.Default.Register<ShieldsViewModel>();
+            SimpleIoc.Default.Register<ShieldViewModel>();
             ServiceLocator.Current.GetInstance<ShieldsViewModel>();
-        }
-
-
-        public MainViewModel MainVM
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
+            ServiceLocator.Current.GetInstance<ShieldViewModel>();
         }
 
         public LevelsViewModel LevelsVM
@@ -70,6 +62,14 @@ namespace SocceramaWin8.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<ShieldsViewModel>();
+            }
+        }
+
+        public ShieldViewModel ShieldVM
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ShieldViewModel>();
             }
         }
 

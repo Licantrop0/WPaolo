@@ -11,47 +11,65 @@ namespace Scudetti.Model
 {
     public static class ShieldService
     {
-        static ApplicationData appData = Windows.Storage.ApplicationData.Current;
+        static StorageFolder roamingFolder = ApplicationData.Current.RoamingFolder;
         static XmlSerializer serializer = new XmlSerializer(typeof(Shield[]));
 
-        public static async void Save(IEnumerable<Shield> scudetti)
+        public static async Task Save(IEnumerable<Shield> scudetti)
         {
-            var file = await appData.RoamingFolder.CreateFileAsync("Shields.xml", CreationCollisionOption.ReplaceExisting);
-
-            using (var stream = await file.OpenStreamForWriteAsync())
+            try
             {
-                serializer.Serialize(stream, scudetti);
-                stream.Flush();
+                var file = await roamingFolder.CreateFileAsync("Shields.xml", CreationCollisionOption.ReplaceExisting);
+                using (var stream = await file.OpenStreamForWriteAsync())
+                {
+                    serializer.Serialize(stream, scudetti);
+                    stream.Flush();
+                }
+            }
+            catch (IOException)
+            {
+                throw;
             }
         }
 
         public static async Task<IEnumerable<Shield>> Load()
         {
-#if !DEBUG
-            try
+#if DEBUG
+            return await GetNew();
+#else
+            if (await FileExist("Shields.xml"))
             {
-                var file = await appData.RoamingFolder.GetFileAsync("Shields.xml");
-
+                var file = await roamingFolder.GetFileAsync("Shields.xml");
                 using (var stream = await file.OpenStreamForReadAsync())
                 {
                     var obj = (Shield[])serializer.Deserialize(stream);
-                    stream.Flush();
+                    //stream.Flush();
                     return obj;
                 }
             }
+            else
+            {
+                return await GetNew();
+            }
+#endif
+        }
+
+
+        private static async Task<bool> FileExist(string fileName)
+        {
+            try
+            {
+                await roamingFolder.GetFileAsync(fileName);
+                return true;
+            }
             catch (FileNotFoundException)
             {
-                return GetNew();
+                return false;
             }
             catch (IOException)
             {
                 //Unable to load contents of file
                 throw;
             }
-#else
-            return await GetNew();
-#endif
-
         }
 
         public static async Task<IEnumerable<Shield>> GetNew()

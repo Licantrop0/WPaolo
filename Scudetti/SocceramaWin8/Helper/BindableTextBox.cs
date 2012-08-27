@@ -27,7 +27,7 @@ namespace SocceramaWin8.Helper
 
         private void OnBindableTextChanged(string oldValue, string newValue)
         {
-            Text = newValue; // null is not allowed as value!
+            Text = newValue ?? string.Empty; // null is not allowed as value!
         }
 
         private void BindableTextBox_TextChanged(object sender, TextChangedEventArgs e)

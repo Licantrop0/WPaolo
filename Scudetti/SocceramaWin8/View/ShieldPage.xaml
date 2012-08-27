@@ -7,14 +7,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:SocceramaWin8.ViewModel"
+    DataContext="{Binding Source={StaticResource Locator}, Path=ShieldVM}"
     mc:Ignorable="d" Loaded="LayoutAwarePage_Loaded">
 
-    <common:LayoutAwarePage.Resources>
-        <vm:ShieldViewModel x:Key="ShieldVM" />        
-    </common:LayoutAwarePage.Resources>
-
-    <Grid Name="LayoutRoot" DataContext="{StaticResource ShieldVM}"
-          Style="{StaticResource DefaultLayoutRootStyle}">
+    <Grid Name="LayoutRoot" Style="{StaticResource DefaultLayoutRootStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
@@ -37,19 +33,9 @@
         <StackPanel Grid.Row="1" Margin="12,0">
             <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
 					Stretch="None" />
-            <TextBox Name="ShieldNameTextbox" Text="{Binding InputShieldName, Mode=TwoWay}"
-					 KeyDown="ShieldNameTextbox_KeyDown"
-					 Visibility="{Binding InputVisibile, Mode=OneTime}" />
-            <hlp:BindableTextBox BindableText="{Binding InputShieldName, Mode=TwoWay}"
-                                 					 KeyDown="ShieldNameTextbox_KeyDown"
-
-					 Visibility="{Binding InputVisibile, Mode=OneTime}" />
-
-            <TextBlock Text="{Binding OriginalName}" FontSize="70"
-					   Style="{StaticResource TextBlockBase}"
-					   Visibility="{Binding CurrentShield.IsValidated,
-						Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}"
-					   TextWrapping="Wrap" TextAlignment="Center" />
+            <hlp:BindableTextBox x:Name="ShieldNameTextbox" BindableText="{Binding InputShieldName, Mode=TwoWay}"
+                                 KeyDown="ShieldNameTextbox_KeyDown" MaxWidth="350"
+                                 Visibility="{Binding InputVisibile, Mode=OneTime}" />
             <TextBlock Text="{Binding HintText}"
 					   Visibility="{Binding InputVisibile, Mode=OneTime}"
 					   Style="{StaticResource StatusTextBlock}"

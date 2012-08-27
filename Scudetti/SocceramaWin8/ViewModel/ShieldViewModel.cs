@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Scudetti.Model;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
+using SocceramaWin8.Helpers;
 
 namespace SocceramaWin8.ViewModel
 {
@@ -65,12 +66,11 @@ namespace SocceramaWin8.ViewModel
                 _hintText = string.Format(resources.GetString("AvailableHints"), 5);
                 return;
             }
-        }
-
-        public ShieldViewModel(Shield shield)
-        {
-            CurrentShield = shield;
-            InputShieldName = string.Empty;
+            MessengerInstance.Register<Shield>(this, shield =>
+            {
+                CurrentShield = shield;
+                InputShieldName = string.Empty;
+            });
         }
 
         public bool Validate()
@@ -85,6 +85,8 @@ namespace SocceramaWin8.ViewModel
                 CurrentShield.IsValidated = true;
                 if (AppContext.TotalShieldUnlocked % AppContext.HintsTreshold == 0)
                     AppContext.AvailableHints++;
+
+                ShowNotifications();
 
                 MessengerInstance.Send("goback", "navigation");
             }
@@ -115,5 +117,42 @@ namespace SocceramaWin8.ViewModel
                 //MessageBox.Show(resources.GetString("NoHintsAvailable"));
             }
         }
+
+        private void ShowNotifications()
+        {
+            //e ho già sbloccato degli scudetti
+            if (AppContext.TotalShieldUnlocked == 0) return;
+
+            var newLevelUnlocked = AppContext.TotalShieldUnlocked % AppContext.LockTreshold == 0;
+            var newBonusLevelUnlocked = AppContext.TotalShieldUnlocked % AppContext.BonusTreshold == 0;
+
+            if (newLevelUnlocked)
+            {
+                int newLevelNumber = (AppContext.TotalShieldUnlocked / AppContext.LockTreshold) + 1;
+                if (newLevelNumber <= 6)
+                {
+                    var level = AppContext.Levels.Single(l => l.Number == newLevelNumber);
+                    var Message = string.Format(resources.GetString("NewLevel"), level.Number);
+                    NotificationHelper.DisplayToast(Message);
+                }
+            }
+            else if (newBonusLevelUnlocked)
+            {
+                int newLevelNumber = ((AppContext.TotalShieldUnlocked / AppContext.BonusTreshold)) * 100;
+                var level = AppContext.Levels.Single(l => l.Number == newLevelNumber);
+                var Message = string.Format(resources.GetString("NewLevel"), level.Number);
+                NotificationHelper.DisplayToast(Message);
+            }
+            else if (AppContext.GameCompleted) //Gioco completato!
+            {
+                //SoundManager.PlayGoal();
+                NotificationHelper.DisplayToast(resources.GetString("GameFinished"));
+                //Title = AppResources.GameFinishedTitle,
+                //Message = AppResources.GameFinished,
+                //TextWrapping = TextWrapping.Wrap,
+                //MillisecondsUntilHidden = 8000,
+            }
+        }
+
     }
 }

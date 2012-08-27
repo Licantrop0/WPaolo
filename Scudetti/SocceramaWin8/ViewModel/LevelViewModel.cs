@@ -8,11 +8,14 @@ using GalaSoft.MvvmLight.Messaging;
 using Scudetti.Model;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
+using SocceramaWin8.Helpers;
 
 namespace SocceramaWin8.ViewModel
 {
     public class LevelViewModel : ViewModelBase
     {
+        ResourceLoader resources = new ResourceLoader();
+
         public int Number { get; private set; }
         public bool IsBonus { get; set; }
         public IEnumerable<Shield> Shields { get; private set; }
@@ -67,6 +70,5 @@ namespace SocceramaWin8.ViewModel
                 RaisePropertyChanged("LevelImage");
             });
         }
-
     }
 }

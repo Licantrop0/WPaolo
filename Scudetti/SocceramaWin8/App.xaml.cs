@@ -54,10 +54,6 @@ namespace SocceramaWin8
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
-                Messenger.Default.Register<LevelViewModel>(this, m =>
-                {
-                    rootFrame.Navigate(typeof(ShieldsPage), m);
-                });
                 Messenger.Default.Register<string>(this, "navigation", (m) => { if (m == "goback") rootFrame.GoBack(); });
 
                 if (args.PreviousExecutionState != ApplicationExecutionState.Suspended)

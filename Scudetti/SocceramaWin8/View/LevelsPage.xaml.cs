@@ -1,22 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using GalaSoft.MvvmLight.Messaging;
-using Scudetti.Model;
+﻿using GalaSoft.MvvmLight.Messaging;
 using SocceramaWin8.Common;
 using SocceramaWin8.ViewModel;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SocceramaWin8.View
 {
@@ -28,6 +13,17 @@ namespace SocceramaWin8.View
         public LevelsPage()
         {
             this.InitializeComponent();
+        }
+
+        private void levelClick(object sender, ItemClickEventArgs e)
+        {
+            var level = (LevelViewModel)e.ClickedItem;
+            if (level.IsUnlocked)
+            {
+                //SoundManager.PlayFischietto();
+                Messenger.Default.Send<LevelViewModel>(level);
+                this.Frame.Navigate(typeof(ShieldsPage));
+            }
         }
     }
 }

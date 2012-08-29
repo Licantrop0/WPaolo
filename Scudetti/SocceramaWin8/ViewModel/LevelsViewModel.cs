@@ -1,12 +1,7 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
-using Scudetti.Model;
-using Windows.UI.Xaml.Data;
-using GalaSoft.MvvmLight.Messaging;
 using Windows.ApplicationModel.Resources;
 
 namespace SocceramaWin8.ViewModel
@@ -20,21 +15,6 @@ namespace SocceramaWin8.ViewModel
             get
             {
                 return AppContext.Levels;
-            }
-        }
-
-        public LevelViewModel SelectedLevel
-        {
-            get { return null; }
-            set
-            {
-                if (value == null) return;
-                if (value.IsUnlocked)
-                {
-                    //SoundManager.PlayFischietto();
-                    MessengerInstance.Send<LevelViewModel>(value);
-                }
-                RaisePropertyChanged("SelectedLevel");
             }
         }
 
@@ -63,7 +43,6 @@ namespace SocceramaWin8.ViewModel
                 RaisePropertyChanged("StatusText");
                 AppContext.GameCompleted = AppContext.Shields.All(s => s.IsValidated);
             });
-
         }
     }
 }

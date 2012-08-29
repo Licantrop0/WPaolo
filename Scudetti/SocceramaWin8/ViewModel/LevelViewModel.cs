@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Scudetti.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Windows.ApplicationModel.Resources;
-using Windows.UI.Xaml.Data;
-using SocceramaWin8.Helpers;
 
 namespace SocceramaWin8.ViewModel
 {

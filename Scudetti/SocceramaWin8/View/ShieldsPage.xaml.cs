@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using GalaSoft.MvvmLight.Messaging;
 using Scudetti.Model;
 using Windows.UI.Xaml.Controls;
-
-// The Grouped Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234231
+using SocceramaWin8.ViewModel;
 
 namespace SocceramaWin8.View
 {
-    /// <summary>
-    /// A page that displays a grouped collection of items.
-    /// </summary>
     public sealed partial class ShieldsPage : SocceramaWin8.Common.LayoutAwarePage
     {
         public ShieldsPage()
@@ -31,7 +27,7 @@ namespace SocceramaWin8.View
         {
         }
 
-        private void itemGridView_ItemClick(object sender, ItemClickEventArgs e)
+        private void itemClick(object sender, ItemClickEventArgs e)
         {
             Messenger.Default.Send<Shield>((Shield)e.ClickedItem);
             this.Frame.Navigate(typeof(ShieldPage));

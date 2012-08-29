@@ -21,12 +21,19 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="False" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Text="Soccerama" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
-
-        <ListBox Grid.Row="1" ItemsSource="{Binding Levels}" Background="Transparent"
-                 SelectedItem="{Binding SelectedLevel, Mode=TwoWay}" >
-            <ListBox.ItemTemplate>
+        
+        <GridView Name="itemGridView" Grid.Row="1"
+                  AutomationProperties.AutomationId="ItemGridView"
+                  AutomationProperties.Name="Grouped Items"
+                  Padding="100,0,40,0"
+                  ItemsSource="{Binding Levels}"
+                  SelectionMode="None"
+                  IsSwipeEnabled="False"
+                  IsItemClickEnabled="True"
+                  ItemClick="levelClick" >
+            <GridView.ItemTemplate>
                 <DataTemplate >
-                    <Grid>
+                    <Grid Width="400" Height="300">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -38,8 +45,13 @@
                                    Style="{StaticResource TextBlockBase}" />
                     </Grid>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </GridView.ItemTemplate>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
 
         <VisualStateManager.VisualStateGroups>
             <!-- Visual states reflect the application's view state -->
@@ -53,8 +65,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames
-                            Storyboard.TargetName="LayoutRoot"
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
                             Storyboard.TargetProperty="(Grid.Background).(ImageBrush.RelativeTransform).(RotateTransform.Angle)">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="90"/>
                         </ObjectAnimationUsingKeyFrames>

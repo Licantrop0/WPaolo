@@ -26,11 +26,5 @@ namespace SocceramaWin8.View
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
         }
-
-        private void itemClick(object sender, ItemClickEventArgs e)
-        {
-            Messenger.Default.Send<Shield>((Shield)e.ClickedItem);
-            this.Frame.Navigate(typeof(ShieldPage));
-        }
     }
 }

@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding LevelName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Text="{Binding LevelName}" TextWrapping="Wrap" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
         <!-- Horizontal scrolling grid used in most view states -->
@@ -30,10 +30,9 @@
                   Padding="100,0,40,0"
                   ItemsSource="{Binding SelectedLevel.Shields}"
                   ItemTemplate="{StaticResource Shield250ItemTemplate}"
-                  SelectionMode="None"
-                  IsSwipeEnabled="False"
-                  IsItemClickEnabled="True"
-                  ItemClick="itemClick" >
+                  SelectionMode="Single"
+                  SelectedItem="{Binding SelectedShield, Mode=TwoWay}"
+                  IsSwipeEnabled="False" >
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapGrid />
@@ -52,9 +51,8 @@
             Padding="10,0,0,60"
             ItemsSource="{Binding SelectedLevel.Shields}"
             ItemTemplate="{StaticResource Shield80ItemTemplate}"
-            SelectionMode="None"
-            IsItemClickEnabled="True"
-            ItemClick="itemClick" 
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedShield, Mode=TwoWay}"
             IsSwipeEnabled="false">
         </ListView>
 

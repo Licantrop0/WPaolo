@@ -9,6 +9,7 @@ using Scudetti.Model;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using SocceramaWin8.Helpers;
+using SocceramaWin8.Data;
 
 namespace SocceramaWin8.ViewModel
 {
@@ -61,8 +62,7 @@ namespace SocceramaWin8.ViewModel
         {
             if (IsInDesignMode)
             {
-                _currentShield = new Shield() { Id = "milan", Hint = "milano", Names = new[] { "AC Milan", "Milan" } };//DesignTimeData.Shields.First();
-                _currentShield.IsValidated = false;
+                _currentShield = DesignTimeData.Shields.First();
                 _hintText = string.Format(resources.GetString("AvailableHints"), 5);
                 return;
             }

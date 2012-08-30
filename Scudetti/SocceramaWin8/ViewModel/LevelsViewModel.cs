@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using SocceramaWin8.Data;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.ApplicationModel.Resources;
@@ -14,7 +15,20 @@ namespace SocceramaWin8.ViewModel
         {
             get
             {
-                return AppContext.Levels;
+                return IsInDesignMode ? DesignTimeData.Levels : AppContext.Levels;
+            }
+        }
+
+        public LevelViewModel SelectedLevel
+        {
+            get { return null; }
+            set
+            {
+                if (value == null) return;
+                if (!value.IsUnlocked) return;
+                //SoundManager.PlayFischietto();
+                Messenger.Default.Send<LevelViewModel>(value);
+                RaisePropertyChanged("SelectedLevel");
             }
         }
 

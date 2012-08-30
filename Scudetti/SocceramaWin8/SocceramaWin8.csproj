@@ -111,6 +111,7 @@
     </Compile>
     <Compile Include="AppContext.cs" />
     <Compile Include="Common\BindableBase.cs" />
+    <Compile Include="Data\DesignTimeData.cs" />
     <Compile Include="Helper\BindableTextBox.cs" />
     <Compile Include="Helper\BooleanNegationConverter.cs" />
     <Compile Include="Helper\BooleanToVisibilityConverter.cs" />

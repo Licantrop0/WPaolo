@@ -27,10 +27,9 @@
                   AutomationProperties.Name="Grouped Items"
                   Padding="100,0,40,0"
                   ItemsSource="{Binding Levels}"
-                  SelectionMode="None"
-                  IsSwipeEnabled="False"
-                  IsItemClickEnabled="True"
-                  ItemClick="levelClick" >
+                  SelectionMode="Single"
+                  SelectedItem="{Binding SelectedLevel, Mode=TwoWay}"
+                  IsSwipeEnabled="False" >
             <GridView.ItemTemplate>
                 <DataTemplate >
                     <Grid Width="400" Height="300">

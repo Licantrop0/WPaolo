@@ -14,16 +14,5 @@ namespace SocceramaWin8.View
         {
             this.InitializeComponent();
         }
-
-        private void levelClick(object sender, ItemClickEventArgs e)
-        {
-            var level = (LevelViewModel)e.ClickedItem;
-            if (level.IsUnlocked)
-            {
-                //SoundManager.PlayFischietto();
-                Messenger.Default.Send<LevelViewModel>(level);
-                this.Frame.Navigate(typeof(ShieldsPage));
-            }
-        }
     }
 }

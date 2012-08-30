@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using Scudetti.Model;
+using SocceramaWin8.Data;
 using Windows.ApplicationModel.Resources;
 
 namespace SocceramaWin8.ViewModel
@@ -20,6 +21,16 @@ namespace SocceramaWin8.ViewModel
             }
         }
 
+        public Shield SelectedShield
+        {
+            get { return null; }
+            set
+            {
+                if (value == null) return;
+                MessengerInstance.Send<Shield>(value);
+            }
+        }
+
         public string LevelName
         {
             get
@@ -33,6 +44,12 @@ namespace SocceramaWin8.ViewModel
 
         public ShieldsViewModel()
         {
+            if (IsInDesignMode)
+            {
+                SelectedLevel = DesignTimeData.Levels[0];
+                return;
+            }
+
             MessengerInstance.Register<LevelViewModel>(this, m =>
             {
                 SelectedLevel = m;

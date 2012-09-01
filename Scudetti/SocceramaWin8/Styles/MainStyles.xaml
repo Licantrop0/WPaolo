@@ -46,7 +46,7 @@
 
     <Style x:Key="StatusTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
         <Setter Property="TextAlignment" Value="Center" />
-        <Setter Property="FontSize" Value="45" />
+        <Setter Property="FontSize" Value="70" />
         <Setter Property="Margin" Value="0,24" />
     </Style>
 
@@ -59,23 +59,16 @@
                    Visibility="{Binding IsValidated, Converter={StaticResource BooleanVisibilityConv}}"
                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
                    Width="50" Margin="0,0,6,6" />
-
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="Shield80ItemTemplate">
-        <Grid Margin="6">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border Background="White" Width="60" Height="60">
-                <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" Stretch="UniformToFill"/>
-            </Border>
-            <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                <TextBlock Text="{Binding Id}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
-                <TextBlock Text="{Binding}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
-            </StackPanel>
+        <Grid Margin="6" Background="White" Width="200" Height="200">
+            <Image Source="{Binding Image, Converter={StaticResource ImagePathConv}}" Stretch="UniformToFill"/>
+            <Image Source="ms-appx:///Assets/spunta.png"
+                   Visibility="{Binding IsValidated, Converter={StaticResource BooleanVisibilityConv}}"
+                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                   Width="50" Margin="0,0,6,6" />
         </Grid>
     </DataTemplate>
 

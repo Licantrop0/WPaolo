@@ -1009,4 +1009,28 @@
     <Names>Ucrania</Names>
     <Names>Ucrânia</Names>
   </Shield>
+
+
+  <Shield Level="7" Id="Ukraine" Image="ukraine.png" Hint="Europa" IsValidated="false">
+    <Names>Ukraine</Names>
+  </Shield>
+  <Shield Level="8" Id="Ukraine" Image="ukraine.png" Hint="Europa" IsValidated="false">
+    <Names>Ukraine</Names>
+  </Shield>
+  <Shield Level="9" Id="Ukraine" Image="ukraine.png" Hint="Europa" IsValidated="false">
+    <Names>Ukraine</Names>
+  </Shield>
+  <Shield Level="10" Id="Ukraine" Image="ukraine.png" Hint="Europa" IsValidated="false">
+    <Names>Ukraine</Names>
+  </Shield>
+  <Shield Level="11" Id="Ukraine" Image="ukraine.png" Hint="Europa" IsValidated="false">
+    <Names>Ukraine</Names>
+  </Shield>
+  <Shield Level="12" Id="Ukraine" Image="ukraine.png" Hint="Europa" IsValidated="false">
+    <Names>Ukraine</Names>
+  </Shield>
+  <Shield Level="300" Id="Ukraine" Image="ukraine.png" Hint="Europa" IsValidated="false">
+    <Names>Ukraine</Names>
+  </Shield>
+
 </ArrayOfShield>

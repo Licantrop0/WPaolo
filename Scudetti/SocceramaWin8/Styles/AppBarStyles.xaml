@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SocceramaWin8.Styles">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <!-- 
         Standard AppBarButton Styles for use with Button and ToggleButton

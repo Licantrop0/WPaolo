@@ -5,6 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.ApplicationModel.Resources;
+using Windows.UI.Xaml;
+using SocceramaWin8.Sound;
+using GalaSoft.MvvmLight.Command;
 
 namespace SocceramaWin8.ViewModel
 {
@@ -18,6 +21,47 @@ namespace SocceramaWin8.ViewModel
         public int TotalShields { get { return Shields.Count(); } }
         public int CompletedShields { get { return Shields.Count(s => s.IsValidated); } }
 
+        public Thickness Margin
+        {
+            get
+            {
+                switch (Number)
+                {
+                    case 1:
+                        return new Thickness(75,440,0,0);
+                    case 2:
+                        return new Thickness(260, 200, 0, 0);
+                    case 3:
+                        return new Thickness(260, 680, 0, 0);
+                    case 4:
+                        return new Thickness(510, 440, 0, 0);
+                    case 5:
+                        return new Thickness(740, 260, 0, 0);
+                    case 6:
+                        return new Thickness(740, 620, 0, 0);
+                    case 100:
+                        return new Thickness(470, 870, 0, 0);
+                    case 200:
+                        return new Thickness(850, 40, 0, 0);
+                    case 7:
+                        return new Thickness(980,260, 0, 0);
+                    case 8:
+                        return new Thickness(980,620, 0, 0);
+                    case 9:
+                        return new Thickness(1210,440, 0, 0);
+                    case 10:
+                        return new Thickness(1460,200, 0, 0);
+                    case 11:
+                        return new Thickness(1460,680, 0, 0);
+                    case 12:
+                        return new Thickness(1645,440, 0, 0);
+                    case 300:
+                        return new Thickness(1250,10, 0, 0);
+                    default:
+                        return new Thickness();
+                }
+            }
+        }
         public bool IsUnlocked
         {
             get
@@ -65,6 +109,21 @@ namespace SocceramaWin8.ViewModel
                 RaisePropertyChanged("StatusText");
                 RaisePropertyChanged("LevelImage");
             });
+        }
+
+
+        private RelayCommand _goToLevelCommand;
+        public RelayCommand GoToLevelCommand
+        {
+            get
+            {
+                return _goToLevelCommand ?? (_goToLevelCommand = new RelayCommand(() =>
+                {
+                    if (!IsUnlocked) return;
+                    SoundManager.PlayFischietto();
+                    Messenger.Default.Send<LevelViewModel>(this);
+                }));
+            }
         }
     }
 }

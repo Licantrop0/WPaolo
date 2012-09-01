@@ -4,6 +4,7 @@ using SocceramaWin8.Data;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.ApplicationModel.Resources;
+using SocceramaWin8.Sound;
 
 namespace SocceramaWin8.ViewModel
 {
@@ -16,19 +17,6 @@ namespace SocceramaWin8.ViewModel
             get
             {
                 return IsInDesignMode ? DesignTimeData.Levels : AppContext.Levels;
-            }
-        }
-
-        public LevelViewModel SelectedLevel
-        {
-            get { return null; }
-            set
-            {
-                if (value == null) return;
-                if (!value.IsUnlocked) return;
-                //SoundManager.PlayFischietto();
-                Messenger.Default.Send<LevelViewModel>(value);
-                RaisePropertyChanged("SelectedLevel");
             }
         }
 

@@ -7,39 +7,38 @@
     DataContext="{Binding Source={StaticResource Locator}, Path=LevelsVM}"
     mc:Ignorable="d">
     <Grid Name="LayoutRoot" Style="{StaticResource DefaultLayoutRootStyle}">
-        <Viewbox Name="FieldViewBox" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
-            <Viewbox.RenderTransform>
-                <RotateTransform Angle="0" />
-            </Viewbox.RenderTransform>
-            <Grid>
-                
-            <ItemsControl Name="itemGridView" Width="1920" Height="1080"
-                          Background="#997FFFD4"
-                  ItemsSource="{Binding Levels}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Width="200" Height="200" Command="{Binding GoToLevelCommand}"
-                                VerticalAlignment="Top" HorizontalAlignment="Left"
-                              Margin="{Binding Margin}" Background="#FF0017FF">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <Image Source="{Binding LevelImage}" Stretch="None" />
-                                        <TextBlock Text="{Binding StatusText}" FontSize="30"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           Style="{StaticResource TextBlockBase}" />
-                                    </StackPanel>                                    
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Grid />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
+        <Viewbox Name="FieldViewBox" Stretch="Fill">
+            <Grid Name="GridViewBox" Background="#9901FFFF" >
+
+                <ItemsControl Name="itemGridView" Width="1920" Height="1080"
+                          ItemsSource="{Binding Levels}" RenderTransformOrigin="0.5,0.5">
+                    <ItemsControl.RenderTransform>
+                        <RotateTransform Angle="0" />
+                    </ItemsControl.RenderTransform>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Width="200" Height="200" Command="{Binding GoToLevelCommand}"
+                                    VerticalAlignment="Top" HorizontalAlignment="Left"
+                                    Margin="{Binding Margin}" Background="#FF0017FF">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <Image Source="{Binding LevelImage}" Stretch="None" />
+                                            <TextBlock Text="{Binding StatusText}" FontSize="30"
+                                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       Style="{StaticResource TextBlockBase}" />
+                                        </StackPanel>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Grid />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
 
                 <TextBlock Text="{Binding StatusText}"
                            Style="{StaticResource StatusTextBlock}"
@@ -49,7 +48,7 @@
 
         </Viewbox>
 
-        
+
         <VisualStateManager.VisualStateGroups>
             <!-- Visual states reflect the application's view state -->
             <VisualStateGroup x:Name="ApplicationViewStates">
@@ -64,10 +63,10 @@
                             <DiscreteObjectKeyFrame KeyTime="0" Value="90"/>
                         </ObjectAnimationUsingKeyFrames>
 
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FieldViewBox"
+                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridViewBox"
                             Storyboard.TargetProperty="(ViewBox.RenderTransform).(RotateTransform.Angle)">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="90" />
-                        </ObjectAnimationUsingKeyFrames>
+                        </ObjectAnimationUsingKeyFrames>-->
                     </Storyboard>
                 </VisualState>
 

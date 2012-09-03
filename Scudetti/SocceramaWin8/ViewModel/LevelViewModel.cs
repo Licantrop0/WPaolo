@@ -73,13 +73,23 @@ namespace SocceramaWin8.ViewModel
             }
         }
 
-        public Uri LevelImage
+        public Uri Image
         {
             get
             {
                 return IsUnlocked ?
                     new Uri("ms-appx:/Assets/Levels/livello" + Number + ".png") :
                     new Uri("ms-appx:/Assets/Levels/livello" + Number + "lock.png");
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return IsBonus ?
+                    string.Format("{0} {1}", resources.GetString("BonusLevel"), Number / 100) :
+                    string.Format("{0} {1}", resources.GetString("Level"), Number);
             }
         }
 

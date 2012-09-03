@@ -31,17 +31,6 @@ namespace SocceramaWin8.ViewModel
             }
         }
 
-        public string LevelName
-        {
-            get
-            {
-                if (SelectedLevel == null) return string.Empty;
-                return SelectedLevel.IsBonus ?
-                    string.Format("{0} {1}", resources.GetString("BonusLevel"), SelectedLevel.Number / 100) :
-                    string.Format("{0} {1}", resources.GetString("Level"), SelectedLevel.Number);
-            }
-        }
-
         public ShieldsViewModel()
         {
             if (IsInDesignMode)

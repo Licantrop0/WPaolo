@@ -124,7 +124,7 @@
     <value>Suggerimenti: {0}</value>
   </data>
   <data name="BonusLevel" xml:space="preserve">
-    <value>Livello Bonus</value>
+    <value>Bonus</value>
   </data>
   <data name="ConfirmReset" xml:space="preserve">
     <value>Sei proprio sicuro?</value>

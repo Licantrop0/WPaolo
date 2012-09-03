@@ -72,4 +72,48 @@
         </Grid>
     </DataTemplate>
 
+    <DataTemplate x:Key="Level200ItemTemplate">
+        <Button Width="200" Height="200"
+                Command="{Binding GoToLevelCommand}"
+                VerticalAlignment="Top" HorizontalAlignment="Left"
+                Margin="{Binding Margin}">
+            <Button.Template>
+                <ControlTemplate>
+                    <StackPanel VerticalAlignment="Center">
+                        <Image Source="{Binding Image}" Stretch="None" />
+                        <TextBlock Text="{Binding StatusText}" FontSize="30"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Style="{StaticResource TextBlockBase}" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="Level80ItemTemplate">
+        <Button Command="{Binding GoToLevelCommand}"
+                HorizontalAlignment="Left" >
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="{Binding Image}" Stretch="None" />
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding Name}" FontSize="30"
+                       Style="{StaticResource TextBlockBase}" />
+                            <TextBlock Text="{Binding StatusText}" FontSize="40"
+                       Style="{StaticResource TextBlockBase}" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </DataTemplate>
+
+
 </ResourceDictionary>

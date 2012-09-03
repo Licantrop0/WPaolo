@@ -30,6 +30,17 @@ namespace SocceramaWin8.ViewModel
             }
         }
 
+        public LevelViewModel SelectedLevel
+        {
+            get { return null; }
+            set
+            {
+                if (value == null) return;
+                value.GoToLevelCommand.Execute(null);
+                RaisePropertyChanged("SelectedLevel");
+            }
+        }
+
         public LevelsViewModel()
         {
             AppContext.LoadCompleted += (sender, e) =>

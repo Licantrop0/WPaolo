@@ -42,7 +42,7 @@ namespace Scudetti.Model
                 using (var stream = await file.OpenStreamForReadAsync())
                 {
                     var obj = (Shield[])serializer.Deserialize(stream);
-                    //stream.Flush();
+                    stream.Flush();
                     return obj;
                 }
             }

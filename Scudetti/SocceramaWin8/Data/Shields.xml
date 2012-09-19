@@ -270,6 +270,8 @@
   </Shield>
   <Shield Level="3" Id="Basilea" Image="Basilea.png" Hint="Switzerland" IsValidated="false">
     <Names>Fussballclub Basel 1893</Names>
+    <Names>FC Basel</Names>
+    <Names>Basel</Names>
     <Names>FC Basilea</Names>
     <Names>Basilea</Names>
   </Shield>
@@ -1032,5 +1034,4 @@
   <Shield Level="300" Id="Ukraine" Image="ukraine.png" Hint="Europa" IsValidated="false">
     <Names>Ukraine</Names>
   </Shield>
-
 </ArrayOfShield>

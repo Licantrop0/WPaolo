@@ -270,6 +270,8 @@
   </Shield>
   <Shield Level="3" Id="Basilea" Image="Basilea.png" Hint="Switzerland" IsValidated="false">
     <Names>Fussballclub Basel 1893</Names>
+    <Names>FC Basel</Names>
+    <Names>Basel</Names>
     <Names>FC Basilea</Names>
     <Names>Basilea</Names>
   </Shield>

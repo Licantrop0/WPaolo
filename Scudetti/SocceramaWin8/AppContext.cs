@@ -104,5 +104,10 @@ namespace SocceramaWin8
                 _gameCompleted = value;
             }
         }
+
+        public static void ResetShields()
+        {
+            
+        }
     }
 }

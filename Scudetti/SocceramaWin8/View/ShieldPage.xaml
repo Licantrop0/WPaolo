@@ -40,7 +40,8 @@
 					   Visibility="{Binding InputVisibile, Mode=OneTime}"
 					   Style="{StaticResource StatusTextBlock}"
 					   TextWrapping="Wrap" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">                
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Visibility="{Binding ControlsEnabled, Converter={StaticResource BooleanVisibilityConv}}">                
                 <Button x:Uid="Ok" Content="Ok" Width="130" Margin="6" Click="Ok_Click" />
                 <Button x:Uid="Hint" Content="Suggerimento" Command="{Binding ShowHintCommand}" Width="130" Margin="6" />
        </StackPanel>

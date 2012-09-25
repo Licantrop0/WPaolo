@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using GalaSoft.MvvmLight.Messaging;
-using Scudetti.Model;
 using Windows.UI.Xaml.Controls;
-using SocceramaWin8.ViewModel;
 
 namespace SocceramaWin8.View
 {

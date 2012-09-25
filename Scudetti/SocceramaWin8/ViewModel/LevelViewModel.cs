@@ -83,6 +83,11 @@ namespace SocceramaWin8.ViewModel
             }
         }
 
+        public double Opacity
+        {
+            get { return IsUnlocked ? 1 : 0.6; }
+        }
+
         public string Name
         {
             get

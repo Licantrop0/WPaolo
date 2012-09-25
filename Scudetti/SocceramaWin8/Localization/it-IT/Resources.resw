@@ -192,4 +192,7 @@ Sblocca un nuovo suggerimento ogni 5 scudetti.</value>
   <data name="Ok.Content" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="Support.Content" xml:space="preserve">
+    <value>Supporto</value>
+  </data>
 </root>

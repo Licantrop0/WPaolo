@@ -55,9 +55,11 @@ namespace SocceramaWin8.ViewModel
                             e.PropertyName));
                     }
                 };
-                //RaisePropertyChanged("CurrentShield");
+                RaisePropertyChanged("CurrentShield");
             }
         }
+
+        public bool ControlsEnabled { get { return !CurrentShield.IsValidated; } }
 
         public ShieldViewModel()
         {
@@ -71,6 +73,7 @@ namespace SocceramaWin8.ViewModel
             {
                 CurrentShield = shield;
                 InputShieldName = string.Empty;
+                HintText = null;
             });
         }
 
@@ -81,7 +84,8 @@ namespace SocceramaWin8.ViewModel
         {
             get
             {
-                return _showHintCommand ?? (_showHintCommand = new RelayCommand(ShowHint));
+                return _showHintCommand ?? (_showHintCommand =
+                    new RelayCommand(ShowHint, HintEnabled));
             }
         }
 
@@ -91,11 +95,17 @@ namespace SocceramaWin8.ViewModel
             {
                 HintText = CurrentShield.Hint;
                 AppContext.AvailableHints--;
+                ShowHintCommand.RaiseCanExecuteChanged();
             }
             else
             {
                 //MessageBox.Show(resources.GetString("NoHintsAvailable"));
             }
+        }
+
+        private bool HintEnabled()
+        {
+            return AppContext.AvailableHints > 0;
         }
 
 

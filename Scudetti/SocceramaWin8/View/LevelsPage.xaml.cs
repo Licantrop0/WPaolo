@@ -1,9 +1,7 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using SocceramaWin8.Common;
-using SocceramaWin8.ViewModel;
+﻿using SocceramaWin8.Common;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
 namespace SocceramaWin8.View
@@ -17,6 +15,25 @@ namespace SocceramaWin8.View
         {
             this.InitializeComponent();
             this.ApplicationViewStates.CurrentStateChanged += ApplicationViewStates_CurrentStateChanged;
+            SettingsPane.GetForCurrentView().CommandsRequested += LevelsPage_CommandsRequested;
+
+        }
+
+        void LevelsPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            var logoutCmd = new SettingsCommand("settings", "Settings", (cmd) =>
+            {
+                var settings = new SettingsFlyout();
+                settings.ShowFlyout(new SettingsControl());
+            });
+            args.Request.ApplicationCommands.Add(logoutCmd);
+
+            var aboutCmd = new SettingsCommand("about", "About", (cmd) =>
+            {
+                var settings = new SettingsFlyout();
+                settings.ShowFlyout(new AboutControl());
+            });
+            args.Request.ApplicationCommands.Add(aboutCmd);
         }
 
         private void ApplicationViewStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)

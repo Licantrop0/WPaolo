@@ -13,7 +13,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -23,7 +22,7 @@
             <TextBlock x:Name="pageTitle" Text="{Binding SelectedLevel.Name}" TextWrapping="Wrap" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-        <!-- Horizontal scrolling grid used in most view states -->
+
         <GridView Name="itemGridView" Grid.Row="1"
                   AutomationProperties.AutomationId="ItemGridView"
                   AutomationProperties.Name="Grouped Items"
@@ -40,7 +39,6 @@
             </GridView.ItemsPanel>
         </GridView>
 
-        <!-- Vertical scrolling list only used when snapped -->
         <ListView x:Name="itemListView"
             AutomationProperties.AutomationId="ItemListView"
             AutomationProperties.Name="Grouped Items"

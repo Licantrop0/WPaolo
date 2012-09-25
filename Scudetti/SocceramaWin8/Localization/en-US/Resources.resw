@@ -187,4 +187,10 @@ Show to your friends that you are a real expert!</value>
   <data name="Wrong" xml:space="preserve">
     <value>Wrong!</value>
   </data>
+  <data name="Hint.Content" xml:space="preserve">
+    <value>Hint</value>
+  </data>
+  <data name="Ok.Content" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>

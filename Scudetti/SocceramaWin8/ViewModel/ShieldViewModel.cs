@@ -10,6 +10,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using SocceramaWin8.Helpers;
 using SocceramaWin8.Data;
+using GalaSoft.MvvmLight.Command;
 
 namespace SocceramaWin8.ViewModel
 {
@@ -73,6 +74,31 @@ namespace SocceramaWin8.ViewModel
             });
         }
 
+        #region Commands
+
+        private RelayCommand _showHintCommand;
+        public RelayCommand ShowHintCommand
+        {
+            get
+            {
+                return _showHintCommand ?? (_showHintCommand = new RelayCommand(ShowHint));
+            }
+        }
+
+        private void ShowHint()
+        {
+            if (AppContext.AvailableHints > 0)
+            {
+                HintText = CurrentShield.Hint;
+                AppContext.AvailableHints--;
+            }
+            else
+            {
+                //MessageBox.Show(resources.GetString("NoHintsAvailable"));
+            }
+        }
+
+
         public bool Validate()
         {
             if (CurrentShield.IsValidated || string.IsNullOrEmpty(InputShieldName))
@@ -103,19 +129,6 @@ namespace SocceramaWin8.ViewModel
         private bool CompareName(string string1, string string2)
         {
             return string.Compare(string1, string2.Trim(), StringComparison.CurrentCultureIgnoreCase) == 0;
-        }
-
-        public void ShowHint()
-        {
-            if (AppContext.AvailableHints > 0)
-            {
-                HintText = CurrentShield.Hint;
-                AppContext.AvailableHints--;
-            }
-            else
-            {
-                //MessageBox.Show(resources.GetString("NoHintsAvailable"));
-            }
         }
 
         private void ShowNotifications()
@@ -153,6 +166,8 @@ namespace SocceramaWin8.ViewModel
                 //MillisecondsUntilHidden = 8000,
             }
         }
+
+        #endregion
 
     }
 }

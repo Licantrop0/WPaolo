@@ -32,7 +32,7 @@
 
         <StackPanel Grid.Row="1" Margin="12,0">
             <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
-					Stretch="None" />
+					Stretch="None" Margin="12" HorizontalAlignment="Center" />
             <hlp:BindableTextBox x:Name="ShieldNameTextbox" BindableText="{Binding InputShieldName, Mode=TwoWay}"
                                  KeyDown="ShieldNameTextbox_KeyDown" MaxWidth="350"
                                  Visibility="{Binding InputVisibile, Mode=OneTime}" />
@@ -40,6 +40,10 @@
 					   Visibility="{Binding InputVisibile, Mode=OneTime}"
 					   Style="{StaticResource StatusTextBlock}"
 					   TextWrapping="Wrap" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">                
+                <Button x:Uid="Ok" Content="Ok" Width="130" Margin="6" Click="Ok_Click" />
+                <Button x:Uid="Hint" Content="Suggerimento" Command="{Binding ShowHintCommand}" Width="130" Margin="6" />
+       </StackPanel>
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>

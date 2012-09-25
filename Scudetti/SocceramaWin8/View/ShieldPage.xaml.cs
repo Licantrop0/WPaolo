@@ -47,19 +47,19 @@ namespace SocceramaWin8.View
         private void ShieldNameTextbox_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter)
-                Ok_Click(sender, EventArgs.Empty);
-        }
-
-        private void Ok_Click(object sender, EventArgs e)
-        {
-            var VM = (ShieldViewModel)LayoutRoot.DataContext;
-            if (!VM.Validate())
-                ShieldNameTextbox.SelectAll();
+                Ok_Click(sender, null);
         }
 
         private void LayoutAwarePage_Loaded(object sender, RoutedEventArgs e)
         {            
             ShieldNameTextbox.Focus(FocusState.Keyboard);
+        }
+
+        private void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            var VM = (ShieldViewModel)LayoutRoot.DataContext;
+            if (!VM.Validate())
+                ShieldNameTextbox.SelectAll();
         }
 
     }

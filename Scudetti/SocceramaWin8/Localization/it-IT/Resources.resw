@@ -186,4 +186,10 @@ Sblocca un nuovo suggerimento ogni 5 scudetti.</value>
   <data name="Wrong" xml:space="preserve">
     <value>Sbagliato!</value>
   </data>
+  <data name="Hint.Content" xml:space="preserve">
+    <value>Suggerimento</value>
+  </data>
+  <data name="Ok.Content" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>

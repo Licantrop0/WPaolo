@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="7998604d-1e96-48f2-9466-3816de33e65c" Publisher="CN=Luca" Version="1.0.0.0" />
+  <Identity Name="7998604d-1e96-48f2-9466-3816de33e65c" Publisher="CN=Luca" Version="1.0.0.1" />
   <Properties>
     <DisplayName>SocceramaWin8</DisplayName>
     <PublisherDisplayName>Luca</PublisherDisplayName>

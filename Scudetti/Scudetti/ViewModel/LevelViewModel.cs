@@ -60,35 +60,21 @@ namespace Scudetti.ViewModel
             }
         }
 
-        public Shield SelectedShield
-        {
-            get { return null; }
-            set
-            {
-                SoundManager.PlayKick();
-                MessengerInstance.Send(new Uri("/View/ShieldPage.xaml?id="
-                    + value.Id, UriKind.Relative), "navigation");
-                RaisePropertyChanged("SelectedShield");
-            }
-        }
 
         public LevelViewModel()
             : this(1, DesignTimeData.Shields.Where(s => s.Level == 1))
         { }
 
+        public LevelViewModel(IGrouping<int, Shield> group)
+            : this(group.Key, group)
+        { }
+
         public LevelViewModel(int number, IEnumerable<Shield> shields)
         {
-            if (!IsInDesignMode) return;
             Number = number;
             IsBonus = number >= 100;
             Shields = shields;
-        }
-
-        public LevelViewModel(IGrouping<int, Shield> group)
-        {
-            Number = group.Key;
-            IsBonus = group.Key >= 100;
-            Shields = group;
+            if (!IsInDesignMode) return;
             MessengerInstance.Register<PropertyChangedMessage<bool>>(this, (m) =>
             {
                 if (m.PropertyName != "IsValidated") return;

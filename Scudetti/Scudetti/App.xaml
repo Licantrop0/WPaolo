@@ -13,7 +13,8 @@
 
 	<Application.Resources>
 		<loc:LocalizedStrings xmlns:loc="clr-namespace:Scudetti.Localization" x:Key="LocalizedStrings" />
-
+		<vm:ViewModelLocator xmlns:vm="clr-namespace:Scudetti.ViewModel" x:Key="Locator" />
+		
 		<FontFamily xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows"
 					x:Key="DefaultFont">/Scudetti;component/Fonts/Fonts.zip#MV Boli</FontFamily>
 		<Color x:Key="MainColor">#FF841F</Color>

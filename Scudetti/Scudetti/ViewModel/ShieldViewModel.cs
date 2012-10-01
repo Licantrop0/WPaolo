@@ -61,7 +61,10 @@ namespace Scudetti.ViewModel
 				_currentShield = DesignTimeData.Shields.First();
 				_currentShield.IsValidated = false;
 				_hintText = string.Format(AppResources.AvailableHints, 5);
+                return;
 			}
+            MessengerInstance.Register<Shield>();
+
 			InputShieldName = string.Empty;
 		}
 

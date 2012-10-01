@@ -6,6 +6,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Scudetti.Model;
 using System.Windows.Media;
+using Scudetti.ViewModel;
 
 namespace Scudetti
 {
@@ -117,8 +118,7 @@ namespace Scudetti
             // screen to remain active until the application is ready to render.
             RootFrame = new TransitionFrame { Background = new SolidColorBrush(Colors.Transparent) };
 
-            Messenger.Default.Register<Uri>(this, "navigation", (m) => RootFrame.Navigate(m));
-            Messenger.Default.Register<string>(this, "navigation", (m) => { if (m == "goback") RootFrame.GoBack(); });
+            RegisterNavigationMessages(RootFrame);
 
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
@@ -127,6 +127,17 @@ namespace Scudetti
 
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;
+        }
+
+        private void RegisterNavigationMessages(PhoneApplicationFrame rootFrame)
+        {
+            Messenger.Default.Register<Shield>(this, "navigation", (m) => rootFrame.Navigate(new Uri("/View/ShieldPage.xaml", UriKind.Relative)));
+            Messenger.Default.Register<LevelViewModel>(this, "navigation", (m) => rootFrame.Navigate(new Uri("/View/ShieldsPage.xaml", UriKind.Relative)));
+            Messenger.Default.Register<string>(this, "navigation", (m) =>
+            {
+                if (m == "goback") rootFrame.GoBack();
+                else rootFrame.Navigate(new Uri(m, UriKind.Relative));
+            });
         }
 
         // Do not add any additional code to this method

@@ -27,7 +27,7 @@
 	</toolkit:TransitionService.NavigationInTransition>
 	
 	<phone:PhoneApplicationPage.Resources>
-		<vm:ShieldViewModel x:Key="ShieldVM" />
+		<vm:ShieldsViewModel x:Key="ShieldVM" />
 		<hlp:ImagePathConverter x:Key="ImagePathConv" />
 		<hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
 	</phone:PhoneApplicationPage.Resources>

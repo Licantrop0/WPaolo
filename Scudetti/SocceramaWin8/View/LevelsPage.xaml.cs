@@ -14,9 +14,8 @@ namespace SocceramaWin8.View
         public LevelsPage()
         {
             this.InitializeComponent();
-            this.ApplicationViewStates.CurrentStateChanged += ApplicationViewStates_CurrentStateChanged;
             SettingsPane.GetForCurrentView().CommandsRequested += LevelsPage_CommandsRequested;
-
+            //this.ApplicationViewStates.CurrentStateChanged += ApplicationViewStates_CurrentStateChanged;
         }
 
         void LevelsPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)

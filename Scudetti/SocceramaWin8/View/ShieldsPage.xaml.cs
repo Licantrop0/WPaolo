@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
+using SocceramaWin8.Helper;
 
 namespace SocceramaWin8.View
 {
     public sealed partial class ShieldsPage : SocceramaWin8.Common.LayoutAwarePage
     {
+
+        ScrollViewer gridScrollViewer;
+
         public ShieldsPage()
         {
             this.InitializeComponent();
@@ -22,6 +26,18 @@ namespace SocceramaWin8.View
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+        }
+
+        protected override void OnNavigatedFrom(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+            AppContext.ShieldsScrollPosition = gridScrollViewer.HorizontalOffset;
+            base.OnNavigatedFrom(e);
+        }
+ 
+        private void itemGridView_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            this.gridScrollViewer = VisualHelper.FindVisualChild<ScrollViewer>(this.itemGridView);
+            this.gridScrollViewer.ScrollToHorizontalOffset(AppContext.ShieldsScrollPosition);
         }
     }
 }

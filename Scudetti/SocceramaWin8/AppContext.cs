@@ -16,6 +16,7 @@ namespace SocceramaWin8
         public const int BonusTreshold = 50;
 
         public static bool ToastDisplayed = false;
+        public static double ShieldsScrollPosition = 0;
 
         public static event EventHandler LoadCompleted;
         static ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;

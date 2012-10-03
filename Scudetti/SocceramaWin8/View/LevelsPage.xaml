@@ -47,19 +47,19 @@
                 <VisualState x:Name="Filled"/>
 
                 <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
-                <VisualState x:Name="FullScreenPortrait">
+                <!--<VisualState x:Name="FullScreenPortrait">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
                             Storyboard.TargetProperty="(Grid.Background).(ImageBrush.RelativeTransform).(RotateTransform.Angle)">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="90"/>
                         </ObjectAnimationUsingKeyFrames>
 
-                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridViewBox"
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridViewBox"
                             Storyboard.TargetProperty="(ViewBox.RenderTransform).(RotateTransform.Angle)">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="90" />
-                        </ObjectAnimationUsingKeyFrames>-->
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
-                </VisualState>
+                </VisualState>-->
 
                 <!-- The back button and title have different styles when snapped, and the list representation is substituted
                     for the grid displayed in all other view states -->
@@ -75,7 +75,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
-
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>

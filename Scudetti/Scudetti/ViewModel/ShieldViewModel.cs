@@ -63,8 +63,8 @@ namespace Scudetti.ViewModel
 				_hintText = string.Format(AppResources.AvailableHints, 5);
                 return;
 			}
-            MessengerInstance.Register<Shield>();
 
+            MessengerInstance.Register<Shield>(this, m => CurrentShield = m);
 			InputShieldName = string.Empty;
 		}
 

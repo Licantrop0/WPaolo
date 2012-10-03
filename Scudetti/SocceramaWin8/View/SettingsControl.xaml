@@ -45,12 +45,12 @@
                     </TransitionCollection>
                 </Grid.Transitions>
                 <StackPanel>
-                    <ToggleSwitch OnContent="On" OffContent="Off" IsOn="{Binding SoundEnabled}">
+                    <ToggleSwitch OnContent="On" OffContent="Off" IsOn="{Binding SoundEnabled, Mode=TwoWay}">
                         <ToggleSwitch.Header>
                             <TextBlock Text="Audio" FontSize="24" />
                         </ToggleSwitch.Header>
                     </ToggleSwitch>
-                    <Button Content="Reset" Command="{Binding ResetCommand}" Background="#B3B6B6B6" BorderBrush="#33000000" Foreground="Black" />
+                    <Button Content="Reset" Command="{Binding ResetCommand}" />
                 </StackPanel>
             </Grid>
         </Grid>

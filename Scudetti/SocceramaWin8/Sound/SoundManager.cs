@@ -49,58 +49,58 @@ namespace SocceramaWin8.Sound
                 var stream = await storageFile.OpenAsync(FileAccessMode.Read);
                 _fischiettoSound = new MediaElement();
                 _fischiettoSound.SetSource(stream, storageFile.ContentType);
-
-                //_fischiettoSound = new MediaElement()
-                //{
-                //    AutoPlay = false,
-                //    Source = new Uri("ms-appx:///Sound/fischietto.wav")
-                //};
             }
 
             _fischiettoSound.Play();
         }
 
-        //private static SoundEffect _goalSound;
-        //public static void PlayGoal()
-        //{
-        //    if (!AppContext.SoundEnabled) return;
+        private static MediaElement _goalSound;
+        public static async void PlayGoal()
+        {
+            if (!AppContext.SoundEnabled) return;
 
-        //    if (_goalSound == null)
-        //    {
-        //        _goalSound = SoundEffect.FromStream(App.GetResourceStream(
-        //                new Uri("Sound\\goal.wav", UriKind.Relative)).Stream);
-        //    }
+            if (_goalSound == null)
+            {
+                var storageFile = await installedLocation.GetFileAsync("Sound\\goal.wav");
+                var stream = await storageFile.OpenAsync(FileAccessMode.Read);
+                _goalSound = new MediaElement();
+                _goalSound.SetSource(stream, storageFile.ContentType);
+            }
 
-        //    _goalSound.Play();
-        //}
+            _goalSound.Play();
+        }
 
-        //private static SoundEffect _boohSound;
-        //public static void PlayBooh()
-        //{
-        //    if (!AppContext.SoundEnabled) return;
+        private static MediaElement _boohSound;
+        public static async void PlayBooh()
+        {
+            if (!AppContext.SoundEnabled) return;
 
-        //    if (_boohSound == null)
-        //    {
-        //        _boohSound = SoundEffect.FromStream(App.GetResourceStream(
-        //                new Uri("Sound\\booh.wav", UriKind.Relative)).Stream);
-        //    }
+            if (_boohSound == null)
+            {
+                var storageFile = await installedLocation.GetFileAsync("Sound\\booh.wav");
+                var stream = await storageFile.OpenAsync(FileAccessMode.Read);
+                _boohSound = new MediaElement();
+                _boohSound.SetSource(stream, storageFile.ContentType);
+            }
 
-        //    _boohSound.Play();
-        //}
+            _boohSound.Play();
+        }
 
-        //private static SoundEffect _validatedSound;
-        //public static void PlayValidated()
-        //{
-        //    if (!AppContext.SoundEnabled) return;
+        private static MediaElement _validatedSound;
+        public static async void PlayValidated()
+        {
+            if (!AppContext.SoundEnabled) return;
 
-        //    if (_validatedSound == null)
-        //    {
-        //        _validatedSound = SoundEffect.FromStream(App.GetResourceStream(
-        //                new Uri("Sound\\validated.wav", UriKind.Relative)).Stream);
-        //    }
+            if (_validatedSound == null)
+            {
+                var storageFile = await installedLocation.GetFileAsync("Sound\\validated.wav");
+                var stream = await storageFile.OpenAsync(FileAccessMode.Read);
+                _validatedSound = new MediaElement();
+                _validatedSound.SetSource(stream, storageFile.ContentType);
+            }
 
-        //    _validatedSound.Play();
-        //}
+            _validatedSound.Play();
+        }
 
 
     }

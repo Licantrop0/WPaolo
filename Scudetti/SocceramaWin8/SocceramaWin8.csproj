@@ -9,10 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SocceramaWin8</RootNamespace>
     <AssemblyName>SocceramaWin8</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>it-IT</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>SocceramaWin8_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>SocceramaWin8_StoreKey.pfx</PackageCertificateKeyFile>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
@@ -21,7 +21,8 @@
     <RestorePackages>true</RestorePackages>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
-    <AppxPackageDir>C:\Users\i-luspol\Desktop\</AppxPackageDir>
+    <AppxPackageDir>C:\Users\Luca\Desktop\</AppxPackageDir>
+    <PackageCertificateThumbprint>64402A383A8BE3AD0E0A74224D67AE4528B5F647</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -123,6 +124,7 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Helper\ImagePathConverter.cs" />
     <Compile Include="Helper\NotificationHelper.cs" />
+    <Compile Include="Helper\VisualTreeHelper.cs" />
     <Compile Include="Model\Shield.cs" />
     <Compile Include="Model\ShieldService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,9 +156,10 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="Localization\en-US\Resources.resw" />
+    <None Include="Localization\en-US\Resources.resw" />
     <PRIResource Include="Localization\it-IT\Resources.resw" />
     <None Include="packages.config" />
+    <None Include="SocceramaWin8_StoreKey.pfx" />
     <None Include="SocceramaWin8_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -771,6 +774,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Sound\booh.wav" />
     <Content Include="Sound\fischietto.wav" />
     <Content Include="Sound\goal.wav" />
@@ -833,7 +837,6 @@
       <HintPath>..\packages\MvvmLight.4.1.23.0\lib\winrt45\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

@@ -41,8 +41,10 @@
                     </TransitionCollection>
                 </Grid.Transitions>
                 <StackPanel>
-                    <TextBlock Text="Soccerama" Foreground="Black" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="26.667" />
-                    <TextBlock Text="by Licantrop0 &amp; Bora" Foreground="Black" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="18" />
+
+                    <TextBlock Text="Privacy Policy" Foreground="Black" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="26.667" />
+                    <TextBlock Text="Questa app non si collega a internet ne raccoglie alcun dato personale." Foreground="Black"
+                               FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="18" TextWrapping="Wrap" />
                     <HyperlinkButton x:Uid="Support" Content="Supporto" NavigateUri="mailto:wpmobile@hotmail.it" Margin="-16,0,0,0" />
                 </StackPanel>
             </Grid>

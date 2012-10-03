@@ -22,7 +22,6 @@
             <TextBlock x:Name="pageTitle" Text="{Binding SelectedLevel.Name}" TextWrapping="Wrap" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-
         <GridView Name="itemGridView" Grid.Row="1"
                   AutomationProperties.AutomationId="ItemGridView"
                   AutomationProperties.Name="Grouped Items"
@@ -31,7 +30,7 @@
                   ItemTemplate="{StaticResource Shield250ItemTemplate}"
                   SelectionMode="Single"
                   SelectedItem="{Binding SelectedShield, Mode=TwoWay}"
-                  IsSwipeEnabled="False" >
+                  IsSwipeEnabled="False" Loaded="itemGridView_Loaded" >
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapGrid />

@@ -1,25 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Scudetti.Model;
+using SocceramaWin8.Data;
+using SocceramaWin8.Helpers;
+using SocceramaWin8.Sound;
+using System;
+using System.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
-using SocceramaWin8.Helpers;
-using SocceramaWin8.Data;
-using GalaSoft.MvvmLight.Command;
 
 namespace SocceramaWin8.ViewModel
 {
     public class ShieldViewModel : ViewModelBase
     {
+        ResourceLoader resources = new ResourceLoader();
         public string InputShieldName { get; set; }
         public Visibility InputVisibile { get { return CurrentShield.IsValidated ? Visibility.Collapsed : Visibility.Visible; } }
-        public string OriginalName { get { return CurrentShield.Names.First(); } }
-        ResourceLoader resources = new ResourceLoader();
+        public string ShieldName
+        {
+            get
+            {
+                return CurrentShield.IsValidated ?
+                    CurrentShield.Names.First() :
+                    "Inserisci il nome della squadra";
+            }
+        }
 
         private string _hintText;
         public string HintText
@@ -74,6 +80,7 @@ namespace SocceramaWin8.ViewModel
                 CurrentShield = shield;
                 InputShieldName = string.Empty;
                 HintText = null;
+                _hintUsed = false;
             });
         }
 
@@ -95,6 +102,7 @@ namespace SocceramaWin8.ViewModel
             {
                 HintText = CurrentShield.Hint;
                 AppContext.AvailableHints--;
+                _hintUsed = true;
                 ShowHintCommand.RaiseCanExecuteChanged();
             }
             else
@@ -103,9 +111,10 @@ namespace SocceramaWin8.ViewModel
             }
         }
 
+        private bool _hintUsed = false;
         private bool HintEnabled()
         {
-            return AppContext.AvailableHints > 0;
+            return AppContext.AvailableHints > 0 && !_hintUsed;
         }
 
 
@@ -117,7 +126,7 @@ namespace SocceramaWin8.ViewModel
             }
             else if (CurrentShield.Names.Any(name => CompareName(name, InputShieldName)))
             {
-                //SoundManager.PlayValidated();
+                SoundManager.PlayValidated();
                 CurrentShield.IsValidated = true;
                 if (AppContext.TotalShieldUnlocked % AppContext.HintsTreshold == 0)
                     AppContext.AvailableHints++;
@@ -128,7 +137,7 @@ namespace SocceramaWin8.ViewModel
             }
             else
             {
-                //SoundManager.PlayBooh();
+                SoundManager.PlayBooh();
                 //MessageBox.Show(AppResources.Wrong);
                 return false;
             }

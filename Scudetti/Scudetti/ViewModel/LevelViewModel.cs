@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Scudetti.Data;
 using Scudetti.Localization;
 using Scudetti.Model;
 using Scudetti.Sound;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Scudetti.ViewModel
 {
@@ -26,6 +26,18 @@ namespace Scudetti.ViewModel
         public IEnumerable<Shield> Shields { get; private set; }
         public int TotalShields { get { return Shields.Count(); } }
         public int CompletedShields { get { return Shields.Count(s => s.IsValidated); } }
+
+        public Shield SelectedShield
+        {
+            get { return null; }
+            set
+            {
+                if (value == null) return;
+                SoundManager.PlayKick();
+                MessengerInstance.Send(value);
+                RaisePropertyChanged("SelectedShield");
+            }
+        }
 
         public bool IsUnlocked
         {
@@ -60,7 +72,6 @@ namespace Scudetti.ViewModel
             }
         }
 
-
         public LevelViewModel()
             : this(1, DesignTimeData.Shields.Where(s => s.Level == 1))
         { }
@@ -74,7 +85,7 @@ namespace Scudetti.ViewModel
             Number = number;
             IsBonus = number >= 100;
             Shields = shields;
-            if (!IsInDesignMode) return;
+            if (IsInDesignMode) return;
             MessengerInstance.Register<PropertyChangedMessage<bool>>(this, (m) =>
             {
                 if (m.PropertyName != "IsValidated") return;

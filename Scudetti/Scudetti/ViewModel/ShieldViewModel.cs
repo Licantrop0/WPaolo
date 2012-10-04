@@ -39,6 +39,7 @@ namespace Scudetti.ViewModel
 				if (CurrentShield == value)
 					return;
 				_currentShield = value;
+                InputShieldName = string.Empty;
 
 				_currentShield.PropertyChanged += (sender, e) =>
 				{
@@ -50,7 +51,7 @@ namespace Scudetti.ViewModel
 							e.PropertyName));
 					}
 				};
-				RaisePropertyChanged("CurrentShield");
+                RaisePropertyChanged("CurrentShield");
 			}
 		}
 
@@ -65,7 +66,6 @@ namespace Scudetti.ViewModel
 			}
 
             MessengerInstance.Register<Shield>(this, m => CurrentShield = m);
-			InputShieldName = string.Empty;
 		}
 
 		public bool Validate()

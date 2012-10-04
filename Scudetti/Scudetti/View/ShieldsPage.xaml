@@ -11,27 +11,27 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    DataContext="{Binding Source={StaticResource Locator}, Path=ShieldsVM}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     Style="{StaticResource SlidePage}"
     shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
-        <vm:LevelViewModel x:Key="LevelVM" />
         <hlp:ImagePathConverter x:Key="ImagePathConv" />
         <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
         <hlp:BooleanNegationConverter x:Key="BooleanNegationConv" />
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
-          DataContext="{StaticResource LevelVM}">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}" DataContext="{Binding SelectedLevel}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="{Binding LevelName}" Style="{StaticResource HeaderTextBlock}" />
-        <TextBlock Text="{Binding StatusText}" Style="{StaticResource HeaderTextBlock}" TextAlignment="Right" />
+        <TextBlock Text="{Binding StatusText}" Style="{StaticResource HeaderTextBlock}"
+                   TextAlignment="Right" />
         
         <ListBox Grid.Row="1" ItemsSource="{Binding Shields}" HorizontalAlignment="Center"
                  SelectedItem="{Binding SelectedShield, Mode=TwoWay}">

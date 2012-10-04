@@ -19,19 +19,6 @@ namespace Scudetti.ViewModel
             }
         }
 
-        public Shield SelectedShield
-        {
-            get { return null; }
-            set
-            {
-                if (value == null) return;
-                SoundManager.PlayKick();
-                MessengerInstance.Send(value);
-                RaisePropertyChanged("SelectedShield");
-            }
-        }
-
-
         public ShieldsViewModel()
         {
             if (IsInDesignMode)
@@ -40,10 +27,7 @@ namespace Scudetti.ViewModel
                 return;
             }
 
-            MessengerInstance.Register<LevelViewModel>(this, m =>
-            {
-                SelectedLevel = m;
-            });
+            MessengerInstance.Register<LevelViewModel>(this, m => SelectedLevel = m);
         }
     }
 }

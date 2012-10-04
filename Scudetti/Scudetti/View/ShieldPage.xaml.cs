@@ -7,6 +7,7 @@ using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Scudetti.ViewModel;
+using System.Windows.Navigation;
 
 namespace Scudetti.View
 {
@@ -23,11 +24,8 @@ namespace Scudetti.View
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var id = NavigationContext.QueryString["id"];
-            VM.CurrentShield = AppContext.Shields.Single(s => s.Id == id);
-
             if (AppContext.AvailableHints > 0 && !VM.CurrentShield.IsValidated)
                 ((ApplicationBarIconButton)ApplicationBar.Buttons[1]).IsEnabled = true;
 

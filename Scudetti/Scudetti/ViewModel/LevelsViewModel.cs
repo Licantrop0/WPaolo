@@ -38,8 +38,7 @@ namespace Scudetti.ViewModel
 				if (!value.IsUnlocked) return;
 
 				SoundManager.PlayFischietto();
-				MessengerInstance.Send(new Uri("/View/ShieldsPage.xaml?level="
-					+ (value.Number), UriKind.Relative), "navigation");
+				MessengerInstance.Send(value);
 				RaisePropertyChanged("SelectedLevel");
 			}
 		}

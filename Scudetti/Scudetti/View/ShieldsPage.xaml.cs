@@ -1,13 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using Coding4Fun.Phone.Controls;
+﻿using Coding4Fun.Phone.Controls;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Controls;
 using Scudetti.Localization;
 using Scudetti.Sound;
 using Scudetti.ViewModel;
+using System;
+using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace Scudetti.View
 {
@@ -22,9 +23,6 @@ namespace Scudetti.View
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
-			var levelIndex = int.Parse(NavigationContext.QueryString["level"]);
-			LayoutRoot.DataContext = AppContext.Levels.Single(l => l.Number == levelIndex);
-
 			//I calcoli successivi vanno fatti solo quando torno indietro da uno scudetto
 			if (e.NavigationMode != NavigationMode.Back) return;
 
@@ -82,7 +80,7 @@ namespace Scudetti.View
 			toast.Tap += (s1, e1) =>
 			{
 				toastTapped = true;
-				NavigationService.Navigate(new Uri("/View/ShieldsPage.xaml?level=" + level.Number, UriKind.Relative));
+				Messenger.Default.Send<LevelViewModel>(level);
 			};
 			toastTapped = false;
 			toast.Show();

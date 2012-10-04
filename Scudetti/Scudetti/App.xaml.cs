@@ -131,8 +131,8 @@ namespace Scudetti
 
         private void RegisterNavigationMessages(PhoneApplicationFrame rootFrame)
         {
-            Messenger.Default.Register<Shield>(this, "navigation", (m) => rootFrame.Navigate(new Uri("/View/ShieldPage.xaml", UriKind.Relative)));
-            Messenger.Default.Register<LevelViewModel>(this, "navigation", (m) => rootFrame.Navigate(new Uri("/View/ShieldsPage.xaml", UriKind.Relative)));
+            Messenger.Default.Register<LevelViewModel>(this, (m) => rootFrame.Navigate(new Uri("/View/ShieldsPage.xaml", UriKind.Relative)));
+            Messenger.Default.Register<Shield>(this, (m) => rootFrame.Navigate(new Uri("/View/ShieldPage.xaml", UriKind.Relative)));
             Messenger.Default.Register<string>(this, "navigation", (m) =>
             {
                 if (m == "goback") rootFrame.GoBack();

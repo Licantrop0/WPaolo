@@ -7,7 +7,6 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:hlp="clr-namespace:Scudetti.Helper"
-	xmlns:vm="clr-namespace:Scudetti.ViewModel"
     DataContext="{Binding Source={StaticResource Locator}, Path=ShieldVM}"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"

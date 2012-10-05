@@ -6,7 +6,6 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:Scudetti.ViewModel"
     xmlns:hlp="clr-namespace:Scudetti.Helper"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -23,7 +22,9 @@
         <hlp:BooleanNegationConverter x:Key="BooleanNegationConv" />
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}" DataContext="{Binding SelectedLevel}" >
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource DefaultBackground}"
+          DataContext="{Binding SelectedLevel}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

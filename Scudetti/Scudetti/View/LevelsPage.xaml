@@ -4,15 +4,15 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:vm="clr-namespace:Scudetti.ViewModel"
+    DataContext="{Binding Source={StaticResource Locator}, Path=LevelsVM}"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"    
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+                            
     shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
-        <vm:LevelsViewModel x:Key="LevelsVM" />
         <DataTemplate x:Key="PlayerTemplate">
             <Grid toolkit:TiltEffect.IsTiltEnabled="{Binding IsUnlocked}" >
                 <Grid.RowDefinitions>
@@ -29,8 +29,7 @@
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid Background="{StaticResource DefaultBackground}" 
-          DataContext="{StaticResource LevelsVM}">
+    <Grid Background="{StaticResource DefaultBackground}" >
 
         <TextBlock Text="{Binding StatusText}"
                    Style="{StaticResource StatusTextBlock}"

@@ -730,6 +730,7 @@
     <Names>Standard Luik</Names>
     <Names>Standard Lüttich</Names>
     <Names>Standard Liegi</Names>
+    <Names>Standard Liege</Names>
   </Shield>
 
   <Shield Level="100" Id="Germany" Image="Germania.png" Hint="Europe" IsValidated="false">

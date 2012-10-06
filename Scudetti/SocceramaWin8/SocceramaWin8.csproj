@@ -163,6 +163,9 @@
     <None Include="SocceramaWin8_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Scudetti\Data\ShieldsV2.xml">
+      <Link>Data\ShieldsV2.xml</Link>
+    </Content>
     <Content Include="Assets\Levels\livello1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -770,10 +773,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Data\Shields.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Sound\booh.wav" />
     <Content Include="Sound\fischietto.wav" />

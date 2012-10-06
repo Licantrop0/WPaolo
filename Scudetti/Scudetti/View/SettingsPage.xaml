@@ -30,7 +30,7 @@
 
 		<StackPanel Grid.Row="1" Margin="32,0">
 			<toolkit:ToggleSwitch Header="{Binding LocalizedResources.Sounds,
-				Source={StaticResource LocalizedStrings}}" IsChecked="{Binding SoundEnabled, Mode=TwoWay}" Background="Black" Foreground="White" SwitchForeground="#FF1BA1E2" />
+				Source={StaticResource LocalizedStrings}}" IsChecked="{Binding SoundEnabled, Mode=TwoWay}" Background="Black" Foreground="White" SwitchForeground="#FF1BA1E2" Style="{StaticResource ToggleSwitchStyleLight}" />
 
             <Button Click="AboutButton_Click" FontSize="64" FontWeight="Bold"
                     HorizontalAlignment="Center">

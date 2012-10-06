@@ -5,13 +5,16 @@ using System.IO.IsolatedStorage;
 using System.Windows;
 using System.Xml.Serialization;
 using Scudetti.Helper;
+using System.Linq;
 
 namespace Scudetti.Model
 {
     public static class ShieldService
     {
+        const string ShieldFileName = "ShieldsV2.xml";
         static readonly IsolatedStorageFile _storage = IsolatedStorageFile.GetUserStoreForApplication();
-        static readonly Uri _xapUrl = new Uri("Scudetti;component/Data/Shields.xml", UriKind.Relative);
+        static readonly Uri _xapUrl = new Uri("Scudetti;component/Data/" + ShieldFileName, UriKind.Relative);
+
         static XmlSerializer _xml { get { return new XmlSerializer(typeof(Shield[])); } }
 
         public static void Save(IEnumerable<Shield> scudetti)
@@ -27,7 +30,12 @@ namespace Scudetti.Model
 #if !DEBUG
             if (_storage.FileExists("Shields.xml"))
             {
-                using (var stream = _storage.OpenFile("Shields.xml", FileMode.Open))
+                return Upgrade("Shields.xml");
+            }
+
+            if (_storage.FileExists(ShieldFileName))
+            {
+                using (var stream = _storage.OpenFile(ShieldFileName, FileMode.Open))
                 {
                     return _xml.Deserialize(stream) as Shield[];
                 }
@@ -46,5 +54,22 @@ namespace Scudetti.Model
             }
         }
 
+        private static IEnumerable<Shield> Upgrade(string oldFile)
+        {
+            Shield[] oldShields;
+            using (var stream = _storage.OpenFile(oldFile, FileMode.Open))
+            {
+                oldShields = _xml.Deserialize(stream) as Shield[];
+            }
+
+            var newShields = GetNew();
+
+            foreach (var shield in oldShields.Where(s => s.IsValidated))
+            {
+                newShields.Single(s => s.Id == shield.Id).IsValidated = true;
+            }
+
+            return newShields;
+        }
     }
 }

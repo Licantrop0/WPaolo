@@ -10,6 +10,7 @@ namespace Scudetti.Model
 {
     public static class ShieldService
     {
+        const string ShieldFileName = "ShieldsV2.xml";
         static StorageFolder roamingFolder = ApplicationData.Current.RoamingFolder;
         static XmlSerializer serializer = new XmlSerializer(typeof(Shield[]));
 
@@ -17,7 +18,7 @@ namespace Scudetti.Model
         {
             try
             {
-                var file = await roamingFolder.CreateFileAsync("Shields.xml", CreationCollisionOption.ReplaceExisting);
+                var file = await roamingFolder.CreateFileAsync(ShieldFileName, CreationCollisionOption.ReplaceExisting);
                 using (var stream = await file.OpenStreamForWriteAsync())
                 {
                     serializer.Serialize(stream, scudetti);
@@ -35,9 +36,9 @@ namespace Scudetti.Model
 #if DEBUG
             return await GetNew();
 #else
-            if (await FileExist("Shields.xml"))
+            if (await FileExist(ShieldFileName))
             {
-                var file = await roamingFolder.GetFileAsync("Shields.xml");
+                var file = await roamingFolder.GetFileAsync(ShieldFileName);
                 using (var stream = await file.OpenStreamForReadAsync())
                 {
                     var obj = (Shield[])serializer.Deserialize(stream);
@@ -73,7 +74,7 @@ namespace Scudetti.Model
 
         public static async Task<IEnumerable<Shield>> GetNew()
         {
-            string myFile = Path.Combine(Package.Current.InstalledLocation.Path, "Data\\Shields.xml");
+            string myFile = Path.Combine(Package.Current.InstalledLocation.Path, "Data", ShieldFileName);
             var myFolder = await StorageFolder.GetFolderFromPathAsync(Path.GetDirectoryName(myFile));
 
             using (var stream = await myFolder.OpenStreamForReadAsync(Path.GetFileName(myFile)))

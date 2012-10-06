@@ -18,7 +18,6 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:AboutViewModel x:Name="AboutVM" MinFontSize="40"
-                           DefaultBackground="{StaticResource DefaultBackground}"
                            DefaultForeground="{StaticResource DefaultForeground}"
                            DefaultFont="{StaticResource DefaultFont}"
                            AppId="bd0a0292-f125-4a28-903e-82202f6a3735"
@@ -26,8 +25,12 @@
                            CustomText="All the badges trademarks and/or copyrights are property of their respective clubs"
                            CustomTextFontFamily="Segoe WP"
                            CustomTextFontSize="34"
-                           CustomTextForeground="White" />
-    </phone:PhoneApplicationPage.Resources>
+                           CustomTextForeground="White">
+            <vm:AboutViewModel.DefaultBackground>
+                <ImageBrush ImageSource="/Scudetti;component/Images/sfondo-noborder.jpg"
+						Stretch="None" />
+            </vm:AboutViewModel.DefaultBackground>
+        </vm:AboutViewModel>    </phone:PhoneApplicationPage.Resources>
 
     <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}"
                ApplicationId="489510bc-7ee7-4d2d-9bf1-9065ff63354d"

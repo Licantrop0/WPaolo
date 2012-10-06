@@ -41,7 +41,7 @@
 					 Background="#BFFFFFFF" BorderBrush="#BFFFFFFF"
 					 Foreground="Black" SelectionBackground="#FF1BA1E2"
 					 SelectionForeground="White" />
-			<TextBlock Text="{Binding OriginalName}" FontSize="70"
+			<TextBlock Text="{Binding OriginalName}" FontSize="170"
 					   Style="{StaticResource TextBlockBase}"
 					   Visibility="{Binding CurrentShield.IsValidated,
 						Converter={StaticResource BooleanVisibilityConv}, Mode=OneTime}"

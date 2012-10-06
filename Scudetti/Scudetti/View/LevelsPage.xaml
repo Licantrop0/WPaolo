@@ -9,7 +9,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-                            
     shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
@@ -22,7 +21,7 @@
                 </Grid.RowDefinitions>
 
                 <Image Source="{Binding LevelImage}" Stretch="None" />
-                <TextBlock Text="{Binding StatusText}" Grid.Row="2" FontSize="30"
+                <TextBlock Text="{Binding StatusText}" Grid.Row="2" FontSize="80"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Style="{StaticResource TextBlockBase}" />
             </Grid>
@@ -30,11 +29,6 @@
     </phone:PhoneApplicationPage.Resources>
 
     <Grid Background="{StaticResource DefaultBackground}" >
-
-        <TextBlock Text="{Binding StatusText}"
-                   Style="{StaticResource StatusTextBlock}"
-                   VerticalAlignment="Bottom" />
-
         <ListBox ItemsSource="{Binding Levels}" Margin="0,30"
                  SelectedItem="{Binding SelectedLevel, Mode=TwoWay}"
                  ItemTemplate="{StaticResource PlayerTemplate}"
@@ -45,6 +39,10 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
+        
+        <TextBlock Text="{Binding StatusText}"
+                   Style="{StaticResource StatusTextBlock}"
+                   VerticalAlignment="Bottom" />
     </Grid>
 
 </phone:PhoneApplicationPage>

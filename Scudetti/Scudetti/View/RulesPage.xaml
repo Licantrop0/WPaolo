@@ -33,8 +33,8 @@
 			</controls:PivotItem.Header>
 			<TextBlock Text="{Binding LocalizedResources.RuleText,
 				Source={StaticResource LocalizedStrings}}" TextAlignment="Center"
-					   FontSize="50" TextWrapping="Wrap"
-					   LineStackingStrategy="BlockLineHeight" LineHeight="80"
+					   FontSize="130" TextWrapping="Wrap"
+					   LineStackingStrategy="BlockLineHeight" LineHeight="70"
 					   Style="{StaticResource TextBlockBase}" />
 		</controls:PivotItem>
 
@@ -46,7 +46,7 @@
 			</controls:PivotItem.Header>
 			<TextBlock Text="{Binding LocalizedResources.DetailsText,
 				Source={StaticResource LocalizedStrings}}" 
-					   FontSize="50" TextWrapping="Wrap"
+					   FontSize="130" TextWrapping="Wrap"
 					   LineStackingStrategy="BlockLineHeight" LineHeight="60"
 					   Style="{StaticResource TextBlockBase}" />
 		</controls:PivotItem>

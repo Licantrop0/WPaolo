@@ -17,13 +17,12 @@
     shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
-        <vm:AboutViewModel x:Name="AboutVM" MinFontSize="40"
+        <vm:AboutViewModel x:Name="AboutVM" MinFontSize="50"
                            DefaultForeground="{StaticResource DefaultForeground}"
                            DefaultFont="{StaticResource DefaultFont}"
                            AppId="bd0a0292-f125-4a28-903e-82202f6a3735"
-                           AppNameMargin="0,-50,0,-30"
-                           CustomText="All the badges trademarks and/or copyrights are property of their respective clubs"
-                           CustomTextFontFamily="Segoe WP"
+                           AppNameMargin="0,-30"
+                           CustomText="All the badges trademarks and-or copyrights are property of their respective clubs"
                            CustomTextFontSize="34"
                            CustomTextForeground="White">
             <vm:AboutViewModel.DefaultBackground>

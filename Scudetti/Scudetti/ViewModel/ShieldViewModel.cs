@@ -39,6 +39,8 @@ namespace Scudetti.ViewModel
 				if (CurrentShield == value)
 					return;
 				_currentShield = value;
+
+                HintText = null;
                 InputShieldName = string.Empty;
 
 				_currentShield.PropertyChanged += (sender, e) =>

@@ -34,14 +34,14 @@
 	<phone:PhoneApplicationPage.Resources>
 		<ControlTemplate x:Key="PlayButtonTemplate">
 			<StackPanel Orientation="Horizontal">
-				<Image Source="/Scudetti;component/Images/play.png" Stretch="None" />
+				<Image Source="/Scudetti;component/Images/play.png" Stretch="None" Margin="0,0,12,0" />
 				<TextBlock Text="Play" Style="{StaticResource TextBlockBase}" VerticalAlignment="Center" />
 			</StackPanel>
 		</ControlTemplate>
 
 		<ControlTemplate x:Key="WinButtonTemplate">
 			<StackPanel Orientation="Horizontal">
-				<Image Source="/Scudetti;component/Images/WinBadge.png" Stretch="None" />
+                <Image Source="/Scudetti;component/Images/WinBadge.png" Stretch="None" Margin="0,0,12,0"/>
 				<TextBlock Text="Play" Style="{StaticResource TextBlockBase}" VerticalAlignment="Center" />
 			</StackPanel>
 		</ControlTemplate>
@@ -60,13 +60,13 @@
 			<Button Name="PlayButton" Click="PlayButton_Click"
 					Template="{StaticResource PlayButtonTemplate}"
 					FontSize="64" FontWeight="Bold"
-					Canvas.Left="67" Canvas.Top="194" />
+					Canvas.Left="60" Canvas.Top="194" />
 
-			<Button Click="SettingsButton_Click" FontSize="64" FontWeight="Bold" Canvas.Left="66" Canvas.Top="447" >
+			<Button Click="SettingsButton_Click" FontSize="64" FontWeight="Bold" Canvas.Left="60" Canvas.Top="447" >
 				<Button.Template>
 					<ControlTemplate>
 						<StackPanel Orientation="Horizontal">
-							<Image Source="/Scudetti;component/Images/opzioni.png" Stretch="None" />
+                            <Image Source="/Scudetti;component/Images/opzioni.png" Stretch="None" Margin="0,0,12,0" />
 							<TextBlock Text="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}}"
 									   Style="{StaticResource TextBlockBase}" VerticalAlignment="Center" />
 						</StackPanel>
@@ -78,7 +78,7 @@
 				<Button.Template>
 					<ControlTemplate>
 						<StackPanel Orientation="Horizontal">
-							<Image Source="/Scudetti;component/Images/Regole.png" Stretch="None" />
+                            <Image Source="/Scudetti;component/Images/Regole.png" Stretch="None" Margin="0,0,12,0" />
 							<TextBlock Text="{Binding LocalizedResources.Rules, Source={StaticResource LocalizedStrings}}"
 									   Style="{StaticResource TextBlockBase}" VerticalAlignment="Center" />
 						</StackPanel>

@@ -12,45 +12,59 @@
 	mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
 	Style="{StaticResource SlidePage}"
 	shell:SystemTray.IsVisible="False">
-	
-	<phone:PhoneApplicationPage.Resources>
-		<vm:SettingsViewModel x:Key="SettingsVM" />
-	</phone:PhoneApplicationPage.Resources>
+
+    <phone:PhoneApplicationPage.Resources>
+        <vm:SettingsViewModel x:Key="SettingsVM" />
+    </phone:PhoneApplicationPage.Resources>
 
 
-	<Grid Background="{StaticResource DefaultBackground}"
+    <Grid Background="{StaticResource DefaultBackground}"
 		   DataContext="{StaticResource SettingsVM}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-		<TextBlock Text="{Binding LocalizedResources.Settings,
+        <TextBlock Text="{Binding LocalizedResources.Settings,
 			Source={StaticResource LocalizedStrings}}" Style="{StaticResource TitleTextBlock}" />
 
-		<StackPanel Grid.Row="1" Margin="32,0">
-			<toolkit:ToggleSwitch Header="{Binding LocalizedResources.Sounds,
-				Source={StaticResource LocalizedStrings}}" IsChecked="{Binding SoundEnabled, Mode=TwoWay}" Background="Black" Foreground="White" SwitchForeground="#FF1BA1E2" Style="{StaticResource ToggleSwitchStyleLight}" />
+        <StackPanel Grid.Row="1" Margin="32,0">
+            <toolkit:ToggleSwitch IsChecked="{Binding SoundEnabled, Mode=TwoWay}"
+                                  Style="{StaticResource ToggleSwitchStyleLight}"
+                                  FontFamily="{StaticResource DefaultFont}"
+                                  FontSize="40"
+                                  Foreground="{StaticResource DefaultForeground}">
+                <toolkit:ToggleSwitch.Header>
+                    <TextBlock Text="{Binding LocalizedResources.Sounds,
+                        Source={StaticResource LocalizedStrings}}"
+                               FontSize="50"
+                               Style="{StaticResource TextBlockBase}"/>
+                </toolkit:ToggleSwitch.Header>
+            </toolkit:ToggleSwitch>
 
             <Button Click="AboutButton_Click" FontSize="64" HorizontalAlignment="Center">
                 <Button.Template>
                     <ControlTemplate>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Scudetti;component/Images/about.png" Stretch="None" />
-                            <TextBlock Text="About"
-									   Style="{StaticResource TextBlockBase}" VerticalAlignment="Center" />
+                            <TextBlock Text="About" VerticalAlignment="Center"
+									   Style="{StaticResource TextBlockBase}" />
                         </StackPanel>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            
-			<Button Command="{Binding ResetCommand}" Margin="0,62"
+
+            <Button Command="{Binding ResetCommand}" Margin="0,62"
+                    FontFamily="{StaticResource DefaultFont}"
+                    FontSize="50"
+                    Foreground="{StaticResource DefaultForeground}"
 					toolkit:TiltEffect.IsTiltEnabled="True"
 					Content="{Binding LocalizedResources.Reset,
-				Source={StaticResource LocalizedStrings}}" Background="#33FFFFFF" BorderBrush="White" Foreground="White" />
+                        Source={StaticResource LocalizedStrings}}"
+                    Background="#33FFFFFF" BorderBrush="White" />
 
 
         </StackPanel>
-	</Grid>
+    </Grid>
 
 </phone:PhoneApplicationPage>

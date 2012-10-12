@@ -21,7 +21,7 @@
                 </Grid.RowDefinitions>
 
                 <Image Source="{Binding LevelImage}" Stretch="None" />
-                <TextBlock Text="{Binding StatusText}" Grid.Row="2" FontSize="80"
+                <TextBlock Text="{Binding StatusText}" Grid.Row="2" FontSize="35"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Style="{StaticResource TextBlockBase}" />
             </Grid>

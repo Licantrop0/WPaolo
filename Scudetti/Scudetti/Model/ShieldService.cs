@@ -28,11 +28,6 @@ namespace Scudetti.Model
         public static IEnumerable<Shield> Load()
         {
 #if !DEBUG
-            if (_storage.FileExists("Shields.xml"))
-            {
-                return Upgrade("Shields.xml");
-            }
-
             if (_storage.FileExists(ShieldFileName))
             {
                 using (var stream = _storage.OpenFile(ShieldFileName, FileMode.Open))
@@ -40,6 +35,12 @@ namespace Scudetti.Model
                     return _xml.Deserialize(stream) as Shield[];
                 }
             }
+
+            if (_storage.FileExists("Shields.xml"))
+            {
+                return Upgrade("Shields.xml");
+            }
+
 #endif
             return GetNew();
         }
@@ -68,6 +69,8 @@ namespace Scudetti.Model
             {
                 newShields.Single(s => s.Id == shield.Id).IsValidated = true;
             }
+
+            _storage.DeleteFile(oldFile);
 
             return newShields;
         }

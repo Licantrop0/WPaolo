@@ -67,7 +67,7 @@
                     <Image Source="Img/logo.png" Stretch="None"
                            Margin="{Binding LogoMargin}" />
 
-                    <TextBlock Text="{Binding CustomText}"
+                    <TextBlock Text="{Binding CustomText}" Margin="6"
                                FontFamily="{Binding CustomTextFontFamily}"
                                TextAlignment="Center" TextWrapping="Wrap"
                                FontSize="{Binding CustomTextFontSize}"

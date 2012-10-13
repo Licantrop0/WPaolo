@@ -11,7 +11,7 @@ namespace Scudetti.Model
 {
     public static class ShieldService
     {
-        const string ShieldFileName = "ShieldsV2.xml";
+        const string ShieldFileName = "ShieldsV3.xml";
         static readonly IsolatedStorageFile _storage = IsolatedStorageFile.GetUserStoreForApplication();
         static readonly Uri _xapUrl = new Uri("Scudetti;component/Data/" + ShieldFileName, UriKind.Relative);
 
@@ -36,11 +36,11 @@ namespace Scudetti.Model
                 }
             }
 
-            if (_storage.FileExists("Shields.xml"))
-            {
-                return Upgrade("Shields.xml");
-            }
+            if (_storage.FileExists("ShieldsV2.xml"))
+                return Upgrade("ShieldsV2.xml");
 
+            if (_storage.FileExists("Shields.xml"))
+                return Upgrade("Shields.xml");
 #endif
             return GetNew();
         }

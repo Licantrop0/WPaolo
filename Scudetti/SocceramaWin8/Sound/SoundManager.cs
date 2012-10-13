@@ -16,14 +16,14 @@ namespace SocceramaWin8.Sound
         {
             if (!AppContext.SoundEnabled) return;
 
-        //var storageFile = await installedLocation.GetFileAsync("Assets\\Sounds\\lazer.mp3");
-        //if (storageFile != null)
-        //{
-        //    var stream = await storageFile.OpenAsync(Windows.Storage.FileAccessMode.Read);
-        //    MediaElement snd = new MediaElement();
-        //    snd.SetSource(stream, storageFile.ContentType);
-        //    snd.Play();
-        //}
+            //var storageFile = await installedLocation.GetFileAsync("Assets\\Sounds\\lazer.mp3");
+            //if (storageFile != null)
+            //{
+            //    var stream = await storageFile.OpenAsync(Windows.Storage.FileAccessMode.Read);
+            //    MediaElement snd = new MediaElement();
+            //    snd.SetSource(stream, storageFile.ContentType);
+            //    snd.Play();
+            //}
 
 
 

@@ -192,10 +192,35 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Scudetti\ajaccio.png" />
+    <Content Include="Images\Scudetti\atalanta.png" />
+    <Content Include="Images\Scudetti\bari.png" />
+    <Content Include="Images\Scudetti\Bologna.png" />
+    <Content Include="Images\Scudetti\braga.png" />
+    <Content Include="Images\Scudetti\brescia.png" />
+    <Content Include="Images\Scudetti\Cerro_porteno.png" />
+    <Content Include="Images\Scudetti\chicagofire.png" />
+    <Content Include="Images\Scudetti\chievo.png" />
+    <Content Include="Images\Scudetti\dinamobucuresti.png" />
+    <Content Include="Images\Scudetti\dynamomoscow.png" />
+    <Content Include="Images\Scudetti\estudiantes.png" />
+    <Content Include="Images\Scudetti\Gladbach.png" />
+    <Content Include="Images\Scudetti\gremio.png" />
+    <Content Include="Images\Scudetti\hannover96.png" />
+    <Content Include="Images\Scudetti\kaiserslautern.png" />
+    <Content Include="Images\Scudetti\levante.png" />
+    <Content Include="Images\Scudetti\lokomotivmoscow.png" />
+    <Content Include="Images\Scudetti\newell_soldboys.png" />
+    <Content Include="Images\Scudetti\Newenglandrevolution.png" />
+    <Content Include="Images\Scudetti\osasuna.png" />
+    <Content Include="Images\Scudetti\panathinaikos.png" />
+    <Content Include="Images\Scudetti\Recreativo_de_Huelva.png" />
+    <Content Include="Images\Scudetti\VascoDaGama.png" />
+    <Content Include="Images\Scudetti\wiganathletic.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Data\ShieldsV2.xml">
+    <Resource Include="Data\ShieldsV3.xml">
       <SubType>Designer</SubType>
     </Resource>
     <BlendEmbeddedFont Include="Fonts\Computerfont.ttf">

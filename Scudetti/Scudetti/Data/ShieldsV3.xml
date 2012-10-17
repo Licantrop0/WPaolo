@@ -811,55 +811,62 @@
     <Names>Hannover 96</Names>
     <Names>Hannover</Names>
   </Shield>
-  <!--<Shield Level="7" Id="" Image=".png" Hint="" IsValidated="false">
-    <Names></Names>
-    <Names></Names>
-    <Names></Names>
+  <Shield Level="7" Id="kaiserslautern" Image="kaiserslautern.png" Hint="Germany" IsValidated="false">
+    <Names>Fußball-Club Kaiserslautern</Names>
+    <Names>Kaiserslautern</Names>
+    <Names>FC Kaiserslautern</Names>
   </Shield>
-  <Shield Level="7" Id="" Image=".png" Hint="" IsValidated="false">
-    <Names></Names>
-    <Names></Names>
-    <Names></Names>
+  <Shield Level="7" Id="levante" Image="levante.png" Hint="Spain" IsValidated="false">
+    <Names>Levante Unión Deportiva</Names>
+    <Names>Levante Ud</Names>
+    <Names>Levante</Names>
   </Shield>
-  <Shield Level="7" Id="" Image=".png" Hint="" IsValidated="false">
-    <Names></Names>
-    <Names></Names>
-    <Names></Names>
+  <Shield Level="7" Id="lokomotivmoscow" Image="lokomotivemoscow.png" Hint="Russia" IsValidated="false">
+    <Names>Futbol'nyj Klub Lokomotiv Moskva</Names>
+    <Names>Fc Lokomotiv Moscow</Names>
+    <Names>Lokomotiv Moscow</Names>
+    <Names>Lokomotiv Moskva</Names>
+    <Names>lokomotiv mosca</Names>
+    <Names>lokomotiv</Names>
   </Shield>
-  <Shield Level="7" Id="" Image=".png" Hint="" IsValidated="false">
-    <Names></Names>
-    <Names></Names>
-    <Names></Names>
+  <Shield Level="7" Id="newell_soldboys" Image="newell_soldboys.png" Hint="Argentina" IsValidated="false">
+    <Names>Club Atlético Newell's Old Boys</Names>
+    <Names>Newell's Old Boys</Names>
+    <Names>Newell Old Boys</Names>
+    <Names>Newell</Names>
+    <Names>Old Boys</Names>
   </Shield>
-  <Shield Level="7" Id="" Image=".png" Hint="" IsValidated="false">
-    <Names></Names>
-    <Names></Names>
-    <Names></Names>
+  <Shield Level="7" Id="Newenglandrevolution" Image="Newenglandrevolution.png" Hint="USA" IsValidated="false">
+    <Names>New England Revolution</Names>
+    <Names>new england</Names>
+    <Names>revolution</Names>
   </Shield>
-  <Shield Level="7" Id="" Image=".png" Hint="" IsValidated="false">
-    <Names></Names>
-    <Names></Names>
-    <Names></Names>
+  <Shield Level="7" Id="osasuna" Image="osasuna.png" Hint="Spain" IsValidated="false">
+    <Names>Club Atlético Osasuna</Names>
+    <Names>CA Osasuna</Names>
+    <Names>Osasuna</Names>
   </Shield>
-  <Shield Level="7" Id="" Image=".png" Hint="" IsValidated="false">
-    <Names></Names>
-    <Names></Names>
-    <Names></Names>
+  <Shield Level="7" Id="panathinaikos" Image="panathinaikos.png" Hint="Greece" IsValidated="false">
+    <Names>Panathinaikos Athlitikos Omilos</Names>
+    <Names>Panathinaikos</Names>
   </Shield>
-  <Shield Level="7" Id="" Image=".png" Hint="" IsValidated="false">
-    <Names></Names>
-    <Names></Names>
-    <Names></Names>
+  <Shield Level="7" Id="Recreativo_de_Huelva" Image="Recreativo_de_Huelva.png" Hint="Spain" IsValidated="false">
+    <Names>Real Club Recreativo de Huelva</Names>
+    <Names>Recreativo de Huelva</Names>
+    <Names>Recreativo Huelva</Names>
+    <Names>Recreativo</Names>
+    <Names>Recre</Names>
   </Shield>
-  <Shield Level="7" Id="" Image=".png" Hint="" IsValidated="false">
-    <Names></Names>
-    <Names></Names>
-    <Names></Names>
+  <Shield Level="7" Id="VascoDaGama" Image="VascoDaGama.png" Hint="Brazil" IsValidated="false">
+    <Names>Club de Regatas Vasco da Gama</Names>
+    <Names>Vasco da Gama</Names>
+    <Names>vasco</Names>
   </Shield>
-  <Shield Level="7" Id="" Image=".png" Hint="" IsValidated="false">
-    <Names></Names>
-    <Names></Names>
-    <Names></Names>
+  <Shield Level="7" Id="wiganathletic" Image="wiganathletic.png" Hint="England" IsValidated="false">
+    <Names>Wigan Athletic Football Club</Names>
+    <Names>Wigan Athletic Fc</Names>
+    <Names>Wigan Athletic</Names>
+    <Names>Wigan</Names>
   </Shield>-->
 
 

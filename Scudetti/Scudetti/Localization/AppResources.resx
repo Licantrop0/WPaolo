@@ -170,7 +170,7 @@ Show to your friends that you are a real expert!</value>
     <value>Available hints: {0}</value>
   </data>
   <data name="BonusLevel" xml:space="preserve">
-    <value>Bonus Level</value>
+    <value>Bonus Lv.</value>
   </data>
   <data name="GameFinished" xml:space="preserve">
     <value>You have finished the Game, you are now a real Soccer Master!</value>

@@ -169,7 +169,7 @@
     <value>Suggerimenti: {0}</value>
   </data>
   <data name="BonusLevel" xml:space="preserve">
-    <value>Livello Bonus</value>
+    <value>Lv. Bonus</value>
   </data>
   <data name="GameFinished" xml:space="preserve">
     <value>Hai finito il gioco, sei un vero esperto di Calcio!</value>

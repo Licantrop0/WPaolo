@@ -106,8 +106,14 @@
   </Shield>
   <Shield Level="1" Id="ParisSaintGermain" Image="paris-saint-germain.png" Hint="France" IsValidated="false">
     <Names>Paris Saint-Germain Football Club</Names>
+    <Names>Paris Saint-Germain FC</Names>
     <Names>Paris Saint-Germain</Names>
+    <Names>Paris Saint Germain FC</Names>
     <Names>Paris Saint Germain</Names>
+    <Names>Paris St. Germain FC</Names>
+    <Names>Paris St. Germain</Names>
+    <Names>Paris St Germain FC</Names>
+    <Names>Paris St Germain</Names>
     <Names>Paris SG</Names>
     <Names>PSG</Names>
   </Shield>
@@ -821,7 +827,7 @@
     <Names>Levante Ud</Names>
     <Names>Levante</Names>
   </Shield>
-  <Shield Level="7" Id="lokomotivmoscow" Image="lokomotivemoscow.png" Hint="Russia" IsValidated="false">
+  <Shield Level="7" Id="lokomotivmoscow" Image="lokomotivmoscow.png" Hint="Russia" IsValidated="false">
     <Names>Futbol'nyj Klub Lokomotiv Moskva</Names>
     <Names>Fc Lokomotiv Moscow</Names>
     <Names>Lokomotiv Moscow</Names>

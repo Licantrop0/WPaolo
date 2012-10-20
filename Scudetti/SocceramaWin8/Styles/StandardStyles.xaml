@@ -28,8 +28,17 @@
 
     <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
 
-    <!-- RichTextBlock styles -->
+    <FontFamily x:Key="DefaultFont">
+        /Assets/Fonts/Computerfont.ttf#Computerfont
+    </FontFamily>
 
+    <LinearGradientBrush x:Key="DefaultForeground" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#FFFFA410" Offset="0.2"/>
+        <GradientStop Color="#FFCC3943" Offset="1"/>
+    </LinearGradientBrush>
+
+
+    <!-- RichTextBlock styles -->
     <Style x:Key="BasicRichTextStyle" TargetType="RichTextBlock">
         <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
         <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
@@ -63,7 +72,7 @@
     <Style x:Key="BasicTextStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
         <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
-        <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
         <Setter Property="TextTrimming" Value="WordEllipsis"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="Typography.StylisticSet20" Value="True"/>

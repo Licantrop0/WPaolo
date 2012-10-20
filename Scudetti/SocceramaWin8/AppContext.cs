@@ -28,12 +28,17 @@ namespace SocceramaWin8
         {
             get { return Shields.Count(s => s.IsValidated); }
         }
+        public static int TotalShields
+        {
+            get { return Shields.Count() - 6; }
+        }
 
         public static async void LoadShieldsAsync()
         {
             Shields = await ShieldService.Load();
             Levels = Shields.GroupBy(s => s.Level)
-                .Select(g=> new LevelViewModel(g))
+                .Select(g => new LevelViewModel(g))
+                .OrderBy(l => l.Number)
                 .ToList();
 
             if (LoadCompleted != null)

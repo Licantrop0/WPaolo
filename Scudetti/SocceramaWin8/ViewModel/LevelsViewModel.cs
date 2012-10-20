@@ -26,7 +26,7 @@ namespace SocceramaWin8.ViewModel
             {
                 return AppContext.Shields == null ? string.Empty :
                     string.Format("{0}: {1}/{2}", resources.GetString("Shields"),
-                        AppContext.TotalShieldUnlocked, AppContext.Shields.Count());
+                        AppContext.TotalShieldUnlocked, AppContext.TotalShields);
             }
         }
 

@@ -13,13 +13,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Margin="0,0,60,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Text="{Binding SelectedLevel.Name}" TextWrapping="Wrap" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="shieldStatus" Text="{Binding SelectedLevel.StatusText}" Grid.Column="1"
+                       IsHitTestVisible="false" HorizontalAlignment="Right"
+                       Style="{StaticResource PageHeaderTextStyle}" />
         </Grid>
 
         <GridView Name="itemGridView" Grid.Row="1"

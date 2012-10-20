@@ -27,7 +27,10 @@ namespace SocceramaWin8.ViewModel
             set
             {
                 if (value == null) return;
-                MessengerInstance.Send<Shield>(value);
+                if (!value.Id.StartsWith("blocked"))
+                    MessengerInstance.Send<Shield>(value);
+                
+                RaisePropertyChanged("SelectedShield");
             }
         }
 

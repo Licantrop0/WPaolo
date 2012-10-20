@@ -34,17 +34,7 @@
 					x:Key="DefaultFont">/Scudetti;component/Fonts/Fonts.zip#MV Boli</FontFamily>-->
     <Color x:Key="MainColor">#FF841F</Color>
 
-    <LinearGradientBrush x:Key="DefaultForeground" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Color="#FFFFA410" Offset="0.2"/>
-        <GradientStop Color="#FFCC3943" Offset="1"/>
-    </LinearGradientBrush>
-
-    <Style x:Key="TextBlockBase" TargetType="TextBlock">
-        <!--<Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />-->
-        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-    </Style>
-
-    <Style x:Key="StatusTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
+    <Style x:Key="StatusTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BasicTextStyle}">
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="FontSize" Value="70" />
         <Setter Property="Margin" Value="0,24" />
@@ -81,9 +71,9 @@
                 <ControlTemplate>
                     <StackPanel VerticalAlignment="Center">
                         <Image Source="{Binding Image}" Stretch="None" Opacity="{Binding Opacity}" />
-                        <TextBlock Text="{Binding StatusText}" FontSize="30"
+                        <TextBlock Text="{Binding StatusText}" FontSize="40"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Style="{StaticResource TextBlockBase}" />
+                                   Style="{StaticResource BasicTextStyle}" />
                     </StackPanel>
                 </ControlTemplate>
             </Button.Template>

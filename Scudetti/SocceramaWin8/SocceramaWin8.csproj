@@ -157,6 +157,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\Fonts\Computerfont.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Localization\en-US\Resources.resw" />
     <PRIResource Include="Localization\it-IT\Resources.resw" />
     <None Include="packages.config" />

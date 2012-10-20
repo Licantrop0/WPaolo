@@ -28,7 +28,7 @@ namespace SocceramaWin8.ViewModel
                 switch (Number)
                 {
                     case 1:
-                        return new Thickness(75,440,0,0);
+                        return new Thickness(75, 440, 0, 0);
                     case 2:
                         return new Thickness(260, 200, 0, 0);
                     case 3:
@@ -44,19 +44,19 @@ namespace SocceramaWin8.ViewModel
                     case 200:
                         return new Thickness(850, 40, 0, 0);
                     case 7:
-                        return new Thickness(980,260, 0, 0);
+                        return new Thickness(980, 260, 0, 0);
                     case 8:
-                        return new Thickness(980,620, 0, 0);
+                        return new Thickness(980, 620, 0, 0);
                     case 9:
-                        return new Thickness(1210,440, 0, 0);
+                        return new Thickness(1210, 440, 0, 0);
                     case 10:
-                        return new Thickness(1460,200, 0, 0);
+                        return new Thickness(1460, 200, 0, 0);
                     case 11:
-                        return new Thickness(1460,680, 0, 0);
+                        return new Thickness(1460, 680, 0, 0);
                     case 12:
-                        return new Thickness(1645,440, 0, 0);
+                        return new Thickness(1645, 440, 0, 0);
                     case 300:
-                        return new Thickness(1250,10, 0, 0);
+                        return new Thickness(1250, 10, 0, 0);
                     default:
                         return new Thickness();
                 }
@@ -102,11 +102,17 @@ namespace SocceramaWin8.ViewModel
         {
             get
             {
-                return IsUnlocked ?
-                    string.Format("{0}/{1}", CompletedShields, TotalShields) :
-                    IsBonus ?
+                if (IsUnlocked)
+                {
+                    return CompletedShields / TotalShields == 1 ? "*" :
+                        string.Format("{0}/{1}", CompletedShields, TotalShields);
+                }
+                else
+                {
+                    return IsBonus ?
                         (AppContext.BonusTreshold * (Number / 100) - AppContext.TotalShieldUnlocked).ToString() :
                         (AppContext.LockTreshold * (Number - 1) - AppContext.TotalShieldUnlocked).ToString();
+                }
             }
         }
 

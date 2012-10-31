@@ -36,10 +36,24 @@ namespace SocceramaWin8
         public static async void LoadShieldsAsync()
         {
             Shields = await ShieldService.Load();
-            Levels = Shields.GroupBy(s => s.Level)
-                .Select(g => new LevelViewModel(g))
-                .OrderBy(l => l.Number)
-                .ToList();
+            Levels = GroupLevels(Shields);
+            if (LoadCompleted != null)
+                LoadCompleted.Invoke(null, EventArgs.Empty);
+        }
+
+        private static List<LevelViewModel> GroupLevels(IEnumerable<Shield> shields)
+        {
+            return shields.GroupBy(s => s.Level)
+               .Select(g => new LevelViewModel(g))
+               .OrderBy(l => l.Number)
+               .ToList();
+        }
+
+        public static async void ResetShields()
+        {
+            AvailableHints = HintsTreshold;
+            Shields = await ShieldService.GetNew();
+            Levels = GroupLevels(Shields);
 
             if (LoadCompleted != null)
                 LoadCompleted.Invoke(null, EventArgs.Empty);
@@ -109,11 +123,6 @@ namespace SocceramaWin8
                 roamingSettings.Values["game_completed"] = value;
                 _gameCompleted = value;
             }
-        }
-
-        public static void ResetShields()
-        {
-            
         }
     }
 }

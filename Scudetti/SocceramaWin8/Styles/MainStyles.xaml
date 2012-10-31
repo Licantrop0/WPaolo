@@ -16,6 +16,9 @@
         </ImageBrush.RelativeTransform>
     </ImageBrush>
 
+
+    <Color x:Key="MainColor">#FF841F</Color>
+
     <ImageBrush x:Key="DefaultSnappedBackground" ImageSource="ms-appx:///Assets/sfondo-snapped.jpg"
                 Stretch="None" AlignmentY="Center" />
 
@@ -30,9 +33,6 @@
         </Setter>
     </Style>
 
-    <!--<FontFamily xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows"
-					x:Key="DefaultFont">/Scudetti;component/Fonts/Fonts.zip#MV Boli</FontFamily>-->
-    <Color x:Key="MainColor">#FF841F</Color>
 
     <Style x:Key="StatusTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BasicTextStyle}">
         <Setter Property="TextAlignment" Value="Center" />
@@ -95,9 +95,9 @@
                         <Image Source="{Binding Image}" Stretch="None" />
                         <StackPanel Grid.Column="1">
                             <TextBlock Text="{Binding Name}" FontSize="30"
-                       Style="{StaticResource TextBlockBase}" />
+                       Style="{StaticResource BasicTextStyle}" />
                             <TextBlock Text="{Binding StatusText}" FontSize="40"
-                       Style="{StaticResource TextBlockBase}" />
+                       Style="{StaticResource BasicTextStyle}" />
                         </StackPanel>
                     </Grid>
                 </ControlTemplate>
@@ -147,7 +147,7 @@
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-                              <!--  <VisualState x:Name="Pressed">
+                                <!--  <VisualState x:Name="Pressed">
                                     <Storyboard>
                                         <DoubleAnimation
                                             Storyboard.TargetName="ArrowGlyph"

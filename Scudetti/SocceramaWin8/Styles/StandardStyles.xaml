@@ -31,12 +31,11 @@
     <FontFamily x:Key="DefaultFont">
         /Assets/Fonts/Computerfont.ttf#Computerfont
     </FontFamily>
-
+    
     <LinearGradientBrush x:Key="DefaultForeground" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Color="#FFFFA410" Offset="0.2"/>
         <GradientStop Color="#FFCC3943" Offset="1"/>
     </LinearGradientBrush>
-
 
     <!-- RichTextBlock styles -->
     <Style x:Key="BasicRichTextStyle" TargetType="RichTextBlock">
@@ -70,7 +69,7 @@
     <!-- TextBlock styles -->
 
     <Style x:Key="BasicTextStyle" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}"/>
         <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
         <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
         <Setter Property="TextTrimming" Value="WordEllipsis"/>
@@ -423,7 +422,8 @@
     </Style>
 
     <Style x:Key="SnappedPageHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource PageSubheaderTextStyle}">
-        <Setter Property="Margin" Value="0,0,18,40"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0" />
     </Style>
 
     <!--
@@ -548,8 +548,8 @@
     -->
     <Style x:Key="SnappedBackButtonStyle" TargetType="Button">
         <Setter Property="MinWidth" Value="0"/>
-        <Setter Property="Margin" Value="20,0,0,0"/>
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Margin" Value="20,0,0,0" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="FontSize" Value="26.66667"/>
@@ -559,7 +559,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Grid x:Name="RootGrid" Width="36" Height="36" Margin="-3,0,7,33">
+                    <Grid x:Name="RootGrid" Width="36" Height="36" Margin="-3,0,7,0">
                         <Grid Margin="-1,-1,0,0">
                             <TextBlock x:Name="BackgroundGlyph" Text="&#xE0D4;" Foreground="{StaticResource BackButtonBackgroundThemeBrush}"/>
                             <TextBlock x:Name="NormalGlyph" Text="{StaticResource BackButtonSnappedGlyph}" Foreground="{StaticResource BackButtonForegroundThemeBrush}"/>

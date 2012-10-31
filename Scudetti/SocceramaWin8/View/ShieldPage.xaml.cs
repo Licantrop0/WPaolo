@@ -52,6 +52,5 @@ namespace SocceramaWin8.View
             if (!VM.Validate())
                 ShieldNameTextbox.SelectAll();
         }
-
     }
 }

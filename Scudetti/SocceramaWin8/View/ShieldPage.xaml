@@ -6,20 +6,21 @@
     xmlns:hlp="using:SocceramaWin8.Helper"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ad="using:Microsoft.Advertising.WinRT.UI"
     xmlns:vm="using:SocceramaWin8.ViewModel"
     DataContext="{Binding Source={StaticResource Locator}, Path=ShieldVM}"
     mc:Ignorable="d" Loaded="LayoutAwarePage_Loaded">
 
     <Grid Name="LayoutRoot" Style="{StaticResource DefaultLayoutRootStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.Resources>
             <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
         </Grid.Resources>
         <!-- Back button and page title -->
-        <Grid>
+        <Grid Margin="0,20,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -35,16 +36,18 @@
             <hlp:BindableTextBox x:Name="ShieldNameTextbox" BindableText="{Binding InputShieldName, Mode=TwoWay}"
                                  KeyDown="ShieldNameTextbox_KeyDown" MaxWidth="350"
                                  Visibility="{Binding InputVisibile, Mode=OneTime}" />
-            <TextBlock Text="{Binding HintText}"
+            <TextBlock x:Name="HintTextBlock"  Text="{Binding HintText}"
 					   Visibility="{Binding InputVisibile, Mode=OneTime}"
 					   Style="{StaticResource StatusTextBlock}"
 					   TextWrapping="Wrap" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                        Visibility="{Binding ControlsEnabled, Converter={StaticResource BooleanVisibilityConv}}">                
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Uid="Ok" Content="Ok" Width="130" Margin="6" Click="Ok_Click" />
                 <Button x:Uid="Hint" Content="Suggerimento" Command="{Binding ShowHintCommand}" Width="130" Margin="6" />
-       </StackPanel>
+            </StackPanel>
         </StackPanel>
+            <ad:AdControl x:Name="adControl1" Height="250" Width="300" AdUnitId="10047639" IsEnabled="False" Grid.Row="1"
+                          VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                          ApplicationId="864d6a12-ce29-49af-b761-ca9f364158c8" />
 
         <VisualStateManager.VisualStateGroups>
             <!-- Visual states reflect the application's view state -->
@@ -79,6 +82,12 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="TextWrapping">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Wrap"/>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HintTextBlock" Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="30"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="adControl1" Storyboard.TargetProperty="HorizontalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Center"/>
+                        </ObjectAnimationUsingKeyFrames>
 
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DefaultSnappedBackground}"/>
@@ -87,6 +96,6 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
     </Grid>
 </common:LayoutAwarePage>
+    

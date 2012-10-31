@@ -6,7 +6,7 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="346">
 
     <Border BorderBrush="Black" BorderThickness="1,0,0,0">
-        <Grid Background="White" VerticalAlignment="Stretch">
+        <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
             <!-- Root grid definition -->
             <Grid.RowDefinitions>
                 <RowDefinition Height="80" />
@@ -28,9 +28,8 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Click="OnBackButtonClicked" Margin="0,3,0,0" Grid.Column="0" Style="{StaticResource SettingsBackButtonStyle}" HorizontalAlignment="Left" />
-                    <TextBlock Foreground="Black" Margin="10,0,0,0" Grid.Column="1" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="26.6667" Text="About" HorizontalAlignment="Left" />
+                    <TextBlock Margin="10,0,0,0" Grid.Column="1" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="26.6667" Text="About" HorizontalAlignment="Left" />
                 </Grid>
-
             </Grid>
 
             <!-- Settings Panel Content -->
@@ -41,10 +40,16 @@
                     </TransitionCollection>
                 </Grid.Transitions>
                 <StackPanel>
-
-                    <TextBlock Text="Privacy Policy" Foreground="Black" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="26.667" />
-                    <TextBlock Text="Questa app non si collega a internet ne raccoglie alcun dato personale." Foreground="Black"
-                               FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="18" TextWrapping="Wrap" />
+                    <TextBlock Text="Privacy Policy" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="30" />
+                    <TextBlock FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="18" TextWrapping="Wrap">
+                        <Run Text="Questa app si collega a internet solo per la pubblicità e non raccoglie alcun dato personale." />
+                        <LineBreak />
+                    </TextBlock>
+                    <TextBlock Text="Copyrights" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="30" />
+                    <TextBlock FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="18" TextWrapping="Wrap">
+                        <Run Text="Tutti gli scudetti, brand, nomi di squadre o loghi in questa App sono copyrights, trademarks o registered trademarks dei relativi proprietari." />
+                        <LineBreak />
+                    </TextBlock>                    
                     <HyperlinkButton x:Uid="Support" Content="Supporto" NavigateUri="mailto:wpmobile@hotmail.it" Margin="-16,0,0,0" />
                 </StackPanel>
             </Grid>

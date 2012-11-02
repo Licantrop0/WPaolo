@@ -32,7 +32,7 @@
 
         <StackPanel Grid.Row="1" Margin="12,0">
             <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
-					Stretch="None" Margin="12" HorizontalAlignment="Center" />
+                   Stretch="None" Margin="12" HorizontalAlignment="Center" />
             <hlp:BindableTextBox x:Name="ShieldNameTextbox" BindableText="{Binding InputShieldName, Mode=TwoWay}"
                                  KeyDown="ShieldNameTextbox_KeyDown" MaxWidth="350"
                                  Visibility="{Binding InputVisibile, Mode=OneTime}" />
@@ -40,14 +40,74 @@
 					   Visibility="{Binding InputVisibile, Mode=OneTime}"
 					   Style="{StaticResource StatusTextBlock}"
 					   TextWrapping="Wrap" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Uid="Ok" Content="Ok" Width="130" Margin="6" Click="Ok_Click" />
-                <Button x:Uid="Hint" Content="Suggerimento" Command="{Binding ShowHintCommand}" Width="130" Margin="6" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding InputVisibile, Mode=OneTime}" >
+                <Button Width="130" Margin="6" Click="Ok_Click" Style="{StaticResource ButtonStyle1}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                               Storyboard.TargetName="image">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Image x:Name="ImagePressed" Source="ms-appx:///Assets/okpressed.png" />
+                                <Image x:Name="image" Source="ms-appx:///Assets/ok.png" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Command="{Binding ShowHintCommand}" Width="130" Margin="6">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                               Storyboard.TargetName="image">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                               Storyboard.TargetName="ImageDisabled">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="PointerOver"/>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="FocusStates"/>
+                                </VisualStateManager.VisualStateGroups>
+                                <Image x:Name="ImagePressed" Source="ms-appx:///Assets/hintpressed.png" />
+                                <Image x:Name="image" Source="ms-appx:///Assets/hint.png" />
+                                <Image x:Name="ImageDisabled" Visibility="Collapsed" Source="ms-appx:///Assets/hintdisabled.png" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </StackPanel>
         </StackPanel>
-            <ad:AdControl x:Name="adControl1" Height="250" Width="300" AdUnitId="10047639" IsEnabled="False" Grid.Row="1"
-                          VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                          ApplicationId="864d6a12-ce29-49af-b761-ca9f364158c8" />
+        <ad:AdControl x:Name="adControl1" Height="250" Width="300" AdUnitId="10047639" IsEnabled="False" Grid.Row="1"
+                      VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                      ApplicationId="864d6a12-ce29-49af-b761-ca9f364158c8" />
+
+        <ad:AdControl x:Name="adControl2" Height="60" Width="292" AdUnitId="10048596" IsEnabled="False" Grid.Row="1"
+                      VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="Collapsed"
+                      ApplicationId="864d6a12-ce29-49af-b761-ca9f364158c8" />
 
         <VisualStateManager.VisualStateGroups>
             <!-- Visual states reflect the application's view state -->
@@ -85,9 +145,13 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HintTextBlock" Storyboard.TargetProperty="FontSize">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="30"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="adControl1" Storyboard.TargetProperty="HorizontalAlignment">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Center"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="adControl1" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="adControl2" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+
 
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DefaultSnappedBackground}"/>

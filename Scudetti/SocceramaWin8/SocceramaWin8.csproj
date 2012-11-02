@@ -171,6 +171,9 @@
       <Link>Data\ShieldsV3.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\hint.png" />
+    <Content Include="Assets\hintdisabled.png" />
+    <Content Include="Assets\hintpressed.png" />
     <Content Include="Assets\Levels\livello1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -259,6 +262,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\ok.png" />
+    <Content Include="Assets\okpressed.png" />
     <Content Include="Assets\Scudetti\860-Munchen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -275,6 +280,7 @@
     <Content Include="Assets\Scudetti\ajax.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\almeria.png" />
     <Content Include="Assets\Scudetti\amburgo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -306,6 +312,7 @@
     <Content Include="Assets\Scudetti\atletico madrid.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\austria-vienna.png" />
     <Content Include="Assets\Scudetti\AZ-Alkmaar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -348,11 +355,13 @@
     <Content Include="Assets\Scudetti\Borussia_Dortmund.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\botafogo.png" />
     <Content Include="Assets\Scudetti\braga.png" />
     <Content Include="Assets\Scudetti\brasile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Scudetti\brescia.png" />
+    <Content Include="Assets\Scudetti\brondby.png" />
     <Content Include="Assets\Scudetti\cameroon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -366,6 +375,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Scudetti\Cerro_porteno.png" />
+    <Content Include="Assets\Scudetti\cesena.png" />
     <Content Include="Assets\Scudetti\CFR-Cluj.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -430,6 +440,7 @@
     <Content Include="Assets\Scudetti\Eintracht-Frankfurt.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\empoli.png" />
     <Content Include="Assets\Scudetti\ENGLAND.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -467,15 +478,18 @@
     <Content Include="Assets\Scudetti\galaxy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\genk.png" />
     <Content Include="Assets\Scudetti\Genoa.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\gent.png" />
     <Content Include="Assets\Scudetti\germania.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Scudetti\ghana.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\gijon.png" />
     <Content Include="Assets\Scudetti\Girondins-Bordeaux.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -534,6 +548,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Scudetti\kaiserslautern.png" />
+    <Content Include="Assets\Scudetti\kashima-antlers.png" />
+    <Content Include="Assets\Scudetti\koln.png" />
     <Content Include="Assets\Scudetti\KV-Mechelen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -550,6 +566,7 @@
     <Content Include="Assets\Scudetti\liverpool.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\livorno.png" />
     <Content Include="Assets\Scudetti\Logo-Udinese1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -572,6 +589,7 @@
     <Content Include="Assets\Scudetti\milan.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\montpellier.png" />
     <Content Include="Assets\Scudetti\Morocco.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -589,6 +607,7 @@
     <Content Include="Assets\Scudetti\Nigerian.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\nizza.png" />
     <Content Include="Assets\Scudetti\NK-Maribor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -610,6 +629,7 @@
     <Content Include="Assets\Scudetti\Olympique_lyonnais.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\OrlandoPirates.png" />
     <Content Include="Assets\Scudetti\osasuna.png" />
     <Content Include="Assets\Scudetti\Palermo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -627,6 +647,7 @@
     <Content Include="Assets\Scudetti\Partizan-Belgrade.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\Penarol.png" />
     <Content Include="Assets\Scudetti\polonia.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -648,6 +669,7 @@
     <Content Include="Assets\Scudetti\rapidvienna.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\rayo-vallecano.png" />
     <Content Include="Assets\Scudetti\RBK.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -670,6 +692,7 @@
     <Content Include="Assets\Scudetti\RUSSIA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\saint-etienne.png" />
     <Content Include="Assets\Scudetti\santos.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -685,6 +708,7 @@
     <Content Include="Assets\Scudetti\Senegal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\servette.png" />
     <Content Include="Assets\Scudetti\sevilla-logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -733,9 +757,11 @@
     <Content Include="Assets\Scudetti\svizzera.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\swansea.png" />
     <Content Include="Assets\Scudetti\Sweden.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Scudetti\sydney.png" />
     <Content Include="Assets\Scudetti\thailand.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

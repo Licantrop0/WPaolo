@@ -1,58 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application x:Class="IDecide.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    mc:Ignorable="d">
-
-    <Application.Resources>
-        <vm:ViewModelLocator xmlns:vm="clr-namespace:IDecide.ViewModel" x:Key="Locator" d:IsDataSource="True" />
-        <loc:LocalizedStrings xmlns:loc="clr-namespace:IDecide.Localization" x:Key="LocalizedStrings" />
-        <FontFamily xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows"
-                    x:Key="DefaultFont">/IDecide;component/Fonts/Fonts.zip#Ravie</FontFamily>
-
-        <Color x:Key="MainColor">#FF841F</Color>
-        <SolidColorBrush x:Key="DefaultBackground" Color="#148DE2" />
-        <SolidColorBrush x:Key="DefaultForeground" Color="{StaticResource MainColor}" />
-
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
-            <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-            <Setter Property="BorderBrush" Value="White" />
-        </Style>
-
-        <Style x:Key="PhoneTextBoxStyle" TargetType="toolkit:PhoneTextBox">
-            <Setter Property="Background" Value="#BFFFFFFF" />
-            <Setter Property="BorderBrush" Value="#BFFFFFFF" />
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="SelectionBackground" Value="#FF1BA1E2" />
-            <Setter Property="SelectionForeground" Value="White" />
-        </Style>
-
-        <ControlTemplate x:Key="RemoveButtonTemplate" TargetType="Button">
-            <Rectangle Fill="{StaticResource DefaultForeground}">
-                <Rectangle.OpacityMask>
-                    <ImageBrush ImageSource="/IDecide;component/Toolkit.Content/remove_white.png" />
-                </Rectangle.OpacityMask>
-            </Rectangle>
-        </ControlTemplate>
-
-        <ControlTemplate x:Key="SwichTemplate" TargetType="ToggleButton" >
-            <toolkit:ToggleSwitch IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                  Content="" Margin="-10,6,-30,-30" SwitchForeground="{StaticResource DefaultForeground}"
-                                  Background="{StaticResource DefaultBackground}" />
-        </ControlTemplate>
-    </Application.Resources>
-
-    <Application.ApplicationLifetimeObjects>
-        <shell:PhoneApplicationService
-    		Launching="Application_Launching" Closing="Application_Closing"
-    		Activated="Application_Activated" Deactivated="Application_Deactivated" />
-
-        <xad:XNAAsyncDispatcher xmlns:xad="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher" />
-    </Application.ApplicationLifetimeObjects>
+<Application xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="IDecide.App" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="clr-namespace:IDecide.ViewModel" mc:Ignorable="d">
+  <Application.Resources>
+    <vm:ViewModelLocator xmlns:vm="clr-namespace:IDecide.ViewModel" />
+    <loc:LocalizedStrings xmlns:loc="clr-namespace:IDecide.Localization" p6:Key="LocalizedStrings" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <FontFamily xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows" p7:Key="DefaultFont" xmlns:p7="http://schemas.microsoft.com/winfx/2006/xaml">/IDecide;component/Fonts/Fonts.zip#Ravie</FontFamily>
+    <Color p6:Key="MainColor" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml">#FF841F</Color>
+    <SolidColorBrush p6:Key="DefaultBackground" Color="#148DE2" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <SolidColorBrush p6:Key="DefaultForeground" Color="{StaticResource MainColor}" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Style p6:Key="ButtonStyle" TargetType="Button" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml">
+      <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+      <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+      <Setter Property="BorderBrush" Value="White" />
+    </Style>
+    <Style p6:Key="PhoneTextBoxStyle" TargetType="toolkit:PhoneTextBox" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml">
+      <Setter Property="Background" Value="#BFFFFFFF" />
+      <Setter Property="BorderBrush" Value="#BFFFFFFF" />
+      <Setter Property="Foreground" Value="Black" />
+      <Setter Property="SelectionBackground" Value="#FF1BA1E2" />
+      <Setter Property="SelectionForeground" Value="White" />
+    </Style>
+    <ControlTemplate p6:Key="RemoveButtonTemplate" TargetType="Button" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml">
+      <Rectangle Fill="{StaticResource DefaultForeground}">
+        <Rectangle.OpacityMask>
+          <ImageBrush ImageSource="/IDecide;component/Toolkit.Content/remove_white.png" />
+        </Rectangle.OpacityMask>
+      </Rectangle>
+    </ControlTemplate>
+    <ControlTemplate p6:Key="SwichTemplate" TargetType="ToggleButton" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml">
+      <toolkit:ToggleSwitch IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Content="" Margin="-10,6,-30,-30" SwitchForeground="{StaticResource DefaultForeground}" Background="{StaticResource DefaultBackground}" />
+    </ControlTemplate>
+    <ResourceDictionary>
+      <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+      <ResourceDictionary.MergedDictionaries></ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+  <Application.ApplicationLifetimeObjects>
+    <shell:PhoneApplicationService Launching="Application_Launching" Closing="Application_Closing" Activated="Application_Activated" Deactivated="Application_Deactivated" />
+    <xad:XNAAsyncDispatcher xmlns:xad="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher" />
+  </Application.ApplicationLifetimeObjects>
 </Application>

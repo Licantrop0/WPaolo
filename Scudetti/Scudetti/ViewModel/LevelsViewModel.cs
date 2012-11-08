@@ -11,7 +11,7 @@ namespace Scudetti.ViewModel
 {
 	public class LevelsViewModel : ViewModelBase
 	{
-		public List<LevelViewModel> Levels
+		public IList<LevelViewModel> Levels
 		{
 			get
 			{
@@ -25,7 +25,7 @@ namespace Scudetti.ViewModel
 			{
 				return AppContext.Shields == null ? string.Empty :
 					string.Format("{0}: {1}/{2}", AppResources.Shields,
-						AppContext.TotalShieldUnlocked, AppContext.Shields.Count());
+						AppContext.TotalShieldUnlocked, AppContext.TotalShields);
 			}
 		}
 

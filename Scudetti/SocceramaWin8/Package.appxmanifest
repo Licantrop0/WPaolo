@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="57714Licantrop0.Soccerama" Publisher="CN=6F50DA53-D0F4-4128-A461-CD25668190FA" Version="1.0.0.8" />
+  <Identity Name="57714Licantrop0.Soccerama" Publisher="CN=6F50DA53-D0F4-4128-A461-CD25668190FA" Version="1.0.0.9" />
   <Properties>
     <DisplayName>Soccerama</DisplayName>
     <PublisherDisplayName>Licantrop0</PublisherDisplayName>

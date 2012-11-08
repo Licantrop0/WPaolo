@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Scudetti.Model;
+using Scudetti.ViewModel;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO.IsolatedStorage;
 using System.Linq;
-using Scudetti.Model;
-using Scudetti.ViewModel;
 
 namespace Scudetti
 {
@@ -17,12 +17,17 @@ namespace Scudetti
 
 		public static event RunWorkerCompletedEventHandler LoadCompleted;
 		public static IEnumerable<Shield> Shields { get; private set; }
-		public static List<LevelViewModel> Levels { get; private set; }
+		public static IList<LevelViewModel> Levels { get; private set; }
 
 		public static int TotalShieldUnlocked
 		{
-			get { return Shields.Count(s => s.IsValidated); }
+			get { return Shields == null ? 0 : Shields.Count(s => s.IsValidated); }
 		}
+        public static int TotalShields
+        {
+            get { return Shields.Count() - 6; }
+        }
+
 
 		public static void LoadShieldsAsync()
 		{

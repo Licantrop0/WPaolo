@@ -1,17 +1,15 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
-using Scudetti.Model;
+﻿using Scudetti.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using SocceramaWin8.Sound;
-using GalaSoft.MvvmLight.Command;
+using Topics.Radical.Messaging;
 
-namespace SocceramaWin8.ViewModel
+namespace SocceramaWin8.View
 {
-    public class LevelViewModel : ViewModelBase
+    public class LevelViewModel
     {
         ResourceLoader resources = new ResourceLoader();
 
@@ -121,30 +119,31 @@ namespace SocceramaWin8.ViewModel
             Number = group.Key;
             IsBonus = group.Key >= 100;
             Shields = group;
-            MessengerInstance.Register<PropertyChangedMessage<bool>>(this, (m) =>
-            {
-                if (m.PropertyName != "IsValidated") return;
 
-                RaisePropertyChanged("CompletedShields");
-                RaisePropertyChanged("IsUnlocked");
-                RaisePropertyChanged("StatusText");
-                RaisePropertyChanged("LevelImage");
-            });
+            //MessengerInstance.Register<PropertyChangedMessage<bool>>(this, (m) =>
+            //{
+            //    if (m.PropertyName != "IsValidated") return;
+
+            //    RaisePropertyChanged("CompletedShields");
+            //    RaisePropertyChanged("IsUnlocked");
+            //    RaisePropertyChanged("StatusText");
+            //    RaisePropertyChanged("LevelImage");
+            //});
         }
 
 
-        private RelayCommand _goToLevelCommand;
-        public RelayCommand GoToLevelCommand
-        {
-            get
-            {
-                return _goToLevelCommand ?? (_goToLevelCommand = new RelayCommand(() =>
-                {
-                    if (!IsUnlocked) return;
-                    SoundManager.PlayFischietto();
-                    Messenger.Default.Send<LevelViewModel>(this);
-                }));
-            }
-        }
+        //private RelayCommand _goToLevelCommand;
+        //public RelayCommand GoToLevelCommand
+        //{
+        //    get
+        //    {
+        //        return _goToLevelCommand ?? (_goToLevelCommand = new RelayCommand(() =>
+        //        {
+        //            if (!IsUnlocked) return;
+        //            SoundManager.PlayFischietto();
+        //            Messenger.Default.Send<LevelViewModel>(this);
+        //        }));
+        //    }
+        //}
     }
 }

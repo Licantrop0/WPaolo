@@ -1,14 +1,12 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
-using SocceramaWin8.Data;
+﻿using SocceramaWin8.Data;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.ApplicationModel.Resources;
 using SocceramaWin8.Sound;
 
-namespace SocceramaWin8.ViewModel
+namespace SocceramaWin8.View
 {
-    public class LevelsViewModel : ViewModelBase
+    public class LevelsViewModel
     {
         ResourceLoader resources = new ResourceLoader();
 
@@ -16,7 +14,8 @@ namespace SocceramaWin8.ViewModel
         {
             get
             {
-                return IsInDesignMode ? DesignTimeData.Levels : AppContext.Levels;
+                return AppContext.Levels;
+                //return IsInDesignMode ? DesignTimeData.Levels : AppContext.Levels;
             }
         }
 
@@ -36,8 +35,8 @@ namespace SocceramaWin8.ViewModel
             set
             {
                 if (value == null) return;
-                value.GoToLevelCommand.Execute(null);
-                RaisePropertyChanged("SelectedLevel");
+                //value.GoToLevelCommand.Execute(null);
+                //RaisePropertyChanged("SelectedLevel");
             }
         }
 
@@ -45,17 +44,17 @@ namespace SocceramaWin8.ViewModel
         {
             AppContext.LoadCompleted += (sender, e) =>
             {
-                RaisePropertyChanged("Levels");
-                RaisePropertyChanged("StatusText");
+                //RaisePropertyChanged("Levels");
+                //RaisePropertyChanged("StatusText");
             };
 
-            MessengerInstance.Register<PropertyChangedMessage<bool>>(this, m =>
-            {
-                if (m.PropertyName != "IsValidated") return;
-                //Aggiorna lo status text dei completed shields e se il gioco è stato completato
-                RaisePropertyChanged("StatusText");
-                AppContext.GameCompleted = AppContext.Shields.All(s => s.IsValidated);
-            });
+            //MessengerInstance.Register<PropertyChangedMessage<bool>>(this, m =>
+            //{
+            //    if (m.PropertyName != "IsValidated") return;
+            //    //Aggiorna lo status text dei completed shields e se il gioco è stato completato
+            //    RaisePropertyChanged("StatusText");
+            //    AppContext.GameCompleted = AppContext.Shields.All(s => s.IsValidated);
+            //});
         }
     }
 }

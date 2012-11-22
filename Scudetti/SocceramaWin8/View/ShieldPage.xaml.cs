@@ -49,8 +49,8 @@ namespace SocceramaWin8.View
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
             var VM = (ShieldViewModel)LayoutRoot.DataContext;
-            if (!VM.Validate())
-                ShieldNameTextbox.SelectAll();
+            //if (!VM.Validate())
+            //    ShieldNameTextbox.SelectAll();
         }
     }
 }

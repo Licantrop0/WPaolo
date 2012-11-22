@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,20 +15,20 @@ namespace SocceramaWin8.ViewModel
             set { AppContext.SoundEnabled = value; }
         }
 
-        private RelayCommand _resetCommand;
-        public RelayCommand ResetCommand
-        {
-            get
-            {
-                return _resetCommand ?? (_resetCommand = new RelayCommand(async () =>
-                    {
-                        var d = new MessageDialog("Vuoi Cancellare tutto?"); //AppResources.ConfirmResetTitle);
-                        d.Commands.Add(new UICommand("Yes", ResetAction));
-                        d.Commands.Add(new UICommand("No"));
-                        await d.ShowAsync();
-                    }));
-            }
-        }
+        //private RelayCommand _resetCommand;
+        //public RelayCommand ResetCommand
+        //{
+        //    get
+        //    {
+        //        return _resetCommand ?? (_resetCommand = new RelayCommand(async () =>
+        //            {
+        //                var d = new MessageDialog("Vuoi Cancellare tutto?"); //AppResources.ConfirmResetTitle);
+        //                d.Commands.Add(new UICommand("Yes", ResetAction));
+        //                d.Commands.Add(new UICommand("No"));
+        //                await d.ShowAsync();
+        //            }));
+        //    }
+        //}
 
         private void ResetAction(IUICommand e)
         {

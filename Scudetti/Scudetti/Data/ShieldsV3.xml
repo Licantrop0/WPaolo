@@ -30,6 +30,7 @@
   <Shield Level="1" Id="BocaJuniors" Image="boca.png" Hint="Argentina" IsValidated="false">
     <Names>Club Atlètico Boca Juniors</Names>
     <Names>Boca Juniors</Names>
+    <Names>Boca</Names>
   </Shield>
   <Shield Level="1" Id="BorussiaDortmund" Image="Borussia_Dortmund.png" Hint="Germany" IsValidated="false">
     <Names>Ballspielverein Borussia 09 e. V. Dortmund</Names>
@@ -38,6 +39,7 @@
     <Names>Borussia Dortmund</Names>
     <Names>Die Schwarzgelben</Names>
     <Names>Die Borussen</Names>
+    <Names>Dortmund</Names>
   </Shield>
   <Shield Level="1" Id="Celtic" Image="celtic.png" Hint="Scotland" IsValidated="false">
     <Names>Celtic Football Club</Names>
@@ -223,6 +225,8 @@
     <Names>FK Shakhtar Donetsk</Names>
     <Names>Shakhtar Donetsk</Names>
     <Names>Shakhtar</Names>
+    <Names>Donetsk</Names>
+    <Names>Shaktar</Names>
   </Shield>
   <Shield Level="2" Id="SportingLisbona" Image="sportinglisbon.png" Hint="Portugal" IsValidated="false">
     <Names>Sporting Clube de Portugal</Names>
@@ -402,6 +406,7 @@
   <Shield Level="4" Id="AtleticoBilbao" Image="athletic-bilbao.png" Hint="Spain" IsValidated="false">
     <Names>Athletic Club</Names>
     <Names>Atletico Bilbao</Names>
+    <Names>Athletic Bilbao</Names>
     <Names>Athletic Kluba</Names>
     <Names>Athletic</Names>
   </Shield>

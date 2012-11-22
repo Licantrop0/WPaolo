@@ -7,7 +7,6 @@ namespace SocceramaWin8.View
 {
     public sealed partial class ShieldsPage : SocceramaWin8.Common.LayoutAwarePage
     {
-
         ScrollViewer gridScrollViewer;
 
         public ShieldsPage()

@@ -1,10 +1,9 @@
-﻿<common:LayoutAwarePage x:Class="SocceramaWin8.View.LevelsPage"
+﻿<common:LayoutAwarePage x:Class="SocceramaWin8.View.LevelsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:common="using:SocceramaWin8.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding Source={StaticResource Locator}, Path=LevelsVM}"
     mc:Ignorable="d">
     <Grid Name="LayoutRoot" Style="{StaticResource DefaultLayoutRootStyle}">
         <Viewbox Name="FieldViewBox" Stretch="Fill">

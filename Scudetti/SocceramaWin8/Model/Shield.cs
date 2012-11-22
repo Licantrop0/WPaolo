@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Xml.Serialization;
-using GalaSoft.MvvmLight;
 
 namespace Scudetti.Model
 {
-    public class Shield : ObservableObject
+    public class Shield
     {
         [XmlAttribute]
         public string Id { get; set; }
@@ -30,7 +29,7 @@ namespace Scudetti.Model
             {
                 if (IsValidated == value) return;
                 _isValidated = value;
-                RaisePropertyChanged("IsValidated");
+                //RaisePropertyChanged("IsValidated");
             }
         }
 

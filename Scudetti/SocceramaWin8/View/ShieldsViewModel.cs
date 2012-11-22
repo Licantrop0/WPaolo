@@ -1,11 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using Scudetti.Model;
+﻿using Scudetti.Model;
 using SocceramaWin8.Data;
 using Windows.ApplicationModel.Resources;
 
-namespace SocceramaWin8.ViewModel
+namespace SocceramaWin8.View
 {
-    public class ShieldsViewModel : ViewModelBase
+    public class ShieldsViewModel
     {
         ResourceLoader resources = new ResourceLoader();
 
@@ -17,7 +16,7 @@ namespace SocceramaWin8.ViewModel
             {
                 if (SelectedLevel == value) return;
                 _selectedLevel = value;
-                RaisePropertyChanged("SelectedLevel");
+                //RaisePropertyChanged("SelectedLevel");
             }
         }
 
@@ -27,25 +26,25 @@ namespace SocceramaWin8.ViewModel
             set
             {
                 if (value == null) return;
-                if (!value.Id.StartsWith("blocked"))
-                    MessengerInstance.Send<Shield>(value);
+                //if (!value.Id.StartsWith("blocked"))
+                //    MessengerInstance.Send<Shield>(value);
                 
-                RaisePropertyChanged("SelectedShield");
+                //RaisePropertyChanged("SelectedShield");
             }
         }
 
         public ShieldsViewModel()
         {
-            if (IsInDesignMode)
-            {
-                SelectedLevel = DesignTimeData.Levels[0];
-                return;
-            }
+            //if (IsInDesignMode)
+            //{
+            //    SelectedLevel = DesignTimeData.Levels[0];
+            //    return;
+            //}
 
-            MessengerInstance.Register<LevelViewModel>(this, m =>
-            {
-                SelectedLevel = m;
-            });
+            //MessengerInstance.Register<LevelViewModel>(this, m =>
+            //{
+            //    SelectedLevel = m;
+            //});
         }
     }
 }

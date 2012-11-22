@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Scudetti.Model;
 using SocceramaWin8.ViewModel;
 using Windows.Storage;
+using SocceramaWin8.View;
 
 namespace SocceramaWin8
 {

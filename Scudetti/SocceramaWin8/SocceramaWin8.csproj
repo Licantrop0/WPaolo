@@ -130,17 +130,16 @@
     <Compile Include="Model\ShieldService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sound\SoundManager.cs" />
-    <Compile Include="ViewModel\LevelsViewModel.cs" />
-    <Compile Include="ViewModel\LevelViewModel.cs" />
+    <Compile Include="View\LevelsViewModel.cs" />
+    <Compile Include="View\LevelViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
-    <Compile Include="ViewModel\ShieldsViewModel.cs" />
+    <Compile Include="View\ShieldsViewModel.cs" />
     <Compile Include="ViewModel\ShieldViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\AboutControl.xaml.cs">
       <DependentUpon>AboutControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\LevelsPage.xaml.cs">
-      <DependentUpon>LevelsPage.xaml</DependentUpon>
+    <Compile Include="View\LevelsView.xaml.cs">
+      <DependentUpon>LevelsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsControl.xaml.cs">
       <DependentUpon>SettingsControl.xaml</DependentUpon>
@@ -170,6 +169,7 @@
     <Content Include="..\Scudetti\Data\ShieldsV3.xml">
       <Link>Data\ShieldsV3.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Assets\hint.png" />
     <Content Include="Assets\hintdisabled.png" />
@@ -865,7 +865,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\LevelsPage.xaml">
+    <Page Include="View\LevelsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -883,14 +883,32 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight.Extras.Win8">
-      <HintPath>..\packages\MvvmLight.4.1.23.0\lib\winrt45\GalaSoft.MvvmLight.Extras.Win8.dll</HintPath>
+    <Reference Include="Radical">
+      <HintPath>..\packages\Radical.1.3.7.8\lib\netcore45\Radical.dll</HintPath>
     </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Win8">
-      <HintPath>..\packages\MvvmLight.4.1.23.0\lib\winrt45\GalaSoft.MvvmLight.Win8.dll</HintPath>
+    <Reference Include="Radical.Windows">
+      <HintPath>..\packages\Radical.Windows.1.3.8.7\lib\netcore45\Radical.Windows.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\packages\MvvmLight.4.1.23.0\lib\winrt45\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    <Reference Include="Radical.Windows.Presentation">
+      <HintPath>..\packages\Radical.Windows.Presentation.1.0.0.8\lib\netcore45\Radical.Windows.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Radical.Windows.Presentation.Puzzle">
+      <HintPath>..\packages\Radical.Windows.Presentation.Puzzle.0.2.0.3\lib\netcore45\Radical.Windows.Presentation.Puzzle.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.AttributedModel">
+      <HintPath>..\packages\Microsoft.Composition.1.0.16\lib\netcore45\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention">
+      <HintPath>..\packages\Microsoft.Composition.1.0.16\lib\netcore45\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting">
+      <HintPath>..\packages\Microsoft.Composition.1.0.16\lib\netcore45\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime">
+      <HintPath>..\packages\Microsoft.Composition.1.0.16\lib\netcore45\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts">
+      <HintPath>..\packages\Microsoft.Composition.1.0.16\lib\netcore45\System.Composition.TypedParts.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

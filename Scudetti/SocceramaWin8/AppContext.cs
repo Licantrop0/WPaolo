@@ -24,7 +24,7 @@ namespace SocceramaWin8
 
         public static int TotalShieldUnlocked
         {
-            get { return Shields.Count(s => s.IsValidated); }
+            get { return Shields == null ? 0 : Shields.Count(s => s.IsValidated); }
         }
         public static int TotalShields
         {

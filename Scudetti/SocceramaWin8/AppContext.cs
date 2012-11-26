@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Scudetti.Model;
-using SocceramaWin8.ViewModel;
+using SocceramaWin8.Presentation;
 using Windows.Storage;
-using SocceramaWin8.View;
 
 namespace SocceramaWin8
 {
@@ -19,11 +18,9 @@ namespace SocceramaWin8
         public static bool ToastDisplayed = false;
         public static double ShieldsScrollPosition = 0;
 
-        public static event EventHandler LoadCompleted;
         static ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
 
-        public static IEnumerable<Shield> Shields { get; private set; }
-        public static List<LevelViewModel> Levels { get; private set; }
+        public static IEnumerable<Shield> Shields = null;
 
         public static int TotalShieldUnlocked
         {
@@ -34,12 +31,10 @@ namespace SocceramaWin8
             get { return Shields.Count() - 6; }
         }
 
-        public static async void LoadShieldsAsync()
+        public static async Task<List<LevelViewModel>> LoadShieldsAsync()
         {
             Shields = await ShieldService.Load();
-            Levels = GroupLevels(Shields);
-            if (LoadCompleted != null)
-                LoadCompleted.Invoke(null, EventArgs.Empty);
+            return GroupLevels(Shields);
         }
 
         private static List<LevelViewModel> GroupLevels(IEnumerable<Shield> shields)
@@ -50,14 +45,11 @@ namespace SocceramaWin8
                .ToList();
         }
 
-        public static async void ResetShields()
+        public static async Task ResetShields()
         {
             AvailableHints = HintsTreshold;
             Shields = await ShieldService.GetNew();
-            Levels = GroupLevels(Shields);
-
-            if (LoadCompleted != null)
-                LoadCompleted.Invoke(null, EventArgs.Empty);
+            //Levels = GroupLevels(Shields);
         }
 
         private static bool? _soundEnabled;

@@ -1,4 +1,4 @@
-﻿using SocceramaWin8.View;
+﻿using SocceramaWin8.Presentation;
 using Topics.Radical.Windows.Presentation.Boot;
 using Windows.UI.Xaml;
 

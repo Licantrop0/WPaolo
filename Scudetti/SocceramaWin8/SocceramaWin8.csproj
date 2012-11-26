@@ -130,26 +130,26 @@
     <Compile Include="Model\ShieldService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sound\SoundManager.cs" />
-    <Compile Include="View\LevelsViewModel.cs" />
-    <Compile Include="View\LevelViewModel.cs" />
-    <Compile Include="ViewModel\SettingsViewModel.cs" />
-    <Compile Include="View\ShieldsViewModel.cs" />
-    <Compile Include="ViewModel\ShieldViewModel.cs" />
-    <Compile Include="View\AboutControl.xaml.cs">
+    <Compile Include="Presentation\LevelsViewModel.cs" />
+    <Compile Include="Presentation\LevelViewModel.cs" />
+    <Compile Include="Presentation\SettingsViewModel.cs" />
+    <Compile Include="Presentation\ShieldsViewModel.cs" />
+    <Compile Include="Presentation\ShieldViewModel.cs" />
+    <Compile Include="Presentation\AboutControl.xaml.cs">
       <DependentUpon>AboutControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\LevelsView.xaml.cs">
+    <Compile Include="Presentation\LevelsView.xaml.cs">
       <DependentUpon>LevelsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SettingsControl.xaml.cs">
+    <Compile Include="Presentation\SettingsControl.xaml.cs">
       <DependentUpon>SettingsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SettingsFlyout.cs" />
-    <Compile Include="View\ShieldPage.xaml.cs">
-      <DependentUpon>ShieldPage.xaml</DependentUpon>
+    <Compile Include="Presentation\SettingsFlyout.cs" />
+    <Compile Include="Presentation\ShieldView.xaml.cs">
+      <DependentUpon>ShieldView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ShieldsPage.xaml.cs">
-      <DependentUpon>ShieldsPage.xaml</DependentUpon>
+    <Compile Include="Presentation\ShieldsView.xaml.cs">
+      <DependentUpon>ShieldsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -861,23 +861,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\AboutControl.xaml">
+    <Page Include="Presentation\AboutControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\LevelsView.xaml">
+    <Page Include="Presentation\LevelsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SettingsControl.xaml">
+    <Page Include="Presentation\SettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ShieldPage.xaml">
+    <Page Include="Presentation\ShieldView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ShieldsPage.xaml">
+    <Page Include="Presentation\ShieldsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -915,6 +915,10 @@
     <SDKReference Include="MSAdvertisingXaml, Version=6.1">
       <Name>Microsoft Advertising SDK for Windows 8 %28Xaml%29</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+    <Folder Include="View\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

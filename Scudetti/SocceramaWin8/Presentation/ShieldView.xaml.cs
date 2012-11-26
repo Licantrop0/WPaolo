@@ -1,5 +1,4 @@
 ﻿using SocceramaWin8.Common;
-using SocceramaWin8.ViewModel;
 using System;
 using System.Collections.Generic;
 using Windows.System;
@@ -9,7 +8,7 @@ using Windows.UI.Xaml.Input;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace SocceramaWin8.View
+namespace SocceramaWin8.Presentation
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.

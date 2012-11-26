@@ -1,4 +1,4 @@
-﻿<common:LayoutAwarePage x:Class="SocceramaWin8.View.LevelsView"
+﻿<common:LayoutAwarePage x:Class="SocceramaWin8.Presentation.LevelsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:common="using:SocceramaWin8.Common"

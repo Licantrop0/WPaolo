@@ -3,7 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 
-namespace SocceramaWin8.View
+namespace SocceramaWin8.Presentation
 {
     public sealed partial class AboutControl : UserControl
     {

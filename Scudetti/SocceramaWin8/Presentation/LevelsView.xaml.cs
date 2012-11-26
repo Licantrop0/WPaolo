@@ -4,7 +4,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
-namespace SocceramaWin8.View
+namespace SocceramaWin8.Presentation
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.

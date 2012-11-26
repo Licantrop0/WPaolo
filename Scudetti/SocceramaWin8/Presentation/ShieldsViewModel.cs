@@ -1,10 +1,12 @@
 ﻿using Scudetti.Model;
 using SocceramaWin8.Data;
+using Topics.Radical.Windows.Presentation;
+using Topics.Radical.Windows.Presentation.ComponentModel;
 using Windows.ApplicationModel.Resources;
 
-namespace SocceramaWin8.View
+namespace SocceramaWin8.Presentation
 {
-    public class ShieldsViewModel
+    public class ShieldsViewModel : AbstractViewModel, IExpectNavigatedToCallback
     {
         ResourceLoader resources = new ResourceLoader();
 
@@ -28,7 +30,7 @@ namespace SocceramaWin8.View
                 if (value == null) return;
                 //if (!value.Id.StartsWith("blocked"))
                 //    MessengerInstance.Send<Shield>(value);
-                
+
                 //RaisePropertyChanged("SelectedShield");
             }
         }
@@ -40,11 +42,11 @@ namespace SocceramaWin8.View
             //    SelectedLevel = DesignTimeData.Levels[0];
             //    return;
             //}
+        }
 
-            //MessengerInstance.Register<LevelViewModel>(this, m =>
-            //{
-            //    SelectedLevel = m;
-            //});
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            SelectedLevel = (LevelViewModel)e.Arguments;            
         }
     }
 }

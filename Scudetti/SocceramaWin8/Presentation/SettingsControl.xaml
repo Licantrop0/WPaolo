@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="SocceramaWin8.View.AboutControl"
+﻿<UserControl
+    x:Class="SocceramaWin8.Presentation.SettingsControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="346">
 
-    <Border BorderBrush="Black" BorderThickness="1,0,0,0">
         <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
             <!-- Root grid definition -->
             <Grid.RowDefinitions>
@@ -27,33 +27,27 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Button Click="OnBackButtonClicked" Margin="0,3,0,0" Grid.Column="0" Style="{StaticResource SettingsBackButtonStyle}" HorizontalAlignment="Left" />
-                    <TextBlock Margin="10,0,0,0" Grid.Column="1" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="26.6667" Text="About" HorizontalAlignment="Left" />
+                <Button Click="OnBackButtonClicked" Margin="0,3,0,0" Style="{StaticResource SettingsBackButtonStyle}" />
+                    <TextBlock Margin="10,0,0,0" Grid.Column="1" VerticalAlignment="Center" FontWeight="SemiLight" FontSize="30" Text="Settings"  />
                 </Grid>
+
             </Grid>
 
             <!-- Settings Panel Content -->
-            <Grid Grid.Row="1" Margin="28,12,23,0" VerticalAlignment="Top">
+            <Grid Grid.Row="1" Margin="28,12,23,0" VerticalAlignment="Top" DataContext="{StaticResource SettingsVM}">
                 <Grid.Transitions>
                     <TransitionCollection>
                         <EntranceThemeTransition FromHorizontalOffset="120" />
                     </TransitionCollection>
                 </Grid.Transitions>
                 <StackPanel>
-                    <TextBlock Text="Privacy Policy" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="30" />
-                    <TextBlock FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="18" TextWrapping="Wrap">
-                        <Run Text="Questa app si collega a internet solo per la pubblicità e non raccoglie alcun dato personale." />
-                        <LineBreak />
-                    </TextBlock>
-                    <TextBlock Text="Copyrights" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="30" />
-                    <TextBlock FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="18" TextWrapping="Wrap">
-                        <Run Text="Tutti gli scudetti, brand, nomi di squadre o loghi in questa App sono copyrights, trademarks o registered trademarks dei relativi proprietari." />
-                        <LineBreak />
-                    </TextBlock>                    
-                    <HyperlinkButton x:Uid="Support" Content="Supporto" NavigateUri="mailto:wpmobile@hotmail.it" Margin="-16,0,0,0" />
+                    <ToggleSwitch OnContent="On" OffContent="Off" IsOn="{Binding SoundEnabled, Mode=TwoWay}">
+                        <ToggleSwitch.Header>
+                            <TextBlock Text="Audio" FontSize="24" />
+                        </ToggleSwitch.Header>
+                    </ToggleSwitch>
+                    <Button Content="Reset" Command="{Binding ResetCommand}" />
                 </StackPanel>
             </Grid>
-
         </Grid>
-    </Border>
 </UserControl>

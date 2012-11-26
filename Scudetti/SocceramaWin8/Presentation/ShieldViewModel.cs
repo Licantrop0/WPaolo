@@ -7,7 +7,7 @@ using System.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 
-namespace SocceramaWin8.ViewModel
+namespace SocceramaWin8.Presentation
 {
     public class ShieldViewModel
     {

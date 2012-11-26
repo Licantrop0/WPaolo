@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
 using SocceramaWin8.Helper;
 
-namespace SocceramaWin8.View
+namespace SocceramaWin8.Presentation
 {
-    public sealed partial class ShieldsPage : SocceramaWin8.Common.LayoutAwarePage
+    public sealed partial class ShieldsView : SocceramaWin8.Common.LayoutAwarePage
     {
         ScrollViewer gridScrollViewer;
 
-        public ShieldsPage()
+        public ShieldsView()
         {
             this.InitializeComponent();
         }

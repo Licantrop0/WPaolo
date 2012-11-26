@@ -4,7 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 
-namespace SocceramaWin8.View
+namespace SocceramaWin8.Presentation
 {
 	class SettingsFlyout
 	{

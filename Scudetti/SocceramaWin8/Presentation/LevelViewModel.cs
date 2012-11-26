@@ -6,10 +6,13 @@ using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using SocceramaWin8.Sound;
 using Topics.Radical.Messaging;
+using Topics.Radical.Windows.Presentation;
+using System.Windows.Input;
+using Topics.Radical.Windows.Input;
 
-namespace SocceramaWin8.View
+namespace SocceramaWin8.Presentation
 {
-    public class LevelViewModel
+    public class LevelViewModel : AbstractViewModel
     {
         ResourceLoader resources = new ResourceLoader();
 
@@ -130,20 +133,5 @@ namespace SocceramaWin8.View
             //    RaisePropertyChanged("LevelImage");
             //});
         }
-
-
-        //private RelayCommand _goToLevelCommand;
-        //public RelayCommand GoToLevelCommand
-        //{
-        //    get
-        //    {
-        //        return _goToLevelCommand ?? (_goToLevelCommand = new RelayCommand(() =>
-        //        {
-        //            if (!IsUnlocked) return;
-        //            SoundManager.PlayFischietto();
-        //            Messenger.Default.Send<LevelViewModel>(this);
-        //        }));
-        //    }
-        //}
     }
 }

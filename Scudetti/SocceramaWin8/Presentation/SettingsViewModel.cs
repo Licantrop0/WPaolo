@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 
-namespace SocceramaWin8.ViewModel
+namespace SocceramaWin8.Presentation
 {
     public class SettingsViewModel
     {

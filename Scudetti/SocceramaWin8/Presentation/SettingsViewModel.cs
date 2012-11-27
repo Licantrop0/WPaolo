@@ -1,13 +1,19 @@
-﻿using System;
+﻿using Radical.Windows.Presentation.Conventions.Settings;
+using Radical.Windows.Presentation.Conventions.Settings.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Topics.Radical.Windows.Presentation;
+using Windows.UI;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Media;
 
 namespace SocceramaWin8.Presentation
 {
-    public class SettingsViewModel
+    [SettingDescriptor(CommandId = "Settings", CommandLabel = "Settings")]
+    public class SettingsViewModel : AbstractViewModel, ISettingsViewModel
     {
         public bool SoundEnabled
         {
@@ -33,6 +39,21 @@ namespace SocceramaWin8.Presentation
         private void ResetAction(IUICommand e)
         {
             AppContext.ResetShields();
+        }
+
+        public SolidColorBrush Background
+        {
+            get { return (SolidColorBrush)App.Current.Resources["ApplicationPageBackgroundThemeBrush"]; }
+        }
+
+        public SolidColorBrush HeaderBrush
+        {
+            get { return new SolidColorBrush(Colors.White); }
+        }
+
+        public string HeaderText
+        {
+            get { return "Impostazioni"; }
         }
     }
 }

@@ -6,7 +6,8 @@ using Windows.ApplicationModel.Resources;
 
 namespace SocceramaWin8.Presentation
 {
-    public class ShieldsViewModel : AbstractViewModel, IExpectNavigatedToCallback
+    public class ShieldsViewModel : AbstractViewModel, IExpectNavigatedToCallback, IExpectNavigatingAwayCallback
+
     {
         ResourceLoader resources = new ResourceLoader();
 
@@ -47,6 +48,19 @@ namespace SocceramaWin8.Presentation
         public void OnNavigatedTo(NavigationEventArgs e)
         {
             SelectedLevel = (LevelViewModel)e.Arguments;            
+        }
+
+        void IExpectNavigatedToCallback.OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Mode == NavigationMode.Back && e.Storage.Contains("myData"))
+            {
+                var data = e.Storage.GetData<String>("myData");
+            }
+        }
+
+        public void OnNavigatingAway(NavigatingAwayEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

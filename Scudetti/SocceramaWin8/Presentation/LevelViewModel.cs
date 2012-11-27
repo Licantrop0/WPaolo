@@ -9,6 +9,7 @@ using Topics.Radical.Messaging;
 using Topics.Radical.Windows.Presentation;
 using System.Windows.Input;
 using Topics.Radical.Windows.Input;
+using Topics.Radical.Windows.Presentation.ComponentModel;
 
 namespace SocceramaWin8.Presentation
 {
@@ -132,6 +133,37 @@ namespace SocceramaWin8.Presentation
             //    RaisePropertyChanged("StatusText");
             //    RaisePropertyChanged("LevelImage");
             //});
+        }
+
+        //private RelayCommand _resetCommand;
+        //public RelayCommand ResetCommand
+        //{
+        //    get
+        //    {
+        //        return _resetCommand ?? (_resetCommand = new RelayCommand(async () =>
+        //            {
+        //                var d = new MessageDialog("Vuoi Cancellare tutto?"); //AppResources.ConfirmResetTitle);
+        //                d.Commands.Add(new UICommand("Yes", ResetAction));
+        //                d.Commands.Add(new UICommand("No"));
+        //                await d.ShowAsync();
+        //            }));
+        //    }
+        //}
+
+
+        private ICommand _goToLevelCommand;
+        public ICommand GoToLevelCommand
+        {
+            get
+            {
+                return _goToLevelCommand ?? (_goToLevelCommand =
+                    DelegateCommand.Create().OnExecute(o =>
+                    {
+                        if (!this.IsUnlocked) return;
+                        SoundManager.PlayFischietto();
+                        ns.Navigate<ShieldsView>(this);
+                    }));
+            }
         }
     }
 }

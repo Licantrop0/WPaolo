@@ -45,20 +45,6 @@ namespace SocceramaWin8.Presentation
             //});
         }
 
-        public LevelViewModel SelectedLevel
-        {
-            get { return null; }
-            set
-            {
-                if (value == null) return;
-                if (!value.IsUnlocked) return;
-                SoundManager.PlayFischietto();
-                ns.Navigate<ShieldsView>(value);
-                OnPropertyChanged("SelectedLevel");
-            }
-        }
-
-
         public List<LevelViewModel> Levels
         {
             get { return this.GetPropertyValue<List<LevelViewModel>>(() => Levels); }

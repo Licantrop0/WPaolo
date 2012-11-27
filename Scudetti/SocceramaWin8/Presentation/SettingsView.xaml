@@ -1,0 +1,25 @@
+﻿<UserControl
+    x:Class="SocceramaWin8.Presentation.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="346">
+
+    <Grid>
+        <Grid.Transitions>
+            <TransitionCollection>
+                <EntranceThemeTransition FromHorizontalOffset="120" />
+            </TransitionCollection>
+        </Grid.Transitions>
+        <StackPanel>
+            <ToggleSwitch OnContent="On" OffContent="Off"
+                          IsOn="{Binding SoundEnabled, Mode=TwoWay}">
+                <ToggleSwitch.Header>
+                    <TextBlock Text="Audio" FontSize="24" />
+                </ToggleSwitch.Header>
+            </ToggleSwitch>
+            <Button Content="Reset" Command="{Binding ResetCommand}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

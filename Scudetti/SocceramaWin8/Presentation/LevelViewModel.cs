@@ -10,6 +10,8 @@ using Topics.Radical.Windows.Presentation;
 using System.Windows.Input;
 using Topics.Radical.Windows.Input;
 using Topics.Radical.Windows.Presentation.ComponentModel;
+using Topics.Radical.ComponentModel.Messaging;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace SocceramaWin8.Presentation
 {
@@ -22,6 +24,9 @@ namespace SocceramaWin8.Presentation
         public IEnumerable<Shield> Shields { get; private set; }
         public int TotalShields { get { return Shields.Count(); } }
         public int CompletedShields { get { return Shields.Count(s => s.IsValidated); } }
+
+        readonly INavigationService _ns;
+        readonly IMessageBroker _broker;
 
         public Thickness Margin
         {
@@ -64,6 +69,7 @@ namespace SocceramaWin8.Presentation
                 }
             }
         }
+
         public bool IsUnlocked
         {
             get
@@ -118,21 +124,23 @@ namespace SocceramaWin8.Presentation
             }
         }
 
-        public LevelViewModel(IGrouping<int, Shield> group)
+        public LevelViewModel(IGrouping<int, Shield> group, INavigationService ns, IMessageBroker broker)
         {
             Number = group.Key;
             IsBonus = group.Key >= 100;
             Shields = group;
+            _ns = ns;
+            _broker = broker;
 
-            //MessengerInstance.Register<PropertyChangedMessage<bool>>(this, (m) =>
-            //{
-            //    if (m.PropertyName != "IsValidated") return;
+            _broker.Subscribe<PropertyChangedMessage<bool>>(this, (sender, msg) =>
+            {
+                if (msg.PropertyName != "IsValidated") return;
 
-            //    RaisePropertyChanged("CompletedShields");
-            //    RaisePropertyChanged("IsUnlocked");
-            //    RaisePropertyChanged("StatusText");
-            //    RaisePropertyChanged("LevelImage");
-            //});
+                OnPropertyChanged("CompletedShields");
+                OnPropertyChanged("IsUnlocked");
+                OnPropertyChanged("StatusText");
+                OnPropertyChanged("LevelImage");
+            });
         }
 
         //private RelayCommand _resetCommand;
@@ -161,7 +169,7 @@ namespace SocceramaWin8.Presentation
                     {
                         if (!this.IsUnlocked) return;
                         SoundManager.PlayFischietto();
-                        ns.Navigate<ShieldsView>(this);
+                        _ns.Navigate<ShieldsView>(this);
                     }));
             }
         }

@@ -18,26 +18,6 @@ namespace SocceramaWin8.Data
             }
         }
 
-        private static List<LevelViewModel> _levels;
-        public static List<LevelViewModel> Levels
-        {
-            get
-            {
-                if (_levels == null)
-                    _levels = GetLevels();
-
-                return _levels;
-            }
-        }
-
-        private static List<LevelViewModel> GetLevels()
-        {
-            return Shields
-                .GroupBy(s => s.Level)
-                .Select(g => new LevelViewModel(g))
-                .ToList();
-        }
-
         private static IEnumerable<Shield> GetShields()
         {
             return new[]

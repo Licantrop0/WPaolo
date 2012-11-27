@@ -1,5 +1,6 @@
 ﻿using Scudetti.Model;
 using SocceramaWin8.Data;
+using Topics.Radical.ComponentModel.Messaging;
 using Topics.Radical.Windows.Presentation;
 using Topics.Radical.Windows.Presentation.ComponentModel;
 using Windows.ApplicationModel.Resources;
@@ -7,9 +8,9 @@ using Windows.ApplicationModel.Resources;
 namespace SocceramaWin8.Presentation
 {
     public class ShieldsViewModel : AbstractViewModel, IExpectNavigatedToCallback, IExpectNavigatingAwayCallback
-
     {
         ResourceLoader resources = new ResourceLoader();
+        readonly INavigationService _ns;
 
         private LevelViewModel _selectedLevel;
         public LevelViewModel SelectedLevel
@@ -19,7 +20,7 @@ namespace SocceramaWin8.Presentation
             {
                 if (SelectedLevel == value) return;
                 _selectedLevel = value;
-                //RaisePropertyChanged("SelectedLevel");
+                OnPropertyChanged("SelectedLevel");
             }
         }
 
@@ -29,15 +30,17 @@ namespace SocceramaWin8.Presentation
             set
             {
                 if (value == null) return;
-                //if (!value.Id.StartsWith("blocked"))
-                //    MessengerInstance.Send<Shield>(value);
+                if (value.Id.StartsWith("blocked")) return;
 
-                //RaisePropertyChanged("SelectedShield");
+                _ns.Navigate<ShieldView>(value);
+
+                OnPropertyChanged("SelectedShield");
             }
         }
 
-        public ShieldsViewModel()
+        public ShieldsViewModel(INavigationService ns)
         {
+            _ns = ns;
             //if (IsInDesignMode)
             //{
             //    SelectedLevel = DesignTimeData.Levels[0];
@@ -45,22 +48,18 @@ namespace SocceramaWin8.Presentation
             //}
         }
 
-        public void OnNavigatedTo(NavigationEventArgs e)
-        {
-            SelectedLevel = (LevelViewModel)e.Arguments;            
-        }
-
         void IExpectNavigatedToCallback.OnNavigatedTo(NavigationEventArgs e)
         {
+            SelectedLevel = (LevelViewModel)e.Arguments;
             if (e.Mode == NavigationMode.Back && e.Storage.Contains("myData"))
             {
-                var data = e.Storage.GetData<String>("myData");
+                var data = e.Storage.GetData<string>("myData");
             }
         }
 
         public void OnNavigatingAway(NavigatingAwayEventArgs e)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
     }
 }

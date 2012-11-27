@@ -7,6 +7,9 @@ using Topics.Radical.Windows.Presentation;
 using Topics.Radical.Windows.Presentation.ComponentModel;
 using Topics.Radical.Windows.Presentation.Messaging;
 using Windows.ApplicationModel.Resources;
+using GalaSoft.MvvmLight.Messaging;
+using System.Linq;
+
 
 namespace SocceramaWin8.Presentation
 {
@@ -14,49 +17,66 @@ namespace SocceramaWin8.Presentation
     {
         ResourceLoader resources = new ResourceLoader();
 
-        readonly INavigationService ns;
-        readonly IMessageBroker broker;
+        readonly INavigationService _ns;
+        readonly IMessageBroker _broker;
 
 
         public LevelsViewModel(INavigationService ns, IMessageBroker broker)
         {
-            this.ns = ns;
-            this.broker = broker;
+            _ns = ns;
+            _broker = broker;
 
-            this.broker.Subscribe<ApplicationSuspend>(this, async (sender, msg) =>
+            _broker.Subscribe<ApplicationBootCompleted>(this, InvocationModel.Safe, async (sender, msg) =>
+            {
+                await AppContext.LoadShieldsAsync();
+                OnPropertyChanged("StatusText");
+                OnPropertyChanged("Levels");
+            });
+
+            _broker.Subscribe<ApplicationSuspend>(this, async (sender, msg) =>
             {
                 await ShieldService.Save(AppContext.Shields);
             });
 
-            this.broker.Subscribe<ApplicationBootCompleted>(this, InvocationModel.Safe, async (sender, msg) =>
+            _broker.Subscribe<PropertyChangedMessage<bool>>(this, (sender, msg) =>
             {
-                Levels = await AppContext.LoadShieldsAsync();
+                if (msg.PropertyName != "IsValidated") return;
+                //Aggiorna lo status text dei completed shields e se il gioco è stato completato
                 OnPropertyChanged("StatusText");
+                AppContext.GameCompleted = AppContext.Shields.All(s => s.IsValidated);
             });
-
-
-
-            //MessengerInstance.Register<PropertyChangedMessage<bool>>(this, m =>
-            //{
-            //    if (m.PropertyName != "IsValidated") return;
-            //    //Aggiorna lo status text dei completed shields e se il gioco è stato completato
-            //    RaisePropertyChanged("StatusText");
-            //    AppContext.GameCompleted = AppContext.Shields.All(s => s.IsValidated);
-            //});
         }
 
+        private List<LevelViewModel> _levels;
         public List<LevelViewModel> Levels
         {
-            get { return this.GetPropertyValue<List<LevelViewModel>>(() => Levels); }
-            set { this.SetPropertyValue(() => Levels, value); }
+            get
+            {
+                if (AppContext.Shields == null)
+                {
+                    _levels = null;
+                    return null;
+                }
+
+                if (_levels == null)
+                {
+                    _levels = AppContext.Shields.GroupBy(s => s.Level)
+                        .Select(g => new LevelViewModel(g, _ns, _broker))
+                        .OrderBy(l => l.Number)
+                        .ToList();
+                }
+                return _levels;
+            }
         }
 
         public string StatusText
         {
             get
             {
-                return AppContext.Shields == null ? string.Empty :
-                    string.Format("{0}: {1}/{2}", resources.GetString("Shields"),
+                if (AppContext.Shields == null)
+                    return string.Empty;
+
+                return string.Format("{0}: {1}/{2}", resources.GetString("Shields"),
                         AppContext.TotalShieldUnlocked, AppContext.TotalShields);
             }
         }

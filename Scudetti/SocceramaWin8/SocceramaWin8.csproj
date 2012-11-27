@@ -126,6 +126,9 @@
     <Compile Include="Helper\ImagePathConverter.cs" />
     <Compile Include="Helper\NotificationHelper.cs" />
     <Compile Include="Helper\VisualTreeHelper.cs" />
+    <Compile Include="Messaging\MessageBase.cs" />
+    <Compile Include="Messaging\PropertyChangedMessage.cs" />
+    <Compile Include="Messaging\PropertyChangedMessageBase.cs" />
     <Compile Include="Model\Shield.cs" />
     <Compile Include="Model\ShieldService.cs" />
     <Compile Include="Presentation\AboutViewModel.cs" />

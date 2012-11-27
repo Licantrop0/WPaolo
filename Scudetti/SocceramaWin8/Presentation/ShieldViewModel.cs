@@ -1,17 +1,20 @@
-﻿using Scudetti.Model;
-using SocceramaWin8.Data;
-using SocceramaWin8.Helpers;
-using SocceramaWin8.Sound;
-using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Scudetti.Model;
 using System.Linq;
+using Topics.Radical.ComponentModel.Messaging;
+using Topics.Radical.Windows.Presentation;
+using Topics.Radical.Windows.Presentation.ComponentModel;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 
 namespace SocceramaWin8.Presentation
 {
-    public class ShieldViewModel
+    public class ShieldViewModel : AbstractViewModel, IExpectNavigatingToCallback
     {
         ResourceLoader resources = new ResourceLoader();
+        readonly INavigationService _ns;
+        readonly IMessageBroker _broker;
+
         public string InputShieldName { get; set; }
         public Visibility InputVisibile { get { return CurrentShield.IsValidated ? Visibility.Collapsed : Visibility.Visible; } }
         public string ShieldName
@@ -34,8 +37,14 @@ namespace SocceramaWin8.Presentation
             set
             {
                 _hintText = value;
-                //RaisePropertyChanged("HintText");
+                OnPropertyChanged("HintText");
             }
+        }
+
+        private bool _hintUsed = false;
+        private bool HintEnabled()
+        {
+            return AppContext.AvailableHints > 0 && !_hintUsed;
         }
 
         private Shield _currentShield;
@@ -48,37 +57,41 @@ namespace SocceramaWin8.Presentation
                     return;
                 _currentShield = value;
 
-                //_currentShield.PropertyChanged += (sender, e) =>
-                //{
-                //    if (e.PropertyName == "IsValidated")
-                //    {
-                //        MessengerInstance.Send(new PropertyChangedMessage<bool>(
-                //            !_currentShield.IsValidated,
-                //            _currentShield.IsValidated,
-                //            e.PropertyName));
-                //    }
-                //};
-                //RaisePropertyChanged("CurrentShield");
+                _currentShield.PropertyChanged += (sender, e) =>
+                {
+                    if (e.PropertyName == "IsValidated")
+                    {
+                        _broker.Broadcast(this, new PropertyChangedMessage<bool>(
+                        !_currentShield.IsValidated,
+                        _currentShield.IsValidated,
+                        e.PropertyName));
+                    }
+                };
+                OnPropertyChanged("CurrentShield");
             }
         }
 
         public bool ControlsEnabled { get { return !CurrentShield.IsValidated; } }
 
-        public ShieldViewModel()
+        public ShieldViewModel(INavigationService ns, IMessageBroker broker)
         {
-            //if (IsInDesignMode)
+            _ns = ns;
+            _broker = broker;
+
+            //if (isIndesignMode)
             //{
             //    _currentShield = DesignTimeData.Shields.First();
             //    _hintText = string.Format(resources.GetString("AvailableHints"), 5);
             //    return;
             //}
-            //MessengerInstance.Register<Shield>(this, shield =>
-            //{
-            //    CurrentShield = shield;
-            //    InputShieldName = string.Empty;
-            //    HintText = null;
-            //    _hintUsed = false;
-            //});
+        }
+
+        void IExpectNavigatingToCallback.OnNavigatingTo(NavigationEventArgs e)
+        {
+            CurrentShield = (Shield)e.Arguments;
+            InputShieldName = string.Empty;
+            HintText = null;
+            _hintUsed = false;
         }
 
         //#region Commands
@@ -106,12 +119,6 @@ namespace SocceramaWin8.Presentation
         //    {
         //        //MessageBox.Show(resources.GetString("NoHintsAvailable"));
         //    }
-        //}
-
-        //private bool _hintUsed = false;
-        //private bool HintEnabled()
-        //{
-        //    return AppContext.AvailableHints > 0 && !_hintUsed;
         //}
 
 

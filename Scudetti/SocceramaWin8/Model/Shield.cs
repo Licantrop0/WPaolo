@@ -3,8 +3,10 @@ using System.Xml.Serialization;
 
 namespace Scudetti.Model
 {
-    public class Shield
+    public class Shield : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         [XmlAttribute]
         public string Id { get; set; }
 
@@ -29,7 +31,7 @@ namespace Scudetti.Model
             {
                 if (IsValidated == value) return;
                 _isValidated = value;
-                //RaisePropertyChanged("IsValidated");
+                RaisePropertyChanged("IsValidated");
             }
         }
 
@@ -37,5 +39,15 @@ namespace Scudetti.Model
         {
             return string.Format("{0}, Lv: {1}", Names[0], Level);
         }
+
+        protected virtual void RaisePropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
     }
 }

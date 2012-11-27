@@ -31,25 +31,15 @@ namespace SocceramaWin8
             get { return Shields.Count() - 6; }
         }
 
-        public static async Task<List<LevelViewModel>> LoadShieldsAsync()
+        public static async Task LoadShieldsAsync()
         {
             Shields = await ShieldService.Load();
-            return GroupLevels(Shields);
         }
 
-        private static List<LevelViewModel> GroupLevels(IEnumerable<Shield> shields)
-        {
-            return shields.GroupBy(s => s.Level)
-               .Select(g => new LevelViewModel(g))
-               .OrderBy(l => l.Number)
-               .ToList();
-        }
-
-        public static async Task ResetShields()
+         public static async Task ResetShields()
         {
             AvailableHints = HintsTreshold;
             Shields = await ShieldService.GetNew();
-            //Levels = GroupLevels(Shields);
         }
 
         private static bool? _soundEnabled;

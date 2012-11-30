@@ -815,7 +815,7 @@
     <Names>Grêmio</Names>
     <Names>Gremio</Names>
   </Shield>
-  <Shield Level="7" Id="hannover96" Image="hannover96.png" Hint="" IsValidated="false">
+  <Shield Level="7" Id="hannover96" Image="hannover96.png" Hint="germany" IsValidated="false">
     <Names>Hannoverscher Sportverein von 1896</Names>
     <Names>Hannoverscher Sportverein</Names>
     <Names>Hannoverscher 96</Names>
@@ -881,9 +881,132 @@
   </Shield>-->
 
 
-  <Shield Level="8" Id="blocked8" Image="blocked.png" Hint="Blocked" IsValidated="false">
-    <Names>saolkdf asodif asodfia sdòfijasdòfjisa</Names>
+  <Shield Level="8" Id="almeria" Image="almeria.png" Hint="Spain" IsValidated="false">
+    <Names>Unión Deportiva Almería</Names>
+    <Names>UD Almería</Names>
+    <Names>Ud Almeria</Names>
+    <Names>Almería</Names>
+    <Names>Almeria</Names>
   </Shield>
+    <Shield Level="8" Id="austria-vienna" Image="austria-vienna.png" Hint="Austria" IsValidated="false">
+      <Names>Fußballklub Austria Wien</Names>
+      <Names>Fk Austria Wien</Names>
+      <Names>Fk Austria</Names>
+      <Names>Austria Wien</Names>
+      <Names>austria vienna</Names>
+    </Shield>
+    <Shield Level="8" Id="botafogo" Image="botafogo.png" Hint="Brazil" IsValidated="false">
+      <Names>Botafogo de Futebol e Regatas</Names>
+      <Names>Botafogo</Names>
+      <Names>Estrela Solitária</Names>
+    </Shield>
+    <Shield Level="8" Id="brondby" Image="brondby.png" Hint="Denmark" IsValidated="false">
+      <Names>Brøndbyernes Idrætsforening</Names>
+      <Names>Brøndby IF</Names>
+      <Names>brondby if</Names>
+      <Names>brondby</Names>
+      <Names>Brøndby</Names>
+      <Names>BIF</Names>
+    </Shield>
+    <Shield Level="8" Id="cesena" Image="cesena.png" Hint="Italy" IsValidated="false">
+      <Names>Associazione Calcio Cesena</Names>
+      <Names>Ac Cesena</Names>
+      <Names>Cesena</Names>
+    </Shield>
+    <Shield Level="8" Id="empoli" Image="empoli.png" Hint="italy" IsValidated="false">
+      <Names>Empoli Football Club</Names>
+      <Names>Empoli Fc</Names>
+      <Names>Empoli</Names>
+    </Shield>
+    <Shield Level="8" Id="genk" Image="genk.png" Hint="belgium" IsValidated="false">
+      <Names>Koninklijke Racing Club Genk</Names>
+      <Names>Krc Genk</Names>
+      <Names>Genk</Names>
+    </Shield>
+    <Shield Level="8" Id="gent" Image="gent.png" Hint="belgium" IsValidated="false">
+      <Names>Koninklijke Atletiek Associatie Gent</Names>
+      <Names>Kaa Gent</Names>
+      <Names>Gent</Names>
+      <Names>Ghent</Names>
+    </Shield>
+    <Shield Level="8" Id="gijon" Image="gijon.png" Hint="Spain" IsValidated="false">
+      <Names>Real Sporting de Gijón</Names>
+      <Names>Rs Gijón</Names>
+      <Names>Gijón</Names>
+      <Names>Gijon</Names>
+      <Names>Sporting Gijón</Names>
+      <Names>Sporting Gijon</Names>
+      <Names>Sporting</Names>
+    </Shield>
+    <Shield Level="8" Id="kashima-antlers" Image="kashima-antlers.png" Hint="Japan" IsValidated="false">
+      <Names>Kashima Antlers</Names>
+      <Names>Kashima</Names>
+    </Shield>
+    <Shield Level="8" Id="koln" Image="koln.png" Hint="Germany" IsValidated="false">
+      <Names>Fußball-Club Köln</Names>
+      <Names>Fc Köln</Names>
+      <Names>koln</Names>
+      <Names>Köln</Names>
+      <Names>colonia</Names>
+    </Shield>
+    <Shield Level="8" Id="livorno" Image="livorno.png" Hint="italy" IsValidated="false">
+      <Names>Associazione Sportiva Livorno Calcio</Names>
+      <Names>As Livorno Calcio</Names>
+      <Names>As Livorno</Names>
+      <Names>Livorno</Names>
+      <Names>Livorno calcio</Names>
+    </Shield>
+    <Shield Level="8" Id="montpellier" Image="montpellier.png" Hint="france" IsValidated="false">
+      <Names>Montpellier Hérault Sport Club</Names>
+      <Names>Montpellier hsc</Names>
+      <Names>Montpellier</Names>
+    </Shield>
+  <Shield Level="8" Id="nizza" Image="nizza.png" Hint="france" IsValidated="false">
+    <Names>Olympique Gymnaste Club Nice Côte d'Azur</Names>
+    <Names>OGC Nice</Names>
+    <Names>nice</Names>
+    <Names>nizza</Names>
+  </Shield>
+  <Shield Level="8" Id="orlandopirates" Image="orlandopirates.png" Hint="South Africa" IsValidated="false">
+    <Names>Orlando Pirates Football Club</Names>
+    <Names>Orlando Pirates Fc</Names>
+    <Names>Orlando Pirates</Names>
+  </Shield>
+  <Shield Level="8" Id="penarol" Image="penarol.png" Hint="Uruguay" IsValidated="false">
+    <Names>Club Atlético Peñarol</Names>
+    <Names>Ca Peñarol</Names>
+    <Names>Peñarol</Names>
+    <Names>Penarol</Names>
+  </Shield>
+  <Shield Level="8" Id="rayo-vallecano" Image="rayo-vallecano.png" Hint="Spain" IsValidated="false">
+    <Names>Rayo Vallecano de Madrid</Names>
+    <Names>Rayo Vallecano</Names>
+    <Names>Rayo</Names>
+  </Shield>
+  <Shield Level="8" Id="saint-etienne" Image="saint-etienne.png" Hint="france" IsValidated="false">
+    <Names>Association Sportive de Saint-Étienne Loire</Names>
+    <Names>As Saint-Étienne</Names>
+    <Names>Saint-Étienne</Names>
+    <Names>Saint-etienne</Names>
+    <Names>Saint etienne</Names>
+  </Shield>
+  <Shield Level="8" Id="Servette" Image="servette.png" Hint="Swiss" IsValidated="false">
+    <Names>Servette Football Club Genève 1890</Names>
+    <Names>Servette fc</Names>
+    <Names>Servette</Names>
+  </Shield>
+  <Shield Level="8" Id="Swansea" Image="swansea.png" Hint="england" IsValidated="false">
+    <Names>Swansea City Association Football Club</Names>
+    <Names>Swansea FC</Names>
+    <Names>Swansea City</Names>
+    <Names>Swansea</Names>
+  </Shield>
+  <Shield Level="8" Id="Sydney" Image="sydney.png" Hint="Australia" IsValidated="false">
+    <Names>Sydney Football Club</Names>
+    <Names>Sydney FC</Names>
+    <Names>sydney</Names>
+  </Shield>
+  
 
   <Shield Level="9" Id="blocked9" Image="blocked.png" Hint="Blocked" IsValidated="false">
     <Names>saolkdf asodif asodfia sdòfijasdòfjisa</Names>

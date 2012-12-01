@@ -1008,8 +1008,133 @@
   </Shield>
   
 
-  <Shield Level="9" Id="blocked9" Image="blocked.png" Hint="Blocked" IsValidated="false">
-    <Names>saolkdf asodif asodfia sdòfijasdòfjisa</Names>
+  <Shield Level="9" Id="albinoleffe" Image="albinoleffe.png" Hint="Italy" IsValidated="false">
+    <Names>Unione Calcio AlbinoLeffe</Names>
+    <Names>Uc AlbinoLeffe</Names>
+    <Names>AlbinoLeffe</Names>
+  </Shield>
+<Shield Level="9" Id="Dundee" Image="dundee.png" Hint="Scotland" IsValidated="false">
+    <Names>Dundee United Football Club</Names>
+    <Names>Dundee fc</Names>
+    <Names>Dundee United</Names>
+    <Names>Dundee United Fc</Names>
+    <Names>Dundee</Names>
+  </Shield>
+<Shield Level="9" Id="fluminense" Image="fluminense.png" Hint="Brazil" IsValidated="false">
+    <Names>Fluminense Football Club</Names>
+    <Names>Fluminense Fc</Names>
+    <Names>Fluminense</Names>
+  </Shield>
+<Shield Level="9" Id="kashiwa" Image="kashiwa.png" Hint="Japan" IsValidated="false">
+    <Names>Kashiwa Reysol</Names>
+    <Names>Reysol</Names>
+    <Names>Kashiwa</Names>
+  </Shield>
+<Shield Level="9" Id="lorient" Image="lorient.png" Hint="France" IsValidated="false">
+    <Names>Football Club Lorient-Bretagne Sud</Names>
+    <Names>Fc Lorient</Names>
+    <Names>Lorient</Names>
+  </Shield>
+<Shield Level="9" Id="mainz" Image="mainz.png" Hint="France" IsValidated="false">
+    <Names>Fußball- und Sportverein Mainz 05</Names>
+    <Names>Fsv Mainz 05</Names>
+    <Names>Mainz 05</Names>
+    <Names>Mainz</Names>
+    <Names>Fsv Mainz</Names>
+  </Shield>
+<Shield Level="9" Id="modena" Image="modena.png" Hint="Italy" IsValidated="false">
+    <Names>Modena Football Club</Names>
+    <Names>Modena Fc</Names>
+    <Names>Modena</Names>
+  </Shield>
+<Shield Level="9" Id="norwich" Image="norwich.png" Hint="England" IsValidated="false">
+    <Names>Norwich City Football Club</Names>
+    <Names>Norwich City fc</Names>
+    <Names>Norwich fc</Names>
+    <Names>Norwich City</Names>
+    <Names>Norwich</Names>
+  </Shield>
+<Shield Level="9" Id="padova" Image="padova.png" Hint="italy" IsValidated="false">
+    <Names>Calcio Padova S.p.A</Names>
+    <Names>Calcio Padova</Names>
+    <Names>Padova</Names>
+  </Shield>
+<Shield Level="9" Id="paok" Image="paok.png" Hint="Greek" IsValidated="false">
+    <Names>Panthessaloníkios Athlitikós Ómilos Konstantinoupolitón</Names>
+    <Names>Paok fc</Names>
+    <Names>P.a.o.k</Names>
+    <Names>Paok</Names>
+  </Shield>
+<Shield Level="9" Id="piacenza" Image="piacenza.png" Hint="italy" IsValidated="false">
+    <Names>Piacenza Calcio</Names>
+    <Names>Piacenza</Names>
+  </Shield>
+<Shield Level="9" Id="pisa" Image="pisa.png" Hint="Italy" IsValidated="false">
+    <Names>Associazione Calcio Pisa 1909</Names>
+    <Names>Ac Pisa 1909</Names>
+    <Names>Pisa 1909</Names>
+    <Names>Pisa</Names>
+    <Names>Ac Pisa</Names>
+  </Shield>
+<Shield Level="9" Id="setubal" Image="setubal.png" Hint="Portugal" IsValidated="false">
+    <Names>Vitória Futebol Clube</Names>
+    <Names>Vitória Fc</Names>
+    <Names>Vitória</Names>
+    <Names>Vitória setubal</Names>
+    <Names>setubal</Names>
+    <Names>setùbal</Names>
+    <Names>vitoria setubal</Names>
+    <Names>Vitória de Setúbal</Names>
+  </Shield>
+<Shield Level="9" Id="shamrock-rovers" Image="shamrock-rovers.png" Hint="ireland" IsValidated="false">
+    <Names>Shamrock Rovers Football Club</Names>
+    <Names>Shamrock Rovers fc</Names>
+    <Names>Shamrock Rovers</Names>
+    <Names>Shamrock</Names>
+  </Shield>
+<Shield Level="9" Id="sturm-graz" Image="sturm-graz.png" Hint="Austria" IsValidated="false">
+    <Names>Sportklub Sturm Graz</Names>
+    <Names>Sturm Graz</Names>
+    <Names>Sk Sturm Graz</Names>
+  </Shield>
+<Shield Level="9" Id="thun" Image="thun.png" Hint="Swiss" IsValidated="false">
+    <Names>Fussballclub Thun 1898</Names>
+    <Names>Thun</Names>
+    <Names>Fc Thun</Names>
+  </Shield>
+<Shield Level="9" Id="universidad" Image="universidad.png" Hint="Chile" IsValidated="false">
+    <Names>Club Deportivo Universidad Católica</Names>
+    <Names>Universidad Católica</Names>
+    <Names>Católica</Names>
+    <Names>Universidad Catolica</Names>
+    <Names>Catolica</Names>
+  </Shield>
+<Shield Level="9" Id="utrecht" Image="utrecht.png" Hint="Holland" IsValidated="false">
+    <Names>Football Club Utrecht</Names>
+    <Names>Fc Utrecht</Names>
+    <Names>Utrecht</Names>
+  </Shield>
+<Shield Level="9" Id="vicenza" Image="vicenza.png" Hint="italy" IsValidated="false">
+    <Names>Vicenza calcio</Names>
+    <Names>Vicenza</Names>
+  </Shield>
+<Shield Level="9" Id="viktoria" Image="viktoria.png" Hint="Czech" IsValidated="false">
+    <Names>Football Club Viktoria Plzeň</Names>
+    <Names>Fc Viktoria Plzeň</Names>
+    <Names>Viktoria Plzeň</Names>
+    <Names>Viktoria</Names>
+    <Names>Viktoria Plzen</Names>
+    <Names>Plzen</Names>
+    <Names>Plzeň</Names>
+    <Names>fc Viktoria</Names>
+  </Shield>
+<Shield Level="9" Id="west-bromwich" Image="west-bromwich.png" Hint="england" IsValidated="false">
+    <Names>West Bromwich Albion Football Club</Names>
+    <Names>West Bromwich Albion Fc</Names>
+    <Names>West Bromwich Albion</Names>
+    <Names>West Bromwich</Names>
+    <Names>Wba</Names>
+    <Names>albion</Names>
   </Shield>
 
   <Shield Level="10" Id="blocked10" Image="blocked.png" Hint="Blocked" IsValidated="false">

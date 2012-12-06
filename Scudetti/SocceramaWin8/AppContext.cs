@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Scudetti.Model;
-using SocceramaWin8.Presentation;
 using Windows.Storage;
 
 namespace SocceramaWin8

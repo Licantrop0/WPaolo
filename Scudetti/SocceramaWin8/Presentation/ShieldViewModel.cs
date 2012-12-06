@@ -19,6 +19,7 @@ namespace SocceramaWin8.Presentation
         ResourceLoader resources = new ResourceLoader();
         readonly INavigationService _ns;
         readonly IMessageBroker _broker;
+        public IDelegateCommand GoBack { get; private set; }
 
         public Visibility InputVisibile { get { return CurrentShield.IsValidated ? Visibility.Collapsed : Visibility.Visible; } }
 
@@ -67,6 +68,7 @@ namespace SocceramaWin8.Presentation
                     }
                 };
                 OnPropertyChanged("CurrentShield");
+
             }
         }
 
@@ -78,6 +80,10 @@ namespace SocceramaWin8.Presentation
             _broker = broker;
 
             this.CurrentShield = new Shield();
+
+            GoBack = DelegateCommand
+                .Create()
+                .OnExecute((obj) => _ns.GoBack());
 
             //if (isIndesignMode)
             //{
@@ -93,6 +99,8 @@ namespace SocceramaWin8.Presentation
             InputShieldName = string.Empty;
             HintText = null;
             _hintUsed = false;
+            OnPropertyChanged("InputVisibile");
+            OnPropertyChanged("ShieldName");
         }
 
         private bool _hintUsed = false;
@@ -106,8 +114,8 @@ namespace SocceramaWin8.Presentation
 
         #region Commands
 
-        private IDelegateCommand  _showHintCommand;
-        public IDelegateCommand  ShowHintCommand
+        private IDelegateCommand _showHintCommand;
+        public IDelegateCommand ShowHintCommand
         {
             get
             {

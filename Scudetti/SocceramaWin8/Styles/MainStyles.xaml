@@ -194,18 +194,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-	<Style x:Key="ButtonStyle1" TargetType="Button">
-		<Setter Property="Background" Value="{StaticResource ButtonBackgroundThemeBrush}"/>
-		<Setter Property="Foreground" Value="{StaticResource ButtonForegroundThemeBrush}"/>
-		<Setter Property="BorderBrush" Value="{StaticResource ButtonBorderThemeBrush}"/>
-		<Setter Property="BorderThickness" Value="{StaticResource ButtonBorderThemeThickness}"/>
-		<Setter Property="Padding" Value="12,4,12,4"/>
-		<Setter Property="HorizontalAlignment" Value="Left"/>
-		<Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
-		<Setter Property="FontWeight" Value="SemiBold"/>
-		<Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
-	</Style>
 
 </ResourceDictionary>

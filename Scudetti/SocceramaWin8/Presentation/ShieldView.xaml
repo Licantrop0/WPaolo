@@ -24,23 +24,26 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding ShieldName, Mode=OneTime}" Grid.Column="1" IsHitTestVisible="false"
+            <Button x:Name="backButton" Command="{Binding GoBack}" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
+                    Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="pageTitle" Text="{Binding ShieldName, Mode=OneTime}"
+                       Grid.Column="1" IsHitTestVisible="false"
                        Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
         <StackPanel Grid.Row="1" Margin="12,0">
             <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
                    Stretch="None" Margin="12" HorizontalAlignment="Center" />
-            <hlp:BindableTextBox x:Name="ShieldNameTextbox" BindableText="{Binding InputShieldName, Mode=TwoWay}"
-                                 KeyDown="ShieldNameTextbox_KeyDown" MaxWidth="350"
+            <hlp:BindableTextBox x:Name="ShieldNameTextbox" MaxWidth="350"
+                                 BindableText="{Binding InputShieldName, Mode=TwoWay}"                                
                                  Visibility="{Binding InputVisibile, Mode=OneTime}" />
             <TextBlock x:Name="HintTextBlock"  Text="{Binding HintText}"
 					   Visibility="{Binding InputVisibile, Mode=OneTime}"
 					   Style="{StaticResource StatusTextBlock}"
 					   TextWrapping="Wrap" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding InputVisibile, Mode=OneTime}" >
-                <Button Width="130" Margin="6" Click="Ok_Click" Style="{StaticResource ButtonStyle1}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Visibility="{Binding InputVisibile, Mode=OneTime}" >
+                <Button Width="130" Margin="6" Click="Ok_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Grid>
@@ -58,13 +61,14 @@
                                         <VisualState x:Name="Disabled" />
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <Image x:Name="ImagePressed" Source="ms-appx:///Assets/okpressed.png" />
-                                <Image x:Name="image" Source="ms-appx:///Assets/ok.png" />
+                                <Image x:Name="ImagePressed" Source="Assets/okpressed.png" />
+                                <Image x:Name="image" Source="Assets/ok.png" />
                             </Grid>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Command="{Binding ShowHintCommand}" Width="130" Margin="6">
+                <Button Command="{Binding ShowHintCommand}"
+                        Width="130" Margin="6">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Grid>
@@ -91,9 +95,9 @@
                                     </VisualStateGroup>
                                     <VisualStateGroup x:Name="FocusStates"/>
                                 </VisualStateManager.VisualStateGroups>
-                                <Image x:Name="ImagePressed" Source="ms-appx:///Assets/hintpressed.png" />
-                                <Image x:Name="image" Source="ms-appx:///Assets/hint.png" />
-                                <Image x:Name="ImageDisabled" Visibility="Collapsed" Source="ms-appx:///Assets/hintdisabled.png" />
+                                <Image x:Name="ImagePressed" Source="Assets/hintpressed.png" />
+                                <Image x:Name="image" Source="Assets/hint.png" />
+                                <Image x:Name="ImageDisabled" Visibility="Collapsed" Source="Assets/hintdisabled.png" />
                             </Grid>
                         </ControlTemplate>
                     </Button.Template>

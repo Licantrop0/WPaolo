@@ -36,7 +36,7 @@ namespace SocceramaWin8
             Shields = await ShieldService.Load();
         }
 
-         public static async Task ResetShields()
+        public static async Task ResetShields()
         {
             AvailableHints = HintsTreshold;
             Shields = await ShieldService.GetNew();

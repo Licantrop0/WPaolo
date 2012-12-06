@@ -17,10 +17,10 @@ namespace SocceramaWin8.Presentation
 {
     public class LevelViewModel : AbstractViewModel
     {
-        ResourceLoader resources = new ResourceLoader();
+        static ResourceLoader resources = new ResourceLoader();
 
         public int Number { get; private set; }
-        public bool IsBonus { get; set; }
+        public bool IsBonus { get { return Number >= 100; } }
         public IEnumerable<Shield> Shields { get; private set; }
         public int TotalShields { get { return Shields.Count(); } }
         public int CompletedShields { get { return Shields.Count(s => s.IsValidated); } }
@@ -127,12 +127,11 @@ namespace SocceramaWin8.Presentation
         public LevelViewModel(IGrouping<int, Shield> group, INavigationService ns, IMessageBroker broker)
         {
             Number = group.Key;
-            IsBonus = group.Key >= 100;
             Shields = group;
             _ns = ns;
             _broker = broker;
 
-            _broker.Subscribe<PropertyChangedMessage<bool>>(this, (sender, msg) =>
+            _broker.Subscribe<PropertyChangedMessage<bool>>(this, InvocationModel.Safe, (sender, msg) =>
             {
                 if (msg.PropertyName != "IsValidated") return;
 

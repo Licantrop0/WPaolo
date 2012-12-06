@@ -2,7 +2,6 @@
 using Topics.Radical.Windows.Presentation.Boot;
 using Windows.UI.Xaml;
 
-
 namespace SocceramaWin8
 {
     sealed partial class App : Application
@@ -11,6 +10,7 @@ namespace SocceramaWin8
         public App()
         {
             this.bootstrapper = new PuzzleApplicationBootstrapper<LevelsView>();
+            //this.bootstrapper.OnBoot(arg => AppContext.LoadShieldsAsync());
         }
     }
 }

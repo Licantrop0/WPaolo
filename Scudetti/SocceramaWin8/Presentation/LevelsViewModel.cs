@@ -38,7 +38,7 @@ namespace SocceramaWin8.Presentation
                 await ShieldService.Save(AppContext.Shields);
             });
 
-            _broker.Subscribe<PropertyChangedMessage<bool>>(this, (sender, msg) =>
+            _broker.Subscribe<PropertyChangedMessage<bool>>(this, InvocationModel.Safe, (sender, msg) =>
             {
                 if (msg.PropertyName != "IsValidated") return;
                 //Aggiorna lo status text dei completed shields e se il gioco è stato completato

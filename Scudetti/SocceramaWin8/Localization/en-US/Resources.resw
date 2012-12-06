@@ -157,7 +157,7 @@ Unlock a new hint every 5 shields.</value>
     <value>{0} Shields needed to unlock</value>
   </data>
   <data name="NewLevel" xml:space="preserve">
-    <value>{0} unlocked!</value>
+    <value>Level {0} unlocked!</value>
   </data>
   <data name="NoHintsAvailable" xml:space="preserve">
     <value>You have finished all the available hints, try to unlock some other badges!</value>
@@ -195,5 +195,8 @@ Show to your friends that you are a real expert!</value>
   </data>
   <data name="Support.Content" xml:space="preserve">
     <value>Support</value>
+  </data>
+  <data name="NewBonusLevel" xml:space="preserve">
+    <value>Bonus Level {0} unlocked!</value>
   </data>
 </root>

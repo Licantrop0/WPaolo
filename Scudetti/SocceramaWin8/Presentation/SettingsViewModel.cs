@@ -1,10 +1,8 @@
 ﻿using Radical.Windows.Presentation.Conventions.Settings;
 using Radical.Windows.Presentation.Conventions.Settings.ComponentModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
+using Topics.Radical.Windows.Input;
 using Topics.Radical.Windows.Presentation;
 using Windows.UI;
 using Windows.UI.Popups;
@@ -21,26 +19,6 @@ namespace SocceramaWin8.Presentation
             set { AppContext.SoundEnabled = value; }
         }
 
-        //private RelayCommand _resetCommand;
-        //public RelayCommand ResetCommand
-        //{
-        //    get
-        //    {
-        //        return _resetCommand ?? (_resetCommand = new RelayCommand(async () =>
-        //            {
-        //                var d = new MessageDialog("Vuoi Cancellare tutto?"); //AppResources.ConfirmResetTitle);
-        //                d.Commands.Add(new UICommand("Yes", ResetAction));
-        //                d.Commands.Add(new UICommand("No"));
-        //                await d.ShowAsync();
-        //            }));
-        //    }
-        //}
-
-        private void ResetAction(IUICommand e)
-        {
-            AppContext.ResetShields();
-        }
-
         public SolidColorBrush Background
         {
             get { return (SolidColorBrush)App.Current.Resources["ApplicationPageBackgroundThemeBrush"]; }
@@ -54,6 +32,21 @@ namespace SocceramaWin8.Presentation
         public string HeaderText
         {
             get { return "Impostazioni"; }
+        }
+
+        private ICommand _resetCommand;
+        public ICommand ResetCommand
+        {
+            get
+            {
+                return _resetCommand ?? (_resetCommand = DelegateCommand.Create().OnExecute(async (m) =>
+                {
+                    var d = new MessageDialog("Vuoi Cancellare tutto?"); //AppResources.ConfirmResetTitle);
+                    d.Commands.Add(new UICommand("Yes", async (e) => await AppContext.ResetShields()));
+                    d.Commands.Add(new UICommand("No"));
+                    await d.ShowAsync();
+                }));
+            }
         }
     }
 }

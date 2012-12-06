@@ -6,11 +6,11 @@ namespace SocceramaWin8
 {
     sealed partial class App : Application
     {
-        ApplicationBootstrapper bootstrapper;
+        ApplicationBootstrapper _bootstrapper;
         public App()
         {
-            this.bootstrapper = new PuzzleApplicationBootstrapper<LevelsView>();
-            //this.bootstrapper.OnBoot(arg => AppContext.LoadShieldsAsync());
+            _bootstrapper = new PuzzleApplicationBootstrapper<LevelsView>();
+            //_bootstrapper.OnBoot(arg => AppContext.LoadShieldsAsync());
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Scudetti.Model;
 using System.Linq;
-using SocceramaWin8.Presentation;
+using SocceramaWin8.ViewModel;
 
 namespace SocceramaWin8.Data
 {

@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocceramaWin8", "SocceramaW
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
@@ -31,9 +31,6 @@ Global
 		SccProjectUniqueName3 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
 		SccProjectName3 = ../WPCommon.Helpers.XNAAsyncDispatcher
 		SccLocalPath3 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
-		SccProjectUniqueName4 = SocceramaWin8\\SocceramaWin8.csproj
-		SccProjectName4 = SocceramaWin8
-		SccLocalPath4 = SocceramaWin8
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

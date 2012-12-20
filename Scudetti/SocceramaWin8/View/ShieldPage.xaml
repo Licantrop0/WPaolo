@@ -13,7 +13,7 @@
 
     <Grid Name="LayoutRoot" Style="{StaticResource DefaultLayoutRootStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.Resources>
@@ -26,7 +26,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding ShieldName, Mode=OneTime}" Grid.Column="1" IsHitTestVisible="false"
+            <TextBlock x:Name="pageTitle" Text="{Binding Title, Mode=OneTime}" Grid.Column="1" IsHitTestVisible="false"
                        Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
@@ -36,8 +36,7 @@
             <hlp:BindableTextBox x:Name="ShieldNameTextbox" BindableText="{Binding InputShieldName, Mode=TwoWay}"
                                  KeyDown="ShieldNameTextbox_KeyDown" MaxWidth="350"
                                  Visibility="{Binding InputVisibile, Mode=OneTime}" />
-            <TextBlock x:Name="HintTextBlock"  Text="{Binding HintText}"
-					   Visibility="{Binding InputVisibile, Mode=OneTime}"
+            <TextBlock x:Name="HintTextBlock"  Text="{Binding HintText, Mode=OneTime}"
 					   Style="{StaticResource StatusTextBlock}"
 					   TextWrapping="Wrap" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding InputVisibile, Mode=OneTime}" >

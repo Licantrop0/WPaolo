@@ -17,12 +17,12 @@ namespace SocceramaWin8.ViewModel
         ResourceLoader resources = new ResourceLoader();
         public string InputShieldName { get; set; }
         public Visibility InputVisibile { get { return CurrentShield.IsValidated ? Visibility.Collapsed : Visibility.Visible; } }
-        public string ShieldName
+        public string Title
         {
             get
             {
                 return CurrentShield.IsValidated ?
-                    CurrentShield.Names.First() :
+                    "Torna Indietro" :
                     "Inserisci il nome della squadra";
             }
         }
@@ -32,6 +32,7 @@ namespace SocceramaWin8.ViewModel
         {
             get
             {
+                if (CurrentShield.IsValidated) return CurrentShield.Names.First();
                 return _hintText ?? (_hintText = string.Format(resources.GetString("AvailableHints"), AppContext.AvailableHints));
             }
             set

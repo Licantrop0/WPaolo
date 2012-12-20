@@ -25,11 +25,12 @@
                        IsHitTestVisible="false" HorizontalAlignment="Right" Margin="0,0,80,40"
                        Style="{StaticResource PageHeaderTextStyle}" />
         </Grid>
-
-        <GridView Name="itemGridView" Grid.Row="1"
+        
+        <Viewbox Grid.Row="1">
+            <GridView Name="itemGridView" Width="1600" Height="800"
                   AutomationProperties.AutomationId="ItemGridView"
                   AutomationProperties.Name="Grouped Items"
-                  Padding="100,0,40,0"
+                  
                   ItemsSource="{Binding SelectedLevel.Shields}"
                   ItemTemplate="{StaticResource Shield250ItemTemplate}"
                   SelectionMode="Single"
@@ -41,6 +42,8 @@
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>
+           
+        </Viewbox>
 
         <ListView x:Name="itemListView"
             AutomationProperties.AutomationId="ItemListView"

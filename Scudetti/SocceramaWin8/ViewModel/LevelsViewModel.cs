@@ -57,8 +57,6 @@ namespace SocceramaWin8.ViewModel
 
         public LevelsViewModel()
         {
-            LoadLevels();
-
             MessengerInstance.Register<PropertyChangedMessage<bool>>(this, m =>
             {
                 if (m.PropertyName != "IsValidated") return;
@@ -66,13 +64,6 @@ namespace SocceramaWin8.ViewModel
                 RaisePropertyChanged("StatusText");
                 AppContext.GameCompleted = AppContext.Shields.All(s => s.IsValidated);
             });
-        }
-
-        private async void LoadLevels()
-        {
-            await AppContext.LoadShieldsAsync();
-            RaisePropertyChanged("StatusText");
-            RaisePropertyChanged("Levels");
         }
     }
 }

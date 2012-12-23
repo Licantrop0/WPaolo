@@ -196,4 +196,7 @@ Show to your friends that you are a real expert!</value>
   <data name="Support.Content" xml:space="preserve">
     <value>Support</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>

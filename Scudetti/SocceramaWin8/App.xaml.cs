@@ -33,7 +33,7 @@ namespace SocceramaWin8
         /// search results, and so forth.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -46,11 +46,11 @@ namespace SocceramaWin8
 
                 RegisterNavigationMessages(rootFrame);
 
-                //if (args.PreviousExecutionState != ApplicationExecutionState.Suspended)
-                //{
-                //    if (AppContext.Shields == null)
-                //        AppContext.LoadShieldsAsync();
-                //}
+                if (args.PreviousExecutionState != ApplicationExecutionState.Suspended)
+                {
+                    if (AppContext.Shields == null)
+                        await AppContext.LoadShieldsAsync();
+                }
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;

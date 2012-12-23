@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using Scudetti.Model;
 using SocceramaWin8.Data;
+using SocceramaWin8.Sound;
 using Windows.ApplicationModel.Resources;
 
 namespace SocceramaWin8.ViewModel
@@ -29,6 +30,7 @@ namespace SocceramaWin8.ViewModel
                 if (value == null) return;
                 if (value.Id.StartsWith("blocked")) return;
 
+                SoundManager.PlayKick();
                 MessengerInstance.Send<Shield>(value);
                 RaisePropertyChanged("SelectedShield");
             }

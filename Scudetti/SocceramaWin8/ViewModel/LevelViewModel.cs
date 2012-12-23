@@ -20,6 +20,7 @@ namespace SocceramaWin8.ViewModel
         public IEnumerable<Shield> Shields { get; private set; }
         public int TotalShields { get { return Shields.Count(); } }
         public int CompletedShields { get { return Shields.Count(s => s.IsValidated); } }
+        public bool IsCompleted { get { return CompletedShields / TotalShields == 1; } }
 
         public Thickness Margin
         {
@@ -104,8 +105,7 @@ namespace SocceramaWin8.ViewModel
             {
                 if (IsUnlocked)
                 {
-                    return CompletedShields / TotalShields == 1 ? "*" :
-                        string.Format("{0}/{1}", CompletedShields, TotalShields);
+                    return string.Format("{0}/{1}", CompletedShields, TotalShields);
                 }
                 else
                 {

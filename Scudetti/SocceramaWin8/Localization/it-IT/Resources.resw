@@ -195,4 +195,7 @@ Sblocca un nuovo suggerimento ogni 5 scudetti.</value>
   <data name="Support.Content" xml:space="preserve">
     <value>Supporto</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
 </root>

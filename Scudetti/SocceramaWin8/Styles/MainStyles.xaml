@@ -58,7 +58,7 @@
             <Image Source="ms-appx:///Assets/spunta.png"
                    Visibility="{Binding IsValidated, Converter={StaticResource BooleanVisibilityConv}}"
                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                   Width="50" Margin="0,0,6,6" />
+                   Width="50" Margin="6" />
         </Grid>
     </DataTemplate>
 
@@ -69,12 +69,20 @@
                 Margin="{Binding Margin}">
             <Button.Template>
                 <ControlTemplate>
-                    <StackPanel VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
                         <Image Source="{Binding Image}" Stretch="None" Opacity="{Binding Opacity}" />
-                        <TextBlock Text="{Binding StatusText}" FontSize="40"
+                        <Image Source="ms-appx:///Assets/spunta.png"
+                               Visibility="{Binding IsCompleted, Converter={StaticResource BooleanVisibilityConv}}"
+                               HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                               Width="50" Margin="0,0,-60,6" />
+                        <TextBlock Text="{Binding StatusText}" Grid.Row="1" FontSize="40"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Style="{StaticResource BasicTextStyle}" />
-                    </StackPanel>
+                    </Grid>
                 </ControlTemplate>
             </Button.Template>
         </Button>
@@ -93,11 +101,17 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Source="{Binding Image}" Stretch="None" />
+                        <Image Source="ms-appx:///Assets/spunta.png"
+                               Visibility="{Binding IsCompleted, Converter={StaticResource BooleanVisibilityConv}}"
+                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                               Width="40" Margin="0" />
+
+
                         <StackPanel Grid.Column="1">
                             <TextBlock Text="{Binding Name}" FontSize="30"
-                       Style="{StaticResource BasicTextStyle}" />
+                                       Style="{StaticResource BasicTextStyle}" />
                             <TextBlock Text="{Binding StatusText}" FontSize="40"
-                       Style="{StaticResource BasicTextStyle}" />
+                                       Style="{StaticResource BasicTextStyle}" />
                         </StackPanel>
                     </Grid>
                 </ControlTemplate>
@@ -192,18 +206,18 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-	<Style x:Key="ButtonStyle1" TargetType="Button">
-		<Setter Property="Background" Value="{StaticResource ButtonBackgroundThemeBrush}"/>
-		<Setter Property="Foreground" Value="{StaticResource ButtonForegroundThemeBrush}"/>
-		<Setter Property="BorderBrush" Value="{StaticResource ButtonBorderThemeBrush}"/>
-		<Setter Property="BorderThickness" Value="{StaticResource ButtonBorderThemeThickness}"/>
-		<Setter Property="Padding" Value="12,4,12,4"/>
-		<Setter Property="HorizontalAlignment" Value="Left"/>
-		<Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
-		<Setter Property="FontWeight" Value="SemiBold"/>
-		<Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
-	</Style>
+
+    <Style x:Key="ButtonStyle1" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundThemeBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ButtonForegroundThemeBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderThemeBrush}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ButtonBorderThemeThickness}"/>
+        <Setter Property="Padding" Value="12,4,12,4"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
+    </Style>
 
 </ResourceDictionary>

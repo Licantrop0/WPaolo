@@ -4,7 +4,7 @@
   <Properties>
     <DisplayName>Soccerama</DisplayName>
     <PublisherDisplayName>Licantrop0</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Assets\Logos\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
@@ -15,9 +15,9 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="SocceramaWin8.App">
-      <VisualElements DisplayName="Soccerama" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Soccerama per Windows 8" ForegroundText="light" BackgroundColor="#467721" ToastCapable="true">
-        <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#467721" />
+      <VisualElements DisplayName="Soccerama" Logo="Assets\Logos\Logo.png" SmallLogo="Assets\Logos\SmallLogo.png" Description="Soccerama per Windows 8" ForegroundText="light" BackgroundColor="#467721" ToastCapable="true">
+        <DefaultTile ShowName="logoOnly" WideLogo="Assets\Logos\WideLogo.png" />
+        <SplashScreen Image="Assets\Logos\SplashScreen.png" BackgroundColor="#467721" />
         <InitialRotationPreference>
           <Rotation Preference="landscape" />
           <Rotation Preference="landscapeFlipped" />

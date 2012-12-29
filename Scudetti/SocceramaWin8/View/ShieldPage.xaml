@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ad="using:Microsoft.Advertising.WinRT.UI"
     xmlns:vm="using:SocceramaWin8.ViewModel"
-    DataContext="{Binding Source={StaticResource Locator}, Path=ShieldVM}"
     mc:Ignorable="d" Loaded="LayoutAwarePage_Loaded">
 
     <Grid Name="LayoutRoot" Style="{StaticResource DefaultLayoutRootStyle}">
@@ -36,11 +35,13 @@
             <hlp:BindableTextBox x:Name="ShieldNameTextbox" BindableText="{Binding InputShieldName, Mode=TwoWay}"
                                  KeyDown="ShieldNameTextbox_KeyDown" MaxWidth="350"
                                  Visibility="{Binding InputVisibile, Mode=OneTime}" />
-            <TextBlock x:Name="HintTextBlock"  Text="{Binding HintText, Mode=OneTime}"
+            <TextBlock x:Name="HintTextBlock"  Text="{Binding HintText}"
 					   Style="{StaticResource StatusTextBlock}"
 					   TextWrapping="Wrap" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding InputVisibile, Mode=OneTime}" >
-                <Button Width="130" Margin="6" Click="Ok_Click" Style="{StaticResource ButtonStyle1}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Visibility="{Binding InputVisibile, Mode=OneTime}" >
+                
+                <Button Width="130" Margin="6" Click="Ok_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Grid>

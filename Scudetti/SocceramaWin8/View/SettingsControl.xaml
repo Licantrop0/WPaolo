@@ -10,12 +10,12 @@
     <UserControl.Resources>
         <vm:SettingsViewModel x:Key="SettingsVM" />
     </UserControl.Resources>
-        <StackPanel>
-            <ToggleSwitch OnContent="On" OffContent="Off" IsOn="{Binding SoundEnabled, Mode=TwoWay}">
-                <ToggleSwitch.Header>
-                    <TextBlock Text="Audio" FontSize="24" />
-                </ToggleSwitch.Header>
-            </ToggleSwitch>
-            <Button Content="Reset" Command="{Binding ResetCommand}" />
-        </StackPanel>
+    <StackPanel DataContext="{StaticResource SettingsVM}">
+        <ToggleSwitch OnContent="On" OffContent="Off" IsOn="{Binding SoundEnabled, Mode=TwoWay}">
+            <ToggleSwitch.Header>
+                <TextBlock Text="Audio" FontSize="24" />
+            </ToggleSwitch.Header>
+        </ToggleSwitch>
+        <Button x:Uid="Reset" Content="Reset" Command="{Binding ResetCommand}" />
+    </StackPanel>
 </UserControl>

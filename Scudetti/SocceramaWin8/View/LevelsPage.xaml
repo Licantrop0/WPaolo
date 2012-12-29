@@ -4,9 +4,15 @@
     xmlns:common="using:SocceramaWin8.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding Source={StaticResource Locator}, Path=LevelsVM}"
+    xmlns:vm="using:SocceramaWin8.ViewModel"
     mc:Ignorable="d">
-    <Grid Name="LayoutRoot" Style="{StaticResource DefaultLayoutRootStyle}">
+    
+    <common:LayoutAwarePage.Resources>
+        <vm:LevelsViewModel x:Key="LevelsVM" />
+    </common:LayoutAwarePage.Resources>
+    
+    <Grid Name="LayoutRoot" Style="{StaticResource DefaultLayoutRootStyle}"
+          DataContext="{StaticResource LevelsVM}">
         <Viewbox Name="FieldViewBox" Stretch="Fill">
             <Grid Name="GridViewBox">
                 <ItemsControl Name="itemGridView" Width="1920" Height="1080"

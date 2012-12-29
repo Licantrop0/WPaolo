@@ -1,10 +1,10 @@
-﻿<common:LayoutAwarePage x:Class="SocceramaWin8.View.ShieldsPage"
+﻿<common:LayoutAwarePage x:Class="SocceramaWin8.View.LevelPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:common="using:SocceramaWin8.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding Source={StaticResource Locator}, Path=ShieldsVM}"
+    NavigationCacheMode="Enabled"
     mc:Ignorable="d">
 
     <Grid Name="LayoutRoot" Style="{StaticResource DefaultLayoutRootStyle}">
@@ -19,46 +19,45 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding SelectedLevel.Name}" TextWrapping="Wrap" Grid.Column="1" IsHitTestVisible="false"
+            <TextBlock x:Name="pageTitle" Text="{Binding Name}" TextWrapping="Wrap" Grid.Column="1" IsHitTestVisible="false"
                        Style="{StaticResource PageHeaderTextStyle}"/>
-            <TextBlock x:Name="shieldStatus" Text="{Binding SelectedLevel.StatusText}" Grid.Column="1"
+            <TextBlock x:Name="shieldStatus" Text="{Binding StatusText}" Grid.Column="1"
                        IsHitTestVisible="false" HorizontalAlignment="Right" Margin="0,0,80,40"
                        Style="{StaticResource PageHeaderTextStyle}" />
         </Grid>
-        
+
         <Viewbox Grid.Row="1">
             <GridView Name="itemGridView" Width="1600" Height="800"
                   AutomationProperties.AutomationId="ItemGridView"
                   AutomationProperties.Name="Grouped Items"
-                  
-                  ItemsSource="{Binding SelectedLevel.Shields}"
+                  ItemsSource="{Binding Shields}"
                   ItemTemplate="{StaticResource Shield250ItemTemplate}"
-                  SelectionMode="Single"
-                  SelectedItem="{Binding SelectedShield, Mode=TwoWay}"
-                  IsSwipeEnabled="False" Loaded="itemGridView_Loaded" >
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapGrid />
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-        </GridView>
-           
+                  SelectionMode="None" IsSwipeEnabled="False">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapGrid />
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
         </Viewbox>
 
         <ListView x:Name="itemListView"
             AutomationProperties.AutomationId="ItemListView"
             AutomationProperties.Name="Grouped Items"
-            Grid.Row="1"
+            Grid.Row="1" 
             Visibility="Collapsed"
-            Margin="0,-10,0,0"
-            Padding="10,0,0,60"
-            ItemsSource="{Binding SelectedLevel.Shields}"
+            Margin="0,-10,0,0" Padding="10,0,0,60"
+            ItemsSource="{Binding Shields}"
             ItemTemplate="{StaticResource Shield80ItemTemplate}"
-            SelectionMode="Single"
-            SelectedItem="{Binding SelectedShield, Mode=TwoWay}"
+            SelectionMode="None"
             IsSwipeEnabled="false">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Center"/>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
-
 
         <VisualStateManager.VisualStateGroups>
             <!-- Visual states reflect the application's view state -->

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SocceramaWin8</RootNamespace>
     <AssemblyName>SocceramaWin8</AssemblyName>
-    <DefaultLanguage>it-IT</DefaultLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>SocceramaWin8_StoreKey.pfx</PackageCertificateKeyFile>
@@ -133,9 +133,7 @@
     <Compile Include="ViewModel\LevelsViewModel.cs" />
     <Compile Include="ViewModel\LevelViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
-    <Compile Include="ViewModel\ShieldsViewModel.cs" />
     <Compile Include="ViewModel\ShieldViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\AboutControl.xaml.cs">
       <DependentUpon>AboutControl.xaml</DependentUpon>
     </Compile>
@@ -148,8 +146,8 @@
     <Compile Include="View\ShieldPage.xaml.cs">
       <DependentUpon>ShieldPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ShieldsPage.xaml.cs">
-      <DependentUpon>ShieldsPage.xaml</DependentUpon>
+    <Compile Include="View\LevelPage.xaml.cs">
+      <DependentUpon>LevelPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -981,7 +979,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ShieldsPage.xaml">
+    <Page Include="View\LevelPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

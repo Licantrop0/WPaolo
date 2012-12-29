@@ -1135,6 +1135,8 @@
     <Names>Wba</Names>
     <Names>albion</Names>
   </Shield>
+  
+  
 
   <Shield Level="10" Id="blocked10" Image="blocked.png" Hint="Blocked" IsValidated="false">
     <Names>saolkdf asodif asodfia sdòfijasdòfjisa</Names>
@@ -1152,30 +1154,8 @@
     <Names>saolkdf asodif asodfia sdòfijasdòfjisa</Names>
   </Shield>
 
-  <!--<Shield Level="12" Id="GuangzhouEvergrande" Image="GuangzhouEvergrande.png" Hint="China" IsValidated="false">
-    <Names>Guangzhou Evergrande Football Club</Names>
-    <Names>Guangzhou Evergrande FC</Names>
-    <Names>Guangzhou Evergrande</Names>
-    <Names>Guangzhou</Names>
-  </Shield>
-  <Shield Level="12" Id="Sheffield" Image="sheffield.png" Hint="England" IsValidated="false">
-    <Names>Sheffield Wednesday Football Club</Names>
-    <Names>Sheffield Wednesday FC</Names>
-    <Names>Sheffield Wednesday</Names>
-  </Shield>
-  <Shield Level="12" Id="Mechelen" Image="KV-Mechelen.png" Hint="Belgium" IsValidated="false">
-    <Names>Koninklijke Voetbalclub Mechelen</Names>
-    <Names>KV Mechelen</Names>
-    <Names>Mechelen</Names>
-  </Shield>
-  <Shield Level="12" Id="SheriffTiraspol" Image="Sheriff-Tiraspol.png" Hint="Moldova" IsValidated="false">
-    <Names>Football Club Sheriff Tiraspol</Names>
-    <Names>FC Sheriff Tiraspol</Names>
-    <Names>Sheriff Tiraspol</Names>
-    <Names>Sheriff</Names>
-  </Shield>-->
-
-
+  
+  
   <Shield Level="100" Id="Germany" Image="Germania.png" Hint="Europe" IsValidated="false">
     <Names>Germany</Names>
     <Names>Germania</Names>

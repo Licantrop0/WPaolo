@@ -25,9 +25,15 @@ namespace SocceramaWin8
         {
             get { return Shields == null ? 0 : Shields.Count(s => s.IsValidated); }
         }
+
         public static int TotalShields
         {
-            get { return Shields.Count() - 6; }
+            get { return Shields.Count() - 4; }
+        }
+
+        public static bool GameCompleted
+        {
+            get { return TotalShieldUnlocked == TotalShields; }
         }
 
         public static async Task LoadShieldsAsync()
@@ -82,28 +88,6 @@ namespace SocceramaWin8
                 if (AvailableHints == value) return;
                 roamingSettings.Values["available_hints"] = value;
                 _availableHints = value;
-            }
-        }
-
-        private static bool? _gameCompleted;
-        public static bool GameCompleted
-        {
-            get
-            {
-                if (!_gameCompleted.HasValue)
-                {
-                    if (!roamingSettings.Values.ContainsKey("game_completed"))
-                        roamingSettings.Values.Add("game_completed", false);
-
-                    _gameCompleted = (bool)roamingSettings.Values["game_completed"];
-                }
-                return _gameCompleted.Value;
-            }
-            set
-            {
-                if (GameCompleted == value) return;
-                roamingSettings.Values["game_completed"] = value;
-                _gameCompleted = value;
             }
         }
     }

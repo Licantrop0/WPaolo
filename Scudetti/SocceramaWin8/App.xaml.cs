@@ -82,21 +82,6 @@ namespace SocceramaWin8
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             await ShieldService.Save(AppContext.Shields);
-
-            //var tileContent = TileContentFactory.CreateTileWideImageAndText01();
-
-            //tileContent.TextCaptionWrap.Text = "This tile notification uses ms-appx images";
-            //tileContent.Image.Src = "ms-appx:///images/redWide.png";
-            //tileContent.Image.Alt = "Red image";
-
-
-            //var tileImage = tileContent.SelectSingleNode("tile/visual/binding/image").;
-            //tileImage.
-            //tileImage.s. = "Assets/Logos/WideLogo2.png";
-            //var tileLine = tileContent.SelectSingleNode("tile/visual/binding/text");
-            //tileLine.InnerText = string.Format("Scudetti Sbloccati: {0}/{1}",
-            //    AppContext.TotalShieldUnlocked, AppContext.TotalShields) ;
-
             deferral.Complete();
         }
 

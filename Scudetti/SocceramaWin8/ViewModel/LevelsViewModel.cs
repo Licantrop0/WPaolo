@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.ApplicationModel.Resources;
 using SocceramaWin8.Sound;
+using SocceramaWin8.Helpers;
 
 namespace SocceramaWin8.ViewModel
 {
@@ -39,19 +40,8 @@ namespace SocceramaWin8.ViewModel
             get
             {
                 return AppContext.Shields == null ? string.Empty :
-                    string.Format("{0}: {1}/{2}", resources.GetString("Shields"),
-                        AppContext.TotalShieldUnlocked, AppContext.TotalShields);
-            }
-        }
-
-        public LevelViewModel SelectedLevel
-        {
-            get { return null; }
-            set
-            {
-                if (value == null) return;
-                value.GoToLevelCommand.Execute(null);
-                RaisePropertyChanged("SelectedLevel");
+                    string.Format(resources.GetString("ShieldUnlocked"),
+                    AppContext.TotalShieldUnlocked, AppContext.TotalShields);
             }
         }
 
@@ -59,11 +49,53 @@ namespace SocceramaWin8.ViewModel
         {
             MessengerInstance.Register<PropertyChangedMessage<bool>>(this, m =>
             {
-                if (m.PropertyName != "IsValidated") return;
                 //Aggiorna lo status text dei completed shields e se il gioco è stato completato
-                RaisePropertyChanged("StatusText");
-                AppContext.GameCompleted = AppContext.Shields.All(s => s.IsValidated);
+                if (m.PropertyName == "IsValidated")
+                    ShowNotifications();
             });
         }
+
+        private void ShowNotifications()
+        {
+            //Se non ho sbloccato alcun scudetto
+            if (AppContext.TotalShieldUnlocked == 0) return;
+
+            RaisePropertyChanged("StatusText");
+
+            //Aggiorno la Tile
+            NotificationHelper.UpdateTile(StatusText);
+
+            var newLevelUnlocked = AppContext.TotalShieldUnlocked % AppContext.LockTreshold == 0;
+            var newBonusLevelUnlocked = AppContext.TotalShieldUnlocked % AppContext.BonusTreshold == 0;
+
+            if (newLevelUnlocked)
+            {
+                int newLevelNumber = (AppContext.TotalShieldUnlocked / AppContext.LockTreshold) + 1;
+                if (newLevelNumber <= 10)
+                {
+                    var Message = string.Format(resources.GetString("NewLevel"), newLevelNumber);
+                    var level = Levels.Single(l => l.Number == newLevelNumber);
+                    NotificationHelper.DisplayToast(Message, level);
+                }
+            }
+            else if (newBonusLevelUnlocked)
+            {
+                int newBonusLevelNumber = ((AppContext.TotalShieldUnlocked / AppContext.BonusTreshold));
+                var Message = string.Format(resources.GetString("NewBonusLevel"), newBonusLevelNumber);
+                var bounsLevel = Levels.Single(l => l.Number == newBonusLevelNumber);
+
+                NotificationHelper.DisplayToast(Message, bounsLevel);
+            }
+            else if (AppContext.GameCompleted) //Gioco completato!
+            {
+                SoundManager.PlayGoal();
+                NotificationHelper.DisplayToast(resources.GetString("GameFinished"), null);
+                //Title = AppResources.GameFinishedTitle,
+                //Message = AppResources.GameFinished,
+                //TextWrapping = TextWrapping.Wrap,
+                //MillisecondsUntilHidden = 8000,
+            }
+        }
+
     }
 }

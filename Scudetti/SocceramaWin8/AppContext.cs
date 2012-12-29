@@ -11,7 +11,7 @@ namespace SocceramaWin8
     public static class AppContext
     {
         public const int HintsTreshold = 5;
-        public const int LockTreshold = 3;//15;
+        public const int LockTreshold = 4;//15;
         public const int BonusTreshold = 50;
 
         public static bool ToastDisplayed = false;
@@ -28,7 +28,7 @@ namespace SocceramaWin8
 
         public static int TotalShields
         {
-            get { return Shields.Count() - 4; }
+            get { return Shields.Count() - 3; }
         }
 
         public static bool GameCompleted

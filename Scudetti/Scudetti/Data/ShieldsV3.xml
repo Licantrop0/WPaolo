@@ -815,7 +815,7 @@
     <Names>Grêmio</Names>
     <Names>Gremio</Names>
   </Shield>
-  <Shield Level="7" Id="hannover96" Image="hannover96.png" Hint="germany" IsValidated="false">
+  <Shield Level="7" Id="hannover96" Image="hannover96.png" Hint="Germany" IsValidated="false">
     <Names>Hannoverscher Sportverein von 1896</Names>
     <Names>Hannoverscher Sportverein</Names>
     <Names>Hannoverscher 96</Names>
@@ -912,17 +912,17 @@
     <Names>Ac Cesena</Names>
     <Names>Cesena</Names>
   </Shield>
-  <Shield Level="8" Id="empoli" Image="empoli.png" Hint="italy" IsValidated="false">
+  <Shield Level="8" Id="empoli" Image="empoli.png" Hint="Italy" IsValidated="false">
     <Names>Empoli Football Club</Names>
     <Names>Empoli Fc</Names>
     <Names>Empoli</Names>
   </Shield>
-  <Shield Level="8" Id="genk" Image="genk.png" Hint="belgium" IsValidated="false">
+  <Shield Level="8" Id="genk" Image="genk.png" Hint="Belgium" IsValidated="false">
     <Names>Koninklijke Racing Club Genk</Names>
     <Names>Krc Genk</Names>
     <Names>Genk</Names>
   </Shield>
-  <Shield Level="8" Id="gent" Image="gent.png" Hint="belgium" IsValidated="false">
+  <Shield Level="8" Id="gent" Image="gent.png" Hint="Belgium" IsValidated="false">
     <Names>Koninklijke Atletiek Associatie Gent</Names>
     <Names>Kaa Gent</Names>
     <Names>Gent</Names>
@@ -948,14 +948,14 @@
     <Names>Köln</Names>
     <Names>colonia</Names>
   </Shield>
-  <Shield Level="8" Id="livorno" Image="livorno.png" Hint="italy" IsValidated="false">
+  <Shield Level="8" Id="livorno" Image="livorno.png" Hint="Italy" IsValidated="false">
     <Names>Associazione Sportiva Livorno Calcio</Names>
     <Names>As Livorno Calcio</Names>
     <Names>As Livorno</Names>
     <Names>Livorno</Names>
     <Names>Livorno calcio</Names>
   </Shield>
-  <Shield Level="8" Id="montpellier" Image="montpellier.png" Hint="france" IsValidated="false">
+  <Shield Level="8" Id="montpellier" Image="montpellier.png" Hint="France" IsValidated="false">
     <Names>Montpellier Hérault Sport Club</Names>
     <Names>Montpellier hsc</Names>
     <Names>Montpellier</Names>
@@ -982,7 +982,7 @@
     <Names>Rayo Vallecano</Names>
     <Names>Rayo</Names>
   </Shield>
-  <Shield Level="8" Id="saint-etienne" Image="saint-etienne.png" Hint="france" IsValidated="false">
+  <Shield Level="8" Id="saint-etienne" Image="saint-etienne.png" Hint="France" IsValidated="false">
     <Names>Association Sportive de Saint-Étienne Loire</Names>
     <Names>As Saint-Étienne</Names>
     <Names>Saint-Étienne</Names>
@@ -1053,7 +1053,7 @@
     <Names>Norwich City</Names>
     <Names>Norwich</Names>
   </Shield>
-<Shield Level="9" Id="padova" Image="padova.png" Hint="italy" IsValidated="false">
+<Shield Level="9" Id="padova" Image="padova.png" Hint="Italy" IsValidated="false">
     <Names>Calcio Padova S.p.A</Names>
     <Names>Calcio Padova</Names>
     <Names>Padova</Names>
@@ -1064,7 +1064,7 @@
     <Names>P.a.o.k</Names>
     <Names>Paok</Names>
   </Shield>
-<Shield Level="9" Id="piacenza" Image="piacenza.png" Hint="italy" IsValidated="false">
+<Shield Level="9" Id="piacenza" Image="piacenza.png" Hint="Italy" IsValidated="false">
     <Names>Piacenza Calcio</Names>
     <Names>Piacenza</Names>
   </Shield>
@@ -1085,7 +1085,7 @@
     <Names>vitoria setubal</Names>
     <Names>Vitória de Setúbal</Names>
   </Shield>
-<Shield Level="9" Id="shamrock-rovers" Image="shamrock-rovers.png" Hint="ireland" IsValidated="false">
+<Shield Level="9" Id="shamrock-rovers" Image="shamrock-rovers.png" Hint="Ireland" IsValidated="false">
     <Names>Shamrock Rovers Football Club</Names>
     <Names>Shamrock Rovers fc</Names>
     <Names>Shamrock Rovers</Names>
@@ -1113,7 +1113,7 @@
     <Names>Fc Utrecht</Names>
     <Names>Utrecht</Names>
   </Shield>
-<Shield Level="9" Id="vicenza" Image="vicenza.png" Hint="italy" IsValidated="false">
+<Shield Level="9" Id="vicenza" Image="vicenza.png" Hint="Italy" IsValidated="false">
     <Names>Vicenza calcio</Names>
     <Names>Vicenza</Names>
   </Shield>
@@ -1127,7 +1127,7 @@
     <Names>Plzeň</Names>
     <Names>fc Viktoria</Names>
   </Shield>
-<Shield Level="9" Id="west-bromwich" Image="west-bromwich.png" Hint="england" IsValidated="false">
+<Shield Level="9" Id="west-bromwich" Image="west-bromwich.png" Hint="England" IsValidated="false">
     <Names>West Bromwich Albion Football Club</Names>
     <Names>West Bromwich Albion Fc</Names>
     <Names>West Bromwich Albion</Names>
@@ -1136,10 +1136,128 @@
     <Names>albion</Names>
   </Shield>
   
-  
-
-  <Shield Level="10" Id="blocked10" Image="blocked.png" Hint="Blocked" IsValidated="false">
-    <Names>saolkdf asodif asodfia sdòfijasdòfjisa</Names>
+  <Shield Level="10" Id="Adelaide" Image="adelaide.png" Hint="Australia" IsValidated="false">
+    <Names>Adelaide United Football Club</Names>
+    <Names>Adelaide United Fc</Names>
+    <Names>Adelaide United</Names>
+    <Names>Adelaide Utd</Names>
+  </Shield>
+  <Shield Level="10" Id="Avellino" Image="avellino.png" Hint="Italy" IsValidated="false">
+    <Names>Associazione Sportiva Avellino 1912</Names>
+    <Names>As Avellino 1912</Names>
+    <Names>Avellino 1912</Names>
+    <Names>Associazione Sportiva Avellino</Names>
+    <Names>Avellino</Names>
+    <Names>Avellino calcio</Names>
+  </Shield>
+  <Shield Level="10" Id="bolivar" Image="bolivar.png" Hint="Bolivia" IsValidated="false">
+    <Names>Club Bolívar</Names>
+    <Names>Bolívar</Names>
+    <Names>Club Bolivar</Names>
+    <Names>Bolívar</Names>
+  </Shield>
+  <Shield Level="10" Id="club-nacional" Image="club-nacional.png" Hint="Uruguay" IsValidated="false">
+    <Names>Club Nacional de Football</Names>
+    <Names>Club Nacional</Names>
+    <Names>Nacional</Names>
+  </Shield>
+  <Shield Level="10" Id="den-haag" Image="den-haag.png" Hint="Netherlands" IsValidated="false">
+    <Names>Haaglandse Football Club Alles Door Oefening Den Haag</Names>
+    <Names>ADO Den Haag</Names>
+    <Names>ADO</Names>
+    <Names>Den Haag</Names>
+    <Names>Den-Haag</Names>
+    <Names>ADO Den-Haag</Names>
+  </Shield>
+  <Shield Level="10" Id="Foggia" Image="foggia.png" Hint="Italy" IsValidated="false">
+    <Names>Unione Sportiva Foggia</Names>
+    <Names>ASD foggia</Names>
+    <Names>A.S.D. foggia</Names>
+    <Names>foggia</Names>
+  </Shield>
+  <Shield Level="10" Id="getafe" Image="getafe.png" Hint="Spain" IsValidated="false">
+    <Names>Getafe Club de Fútbol</Names>
+    <Names>Getafe </Names>
+    <Names>Getafe football club</Names>
+  </Shield>
+  <Shield Level="10" Id="gimnastic" Image="gimnastic.png" Hint="Spain" IsValidated="false">
+    <Names>Club Gimnàstic de Tarragona</Names>
+    <Names>Gimnàstic</Names>
+    <Names>Club Gimnàstic</Names>
+    <Names>Club Gimnastic</Names>
+    <Names>Gimnastic</Names>
+    <Names>nastic</Names>
+    <Names>nàstic</Names>
+  </Shield>
+  <Shield Level="10" Id="Hull_city" Image="Hull_city.png" Hint="England" IsValidated="false">
+    <Names>Hull City Association Football Club</Names>
+    <Names>Hull city afc</Names>
+    <Names>Hull city</Names>
+    <Names>hull</Names>
+  </Shield>
+  <Shield Level="10" Id="kawasaky" Image="kawasaki.png" Hint="Japan" IsValidated="false">
+    <Names>Tokyo Verdy</Names>
+  </Shield>
+  <Shield Level="10" Id="maccabi-haifa" Image="maccabi-haifa.png" Hint="Israel" IsValidated="false">
+    <Names>Maccabi Haifa Football Club</Names>
+    <Names>Maccabi Haifa fc</Names>
+    <Names>Maccabi Haifa</Names>
+  </Shield>
+  <Shield Level="10" Id="Porto_Alegre" Image="Porto_Alegre.png" Hint="Brazil" IsValidated="false">
+    <Names>Sport Club Internacional</Names>
+    <Names>Internacional</Names>
+    <Names>Internacional di Porto Alegre</Names>
+  </Shield>
+  <Shield Level="10" Id="queenslandroar" Image="queenslandroar.png" Hint="Australia" IsValidated="false">
+    <Names>Brisbane Roar Football Club</Names>
+    <Names>Queensland Roar Football Club[</Names>
+    <Names>Queensland Roar</Names>
+    <Names>Queensland</Names>
+    <Names>Brisbane Roar</Names>
+    <Names>Brisbane</Names>
+  </Shield>
+  <Shield Level="10" Id="realsaltlake" Image="realsaltlake.png" Hint="USA" IsValidated="false">
+    <Names>Real Salt Lake</Names>
+    <Names>Salt Lake</Names>
+  </Shield>
+  <Shield Level="10" Id="san marino" Image="san marino.png" Hint="Italy" IsValidated="false">
+    <Names>San Marino Calcio</Names>
+    <Names>San Marino</Names>
+  </Shield>
+  <Shield Level="10" Id="SochauxMontbeliard" Image="SochauxMontbeliard.png" Hint="France" IsValidated="false">
+    <Names>Football Club Sochaux-Montbéliard</Names>
+    <Names>Fc Sochaux-Montbéliard</Names>
+    <Names>Sochaux-Montbéliard</Names>
+    <Names>Sochaux Montbéliard</Names>
+    <Names>Sochaux Montbeliard</Names>
+    <Names>Sochaux</Names>
+  </Shield>
+  <Shield Level="10" Id="toronto" Image="toronto.png" Hint="Canada" IsValidated="false">
+    <Names>Toronto Football Club</Names>
+    <Names>Toronto FC</Names>
+    <Names>Toronto</Names>
+  </Shield>
+  <Shield Level="10" Id="trabzonspor" Image="trabzonspor.png" Hint="Turkey" IsValidated="false">
+    <Names>Trabzonspor Kulübü</Names>
+    <Names>Trabzonspor</Names>
+  </Shield>
+  <Shield Level="10" Id="Ulsan_Hyundai" Image="Ulsan_Hyundai.png" Hint="South Korea" IsValidated="false">
+    <Names>Ulsan Hyundai Football Club</Names>
+    <Names>Ulsan Hyundai Fc</Names>
+    <Names>Ulsan Hyundai</Names>
+    <Names>Ulsan</Names>
+  </Shield>
+  <Shield Level="10" Id="universidad-de-chile" Image="universidad-de-chile.png" Hint="Chile" IsValidated="false">
+    <Names>Club Universidad de Chile</Names>
+    <Names>Club Universidad</Names>
+    <Names>Universidad de Chile</Names>
+    <Names>Universidad</Names>
+  </Shield>
+  <Shield Level="10" Id="velez" Image="velez.png" Hint="England" IsValidated="false">
+    <Names>Club Atlético Vélez Sarsfield</Names>
+    <Names>Atlético Vélez</Names>
+    <Names>Vélez</Names>
+    <Names>Velez</Names>
   </Shield>
 
   <Shield Level="11" Id="blocked11" Image="blocked.png" Hint="Blocked" IsValidated="false">
@@ -1152,9 +1270,7 @@
 
   <Shield Level="300" Id="blocked300" Image="blocked.png" Hint="Blocked" IsValidated="false">
     <Names>saolkdf asodif asodfia sdòfijasdòfjisa</Names>
-  </Shield>
-
-  
+  </Shield>  
   
   <Shield Level="100" Id="Germany" Image="Germania.png" Hint="Europe" IsValidated="false">
     <Names>Germany</Names>

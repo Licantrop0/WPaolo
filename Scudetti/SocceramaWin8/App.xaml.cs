@@ -8,6 +8,11 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Core;
+using Callisto.Controls.SettingsManagement;
+using Windows.ApplicationModel.Resources;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -26,6 +31,7 @@ namespace SocceramaWin8
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
         }
 
         /// <summary>
@@ -88,8 +94,9 @@ namespace SocceramaWin8
         private void RegisterNavigationMessages(Frame rootFrame)
         {
             Messenger.Default.Register<string>(this, "navigation", m => { if (m == "goback") rootFrame.GoBack(); });
-            Messenger.Default.Register<LevelViewModel>(this, m => rootFrame.Navigate(typeof(ShieldsPage)));
-            Messenger.Default.Register<Shield>(this, m => rootFrame.Navigate(typeof(ShieldPage)));
+            Messenger.Default.Register<LevelsViewModel>(this, vm => rootFrame.Navigate(typeof(LevelsPage)));
+            Messenger.Default.Register<LevelViewModel>(this, vm => rootFrame.Navigate(typeof(LevelPage), vm));
+            Messenger.Default.Register<ShieldViewModel>(this, vm => rootFrame.Navigate(typeof(ShieldPage), vm));
         }
     }
 }

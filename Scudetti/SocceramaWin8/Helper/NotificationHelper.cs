@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using SocceramaWin8.ViewModel;
 using Windows.Data.Xml.Dom;
+using Windows.UI.Core;
 using Windows.UI.Notifications;
 
 namespace SocceramaWin8.Helpers
@@ -25,10 +26,16 @@ namespace SocceramaWin8.Helpers
             toastNode.AppendChild(audio);
 
             ToastNotification toast = new ToastNotification(toastXml);
-            
-            if(level != null)
-                toast.Activated += (sender, e) => Messenger.Default.Send<LevelViewModel>(level);
 
+            //TODO: capire perchè non va
+            //if (level != null)
+            //{
+            //    var dispatcher = Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher;
+            //    toast.Activated += (sender, e) => dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            //        {
+            //            Messenger.Default.Send<LevelViewModel>(level);
+            //        });
+            //}
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
 

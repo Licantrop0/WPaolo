@@ -1,13 +1,12 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
-using Scudetti.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using SocceramaWin8.Sound;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
-using SocceramaWin8.Sound;
-using GalaSoft.MvvmLight.Command;
 
 namespace SocceramaWin8.ViewModel
 {
@@ -17,9 +16,9 @@ namespace SocceramaWin8.ViewModel
 
         public int Number { get; private set; }
         public bool IsBonus { get; set; }
-        public IEnumerable<Shield> Shields { get; private set; }
+        public IEnumerable<ShieldViewModel> Shields { get; private set; }
         public int TotalShields { get { return Shields.Count(); } }
-        public int CompletedShields { get { return Shields.Count(s => s.IsValidated); } }
+        public int CompletedShields { get { return Shields.Count(s => s.CurrentShield.IsValidated); } }
         public bool IsCompleted { get { return CompletedShields / TotalShields == 1; } }
 
         public Thickness Margin
@@ -116,11 +115,12 @@ namespace SocceramaWin8.ViewModel
             }
         }
 
-        public LevelViewModel(IGrouping<int, Shield> group)
+        public LevelViewModel(IGrouping<int, ShieldViewModel> group)
         {
             Number = group.Key;
             IsBonus = group.Key >= 100;
             Shields = group;
+
             MessengerInstance.Register<PropertyChangedMessage<bool>>(this, (m) =>
             {
                 if (m.PropertyName != "IsValidated") return;

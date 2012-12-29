@@ -17,11 +17,12 @@ namespace SocceramaWin8.View
         {
             this.InitializeComponent();
             SettingsPane.GetForCurrentView().CommandsRequested += LevelsPage_CommandsRequested;
-            //this.ApplicationViewStates.CurrentStateChanged += ApplicationViewStates_CurrentStateChanged;
         }
 
         void LevelsPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
+            args.Request.ApplicationCommands.Clear();
+
             var logoutCmd = new SettingsCommand("settings", "Settings", (cmd) =>
             {
                 new SettingsFlyout()
@@ -45,22 +46,6 @@ namespace SocceramaWin8.View
                 };
             });
             args.Request.ApplicationCommands.Add(aboutCmd);
-        }
-
-        private void ApplicationViewStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
-        {
-            if (ApplicationView.Value == ApplicationViewState.FullScreenPortrait)
-            {
-                itemGridView.Width = 1080;
-                itemGridView.Height = 1920;
-                ((RotateTransform)itemGridView.RenderTransform).Angle = 90;
-            }
-            else
-            {
-                itemGridView.Width = 1920;
-                itemGridView.Height = 1080;
-                ((RotateTransform)itemGridView.RenderTransform).Angle = 0;
-            }
         }
     }
 }

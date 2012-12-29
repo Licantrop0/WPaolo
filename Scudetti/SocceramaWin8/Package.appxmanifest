@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="SocceramaWin8.App">
-      <VisualElements DisplayName="Soccerama" Logo="Assets\Logos\Logo.png" SmallLogo="Assets\Logos\SmallLogo.png" Description="Soccerama per Windows 8" ForegroundText="light" BackgroundColor="#467721" ToastCapable="true">
+      <VisualElements DisplayName="Soccerama" Logo="Assets\Logos\Logo.png" SmallLogo="Assets\Logos\SmallLogo.png" Description="Soccerama Windows 8" ForegroundText="light" BackgroundColor="#467721" ToastCapable="true">
         <DefaultTile ShowName="logoOnly" WideLogo="Assets\Logos\WideLogo.png" />
         <SplashScreen Image="Assets\Logos\SplashScreen.png" BackgroundColor="#467721" />
         <InitialRotationPreference>

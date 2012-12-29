@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.ApplicationModel.Resources;
+using GalaSoft.MvvmLight;
 
 namespace SocceramaWin8.ViewModel
 {
-    public class SettingsViewModel
+    public class SettingsViewModel : ViewModelBase
     {
         ResourceLoader resources = new ResourceLoader();
 
@@ -24,20 +25,21 @@ namespace SocceramaWin8.ViewModel
         {
             get
             {
-                return _resetCommand ?? (_resetCommand = new RelayCommand(async () =>
-                    {
-                        var d = new MessageDialog(resources.GetString("ConfirmReset"),
-                            resources.GetString("ConfirmResetTitle"));
-                        d.Commands.Add(new UICommand(resources.GetString("Reset"), ResetAction));
-                        d.Commands.Add(new UICommand(resources.GetString("Cancel")));
-                        d.ShowAsync();
-                    }));
+                return _resetCommand ?? (_resetCommand = new RelayCommand(() =>
+                {
+                    var d = new MessageDialog(resources.GetString("ConfirmReset"),
+                        resources.GetString("ConfirmResetTitle"));
+                    d.Commands.Add(new UICommand(resources.GetString("Reset"), ResetAction));
+                    d.Commands.Add(new UICommand(resources.GetString("Cancel")));
+                    d.ShowAsync();
+                }));
             }
         }
 
-        private void ResetAction(IUICommand e)
+        private async void ResetAction(IUICommand e)
         {
-            AppContext.ResetShields();
+            await AppContext.ResetShields();
+            MessengerInstance.Send<LevelsViewModel>(null);
         }
     }
 }

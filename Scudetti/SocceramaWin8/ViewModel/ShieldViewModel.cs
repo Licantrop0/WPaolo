@@ -1,16 +1,12 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using System.Linq;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Scudetti.Model;
-using SocceramaWin8.Data;
-using SocceramaWin8.Helpers;
 using SocceramaWin8.Sound;
-using System;
-using System.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
-using Windows.UI.Notifications;
-using Windows.Data.Xml.Dom;
 
 namespace SocceramaWin8.ViewModel
 {
@@ -52,44 +48,49 @@ namespace SocceramaWin8.ViewModel
             get { return _currentShield; }
             set
             {
-                if (CurrentShield == value)
-                    return;
+                if (CurrentShield == value) return;
                 _currentShield = value;
-
-                _currentShield.PropertyChanged += (sender, e) =>
-                {
-                    if (e.PropertyName == "IsValidated")
-                    {
-                        MessengerInstance.Send(new PropertyChangedMessage<bool>(
-                            !_currentShield.IsValidated,
-                            _currentShield.IsValidated,
-                            e.PropertyName));
-                    }
-                };
                 RaisePropertyChanged("CurrentShield");
             }
         }
 
         public bool ControlsEnabled { get { return !CurrentShield.IsValidated; } }
 
-        public ShieldViewModel()
+        public ShieldViewModel(Shield shield)
         {
-            if (IsInDesignMode)
+            _currentShield = shield;
+            _currentShield.PropertyChanged += (sender, e) =>
             {
-                _currentShield = DesignTimeData.Shields.First();
-                _hintText = string.Format(resources.GetString("AvailableHints"), 5);
-                return;
-            }
-            MessengerInstance.Register<Shield>(this, shield =>
-            {
-                CurrentShield = shield;
-                InputShieldName = string.Empty;
-                HintText = null;
-                _hintUsed = false;
-            });
+                if (e.PropertyName == "IsValidated")
+                {
+                    MessengerInstance.Send(new PropertyChangedMessage<bool>(
+                        !_currentShield.IsValidated, _currentShield.IsValidated,
+                        e.PropertyName));
+                }
+            };
+
+            InputShieldName = string.Empty;
+            HintText = null;
+            _hintUsed = false;
         }
 
         #region Commands
+
+        private RelayCommand _goToShieldCommand;
+        public RelayCommand GoToShieldCommand
+        {
+            get
+            {
+                return _goToShieldCommand ?? (_goToShieldCommand = new RelayCommand(() =>
+                {
+                    if (this.CurrentShield.Id.StartsWith("blocked")) return;
+
+                    SoundManager.PlayKick();
+                    MessengerInstance.Send<ShieldViewModel>(this);
+                }));
+            }
+        }
+
 
         private RelayCommand _showHintCommand;
         public RelayCommand ShowHintCommand

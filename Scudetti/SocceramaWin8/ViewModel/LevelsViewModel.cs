@@ -1,11 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
-using SocceramaWin8.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Windows.ApplicationModel.Resources;
-using SocceramaWin8.Sound;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using SocceramaWin8.Helpers;
+using SocceramaWin8.Sound;
+using Windows.ApplicationModel.Resources;
 
 namespace SocceramaWin8.ViewModel
 {
@@ -26,7 +25,9 @@ namespace SocceramaWin8.ViewModel
 
                 if (_levels == null)
                 {
-                    _levels = AppContext.Shields.GroupBy(s => s.Level)
+                    _levels = AppContext.Shields
+                        .Select(s=> new ShieldViewModel(s))
+                        .GroupBy(s => s.CurrentShield.Level)
                         .Select(g => new LevelViewModel(g))
                         .OrderBy(l => l.Number)
                         .ToList();
@@ -75,6 +76,8 @@ namespace SocceramaWin8.ViewModel
                 {
                     var Message = string.Format(resources.GetString("NewLevel"), newLevelNumber);
                     var level = Levels.Single(l => l.Number == newLevelNumber);
+                    
+                    SoundManager.PlayGoal();
                     NotificationHelper.DisplayToast(Message, level);
                 }
             }
@@ -83,7 +86,8 @@ namespace SocceramaWin8.ViewModel
                 int newBonusLevelNumber = ((AppContext.TotalShieldUnlocked / AppContext.BonusTreshold));
                 var Message = string.Format(resources.GetString("NewBonusLevel"), newBonusLevelNumber);
                 var bounsLevel = Levels.Single(l => l.Number == newBonusLevelNumber);
-
+                
+                SoundManager.PlayGoal();
                 NotificationHelper.DisplayToast(Message, bounsLevel);
             }
             else if (AppContext.GameCompleted) //Gioco completato!

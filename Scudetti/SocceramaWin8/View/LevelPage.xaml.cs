@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
 using SocceramaWin8.Helper;
+using Windows.UI.Xaml.Navigation;
 
 namespace SocceramaWin8.View
 {
-    public sealed partial class ShieldsPage : SocceramaWin8.Common.LayoutAwarePage
+    public sealed partial class LevelPage : SocceramaWin8.Common.LayoutAwarePage
     {
-
-        ScrollViewer gridScrollViewer;
-
-        public ShieldsPage()
+        public LevelPage()
         {
             this.InitializeComponent();
         }
@@ -25,19 +23,24 @@ namespace SocceramaWin8.View
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
-        {
+        {            
+            this.DataContext = navigationParameter;
         }
 
-        protected override void OnNavigatedFrom(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            AppContext.ShieldsScrollPosition = gridScrollViewer.HorizontalOffset;
-            base.OnNavigatedFrom(e);
+            base.OnNavigatingFrom(e);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                ResetPageCache();
+            }
         }
- 
-        private void itemGridView_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+
+        private void ResetPageCache()
         {
-            this.gridScrollViewer = VisualHelper.FindVisualChild<ScrollViewer>(this.itemGridView);
-            this.gridScrollViewer.ScrollToHorizontalOffset(AppContext.ShieldsScrollPosition);
+            var cacheSize = ((Frame)Parent).CacheSize;
+            ((Frame)Parent).CacheSize = 0;
+            ((Frame)Parent).CacheSize = cacheSize;
         }
     }
 }

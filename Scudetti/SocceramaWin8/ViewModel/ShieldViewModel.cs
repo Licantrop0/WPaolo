@@ -69,9 +69,9 @@ namespace SocceramaWin8.ViewModel
                 }
             };
 
-            InputShieldName = string.Empty;
-            HintText = null;
+            _hintText = null;
             _hintUsed = false;
+            InputShieldName = string.Empty;
         }
 
         #region Commands

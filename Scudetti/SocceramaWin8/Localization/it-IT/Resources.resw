@@ -198,4 +198,13 @@ Sblocca un nuovo suggerimento ogni 5 scudetti.</value>
   <data name="Cancel" xml:space="preserve">
     <value>Annulla</value>
   </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Torna indietro</value>
+  </data>
+  <data name="InsertTeam" xml:space="preserve">
+    <value>Inserisci il nome della squadra</value>
+  </data>
+  <data name="ShieldUnlocked" xml:space="preserve">
+    <value>Scudetti Sbloccati {0}/{1}</value>
+  </data>
 </root>

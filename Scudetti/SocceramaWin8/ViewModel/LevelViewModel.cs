@@ -132,7 +132,6 @@ namespace SocceramaWin8.ViewModel
             });
         }
 
-
         private RelayCommand _goToLevelCommand;
         public RelayCommand GoToLevelCommand
         {

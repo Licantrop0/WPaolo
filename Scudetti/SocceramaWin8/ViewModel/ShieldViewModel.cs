@@ -9,6 +9,8 @@ using System;
 using System.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
+using Windows.UI.Notifications;
+using Windows.Data.Xml.Dom;
 
 namespace SocceramaWin8.ViewModel
 {
@@ -22,8 +24,8 @@ namespace SocceramaWin8.ViewModel
             get
             {
                 return CurrentShield.IsValidated ?
-                    "Torna Indietro" :
-                    "Inserisci il nome della squadra";
+                    resources.GetString("GoBack") :
+                    resources.GetString("InsertTeam");
             }
         }
 
@@ -33,7 +35,9 @@ namespace SocceramaWin8.ViewModel
             get
             {
                 if (CurrentShield.IsValidated) return CurrentShield.Names.First();
-                return _hintText ?? (_hintText = string.Format(resources.GetString("AvailableHints"), AppContext.AvailableHints));
+                return _hintText ?? (_hintText = string.Format(
+                    resources.GetString("AvailableHints"),
+                    AppContext.AvailableHints));
             }
             set
             {
@@ -108,7 +112,7 @@ namespace SocceramaWin8.ViewModel
             }
             else
             {
-                //MessageBox.Show(resources.GetString("NoHintsAvailable"));
+                HintText = resources.GetString("NoHintsAvailable");
             }
         }
 
@@ -117,7 +121,6 @@ namespace SocceramaWin8.ViewModel
         {
             return AppContext.AvailableHints > 0 && !_hintUsed;
         }
-
 
         public bool Validate()
         {
@@ -129,10 +132,9 @@ namespace SocceramaWin8.ViewModel
             {
                 SoundManager.PlayValidated();
                 CurrentShield.IsValidated = true;
+
                 if (AppContext.TotalShieldUnlocked % AppContext.HintsTreshold == 0)
                     AppContext.AvailableHints++;
-
-                ShowNotifications();
 
                 MessengerInstance.Send("goback", "navigation");
             }
@@ -150,41 +152,6 @@ namespace SocceramaWin8.ViewModel
         {
             return string.Compare(string1, string2.Trim(), StringComparison.CurrentCultureIgnoreCase) == 0;
         }
-
-        private void ShowNotifications()
-        {
-            //e ho già sbloccato degli scudetti
-            if (AppContext.TotalShieldUnlocked == 0) return;
-
-            var newLevelUnlocked = AppContext.TotalShieldUnlocked % AppContext.LockTreshold == 0;
-            var newBonusLevelUnlocked = AppContext.TotalShieldUnlocked % AppContext.BonusTreshold == 0;
-
-            if (newLevelUnlocked)
-            {
-                int newLevelNumber = (AppContext.TotalShieldUnlocked / AppContext.LockTreshold) + 1;
-                if (newLevelNumber <= 6)
-                {
-                    var Message = string.Format(resources.GetString("NewLevel"), newLevelNumber);
-                    NotificationHelper.DisplayToast(Message);
-                }
-            }
-            else if (newBonusLevelUnlocked)
-            {
-                int newBonusLevelNumber = ((AppContext.TotalShieldUnlocked / AppContext.BonusTreshold));
-                var Message = string.Format(resources.GetString("NewBonusLevel"), newBonusLevelNumber);
-                NotificationHelper.DisplayToast(Message);
-            }
-            else if (AppContext.GameCompleted) //Gioco completato!
-            {
-                //SoundManager.PlayGoal();
-                NotificationHelper.DisplayToast(resources.GetString("GameFinished"));
-                //Title = AppResources.GameFinishedTitle,
-                //Message = AppResources.GameFinished,
-                //TextWrapping = TextWrapping.Wrap,
-                //MillisecondsUntilHidden = 8000,
-            }
-        }
-
 
         #endregion
 

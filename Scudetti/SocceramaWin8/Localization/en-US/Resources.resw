@@ -199,4 +199,13 @@ Show to your friends that you are a real expert!</value>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Go back</value>
+  </data>
+  <data name="InsertTeam" xml:space="preserve">
+    <value>Insert the team name</value>
+  </data>
+  <data name="ShieldUnlocked" xml:space="preserve">
+    <value>Shield Unlocked {0}/{1}</value>
+  </data>
 </root>

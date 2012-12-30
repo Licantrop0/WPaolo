@@ -205,7 +205,7 @@ Sblocca un nuovo suggerimento ogni 5 scudetti.</value>
     <value>Inserisci il nome della squadra</value>
   </data>
   <data name="ShieldUnlocked" xml:space="preserve">
-    <value>Scudetti Sbloccati {0}/{1}</value>
+    <value>Scudetti Sbloccati: {0}/{1}</value>
   </data>
   <data name="NewBonusLevel" xml:space="preserve">
     <value>Livello Bonus {0} sbloccato!</value>

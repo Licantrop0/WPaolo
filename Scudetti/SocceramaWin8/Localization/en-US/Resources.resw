@@ -206,7 +206,7 @@ Show to your friends that you are a real expert!</value>
     <value>Insert the team name</value>
   </data>
   <data name="ShieldUnlocked" xml:space="preserve">
-    <value>Shield Unlocked {0}/{1}</value>
+    <value>Shield Unlocked: {0}/{1}</value>
   </data>
   <data name="NewBonusLevel" xml:space="preserve">
     <value>Bonus Level {0} unlocked!</value>

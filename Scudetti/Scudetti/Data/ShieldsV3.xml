@@ -161,10 +161,12 @@
   <Shield Level="2" Id="DynamoKiev" Image="dynamo-kiev1.png" Hint="Ukraine" IsValidated="false">
     <Names>Futbol'nyj Klub Dynamo Kyïv</Names>
     <Names>FC Dynamo Kyiv</Names>
+    <Names>FC Dynamo Kiev</Names>
+    <Names>FC Dinamo Kiev</Names>
     <Names>Dynamo Kyiv</Names>
     <Names>Dynamo Kiev</Names>
-    <Names>FC Dynamo Kiev</Names>
     <Names>Dynamo Kyïv</Names>
+    <Names>Dinamo Kiev</Names>
   </Shield>
   <Shield Level="2" Id="Galatasaray" Image="galatasaray.png" Hint="Turkey" IsValidated="false">
     <Names>Galatasaray Spor Kulübü</Names>

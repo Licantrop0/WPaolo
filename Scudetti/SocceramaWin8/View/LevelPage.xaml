@@ -27,10 +27,11 @@
         </Grid>
 
         <Viewbox Grid.Row="1">
-            <GridView Name="itemGridView" Width="1600" Height="800"
+            <GridView Name="itemGridView" Width="1750" Height="800"
                   AutomationProperties.AutomationId="ItemGridView"
                   AutomationProperties.Name="Grouped Items"
                   ItemsSource="{Binding Shields}"
+                      Padding="120,0,0,0"
                   ItemTemplate="{StaticResource Shield250ItemTemplate}"
                   SelectionMode="None" IsSwipeEnabled="False">
                 <GridView.ItemsPanel>

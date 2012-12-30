@@ -213,4 +213,10 @@ Sblocca un nuovo suggerimento ogni 5 scudetti.</value>
   <data name="Reset.Content" xml:space="preserve">
     <value>Ricomincia</value>
   </data>
+  <data name="Copyrights" xml:space="preserve">
+    <value>Tutti gli scudetti, brand, nomi di squadre o loghi in questa App sono copyrights, trademarks o registered trademarks dei relativi proprietari.</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Questa app si collega a internet solo per la pubblicità e non raccoglie alcun dato personale.</value>
+  </data>
 </root>

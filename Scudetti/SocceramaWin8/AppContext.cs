@@ -11,7 +11,7 @@ namespace SocceramaWin8
     public static class AppContext
     {
         public const int HintsTreshold = 5;
-        public const int LockTreshold = 4;//15;
+        public const int LockTreshold = 15;
         public const int BonusTreshold = 50;
 
         public static bool ToastDisplayed = false;

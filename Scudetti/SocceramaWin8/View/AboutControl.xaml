@@ -16,18 +16,17 @@
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="Foreground" Value="White" />
         </Style>
-
     </UserControl.Resources>
 
     <StackPanel>
         <TextBlock Text="Privacy Policy" Style="{StaticResource SettingsHeaderTextStyle}" />
         <TextBlock Style="{StaticResource SettingsTextStyle}">
-            <Run Text="Questa app si collega a internet solo per la pubblicità e non raccoglie alcun dato personale." />
+            <Run x:Uid="Privacy" Text="This app use your internet connection only for the ads and does not collect any personal data." />
             <LineBreak />
         </TextBlock>
-        <TextBlock Text="Copyrights" Style="{StaticResource SettingsHeaderTextStyle}"  />
+        <TextBlock Text="Copyrights" Style="{StaticResource SettingsHeaderTextStyle}" />
         <TextBlock Style="{StaticResource SettingsTextStyle}">
-            <Run Text="Tutti gli scudetti, brand, nomi di squadre o loghi in questa App sono copyrights, trademarks o registered trademarks dei relativi proprietari." />
+            <Run x:Uid="Copyrights" Text="All the shields, brand, team's name, logos in this App are Copyrights, Trademarsk or Registered Trademarks of the relative's owners." />
             <LineBreak />
         </TextBlock>
         <HyperlinkButton x:Uid="Support" Content="Supporto" NavigateUri="mailto:wpmobile@hotmail.it" Margin="-16,0,0,0" />

@@ -214,4 +214,10 @@ Show to your friends that you are a real expert!</value>
   <data name="Reset.Contet" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="Copyrights" xml:space="preserve">
+    <value>All the shields, brand, team's name, logos in this App are Copyrights, Trademarsk or Registered Trademarks of the relative's owners.</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>This app use your internet connection only for the ads and does not collect any personal data.</value>
+  </data>
 </root>

@@ -139,7 +139,7 @@ namespace SocceramaWin8.ViewModel
             {
                 return _goToLevelCommand ?? (_goToLevelCommand = new RelayCommand(() =>
                 {
-                    //if (!IsUnlocked) return;
+                    if (!IsUnlocked) return;
                     SoundManager.PlayFischietto();
                     Messenger.Default.Send<LevelViewModel>(this);
                 }));

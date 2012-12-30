@@ -54,6 +54,13 @@ namespace SocceramaWin8.ViewModel
                 if (m.PropertyName == "IsValidated")
                     ShowNotifications();
             });
+
+            MessengerInstance.Register<string>(this, "reset", m =>
+            {
+                _levels = null;
+                RaisePropertyChanged("Levels");
+                RaisePropertyChanged("StatusText");
+            });
         }
 
         private void ShowNotifications()

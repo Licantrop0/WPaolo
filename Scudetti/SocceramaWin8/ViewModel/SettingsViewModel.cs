@@ -39,6 +39,7 @@ namespace SocceramaWin8.ViewModel
         private async void ResetAction(IUICommand e)
         {
             await AppContext.ResetShields();
+            MessengerInstance.Send<string>("", "reset");
             MessengerInstance.Send<LevelsViewModel>(null);
         }
     }

@@ -65,7 +65,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Command="{Binding ShowHintCommand}" Width="130" Margin="6">
+                <Button Command="{Binding ShowHintCommand}" Click="Hint_Click" Width="130" Margin="6">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Grid>

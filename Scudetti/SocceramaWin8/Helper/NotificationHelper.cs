@@ -77,7 +77,6 @@ namespace SocceramaWin8.Helpers
             {
                 if (_dynamicWide == null)
                 {
-                    TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
                     _dynamicWide = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWideImageAndText01);
 
                     // removes logo from lower left-hand corner of tile
@@ -95,6 +94,7 @@ namespace SocceramaWin8.Helpers
         public static void UpdateTile(string text)
         {
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+            //TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
 
             var tileTextAttributes = DynamicWide.GetElementsByTagName("text");
             tileTextAttributes[0].InnerText = text;
@@ -102,8 +102,9 @@ namespace SocceramaWin8.Helpers
             //Creation
             var tileNotification = new TileNotification(DynamicWide);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
-            tileNotification = new TileNotification(SimpleWide);
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
+
+            //tileNotification = new TileNotification(SimpleWide);
+            //TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace TwentyTwelve_Organizer
+namespace TwentyTwelve_Organizer.Model
 {
     //questo enum rappresenta i numeri di giorni necessari al completamento di un determinato task
     public enum TaskDifficulty
@@ -26,7 +26,6 @@ namespace TwentyTwelve_Organizer
     [DataContract]
     public class Task
     {
-        public int Id { get { return Description.GetHashCode() ^ IsCompleted.GetHashCode(); } }
         [DataMember]
         public string Description { get; set; }
         [DataMember]
@@ -34,28 +33,13 @@ namespace TwentyTwelve_Organizer
         [DataMember]
         public bool IsCompleted { get; set; }
 
+        public Task() { }
+
         public Task(string description, TaskDifficulty difficulty)
         {
             Description = description;
             Difficulty = difficulty;
             IsCompleted = false;
-        }
-
-        public static TaskDifficulty ParseDifficulty(string value)
-        {
-            switch (value)
-            {
-                case "1":
-                    return TaskDifficulty.VerySimple;
-                case "2":
-                    return TaskDifficulty.Simple;
-                case "4":
-                    return TaskDifficulty.Hard;
-                case "5":
-                    return TaskDifficulty.VeryHard;
-                default: //case "3"
-                    return TaskDifficulty.Normal;
-            }
         }
     }
 }

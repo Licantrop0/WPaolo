@@ -1,22 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.0">
-  <App xmlns="" ProductID="{830e613b-185f-475e-b090-c1311bd37f6c}" Title="2012 Organizer" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Tandy" Description="Sample description" Publisher="WPaolo7">
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+  <App xmlns="" ProductID="{06e55b97-4b42-4759-a833-389f2c0f2b81}" Title="2012 Organizer"
+       RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Tandy" Description="Sample description" Publisher="WPaolo7">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
-      <Capability Name="ID_CAP_GAMERSERVICES" />
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
       <Capability Name="ID_CAP_IDENTITY_USER" />
-      <Capability Name="ID_CAP_LOCATION" />
       <Capability Name="ID_CAP_MEDIALIB" />
-      <Capability Name="ID_CAP_MICROPHONE" />
       <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_PHONEDIALER" />
-      <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
-      <Capability Name="ID_CAP_SENSORS" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
     </Capabilities>
     <Tasks>
-      <DefaultTask Name="_default" NavigationPage="TimerPage.xaml" />
+      <DefaultTask Name="_default" NavigationPage="View/TimerPage.xaml" />
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="TwentyTwelve_OrganizerToken" TaskName="_default">

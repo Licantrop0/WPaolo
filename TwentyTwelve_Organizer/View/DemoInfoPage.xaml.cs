@@ -5,7 +5,7 @@ using Microsoft.Phone.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace TwentyTwelve_Organizer
+namespace TwentyTwelve_Organizer.View
 {
     public partial class DemoInfoPage : PhoneApplicationPage
     {

@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework.Audio;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WPCommon.Helpers;
+using TwentyTwelve_Organizer.Sound;
 
 namespace TwentyTwelve_Organizer
 {
@@ -19,7 +21,7 @@ namespace TwentyTwelve_Organizer
         {
             InitializeComponent();
             InitializeTimer();
-            if (WPCommon.TrialManagement.IsTrialMode)
+            if (TrialManagement.IsTrialMode)
                 DemoTextBlock.Visibility = System.Windows.Visibility.Visible;
         }
 
@@ -34,10 +36,10 @@ namespace TwentyTwelve_Organizer
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             dt.Start();
-            var CompletedTasksCount = Settings.Tasks.Where(t => t.IsCompleted).Count(); 
-            TasksProgressBar.Maximum = Settings.Tasks.Count;            
+            var CompletedTasksCount = 10;// AppContext.Tasks.Where(t => t.IsCompleted).Count(); 
+            TasksProgressBar.Maximum = AppContext.Tasks.Count;            
             TasksProgressBar.Value = CompletedTasksCount;
-            ProgressTextBlock.Text = string.Format("Task Completed: {0}/{1}", CompletedTasksCount, Settings.Tasks.Count);
+            ProgressTextBlock.Text = string.Format("Task Completed: {0}/{1}", CompletedTasksCount, AppContext.Tasks.Count);
         }
 
         protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
@@ -47,39 +49,40 @@ namespace TwentyTwelve_Organizer
 
         private void ViewTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/TasksPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/TasksPage.xaml", UriKind.Relative));
         }
 
         void dt_Tick(object sender, EventArgs e)
         {
-            TimeLeft = Settings.EndOfTheWorld - DateTime.Now;
+            TimeLeft = AppContext.EndOfTheWorld - DateTime.Now;
             t_countdowndays.Text = TimeLeft.Days.ToString();
             t_countdownhours.Text = TimeLeft.Hours.ToString();
             t_countdownminutes.Text = TimeLeft.Minutes.ToString();
             t_countdownseconds.Text = TimeLeft.Seconds.ToString();
-            Settings.TickSound.Play();
+            SoundManager.TickSound.Play();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             //Calcolo per la valutazione (somma delle difficoltà dei task completati)
             //I valori delle difficoltà sono impostati nella classe Task
-            int giorniNecessari = Settings.Tasks.Where(t => !t.IsCompleted).Sum(t => (int)t.Difficulty);
-            if (TimeLeft.TotalDays == 0)
-            {
-                EvalTextBlock.Text = "THE END IS TODAY! Close your eyes and accept it!";
-            }
-            else if (TimeLeft.TotalDays < 0)
+            int giorniNecessari = 20;//AppContext.Tasks.Where(t => !t.IsCompleted).Sum(t => (int)t.Difficulty);
+            if (TimeLeft.TotalDays < 0)
             {
                 EvalTextBlock.Text = "Open your eyes. Everything is different. Have a nice life.";
             }
-            else if (Settings.Tasks.Count == 0)
+            else if (TimeLeft.TotalDays == 0)
+            {
+                EvalTextBlock.Text = "THE END IS TODAY! Close your eyes and accept it!";
+            }
+            else if (AppContext.Tasks.Count == 0)
             {
                 EvalTextBlock.Text = "You have no tasks.\nYou should spend your last days on earth with something to do!";
             }
             else
             {
                 var rapportoGiorni = giorniNecessari / TimeLeft.TotalDays;
+
                 if (rapportoGiorni > 1)
                 {
                     EvalTextBlock.Text = "Do something or you will never complete all your tasks! Change your priorities or engage actively to fulfill your difficult endeavours...";
@@ -107,17 +110,17 @@ namespace TwentyTwelve_Organizer
 
         private void Button_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
-            Settings.ButtonDownSound.Play();
+            SoundManager.ButtonDownSound.Play();
         }
 
         private void Button_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
-            Settings.ButtonUpSound.Play();
+            SoundManager.ButtonUpSound.Play();
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
         }
     }
 }

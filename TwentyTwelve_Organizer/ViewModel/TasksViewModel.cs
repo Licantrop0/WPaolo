@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Windows.Data;
 using TwentyTwelve_Organizer.Model;
 using WPCommon.Helpers;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace TwentyTwelve_Organizer.ViewModel
 {
@@ -14,20 +16,28 @@ namespace TwentyTwelve_Organizer.ViewModel
         public CollectionViewSource CompletedCVS { get; set; }
         SortDescription DescriptionAscending = new SortDescription("Description", ListSortDirection.Ascending);
 
+        public IEnumerable<TaskVMGroup> Groups
+        {
+            get{
+                return AppContext.Tasks
+                    .GroupBy(t => t.IsCompleted)
+                    .Select(g => new TaskVMGroup(g));
+            }
+        }
+
         public TasksViewModel()
         {
             if (IsInDesignMode) return;
 
             ToDoCVS = new CollectionViewSource();
-            ToDoCVS.Source = AppContext.Tasks;
+            ToDoCVS.Source = AppContext.Tasks.Select(t=> new TaskViewModel(t));
             ToDoCVS.SortDescriptions.Add(DescriptionAscending);
             ToDoCVS.Filter += (sender, e) => { e.Accepted = !((TaskViewModel)e.Item).CurrentTask.IsCompleted; };
 
             CompletedCVS = new CollectionViewSource();
-            CompletedCVS.Source = AppContext.Tasks;
+            CompletedCVS.Source = AppContext.Tasks.Select(t => new TaskViewModel(t));
             CompletedCVS.SortDescriptions.Add(DescriptionAscending);
             CompletedCVS.Filter += (sender, e) => { e.Accepted = ((TaskViewModel)e.Item).CurrentTask.IsCompleted; };
-
         }
 
         private RelayCommand _addCommand;

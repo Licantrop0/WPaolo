@@ -23,17 +23,6 @@ namespace TwentyTwelve_Organizer.View
             TaskNameTextBox.SelectionStart = TaskNameTextBox.Text.Length;
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            if (NavigationContext.QueryString.ContainsKey("id"))
-            {
-                var id = Convert.ToInt32(NavigationContext.QueryString["id"]);
-            }
-            else
-            {
-            }
-        }
-
         private void TaskNameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)

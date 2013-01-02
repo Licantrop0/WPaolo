@@ -5,50 +5,93 @@
              xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
              xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon"
              xmlns:wpasync="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher"
+             xmlns:hlp="clr-namespace:TwentyTwelve_Organizer.Helper"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
              mc:Ignorable="d">
-    
-  <Application.Resources>
-    <ImageBrush x:Name="BackgroundImage" ImageSource="Images\2012background.jpg" AlignmentY="Bottom" />
-    <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
+
+    <Application.Resources>
+        <vm:ViewModelLocator xmlns:vm="clr-namespace:TwentyTwelve_Organizer.ViewModel" x:Key="Locator" />
+
+        <ImageBrush x:Name="BackgroundImage" ImageSource="Images\2012background.jpg" AlignmentY="Bottom" />
+        <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
             /TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas
         </sys:FontFamily>
-    <LinearGradientBrush x:Name="GreenGradient" EndPoint="0.5,1" StartPoint="0.5,0">
-      <GradientStop Color="#FF2DD000" Offset="0" />
-      <GradientStop Color="#FFB5E5AA" Offset="1" />
-    </LinearGradientBrush>
-    <Style x:Key="MetallicButtonStyle" TargetType="Button">
-      <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
-      <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
-      <Setter Property="FontSize" Value="35" />
-      <Setter Property="Template">
-        <Setter.Value>
-          <ControlTemplate TargetType="Button">
-            <Grid>
-              <Image Source="Images/MetallicStrip.png" Stretch="Fill" Opacity="0.4" />
-              <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-            </Grid>
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
-      <Setter Property="Foreground" Value="{StaticResource GreenGradient}" />
-    </Style>
-    <Style x:Key="GreenTextBlockStyle" TargetType="TextBlock">
-      <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
-      <Setter Property="TextWrapping" Value="Wrap" />
-      <Setter Property="Foreground" Value="{StaticResource GreenGradient}" />
-    </Style>
-    <Style x:Key="GreenRadioButtonStyle" TargetType="RadioButton">
-      <Setter Property="GroupName" Value="Difficulty" />
-      <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
-      <Setter Property="FontSize" Value="24" />
-      <Setter Property="Foreground" Value="{StaticResource GreenGradient}" />
-    </Style>
-  </Application.Resources>
-  <Application.ApplicationLifetimeObjects>
-    <wpasync:XNAAsyncDispatcher />
-    <!--Required object that handles lifetime events for the application-->
-    <shell:PhoneApplicationService Launching="Application_Launching" Closing="Application_Closing" Activated="Application_Activated" Deactivated="Application_Deactivated" />
-  </Application.ApplicationLifetimeObjects>
+        <LinearGradientBrush x:Name="GreenGradient" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF2DD000" Offset="0" />
+            <GradientStop Color="#FFB5E5AA" Offset="1" />
+        </LinearGradientBrush>
+        <Style x:Key="MetallicButtonStyle" TargetType="Button">
+            <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+            <Setter Property="FontSize" Value="35" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image Source="Images/MetallicStrip.png" Stretch="Fill" Opacity="0.4" />
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="{StaticResource GreenGradient}" />
+        </Style>
+        <hlp:TaskDifficultyConverter x:Key="TaskDifficultyConverter" />
+
+        <DataTemplate x:Key="TaskTemplate">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="Images\MetallicStrip.png"
+                                    Opacity="0.4" Stretch="UniformToFill" />
+                </StackPanel.Background>
+                <!--<CheckBox IsChecked="{Binding CurrentTask.IsCompleted, Mode=TwoWay}"
+                              VerticalAlignment="Center" />-->
+                <Rectangle Height="32" Width="8" Margin="-15,0,8,0"
+                           Fill="{Binding CurrentTask.Difficulty, Converter={StaticResource TaskDifficultyConverter}}"  />
+                <Button Width="330" VerticalAlignment="Center"
+                            Command="{Binding GoToTaskCommand}"
+                            toolkit:TiltEffect.IsTiltEnabled="True">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <TextBlock Text="{Binding CurrentTask.Description}"
+                                   Style="{StaticResource GreenTextBlockStyle}" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Command="{Binding RemoveCommand}" VerticalAlignment="Center" >
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Rectangle Width="48" Height="48" Margin="6"
+                                           Fill="{StaticResource GreenGradient}">
+                                <Rectangle.OpacityMask>
+                                    <ImageBrush ImageSource="/TwentyTwelve_Organizer;component/Images/remove_white.png" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </DataTemplate>
+
+
+        <Style x:Key="GreenTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="{StaticResource GreenGradient}" />
+        </Style>
+        <Style x:Key="GreenRadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="GroupName" Value="Difficulty" />
+            <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Foreground" Value="{StaticResource GreenGradient}" />
+        </Style>
+    </Application.Resources>
+    <Application.ApplicationLifetimeObjects>
+        <wpasync:XNAAsyncDispatcher />
+        <!--Required object that handles lifetime events for the application-->
+        <shell:PhoneApplicationService Launching="Application_Launching" Closing="Application_Closing" Activated="Application_Activated" Deactivated="Application_Deactivated" />
+    </Application.ApplicationLifetimeObjects>
 </Application>

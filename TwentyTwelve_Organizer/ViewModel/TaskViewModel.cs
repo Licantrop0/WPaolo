@@ -12,8 +12,6 @@ namespace TwentyTwelve_Organizer.ViewModel
 {
     public class TaskViewModel : ViewModelBase
     {
-        public int Id { get { return CurrentTask.Description.GetHashCode() ^ CurrentTask.IsCompleted.GetHashCode(); } }
-
         public Task CurrentTask { get; set; }
 
         public TaskViewModel(Task task)
@@ -33,7 +31,7 @@ namespace TwentyTwelve_Organizer.ViewModel
                     else
                         if (MessageBox.Show("Do you want to delete this taks?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                         {
-                            AppContext.Tasks.Remove(this);
+                            AppContext.Tasks.Remove(CurrentTask);
                         }
 
                 }));
@@ -51,7 +49,8 @@ namespace TwentyTwelve_Organizer.ViewModel
                         MessengerInstance.Send(new Uri("/View/DemoInfoPage.xaml", UriKind.Relative), "navigate");
                     else
                     {
-                        MessengerInstance.Send(new Uri("/View/AddEditTaskPage.xaml?id=" + Id, UriKind.Relative), "navigate");
+                        MessengerInstance.Send(CurrentTask);
+                        MessengerInstance.Send(new Uri("/View/AddEditTaskPage.xaml", UriKind.Relative), "navigate");
                     }
                 }));
             }

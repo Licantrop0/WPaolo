@@ -9,8 +9,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:WPCommon="clr-namespace:WPCommon;assembly=WPCommon"
-    xmlns:hlp="clr-namespace:TwentyTwelve_Organizer.Helper"
-    xmlns:vm="clr-namespace:TwentyTwelve_Organizer.ViewModel"
+    DataContext="{Binding Source={StaticResource Locator}, Path=TasksVM}"
     FontFamily="/TwentyTwelve_Organizer;component/Fonts/Fonts.zip#Consolas"
     Foreground="{StaticResource GreenGradient}" FontSize="28"
     SupportedOrientations="Portrait" Orientation="Portrait"
@@ -38,90 +37,36 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <phone:PhoneApplicationPage.Resources>
-        <vm:TasksViewModel x:Key="TasksVM" />
-    </phone:PhoneApplicationPage.Resources>
-
-    <Grid x:Name="LayoutRoot" DataContext="{StaticResource TasksVM}"
-          Background="{StaticResource BackgroundImage}">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundImage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.Resources>
-            <hlp:TaskDifficultyConverter x:Key="TaskDifficultyConverter" />
 
-            <DataTemplate x:Key="TaskTemplate">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
-                    <StackPanel.Background>
-                        <ImageBrush ImageSource="Images\MetallicStrip.png"
-                                    Opacity="0.4" Stretch="UniformToFill" />
-                    </StackPanel.Background>
-                    <!--<CheckBox IsChecked="{Binding Path=IsCompleted, Mode=TwoWay}"
-                              VerticalAlignment="Center" />-->
-                    <Rectangle Height="32" Width="8" Margin="-15,0,8,0"
-                               Fill="{Binding CurrentTask.Difficulty,
-                        Converter={StaticResource TaskDifficultyConverter}}"  />
-                    <Button Width="330" VerticalAlignment="Center"
-                            Command="{Binding EditCommand}"
-                            toolkit:TiltEffect.IsTiltEnabled="True">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <TextBlock Text="{Binding CurrentTask.Description}"
-                                   Style="{StaticResource GreenTextBlockStyle}" />
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button Command="{Binding RemoveCommand}" VerticalAlignment="Center" >
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Rectangle Width="48" Height="48" Margin="6"
-                                           Fill="{StaticResource GreenGradient}">
-                                    <Rectangle.OpacityMask>
-                                        <ImageBrush ImageSource="/TwentyTwelve_Organizer;component/Images/remove_white.png" />
-                                    </Rectangle.OpacityMask>
-                                </Rectangle>
-
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </StackPanel>
-            </DataTemplate>
-
-        </Grid.Resources>
-
-        <controls:Pivot >
+        <controls:Pivot ItemsSource="{Binding Groups}">
             <controls:Pivot.Title>
                 <TextBlock Text="2012 Organizer" Style="{StaticResource GreenTextBlockStyle}" />
             </controls:Pivot.Title>
-            <controls:PivotItem >
-                <controls:PivotItem.Header>
-                    <TextBlock Text="To do" Style="{StaticResource GreenTextBlockStyle}" />
-                </controls:PivotItem.Header>
-                <ListBox Margin="0,-24,0,0"
+
+              <controls:Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Key}" Style="{StaticResource GreenTextBlockStyle}" />
+                </DataTemplate>
+            </controls:Pivot.HeaderTemplate>
+
+          <controls:Pivot.ItemTemplate>
+                <DataTemplate>
+                    <ListBox Margin="0,-24,0,0"
                          ItemTemplate="{StaticResource TaskTemplate}"
-                         ItemsSource="{Binding ToDo}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ListBox>
-            </controls:PivotItem>
-            <controls:PivotItem>
-                <controls:PivotItem.Header>
-                    <TextBlock Text="Completed" Style="{StaticResource GreenTextBlockStyle}" />
-                </controls:PivotItem.Header>
-                <ListBox Margin="0,-24,0,0"
-                         ItemTemplate="{StaticResource TaskTemplate}"
-                         ItemsSource="{Binding Completed}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ListBox>
-            </controls:PivotItem>
+                         ItemsSource="{Binding}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ListBox>
+                </DataTemplate>
+            </controls:Pivot.ItemTemplate>
         </controls:Pivot>
 
         <Button Content="Add Task" Command="{Binding AddCommand}"

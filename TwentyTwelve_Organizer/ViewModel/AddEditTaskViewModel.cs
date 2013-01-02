@@ -11,41 +11,69 @@ namespace TwentyTwelve_Organizer.ViewModel
     public class AddEditTaskViewModel : ViewModelBase
     {
         public Task CurrentTask { get; set; }
-        public bool IsEditMode { get { return CurrentTask.Description != null; } }
+        public bool IsEditMode { get { return CurrentTask != null; } }
 
         public string Title { get { return IsEditMode ? "Edit Task" : "Add Task"; } }
         public string ActionText { get { return IsEditMode ? "Edit" : "Add"; } }
-        public string Description { get { return CurrentTask.Description; } }
+
+        public AddEditTaskViewModel()
+        {
+            MessengerInstance.Register<Task>(this, t => CurrentTask = t);
+        }
+
+        #region CheckBoxes
 
         public bool IsVerySimple
         {
-            get { return CurrentTask.Difficulty == Model.TaskDifficulty.VerySimple; }
+            get
+            {
+                return IsEditMode ?
+                    CurrentTask.Difficulty == Model.TaskDifficulty.VerySimple : false;
+            }
             set { if (value) CurrentTask.Difficulty = Model.TaskDifficulty.VerySimple; }
         }
 
         public bool IsSimple
         {
-            get { return CurrentTask.Difficulty == Model.TaskDifficulty.Simple; }
+            get
+            {
+                return IsEditMode ?
+                    CurrentTask.Difficulty == Model.TaskDifficulty.Simple : false;
+            }
             set { if (value) CurrentTask.Difficulty = Model.TaskDifficulty.Simple; }
         }
 
         public bool IsNormal
         {
-            get { return CurrentTask.Difficulty == Model.TaskDifficulty.Normal; }
+            get
+            {
+                return IsEditMode ?
+                    CurrentTask.Difficulty == Model.TaskDifficulty.Normal : true;
+            }
             set { if (value) CurrentTask.Difficulty = Model.TaskDifficulty.Normal; }
         }
 
         public bool IsHard
         {
-            get { return CurrentTask.Difficulty == Model.TaskDifficulty.Hard; }
+            get
+            {
+                return IsEditMode ?
+                    CurrentTask.Difficulty == Model.TaskDifficulty.Hard : false;
+            }
             set { if (value) CurrentTask.Difficulty = Model.TaskDifficulty.Hard; }
         }
 
         public bool IsVeryHard
         {
-            get { return CurrentTask.Difficulty == Model.TaskDifficulty.VeryHard; }
+            get
+            {
+                return IsEditMode ?
+                    CurrentTask.Difficulty == Model.TaskDifficulty.VeryHard : false;
+            }
             set { if (value) CurrentTask.Difficulty = Model.TaskDifficulty.VeryHard; }
         }
+
+        #endregion
 
         private RelayCommand _addEditCommand;
         public RelayCommand AddEditCommand
@@ -58,7 +86,5 @@ namespace TwentyTwelve_Organizer.ViewModel
                 }));
             }
         }
-
-
     }
 }

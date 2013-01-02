@@ -3,7 +3,7 @@ using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Ink; 
+using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -23,9 +23,12 @@ namespace TwentyTwelve_Organizer.Model
         VeryHard = 100
     }
 
+
     [DataContract]
     public class Task
     {
+        public int Id { get { return Description.GetHashCode() ^ IsCompleted.GetHashCode(); } }
+
         [DataMember]
         public string Description { get; set; }
         [DataMember]

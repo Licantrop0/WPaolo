@@ -10,8 +10,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Data;
 using TwentyTwelve_Organizer;
+using TwentyTwelve_Organizer.Model;
 
-namespace Converters
+namespace TwentyTwelve_Organizer.Helper
 {
     public class TaskDifficultyConverter : IValueConverter
     {

@@ -13,15 +13,13 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Reflection;
 
-namespace TwentyTwelve_Organizer
+namespace TwentyTwelve_Organizer.View
 {
     public partial class AboutPage : PhoneApplicationPage
     {
         public AboutPage()
         {
-            InitializeComponent();
-            var name = Assembly.GetExecutingAssembly().FullName;
-            WPMEAbout.ApplicationVersion = new AssemblyName(name).Version.ToString();
+            InitializeComponent();            
         }
     }
 }

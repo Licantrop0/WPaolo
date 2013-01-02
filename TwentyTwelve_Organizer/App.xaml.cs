@@ -1,11 +1,13 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Navigation;
+﻿using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Microsoft.Xna.Framework.Audio;
+using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using TwentyTwelve_Organizer.Model;
 
 namespace TwentyTwelve_Organizer
 {
@@ -41,22 +43,9 @@ namespace TwentyTwelve_Organizer
 
             // Standard Silverlight initialization
             InitializeComponent();
-            InitializeSounds();
 
             // Phone-specific initialization
             InitializePhoneApplication();
-        }
-
-        private void InitializeSounds()
-        {
-            var str = App.GetResourceStream(new Uri("TickSound.wav", UriKind.Relative));
-            Settings.TickSound = SoundEffect.FromStream(str.Stream);
-
-            Settings.ButtonUpSound = SoundEffect.FromStream(App.GetResourceStream(
-                new Uri("ButtonUpSound.wav", UriKind.Relative)).Stream);
-
-            Settings.ButtonDownSound = SoundEffect.FromStream(App.GetResourceStream(
-                new Uri("ButtonDownSound.wav", UriKind.Relative)).Stream);
         }
 
         // Code to execute when the application is launching (eg, from Start)
@@ -75,7 +64,7 @@ namespace TwentyTwelve_Organizer
 
         private void SetTheme()
         {
-            if (Settings.LightThemeEnabled)
+            if (AppContext.LightThemeEnabled)
             {
                 var isource = new BitmapImage(new Uri("Images/2012background-white.jpg", UriKind.Relative));
                 ((ImageBrush)Resources["BackgroundImage"]).ImageSource = isource;
@@ -84,17 +73,18 @@ namespace TwentyTwelve_Organizer
             }
         }
 
-
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            TaskService.SaveTasks(AppContext.Tasks.Select(t => t.CurrentTask));
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            TaskService.SaveTasks(AppContext.Tasks.Select(t => t.CurrentTask));
         }
 
         // Code to execute if a navigation fails
@@ -136,9 +126,18 @@ namespace TwentyTwelve_Organizer
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
 
+            InitializeNavigationMessages(RootFrame);
+
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;
         }
+
+        private void InitializeNavigationMessages(PhoneApplicationFrame rootFrame)
+        {
+            Messenger.Default.Register<Uri>(this, "navigate", m => rootFrame.Navigate(m));
+            Messenger.Default.Register<string>(this, "goback", m => rootFrame.GoBack());
+        }
+
 
         // Do not add any additional code to this method
         private void CompleteInitializePhoneApplication(object sender, NavigationEventArgs e)

@@ -18,7 +18,7 @@
     <phone:PhoneApplicationPage.Resources>
         <vm:MainViewModel x:Key="MainVM" />
     </phone:PhoneApplicationPage.Resources>
-    
+
     <Grid x:Name="LayoutRoot">
         <controls:Panorama x:Name="MainPanorama" SelectionChanged="MainPanorama_SelectionChanged"
                            DataContext="{StaticResource MainVM}">
@@ -29,7 +29,7 @@
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="/DeathTimerz;component/Images/DeathBackground.jpg" Stretch="None" />
             </controls:Panorama.Background>
-            
+
             <!--SuggestionText-->
             <controls:PanoramaItem Margin="0,-60,0,0" >
                 <controls:PanoramaItem.Header>
@@ -57,7 +57,7 @@
                                FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
                                Style="{StaticResource RedChiller}" />
                     <Image Visibility="{Binding BirthdayCakeVisibility}"
-                           VerticalAlignment="Top" HorizontalAlignment="Right"                           
+                           VerticalAlignment="Bottom" HorizontalAlignment="Right"                           
                            Source="/DeathTimerz;component/Images/halloween_cake.png" Stretch="None" />
                 </Grid>
             </controls:PanoramaItem>
@@ -134,14 +134,15 @@
                 </StackPanel>
             </controls:PanoramaItem>
         </controls:Panorama>
-        
-        <StackPanel Name="AdPlaceHolder" Height="80" VerticalAlignment="Bottom" />        
+
+        <StackPanel Name="AdPlaceHolder" Height="80"
+                    VerticalAlignment="Bottom" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" 
                               ForegroundColor="#FFBE0000"
-                              BackgroundColor="#FF171717"
+                              BackgroundColor="#FC171717"
                               Mode="Minimized" IsMenuEnabled="True" />
     </phone:PhoneApplicationPage.ApplicationBar>
 

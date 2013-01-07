@@ -35,4 +35,12 @@
             </ListBox>
         </Border>
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="False" 
+                              ForegroundColor="#FFBE0000"
+                              BackgroundColor="#FC171717"
+                              IsMenuEnabled="False" />
+    </phone:PhoneApplicationPage.ApplicationBar>
+
 </phone:PhoneApplicationPage>

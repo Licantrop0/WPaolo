@@ -157,9 +157,6 @@ De toute façon... touche du bois!</value>
   <data name="ErrorFutureBirthday" xml:space="preserve">
     <value>Tu ne peux pas mettre ton jour de naissance aujourd'hui ou dans le futur.</value>
   </data>
-  <data name="ErrorNoBirthay" xml:space="preserve">
-    <value>Jour de naissance</value>
-  </data>
   <data name="ErrorTooOldBirthday" xml:space="preserve">
     <value>Personne avec ce jour de naissance peut être encore en vie...</value>
   </data>

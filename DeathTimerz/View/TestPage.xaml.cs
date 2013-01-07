@@ -10,6 +10,7 @@ using DeathTimerz.Localization;
 using Microsoft.Phone.Controls;
 using GalaSoft.MvvmLight.Messaging;
 using System.ComponentModel;
+using Microsoft.Phone.Shell;
 
 namespace DeathTimerz
 {
@@ -18,6 +19,7 @@ namespace DeathTimerz
         public TestPage()
         {
             InitializeComponent();
+            BuildApplicationBar();
         }
 
         XDocument CurrentTest;
@@ -37,6 +39,7 @@ namespace DeathTimerz
             }
 
             PopupBorder.Visibility = Visibility.Collapsed;
+            ApplicationBar.IsVisible = true;
             BuildTest();
         }
 
@@ -57,13 +60,17 @@ namespace DeathTimerz
                 {
                     foreach (var answ in el.Elements("Answer")) //ciclo su ogni risposta
                     {
+                        var content = new TextBlock()
+                        {
+                            Text = CurrentResources.GetString(answ.Attribute("Name").Value),
+                            Style = (Style)Application.Current.Resources["RedChillerCheckBoxContent"],
+                        };
                         TestStackPanel.Children.Add(new RadioButton()
                         {
                             Name = answ.Attribute("Name").Value,
-                            Content = CurrentResources.GetString(answ.Attribute("Name").Value),
+                            Content = content,
                             GroupName = el.Attribute("Name").Value,
-                            Style = (Style)Application.Current.Resources["RedChillerContentControl"],
-                            IsChecked = bool.Parse(answ.Attribute("IsChecked").Value)
+                            IsChecked = bool.Parse(answ.Attribute("IsChecked").Value),
                         });
                     }
                 }
@@ -82,13 +89,6 @@ namespace DeathTimerz
                     TestStackPanel.Children.Add(answTextBox);
                 }
             }
-
-            TestStackPanel.Children.Add(new TextBlock()
-            {
-                Text = "[Premi back per salvare e vedere il Risultato]",
-                TextWrapping = TextWrapping.Wrap,
-                Style = (Style)Application.Current.Resources["RedChillerTest"],
-            });
         }
 
 
@@ -215,10 +215,13 @@ namespace DeathTimerz
         {
             switch (e.PlatformKeyCode)
             {
-                case 187: case 189: case 222://* - #
+                case 187:
+                case 189:
+                case 222://* - #
                     e.Handled = true;
                     break;
-                case 188: case 190: //, .
+                case 188:
+                case 190: //, .
                     var t = (TextBox)sender;
                     t.Text += CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
                     t.SelectionStart = t.Text.Length; //riposiziona il cursore in fondo alla textbox
@@ -239,6 +242,35 @@ namespace DeathTimerz
             {
                 StimateDeathAge();
             }
+        }
+
+
+        private void BuildApplicationBar()
+        {
+            var OkAppBarButton = new ApplicationBarIconButton();
+            OkAppBarButton.IconUri = new Uri("Toolkit.Content\\ApplicationBar.Check.png", UriKind.Relative);
+            OkAppBarButton.Text = AppResources.Ok;
+            OkAppBarButton.Click += new EventHandler(OkAppBarButton_Click);
+            ApplicationBar.Buttons.Add(OkAppBarButton);
+        }
+
+        void OkAppBarButton_Click(object sender, EventArgs e)
+        {
+            if (FocusManager.GetFocusedElement() is TextBox && !IsTestFilled())
+            {
+                this.Focus();
+                return;
+            }
+
+            if (!IsTestFilled())
+            {
+                MessageBox.Show(AppResources.TestNotCompleted);
+                return;
+            }
+
+            SaveAnswers();
+            StimateDeathAge();
+            NavigationService.GoBack();
         }
     }
 }

@@ -81,7 +81,7 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                if (!AppContext.BirthDay.HasValue)
+                if (!BirthDayInserted)
                     return Visibility.Collapsed;
 
                 return AppContext.BirthDay.Value.SameBirthDay(DateTime.Today) ?
@@ -124,7 +124,7 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                if (!BirthDayInserted) return AppResources.ErrorNoBirthay;
+                if (!BirthDayInserted) return AppResources.InsertBirthday;
 
                 //TODO: migliorare algoritmo
                 var Age = DateTime.Now.Subtract(BirthDay.Value);
@@ -184,10 +184,9 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                //return Advices[DateTime.Today.DayOfYear % Advices.Length];
-                var rnd = new Random();
-                return Advices[rnd.Next(Advices.Length)];
-
+                return Advices[DateTime.Today.DayOfYear % Advices.Length];
+                //var rnd = new Random();
+                //return Advices[rnd.Next(Advices.Length)];
             }
         }
 

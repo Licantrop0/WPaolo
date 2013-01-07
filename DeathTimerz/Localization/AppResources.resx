@@ -157,9 +157,6 @@ Anyway... knock on wood!</value>
   <data name="ErrorFutureBirthday" xml:space="preserve">
     <value>You can't setup your birthday today or in the future.</value>
   </data>
-  <data name="ErrorNoBirthay" xml:space="preserve">
-    <value>You have to set your birthay first</value>
-  </data>
   <data name="ErrorTooOldBirthday" xml:space="preserve">
     <value>No one with that birthday could be still alive...</value>
   </data>

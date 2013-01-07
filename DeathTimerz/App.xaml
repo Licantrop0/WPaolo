@@ -30,12 +30,20 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Margin" Value="0,28,0,0" />
         </Style>
+
+        <Style x:Key="RedChillerCheckBoxContent" TargetType="TextBlock"
+               BasedOn="{StaticResource RedChillerTest}">
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+        
         <Style x:Key="RedChillerContentControl" TargetType="ContentControl">
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
             <Setter Property="Foreground" Value="{StaticResource RedWhiteGradientBrush}" />
         </Style>
+        
         <Style x:Key="RedChillerButton" TargetType="Button" BasedOn="{StaticResource RedChillerContentControl}">
             <Setter Property="Foreground">
                 <Setter.Value>
@@ -50,9 +58,7 @@
                     <ControlTemplate TargetType="Button">
                         <Grid>
                             <Image Source="/DeathTimerz;component/Images/blood.png" Stretch="Fill" Margin="-182,-101,-121,-113" />
-                            <ContentPresenter
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -64,8 +70,6 @@
         </Style>
     </Application.Resources>
     <Application.ApplicationLifetimeObjects>
-        <shell:PhoneApplicationService
-            Launching="Application_Launching" Closing="Application_Closing"
-            Activated="Application_Activated" Deactivated="Application_Deactivated" />
+        <shell:PhoneApplicationService Launching="Application_Launching" Closing="Application_Closing" Activated="Application_Activated" Deactivated="Application_Deactivated" />
     </Application.ApplicationLifetimeObjects>
 </Application>

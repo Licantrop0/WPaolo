@@ -35,6 +35,7 @@ namespace DeathTimerz
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             SoundManager.Instance.RestoreMusicStatus();
+            IsolatedStorageExplorer.Explorer.Start("localhost");
         }
 
 

@@ -58,7 +58,7 @@
                                FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
                                Style="{StaticResource RedChiller}" />
                     <Image Visibility="{Binding BirthdayCakeVisibility}"
-                           VerticalAlignment="Bottom" HorizontalAlignment="Right"                           
+                           VerticalAlignment="Bottom" HorizontalAlignment="Right"
                            Source="/DeathTimerz;component/Images/halloween_cake.png" Stretch="None" />
                 </Grid>
             </controls:PanoramaItem>

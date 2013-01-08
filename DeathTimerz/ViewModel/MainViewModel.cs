@@ -8,6 +8,9 @@ using System.Windows.Threading;
 using DeathTimerz.Localization;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Phone.Shell;
+using DeathTimerz.Helper;
+using System.Windows.Media.Imaging;
 
 namespace DeathTimerz.ViewModel
 {
@@ -184,10 +187,19 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                return Advices[DateTime.Today.DayOfYear % Advices.Length];
                 //var rnd = new Random();
-                //return Advices[rnd.Next(Advices.Length)];
+                //var advice = Advices[rnd.Next(Advices.Length)];
+                var advice = Advices[DateTime.Today.DayOfYear % Advices.Length];
+                CreateTile(advice);
+                return advice;
             }
+        }
+
+        private void CreateTile(string advice)
+        {
+            MessengerInstance.Send<string>(advice, "CreateTile");
+            var mainTile = ShellTile.ActiveTiles.First();
+            mainTile.Update(new StandardTileData { BackBackgroundImage = new Uri("isostore:/Shared/ShellContent/backTile.jpg", UriKind.Absolute) });
         }
 
         private string[] _advices;

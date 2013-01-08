@@ -1,13 +1,15 @@
-﻿using System;
-using System.Windows.Navigation;
+﻿using DeathTimerz.Helper;
 using DeathTimerz.Localization;
-using DeathTimerz.ViewModel;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System;
+using System.IO.IsolatedStorage;
+using System.Windows;
 using System.Windows.Controls;
-using GalaSoft.MvvmLight.Messaging;
-using System.Linq;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace DeathTimerz
 {
@@ -25,6 +27,28 @@ namespace DeathTimerz
                     EditTestAppBarButton.IsEnabled = true;
             });
 
+            Messenger.Default.Register<string>(this, "CreateTile", createTile);
+        }
+
+        private void createTile(string advice)
+        {
+            var ctl = new TileControl(advice);
+            ctl.Measure(new Size(336, 336));
+            ctl.Arrange(new Rect(0, 0, 336, 336));
+            var bmp = new WriteableBitmap(336, 336);
+            bmp.Render(ctl, null);
+            bmp.Invalidate();
+
+            var iss = IsolatedStorageFile.GetUserStoreForApplication();
+            using (var stm = iss.CreateFile("/Shared/ShellContent/backTile.jpg"))
+            {
+                bmp.SaveJpeg(stm, 173, 173, 0, 80);
+            }
+
+            using (var stm = iss.CreateFile("backTile.jpg"))
+            {
+                bmp.SaveJpeg(stm, 173, 173, 0, 80);
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -39,6 +63,7 @@ namespace DeathTimerz
                 ad1.ErrorOccurred += ad1_ErrorOccurred;
                 AdPlaceHolder.Children.Add(ad1);
             }
+
             base.OnNavigatedTo(e);
         }
 

@@ -34,12 +34,17 @@ namespace DeathTimerz
 
             if (AdPlaceHolder.Children.Count == 0)
             {
-                var ad1 = new AdControl("d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2",
+                var ad1 = new AdControl("d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2",                    
                     "10022419", true) { Height = 80, Width = 480 };
-
+                ad1.ErrorOccurred += ad1_ErrorOccurred;
                 AdPlaceHolder.Children.Add(ad1);
             }
             base.OnNavigatedTo(e);
+        }
+
+        void ad1_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
+        {
+            
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

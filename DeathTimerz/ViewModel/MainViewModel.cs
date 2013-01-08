@@ -190,16 +190,8 @@ namespace DeathTimerz.ViewModel
                 //var rnd = new Random();
                 //var advice = Advices[rnd.Next(Advices.Length)];
                 var advice = Advices[DateTime.Today.DayOfYear % Advices.Length];
-                CreateTile(advice);
                 return advice;
             }
-        }
-
-        private void CreateTile(string advice)
-        {
-            MessengerInstance.Send<string>(advice, "CreateTile");
-            var mainTile = ShellTile.ActiveTiles.First();
-            mainTile.Update(new StandardTileData { BackBackgroundImage = new Uri("isostore:/Shared/ShellContent/backTile.jpg", UriKind.Absolute) });
         }
 
         private string[] _advices;

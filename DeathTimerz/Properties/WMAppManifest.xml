@@ -11,6 +11,9 @@
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="View/DeathTimerzPanorama.xaml" />
+      <ExtendedTask Name="BackgroundTask">
+        <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="UpdateHealthAdvicesTask" Source="UpdateHealthAdvicesTask" Type="UpdateHealthAdvicesTask.ScheduledAgent" />
+      </ExtendedTask>
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="DeathTimerzToken" TaskName="_default">
@@ -18,8 +21,8 @@
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
           <Title>@AppResLib.dll,-200</Title>
-          <BackBackgroundImageUri IsRelative="true" IsResource="false">Background.png</BackBackgroundImageUri>
-          <!--<BackContent>New suggestion every day!</BackContent>-->
+          <!--<BackBackgroundImageUri IsRelative="true" IsResource="false">Background.png</BackBackgroundImageUri>
+          <BackContent>New suggestion every day!</BackContent>-->
         </TemplateType5>
       </PrimaryToken>
     </Tokens>

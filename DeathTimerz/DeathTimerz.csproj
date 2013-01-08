@@ -131,13 +131,9 @@
     </Compile>
     <Compile Include="Localization\LocalizedStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.cs" />
     <Compile Include="Sounds\SoundManager.cs" />
     <Compile Include="View\TestPage.xaml.cs">
       <DependentUpon>TestPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Helper\TileControl.xaml.cs">
-      <DependentUpon>TileControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -158,10 +154,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TestPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Helper\TileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,6 +230,10 @@
     <Resource Include="Fonts\CHILLER.TTF" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UpdateHealthAdvicesTask\UpdateHealthAdvicesTask.csproj">
+      <Project>{DD2E68F8-530F-4765-8CB9-FA61159BA09D}</Project>
+      <Name>UpdateHealthAdvicesTask</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WPCommon.Controls\WPCommon.Controls.csproj">
       <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
       <Name>WPCommon.Controls</Name>

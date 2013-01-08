@@ -8,9 +8,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"  
-    xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"    
     xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:vm="clr-namespace:DeathTimerz.ViewModel"
+    xmlns:hlp="clr-namespace:DeathTimerz.Helper"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
@@ -100,13 +101,13 @@
                     <TextBlock Text="{Binding Path=LocalizedResources.MaleOrFemale, Source={StaticResource LocalizedStrings}}"                       
                            Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="{Binding Path=LocalizedResources.Male,
+                        <hlp:MyRadioButton Content="{Binding Path=LocalizedResources.Male,
                                         Source={StaticResource LocalizedStrings}}"
                                      Foreground="{StaticResource RedGradientBrush}"
                                      Style="{StaticResource RedChillerContentControl}"
                                      GroupName="MaleOrFemale" Margin="0,-10" IsChecked="{Binding IsMale, Mode=TwoWay}" />
 
-                        <RadioButton Content="{Binding Path=LocalizedResources.Female,
+                        <hlp:MyRadioButton Content="{Binding Path=LocalizedResources.Female,
                                         Source={StaticResource LocalizedStrings}}"
                                      Foreground="{StaticResource RedGradientBrush}"
                                      Style="{StaticResource RedChillerContentControl}"

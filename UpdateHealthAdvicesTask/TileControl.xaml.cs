@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace DeathTimerz.Helper
+namespace UpdateHealthAdvicesTask
 {
     public partial class TileControl : UserControl
     {

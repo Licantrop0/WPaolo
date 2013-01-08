@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Linq;
 
 namespace DeathTimerz
 {
@@ -26,29 +27,6 @@ namespace DeathTimerz
                 if (m.Notification == "TestUpdated")
                     EditTestAppBarButton.IsEnabled = true;
             });
-
-            Messenger.Default.Register<string>(this, "CreateTile", createTile);
-        }
-
-        private void createTile(string advice)
-        {
-            var ctl = new TileControl(advice);
-            ctl.Measure(new Size(336, 336));
-            ctl.Arrange(new Rect(0, 0, 336, 336));
-            var bmp = new WriteableBitmap(336, 336);
-            bmp.Render(ctl, null);
-            bmp.Invalidate();
-
-            var iss = IsolatedStorageFile.GetUserStoreForApplication();
-            using (var stm = iss.CreateFile("/Shared/ShellContent/backTile.jpg"))
-            {
-                bmp.SaveJpeg(stm, 173, 173, 0, 80);
-            }
-
-            using (var stm = iss.CreateFile("backTile.jpg"))
-            {
-                bmp.SaveJpeg(stm, 173, 173, 0, 80);
-            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

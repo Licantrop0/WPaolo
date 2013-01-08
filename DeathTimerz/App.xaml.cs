@@ -5,6 +5,8 @@ using System.Windows.Navigation;
 using DeathTimerz.Sounds;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Scheduler;
+using System;
 
 namespace DeathTimerz
 {
@@ -35,7 +37,19 @@ namespace DeathTimerz
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             SoundManager.Instance.RestoreMusicStatus();
-            IsolatedStorageExplorer.Explorer.Start("localhost");
+            //IsolatedStorageExplorer.Explorer.Start("localhost");
+
+            var TASK_NAME = "UpdateHealthAdvicesTask";
+            if (ScheduledActionService.Find(TASK_NAME) == null)
+            {
+                PeriodicTask task = new PeriodicTask(TASK_NAME);
+                task.Description = "Daily tile update for DeathTimerz";
+                ScheduledActionService.Add(task);
+#if DEBUG
+                // If we're debugging, attempt to start the task immediately 
+                ScheduledActionService.LaunchForTest(TASK_NAME, new TimeSpan(0, 0, 1));
+#endif
+            }
         }
 
 

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace UpdateHealthAdvicesTask
 {
@@ -51,41 +52,15 @@ namespace UpdateHealthAdvicesTask
         /// </remarks>
         protected override void OnInvoke(ScheduledTask task)
         {
-            //var ctl = CreateTileControl("TEST test TEST test");
-            //var bmp = new WriteableBitmap(336, 336);
-            //bmp.Render(ctl, null);
-            //bmp.Invalidate();
-
-            //var iss = IsolatedStorageFile.GetUserStoreForApplication();
-            //using (var stm = iss.CreateFile("/Shared/ShellContent/backTile.jpg"))
-            //{
-            //    bmp.SaveJpeg(stm, 336, 336, 0, 80);
-            //}
-
-            var mainTile = ShellTile.ActiveTiles.First();
-            mainTile.Update(new StandardTileData
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
-                BackContent= "suggerimento di salute di test evviva"
-                //BackBackgroundImage = new Uri("isostore:/Shared/ShellContent/backTile.jpg", UriKind.Absolute)
+                var advice = HealthAdvices.HealthAdvice.GetAdviceOfTheDay();
+                var ctl = new TileControl(advice);
+                var mainTile = ShellTile.ActiveTiles.First();
+                mainTile.Update(ctl.ToTile());
             });
-
             NotifyComplete();
         }
 
-        private FrameworkElement CreateTileControl(string tileText)
-        {
-            var b = new Border();
-            b.Background = new SolidColorBrush(Colors.Red);
-
-            var txt = new TextBlock()
-            {
-                Text = tileText
-            };
-            b.Child = txt;
-
-            b.Measure(new Size(336, 336));
-            b.Arrange(new Rect(0, 0, 336, 336));
-            return b;
-        }
     }
 }

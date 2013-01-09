@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="String01" xml:space="preserve">
+    <value>Yoga offers postures that increase flexibility and strength</value>
+  </data>
+  <data name="String02" xml:space="preserve">
+    <value>Indian cuisine helps to combat heart disease, cancer and Alzheimer’s disease</value>
+  </data>
+  <data name="String03" xml:space="preserve">
+    <value>Sports and physical exercises help against the cellulite</value>
+  </data>
+  <data name="String04" xml:space="preserve">
+    <value>Green tea + lemon = A Healthy Heart</value>
+  </data>
+  <data name="String05" xml:space="preserve">
+    <value>Broccoli + Tomatoes = Prevention of Cancer</value>
+  </data>
+  <data name="String06" xml:space="preserve">
+    <value>Red bell peppers + black beans = Stronger immunity</value>
+  </data>
+  <data name="String07" xml:space="preserve">
+    <value>Egg + Mango = A nice leather</value>
+  </data>
+  <data name="String08" xml:space="preserve">
+    <value>Avocado + lettuce = Complete Protection</value>
+  </data>
+  <data name="String09" xml:space="preserve">
+    <value>Yogurt + Wheat bran = Better Digestion</value>
+  </data>
+  <data name="String10" xml:space="preserve">
+    <value>Even a few pounds overweight increases the risk of chronic diseases in the elderly</value>
+  </data>
+  <data name="String11" xml:space="preserve">
+    <value>Physical activity (even just regular walking) is one of the main stakes for health and longevity</value>
+  </data>
+  <data name="String12" xml:space="preserve">
+    <value>Fish oil may help slow the progression of osteoarthritis</value>
+  </data>
+  <data name="String13" xml:space="preserve">
+    <value>Stop sweet drinks: no carbonated, juices, compote, tea / coffee with sugar</value>
+  </data>
+  <data name="String14" xml:space="preserve">
+    <value>When you are excited or under stress,  take 10 deep breaths</value>
+  </data>
+  <data name="String15" xml:space="preserve">
+    <value>Drink green tea instead of coffee</value>
+  </data>
+  <data name="String16" xml:space="preserve">
+    <value>Whole grain foods helps regulating blood pressure and heart health</value>
+  </data>
+  <data name="String17" xml:space="preserve">
+    <value>Consume more vegetables and fruits: they are an indispensable source of vitamins and minerals</value>
+  </data>
+  <data name="String18" xml:space="preserve">
+    <value>Four cups of milk daily reduces the risk of fractures</value>
+  </data>
+  <data name="String19" xml:space="preserve">
+    <value>The caffeine has the ability to block the harmful effects of cholesterol</value>
+  </data>
+  <data name="String20" xml:space="preserve">
+    <value>Long term use of pain killers can adversely affect kidneys</value>
+  </data>
+  <data name="String21" xml:space="preserve">
+    <value>Eating junk food twice a week makes you heavier by 10 lbs than those having it once a week</value>
+  </data>
+  <data name="String22" xml:space="preserve">
+    <value>Adults who drink eight or more glasses of water per day burn more calories than those who drink less</value>
+  </data>
+  <data name="String23" xml:space="preserve">
+    <value>People who eat breakfast every morning are more likely to maintain a healthy weight</value>
+  </data>
+  <data name="String24" xml:space="preserve">
+    <value>Quick diets can slow down your metabolism. But once over, you will regain more than the lost weight!</value>
+  </data>
+  <data name="String25" xml:space="preserve">
+    <value>Yoghurt and protein rich food can serve as an ideal "pre-workout" meal</value>
+  </data>
+  <data name="String26" xml:space="preserve">
+    <value>Garlic help lower blood sugar and decrease cholesterol levels</value>
+  </data>
+  <data name="String27" xml:space="preserve">
+    <value>Sleep and wake up at the same time everyday helps maintaining a regular metabolism rate</value>
+  </data>
+  <data name="String28" xml:space="preserve">
+    <value>Prefer frozen over canned one as it has more nutrients, less salt or sugar, and less contaminants</value>
+  </data>
+  <data name="String29" xml:space="preserve">
+    <value>Taking time out to relax quietly for even just few minutes will refresh your mind and body</value>
+  </data>
+  <data name="String30" xml:space="preserve">
+    <value>Alcohol stimulates appetite: the more you drink, the more hungry you feel</value>
+  </data>
+  <data name="String31" xml:space="preserve">
+    <value>Take time to savor your meal, don’t be in such a rush to eat</value>
+  </data>
+  <data name="String32" xml:space="preserve">
+    <value>Eat an apple, orange or banana a few minutes before it’s time to eat as an appetizer</value>
+  </data>
+  <data name="String33" xml:space="preserve">
+    <value>The healthy fat in avocado contributes to healthy blood flow to the brain and can also help lower blood pressure</value>
+  </data>
+  <data name="String34" xml:space="preserve">
+    <value>Salmon contains lots of omega-3s which are essential for brain function</value>
+  </data>
+  <data name="String35" xml:space="preserve">
+    <value>Blueberrie helps protect your brain from stress or age-related conditions</value>
+  </data>
+  <data name="String36" xml:space="preserve">
+    <value>Shrimps are a great source of protein and selenium though high in cholesterol</value>
+  </data>
+  <data name="String37" xml:space="preserve">
+    <value>Guava is one of the richest sources of Vitamin C that provides protection against colds and viral infections</value>
+  </data>
+  <data name="String38" xml:space="preserve">
+    <value>Beans and lentils are a rich source of soluble fibers that can help lower bad cholesterol</value>
+  </data>
+  <data name="String39" xml:space="preserve">
+    <value>Smoking can cause wrinkles at an earlier age</value>
+  </data>
+  <data name="String40" xml:space="preserve">
+    <value>Almonds are a rich source of Vitamin E and helpful in reducing cholesterol</value>
+  </data>
+  <data name="String41" xml:space="preserve">
+    <value>Cracking knuckles is generally regarded a bad habit but it doesn't cause arthritis.</value>
+  </data>
+  <data name="String42" xml:space="preserve">
+    <value>Drinking plenty of water protects against kidney stones and urinary tract infections</value>
+  </data>
+  <data name="String43" xml:space="preserve">
+    <value>Vegetarians are at greater risk of iron deficiency than non-vegetarians.</value>
+  </data>
+  <data name="String44" xml:space="preserve">
+    <value>Apples are a rich source of antioxidant compounds that can protect against brain diseases like Alzheimer's</value>
+  </data>
+  <data name="String45" xml:space="preserve">
+    <value>Smoking damages your arteries and worsens the bad effect of all other heart disease risk factors</value>
+  </data>
+  <data name="String46" xml:space="preserve">
+    <value>People with heart disease should receive flu and pneumonia vaccines as they are at increased risk of complications due to these diseases</value>
+  </data>
+  <data name="String47" xml:space="preserve">
+    <value>Use heart healthy cooking oils such as olive oil, canola oil or mustard oil. Avoid sunflower oil, safflower oil, ghee, butter, margaraine</value>
+  </data>
+  <data name="String48" xml:space="preserve">
+    <value>Make sure that you are meeting your daily Vitamin C and E requirement as they are vital to protect and repair your arteries</value>
+  </data>
+  <data name="String49" xml:space="preserve">
+    <value>Try switching your alcoholic drink choices to red wine and dark beer for maximum heart protection</value>
+  </data>
+  <data name="String50" xml:space="preserve">
+    <value>If you have heat rash, do not use a towel after a shower and allow your body to air dry. The rash will disappear faster</value>
+  </data>
+  <data name="String51" xml:space="preserve">
+    <value>Give your eyes a break when working on a computer or doing detailed work. Look away into the distance every 15 minutes</value>
+  </data>
+  <data name="String52" xml:space="preserve">
+    <value>Wait for five minutes after applying anti-dandruff shampoo. Medicated shampoos don't work if washed off immediately</value>
+  </data>
+  <data name="String53" xml:space="preserve">
+    <value>Apply cool compresses with a wet towel on the nape of your neck and forehead to cool down fast on a hot afternoon</value>
+  </data>
+  <data name="String54" xml:space="preserve">
+    <value>Hummus (a Middle Eastern dip with chickpeas and olive oil) is a heart healthy substitute for greasy dips to go with your starters</value>
+  </data>
+  <data name="String55" xml:space="preserve">
+    <value>A healthy breakfast should include complex carbohydrates such as whole grain breads, oatmeal, or broken wheat porridge</value>
+  </data>
+  <data name="String56" xml:space="preserve">
+    <value>Do not lick your chapped lips as saliva is not a moisturizer. It will only dry your lips much more, apply Vaseline instead</value>
+  </data>
+  <data name="String57" xml:space="preserve">
+    <value>Consuming yoghurt or curd can enhance your immunity because it contains good bacteria that stimulate the immune cells</value>
+  </data>
+  <data name="String58" xml:space="preserve">
+    <value>You can have a protein rich but low fat diet by consuming fish, seafood, egg whites, pulses, beans, and soy products</value>
+  </data>
+  <data name="String59" xml:space="preserve">
+    <value>To get a good amount of vitamin C add guavas, papayas, oranges, and melon to your diet</value>
+  </data>
+  <data name="String60" xml:space="preserve">
+    <value>To prevent aches and pains after long hours of computer use, take periodic breaks to do stretch exercises at your desk</value>
+  </data>
+  <data name="String61" xml:space="preserve">
+    <value>Seafood such as oysters, sardines, clams, crab and fish produce a mood enhancing effect by supplying plenty of selenium</value>
+  </data>
+  <data name="String62" xml:space="preserve">
+    <value>Spicy foods, foods high in fat and fiber, or excess amounts of caffeine can all precipitate indigestion</value>
+  </data>
+  <data name="String63" xml:space="preserve">
+    <value>Excess salt can make you feel bloated and contributes to high blood pressure</value>
+  </data>
+  <data name="String64" xml:space="preserve">
+    <value>Increase intake of biotin foods like brown rice, bran cereals, yeast, nuts, beans, peas, cauliflower to reduce hair loss and promote hair growth</value>
+  </data>
+  <data name="String65" xml:space="preserve">
+    <value>A pack of frozen peas makes a handy ice pack. Applying it quickly to a bruised area can prevent it from turning black</value>
+  </data>
+  <data name="String66" xml:space="preserve">
+    <value>Beans are a good choice if you are trying to lose weight because they keep blood sugar levels even and suppress hunger</value>
+  </data>
+  <data name="String67" xml:space="preserve">
+    <value>If you are feeling low, have low-fat carbs such as a baked potato. It elevates serotonin levels in your brain and also your spirits</value>
+  </data>
+  <data name="String68" xml:space="preserve">
+    <value>Be a vegetarian twice a week: vegetarian diet is low in fat and helps reduce the waist</value>
+  </data>
+  <data name="String69" xml:space="preserve">
+    <value>Quit smoking and alcohol abuse can significantly prolong life</value>
+  </data>
+  <data name="String70" xml:space="preserve">
+    <value>One glass of red wine per day is useful to work the cardiovascular system</value>
+  </data>
+  <data name="String71" xml:space="preserve">
+    <value>Do not forget to brush your teeth at least twice a day and use threads</value>
+  </data>
+  <data name="String72" xml:space="preserve">
+    <value>Eat dark chocolate, it contains antioxidants (flavonoids) that help fight aging</value>
+  </data>
+  <data name="String73" xml:space="preserve">
+    <value>Get dried Fruits, Nuts and Seeds: reduce levels of bad cholesterol and prevent some cancer</value>
+  </data>
+  <data name="String74" xml:space="preserve">
+    <value>Get at least and no more than 7-8 hours of sleep a day: it helps to focus attention and regulates weight</value>
+  </data>
+  <data name="String75" xml:space="preserve">
+    <value>Cloudy days make many people feel depressed. Stand in the sunshine whenever the sun is out to lift your spirits</value>
+  </data>
+  <data name="String76" xml:space="preserve">
+    <value>When you sit in your office chair, rest your feet flat on the floor and keep your thighs parallel to the ground to avoid low back strain</value>
+  </data>
+  <data name="String77" xml:space="preserve">
+    <value>Chicken soup relieve cold and flu symptoms by acting as an anti-inflammatory agent and relieving congestion</value>
+  </data>
+  <data name="String78" xml:space="preserve">
+    <value>If you suffer from body odor, an antibacterial soap will help you more than non-medicated soaps with strong fragrance</value>
+  </data>
+  <data name="String79" xml:space="preserve">
+    <value>Exercise is not only good for your physical health but also improves your concentration and thinking thereby making you more productive</value>
+  </data>
+  <data name="String80" xml:space="preserve">
+    <value>Soda is a common source of extra calories with no nutritional benefits. Have water in place of soda as far as possible</value>
+  </data>
+  <data name="String81" xml:space="preserve">
+    <value>If you want to cut calories, switch from orange juice to tomato juice. It is equally nutritious and has half the calories</value>
+  </data>
+  <data name="String82" xml:space="preserve">
+    <value>To avoid a hangover, consume something fatty before u drink, take your drinks slowly and take a glass of water before going to bed</value>
+  </data>
+</root>

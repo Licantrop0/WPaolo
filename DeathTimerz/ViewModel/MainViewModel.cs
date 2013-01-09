@@ -187,29 +187,9 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                //var rnd = new Random();
-                //var advice = Advices[rnd.Next(Advices.Length)];
-                var advice = Advices[DateTime.Today.DayOfYear % Advices.Length];
-                return advice;
+                return HealthAdvices.HealthAdvice.GetAdviceOfTheDay();
             }
         }
-
-        private string[] _advices;
-        private string[] Advices
-        {
-            get
-            {
-                if (_advices == null)
-                    _advices = HealthAdvices.ResourceManager
-                        .GetResourceSet(CultureInfo.CurrentCulture, true, true)
-                        .Cast<DictionaryEntry>()
-                        .Select(item => item.Value.ToString())
-                        .ToArray();
-
-                return _advices;
-            }
-        }
-
     }
 
 }

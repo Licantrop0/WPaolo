@@ -45,11 +45,11 @@ namespace DeathTimerz
                 PeriodicTask task = new PeriodicTask(TASK_NAME);
                 task.Description = "Daily tile update for DeathTimerz";
                 ScheduledActionService.Add(task);
+            }
 #if DEBUG
                 // If we're debugging, attempt to start the task immediately 
                 ScheduledActionService.LaunchForTest(TASK_NAME, new TimeSpan(0, 0, 1));
 #endif
-            }
         }
 
 

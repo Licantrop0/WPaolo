@@ -238,6 +238,10 @@
       <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
       <Name>WPCommon.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="HealthAdvices\HealthAdvices.csproj">
+      <Project>{1C70ABB7-2253-42A9-9778-0B5F331E2F19}</Project>
+      <Name>HealthAdvices</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

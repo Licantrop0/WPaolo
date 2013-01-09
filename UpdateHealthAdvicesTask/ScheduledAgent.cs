@@ -55,9 +55,8 @@ namespace UpdateHealthAdvicesTask
             Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
                 var advice = HealthAdvices.HealthAdvice.GetAdviceOfTheDay();
-                var ctl = new TileControl(advice);
-                var mainTile = ShellTile.ActiveTiles.First();
-                mainTile.Update(ctl.ToTile());
+                var tileData = new TileControl(advice).ToTile();
+                ShellTile.ActiveTiles.First().Update(tileData);
             });
             NotifyComplete();
         }

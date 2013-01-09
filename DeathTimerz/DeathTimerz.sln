@@ -13,9 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B3DDFB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateHealthAdvicesTask", "..\UpdateHealthAdvicesTask\UpdateHealthAdvicesTask.csproj", "{DD2E68F8-530F-4765-8CB9-FA61159BA09D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthAdvices", "HealthAdvices\HealthAdvices.csproj", "{1C70ABB7-2253-42A9-9778-0B5F331E2F19}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
@@ -27,6 +29,9 @@ Global
 		SccProjectUniqueName3 = ..\\UpdateHealthAdvicesTask\\UpdateHealthAdvicesTask.csproj
 		SccProjectName3 = ../UpdateHealthAdvicesTask
 		SccLocalPath3 = ..\\UpdateHealthAdvicesTask
+		SccProjectUniqueName4 = HealthAdvices\\HealthAdvices.csproj
+		SccProjectName4 = HealthAdvices
+		SccLocalPath4 = HealthAdvices
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +52,10 @@ Global
 		{DD2E68F8-530F-4765-8CB9-FA61159BA09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD2E68F8-530F-4765-8CB9-FA61159BA09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD2E68F8-530F-4765-8CB9-FA61159BA09D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C70ABB7-2253-42A9-9778-0B5F331E2F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C70ABB7-2253-42A9-9778-0B5F331E2F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C70ABB7-2253-42A9-9778-0B5F331E2F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C70ABB7-2253-42A9-9778-0B5F331E2F19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

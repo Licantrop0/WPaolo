@@ -1,15 +1,14 @@
-﻿using System;
+﻿using DeathTimerz.Localization;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Media;
 using System.Xml.Linq;
 using WPCommon.Controls.Model;
-using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows;
-using System.Reflection;
-using DeathTimerz.Localization;
 
 namespace DeathTimerz.ViewModel
 {
@@ -39,7 +38,7 @@ namespace DeathTimerz.ViewModel
         {
             var wc = new WebClient();
             wc.OpenReadAsync(new Uri(string.Format(
-                 "http://catalog.zune.net/v3.2/{0}/apps?q=WPME&clientType=WinMobile%207.1&store=zest",
+                 "http://marketplaceedgeservice.windowsphone.com/v3.2/{0}/apps?q=WPME&clientType=WinMobile+7.1&store=zest",
                  cultureName)));
 
             wc.OpenReadCompleted += (sender, e) =>
@@ -54,7 +53,7 @@ namespace DeathTimerz.ViewModel
                           let appId = n.Element(nsAtom + "id").Value.Substring(9)
                           where appId != AppId
                           select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
-                              string.Format("http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
+                              string.Format("http://cdn.marketplaceimages.windowsphone.com/v3.2/{0}/image/{1}?width=200&height=200&resize=true&contenttype=image/png",
                                   cultureName, imageId)));
             };
         }

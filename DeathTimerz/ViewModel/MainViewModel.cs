@@ -80,17 +80,17 @@ namespace DeathTimerz.ViewModel
             get { return AppContext.BirthDay.HasValue; }
         }
 
-        public Visibility BirthdayCakeVisibility
-        {
-            get
-            {
-                if (!BirthDayInserted)
-                    return Visibility.Collapsed;
+        //public Visibility BirthdayCakeVisibility
+        //{
+        //    get
+        //    {
+        //        if (!BirthDayInserted)
+        //            return Visibility.Collapsed;
 
-                return AppContext.BirthDay.Value.SameBirthDay(DateTime.Today) ?
-                    Visibility.Visible : Visibility.Collapsed;
-            }
-        }
+        //        return AppContext.BirthDay.Value.SameBirthDay(DateTime.Today) ?
+        //            Visibility.Visible : Visibility.Collapsed;
+        //    }
+        //}
 
         public bool CheckBirthday(DateTime value)
         {

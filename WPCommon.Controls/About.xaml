@@ -142,17 +142,18 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Button Tag="{Binding Id}" Click="App_Click"
-                                Width="200" Height="200" Margin="8"
+                                Width="200" Margin="8"
                                 toolkit:TiltEffect.IsTiltEnabled="True">
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Grid>
+                                        <StackPanel>
                                             <Image Source="{Binding Thumbnail}" />
-                                            <TextBlock Text="{Binding Name}"
-                                                       Foreground="White"
-                                                       VerticalAlignment="Bottom"
+                                            <Border Background="#CC000000" >
+                                                <TextBlock Text="{Binding Name}"
+                                                       Foreground="White" Margin="6"
                                                        FontSize="{StaticResource PhoneFontSizeSmall}" />
-                                        </Grid>
+                                            </Border>
+                                        </StackPanel>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>

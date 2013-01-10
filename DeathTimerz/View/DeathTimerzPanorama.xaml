@@ -37,7 +37,7 @@
                     <TextBlock Text="{Binding LocalizedResources.Suggestion, Source={StaticResource LocalizedStrings}}"
                                TextWrapping="Wrap" Style="{StaticResource RedChiller}" />
                 </controls:PanoramaItem.Header>
-                <ScrollViewer Margin="0,-30,0,80">
+                <ScrollViewer Name="SuggestionScrollViewer" Margin="0,-30,0,110">
                     <TextBlock Name="SuggestionTextBlock"
                                Text="{Binding SuggestionText}" 
                                TextWrapping="Wrap" Margin="10,0,0,0"
@@ -53,14 +53,11 @@
                     <TextBlock Text="{Binding LocalizedResources.Age, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource RedChiller}" />
                 </controls:PanoramaItem.Header>
-                <Grid  Margin="0,-30,0,80">
+                <Grid  Margin="0,-30,0,110">
                     <TextBlock Text="{Binding AgeText}" HorizontalAlignment="Left"
                                TextWrapping="Wrap" Margin="40,0,0,0"
                                FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
                                Style="{StaticResource RedChiller}" />
-                    <Image Visibility="{Binding BirthdayCakeVisibility}"
-                           VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                           Source="/DeathTimerz;component/Images/halloween_cake.png" Stretch="None" />
                 </Grid>
             </controls:PanoramaItem>
 
@@ -70,7 +67,7 @@
                     <TextBlock Text="{Binding LocalizedResources.TimeToDeath, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource RedChiller}" />
                 </controls:PanoramaItem.Header>
-                <Grid Margin="0,-30,0,122">
+                <Grid Name="TimeToDeathGrid" Margin="0,-30,0,152">
                     <ScrollViewer>
                         <TextBlock Text="{Binding EstimatedDeathAgeText}" HorizontalAlignment="Left"
                                    Margin="10,0" TextWrapping="Wrap"
@@ -137,7 +134,7 @@
             </controls:PanoramaItem>
         </controls:Panorama>
 
-        <StackPanel Name="AdPlaceHolder" Height="80"
+        <StackPanel Name="AdPlaceHolder" Margin="0,0,0,30"
                     VerticalAlignment="Bottom" />
     </Grid>
 

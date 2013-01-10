@@ -193,6 +193,8 @@ namespace DeathTimerz
 
         bool IsTestFilled()
         {
+            if (TestStackPanel.Children.Count == 0) return false;
+
             var RbGroups = from ctrl in TestStackPanel.Children
                            where ctrl is RadioButton
                            let rb = (RadioButton)ctrl

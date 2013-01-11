@@ -193,6 +193,9 @@ Anyway... knock on wood!</value>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>Pin to Start</value>
+  </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Do you want to stop the current music and play the gloomy background music of this app?</value>
   </data>

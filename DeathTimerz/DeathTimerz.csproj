@@ -94,11 +94,6 @@
   <ItemGroup>
     <Compile Include="AppContext.cs" />
     <Compile Include="Helper\Helpers.cs" />
-    <Compile Include="Localization\HealthAdvices.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HealthAdvices.resx</DependentUpon>
-    </Compile>
     <Compile Include="Localization\Test1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -206,12 +201,6 @@
       <SubType>Designer</SubType>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Localization\HealthAdvices.fr-FR.resx" />
-    <EmbeddedResource Include="Localization\HealthAdvices.it-IT.resx" />
-    <EmbeddedResource Include="Localization\HealthAdvices.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>HealthAdvices.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Test1.fr-FR.resx" />
     <EmbeddedResource Include="Localization\Test1.it-IT.resx" />

@@ -193,6 +193,9 @@ De toute façon... touche du bois!</value>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>Ajouter à l'écran d'accueil</value>
+  </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Veux-tu arrêter ta musique pour écouter la lugubre musique de cette app?</value>
   </data>

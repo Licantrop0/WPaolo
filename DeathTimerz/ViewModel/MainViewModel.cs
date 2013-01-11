@@ -58,6 +58,9 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
+                if (ShellTile.ActiveTiles.Count() == 2)
+                    return Visibility.Collapsed;
+
                 if (!IsolatedStorageSettings.ApplicationSettings.Contains("is_pin_suggestion_visible"))
                     IsolatedStorageSettings.ApplicationSettings["is_pin_suggestion_visible"] = true;
                 return (bool)IsolatedStorageSettings.ApplicationSettings["is_pin_suggestion_visible"] ?

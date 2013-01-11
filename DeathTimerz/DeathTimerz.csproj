@@ -157,6 +157,9 @@
     <Content Include="AppResLib.dll.0409.mui" />
     <Content Include="AppResLib.dll.0410.mui" />
     <Content Include="AppResLib.dll.040c.mui" />
+    <Content Include="Toolkit.Content\appbar_pin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />

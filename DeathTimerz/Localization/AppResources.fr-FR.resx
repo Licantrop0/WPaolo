@@ -196,6 +196,9 @@ De toute façon... touche du bois!</value>
   <data name="PinToStart" xml:space="preserve">
     <value>Ajouter à l'écran d'accueil</value>
   </data>
+  <data name="PinToStartSuggestion" xml:space="preserve">
+    <value>Pin to Start to receive a daily health suggestion on your Start Screen!</value>
+  </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Veux-tu arrêter ta musique pour écouter la lugubre musique de cette app?</value>
   </data>

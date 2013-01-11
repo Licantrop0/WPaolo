@@ -296,6 +296,15 @@ namespace DeathTimerz.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pin to Start to receive a daily health suggestion on your Start Screen!.
+        /// </summary>
+        public static string PinToStartSuggestion {
+            get {
+                return ResourceManager.GetString("PinToStartSuggestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to stop the current music and play the gloomy background music of this app?.
         /// </summary>
         public static string PlayBackgroundMusic {

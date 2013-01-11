@@ -196,6 +196,9 @@ Anyway... knock on wood!</value>
   <data name="PinToStart" xml:space="preserve">
     <value>Pin to Start</value>
   </data>
+  <data name="PinToStartSuggestion" xml:space="preserve">
+    <value>Pin to Start to receive a daily health suggestion on your Start Screen!</value>
+  </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Do you want to stop the current music and play the gloomy background music of this app?</value>
   </data>

@@ -196,6 +196,9 @@ Comunque... toccati le palle!</value>
   <data name="PinToStart" xml:space="preserve">
     <value>Aggiungi a Start</value>
   </data>
+  <data name="PinToStartSuggestion" xml:space="preserve">
+    <value>Aggiungi a Start per ricevere un suggerimento per la salute sulla tua schermata Start</value>
+  </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Vuoi interrompere la musica corrente e riprodurre la lugubre musica di questa app?</value>
   </data>

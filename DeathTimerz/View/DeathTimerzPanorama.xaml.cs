@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Linq;
+using System.Windows.Media;
 
 namespace DeathTimerz
 {
@@ -36,21 +37,34 @@ namespace DeathTimerz
             if (AdPlaceHolder.Children.Count == 0)
             {
 #if DEBUG
-                var ad1 = new AdControl("test_client", "Image480_80", true) { Height = 80, Width = 480 };
+                var ad1 = new AdControl("test_client", "Image480_80", true)
+                {
+                    Height = 80,
+                    Width = 480,
+                    
+                };
 #else
                 var ad1 = new AdControl("d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2",
-                    "10022419", true) { Height = 80, Width = 480 };
+                    "10022419", true) { Height = 80, Width = 480, IsAutoRefreshEnabled= false };
 #endif
 
                 ad1.ErrorOccurred += ad1_ErrorOccurred;
-                AdPlaceHolder.Children.Add(ad1);
+                ad1.AdRefreshed += ad1_AdRefreshed;
+
             }
 
             base.OnNavigatedTo(e);
         }
 
+        void ad1_AdRefreshed(object sender, EventArgs e)
+        {
+            AdPlaceHolder.Children.Add((UIElement)sender);
+        }
+
         void ad1_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
         {
+            //AdPlaceHolder.Background = new SolidColorBrush(Colors.Blue);
+            //AdPlaceHolder.Height = 0;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -58,7 +72,6 @@ namespace DeathTimerz
             AdPlaceHolder.Children.Clear();
             base.OnNavigatedFrom(e);
         }
-
 
         private void MainPanorama_Loaded(object sender, RoutedEventArgs e)
         {

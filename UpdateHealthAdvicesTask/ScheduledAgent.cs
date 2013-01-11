@@ -68,7 +68,10 @@ namespace UpdateHealthAdvicesTask
                 WriteableBitmap wbmp = new TileControl(advice).ToTile();
                 wbmp.SaveJpeg(file, 336, 336, 0, 80);
                 var tileData = new StandardTileData() { BackBackgroundImage = new Uri("isostore:" + TilePath) };
-                ShellTile.ActiveTiles.First().Update(tileData);
+                foreach (var tile in ShellTile.ActiveTiles)
+                {
+                    tile.Update(tileData);
+                }
             }
         }
 

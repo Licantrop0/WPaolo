@@ -55,7 +55,7 @@ namespace UpdateHealthAdvicesTask
             NotifyComplete();
         }
 
-        private void CreateTile()
+        public static void CreateTile()
         {
             using (var iss = IsolatedStorageFile.GetUserStoreForApplication())
             using (var file = iss.OpenFile(TilePath, System.IO.FileMode.OpenOrCreate))

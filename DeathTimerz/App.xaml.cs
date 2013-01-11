@@ -7,6 +7,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Scheduler;
 using System;
+using DeathTimerz.Localization;
 
 namespace DeathTimerz
 {
@@ -37,15 +38,24 @@ namespace DeathTimerz
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             SoundManager.Instance.RestoreMusicStatus();
-            //IsolatedStorageExplorer.Explorer.Start("localhost");
 
             var TASK_NAME = "UpdateHealthAdvicesTask";
-            if (ScheduledActionService.Find(TASK_NAME) == null)
+
+            var action = ScheduledActionService.Find("TestAgent") as PeriodicTask;
+            if (action != null) ScheduledActionService.Remove(action.Name);
+            PeriodicTask task = new PeriodicTask(TASK_NAME) { Description = AppResources.TaskDescription };
+
+            try
             {
-                PeriodicTask task = new PeriodicTask(TASK_NAME);
-                task.Description = "Daily tile update for DeathTimerz";
                 ScheduledActionService.Add(task);
             }
+            catch (InvalidOperationException)
+            {
+                //creo la tile manualmente se c'è un errore nello scheduled agent
+                UpdateHealthAdvicesTask.ScheduledAgent.CreateTile();
+            }
+
+
 #if DEBUG
                 // If we're debugging, attempt to start the task immediately 
                 ScheduledActionService.LaunchForTest(TASK_NAME, new TimeSpan(0, 0, 1));
@@ -66,7 +76,7 @@ namespace DeathTimerz
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
-        {            
+        {
         }
 
         // Code to execute when the application is closing (eg, user hit Back)

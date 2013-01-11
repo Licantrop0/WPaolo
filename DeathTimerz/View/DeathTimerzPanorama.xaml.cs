@@ -41,7 +41,7 @@ namespace DeathTimerz
                 {
                     Height = 80,
                     Width = 480,
-                    
+
                 };
 #else
                 var ad1 = new AdControl("d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2",
@@ -49,22 +49,15 @@ namespace DeathTimerz
 #endif
 
                 ad1.ErrorOccurred += ad1_ErrorOccurred;
-                ad1.AdRefreshed += ad1_AdRefreshed;
-
+                AdPlaceHolder.Children.Add(ad1);
             }
 
             base.OnNavigatedTo(e);
         }
 
-        void ad1_AdRefreshed(object sender, EventArgs e)
-        {
-            AdPlaceHolder.Children.Add((UIElement)sender);
-        }
-
         void ad1_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
         {
-            //AdPlaceHolder.Background = new SolidColorBrush(Colors.Blue);
-            //AdPlaceHolder.Height = 0;
+            AdPlaceHolder.Height = 0;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -75,7 +68,9 @@ namespace DeathTimerz
 
         private void MainPanorama_Loaded(object sender, RoutedEventArgs e)
         {
-            MainPanorama_SelectionChanged(sender, null);
+            SuggestionGrid.Margin = PinToStartAppBarButton.IsEnabled ?
+                new Thickness(0, -30, 0, 72) :
+                new Thickness(0, -30, 0, 30);
         }
 
         private void MainPanorama_SelectionChanged(object sender, SelectionChangedEventArgs e)

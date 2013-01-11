@@ -194,10 +194,10 @@ De toute façon... touche du bois!</value>
     <value>Ok</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
-    <value>Ajouter à l'écran d'accueil</value>
+    <value>Épingler à l'écran d'accueil</value>
   </data>
   <data name="PinToStartSuggestion" xml:space="preserve">
-    <value>Pin to Start to receive a daily health suggestion on your Start Screen!</value>
+    <value>Épingler à l'écran d'accueil pour y recevoir un conseil santé quotidien</value>
   </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Veux-tu arrêter ta musique pour écouter la lugubre musique de cette app?</value>
@@ -218,10 +218,13 @@ De toute façon... touche du bois!</value>
     <value>Options</value>
   </data>
   <data name="Suggestion" xml:space="preserve">
-    <value>Suggestion</value>
+    <value>Conseil santé</value>
   </data>
   <data name="TakeTest" xml:space="preserve">
     <value>Fais le test!</value>
+  </data>
+  <data name="TaskDescription" xml:space="preserve">
+    <value>Quotidien Vignettes dynamiques pour l'Horloge de la Mort</value>
   </data>
   <data name="Test1" xml:space="preserve">
     <value>Physiques</value>

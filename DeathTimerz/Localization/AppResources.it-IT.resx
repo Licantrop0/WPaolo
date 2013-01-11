@@ -223,6 +223,9 @@ Comunque... toccati le palle!</value>
   <data name="TakeTest" xml:space="preserve">
     <value>Fai il test!</value>
   </data>
+  <data name="TaskDescription" xml:space="preserve">
+    <value>Aggiornamento giornaliero della Tile per L'Orologio della Morte</value>
+  </data>
   <data name="Test1" xml:space="preserve">
     <value>Fisico</value>
   </data>

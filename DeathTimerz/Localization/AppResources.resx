@@ -223,6 +223,9 @@ Anyway... knock on wood!</value>
   <data name="TakeTest" xml:space="preserve">
     <value>Take the test!</value>
   </data>
+  <data name="TaskDescription" xml:space="preserve">
+    <value>Daily tile update for DeathTimerz</value>
+  </data>
   <data name="Test1" xml:space="preserve">
     <value>Physical</value>
   </data>

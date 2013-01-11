@@ -377,6 +377,15 @@ namespace DeathTimerz.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Daily tile update for DeathTimerz.
+        /// </summary>
+        public static string TaskDescription {
+            get {
+                return ResourceManager.GetString("TaskDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Physical.
         /// </summary>
         public static string Test1 {

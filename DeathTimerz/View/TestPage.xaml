@@ -39,7 +39,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="False" 
                               ForegroundColor="#FFBE0000"
-                              BackgroundColor="#FC171717"
+                              BackgroundColor="#FF171717"
                               IsMenuEnabled="False" />
     </phone:PhoneApplicationPage.ApplicationBar>
 

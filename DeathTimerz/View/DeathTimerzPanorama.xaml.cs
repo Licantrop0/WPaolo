@@ -38,14 +38,10 @@ namespace DeathTimerz
             {
 #if DEBUG
                 var ad1 = new AdControl("test_client", "Image480_80", true)
-                {
-                    Height = 80,
-                    Width = 480,
-
-                };
+                { Height = 80, Width = 480 };
 #else
                 var ad1 = new AdControl("d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2",
-                    "10022419", true) { Height = 80, Width = 480, IsAutoRefreshEnabled= false };
+                    "10022419", true) { Height = 80, Width = 480 };
 #endif
 
                 ad1.ErrorOccurred += ad1_ErrorOccurred;

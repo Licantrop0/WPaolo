@@ -64,11 +64,11 @@ namespace UpdateHealthAdvicesTask
                 //avoid unnecessary operations (the tile changes only once a day)
                 var lastWrite = iss.GetLastWriteTime(TilePath).DayOfYear;
                 if (lastWrite != DateTime.Now.DayOfYear || file.Length == 0)
-                    CreateTile(file);
+                    UpdateTiles(file);
             }
         }
 
-        private static void CreateTile(IsolatedStorageFileStream file)
+        private static void UpdateTiles(IsolatedStorageFileStream file)
         {
             string advice = HealthAdvices.HealthAdvice.GetAdviceOfTheDay();
             WriteableBitmap wbmp = new TileControl(advice).ToTile();

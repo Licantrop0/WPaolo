@@ -1,6 +1,7 @@
 ﻿using Microsoft.Phone.Scheduler;
 using Microsoft.Phone.Shell;
 using System;
+using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
@@ -51,29 +52,29 @@ namespace UpdateHealthAdvicesTask
         /// </remarks>
         protected override void OnInvoke(ScheduledTask task)
         {
-            Deployment.Current.Dispatcher.BeginInvoke(CreateTile);
+            Deployment.Current.Dispatcher.BeginInvoke(WriteFile);
             NotifyComplete();
         }
 
-        public static void CreateTile()
+        public static void WriteFile()
         {
             using (var iss = IsolatedStorageFile.GetUserStoreForApplication())
-            using (var file = iss.OpenFile(TilePath, System.IO.FileMode.OpenOrCreate))
+            using (var file = iss.OpenFile(TilePath, FileMode.OpenOrCreate))
             {
                 //avoid unnecessary operations (the tile changes only once a day)
-                var lastWrite = iss.GetLastWriteTime(TilePath).AddMinutes(-1);
-                if (lastWrite > DateTime.Now.AddDays(-1) && file.Length != 0) return;
-
-                var advice = HealthAdvices.HealthAdvice.GetAdviceOfTheDay();
-                WriteableBitmap wbmp = new TileControl(advice).ToTile();
-                wbmp.SaveJpeg(file, 336, 336, 0, 80);
-                var tileData = new StandardTileData() { BackBackgroundImage = new Uri("isostore:" + TilePath) };
-                foreach (var tile in ShellTile.ActiveTiles)
-                {
-                    tile.Update(tileData);
-                }
+                var lastWrite = iss.GetLastWriteTime(TilePath).DayOfYear;
+                if (lastWrite != DateTime.Now.DayOfYear || file.Length == 0)
+                    CreateTile(file);
             }
         }
 
+        private static void CreateTile(IsolatedStorageFileStream file)
+        {
+            string advice = HealthAdvices.HealthAdvice.GetAdviceOfTheDay();
+            WriteableBitmap wbmp = new TileControl(advice).ToTile();
+            wbmp.SaveJpeg(file, 336, 336, 0, 80);
+            var tileData = new StandardTileData() { BackBackgroundImage = new Uri("isostore:" + TilePath) };
+            foreach (var tile in ShellTile.ActiveTiles) tile.Update(tileData);
+        }
     }
 }

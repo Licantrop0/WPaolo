@@ -41,7 +41,7 @@ namespace DeathTimerz
 
             var TASK_NAME = "UpdateHealthAdvicesTask";
 
-            var action = ScheduledActionService.Find("TestAgent") as PeriodicTask;
+            var action = ScheduledActionService.Find(TASK_NAME) as PeriodicTask;
             if (action != null) ScheduledActionService.Remove(action.Name);
             PeriodicTask task = new PeriodicTask(TASK_NAME) { Description = AppResources.TaskDescription };
 

@@ -167,33 +167,6 @@ namespace DeathTimerz.ViewModel
             }
         }
 
-        public string EstimatedDeathAgeText
-        {
-            get
-            {
-                if (!BirthDayInserted) return AppResources.InsertBirthday;
-                if (!AppContext.TimeToDeath.HasValue) return string.Empty;
-
-                var EstimateDeathAge = AppContext.TimeToDeath.Value +
-                    ExtensionMethods.TimeSpanFromYears(AppContext.AverageAge);
-
-                var EstimatedDeathDate = BirthDay.Value + EstimateDeathAge;
-
-                if (EstimatedDeathDate > DateTime.Now)
-                {
-                    var TotalDaysLived = (DateTime.Now - BirthDay.Value).TotalDays;
-                    var TotalLifeDays = (EstimatedDeathDate - BirthDay.Value).TotalDays;
-                    return string.Format(AppResources.WillDie,
-                        EstimatedDeathDate,
-                        EstimateDeathAge.TotalDays / AppContext.AverageYear,
-                        TotalDaysLived / TotalLifeDays * 100,
-                        TotalLifeDays - TotalDaysLived);
-                }
-                else
-                    return AppResources.YetAlive;
-            }
-        }
-
         public Visibility TestButtonVisibility
         {
             get

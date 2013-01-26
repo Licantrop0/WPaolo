@@ -272,7 +272,7 @@ namespace DeathTimerz
 
             SaveAnswers();
             StimateDeathAge();
-            NavigationService.GoBack();
+            NavigationService.Navigate(new Uri("/View/EpigraphPage.xaml", UriKind.Relative));
         }
     }
 }

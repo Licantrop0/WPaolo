@@ -78,7 +78,8 @@ namespace DeathTimerz
                 ApplicationBar.Mode = ApplicationBarMode.Default;
                 SuggestionGrid.Margin = new Thickness(0, -30, 0, 72);
             }
-            else if (MainPanorama.SelectedIndex == 2) //Death-Test
+            else if (MainPanorama.SelectedIndex == 2 &&
+                AppContext.TimeToDeath.HasValue) //Death-Test
             {
                 ApplicationBar.Buttons.Add(EditTestAppBarButton);
                 ApplicationBar.Mode = ApplicationBarMode.Default;

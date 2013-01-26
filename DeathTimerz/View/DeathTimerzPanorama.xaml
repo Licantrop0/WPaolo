@@ -18,6 +18,7 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:MainViewModel x:Key="MainVM" />
+        <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibility" />
     </phone:PhoneApplicationPage.Resources>
 
     <controls:Panorama Name="MainPanorama" DataContext="{StaticResource MainVM}"
@@ -102,12 +103,13 @@
                                Style="{StaticResource RedChiller}" />
             </controls:PanoramaItem.Header>
             <Grid Name="TimeToDeathGrid" Margin="0,-30,0,0">
-                <ScrollViewer>
-                    <TextBlock Text="{Binding EstimatedDeathAgeText}" HorizontalAlignment="Left"
-                                   Margin="10,0" TextWrapping="Wrap"
-                                   FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
-                                   Style="{StaticResource RedChiller}"/>
-                </ScrollViewer>
+                <TextBlock Text="{Binding LocalizedResources.InsertBirthday,
+                    Source={StaticResource LocalizedStrings}}"
+                           Visibility="{Binding BirthDayInserted,
+                    Converter={StaticResource BooleanVisibility}}"
+                           TextWrapping="Wrap" Margin="40,0,0,0"
+                           FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
+                           Style="{StaticResource RedChiller}" />
 
                 <Button Content="{Binding LocalizedResources.TakeTest,
                             Source={StaticResource LocalizedStrings}}"

@@ -23,7 +23,6 @@
                 <Button Style="{StaticResource CartellinoGiallo}" Click="Button_Click" />
                 <Button Style="{StaticResource CartellinoRosso}"  Click="Button_Click" />
             </StackPanel>
-            
         </ScrollViewer>
     </Grid>
 

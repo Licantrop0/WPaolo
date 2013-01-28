@@ -146,14 +146,14 @@
                                 toolkit:TiltEffect.IsTiltEnabled="True">
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <StackPanel>
+                                        <Grid>
                                             <Image Source="{Binding Thumbnail}" />
-                                            <Border Background="#CC000000" >
+                                            <Border Background="#7F000000" VerticalAlignment="Bottom" >
                                                 <TextBlock Text="{Binding Name}"
                                                        Foreground="White" Margin="6"
                                                        FontSize="{StaticResource PhoneFontSizeSmall}" />
                                             </Border>
-                                        </StackPanel>
+                                        </Grid>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>

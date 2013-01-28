@@ -51,7 +51,7 @@
 
     <Application.ApplicationLifetimeObjects>
         <wph:XNAAsyncDispatcher
-            xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers" />
+            xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher" />
         <shell:PhoneApplicationService 
             Launching="Application_Launching" Closing="Application_Closing" 
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>

@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Cartellino.Helpers;
+using Microsoft.Phone.Controls;
+using Microsoft.Xna.Framework.Audio;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using Cartellino.Helpers;
-using Microsoft.Phone.Controls;
-using Microsoft.Xna.Framework.Audio;
-using System.Collections.Generic;
 
 namespace Cartellino
 {

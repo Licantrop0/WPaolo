@@ -1157,6 +1157,7 @@
     <Names>Bolívar</Names>
     <Names>Club Bolivar</Names>
     <Names>Bolívar</Names>
+    <Names>Bolivar</Names>
   </Shield>
   <Shield Level="10" Id="club-nacional" Image="club-nacional.png" Hint="Uruguay" IsValidated="false">
     <Names>Club Nacional de Football</Names>
@@ -1179,7 +1180,7 @@
   </Shield>
   <Shield Level="10" Id="getafe" Image="getafe.png" Hint="Spain" IsValidated="false">
     <Names>Getafe Club de Fútbol</Names>
-    <Names>Getafe </Names>
+    <Names>Getafe</Names>
     <Names>Getafe football club</Names>
   </Shield>
   <Shield Level="10" Id="gimnastic" Image="gimnastic.png" Hint="Spain" IsValidated="false">

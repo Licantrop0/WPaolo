@@ -154,6 +154,10 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="..\Scudetti\Data\ShieldsV4.xml">
+      <Link>Data\ShieldsV4.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Fonts\Computerfont.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -164,11 +168,6 @@
     <None Include="SocceramaWin8_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Scudetti\Data\ShieldsV3.xml">
-      <Link>Data\ShieldsV3.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Assets\hint.png" />
     <Content Include="Assets\hintdisabled.png" />
     <Content Include="Assets\hintpressed.png" />

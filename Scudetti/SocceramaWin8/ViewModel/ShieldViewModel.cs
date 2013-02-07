@@ -131,6 +131,7 @@ namespace SocceramaWin8.ViewModel
             }
             else if (CurrentShield.Names.Any(name => CompareName(name, InputShieldName)))
             {
+                ShieldService.Save(AppContext.Shields);
                 SoundManager.PlayValidated();
                 CurrentShield.IsValidated = true;
 

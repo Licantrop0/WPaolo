@@ -12,15 +12,23 @@ namespace Scudetti.Model
 {
     public static class ShieldService
     {
-        const string ShieldFileName = "ShieldsV3.xml";
+        private enum StorageType
+        {
+            Local,
+            Roaming
+        }
+
+        const string ShieldFileName = "ShieldsV4.xml";
         static StorageFolder roamingFolder = ApplicationData.Current.RoamingFolder;
+        static StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+
         static XmlSerializer serializer = new XmlSerializer(typeof(Shield[]));
 
         public static async Task Save(IEnumerable<Shield> scudetti)
         {
             try
             {
-                var file = await roamingFolder.CreateFileAsync(ShieldFileName, CreationCollisionOption.ReplaceExisting);
+                var file = await localFolder.CreateFileAsync(ShieldFileName, CreationCollisionOption.ReplaceExisting);
                 using (var stream = await file.OpenStreamForWriteAsync())
                 {
                     serializer.Serialize(stream, scudetti);
@@ -29,16 +37,16 @@ namespace Scudetti.Model
             }
             catch (IOException)
             {
-                throw;
+                //ouch... riproviamo la prossima volta
             }
         }
 
         public static async Task<IEnumerable<Shield>> Load()
         {
 #if !DEBUG
-            if (await FileExist(ShieldFileName))
+            if (await FileExist(ShieldFileName, StorageType.Local))
             {
-                var file = await roamingFolder.GetFileAsync(ShieldFileName);
+                var file = await localFolder.GetFileAsync(ShieldFileName);
                 using (var stream = await file.OpenStreamForReadAsync())
                 {
                     var obj = (Shield[])serializer.Deserialize(stream);
@@ -47,22 +55,28 @@ namespace Scudetti.Model
                 }
             }
 
-            if (await FileExist("ShieldsV2.xml"))
-                return await Upgrade("ShieldsV2.xml");
+            if (await FileExist("ShieldsV3.xml", StorageType.Roaming))
+                return await Upgrade("ShieldsV3.xml", StorageType.Roaming);
 
-            if (await FileExist("Shields.xml"))
-                return await Upgrade("Shields.xml");
+            if (await FileExist("ShieldsV2.xml", StorageType.Roaming))
+                return await Upgrade("ShieldsV2.xml", StorageType.Roaming);
+
+            if (await FileExist("Shields.xml", StorageType.Roaming))
+                return await Upgrade("Shields.xml", StorageType.Roaming);
 
 #endif
             return await GetNew();
         }
 
 
-        private static async Task<bool> FileExist(string fileName)
+        private static async Task<bool> FileExist(string fileName, StorageType type)
         {
             try
             {
-                await roamingFolder.GetFileAsync(fileName);
+                if(type == StorageType.Local)
+                    await localFolder.GetFileAsync(fileName);
+                else
+                    await roamingFolder.GetFileAsync(fileName);
                 return true;
             }
             catch (FileNotFoundException)
@@ -71,8 +85,8 @@ namespace Scudetti.Model
             }
             catch (IOException)
             {
-                //Unable to load contents of file
-                throw;
+                return false;
+                //throw
             }
         }
 
@@ -90,10 +104,13 @@ namespace Scudetti.Model
         }
 
 
-        private static async Task<IEnumerable<Shield>> Upgrade(string oldFile)
+        private static async Task<IEnumerable<Shield>> Upgrade(string oldFile, StorageType type)
         {
             Shield[] oldShields;
-            var file = await roamingFolder.GetFileAsync(oldFile);
+            var file = type == StorageType.Local ?
+                await localFolder.GetFileAsync(oldFile) :
+                await roamingFolder.GetFileAsync(oldFile);
+
             using (var stream = await file.OpenStreamForReadAsync())
             {
                 oldShields = (Shield[])serializer.Deserialize(stream);

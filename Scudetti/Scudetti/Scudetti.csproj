@@ -220,7 +220,7 @@
     <Content Include="Toolkit.Content\ApplicationBar.Check.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Data\ShieldsV3.xml">
+    <Resource Include="Data\ShieldsV4.xml">
       <SubType>Designer</SubType>
     </Resource>
     <BlendEmbeddedFont Include="Fonts\Computerfont.ttf">

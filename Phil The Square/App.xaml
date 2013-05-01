@@ -13,8 +13,8 @@
 
 		<sys:FontFamily x:Key="DefaultFont"
 					xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows" >
-			/FillTheSquare;component/Fonts/Fonts.zip#Brecht
-		</sys:FontFamily>
+            /FillTheSquare;component/Fonts/Fonts.zip#Brecht
+        </sys:FontFamily>
 
 
 		<LinearGradientBrush x:Key="BorderBackgroundBrush"

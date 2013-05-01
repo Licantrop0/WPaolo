@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en" target-language="zh-Hans" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="Phil The Square" product-version="1.4.0" build-num="0">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="1.2.2017.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="Resx">
+        <trans-unit id="Resx/About" translate="yes" xml:space="preserve">
+          <source>About</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">关于</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppName" translate="yes" xml:space="preserve">
+          <source>Phil The Square</source>
+          <target state="translated">方块魔术</target>
+        </trans-unit>
+        <trans-unit id="Resx/BuyNow" translate="yes" xml:space="preserve">
+          <source>Buy this App now</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">现在购买这款应用</target>
+        </trans-unit>
+        <trans-unit id="Resx/Congratulations" translate="yes" xml:space="preserve">
+          <source>Congratulations!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">祝贺你 ！</target>
+        </trans-unit>
+        <trans-unit id="Resx/Date" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">日期</target>
+        </trans-unit>
+        <trans-unit id="Resx/PleaseInsertName" translate="yes" xml:space="preserve">
+          <source>Please insert your Name</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">请插入您的姓名</target>
+        </trans-unit>
+        <trans-unit id="Resx/Easy" translate="yes" xml:space="preserve">
+          <source>Easy</source>
+          <target state="translated">很间单</target>
+        </trans-unit>
+        <trans-unit id="Resx/GetOtherApps" translate="yes" xml:space="preserve">
+          <source>Get other apps from WPME</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">从 WPME 获取其他应用程序</target>
+        </trans-unit>
+        <trans-unit id="Resx/Hard" translate="yes" xml:space="preserve">
+          <source>Hard</source>
+          <target state="translated">高难度</target>
+        </trans-unit>
+        <trans-unit id="Resx/InsertName" translate="yes" xml:space="preserve">
+          <source>Insert your Name:</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">插入您的姓名：</target>
+        </trans-unit>
+        <trans-unit id="Resx/Instructions" translate="yes" xml:space="preserve">
+          <source>Instructions</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">说明</target>
+        </trans-unit>
+        <trans-unit id="Resx/InstructionsText1" translate="yes" xml:space="preserve">
+          <source>Fill the square with numbers sequentially</source>
+          <target state="translated">按顺序用数字填充方块</target>
+        </trans-unit>
+        <trans-unit id="Resx/InstructionsText2" translate="yes" xml:space="preserve">
+          <source>Allowed moves:
+• 3 squares to the left, right, up, down
+• 2 squares in diagonal</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">允许的移动：
+• 3 方块向左、 右、 上、 下
+• 2 正方形的对角线</target>
+        </trans-unit>
+        <trans-unit id="Resx/Name" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">名称</target>
+        </trans-unit>
+        <trans-unit id="Resx/NoMoreMoves" translate="yes" xml:space="preserve">
+          <source>No more moves available</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">没有更多可用的移动</target>
+        </trans-unit>
+        <trans-unit id="Resx/PlayBackgroundMusic" translate="yes" xml:space="preserve">
+          <source>Do you want to stop the current music and play the background music of this app?</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">你想要停止当前的音乐和播放背景音乐的这个应用程序吗？</target>
+        </trans-unit>
+        <trans-unit id="Resx/Records" translate="yes" xml:space="preserve">
+          <source>Records</source>
+          <target state="translated">等级</target>
+        </trans-unit>
+        <trans-unit id="Resx/Reset" translate="yes" xml:space="preserve">
+          <source>Reset</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">重置</target>
+        </trans-unit>
+        <trans-unit id="Resx/ElapsedTime" translate="yes" xml:space="preserve">
+          <source>Elapsed Time: {0:0.0}</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">运行时间： {0:0.0}</target>
+        </trans-unit>
+        <trans-unit id="Resx/SeeRecords" translate="yes" xml:space="preserve">
+          <source>See Records</source>
+          <target state="translated">查看等级</target>
+        </trans-unit>
+        <trans-unit id="Resx/Size" translate="yes" xml:space="preserve">
+          <source>Size</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">大小</target>
+        </trans-unit>
+        <trans-unit id="Resx/Time" translate="yes" xml:space="preserve">
+          <source>Time</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">时间</target>
+        </trans-unit>
+        <trans-unit id="Resx/Settings" translate="yes" xml:space="preserve">
+          <source>Settings</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">设置</target>
+        </trans-unit>
+        <trans-unit id="Resx/Music" translate="yes" xml:space="preserve">
+          <source>Music</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">音乐</target>
+        </trans-unit>
+        <trans-unit id="Resx/Hints" translate="yes" xml:space="preserve">
+          <source>Hints</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">提示</target>
+        </trans-unit>
+        <trans-unit id="Resx/HomeMusic" translate="yes" xml:space="preserve">
+          <source>Home Music</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">首页音乐</target>
+        </trans-unit>
+        <trans-unit id="Resx/SoundEffects" translate="yes" xml:space="preserve">
+          <source>Sound Effects</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">声音效果</target>
+        </trans-unit>
+        <trans-unit id="Resx/Philled" translate="yes" xml:space="preserve">
+          <source>I Philled the {0} square in {1} seconds!
+Could you do better?</source>
+          <target state="translated">我赢了{0} 的游戏 {1} 秒 ！
+你可以做得更好吗？</target>
+        </trans-unit>
+        <trans-unit id="Resx/ShareOnFacebook" translate="yes" xml:space="preserve">
+          <source>Share on Facebook!</source>
+          <target state="translated">分享！</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

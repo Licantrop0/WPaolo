@@ -126,12 +126,6 @@
   <data name="Congratulations" xml:space="preserve">
     <value>Bravo!</value>
   </data>
-  <data name="Date" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="DontMakePhilSad" xml:space="preserve">
-    <value>Ou Phil sera triste!</value>
-  </data>
   <data name="Easy" xml:space="preserve">
     <value>Facile</value>
   </data>
@@ -143,9 +137,6 @@
   </data>
   <data name="InsertName" xml:space="preserve">
     <value>Votre nom:</value>
-  </data>
-  <data name="Instructions" xml:space="preserve">
-    <value>Instructions</value>
   </data>
   <data name="InstructionsText1" xml:space="preserve">
     <value>Remplir le carre' avec tous les numeros</value>
@@ -164,14 +155,8 @@
   <data name="PleaseInsertName" xml:space="preserve">
     <value>Votre nom, s'il vous plait:</value>
   </data>
-  <data name="PhilWillBeHappy" xml:space="preserve">
-    <value>et Phil sera toujour joyeux et vous pouvez jouer sans limitations!</value>
-  </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
     <value>Voulez vous couper la musique et utiliser celle de l’app?</value>
-  </data>
-  <data name="Records" xml:space="preserve">
-    <value>Records</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Nouveau</value>
@@ -185,17 +170,11 @@
   <data name="Size" xml:space="preserve">
     <value>Type</value>
   </data>
-  <data name="ThisIsADemo" xml:space="preserve">
-    <value>Ooops! Demo limite'..</value>
-  </data>
   <data name="Time" xml:space="preserve">
     <value>Temp</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Paramètres</value>
-  </data>
-  <data name="Music" xml:space="preserve">
-    <value>Music</value>
   </data>
   <data name="Hints" xml:space="preserve">
     <value>Suggestions</value>

@@ -117,87 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>方块魔术</value>
+  </data>
   <data name="BuyNow" xml:space="preserve">
-    <value>acquista questa app!</value>
+    <value>现在购买这款应用</value>
   </data>
   <data name="Congratulations" xml:space="preserve">
-    <value>Congratulazioni!</value>
+    <value>祝贺你 ！</value>
   </data>
   <data name="Date" xml:space="preserve">
-    <value>Data</value>
+    <value>日期</value>
   </data>
   <data name="PleaseInsertName" xml:space="preserve">
-    <value>Per favore inserisci il tuo nome</value>
+    <value>请插入您的姓名</value>
   </data>
   <data name="Easy" xml:space="preserve">
-    <value>Facile</value>
+    <value>很间单</value>
   </data>
   <data name="GetOtherApps" xml:space="preserve">
-    <value>Scopri altre App di WPME</value>
+    <value>从 WPME 获取其他应用程序</value>
   </data>
   <data name="Hard" xml:space="preserve">
-    <value>Difficile</value>
+    <value>高难度</value>
   </data>
   <data name="InsertName" xml:space="preserve">
-    <value>Inserisci il tuo Nome:</value>
+    <value>插入您的姓名：</value>
   </data>
   <data name="Instructions" xml:space="preserve">
-    <value>Istruzioni</value>
+    <value>说明</value>
   </data>
   <data name="InstructionsText1" xml:space="preserve">
-    <value>Riempi il quadrato
-con i numeri in sequenza</value>
+    <value>按顺序用数字填充方块</value>
   </data>
   <data name="InstructionsText2" xml:space="preserve">
-    <value>Mosse permesse:
-• A sinistra, destra, su, giu'
-   spostati di 3 caselle
-• In diagonale solo di 2</value>
+    <value>允许的移动：
+• 3 方块向左、 右、 上、 下
+• 2 正方形的对角线</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Nome</value>
+    <value>名称</value>
   </data>
   <data name="NoMoreMoves" xml:space="preserve">
-    <value>Non ci sono piu' mosse disponibili</value>
+    <value>没有更多可用的移动</value>
   </data>
   <data name="PlayBackgroundMusic" xml:space="preserve">
-    <value>Vuoi interrompere la musica corrente per sentire quella dell'applicazione?</value>
+    <value>你想要停止当前的音乐和播放背景音乐的这个应用程序吗？</value>
   </data>
   <data name="Records" xml:space="preserve">
-    <value>Record</value>
+    <value>等级</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>重置</value>
   </data>
   <data name="ElapsedTime" xml:space="preserve">
-    <value>Tempo: {0:0.0}</value>
+    <value>运行时间： {0:0.0}</value>
   </data>
   <data name="SeeRecords" xml:space="preserve">
-    <value>Guarda i Record</value>
+    <value>查看等级</value>
   </data>
   <data name="Size" xml:space="preserve">
-    <value>Tipo</value>
+    <value>大小</value>
   </data>
   <data name="Time" xml:space="preserve">
-    <value>Tempo</value>
+    <value>时间</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Impostazioni</value>
+    <value>设置</value>
   </data>
   <data name="Music" xml:space="preserve">
-    <value>Musica</value>
+    <value>音乐</value>
   </data>
   <data name="Hints" xml:space="preserve">
-    <value>Suggerimenti</value>
+    <value>提示</value>
   </data>
   <data name="HomeMusic" xml:space="preserve">
-    <value>Musica Menu</value>
+    <value>首页音乐</value>
   </data>
   <data name="SoundEffects" xml:space="preserve">
-    <value>Effetti Sonori</value>
+    <value>声音效果</value>
   </data>
   <data name="Philled" xml:space="preserve">
-    <value>Ho completato il quadrato {0} in {1} secondi!
-Riusciresti a fare di meglio?!</value>
+    <value>我赢了{0} 的游戏 {1} 秒 ！
+你可以做得更好吗？</value>
   </data>
   <data name="ShareOnFacebook" xml:space="preserve">
-    <value>Condividi su Facebook!</value>
+    <value>分享！</value>
   </data>
 </root>

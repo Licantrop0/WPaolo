@@ -3,8 +3,8 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WPCommon.Helpers;
-//using OpenXLive.Silverlight;
 using System;
+using System.Threading;
 
 namespace FillTheSquare
 {
@@ -28,7 +28,7 @@ namespace FillTheSquare
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                //Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -46,15 +46,10 @@ namespace FillTheSquare
             NonLinearNavigationService.Instance.Initialize(RootFrame);
         }
 
-        //public static XLiveSLFormManager FormManager { get; internal set; }
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            //FormManager = new XLiveSLFormManager(this, "vwnHyxGk3c8fJATEQ9SRKWV6");
-            //StartupPage.BackgroundPath = "/FillTheSquare;component/Phil/sfondo_quadri_color2.jpg";
-            //StartupPage.NewGameButtonClick += (s1, e1) => { RootFrame.Navigate(new Uri("/MainPage.xaml", UriKind.Relative)); };
-            //StartupPage.AboutButtonClick += (s1, e1) => { RootFrame.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative)); };
         }
 
 

@@ -16,7 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>en-US;it-IT;fr-FR</SupportedCultures>
+    <SupportedCultures>fr-FR;it-IT;zh-CN;zh-Hans</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>FillTheSquare.xap</XapFilename>
@@ -55,8 +55,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Advertising.Mobile, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.Advertising.Mobile, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e" />
@@ -201,14 +201,34 @@
   <ItemGroup>
     <EmbeddedResource Include="Localization\AppResources.fr-FR.resx">
       <SubType>Designer</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.fr-FR.xlf</DependentUpon>
+      <culture>fr-FR</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\AppResources.it-IT.resx">
       <SubType>Designer</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.it-IT.xlf</DependentUpon>
+      <culture>it-IT</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\AppResources.zh-CN.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.zh-CN.xlf</DependentUpon>
+      <culture>zh-CN</culture>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\AppResources.zh-Hans.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.zh-Hans.xlf</DependentUpon>
+      <culture>zh-Hans</culture>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +249,24 @@
       <Name>WPCommon.Helpers.XNAAsyncDispatcher</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <XliffResource Include="Localization\AppResources.fr-FR.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.fr-FR.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="Localization\AppResources.it-IT.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.it-IT.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="Localization\AppResources.zh-CN.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.zh-CN.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="Localization\AppResources.zh-Hans.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.zh-Hans.resx</LastGenOutput>
+    </XliffResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -242,4 +279,8 @@
   <ProjectExtensions />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\WindowsPhone\v7.0\Microsoft.Expression.Blend.WindowsPhone.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Label="MultilingualAppToolkitForWindowsPhone" Project="$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\v1.0\MultilingualPhoneBuild.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\v1.0\MultilingualPhoneBuild.targets')" />
+  <Target Name="BeforeBuild">
+    <MultilingualPhoneBuild Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\v1.0\MultilingualPhoneBuild.targets')" ContinueOnError="false" ResxFiles="@(EmbeddedResource)" XliffFiles="@(XliffResource)" BldOutputPath="$(IntermediateOutputPath)" BinOutputPath="bin\$(Configuration)" AppName="$(ProjectName)" />
+  </Target>
 </Project>

@@ -38,7 +38,7 @@ namespace FillTheSquare.ViewModel
         {
             var wc = new WebClient();
             wc.OpenReadAsync(new Uri(string.Format(
-                 "http://catalog.zune.net/v3.2/{0}/apps?q=WPME&clientType=WinMobile%207.1&store=zest",
+                 "http://marketplaceedgeservice.windowsphone.com/v3.2/{0}/apps?q=WPME&clientType=WinMobile+7.1&store=zest",
                  cultureName)));
 
             wc.OpenReadCompleted += (sender, e) =>
@@ -53,7 +53,7 @@ namespace FillTheSquare.ViewModel
                           let appId = n.Element(nsAtom + "id").Value.Substring(9)
                           where appId != AppId
                           select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
-                              string.Format("http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
+                              string.Format("http://cdn.marketplaceimages.windowsphone.com/v3.2/{0}/image/{1}?width=200&height=200&resize=true&contenttype=image/png",
                                   cultureName, imageId)));
             };
         }
@@ -87,6 +87,35 @@ namespace FillTheSquare.ViewModel
         public FontFamily DefaultFont { get; set; }
 
         public string CustomText { get; set; }
+
+        private FontFamily _customTextFontFamily;
+        public FontFamily CustomTextFontFamily
+        {
+            get { return _customTextFontFamily ?? DefaultFont; }
+            set { _customTextFontFamily = value; }
+        }
+
+        private double? _customTextFontSize;
+        public double CustomTextFontSize
+        {
+            get { return _customTextFontSize ?? MinFontSize; }
+            set { _customTextFontSize = value; }
+        }
+
+        private Brush _customTextForeground;
+        public Brush CustomTextForeground
+        {
+            get { return _customTextForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
+            set { _customTextForeground = value; }
+        }
+
+
+        private Thickness _appNameMargin = new Thickness(0);
+        public Thickness AppNameMargin
+        {
+            get { return _appNameMargin; }
+            set { _appNameMargin = value; }
+        }
 
         public ImageSource CustomLogo { get; set; }
 
@@ -142,7 +171,7 @@ namespace FillTheSquare.ViewModel
         { get { return WPCommon.Controls.Localization.AppResources.ContactUs; } }
 
         public string GetOtherAppsText
-        { get { return WPCommon.Controls.Localization.AppResources.GetOtherApps; } }
+        { get { return AppResources.GetOtherApps; } }
 
         public string OtherAppsText
         { get { return WPCommon.Controls.Localization.AppResources.OtherApps; } }

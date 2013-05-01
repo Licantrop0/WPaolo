@@ -57,11 +57,14 @@ namespace FillTheSquare
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (AdPlaceHolder.Children.Count == 0)
-                AdPlaceHolder.Children.Add(new AdControl(
+            if (!AdPlaceHolder.Children.Any())
+            {
+                var adControl = new AdControl(
                     "75c2778e-42d6-4d37-a5d4-c7c159716e13",
-                    "10022422", true) { Height = 80, Width = 480, });
-
+                    "10022422", true) { Height = 80, Width = 480, };
+                adControl.ErrorOccurred += adControl_ErrorOccurred;
+                AdPlaceHolder.Children.Add(adControl);
+            }
             if (Square.IsEmpty)
                 return;
 
@@ -87,6 +90,10 @@ namespace FillTheSquare
 
             else if (points.Length > 0)
                 sw.Start();
+        }
+
+        void adControl_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
+        {
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)

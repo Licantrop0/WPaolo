@@ -57,14 +57,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Advertising.Mobile, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
-      <HintPath>packages\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Phone.Reactive" />
     <Reference Include="Microsoft.Xna.Framework" />
@@ -136,7 +131,6 @@
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
     <Resource Include="Fonts\segoepr.ttf" />
-    <None Include="packages.config" />
     <None Include="Sounds\Ateo fasullo!.wav" />
     <None Include="Sounds\capra.wav" />
     <None Include="Sounds\e1crimine.wav" />
@@ -187,23 +181,23 @@
     <None Include="Sounds\È un crimine!.wav" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WPCommon.Controls\WPCommon.Controls.csproj">
+    <ProjectReference Include="..\WPCommon.Controls\WPCommon.Controls.csproj">
       <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
       <Name>WPCommon.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\WPCommon.Helpers.TrialManagement\WPCommon.Helpers.TrialManagement.csproj">
+    <ProjectReference Include="..\WPCommon.Helpers.TrialManagement\WPCommon.Helpers.TrialManagement.csproj">
       <Project>{157C676B-46A4-4099-936E-BBDFB93BB735}</Project>
       <Name>WPCommon.Helpers.TrialManagement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj">
+    <ProjectReference Include="..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj">
       <Project>{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}</Project>
       <Name>WPCommon.Helpers.XNAAsyncDispatcher</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\WPCommon.Helpers\WPCommon.Helpers.csproj">
+    <ProjectReference Include="..\WPCommon.Helpers\WPCommon.Helpers.csproj">
       <Project>{7CF377DB-129E-4C84-A23D-5758F01DC6F1}</Project>
       <Name>WPCommon.Helpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\WPCommon.ShakeGestures\WPCommon.ShakeGestures.csproj">
+    <ProjectReference Include="..\WPCommon.ShakeGestures\WPCommon.ShakeGestures.csproj">
       <Project>{F5CE25E6-CF76-43AE-BBB2-2C98B21BCCD8}</Project>
       <Name>WPCommon.ShakeGestures</Name>
     </ProjectReference>

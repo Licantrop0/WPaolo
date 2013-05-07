@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Phone.Tasks;
 using Microsoft.Advertising.Mobile.UI;
+using System.Threading;
 
 namespace WPCommon.Controls
 {
@@ -27,6 +28,10 @@ namespace WPCommon.Controls
         public About()
         {
             InitializeComponent();
+
+            //Remove Contact us pivot if China
+            if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "zh")
+                LayoutRoot.Items.RemoveAt(1);
         }
 
         //protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

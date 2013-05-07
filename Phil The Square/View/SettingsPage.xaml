@@ -27,14 +27,17 @@
             <toolkit:ToggleSwitch Header="{Binding LocalizedResources.Hints, Source={StaticResource LocalizedStrings}}"
                                   IsChecked="{Binding HintsEnabled, Mode=TwoWay}"
                                   Style="{StaticResource ToggleSwitchStyle}"
+                                  Content="{Binding HintsValue}"
                                   HeaderTemplate="{StaticResource HeaderToggleSwitchTemplate}"/>
             <toolkit:ToggleSwitch Header="{Binding LocalizedResources.HomeMusic, Source={StaticResource LocalizedStrings}}"
                                   IsChecked="{Binding MusicEnabled, Mode=TwoWay}"
                                   Style="{StaticResource ToggleSwitchStyle}"
+                                  Content="{Binding MusicValue}"
                                   HeaderTemplate="{StaticResource HeaderToggleSwitchTemplate}" />
             <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SoundEffects, Source={StaticResource LocalizedStrings}}"
                                   IsChecked="{Binding SoundEffectsEnabled, Mode=TwoWay}"
                                   Style="{StaticResource ToggleSwitchStyle}"
+                                  Content="{Binding EffectsValue}"
                                   HeaderTemplate="{StaticResource HeaderToggleSwitchTemplate}"/>
         </StackPanel>
     </Grid>

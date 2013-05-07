@@ -138,9 +138,6 @@
   <data name="Easy" xml:space="preserve">
     <value>Easy</value>
   </data>
-  <data name="GetOtherApps" xml:space="preserve">
-    <value>Get other apps from WPME</value>
-  </data>
   <data name="Hard" xml:space="preserve">
     <value>Hard</value>
   </data>
@@ -206,5 +203,11 @@ Could you do better?</value>
   </data>
   <data name="ShareOnFacebook" xml:space="preserve">
     <value>Share on Facebook!</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>On</value>
   </data>
 </root>

@@ -6,6 +6,7 @@ using System.Net;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using FillTheSquare.Localization;
 using WPCommon.Controls.Model;
@@ -117,20 +118,18 @@ namespace FillTheSquare.ViewModel
             set { _appNameMargin = value; }
         }
 
-        public ImageSource CustomLogo { get; set; }
+        private ImageSource customLogo = new BitmapImage(new Uri("/WPCommon.Controls;component/Img/logo.png", UriKind.Relative));
+        public ImageSource CustomLogo
+        {
+            get { return customLogo; }
+            set { customLogo = value; }
+        }
 
         private Thickness _logoMargin = new Thickness(24);
         public Thickness LogoMargin
         {
             get { return _logoMargin; }
             set { _logoMargin = value; }
-        }
-
-        private Thickness _customLogoMargin = new Thickness(0);
-        public Thickness CustomLogoMargin
-        {
-            get { return _customLogoMargin; }
-            set { _customLogoMargin = value; }
         }
 
         public Brush DefaultBackground { get; set; }
@@ -171,7 +170,7 @@ namespace FillTheSquare.ViewModel
         { get { return WPCommon.Controls.Localization.AppResources.ContactUs; } }
 
         public string GetOtherAppsText
-        { get { return AppResources.GetOtherApps; } }
+        { get { return WPCommon.Controls.Localization.AppResources.GetOtherApps; } }
 
         public string OtherAppsText
         { get { return WPCommon.Controls.Localization.AppResources.OtherApps; } }

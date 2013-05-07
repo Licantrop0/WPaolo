@@ -117,16 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Application" xml:space="preserve">
+    <value>软件</value>
+  </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>Contact</value>
+    <value>联系我们</value>
   </data>
   <data name="GetOtherApps" xml:space="preserve">
-    <value>Autres apps de WPME</value>
+    <value>你发现 【WPME】的其他软件</value>
   </data>
   <data name="OtherApps" xml:space="preserve">
-    <value>Autres Apps</value>
+    <value>其他的软件</value>
   </data>
   <data name="RateThisApp" xml:space="preserve">
-    <value>Vote cette app</value>
+    <value>你对这个软件的意见</value>
   </data>
 </root>

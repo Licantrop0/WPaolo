@@ -34,10 +34,6 @@
           <source>Easy</source>
           <target state="translated">很间单</target>
         </trans-unit>
-        <trans-unit id="Resx/GetOtherApps" translate="yes" xml:space="preserve">
-          <source>Get other apps from WPME</source>
-          <target state="translated" state-qualifier="mt-suggestion">从 WPME 获取其他应用程序</target>
-        </trans-unit>
         <trans-unit id="Resx/Hard" translate="yes" xml:space="preserve">
           <source>Hard</source>
           <target state="translated">高难度</target>
@@ -127,6 +123,14 @@ Could you do better?</source>
         <trans-unit id="Resx/ShareOnFacebook" translate="yes" xml:space="preserve">
           <source>Share on Facebook!</source>
           <target state="translated">分享！</target>
+        </trans-unit>
+        <trans-unit id="Resx/Off" translate="yes" xml:space="preserve">
+          <source>Off</source>
+          <target state="translated">关闭</target>
+        </trans-unit>
+        <trans-unit id="Resx/On" translate="yes" xml:space="preserve">
+          <source>On</source>
+          <target state="translated">打开</target>
         </trans-unit>
       </group>
     </body>

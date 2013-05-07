@@ -21,7 +21,8 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"  Margin="12" >
-            <TextBlock Text="Records" FontSize="48" HorizontalAlignment="Left"
+            <TextBlock Text="{Binding Path=LocalizedResources.Records, Source={StaticResource LocalizedStrings}}"
+                       FontSize="48" HorizontalAlignment="Left"
                        Style="{StaticResource SquareTitleStyle}" Margin="28,29,0,29"
                        VerticalAlignment="Stretch" d:LayoutOverrides="Height" />
             <Image Source="..\Phil\bravorecords.png" HorizontalAlignment="Right"

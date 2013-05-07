@@ -22,7 +22,6 @@
             MinFontSize="45"
             LogoMargin="20"
             CustomLogo="/FillTheSquare;component/Phil/phil_con_logo_new.png"
-            CustomLogoMargin="274, 350, 0, 0"
             DefaultFont="{StaticResource DefaultFont}"
             DefaultForeground="{StaticResource ForegroundGradientBrush}"
             DefaultBackground="{StaticResource BackgroundImageBrush}" />

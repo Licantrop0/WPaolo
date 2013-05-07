@@ -129,9 +129,6 @@
   <data name="Easy" xml:space="preserve">
     <value>Facile</value>
   </data>
-  <data name="GetOtherApps" xml:space="preserve">
-    <value>D'autres apps de WPME</value>
-  </data>
   <data name="Hard" xml:space="preserve">
     <value>Difficile</value>
   </data>

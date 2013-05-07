@@ -34,10 +34,6 @@
           <source>Easy</source>
           <target state="translated">Facile</target>
         </trans-unit>
-        <trans-unit id="Resx/GetOtherApps" translate="yes" xml:space="preserve">
-          <source>Get other apps from WPME</source>
-          <target state="translated">D'autres apps de WPME</target>
-        </trans-unit>
         <trans-unit id="Resx/Hard" translate="yes" xml:space="preserve">
           <source>Hard</source>
           <target state="translated">Difficile</target>
@@ -127,6 +123,14 @@ Pourriez-vous faire mieux?</target>
         <trans-unit id="Resx/ShareOnFacebook" translate="yes" xml:space="preserve">
           <source>Share on Facebook!</source>
           <target state="translated">Partager sur Facebook</target>
+        </trans-unit>
+        <trans-unit id="Resx/Off" translate="yes" xml:space="preserve">
+          <source>Off</source>
+          <target state="new">Off</target>
+        </trans-unit>
+        <trans-unit id="Resx/On" translate="yes" xml:space="preserve">
+          <source>On</source>
+          <target state="new">On</target>
         </trans-unit>
       </group>
     </body>

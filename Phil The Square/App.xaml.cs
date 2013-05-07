@@ -5,6 +5,7 @@ using Microsoft.Phone.Shell;
 using WPCommon.Helpers;
 using System;
 using System.Threading;
+using System.Globalization;
 
 namespace FillTheSquare
 {
@@ -50,6 +51,8 @@ namespace FillTheSquare
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("zh-CN");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CN");
         }
 
 

@@ -39,6 +39,7 @@ namespace FillTheSquare.ViewModel
                 {
                     IsolatedStorageSettings.ApplicationSettings["music_enabled"] = value;
                     OnPropertyChanged("MusicEnabled");
+                    OnPropertyChanged("MusicValue");
                 }
             }
         }
@@ -58,6 +59,10 @@ namespace FillTheSquare.ViewModel
                 if (!value) StopMusicIfControl();
             }
         }
+
+        public string MusicValue
+        { get { return MusicEnabled ? AppResources.On : AppResources.Off; } }
+
 
         public static void StopMusicIfControl()
         {
@@ -101,9 +106,13 @@ namespace FillTheSquare.ViewModel
                 {
                     IsolatedStorageSettings.ApplicationSettings["sound_effects_enabled"] = value;
                     OnPropertyChanged("SoundEffectsEnabled");
+                    OnPropertyChanged("EffectsValue");
                 }
             }
         }
+
+        public string EffectsValue
+        { get { return SoundEffectsEnabled ? AppResources.On : AppResources.Off; } }
 
         public bool HintsEnabled
         {
@@ -120,8 +129,13 @@ namespace FillTheSquare.ViewModel
                 {
                     IsolatedStorageSettings.ApplicationSettings["hints_enabled"] = value;
                     OnPropertyChanged("HintsEnabled");
+                    OnPropertyChanged("HintsValue");
                 }
             }
         }
+
+        public string HintsValue
+        { get { return HintsEnabled ? AppResources.On : AppResources.Off; } }
+
     }
 }

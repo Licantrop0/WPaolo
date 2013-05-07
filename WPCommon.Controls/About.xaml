@@ -64,7 +64,7 @@
                                      Style="{StaticResource HyperlinkWrappingStyle}"
                                      Click="Rate_Click" />
 
-                    <Image Source="Img/logo.png" Stretch="None"
+                    <Image Source="{Binding CustomLogo}" Stretch="None"
                            Margin="{Binding LogoMargin}" />
 
                     <TextBlock Text="{Binding CustomText}" Margin="6"
@@ -73,10 +73,6 @@
                                FontSize="{Binding CustomTextFontSize}"
                                Foreground="{Binding CustomTextForeground}"/>
                 </StackPanel>
-
-                <Image Source="{Binding CustomLogo}" Stretch="None"
-                       HorizontalAlignment="Left" VerticalAlignment="Top"
-                       Margin="{Binding CustomLogoMargin}" />
 
                 <StackPanel Name="AdPlaceHolder" Height="80"
                             VerticalAlignment="Bottom" />

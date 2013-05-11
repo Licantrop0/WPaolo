@@ -22,7 +22,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <SupportedCultures>fr-FR;en-US;it-IT;zh-CN;zh-Hans</SupportedCultures>
+    <SupportedCultures>fr-FR;it-IT;zh-CN</SupportedCultures>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\IDecide\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -120,12 +120,6 @@
       <DependentUpon>AppResources.zh-CN.xlf</DependentUpon>
       <culture>zh-CN</culture>
     </EmbeddedResource>
-    <EmbeddedResource Include="Localization\AppResources.zh-Hans.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.zh-Hans.xlf</DependentUpon>
-      <culture>zh-Hans</culture>
-    </EmbeddedResource>
     <EmbeddedResource Include="Localization\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
@@ -143,10 +137,6 @@
     <XliffResource Include="Localization\AppResources.zh-CN.xlf">
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.zh-CN.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Localization\AppResources.zh-Hans.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.zh-Hans.resx</LastGenOutput>
     </XliffResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

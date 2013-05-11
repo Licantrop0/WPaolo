@@ -1,9 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.IO.IsolatedStorage;
 using System.Windows;
 using FillTheSquare.Localization;
 using Microsoft.Xna.Framework.Media;
-using System;
 
 namespace FillTheSquare.ViewModel
 {
@@ -83,7 +83,7 @@ namespace FillTheSquare.ViewModel
 
             if (canPlayMusic && !isMyMusicPlaying)
             {
-                var BackgroundMusic = Song.FromUri("PhilBackgroudMusic", new Uri("Sounds/musichetta.wma", UriKind.Relative));
+                var BackgroundMusic = Song.FromUri("PhilBackgroudMusic", new Uri("Sounds/china music.mp3", UriKind.Relative));
                 MediaPlayer.IsRepeating = true;
                 MediaPlayer.Play(BackgroundMusic);
             }

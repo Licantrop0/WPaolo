@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using Microsoft.Phone.Applications.Common;
 
 namespace ShakeGestures
@@ -161,40 +160,6 @@ namespace ShakeGestures
             {
                 AccelerometerHelper.Instance.Active = value;
             }
-        }
-
-        public void Simulate(ShakeType shakeType)
-        {
-            bool activePreviousState = Active;
-
-            ThreadPool.QueueUserWorkItem(
-                (o) =>
-                {
-                    Active = false;
-
-                    Simulation.CallTo = OnAccelerometerHelperReadingChanged;
-
-                    Thread.Sleep(TimeSpan.FromSeconds(1));
-
-                    switch (shakeType)
-                    {
-                        case ShakeType.X:
-                            Simulation.SimulateShakeX();
-                            break;
-
-                        case ShakeType.Y:
-                            Simulation.SimulateShakeY();
-                            break;
-
-                        case ShakeType.Z:
-                            Simulation.SimulateShakeZ();
-                            break;
-                    }
-                    Simulation.CallTo = null;
-
-                    Active = activePreviousState;
-                });
-
         }
 
         #endregion

@@ -13,7 +13,7 @@ namespace SgarbiMix
 {
     public partial class PlayButtonsPivotPage : PhoneApplicationPage
     {
-        ShakeGesturesHelper Shaker;
+        ShakeGesturesHelper _shaker;
 
         public PlayButtonsPivotPage()
         {
@@ -23,7 +23,7 @@ namespace SgarbiMix
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Shaker.Active = true;
+            _shaker.Active = true;
 
             if (TrialManagement.IsTrialMode)
                 InitializeAd();
@@ -33,7 +33,7 @@ namespace SgarbiMix
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            Shaker.Active = false;
+            _shaker.Active = false;
             AdPlaceHolder.Children.Clear();
             base.OnNavigatedFrom(e);
         }
@@ -50,19 +50,16 @@ namespace SgarbiMix
 
         private void InitializeShaker()
         {
-            Shaker = ShakeGesturesHelper.Instance;
-            Shaker.ShakeGesture += (sender, e) =>
+            _shaker = ShakeGesturesHelper.Instance;
+            _shaker.ShakeGesture += (sender, e) =>
             {
-                Shaker.Active = false;
+                _shaker.Active = false;
                 var snd = AppContext.GetRandomSound();
-                Deployment.Current.Dispatcher.BeginInvoke(() =>
-                {
-                    snd.PlayCommand.Execute(null);
-                });
+                Deployment.Current.Dispatcher.BeginInvoke(() => snd.PlayCommand.Execute(null));
 
                 //Questa sleep viene fatta nel thread dell'accelerometro, non blocca la UI
                 Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300));
-                Shaker.Active = true;
+                _shaker.Active = true;
             };
         }
 

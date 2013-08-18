@@ -18,7 +18,7 @@ namespace SheldonMix.ViewModel
                         "CLAS_Bazinga1.mp3",
                         "CLAS_bazinga_one_of_my_jokes.mp3",
                         "CLAS_change_is_never_fine.mp3",
-                        "CLAS_Your'e_in_my_spot.mp3",
+                        "CLAS_You're_in_my_spot.mp3",
                         "CLAS_knock_knock_knock_Penny.mp3",
                         "CLAS_mua_ah_ah.mp3",
                         "CLAS_not_bad_it_s_horrible.mp3",
@@ -40,8 +40,8 @@ namespace SheldonMix.ViewModel
                 if (_suoniTBBT == null)
                 {
                     _suoniTBBT = new[] {
-                        "TBBT_theme_full.mp3",
-                        "TBBT_theme_end.mp3"
+                        "TBBT_Theme_full.mp3",
+                        "TBBT_Theme_end.mp3"
                     }.Select(f => new SoundViewModel(f, SoundType.TBBT)).ToList();
                 }
                 return _suoniTBBT;
@@ -56,16 +56,16 @@ namespace SheldonMix.ViewModel
                 if (_suoniZAZZ == null)
                 {
                     _suoniZAZZ = new[] {
-                        "ZAZZ_brave_leonard_song.mp3",
+                        "ZAZZ_Brave_Leonard_song.mp3",
                         "ZAZZ_Dr_Sheldon_Cooper_FTW.mp3",
-                        "ZAZZ_Engineering_oompa_loompas_of_science.mp3",
+                        "ZAZZ_Engineering_oompa_loompas.mp3",
                         "ZAZZ_hello_honeypuffs.mp3",
-                        "ZAZZ_It_s_a_trap1.mp3",
-                        "ZAZZ_i_possess_the_dna_of_leonard_nimoy.mp3",
+                        "ZAZZ_It's_a_trap1.mp3",
+                        "ZAZZ_DNA_of_leonard_nimoy.mp3",
                         "ZAZZ_peace_out.mp3",
                         "ZAZZ_Sheldon_drunk_sings.mp3",
                         "ZAZZ_To_Sheldon_live_long_and_prosper.mp3",
-                        "ZAZZ_we_re_taking_the_train.mp3",
+                        "ZAZZ_we're_taking_the_train.mp3",
                         "ZAZZ_WoW_Hacking.mp3",
                         "ZAZZ_Whip_eh-hee.mp3"
                     }.Select(f => new SoundViewModel(f, SoundType.ZAZZ)).ToList();

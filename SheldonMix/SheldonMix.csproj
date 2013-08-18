@@ -145,7 +145,7 @@
     <Content Include="sounds\ZAZZ_Dr_Sheldon_Cooper_FTW.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sounds\ZAZZ_Engineering_oompa_loompas_of_science.mp3">
+    <Content Include="sounds\ZAZZ_Engineering_oompa_loompas.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sounds\ZAZZ_hello_honeypuffs.mp3">
@@ -154,7 +154,7 @@
     <Content Include="sounds\ZAZZ_It%27s_a_trap1.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sounds\ZAZZ_I_possess_the_dna_of_leonard_nimoy.mp3">
+    <Content Include="sounds\ZAZZ_DNA_of_leonard_nimoy.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sounds\CLAS_mua_ah_ah.mp3">

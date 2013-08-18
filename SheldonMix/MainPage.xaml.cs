@@ -13,38 +13,25 @@ namespace SheldonMix
         public MainPage()
         {
             InitializeComponent();
-            //this.gcw = new GeoCoordinateWatcher();
-            //this.gcw.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(gcw_PositionChanged);
-            //this.gcw.Start();
         }
-
-        //private GeoCoordinateWatcher gcw;
-        //private void gcw_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
-        //{
-        //    this.gcw.Stop();
-
-        //    adControl1.Latitude = e.Position.Location.Latitude;
-        //    adControl1.Longitude = e.Position.Location.Longitude;
-
-        //    gcw.Dispose();
-        //    gcw = null;
-        //}
-
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            MainPivot.Margin = new Thickness(0, 0, 0, 80); 
             if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
                 return;
 
-            var ad1 = new AdControl("04e2ad45-3752-4d8c-867c-b1eb0cf4a3e1", "10022426", true)
-            {
-                Height = 80,
-                Width = 480,
-            };
-
-            AdPlaceHolder.Children.Add(ad1);
+            var ad = new AdControl("04e2ad45-3752-4d8c-867c-b1eb0cf4a3e1", "10022426", true) { Width = 480, Height = 80 };
+            ad.ErrorOccurred += ad_ErrorOccurred;            
+            AdPlaceHolder.Children.Add(ad);
 
             base.OnNavigatedTo(e);
+        }
+
+        private void ad_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
+        {
+            MainPivot.Margin = new Thickness(0);
+            AdPlaceHolder.Children.Clear();
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
@@ -68,11 +55,16 @@ namespace SheldonMix
             new WebBrowserTask() { Uri = new Uri("http://m.youtube.com/watch?v=SifGskrY_UY") }.Show();
         }
 
-        private void HyperlinkButton_Click_1(object sender, RoutedEventArgs e)
+        private void TwitterCBS_Click(object sender, RoutedEventArgs e)
         {
-            new WebBrowserTask() { Uri = new Uri("http://twitter.com/#!/BigBang_CBS") }.Show();
+            new WebBrowserTask() { Uri = new Uri("http://mobile.twitter.com/BigBang_CBS") }.Show();
         }
-
+        
+        private void TwitterSheldon_Click(object sender, RoutedEventArgs e)
+        {
+            new WebBrowserTask() { Uri = new Uri("http://mobile.twitter.com/TheRealSheldonC") }.Show();
+        }
+        
         private void HyperlinkButton_Click_2(object sender, RoutedEventArgs e)
         {
             new WebBrowserTask() { Uri = new Uri("http://www.cbs.com/shows/big_bang_theory") }.Show();
@@ -92,27 +84,5 @@ namespace SheldonMix
             catch (InvalidOperationException)
             { /*do nothing */ }
         }
-
-        //Ringtone files must be of type MP3 or WMA.
-        //Ringtone files must be less than 40 seconds in length.
-        //Ringtone files must not have digital rights management (DRM) protection.
-        //Ringtone files must be less than 1 MB in size.
-        private void SetRingtone_Click(object sender, RoutedEventArgs e)
-        {
-            var RingtonePath = "TBBT Ringtone.mp3";
-            WPCommon.Helpers.Persistance.SaveFileToIsolatedStorage(RingtonePath);
-            var saveRingtoneTask = new SaveRingtoneTask();
-            try
-            {
-                saveRingtoneTask.Source = new Uri("isostore:/" + RingtonePath);
-                saveRingtoneTask.DisplayName = "TBBT Intro Song";
-                saveRingtoneTask.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
     }
 }

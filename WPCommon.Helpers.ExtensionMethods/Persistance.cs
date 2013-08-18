@@ -9,10 +9,13 @@ namespace WPCommon.Helpers
     {
         private static IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
 
-        public static void SaveFileToIsolatedStorage(string fileName)
+        public static void SaveFileToIsolatedStorage(string fileName, string folder = "")
         {
-            var streamResourceInfo = Application.GetResourceStream(new Uri(fileName, UriKind.Relative));
-            using (var fileStream = new IsolatedStorageFileStream(fileName, FileMode.Create, isf))
+            var filePath = Path.Combine(folder, fileName);
+            var streamResourceInfo = Application.GetResourceStream(new Uri(filePath, UriKind.Relative));
+            if (!isf.DirectoryExists(folder)) isf.CreateDirectory(folder);
+
+            using (var fileStream = new IsolatedStorageFileStream(filePath, FileMode.Create, isf))
             {
                 using (var writer = new BinaryWriter(fileStream))
                 {
@@ -32,6 +35,12 @@ namespace WPCommon.Helpers
                     }
                 }
             }
+        }
+
+        public static void DeleteFile(string fileName, string folder = "")
+        {
+            var filePath = Path.Combine(folder, fileName); 
+            isf.DeleteFile(filePath);
         }
 
     }

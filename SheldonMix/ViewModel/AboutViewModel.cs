@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows;
 using System.Reflection;
+using System.Windows.Media.Imaging;
 
 namespace SheldonMix.ViewModel
 {
@@ -38,30 +39,35 @@ namespace SheldonMix.ViewModel
         {
             var wc = new WebClient();
             wc.OpenReadAsync(new Uri(string.Format(
-                 "http://catalog.zune.net/v3.2/{0}/apps?q=WPME&clientType=WinMobile%207.1&store=zest",
+                 "http://marketplaceedgeservice.windowsphone.com/v3.2/{0}/apps?q=WPME&clientType=WinMobile+7.1&store=zest",
                  cultureName)));
 
             wc.OpenReadCompleted += (sender, e) =>
             {
                 if (e.Error != null) return;
-                if (_appList != null) return;
+                if (AppList != null) return;
 
                 XDocument response = XDocument.Load(e.Result);
                 AppList = from n in response.Descendants(nsAtom + "entry")
-                           let imageId = n.Element(nsZune + "image")
-                               .Element(nsZune + "id").Value.Substring(9) //rimozione di "urn:uuid:"
-                           let appId = n.Element(nsAtom + "id").Value.Substring(9)
-                           where appId != AppId
-                           select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
-                               string.Format("http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
-                                   cultureName, imageId)));
+                          let imageId = n.Element(nsZune + "image")
+                              .Element(nsZune + "id").Value.Substring(9) //rimozione di "urn:uuid:"
+                          let appId = n.Element(nsAtom + "id").Value.Substring(9)
+                          where appId != AppId
+                          select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
+                              string.Format("http://cdn.marketplaceimages.windowsphone.com/v3.2/{0}/image/{1}?width=200&height=200&resize=true&contenttype=image/png",
+                                  cultureName, imageId)));
             };
         }
 
         #region App Data
+
         /// <summary>Set this value to the Marketplace Product ID</summary>
         public string AppId { get; set; }
+
         public string AppName { get; set; }
+        //{
+        //    get { return AppResources.AppName; }
+        //}
 
         private string _appVersion;
         public string AppVersion
@@ -77,62 +83,66 @@ namespace SheldonMix.ViewModel
             }
         }
 
-        public string CustomText
-        {
-            get { return ""; }
-        }
-
         #endregion
 
         #region Visual
 
-        private ImageSource _customLogo;
+        public FontFamily DefaultFont { get; set; }
+
+        public string CustomText { get; set; }
+
+        private FontFamily _customTextFontFamily;
+        public FontFamily CustomTextFontFamily
+        {
+            get { return _customTextFontFamily ?? DefaultFont; }
+            set { _customTextFontFamily = value; }
+        }
+
+        private double? _customTextFontSize;
+        public double CustomTextFontSize
+        {
+            get { return _customTextFontSize ?? MinFontSize; }
+            set { _customTextFontSize = value; }
+        }
+
+        private Brush _customTextForeground;
+        public Brush CustomTextForeground
+        {
+            get { return _customTextForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
+            set { _customTextForeground = value; }
+        }
+
+
+        private Thickness _appNameMargin = new Thickness(0);
+        public Thickness AppNameMargin
+        {
+            get { return _appNameMargin; }
+            set { _appNameMargin = value; }
+        }
+
+        private ImageSource _customLogo = new BitmapImage(new Uri("/WPCommon.Controls;component/Img/logo.png", UriKind.Relative));
         public ImageSource CustomLogo
         {
             get { return _customLogo; }
             set { _customLogo = value; }
         }
 
-        private Thickness _customLogoMargin = new Thickness(0);
-        public Thickness CustomLogoMargin
-        {
-            get { return _customLogoMargin; }
-            set { _customLogoMargin = value; }
-        }
-
-        private Thickness _logoMargin = new Thickness(0);
+        private Thickness _logoMargin = new Thickness(24);
         public Thickness LogoMargin
         {
             get { return _logoMargin; }
             set { _logoMargin = value; }
         }
 
-        private Brush _defaultBackground = new SolidColorBrush(Colors.Black);
-        public Brush DefaultBackground
-        {
-            get { return _defaultBackground; }
-            set { _defaultBackground = value; }
-        }
+        public Brush DefaultBackground { get; set; }
 
-        private Brush _defaultForeground = new SolidColorBrush(Colors.White);
-        public Brush DefaultForeground
-        {
-            get { return _defaultForeground; }
-            set { _defaultForeground = value; }
-        }
+        public Brush DefaultForeground { get; set; }
 
         private Brush _headerForeground;
         public Brush HeaderForeground
         {
-            get { return _headerForeground ?? _defaultForeground; }
+            get { return _headerForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
             set { _headerForeground = value; }
-        }
-
-        private FontFamily _defaultFont = new FontFamily("Segoe WP SemiLight");
-        public FontFamily DefaultFont
-        {
-            get { return _defaultFont; }
-            set { _defaultFont = value; }
         }
 
         private double _minFontSize = 19;

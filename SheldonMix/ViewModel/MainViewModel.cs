@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using SheldonMix.Model;
 
 namespace SheldonMix.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private SoundContainerMP3[] _soundResources;
-        public SoundContainerMP3[] SoundResources
+        private IList<SoundViewModel> _suoniCLAS;
+        public IList<SoundViewModel> SuoniCLAS
         {
             get
             {
-                if (_soundResources == null)
+                if (_suoniCLAS == null)
                 {
-                    string[] files =
-                    {
+                    _suoniCLAS = new[] {
                         "CLAS_Bazinga1.mp3",
                         "CLAS_bazinga_one_of_my_jokes.mp3",
                         "CLAS_change_is_never_fine.mp3",
@@ -27,8 +25,36 @@ namespace SheldonMix.ViewModel
                         "CLAS_Sheldon_laugh.mp3",
                         "CLAS_Sheldon_soft_kitty.mp3",
                         "CLAS_there_there.mp3",
-                        "TBBT_theme_end.mp3",
+                    }.Select(f => new SoundViewModel(f, SoundType.CLAS)).ToList();
+                }
+                return _suoniCLAS;
+            }
+        }
+
+        private IList<SoundViewModel> _suoniTBBT;
+        public IList<SoundViewModel> SuoniTBBT
+        {
+            get
+            {
+                if (_suoniTBBT == null)
+                {
+                    _suoniTBBT = new[] {
                         "TBBT_theme_full.mp3",
+                        "TBBT_theme_end.mp3"
+                    }.Select(f => new SoundViewModel(f, SoundType.TBBT)).ToList();
+                }
+                return _suoniTBBT;
+            }
+        }
+
+        private IList<SoundViewModel> _suoniZAZZ;
+        public IList<SoundViewModel> SuoniZAZZ
+        {
+            get
+            {
+                if (_suoniZAZZ == null)
+                {
+                    _suoniZAZZ = new[] {
                         "ZAZZ_brave_leonard_song.mp3",
                         "ZAZZ_Dr_Sheldon_Cooper_FTW.mp3",
                         "ZAZZ_Engineering_oompa_loompas_of_science.mp3",
@@ -38,48 +64,11 @@ namespace SheldonMix.ViewModel
                         "ZAZZ_peace_out.mp3",
                         "ZAZZ_Sheldon_drunk_sings.mp3",
                         "ZAZZ_To_Sheldon_live_long_and_prosper.mp3",
-                        "ZAZZ_we_re_taking_the_train.mp3"
-                    };
-
-                    _soundResources =
-                        files.OrderBy(f => f)
-                        .Select(f => new SoundContainerMP3(f))
-                        .ToArray();
-                }
-                return _soundResources;
-            }
-        }
-
-        private IEnumerable<SoundContainerMP3> _suoniCLAS;
-        public IEnumerable<SoundContainerMP3> SuoniCLAS
-        {
-            get
-            {
-                if (_suoniCLAS == null)
-                    _suoniCLAS = SoundResources.Where(s => s.Category == SoundType.CLAS);
-                return _suoniCLAS;
-            }
-        }
-
-        private IEnumerable<SoundContainerMP3> _suoniTBBT;
-        public IEnumerable<SoundContainerMP3> SuoniTBBT
-        {
-            get
-            {
-                if (_suoniTBBT == null)
-                    _suoniTBBT = SoundResources.Where(s => s.Category == SoundType.TBBT);
-                return _suoniTBBT;
-            }
-        }
-
-        private IEnumerable<SoundContainerMP3> _suoniZAZZ;
-        public IEnumerable<SoundContainerMP3> SuoniZAZZ
-        {
-            get
-            {
-                if (_suoniZAZZ == null)
-                    _suoniZAZZ = SoundResources.Where(s => s.Category == SoundType.ZAZZ);
-                return _suoniZAZZ;
+                        "ZAZZ_we_re_taking_the_train.mp3",
+                        "ZAZZ_WoW_Hacking.mp3",
+                        "ZAZZ_Whip_eh-hee.mp3"
+                    }.Select(f => new SoundViewModel(f, SoundType.ZAZZ)).ToList();
+                } return _suoniZAZZ;
             }
         }
 

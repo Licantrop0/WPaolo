@@ -141,13 +141,35 @@
                                          FontFamily="{StaticResource DefaultFont}"
                                          Foreground="Crimson" Click="HyperlinkButton_Click_2" />
 
-                        <HyperlinkButton Content="TBBT Official Twitter" Margin="0,8"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8">
+                            <TextBlock Text="TBBT Official" FontSize="22"
+                                       FontFamily="{StaticResource DefaultFont}"
+                                       Foreground="#FF8D13A8" />
+                            <HyperlinkButton Content="Twitter" Click="TwitterCBS_Click"
+                                             FontFamily="{StaticResource DefaultFont}"
+                                             Foreground="#FF8D13A8" />
+                            <TextBlock Text="/" FontSize="22"
+                                       FontFamily="{StaticResource DefaultFont}"
+                                       Foreground="#FF8D13A8" />                            
+                            <HyperlinkButton Content="Facebook"
                                          FontFamily="{StaticResource DefaultFont}"
-                                         Foreground="#FF8D13A8" Click="TwitterCBS_Click" />
-
-                        <HyperlinkButton Content="Shedon Cooper Twitter" Margin="0,8"
+                                         Foreground="#FF8D13A8" Click="FacebookCBS_Click" />
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8">
+                            <TextBlock Text="Sheldon Cooper" FontSize="22"
+                                       FontFamily="{StaticResource DefaultFont}"
+                                       Foreground="#FF13A86B" />
+                            <HyperlinkButton Content="Twitter" Click="TwitterSheldon_Click"
+                                             FontFamily="{StaticResource DefaultFont}"
+                                             Foreground="#FF13A86B" />
+                            <TextBlock Text="/" FontSize="22"
+                                       FontFamily="{StaticResource DefaultFont}"
+                                       Foreground="#FF13A86B" />
+                            <HyperlinkButton Content="Facebook"
                                          FontFamily="{StaticResource DefaultFont}"
-                                         Foreground="#FF13A86B" Click="TwitterSheldon_Click" />
+                                         Foreground="#FF13A86B" Click="FacebookSheldon_Click" />
+                        </StackPanel>
 
                         <HyperlinkButton Content="Jim Parson page on IMDB" Margin="0,8"
                                          FontFamily="{StaticResource DefaultFont}"

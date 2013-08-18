@@ -18,6 +18,7 @@ namespace SheldonMix.ViewModel
                         "CLAS_Bazinga1.mp3",
                         "CLAS_bazinga_one_of_my_jokes.mp3",
                         "CLAS_change_is_never_fine.mp3",
+                        "CLAS_Your'e_in_my_spot.mp3",
                         "CLAS_knock_knock_knock_Penny.mp3",
                         "CLAS_mua_ah_ah.mp3",
                         "CLAS_not_bad_it_s_horrible.mp3",

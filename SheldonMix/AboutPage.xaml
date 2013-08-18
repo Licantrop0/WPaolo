@@ -39,19 +39,20 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:AboutViewModel
-            x:Key="AboutVM"
-            AppName="Sheldon Mix"
-            AppId="775b2b4b-3b10-4517-a5bc-dbef9a2e8678"
-            MinFontSize="30"
-            DefaultBackground="{StaticResource DarkerBackground}"
-            DefaultFont="{StaticResource DefaultFont}"
-            DefaultForeground="{StaticResource HeaderForeground}"
-            LogoMargin="24" >
+    		x:Key="AboutVM"
+    		AppName="SheldonMix"
+    		AppId="775b2b4b-3b10-4517-a5bc-dbef9a2e8678"
+    		MinFontSize="30"
+    		DefaultBackground="{StaticResource DefaultBackground}"
+    		DefaultFont="{StaticResource DefaultFont}"
+    		DefaultForeground="{StaticResource HeaderForeground}">
+            <vm:AboutViewModel.CustomText>
+                This is an unofficial app for The Big Bang Theory fans.
+                All trademarks and copyrights are property of CBS.
+            </vm:AboutViewModel.CustomText>
         </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>
-
-    <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}"
+        <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}"
                AdUnitId="10022426"
                ApplicationId="04e2ad45-3752-4d8c-867c-b1eb0cf4a3e1" />
-
 </phone:PhoneApplicationPage>

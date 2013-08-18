@@ -11,11 +11,8 @@
 
         <FontFamily x:Key="DefaultFont">/SheldonMix;component/Fonts/Fonts.zip#Showcard Gothic</FontFamily>
 
-        <ImageBrush x:Key="DarkerBackground" ImageSource="images/sfondo3.jpg"
-                    Stretch="None" AlignmentY="Top" Opacity="0.4" />
-        
-        <ImageBrush x:Key="DefaultBackground" ImageSource="images/sfondo3.jpg"
-                    Stretch="None" AlignmentY="Top" />
+        <ImageBrush x:Key="DefaultBackground" ImageSource="SplashScreenImage.jpg"
+                    Stretch="None" AlignmentY="Top" Opacity="0.6" />
 
         <SolidColorBrush x:Key="DefaultForeground" Color="Black"/>
 

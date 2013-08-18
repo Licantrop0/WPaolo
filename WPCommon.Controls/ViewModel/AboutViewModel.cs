@@ -111,7 +111,6 @@ namespace WPCommon.ViewModel
             set { _customTextForeground = value; }
         }
 
-
         private Thickness _appNameMargin = new Thickness(0);
         public Thickness AppNameMargin
         {
@@ -119,20 +118,18 @@ namespace WPCommon.ViewModel
             set { _appNameMargin = value; }
         }
 
-        public ImageSource CustomLogo { get; set; }
+        private ImageSource _customLogo = new BitmapImage(new Uri("/WPCommon.Controls;component/Img/logo.png", UriKind.Relative));
+        public ImageSource CustomLogo
+        {
+            get { return _customLogo; }
+            set { _customLogo = value; }
+        }
 
         private Thickness _logoMargin = new Thickness(24);
         public Thickness LogoMargin
         {
             get { return _logoMargin; }
             set { _logoMargin = value; }
-        }
-
-        private Thickness _customLogoMargin = new Thickness(0);
-        public Thickness CustomLogoMargin
-        {
-            get { return _customLogoMargin; }
-            set { _customLogoMargin = value; }
         }
 
         public Brush DefaultBackground { get; set; }

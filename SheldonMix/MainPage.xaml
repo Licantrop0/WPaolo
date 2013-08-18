@@ -12,66 +12,70 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728" 
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" Background="White">
 
     <phone:PhoneApplicationPage.Resources>
         <vm:MainViewModel x:Key="MainVM" />
     </phone:PhoneApplicationPage.Resources>
+    <Border Background="White">
+        <Grid Background="{StaticResource DefaultBackground}">
+            <controls:Pivot Name="MainPivot" Title="{x:Null}" Margin="0, 0, 0, 80"
+                        DataContext="{StaticResource MainVM}">
+                <controls:Pivot.Resources>
+                    <DataTemplate x:Key="PlayButtonDataTemplate">
+                        <Button Command="{Binding PlayCommand}"
+                                Content="{Binding Name}" 
+                                Style="{StaticResource PlayButtonStyle}">
+                            <toolkit:ContextMenuService.ContextMenu>
+                                <toolkit:ContextMenu IsZoomEnabled="False">
+                                    <toolkit:MenuItem Header="Set as Ringtone"
+                                                      Command="{Binding SetAsRingtoneCommand}" />
+                                </toolkit:ContextMenu>
+                            </toolkit:ContextMenuService.ContextMenu>
 
-    <Grid Name="LayoutRoot" Background="{StaticResource DefaultBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <controls:Pivot Title="{x:Null}" DataContext="{StaticResource MainVM}" >
-            <controls:Pivot.Resources>
-                <DataTemplate  x:Key="PlayButtonDataTemplate">
-                    <Button Command="{Binding PlayCommand}"
-                        Content="{Binding Name}" 
-                        Style="{StaticResource PlayButtonStyle}"/>
-                </DataTemplate>
+                        </Button>
+                    </DataTemplate>
 
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </controls:Pivot.Resources>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </controls:Pivot.Resources>
 
-            <!-- Classic -->
-            <controls:PivotItem Margin="0">
-                <controls:PivotItem.Header>
-                    <TextBlock Text="Classic" Style="{StaticResource HeaderStyle}" />
-                </controls:PivotItem.Header>
-                <ListBox ItemsSource="{Binding SuoniCLAS}"
+                <!-- Classic -->
+                <controls:PivotItem Margin="0">
+                    <controls:PivotItem.Header>
+                        <TextBlock Text="Classic" Style="{StaticResource HeaderStyle}" />
+                    </controls:PivotItem.Header>
+                    <ListBox ItemsSource="{Binding SuoniCLAS}"
                      ItemTemplate="{StaticResource PlayButtonDataTemplate}" />
-            </controls:PivotItem>
+                </controls:PivotItem>
 
-            <!-- Zazzy -->
-            <controls:PivotItem Margin="0">
-                <controls:PivotItem.Header>
-                    <TextBlock Text="Zazzy" Style="{StaticResource HeaderStyle}" />
-                </controls:PivotItem.Header>
+                <!-- Zazzy -->
+                <controls:PivotItem Margin="0">
+                    <controls:PivotItem.Header>
+                        <TextBlock Text="Zazzy" Style="{StaticResource HeaderStyle}" />
+                    </controls:PivotItem.Header>
 
-                <ListBox ItemsSource="{Binding SuoniZAZZ}"
+                    <ListBox ItemsSource="{Binding SuoniZAZZ}"
                      ItemTemplate="{StaticResource PlayButtonDataTemplate}" />
-            </controls:PivotItem>
+                </controls:PivotItem>
 
-            <!-- TBBT -->
-            <controls:PivotItem Margin="0">
-                <controls:PivotItem.Header>
-                    <TextBlock Text="TBBT" Style="{StaticResource HeaderStyle}" />
-                </controls:PivotItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <ListBox ItemsSource="{Binding SuoniTBBT}"
+                <!-- TBBT -->
+                <controls:PivotItem Margin="0">
+                    <controls:PivotItem.Header>
+                        <TextBlock Text="TBBT" Style="{StaticResource HeaderStyle}" />
+                    </controls:PivotItem.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <ListBox ItemsSource="{Binding SuoniTBBT}"
                          ItemTemplate="{StaticResource PlayButtonDataTemplate}" />
-                    <ScrollViewer Grid.Row="1">
-                        <StackPanel>
-                            <TextBlock TextWrapping="Wrap" Foreground="Black"
+                        <ScrollViewer Grid.Row="1">
+                            <StackPanel>
+                                <TextBlock TextWrapping="Wrap" Foreground="Black"
                                    TextAlignment="Center" Margin="6"
                                    FontFamily="{StaticResource DefaultFont}">
                             Our whole universe was in a hot dense state,<LineBreak />
@@ -112,53 +116,52 @@
                             <LineBreak />
                             Music and mythology, Einstein and astrology<LineBreak />
                             It all started with a big bang!<LineBreak />
-                            It all started with a big BANG!"
-                            </TextBlock>
-                            <Button Content="Set Intro as Ringtone!"
-                                    Click="SetRingtone_Click"
-                                    Style="{StaticResource PlayButtonStyle}" />
-                        </StackPanel>
-                    </ScrollViewer>
+                            It all started with a big BANG!
+                                </TextBlock>
+                            </StackPanel>
+                        </ScrollViewer>
 
-                </Grid>
-            </controls:PivotItem>
+                    </Grid>
+                </controls:PivotItem>
 
-            <!-- Extra -->
-            <controls:PivotItem Margin="0">
-                <controls:PivotItem.Header>
-                    <TextBlock Text="More?" Style="{StaticResource HeaderStyle}" />
-                </controls:PivotItem.Header>
+                <!-- Extra -->
+                <controls:PivotItem Margin="0">
+                    <controls:PivotItem.Header>
+                        <TextBlock Text="More?" Style="{StaticResource HeaderStyle}" />
+                    </controls:PivotItem.Header>
 
-                <StackPanel>
-                    <TextBlock TextWrapping="Wrap" Foreground="Black"
-                           TextAlignment="Center" Margin="12"
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap" Foreground="Black"
+                           TextAlignment="Center" Margin="12,6"
                            FontFamily="{StaticResource DefaultFont}">
-                    This is an unofficial app for Sheldon lovers and Big bang theory fans.<LineBreak />
-                    The big Bang theory is owned by cbs. <LineBreak />
-                    Sheldon Cooper is played by Jim Parson.
-                    </TextBlock>
+                            Set Every sound as Ringtone by long-pressing on the relative button!
+                        </TextBlock>
 
-                    <HyperlinkButton Content="Official CBS page of TBBT" Margin="0,8"
-                                 Foreground="Crimson" FontFamily="{StaticResource DefaultFont}"
-                                  Click="HyperlinkButton_Click_2" />
+                        <HyperlinkButton Content="Official CBS page of TBBT" Margin="0,8"
+                                         FontFamily="{StaticResource DefaultFont}"
+                                         Foreground="Crimson" Click="HyperlinkButton_Click_2" />
 
-                    <HyperlinkButton Content="Official Twitter page of CBS - TBBT" Margin="0,8"
-                                 Foreground="DarkOrange" FontFamily="{StaticResource DefaultFont}"
-                                 Click="HyperlinkButton_Click_1" />
+                        <HyperlinkButton Content="TBBT Official Twitter" Margin="0,8"
+                                         FontFamily="{StaticResource DefaultFont}"
+                                         Foreground="#FF8D13A8" Click="TwitterCBS_Click" />
 
-                    <HyperlinkButton Content="Jim Parson page on IMDB" Margin="0,8"
-                                 Foreground="MediumVioletRed" FontFamily="{StaticResource DefaultFont}"
-                                 Click="HyperlinkButton_Click_3" />
+                        <HyperlinkButton Content="Shedon Cooper Twitter" Margin="0,8"
+                                         FontFamily="{StaticResource DefaultFont}"
+                                         Foreground="#FF13A86B" Click="TwitterSheldon_Click" />
 
-                    <HyperlinkButton Content="Jim Parson wins Emmy 2011" Margin="0,8"
+                        <HyperlinkButton Content="Jim Parson page on IMDB" Margin="0,8"
+                                         FontFamily="{StaticResource DefaultFont}"
+                                         Foreground="MediumVioletRed" Click="HyperlinkButton_Click_3" />
+
+                        <HyperlinkButton Content="Jim Parson wins Emmy 2011" Margin="0,8"
                                  Foreground="#FF0F46A2" FontFamily="{StaticResource DefaultFont}"
                                  Click="HyperlinkButton_Click_4" />
 
-                    <HyperlinkButton Content="Jim Parson wins Golden Globe 2011" Margin="0,8"
+                        <HyperlinkButton Content="Jim Parson wins Golden Globe 2011" Margin="0,8"
                                  Foreground="OrangeRed" FontFamily="{StaticResource DefaultFont}"
                                  Click="HyperlinkButton_Click" />
 
-                    <TextBlock TextWrapping="Wrap" Foreground="Black" Margin="12"
+                        <TextBlock TextWrapping="Wrap" Foreground="Black" Margin="12"
                            TextAlignment="Center" FontFamily="{StaticResource DefaultFont}">
                         Something is missing in this app?<LineBreak />
                         Please send us your suggestions,<LineBreak />
@@ -166,13 +169,13 @@
                         for upgrades and future releases.<LineBreak />
                         Open the About Page and drop us a line<LineBreak />
                         by mail, Twitter or Facebook.
-                    </TextBlock>
-                </StackPanel>
-            </controls:PivotItem>
-        </controls:Pivot>
-
-        <StackPanel Name="AdPlaceHolder" Grid.Row="1" />
-    </Grid>
+                        </TextBlock>
+                    </StackPanel>
+                </controls:PivotItem>
+            </controls:Pivot>
+            <StackPanel Name="AdPlaceHolder" VerticalAlignment="Bottom" />
+        </Grid>
+    </Border>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="True">

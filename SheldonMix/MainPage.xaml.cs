@@ -59,12 +59,22 @@ namespace SheldonMix
         {
             new WebBrowserTask() { Uri = new Uri("http://mobile.twitter.com/BigBang_CBS") }.Show();
         }
+
+        private void FacebookCBS_Click(object sender, RoutedEventArgs e)
+        {
+            new WebBrowserTask() { Uri = new Uri("http://m.facebook.com/TheBigBangTheory") }.Show();
+        }
         
         private void TwitterSheldon_Click(object sender, RoutedEventArgs e)
         {
             new WebBrowserTask() { Uri = new Uri("http://mobile.twitter.com/TheRealSheldonC") }.Show();
         }
         
+        private void FacebookSheldon_Click(object sender, RoutedEventArgs e)
+        {
+            new WebBrowserTask() { Uri = new Uri("http://m.facebook.com/profile.php?id=23519525029") }.Show();
+        }
+
         private void HyperlinkButton_Click_2(object sender, RoutedEventArgs e)
         {
             new WebBrowserTask() { Uri = new Uri("http://www.cbs.com/shows/big_bang_theory") }.Show();
@@ -84,5 +94,6 @@ namespace SheldonMix
             catch (InvalidOperationException)
             { /*do nothing */ }
         }
+
     }
 }

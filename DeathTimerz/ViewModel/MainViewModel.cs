@@ -101,6 +101,11 @@ namespace DeathTimerz.ViewModel
             get { return AppContext.BirthDay.HasValue; }
         }
 
+        public Visibility InserBirthadyVisibility
+        {
+            get { return BirthDayInserted ? Visibility.Collapsed : Visibility.Visible; }
+        }
+
         //public Visibility BirthdayCakeVisibility
         //{
         //    get

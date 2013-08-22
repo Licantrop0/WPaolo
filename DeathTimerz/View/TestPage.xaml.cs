@@ -274,5 +274,10 @@ namespace DeathTimerz
             StimateDeathAge();
             NavigationService.Navigate(new Uri("/View/EpigraphPage.xaml", UriKind.Relative));
         }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            NavigationService.RemoveBackEntry();
+        }
     }
 }

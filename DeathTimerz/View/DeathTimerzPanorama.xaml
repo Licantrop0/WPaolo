@@ -105,8 +105,7 @@
             <Grid Name="TimeToDeathGrid" Margin="0,-30,0,0">
                 <TextBlock Text="{Binding LocalizedResources.InsertBirthday,
                     Source={StaticResource LocalizedStrings}}"
-                           Visibility="{Binding BirthDayInserted,
-                    Converter={StaticResource BooleanVisibility}}"
+                           Visibility="{Binding InserBirthadyVisibility}"
                            TextWrapping="Wrap" Margin="40,0,0,0"
                            FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
                            Style="{StaticResource RedChiller}" />

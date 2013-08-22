@@ -123,9 +123,6 @@
   <data name="Animal1" xml:space="preserve">
     <value>chien</value>
   </data>
-  <data name="Animal2" xml:space="preserve">
-    <value>Cat</value>
-  </data>
   <data name="Animal3" xml:space="preserve">
     <value>Cheval</value>
   </data>
@@ -230,5 +227,8 @@
   </data>
   <data name="Stress4" xml:space="preserve">
     <value>Chaque jour</value>
+  </data>
+  <data name="Animal2" xml:space="preserve">
+    <value>Chat</value>
   </data>
 </root>

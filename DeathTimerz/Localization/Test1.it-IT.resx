@@ -150,9 +150,6 @@
   <data name="CronicDisease" xml:space="preserve">
     <value>Soffri di malattie croniche?</value>
   </data>
-  <data name="CronicDisease1" xml:space="preserve">
-    <value>No</value>
-  </data>
   <data name="CronicDisease2" xml:space="preserve">
     <value>Si, lievi</value>
   </data>

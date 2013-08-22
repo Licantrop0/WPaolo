@@ -141,9 +141,6 @@
   <data name="DisableMusic" xml:space="preserve">
     <value>Disabilita la musica di sottofondo</value>
   </data>
-  <data name="Disclaimer" xml:space="preserve">
-    <value>Disclaimer</value>
-  </data>
   <data name="DisclaimerText" xml:space="preserve">
     <value>L'Orologio della Morte è da considerare solo un gioco, senza alcuna velleità statistica o medica.
 Comunque... toccati le palle!</value>

@@ -195,9 +195,6 @@
   <data name="Phobia1" xml:space="preserve">
     <value>Si</value>
   </data>
-  <data name="Phobia2" xml:space="preserve">
-    <value>No</value>
-  </data>
   <data name="SelfEsteem" xml:space="preserve">
     <value>Quanto ti stimi?</value>
   </data>

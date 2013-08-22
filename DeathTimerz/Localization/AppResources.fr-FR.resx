@@ -178,12 +178,6 @@ De toute façon... touche du bois!</value>
   <data name="MaleOrFemale" xml:space="preserve">
     <value>Es-tu homme ou femme?</value>
   </data>
-  <data name="Minute" xml:space="preserve">
-    <value>Minute</value>
-  </data>
-  <data name="Minutes" xml:space="preserve">
-    <value>Minutes</value>
-  </data>
   <data name="Month" xml:space="preserve">
     <value>Mois</value>
   </data>

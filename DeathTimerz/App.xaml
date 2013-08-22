@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:DeathTimerz.ViewModel" mc:Ignorable="d">
     <Application.Resources>
-        <local:LocalizedStrings xmlns:local="clr-namespace:DeathTimerz.Localization" x:Key="LocalizedStrings" />
+        <loc:LocalizedStrings xmlns:loc="clr-namespace:DeathTimerz.Localization" x:Key="LocalizedStrings" />
         <LinearGradientBrush x:Key="RedGradientBrush" StartPoint="0.5,0.2" EndPoint="0.5,1">
             <GradientStop Color="Red" Offset="0" />
             <GradientStop Color="#C8503232" Offset="1" />
@@ -16,7 +16,7 @@
         <LinearGradientBrush x:Key="RedWhiteGradientBrush" StartPoint="0.5,0.2" EndPoint="0.5,1">
             <GradientStop Color="Red" Offset="0" />
             <GradientStop Color="#CDC09696" Offset="1" />
-        </LinearGradientBrush>
+        </LinearGradientBrush>        
         <sys:FontFamily x:Key="DefaultFont" xmlns:sys="clr-namespace:System.Windows.Media;assembly=System.Windows">
             /DeathTimerz;component/Fonts/CHILLER.TTF#Chiller
         </sys:FontFamily>

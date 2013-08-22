@@ -6,13 +6,19 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:DeathTimerz.ViewModel"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Landscape" Orientation="Landscape"
     mc:Ignorable="d" shell:SystemTray.IsVisible="False">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <phone:PhoneApplicationPage.Resources>
+        <vm:EpighraphViewModel x:Key="EpigraphVM" />
+    </phone:PhoneApplicationPage.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent"
+          DataContext="{StaticResource EpigraphVM}">
         <ScrollViewer>
             <TextBlock Text="{Binding EstimatedDeathAgeText}" HorizontalAlignment="Left"
                                    Margin="10,0" TextWrapping="Wrap"

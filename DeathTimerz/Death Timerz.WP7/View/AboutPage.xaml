@@ -1,0 +1,29 @@
+﻿<phone:PhoneApplicationPage xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"  
+    x:Class="DeathTimerz.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
+    xmlns:vm="clr-namespace:DeathTimerz.ViewModel"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+    
+    <phone:PhoneApplicationPage.Resources>
+        <vm:AboutViewModel x:Key="AboutVM"
+                           MinFontSize="55"
+                           AppId="d78812c9-f9d5-df11-a844-00237de2db9e"
+                           DefaultFont="/DeathTimerz;component/Fonts/CHILLER.TTF#Chiller"
+                           DefaultForeground="{StaticResource RedGradientBrush}" >
+            <vm:AboutViewModel.DefaultBackground>
+                <ImageBrush ImageSource="/DeathTimerz;component/Images/DeathBackground.jpg"
+                        Stretch="None" AlignmentX="Center" />
+            </vm:AboutViewModel.DefaultBackground>
+        </vm:AboutViewModel>
+    </phone:PhoneApplicationPage.Resources>
+    <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}" AdUnitId="10022419" 
+                       ApplicationId="d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2" />
+</phone:PhoneApplicationPage>

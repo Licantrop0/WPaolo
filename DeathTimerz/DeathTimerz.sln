@@ -24,15 +24,15 @@ Global
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = DeathTimerz.csproj
 		SccLocalPath1 = .
-		SccProjectUniqueName2 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
-		SccProjectName2 = ../WPCommon.Controls
-		SccLocalPath2 = ..\\WPCommon.Controls
+		SccProjectUniqueName2 = HealthAdvices\\HealthAdvices.csproj
+		SccProjectName2 = HealthAdvices
+		SccLocalPath2 = HealthAdvices
 		SccProjectUniqueName3 = ..\\UpdateHealthAdvicesTask\\UpdateHealthAdvicesTask.csproj
 		SccProjectName3 = ../UpdateHealthAdvicesTask
 		SccLocalPath3 = ..\\UpdateHealthAdvicesTask
-		SccProjectUniqueName4 = HealthAdvices\\HealthAdvices.csproj
-		SccProjectName4 = HealthAdvices
-		SccLocalPath4 = HealthAdvices
+		SccProjectUniqueName4 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName4 = ../WPCommon.Controls
+		SccLocalPath4 = ..\\WPCommon.Controls
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

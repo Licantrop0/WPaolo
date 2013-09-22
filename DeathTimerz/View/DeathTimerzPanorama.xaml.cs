@@ -37,11 +37,13 @@ namespace DeathTimerz
             if (AdPlaceHolder.Children.Count == 0)
             {
 #if DEBUG
-                var ad1 = new AdControl("test_client", "Image480_80", true)
-                { Height = 80, Width = 480 };
+                var ad1 = new AdControl("test_client", "Image480_80", true) { Height = 80, Width = 480 };
 #else
-                var ad1 = new AdControl("d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2",
-                    "10022419", true) { Height = 80, Width = 480 };
+                var ad1 = new AdControl("34d0c575-22b0-464f-b928-3681b48375cc",
+                    "140408", true) { Height = 80, Width = 480 };
+                
+                //var ad1 = new AdControl("d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2",
+                //    "10022419", true) { Height = 80, Width = 480 };
 #endif
 
                 ad1.ErrorOccurred += ad1_ErrorOccurred;
@@ -64,15 +66,13 @@ namespace DeathTimerz
 
         private void MainPanorama_Loaded(object sender, RoutedEventArgs e)
         {
-            SuggestionGrid.Margin = PinToStartAppBarButton.IsEnabled ?
-                new Thickness(0, -30, 0, 72) :
-                new Thickness(0, -30, 0, 30);
+            MainPanorama_SelectionChanged(sender, null);
         }
 
         private void MainPanorama_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (MainPanorama.SelectedIndex == 0 &&
-                PinToStartAppBarButton.IsEnabled) //Health Suggestion
+                ShellTile.ActiveTiles.Count() == 1) //Health Suggestion
             {
                 ApplicationBar.Buttons.Add(PinToStartAppBarButton);
                 ApplicationBar.Mode = ApplicationBarMode.Default;
@@ -101,12 +101,13 @@ namespace DeathTimerz
             EditTestAppBarButton.Text = AppResources.EditTest;
             EditTestAppBarButton.Click += (sender, e) => NavigationService.Navigate(new Uri("/View/TestPage.xaml", UriKind.Relative));
 
-            PinToStartAppBarButton = new ApplicationBarIconButton();
-            PinToStartAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_pin.png", UriKind.Relative);
-            PinToStartAppBarButton.IsEnabled = ShellTile.ActiveTiles.Count() == 1;
-            PinToStartAppBarButton.Text = AppResources.PinToStart;
-            PinToStartAppBarButton.Click += (sender, e) => CreateSecondaryTile();
-
+            if (ShellTile.ActiveTiles.Count() == 1)
+            {
+                PinToStartAppBarButton = new ApplicationBarIconButton();
+                PinToStartAppBarButton.IconUri = new Uri("Toolkit.Content\\appbar_pin.png", UriKind.Relative);
+                PinToStartAppBarButton.Text = AppResources.PinToStart;
+                PinToStartAppBarButton.Click += (sender, e) => CreateSecondaryTile();
+            }
             var SettingsAppBarMenuItem = new ApplicationBarMenuItem();
             SettingsAppBarMenuItem.Text = Sounds.SoundManager.Instance.MusicEnabled ?
                 AppResources.DisableMusic : AppResources.EnableMusic;
@@ -133,6 +134,7 @@ namespace DeathTimerz
 
         private void CreateSecondaryTile()
         {
+            UpdateHealthAdvicesTask.ScheduledAgent.WriteFile();
             var tileData = new StandardTileData()
             {
                 Title = AppResources.AppName,

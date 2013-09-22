@@ -29,7 +29,5 @@ namespace HealthAdvices
             //var advice = Advices[rnd.Next(Advices.Length)];
             return Advices[DateTime.Today.DayOfYear % Advices.Length];
         }
-
-
     }
 }

@@ -54,26 +54,26 @@ namespace DeathTimerz.ViewModel
             }
         }
 
-        public Visibility IsPinSuggestionVisible
-        {
-            get
-            {
-                if (ShellTile.ActiveTiles.Count() == 2)
-                    return Visibility.Collapsed;
+        //public Visibility IsPinSuggestionVisible
+        //{
+        //    get
+        //    {
+        //        if (ShellTile.ActiveTiles.Count() == 2)
+        //            return Visibility.Collapsed;
 
-                if (!IsolatedStorageSettings.ApplicationSettings.Contains("is_pin_suggestion_visible"))
-                    IsolatedStorageSettings.ApplicationSettings["is_pin_suggestion_visible"] = true;
-                return (bool)IsolatedStorageSettings.ApplicationSettings["is_pin_suggestion_visible"] ?
-                    Visibility.Visible : Visibility.Collapsed;
-            }
-            set
-            {
-                if (IsPinSuggestionVisible == value) return;
-                IsolatedStorageSettings.ApplicationSettings["is_pin_suggestion_visible"] =
-                    (value == Visibility.Visible);
-                RaisePropertyChanged("IsPinSuggestionVisible");
-            }
-        }
+        //        if (!IsolatedStorageSettings.ApplicationSettings.Contains("is_pin_suggestion_visible"))
+        //            IsolatedStorageSettings.ApplicationSettings["is_pin_suggestion_visible"] = true;
+        //        return (bool)IsolatedStorageSettings.ApplicationSettings["is_pin_suggestion_visible"] ?
+        //            Visibility.Visible : Visibility.Collapsed;
+        //    }
+        //    set
+        //    {
+        //        if (IsPinSuggestionVisible == value) return;
+        //        IsolatedStorageSettings.ApplicationSettings["is_pin_suggestion_visible"] =
+        //            (value == Visibility.Visible);
+        //        RaisePropertyChanged("IsPinSuggestionVisible");
+        //    }
+        //}
 
         public DateTime? BirthDay
         {

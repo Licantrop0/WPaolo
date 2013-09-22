@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathTimerz", "DeathTimerz.csproj", "{5A96B93C-7053-43CD-968F-6AE5F699662D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathTimerz", "Death Timerz.WP7\DeathTimerz.csproj", "{5A96B93C-7053-43CD-968F-6AE5F699662D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateHealthAdvicesTask", "..\UpdateHealthAdvicesTask\UpdateHealthAdvicesTask.csproj", "{DD2E68F8-530F-4765-8CB9-FA61159BA09D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateHealthAdvicesTask", "UpdateHealthAdvicesTask\UpdateHealthAdvicesTask.csproj", "{DD2E68F8-530F-4765-8CB9-FA61159BA09D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthAdvices", "HealthAdvices\HealthAdvices.csproj", "{1C70ABB7-2253-42A9-9778-0B5F331E2F19}"
 EndProject
@@ -21,18 +21,19 @@ Global
 		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = DeathTimerz.csproj
-		SccLocalPath1 = .
-		SccProjectUniqueName2 = HealthAdvices\\HealthAdvices.csproj
-		SccProjectName2 = HealthAdvices
-		SccLocalPath2 = HealthAdvices
-		SccProjectUniqueName3 = ..\\UpdateHealthAdvicesTask\\UpdateHealthAdvicesTask.csproj
-		SccProjectName3 = ../UpdateHealthAdvicesTask
-		SccLocalPath3 = ..\\UpdateHealthAdvicesTask
-		SccProjectUniqueName4 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
-		SccProjectName4 = ../WPCommon.Controls
-		SccLocalPath4 = ..\\WPCommon.Controls
+		SccProjectUniqueName0 = HealthAdvices\\HealthAdvices.csproj
+		SccProjectName0 = HealthAdvices
+		SccLocalPath0 = HealthAdvices
+		SccProjectUniqueName1 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName1 = ../WPCommon.Controls
+		SccLocalPath1 = ..\\WPCommon.Controls
+		SccLocalPath2 = .
+		SccProjectUniqueName3 = Death\u0020Timerz.WP7\\DeathTimerz.csproj
+		SccProjectName3 = Death\u0020Timerz.WP7
+		SccLocalPath3 = Death\u0020Timerz.WP7
+		SccProjectUniqueName4 = UpdateHealthAdvicesTask\\UpdateHealthAdvicesTask.csproj
+		SccProjectName4 = UpdateHealthAdvicesTask
+		SccLocalPath4 = UpdateHealthAdvicesTask
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

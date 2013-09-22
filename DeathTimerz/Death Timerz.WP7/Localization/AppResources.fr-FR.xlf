@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en" target-language="fr-FR" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="DeathTimerz" product-version="1.5.0" build-num="0">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.0.1000.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="Resx">
+        <trans-unit id="Resx/About" translate="yes" xml:space="preserve">
+          <source>About</source>
+          <target state="translated">Infos</target>
+        </trans-unit>
+        <trans-unit id="Resx/Age" translate="yes" xml:space="preserve">
+          <source>Age</source>
+          <target state="translated">Ton âge</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppName" translate="yes" xml:space="preserve">
+          <source>Death Timerz</source>
+          <target state="translated">Horloge de la Mort</target>
+        </trans-unit>
+        <trans-unit id="Resx/BirthdayAfter" translate="yes" xml:space="preserve">
+          <source>Your Birthday is in</source>
+          <target state="translated">Votre Anniversaire est en</target>
+        </trans-unit>
+        <trans-unit id="Resx/Cancel" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="translated">Annuler</target>
+        </trans-unit>
+        <trans-unit id="Resx/Day" translate="yes" xml:space="preserve">
+          <source>Day</source>
+          <target state="translated">Jour</target>
+        </trans-unit>
+        <trans-unit id="Resx/Days" translate="yes" xml:space="preserve">
+          <source>Days</source>
+          <target state="translated">Jours</target>
+        </trans-unit>
+        <trans-unit id="Resx/DisableMusic" translate="yes" xml:space="preserve">
+          <source>Disable background music</source>
+          <target state="translated">Désactiver à la musique de fond</target>
+        </trans-unit>
+        <trans-unit id="Resx/Disclaimer" translate="yes" xml:space="preserve">
+          <source>Disclaimer</source>
+          <target state="translated">Avertissement</target>
+        </trans-unit>
+        <trans-unit id="Resx/DisclaimerText" translate="yes" xml:space="preserve">
+          <source>Death Timerz should be intended only for fun, no medical or statistical data are used to calculate the time of your death.
+Anyway... knock on wood!</source>
+          <target state="translated">L'Horloge de la Mort est comme un jeux, il n'est pas un instrument médical ou statistique.
+De toute façon... touche du bois!</target>
+        </trans-unit>
+        <trans-unit id="Resx/EditTest" translate="yes" xml:space="preserve">
+          <source>Edit Test</source>
+          <target state="translated">Changer le test</target>
+        </trans-unit>
+        <trans-unit id="Resx/EnableMusic" translate="yes" xml:space="preserve">
+          <source>Enable background music</source>
+          <target state="translated">Permettre à la musique de fond</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorFutureBirthday" translate="yes" xml:space="preserve">
+          <source>You can't setup your birthday today or in the future.</source>
+          <target state="translated">Tu ne peux pas mettre ton jour de naissance aujourd'hui ou dans le futur.</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorTooOldBirthday" translate="yes" xml:space="preserve">
+          <source>No one with that birthday could be still alive...</source>
+          <target state="translated">Personne avec ce jour de naissance peut être encore en vie...</target>
+        </trans-unit>
+        <trans-unit id="Resx/Female" translate="yes" xml:space="preserve">
+          <source>Female</source>
+          <target state="translated">Femme</target>
+        </trans-unit>
+        <trans-unit id="Resx/Hour" translate="yes" xml:space="preserve">
+          <source>Hour</source>
+          <target state="translated">Heure</target>
+        </trans-unit>
+        <trans-unit id="Resx/Hours" translate="yes" xml:space="preserve">
+          <source>Hours</source>
+          <target state="translated">Heures</target>
+        </trans-unit>
+        <trans-unit id="Resx/InsertBirthday" translate="yes" xml:space="preserve">
+          <source>Insert your Birthday</source>
+          <target state="translated">Ton jour de naissance</target>
+        </trans-unit>
+        <trans-unit id="Resx/Male" translate="yes" xml:space="preserve">
+          <source>Male</source>
+          <target state="translated">Homme</target>
+        </trans-unit>
+        <trans-unit id="Resx/MaleOrFemale" translate="yes" xml:space="preserve">
+          <source>Select your gender</source>
+          <target state="translated">Es-tu homme ou femme?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Minute" translate="yes" xml:space="preserve">
+          <source>Minute</source>
+          <target state="new">Minute</target>
+        </trans-unit>
+        <trans-unit id="Resx/Minutes" translate="yes" xml:space="preserve">
+          <source>Minutes</source>
+          <target state="new">Minutes</target>
+        </trans-unit>
+        <trans-unit id="Resx/Month" translate="yes" xml:space="preserve">
+          <source>Month</source>
+          <target state="translated">Mois</target>
+        </trans-unit>
+        <trans-unit id="Resx/Months" translate="yes" xml:space="preserve">
+          <source>Months</source>
+          <target state="translated">Mois</target>
+        </trans-unit>
+        <trans-unit id="Resx/Ok" translate="yes" xml:space="preserve">
+          <source>OK</source>
+          <target state="translated">Ok</target>
+        </trans-unit>
+        <trans-unit id="Resx/PinToStart" translate="yes" xml:space="preserve">
+          <source>Pin to Start</source>
+          <target state="translated">Épingler à l'écran d'accueil</target>
+        </trans-unit>
+        <trans-unit id="Resx/PinToStartSuggestion" translate="yes" xml:space="preserve">
+          <source>Pin to Start to receive a daily health suggestion on your Start Screen!</source>
+          <target state="translated">Épingler à l'écran d'accueil pour y recevoir un conseil santé quotidien</target>
+        </trans-unit>
+        <trans-unit id="Resx/PlayBackgroundMusic" translate="yes" xml:space="preserve">
+          <source>Do you want to stop the current music and play the gloomy background music of this app?</source>
+          <target state="translated">Veux-tu arrêter ta musique pour écouter la lugubre musique de cette app?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Profile" translate="yes" xml:space="preserve">
+          <source>Profile</source>
+          <target state="translated">Profil</target>
+        </trans-unit>
+        <trans-unit id="Resx/Save" translate="yes" xml:space="preserve">
+          <source>Save</source>
+          <target state="translated">Confirmer</target>
+        </trans-unit>
+        <trans-unit id="Resx/Second" translate="yes" xml:space="preserve">
+          <source>Second</source>
+          <target state="translated">Seconde</target>
+        </trans-unit>
+        <trans-unit id="Resx/Seconds" translate="yes" xml:space="preserve">
+          <source>Seconds</source>
+          <target state="translated">Secondes</target>
+        </trans-unit>
+        <trans-unit id="Resx/Settings" translate="yes" xml:space="preserve">
+          <source>Settings</source>
+          <target state="translated">Options</target>
+        </trans-unit>
+        <trans-unit id="Resx/Suggestion" translate="yes" xml:space="preserve">
+          <source>Health Suggestion</source>
+          <target state="translated">Conseil santé</target>
+        </trans-unit>
+        <trans-unit id="Resx/TakeTest" translate="yes" xml:space="preserve">
+          <source>Take the test!</source>
+          <target state="translated">Fais le test!</target>
+        </trans-unit>
+        <trans-unit id="Resx/TaskDescription" translate="yes" xml:space="preserve">
+          <source>Daily tile update for DeathTimerz</source>
+          <target state="translated">Quotidien Vignettes dynamiques pour l'Horloge de la Mort</target>
+        </trans-unit>
+        <trans-unit id="Resx/Test1" translate="yes" xml:space="preserve">
+          <source>Physical</source>
+          <target state="translated">Physiques</target>
+        </trans-unit>
+        <trans-unit id="Resx/Test2" translate="yes" xml:space="preserve">
+          <source>Psicological</source>
+          <target state="translated">Psychologiques</target>
+        </trans-unit>
+        <trans-unit id="Resx/TestNotCompleted" translate="yes" xml:space="preserve">
+          <source>Please respond to all questions</source>
+          <target state="translated">Réponds à toutes les questions, s'il vous plaît!</target>
+        </trans-unit>
+        <trans-unit id="Resx/TimeToDeath" translate="yes" xml:space="preserve">
+          <source>Time to Death</source>
+          <target state="translated">Le temps qui te
+reste</target>
+        </trans-unit>
+        <trans-unit id="Resx/WillDie" translate="yes" xml:space="preserve">
+          <source>You will die on {0:D} at {1:N0} years.
+You lived {2:N2}% of your life, with {3:N0} days remaining.</source>
+          <target state="translated">Tu mourras {0:D},
+à {1:N0} ans.
+Tu es au {2:N2}% de ta vie, et il te reste  {3:N0} jours à vivre.</target>
+        </trans-unit>
+        <trans-unit id="Resx/Year" translate="yes" xml:space="preserve">
+          <source>Year</source>
+          <target state="translated">An</target>
+        </trans-unit>
+        <trans-unit id="Resx/Years" translate="yes" xml:space="preserve">
+          <source>Years</source>
+          <target state="translated">Ans</target>
+        </trans-unit>
+        <trans-unit id="Resx/YetAlive" translate="yes" xml:space="preserve">
+          <source>Are you still alive? It's hard to believe!</source>
+          <target state="translated">T'es toujours en vie, toi?!</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

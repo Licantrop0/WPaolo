@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Questions>
+  
+  <Question Name="Cigarettes1" Type="Number" >
+    <Answer Name="Cigarettes1" Text="" />
+  </Question>
+  
+  <Question Name="Cigarettes2" Type="Number" >
+    <Answer Name="Cigarettes2" Text="" />
+  </Question>
+
+  <Question Name="Alcohol" Type="MultipleChoice">
+    <Answer Name="Alcohol1" Value="1" IsChecked="False" />
+    <Answer Name="Alcohol2" Value="-0.3" IsChecked="False" />
+    <Answer Name="Alcohol3" Value="-3" IsChecked="False" />
+  </Question>
+
+  <Question Name="Drugs" Type="MultipleChoice">
+    <Answer Name="Drugs1" Value="0" IsChecked="False" />
+    <Answer Name="Drugs2" Value="-1" IsChecked="False" />
+    <Answer Name="Drugs3" Value="-2.2" IsChecked="False" />
+  </Question>
+
+  <Question Name="CronicDisease" Type="MultipleChoice">
+    <Answer Name="CronicDisease1" Value="0" IsChecked="False" />
+    <Answer Name="CronicDisease2" Value="-3" IsChecked="False" />
+    <Answer Name="CronicDisease3" Value="-10" IsChecked="False" />
+  </Question>
+
+  <Question Name="Height" Type="Number">
+    <Answer Name="Height1" Text="" />
+  </Question>
+
+  <Question Name="Weight" Type="Number" >
+    <Answer Name="Weight1" Text="" />
+  </Question>
+  
+  <Question Name="ClinicChecks" Type="MultipleChoice">
+    <Answer Name="ClinicChecks1" Value="-2" IsChecked="False" />
+    <Answer Name="ClinicChecks2" Value="1" IsChecked="False" />
+    <Answer Name="ClinicChecks3" Value="2" IsChecked="False" />
+  </Question>
+
+  <Question Name="Sports" Type="MultipleChoice">
+    <Answer Name="Sports1" Value="-2" IsChecked="False" />
+    <Answer Name="Sports2" Value="1" IsChecked="False" />
+    <Answer Name="Sports3" Value="2" IsChecked="False" />
+  </Question>
+
+  <Question Name="Food" Type="MultipleChoice">
+    <Answer Name="Food1" Value="2" IsChecked="False" />
+    <Answer Name="Food2" Value="0" IsChecked="False" />
+    <Answer Name="Food3" Value="-3" IsChecked="False" />
+    <Answer Name="Food4" Value="-1" IsChecked="False" />
+  </Question>
+ 
+</Questions>

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en" target-language="it-IT" original="Test2.resx" tool-id="MultilingualAppToolkit" product-name="DeathTimerz" product-version="1.5.0" build-num="0">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.0.1000.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="Resx">
+        <trans-unit id="Resx/Animal" translate="yes" xml:space="preserve">
+          <source>Which animal do you prefer?</source>
+          <target state="translated">Quale animale preferisci?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Animal1" translate="yes" xml:space="preserve">
+          <source>Dog</source>
+          <target state="translated">Cane</target>
+        </trans-unit>
+        <trans-unit id="Resx/Animal2" translate="yes" xml:space="preserve">
+          <source>Cat</source>
+          <target state="translated">Gatto</target>
+        </trans-unit>
+        <trans-unit id="Resx/Animal3" translate="yes" xml:space="preserve">
+          <source>Horse</source>
+          <target state="translated">Cavallo</target>
+        </trans-unit>
+        <trans-unit id="Resx/ForeverAlone" translate="yes" xml:space="preserve">
+          <source>Are you feeling lonley, shy or isolated?</source>
+          <target state="translated">Ti senti solo, timido o isolato?</target>
+        </trans-unit>
+        <trans-unit id="Resx/ForeverAlone1" translate="yes" xml:space="preserve">
+          <source>No, I have friends</source>
+          <target state="translated">No, ho degli amici</target>
+        </trans-unit>
+        <trans-unit id="Resx/ForeverAlone2" translate="yes" xml:space="preserve">
+          <source>Lately</source>
+          <target state="translated">Ultimamente</target>
+        </trans-unit>
+        <trans-unit id="Resx/ForeverAlone3" translate="yes" xml:space="preserve">
+          <source>Since adolesence</source>
+          <target state="translated">Dalla mia adolescenza</target>
+        </trans-unit>
+        <trans-unit id="Resx/ForeverAlone4" translate="yes" xml:space="preserve">
+          <source>In my entire life</source>
+          <target state="translated">In tutta la mia vita</target>
+        </trans-unit>
+        <trans-unit id="Resx/Headache" translate="yes" xml:space="preserve">
+          <source>Do you suffer Headaches?</source>
+          <target state="translated">Soffri di malditesta?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Headache1" translate="yes" xml:space="preserve">
+          <source>Almost never</source>
+          <target state="translated">Quasi mai</target>
+        </trans-unit>
+        <trans-unit id="Resx/Headache2" translate="yes" xml:space="preserve">
+          <source>Few times in a year</source>
+          <target state="translated">Poche volte all'anno</target>
+        </trans-unit>
+        <trans-unit id="Resx/Headache3" translate="yes" xml:space="preserve">
+          <source>At least once a month</source>
+          <target state="translated">almeno una volta al mese</target>
+        </trans-unit>
+        <trans-unit id="Resx/Headache4" translate="yes" xml:space="preserve">
+          <source>At least once a week</source>
+          <target state="translated">almeno una volta alla settimana</target>
+        </trans-unit>
+        <trans-unit id="Resx/Insomnia" translate="yes" xml:space="preserve">
+          <source>Do you have insomnia or do you oversleep?</source>
+          <target state="translated">Soffri di insonnia oppure dormi troppo?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Insomnia1" translate="yes" xml:space="preserve">
+          <source>No, I sleep about 8 hours a day</source>
+          <target state="translated">No, dormo circa otto ore per notte</target>
+        </trans-unit>
+        <trans-unit id="Resx/Insomnia2" translate="yes" xml:space="preserve">
+          <source>I sleep less than 8 hours a day</source>
+          <target state="translated">Dormo più di 8 ore per notte</target>
+        </trans-unit>
+        <trans-unit id="Resx/Insomnia3" translate="yes" xml:space="preserve">
+          <source>I always take a nap after launch</source>
+          <target state="translated">Faccio sempre un pisolino dopo pranzo</target>
+        </trans-unit>
+        <trans-unit id="Resx/Insomnia4" translate="yes" xml:space="preserve">
+          <source>I have serious difficulties to fall asleep every night</source>
+          <target state="translated">Ho molte difficoltà nell'addormentarmi</target>
+        </trans-unit>
+        <trans-unit id="Resx/Panic" translate="yes" xml:space="preserve">
+          <source>Have you panick attacks for no apparent reason?</source>
+          <target state="translated">Hai mai sofferto di attacchi di panico senza motivo?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Panic1" translate="yes" xml:space="preserve">
+          <source>Never</source>
+          <target state="translated">Mai</target>
+        </trans-unit>
+        <trans-unit id="Resx/Panic2" translate="yes" xml:space="preserve">
+          <source>Sometimes</source>
+          <target state="translated">Qualche volta</target>
+        </trans-unit>
+        <trans-unit id="Resx/Panic3" translate="yes" xml:space="preserve">
+          <source>Often</source>
+          <target state="translated">Spesso</target>
+        </trans-unit>
+        <trans-unit id="Resx/Panic4" translate="yes" xml:space="preserve">
+          <source>Always</source>
+          <target state="translated">Sempre</target>
+        </trans-unit>
+        <trans-unit id="Resx/Phobia" translate="yes" xml:space="preserve">
+          <source>Are you afraid of a particular animal, or by doing some activity?</source>
+          <target state="translated">Sei spaventato da un animale in particolare o nel fare qualcosa?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Phobia1" translate="yes" xml:space="preserve">
+          <source>Yes</source>
+          <target state="translated">Si</target>
+        </trans-unit>
+        <trans-unit id="Resx/Phobia2" translate="yes" xml:space="preserve">
+          <source>No</source>
+          <target state="new">No</target>
+        </trans-unit>
+        <trans-unit id="Resx/SelfEsteem" translate="yes" xml:space="preserve">
+          <source>How much do you self esteem?</source>
+          <target state="translated">Quanto ti stimi?</target>
+        </trans-unit>
+        <trans-unit id="Resx/SelfEsteem1" translate="yes" xml:space="preserve">
+          <source>I am less than a 0</source>
+          <target state="translated">Sono meno di uno 0</target>
+        </trans-unit>
+        <trans-unit id="Resx/SelfEsteem2" translate="yes" xml:space="preserve">
+          <source>Low</source>
+          <target state="translated">Poco</target>
+        </trans-unit>
+        <trans-unit id="Resx/SelfEsteem3" translate="yes" xml:space="preserve">
+          <source>I am realistic</source>
+          <target state="translated">Sono realistico</target>
+        </trans-unit>
+        <trans-unit id="Resx/SelfEsteem4" translate="yes" xml:space="preserve">
+          <source>High</source>
+          <target state="translated">Molto</target>
+        </trans-unit>
+        <trans-unit id="Resx/SelfEsteem5" translate="yes" xml:space="preserve">
+          <source>I am the best</source>
+          <target state="translated">Sono il migliore!</target>
+        </trans-unit>
+        <trans-unit id="Resx/Stress" translate="yes" xml:space="preserve">
+          <source>Are you under stress?</source>
+          <target state="translated">Sei sotto stress?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Stress1" translate="yes" xml:space="preserve">
+          <source>Never</source>
+          <target state="translated">Mai</target>
+        </trans-unit>
+        <trans-unit id="Resx/Stress2" translate="yes" xml:space="preserve">
+          <source>Occasionally</source>
+          <target state="translated">Ogni tanto</target>
+        </trans-unit>
+        <trans-unit id="Resx/Stress3" translate="yes" xml:space="preserve">
+          <source>Frequently</source>
+          <target state="translated">Di frequente</target>
+        </trans-unit>
+        <trans-unit id="Resx/Stress4" translate="yes" xml:space="preserve">
+          <source>Every day</source>
+          <target state="translated">Ogni giorno</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

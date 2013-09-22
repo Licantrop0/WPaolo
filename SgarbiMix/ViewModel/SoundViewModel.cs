@@ -65,7 +65,7 @@ namespace SgarbiMix.ViewModel
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && TrialManagement.Counter >= 5)
+            if (TrialManagement.IsTrialMode && TrialManagement.Counter > 8)
             {
                 NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
                 return false;

@@ -46,10 +46,10 @@
                    TextAlignment="Center" TextWrapping="Wrap" FontWeight="SemiBold"
                    Style="{StaticResource TextBlockBaseStyle}" >
             Questa è solo una demo :(<LineBreak/>
-            Puoi gridare le frasi di Sgarbi solo 5 volte al giorno...<LineBreak/>
+            Puoi gridare le frasi di Sgarbi solo 8 volte al giorno...<LineBreak/>
             Se vuoi ripetere 100 volte<LineBreak/>
             "Capra!" o "Ignorante!"<LineBreak/>
-            come Sgarbi, devi comprare la versione completa,
+            come Sgarbi, devi comprare la versione completa
             che toglie anche il banner.<LineBreak/>
             Costa come un caffè, non puoi perdere questa occasione!!!
         </TextBlock>

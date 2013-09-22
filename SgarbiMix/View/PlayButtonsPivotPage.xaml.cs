@@ -8,6 +8,8 @@ using Microsoft.Phone.Tasks;
 using SgarbiMix.ViewModel;
 using ShakeGestures;
 using WPCommon.Helpers;
+using Microsoft.Xna.Framework.Media;
+using System.Collections.Generic;
 
 namespace SgarbiMix
 {
@@ -19,33 +21,25 @@ namespace SgarbiMix
         {
             InitializeComponent();
             InitializeShaker();
+            adSwitcher.LoadingError = s => MainPivot.Margin = new Thickness(0, -30, 0, 0);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _shaker.Active = true;
-
             if (TrialManagement.IsTrialMode)
-                InitializeAd();
-
+            {
+                MainPivot.Margin = new Thickness(0, -30, 0, 80);
+                adSwitcher.AddAdvertising();
+            }
             base.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             _shaker.Active = false;
-            AdPlaceHolder.Children.Clear();
+            adSwitcher.RemoveAdvertising();
             base.OnNavigatedFrom(e);
-        }
-
-        private void InitializeAd()
-        {
-            if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
-                return;
-
-            AdPlaceHolder.Children.Add(
-                new AdControl("c175f6ba-cb10-4fe3-a1de-a96480a03d3a", "10022581", true)
-                { Height = 80, Width = 480 });
         }
 
         private void InitializeShaker()
@@ -61,7 +55,7 @@ namespace SgarbiMix
                 Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300));
                 _shaker.Active = true;
             };
-        }
+        }   
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)
         {
@@ -96,6 +90,12 @@ namespace SgarbiMix
                 To = "wpmobile@hotmail.it",
                 Body = SuggerimentoTextBox.Text
             }.Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Song song = Song.FromUri("capra", new Uri("Sounds\\Capra!.mp3", UriKind.Relative));
+            MediaPlayer.Play(song);
         }
     }
 }

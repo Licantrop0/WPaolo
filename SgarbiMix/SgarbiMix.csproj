@@ -62,13 +62,14 @@
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\SilverlightToolkitWP.4.2012.6.25\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+      <HintPath>packages\WPtoolkit.4.2013.08.16\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Phone.Reactive" />
     <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -136,7 +137,10 @@
     <Content Include="Images\bianco.png" />
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
+    <Content Include="README_FIRST.txt" />
     <Content Include="Sounds.xml" />
+    <Content Include="Sounds\Capra!.mp3" />
+    <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
@@ -144,8 +148,6 @@
     <Resource Include="Fonts\segoepr.ttf" />
     <None Include="packages.config" />
     <None Include="Sounds\Ateo fasullo!.wav" />
-    <None Include="Sounds\capra.wav" />
-    <None Include="Sounds\e1crimine.wav" />
     <None Include="Sounds\Valori del buco del culo.wav" />
     <None Include="Sounds\Pagato!.wav" />
     <None Include="Sounds\Altro che valori.wav" />
@@ -171,7 +173,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Sounds\Capra ignorante!.wav" />
-    <None Include="Sounds\Capra!.wav" />
     <None Include="Sounds\Criminale!.wav" />
     <None Include="Sounds\Culattoni raccomandati!.wav" />
     <None Include="Sounds\E tu sei un pirla!.wav" />

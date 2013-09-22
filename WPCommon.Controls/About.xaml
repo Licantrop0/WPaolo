@@ -7,6 +7,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:wpc="clr-namespace:WPCommon.Controls"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
 
     <!--
@@ -73,9 +74,10 @@
                                FontSize="{Binding CustomTextFontSize}"
                                Foreground="{Binding CustomTextForeground}"/>
                 </StackPanel>
-
-                <StackPanel Name="AdPlaceHolder" Height="80"
-                            VerticalAlignment="Bottom" />
+                <wpc:AdSwitcher Name="AdSwitcher"
+                                MSAppId="21ecdf14-8a3e-49e6-b19a-a94b96b2eb0e"
+                                MSAdId="10022566" ADAppId="52939"
+                                VerticalAlignment="Bottom" />
             </Grid>
         </controls:PivotItem>
 

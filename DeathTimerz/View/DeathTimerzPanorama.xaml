@@ -43,7 +43,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <ScrollViewer>
@@ -54,31 +53,8 @@
                                FontSize="60"
                                Style="{StaticResource RedChiller}" />
                 </ScrollViewer>
-                
-                <Grid Grid.Row="1" Visibility="{Binding IsPinSuggestionVisible}">
-                    <TextBlock Name="PinSuggestionTextBlock" TextWrapping="Wrap"
-                               Text="{Binding LocalizedResources.PinToStartSuggestion,
-                        Source={StaticResource LocalizedStrings}}"
-                               FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                               Foreground="{StaticResource RedGradientBrush}"
-                               VerticalAlignment="Bottom" HorizontalAlignment="Right" />
-
-                    <Button Command="{Binding ClosePinSuggestion}"
-                        Height="50" Width="50" Margin="0,-30,-30,0"
-                        HorizontalAlignment="Right" VerticalAlignment="Top">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Border Background="{StaticResource RedGradientBrush}">
-                                    <Border.OpacityMask>
-                                        <ImageBrush ImageSource="..\Toolkit.Content\ApplicationBar.Cancel.png" />
-                                    </Border.OpacityMask>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </Grid>
-                <StackPanel Name="AdPlaceHolder" Background="Blue"
-                            Margin="0,0,-30,0" Grid.Row="2" />
+                <StackPanel Name="AdPlaceHolder"
+                            Margin="0,0,-30,0" Grid.Row="1" />
             </Grid>
         </controls:PanoramaItem>
 
@@ -134,32 +110,33 @@
                 <TextBlock Text="{Binding Path=LocalizedResources.MaleOrFemale, Source={StaticResource LocalizedStrings}}"                       
                            Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
                 <StackPanel Orientation="Horizontal">
-                    <hlp:MyRadioButton Content="{Binding Path=LocalizedResources.Male,
-                                        Source={StaticResource LocalizedStrings}}"
-                                     Foreground="{StaticResource RedGradientBrush}"
-                                     Style="{StaticResource RedChillerContentControl}"
-                                     GroupName="MaleOrFemale" Margin="0,-10" IsChecked="{Binding IsMale, Mode=TwoWay}" />
+                    <RadioButton Content="{Binding Path=LocalizedResources.Male,
+                        Source={StaticResource LocalizedStrings}}"
+                                 Foreground="{StaticResource RedGradientBrush}"
+                                 Style="{StaticResource RedChillerContentControl}"
+                                 GroupName="MaleOrFemale" Margin="0,-10" IsChecked="{Binding IsMale, Mode=TwoWay}" />
 
-                    <hlp:MyRadioButton Content="{Binding Path=LocalizedResources.Female,
-                                        Source={StaticResource LocalizedStrings}}"
-                                     Foreground="{StaticResource RedGradientBrush}"
-                                     Style="{StaticResource RedChillerContentControl}"
-                                     GroupName="MaleOrFemale" Margin="20,-10" IsChecked="True" />
+                    <RadioButton Content="{Binding Path=LocalizedResources.Female,
+                        Source={StaticResource LocalizedStrings}}"
+                                 Foreground="{StaticResource RedGradientBrush}"
+                                 Style="{StaticResource RedChillerContentControl}"
+                                 GroupName="MaleOrFemale" Margin="20,-10" IsChecked="True" />
                 </StackPanel>
 
                 <TextBlock Text="{Binding Path=LocalizedResources.InsertBirthday,
-                                    Source={StaticResource LocalizedStrings}}"
-                               Style="{StaticResource RedChiller}"
-                               FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
-
+                    Source={StaticResource LocalizedStrings}}"
+                           Style="{StaticResource RedChiller}"
+                           FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
+                
                 <toolkit:DatePicker Background="#B4555555"
-                                        FontFamily="{StaticResource DefaultFont}"
-                                        Foreground="{StaticResource RedWhiteGradientBrush}"
-                                        Value="{Binding BirthDay, Mode=TwoWay}" />
+                                    FontFamily="{StaticResource DefaultFont}"
+                                    Foreground="{StaticResource RedWhiteGradientBrush}"
+                                    Value="{Binding BirthDay, Mode=TwoWay}" />
                 <toolkit:TimePicker Background="#B4555555"
-                                        Foreground="{StaticResource RedWhiteGradientBrush}"
-                                        Value="{Binding BirthDay, Mode=TwoWay}"
-                                        FontFamily="{StaticResource DefaultFont}" />
+                                    Foreground="{StaticResource RedWhiteGradientBrush}"
+                                    Value="{Binding BirthDay, Mode=TwoWay}"
+                                    FontFamily="{StaticResource DefaultFont}"
+                                    ValueStringFormat="{}{0:HH:mm}" />
 
                 <TextBlock Text="{Binding DaysToBirthDay}"
                                HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"

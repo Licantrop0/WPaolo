@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en" target-language="fr-FR" original="Test1.resx" tool-id="MultilingualAppToolkit" product-name="DeathTimerz" product-version="1.5.0" build-num="0">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.0.1000.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="Resx">
+        <trans-unit id="Resx/Alcohol" translate="yes" xml:space="preserve">
+          <source>How often do you drink alcohol?</source>
+          <target state="translated">Combien de fois bois-tu de l'alcool?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Alcohol1" translate="yes" xml:space="preserve">
+          <source>I'm teetotal</source>
+          <target state="translated">Je ne bois jamais d'alcool</target>
+        </trans-unit>
+        <trans-unit id="Resx/Alcohol2" translate="yes" xml:space="preserve">
+          <source>Without exceeding</source>
+          <target state="translated">Je bois avec modération</target>
+        </trans-unit>
+        <trans-unit id="Resx/Alcohol3" translate="yes" xml:space="preserve">
+          <source>Every day</source>
+          <target state="translated">Tous les jours</target>
+        </trans-unit>
+        <trans-unit id="Resx/Cigarettes1" translate="yes" xml:space="preserve">
+          <source>How many cigarettes do you smoke daily?</source>
+          <target state="translated">Combien de cigarettes fumes-tu par jour?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Cigarettes2" translate="yes" xml:space="preserve">
+          <source>For how many years do you smoke?</source>
+          <target state="translated">Combien d'années fumez-vous?</target>
+        </trans-unit>
+        <trans-unit id="Resx/ClinicChecks" translate="yes" xml:space="preserve">
+          <source>How often you make clinic check?</source>
+          <target state="translated">Fais-tu des visites médicales?</target>
+        </trans-unit>
+        <trans-unit id="Resx/ClinicChecks1" translate="yes" xml:space="preserve">
+          <source>The last one was long time ago</source>
+          <target state="translated">Il y a quelques mois...</target>
+        </trans-unit>
+        <trans-unit id="Resx/ClinicChecks2" translate="yes" xml:space="preserve">
+          <source>Only when I'm sick</source>
+          <target state="translated">Seulement si je suis malade</target>
+        </trans-unit>
+        <trans-unit id="Resx/ClinicChecks3" translate="yes" xml:space="preserve">
+          <source>Periodically</source>
+          <target state="translated">Périodiquement</target>
+        </trans-unit>
+        <trans-unit id="Resx/CronicDisease" translate="yes" xml:space="preserve">
+          <source>Do you have chronic diseases?</source>
+          <target state="translated">Souffres-tu d'une maladie chronique?</target>
+        </trans-unit>
+        <trans-unit id="Resx/CronicDisease1" translate="yes" xml:space="preserve">
+          <source>No</source>
+          <target state="translated">Non</target>
+        </trans-unit>
+        <trans-unit id="Resx/CronicDisease2" translate="yes" xml:space="preserve">
+          <source>Yes, mild</source>
+          <target state="translated">Oui, pas grave</target>
+        </trans-unit>
+        <trans-unit id="Resx/CronicDisease3" translate="yes" xml:space="preserve">
+          <source>Yes, serious</source>
+          <target state="translated">Oui, grave</target>
+        </trans-unit>
+        <trans-unit id="Resx/Drugs" translate="yes" xml:space="preserve">
+          <source>Do you use drugs?</source>
+          <target state="translated">Abuses-tu de drogues?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Drugs1" translate="yes" xml:space="preserve">
+          <source>Never taked</source>
+          <target state="translated">Non, jamais</target>
+        </trans-unit>
+        <trans-unit id="Resx/Drugs2" translate="yes" xml:space="preserve">
+          <source>Sometimes</source>
+          <target state="translated">Quelquefois</target>
+        </trans-unit>
+        <trans-unit id="Resx/Drugs3" translate="yes" xml:space="preserve">
+          <source>Usually</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Habituellement</target>
+        </trans-unit>
+        <trans-unit id="Resx/Food" translate="yes" xml:space="preserve">
+          <source>What kind of diet do you follow?</source>
+          <target state="translated">Quel type de régime alimentaire suives-tu?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Food1" translate="yes" xml:space="preserve">
+          <source>Mediterranean</source>
+          <target state="translated">Méditerranéen</target>
+        </trans-unit>
+        <trans-unit id="Resx/Food2" translate="yes" xml:space="preserve">
+          <source>I eat everything</source>
+          <target state="translated">Je mange tout ce que je
+trouve</target>
+        </trans-unit>
+        <trans-unit id="Resx/Food3" translate="yes" xml:space="preserve">
+          <source>Fat is good</source>
+          <target state="translated">Vive les graisses!</target>
+        </trans-unit>
+        <trans-unit id="Resx/Food4" translate="yes" xml:space="preserve">
+          <source>Vegetarian</source>
+          <target state="translated">Végétarien</target>
+        </trans-unit>
+        <trans-unit id="Resx/Height" translate="yes" xml:space="preserve">
+          <source>Insert your height (in)</source>
+          <target state="translated">Ta hauteur (cm)</target>
+        </trans-unit>
+        <trans-unit id="Resx/Sports" translate="yes" xml:space="preserve">
+          <source>Do you do some sport?</source>
+          <target state="translated">Fais-tu du sport?</target>
+        </trans-unit>
+        <trans-unit id="Resx/Sports1" translate="yes" xml:space="preserve">
+          <source>Not so much / never</source>
+          <target state="translated">Non</target>
+        </trans-unit>
+        <trans-unit id="Resx/Sports2" translate="yes" xml:space="preserve">
+          <source>Weekly</source>
+          <target state="translated">Une fois par semaine</target>
+        </trans-unit>
+        <trans-unit id="Resx/Sports3" translate="yes" xml:space="preserve">
+          <source>Daily</source>
+          <target state="translated">Tous les jours</target>
+        </trans-unit>
+        <trans-unit id="Resx/Weight" translate="yes" xml:space="preserve">
+          <source>Insert your weight (lb)</source>
+          <target state="translated">Ton poids (kg)</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

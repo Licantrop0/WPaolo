@@ -9,20 +9,25 @@ namespace WPCommon.Controls
 {
     public partial class About : UserControl
     {
-        private string _adUnitId = "10022566";
-        /// <summary>Set this value to serve Ads for a specific AdUnit</summary>
+        /// <summary>Set this value to serve Ads for a specific MS AdUnit</summary>
         public string AdUnitId
         {
-            get { return _adUnitId; }
-            set { _adUnitId = value; }
+            get { return AdSwitcher.ADAppId; }
+            set { AdSwitcher.ADAppId = value; }
         }
 
-        private string _applicationId = "21ecdf14-8a3e-49e6-b19a-a94b96b2eb0e" ;
-        /// <summary>Set this value to serve Ads for a specific Application ID</summary>
+        /// <summary>Set this value to serve Ads for a specific MS Application ID</summary>
         public string ApplicationId
         {
-            get { return _applicationId; }
-            set { _applicationId = value; }
+            get { return AdSwitcher.MSAppId; }
+            set { AdSwitcher.MSAppId = value; }
+        }
+
+        /// <summary>Set this value to serve Ads for a specific AdDuplex App Id</summary>
+        public string ADAppId
+        {
+            get { return AdSwitcher.ADAppId; }
+            set { AdSwitcher.ADAppId = value; }
         }
 
         public About()
@@ -49,20 +54,13 @@ namespace WPCommon.Controls
         //Call in OnNavigatedTo
         public void AddAdvertising()
         {
-            if (AdPlaceHolder.Children.Count == 1) //l'Ad c'è già
-                return;
-
-            AdPlaceHolder.Children.Add(new AdControl(ApplicationId, AdUnitId, true)
-            {
-                Height = 80,
-                Width = 480,
-            });
+            AdSwitcher.AddAdvertising();
         }
 
         //Call in OnNavigatedFrom
         public void RemoveAdvertising()
         {
-            AdPlaceHolder.Children.Clear();
+            AdSwitcher.RemoveAdvertising();
         }
 
         private void Facebook_Click(object sender, RoutedEventArgs e)

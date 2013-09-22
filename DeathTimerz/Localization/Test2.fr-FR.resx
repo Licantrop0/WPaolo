@@ -121,7 +121,7 @@
     <value>Quel animal préférez-vous?</value>
   </data>
   <data name="Animal1" xml:space="preserve">
-    <value>chien</value>
+    <value>Chien</value>
   </data>
   <data name="Animal3" xml:space="preserve">
     <value>Cheval</value>

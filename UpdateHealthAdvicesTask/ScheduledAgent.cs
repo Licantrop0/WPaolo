@@ -71,10 +71,14 @@ namespace UpdateHealthAdvicesTask
         private static void UpdateTiles(IsolatedStorageFileStream file)
         {
             string advice = HealthAdvices.HealthAdvice.GetAdviceOfTheDay();
-            WriteableBitmap wbmp = new TileControl(advice).ToTile();
-            wbmp.SaveJpeg(file, 336, 336, 0, 80);
-            var tileData = new StandardTileData() { BackBackgroundImage = new Uri("isostore:" + TilePath) };
-            foreach (var tile in ShellTile.ActiveTiles) tile.Update(tileData);
+            var t = new TileControl(advice);
+            t.Loaded += (sender, e) =>
+            {
+                WriteableBitmap wbmp = t.ToTile();
+                wbmp.SaveJpeg(file, 336, 336, 0, 80);
+                var tileData = new StandardTileData() { BackBackgroundImage = new Uri("isostore:" + TilePath) };
+                foreach (var tile in ShellTile.ActiveTiles) tile.Update(tileData);
+            };
         }
     }
 }

@@ -247,4 +247,4 @@ Tu es au {2:N2}% de ta vie, et il te reste  {3:N0} jours à vivre.</value>
   <data name="YetAlive" xml:space="preserve">
     <value>T'es toujours en vie, toi?!</value>
   </data>
-</root>
+<data name="Minute" xml:space="preserve"><value>Minute</value></data><data name="Minutes" xml:space="preserve"><value>Minutes</value></data><data name="PinTitle" xml:space="preserve"><value>Sais-tu?</value></data><data name="PinText" xml:space="preserve"><value>Épinglez pour obtenir de suggestion de santé tous les jours, directement sur votre écran d'accueil!</value></data></root>

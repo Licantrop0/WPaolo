@@ -16,7 +16,7 @@
         <vm:AboutViewModel x:Key="AboutVM"
                            MinFontSize="55"
                            AppId="d78812c9-f9d5-df11-a844-00237de2db9e"
-                           DefaultFont="/DeathTimerz;component/Fonts/CHILLER.TTF#Chiller"
+                           DefaultFont="/DeathTimerz;component/Fonts/Fonts.zip#Chiller"
                            DefaultForeground="{StaticResource RedGradientBrush}" >
             <vm:AboutViewModel.DefaultBackground>
                 <ImageBrush ImageSource="/DeathTimerz;component/Images/DeathBackground.jpg"

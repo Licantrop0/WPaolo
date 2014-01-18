@@ -61,24 +61,13 @@ namespace UpdateHealthAdvicesTask
             using (var iss = IsolatedStorageFile.GetUserStoreForApplication())
             using (var file = iss.OpenFile(TilePath, FileMode.OpenOrCreate))
             {
-                //avoid unnecessary operations (the tile changes only once a day)
-                var lastWrite = iss.GetLastWriteTime(TilePath).DayOfYear;
-                if (lastWrite != DateTime.Now.DayOfYear || file.Length == 0)
-                    UpdateTiles(file);
+                ////avoid unnecessary operations (the tile changes only once a day)
+                //var lastWrite = iss.GetLastWriteTime(TilePath).DayOfYear;
+                //if (lastWrite == DateTime.Now.DayOfYear || file.Length != 0) return;
+                var t = new TileControl();
+                t.UpdateTile(file);
             }
         }
 
-        private static void UpdateTiles(IsolatedStorageFileStream file)
-        {
-            string advice = HealthAdvices.HealthAdvice.GetAdviceOfTheDay();
-            var t = new TileControl(advice);
-            t.Loaded += (sender, e) =>
-            {
-                WriteableBitmap wbmp = t.ToTile();
-                wbmp.SaveJpeg(file, 336, 336, 0, 80);
-                var tileData = new StandardTileData() { BackBackgroundImage = new Uri("isostore:" + TilePath) };
-                foreach (var tile in ShellTile.ActiveTiles) tile.Update(tileData);
-            };
-        }
     }
 }

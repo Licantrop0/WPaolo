@@ -26,7 +26,7 @@ namespace HealthAdvices
         public static string GetAdviceOfTheDay()
         {
             //var rnd = new Random();
-            //var advice = Advices[rnd.Next(Advices.Length)];
+            //return Advices[rnd.Next(Advices.Length)];
             return Advices[DateTime.Today.DayOfYear % Advices.Length];
         }
     }

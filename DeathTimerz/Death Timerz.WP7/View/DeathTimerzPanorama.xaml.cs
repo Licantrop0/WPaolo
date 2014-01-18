@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Linq;
 using System.Windows.Media;
+using Microsoft.Phone.Scheduler;
 
 namespace DeathTimerz
 {
@@ -33,40 +34,29 @@ namespace DeathTimerz
             if (!AppContext.BirthDay.HasValue)
                 MainPanorama.DefaultItem = MainPanorama.Items[3];
 
-
-            if (AdPlaceHolder.Children.Count == 0)
+            if (e.NavigationMode == NavigationMode.New)
             {
-#if DEBUG
-                var ad1 = new AdControl("test_client", "Image480_80", true) { Height = 80, Width = 480 };
-#else
-                var ad1 = new AdControl("34d0c575-22b0-464f-b928-3681b48375cc",
-                    "140408", true) { Height = 80, Width = 480 };
-                
-                //var ad1 = new AdControl("d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2",
-                //    "10022419", true) { Height = 80, Width = 480 };
-#endif
-
-                ad1.ErrorOccurred += ad1_ErrorOccurred;
-                AdPlaceHolder.Children.Add(ad1);
+                AdSwitcher.AddAdvertising();
             }
-
-            base.OnNavigatedTo(e);
-        }
-
-        void ad1_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
-        {
-            AdPlaceHolder.Height = 0;
-        }
+       }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            AdPlaceHolder.Children.Clear();
-            base.OnNavigatedFrom(e);
+            AdSwitcher.RemoveAdvertising();
         }
 
         private void MainPanorama_Loaded(object sender, RoutedEventArgs e)
         {
-            MainPanorama_SelectionChanged(sender, null);
+            if (MainPanorama.SelectedIndex == 0 && ShellTile.ActiveTiles.Count() == 1) //Health Suggestion
+            {
+                ApplicationBar.Buttons.Add(PinToStartAppBarButton);
+                ApplicationBar.Mode = ApplicationBarMode.Default;
+                SuggestionGrid.Margin = new Thickness(0, -30, 0, 72);
+            }
+            else
+            {
+                SuggestionGrid.Margin = new Thickness(0, -30, 0, 30);
+            }
         }
 
         private void MainPanorama_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -144,7 +134,6 @@ namespace DeathTimerz
 
             ShellTile.Create(new Uri("/View/DeathTimerzPanorama.xaml", UriKind.Relative), tileData);
         }
-
     }
 
 }

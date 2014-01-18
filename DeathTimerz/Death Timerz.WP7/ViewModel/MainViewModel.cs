@@ -11,6 +11,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Shell;
 using DeathTimerz.Helper;
 using System.Windows.Media.Imaging;
+using GalaSoft.MvvmLight.Command;
 
 namespace DeathTimerz.ViewModel
 {
@@ -27,6 +28,7 @@ namespace DeathTimerz.ViewModel
         {
             RaisePropertyChanged("TestButtonVisibility");
             RaisePropertyChanged("EstimatedDeathAgeText");
+            RaisePropertyChanged("TombStoneVisibility");
         }
 
         private void InitializeTimer()
@@ -54,27 +56,6 @@ namespace DeathTimerz.ViewModel
             }
         }
 
-        //public Visibility IsPinSuggestionVisible
-        //{
-        //    get
-        //    {
-        //        if (ShellTile.ActiveTiles.Count() == 2)
-        //            return Visibility.Collapsed;
-
-        //        if (!IsolatedStorageSettings.ApplicationSettings.Contains("is_pin_suggestion_visible"))
-        //            IsolatedStorageSettings.ApplicationSettings["is_pin_suggestion_visible"] = true;
-        //        return (bool)IsolatedStorageSettings.ApplicationSettings["is_pin_suggestion_visible"] ?
-        //            Visibility.Visible : Visibility.Collapsed;
-        //    }
-        //    set
-        //    {
-        //        if (IsPinSuggestionVisible == value) return;
-        //        IsolatedStorageSettings.ApplicationSettings["is_pin_suggestion_visible"] =
-        //            (value == Visibility.Visible);
-        //        RaisePropertyChanged("IsPinSuggestionVisible");
-        //    }
-        //}
-
         public DateTime? BirthDay
         {
             get { return AppContext.BirthDay; }
@@ -89,6 +70,7 @@ namespace DeathTimerz.ViewModel
                     RaisePropertyChanged("AgeText");
                     RaisePropertyChanged("EstimatedDeathAgeText");
                     RaisePropertyChanged("TestButtonVisibility");
+                    RaisePropertyChanged("InserBirthadyVisibility");
                 }
                 RaisePropertyChanged("BirthDay");
                 RaisePropertyChanged("BirthDayInserted");
@@ -104,6 +86,25 @@ namespace DeathTimerz.ViewModel
         public Visibility InserBirthadyVisibility
         {
             get { return BirthDayInserted ? Visibility.Collapsed : Visibility.Visible; }
+        }
+
+        public Visibility PinSuggestionVisibility
+        {
+            get { return ShellTile.ActiveTiles.Count() == 1 && AppContext.PinSuggestionVisible?
+                Visibility.Visible : Visibility.Collapsed; }
+        }
+
+        private RelayCommand _closePinSuggestionCommand;
+        public RelayCommand ClosePinSuggestionCommand
+        {
+            get
+            {
+                return _closePinSuggestionCommand ?? (_closePinSuggestionCommand = new RelayCommand(() =>
+                {
+                    AppContext.PinSuggestionVisible = false;
+                    RaisePropertyChanged("PinSuggestionVisibility");
+                }));
+            }
         }
 
         //public Visibility BirthdayCakeVisibility
@@ -172,6 +173,38 @@ namespace DeathTimerz.ViewModel
             }
         }
 
+        public Visibility TombStoneVisibility
+        {
+            get { return string.IsNullOrEmpty(EstimatedDeathAgeText) ? Visibility.Collapsed : Visibility.Visible; }
+        }
+
+        public string EstimatedDeathAgeText
+        {
+            get
+            {
+                if (!AppContext.TimeToDeath.HasValue) return string.Empty;
+                if (!BirthDay.HasValue) return string.Empty;
+
+                var EstimateDeathAge = AppContext.TimeToDeath.Value +
+                    ExtensionMethods.TimeSpanFromYears(AppContext.AverageAge);
+
+                var EstimatedDeathDate = BirthDay.Value + EstimateDeathAge;
+
+                if (EstimatedDeathDate > DateTime.Now)
+                {
+                    var TotalDaysLived = (DateTime.Now - BirthDay.Value).TotalDays;
+                    var TotalLifeDays = (EstimatedDeathDate - BirthDay.Value).TotalDays;
+                    return string.Format(AppResources.WillDie,
+                        EstimatedDeathDate,
+                        EstimateDeathAge.TotalDays / AppContext.AverageYear,
+                        TotalDaysLived / TotalLifeDays * 100,
+                        TotalLifeDays - TotalDaysLived);
+                }
+                else
+                    return AppResources.YetAlive;
+            }
+        }
+
         public Visibility TestButtonVisibility
         {
             get
@@ -190,5 +223,4 @@ namespace DeathTimerz.ViewModel
             }
         }
     }
-
 }

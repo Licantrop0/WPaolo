@@ -38,7 +38,11 @@ namespace DeathTimerz
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             SoundManager.Instance.RestoreMusicStatus();
+            InitializeScheduledAgent();
+        }
 
+        private void InitializeScheduledAgent()
+        {
             var TASK_NAME = "UpdateHealthAdvicesTask";
 
             var action = ScheduledActionService.Find(TASK_NAME) as PeriodicTask;
@@ -57,11 +61,10 @@ namespace DeathTimerz
 
 
 #if DEBUG
-                // If we're debugging, attempt to start the task immediately 
-                ScheduledActionService.LaunchForTest(TASK_NAME, new TimeSpan(0, 0, 1));
+            // If we're debugging, attempt to start the task immediately 
+            ScheduledActionService.LaunchForTest(TASK_NAME, new TimeSpan(0, 0, 1));
 #endif
         }
-
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched

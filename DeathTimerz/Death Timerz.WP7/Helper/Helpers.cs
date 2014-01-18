@@ -26,5 +26,4 @@ namespace DeathTimerz.Helper
             return value is Visibility && (Visibility)value == Visibility.Visible;
         }
     }
-
 }

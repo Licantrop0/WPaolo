@@ -12,6 +12,7 @@
     xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:vm="clr-namespace:DeathTimerz.ViewModel"
     xmlns:hlp="clr-namespace:DeathTimerz.Helper"
+    xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
@@ -22,8 +23,7 @@
     </phone:PhoneApplicationPage.Resources>
 
     <controls:Panorama Name="MainPanorama" DataContext="{StaticResource MainVM}"
-                       SelectionChanged="MainPanorama_SelectionChanged"
-                       Loaded="MainPanorama_Loaded">
+                       SelectionChanged="MainPanorama_SelectionChanged" Loaded="MainPanorama_Loaded">
         <controls:Panorama.Title>
             <TextBlock Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource RedChiller}" Margin="0,45,0,0" />
@@ -49,12 +49,41 @@
                     <TextBlock Name="SuggestionTextBlock"
                                Text="{Binding SuggestionText}" 
                                TextWrapping="Wrap" Margin="10,0,0,0"
-                               TextAlignment="Center" VerticalAlignment="Center"
+                               TextAlignment="Center" VerticalAlignment="Top"
                                FontSize="60"
                                Style="{StaticResource RedChiller}" />
                 </ScrollViewer>
-                <StackPanel Name="AdPlaceHolder"
-                            Margin="0,0,-30,0" Grid.Row="1" />
+                <wpc:AdSwitcher Name="AdSwitcher"
+                                Margin="0,0,-30,0" Grid.Row="1"
+                                MSAppId="d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2"
+                                MSAdId="10022419" ADAppId="2835" />
+                <Grid Grid.RowSpan="2" VerticalAlignment="Bottom" Background="Black" Height="220"
+                      Opacity="0.9" Margin="0,0,-30,0" Visibility="{Binding PinSuggestionVisibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding LocalizedResources.PinTitle, Source={StaticResource LocalizedStrings}}"
+                               VerticalAlignment="Center" Style="{StaticResource PhoneTextTitle2Style}" />
+                    <Button  toolkit:TiltEffect.IsTiltEnabled="True" VerticalAlignment="Top" HorizontalAlignment="Right"
+                            Command="{Binding ClosePinSuggestionCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Source="/Toolkit.Content/ApplicationBar.Cancel.png" Stretch="None" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <TextBlock Text="{Binding LocalizedResources.PinText, Source={StaticResource LocalizedStrings}}"
+                               TextWrapping="Wrap" Grid.Row="1" Style="{StaticResource PhoneTextTitle3Style}"
+                               TextAlignment="Center" />
+                    <Border Grid.Row="2" Margin="6" Background="{StaticResource RedGradientBrush}" >
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Images/down_arrow.png" Stretch="Uniform" />
+                        </Border.OpacityMask>
+                    </Border>
+                </Grid>
             </Grid>
         </controls:PanoramaItem>
 
@@ -97,6 +126,18 @@
                         </Custom:EventTrigger>
                     </Custom:Interaction.Triggers>
                 </Button>
+                <ScrollViewer Visibility="{Binding TombStoneVisibility}" >
+                <Grid Margin="6,0,6,72">
+                     <Image Source="/Images/tombstone.png" Stretch="Fill" />
+                        <TextBlock Text="{Binding EstimatedDeathAgeText}"
+                           Margin="30,60,20,0" TextWrapping="Wrap" TextAlignment="Center" Foreground="#FF474747"
+                                   FontFamily="/DeathTimerz;component/Fonts/Fonts.zip#Old English Text MT" FontSize="50" >
+                            <TextBlock.Projection>
+                                <PlaneProjection RotationX="15" />
+                            </TextBlock.Projection>                            
+                        </TextBlock>
+                </Grid>
+                </ScrollViewer>
             </Grid>
         </controls:PanoramaItem>
 
@@ -127,7 +168,7 @@
                     Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource RedChiller}"
                            FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
-                
+
                 <toolkit:DatePicker Background="#B4555555"
                                     FontFamily="{StaticResource DefaultFont}"
                                     Foreground="{StaticResource RedWhiteGradientBrush}"
@@ -137,7 +178,7 @@
                                     Value="{Binding BirthDay, Mode=TwoWay}"
                                     FontFamily="{StaticResource DefaultFont}"
                                     ValueStringFormat="{}{0:HH:mm}" />
-
+                
                 <TextBlock Text="{Binding DaysToBirthDay}"
                                HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
                                FontSize="{StaticResource PhoneFontSizeLarge}"

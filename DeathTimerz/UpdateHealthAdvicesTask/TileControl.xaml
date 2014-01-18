@@ -12,7 +12,7 @@
             </LinearGradientBrush>
         </Border.Background>
         
-        <TextBlock Name="TileContent" Text="Questo è un sugger di salugje e beneTe"
+        <TextBlock Name="TileContent" Text="Questo è un suggerim di salute e blablabla"
                    LineHeight="90" LineStackingStrategy="BlockLineHeight"
                    Padding="12" TextTrimming="WordEllipsis"
                    TextWrapping="Wrap" FontSize="80"

@@ -2,7 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
   <file datatype="xml" source-language="en" target-language="fr-FR" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="DeathTimerz" product-version="1.5.0" build-num="0">
     <header>
-      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.0.1000.0" tool-company="Microsoft" />
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.1.2010.0" tool-company="Microsoft" />
     </header>
     <body>
       <group id="Resx">
@@ -90,11 +90,11 @@ De toute façon... touche du bois!</target>
         </trans-unit>
         <trans-unit id="Resx/Minute" translate="yes" xml:space="preserve">
           <source>Minute</source>
-          <target state="new">Minute</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Minute</target>
         </trans-unit>
         <trans-unit id="Resx/Minutes" translate="yes" xml:space="preserve">
           <source>Minutes</source>
-          <target state="new">Minutes</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Minutes</target>
         </trans-unit>
         <trans-unit id="Resx/Month" translate="yes" xml:space="preserve">
           <source>Month</source>
@@ -107,6 +107,14 @@ De toute façon... touche du bois!</target>
         <trans-unit id="Resx/Ok" translate="yes" xml:space="preserve">
           <source>OK</source>
           <target state="translated">Ok</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PinTitle" xml:space="preserve">
+          <source>Do you know?</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sais-tu?</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PinText" xml:space="preserve">
+          <source>You can pin to start this App to get daily health suggestion right on your start screen!</source>
+          <target state="translated">Épinglez pour obtenir de suggestion de santé tous les jours, directement sur votre écran d'accueil!</target>
         </trans-unit>
         <trans-unit id="Resx/PinToStart" translate="yes" xml:space="preserve">
           <source>Pin to Start</source>

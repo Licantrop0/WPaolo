@@ -50,6 +50,21 @@ namespace DeathTimerz
             }
         }
 
+        public static bool PinSuggestionVisible
+        {
+            get
+            {
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("pin_suggestion"))
+                    IsolatedStorageSettings.ApplicationSettings["pin_suggestion"] = true;
+                return (bool)IsolatedStorageSettings.ApplicationSettings["pin_suggestion"];
+            }
+            set
+            {
+                if (PinSuggestionVisible == value) return;
+                IsolatedStorageSettings.ApplicationSettings["pin_suggestion"] = value;
+            }
+        }
+
         private static IsolatedStorageFile isf
         {
             get { return IsolatedStorageFile.GetUserStoreForApplication(); }

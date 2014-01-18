@@ -193,6 +193,12 @@ Anyway... knock on wood!</value>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="PinText" xml:space="preserve">
+    <value>You can pin to start this App to get daily health suggestion right on your start screen!</value>
+  </data>
+  <data name="PinTitle" xml:space="preserve">
+    <value>Do you know?</value>
+  </data>
   <data name="PinToStart" xml:space="preserve">
     <value>Pin to Start</value>
   </data>

@@ -8,8 +8,6 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:im="clr-namespace:Microsoft.Expression.Interactivity.Media;assembly=Microsoft.Expression.Interactions"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -70,11 +68,11 @@
                     <TextBlock Text="The Robot" Margin="0, -15" />
                 </controls:PanoramaItem.Header>
 
-                <Custom:Interaction.Triggers>
+                <!--<Custom:Interaction.Triggers>
                     <Custom:EventTrigger>
                         <im:ControlStoryboardAction Storyboard="{StaticResource ImageCycleStoryboard}"/>
                     </Custom:EventTrigger>
-                </Custom:Interaction.Triggers>
+                </Custom:Interaction.Triggers>-->
 
                 <Grid>
                     <Grid.RowDefinitions>

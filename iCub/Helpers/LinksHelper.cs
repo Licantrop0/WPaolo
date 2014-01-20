@@ -7,12 +7,22 @@ namespace iCub.Helpers
     {
         public static void OpenUrl(Uri url)
         {
-            new WebBrowserTask() { Uri = url }.Show();
+            try
+            {
+                new WebBrowserTask() { Uri = url }.Show();
+            }
+            catch (Exception)
+            { }
         }
 
         public static void ComposeMail(string mail)
         {
-            new EmailComposeTask() { To = mail }.Show();
+            try
+            {
+                new EmailComposeTask() { To = mail }.Show();
+            }
+            catch (Exception)
+            { }
         }
     }
 }

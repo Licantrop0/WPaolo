@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCub", "iCub.csproj", "{33F730A1-58AA-403F-B163-53AAD2B6CFCC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{11CE2CDA-65BC-49D1-B091-CBDACFCA1034}"
@@ -20,15 +20,31 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Debug|ARM.ActiveCfg = Debug|ARM
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Debug|ARM.Build.0 = Debug|ARM
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Debug|ARM.Deploy.0 = Debug|ARM
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Debug|x86.ActiveCfg = Debug|x86
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Debug|x86.Build.0 = Debug|x86
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Debug|x86.Deploy.0 = Debug|x86
 		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Release|ARM.ActiveCfg = Release|ARM
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Release|ARM.Build.0 = Release|ARM
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Release|ARM.Deploy.0 = Release|ARM
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Release|x86.ActiveCfg = Release|x86
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Release|x86.Build.0 = Release|x86
+		{33F730A1-58AA-403F-B163-53AAD2B6CFCC}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

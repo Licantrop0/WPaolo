@@ -53,10 +53,11 @@
                                FontSize="60"
                                Style="{StaticResource RedChiller}" />
                 </ScrollViewer>
-                <wpc:AdSwitcher Name="AdSwitcher"
-                                Margin="0,0,-30,0" Grid.Row="1"
-                                MSAppId="d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2"
-                                MSAdId="10022419" ADAppId="2835" />
+                <Border Margin="0,0,-30,0" Grid.Row="1">
+                    <wpc:AdSwitcher Name="AdSwitcher"
+                                    MSAppId="d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2"
+                                    MSAdId="10022419" ADAppId="2835" />
+                </Border>
                 <Grid Grid.RowSpan="2" VerticalAlignment="Bottom" Background="Black" Height="220"
                       Opacity="0.9" Margin="0,0,-30,0" Visibility="{Binding PinSuggestionVisibility}">
                     <Grid.RowDefinitions>
@@ -93,7 +94,7 @@
                 <TextBlock Text="{Binding LocalizedResources.TimeToDeath, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource RedChiller}" />
             </controls:PanoramaItem.Header>
-            <Grid Name="TimeToDeathGrid" Margin="0,-30,0,0">
+            <Grid Name="TimeToDeathGrid" Margin="{Binding Margin, ElementName=SuggestionGrid}">
                 <TextBlock Text="{Binding LocalizedResources.InsertBirthday,
                     Source={StaticResource LocalizedStrings}}"
                            Visibility="{Binding InserBirthadyVisibility}"
@@ -114,16 +115,16 @@
                     </Custom:Interaction.Triggers>
                 </Button>
                 <ScrollViewer Visibility="{Binding TombStoneVisibility}" >
-                <Grid Margin="6,0,6,72">
-                     <Image Source="/Images/tombstone.png" Stretch="Fill" />
+                    <Grid Margin="6,0">
+                        <Image Source="/Images/tombstone.png" Stretch="Fill" />
                         <TextBlock Text="{Binding EstimatedDeathAgeText}"
                            Margin="30,60,20,0" TextWrapping="Wrap" TextAlignment="Center" Foreground="#FF474747"
                                    FontFamily="/DeathTimerz;component/Fonts/Fonts.zip#Old English Text MT" FontSize="50" >
                             <TextBlock.Projection>
                                 <PlaneProjection RotationX="15" />
-                            </TextBlock.Projection>                            
+                            </TextBlock.Projection>
                         </TextBlock>
-                </Grid>
+                    </Grid>
                 </ScrollViewer>
             </Grid>
         </controls:PanoramaItem>
@@ -165,12 +166,12 @@
                                     Value="{Binding BirthDay, Mode=TwoWay}"
                                     FontFamily="{StaticResource DefaultFont}"
                                     ValueStringFormat="{}{0:HH:mm}" />
-                
+
                 <TextBlock Text="{Binding DaysToBirthDay}" HorizontalAlignment="Left"
                            Margin="10,0" TextWrapping="Wrap"
                            FontSize="{StaticResource PhoneFontSizeExtraLarge}"
                            Style="{StaticResource RedChiller}"/>
-                
+
                 <TextBlock Text="{Binding AgeText}" HorizontalAlignment="Left"
                            Margin="10,6" TextWrapping="Wrap" 
                            FontSize="{StaticResource PhoneFontSizeExtraLarge}"

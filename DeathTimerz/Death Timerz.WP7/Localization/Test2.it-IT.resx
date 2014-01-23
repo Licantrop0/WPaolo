@@ -163,10 +163,10 @@
     <value>Soffri di insonnia oppure dormi troppo?</value>
   </data>
   <data name="Insomnia1" xml:space="preserve">
-    <value>No, dormo circa otto ore per notte</value>
+    <value>No, dormo circa 8 ore per notte</value>
   </data>
   <data name="Insomnia2" xml:space="preserve">
-    <value>Dormo più di 8 ore per notte</value>
+    <value>Dormo meno di 8 ore per notte</value>
   </data>
   <data name="Insomnia3" xml:space="preserve">
     <value>Faccio sempre un pisolino dopo pranzo</value>
@@ -174,12 +174,8 @@
   <data name="Insomnia4" xml:space="preserve">
     <value>Ho molte difficoltà nell'addormentarmi</value>
   </data>
-  <data name="Panic" xml:space="preserve">
-    <value>Hai mai sofferto di attacchi di panico senza motivo?</value>
-  </data>
-  <data name="Panic1" xml:space="preserve">
-    <value>Mai</value>
-  </data>
+  
+  
   <data name="Panic2" xml:space="preserve">
     <value>Qualche volta</value>
   </data>
@@ -211,7 +207,7 @@
     <value>Molto</value>
   </data>
   <data name="SelfEsteem5" xml:space="preserve">
-    <value>Sono il migliore!</value>
+    <value>Sono troppo il migliore!</value>
   </data>
   <data name="Stress" xml:space="preserve">
     <value>Sei sotto stress?</value>
@@ -228,4 +224,4 @@
   <data name="Stress4" xml:space="preserve">
     <value>Ogni giorno</value>
   </data>
-</root>
+<data name="Animal4" xml:space="preserve"><value>Nessuno dei precedenti</value></data><data name="Panic" xml:space="preserve"><value>Hai mai avuto attacchi di panico?</value></data></root>

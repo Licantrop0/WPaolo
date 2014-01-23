@@ -24,17 +24,20 @@ namespace DeathTimerz
 
         XDocument CurrentTest;
         ResourceManager CurrentResources;
+        string currentTestName;
 
         private void TestListbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TestListbox.SelectedIndex == 0)
             {
                 CurrentTest = AppContext.Test1;
+                currentTestName = "Test1.xml";
                 CurrentResources = Test1.ResourceManager;
             }
             else
             {
                 CurrentTest = AppContext.Test2;
+                currentTestName = "Test2.xml";
                 CurrentResources = Test2.ResourceManager;
             }
 
@@ -125,6 +128,8 @@ namespace DeathTimerz
                     CurrentTest.Descendants("Answer")
                     .Where(el => el.Attribute("Name").Value == ans.Name).First()
                     .Attribute("Text").Value = ans.Text);
+
+            AppContext.SaveTest(CurrentTest, currentTestName);
         }
 
         private void StimateDeathAge()
@@ -273,11 +278,6 @@ namespace DeathTimerz
             SaveAnswers();
             StimateDeathAge();
             NavigationService.GoBack();
-        }
-
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            NavigationService.RemoveBackEntry();
         }
     }
 }

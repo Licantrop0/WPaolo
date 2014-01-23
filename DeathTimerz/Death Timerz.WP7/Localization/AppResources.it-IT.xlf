@@ -19,8 +19,12 @@
           <target state="translated">Orologio della Morte</target>
         </trans-unit>
         <trans-unit id="Resx/BirthdayAfter" translate="yes" xml:space="preserve">
-          <source>Your Birthday is in</source>
-          <target state="translated">Il tuo compleanno è fra</target>
+          <source>Your Birthday is in {0} {1}</source>
+          <target state="translated">Il tuo compleanno è tra {0} {1}</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BirthdayToday" xml:space="preserve">
+          <source>Today is your Birthday!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Oggi è il tuo compleanno!</target>
         </trans-unit>
         <trans-unit id="Resx/Cancel" translate="yes" xml:space="preserve">
           <source>Cancel</source>

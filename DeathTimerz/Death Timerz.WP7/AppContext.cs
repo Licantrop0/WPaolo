@@ -89,9 +89,16 @@ namespace DeathTimerz
                 CopyFileToStorage(name);
 
             using (var fs = new IsolatedStorageFileStream(name, FileMode.Open, FileAccess.Read, isf))
+            {
                 return XDocument.Load(fs);
+            }
         }
 
+        public static void SaveTest(XDocument test, string name)
+        {
+            using (var fs = new IsolatedStorageFileStream(name, FileMode.Create, FileAccess.Write, isf))
+                test.Save(fs);
+        }
 
         private static void CopyFileToStorage(string fileName)
         {

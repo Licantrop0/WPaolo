@@ -3,19 +3,13 @@ using Microsoft.Phone.Shell;
 using System;
 using System.IO;
 using System.IO.IsolatedStorage;
-using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 
 namespace UpdateHealthAdvicesTask
 {
     public class ScheduledAgent : ScheduledTaskAgent
     {
         private static volatile bool _classInitialized;
-        private const string TilePath = "/Shared/ShellContent/LiveTileIcon.jpg";
 
         /// <remarks>
         /// ScheduledAgent constructor, initializes the UnhandledException handler
@@ -52,21 +46,27 @@ namespace UpdateHealthAdvicesTask
         /// </remarks>
         protected override void OnInvoke(ScheduledTask task)
         {
-            Deployment.Current.Dispatcher.BeginInvoke(WriteFile);
+            Deployment.Current.Dispatcher.BeginInvoke(UpdateTileData);           
             NotifyComplete();
         }
 
-        public static void WriteFile()
+        private const string TilePath = "/Shared/ShellContent/LiveTileIcon.jpg";
+        public static void UpdateTileData()
         {
             using (var iss = IsolatedStorageFile.GetUserStoreForApplication())
-            using (var file = iss.OpenFile(TilePath, FileMode.OpenOrCreate))
             {
                 //avoid unnecessary operations (the tile changes only once a day)
                 var lastWrite = iss.GetLastWriteTime(TilePath).DayOfYear;
-                if (lastWrite == DateTime.Now.DayOfYear && file.Length != 0) return;
-                var t = new TileControl();
-                t.UpdateTile(file);
+                using (var file = iss.OpenFile(TilePath, FileMode.OpenOrCreate))
+                {
+                    if (lastWrite == DateTime.Now.DayOfYear && file.Length != 0) return;
+                    (new TileControl()).Update(file);
+                }
             }
+
+            var tileData = new StandardTileData() { BackBackgroundImage = new Uri("isostore:" + TilePath) };
+            foreach (var tile in ShellTile.ActiveTiles)
+                tile.Update(tileData);
         }
 
     }

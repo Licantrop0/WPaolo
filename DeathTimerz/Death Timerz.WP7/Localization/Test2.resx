@@ -129,6 +129,9 @@
   <data name="Animal3" xml:space="preserve">
     <value>Horse</value>
   </data>
+  <data name="Animal4" xml:space="preserve">
+    <value>None of the above</value>
+  </data>
   <data name="ForeverAlone" xml:space="preserve">
     <value>Are you feeling lonley, shy or isolated?</value>
   </data>
@@ -175,10 +178,10 @@
     <value>I have serious difficulties to fall asleep every night</value>
   </data>
   <data name="Panic" xml:space="preserve">
-    <value>Have you panick attacks for no apparent reason?</value>
+    <value>Do you have panic attacks?</value>
   </data>
   <data name="Panic1" xml:space="preserve">
-    <value>Never</value>
+    <value>No</value>
   </data>
   <data name="Panic2" xml:space="preserve">
     <value>Sometimes</value>

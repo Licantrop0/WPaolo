@@ -22,6 +22,10 @@
           <source>Horse</source>
           <target state="translated">Cheval</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/Animal4" xml:space="preserve">
+          <source>None of the above</source>
+          <target state="translated">Aucun de ces</target>
+        </trans-unit>
         <trans-unit id="Resx/ForeverAlone" translate="yes" xml:space="preserve">
           <source>Are you feeling lonley, shy or isolated?</source>
           <target state="translated">Vous sentez-vous solitaire, timide ou isolé?</target>
@@ -83,12 +87,12 @@
           <target state="translated">J'ai de sérieuses difficultés à s'endormir chaque nuit</target>
         </trans-unit>
         <trans-unit id="Resx/Panic" translate="yes" xml:space="preserve">
-          <source>Have you panick attacks for no apparent reason?</source>
-          <target state="translated">Avez-vous des attaques panique sans raison apparente?</target>
+          <source>Do you have panic attacks?</source>
+          <target state="translated">Avez-vous déjà subi des attaques de panique?</target>
         </trans-unit>
         <trans-unit id="Resx/Panic1" translate="yes" xml:space="preserve">
-          <source>Never</source>
-          <target state="translated">jamais</target>
+          <source>No</source>
+          <target state="new">No</target>
         </trans-unit>
         <trans-unit id="Resx/Panic2" translate="yes" xml:space="preserve">
           <source>Sometimes</source>

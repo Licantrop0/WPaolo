@@ -87,20 +87,6 @@
             </Grid>
         </controls:PanoramaItem>
 
-        <!--Age-->
-        <controls:PanoramaItem Margin="0,-60,0,0">
-            <controls:PanoramaItem.Header>
-                <TextBlock Text="{Binding LocalizedResources.Age, Source={StaticResource LocalizedStrings}}"
-                               Style="{StaticResource RedChiller}" />
-            </controls:PanoramaItem.Header>
-            <Grid Margin="0,-30,0,0">
-                <TextBlock Text="{Binding AgeText}" HorizontalAlignment="Left"
-                               TextWrapping="Wrap" Margin="40,0,0,0"
-                               FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
-                               Style="{StaticResource RedChiller}" />
-            </Grid>
-        </controls:PanoramaItem>
-
         <!--Time to Death-->
         <controls:PanoramaItem Margin="0,-60,0,0">
             <controls:PanoramaItem.Header>
@@ -115,11 +101,12 @@
                            FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
                            Style="{StaticResource RedChiller}" />
 
-                <Button Content="{Binding LocalizedResources.TakeTest,
+                <Button Name="TakeTestButton" IsHitTestVisible="False"
+                        Content="{Binding LocalizedResources.TakeTest,
                             Source={StaticResource LocalizedStrings}}"
-                            Visibility="{Binding TestButtonVisibility}"
-                            toolkit:TiltEffect.IsTiltEnabled="True"
-                            Style="{StaticResource RedChillerButton}" >
+                        Visibility="{Binding TestButtonVisibility}"
+                        toolkit:TiltEffect.IsTiltEnabled="True"
+                        Style="{StaticResource RedChillerButton}">
                     <Custom:Interaction.Triggers>
                         <Custom:EventTrigger EventName="Click">
                             <ic:NavigateToPageAction TargetPage="/View/TestPage.xaml"/>
@@ -179,10 +166,15 @@
                                     FontFamily="{StaticResource DefaultFont}"
                                     ValueStringFormat="{}{0:HH:mm}" />
                 
-                <TextBlock Text="{Binding DaysToBirthDay}"
-                               HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap"
-                               FontSize="{StaticResource PhoneFontSizeLarge}"
-                               Style="{StaticResource RedChiller}"/>
+                <TextBlock Text="{Binding DaysToBirthDay}" HorizontalAlignment="Left"
+                           Margin="10,0" TextWrapping="Wrap"
+                           FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                           Style="{StaticResource RedChiller}"/>
+                
+                <TextBlock Text="{Binding AgeText}" HorizontalAlignment="Left"
+                           Margin="10,6" TextWrapping="Wrap" 
+                           FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                           Style="{StaticResource RedChiller}" />
             </StackPanel>
         </controls:PanoramaItem>
     </controls:Panorama>

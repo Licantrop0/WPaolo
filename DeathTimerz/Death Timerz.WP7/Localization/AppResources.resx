@@ -127,7 +127,10 @@
     <value>Death Timerz</value>
   </data>
   <data name="BirthdayAfter" xml:space="preserve">
-    <value>Your Birthday is in</value>
+    <value>Your Birthday is in {0} {1}</value>
+  </data>
+  <data name="BirthdayToday" xml:space="preserve">
+    <value>Today is your Birthday!</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>

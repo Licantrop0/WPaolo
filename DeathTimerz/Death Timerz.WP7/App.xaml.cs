@@ -56,7 +56,7 @@ namespace DeathTimerz
             catch (InvalidOperationException)
             {
                 //creo la tile manualmente se c'è un errore nello scheduled agent
-                UpdateHealthAdvicesTask.ScheduledAgent.WriteFile();
+                UpdateHealthAdvicesTask.ScheduledAgent.UpdateTileData();
             }
 
 

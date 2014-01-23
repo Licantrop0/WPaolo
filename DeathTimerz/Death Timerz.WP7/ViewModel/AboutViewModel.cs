@@ -7,6 +7,7 @@ using System.Net;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using WPCommon.Controls.Model;
 
@@ -89,20 +90,46 @@ namespace DeathTimerz.ViewModel
 
         public string CustomText { get; set; }
 
-        public ImageSource CustomLogo { get; set; }
+        private FontFamily _customTextFontFamily;
+        public FontFamily CustomTextFontFamily
+        {
+            get { return _customTextFontFamily ?? DefaultFont; }
+            set { _customTextFontFamily = value; }
+        }
+
+        private double? _customTextFontSize;
+        public double CustomTextFontSize
+        {
+            get { return _customTextFontSize ?? MinFontSize; }
+            set { _customTextFontSize = value; }
+        }
+
+        private Brush _customTextForeground;
+        public Brush CustomTextForeground
+        {
+            get { return _customTextForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
+            set { _customTextForeground = value; }
+        }
+
+        private Thickness _appNameMargin = new Thickness(0);
+        public Thickness AppNameMargin
+        {
+            get { return _appNameMargin; }
+            set { _appNameMargin = value; }
+        }
+
+        private ImageSource _customLogo = new BitmapImage(new Uri("/WPCommon.Controls;component/Img/logo.png", UriKind.Relative));
+        public ImageSource CustomLogo
+        {
+            get { return _customLogo; }
+            set { _customLogo = value; }
+        }
 
         private Thickness _logoMargin = new Thickness(24);
         public Thickness LogoMargin
         {
             get { return _logoMargin; }
             set { _logoMargin = value; }
-        }
-
-        private Thickness _customLogoMargin = new Thickness(0);
-        public Thickness CustomLogoMargin
-        {
-            get { return _customLogoMargin; }
-            set { _customLogoMargin = value; }
         }
 
         public Brush DefaultBackground { get; set; }

@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Globalization;
-using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Windows;
-using System.Windows.Threading;
-using DeathTimerz.Localization;
+﻿using DeathTimerz.Localization;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Shell;
-using DeathTimerz.Helper;
-using System.Windows.Media.Imaging;
-using GalaSoft.MvvmLight.Command;
+using System;
+using System.IO.IsolatedStorage;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace DeathTimerz.ViewModel
 {
@@ -107,18 +104,6 @@ namespace DeathTimerz.ViewModel
             }
         }
 
-        //public Visibility BirthdayCakeVisibility
-        //{
-        //    get
-        //    {
-        //        if (!BirthDayInserted)
-        //            return Visibility.Collapsed;
-
-        //        return AppContext.BirthDay.Value.SameBirthDay(DateTime.Today) ?
-        //            Visibility.Visible : Visibility.Collapsed;
-        //    }
-        //}
-
         public bool CheckBirthday(DateTime value)
         {
             if (value >= DateTime.Today)
@@ -143,10 +128,10 @@ namespace DeathTimerz.ViewModel
             {
                 if (!BirthDayInserted) return string.Empty;
 
-                var dtb = ExtensionMethods.GetNextBirthday(BirthDay.Value).Subtract(DateTime.Now).Days;
-                return string.Join(" ", AppResources.BirthdayAfter,
-                    dtb.ToString(),
-                    dtb == 1 ? AppResources.Day : AppResources.Days);
+                var dtb = ExtensionMethods.GetNextBirthday(BirthDay.Value).Subtract(DateTime.Today).Days;
+                if (dtb == 0) return AppResources.BirthdayToday;
+                else if (dtb == 1) return string.Format(AppResources.BirthdayAfter, dtb, AppResources.Day);
+                else return string.Format(AppResources.BirthdayAfter, dtb, AppResources.Days);
             }
         }
 
@@ -154,36 +139,48 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                if (!BirthDayInserted) return AppResources.InsertBirthday;
+                if (!BirthDayInserted) return string.Empty;
 
                 //TODO: migliorare algoritmo
                 var Age = DateTime.Now.Subtract(BirthDay.Value);
-
                 var Years = Math.Floor(Age.TotalDays / AppContext.AverageYear);
                 var RemainingDays = Age.TotalDays - Years * AppContext.AverageYear;
                 var Months = Math.Floor(RemainingDays / AppContext.AverageMonth);
                 var Days = Math.Round(RemainingDays - Months * AppContext.AverageMonth);
+                var nbsp = Convert.ToChar(160);
 
-                return
-                    Years.ToString("#0") + " " + (Years == 1 ? AppResources.Year : AppResources.Years) + "\n" +
-                    Months.ToString("0") + " " + (Months == 1 ? AppResources.Month : AppResources.Months) + "\n" +
-                    Days.ToString("0") + " " + (Days == 1 ? AppResources.Day : AppResources.Days) + "\n" +
-                    Age.Hours.ToString("0") + " " + (Age.Hours == 1 ? AppResources.Hour : AppResources.Hours) + "\n" +
-                    Age.Minutes.ToString("0") + " " + (Age.Minutes == 1 ? AppResources.Minute : AppResources.Minutes);
+                var AgeSB = new StringBuilder(AppResources.Age);
+                AgeSB.AppendFormat(": {0:#0}{1}{2}, ", Years, nbsp,
+                    Years == 1 ? AppResources.Year : AppResources.Years);
+                AgeSB.AppendFormat("{0:#0}{1}{2}, ", Months, nbsp,
+                    Months == 1 ? AppResources.Month : AppResources.Months);
+                AgeSB.AppendFormat("{0:#0}{1}{2}, ", Days, nbsp,
+                    Days == 1 ? AppResources.Day : AppResources.Days);
+                AgeSB.AppendFormat("{0:#0}{1}{2}, ", Age.Hours, nbsp,
+                    Age.Hours == 1 ? AppResources.Hour : AppResources.Hours);
+                AgeSB.AppendFormat("{0:#0}{1}{2}", Age.Minutes, nbsp,
+                    Age.Minutes == 1 ? AppResources.Minute : AppResources.Minutes);
+
+                return AgeSB.ToString();
             }
         }
 
         public Visibility TombStoneVisibility
         {
-            get { return string.IsNullOrEmpty(EstimatedDeathAgeText) ? Visibility.Collapsed : Visibility.Visible; }
+            get
+            {
+                return string.IsNullOrEmpty(EstimatedDeathAgeText) ?
+                    Visibility.Collapsed :
+                    Visibility.Visible;
+            }
         }
 
         public string EstimatedDeathAgeText
         {
             get
             {
-                if (!AppContext.TimeToDeath.HasValue) return string.Empty;
                 if (!BirthDay.HasValue) return string.Empty;
+                if (!AppContext.TimeToDeath.HasValue) return string.Empty;
 
                 var EstimateDeathAge = AppContext.TimeToDeath.Value +
                     ExtensionMethods.TimeSpanFromYears(AppContext.AverageAge);

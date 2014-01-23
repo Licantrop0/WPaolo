@@ -13,8 +13,7 @@ namespace DeathTimerz
 
         public static bool IsBirthDayThisYear(DateTime birthDay)
         {
-            return new DateTime(DateTime.Now.Year, birthDay.Month, birthDay.Day,
-                birthDay.Hour, birthDay.Minute, birthDay.Second) >= DateTime.Now;
+            return new DateTime(DateTime.Now.Year, birthDay.Month, birthDay.Day) >= DateTime.Today;
         }
 
         public static DateTime GetNextBirthday(DateTime birthDay)

@@ -22,6 +22,10 @@
           <source>Horse</source>
           <target state="translated">Cavallo</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/Animal4" xml:space="preserve">
+          <source>None of the above</source>
+          <target state="translated">Nessuno dei precedenti</target>
+        </trans-unit>
         <trans-unit id="Resx/ForeverAlone" translate="yes" xml:space="preserve">
           <source>Are you feeling lonley, shy or isolated?</source>
           <target state="translated">Ti senti solo, timido o isolato?</target>
@@ -68,11 +72,11 @@
         </trans-unit>
         <trans-unit id="Resx/Insomnia1" translate="yes" xml:space="preserve">
           <source>No, I sleep about 8 hours a day</source>
-          <target state="translated">No, dormo circa otto ore per notte</target>
+          <target state="translated">No, dormo circa 8 ore per notte</target>
         </trans-unit>
         <trans-unit id="Resx/Insomnia2" translate="yes" xml:space="preserve">
           <source>I sleep less than 8 hours a day</source>
-          <target state="translated">Dormo più di 8 ore per notte</target>
+          <target state="translated">Dormo meno di 8 ore per notte</target>
         </trans-unit>
         <trans-unit id="Resx/Insomnia3" translate="yes" xml:space="preserve">
           <source>I always take a nap after launch</source>
@@ -83,12 +87,12 @@
           <target state="translated">Ho molte difficoltà nell'addormentarmi</target>
         </trans-unit>
         <trans-unit id="Resx/Panic" translate="yes" xml:space="preserve">
-          <source>Have you panick attacks for no apparent reason?</source>
-          <target state="translated">Hai mai sofferto di attacchi di panico senza motivo?</target>
+          <source>Do you have panic attacks?</source>
+          <target state="translated">Hai mai avuto attacchi di panico?</target>
         </trans-unit>
         <trans-unit id="Resx/Panic1" translate="yes" xml:space="preserve">
-          <source>Never</source>
-          <target state="translated">Mai</target>
+          <source>No</source>
+          <target state="new">No</target>
         </trans-unit>
         <trans-unit id="Resx/Panic2" translate="yes" xml:space="preserve">
           <source>Sometimes</source>
@@ -136,7 +140,7 @@
         </trans-unit>
         <trans-unit id="Resx/SelfEsteem5" translate="yes" xml:space="preserve">
           <source>I am the best</source>
-          <target state="translated">Sono il migliore!</target>
+          <target state="translated">Sono troppo il migliore!</target>
         </trans-unit>
         <trans-unit id="Resx/Stress" translate="yes" xml:space="preserve">
           <source>Are you under stress?</source>

@@ -88,11 +88,20 @@ namespace DeathTimerz.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Birthday is in.
+        ///   Looks up a localized string similar to Your Birthday is in {0} {1}.
         /// </summary>
         public static string BirthdayAfter {
             get {
                 return ResourceManager.GetString("BirthdayAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Today is your Birthday!.
+        /// </summary>
+        public static string BirthdayToday {
+            get {
+                return ResourceManager.GetString("BirthdayToday", resourceCulture);
             }
         }
         

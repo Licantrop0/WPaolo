@@ -25,6 +25,12 @@ namespace WPCommon.Controls
                 MSAppId = "test_client";
                 MSAdId = "Image480_80";
             }
+
+#if debug 
+                MSAppId = "test_client";
+                MSAdId = "Image480_80";
+#endif
+
             this.Height = 80;
 
             System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>

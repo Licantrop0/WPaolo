@@ -50,32 +50,33 @@ namespace DeathTimerz
 
         private void MainPanorama_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ApplicationBar.Mode = ApplicationBarMode.Minimized;
             ApplicationBar.Buttons.Remove(EditTestAppBarButton);
             ApplicationBar.Buttons.Remove(PinToStartAppBarButton);
-            TakeTestButton.IsHitTestVisible = false;
-
+            
             switch (MainPanorama.SelectedIndex)
             {
                 case 0: //Health Suggestion
+                    TakeTestButton.IsHitTestVisible = false;
                     if (ShellTile.ActiveTiles.Count() == 1)
-                    {
                         ApplicationBar.Buttons.Add(PinToStartAppBarButton);
-                        ApplicationBar.Mode = ApplicationBarMode.Default;
-                        SuggestionGrid.Margin = new Thickness(0, -30, 0, 72);
-                    }
-                    else
-                        SuggestionGrid.Margin = new Thickness(0, -30, 0, 30);
-
                     break;
                 case 1: //Death-Test
-                    TakeTestButton.IsHitTestVisible = true;
                     if (AppContext.TimeToDeath.HasValue)
-                    {
                         ApplicationBar.Buttons.Add(EditTestAppBarButton);
-                        ApplicationBar.Mode = ApplicationBarMode.Default;
-                    }
+                    else
+                        TakeTestButton.IsHitTestVisible = true;
                     break;
+            }
+
+            if (ApplicationBar.Buttons.Count == 0)
+            {
+                ApplicationBar.Mode = ApplicationBarMode.Minimized;
+                SuggestionGrid.Margin = new Thickness(0, -30, 0, 30);
+            }
+            else
+            {
+                SuggestionGrid.Margin = new Thickness(0, -30, 0, 72);
+                ApplicationBar.Mode = ApplicationBarMode.Default;
             }
         }
 

@@ -23,12 +23,38 @@ namespace SheldonMix.ViewModel
                         "CLAS_mua_ah_ah.mp3",
                         "CLAS_not_bad_it_s_horrible.mp3",
                         "CLAS_oouh.mp3",
+                        "CLAS_peace_out.mp3",
+                        "CLAS_hello_honeypuffs.mp3",
                         "CLAS_Sheldon_laugh.mp3",
-                        "CLAS_Sheldon_soft_kitty.mp3",
                         "CLAS_there_there.mp3",
                     }.Select(f => new SoundViewModel(f, SoundType.CLAS)).ToList();
                 }
                 return _suoniCLAS;
+            }
+        }
+
+        private IList<SoundViewModel> _suoniZAZZ;
+        public IList<SoundViewModel> SuoniZAZZ
+        {
+            get
+            {
+                if (_suoniZAZZ == null)
+                {
+                    _suoniZAZZ = new[] {
+                        "ZAZZ_Brave_Leonard_song.mp3",
+                        "ZAZZ_Dr_Sheldon_Cooper_FTW.mp3",
+                        "ZAZZ_Engineering_oompa_loompas.mp3",                        
+                        "ZAZZ_It's_a_trap1.mp3",
+                        "ZAZZ_DNA_of_leonard_nimoy.mp3",
+                        "ZAZZ_Sheldon_drunk_sings.mp3",
+                        "ZAZZ_To_Sheldon_live_long_and_prosper.mp3",
+                        "ZAZZ_we're_taking_the_train.mp3",
+                        "ZAZZ_Bongo_Song.mp3",
+                        "ZAZZ_Sheldon_soft_kitty.mp3",
+                        "ZAZZ_WoW_Hacking.mp3",
+                        "ZAZZ_Whip_eh-hee.mp3"
+                    }.Select(f => new SoundViewModel(f, SoundType.ZAZZ)).ToList();
+                } return _suoniZAZZ;
             }
         }
 
@@ -45,31 +71,6 @@ namespace SheldonMix.ViewModel
                     }.Select(f => new SoundViewModel(f, SoundType.TBBT)).ToList();
                 }
                 return _suoniTBBT;
-            }
-        }
-
-        private IList<SoundViewModel> _suoniZAZZ;
-        public IList<SoundViewModel> SuoniZAZZ
-        {
-            get
-            {
-                if (_suoniZAZZ == null)
-                {
-                    _suoniZAZZ = new[] {
-                        "ZAZZ_Brave_Leonard_song.mp3",
-                        "ZAZZ_Dr_Sheldon_Cooper_FTW.mp3",
-                        "ZAZZ_Engineering_oompa_loompas.mp3",
-                        "ZAZZ_hello_honeypuffs.mp3",
-                        "ZAZZ_It's_a_trap1.mp3",
-                        "ZAZZ_DNA_of_leonard_nimoy.mp3",
-                        "ZAZZ_peace_out.mp3",
-                        "ZAZZ_Sheldon_drunk_sings.mp3",
-                        "ZAZZ_To_Sheldon_live_long_and_prosper.mp3",
-                        "ZAZZ_we're_taking_the_train.mp3",
-                        "ZAZZ_WoW_Hacking.mp3",
-                        "ZAZZ_Whip_eh-hee.mp3"
-                    }.Select(f => new SoundViewModel(f, SoundType.ZAZZ)).ToList();
-                } return _suoniZAZZ;
             }
         }
 

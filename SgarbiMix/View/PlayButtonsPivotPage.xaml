@@ -21,19 +21,21 @@
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
           DataContext="{StaticResource PlayButtonsViewModel}">
-        <controls:Pivot Name="MainPivot" Margin="0,-30,0,80">
-            <controls:PivotItem Margin="0,-10,0,0">
-                <controls:PivotItem.Header>
-                    <TextBlock Text="Corti" FontFamily="{StaticResource DefaultFont}"
+        <controls:Pivot Name="MainPivot" Margin="0,-30,0,0" ItemsSource="{Binding Sounds}">
+            <controls:Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Key}" FontFamily="{StaticResource DefaultFont}"
                                Foreground="{StaticResource HeaderForeground}" />
-                </controls:PivotItem.Header>
-                    <ListBox ItemsSource="{Binding SuoniCorti}">
+                </DataTemplate>
+            </controls:Pivot.HeaderTemplate>
+            <controls:Pivot.ItemTemplate>
+                <DataTemplate>
+                    <ListBox ItemsSource="{Binding}" Margin="0,-30,0,0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Button Style="{StaticResource PlayButtonStyle}"
                                     Command="{Binding PlayCommand}"
-                                    Content="{Binding Name}"
-                                    Width="260" />
+                                    Content="{Binding Name}" Width="{Binding Width}" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                         <ListBox.ItemsPanel>
@@ -42,48 +44,10 @@
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                     </ListBox>
-            </controls:PivotItem>
-            <controls:PivotItem Margin="0,-10,0,0">
-                <controls:PivotItem.Header>
-                    <TextBlock Text="Lunghi" FontFamily="{StaticResource DefaultFont}"
-                               Foreground="{StaticResource HeaderForeground}" />
-                </controls:PivotItem.Header>
-                <ListBox ItemsSource="{Binding SuoniLunghi}" HorizontalAlignment="Center">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Button Style="{StaticResource PlayButtonStyle}"
-                                    Command="{Binding PlayCommand}"
-                                    Content="{Binding Name}"
-                                    Width="468" />
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </controls:PivotItem>
-            <controls:PivotItem Margin="0">
-                <controls:PivotItem.Header>
-                    <TextBlock Text="Suggerisci!" FontFamily="{StaticResource DefaultFont}"
-                               Foreground="{StaticResource HeaderForeground}" />
-                </controls:PivotItem.Header>
-                <StackPanel VerticalAlignment="Top">
-                    <TextBlock FontSize="26" VerticalAlignment="Center" Margin="12" TextAlignment="Center"
-                               TextWrapping="Wrap" FontWeight="SemiBold" Style="{StaticResource TextBlockBaseStyle}">
-                        Suggerisci un nuovo insulto di Sgarbi che manca a questa app:
-                    </TextBlock>
-                    <TextBox Name="SuggerimentoTextBox" TextWrapping="Wrap" Height="200" AcceptsReturn="True"                             
-                             FontFamily="{StaticResource DefaultFont}">
-                        WPME, aggiungete questa frase:
-                        <LineBreak />
-                    </TextBox>
-                    <toolkit:PhoneTextBox Name="YoutubeLinkTextBox" FontFamily="{StaticResource DefaultFont}"
-                                          Hint="Link di YouTube" >
-                        
-                    </toolkit:PhoneTextBox>
-                    <Button Style="{StaticResource PlayButtonStyle}"
-                            Content="Invia suggerimento"
-                            FontSize="36" Click="Suggersci_Click" />
-                </StackPanel>
-            </controls:PivotItem>
+                </DataTemplate>
+            </controls:Pivot.ItemTemplate>
         </controls:Pivot>
+
         <wpc:AdSwitcher Name="adSwitcher" VerticalAlignment="Bottom"
                         MSAppId="c175f6ba-cb10-4fe3-a1de-a96480a03d3a"
                         MSAdId="10022581" ADAppId="52911" />
@@ -96,6 +60,7 @@
             <shell:ApplicationBarIconButton IconUri="/images/bianco.png" Text="Base 3" Click="Base3ApplicationBar_Click" />
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="Disclaimer" Click="DisclaimerAppBarMenu_Click" />
+                <shell:ApplicationBarMenuItem Text="Suggerisci Insulto!" Click="SuggestionAppBarMenu_Click" />
                 <shell:ApplicationBarMenuItem Text="About" Click="AboutAppBarMenu_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>

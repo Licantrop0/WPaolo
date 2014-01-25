@@ -77,9 +77,14 @@
     <Reference Include="System.Windows.Interactivity" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
+    <Reference Include="WindowsPhoneWatermarkTextBoxControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>.\WindowsPhoneWatermarkTextBoxControl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppContext.cs" />
+    <Compile Include="Model\LLSGroup.cs" />
     <Compile Include="View\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -97,13 +102,11 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\SoundViewModel.cs" />
-    <Compile Include="SoundsResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SoundsResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\PlayButtonsViewModel.cs" />
+    <Compile Include="View\SuggestionPage.xaml.cs">
+      <DependentUpon>SuggestionPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -126,6 +129,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SuggestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png">
@@ -137,23 +144,19 @@
     <Content Include="Images\bianco.png" />
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
-    <Content Include="README_FIRST.txt" />
-    <Content Include="Sounds.xml" />
-    <Content Include="Sounds\Capra!.mp3" />
-    <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
-    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
-    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
-    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
-    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+    <Resource Include="Model\Sounds.xml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Resource Include="Fonts\segoepr.ttf" />
     <None Include="packages.config" />
-    <None Include="Sounds\Ateo fasullo!.wav" />
-    <None Include="Sounds\Valori del buco del culo.wav" />
-    <None Include="Sounds\Pagato!.wav" />
-    <None Include="Sounds\Altro che valori.wav" />
-    <None Include="Sounds\TACI.wav" />
-    <None Include="Sounds\Abbia_ognuno_il_pudore_della_propria_vita.wav" />
-    <None Include="Sounds\Avete_rotto_i_coglioni.wav" />
+    <Resource Include="Sounds\Ateo fasullo!.wav" />
+    <Resource Include="Sounds\Valori del buco del culo.wav" />
+    <Resource Include="Sounds\Pagato!.wav" />
+    <Resource Include="Sounds\Altro che valori.wav" />
+    <Resource Include="Sounds\TACI.wav" />
+    <Resource Include="Sounds\Abbia_ognuno_il_pudore_della_propria_vita.wav" />
+    <Resource Include="Sounds\Avete_rotto_i_coglioni.wav" />
+    <Resource Include="Sounds\Altra_balla.wav" />
     <Content Include="Sounds\base1.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -163,35 +166,59 @@
     <Content Include="Sounds\base3.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Sounds\non_dici_frasi_ma_stronzate.wav" />
-    <None Include="Sounds\non_gliene_importa_niente.wav" />
-    <None Include="Sounds\non_sputtanare_l_italia.wav" />
-    <None Include="Sounds\quella_è_la_merda.wav" />
-    <None Include="Sounds\se_lo_vuol_prendere_da_quella_parte.wav" />
-    <None Include="Sounds\voglio_essere_processato.wav" />
-    <Content Include="SplashScreenImage.jpg">
+    <Resource Include="Sounds\non_dici_frasi_ma_stronzate.wav" />
+    <Resource Include="Sounds\non_gliene_importa_niente.wav" />
+    <Resource Include="Sounds\non_sputtanare_l_italia.wav" />
+    <Resource Include="Sounds\quella_è_la_merda.wav" />
+    <Resource Include="Sounds\se_lo_vuol_prendere_da_quella_parte.wav" />
+    <Resource Include="Sounds\voglio_essere_processato.wav" />
+    <Resource Include="Sounds\Cacatore_di_M.wav" />
+    <Resource Include="Sounds\Cafone!.wav" />
+    <Resource Include="Sounds\Capra!.wav" />
+    <Resource Include="Sounds\Cazzi_da_150_metri.wav" />
+    <Resource Include="Sounds\Checca_isterica.wav" />
+    <Resource Include="Sounds\Da_quei_vandali_criminali.wav" />
+    <Resource Include="Sounds\Drogato!.wav" />
+    <Resource Include="Sounds\Drogato_Cafone!.wav" />
+    <Resource Include="Sounds\Drogato_schifoso.wav" />
+    <Resource Include="Sounds\In_Galera!.wav" />
+    <Resource Include="Sounds\In_mancanza.wav" />
+    <Resource Include="Sounds\La_mafia_la_mafia_la_mafia.wav" />
+    <Resource Include="Sounds\La_mia_maledizione.wav" />
+    <Resource Include="Sounds\Ma_cosa_centra_Berlusconi.wav" />
+    <Resource Include="Sounds\Pagato_da_chi.wav" />
+    <Resource Include="Sounds\Perchè_l%27uccello.wav" />
+    <Resource Include="Sounds\Schifoso!.wav" />
+    <Resource Include="Sounds\Sei_drogato_e_ubriaco.wav" />
+    <Resource Include="Sounds\Sono_stato_condannato.wav" />
+    <Resource Include="Sounds\Spacciatore!.wav" />
+    <Resource Include="Sounds\Tu_dici_un_sacco_di_balle.wav" />
+    <Resource Include="Sounds\Ubriacone_drogato.wav" />
+    <Resource Include="Sounds\Un_pezzo_di_M.wav" />
+    <Resource Include="Sounds\vai arrestato.wav" />
+    <Content Include="Images\sfondo.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Sounds\Capra ignorante!.wav" />
-    <None Include="Sounds\Criminale!.wav" />
-    <None Include="Sounds\Culattoni raccomandati!.wav" />
-    <None Include="Sounds\E tu sei un pirla!.wav" />
-    <None Include="Sounds\Fascista!.wav" />
-    <None Include="Sounds\Io sono convinto che vi debbano licenziare.wav" />
-    <None Include="Sounds\Legga Dante! Legga Manzoni!.wav" />
-    <None Include="Sounds\Leggi! Studia!.wav" />
-    <None Include="Sounds\Lo mangerei vivo!.wav" />
-    <None Include="Sounds\Ma guarda che roba!.wav" />
-    <None Include="Sounds\Mi state sui coglioni di principio!.wav" />
-    <None Include="Sounds\Non dire cretinate!.wav" />
-    <None Include="Sounds\Non ha mai fatto un cazzo in vita sua.wav" />
-    <None Include="Sounds\Ridicolo sei, e lo sei sempre stato!.wav" />
-    <None Include="Sounds\Ridicolo!.wav" />
-    <None Include="Sounds\Sei ignorante come una capra!.wav" />
-    <None Include="Sounds\Vai a studiare!.wav" />
-    <None Include="Sounds\Vergogna!.wav" />
-    <None Include="Sounds\È insopportabile!.wav" />
-    <None Include="Sounds\È un crimine!.wav" />
+    <Resource Include="Sounds\Capra ignorante!.wav" />
+    <Resource Include="Sounds\Criminale!.wav" />
+    <Resource Include="Sounds\Culattoni raccomandati!.wav" />
+    <Resource Include="Sounds\E tu sei un pirla!.wav" />
+    <Resource Include="Sounds\Fascista!.wav" />
+    <Resource Include="Sounds\Io sono convinto che vi debbano licenziare.wav" />
+    <Resource Include="Sounds\Legga Dante! Legga Manzoni!.wav" />
+    <Resource Include="Sounds\Leggi! Studia!.wav" />
+    <Resource Include="Sounds\Lo mangerei vivo!.wav" />
+    <Resource Include="Sounds\Ma guarda che roba!.wav" />
+    <Resource Include="Sounds\Mi state sui coglioni di principio!.wav" />
+    <Resource Include="Sounds\Non dire cretinate!.wav" />
+    <Resource Include="Sounds\Non ha mai fatto un cazzo in vita sua.wav" />
+    <Resource Include="Sounds\Ridicolo sei, e lo sei sempre stato!.wav" />
+    <Resource Include="Sounds\Ridicolo!.wav" />
+    <Resource Include="Sounds\Sei ignorante come una capra!.wav" />
+    <Resource Include="Sounds\Vai a studiare!.wav" />
+    <Resource Include="Sounds\Vergogna!.wav" />
+    <Resource Include="Sounds\È insopportabile!.wav" />
+    <Resource Include="Sounds\È un crimine!.wav" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WPCommon.Controls\WPCommon.Controls.csproj">
@@ -214,13 +241,6 @@
       <Project>{F5CE25E6-CF76-43AE-BBB2-2C98B21BCCD8}</Project>
       <Name>WPCommon.ShakeGestures</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="SoundsResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SoundsResources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

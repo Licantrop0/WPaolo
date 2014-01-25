@@ -1,8 +1,8 @@
-﻿using System.Windows;
+﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using WPCommon.Helpers;
 
 namespace SgarbiMix
@@ -40,7 +40,7 @@ namespace SgarbiMix
             InitializeComponent();
 
             // Phone-specific initialization
-            InitializePhoneApplication();
+            InitializePhoneApplication();        
         }
 
         // Code to execute when the application is launching (eg, from Start)
@@ -48,7 +48,7 @@ namespace SgarbiMix
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             if (TrialManagement.IsTrialMode &&
-                !TrialManagement.AlreadyOpenedToday)
+              !TrialManagement.AlreadyOpenedToday)
                 TrialManagement.ResetCounter();
         }
 

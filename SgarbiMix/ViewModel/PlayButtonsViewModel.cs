@@ -1,36 +1,47 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Media;
+using SgarbiMix.Model;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
-using Microsoft.Xna.Framework.Media;
 
 namespace SgarbiMix.ViewModel
 {
-    public class PlayButtonsViewModel
+    public class PlayButtonsViewModel : INotifyPropertyChanged
     {
-        private const int LenghtSeparator = 18;
+        public event PropertyChangedEventHandler PropertyChanged;
+        public IEnumerable<LLSGroup<string, SoundViewModel>> Sounds { get; set; }
 
-        private IEnumerable<SoundViewModel> _suoniCorti;
-        public IEnumerable<SoundViewModel> SuoniCorti
+        public PlayButtonsViewModel()
         {
-            get
+            if (DesignerProperties.IsInDesignTool)
             {
-                if (_suoniCorti == null)
-                    _suoniCorti = AppContext.SoundResources.Where(s => s.Name.Length <= LenghtSeparator);
-                return _suoniCorti;
+                var s = new SoundViewModel[]
+                {
+                    new SoundViewModel() { Name = "aoiadoaid", Category = "Corti" },
+                    new SoundViewModel() { Name = "aoiadoaid", Category = "Corti" },
+                    new SoundViewModel() { Name = "aoiadoaid", Category = "Corti" },
+                    new SoundViewModel() { Name = "aoiadoaid", Category = "Corti" },
+                    new SoundViewModel() { Name = "aoiadoaid", Category = "Corti" },
+                    new SoundViewModel() { Name = "aoiadoaid", Category = "Lunghi" },
+                    new SoundViewModel() { Name = "aoiadosaf asdfsadsa aid", Category = "Lunghi" },
+                    new SoundViewModel() { Name = "aoiadoasfa sdfadf id", Category = "Lunghi" },
+                    new SoundViewModel() { Name = "aoiaf asfsaas dfasf ddoaid", Category = "Lunghi" },
+                };
+
+                Sounds = from sound in s
+                         group sound by sound.Category into g
+                         select new LLSGroup<string, SoundViewModel>(g);
+            }
+            else
+            {
+                Sounds = from sound in AppContext.AllSound
+                         group sound by sound.Category into g
+                         select new LLSGroup<string, SoundViewModel>(g);
             }
         }
 
-        private IEnumerable<SoundViewModel> _suoniLunghi;
-        public IEnumerable<SoundViewModel> SuoniLunghi
-        {
-            get
-            {
-                if (_suoniLunghi == null)
-                    _suoniLunghi = AppContext.SoundResources.Where(s => s.Name.Length > LenghtSeparator);
-                return _suoniLunghi;
-            }
-        }
 
         public static void PlayBase(string baseName)
         {
@@ -54,5 +65,11 @@ namespace SgarbiMix.ViewModel
                     "SgarbiMix", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
         }
 
+        protected virtual void RaisePropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

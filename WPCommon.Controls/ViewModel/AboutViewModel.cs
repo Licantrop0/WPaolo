@@ -9,8 +9,9 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows;
 using System.Reflection;
+using System.Windows.Media.Imaging;
 
-namespace WPCommon.ViewModel
+namespace SheldonMix.ViewModel
 {
     public class AboutViewModel : INotifyPropertyChanged
     {
@@ -110,6 +111,7 @@ namespace WPCommon.ViewModel
             get { return _customTextForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
             set { _customTextForeground = value; }
         }
+
 
         private Thickness _appNameMargin = new Thickness(0);
         public Thickness AppNameMargin

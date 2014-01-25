@@ -9,11 +9,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:vm="clr-namespace:SheldonMix.ViewModel"
+    xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728" 
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" Background="White">
+    shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
         <vm:MainViewModel x:Key="MainVM" />
@@ -124,6 +125,17 @@
                     </Grid>
                 </controls:PivotItem>
 
+                <!-- Videos 
+                <controls:PivotItem Name="VideosPivotItem" Margin="0">
+                    <controls:PivotItem.Header>
+                        <TextBlock Text="Videos" Style="{StaticResource HeaderStyle}" />
+                    </controls:PivotItem.Header>
+                    <phone:WebBrowser Name="YouTubeBrowser" IsScriptEnabled="True"
+                                      Navigating="YouTubeBrowser_Navigating"
+                                      Navigated="YouTubeBrowser_Navigated"
+                                      Source="http://m.youtube.com/results?q=sheldon%20cooper" />
+                </controls:PivotItem>-->
+
                 <!-- Extra -->
                 <controls:PivotItem Margin="0">
                     <controls:PivotItem.Header>
@@ -137,29 +149,33 @@
                             Set Every sound as Ringtone by long-pressing on the relative button!
                         </TextBlock>
 
-                        <HyperlinkButton Content="Official CBS page of TBBT" Margin="0,8"
-                                         FontFamily="{StaticResource DefaultFont}"
-                                         Foreground="Crimson" Click="HyperlinkButton_Click_2" />
-
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8">
-                            <TextBlock Text="TBBT Official" FontSize="22"
+                        <TextBlock Text="Official TBBT" FontSize="22"  Margin="0,8,0,0"
                                        FontFamily="{StaticResource DefaultFont}"
-                                       Foreground="#FF8D13A8" />
+                                       Foreground="#FF8D13A8" HorizontalAlignment="Center" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                    Margin="0,0,0,8">
                             <HyperlinkButton Content="Twitter" Click="TwitterCBS_Click"
                                              FontFamily="{StaticResource DefaultFont}"
                                              Foreground="#FF8D13A8" />
                             <TextBlock Text="/" FontSize="22"
                                        FontFamily="{StaticResource DefaultFont}"
-                                       Foreground="#FF8D13A8" />                            
+                                       Foreground="#FF8D13A8" />
                             <HyperlinkButton Content="Facebook"
                                          FontFamily="{StaticResource DefaultFont}"
                                          Foreground="#FF8D13A8" Click="FacebookCBS_Click" />
-                        </StackPanel>
-                        
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8">
-                            <TextBlock Text="Sheldon Cooper" FontSize="22"
+                            <TextBlock Text="/" FontSize="22"
                                        FontFamily="{StaticResource DefaultFont}"
-                                       Foreground="#FF13A86B" />
+                                       Foreground="#FF8D13A8" />
+                            <HyperlinkButton Content="Web"
+                                         FontFamily="{StaticResource DefaultFont}"
+                                         Foreground="#FF8D13A8" Click="WebCBS_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="Unoffficial Sheldon Cooper" FontSize="22"
+                                       FontFamily="{StaticResource DefaultFont}" Margin="0,8,0,0"
+                                       Foreground="#FF13A86B" HorizontalAlignment="Center" />
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8">
                             <HyperlinkButton Content="Twitter" Click="TwitterSheldon_Click"
                                              FontFamily="{StaticResource DefaultFont}"
                                              Foreground="#FF13A86B" />
@@ -195,7 +211,9 @@
                     </StackPanel>
                 </controls:PivotItem>
             </controls:Pivot>
-            <StackPanel Name="AdPlaceHolder" VerticalAlignment="Bottom" />
+            <wpc:AdSwitcher Name="adSwitcher" VerticalAlignment="Bottom"
+                            MSAppId="04e2ad45-3752-4d8c-867c-b1eb0cf4a3e1"
+                            MSAdId="10022426" ADAppId="52927" />
         </Grid>
     </Border>
 

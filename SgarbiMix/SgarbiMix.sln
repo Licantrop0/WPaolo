@@ -19,24 +19,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.ShakeGestures", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.TrialManagement", "..\WPCommon.Helpers.TrialManagement\WPCommon.Helpers.TrialManagement.csproj", "{157C676B-46A4-4099-936E-BBDFB93BB735}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libs", "External Libs", "{70244342-1EEC-488C-B4D4-4D9F4B576B9D}"
+	ProjectSection(SolutionItems) = preProject
+		WindowsPhoneWatermarkTextBoxControl.dll = WindowsPhoneWatermarkTextBoxControl.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 7
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
-		SccProjectUniqueName0 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
-		SccProjectName0 = ../WPCommon.Controls
-		SccLocalPath0 = ..\\WPCommon.Controls
-		SccProjectUniqueName1 = ..\\WPCommon.Helpers\\WPCommon.Helpers.csproj
-		SccProjectName1 = ../WPCommon.Helpers
-		SccLocalPath1 = ..\\WPCommon.Helpers
-		SccProjectUniqueName2 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
-		SccProjectName2 = ../WPCommon.Helpers.XNAAsyncDispatcher
-		SccLocalPath2 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
-		SccProjectUniqueName3 = ..\\WPCommon.ShakeGestures\\WPCommon.ShakeGestures.csproj
-		SccProjectName3 = ../WPCommon.ShakeGestures
-		SccLocalPath3 = ..\\WPCommon.ShakeGestures
-		SccLocalPath4 = .
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName1 = ../WPCommon.Controls
+		SccLocalPath1 = ..\\WPCommon.Controls
+		SccProjectUniqueName2 = ..\\WPCommon.Helpers\\WPCommon.Helpers.csproj
+		SccProjectName2 = ../WPCommon.Helpers
+		SccLocalPath2 = ..\\WPCommon.Helpers
+		SccProjectUniqueName3 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
+		SccProjectName3 = ../WPCommon.Helpers.XNAAsyncDispatcher
+		SccLocalPath3 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
+		SccProjectUniqueName4 = ..\\WPCommon.ShakeGestures\\WPCommon.ShakeGestures.csproj
+		SccProjectName4 = ../WPCommon.ShakeGestures
+		SccLocalPath4 = ..\\WPCommon.ShakeGestures
 		SccProjectUniqueName5 = SgarbiMix.csproj
 		SccLocalPath5 = .
 		SccProjectUniqueName6 = ..\\WPCommon.Helpers.TrialManagement\\WPCommon.Helpers.TrialManagement.csproj

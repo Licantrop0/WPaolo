@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using Microsoft.Xna.Framework.Audio;
+using System;
 using System.Windows.Input;
-using Microsoft.Xna.Framework.Audio;
+using System.Xml.Serialization;
 using WPCommon.Helpers;
 
 namespace SgarbiMix.ViewModel
@@ -19,10 +19,20 @@ namespace SgarbiMix.ViewModel
             }
         }
 
-        public string Name { get; private set; }
+        [XmlAttribute]
+        public string Name { get; set; }
+        [XmlAttribute]
+        public string File { get; set; }
+        [XmlAttribute]
+        public string Category { get; set; }
+
+        public double Width
+        {
+            get { return Name.Length < 18 ? 248 : 468; }
+        }
+
         public TimeSpan Duration { get { return Sound.Duration; } }
 
-        private UnmanagedMemoryStream _rawSound;
         private SoundEffect _sound;
         private SoundEffect Sound
         {
@@ -30,22 +40,11 @@ namespace SgarbiMix.ViewModel
             {
                 if (_sound == null)
                 {
-                    _sound = SoundEffect.FromStream(_rawSound);
-                    _rawSound.Dispose();
+                    var srinfo = App.GetResourceStream(new Uri("SgarbiMix;component/Sounds/" + File, UriKind.Relative));
+                    _sound = SoundEffect.FromStream(srinfo.Stream);
                 }
                 return _sound;
             }
-        }
-
-
-        public SoundViewModel(string rawName, UnmanagedMemoryStream rawSound)
-        {
-            if (string.IsNullOrEmpty(rawName))
-                throw new ArgumentException("the sound name is null or empty", "rawName");
-
-            //Convenzione: "_" = spazio, "1" = punto esclamativo
-            Name = rawName.Replace("_", " ").Replace("1", "!");
-            _rawSound = rawSound;
         }
 
         RelayCommand _playCommand;
@@ -65,7 +64,7 @@ namespace SgarbiMix.ViewModel
 
         private bool CheckTrial()
         {
-            if (TrialManagement.IsTrialMode && TrialManagement.Counter > 8)
+            if (TrialManagement.IsTrialMode && TrialManagement.Counter > 10)
             {
                 NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
                 return false;

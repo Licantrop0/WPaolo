@@ -11,10 +11,10 @@
             /SgarbiMix;component/Fonts/segoepr.ttf#Segoe Print
         </FontFamily>
 
-        <ImageBrush x:Key="DefaultBackground" ImageSource="SplashScreenImage.jpg"
+        <ImageBrush x:Key="DefaultBackground" ImageSource="/Images/sfondo.jpg"
                     Stretch="None" AlignmentY="Top" />
 
-        <ImageBrush x:Key="DarkerBackground" ImageSource="SplashScreenImage.jpg"
+        <ImageBrush x:Key="DarkerBackground" ImageSource="/Images/sfondo.jpg"
                     Stretch="None" AlignmentY="Top" Opacity="0.4" />
 
         <LinearGradientBrush x:Key="DefaultForeground" EndPoint="0.5,1" StartPoint="0.5,0">
@@ -69,9 +69,7 @@
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
-
         <wph:XNAAsyncDispatcher xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher" />
-
         <shell:PhoneApplicationService 
             Launching="Application_Launching" Closing="Application_Closing" 
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>

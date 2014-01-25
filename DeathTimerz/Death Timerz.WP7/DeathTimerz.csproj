@@ -59,9 +59,6 @@
     <ToolkitRevision>2</ToolkitRevision>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AdDuplex.WindowsPhone">
-      <HintPath>..\packages\AdDuplexWP8.2.8.0.7\lib\sl4-wp71\AdDuplex.WindowsPhone.dll</HintPath>
-    </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WP71">
       <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\sl4-wp71\GalaSoft.MvvmLight.Extras.WP71.dll</HintPath>
     </Reference>

@@ -1,13 +1,18 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 using System;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Windows.Input;
 using System.Xml.Serialization;
 using WPCommon.Helpers;
 
-namespace SgarbiMix.ViewModel
+namespace SgarbiMix.WP7.ViewModel
 {
     public class SoundViewModel
     {
+        const string baseUri = "shared/transfers/";
+        static IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
+
         private INavigationService _navigationService;
         private INavigationService NavigationService
         {
@@ -39,10 +44,11 @@ namespace SgarbiMix.ViewModel
             get
             {
                 if (_sound == null)
-                {
-                    var srinfo = App.GetResourceStream(new Uri("SgarbiMix;component/Sounds/" + File, UriKind.Relative));
-                    _sound = SoundEffect.FromStream(srinfo.Stream);
-                }
+                    using (var file = isf.OpenFile(baseUri + File, FileMode.Open))
+                    {
+                        _sound = SoundEffect.FromStream(file);
+                    }
+
                 return _sound;
             }
         }
@@ -52,11 +58,11 @@ namespace SgarbiMix.ViewModel
         {
             get
             {
-                return _playCommand ?? (_playCommand = new RelayCommand(param => Play()));
+                return _playCommand ?? (_playCommand = new RelayCommand(Play));
             }
         }
 
-        private void Play()
+        private void Play(object param)
         {
             if (!CheckTrial()) return;
             Sound.Play();

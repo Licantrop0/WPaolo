@@ -2,8 +2,9 @@
 using Microsoft.Phone.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 
-namespace SgarbiMix.View
+namespace SgarbiMix.WP7.View
 {
     public partial class SuggestionPage : PhoneApplicationPage
     {
@@ -17,7 +18,7 @@ namespace SgarbiMix.View
         {
             if (!Regex.IsMatch(YoutubeLinkTextBox.Text, @"^(https?\:\/\/)?(www\.|m\.)?(youtube\.com|youtu\.be).*/watch\?v\=\w+$"))
             {
-                MessageBox.Show("Mi spiace, ma è necessario inserire anche il link di YouTube contenente l'insulto per inviare il suggerimento.", "Link di YouTube", MessageBoxButton.OK);
+                MessageBox.Show("Mi spiace, ma ho bisogno del link di YouTube contenente l'insulto per aggiungerlo più rapidamente alla lista.", "Link di YouTube", MessageBoxButton.OK);
                 return;
             }
 
@@ -27,6 +28,14 @@ namespace SgarbiMix.View
                 To = "wpmobile@hotmail.it",
                 Body = SuggerimentoTextBox.Text + "\n" + YoutubeLinkTextBox.Text
             }.Show();
+        }
+
+        private void YoutubeLinkTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Suggersci_Click(sender, null);
+            }
         }
     }
 }

@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8BDEBE1A-9791-428D-8026-1172D876F79D}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SgarbiMix.WP7</RootNamespace>
+    <AssemblyName>SgarbiMix.WP7</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>SgarbiMix.WP7.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>SgarbiMix.WP7.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+      <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Phone">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.Phone.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="System.IO">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\sl4-windowsphone71\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\sl4-windowsphone71\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\sl4-windowsphone71\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="mscorlib.extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppContext.cs" />
+    <Compile Include="Model\LLSGroup.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SoundViewModel.cs" />
+    <Compile Include="ViewModel\UpdateViewModel.cs" />
+    <Compile Include="View\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DemoPage.xaml.cs">
+      <DependentUpon>DemoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DisclaimerPage.xaml.cs">
+      <DependentUpon>DisclaimerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SuggestionPage.xaml.cs">
+      <DependentUpon>SuggestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UpdatePage.xaml.cs">
+      <DependentUpon>UpdatePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <BlendEmbeddedFont Include="Fonts\segoepr.ttf">
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+    </BlendEmbeddedFont>
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Data\Sounds.xml" />
+    <None Include="Data\Abbia_ognuno_il_pudore_della_propria_vita.wav" />
+    <None Include="Data\Altra_balla.wav" />
+    <None Include="Data\Altro che valori.wav" />
+    <None Include="Data\Ateo fasullo!.wav" />
+    <None Include="Data\Avete_rotto_i_coglioni.wav" />
+    <None Include="Data\Cacatore_di_M.wav" />
+    <None Include="Data\Cafone!.wav" />
+    <None Include="Data\Capra ignorante!.wav" />
+    <None Include="Data\Capra!.wav" />
+    <None Include="Data\Cazzi_da_150_metri.wav" />
+    <None Include="Data\Checca_isterica.wav" />
+    <None Include="Data\Criminale!.wav" />
+    <None Include="Data\Culattoni raccomandati!.wav" />
+    <None Include="Data\Da_quei_vandali_criminali.wav" />
+    <None Include="Data\Drogato!.wav" />
+    <None Include="Data\Drogato_Cafone!.wav" />
+    <None Include="Data\Drogato_schifoso.wav" />
+    <None Include="Data\E tu sei un pirla!.wav" />
+    <None Include="Data\Fascista!.wav" />
+    <None Include="Data\In_Galera!.wav" />
+    <None Include="Data\In_mancanza.wav" />
+    <None Include="Data\Io sono convinto che vi debbano licenziare.wav" />
+    <None Include="Data\La_mafia_la_mafia_la_mafia.wav" />
+    <None Include="Data\La_mia_maledizione.wav" />
+    <None Include="Data\Legga Dante! Legga Manzoni!.wav" />
+    <None Include="Data\Leggi! Studia!.wav" />
+    <None Include="Data\Lo mangerei vivo!.wav" />
+    <None Include="Data\Ma guarda che roba!.wav" />
+    <None Include="Data\Ma_cosa_centra_Berlusconi.wav" />
+    <None Include="Data\Mi state sui coglioni di principio!.wav" />
+    <None Include="Data\Non dire cretinate!.wav" />
+    <None Include="Data\Non ha mai fatto un cazzo in vita sua.wav" />
+    <None Include="Data\non_dici_frasi_ma_stronzate.wav" />
+    <None Include="Data\non_gliene_importa_niente.wav" />
+    <None Include="Data\non_sputtanare_l_italia.wav" />
+    <None Include="Data\Pagato!.wav" />
+    <None Include="Data\Pagato_da_chi.wav" />
+    <None Include="Data\Perchè_l%27uccello.wav" />
+    <None Include="Data\quella_è_la_merda.wav" />
+    <None Include="Data\Ridicolo sei, e lo sei sempre stato!.wav" />
+    <None Include="Data\Ridicolo!.wav" />
+    <None Include="Data\Schifoso!.wav" />
+    <None Include="Data\Sei ignorante come una capra!.wav" />
+    <None Include="Data\Sei_drogato_e_ubriaco.wav" />
+    <None Include="Data\se_lo_vuol_prendere_da_quella_parte.wav" />
+    <None Include="Data\Sono_stato_condannato.wav" />
+    <None Include="Data\Spacciatore!.wav" />
+    <None Include="Data\TACI.wav" />
+    <None Include="Data\Tu_dici_un_sacco_di_balle.wav" />
+    <None Include="Data\Ubriacone_drogato.wav" />
+    <None Include="Data\Un_pezzo_di_M.wav" />
+    <None Include="Data\Vai a studiare!.wav" />
+    <None Include="Data\vai arrestato.wav" />
+    <None Include="Data\Valori del buco del culo.wav" />
+    <None Include="Data\Vergogna!.wav" />
+    <None Include="Data\voglio_essere_processato.wav" />
+    <None Include="Data\È insopportabile!.wav" />
+    <None Include="Data\È un crimine!.wav" />
+    <Content Include="Images\bianco.png" />
+    <Content Include="Images\sfondo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\base1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\base2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\base3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\WPCommon.Controls\WPCommon.Controls.csproj">
+      <Project>{B3F46867-22D6-4BE3-81FC-2D6F47E96310}</Project>
+      <Name>WPCommon.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WPCommon.Helpers.TrialManagement\WPCommon.Helpers.TrialManagement.csproj">
+      <Project>{157C676B-46A4-4099-936E-BBDFB93BB735}</Project>
+      <Name>WPCommon.Helpers.TrialManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj">
+      <Project>{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}</Project>
+      <Name>WPCommon.Helpers.XNAAsyncDispatcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WPCommon.Helpers\WPCommon.Helpers.csproj">
+      <Project>{7CF377DB-129E-4C84-A23D-5758F01DC6F1}</Project>
+      <Name>WPCommon.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WPCommon.ShakeGestures\WPCommon.ShakeGestures.csproj">
+      <Project>{F5CE25E6-CF76-43AE-BBB2-2C98B21BCCD8}</Project>
+      <Name>WPCommon.ShakeGestures</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DemoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DisclaimerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SuggestionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UpdatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\WindowsPhone\v8.0\Microsoft.Expression.Blend.WindowsPhone.targets" />
+</Project>

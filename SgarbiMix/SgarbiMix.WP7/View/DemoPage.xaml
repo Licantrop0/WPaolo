@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="SgarbiMix.DemoPage"
+    x:Class="SgarbiMix.WP7.View.DemoPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -40,10 +40,10 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Ooops!" Style="{StaticResource TextBlockBaseStyle}"
                    Foreground="{StaticResource HeaderForeground}"
-                   FontSize="80" TextAlignment="Center" FontWeight="SemiBold" />
+                   FontSize="80" TextAlignment="Center" FontWeight="Bold" />
 
         <TextBlock Grid.Row="1" FontSize="26" VerticalAlignment="Center" Margin="24"
-                   TextAlignment="Center" TextWrapping="Wrap" FontWeight="SemiBold"
+                   TextAlignment="Center" TextWrapping="Wrap" FontWeight="Bold"
                    Style="{StaticResource TextBlockBaseStyle}" >
             Questa è solo una demo :(<LineBreak/>
             Puoi gridare le frasi di Sgarbi solo 10 volte al giorno...<LineBreak/>
@@ -57,7 +57,7 @@
         <HyperlinkButton Name="BuyButton" Content="Clicca e compra"
                          FontFamily="{StaticResource DefaultFont}"
                          FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                         Click="BuyButton_Click" FontWeight="SemiBold"
+                         Click="BuyButton_Click" FontWeight="Bold"
                          Foreground="{StaticResource HeaderForeground}" Grid.Row="2" />
     </Grid>
 

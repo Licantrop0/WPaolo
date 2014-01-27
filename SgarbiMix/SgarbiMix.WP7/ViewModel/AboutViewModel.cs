@@ -10,7 +10,7 @@ using System.Xml.Linq;
 using WPCommon.Controls.Model;
 using System.Globalization;
 
-namespace SgarbiMix.ViewModel
+namespace SgarbiMix.WP7.ViewModel
 {
     public class AboutViewModel : INotifyPropertyChanged
     {

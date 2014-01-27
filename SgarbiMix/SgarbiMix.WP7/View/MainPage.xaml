@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="SgarbiMix.PlayButtonsPivotPage"
+    x:Class="SgarbiMix.WP7.View.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -8,19 +8,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:vm="clr-namespace:SgarbiMix.ViewModel"
+    xmlns:vm="clr-namespace:SgarbiMix.WP7.ViewModel"
     xmlns:wpc="clr-namespace:WPCommon.Controls;assembly=WPCommon.Controls"    
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <phone:PhoneApplicationPage.Resources>
-        <vm:PlayButtonsViewModel x:Name="PlayButtonsViewModel" />
+        <vm:MainViewModel x:Name="MainViewModel" />
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource DefaultBackground}"
-          DataContext="{StaticResource PlayButtonsViewModel}">
+    <Grid Background="{StaticResource DefaultBackground}"
+          DataContext="{StaticResource MainViewModel}">
         <controls:Pivot Name="MainPivot" Margin="0,-30,0,0" ItemsSource="{Binding Sounds}">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>

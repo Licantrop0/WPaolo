@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgarbiMix", "SgarbiMix.csproj", "{35FEF77F-76EA-4EDA-8751-54F7F381676B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers", "..\WPCommon.Helpers\WPCommon.Helpers.csproj", "{7CF377DB-129E-4C84-A23D-5758F01DC6F1}"
@@ -19,10 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.ShakeGestures", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.TrialManagement", "..\WPCommon.Helpers.TrialManagement\WPCommon.Helpers.TrialManagement.csproj", "{157C676B-46A4-4099-936E-BBDFB93BB735}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libs", "External Libs", "{70244342-1EEC-488C-B4D4-4D9F4B576B9D}"
-	ProjectSection(SolutionItems) = preProject
-		WindowsPhoneWatermarkTextBoxControl.dll = WindowsPhoneWatermarkTextBoxControl.dll
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgarbiMix.WP7", "SgarbiMix.WP7\SgarbiMix.WP7.csproj", "{8BDEBE1A-9791-428D-8026-1172D876F79D}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -42,23 +37,18 @@ Global
 		SccProjectUniqueName4 = ..\\WPCommon.ShakeGestures\\WPCommon.ShakeGestures.csproj
 		SccProjectName4 = ../WPCommon.ShakeGestures
 		SccLocalPath4 = ..\\WPCommon.ShakeGestures
-		SccProjectUniqueName5 = SgarbiMix.csproj
-		SccLocalPath5 = .
-		SccProjectUniqueName6 = ..\\WPCommon.Helpers.TrialManagement\\WPCommon.Helpers.TrialManagement.csproj
-		SccProjectName6 = ../WPCommon.Helpers.TrialManagement
-		SccLocalPath6 = ..\\WPCommon.Helpers.TrialManagement
+		SccProjectUniqueName5 = ..\\WPCommon.Helpers.TrialManagement\\WPCommon.Helpers.TrialManagement.csproj
+		SccProjectName5 = ../WPCommon.Helpers.TrialManagement
+		SccLocalPath5 = ..\\WPCommon.Helpers.TrialManagement
+		SccProjectUniqueName6 = SgarbiMix.WP7\\SgarbiMix.WP7.csproj
+		SccProjectName6 = SgarbiMix.WP7
+		SccLocalPath6 = SgarbiMix.WP7
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{35FEF77F-76EA-4EDA-8751-54F7F381676B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35FEF77F-76EA-4EDA-8751-54F7F381676B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35FEF77F-76EA-4EDA-8751-54F7F381676B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{35FEF77F-76EA-4EDA-8751-54F7F381676B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35FEF77F-76EA-4EDA-8751-54F7F381676B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35FEF77F-76EA-4EDA-8751-54F7F381676B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3F46867-22D6-4BE3-81FC-2D6F47E96310}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -79,6 +69,12 @@ Global
 		{157C676B-46A4-4099-936E-BBDFB93BB735}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{157C676B-46A4-4099-936E-BBDFB93BB735}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{157C676B-46A4-4099-936E-BBDFB93BB735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BDEBE1A-9791-428D-8026-1172D876F79D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BDEBE1A-9791-428D-8026-1172D876F79D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BDEBE1A-9791-428D-8026-1172D876F79D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8BDEBE1A-9791-428D-8026-1172D876F79D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BDEBE1A-9791-428D-8026-1172D876F79D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BDEBE1A-9791-428D-8026-1172D876F79D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

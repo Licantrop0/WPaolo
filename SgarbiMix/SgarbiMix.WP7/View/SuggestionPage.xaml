@@ -23,7 +23,7 @@
         <TextBox Name="SuggerimentoTextBox" TextWrapping="Wrap" Height="200" AcceptsReturn="True"                             
                  FontFamily="{StaticResource DefaultFont}" Text="WPME, aggiungi questa frase: " />
         <toolkit:PhoneTextBox Name="YoutubeLinkTextBox" FontFamily="{StaticResource DefaultFont}"
-                              Hint="Inserisci il link di YouTube*" KeyDown="YoutubeLinkTextBox_KeyDown"/>
+                              Hint="Inserisci il link di YouTube*" KeyDown="YoutubeLinkTextBox_KeyDown" />
         <TextBlock FontSize="26" Margin="0,-12,12,12"
                    TextAlignment="Right" Text="*Obbligatorio"
                    FontFamily="{StaticResource DefaultFont}"

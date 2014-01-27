@@ -1,6 +1,6 @@
 ﻿using Microsoft.Phone.Controls;
 
-namespace SgarbiMix
+namespace SgarbiMix.WP7.View
 {
     public partial class AboutPage : PhoneApplicationPage
     {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Phone.Controls;
-using SgarbiMix.ViewModel;
+using SgarbiMix.WP7.ViewModel;
 using ShakeGestures;
 using System;
 using System.Threading;
@@ -7,12 +7,12 @@ using System.Windows;
 using System.Windows.Navigation;
 using WPCommon.Helpers;
 
-namespace SgarbiMix
+namespace SgarbiMix.WP7.View
 {
-    public partial class PlayButtonsPivotPage : PhoneApplicationPage
+    public partial class MainPage : PhoneApplicationPage
     {
         ShakeGesturesHelper _shaker;
-        public PlayButtonsPivotPage()
+        public MainPage()
         {
             InitializeComponent();
             InitializeShaker();
@@ -27,14 +27,12 @@ namespace SgarbiMix
                 MainPivot.Margin = new Thickness(0, -30, 0, 80);
                 adSwitcher.AddAdvertising();
             }
-            base.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             _shaker.Active = false;
             adSwitcher.RemoveAdvertising();
-            base.OnNavigatedFrom(e);
         }
 
         private void InitializeShaker()
@@ -53,17 +51,17 @@ namespace SgarbiMix
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)
         {
-            PlayButtonsViewModel.PlayBase("base1");
+            MainViewModel.PlayBase("base1");
         }
 
         private void Base2ApplicationBar_Click(object sender, EventArgs e)
         {
-            PlayButtonsViewModel.PlayBase("base2");
+            MainViewModel.PlayBase("base2");
         }
 
         private void Base3ApplicationBar_Click(object sender, EventArgs e)
         {
-            PlayButtonsViewModel.PlayBase("base3");
+            MainViewModel.PlayBase("base3");
         }
 
         private void DisclaimerAppBarMenu_Click(object sender, EventArgs e)
@@ -79,6 +77,13 @@ namespace SgarbiMix
         private void AboutAppBarMenu_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (AppContext.AllSound == null)
+                NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
+
         }
     }
 }

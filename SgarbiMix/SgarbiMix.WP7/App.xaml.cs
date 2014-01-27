@@ -1,11 +1,20 @@
-﻿using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 using WPCommon.Helpers;
 
-namespace SgarbiMix
+namespace SgarbiMix.WP7
 {
     public partial class App : Application
     {
@@ -14,6 +23,7 @@ namespace SgarbiMix
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
+
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
@@ -21,6 +31,12 @@ namespace SgarbiMix
         {
             // Global handler for uncaught exceptions. 
             UnhandledException += Application_UnhandledException;
+
+            // Standard Silverlight initialization
+            InitializeComponent();
+
+            // Phone-specific initialization
+            InitializePhoneApplication();
 
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)
@@ -32,15 +48,16 @@ namespace SgarbiMix
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
 
                 // Enable non-production analysis visualization mode, 
-                // which shows areas of a page that are being GPU accelerated with a colored overlay.
+                // which shows areas of a page that are handed off to GPU with a colored overlay.
                 //Application.Current.Host.Settings.EnableCacheVisualization = true;
+
+                // Disable the application idle detection by setting the UserIdleDetectionMode property of the
+                // application's PhoneApplicationService object to Disabled.
+                // Caution:- Use this under debug mode only. Application that disables user idle detection will continue to run
+                // and consume battery power when the user is not using the phone.
+                PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
-            // Standard Silverlight initialization
-            InitializeComponent();
-
-            // Phone-specific initialization
-            InitializePhoneApplication();        
         }
 
         // Code to execute when the application is launching (eg, from Start)
@@ -103,7 +120,7 @@ namespace SgarbiMix
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new TransitionFrame { Background = new SolidColorBrush(Colors.Transparent) };
+            RootFrame = new PhoneApplicationFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures

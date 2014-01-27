@@ -1,15 +1,13 @@
 ﻿<Application 
-    x:Class="SgarbiMix.App"
+    x:Class="SgarbiMix.WP7.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" >
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" >
 
     <Application.Resources>
-        <FontFamily x:Key="DefaultFont">
-            /SgarbiMix;component/Fonts/segoepr.ttf#Segoe Print
-        </FontFamily>
+        <FontFamily x:Key="DefaultFont">/SgarbiMix.WP7;component/Fonts/Fonts.zip#Segoe Print</FontFamily>
 
         <ImageBrush x:Key="DefaultBackground" ImageSource="/Images/sfondo.jpg"
                     Stretch="None" AlignmentY="Top" />
@@ -40,7 +38,7 @@
             <Setter Property="FontSize" Value="21" />
             <Setter Property="BorderThickness" Value="6,4" />
             <Setter Property="Opacity" Value="0.8" />
-            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Margin" Value="-10,-6" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />

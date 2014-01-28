@@ -9,7 +9,6 @@ using System.ComponentModel;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using WPCommon.Helpers;
 
@@ -28,8 +27,8 @@ namespace SgarbiMix.WP7.ViewModel
             get
             {
                 if (AllFilesCount == 0)
-                    return "Caricamento lista insulti...";
-                return string.Format("Aggiorna Insulti {0}/{1}",
+                    return "Carico la lista Insulti...";
+                return string.Format("Aggiorno Insulti {0}/{1}",
                     Downloads.Count, AllFilesCount);
             }
         }
@@ -81,7 +80,7 @@ namespace SgarbiMix.WP7.ViewModel
                 .Concat(new[] { "Sounds.xml" });
 
             AllFilesCount = differences.Count();
-            if (AllFilesCount == 1)
+            if (AllFilesCount == 0)
             {
                 MessageBox.Show("Gli insulti sono già tutti aggiornati!");
                 _navigationService.GoBack();
@@ -91,7 +90,10 @@ namespace SgarbiMix.WP7.ViewModel
             TransferQueue = new Queue<BackgroundTransferRequest>(
                 differences.Select(file => new BackgroundTransferRequest(
                     new Uri("http://206.72.115.176/SgarbiMix/" + file),
-                    new Uri(baseUri + file, UriKind.Relative)) { TransferPreferences = TransferPreferences.AllowCellularAndBattery }));
+                    new Uri(baseUri + file, UriKind.Relative))
+                    {
+                        TransferPreferences = TransferPreferences.AllowCellularAndBattery
+                    }));
 
             for (int i = 0; i < Math.Min(5, TransferQueue.Count); i++)
                 StartDownload(TransferQueue.Dequeue());
@@ -129,7 +131,7 @@ namespace SgarbiMix.WP7.ViewModel
             {
                 BackgroundTransferService.Remove(e.Request);
             }
-            catch (ObjectDisposedException) //se il download va troppo veloce...
+            catch (ObjectDisposedException) //se qualcosa va storto boh...
             { }
 
             if (TransferQueue.Count != 0)

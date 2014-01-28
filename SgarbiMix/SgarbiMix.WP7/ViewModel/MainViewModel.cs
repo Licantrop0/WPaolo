@@ -1,16 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
-using Microsoft.Phone.Controls;
 using Microsoft.Xna.Framework.Media;
 using SgarbiMix.WP7.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
-using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
-using WPCommon.Helpers;
 
 namespace SgarbiMix.WP7.ViewModel
 {
@@ -22,12 +17,13 @@ namespace SgarbiMix.WP7.ViewModel
             get
             {
                 if (AppContext.AllSound == null) return null;
-                _sounds = from s in AppContext.AllSound
-                          group s by s.Category into g
-                          select new LLSGroup<string, SoundViewModel>(g);
+                if(_sounds == null)
+                    _sounds = from s in AppContext.AllSound
+                              group s by s.Category into g
+                              select new LLSGroup<string, SoundViewModel>(g);
                 return _sounds;
             }
-            set { _sounds = value; }
+            private set { _sounds = value; }
         }
 
         public MainViewModel()
@@ -56,7 +52,10 @@ namespace SgarbiMix.WP7.ViewModel
             MessengerInstance.Register<string>(this, m =>
             {
                 if (m == "update_completed")
+                {
+                    _sounds = null;
                     RaisePropertyChanged("Sounds");
+                }
             });
 
         }

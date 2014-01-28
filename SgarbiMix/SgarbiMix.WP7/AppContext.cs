@@ -34,8 +34,17 @@ namespace SgarbiMix.WP7
                 return null;
             using (var file = isf.OpenFile(XmlPath, FileMode.Open))
             {
-                return SoundSerializer.Deserialize(file) as SoundViewModel[];
-            }            
+                try
+                {
+                    return SoundSerializer.Deserialize(file) as SoundViewModel[];
+                }
+                catch (InvalidOperationException)
+                {
+                    file.Dispose();
+                    isf.DeleteFile(XmlPath);
+                    return null; //Something wrong!
+                }
+            }
         }
 
         static Random rnd = new Random();
@@ -47,9 +56,10 @@ namespace SgarbiMix.WP7
         public static async Task<Stream> GetNewXmlAsync()
         {
             var http = new HttpClient();
+            var url = new Uri("http://206.72.115.176/SgarbiMix/Sounds.xml?t=" + DateTime.Now.Millisecond);
             try
             {
-                var response = await http.GetAsync(new Uri("http://206.72.115.176/SgarbiMix/Sounds.xml"));
+                var response = await http.GetAsync(url);
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStreamAsync();
             }

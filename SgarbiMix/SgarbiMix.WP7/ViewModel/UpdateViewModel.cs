@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using Microsoft.Phone.BackgroundTransfer;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Net.NetworkInformation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -52,10 +53,14 @@ namespace SgarbiMix.WP7.ViewModel
                 };
                 return;
             }
+            if (!DeviceNetworkInformation.IsNetworkAvailable)
+            {
+                MessageBox.Show("Mi spiace ma devi essere connesso a internet per scaricare i nuovi insulti!");
+                return;
+            }
 
             Downloads = new ObservableCollection<TransferMonitor>();
             Downloads.CollectionChanged += (sender, e) => RaisePropertyChanged("Title");
-
             GetFileList();
         }
 
@@ -102,7 +107,7 @@ namespace SgarbiMix.WP7.ViewModel
                 {
                     //using (var f = isf.OpenFile(file, FileMode.Open))
                     //if (f.Length > 0)
-                    fileList.Add(HttpUtility.UrlDecode(file));
+                    fileList.Add(file);
                 }
             }
             return fileList;
@@ -110,15 +115,23 @@ namespace SgarbiMix.WP7.ViewModel
 
         private void StartDownload(BackgroundTransferRequest btr)
         {
-            var tm = new TransferMonitor(btr);
+            var name = Path.GetFileNameWithoutExtension(
+                btr.DownloadLocation.OriginalString).Replace("_", " ");
+            var tm = new TransferMonitor(btr, name);
             tm.Complete += tm_Complete;
             Downloads.Insert(0, tm);
-            tm.RequestStart();            
+            tm.RequestStart();
         }
 
         void tm_Complete(object sender, BackgroundTransferEventArgs e)
         {
-            BackgroundTransferService.Remove(e.Request);
+            try
+            {
+                BackgroundTransferService.Remove(e.Request);
+            }
+            catch (ObjectDisposedException) //se il download va troppo veloce...
+            { }
+
             if (TransferQueue.Count != 0)
                 StartDownload(TransferQueue.Dequeue());
 
@@ -127,7 +140,6 @@ namespace SgarbiMix.WP7.ViewModel
                 MessengerInstance.Send("update_completed");
                 MessageBox.Show("Ora puoi insultare con nuovi insulti!", "Download Completato", MessageBoxButton.OK);
                 _navigationService.GoBack();
-
             }
         }
     }

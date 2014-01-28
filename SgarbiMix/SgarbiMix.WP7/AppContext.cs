@@ -58,5 +58,10 @@ namespace SgarbiMix.WP7
                 return null;
             }
         }
+
+        public static void CloseApp()
+        {
+            throw new Exception("ForceExit");
+        }
     }
 }

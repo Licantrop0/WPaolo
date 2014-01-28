@@ -113,7 +113,7 @@ namespace SgarbiMix.WP7.ViewModel
             var tm = new TransferMonitor(btr);
             tm.Complete += tm_Complete;
             Downloads.Insert(0, tm);
-            tm.RequestStart();
+            tm.RequestStart();            
         }
 
         void tm_Complete(object sender, BackgroundTransferEventArgs e)

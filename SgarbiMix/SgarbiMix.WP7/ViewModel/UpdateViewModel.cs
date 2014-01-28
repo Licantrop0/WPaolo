@@ -1,72 +1,134 @@
-﻿using Microsoft.Phone.BackgroundTransfer;
+﻿using GalaSoft.MvvmLight;
+using Microsoft.Phone.BackgroundTransfer;
 using Microsoft.Phone.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Net;
 using System.Windows;
+using WPCommon.Helpers;
 
 namespace SgarbiMix.WP7.ViewModel
 {
-    public class UpdateViewModel
+    public class UpdateViewModel : ViewModelBase
     {
+        INavigationService _navigationService;
+
         public ObservableCollection<TransferMonitor> Downloads { get; set; }
+        private int AllFilesCount;
         const string baseUri = "shared/transfers/";
-        Queue<BackgroundTransferRequest> TransferQueue;
-        public UpdateViewModel()
+
+        public string Title
         {
-            if (DesignerProperties.IsInDesignTool) return;
+            get
+            {
+                if (AllFilesCount == 0)
+                    return "Caricamento lista insulti...";
+                return string.Format("Aggiorna Insulti {0}/{1}",
+                    Downloads.Count, AllFilesCount);
+            }
+        }
+
+        Queue<BackgroundTransferRequest> TransferQueue;
+
+        public UpdateViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+
+            if (DesignerProperties.IsInDesignTool)
+            {
+                var btr = new BackgroundTransferRequest(
+                    new Uri("http://206.72.115.176/SgarbiMix/sounds.xml"),
+                    new Uri(baseUri + "sounds.xml", UriKind.Relative));
+                Downloads = new ObservableCollection<TransferMonitor>()
+                {
+                    new TransferMonitor(btr),
+                    new TransferMonitor(btr),
+                    new TransferMonitor(btr)
+                };
+                return;
+            }
 
             Downloads = new ObservableCollection<TransferMonitor>();
+            Downloads.CollectionChanged += (sender, e) => RaisePropertyChanged("Title");
+
             GetFileList();
         }
 
         private async void GetFileList()
         {
-            var newXml = await AppContext.GetNewXmlAsync();
-            var sounds = AppContext.SoundSerializer.Deserialize(newXml) as SoundViewModel[];
-            newXml.Close();
+            //remove previous backgroundtransfers pending
+            foreach (var request in BackgroundTransferService.Requests)
+            {
+                BackgroundTransferService.Remove(request);
+            }
 
-            var isf = IsolatedStorageFile.GetUserStoreForApplication();
-            var existings = isf.GetFileNames(baseUri + "*.wav");
+            SoundViewModel[] sounds;
+            using (var newXml = await AppContext.GetNewXmlAsync())
+                sounds = AppContext.SoundSerializer.Deserialize(newXml) as SoundViewModel[];
+
             var differences = sounds.Select(s => s.File)
-                .Except(existings.Select(f => HttpUtility.UrlDecode(f)))
+                .Except(GetNonEmptyFiles())
                 .Concat(new[] { "Sounds.xml" });
+
+            AllFilesCount = differences.Count();
+            if (AllFilesCount == 1)
+            {
+                MessageBox.Show("Gli insulti sono già tutti aggiornati!");
+                _navigationService.GoBack();
+                return;
+            }
 
             TransferQueue = new Queue<BackgroundTransferRequest>(
                 differences.Select(file => new BackgroundTransferRequest(
                     new Uri("http://206.72.115.176/SgarbiMix/" + file),
-                    new Uri(baseUri + file, UriKind.Relative))));
+                    new Uri(baseUri + file, UriKind.Relative)) { TransferPreferences = TransferPreferences.AllowCellularAndBattery }));
 
-            for (int i = 0; i < 20; i++)
-            {
+            for (int i = 0; i < Math.Min(5, TransferQueue.Count); i++)
                 StartDownload(TransferQueue.Dequeue());
+        }
+
+        private List<string> GetNonEmptyFiles()
+        {
+            var fileList = new List<string>();
+            using (var isf = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                var files = isf.GetFileNames(baseUri + "*.wav");
+                foreach (var file in files)
+                {
+                    //using (var f = isf.OpenFile(file, FileMode.Open))
+                    //if (f.Length > 0)
+                    fileList.Add(HttpUtility.UrlDecode(file));
+                }
             }
+            return fileList;
         }
 
         private void StartDownload(BackgroundTransferRequest btr)
         {
             var tm = new TransferMonitor(btr);
             tm.Complete += tm_Complete;
-            Downloads.Add(tm);
+            Downloads.Insert(0, tm);
             tm.RequestStart();
         }
 
         void tm_Complete(object sender, BackgroundTransferEventArgs e)
         {
-            if (TransferQueue.Count == 0) return; //no new transfers to add
-
-            if (e.Request.TransferStatus == TransferStatus.Completed &&
-                e.Request.TransferError == null)
-            {
-                //All ok
-                BackgroundTransferService.Remove(e.Request);
+            BackgroundTransferService.Remove(e.Request);
+            if (TransferQueue.Count != 0)
                 StartDownload(TransferQueue.Dequeue());
-            }
 
+            if (!BackgroundTransferService.Requests.Any())
+            {
+                MessengerInstance.Send("update_completed");
+                MessageBox.Show("Ora puoi insultare con nuovi insulti!", "Download Completato", MessageBoxButton.OK);
+                _navigationService.GoBack();
+
+            }
         }
     }
 }

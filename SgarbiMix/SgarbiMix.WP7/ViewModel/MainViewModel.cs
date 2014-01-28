@@ -1,4 +1,6 @@
-﻿using Microsoft.Phone.Controls;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Phone.Controls;
 using Microsoft.Xna.Framework.Media;
 using SgarbiMix.WP7.Model;
 using System;
@@ -7,28 +9,26 @@ using System.ComponentModel;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
-using System.Net.Http;
 using System.Windows;
 using WPCommon.Helpers;
 
 namespace SgarbiMix.WP7.ViewModel
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : ViewModelBase
     {
-        private INavigationService _navigationService;
-        private INavigationService NavigationService
+        private IEnumerable<LLSGroup<string, SoundViewModel>> _sounds;
+        public IEnumerable<LLSGroup<string, SoundViewModel>> Sounds
         {
             get
             {
-                if (_navigationService == null)
-                    _navigationService = new NavigationService();
-                return _navigationService;
+                if (AppContext.AllSound == null) return null;
+                _sounds = from s in AppContext.AllSound
+                          group s by s.Category into g
+                          select new LLSGroup<string, SoundViewModel>(g);
+                return _sounds;
             }
+            set { _sounds = value; }
         }
-        static IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public IEnumerable<LLSGroup<string, SoundViewModel>> Sounds { get; set; }
 
         public MainViewModel()
         {
@@ -50,41 +50,16 @@ namespace SgarbiMix.WP7.ViewModel
                 Sounds = from sound in s
                          group sound by sound.Category into g
                          select new LLSGroup<string, SoundViewModel>(g);
+                return;
             }
-            else
-            {
-                if (AppContext.AllSound == null) return;
 
-                CheckUpdates();
-                Sounds = from sound in AppContext.AllSound
-                         group sound by sound.Category into g
-                         select new LLSGroup<string, SoundViewModel>(g);
-            }
+            MessengerInstance.Register<string>(this, m =>
+            {
+                if (m == "update_completed")
+                    RaisePropertyChanged("Sounds");
+            });
+
         }
-
-        private async void CheckUpdates()
-        {
-            using (var file = isf.OpenFile(AppContext.FilePath, FileMode.Open))
-            using (var NewXml = await AppContext.GetNewXmlAsync())
-                if (NewXml.Length == file.Length) return;
-
-
-            var MsgBox = new CustomMessageBox()
-            {
-                Message = "Sono disponibili nuovi insulti, vuoi scaricarli?",
-                LeftButtonContent = "Altroché!",
-                RightButtonContent = "Ma sei scemo?"
-            };
-
-            MsgBox.Dismissed += (s1, e1) =>
-            {
-                if (e1.Result == CustomMessageBoxResult.LeftButton)
-                    NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
-            };
-
-            MsgBox.Show();
-        }
-
 
         public static void PlayBase(string baseName)
         {
@@ -106,13 +81,6 @@ namespace SgarbiMix.WP7.ViewModel
                 true :
                 MessageBox.Show("Vuoi interrompere la canzone corrente e riprodurre la base su cui mixare le frasi di Sgarbi?",
                     "SgarbiMix", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
-        }
-
-        protected virtual void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

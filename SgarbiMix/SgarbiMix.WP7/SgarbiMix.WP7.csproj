@@ -55,12 +55,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WP71">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\sl4-wp71\GalaSoft.MvvmLight.Extras.WP71.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WP71">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\sl4-wp71\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.dll</HintPath>
     </Reference>
@@ -93,6 +102,9 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\sl4-wp71\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -109,6 +121,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SoundViewModel.cs" />
     <Compile Include="ViewModel\UpdateViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -139,6 +152,31 @@
       <All>True</All>
       <AutoFill>True</AutoFill>
     </BlendEmbeddedFont>
+    <None Include="Data\Abbia_ognuno_il_pudore_della_propria_vita.wav" />
+    <None Include="Data\Altra_balla.wav" />
+    <None Include="Data\Avete_rotto_i_coglioni.wav" />
+    <None Include="Data\Cacatore_di_M.wav" />
+    <None Include="Data\Cazzi_da_150_metri.wav" />
+    <None Include="Data\Checca_isterica.wav" />
+    <None Include="Data\Da_quei_vandali_criminali.wav" />
+    <None Include="Data\Drogato_schifoso.wav" />
+    <None Include="Data\In_mancanza.wav" />
+    <None Include="Data\La_mafia_la_mafia_la_mafia.wav" />
+    <None Include="Data\La_mia_maledizione.wav" />
+    <None Include="Data\Ma_cosa_centra_Berlusconi.wav" />
+    <None Include="Data\non_dici_frasi_ma_stronzate.wav" />
+    <None Include="Data\non_gliene_importa_niente.wav" />
+    <None Include="Data\non_sputtanare_l_italia.wav" />
+    <None Include="Data\Pagato_da_chi.wav" />
+    <None Include="Data\Sei_drogato_e_ubriaco.wav" />
+    <None Include="Data\se_lo_vuol_prendere_da_quella_parte.wav" />
+    <None Include="Data\Sono_stato_condannato.wav" />
+    <None Include="Data\Sounds.xml" />
+    <None Include="Data\TACI.wav" />
+    <None Include="Data\Tu_dici_un_sacco_di_balle.wav" />
+    <None Include="Data\Ubriacone_drogato.wav" />
+    <None Include="Data\Un_pezzo_di_M.wav" />
+    <None Include="Data\voglio_essere_processato.wav" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
@@ -150,67 +188,42 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Data\Sounds.xml" />
-    <None Include="Data\Abbia_ognuno_il_pudore_della_propria_vita.wav" />
-    <None Include="Data\Altra_balla.wav" />
-    <None Include="Data\Altro che valori.wav" />
-    <None Include="Data\Ateo fasullo!.wav" />
-    <None Include="Data\Avete_rotto_i_coglioni.wav" />
-    <None Include="Data\Cacatore_di_M.wav" />
-    <None Include="Data\Cafone!.wav" />
-    <None Include="Data\Capra ignorante!.wav" />
-    <None Include="Data\Capra!.wav" />
-    <None Include="Data\Cazzi_da_150_metri.wav" />
-    <None Include="Data\Checca_isterica.wav" />
-    <None Include="Data\Criminale!.wav" />
-    <None Include="Data\Culattoni raccomandati!.wav" />
-    <None Include="Data\Da_quei_vandali_criminali.wav" />
-    <None Include="Data\Drogato!.wav" />
-    <None Include="Data\Drogato_Cafone!.wav" />
-    <None Include="Data\Drogato_schifoso.wav" />
-    <None Include="Data\E tu sei un pirla!.wav" />
-    <None Include="Data\Fascista!.wav" />
-    <None Include="Data\In_Galera!.wav" />
-    <None Include="Data\In_mancanza.wav" />
-    <None Include="Data\Io sono convinto che vi debbano licenziare.wav" />
-    <None Include="Data\La_mafia_la_mafia_la_mafia.wav" />
-    <None Include="Data\La_mia_maledizione.wav" />
-    <None Include="Data\Legga Dante! Legga Manzoni!.wav" />
-    <None Include="Data\Leggi! Studia!.wav" />
-    <None Include="Data\Lo mangerei vivo!.wav" />
-    <None Include="Data\Ma guarda che roba!.wav" />
-    <None Include="Data\Ma_cosa_centra_Berlusconi.wav" />
-    <None Include="Data\Mi state sui coglioni di principio!.wav" />
-    <None Include="Data\Non dire cretinate!.wav" />
-    <None Include="Data\Non ha mai fatto un cazzo in vita sua.wav" />
-    <None Include="Data\non_dici_frasi_ma_stronzate.wav" />
-    <None Include="Data\non_gliene_importa_niente.wav" />
-    <None Include="Data\non_sputtanare_l_italia.wav" />
-    <None Include="Data\Pagato!.wav" />
-    <None Include="Data\Pagato_da_chi.wav" />
-    <None Include="Data\Perchè_l%27uccello.wav" />
-    <None Include="Data\quella_è_la_merda.wav" />
-    <None Include="Data\Ridicolo sei, e lo sei sempre stato!.wav" />
-    <None Include="Data\Ridicolo!.wav" />
-    <None Include="Data\Schifoso!.wav" />
-    <None Include="Data\Sei ignorante come una capra!.wav" />
-    <None Include="Data\Sei_drogato_e_ubriaco.wav" />
-    <None Include="Data\se_lo_vuol_prendere_da_quella_parte.wav" />
-    <None Include="Data\Sono_stato_condannato.wav" />
-    <None Include="Data\Spacciatore!.wav" />
-    <None Include="Data\TACI.wav" />
-    <None Include="Data\Tu_dici_un_sacco_di_balle.wav" />
-    <None Include="Data\Ubriacone_drogato.wav" />
-    <None Include="Data\Un_pezzo_di_M.wav" />
-    <None Include="Data\Vai a studiare!.wav" />
-    <None Include="Data\vai arrestato.wav" />
-    <None Include="Data\Valori del buco del culo.wav" />
-    <None Include="Data\Vergogna!.wav" />
-    <None Include="Data\voglio_essere_processato.wav" />
-    <None Include="Data\È insopportabile!.wav" />
-    <None Include="Data\È un crimine!.wav" />
+    <None Include="Data\Altro_che_valori.wav" />
+    <None Include="Data\Ateo_fasullo.wav" />
+    <None Include="Data\Cafone.wav" />
+    <None Include="Data\Capra.wav" />
+    <None Include="Data\Capra_ignorante.wav" />
+    <None Include="Data\Criminale.wav" />
+    <None Include="Data\Culattoni_raccomandati.wav" />
+    <None Include="Data\Drogato.wav" />
+    <None Include="Data\Drogato_Cafone.wav" />
+    <None Include="Data\e%27_insopportabile.wav" />
+    <None Include="Data\e%27_un_crimine.wav" />
+    <None Include="Data\E_tu_sei_un_pirla.wav" />
+    <None Include="Data\Fascista.wav" />
+    <None Include="Data\In_Galera.wav" />
+    <None Include="Data\Io_sono_convinto_che_vi_debbano_licenziare.wav" />
+    <None Include="Data\Legga_Dante_Legga_Manzoni.wav" />
+    <None Include="Data\Leggi_Studia.wav" />
+    <None Include="Data\Lo_mangerei_vivo.wav" />
+    <None Include="Data\Ma_guarda_che_roba.wav" />
+    <None Include="Data\Mi_state_sui_coglioni_di_principio.wav" />
+    <None Include="Data\Non_dire_cretinate.wav" />
+    <None Include="Data\Non_ha_mai_fatto_un_cazzo_in_vita_sua.wav" />
+    <None Include="Data\Pagato.wav" />
+    <None Include="Data\Perche%27_l%27uccello.wav" />
+    <None Include="Data\quella_e%27_la_merda.wav" />
+    <None Include="Data\Ridicolo.wav" />
+    <None Include="Data\Ridicolo_sei,_e_lo_sei_sempre_stato.wav" />
+    <None Include="Data\Schifoso.wav" />
+    <None Include="Data\Sei_ignorante_come_una_capra.wav" />
+    <None Include="Data\Spacciatore.wav" />
+    <None Include="Data\vai_arrestato.wav" />
+    <None Include="Data\Vai_a_studiare.wav" />
+    <None Include="Data\Valori_del_buco_del_culo.wav" />
+    <None Include="Data\Vergogna.wav" />
     <Content Include="Images\bianco.png" />
-    <Content Include="Images\sfondo.jpg">
+    <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Sounds\base1.mp3">

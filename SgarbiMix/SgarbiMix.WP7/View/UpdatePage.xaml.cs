@@ -1,4 +1,6 @@
 ﻿using Microsoft.Phone.Controls;
+using System.ComponentModel;
+using System.IO.IsolatedStorage;
 
 namespace SgarbiMix.WP7.View
 {
@@ -7,6 +9,13 @@ namespace SgarbiMix.WP7.View
         public UpdatePage()
         {
             InitializeComponent();
+        }
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
+        {
+            using (var isf = IsolatedStorageFile.GetUserStoreForApplication())
+                if (!isf.FileExists(AppContext.XmlPath))
+                    AppContext.CloseApp();
         }
     }
 }

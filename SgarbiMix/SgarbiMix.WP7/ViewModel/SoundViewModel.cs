@@ -33,7 +33,7 @@ namespace SgarbiMix.WP7.ViewModel
 
         public double Width
         {
-            get { return Name.Length < 18 ? 248 : 468; }
+            get { return Name.Length > 16 ? 468 : 248; }
         }
 
         public TimeSpan Duration { get { return Sound.Duration; } }

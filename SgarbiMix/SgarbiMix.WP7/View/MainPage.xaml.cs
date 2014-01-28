@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Net.NetworkInformation;
 using SgarbiMix.WP7.ViewModel;
 using ShakeGestures;
 using System;
@@ -84,13 +85,23 @@ namespace SgarbiMix.WP7.View
         private async void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             using (var isf = IsolatedStorageFile.GetUserStoreForApplication())
+            {
                 if (!isf.FileExists(AppContext.XmlPath))
                 {
+                    if (!DeviceNetworkInformation.IsNetworkAvailable)
+                    {
+                        MessageBox.Show("Per il primo avvio è necessario connettersi a internet per scaricare i nuovi insulti.",
+                            "Connetti e riprova", MessageBoxButton.OK);
+                        AppContext.CloseApp();
+                    }
+
                     NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
                     return;
                 }
                 else
                 {
+                    if (!DeviceNetworkInformation.IsNetworkAvailable) return;
+
                     using (var file = isf.OpenFile(AppContext.XmlPath, FileMode.Open))
                     using (var NewXml = await AppContext.GetNewXmlAsync())
                     {
@@ -98,6 +109,7 @@ namespace SgarbiMix.WP7.View
                         if (NewXml.Length == file.Length) return;
                     }
                 }
+            }
             var MsgBox = new CustomMessageBox()
             {
                 Message = "Sono disponibili nuovi insulti, vuoi scaricarli?",
@@ -110,9 +122,7 @@ namespace SgarbiMix.WP7.View
                 if (e1.Result == CustomMessageBoxResult.LeftButton)
                     NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
             };
-
             MsgBox.Show();
-
         }
     }
 }

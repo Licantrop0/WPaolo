@@ -12,7 +12,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" shell:SystemTray.IsVisible="True"
-    shell:SystemTray.Opacity="0">
+    shell:SystemTray.Opacity="0" BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
     <Grid Background="{StaticResource DarkerBackground}"
           DataContext="{Binding Source={StaticResource Locator}, Path=UpdateVM}">
@@ -26,27 +26,28 @@
                        FontFamily="{StaticResource DefaultFont}"
                        Foreground="{StaticResource HeaderForeground}"
                        FontWeight="Bold" />
-
-        <toolkit:LongListSelector Grid.Row="1" Margin="12,0" Background="Transparent"
-                                  ItemsSource="{Binding Downloads}" IsFlatList="True">
-            <toolkit:LongListSelector.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Width="460" Margin="0,6" HorizontalAlignment="Left">
-                        <TextBlock Text="{Binding Name}"
-                                   FontSize="{StaticResource PhoneFontSizeLarge}"
-                                   FontFamily="{StaticResource DefaultFont}"
-                                   Foreground="{StaticResource HeaderForeground}" />
-                        <ProgressBar Value="{Binding PercentComplete}" Maximum="1"
-                                     IsIndeterminate="{Binding IsProgressIndeterminate}"
-                                     Foreground="{StaticResource ProgressBrush}"
-                                     Margin="-12,0" />
-                        <TextBlock Text="{Binding StatusText}"
-                                   FontFamily="{StaticResource DefaultFont}"
-                                   Foreground="{StaticResource DefaultForeground}"/>
-                    </StackPanel>                    
-                </DataTemplate>
-            </toolkit:LongListSelector.ItemTemplate>
-        </toolkit:LongListSelector>
+        
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Downloads}" Margin="12,0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="460" Margin="0,6" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding Name}"
+                                       FontSize="{StaticResource PhoneFontSizeLarge}"
+                                       FontFamily="{StaticResource DefaultFont}"
+                                       Foreground="{StaticResource HeaderForeground}" />
+                            <ProgressBar Value="{Binding PercentComplete}" Maximum="1"
+                                         IsIndeterminate="{Binding IsProgressIndeterminate}"
+                                         Foreground="{StaticResource ProgressBrush}"
+                                         Margin="-12,0" />
+                            <TextBlock Text="{Binding StatusText}"
+                                       FontFamily="{StaticResource DefaultFont}"
+                                       Foreground="{StaticResource DefaultForeground}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 
 </phone:PhoneApplicationPage>

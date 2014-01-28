@@ -7,27 +7,22 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:vm="clr-namespace:SgarbiMix.WP7.ViewModel"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" shell:SystemTray.IsVisible="True"
-    shell:SystemTray.BackgroundColor="#CC000000">
-
-    <phone:PhoneApplicationPage.Resources>
-        <vm:UpdateViewModel x:Name="UpdateViewModel" /> 
-    </phone:PhoneApplicationPage.Resources>
+    shell:SystemTray.Opacity="0">
 
     <Grid Background="{StaticResource DarkerBackground}"
-          DataContext="{StaticResource UpdateViewModel}">
+          DataContext="{Binding Source={StaticResource Locator}, Path=UpdateVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Aggiorna Insulti" Margin="9,-7,0,0"
-                       FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+        <TextBlock Text="{Binding Title}" Margin="12"
+                       FontSize="{StaticResource PhoneFontSizeLarge}"
                        FontFamily="{StaticResource DefaultFont}"
                        Foreground="{StaticResource HeaderForeground}"
                        FontWeight="Bold" />
@@ -36,7 +31,19 @@
                                   ItemsSource="{Binding Downloads}" IsFlatList="True">
             <toolkit:LongListSelector.ItemTemplate>
                 <DataTemplate>
-                    <toolkit:TransferControl Monitor="{Binding}" />
+                    <StackPanel Width="460" Margin="0,6" HorizontalAlignment="Left">
+                        <TextBlock Text="{Binding Name}"
+                                   FontSize="{StaticResource PhoneFontSizeLarge}"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   Foreground="{StaticResource HeaderForeground}" />
+                        <ProgressBar Value="{Binding PercentComplete}" Maximum="1"
+                                     IsIndeterminate="{Binding IsProgressIndeterminate}"
+                                     Foreground="{StaticResource ProgressBrush}"
+                                     Margin="-12,0" />
+                        <TextBlock Text="{Binding StatusText}"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   Foreground="{StaticResource DefaultForeground}"/>
+                    </StackPanel>                    
                 </DataTemplate>
             </toolkit:LongListSelector.ItemTemplate>
         </toolkit:LongListSelector>

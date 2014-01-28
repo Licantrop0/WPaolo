@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WPCommon.Helpers;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace SgarbiMix.WP7
 {
@@ -139,8 +140,8 @@ namespace SgarbiMix.WP7
 
             // Remove this handler since it is no longer needed
             RootFrame.Navigated -= CompleteInitializePhoneApplication;
-        }
 
+        }
         #endregion
     }
 }

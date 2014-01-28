@@ -2,6 +2,8 @@
 using SgarbiMix.WP7.ViewModel;
 using ShakeGestures;
 using System;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Threading;
 using System.Windows;
 using System.Windows.Navigation;
@@ -47,7 +49,7 @@ namespace SgarbiMix.WP7.View
                 Thread.Sleep(snd.Duration + TimeSpan.FromMilliseconds(300));
                 _shaker.Active = true;
             };
-        }   
+        }
 
         private void Base1ApplicationBar_Click(object sender, EventArgs e)
         {
@@ -79,10 +81,37 @@ namespace SgarbiMix.WP7.View
             NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        private async void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (AppContext.AllSound == null)
-                NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
+            using (var isf = IsolatedStorageFile.GetUserStoreForApplication())
+                if (!isf.FileExists(AppContext.XmlPath))
+                {
+                    NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
+                    return;
+                }
+                else
+                {
+                    using (var file = isf.OpenFile(AppContext.XmlPath, FileMode.Open))
+                    using (var NewXml = await AppContext.GetNewXmlAsync())
+                    {
+                        if (NewXml == null) return;
+                        if (NewXml.Length == file.Length) return;
+                    }
+                }
+            var MsgBox = new CustomMessageBox()
+            {
+                Message = "Sono disponibili nuovi insulti, vuoi scaricarli?",
+                LeftButtonContent = "Altroché!",
+                RightButtonContent = "Ma sei scemo?"
+            };
+
+            MsgBox.Dismissed += (s1, e1) =>
+            {
+                if (e1.Result == CustomMessageBoxResult.LeftButton)
+                    NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
+            };
+
+            MsgBox.Show();
 
         }
     }

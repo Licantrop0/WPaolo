@@ -13,14 +13,14 @@ namespace SgarbiMix.WP7.ViewModel
         const string baseUri = "shared/transfers/";
         static IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
 
-        private INavigationService _navigationService;
-        private INavigationService NavigationService
+        private INavigationService _ns;
+        private INavigationService NS
         {
             get
             {
-                if (_navigationService == null)
-                    _navigationService = new NavigationService();
-                return _navigationService;
+                if (_ns == null)
+                    _ns = new NavigationService();
+                return _ns;
             }
         }
 
@@ -72,7 +72,7 @@ namespace SgarbiMix.WP7.ViewModel
         {
             if (TrialManagement.IsTrialMode && TrialManagement.Counter > 10)
             {
-                NavigationService.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
+                NS.Navigate(new Uri("/View/DemoPage.xaml", UriKind.Relative));
                 return false;
             }
             TrialManagement.IncrementCounter();

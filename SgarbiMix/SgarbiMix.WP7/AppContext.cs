@@ -13,7 +13,7 @@ namespace SgarbiMix.WP7
     {
         public static XmlSerializer SoundSerializer { get { return new XmlSerializer(typeof(SoundViewModel[])); } }
         static IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
-        public const string FilePath = "shared/transfers/Sounds.xml";
+        public const string XmlPath = "shared/transfers/Sounds.xml";
 
         private static SoundViewModel[] _allSound;
         public static SoundViewModel[] AllSound
@@ -30,9 +30,9 @@ namespace SgarbiMix.WP7
         private static SoundViewModel[] LoadSounds()
         {
             //Va alla pagina degli update direttamente
-            if (!isf.FileExists(FilePath))
+            if (!isf.FileExists(XmlPath))
                 return null;
-            using (var file = isf.OpenFile(FilePath, FileMode.Open))
+            using (var file = isf.OpenFile(XmlPath, FileMode.Open))
             {
                 return SoundSerializer.Deserialize(file) as SoundViewModel[];
             }            

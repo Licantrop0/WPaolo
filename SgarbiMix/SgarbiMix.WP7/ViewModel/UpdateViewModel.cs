@@ -54,7 +54,7 @@ namespace SgarbiMix.WP7.ViewModel
             }
             if (!DeviceNetworkInformation.IsNetworkAvailable)
             {
-                MessageBox.Show("Mi spiace ma devi essere connesso a internet per scaricare i nuovi insulti!");
+                MessageBox.Show("Mi spiace ma devi essere connesso a internet per scaricare i nuovi insulti.\nEsci, connettiti, e riapri l'app.");
                 return;
             }
 
@@ -96,7 +96,7 @@ namespace SgarbiMix.WP7.ViewModel
                     }));
 
             for (int i = 0; i < Math.Min(5, TransferQueue.Count); i++)
-                StartDownload(TransferQueue.Dequeue());
+            StartDownload(TransferQueue.Dequeue());
         }
 
         private List<string> GetNonEmptyFiles()
@@ -125,6 +125,7 @@ namespace SgarbiMix.WP7.ViewModel
             tm.RequestStart();
         }
 
+        bool isFinished = false;
         void tm_Complete(object sender, BackgroundTransferEventArgs e)
         {
             try
@@ -137,8 +138,10 @@ namespace SgarbiMix.WP7.ViewModel
             if (TransferQueue.Count != 0)
                 StartDownload(TransferQueue.Dequeue());
 
+            if (isFinished) return;
             if (!BackgroundTransferService.Requests.Any())
             {
+                isFinished = true;
                 MessengerInstance.Send("update_completed");
                 MessageBox.Show("Ora puoi insultare con nuovi insulti!", "Download Completato", MessageBoxButton.OK);
                 _navigationService.GoBack();

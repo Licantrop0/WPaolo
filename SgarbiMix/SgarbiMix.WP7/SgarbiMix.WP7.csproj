@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SgarbiMix.WP7</RootNamespace>
-    <AssemblyName>SgarbiMix.WP7</AssemblyName>
+    <AssemblyName>SgarbiMix</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
@@ -222,6 +222,7 @@
     <None Include="Data\Valori_del_buco_del_culo.wav" />
     <None Include="Data\Vergogna.wav" />
     <Content Include="Images\bianco.png" />
+    <Content Include="Sounds\base4.mp3" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

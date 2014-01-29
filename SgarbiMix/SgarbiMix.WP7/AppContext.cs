@@ -4,7 +4,6 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Xml.Serialization;
 
 namespace SgarbiMix.WP7
@@ -57,16 +56,9 @@ namespace SgarbiMix.WP7
         {
             var http = new HttpClient();
             var url = new Uri("http://206.72.115.176/SgarbiMix/Sounds.xml?t=" + DateTime.Now.Millisecond);
-            try
-            {
-                var response = await http.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStreamAsync();
-            }
-            catch (HttpRequestException)
-            {
-                return null;
-            }
+            var response = await http.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStreamAsync();
         }
 
         public static void CloseApp()

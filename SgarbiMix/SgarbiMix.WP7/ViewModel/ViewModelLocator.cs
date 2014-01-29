@@ -27,7 +27,6 @@ namespace SgarbiMix.WP7.ViewModel
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<UpdateViewModel>();
         }
 
         public MainViewModel MainVM
@@ -42,7 +41,7 @@ namespace SgarbiMix.WP7.ViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<UpdateViewModel>();
+                return new UpdateViewModel(SimpleIoc.Default.GetInstance<INavigationService>());
             }
         }
 

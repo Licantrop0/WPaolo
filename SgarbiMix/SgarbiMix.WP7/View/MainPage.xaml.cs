@@ -24,7 +24,9 @@ namespace SgarbiMix.WP7.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _shaker.Active = true;
+            if(AppContext.AllSound != null)
+                _shaker.Active = true;
+
             if (TrialManagement.IsTrialMode)
             {
                 MainPivot.Margin = new Thickness(0, -30, 0, 80);
@@ -67,6 +69,10 @@ namespace SgarbiMix.WP7.View
             MainViewModel.PlayBase("base3");
         }
 
+        private void Base4ApplicationBar_Click(object sender, EventArgs e)
+        {
+            MainViewModel.PlayBase("base4");
+        }
         private void DisclaimerAppBarMenu_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/View/DisclaimerPage.xaml", UriKind.Relative));
@@ -90,7 +96,7 @@ namespace SgarbiMix.WP7.View
                 {
                     if (!DeviceNetworkInformation.IsNetworkAvailable)
                     {
-                        MessageBox.Show("Per il primo avvio è necessario connettersi a internet per scaricare i nuovi insulti.",
+                        MessageBox.Show("Per il primo avvio ho bisogno della connessione per scaricare i nuovi insulti.",
                             "Connetti e riprova", MessageBoxButton.OK);
                         AppContext.CloseApp();
                     }
@@ -114,7 +120,7 @@ namespace SgarbiMix.WP7.View
             {
                 Message = "Sono disponibili nuovi insulti, vuoi scaricarli?",
                 LeftButtonContent = "Altroché!",
-                RightButtonContent = "Ma sei scemo?"
+                RightButtonContent = "mmhhh... no"
             };
 
             MsgBox.Dismissed += (s1, e1) =>

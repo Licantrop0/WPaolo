@@ -57,7 +57,6 @@ namespace SgarbiMix.WP7.ViewModel
                     RaisePropertyChanged("Sounds");
                 }
             });
-
         }
 
         public static void PlayBase(string baseName)

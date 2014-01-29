@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Windows;
 using System.Windows.Media;
 using System.Xml.Linq;
 using WPCommon.Controls.Model;
-using System.Globalization;
+using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows;
+using System.Reflection;
+using System.Windows.Media.Imaging;
 
 namespace SgarbiMix.WP7.ViewModel
 {
@@ -16,6 +17,7 @@ namespace SgarbiMix.WP7.ViewModel
     {
         XNamespace nsAtom = "http://www.w3.org/2005/Atom";
         XNamespace nsZune = "http://schemas.zune.net/catalog/apps/2008/02";
+        string cultureName = System.Globalization.CultureInfo.CurrentUICulture.Name;
 
         private IEnumerable<AppTile> _appList;
         public IEnumerable<AppTile> AppList
@@ -36,9 +38,9 @@ namespace SgarbiMix.WP7.ViewModel
         private void InitializeWPMEApps()
         {
             var wc = new WebClient();
-            wc.OpenReadAsync(new Uri(string.Format(CultureInfo.CurrentCulture,
-                 "http://catalog.zune.net/v3.2/{0}/apps?q=WPME&clientType=WinMobile%207.1&store=zest",
-                 CultureInfo.CurrentCulture.Name)));
+            wc.OpenReadAsync(new Uri(string.Format(
+                 "http://marketplaceedgeservice.windowsphone.com/v3.2/{0}/apps?q=WPME&clientType=WinMobile+7.1&store=zest",
+                 cultureName)));
 
             wc.OpenReadCompleted += (sender, e) =>
             {
@@ -52,9 +54,8 @@ namespace SgarbiMix.WP7.ViewModel
                           let appId = n.Element(nsAtom + "id").Value.Substring(9)
                           where appId != AppId
                           select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
-                              string.Format(CultureInfo.CurrentCulture,
-                                "http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
-                                CultureInfo.CurrentCulture.Name, imageId)));
+                              string.Format("http://cdn.marketplaceimages.windowsphone.com/v3.2/{0}/image/{1}?width=200&height=200&resize=true&contenttype=image/png",
+                                  cultureName, imageId)));
             };
         }
 
@@ -90,20 +91,47 @@ namespace SgarbiMix.WP7.ViewModel
 
         public string CustomText { get; set; }
 
-        public ImageSource CustomLogo { get; set; }
+        private FontFamily _customTextFontFamily;
+        public FontFamily CustomTextFontFamily
+        {
+            get { return _customTextFontFamily ?? DefaultFont; }
+            set { _customTextFontFamily = value; }
+        }
+
+        private double? _customTextFontSize;
+        public double CustomTextFontSize
+        {
+            get { return _customTextFontSize ?? MinFontSize; }
+            set { _customTextFontSize = value; }
+        }
+
+        private Brush _customTextForeground;
+        public Brush CustomTextForeground
+        {
+            get { return _customTextForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
+            set { _customTextForeground = value; }
+        }
+
+
+        private Thickness _appNameMargin = new Thickness(0);
+        public Thickness AppNameMargin
+        {
+            get { return _appNameMargin; }
+            set { _appNameMargin = value; }
+        }
+
+        private ImageSource _customLogo = new BitmapImage(new Uri("/WPCommon.Controls;component/Img/logo.png", UriKind.Relative));
+        public ImageSource CustomLogo
+        {
+            get { return _customLogo; }
+            set { _customLogo = value; }
+        }
 
         private Thickness _logoMargin = new Thickness(24);
         public Thickness LogoMargin
         {
             get { return _logoMargin; }
             set { _logoMargin = value; }
-        }
-
-        private Thickness _customLogoMargin = new Thickness(0);
-        public Thickness CustomLogoMargin
-        {
-            get { return _customLogoMargin; }
-            set { _customLogoMargin = value; }
         }
 
         public Brush DefaultBackground { get; set; }
@@ -154,15 +182,11 @@ namespace SgarbiMix.WP7.ViewModel
 
         #endregion
 
-        #region INPC Implementation
-        
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        #endregion
     }
 }

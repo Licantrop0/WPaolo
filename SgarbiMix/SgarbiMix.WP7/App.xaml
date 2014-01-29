@@ -8,7 +8,7 @@
              mc:Ignorable="d" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Application.Resources>
         <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:SgarbiMix.WP7.ViewModel" />
-        <FontFamily x:Key="DefaultFont">/SgarbiMix.WP7;component/Fonts/Fonts.zip#Segoe Print</FontFamily>
+        <FontFamily x:Key="DefaultFont">/SgarbiMix;component/Fonts/Fonts.zip#Segoe Print</FontFamily>
         <ImageBrush x:Key="DefaultBackground" ImageSource="SplashScreenImage.jpg" Stretch="None" AlignmentY="Top" />
         <ImageBrush x:Key="DarkerBackground" ImageSource="SplashScreenImage.jpg" Stretch="None" AlignmentY="Top" Opacity="0.4" />
         <LinearGradientBrush x:Key="DefaultForeground" EndPoint="0.5,1" StartPoint="0.5,0">

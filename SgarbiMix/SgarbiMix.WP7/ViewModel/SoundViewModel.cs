@@ -44,11 +44,15 @@ namespace SgarbiMix.WP7.ViewModel
             get
             {
                 if (_sound == null)
-                    using (var file = isf.OpenFile(baseUri + File, FileMode.Open))
+                {
+                    try
                     {
-                        _sound = SoundEffect.FromStream(file);
+                        using (var file = isf.OpenFile(baseUri + File, FileMode.Open))
+                            _sound = SoundEffect.FromStream(file);
                     }
-
+                    catch (IsolatedStorageException)
+                    { }
+                }
                 return _sound;
             }
         }
@@ -65,7 +69,7 @@ namespace SgarbiMix.WP7.ViewModel
         private void Play(object param)
         {
             if (!CheckTrial()) return;
-            Sound.Play();
+            if(Sound != null) Sound.Play();
         }
 
         private bool CheckTrial()

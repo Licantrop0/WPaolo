@@ -26,9 +26,10 @@
                        FontFamily="{StaticResource DefaultFont}"
                        Foreground="{StaticResource HeaderForeground}"
                        FontWeight="Bold" />
-        
+
         <ScrollViewer Grid.Row="1">
-            <ItemsControl ItemsSource="{Binding Downloads}" Margin="12,0">
+            <ItemsControl Grid.Row="1"
+                ItemsSource="{Binding Downloads}" Margin="12,0">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Width="460" Margin="0,6" HorizontalAlignment="Left">
@@ -36,16 +37,21 @@
                                        FontSize="{StaticResource PhoneFontSizeLarge}"
                                        FontFamily="{StaticResource DefaultFont}"
                                        Foreground="{StaticResource HeaderForeground}" />
-                            <ProgressBar Value="{Binding PercentComplete}" Maximum="1"
+                            <ProgressBar Value="{Binding PercentComplete}"
+                                         Maximum="1"  Margin="-12,0" 
                                          IsIndeterminate="{Binding IsProgressIndeterminate}"
-                                         Foreground="{StaticResource ProgressBrush}"
-                                         Margin="-12,0" />
+                                         Foreground="{StaticResource ProgressBrush}" />
                             <TextBlock Text="{Binding StatusText}"
                                        FontFamily="{StaticResource DefaultFont}"
                                        Foreground="{StaticResource DefaultForeground}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
     </Grid>

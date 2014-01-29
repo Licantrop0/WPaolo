@@ -52,6 +52,6 @@
 
     <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}"
                ApplicationId="c175f6ba-cb10-4fe3-a1de-a96480a03d3a"
-               AdUnitId="10022581" />
+               AdUnitId="10022581" ADAppId="52911" />
 
 </phone:PhoneApplicationPage>

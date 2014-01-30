@@ -24,8 +24,9 @@ namespace SgarbiMix.WP7.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if(AppContext.AllSound != null)
-                _shaker.Active = true;
+            if (AppContext.AllSound == null) return;
+
+            _shaker.Active = true;
 
             if (TrialManagement.IsTrialMode)
             {
@@ -118,9 +119,9 @@ namespace SgarbiMix.WP7.View
             }
             var MsgBox = new CustomMessageBox()
             {
-                Message = "Sono disponibili nuovi insulti, vuoi scaricarli?",
+                Message = "Hey! Sono disponibili nuovi Insulti, vuoi scaricarli?",
                 LeftButtonContent = "Altroché!",
-                RightButtonContent = "mmhhh... no"
+                RightButtonContent = "mah... ora no"
             };
 
             MsgBox.Dismissed += (s1, e1) =>
@@ -129,6 +130,28 @@ namespace SgarbiMix.WP7.View
                     NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
             };
             MsgBox.Show();
+        }
+
+        public int LastPivotIndex
+        {
+            get
+            {
+                if (!IsolatedStorageSettings.ApplicationSettings.Contains("pin_suggestion"))
+                    IsolatedStorageSettings.ApplicationSettings["pin_suggestion"] = 0;
+                return (int)IsolatedStorageSettings.ApplicationSettings["pin_suggestion"];
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["pin_suggestion"] = value;
+            }
+        }
+
+        private void MainPivot_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (MainPivot.Items.Count > 0 && LastPivotIndex < MainPivot.Items.Count - 1)
+                MainPivot.SelectedIndex = LastPivotIndex;
+            
+            MainPivot.SelectionChanged += (s1, e1) => LastPivotIndex = MainPivot.SelectedIndex;
         }
     }
 }

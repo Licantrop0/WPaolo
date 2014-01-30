@@ -20,28 +20,26 @@ namespace SgarbiMix.WP7
             get
             {
                 if (_allSound == null)
-                    _allSound = LoadSounds();
+                    LoadSounds();
 
                 return _allSound;
             }
         }
 
-        private static SoundViewModel[] LoadSounds()
+        public static void LoadSounds()
         {
-            //Va alla pagina degli update direttamente
-            if (!isf.FileExists(XmlPath))
-                return null;
+            if (!isf.FileExists(XmlPath)) return;
+
             using (var file = isf.OpenFile(XmlPath, FileMode.Open))
             {
                 try
                 {
-                    return SoundSerializer.Deserialize(file) as SoundViewModel[];
+                    _allSound = SoundSerializer.Deserialize(file) as SoundViewModel[];
                 }
                 catch (InvalidOperationException)
                 {
                     file.Dispose();
-                    isf.DeleteFile(XmlPath);
-                    return null; //Something wrong!
+                    isf.DeleteFile(XmlPath); //forza nuovamente il download
                 }
             }
         }
@@ -55,10 +53,21 @@ namespace SgarbiMix.WP7
         public static async Task<Stream> GetNewXmlAsync()
         {
             var http = new HttpClient();
-            var url = new Uri("http://206.72.115.176/SgarbiMix/Sounds.xml?t=" + DateTime.Now.Millisecond);
-            var response = await http.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStreamAsync();
+            string forceDownload = string.Empty;
+#if debug
+            forceDownload = "?t=" + DateTime.Now.Millisecond;
+#endif
+            var url = new Uri("http://206.72.115.176/SgarbiMix/Sounds.xml" + forceDownload);
+            try
+            {
+                var response = await http.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStreamAsync();
+            }
+            catch (HttpRequestException)
+            {
+                return null;
+            }
         }
 
         public static void CloseApp()

@@ -53,6 +53,7 @@ namespace SgarbiMix.WP7.ViewModel
             {
                 if (m == "update_completed")
                 {
+                    AppContext.LoadSounds();
                     _sounds = null;
                     RaisePropertyChanged("Sounds");
                 }

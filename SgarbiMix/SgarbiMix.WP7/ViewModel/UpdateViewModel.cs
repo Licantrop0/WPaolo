@@ -73,8 +73,14 @@ namespace SgarbiMix.WP7.ViewModel
 
             SoundViewModel[] sounds;
             using (var newXml = await AppContext.GetNewXmlAsync())
+            {
+                if (newXml == null)
+                {
+                    MessageBox.Show("Whoops! c'è qualcosa che non va con la connessione al server degli insulti...\nRiprova fra un po'!\nSe ancora non funge, contattami su Facebook (WP Mobile Entertainment)");
+                    AppContext.CloseApp();
+                }
                 sounds = AppContext.SoundSerializer.Deserialize(newXml) as SoundViewModel[];
-
+            }
             var differences = sounds.Select(s => s.File)
                 .Except(GetNonEmptyFiles())
                 .Concat(new[] { "Sounds.xml" });
@@ -143,7 +149,7 @@ namespace SgarbiMix.WP7.ViewModel
             {
                 isFinished = true;
                 MessengerInstance.Send("update_completed");
-                MessageBox.Show("Ora puoi insultare con nuovi insulti!", "Download Completato", MessageBoxButton.OK);
+                MessageBox.Show("Evvai!, ora puoi insultare con nuovi insulti!", "Download Completato", MessageBoxButton.OK);
                 _navigationService.GoBack();
             }
         }

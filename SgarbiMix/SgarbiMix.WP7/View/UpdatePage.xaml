@@ -40,7 +40,8 @@
                             <ProgressBar Value="{Binding PercentComplete}"
                                          Maximum="1"  Margin="-12,0" 
                                          IsIndeterminate="{Binding IsProgressIndeterminate}"
-                                         Foreground="{StaticResource ProgressBrush}" />
+                                         Foreground="{StaticResource ProgressBrush}"
+                                         SmallChange="0.01" LargeChange="0.1" />
                             <TextBlock Text="{Binding StatusText}"
                                        FontFamily="{StaticResource DefaultFont}"
                                        Foreground="{StaticResource DefaultForeground}"/>

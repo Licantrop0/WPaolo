@@ -16,14 +16,14 @@
         <vm:AboutViewModel x:Key="AboutVM"
                            MinFontSize="55"
                            AppId="d78812c9-f9d5-df11-a844-00237de2db9e"
-                           DefaultFont="/DeathTimerz;component/Fonts/Fonts.zip#Chiller"
+                           DefaultFont="{StaticResource DefaultFont}"
                            DefaultForeground="{StaticResource RedGradientBrush}" >
             <vm:AboutViewModel.DefaultBackground>
                 <ImageBrush ImageSource="/DeathTimerz;component/Images/DeathBackground.jpg"
-                        Stretch="None" AlignmentX="Center" />
+                        Stretch="None" AlignmentX="Left" />
             </vm:AboutViewModel.DefaultBackground>
         </vm:AboutViewModel>
     </phone:PhoneApplicationPage.Resources>
     <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}" AdUnitId="10022419" 
-                       ApplicationId="d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2" />
+                       ApplicationId="d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2" ADAppId="2835" />
 </phone:PhoneApplicationPage>

@@ -26,7 +26,7 @@
                        SelectionChanged="MainPanorama_SelectionChanged" Loaded="MainPanorama_Loaded">
         <controls:Panorama.Title>
             <TextBlock Text="{Binding LocalizedResources.AppName, Source={StaticResource LocalizedStrings}}"
-                           Style="{StaticResource RedChiller}" Margin="0,45,0,0" />
+                       Style="{StaticResource RedChiller}" Margin="0,60,0,30" FontSize="130" />
         </controls:Panorama.Title>
         <controls:Panorama.Background>
             <ImageBrush ImageSource="/DeathTimerz;component/Images/DeathBackground.jpg"
@@ -39,7 +39,7 @@
                 <TextBlock Text="{Binding LocalizedResources.Suggestion, Source={StaticResource LocalizedStrings}}"
                                TextWrapping="Wrap" Style="{StaticResource RedChiller}" />
             </controls:PanoramaItem.Header>
-            <Grid Name="SuggestionGrid" Margin="0,-30,0,72">
+            <Grid Name="SuggestionGrid" Margin="0,-30,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
@@ -58,17 +58,23 @@
                                     MSAppId="d4a3587c-e7e3-4663-972a-dd3c4dd7a3a2"
                                     MSAdId="10022419" ADAppId="2835" />
                 </Border>
-                <Grid Grid.RowSpan="2" VerticalAlignment="Bottom" Background="Black" Height="220"
+                <Grid Grid.RowSpan="2" VerticalAlignment="Bottom" Background="#FF171717" Height="220"
                       Opacity="0.9" Margin="0,0,-30,0" Visibility="{Binding PinSuggestionVisibility}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    <Image Source="/Images/PinExample.png" Grid.RowSpan="3" Margin="6"  />
                     <TextBlock Text="{Binding LocalizedResources.PinTitle, Source={StaticResource LocalizedStrings}}"
-                               VerticalAlignment="Center" Style="{StaticResource PhoneTextTitle2Style}" />
-                    <Button  toolkit:TiltEffect.IsTiltEnabled="True" VerticalAlignment="Top" HorizontalAlignment="Right"
-                            Command="{Binding ClosePinSuggestionCommand}">
+                               VerticalAlignment="Center" Grid.Column="1" 
+                               Style="{StaticResource PhoneTextTitle2Style}" />
+                    <Button toolkit:TiltEffect.IsTiltEnabled="True" VerticalAlignment="Top" HorizontalAlignment="Right"
+                            Command="{Binding ClosePinSuggestionCommand}" Grid.Column="1">
                         <Button.Template>
                             <ControlTemplate>
                                 <Image Source="/Toolkit.Content/ApplicationBar.Cancel.png" Stretch="None" />
@@ -77,9 +83,11 @@
                     </Button>
 
                     <TextBlock Text="{Binding LocalizedResources.PinText, Source={StaticResource LocalizedStrings}}"
-                               TextWrapping="Wrap" Grid.Row="1" Style="{StaticResource PhoneTextTitle3Style}"
-                               TextAlignment="Center" />
-                    <Border Grid.Row="2" Margin="6" Background="{StaticResource RedGradientBrush}" >
+                               TextWrapping="Wrap" Style="{StaticResource PhoneTextTitle3Style}"
+                               Grid.Column="1" Grid.Row="1" />
+
+                    <Border Grid.Row="2" Grid.ColumnSpan="2" Margin="6"
+                            Background="{StaticResource RedGradientBrush}">
                         <Border.OpacityMask>
                             <ImageBrush ImageSource="/Images/down_arrow.png" Stretch="Uniform" />
                         </Border.OpacityMask>
@@ -184,7 +192,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" 
                               ForegroundColor="#FFBE0000"
-                              BackgroundColor="#C0171717"
+                              BackgroundColor="#FF171717"
                               Mode="Minimized" IsMenuEnabled="True" />
     </phone:PhoneApplicationPage.ApplicationBar>
 

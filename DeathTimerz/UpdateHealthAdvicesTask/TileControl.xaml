@@ -12,11 +12,10 @@
             </LinearGradientBrush>
         </Border.Background>
         
-        <TextBlock Name="TileContent" Text="Questo è un suggerim di salute e blablabla"
+        <TextBlock Name="TileContent" Text="Questo è un suggerimento di salute e blablabla"
                    LineHeight="90" LineStackingStrategy="BlockLineHeight"
-                   Padding="12" TextTrimming="WordEllipsis"
-                   TextWrapping="Wrap" FontSize="80"
-                   FontFamily="/UpdateHealthAdvicesTask;component/CHILLER.TTF#Chiller" >
+                   Margin="12" TextTrimming="WordEllipsis" TextAlignment="Center"
+                   TextWrapping="Wrap" FontSize="70" FontFamily="/UpdateHealthAdvicesTask;component/Fonts.zip#Haunt AOE" >
             <TextBlock.Foreground>
                 <LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
                     <GradientStop Color="Red" Offset="0" />

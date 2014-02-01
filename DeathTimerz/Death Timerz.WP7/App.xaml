@@ -17,7 +17,7 @@
             <GradientStop Color="Red" Offset="0" />
             <GradientStop Color="#CDC09696" Offset="1" />
         </LinearGradientBrush>        
-        <FontFamily x:Key="DefaultFont">/DeathTimerz;component/Fonts/Fonts.zip#Chiller</FontFamily>
+        <FontFamily x:Key="DefaultFont">/DeathTimerz;component/Fonts/Fonts.zip#Haunt AOE</FontFamily>
         <Style x:Key="RedChiller" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
             <Setter Property="Foreground" Value="{StaticResource RedGradientBrush}" />

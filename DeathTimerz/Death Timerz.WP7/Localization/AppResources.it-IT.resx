@@ -137,7 +137,7 @@
     <value>Giorni</value>
   </data>
   <data name="DisableMusic" xml:space="preserve">
-    <value>Disabilita la musica di sottofondo</value>
+    <value>Spegni la musica lugubre</value>
   </data>
   <data name="DisclaimerText" xml:space="preserve">
     <value>L'Orologio della Morte è da considerare solo un gioco, senza alcuna velleità statistica o medica.
@@ -147,7 +147,7 @@ Comunque... toccati le palle!</value>
     <value>Modifica Test</value>
   </data>
   <data name="EnableMusic" xml:space="preserve">
-    <value>Abilita la musica di sottofondo</value>
+    <value>Attiva la musica lugubre</value>
   </data>
   <data name="ErrorFutureBirthday" xml:space="preserve">
     <value>Non puoi impostare la tua data di nascita oggi o nel futuro.</value>

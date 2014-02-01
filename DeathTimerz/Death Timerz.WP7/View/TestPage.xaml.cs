@@ -263,9 +263,13 @@ namespace DeathTimerz
 
         void OkAppBarButton_Click(object sender, EventArgs e)
         {
-            if (FocusManager.GetFocusedElement() is TextBox && !IsTestFilled())
+            var focusedElement = FocusManager.GetFocusedElement() as UIElement;
+            if (focusedElement is TextBox && !IsTestFilled())
             {
-                this.Focus();
+                var index = TestStackPanel.Children.IndexOf(focusedElement);
+                if (index + 2 > TestStackPanel.Children.Count) return;
+                var c = TestStackPanel.Children[index + 2] as Control;
+                if (c != null) c.Focus();
                 return;
             }
 

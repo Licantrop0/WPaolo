@@ -44,8 +44,6 @@ namespace DeathTimerz
                 ApplicationBar.Mode = ApplicationBarMode.Default;
                 ApplicationBar.Buttons.Add(PinToStartAppBarButton);
             }
-            else
-                SuggestionGrid.Margin = new Thickness(0, -30, 0, 30);
         }
 
         private void MainPanorama_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -65,19 +63,12 @@ namespace DeathTimerz
                         ApplicationBar.Buttons.Add(EditTestAppBarButton);
                     else
                         TakeTestButton.IsHitTestVisible = true;
-                    break;
+                    break;            
             }
 
-            if (ApplicationBar.Buttons.Count == 0)
-            {
-                ApplicationBar.Mode = ApplicationBarMode.Minimized;
-                SuggestionGrid.Margin = new Thickness(0, -30, 0, 30);
-            }
-            else
-            {
-                SuggestionGrid.Margin = new Thickness(0, -30, 0, 72);
-                ApplicationBar.Mode = ApplicationBarMode.Default;
-            }
+            ApplicationBar.Mode = ApplicationBar.Buttons.Count == 0 ?
+                ApplicationBarMode.Minimized :
+                ApplicationBarMode.Default;
         }
 
         private void InitializeApplicationBar()

@@ -155,6 +155,7 @@
     <Content Include="AppResLib.dll.0410.mui" />
     <Content Include="AppResLib.dll.040c.mui" />
     <Content Include="Images\down_arrow.png" />
+    <Content Include="Images\PinExample.png" />
     <Content Include="Images\tombstone.png" />
     <Content Include="Toolkit.Content\appbar_pin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -173,6 +174,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <BlendEmbeddedFont Include="Fonts\OLDENGL.TTF">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+      <Uppercase>True</Uppercase>
+      <Lowercase>True</Lowercase>
+      <Numbers>True</Numbers>
+      <Punctuation>True</Punctuation>
+    </BlendEmbeddedFont>
+    <BlendEmbeddedFont Include="Fonts\HauntAOE.ttf">
       <IsSystemFont>True</IsSystemFont>
       <All>True</All>
       <AutoFill>True</AutoFill>
@@ -252,12 +262,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Test2.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <BlendEmbeddedFont Include="Fonts\CHILLER.TTF">
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-    </BlendEmbeddedFont>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UpdateHealthAdvicesTask\UpdateHealthAdvicesTask.csproj">

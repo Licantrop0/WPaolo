@@ -170,6 +170,7 @@
     <None Include="Data\Sei_drogato_e_ubriaco.wav" />
     <None Include="Data\se_lo_vuol_prendere_da_quella_parte.wav" />
     <None Include="Data\Sono_stato_condannato.wav" />
+    <None Include="Data\Sounds.xlsx" />
     <None Include="Data\Sounds.xml" />
     <None Include="Data\TACI.wav" />
     <None Include="Data\Tu_dici_un_sacco_di_balle.wav" />
@@ -221,6 +222,8 @@
     <None Include="Data\Vai_a_studiare.wav" />
     <None Include="Data\Valori_del_buco_del_culo.wav" />
     <None Include="Data\Vergogna.wav" />
+    <None Include="Data\comunista_pagato.wav" />
+    <None Include="Data\e_una_stronzata.wav" />
     <Content Include="Images\bianco.png" />
     <Content Include="Sounds\base4.mp3" />
     <Content Include="SplashScreenImage.jpg">

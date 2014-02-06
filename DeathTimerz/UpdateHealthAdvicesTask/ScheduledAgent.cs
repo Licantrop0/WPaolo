@@ -46,27 +46,32 @@ namespace UpdateHealthAdvicesTask
         /// </remarks>
         protected override void OnInvoke(ScheduledTask task)
         {
-            Deployment.Current.Dispatcher.BeginInvoke(UpdateTileData);           
+            Deployment.Current.Dispatcher.BeginInvoke(UpdateTileData);
             NotifyComplete();
         }
 
         private const string TilePath = "/Shared/ShellContent/LiveTileIcon.jpg";
         public static void UpdateTileData()
         {
-            using (var iss = IsolatedStorageFile.GetUserStoreForApplication())
+            try
             {
-                //avoid unnecessary operations (the tile changes only once a day)
-                var lastWrite = iss.GetLastWriteTime(TilePath).DayOfYear;
-                using (var file = iss.OpenFile(TilePath, FileMode.OpenOrCreate))
+                using (var iss = IsolatedStorageFile.GetUserStoreForApplication())
                 {
-                    if (lastWrite == DateTime.Now.DayOfYear && file.Length != 0) return;
-                    (new TileControl()).Update(file);
+                    using (var file = iss.OpenFile(TilePath, FileMode.OpenOrCreate))
+                    {
+                        //avoid unnecessary operations (the tile changes only once a day)
+                        var lastWrite = iss.GetLastWriteTime(TilePath).DayOfYear;
+                        if (lastWrite == DateTime.Now.DayOfYear && file.Length != 0) return;
+                        (new TileControl()).Update(file);
+                    }
                 }
-            }
 
-            var tileData = new StandardTileData() { BackBackgroundImage = new Uri("isostore:" + TilePath) };
-            foreach (var tile in ShellTile.ActiveTiles)
-                tile.Update(tileData);
+                var tileData = new StandardTileData() { BackBackgroundImage = new Uri("isostore:" + TilePath) };
+                foreach (var tile in ShellTile.ActiveTiles)
+                    tile.Update(tileData);
+            }
+            catch (IsolatedStorageException)
+            { /* boh */ }
         }
 
     }

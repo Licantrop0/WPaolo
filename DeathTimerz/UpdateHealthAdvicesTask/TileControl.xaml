@@ -4,18 +4,24 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Height="336" Width="336">
-    <Border>
+    <Border BorderThickness="6">
+        <Border.BorderBrush>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFC5280F" Offset="0"/>
+                <GradientStop Color="#FFB90000" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
         <Border.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FF131313" Offset="0"/>
                 <GradientStop Color="#FF510000" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
-        
+
         <TextBlock Name="TileContent" Text="Questo è un suggerimento di salute e blablabla"
                    LineHeight="90" LineStackingStrategy="BlockLineHeight"
-                   Margin="12" TextTrimming="WordEllipsis" TextAlignment="Center"
-                   TextWrapping="Wrap" FontSize="70" FontFamily="/UpdateHealthAdvicesTask;component/Fonts.zip#Haunt AOE" >
+                   Margin="6" TextTrimming="WordEllipsis" TextAlignment="Center"
+                   TextWrapping="Wrap" FontSize="70" FontFamily="/UpdateHealthAdvicesTask;component/Fonts/Fonts.zip#Haunt AOE" >
             <TextBlock.Foreground>
                 <LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
                     <GradientStop Color="Red" Offset="0" />

@@ -52,6 +52,7 @@ namespace SheldonMix.ViewModel
                         "ZAZZ_we're_taking_the_train.mp3",
                         "ZAZZ_Bongo_Song.mp3",
                         "ZAZZ_Sheldon_soft_kitty.mp3",
+                        "ZAZZ_Penny_Blossom_Song.mp3",
                         "ZAZZ_WoW_Hacking.mp3",
                         "ZAZZ_Whip_eh-hee.mp3"
                     }.Select(f => new SoundViewModel(f, SoundType.ZAZZ)).ToList();

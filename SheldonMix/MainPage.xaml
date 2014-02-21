@@ -145,8 +145,10 @@
                     <StackPanel>
                         <TextBlock TextWrapping="Wrap" Foreground="Black"
                            TextAlignment="Center" Margin="12,6"
-                           FontFamily="{StaticResource DefaultFont}">
-                            Set Every sound as Ringtone by long-pressing on the relative button!
+                           FontFamily="{StaticResource DefaultFont}">                            
+                            Set every sound as Ringtone by
+                            <LineBreak />
+                            long-pressing on the buttons!
                         </TextBlock>
 
                         <TextBlock Text="Official TBBT" FontSize="22"  Margin="0,8,0,0"
@@ -191,6 +193,10 @@
                                          FontFamily="{StaticResource DefaultFont}"
                                          Foreground="MediumVioletRed" Click="HyperlinkButton_Click_3" />
 
+                        <HyperlinkButton Content="Jim Parsons - Ellen interview" Margin="0,8"
+                                         FontFamily="{StaticResource DefaultFont}"
+                                         Foreground="#FFC71515" Click="YoutubeEllen_Click" />
+
                         <HyperlinkButton Content="Jim Parson wins Emmy 2011" Margin="0,8"
                                  Foreground="#FF0F46A2" FontFamily="{StaticResource DefaultFont}"
                                  Click="HyperlinkButton_Click_4" />
@@ -199,12 +205,11 @@
                                  Foreground="OrangeRed" FontFamily="{StaticResource DefaultFont}"
                                  Click="HyperlinkButton_Click" />
 
-                        <TextBlock TextWrapping="Wrap" Foreground="Black" Margin="12"
+                        <TextBlock TextWrapping="Wrap" Foreground="Black" Margin="6"
                            TextAlignment="Center" FontFamily="{StaticResource DefaultFont}">
                         Something is missing in this app?<LineBreak />
                         Please send us your suggestions,<LineBreak />
-                        we definitively consider feedback<LineBreak />
-                        for upgrades and future releases.<LineBreak />
+                        we definitely consider your feedback!<LineBreak />
                         Open the About Page and drop us a line<LineBreak />
                         by mail, Twitter or Facebook.
                         </TextBlock>

@@ -23,6 +23,7 @@ namespace SheldonMix.ViewModel
                         "CLAS_mua_ah_ah.mp3",
                         "CLAS_not_bad_it_s_horrible.mp3",
                         "CLAS_oouh.mp3",
+                        "CLAS_Rock_Paper_Scissor_Lizard_Spock.mp3",
                         "CLAS_peace_out.mp3",
                         "CLAS_hello_honeypuffs.mp3",
                         "CLAS_Sheldon_laugh.mp3",

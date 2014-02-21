@@ -72,6 +72,10 @@ namespace SheldonMix
             new WebBrowserTask() { Uri = new Uri("http://m.youtube.com/watch?v=SifGskrY_UY") }.Show();
         }
 
+        private void YoutubeEllen_Click(object sender, RoutedEventArgs e)
+        {
+            new WebBrowserTask() { Uri = new Uri("http://m.youtube.com/watch?v=6FFV28XxB-A") }.Show();
+        }
 
         private void ApplicationBarIconButton_Click(object sender, EventArgs e)
         {

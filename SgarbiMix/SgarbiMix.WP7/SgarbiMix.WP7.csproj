@@ -224,6 +224,8 @@
     <None Include="Data\Vergogna.wav" />
     <None Include="Data\comunista_pagato.wav" />
     <None Include="Data\e_una_stronzata.wav" />
+    <None Include="Data\facce_di_merda.wav" />
+    <None Include="Data\figlio_di_puttana.wav" />
     <Content Include="Images\bianco.png" />
     <Content Include="Sounds\base4.mp3" />
     <Content Include="SplashScreenImage.jpg">

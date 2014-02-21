@@ -131,6 +131,9 @@
     <Content Include="Sounds\CLAS_knock_knock_knock_Penny.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sounds\CLAS_Rock_Paper_Scissor_Lizard_Spock.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sounds\ZAZZ_Sheldon_soft_kitty.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

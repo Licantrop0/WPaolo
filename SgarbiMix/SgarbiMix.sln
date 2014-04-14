@@ -19,9 +19,35 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.TrialManag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgarbiMix.WP7", "SgarbiMix.WP7\SgarbiMix.WP7.csproj", "{8BDEBE1A-9791-428D-8026-1172D876F79D}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SgarbiMix.Web", "http://localhost:2311", "{D6D2856E-48E5-4E2D-8A03-B6AAE8368805}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_2311"
+		Debug.AspNetCompiler.PhysicalPath = "SgarbiMix.Web\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_2311\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_2311"
+		Release.AspNetCompiler.PhysicalPath = "SgarbiMix.Web\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_2311\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "SgarbiMix.Web\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
+		SccNumberOfProjects = 8
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
@@ -43,6 +69,11 @@ Global
 		SccProjectUniqueName6 = SgarbiMix.WP7\\SgarbiMix.WP7.csproj
 		SccProjectName6 = SgarbiMix.WP7
 		SccLocalPath6 = SgarbiMix.WP7
+		SccWebProject7 = true
+		SccProjectUniqueName7 = http://localhost:2311
+		SccProjectName7 = SgarbiMix.Web
+		SccLocalPath7 = SgarbiMix.Web
+		SccProjectEnlistmentChoice7 = 2
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +106,10 @@ Global
 		{8BDEBE1A-9791-428D-8026-1172D876F79D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BDEBE1A-9791-428D-8026-1172D876F79D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8BDEBE1A-9791-428D-8026-1172D876F79D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D6D2856E-48E5-4E2D-8A03-B6AAE8368805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6D2856E-48E5-4E2D-8A03-B6AAE8368805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6D2856E-48E5-4E2D-8A03-B6AAE8368805}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6D2856E-48E5-4E2D-8A03-B6AAE8368805}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

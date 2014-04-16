@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="SheldonMix.MainPage"
+    x:Class="SheldonMix.View.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -14,7 +14,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <phone:PhoneApplicationPage.Resources>
         <vm:MainViewModel x:Key="MainVM" />
@@ -34,7 +34,6 @@
                                                       Command="{Binding SetAsRingtoneCommand}" />
                                 </toolkit:ContextMenu>
                             </toolkit:ContextMenuService.ContextMenu>
-
                         </Button>
                     </DataTemplate>
 
@@ -46,7 +45,8 @@
                 <!-- Classic -->
                 <controls:PivotItem Margin="0">
                     <controls:PivotItem.Header>
-                        <TextBlock Text="Classic" Style="{StaticResource HeaderStyle}" />
+                        <TextBlock Text="{Binding LocalizedResources.Classic, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HeaderStyle}" />
                     </controls:PivotItem.Header>
                     <ListBox ItemsSource="{Binding SuoniCLAS}"
                      ItemTemplate="{StaticResource PlayButtonDataTemplate}" />
@@ -55,7 +55,8 @@
                 <!-- Zazzy -->
                 <controls:PivotItem Margin="0">
                     <controls:PivotItem.Header>
-                        <TextBlock Text="Zazzy" Style="{StaticResource HeaderStyle}" />
+                        <TextBlock Text="{Binding LocalizedResources.Zazzy, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HeaderStyle}" />
                     </controls:PivotItem.Header>
 
                     <ListBox ItemsSource="{Binding SuoniZAZZ}"
@@ -65,7 +66,8 @@
                 <!-- TBBT -->
                 <controls:PivotItem Margin="0">
                     <controls:PivotItem.Header>
-                        <TextBlock Text="TBBT" Style="{StaticResource HeaderStyle}" />
+                        <TextBlock Text="{Binding LocalizedResources.TBBT, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HeaderStyle}" />
                     </controls:PivotItem.Header>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -139,21 +141,19 @@
                 <!-- Extra -->
                 <controls:PivotItem Margin="0">
                     <controls:PivotItem.Header>
-                        <TextBlock Text="More?" Style="{StaticResource HeaderStyle}" />
+                        <TextBlock Text="{Binding LocalizedResources.Extra, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HeaderStyle}" />
                     </controls:PivotItem.Header>
 
                     <StackPanel>
-                        <TextBlock TextWrapping="Wrap" Foreground="Black"
-                           TextAlignment="Center" Margin="12,6"
-                           FontFamily="{StaticResource DefaultFont}">                            
-                            Set every sound as Ringtone by
-                            <LineBreak />
-                            long-pressing on the buttons!
-                        </TextBlock>
+                        <TextBlock Text="{Binding LocalizedResources.SetRingtoneTip, Source={StaticResource LocalizedStrings}}"
+                                   TextWrapping="Wrap" Foreground="Black"
+                                   TextAlignment="Center" Margin="12,6"
+                                   FontFamily="{StaticResource DefaultFont}"/>
 
                         <TextBlock Text="Official TBBT" FontSize="22"  Margin="0,8,0,0"
-                                       FontFamily="{StaticResource DefaultFont}"
-                                       Foreground="#FF8D13A8" HorizontalAlignment="Center" />
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   Foreground="#FF8D13A8" HorizontalAlignment="Center" />
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
                                     Margin="0,0,0,8">
                             <HyperlinkButton Content="Twitter" Click="TwitterCBS_Click"
@@ -205,14 +205,9 @@
                                  Foreground="OrangeRed" FontFamily="{StaticResource DefaultFont}"
                                  Click="HyperlinkButton_Click" />
 
-                        <TextBlock TextWrapping="Wrap" Foreground="Black" Margin="6"
-                           TextAlignment="Center" FontFamily="{StaticResource DefaultFont}">
-                        Something is missing in this app?<LineBreak />
-                        Please send us your suggestions,<LineBreak />
-                        we definitely consider your feedback!<LineBreak />
-                        Open the About Page and drop us a line<LineBreak />
-                        by mail, Twitter or Facebook.
-                        </TextBlock>
+                        <TextBlock Text="{Binding LocalizedResources.GetFeedback, Source={StaticResource LocalizedStrings}}"
+                            TextWrapping="Wrap" Foreground="Black" Margin="6"
+                           TextAlignment="Center" FontFamily="{StaticResource DefaultFont}" />
                     </StackPanel>
                 </controls:PivotItem>
             </controls:Pivot>

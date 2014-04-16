@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SheldonMix", "SheldonMix.csproj", "{20160319-A919-4E88-8238-92B1816BF68E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
@@ -17,26 +17,57 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{362683
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SheldonMix.Web", "http://localhost:5830", "{35A41D81-10D6-44CF-8215-FEFFEFB83BD8}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_5830"
+		Debug.AspNetCompiler.PhysicalPath = "SheldonMix.Web\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_5830\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_5830"
+		Release.AspNetCompiler.PhysicalPath = "SheldonMix.Web\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_5830\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "SheldonMix.Web\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 7
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = SheldonMix.csproj
 		SccLocalPath1 = .
-		SccProjectUniqueName2 = ..\\..\\WPCommon.Controls\\WPCommon.Controls.csproj
-		SccProjectName2 = ../../WPCommon.Controls
-		SccLocalPath2 = ..\\..\\WPCommon.Controls
-		SccProjectUniqueName3 = ..\\..\\WPCommon.Helpers.ExtensionMethods\\WPCommon.Helpers.ExtensionMethods.csproj
-		SccProjectName3 = ../../WPCommon.Helpers.ExtensionMethods
-		SccLocalPath3 = ..\\..\\WPCommon.Helpers.ExtensionMethods
-		SccProjectUniqueName4 = ..\\..\\WPCommon.Helpers\\WPCommon.Helpers.csproj
-		SccProjectName4 = ../../WPCommon.Helpers
-		SccLocalPath4 = ..\\..\\WPCommon.Helpers
-		SccProjectUniqueName5 = ..\\..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
-		SccProjectName5 = ../../WPCommon.Helpers.XNAAsyncDispatcher
-		SccLocalPath5 = ..\\..\\WPCommon.Helpers.XNAAsyncDispatcher
+		SccProjectUniqueName2 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName2 = ../WPCommon.Controls
+		SccLocalPath2 = ..\\WPCommon.Controls
+		SccProjectUniqueName3 = ..\\WPCommon.Helpers.ExtensionMethods\\WPCommon.Helpers.ExtensionMethods.csproj
+		SccProjectName3 = ../WPCommon.Helpers.ExtensionMethods
+		SccLocalPath3 = ..\\WPCommon.Helpers.ExtensionMethods
+		SccProjectUniqueName4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
+		SccProjectName4 = ../WPCommon.Helpers.XNAAsyncDispatcher
+		SccLocalPath4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
+		SccProjectUniqueName5 = ..\\WPCommon.Helpers\\WPCommon.Helpers.csproj
+		SccProjectName5 = ../WPCommon.Helpers
+		SccLocalPath5 = ..\\WPCommon.Helpers
+		SccWebProject6 = true
+		SccProjectUniqueName6 = http://localhost:5830
+		SccProjectName6 = SheldonMix.Web
+		SccLocalPath6 = SheldonMix.Web
+		SccProjectEnlistmentChoice6 = 2
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +96,10 @@ Global
 		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A41D81-10D6-44CF-8215-FEFFEFB83BD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A41D81-10D6-44CF-8215-FEFFEFB83BD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A41D81-10D6-44CF-8215-FEFFEFB83BD8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A41D81-10D6-44CF-8215-FEFFEFB83BD8}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

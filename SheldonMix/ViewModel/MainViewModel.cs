@@ -2,34 +2,23 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using WPCommon.Helpers;
 
 namespace SheldonMix.ViewModel
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : ObservableObject
     {
         private IList<SoundViewModel> _suoniCLAS;
         public IList<SoundViewModel> SuoniCLAS
         {
             get
             {
+                if (AppContext.AllSound == null) return null;
                 if (_suoniCLAS == null)
-                {
-                    _suoniCLAS = new[] {
-                        "CLAS_Bazinga1.mp3",
-                        "CLAS_bazinga_one_of_my_jokes.mp3",
-                        "CLAS_change_is_never_fine.mp3",
-                        "CLAS_You're_in_my_spot.mp3",
-                        "CLAS_knock_knock_knock_Penny.mp3",
-                        "CLAS_mua_ah_ah.mp3",
-                        "CLAS_not_bad_it_s_horrible.mp3",
-                        "CLAS_oouh.mp3",
-                        "CLAS_Rock_Paper_Scissor_Lizard_Spock.mp3",
-                        "CLAS_peace_out.mp3",
-                        "CLAS_hello_honeypuffs.mp3",
-                        "CLAS_Sheldon_laugh.mp3",
-                        "CLAS_there_there.mp3",
-                    }.Select(f => new SoundViewModel(f, SoundType.CLAS)).ToList();
-                }
+                    _suoniCLAS = AppContext.AllSound
+                        .Where(s => s.Lang == AppContext.Lang)
+                        .Where(s => s.Category == SoundCategory.CLAS)
+                        .ToList();
                 return _suoniCLAS;
             }
         }
@@ -39,24 +28,13 @@ namespace SheldonMix.ViewModel
         {
             get
             {
+                if (AppContext.AllSound == null) return null;
                 if (_suoniZAZZ == null)
-                {
-                    _suoniZAZZ = new[] {
-                        "ZAZZ_Brave_Leonard_song.mp3",
-                        "ZAZZ_Dr_Sheldon_Cooper_FTW.mp3",
-                        "ZAZZ_Engineering_oompa_loompas.mp3",                        
-                        "ZAZZ_It's_a_trap1.mp3",
-                        "ZAZZ_DNA_of_leonard_nimoy.mp3",
-                        "ZAZZ_Sheldon_drunk_sings.mp3",
-                        "ZAZZ_To_Sheldon_live_long_and_prosper.mp3",
-                        "ZAZZ_we're_taking_the_train.mp3",
-                        "ZAZZ_Bongo_Song.mp3",
-                        "ZAZZ_Sheldon_soft_kitty.mp3",
-                        "ZAZZ_Penny_Blossom_Song.mp3",
-                        "ZAZZ_WoW_Hacking.mp3",
-                        "ZAZZ_Whip_eh-hee.mp3"
-                    }.Select(f => new SoundViewModel(f, SoundType.ZAZZ)).ToList();
-                } return _suoniZAZZ;
+                    _suoniZAZZ = AppContext.AllSound
+                        .Where(s => s.Lang == AppContext.Lang)
+                        .Where(s => s.Category == SoundCategory.ZAZZ)
+                        .ToList();
+                return _suoniZAZZ;
             }
         }
 
@@ -65,23 +43,13 @@ namespace SheldonMix.ViewModel
         {
             get
             {
+                if (AppContext.AllSound == null) return null;
                 if (_suoniTBBT == null)
-                {
-                    _suoniTBBT = new[] {
-                        "TBBT_Theme_full.mp3",
-                        "TBBT_Theme_end.mp3"
-                    }.Select(f => new SoundViewModel(f, SoundType.TBBT)).ToList();
-                }
+                    _suoniTBBT = AppContext.AllSound
+                        .Where(s => s.Lang == AppContext.Lang)
+                        .Where(s => s.Category == SoundCategory.TBBT)
+                        .ToList();
                 return _suoniTBBT;
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(String propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

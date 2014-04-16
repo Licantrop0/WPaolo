@@ -4,10 +4,14 @@ using System.Windows.Input;
 using System.Windows;
 using WPCommon.Helpers;
 using Microsoft.Phone.Tasks;
+using System.Xml.Serialization;
+using SheldonMix.Localization;
+using System.IO.IsolatedStorage;
+using System.IO;
 
 namespace SheldonMix.ViewModel
 {
-    public enum SoundType
+    public enum SoundCategory
     {
         CLAS,
         TBBT,
@@ -16,20 +20,14 @@ namespace SheldonMix.ViewModel
 
     public class SoundViewModel
     {
-        public string Name { get; private set; }
-        public SoundType Category { get; private set; }
-        private string _rawName;
-
-        public SoundViewModel(string rawName, SoundType category)
-        {
-            _rawName = rawName;
-            Category = category;
-
-            Name = rawName.Substring(5, rawName.Length - 9) //9 = 5 (_tag) + 4 (.mp3)
-                .Replace("_", " ") //"_" = spazio
-                .Replace("1", "!") //"1" = punto esclamativo
-                .Replace("2", "?"); //"2" = punto interrogativo
-        }
+        [XmlAttribute]
+        public string Name { get; set; }
+        [XmlAttribute]
+        public SoundCategory Category { get; set; }
+        [XmlAttribute]
+        public string File { get; set; }
+        [XmlAttribute]
+        public string Lang { get; set; }
 
         RelayCommand _playCommand;
         public ICommand PlayCommand
@@ -55,14 +53,13 @@ namespace SheldonMix.ViewModel
         //Ringtone files must be less than 1 MB in size.
         private void SetAsRingtoneAction(object obj)
         {
-            WPCommon.Helpers.Persistance.SaveFileToIsolatedStorage(_rawName, "sounds");
-            var saveRingtoneTask = new SaveRingtoneTask();
             try
             {
-                saveRingtoneTask.Source = new Uri("isostore:/sounds/" + _rawName);
-                saveRingtoneTask.DisplayName = Name;
-                saveRingtoneTask.Completed += saveRingtoneTask_Completed;
-                saveRingtoneTask.Show();
+                new SaveRingtoneTask()
+                {
+                    Source = new Uri("isostore:/shared/transfers/" + File),
+                    DisplayName = Name
+                }.Show();
             }
             catch (Exception ex)
             {
@@ -70,10 +67,6 @@ namespace SheldonMix.ViewModel
             }
         }
 
-        void saveRingtoneTask_Completed(object sender, TaskEventArgs e)
-        {
-            WPCommon.Helpers.Persistance.DeleteFile(_rawName, "sounds");
-        }
 
 
         public void PlayAction(object param)
@@ -81,23 +74,30 @@ namespace SheldonMix.ViewModel
             if (!AskAndPlayMusic())
                 return;
 
-            if (Category == SoundType.TBBT &&
+            if (Category == SoundCategory.TBBT &&
                 MediaPlayer.State == MediaState.Playing &&
-                MediaPlayer.Queue.ActiveSong.Name == _rawName)
+                MediaPlayer.Queue.ActiveSong.Name == File)
             {
                 MediaPlayer.Stop();
                 return;
             }
 
-            var sound = Song.FromUri(_rawName, new Uri("sounds/" + _rawName, UriKind.Relative));
-            MediaPlayer.Play(sound);
+            
+            using (var isf = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                using (var isfs = isf.OpenFile("shared/transfers/" + File, FileMode.Open))
+                {
+                    me.SetSource(isfs);
+                }
+            }
+            me.Play();
         }
 
         public static bool AskAndPlayMusic()
         {
             return MediaPlayer.GameHasControl ?
                 true :
-                MessageBox.Show("Do you want to stop your music and hear what Sheldon have to say??",
+                MessageBox.Show(AppResources.StopMusic,
                     "SheldonMix", MessageBoxButton.OKCancel) == MessageBoxResult.OK;
         }
     }

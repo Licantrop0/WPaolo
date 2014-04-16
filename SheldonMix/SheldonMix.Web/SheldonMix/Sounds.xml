@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ArrayOfSoundViewModel>
+	<SoundViewModel Name="Bazinga one of my jokes" File="CLAS_bazinga_one_of_my_jokes.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="Bazinga!" File="CLAS_Bazinga1.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="Bongo Song" File="ZAZZ_Bongo_Song.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Brave Leonard song" File="ZAZZ_Brave_Leonard_song.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Change is never fine" File="CLAS_change_is_never_fine.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="DNA of leonard nimoy" File="ZAZZ_DNA_of_leonard_nimoy.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Dr Sheldon Cooper FTW" File="ZAZZ_Dr_Sheldon_Cooper_FTW.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Engineering oompa loompas" File="ZAZZ_Engineering_oompa_loompas.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Hello honeypuffs" File="CLAS_hello_honeypuffs.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="It's a trap!" File="ZAZZ_It's_a_trap1.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="It's not bad it's horrible" File="CLAS_not_bad_it_s_horrible.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="Knock knock knock Penny" File="CLAS_knock_knock_knock_Penny.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="mua ah ah" File="CLAS_mua_ah_ah.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="oouh" File="CLAS_oouh.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="peace out" File="CLAS_peace_out.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="Penny Blossom Song" File="ZAZZ_Penny_Blossom_Song.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Rock Paper Scissor Lizard Spock" File="CLAS_Rock_Paper_Scissor_Lizard_Spock.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="Sheldon laugh" File="CLAS_Sheldon_laugh.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="Sheldon sings drunk" File="ZAZZ_Sheldon_drunk_sings.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Soft Kitty" File="ZAZZ_Sheldon_soft_kitty.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Theme end" File="TBBT_Theme_end.mp3" Category="TBBT" Lang="en-US"/>
+	<SoundViewModel Name="Theme full" File="TBBT_Theme_full.mp3" Category="TBBT" Lang="en-US"/>
+	<SoundViewModel Name="there there" File="CLAS_there_there.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="To Sheldon live long and prosper" File="ZAZZ_To_Sheldon_live_long_and_prosper.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="we're taking the train" File="ZAZZ_we're_taking_the_train.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Whip eh-hee" File="ZAZZ_Whip_eh-hee.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="WoW Hacking" File="ZAZZ_WoW_Hacking.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="You're in my spot" File="CLAS_You're_in_my_spot.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="A plus !" File="A plus !.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Bonjour mes petites céréales" File="Bonjour mes petites céréales.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Brave Léonard" File="Brave Léonard.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Ce n'est pas grave, c'est horrible !" File="Ce n'est pas grave, c'est horrible !.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Cela ne se passe jamais à merveille" File="Cela ne se passe jamais à merveille.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="C'est génial d'y aller en train" File="C'est génial d'y aller en train.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="C'est un piège !" File="C'est un piège !.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Doux chaton, adorable chaton" File="Doux chaton, adorable chaton.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Je plaisantais" File="Je plaisantais.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Je souhaite à Sheldon, une vie longue et prospère" File="Je souhaite à Sheldon, une vie longue et prospère.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="La chanson de Sheldon bourré" File="La chanson de Sheldon bourré.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Le rire de Sheldon" File="Le rire de Sheldon.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Les oompa loompas de la science" File="Les oompa loompas de la science.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Mouahahahah" File="Mouahahahah.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Penny et Sheldon chantent" File="Penny et Sheldon chantent.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Pierre papier ciseaux lézard spock" File="Pierre papier ciseaux lézard spock.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Theme end" File="TBBT_Theme_end.mp3" Category="TBBT" Lang="fr-FR"/>
+	<SoundViewModel Name="Theme full" File="TBBT_Theme_full.mp3" Category="TBBT" Lang="fr-FR"/>
+	<SoundViewModel Name="Toc toc toc Penny" File="Toc toc toc Penny.mp3" Category="CLAS" Lang="fr-FR"/>
+</ArrayOfSoundViewModel>

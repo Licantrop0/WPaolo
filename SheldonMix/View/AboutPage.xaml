@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="SheldonMix.AboutPage"
+    x:Class="SheldonMix.View.AboutPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -45,14 +45,10 @@
     		MinFontSize="30"
     		DefaultBackground="{StaticResource DefaultBackground}"
     		DefaultFont="{StaticResource DefaultFont}"
-    		DefaultForeground="{StaticResource HeaderForeground}">
-            <vm:AboutViewModel.CustomText>
-                This is an unofficial app for The Big Bang Theory fans.
-                All trademarks and copyrights are property of CBS.
-            </vm:AboutViewModel.CustomText>
-        </vm:AboutViewModel>
+    		DefaultForeground="{StaticResource HeaderForeground}"
+            CustomText="{Binding LocalizedResources.DisclaimerText, Source={StaticResource LocalizedStrings}}" />
     </phone:PhoneApplicationPage.Resources>
-        <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}"
+    <wpc:About Name="WPMEAbout" DataContext="{StaticResource AboutVM}"
                AdUnitId="10022426" ADAppId="52927"
                ApplicationId="04e2ad45-3752-4d8c-867c-b1eb0cf4a3e1" />
 </phone:PhoneApplicationPage>

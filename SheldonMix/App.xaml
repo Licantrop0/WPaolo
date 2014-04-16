@@ -8,6 +8,7 @@
     xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher" >
 
     <Application.Resources>
+        <loc:LocalizedStrings xmlns:loc="clr-namespace:SheldonMix.Localization" x:Key="LocalizedStrings" />
 
         <FontFamily x:Key="DefaultFont">/SheldonMix;component/Fonts/Fonts.zip#Showcard Gothic</FontFamily>
 
@@ -31,7 +32,12 @@
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
             <Setter Property="Foreground" Value="{StaticResource HeaderForeground}" />
         </Style>
-
+        
+        <LinearGradientBrush x:Key="ProgressBrush" EndPoint="0,0.5" StartPoint="1,0.5">
+            <GradientStop Color="#FFF0FD00" />
+            <GradientStop Color="#FFFD0404" Offset="0.8" />
+        </LinearGradientBrush>
+        
         <Style x:Key="PlayButtonStyle"  TargetType="Button">
             <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />

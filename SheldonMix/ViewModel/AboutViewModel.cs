@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 
 namespace SheldonMix.ViewModel
 {
-    public class AboutViewModel : INotifyPropertyChanged
+    public class AboutViewModel : DependencyObject, INotifyPropertyChanged
     {
         XNamespace nsAtom = "http://www.w3.org/2005/Atom";
         XNamespace nsZune = "http://schemas.zune.net/catalog/apps/2008/02";
@@ -89,7 +89,16 @@ namespace SheldonMix.ViewModel
 
         public FontFamily DefaultFont { get; set; }
 
-        public string CustomText { get; set; }
+
+        public string CustomText
+        {
+            get { return (string)GetValue(CustomTextProperty); }
+            set { SetValue(CustomTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty CustomTextProperty =
+            DependencyProperty.Register("CustomText", typeof(string),
+            typeof(AboutViewModel), new PropertyMetadata(string.Empty));
 
         private FontFamily _customTextFontFamily;
         public FontFamily CustomTextFontFamily

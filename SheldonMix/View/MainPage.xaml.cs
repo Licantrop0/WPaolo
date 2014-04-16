@@ -1,9 +1,12 @@
 ﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Net.NetworkInformation;
 using Microsoft.Phone.Tasks;
 using System;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Windows;
 
-namespace SheldonMix
+namespace SheldonMix.View
 {
 
     public partial class MainPage : PhoneApplicationPage
@@ -12,6 +15,8 @@ namespace SheldonMix
         {
             InitializeComponent();
         }
+
+
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
@@ -85,6 +90,49 @@ namespace SheldonMix
             }
             catch (InvalidOperationException)
             { /*do nothing */ }
+        }
+
+        private async void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (var isf = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                if (!isf.FileExists(AppContext.XmlPath))
+                {
+                    if (!DeviceNetworkInformation.IsNetworkAvailable)
+                    {
+                        MessageBox.Show("Per il primo avvio ho bisogno della connessione per scaricare i nuovi insulti.",
+                            "Connetti e riprova", MessageBoxButton.OK);
+                        AppContext.CloseApp();
+                    }
+
+                    NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
+                    return;
+                }
+                else
+                {
+                    if (!DeviceNetworkInformation.IsNetworkAvailable) return;
+
+                    using (var file = isf.OpenFile(AppContext.XmlPath, FileMode.Open))
+                    using (var NewXml = await AppContext.GetNewXmlAsync())
+                    {
+                        if (NewXml == null) return;
+                        if (NewXml.Length == file.Length) return;
+                    }
+                }
+            }
+            var MsgBox = new CustomMessageBox()
+            {
+                Message = "Hey! Sono disponibili nuovi Insulti, vuoi scaricarli?",
+                LeftButtonContent = "Altroché!",
+                RightButtonContent = "mah... ora no"
+            };
+
+            MsgBox.Dismissed += (s1, e1) =>
+            {
+                if (e1.Result == CustomMessageBoxResult.LeftButton)
+                    NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
+            };
+            MsgBox.Show();
         }
 
         //Stack<Uri> BrowserHistory = new Stack<Uri>();

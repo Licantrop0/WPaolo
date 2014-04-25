@@ -6,11 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Globalization;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
-using System.Text;
+using System.Net;
 using System.Windows;
 using WPCommon.Helpers;
 
@@ -149,7 +148,8 @@ namespace SheldonMix.ViewModel
             {
                 isFinished = true;
                 //MessengerInstance.Send("update_completed");
-                MessageBox.Show("Evvai!, ora puoi insultare con nuovi insulti!", "Download Completato", MessageBoxButton.OK);
+                MessageBox.Show(AppResources.NewSoundsDownloaded,
+                    AppResources.DownloadCompleted, MessageBoxButton.OK);
                 NS.GoBack();
             }
         }

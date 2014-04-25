@@ -1,6 +1,8 @@
 ﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
+using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
+using SheldonMix.Localization;
 using System;
 using System.IO;
 using System.IO.IsolatedStorage;
@@ -14,9 +16,35 @@ namespace SheldonMix.View
         public MainPage()
         {
             InitializeComponent();
+            InitializeAppBar();
         }
 
+        private void InitializeAppBar()
+        {
+            var rateUsAppBarButton = new ApplicationBarIconButton()
+             {
+                 Text = AppResources.RateUs,
+                 IconUri = new Uri("/images/smile.png", UriKind.Relative)
+             };
+            rateUsAppBarButton.Click += (sender, e) =>
+            {
+                try
+                {
+                    new MarketplaceReviewTask().Show();
+                }
+                catch (InvalidOperationException)
+                { /*do nothing */ }
+            };
+            ApplicationBar.Buttons.Add(rateUsAppBarButton);
 
+            var aboutAppBarButton = new ApplicationBarIconButton()
+            {
+                Text = AppResources.About,
+                IconUri = new Uri("/images/i.png", UriKind.Relative)
+            };
+            aboutAppBarButton.Click += (sender, e) => NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
+            ApplicationBar.Buttons.Add(aboutAppBarButton);
+        }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
@@ -30,11 +58,6 @@ namespace SheldonMix.View
         {
             adSwitcher.RemoveAdvertising();
             base.OnNavigatedFrom(e);
-        }
-
-        private void AboutAppBarMenu_Click(object sender, EventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
 
         private void TwitterCBS_Click(object sender, RoutedEventArgs e)
@@ -82,33 +105,11 @@ namespace SheldonMix.View
             new WebBrowserTask() { Uri = new Uri("http://m.youtube.com/watch?v=6FFV28XxB-A") }.Show();
         }
 
-        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                new MarketplaceReviewTask().Show();
-            }
-            catch (InvalidOperationException)
-            { /*do nothing */ }
-        }
-
         private async void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             using (var isf = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                if (!isf.FileExists(AppContext.XmlPath))
-                {
-                    if (!DeviceNetworkInformation.IsNetworkAvailable)
-                    {
-                        MessageBox.Show("Per il primo avvio ho bisogno della connessione per scaricare i nuovi insulti.",
-                            "Connetti e riprova", MessageBoxButton.OK);
-                        AppContext.CloseApp();
-                    }
-
-                    NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
-                    return;
-                }
-                else
+                if (isf.FileExists(AppContext.XmlPath))
                 {
                     if (!DeviceNetworkInformation.IsNetworkAvailable) return;
 
@@ -119,12 +120,26 @@ namespace SheldonMix.View
                         if (NewXml.Length == file.Length) return;
                     }
                 }
+                else
+                {
+                    if (!DeviceNetworkInformation.IsNetworkAvailable)
+                    {
+                        MessageBox.Show(AppResources.FirstLaunch,
+                            AppResources.FirstLaunchTitle,
+                            MessageBoxButton.OK);
+                        AppContext.CloseApp();
+                    }
+
+                    NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
+                    return;
+                }
             }
+
             var MsgBox = new CustomMessageBox()
             {
-                Message = "Hey! Sono disponibili nuovi Insulti, vuoi scaricarli?",
-                LeftButtonContent = "Altroché!",
-                RightButtonContent = "mah... ora no"
+                Message = AppResources.NewSoundsAvailable,
+                LeftButtonContent = AppResources.Yes,
+                RightButtonContent = AppResources.NotNow
             };
 
             MsgBox.Dismissed += (s1, e1) =>

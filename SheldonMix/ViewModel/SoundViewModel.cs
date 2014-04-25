@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.Phone.Tasks;
 using Microsoft.Xna.Framework.Media;
-using System.Windows.Input;
-using System.Windows;
-using WPCommon.Helpers;
-using Microsoft.Phone.Tasks;
-using System.Xml.Serialization;
 using SheldonMix.Localization;
-using System.IO.IsolatedStorage;
+using System;
 using System.IO;
+using System.IO.IsolatedStorage;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Xml.Serialization;
+using WPCommon.Helpers;
 
 namespace SheldonMix.ViewModel
 {
@@ -67,12 +68,10 @@ namespace SheldonMix.ViewModel
             }
         }
 
-
-
         public void PlayAction(object param)
         {
-            if (!AskAndPlayMusic())
-                return;
+            //if (!AskAndPlayMusic())
+            //    return;
 
             if (Category == SoundCategory.TBBT &&
                 MediaPlayer.State == MediaState.Playing &&
@@ -82,10 +81,10 @@ namespace SheldonMix.ViewModel
                 return;
             }
 
-            
+            var me = (MediaElement)param;
             using (var isf = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                using (var isfs = isf.OpenFile("shared/transfers/" + File, FileMode.Open))
+                using (var isfs = isf.OpenFile("shared/transfers/" + File, FileMode.Open, FileAccess.Read))
                 {
                     me.SetSource(isfs);
                 }

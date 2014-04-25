@@ -6,6 +6,10 @@
     </header>
     <body>
       <group id="Resx">
+        <trans-unit id="Resx/About" translate="yes" xml:space="preserve">
+          <source>About</source>
+          <target state="new">About</target>
+        </trans-unit>
         <trans-unit id="Resx/AlreadyUpdated" translate="yes" xml:space="preserve">
           <source>The phrases are all already updated</source>
           <target state="new">The phrases are all already updated</target>
@@ -20,9 +24,21 @@ All trademarks and copyrights are property of CBS.</source>
           <target state="new">This is an unofficial app for The Big Bang Theory fans.
 All trademarks and copyrights are property of CBS.</target>
         </trans-unit>
+        <trans-unit id="Resx/DownloadCompleted" translate="yes" xml:space="preserve">
+          <source>Download completed</source>
+          <target state="new">Download completed</target>
+        </trans-unit>
         <trans-unit id="Resx/Extra" translate="yes" xml:space="preserve">
           <source>Extra</source>
           <target state="new">Extra</target>
+        </trans-unit>
+        <trans-unit id="Resx/FirstLaunchTitle" translate="yes" xml:space="preserve">
+          <source>Connect and retry</source>
+          <target state="new">Connect and retry</target>
+        </trans-unit>
+        <trans-unit id="Resx/FirstLaunch" translate="yes" xml:space="preserve">
+          <source>For the first launch, I need an internet connection to download the new sounds</source>
+          <target state="new">For the first launch, I need an internet connection to download the new sounds</target>
         </trans-unit>
         <trans-unit id="Resx/GetFeedback" translate="yes" xml:space="preserve">
           <source>Something is missing in this app?
@@ -50,9 +66,25 @@ Close, connect to internet, and reopen the app.</source>
           <target state="new">I'm sorry, but you have to be connected to internet to download the sounds.
 Close, connect to internet, and reopen the app.</target>
         </trans-unit>
+        <trans-unit id="Resx/RateUs" translate="yes" xml:space="preserve">
+          <source>Rate us</source>
+          <target state="new">Rate us</target>
+        </trans-unit>
+        <trans-unit id="Resx/NotNow" translate="yes" xml:space="preserve">
+          <source>nah... not now.</source>
+          <target state="new">nah... not now.</target>
+        </trans-unit>
         <trans-unit id="Resx/LoadingSoundsList" translate="yes" xml:space="preserve">
           <source>Loading sounds list</source>
           <target state="new">Loading sounds list</target>
+        </trans-unit>
+        <trans-unit id="Resx/NewSoundsDownloaded" translate="yes" xml:space="preserve">
+          <source>Yeah, not you can listen to new Sheldon's famous phrases!</source>
+          <target state="new">Yeah, not you can listen to new Sheldon's famous phrases!</target>
+        </trans-unit>
+        <trans-unit id="Resx/NewSoundsAvailable" translate="yes" xml:space="preserve">
+          <source>Hey, there are new sounds available, do you want to download them?</source>
+          <target state="new">Hey, there are new sounds available, do you want to download them?</target>
         </trans-unit>
         <trans-unit id="Resx/SetRingtoneTip" translate="yes" xml:space="preserve">
           <source>Set every sound as Ringtone by
@@ -75,6 +107,10 @@ long-pressing on the buttons!</target>
         <trans-unit id="Resx/UpdatingSounds" translate="yes" xml:space="preserve">
           <source>Updating sound {0}/{1}</source>
           <target state="new">Updating sound {0}/{1}</target>
+        </trans-unit>
+        <trans-unit id="Resx/Yes" translate="yes" xml:space="preserve">
+          <source>Ou Yeah!</source>
+          <target state="new">Ou Yeah!</target>
         </trans-unit>
       </group>
     </body>

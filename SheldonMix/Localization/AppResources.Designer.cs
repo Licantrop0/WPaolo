@@ -61,6 +61,15 @@ namespace SheldonMix.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The phrases are all already updated.
         /// </summary>
         public static string AlreadyUpdated {
@@ -89,11 +98,38 @@ namespace SheldonMix.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download completed.
+        /// </summary>
+        public static string DownloadCompleted {
+            get {
+                return ResourceManager.GetString("DownloadCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extra.
         /// </summary>
         public static string Extra {
             get {
                 return ResourceManager.GetString("Extra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For the first launch, I need an internet connection to download the new sounds.
+        /// </summary>
+        public static string FirstLaunch {
+            get {
+                return ResourceManager.GetString("FirstLaunch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect and retry.
+        /// </summary>
+        public static string FirstLaunchTitle {
+            get {
+                return ResourceManager.GetString("FirstLaunchTitle", resourceCulture);
             }
         }
         
@@ -120,12 +156,48 @@ namespace SheldonMix.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hey, there are new sounds available, do you want to download them?.
+        /// </summary>
+        public static string NewSoundsAvailable {
+            get {
+                return ResourceManager.GetString("NewSoundsAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yeah, not you can listen to new Sheldon&apos;s famous phrases!.
+        /// </summary>
+        public static string NewSoundsDownloaded {
+            get {
+                return ResourceManager.GetString("NewSoundsDownloaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I&apos;m sorry, but you have to be connected to internet to download the sounds.
         ///Close, connect to internet, and reopen the app..
         /// </summary>
         public static string NoConnectionAvailable {
             get {
                 return ResourceManager.GetString("NoConnectionAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nah... not now..
+        /// </summary>
+        public static string NotNow {
+            get {
+                return ResourceManager.GetString("NotNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate us.
+        /// </summary>
+        public static string RateUs {
+            get {
+                return ResourceManager.GetString("RateUs", resourceCulture);
             }
         }
         
@@ -174,6 +246,15 @@ namespace SheldonMix.Localization {
         public static string UpdatingSounds {
             get {
                 return ResourceManager.GetString("UpdatingSounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ou Yeah!.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
         

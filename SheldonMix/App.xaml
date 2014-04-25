@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher" >
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" >
 
     <Application.Resources>
         <loc:LocalizedStrings xmlns:loc="clr-namespace:SheldonMix.Localization" x:Key="LocalizedStrings" />
@@ -73,7 +72,7 @@
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
-        <wph:XNAAsyncDispatcher />
+        <!--<wph:XNAAsyncDispatcher  xmlns:wph="clr-namespace:WPCommon.Helpers;assembly=WPCommon.Helpers.XNAAsyncDispatcher" />-->
 
         <shell:PhoneApplicationService 
             Launching="Application_Launching" Closing="Application_Closing" 

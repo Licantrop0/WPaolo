@@ -21,12 +21,13 @@
     </phone:PhoneApplicationPage.Resources>
     <Border Background="White">
         <Grid Background="{StaticResource DefaultBackground}">
+            <MediaElement x:Name="ME" />
             <controls:Pivot Name="MainPivot" Title="{x:Null}" Margin="0, 0, 0, 80"
                         DataContext="{StaticResource MainVM}">
                 <controls:Pivot.Resources>
                     <DataTemplate x:Key="PlayButtonDataTemplate">
                         <Button Command="{Binding PlayCommand}"
-                                Content="{Binding Name}" 
+                                Content="{Binding Name}" CommandParameter="{Binding ElementName=ME}"
                                 Style="{StaticResource PlayButtonStyle}">
                             <toolkit:ContextMenuService.ContextMenu>
                                 <toolkit:ContextMenu IsZoomEnabled="False">
@@ -218,9 +219,6 @@
     </Border>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/images/i.png" Text="About" Click="AboutAppBarMenu_Click" />
-            <shell:ApplicationBarIconButton IconUri="/images/smile.png"  Text="Rate us!" Click="ApplicationBarIconButton_Click" />
-        </shell:ApplicationBar>
+        <shell:ApplicationBar IsMenuEnabled="True" />
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

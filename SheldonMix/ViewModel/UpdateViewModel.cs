@@ -9,7 +9,6 @@ using System.ComponentModel;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using WPCommon.Helpers;
 
@@ -74,7 +73,7 @@ namespace SheldonMix.ViewModel
                 if (newXml == null)
                 {
                     MessageBox.Show(AppResources.ServerError);
-                    AppContext.CloseApp();
+                    Application.Current.Terminate();
                 }
                 sounds = AppContext.SoundSerializer.Deserialize(newXml) as SoundViewModel[];
             }
@@ -147,7 +146,7 @@ namespace SheldonMix.ViewModel
             if (!BackgroundTransferService.Requests.Any())
             {
                 isFinished = true;
-                //MessengerInstance.Send("update_completed");
+                AppContext.UpdateUI(this);
                 MessageBox.Show(AppResources.NewSoundsDownloaded,
                     AppResources.DownloadCompleted, MessageBoxButton.OK);
                 NS.GoBack();

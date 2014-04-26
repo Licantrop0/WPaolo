@@ -1,12 +1,9 @@
 ﻿using SheldonMix.ViewModel;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.IO.IsolatedStorage;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -17,6 +14,7 @@ namespace SheldonMix
         public static XmlSerializer SoundSerializer { get { return new XmlSerializer(typeof(SoundViewModel[])); } }
         static IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
         public const string XmlPath = "shared/transfers/Sounds.xml";
+        public static event EventHandler UpdateUIEvent = delegate {};
         
         //HACK: supporting only ENG and FRA.
         public static string Lang { get { return CultureInfo.CurrentUICulture.Name == "fr-FR" ? "fr-FR" : "en-US"; } }
@@ -51,6 +49,11 @@ namespace SheldonMix
             }
         }
 
+        public static void UpdateUI(object sender)
+        {
+            UpdateUIEvent(sender, EventArgs.Empty);
+        }
+
         static Random rnd = new Random();
         public static SoundViewModel GetRandomSound()
         {
@@ -77,11 +80,5 @@ namespace SheldonMix
                 return null;
             }
         }
-
-        public static void CloseApp()
-        {
-            throw new Exception("ForceExit");
-        }
     }
-
 }

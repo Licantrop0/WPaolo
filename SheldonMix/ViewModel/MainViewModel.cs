@@ -8,6 +8,16 @@ namespace SheldonMix.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
+        public MainViewModel()
+        {
+            AppContext.UpdateUIEvent += (sender, e) =>
+            {
+                RaisePropertyChanged("SuoniCLAS");
+                RaisePropertyChanged("SuoniZAZZ");
+                RaisePropertyChanged("SuoniTBBT");
+            };
+        }
+
         private IList<SoundViewModel> _suoniCLAS;
         public IList<SoundViewModel> SuoniCLAS
         {

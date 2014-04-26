@@ -1,6 +1,7 @@
 ﻿using Microsoft.Phone.Controls;
 using System.ComponentModel;
 using System.IO.IsolatedStorage;
+using System.Windows;
 
 namespace SheldonMix.View
 {
@@ -15,7 +16,7 @@ namespace SheldonMix.View
         {
             using (var isf = IsolatedStorageFile.GetUserStoreForApplication())
                 if (!isf.FileExists(AppContext.XmlPath))
-                    AppContext.CloseApp();
+                    Application.Current.Terminate();
         }
     }
 }

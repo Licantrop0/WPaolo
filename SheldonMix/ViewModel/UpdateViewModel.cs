@@ -32,7 +32,6 @@ namespace SheldonMix.ViewModel
             }
         }
 
-
         public UpdateViewModel()
         {            
             if (DesignerProperties.IsInDesignTool)

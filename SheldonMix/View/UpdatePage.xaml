@@ -26,7 +26,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding Title}" Margin="12"
+        <TextBlock Text="{Binding Title}" Margin="12,24,0,12"
                        FontSize="{StaticResource PhoneFontSizeLarge}"
                        FontFamily="{StaticResource DefaultFont}"
                        Foreground="{StaticResource HeaderForeground}"

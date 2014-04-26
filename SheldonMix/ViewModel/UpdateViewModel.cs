@@ -18,6 +18,7 @@ namespace SheldonMix.ViewModel
     public class UpdateViewModel : ObservableObject
     {
         public ObservableCollection<TransferMonitor> Downloads { get; set; }
+        private Queue<BackgroundTransferRequest> TransferQueue;
         private int AllFilesCount;
         const string baseUri = "shared/transfers/";
 
@@ -32,7 +33,6 @@ namespace SheldonMix.ViewModel
             }
         }
 
-        Queue<BackgroundTransferRequest> TransferQueue;
 
         public UpdateViewModel()
         {            

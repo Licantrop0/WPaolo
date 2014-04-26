@@ -22,9 +22,9 @@
     <Border Background="White">
         <Grid Background="{StaticResource DefaultBackground}">
             <MediaElement x:Name="ME" />
-            <controls:Pivot Name="MainPivot" Title="{x:Null}" Margin="0, 0, 0, 80"
+            <phone:Pivot Name="MainPivot" Title="{x:Null}" Margin="0, 0, 0, 80"
                         DataContext="{StaticResource MainVM}">
-                <controls:Pivot.Resources>
+                <phone:Pivot.Resources>
                     <DataTemplate x:Key="PlayButtonDataTemplate">
                         <Button Command="{Binding PlayCommand}"
                                 Content="{Binding Name}" CommandParameter="{Binding ElementName=ME}"
@@ -41,20 +41,20 @@
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
-                </controls:Pivot.Resources>
+                </phone:Pivot.Resources>
 
                 <!-- Classic -->
-                <controls:PivotItem Margin="0">
+                <phone:PivotItem Margin="0">
                     <controls:PivotItem.Header>
                         <TextBlock Text="{Binding LocalizedResources.Classic, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HeaderStyle}" />
                     </controls:PivotItem.Header>
                     <ListBox ItemsSource="{Binding SuoniCLAS}"
                      ItemTemplate="{StaticResource PlayButtonDataTemplate}" />
-                </controls:PivotItem>
+                </phone:PivotItem>
 
                 <!-- Zazzy -->
-                <controls:PivotItem Margin="0">
+                <phone:PivotItem Margin="0">
                     <controls:PivotItem.Header>
                         <TextBlock Text="{Binding LocalizedResources.Zazzy, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HeaderStyle}" />
@@ -62,14 +62,14 @@
 
                     <ListBox ItemsSource="{Binding SuoniZAZZ}"
                      ItemTemplate="{StaticResource PlayButtonDataTemplate}" />
-                </controls:PivotItem>
+                </phone:PivotItem>
 
                 <!-- TBBT -->
-                <controls:PivotItem Margin="0">
-                    <controls:PivotItem.Header>
+                <phone:PivotItem Margin="0">
+                    <phone:PivotItem.Header>
                         <TextBlock Text="{Binding LocalizedResources.TBBT, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HeaderStyle}" />
-                    </controls:PivotItem.Header>
+                    </phone:PivotItem.Header>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -126,25 +126,25 @@
                         </ScrollViewer>
 
                     </Grid>
-                </controls:PivotItem>
+                </phone:PivotItem>
 
                 <!-- Videos 
-                <controls:PivotItem Name="VideosPivotItem" Margin="0">
-                    <controls:PivotItem.Header>
+                <phone:PivotItem Name="VideosPivotItem" Margin="0">
+                    <phone:PivotItem.Header>
                         <TextBlock Text="Videos" Style="{StaticResource HeaderStyle}" />
-                    </controls:PivotItem.Header>
+                    </phone:PivotItem.Header>
                     <phone:WebBrowser Name="YouTubeBrowser" IsScriptEnabled="True"
                                       Navigating="YouTubeBrowser_Navigating"
                                       Navigated="YouTubeBrowser_Navigated"
                                       Source="http://m.youtube.com/results?q=sheldon%20cooper" />
-                </controls:PivotItem>-->
+                </phone:PivotItem>-->
 
                 <!-- Extra -->
-                <controls:PivotItem Margin="0">
-                    <controls:PivotItem.Header>
+                <phone:PivotItem Margin="0">
+                    <phone:PivotItem.Header>
                         <TextBlock Text="{Binding LocalizedResources.Extra, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HeaderStyle}" />
-                    </controls:PivotItem.Header>
+                    </phone:PivotItem.Header>
 
                     <StackPanel>
                         <TextBlock Text="{Binding LocalizedResources.SetRingtoneTip, Source={StaticResource LocalizedStrings}}"
@@ -210,8 +210,8 @@
                             TextWrapping="Wrap" Foreground="Black" Margin="6"
                            TextAlignment="Center" FontFamily="{StaticResource DefaultFont}" />
                     </StackPanel>
-                </controls:PivotItem>
-            </controls:Pivot>
+                </phone:PivotItem>
+            </phone:Pivot>
             <wpc:AdSwitcher Name="adSwitcher" VerticalAlignment="Bottom"
                             MSAppId="04e2ad45-3752-4d8c-867c-b1eb0cf4a3e1"
                             MSAdId="10022426" ADAppId="52927" />

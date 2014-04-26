@@ -126,6 +126,9 @@
   <data name="Classic" xml:space="preserve">
     <value>Classic</value>
   </data>
+  <data name="Credits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
   <data name="DisclaimerText" xml:space="preserve">
     <value>This is an unofficial app for The Big Bang Theory fans.
 All trademarks and copyrights are property of CBS.</value>
@@ -156,7 +159,7 @@ by mail, Twitter or Facebook.</value>
     <value>Hey, there are new sounds available, do you want to download them?</value>
   </data>
   <data name="NewSoundsDownloaded" xml:space="preserve">
-    <value>Yeah, not you can listen to new Sheldon's famous phrases!</value>
+    <value>Yeah, now you can listen to new Sheldon's famous phrases!</value>
   </data>
   <data name="NoConnectionAvailable" xml:space="preserve">
     <value>I'm sorry, but you have to be connected to internet to download the sounds.
@@ -182,6 +185,9 @@ long-pressing on the buttons!</value>
   </data>
   <data name="TBBT" xml:space="preserve">
     <value>TBBT</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>A big thanks to Marine, that collected all the sounds for the french version and translated the UI</value>
   </data>
   <data name="UpdatingSounds" xml:space="preserve">
     <value>Updating sound {0}/{1}</value>

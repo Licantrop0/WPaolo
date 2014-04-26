@@ -8,37 +8,41 @@
       <group id="Resx">
         <trans-unit id="Resx/About" translate="yes" xml:space="preserve">
           <source>About</source>
-          <target state="new">About</target>
+          <target state="translated" state-qualifier="tm-suggestion">À propos de</target>
         </trans-unit>
         <trans-unit id="Resx/AlreadyUpdated" translate="yes" xml:space="preserve">
           <source>The phrases are all already updated</source>
-          <target state="new">The phrases are all already updated</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Mise à jour déjà tous les phrases</target>
         </trans-unit>
         <trans-unit id="Resx/Classic" translate="yes" xml:space="preserve">
           <source>Classic</source>
-          <target state="new">Classic</target>
+          <target state="translated" state-qualifier="tm-suggestion">Classique</target>
+        </trans-unit>
+        <trans-unit id="Resx/Credits" translate="yes" xml:space="preserve">
+          <source>Credits</source>
+          <target state="translated" state-qualifier="tm-suggestion">Crédits</target>
         </trans-unit>
         <trans-unit id="Resx/DisclaimerText" translate="yes" xml:space="preserve">
           <source>This is an unofficial app for The Big Bang Theory fans.
 All trademarks and copyrights are property of CBS.</source>
-          <target state="new">This is an unofficial app for The Big Bang Theory fans.
-All trademarks and copyrights are property of CBS.</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Il s'agit d'une application non officielle pour la Big Bang, théorie ventilateurs.
+Toutes les marques et les droits d'auteur sont la propriété de CBS.</target>
         </trans-unit>
         <trans-unit id="Resx/DownloadCompleted" translate="yes" xml:space="preserve">
           <source>Download completed</source>
-          <target state="new">Download completed</target>
+          <target state="translated" state-qualifier="tm-suggestion">Téléchargement terminé</target>
         </trans-unit>
         <trans-unit id="Resx/Extra" translate="yes" xml:space="preserve">
           <source>Extra</source>
-          <target state="new">Extra</target>
+          <target state="translated">Extra</target>
         </trans-unit>
         <trans-unit id="Resx/FirstLaunchTitle" translate="yes" xml:space="preserve">
           <source>Connect and retry</source>
-          <target state="new">Connect and retry</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Vous connecter et réessayer</target>
         </trans-unit>
         <trans-unit id="Resx/FirstLaunch" translate="yes" xml:space="preserve">
           <source>For the first launch, I need an internet connection to download the new sounds</source>
-          <target state="new">For the first launch, I need an internet connection to download the new sounds</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Le premier lancement, j'ai besoin d'une connexion internet pour télécharger les nouveaux sons</target>
         </trans-unit>
         <trans-unit id="Resx/GetFeedback" translate="yes" xml:space="preserve">
           <source>Something is missing in this app?
@@ -46,71 +50,75 @@ Please send us your suggestions,
 we definitely consider your feedback!
 Open the About Page and drop us a line
 by mail, Twitter or Facebook.</source>
-          <target state="new">Something is missing in this app?
-Please send us your suggestions,
-we definitely consider your feedback!
-Open the About Page and drop us a line
-by mail, Twitter or Facebook.</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Manque quelque chose dans cette application ?
+Veuillez nous envoyer vos suggestions,
+sans aucun doute, nous prenons en compte vos commentaires !
+Ouvrez la Page à propos et envoyez-nous une ligne
+par courrier, Twitter ou Facebook.</target>
         </trans-unit>
         <trans-unit id="Resx/ServerError" translate="yes" xml:space="preserve">
           <source>Whoops! There is something wrong with the connection to the server...
 Try again in a few minutes.
 If still doesn't work, please contact me on Facebook (WP Mobile Entertainment)</source>
-          <target state="new">Whoops! There is something wrong with the connection to the server...
-Try again in a few minutes.
-If still doesn't work, please contact me on Facebook (WP Mobile Entertainment)</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Whoops ! Il existe un problème avec la connexion au serveur...
+Réessayez dans quelques minutes.
+Si encore ne fonctionne pas, veuillez contact moi sur Facebook (WP Mobile loisirs)</target>
         </trans-unit>
         <trans-unit id="Resx/NoConnectionAvailable" translate="yes" xml:space="preserve">
           <source>I'm sorry, but you have to be connected to internet to download the sounds.
 Close, connect to internet, and reopen the app.</source>
-          <target state="new">I'm sorry, but you have to be connected to internet to download the sounds.
-Close, connect to internet, and reopen the app.</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Je suis désolé, mais vous devez être connecté à internet pour télécharger les sons.
+Fermer, se connecter à internet et ouvrez à nouveau l'application.</target>
         </trans-unit>
         <trans-unit id="Resx/RateUs" translate="yes" xml:space="preserve">
           <source>Rate us</source>
-          <target state="new">Rate us</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Taux de nous</target>
         </trans-unit>
         <trans-unit id="Resx/NotNow" translate="yes" xml:space="preserve">
           <source>nah... not now.</source>
-          <target state="new">nah... not now.</target>
+          <target state="translated">pas maintenant.</target>
         </trans-unit>
         <trans-unit id="Resx/LoadingSoundsList" translate="yes" xml:space="preserve">
           <source>Loading sounds list</source>
-          <target state="new">Loading sounds list</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Chargement de la liste sons</target>
         </trans-unit>
         <trans-unit id="Resx/NewSoundsDownloaded" translate="yes" xml:space="preserve">
-          <source>Yeah, not you can listen to new Sheldon's famous phrases!</source>
-          <target state="new">Yeah, not you can listen to new Sheldon's famous phrases!</target>
+          <source>Yeah, now you can listen to new Sheldon's famous phrases!</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Oui, maintenant vous pouvez écouter les phrases célèbres du nouveau Sheldon !</target>
         </trans-unit>
         <trans-unit id="Resx/NewSoundsAvailable" translate="yes" xml:space="preserve">
           <source>Hey, there are new sounds available, do you want to download them?</source>
-          <target state="new">Hey, there are new sounds available, do you want to download them?</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Bonjour, nouveaux sons sont disponibles, vous voulez les télécharger ?</target>
         </trans-unit>
         <trans-unit id="Resx/SetRingtoneTip" translate="yes" xml:space="preserve">
           <source>Set every sound as Ringtone by
 long-pressing on the buttons!</source>
-          <target state="new">Set every sound as Ringtone by
-long-pressing on the buttons!</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Configurez chaque son comme sonnerie par
+pression longue sur les boutons !</target>
         </trans-unit>
         <trans-unit id="Resx/StopMusic" translate="yes" xml:space="preserve">
           <source>Do you want to stop your music and hear what Sheldon have to say?</source>
-          <target state="new">Do you want to stop your music and hear what Sheldon have to say?</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Voulez-vous arrêter votre musique et d'entendre ce que Sheldon ont à dire ?</target>
         </trans-unit>
         <trans-unit id="Resx/Zazzy" translate="yes" xml:space="preserve">
           <source>Zazzy</source>
-          <target state="new">Zazzy</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Zazzy</target>
         </trans-unit>
         <trans-unit id="Resx/TBBT" translate="yes" xml:space="preserve">
           <source>TBBT</source>
-          <target state="new">TBBT</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">TBBT</target>
+        </trans-unit>
+        <trans-unit id="Resx/ThankYou" translate="yes" xml:space="preserve">
+          <source>A big thanks to Marine, that collected all the sounds for the french version and translated the UI</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Un grand merci à Marine, collecter tous les sons de la version française et à traduire l'interface utilisateur</target>
         </trans-unit>
         <trans-unit id="Resx/UpdatingSounds" translate="yes" xml:space="preserve">
           <source>Updating sound {0}/{1}</source>
-          <target state="new">Updating sound {0}/{1}</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Mise à jour de son {0} / {1}</target>
         </trans-unit>
         <trans-unit id="Resx/Yes" translate="yes" xml:space="preserve">
           <source>Ou Yeah!</source>
-          <target state="new">Ou Yeah!</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Unité d'organisation Oui !</target>
         </trans-unit>
       </group>
     </body>

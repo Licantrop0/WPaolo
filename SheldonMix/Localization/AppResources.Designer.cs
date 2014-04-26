@@ -88,6 +88,15 @@ namespace SheldonMix.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Credits.
+        /// </summary>
+        public static string Credits {
+            get {
+                return ResourceManager.GetString("Credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is an unofficial app for The Big Bang Theory fans.
         ///All trademarks and copyrights are property of CBS..
         /// </summary>
@@ -165,7 +174,7 @@ namespace SheldonMix.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yeah, not you can listen to new Sheldon&apos;s famous phrases!.
+        ///   Looks up a localized string similar to Yeah, now you can listen to new Sheldon&apos;s famous phrases!.
         /// </summary>
         public static string NewSoundsDownloaded {
             get {
@@ -237,6 +246,15 @@ namespace SheldonMix.Localization {
         public static string TBBT {
             get {
                 return ResourceManager.GetString("TBBT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A big thanks to Marine, that collected all the sounds for the french version and translated the UI.
+        /// </summary>
+        public static string ThankYou {
+            get {
+                return ResourceManager.GetString("ThankYou", resourceCulture);
             }
         }
         

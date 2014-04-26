@@ -4,6 +4,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using SheldonMix.Localization;
 using System;
+using System.Globalization;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Windows;
@@ -44,6 +45,17 @@ namespace SheldonMix.View
             };
             aboutAppBarButton.Click += (sender, e) => NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
             ApplicationBar.Buttons.Add(aboutAppBarButton);
+
+            if (CultureInfo.CurrentUICulture.Name == "fr-FR")
+            {
+                var creditsAppBarButton = new ApplicationBarIconButton()
+                {
+                    Text = AppResources.Credits,
+                    IconUri = new Uri("/images/copyrights.png", UriKind.Relative)
+                };
+                creditsAppBarButton.Click += (sender, e) => NavigationService.Navigate(new Uri("/View/CreditsPage.xaml", UriKind.Relative));
+                ApplicationBar.Buttons.Add(creditsAppBarButton);
+            }
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

@@ -139,7 +139,7 @@ namespace SheldonMix.View
                         MessageBox.Show(AppResources.FirstLaunch,
                             AppResources.FirstLaunchTitle,
                             MessageBoxButton.OK);
-                        AppContext.CloseApp();
+                        Application.Current.Terminate();
                     }
 
                     NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));

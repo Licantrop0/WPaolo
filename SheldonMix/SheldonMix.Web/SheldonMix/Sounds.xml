@@ -9,25 +9,25 @@
 	<SoundViewModel Name="Ce n'est pas grave, c'est horrible !" File="Cela_ne_se_passe_jamais_a_merveille.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="Cela ne se passe jamais à merveille" File="Ce_n'est_pas_grave,_c'est_horrible.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="Doux chaton, adorable chaton" File="Doux_chaton,_adorable_chaton.mp3" Category="CLAS" Lang="fr-FR"/>
-	<SoundViewModel Name="Dr Sheldon Cooper" File="Dr_Sheldon_Cooper.mp3" Lang="fr-FR"/>
+	<SoundViewModel Name="Dr Sheldon Cooper" File="Dr_Sheldon_Cooper.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Je plaisantais" File="Je_plaisantais.mp3" Category="ZAZZ" Lang="fr-FR"/>
-	<SoundViewModel Name="Je possède l'ADN de Léonard Nimoy" File="Je_possede_l'ADN_de_Leonard_Nimoy.mp3" Lang="fr-FR"/>
+	<SoundViewModel Name="Je possède l'ADN de Léonard Nimoy" File="Je_possede_l'ADN_de_Leonard_Nimoy.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Je souhaite à Sheldon, une vie longue et prospère" File="Je_souhaite_a_Sheldon,_une_vie_longue_et_prospere.mp3" Category="ZAZZ" Lang="fr-FR"/>
-	<SoundViewModel Name="Je vous salue mes amis" File="Je_vous_salue_mes_amis.mp3" Lang="fr-FR"/>
+	<SoundViewModel Name="Je vous salue mes amis" File="Je_vous_salue_mes_amis.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="La chanson de Sheldon bourré" File="La_chanson_de_Sheldon_bourre.mp3" Category="CLAS" Lang="fr-FR"/>
-	<SoundViewModel Name="La la" File="La_la.mp3" Lang="fr-FR"/>
-	<SoundViewModel Name="Le compte WOW de Sheldon" File="Les_oompa_loompas_de_la_science.mp3" Lang="fr-FR"/>
+	<SoundViewModel Name="La la" File="La_la.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Le compte WOW de Sheldon" File="Les_oompa_loompas_de_la_science.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Le rire de Sheldon" File="Le_compte_WOW_de_Sheldon.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Les oompa loompas de la science" File="Le_rire_de_Sheldon.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="Mouahahahah" File="Mouahahahah.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Penny et Sheldon chantent" File="Penny_et_Sheldon_chantent.mp3" Category="CLAS" Lang="fr-FR"/>
-	<SoundViewModel Name="Pierre papier ciseaux lézard spock" File="Pierre_papier_ciseaux_lezard_spock.mp3" Lang="fr-FR"/>
-	<SoundViewModel Name="Sheldon est là" File="Sheldon_est_la.mp3" Lang="fr-FR"/>
-	<SoundViewModel Name="Sheldon raconte son rêve avec Spoke" File="Sheldon_raconte_son_reve_avec_Spoke.mp3" Category="CLAS" Lang="fr-FR"/>
-	<SoundViewModel Name="Toc toc toc Penny" File="Toc_toc_toc_Penny.mp3" Lang="fr-FR"/>
-	<SoundViewModel Name="Tu es à ma place" File="Tu_es_a_ma_place.mp3" Lang="fr-FR"/>
-	<SoundViewModel Name="Tu m'auras pas" File="Tu_m'auras_pas.mp3" Lang="fr-FR"/>
-	<SoundViewModel Name="Whip eh hee" File="Whip_eh_hee.mp3" Lang="fr-FR"/>
+	<SoundViewModel Name="Pierre papier ciseaux lézard spock" File="Pierre_papier_ciseaux_lezard_spock.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Sheldon est là" File="Sheldon_est_la.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Sheldon raconte son rêve avec Spoke" File="Sheldon_raconte_son_reve_avec_Spoke.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Toc toc toc Penny" File="Toc_toc_toc_Penny.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Tu es à ma place" File="Tu_es_a_ma_place.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Tu m'auras pas" File="Tu_m'auras_pas.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Whip eh hee" File="Whip_eh_hee.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Theme end" File="TBBT_Theme_end.mp3" Category="TBBT" Lang="fr-FR"/>
 	<SoundViewModel Name="Theme full" File="TBBT_Theme_full.mp3" Category="TBBT" Lang="fr-FR"/>
 	<SoundViewModel Name="Bazinga one of my jokes" File="CLAS_bazinga_one_of_my_jokes.mp3" Category="CLAS" Lang="en-US"/>

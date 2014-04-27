@@ -6,8 +6,8 @@
 	<SoundViewModel Name="C'est génial d'y aller en train" File="C'est_genial_d'y_aller_en_train.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="C'est un mensonge" File="C'est_un_mensonge.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="C'est un piège !" File="C'est_un_piege.mp3" Category="ZAZZ" Lang="fr-FR"/>
-	<SoundViewModel Name="Ce n'est pas grave, c'est horrible !" File="Cela_ne_se_passe_jamais_a_merveille.mp3" Category="CLAS" Lang="fr-FR"/>
-	<SoundViewModel Name="Cela ne se passe jamais à merveille" File="Ce_n'est_pas_grave,_c'est_horrible.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Ce n'est pas grave, c'est horrible !" File="Ce_n'est_pas_grave_c'est_horrible.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Cela ne se passe jamais à merveille" File="Cela_ne_se_passe_jamais_a_merveille.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="Doux chaton, adorable chaton" File="Doux_chaton,_adorable_chaton.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="Dr Sheldon Cooper" File="Dr_Sheldon_Cooper.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Je plaisantais" File="Je_plaisantais.mp3" Category="ZAZZ" Lang="fr-FR"/>
@@ -16,9 +16,9 @@
 	<SoundViewModel Name="Je vous salue mes amis" File="Je_vous_salue_mes_amis.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="La chanson de Sheldon bourré" File="La_chanson_de_Sheldon_bourre.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="La la" File="La_la.mp3" Category="ZAZZ" Lang="fr-FR"/>
-	<SoundViewModel Name="Le compte WOW de Sheldon" File="Les_oompa_loompas_de_la_science.mp3" Category="ZAZZ" Lang="fr-FR"/>
-	<SoundViewModel Name="Le rire de Sheldon" File="Le_compte_WOW_de_Sheldon.mp3" Category="ZAZZ" Lang="fr-FR"/>
-	<SoundViewModel Name="Les oompa loompas de la science" File="Le_rire_de_Sheldon.mp3" Category="CLAS" Lang="fr-FR"/>
+	<SoundViewModel Name="Le compte WOW de Sheldon" File="Le_compte_WOW_de_Sheldon.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Le rire de Sheldon" File="Le_rire_de_Sheldon.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Les oompa loompas de la science" File="Les_oompa_loompas_de_la_science.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="Mouahahahah" File="Mouahahahah.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Penny et Sheldon chantent" File="Penny_et_Sheldon_chantent.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="Pierre papier ciseaux lézard spock" File="Pierre_papier_ciseaux_lezard_spock.mp3" Category="ZAZZ" Lang="fr-FR"/>

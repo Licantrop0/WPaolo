@@ -198,7 +198,6 @@
     <Content Include="Images\i.png" />
     <Content Include="Images\marine.jpg" />
     <Content Include="Images\smile.png" />
-    <Content Include="README_FIRST.txt" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -10,10 +10,17 @@ namespace SheldonMix.ViewModel
     {
         public MainViewModel()
         {
+            if (DesignerProperties.IsInDesignTool) return;
+
             AppContext.UpdateUIEvent += (sender, e) =>
             {
+                _suoniCLAS = null;
                 RaisePropertyChanged("SuoniCLAS");
+
+                _suoniZAZZ = null;
                 RaisePropertyChanged("SuoniZAZZ");
+
+                _suoniTBBT = null;
                 RaisePropertyChanged("SuoniTBBT");
             };
         }

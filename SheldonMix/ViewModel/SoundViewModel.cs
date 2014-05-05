@@ -4,9 +4,11 @@ using SheldonMix.Localization;
 using System;
 using System.IO;
 using System.IO.IsolatedStorage;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Xml.Serialization;
 using WPCommon.Helpers;
 
@@ -72,16 +74,19 @@ namespace SheldonMix.ViewModel
         {
             //if (!AskAndPlayMusic())
             //    return;
+                
+            var me = (MediaElement)param;
 
-            if (Category == SoundCategory.TBBT &&
-                MediaPlayer.State == MediaState.Playing &&
-                MediaPlayer.Queue.ActiveSong.Name == File)
+            //stops the current sound if more than 5 sec
+            if (me.CurrentState == MediaElementState.Playing &&
+                me.NaturalDuration.TimeSpan >= TimeSpan.FromSeconds(5) &&
+                me.Source.Segments.Last() == File)
             {
-                MediaPlayer.Stop();
+                me.Stop();
                 return;
             }
 
-            var me = (MediaElement)param;
+            
             using (var isf = IsolatedStorageFile.GetUserStoreForApplication())
             {
                 using (var isfs = isf.OpenFile("shared/transfers/" + File, FileMode.Open, FileAccess.Read))

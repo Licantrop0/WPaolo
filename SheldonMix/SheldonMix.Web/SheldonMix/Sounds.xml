@@ -51,6 +51,7 @@
 	<SoundViewModel Name="DNA of leonard nimoy" File="ZAZZ_DNA_of_leonard_nimoy.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Dr Sheldon Cooper FTW" File="ZAZZ_Dr_Sheldon_Cooper_FTW.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Engineering oompa loompas" File="ZAZZ_Engineering_oompa_loompas.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Goodnight puny human" File="en_goodnight_puny_human.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="It's a trap!" File="ZAZZ_It's_a_trap1.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="My precious" File="en_precious.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Penny Blossom Song" File="ZAZZ_Penny_Blossom_Song.mp3" Category="ZAZZ" Lang="en-US"/>

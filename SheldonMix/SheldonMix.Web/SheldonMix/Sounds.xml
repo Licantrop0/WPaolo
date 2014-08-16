@@ -29,7 +29,8 @@
 	<SoundViewModel Name="Pierre papier ciseaux lézard spock" File="Pierre_papier_ciseaux_lezard_spock.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Sheldon est là" File="Sheldon_est_la.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Sheldon raconte son rêve avec Spoke" File="Sheldon_raconte_son_reve_avec_Spoke.mp3" Category="ZAZZ" Lang="fr-FR"/>
-	<SoundViewModel Name="Whip eh hee" File="Whip_eh_hee.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Wheaton Wheaton Wheaton!" File="wheaton.mp3" Category="ZAZZ" Lang="fr-FR"/>
+	<SoundViewModel Name="Whip! Eh-hee" File="Whip_eh_hee.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Bazinga one of my jokes" File="CLAS_bazinga_one_of_my_jokes.mp3" Category="CLAS" Lang="en-US"/>
 	<SoundViewModel Name="Bazinga!" File="CLAS_Bazinga1.mp3" Category="CLAS" Lang="en-US"/>
 	<SoundViewModel Name="Change is never fine" File="CLAS_change_is_never_fine.mp3" Category="CLAS" Lang="en-US"/>
@@ -42,7 +43,7 @@
 	<SoundViewModel Name="peace out" File="CLAS_peace_out.mp3" Category="CLAS" Lang="en-US"/>
 	<SoundViewModel Name="Rock Paper Scissor Lizard Spock" File="CLAS_Rock_Paper_Scissor_Lizard_Spock.mp3" Category="CLAS" Lang="en-US"/>
 	<SoundViewModel Name="Sheldon laugh" File="CLAS_Sheldon_laugh.mp3" Category="CLAS" Lang="en-US"/>
-	<SoundViewModel Name="there there" File="CLAS_there_there.mp3" Category="CLAS" Lang="en-US"/>
+	<SoundViewModel Name="There there" File="CLAS_there_there.mp3" Category="CLAS" Lang="en-US"/>
 	<SoundViewModel Name="You're in my spot" File="CLAS_You're_in_my_spot.mp3" Category="CLAS" Lang="en-US"/>
 	<SoundViewModel Name="Theme end" File="TBBT_Theme_end.mp3" Category="TBBT" Lang="en-US"/>
 	<SoundViewModel Name="Theme full" File="TBBT_Theme_full.mp3" Category="TBBT" Lang="en-US"/>
@@ -59,6 +60,7 @@
 	<SoundViewModel Name="Soft Kitty" File="ZAZZ_Sheldon_soft_kitty.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="To Sheldon live long and prosper" File="ZAZZ_To_Sheldon_live_long_and_prosper.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="we're taking the train" File="ZAZZ_we're_taking_the_train.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Wheaton Wheaton Wheaton!" File="wheaton.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Whip eh-hee" File="ZAZZ_Whip_eh-hee.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="WoW Hacking" File="ZAZZ_WoW_Hacking.mp3" Category="ZAZZ" Lang="en-US"/>
 </ArrayOfSoundViewModel>

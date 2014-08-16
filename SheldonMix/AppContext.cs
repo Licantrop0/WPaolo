@@ -51,6 +51,7 @@ namespace SheldonMix
 
         public static void UpdateUI(object sender)
         {
+            LoadSounds();
             UpdateUIEvent(sender, EventArgs.Empty);
         }
 

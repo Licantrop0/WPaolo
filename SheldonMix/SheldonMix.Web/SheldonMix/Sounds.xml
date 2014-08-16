@@ -10,8 +10,8 @@
 	<SoundViewModel Name="Toc toc toc Penny" File="Toc_toc_toc_Penny.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="Tu es à ma place" File="Tu_es_a_ma_place.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="Tu m'auras pas" File="Tu_m'auras_pas.mp3" Category="CLAS" Lang="fr-FR"/>
-	<SoundViewModel Name="Theme end" File="TBBT_Theme_end.mp3" Category="TBBT" Lang="fr-FR"/>
 	<SoundViewModel Name="Theme full" File="TBBT_Theme_full.mp3" Category="TBBT" Lang="fr-FR"/>
+	<SoundViewModel Name="Theme end" File="TBBT_Theme_end.mp3" Category="TBBT" Lang="fr-FR"/>
 	<SoundViewModel Name="A plus !" File="A_plus.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Bonjour mes petites céréales" File="Bonjour_mes_petites_cereales.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Brave Léonard" File="Brave_Leonard.mp3" Category="ZAZZ" Lang="fr-FR"/>
@@ -45,8 +45,8 @@
 	<SoundViewModel Name="Sheldon laugh" File="CLAS_Sheldon_laugh.mp3" Category="CLAS" Lang="en-US"/>
 	<SoundViewModel Name="There there" File="CLAS_there_there.mp3" Category="CLAS" Lang="en-US"/>
 	<SoundViewModel Name="You're in my spot" File="CLAS_You're_in_my_spot.mp3" Category="CLAS" Lang="en-US"/>
-	<SoundViewModel Name="Theme end" File="TBBT_Theme_end.mp3" Category="TBBT" Lang="en-US"/>
 	<SoundViewModel Name="Theme full" File="TBBT_Theme_full.mp3" Category="TBBT" Lang="en-US"/>
+	<SoundViewModel Name="Theme end" File="TBBT_Theme_end.mp3" Category="TBBT" Lang="en-US"/>
 	<SoundViewModel Name="Bongo Song" File="ZAZZ_Bongo_Song.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Brave Leonard song" File="ZAZZ_Brave_Leonard_song.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="DNA of leonard nimoy" File="ZAZZ_DNA_of_leonard_nimoy.mp3" Category="ZAZZ" Lang="en-US"/>
@@ -58,9 +58,11 @@
 	<SoundViewModel Name="Penny Blossom Song" File="ZAZZ_Penny_Blossom_Song.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Sheldon sings drunk" File="ZAZZ_Sheldon_drunk_sings.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Soft Kitty" File="ZAZZ_Sheldon_soft_kitty.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="Suffer in silence" File="suffer_in_silence.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="To Sheldon live long and prosper" File="ZAZZ_To_Sheldon_live_long_and_prosper.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="we're taking the train" File="ZAZZ_we're_taking_the_train.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Wheaton Wheaton Wheaton!" File="wheaton.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="When Sheldon cries" File="When_Sheldon_Cries.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Whip eh-hee" File="ZAZZ_Whip_eh-hee.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="WoW Hacking" File="ZAZZ_WoW_Hacking.mp3" Category="ZAZZ" Lang="en-US"/>
 </ArrayOfSoundViewModel>

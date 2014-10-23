@@ -1,14 +1,11 @@
 ﻿using DeathTimerz.Localization;
-using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using System.Linq;
-using System.Windows.Media;
-using Microsoft.Phone.Scheduler;
 
 namespace DeathTimerz
 {
@@ -39,10 +36,11 @@ namespace DeathTimerz
         private void MainPanorama_Loaded(object sender, RoutedEventArgs e)
         {
             if (MainPanorama.SelectedIndex != 0) return; //Health Suggestion
-            if (ShellTile.ActiveTiles.Count() == 1)
+            if (ShellTile.ActiveTiles.Count() == 1 && !ExtensionMethods.IsLowMemDevice())
             {
                 ApplicationBar.Mode = ApplicationBarMode.Default;
                 ApplicationBar.Buttons.Add(PinToStartAppBarButton);
+                SuggestionPanoramaItem.Margin = new Thickness(0, -60, 0, ApplicationBar.DefaultSize);
             }
         }
 
@@ -50,25 +48,35 @@ namespace DeathTimerz
         {
             ApplicationBar.Buttons.Remove(EditTestAppBarButton);
             ApplicationBar.Buttons.Remove(PinToStartAppBarButton);
-            
+            TakeTestButton.IsHitTestVisible = false;
+
             switch (MainPanorama.SelectedIndex)
             {
                 case 0: //Health Suggestion
-                    TakeTestButton.IsHitTestVisible = false;
-                    if (ShellTile.ActiveTiles.Count() == 1)
+                    if (ShellTile.ActiveTiles.Count() == 1 && !ExtensionMethods.IsLowMemDevice())
                         ApplicationBar.Buttons.Add(PinToStartAppBarButton);
                     break;
                 case 1: //Death-Test
-                    if (AppContext.TimeToDeath.HasValue)
+                    if (AppContext.DeathDeviation.HasValue)
                         ApplicationBar.Buttons.Add(EditTestAppBarButton);
                     else
                         TakeTestButton.IsHitTestVisible = true;
-                    break;            
+                    break;
             }
 
-            ApplicationBar.Mode = ApplicationBar.Buttons.Count == 0 ?
-                ApplicationBarMode.Minimized :
-                ApplicationBarMode.Default;
+            if (ApplicationBar.Buttons.Count == 0)
+            {
+                ApplicationBar.Mode = ApplicationBarMode.Minimized;
+                SuggestionPanoramaItem.Margin = new Thickness(0, -60, 0, ApplicationBar.MiniSize);
+                TimeToDeathPanoramaItem.Margin = new Thickness(0, -60, 0, ApplicationBar.MiniSize);
+            }
+            else
+            {
+                ApplicationBar.Mode = ApplicationBarMode.Default;
+                SuggestionPanoramaItem.Margin = new Thickness(0, -60, 0, ApplicationBar.DefaultSize);
+                TimeToDeathPanoramaItem.Margin = new Thickness(0, -60, 0, ApplicationBar.DefaultSize);
+            }
+
         }
 
         private void InitializeApplicationBar()

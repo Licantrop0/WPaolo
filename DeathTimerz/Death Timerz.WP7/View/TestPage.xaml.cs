@@ -11,6 +11,7 @@ using Microsoft.Phone.Controls;
 using GalaSoft.MvvmLight.Messaging;
 using System.ComponentModel;
 using Microsoft.Phone.Shell;
+using DeathTimerz.Helper;
 
 namespace DeathTimerz
 {
@@ -68,7 +69,7 @@ namespace DeathTimerz
                             Text = CurrentResources.GetString(answ.Attribute("Name").Value),
                             Style = (Style)Application.Current.Resources["RedChillerCheckBoxContent"],
                         };
-                        TestStackPanel.Children.Add(new RadioButton()
+                        TestStackPanel.Children.Add(new MyRadioButton()
                         {
                             Name = answ.Attribute("Name").Value,
                             Content = content,
@@ -111,8 +112,8 @@ namespace DeathTimerz
 
             //imposto l'attributo IsChecked alle risposte selezionate nell'XML
             TestStackPanel.Children
-                .Where(ctrl => ctrl is RadioButton)
-                .Cast<RadioButton>()
+                .Where(ctrl => ctrl is MyRadioButton)
+                .Cast<MyRadioButton>()
                 .Where(rb => rb.IsChecked.Value)
                 .Select(rb => rb.Name)
                 .ForEach(ans =>
@@ -134,9 +135,7 @@ namespace DeathTimerz
 
         private void StimateDeathAge()
         {
-            AppContext.TimeToDeath = TimeSpan.Zero;
-
-            AppContext.TimeToDeath +=
+            AppContext.DeathDeviation =
                  (from q in AppContext.Test1.Descendants("Question")
                       .Concat(AppContext.Test2.Descendants("Question"))
                   where q.Attribute("Type").Value == "MultipleChoice"
@@ -164,11 +163,11 @@ namespace DeathTimerz
                     bmi = Weight / Math.Pow(Height * .01, 2); //kg-cm
 
                 if (bmi >= 18 && bmi <= 27)
-                    AppContext.TimeToDeath += ExtensionMethods.TimeSpanFromYears(2);
+                    AppContext.DeathDeviation += ExtensionMethods.TimeSpanFromYears(2);
                 else if (bmi > 27 && bmi <= 35)
-                    AppContext.TimeToDeath += ExtensionMethods.TimeSpanFromYears(-2);
+                    AppContext.DeathDeviation += ExtensionMethods.TimeSpanFromYears(-2);
                 else if (bmi < 18 || bmi > 35)
-                    AppContext.TimeToDeath += ExtensionMethods.TimeSpanFromYears(-4);
+                    AppContext.DeathDeviation += ExtensionMethods.TimeSpanFromYears(-4);
             }
 
             double cigarettesNum, cigaretteYears;
@@ -178,15 +177,22 @@ namespace DeathTimerz
                 &&
                 double.TryParse(AppContext.Test1.Descendants("Answer")
                 .First(el => el.Attribute("Name").Value == "Cigarettes2")
-                .Attribute("Text").Value, out cigaretteYears))
+                .Attribute("Text").Value, out cigaretteYears)
+                &&
+                cigarettesNum > 0)
             {
-
                 //Ogni sigaretta toglie 11 minuti di vita http://www.rense.com/health3/smoking_h.htm
-                var TotalSmokingPeriod =
-                    ExtensionMethods.TimeSpanFromYears(cigaretteYears) + //anni che ha fumato finora
-                    AppContext.TimeToDeath - (DateTime.Now - AppContext.BirthDay.Value); //anni ancora da vivere
 
-                AppContext.TimeToDeath -= TimeSpan.FromMinutes(TotalSmokingPeriod.Value.TotalDays * cigarettesNum * 11);
+                var tsLostTillNow = TimeSpan.FromMinutes(cigarettesNum * cigaretteYears * 365.25 * 11);
+                AppContext.DeathDeviation -= tsLostTillNow;
+
+                var deathTS = AppContext.AverageAge + AppContext.DeathDeviation.Value;
+
+                var tsLeft = deathTS - DateTime.Now.Subtract(AppContext.BirthDay.Value);
+
+                var tsWillBeLost = TimeSpan.FromMinutes(cigarettesNum * tsLeft.TotalDays * 11);
+
+                AppContext.DeathDeviation -= tsWillBeLost;
             }
             #endregion
 
@@ -201,8 +207,8 @@ namespace DeathTimerz
             if (TestStackPanel.Children.Count == 0) return false;
 
             var RbGroups = from ctrl in TestStackPanel.Children
-                           where ctrl is RadioButton
-                           let rb = (RadioButton)ctrl
+                           where ctrl is MyRadioButton
+                           let rb = (MyRadioButton)ctrl
                            group rb by rb.GroupName;
 
             foreach (var RadioGroup in RbGroups)

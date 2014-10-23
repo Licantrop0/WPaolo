@@ -87,8 +87,13 @@ namespace DeathTimerz.ViewModel
 
         public Visibility PinSuggestionVisibility
         {
-            get { return ShellTile.ActiveTiles.Count() == 1 && AppContext.PinSuggestionVisible?
-                Visibility.Visible : Visibility.Collapsed; }
+            get
+            {
+                return ShellTile.ActiveTiles.Count() == 1 &&
+                    AppContext.PinSuggestionVisible &&
+                    !ExtensionMethods.IsLowMemDevice() ?
+                    Visibility.Visible : Visibility.Collapsed;
+            }
         }
 
         private RelayCommand _closePinSuggestionCommand;
@@ -180,10 +185,9 @@ namespace DeathTimerz.ViewModel
             get
             {
                 if (!BirthDay.HasValue) return string.Empty;
-                if (!AppContext.TimeToDeath.HasValue) return string.Empty;
+                if (!AppContext.DeathDeviation.HasValue) return string.Empty;
 
-                var EstimateDeathAge = AppContext.TimeToDeath.Value +
-                    ExtensionMethods.TimeSpanFromYears(AppContext.AverageAge);
+                var EstimateDeathAge = AppContext.AverageAge + AppContext.DeathDeviation.Value;
 
                 var EstimatedDeathDate = BirthDay.Value + EstimateDeathAge;
 
@@ -206,7 +210,7 @@ namespace DeathTimerz.ViewModel
         {
             get
             {
-                return AppContext.TimeToDeath.HasValue ||
+                return AppContext.DeathDeviation.HasValue ||
                     !AppContext.BirthDay.HasValue ?
                     Visibility.Collapsed : Visibility.Visible;
             }

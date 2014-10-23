@@ -12,11 +12,13 @@ namespace DeathTimerz
         public const double AverageYear = 365.25;
         public const double AverageMonth = 30.4368499;
 
-        public static double AverageAge
+        public static TimeSpan AverageAge
         {
             get
             {
-                return (bool)IsolatedStorageSettings.ApplicationSettings["is_male"] ? 77.5 : 83.7;
+                return (bool)IsolatedStorageSettings.ApplicationSettings["is_male"] ?
+                    ExtensionMethods.TimeSpanFromYears(77.5) :
+                    ExtensionMethods.TimeSpanFromYears(83.7);
             }
         }
 
@@ -35,7 +37,7 @@ namespace DeathTimerz
             }
         }
 
-        public static TimeSpan? TimeToDeath
+        public static TimeSpan? DeathDeviation
         {
             get
             {
@@ -45,7 +47,7 @@ namespace DeathTimerz
             }
             set
             {
-                if (TimeToDeath == value) return;
+                if (DeathDeviation == value) return;
                 IsolatedStorageSettings.ApplicationSettings["estimated_death_age"] = value;
             }
         }

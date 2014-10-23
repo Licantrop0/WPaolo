@@ -126,7 +126,6 @@
   <data name="AppName" xml:space="preserve">
     <value>Orologio della Morte</value>
   </data>
-  
   <data name="Cancel" xml:space="preserve">
     <value>Annulla</value>
   </data>
@@ -247,4 +246,16 @@ Sei al {2:N2}% della tua vita, con {3:N0} giorni di vita rimanenti.</value>
   <data name="YetAlive" xml:space="preserve">
     <value>Ma come fai ad essere ancora vivo?</value>
   </data>
-<data name="PinTitle" xml:space="preserve"><value>Sapevatelo!</value></data><data name="PinText" xml:space="preserve"><value>Puoi pinnare questa app al tuo Start Screen per vedere ogni giorno un suggerimento per la tua salute!</value></data><data name="BirthdayToday" xml:space="preserve"><value>Oggi è il tuo compleanno!</value></data><data name="BirthdayAfter" xml:space="preserve"><value>Il tuo compleanno è tra {0} {1}</value></data></root>
+  <data name="PinTitle" xml:space="preserve">
+    <value>Sapevatelo!</value>
+  </data>
+  <data name="PinText" xml:space="preserve">
+    <value>Puoi pinnare questa app al tuo Start Screen per vedere ogni giorno un suggerimento per la tua salute!</value>
+  </data>
+  <data name="BirthdayToday" xml:space="preserve">
+    <value>Oggi è il tuo compleanno!</value>
+  </data>
+  <data name="BirthdayAfter" xml:space="preserve">
+    <value>Il tuo compleanno è tra {0} {1}</value>
+  </data>
+</root>

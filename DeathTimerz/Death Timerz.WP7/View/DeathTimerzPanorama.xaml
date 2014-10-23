@@ -34,7 +34,7 @@
         </controls:Panorama.Background>
 
         <!--SuggestionText-->
-        <controls:PanoramaItem Margin="0,-60,0,0">
+        <controls:PanoramaItem Name="SuggestionPanoramaItem" Margin="0,-60,0,30">
             <controls:PanoramaItem.Header>
                 <TextBlock Text="{Binding LocalizedResources.Suggestion, Source={StaticResource LocalizedStrings}}"
                                TextWrapping="Wrap" Style="{StaticResource RedChiller}" />
@@ -97,7 +97,7 @@
         </controls:PanoramaItem>
 
         <!--Time to Death-->
-        <controls:PanoramaItem Margin="0,-60,0,0">
+        <controls:PanoramaItem Name="TimeToDeathPanoramaItem" Margin="0,-60,0,30">
             <controls:PanoramaItem.Header>
                 <TextBlock Text="{Binding LocalizedResources.TimeToDeath, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource RedChiller}" />
@@ -138,7 +138,7 @@
         </controls:PanoramaItem>
 
         <!--Profile-->
-        <controls:PanoramaItem Margin="0,-60,0,0">
+        <controls:PanoramaItem Margin="0,-60,0,30">
             <controls:PanoramaItem.Header>
                 <TextBlock Text="{Binding LocalizedResources.Profile, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource RedChiller}" />
@@ -147,13 +147,13 @@
                 <TextBlock Text="{Binding Path=LocalizedResources.MaleOrFemale, Source={StaticResource LocalizedStrings}}"                       
                            Style="{StaticResource RedChiller}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="{Binding Path=LocalizedResources.Male,
+                    <hlp:MyRadioButton Content="{Binding Path=LocalizedResources.Male,
                         Source={StaticResource LocalizedStrings}}"
                                  Foreground="{StaticResource RedGradientBrush}"
                                  Style="{StaticResource RedChillerContentControl}"
                                  GroupName="MaleOrFemale" Margin="0,-10" IsChecked="{Binding IsMale, Mode=TwoWay}" />
 
-                    <RadioButton Content="{Binding Path=LocalizedResources.Female,
+                    <hlp:MyRadioButton Content="{Binding Path=LocalizedResources.Female,
                         Source={StaticResource LocalizedStrings}}"
                                  Foreground="{StaticResource RedGradientBrush}"
                                  Style="{StaticResource RedChillerContentControl}"
@@ -190,7 +190,7 @@
 
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" 
+        <shell:ApplicationBar IsVisible="True" Opacity="0.8"
                               ForegroundColor="#FFBE0000"
                               BackgroundColor="#FF171717"
                               Mode="Minimized" IsMenuEnabled="True" />

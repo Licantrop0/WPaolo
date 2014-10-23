@@ -174,8 +174,6 @@
   <data name="Insomnia4" xml:space="preserve">
     <value>Ho molte difficoltà nell'addormentarmi</value>
   </data>
-  
-  
   <data name="Panic2" xml:space="preserve">
     <value>Qualche volta</value>
   </data>
@@ -224,4 +222,10 @@
   <data name="Stress4" xml:space="preserve">
     <value>Ogni giorno</value>
   </data>
-<data name="Animal4" xml:space="preserve"><value>Nessuno dei precedenti</value></data><data name="Panic" xml:space="preserve"><value>Hai mai avuto attacchi di panico?</value></data></root>
+  <data name="Animal4" xml:space="preserve">
+    <value>Nessuno dei precedenti</value>
+  </data>
+  <data name="Panic" xml:space="preserve">
+    <value>Hai mai avuto attacchi di panico?</value>
+  </data>
+</root>

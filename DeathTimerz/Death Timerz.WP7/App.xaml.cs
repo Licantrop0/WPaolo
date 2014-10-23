@@ -43,6 +43,8 @@ namespace DeathTimerz
 
         private void InitializeScheduledAgent()
         {
+            if(ExtensionMethods.IsLowMemDevice()) return;
+
             var TASK_NAME = "UpdateHealthAdvicesTask";
 
             var action = ScheduledActionService.Find(TASK_NAME) as PeriodicTask;

@@ -162,7 +162,7 @@ Sblocca un nuovo suggerimento ogni 5 scudetti.</value>
   <data name="NoHintsAvailable" xml:space="preserve">
     <value>Hai finito tutti i suggerimenti, prova a sbloccare qualche altro scudetto!</value>
   </data>
-  <data name="Reset" xml:space="preserve">
+  <data name="ResetText" xml:space="preserve">
     <value>Ricomincia</value>
   </data>
   <data name="Rules" xml:space="preserve">

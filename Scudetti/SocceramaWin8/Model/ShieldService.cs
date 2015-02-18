@@ -18,7 +18,7 @@ namespace Scudetti.Model
             Roaming
         }
 
-        const string ShieldFileName = "ShieldsV4.xml";
+        const string ShieldFileName = "ShieldsV5.xml";
         static StorageFolder roamingFolder = ApplicationData.Current.RoamingFolder;
         static StorageFolder localFolder = ApplicationData.Current.LocalFolder;
 
@@ -54,6 +54,9 @@ namespace Scudetti.Model
                     return obj;
                 }
             }
+
+            if (await FileExist("ShieldsV4.xml", StorageType.Local))
+                return await Upgrade("ShieldsV4.xml", StorageType.Local);
 
             if (await FileExist("ShieldsV3.xml", StorageType.Roaming))
                 return await Upgrade("ShieldsV3.xml", StorageType.Roaming);

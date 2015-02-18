@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scudetti", "Scudetti\Scudetti.csproj", "{82AAC311-C6F4-4B68-8EAB-661DFDAE399E}"
-EndProject
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9F55B4FE-FC3E-4376-8394-FE2FBBC5B4F0}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -10,30 +10,47 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9F55B4
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scudetti", "Scudetti\Scudetti.csproj", "{82AAC311-C6F4-4B68-8EAB-661DFDAE399E}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Controls", "..\WPCommon.Controls\WPCommon.Controls.csproj", "{B3F46867-22D6-4BE3-81FC-2D6F47E96310}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.XNAAsyncDispatcher", "..\WPCommon.Helpers.XNAAsyncDispatcher\WPCommon.Helpers.XNAAsyncDispatcher.csproj", "{FEEF2229-DED5-4C31-829A-DDCB95A4AF33}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocceramaWin8", "SocceramaWin8\SocceramaWin8.csproj", "{99823292-FB5C-478A-83EF-954AA883F18F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soccerama.Win81", "Soccerama.Win81\Soccerama.Win81.csproj", "{C81A2073-757B-4639-9E39-5C0C290BA63D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{F5196CE5-1211-4398-9767-FFD11622FBB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{E90CFF81-74E7-44A8-A5B9-FDCBB7548AC8}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 8
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = Scudetti\\Scudetti.csproj
 		SccProjectName1 = Scudetti
 		SccLocalPath1 = Scudetti
-		SccProjectUniqueName2 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
-		SccProjectName2 = ../WPCommon.Controls
-		SccLocalPath2 = ..\\WPCommon.Controls
-		SccProjectUniqueName3 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
-		SccProjectName3 = ../WPCommon.Helpers.XNAAsyncDispatcher
-		SccLocalPath3 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
-		SccProjectUniqueName4 = SocceramaWin8\\SocceramaWin8.csproj
-		SccProjectName4 = SocceramaWin8
-		SccLocalPath4 = SocceramaWin8
+		SccProjectUniqueName2 = SocceramaWin8\\SocceramaWin8.csproj
+		SccProjectName2 = SocceramaWin8
+		SccLocalPath2 = SocceramaWin8
+		SccProjectUniqueName3 = ..\\WPCommon.Controls\\WPCommon.Controls.csproj
+		SccProjectName3 = ../WPCommon.Controls
+		SccLocalPath3 = ..\\WPCommon.Controls
+		SccProjectUniqueName4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher\\WPCommon.Helpers.XNAAsyncDispatcher.csproj
+		SccProjectName4 = ../WPCommon.Helpers.XNAAsyncDispatcher
+		SccLocalPath4 = ..\\WPCommon.Helpers.XNAAsyncDispatcher
+		SccProjectUniqueName5 = Soccerama.Win81\\Soccerama.Win81.csproj
+		SccProjectName5 = Soccerama.Win81
+		SccLocalPath5 = Soccerama.Win81
+		SccProjectUniqueName6 = Model\\Model.csproj
+		SccProjectName6 = Model
+		SccLocalPath6 = Model
+		SccProjectUniqueName7 = Data\\Data.csproj
+		SccProjectName7 = Data
+		SccLocalPath7 = Data
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +118,50 @@ Global
 		{99823292-FB5C-478A-83EF-954AA883F18F}.Release|x86.ActiveCfg = Release|x86
 		{99823292-FB5C-478A-83EF-954AA883F18F}.Release|x86.Build.0 = Release|x86
 		{99823292-FB5C-478A-83EF-954AA883F18F}.Release|x86.Deploy.0 = Release|x86
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|ARM.Build.0 = Debug|ARM
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|ARM.Deploy.0 = Debug|ARM
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|x64.ActiveCfg = Debug|x64
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|x64.Build.0 = Debug|x64
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|x64.Deploy.0 = Debug|x64
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|x86.ActiveCfg = Debug|x86
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|x86.Build.0 = Debug|x86
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Debug|x86.Deploy.0 = Debug|x86
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|ARM.ActiveCfg = Release|ARM
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|ARM.Build.0 = Release|ARM
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|ARM.Deploy.0 = Release|ARM
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|x64.ActiveCfg = Release|x64
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|x64.Build.0 = Release|x64
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|x64.Deploy.0 = Release|x64
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|x86.ActiveCfg = Release|x86
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|x86.Build.0 = Release|x86
+		{C81A2073-757B-4639-9E39-5C0C290BA63D}.Release|x86.Deploy.0 = Release|x86
+		{F5196CE5-1211-4398-9767-FFD11622FBB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5196CE5-1211-4398-9767-FFD11622FBB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5196CE5-1211-4398-9767-FFD11622FBB6}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F5196CE5-1211-4398-9767-FFD11622FBB6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F5196CE5-1211-4398-9767-FFD11622FBB6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F5196CE5-1211-4398-9767-FFD11622FBB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5196CE5-1211-4398-9767-FFD11622FBB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5196CE5-1211-4398-9767-FFD11622FBB6}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F5196CE5-1211-4398-9767-FFD11622FBB6}.Release|x64.ActiveCfg = Release|Any CPU
+		{F5196CE5-1211-4398-9767-FFD11622FBB6}.Release|x86.ActiveCfg = Release|Any CPU
+		{E90CFF81-74E7-44A8-A5B9-FDCBB7548AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E90CFF81-74E7-44A8-A5B9-FDCBB7548AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E90CFF81-74E7-44A8-A5B9-FDCBB7548AC8}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E90CFF81-74E7-44A8-A5B9-FDCBB7548AC8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E90CFF81-74E7-44A8-A5B9-FDCBB7548AC8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E90CFF81-74E7-44A8-A5B9-FDCBB7548AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E90CFF81-74E7-44A8-A5B9-FDCBB7548AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E90CFF81-74E7-44A8-A5B9-FDCBB7548AC8}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E90CFF81-74E7-44A8-A5B9-FDCBB7548AC8}.Release|x64.ActiveCfg = Release|Any CPU
+		{E90CFF81-74E7-44A8-A5B9-FDCBB7548AC8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="SocceramaWin8.View.AboutControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="346">
+    <UserControl.Resources>
+        <Style x:Name="SettingsHeaderTextStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiLight" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style x:Name="SettingsTextStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiLight" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <TextBlock Text="Privacy Policy" Style="{StaticResource SettingsHeaderTextStyle}" />
+        <TextBlock Style="{StaticResource SettingsTextStyle}">
+            <Run x:Uid="Privacy" Text="This app use your internet connection only for the ads and does not collect any personal data." />
+            <LineBreak />
+        </TextBlock>
+        <TextBlock Text="Copyrights" Style="{StaticResource SettingsHeaderTextStyle}" />
+        <TextBlock Style="{StaticResource SettingsTextStyle}">
+            <Run x:Uid="Copyrights" Text="All the shields, brand, team's name, logos in this App are Copyrights, Trademarsk or Registered Trademarks of the relative's owners." />
+            <LineBreak />
+        </TextBlock>
+        <HyperlinkButton x:Uid="Support" Content="Supporto" NavigateUri="mailto:wpmobile@hotmail.it" Margin="-16,0,0,0" />
+    </StackPanel>
+
+</UserControl>

@@ -1,0 +1,239 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hlp="using:Soccerama.Win81.Helper"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="StandardStyles.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <hlp:ImagePathConverter x:Key="ImagePathConv" />
+    <hlp:BooleanToVisibilityConverter x:Key="BooleanVisibilityConv" />
+    <ImageBrush x:Key="DefaultBackground" ImageSource="ms-appx:///Assets/sfondo.jpg" >
+        <ImageBrush.RelativeTransform>
+            <RotateTransform CenterX="0.5" CenterY="0.5" Angle="0" />
+        </ImageBrush.RelativeTransform>
+    </ImageBrush>
+
+
+    <Color x:Key="MainColor">#FF841F</Color>
+
+    <ImageBrush x:Key="DefaultSnappedBackground" ImageSource="ms-appx:///Assets/sfondo-snapped.jpg"
+                Stretch="None" AlignmentY="Center" />
+
+    <Style x:Key="DefaultLayoutRootStyle" TargetType="Panel">
+        <Setter Property="Background" Value="{StaticResource DefaultBackground}"/>
+        <Setter Property="ChildrenTransitions">
+            <Setter.Value>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="StatusTextBlock" TargetType="TextBlock" BasedOn="{StaticResource BasicTextStyle}">
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="70" />
+        <Setter Property="Margin" Value="0,24" />
+    </Style>
+
+
+    <DataTemplate x:Key="Shield250ItemTemplate">
+        <Button Width="250" Height="250" Command="{Binding GoToShieldCommand}"
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid Background="White">
+                        <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}"
+                               Stretch="None" AutomationProperties.Name="{Binding CurrentShield.Id}"/>
+                        <Image Source="ms-appx:///Assets/spunta.png"
+                               Visibility="{Binding CurrentShield.IsValidated, Converter={StaticResource BooleanVisibilityConv}}"
+                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                               Width="50" Margin="0,0,6,6" />
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Shield80ItemTemplate">
+        <Button Height="200" Width="200"
+                 Command="{Binding GoToShieldCommand}"
+                 Margin="6">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid Background="White" >
+                        <Image Source="{Binding CurrentShield.Image, Converter={StaticResource ImagePathConv}}" Stretch="UniformToFill"/>
+                        <Image Source="ms-appx:///Assets/spunta.png"
+                               Visibility="{Binding CurrentShield.IsValidated, Converter={StaticResource BooleanVisibilityConv}}"
+                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                               Width="50" Margin="6" />
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Level200ItemTemplate">
+        <Button Width="200" Height="200" Command="{Binding GoToLevelCommand}"
+                VerticalAlignment="Top" HorizontalAlignment="Left"
+                Margin="{Binding Margin}">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding Image}" Stretch="None" Opacity="{Binding Opacity}" />
+                        <Image Source="ms-appx:///Assets/spunta.png"
+                               Visibility="{Binding IsCompleted, Converter={StaticResource BooleanVisibilityConv}}"
+                               HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                               Width="50" Margin="0,0,-60,6" />
+                        <TextBlock Text="{Binding StatusText}" Grid.Row="1" FontSize="40"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Style="{StaticResource BasicTextStyle}" />
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="Level80ItemTemplate">
+        <Button Command="{Binding GoToLevelCommand}"
+                HorizontalAlignment="Left">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="{Binding Image}" Stretch="None" />
+                        <Image Source="ms-appx:///Assets/spunta.png"
+                               Visibility="{Binding IsCompleted, Converter={StaticResource BooleanVisibilityConv}}"
+                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                               Width="40" Margin="0" />
+
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding Name}" FontSize="30"
+                                       Style="{StaticResource BasicTextStyle}" />
+                            <TextBlock Text="{Binding StatusText}" FontSize="40"
+                                       Style="{StaticResource BasicTextStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </DataTemplate>
+
+    <Style x:Key="SettingsBackButtonStyle" TargetType="Button">
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="26.66667"/>
+        <Setter Property="AutomationProperties.AutomationId" Value="BackButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Back"/>
+        <Setter Property="AutomationProperties.ItemType" Value="Navigation Button"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="RootGrid" Width="30" Height="30">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                                                      Storyboard.TargetName="NormalGlyph">
+                                            <SplineColorKeyFrame KeyTime="0" Value="Black"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <!--  <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="ArrowGlyph"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1" Duration="0"/>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="NormalGlyph"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1" Duration="0"/>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BackgroundGlyph">
+                                            <SplineColorKeyFrame KeyTime="0" Value="#003C3C3C"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>-->
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="FocusVisualWhite"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1" Duration="0"/>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="FocusVisualBlack"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1" Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="PointerFocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid Margin="-6,-6,0,0" Background="{x:Null}">
+                            <TextBlock x:Name="BackgroundGlyph" Text="&#xE0D4;" Foreground="Transparent"/>
+                            <TextBlock x:Name="NormalGlyph" Text="{StaticResource BackButtonSnappedGlyph}" Foreground="White"/>
+                            <TextBlock x:Name="ArrowGlyph" Text="&#xE0C4;" Foreground="#ff202020" Opacity="0"/>
+                        </Grid>
+                        <Rectangle x:Name="FocusVisualWhite"
+                                   IsHitTestVisible="False"
+                                   Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                                   StrokeEndLineCap="Square"
+                                   StrokeDashArray="1,1"
+                                   Opacity="0"
+                                   StrokeDashOffset="1.5"/>
+                        <Rectangle x:Name="FocusVisualBlack"
+                                   IsHitTestVisible="False"
+                                   Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                                   StrokeEndLineCap="Square"
+                                   StrokeDashArray="1,1"
+                                   Opacity="0"
+                                   StrokeDashOffset="0.5"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonStyle1" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundThemeBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ButtonForegroundThemeBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderThemeBrush}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ButtonBorderThemeThickness}"/>
+        <Setter Property="Padding" Value="12,4,12,4"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
+    </Style>
+
+</ResourceDictionary>

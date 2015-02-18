@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C81A2073-757B-4639-9E39-5C0C290BA63D}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Soccerama.Win81</RootNamespace>
+    <AssemblyName>Soccerama.Win81</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>Soccerama.Win81_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppContext.cs" />
+    <Compile Include="Helper\BindableTextBox.cs" />
+    <Compile Include="Helper\BooleanNegationConverter.cs" />
+    <Compile Include="Helper\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Helper\ExtensionMethods.cs" />
+    <Compile Include="Helper\ImagePathConverter.cs" />
+    <Compile Include="Helper\NotificationHelper.cs" />
+    <Compile Include="Helper\VisualTreeHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShieldService.cs" />
+    <Compile Include="Sound\SoundManager.cs" />
+    <Compile Include="ViewModel\LevelsViewModel.cs" />
+    <Compile Include="ViewModel\LevelViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\ShieldViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\AboutControl.xaml.cs">
+      <DependentUpon>AboutControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LevelPage.xaml.cs">
+      <DependentUpon>LevelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LevelsPage.xaml.cs">
+      <DependentUpon>LevelsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsControl.xaml.cs">
+      <DependentUpon>SettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShieldPage.xaml.cs">
+      <DependentUpon>ShieldPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="..\Data\ShieldsV5.xml">
+      <Link>ShieldsV5.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Computerfont.ttf" />
+    <Content Include="Sound\booh.wav" />
+    <Content Include="Sound\fischietto.wav" />
+    <Content Include="Sound\goal.wav" />
+    <Content Include="Sound\soccer1.wav" />
+    <Content Include="Sound\soccer2.wav" />
+    <Content Include="Sound\soccer3.wav" />
+    <Content Include="Sound\soccer4.wav" />
+    <Content Include="Sound\soccer5.wav" />
+    <Content Include="Sound\soccer6.wav" />
+    <Content Include="Sound\validated.wav" />
+    <PRIResource Include="MultilingualResources\en-US\Resources.resw" />
+    <PRIResource Include="MultilingualResources\it-IT\Resources.resw" />
+    <None Include="packages.config" />
+    <None Include="Soccerama.Win81_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Styles\MainStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\AboutControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\LevelPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\LevelsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ShieldPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.Win8">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Win8">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\netcore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\netcore45\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\hint.png" />
+    <Content Include="Assets\hintdisabled.png" />
+    <Content Include="Assets\hintpressed.png" />
+    <Content Include="Assets\Levels\livello1.png" />
+    <Content Include="Assets\Levels\livello10.png" />
+    <Content Include="Assets\Levels\livello100.png" />
+    <Content Include="Assets\Levels\livello100lock.png" />
+    <Content Include="Assets\Levels\livello10lock.png" />
+    <Content Include="Assets\Levels\livello11.png" />
+    <Content Include="Assets\Levels\livello11lock.png" />
+    <Content Include="Assets\Levels\livello12.png" />
+    <Content Include="Assets\Levels\livello12lock.png" />
+    <Content Include="Assets\Levels\livello2.png" />
+    <Content Include="Assets\Levels\livello200.png" />
+    <Content Include="Assets\Levels\livello200lock.png" />
+    <Content Include="Assets\Levels\livello2lock.png" />
+    <Content Include="Assets\Levels\livello3.png" />
+    <Content Include="Assets\Levels\livello300.png" />
+    <Content Include="Assets\Levels\livello300lock.png" />
+    <Content Include="Assets\Levels\livello3lock.png" />
+    <Content Include="Assets\Levels\livello4.png" />
+    <Content Include="Assets\Levels\livello4lock.png" />
+    <Content Include="Assets\Levels\livello5.png" />
+    <Content Include="Assets\Levels\livello5lock.png" />
+    <Content Include="Assets\Levels\livello6.png" />
+    <Content Include="Assets\Levels\livello6lock.png" />
+    <Content Include="Assets\Levels\livello7.png" />
+    <Content Include="Assets\Levels\livello7lock.png" />
+    <Content Include="Assets\Levels\livello8.png" />
+    <Content Include="Assets\Levels\livello8lock.png" />
+    <Content Include="Assets\Levels\livello9.png" />
+    <Content Include="Assets\Levels\livello9lock.png" />
+    <Content Include="Assets\Logos\logo.scale-100.png" />
+    <Content Include="Assets\Logos\logo.scale-140.png" />
+    <Content Include="Assets\Logos\logo.scale-180.png" />
+    <Content Include="Assets\Logos\logo.scale-80.png" />
+    <Content Include="Assets\Logos\market 414x468.png" />
+    <Content Include="Assets\Logos\market 846x468.png" />
+    <Content Include="Assets\Logos\market414x180.png" />
+    <Content Include="Assets\Logos\SmallLogo.scale-100.png" />
+    <Content Include="Assets\Logos\SmallLogo.scale-140.png" />
+    <Content Include="Assets\Logos\SmallLogo.scale-180.png" />
+    <Content Include="Assets\Logos\SmallLogo.scale-80.png" />
+    <Content Include="Assets\Logos\SplashScreen.scale-100.png" />
+    <Content Include="Assets\Logos\SplashScreen.scale-140.png" />
+    <Content Include="Assets\Logos\SplashScreen.scale-180.png" />
+    <Content Include="Assets\Logos\StoreLogo.scale-100.png" />
+    <Content Include="Assets\Logos\StoreLogo.scale-140.png" />
+    <Content Include="Assets\Logos\StoreLogo.scale-180.png" />
+    <Content Include="Assets\Logos\WideLogo.scale-100.png" />
+    <Content Include="Assets\Logos\WideLogo.scale-140.png" />
+    <Content Include="Assets\Logos\WideLogo.scale-180.png" />
+    <Content Include="Assets\Logos\WideLogo.scale-80.png" />
+    <Content Include="Assets\Logos\WideLogo2.scale-100.png" />
+    <Content Include="Assets\Logos\WideLogo2.scale-140.png" />
+    <Content Include="Assets\Logos\WideLogo2.scale-180.png" />
+    <Content Include="Assets\Logos\WideLogo2.scale-80.png" />
+    <Content Include="Assets\ok.png" />
+    <Content Include="Assets\okpressed.png" />
+    <Content Include="Assets\scudetti\860-Munchen.png" />
+    <Content Include="Assets\scudetti\Adelaide.png" />
+    <Content Include="Assets\scudetti\AEKatene.png" />
+    <Content Include="Assets\scudetti\AIK-Stockholm.png" />
+    <Content Include="Assets\scudetti\aj-auxerre.png" />
+    <Content Include="Assets\scudetti\ajaccio.png" />
+    <Content Include="Assets\scudetti\ajax.png" />
+    <Content Include="Assets\scudetti\albinoleffe.png" />
+    <Content Include="Assets\scudetti\almeria.png" />
+    <Content Include="Assets\scudetti\amburgo.png" />
+    <Content Include="Assets\scudetti\Anderlecht.png" />
+    <Content Include="Assets\scudetti\Anzhi_Makhachkala.png" />
+    <Content Include="Assets\scudetti\argentina.png" />
+    <Content Include="Assets\scudetti\arsenal.png" />
+    <Content Include="Assets\scudetti\AS-Monaco.png" />
+    <Content Include="Assets\scudetti\ASROMA.png" />
+    <Content Include="Assets\scudetti\aston-villa.png" />
+    <Content Include="Assets\scudetti\atalanta.png" />
+    <Content Include="Assets\scudetti\Athletic-Bilbao.png" />
+    <Content Include="Assets\scudetti\atletico madrid.png" />
+    <Content Include="Assets\scudetti\austria-vienna.png" />
+    <Content Include="Assets\scudetti\avellino.png" />
+    <Content Include="Assets\scudetti\AZ-Alkmaar.png" />
+    <Content Include="Assets\scudetti\barcellona.png" />
+    <Content Include="Assets\scudetti\bari.png" />
+    <Content Include="Assets\scudetti\Basilea.png" />
+    <Content Include="Assets\scudetti\BATE-Borisov.png" />
+    <Content Include="Assets\scudetti\bayerleverkusen.png" />
+    <Content Include="Assets\scudetti\Bayern_Munich.png" />
+    <Content Include="Assets\scudetti\Benfica.png" />
+    <Content Include="Assets\scudetti\besiktas.png" />
+    <Content Include="Assets\scudetti\Birmingham.png" />
+    <Content Include="Assets\scudetti\Blackburn-Rovers.png" />
+    <Content Include="Assets\scudetti\blocked.png" />
+    <Content Include="Assets\scudetti\Boavista.png" />
+    <Content Include="Assets\scudetti\boca.png" />
+    <Content Include="Assets\scudetti\BOLIVAR.png" />
+    <Content Include="Assets\scudetti\Bologna.png" />
+    <Content Include="Assets\scudetti\Borussia_Dortmund.png" />
+    <Content Include="Assets\scudetti\botafogo.png" />
+    <Content Include="Assets\scudetti\braga.png" />
+    <Content Include="Assets\scudetti\brasile.png" />
+    <Content Include="Assets\scudetti\brescia.png" />
+    <Content Include="Assets\scudetti\brondby.png" />
+    <Content Include="Assets\scudetti\cameroon.png" />
+    <Content Include="Assets\scudetti\canada.png" />
+    <Content Include="Assets\scudetti\Celta-de-Vigo.png" />
+    <Content Include="Assets\scudetti\celtic.png" />
+    <Content Include="Assets\scudetti\Cerro_porteno.png" />
+    <Content Include="Assets\scudetti\cesena.png" />
+    <Content Include="Assets\scudetti\CFR-Cluj.png" />
+    <Content Include="Assets\scudetti\chelsea.png" />
+    <Content Include="Assets\scudetti\chicagofire.png" />
+    <Content Include="Assets\scudetti\chievo.png" />
+    <Content Include="Assets\scudetti\Chile.png" />
+    <Content Include="Assets\scudetti\China.png" />
+    <Content Include="Assets\scudetti\Club-Brugge.png" />
+    <Content Include="Assets\scudetti\club-nacional.png" />
+    <Content Include="Assets\scudetti\colo colo.png" />
+    <Content Include="Assets\scudetti\coreasud.png" />
+    <Content Include="Assets\scudetti\corinthians.png" />
+    <Content Include="Assets\scudetti\Costa-Rica.png" />
+    <Content Include="Assets\scudetti\costadavorio.png" />
+    <Content Include="Assets\scudetti\CROATIA.png" />
+    <Content Include="Assets\scudetti\Crystal_Palace.png" />
+    <Content Include="Assets\scudetti\CSKA-Moscow.png" />
+    <Content Include="Assets\scudetti\CSKA_Sofia.png" />
+    <Content Include="Assets\scudetti\danimarca.png" />
+    <Content Include="Assets\scudetti\den-haag.png" />
+    <Content Include="Assets\scudetti\DeportivoLaCoruna.png" />
+    <Content Include="Assets\scudetti\Derby-County.png" />
+    <Content Include="Assets\scudetti\Dinamo-Zagreb.png" />
+    <Content Include="Assets\scudetti\dinamobucuresti.png" />
+    <Content Include="Assets\scudetti\Dundee.png" />
+    <Content Include="Assets\scudetti\dynamo-kiev1.png" />
+    <Content Include="Assets\scudetti\dynamomoscow.png" />
+    <Content Include="Assets\scudetti\Eintracht-Frankfurt.png" />
+    <Content Include="Assets\scudetti\empoli.png" />
+    <Content Include="Assets\scudetti\ENGLAND.png" />
+    <Content Include="Assets\scudetti\estudiantes.png" />
+    <Content Include="Assets\scudetti\FC-Kobenhavn.png" />
+    <Content Include="Assets\scudetti\FC-Nantes.png" />
+    <Content Include="Assets\scudetti\fc-porto.png" />
+    <Content Include="Assets\scudetti\Fenerbahce.png" />
+    <Content Include="Assets\scudetti\Feyenoord.png" />
+    <Content Include="Assets\scudetti\Fiorentina.png" />
+    <Content Include="Assets\scudetti\Flamengo4.png" />
+    <Content Include="Assets\scudetti\fluminense.png" />
+    <Content Include="Assets\scudetti\foggia.png" />
+    <Content Include="Assets\scudetti\francia.png" />
+    <Content Include="Assets\scudetti\fulham-logo.png" />
+    <Content Include="Assets\scudetti\galatasaray.png" />
+    <Content Include="Assets\scudetti\galaxy.png" />
+    <Content Include="Assets\scudetti\genk.png" />
+    <Content Include="Assets\scudetti\Genoa.png" />
+    <Content Include="Assets\scudetti\gent.png" />
+    <Content Include="Assets\scudetti\germania.png" />
+    <Content Include="Assets\scudetti\getafe.png" />
+    <Content Include="Assets\scudetti\ghana.png" />
+    <Content Include="Assets\scudetti\gijon.png" />
+    <Content Include="Assets\scudetti\gimnastic.png" />
+    <Content Include="Assets\scudetti\Girondins-Bordeaux.png" />
+    <Content Include="Assets\scudetti\Gladbach.png" />
+    <Content Include="Assets\scudetti\Glasgow-Rangers.png" />
+    <Content Include="Assets\scudetti\goteborg.png" />
+    <Content Include="Assets\scudetti\Grasshoppers.png" />
+    <Content Include="Assets\scudetti\grecia.png" />
+    <Content Include="Assets\scudetti\gremio.png" />
+    <Content Include="Assets\scudetti\GuangzhouEvergrande.png" />
+    <Content Include="Assets\scudetti\Hajduk-Split.png" />
+    <Content Include="Assets\scudetti\hannover96.png" />
+    <Content Include="Assets\scudetti\hearts.png" />
+    <Content Include="Assets\scudetti\Heerenveen.png" />
+    <Content Include="Assets\scudetti\HertaBerlino.png" />
+    <Content Include="Assets\scudetti\Hull_City.png" />
+    <Content Include="Assets\scudetti\independiente.png" />
+    <Content Include="Assets\scudetti\inter.png" />
+    <Content Include="Assets\scudetti\iran.png" />
+    <Content Include="Assets\scudetti\ireland.png" />
+    <Content Include="Assets\scudetti\Italia.png" />
+    <Content Include="Assets\scudetti\japan.png" />
+    <Content Include="Assets\scudetti\Jubilo-Iwata.png" />
+    <Content Include="Assets\scudetti\juventus.png" />
+    <Content Include="Assets\scudetti\kaiserslautern.png" />
+    <Content Include="Assets\scudetti\kashima-antlers.png" />
+    <Content Include="Assets\scudetti\kashiwa.png" />
+    <Content Include="Assets\scudetti\kawasaki.png" />
+    <Content Include="Assets\scudetti\koln.png" />
+    <Content Include="Assets\scudetti\KV-Mechelen.png" />
+    <Content Include="Assets\scudetti\lazio.png" />
+    <Content Include="Assets\scudetti\Leeds-United.png" />
+    <Content Include="Assets\scudetti\levante.png" />
+    <Content Include="Assets\scudetti\lille.png" />
+    <Content Include="Assets\scudetti\liverpool.png" />
+    <Content Include="Assets\scudetti\livorno.png" />
+    <Content Include="Assets\scudetti\Logo-Udinese1.png" />
+    <Content Include="Assets\scudetti\lokomotivmoscow.png" />
+    <Content Include="Assets\scudetti\lorient.png" />
+    <Content Include="Assets\scudetti\maccabi-haifa.png" />
+    <Content Include="Assets\scudetti\maccabitelaviv.png" />
+    <Content Include="Assets\scudetti\mainz.png" />
+    <Content Include="Assets\scudetti\manchester city.png" />
+    <Content Include="Assets\scudetti\manchesterunited.png" />
+    <Content Include="Assets\scudetti\Messico.png" />
+    <Content Include="Assets\scudetti\metalist_kharkiv-primary-.png" />
+    <Content Include="Assets\scudetti\milan.png" />
+    <Content Include="Assets\scudetti\modena.png" />
+    <Content Include="Assets\scudetti\montpellier.png" />
+    <Content Include="Assets\scudetti\Morocco.png" />
+    <Content Include="Assets\scudetti\napoli.png" />
+    <Content Include="Assets\scudetti\Newcastle-United.png" />
+    <Content Include="Assets\scudetti\newell_soldboys.png" />
+    <Content Include="Assets\scudetti\Newenglandrevolution.png" />
+    <Content Include="Assets\scudetti\NewZealandl.png" />
+    <Content Include="Assets\scudetti\Nigerian.png" />
+    <Content Include="Assets\scudetti\nizza.png" />
+    <Content Include="Assets\scudetti\NK-Maribor.png" />
+    <Content Include="Assets\scudetti\norwich.png" />
+    <Content Include="Assets\scudetti\Nottingham-Forest.png" />
+    <Content Include="Assets\scudetti\OB-Odense.png" />
+    <Content Include="Assets\scudetti\olanda.png" />
+    <Content Include="Assets\scudetti\olympiakos.png" />
+    <Content Include="Assets\scudetti\olympique-marseille.png" />
+    <Content Include="Assets\scudetti\Olympique_lyonnais.png" />
+    <Content Include="Assets\scudetti\OrlandoPirates.png" />
+    <Content Include="Assets\scudetti\osasuna.png" />
+    <Content Include="Assets\scudetti\padova.png" />
+    <Content Include="Assets\scudetti\Palermo.png" />
+    <Content Include="Assets\scudetti\palmeiras.png" />
+    <Content Include="Assets\scudetti\panathinaikos.png" />
+    <Content Include="Assets\scudetti\paok.png" />
+    <Content Include="Assets\scudetti\paraguay.png" />
+    <Content Include="Assets\scudetti\paris-saint-germain.png" />
+    <Content Include="Assets\scudetti\Partizan-Belgrade.png" />
+    <Content Include="Assets\scudetti\Penarol.png" />
+    <Content Include="Assets\scudetti\piacenza.png" />
+    <Content Include="Assets\scudetti\pisa.png" />
+    <Content Include="Assets\scudetti\polonia.png" />
+    <Content Include="Assets\scudetti\Porto_Alegre.png" />
+    <Content Include="Assets\scudetti\Portsmouth-FC.png" />
+    <Content Include="Assets\scudetti\PORTUGAL.png" />
+    <Content Include="Assets\scudetti\psv_eindhoven.png" />
+    <Content Include="Assets\scudetti\queens-park-rangers.png" />
+    <Content Include="Assets\scudetti\queenslandroar.png" />
+    <Content Include="Assets\scudetti\Racing-Santander.png" />
+    <Content Include="Assets\scudetti\rapidvienna.png" />
+    <Content Include="Assets\scudetti\rayo-vallecano.png" />
+    <Content Include="Assets\scudetti\RBK.png" />
+    <Content Include="Assets\scudetti\Real-Sociedad.png" />
+    <Content Include="Assets\scudetti\Real-Zaragoza.png" />
+    <Content Include="Assets\scudetti\realmadrid.png" />
+    <Content Include="Assets\scudetti\realsaltlake.png" />
+    <Content Include="Assets\scudetti\Recreativo_de_Huelva.png" />
+    <Content Include="Assets\scudetti\River_Plate.png" />
+    <Content Include="Assets\scudetti\rubin_kazan.png" />
+    <Content Include="Assets\scudetti\RUSSIA.png" />
+    <Content Include="Assets\scudetti\saint-etienne.png" />
+    <Content Include="Assets\scudetti\san marino.png" />
+    <Content Include="Assets\scudetti\santos.png" />
+    <Content Include="Assets\scudetti\saudi-arabia.png" />
+    <Content Include="Assets\scudetti\Schalke_04.png" />
+    <Content Include="Assets\scudetti\scotland.png" />
+    <Content Include="Assets\scudetti\Senegal.png" />
+    <Content Include="Assets\scudetti\servette.png" />
+    <Content Include="Assets\scudetti\setubal.png" />
+    <Content Include="Assets\scudetti\sevilla-logo.png" />
+    <Content Include="Assets\scudetti\Shakhtar_donetsk.png" />
+    <Content Include="Assets\scudetti\Shamrock-Rovers.png" />
+    <Content Include="Assets\scudetti\sheffield.png" />
+    <Content Include="Assets\scudetti\Sheriff-Tiraspol.png" />
+    <Content Include="Assets\scudetti\siena.png" />
+    <Content Include="Assets\scudetti\Slavia-Praha.png" />
+    <Content Include="Assets\scudetti\Slovenia.png" />
+    <Content Include="Assets\scudetti\SochauxMontbeliard.png" />
+    <Content Include="Assets\scudetti\Spain.png" />
+    <Content Include="Assets\scudetti\Sparta-Praha.png" />
+    <Content Include="Assets\scudetti\spartak-mosca.png" />
+    <Content Include="Assets\scudetti\SportingLisbon.png" />
+    <Content Include="Assets\scudetti\Standard-Liege.png" />
+    <Content Include="Assets\scudetti\Steaua.png" />
+    <Content Include="Assets\scudetti\stellarossa.png" />
+    <Content Include="Assets\scudetti\sturm-graz.png" />
+    <Content Include="Assets\scudetti\sudafrica.png" />
+    <Content Include="Assets\scudetti\svizzera.png" />
+    <Content Include="Assets\scudetti\swansea.png" />
+    <Content Include="Assets\scudetti\Sweden.png" />
+    <Content Include="Assets\scudetti\sydney.png" />
+    <Content Include="Assets\scudetti\thailand.png" />
+    <Content Include="Assets\scudetti\thun.png" />
+    <Content Include="Assets\scudetti\Torino.png" />
+    <Content Include="Assets\scudetti\toronto.png" />
+    <Content Include="Assets\scudetti\Tottenham_Hotspurs.png" />
+    <Content Include="Assets\scudetti\trabzonspor.png" />
+    <Content Include="Assets\scudetti\TUNISIAN.png" />
+    <Content Include="Assets\scudetti\twente.png" />
+    <Content Include="Assets\scudetti\UKRAINE.png" />
+    <Content Include="Assets\scudetti\Ulsan_Hyundai.png" />
+    <Content Include="Assets\scudetti\universidad-de-chile.png" />
+    <Content Include="Assets\scudetti\universidad.png" />
+    <Content Include="Assets\scudetti\uruguay.png" />
+    <Content Include="Assets\scudetti\usa.png" />
+    <Content Include="Assets\scudetti\utrecht.png" />
+    <Content Include="Assets\scudetti\valencia.png" />
+    <Content Include="Assets\scudetti\VascoDaGama.png" />
+    <Content Include="Assets\scudetti\velez.png" />
+    <Content Include="Assets\scudetti\VfB-Stuttgart.png" />
+    <Content Include="Assets\scudetti\VfL-Bochum.png" />
+    <Content Include="Assets\scudetti\Vicenza.png" />
+    <Content Include="Assets\scudetti\viktoria.png" />
+    <Content Include="Assets\scudetti\WerderBremen.png" />
+    <Content Include="Assets\scudetti\west-bromwich.png" />
+    <Content Include="Assets\scudetti\west-ham-united.png" />
+    <Content Include="Assets\scudetti\wiganathletic.png" />
+    <Content Include="Assets\scudetti\Wolfsburg.png" />
+    <Content Include="Assets\scudetti\Wolverhampton-Wanderers.png" />
+    <Content Include="Assets\scudetti\Young-Boys.png" />
+    <Content Include="Assets\scudetti\zenita.png" />
+    <Content Include="Assets\sfondo-snapped.jpg" />
+    <Content Include="Assets\sfondo.jpg" />
+    <Content Include="Assets\soccer icon.png" />
+    <Content Include="Assets\spunta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{e90cff81-74e7-44a8-a5b9-fdcbb7548ac8}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{f5196ce5-1211-4398-9767-ffd11622fbb6}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="MSAdvertisingXaml, Version=8.1">
+      <Name>Microsoft Advertising SDK for Windows 8.1 %28Xaml%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -162,7 +162,7 @@ Unlock a new hint every 5 shields.</value>
   <data name="NoHintsAvailable" xml:space="preserve">
     <value>You have finished all the available hints, try to unlock some other badges!</value>
   </data>
-  <data name="Reset" xml:space="preserve">
+  <data name="ResetText" xml:space="preserve">
     <value>Reset</value>
   </data>
   <data name="Rules" xml:space="preserve">

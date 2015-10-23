@@ -47,7 +47,7 @@ namespace WPCommon.Controls
             AdPlaceholder.Children.Clear();
             System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
-                var adad = new AdDuplex.AdControl() { AppId = ADAppId };
+                var adad = new AdDuplex.AdControl() { AdUnitId = ADAppId };
                 adad.AdLoadingError += adad_AdLoadingError;
                 AdPlaceholder.Children.Add(adad);
             });

@@ -385,7 +385,7 @@ namespace Microsoft.Phone.Applications.Common
                 _sensor = new Accelerometer();
                 if (_sensor != null)
                 {
-                    _sensor.ReadingChanged += new EventHandler<AccelerometerReadingEventArgs>(sensor_ReadingChanged);
+                    _sensor.CurrentValueChanged += sensor_CurrentValueChanged;
                     _sensor.Start();
                     _active = true;
                     NoAccelerometer = false;
@@ -413,7 +413,7 @@ namespace Microsoft.Phone.Applications.Common
             {
                 if (_sensor != null)
                 {
-                    _sensor.ReadingChanged -= new EventHandler<AccelerometerReadingEventArgs>(sensor_ReadingChanged);
+                    _sensor.CurrentValueChanged -= sensor_CurrentValueChanged;
                     _sensor.Stop();
                     _sensor = null;
                     _active = false;
@@ -456,18 +456,21 @@ namespace Microsoft.Phone.Applications.Common
             return newOutputValue;
         }
 
+
+
         /// <summary>
         /// Called on accelerometer sensor sample available.
         /// Main accelerometer data filtering routine
         /// </summary>
         /// <param name="sender">Sender of the event.</param>
         /// <param name="e">AccelerometerReadingAsyncEventArgs</param>
-        private void sensor_ReadingChanged(object sender, AccelerometerReadingEventArgs e)
+        private void sensor_CurrentValueChanged(object sender, SensorReadingEventArgs<AccelerometerReading> e)
         {
+            var acceleration = e.SensorReading.Acceleration;
             Simple3DVector lowPassFilteredAcceleration;
             Simple3DVector optimalFilteredAcceleration;
             Simple3DVector averagedAcceleration;
-            Simple3DVector rawAcceleration = new Simple3DVector(e.X, e.Y, e.Z);
+            var rawAcceleration = new Simple3DVector(acceleration.X, acceleration.Y, acceleration.Z);
 
             lock (_sampleBuffer)
             {

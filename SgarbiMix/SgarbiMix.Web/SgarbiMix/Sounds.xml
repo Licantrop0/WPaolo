@@ -7,16 +7,14 @@
 	<SoundViewModel Name="Ateo Fasullo!" File="Ateo_fasullo.wav" Category="Corti"/>
 	<SoundViewModel Name="E Vaffanculo!" File="e_vaffanculo.wav" Category="Corti"/>
 	<SoundViewModel Name="Pagato da chi" File="Pagato_da_chi.wav" Category="Corti"/>
-	<SoundViewModel Name="Facce di merda" File="facce_di_merda.wav" Category="Corti"/>
 	<SoundViewModel Name="Altro che Valori" File="Altro_che_valori.wav" Category="Corti"/>
 	<SoundViewModel Name="È insopportabile" File="e'_insopportabile.wav" Category="Corti"/>
 	<SoundViewModel Name="Vada a dimagrire" File="vada_a_dimagrire.wav" Category="Corti"/>
-	<SoundViewModel Name="Cacatore di merda" File="Cacatore_di_M.wav" Category="Corti"/>
 	<SoundViewModel Name="Lo mangerei vivo!" File="Lo_mangerei_vivo.wav" Category="Corti"/>
 	<SoundViewModel Name="Ubriacone drogato" File="Ubriacone_drogato.wav" Category="Corti"/>
-	<SoundViewModel Name="Un pezzo di merda" File="Un_pezzo_di_M.wav" Category="Corti"/>
 	<SoundViewModel Name="La mia maledizione" File="La_mia_maledizione.wav" Category="Corti"/>
 	<SoundViewModel Name="Ma guarda che roba!" File="Ma_guarda_che_roba.wav" Category="Corti"/>
+	
 	<SoundViewModel Name="Cafone" File="Cafone.wav" Category="Crimini"/>
 	<SoundViewModel Name="Criminale" File="Criminale.wav" Category="Crimini"/>
 	<SoundViewModel Name="In Galera" File="In_Galera.wav" Category="Crimini"/>
@@ -25,6 +23,7 @@
 	<SoundViewModel Name="Sono stato condannato" File="Sono_stato_condannato.wav" Category="Crimini"/>
 	<SoundViewModel Name="Quei vandali criminali" File="Da_quei_vandali_criminali.wav" Category="Crimini"/>
 	<SoundViewModel Name="Voglio essere processato" File="voglio_essere_processato.wav" Category="Crimini"/>
+	
 	<SoundViewModel Name="Drogato" File="Drogato.wav" Category="Droga"/>
 	<SoundViewModel Name="Spacciatore" File="Spacciatore.wav" Category="Droga"/>
 	<SoundViewModel Name="Drogato Cafone" File="Drogato_Cafone.wav" Category="Droga"/>
@@ -32,11 +31,17 @@
 	<SoundViewModel Name="Sei drogato e ubriaco" File="Sei_drogato_e_ubriaco.wav" Category="Droga"/>
 	<SoundViewModel Name="Checca isterica" File="Checca_isterica.wav" Category="Gay"/>
 	<SoundViewModel Name="Perché l'uccello" File="Perche'_l'uccello.wav" Category="Gay"/>
-	<SoundViewModel Name="Quella è la merda" File="quella_e'_la_merda.wav" Category="Gay"/>
 	<SoundViewModel Name="Cazzi da 150 metri" File="Cazzi_da_150_metri.wav" Category="Gay"/>
 	<SoundViewModel Name="Culattoni raccomandati" File="Culattoni_raccomandati.wav" Category="Gay"/>
 	<SoundViewModel Name="Valori del buco del culo" File="Valori_del_buco_del_culo.wav" Category="Gay"/>
 	<SoundViewModel Name="Lo vuol prendere da quella parte" File="se_lo_vuol_prendere_da_quella_parte.wav" Category="Gay"/>
+	
+	<SoundViewModel Name="Quella merda secca" File="quella_m_secca.wav" Category="Merda"/>
+	<SoundViewModel Name="Cacatore di merda" File="Cacatore_di_M.wav" Category="Merda"/>
+	<SoundViewModel Name="Facce di merda" File="facce_di_merda.wav" Category="Merda"/>
+	<SoundViewModel Name="Un pezzo di merda" File="Un_pezzo_di_M.wav" Category="Merda"/>
+	<SoundViewModel Name="Quella è la merda" File="quella_e'_la_merda.wav" Category="Merda"/>
+	
 	<SoundViewModel Name="TACI" File="TACI.wav" Category="Ignoranti"/>
 	<SoundViewModel Name="Bugia" File="Bugia.wav" Category="Ignoranti"/>
 	<SoundViewModel Name="Capra!" File="Capra.wav" Category="Ignoranti"/>
@@ -54,6 +59,7 @@
 	<SoundViewModel Name="Legga Dante! Legga Manzoni!" File="Legga_Dante_Legga_Manzoni.wav" Category="Ignoranti"/>
 	<SoundViewModel Name="Non dici frasi ma stronzate" File="non_dici_frasi_ma_stronzate.wav" Category="Ignoranti"/>
 	<SoundViewModel Name="Sei ignorante come una capra" File="Sei_ignorante_come_una_capra.wav" Category="Ignoranti"/>
+	
 	<SoundViewModel Name="Avete rotto i coglioni" File="Avete_rotto_i_coglioni.wav" Category="Lunghi"/>
 	<SoundViewModel Name="Abbia ognuno il pudore…" File="Abbia_ognuno_il_pudore_della_propria_vita.wav" Category="Lunghi"/>
 	<SoundViewModel Name="Non gliene importa niente" File="non_gliene_importa_niente.wav" Category="Lunghi"/>
@@ -61,6 +67,7 @@
 	<SoundViewModel Name="È tecnicamente un figlio di puttana" File="figlio_di_puttana.wav" Category="Lunghi"/>
 	<SoundViewModel Name="Ridicolo sei, e lo sei sempre stato" File="Ridicolo_sei,_e_lo_sei_sempre_stato.wav" Category="Lunghi"/>
 	<SoundViewModel Name="Non ha mai fatto un cazzo in vita sua" File="Non_ha_mai_fatto_un_cazzo_in_vita_sua.wav" Category="Lunghi"/>
+	
 	<SoundViewModel Name="Fascista" File="Fascista.wav" Category="Politici"/>
 	<SoundViewModel Name="La mafia" File="La_mafia_la_mafia_la_mafia.wav" Category="Politici"/>
 	<SoundViewModel Name="Comunista Pagato!" File="comunista_pagato.wav" Category="Politici"/>

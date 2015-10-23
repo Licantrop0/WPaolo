@@ -81,6 +81,7 @@ namespace SgarbiMix.WP7.ViewModel
                 }
                 sounds = AppContext.SoundSerializer.Deserialize(newXml) as SoundViewModel[];
             }
+
             var differences = sounds.Select(s => s.File)
                 .Except(GetNonEmptyFiles())
                 .Concat(new[] { "Sounds.xml" });

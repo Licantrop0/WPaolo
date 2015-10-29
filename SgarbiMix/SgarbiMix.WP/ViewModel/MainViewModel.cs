@@ -51,12 +51,10 @@ namespace SgarbiMix.WP.ViewModel
 
             MessengerInstance.Register<string>(this, m =>
             {
-                if (m == "update_completed")
-                {
-                    AppContext.LoadSounds();
-                    _sounds = null;
-                    RaisePropertyChanged("Sounds");
-                }
+                if (m != "update_completed") return;
+                AppContext.LoadSounds();
+                _sounds = null;
+                RaisePropertyChanged("Sounds");
             });
         }
 

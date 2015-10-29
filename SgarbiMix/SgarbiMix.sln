@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.ShakeGestures", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPCommon.Helpers.TrialManagement", "..\WPCommon.Helpers.TrialManagement\WPCommon.Helpers.TrialManagement.csproj", "{157C676B-46A4-4099-936E-BBDFB93BB735}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgarbiMix.WP7", "SgarbiMix.WP7\SgarbiMix.WP7.csproj", "{8BDEBE1A-9791-428D-8026-1172D876F79D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgarbiMix.WP", "SgarbiMix.WP\SgarbiMix.WP.csproj", "{8BDEBE1A-9791-428D-8026-1172D876F79D}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SgarbiMix.Web", "http://localhost:2311", "{D6D2856E-48E5-4E2D-8A03-B6AAE8368805}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -165,9 +165,9 @@ Global
 		SccProjectUniqueName5 = ..\\WPCommon.Helpers.TrialManagement\\WPCommon.Helpers.TrialManagement.csproj
 		SccProjectName5 = ../WPCommon.Helpers.TrialManagement
 		SccLocalPath5 = ..\\WPCommon.Helpers.TrialManagement
-		SccProjectUniqueName6 = SgarbiMix.WP7\\SgarbiMix.WP7.csproj
-		SccProjectName6 = SgarbiMix.WP7
-		SccLocalPath6 = SgarbiMix.WP7
+		SccProjectUniqueName6 = SgarbiMix.WP\\SgarbiMix.WP.csproj
+		SccProjectName6 = SgarbiMix.WP
+		SccLocalPath6 = SgarbiMix.WP
 		SccWebProject7 = true
 		SccProjectUniqueName7 = http://localhost:2311
 		SccProjectName7 = SgarbiMix.Web

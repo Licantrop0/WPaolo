@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Phone.Tasks;
-using Microsoft.Advertising.Mobile.UI;
 using System.Threading;
 
 namespace WPCommon.Controls
@@ -77,10 +76,7 @@ namespace WPCommon.Controls
         {
             new EmailComposeTask()
             {
-                Subject = string.Format("[{0} {1}] {2}",
-                    AppNameTextBlock.Text,
-                    AppVersionTextBlock.Text,
-                    "Feedback"),
+                Subject = $"[{AppNameTextBlock.Text} {AppVersionTextBlock.Text}] {"Feedback"}",
                 To = "wpmobile@hotmail.it"
             }.Show();
         }
@@ -106,7 +102,7 @@ namespace WPCommon.Controls
             {
                 new MarketplaceDetailTask()
                 {
-                    ContentIdentifier = b.Tag.ToString()
+                    ContentIdentifier = b?.Tag.ToString()
                 }.Show();
             }
             catch (InvalidOperationException)

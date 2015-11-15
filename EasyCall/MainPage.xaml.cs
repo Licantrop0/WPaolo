@@ -1,10 +1,10 @@
-﻿using EasyCall.Helper;
-using EasyCall.ViewModel;
+﻿using EasyCall.ViewModel;
 using Microsoft.Phone.Controls;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 using WPCommon.Helpers;
@@ -66,21 +66,6 @@ namespace EasyCall
         {
             _tmr.Start();
         }
-        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key != Key.Enter)
-                return;
-
-            if (Vm.SearchedContacts.Any())
-            {
-                var contact = Vm.SearchedContacts.First();
-                CallHelper.Call(contact.DisplayName, contact.First().Number);
-            }
-            else
-            {
-                CallHelper.Call(null, SearchTextBox.Text);
-            }
-        }
 
         private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -97,6 +82,27 @@ namespace EasyCall
             //Dismiss the keyboard
             if (FocusManager.GetFocusedElement() == SearchTextBox)
                 this.Focus();
+        }
+
+        private void Src_OnFilter(object sender, FilterEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
+            {
+                e.Accepted = true;
+                return;
+            }
+            var contact = e.Item as ContactViewModel;
+
+            if (contact.NumberRepresentation.Any(nr => nr.StartsWith(SearchTextBox.Text)))
+            {
+                e.Accepted = true;
+            }
+            if(contact.Any(n => n.Number.Contains(SearchTextBox.Text)))
+            {
+                e.Accepted = true;
+            }
+
+            e.Accepted = false;
         }
     }
 }

@@ -3,28 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Runtime.Serialization;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
 namespace EasyCall.ViewModel
 {
-    public class ContactViewModel : List<NumberViewModel>
+    [DataContract]
+    public class ContactViewModel : IList, IEnumerable<NumberViewModel>
     {
-        public string DisplayName { get; set; }
-        public string[] NumberRepresentation { get; set; }
-        public Uri ContactImage { get; private set; }
+        [DataMember]
+        public string Name { get; set; }
+        [DataMember]
+        public string ImagePath { get; set; }
 
-        public ContactViewModel(string displayName, IEnumerable<NumberViewModel> numbers, IRandomAccessStreamReference thumbnail)
-            : base(numbers)
+        public string[] NumberRepresentation { get; set; }
+        public Uri ContactImage => ImagePath == null ? null : new Uri(ImagePath);
+
+        [DataMember]
+        public readonly IList<NumberViewModel> Numbers;
+
+        public ContactViewModel()
         {
-            Debug.WriteLine(displayName);
-            DisplayName = displayName;
-            NumberRepresentation = TextToNum(displayName);
-            if(thumbnail !=null)
-                ContactImage = new Uri(((StorageFile)thumbnail).Path);
+            //for serialization
         }
 
+        public ContactViewModel(string name, IEnumerable<NumberViewModel> numbers, IRandomAccessStreamReference thumbnail)
+        {
+            Debug.WriteLine(name);
+            Name = name;
+            NumberRepresentation = TextToNum(name);
+            Numbers = numbers.ToList();
+            if (thumbnail != null)
+                ImagePath = ((StorageFile)thumbnail).Path;
+        }
         private static string[] TextToNum(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -82,5 +94,74 @@ namespace EasyCall.ViewModel
 
             return new string(output).Split(' ');
         }
+
+
+        #region IList Implementation
+
+        public bool IsFixedSize => true;
+
+        public bool IsReadOnly => true;
+
+        public int Count => Numbers?.Count ?? 0;
+
+        public bool IsSynchronized => false;
+        public object SyncRoot { get; }
+
+        public object this[int index]
+        {
+            get { return Numbers[index]; }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int Add(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Contains(object value)
+        {
+            return Numbers.Contains(value);
+        }
+
+        public int IndexOf(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(int index, object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveAt(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(Array array, int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator GetEnumerator() => Numbers.GetEnumerator();
+
+        IEnumerator<NumberViewModel> IEnumerable<NumberViewModel>.GetEnumerator() => Numbers.GetEnumerator();
+
+        #endregion
+
     }
 }

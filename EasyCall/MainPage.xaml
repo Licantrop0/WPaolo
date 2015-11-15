@@ -1,24 +1,25 @@
-﻿<phone:PhoneApplicationPage    
-    x:Class="EasyCall.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:ecc="clr-namespace:EasyCall.Controls"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
-    shell:SystemTray.IsVisible="True"
-    Loaded="PhoneApplicationPage_Loaded">
+﻿<phone:PhoneApplicationPage x:Class="EasyCall.MainPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:vm="clr-namespace:EasyCall.ViewModel"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            Loaded="PhoneApplicationPage_Loaded"
+                            Orientation="Portrait"
+                            SupportedOrientations="Portrait"
+                            d:DesignHeight="696"
+                            d:DesignWidth="480"
+                            shell:SystemTray.IsVisible="True"
+                            mc:Ignorable="d">
 
     <phone:PhoneApplicationPage.Resources>
-        <vm:MainViewModel x:Key="MainVM"
-                          xmlns:vm="clr-namespace:EasyCall.ViewModel" />
+        <vm:MainViewModel x:Key="MainVM" />
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" DataContext="{StaticResource MainVM}">
@@ -27,32 +28,98 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid.Resources>
-            <DataTemplate x:Key="NumberDataTemplate">
-                <Button HorizontalAlignment="Left" 
-                        toolkit:TiltEffect.IsTiltEnabled="True" Margin="60,0,0,0"
-                        Template="{StaticResource ContactNumberTemplate}" />
-            </DataTemplate>
-        </Grid.Resources>
+        <TextBox Name="SearchTextBox"
+                 GotFocus="SearchTextBox_GotFocus"
+                 InputScope="TelephoneNumber"
+                 KeyDown="SearchTextBox_KeyDown"
+                 KeyUp="SearchTextBox_KeyUp"
+                 Text="{Binding SearchText,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=Explicit}" />
 
-        <toolkit:PhoneTextBox
-            x:Name="SearchTextBox" InputScope="TelephoneNumber" KeyUp="SearchTextBox_KeyUp"
-            ActionIcon="Images\call.png" ActionIconTapped="SearchTextBox_ActionIconTapped"
-            Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
-            GotFocus="SearchTextBox_GotFocus" LengthIndicatorVisible="False" />
+        <phone:LongListSelector Name="ContactsLongListSelector"
+                                Grid.Row="1" ManipulationStarted="ContactsLongListSelector_OnManipulationStarted"
+                                IsGroupingEnabled="true"
+                                ItemsSource="{Binding SearchedContacts}">
+            <phone:LongListSelector.GroupHeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="48"
+                               Height="48"
+                               Margin="6,0"
+                               Source="{Binding ContactImage}"
+                               Stretch="Fill" />
+                        <TextBlock VerticalAlignment="Center"
+                                   FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                                   Text="{Binding DisplayName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </phone:LongListSelector.GroupHeaderTemplate>
 
-        <ecc:LongListSelector Grid.Row="1"
-            ItemsSource="{Binding SearchedContacts}"
-            SelectedItem="{Binding SelectedNumber, Mode=TwoWay}"
-            GroupHeaderTemplate="{StaticResource groupItemHeader}"
-            ItemTemplate="{StaticResource NumberDataTemplate}" />
+            <phone:LongListSelector.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Margin="60,0,0,0"
+                            HorizontalAlignment="Left"
+                                Command="{Binding CallNumberCommand}"
+                            toolkit:TiltEffect.IsTiltEnabled="True">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Width="48"
+                                               Height="48"
+                                               Margin="0,6,6,6"
+                                               Fill="{StaticResource PhoneForegroundBrush}">
+                                            <Rectangle.OpacityMask>
+                                                <ImageBrush ImageSource="Images\CircleCall.png" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                        </Button>
+                        <Button Margin="0,0,0,0"
+                            HorizontalAlignment="Left"
+                                Command="{Binding SendSmsCommand}"
+                            toolkit:TiltEffect.IsTiltEnabled="True">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Width="48"
+                                               Height="48"
+                                               Margin="6"
+                                               Fill="{StaticResource PhoneForegroundBrush}">
+                                            <Rectangle.OpacityMask>
+                                                <ImageBrush ImageSource="Images\CircleSms.png" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <TextBlock VerticalAlignment="Center"
+                                   FontSize="{StaticResource PhoneFontSizeMedium}"
+                                   Foreground="{StaticResource PhoneAccentBrush}"
+                                   Text="{Binding Number}" />
+
+                    </StackPanel>
+                </DataTemplate>
+            </phone:LongListSelector.ItemTemplate>
+        </phone:LongListSelector>
+
+
+        <!--  SelectedItem="{Binding SelectedNumber}"  -->
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized"
-                              ForegroundColor="{StaticResource PhoneAccentColor}">
+        <shell:ApplicationBar ForegroundColor="{StaticResource PhoneAccentColor}"
+                              IsMenuEnabled="True"
+                              IsVisible="True"
+                              Mode="Minimized">
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="About" Click="About_Click" />
+                <shell:ApplicationBarMenuItem Click="About_Click" Text="About" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

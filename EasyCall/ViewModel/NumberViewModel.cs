@@ -1,14 +1,22 @@
-﻿using System.Text.RegularExpressions;
+﻿using EasyCall.Helper;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
-using EasyCall.Helper;
 using WPCommon.Helpers;
 
 namespace EasyCall.ViewModel
 {
+    [DataContract]
     public class NumberViewModel
     {
-        public string Number { get; }
+        [DataMember]
+        public string Number { get; set; }
         public string Name { get; }
+
+        public NumberViewModel()
+        {
+            //for serialization
+        }
 
         public NumberViewModel(string number, string name)
         {

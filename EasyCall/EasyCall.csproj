@@ -118,6 +118,7 @@
     <Compile Include="Helper\CallHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helper\ScrollableLongListSelector.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\ContactViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">

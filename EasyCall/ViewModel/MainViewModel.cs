@@ -1,18 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Contacts;
+using Windows.Storage;
 using WPCommon.Helpers;
 
 namespace EasyCall.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
-        private List<ContactViewModel> ContactsVM { get; set; }
-        public List<ContactViewModel> SearchedContacts { get; set; }
+        private static readonly StorageFolder LocalFolder = ApplicationData.Current.LocalFolder;
+        private const string FileName = "contacts.db";
+
+        public double ScrollPosition
+        {
+            get { return _scrollPosition; }
+            set
+            {
+                _scrollPosition = value;
+                RaisePropertyChanged("ScrollPosition");
+            }
+        }
+
+        private List<ContactViewModel> _contacts;
+
+        public List<ContactViewModel> SearchedContacts
+        {
+            get { return _searchedContacts; }
+            set
+            {
+                _searchedContacts = value;
+                RaisePropertyChanged("SearchedContacts");
+            }
+        }
 
         private string _searchText = string.Empty;
+        private List<ContactViewModel> _searchedContacts;
+        private bool _isBusy;
+        private double _scrollPosition;
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                RaisePropertyChanged("IsBusy");
+            }
+        }
+
         public string SearchText
         {
             get { return _searchText; }
@@ -20,7 +61,7 @@ namespace EasyCall.ViewModel
             {
                 if (_searchText == value) return;
                 _searchText = value;
-                Filter(value);
+                Filter();
             }
         }
 
@@ -41,10 +82,15 @@ namespace EasyCall.ViewModel
 
         private async void LoadContacts()
         {
+            IsBusy = true;
+            _contacts = await ReadAsync();
+
+            Filter();
+
             var cs = await ContactManager.RequestStoreAsync();
             var allContacts = await cs.FindContactsAsync();
 
-            ContactsVM = allContacts
+            _contacts = allContacts
                 .Where(c => c.Phones.Any())
                 .Select(c => new ContactViewModel(
                     c.DisplayName,
@@ -52,21 +98,50 @@ namespace EasyCall.ViewModel
                     c.Thumbnail))
                 .ToList();
 
-            Filter(SearchText);
+            WriteAsync(_contacts);
+
+            Filter();
+
+            IsBusy = false;
         }
 
-
-        private void Filter(string searchedText)
+        private static async Task<List<ContactViewModel>> ReadAsync()
         {
-            if (ContactsVM == null)
+            try { await LocalFolder.GetFileAsync(FileName); }
+            catch (FileNotFoundException) { return null; }
+
+            var serializer = new DataContractJsonSerializer(typeof(List<ContactViewModel>));
+            using (var stream = await LocalFolder.OpenStreamForReadAsync(FileName))
+            {
+                return (List<ContactViewModel>)serializer.ReadObject(stream);
+            }
+        }
+
+        private static async void WriteAsync(List<ContactViewModel> data)
+        {
+            var serializer = new DataContractJsonSerializer(typeof(List<ContactViewModel>));
+            using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(
+                FileName, CreationCollisionOption.ReplaceExisting))
+            {
+                serializer.WriteObject(stream, data);
+            }
+        }
+
+        private void Filter()
+        {
+            if (_contacts == null)
                 return;
 
-            SearchedContacts = string.IsNullOrEmpty(searchedText)
-                ? ContactsVM
-                : ContactsVM.Where(contact => contact.NumberRepresentation.Any(nr => nr.StartsWith(searchedText)) ||
-                                              contact.Any(n => n.Number.Contains(searchedText))).ToList();
-
-            RaisePropertyChanged("SearchedContacts");
+            if (string.IsNullOrEmpty(SearchText))
+            {
+                SearchedContacts = _contacts;
+            }
+            else
+            {
+                SearchedContacts =
+                    _contacts.Where(contact => contact.NumberRepresentation.Any(nr => nr.StartsWith(SearchText)) ||
+                                               contact.Any(n => n.Number.Contains(SearchText))).ToList();
+            }
         }
     }
 }

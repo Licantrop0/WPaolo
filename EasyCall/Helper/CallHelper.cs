@@ -6,7 +6,7 @@ namespace EasyCall.Helper
 {
     public static class CallHelper
     {
-        private const int FreeCalls = 5;
+        private const int FreeCalls = 6;
 
         public static void Call(string name, string number)
         {
@@ -29,7 +29,9 @@ namespace EasyCall.Helper
 
         private static bool CheckTrial()
         {
-            if (!TrialManagement.IsTrialMode) return true;
+            if (!TrialManagement.IsTrialMode)
+                return true;
+
             if (TrialManagement.Counter < FreeCalls)
             {
                 MessageBox.Show("You have " + (FreeCalls - TrialManagement.Counter) + " calls left for this demo",
@@ -39,9 +41,13 @@ namespace EasyCall.Helper
                 return true;
             }
 
-            MessageBox.Show("I'm sorry, you called too many times for this trial, now it's time to pay!",
-                "Trial Mode", MessageBoxButton.OK);
-            TrialManagement.Buy();
+            var result = MessageBox.Show(
+                "I'm sorry, you called too many times for this trial, now it's time to pay!",
+                "Trial Mode",
+                MessageBoxButton.OK);
+            if(result == MessageBoxResult.OK)
+                TrialManagement.Buy();
+
             return false;
         }
     }

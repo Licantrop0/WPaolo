@@ -6,7 +6,6 @@ using System.Windows.Media;
 using System.Xml.Linq;
 using WPCommon.Controls.Model;
 using System.ComponentModel;
-using System.Windows.Controls;
 using System.Windows;
 using System.Reflection;
 

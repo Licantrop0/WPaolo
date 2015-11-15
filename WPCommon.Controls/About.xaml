@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:ad="clr-namespace:Microsoft;assembly=Microsoft.Advertising.Mobile.UI"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:wpc="clr-namespace:WPCommon.Controls"
@@ -74,10 +75,7 @@
                                FontSize="{Binding CustomTextFontSize}"
                                Foreground="{Binding CustomTextForeground}"/>
                 </StackPanel>
-                <wpc:AdSwitcher Name="AdSwitcher"
-                                MSAppId="21ecdf14-8a3e-49e6-b19a-a94b96b2eb0e"
-                                MSAdId="10022566" ADAppId="52939"
-                                VerticalAlignment="Bottom" />
+               
             </Grid>
         </controls:PivotItem>
 

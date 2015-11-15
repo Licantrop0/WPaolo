@@ -9,25 +9,25 @@ namespace WPCommon.Controls
     public partial class About : UserControl
     {
         /// <summary>Set this value to serve Ads for a specific MS AdUnit</summary>
-        public string AdUnitId
-        {
-            get { return AdSwitcher.ADAppId; }
-            set { AdSwitcher.ADAppId = value; }
-        }
+        //public string AdUnitId
+        //{
+        //    get { return AdSwitcher.ADAppId; }
+        //    set { AdSwitcher.ADAppId = value; }
+        //}
 
-        /// <summary>Set this value to serve Ads for a specific MS Application ID</summary>
-        public string ApplicationId
-        {
-            get { return AdSwitcher.MSAppId; }
-            set { AdSwitcher.MSAppId = value; }
-        }
+        ///// <summary>Set this value to serve Ads for a specific MS Application ID</summary>
+        //public string ApplicationId
+        //{
+        //    get { return AdSwitcher.MSAppId; }
+        //    set { AdSwitcher.MSAppId = value; }
+        //}
 
-        /// <summary>Set this value to serve Ads for a specific AdDuplex App Id</summary>
-        public string ADAppId
-        {
-            get { return AdSwitcher.ADAppId; }
-            set { AdSwitcher.ADAppId = value; }
-        }
+        ///// <summary>Set this value to serve Ads for a specific AdDuplex App Id</summary>
+        //public string ADAppId
+        //{
+        //    get { return AdSwitcher.ADAppId; }
+        //    set { AdSwitcher.ADAppId = value; }
+        //}
 
         public About()
         {
@@ -49,18 +49,6 @@ namespace WPCommon.Controls
         //    WPMEAbout.RemoveAdvertising();
         //    base.OnNavigatedFrom(e);
         //}
-
-        //Call in OnNavigatedTo
-        public void AddAdvertising()
-        {
-            AdSwitcher.AddAdvertising();
-        }
-
-        //Call in OnNavigatedFrom
-        public void RemoveAdvertising()
-        {
-            AdSwitcher.RemoveAdvertising();
-        }
 
         private void Facebook_Click(object sender, RoutedEventArgs e)
         {

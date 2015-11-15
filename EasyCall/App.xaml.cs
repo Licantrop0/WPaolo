@@ -2,9 +2,6 @@
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Microsoft.Phone.UserData;
-using System.Linq;
-using System.Threading;
 
 namespace EasyCall
 {
@@ -53,27 +50,6 @@ namespace EasyCall
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            LoadContacts();
-        }
-
-        public static void LoadContacts()
-        {
-            var cons = new Contacts();
-            cons.SearchCompleted += (sender, e) =>
-            {
-               AppContext.Contacts = (from c in e.Results
-                            where c.PhoneNumbers.Any()
-                            select new Model.Contact(c.DisplayName,
-                                c.PhoneNumbers.Select(n => n.PhoneNumber),
-                                c.GetPicture())
-                             ).ToList();
-
-                //if (!string.IsNullOrEmpty(SearchText) &&
-                //    !SearchedContacts.Any())
-                //    Filter(SearchText);
-            };
-
-            cons.SearchAsync(string.Empty, FilterKind.None, null);
         }
 
         // Code to execute when the application is activated (brought to foreground)

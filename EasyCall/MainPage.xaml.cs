@@ -1,55 +1,80 @@
-﻿using System;
+﻿using EasyCall.Helper;
+using EasyCall.ViewModel;
+using Microsoft.Phone.Controls;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
-using EasyCall.ViewModel;
-using Microsoft.Phone.Controls;
 using WPCommon.Helpers;
 
 namespace EasyCall
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        MainViewModel _VM;
-        public MainViewModel VM
-        {
-            get
-            {
-                if (_VM == null)
-                    _VM = (MainViewModel)LayoutRoot.DataContext;
+        private DispatcherTimer _tmr;
 
-                return _VM;
-            }
-        }
+        private MainViewModel _vm;
+        public MainViewModel Vm => _vm ?? (_vm = (MainViewModel)LayoutRoot.DataContext);
 
         public MainPage()
         {
             InitializeComponent();
+            InitializeTimer();
+        }
+
+        private void InitializeTimer()
+        {
+            _tmr = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(200) };
+            _tmr.Tick += (sender, e) =>
+            {
+                _tmr.Stop();
+                SearchTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            };
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (TrialManagement.IsTrialMode)
-                if (MessageBox.Show("Hi! Welcome to the Trial Mode.\nTo get rid of the nag screen and call limitations, press ok to buy this app.",
-                    "Trial Mode", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                    TrialManagement.Buy();
+            if (!TrialManagement.IsTrialMode)
+                return;
 
-            SearchTextBox.Focus();
+            var messageBox = new CustomMessageBox()
+            {
+                Caption = "Welcome to the Trial Mode",
+                Message = "Hi there, to get rid of the nag screen and call limitations, press Buy.",
+                LeftButtonContent = "Buy",
+                RightButtonContent = "Maybe later",
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                if (e1.Result == CustomMessageBoxResult.LeftButton)
+                {
+                    TrialManagement.Buy();
+                }
+                else
+                {
+                    SearchTextBox.Focus();
+                }
+            };
+
+            messageBox.Show();
         }
 
         private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            SearchTextBox.GetBindingExpression(
-                TextBox.TextProperty).UpdateSource();
+            _tmr.Start();
         }
-
-        private void SearchTextBox_ActionIconTapped(object sender, EventArgs e)
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (VM.SearchedContacts.Any())
+            if (e.Key != Key.Enter)
+                return;
+
+            if (Vm.SearchedContacts.Any())
             {
-                CallHelper.Call(VM.SearchedContacts.First().Model);
+                var contact = Vm.SearchedContacts.First();
+                CallHelper.Call(contact.DisplayName, contact.First().Number);
             }
             else
             {
@@ -67,12 +92,11 @@ namespace EasyCall
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
 
-        private void NumberButton_Click(object sender, RoutedEventArgs e)
+        private void ContactsLongListSelector_OnManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
-            //SCHIFEZZAAA!
-            var number = ((Button)sender).DataContext.ToString();
-            var contact = VM.SearchedContacts.Where(c => c.Model.Numbers.Contains(number)).First();
-            CallHelper.Call(contact.Model);
+            //Dismiss the keyboard
+            if (FocusManager.GetFocusedElement() == SearchTextBox)
+                this.Focus();
         }
     }
 }

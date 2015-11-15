@@ -10,34 +10,7 @@
     mc:Ignorable="d" >
 
     <Application.Resources>
-       
-        <DataTemplate x:Key="groupItemHeader">
-            <StackPanel Orientation="Horizontal" Margin="0,24,0,0" >
-                <Image Source="{Binding Model.Bitmap}" Width="48" Height="48"
-                       Stretch="Fill" Margin="8,0" />
-                <TextBlock Text="{Binding Name1}" VerticalAlignment="Center"
-                           FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
-                <TextBlock Text="{Binding Name2}" VerticalAlignment="Center"
-                           FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                           Foreground="{StaticResource PhoneAccentBrush}" />
-                <TextBlock Text="{Binding Name3}" VerticalAlignment="Center"
-                           FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
-            </StackPanel>
-        </DataTemplate>
 
-        <ControlTemplate x:Key="ContactNumberTemplate">
-            <StackPanel Orientation="Horizontal" >
-                <Rectangle Height="48" Width="48" Margin="8"
-                           Fill="{StaticResource PhoneForegroundBrush}">
-                    <Rectangle.OpacityMask>
-                        <ImageBrush ImageSource="Images\CircleCall.png"/>
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-                <TextBlock Text="{Binding}"
-                           VerticalAlignment="Center"
-                           FontSize="{StaticResource PhoneFontSizeMedium}" />
-            </StackPanel>
-        </ControlTemplate>
 
     </Application.Resources>
 

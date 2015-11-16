@@ -5,10 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:ad="clr-namespace:Microsoft;assembly=Microsoft.Advertising.Mobile.UI"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
-    xmlns:wpc="clr-namespace:WPCommon.Controls"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
 
     <!--
@@ -32,21 +29,21 @@
     DataContext="{StaticResource AboutVM}"
    -->
 
-    <controls:Pivot Name="LayoutRoot"
+    <phone:Pivot Name="LayoutRoot"
                     Background="{Binding DefaultBackground, TargetNullValue={StaticResource PhoneBackgroundBrush}}"
                     Foreground="{Binding DefaultForeground, TargetNullValue={StaticResource PhoneForegroundBrush}}"
                     FontFamily="{Binding DefaultFont, TargetNullValue={StaticResource PhoneFontFamilyNormal}}" >
 
-        <controls:Pivot.Resources>
+        <phone:Pivot.Resources>
             <ResourceDictionary Source="Resources.xaml"/>
-        </controls:Pivot.Resources>
+        </phone:Pivot.Resources>
 
-        <controls:PivotItem Margin="0,24,0,0">
-            <controls:PivotItem.Header>
+        <phone:PivotItem Margin="0,24,0,0">
+            <phone:PivotItem.Header>
                 <TextBlock Text="{Binding ApplicationText}"
                            FontFamily="{Binding DefaultFont, TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
                            Foreground="{Binding HeaderForeground}" />
-            </controls:PivotItem.Header>
+            </phone:PivotItem.Header>
             <Grid Name="MainGrid">
                 <StackPanel>
                     <TextBlock Name="AppNameTextBlock"
@@ -77,14 +74,14 @@
                 </StackPanel>
                
             </Grid>
-        </controls:PivotItem>
+        </phone:PivotItem>
 
-        <controls:PivotItem >
-            <controls:PivotItem.Header>
+        <phone:PivotItem >
+            <phone:PivotItem.Header>
                 <TextBlock Text="{Binding ContactUsText}"
                            FontFamily="{Binding DefaultFont, TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
                            Foreground="{Binding HeaderForeground}" />
-            </controls:PivotItem.Header>
+            </phone:PivotItem.Header>
 
             <StackPanel HorizontalAlignment="Center">
                 <Button Click="Mail_Click" toolkit:TiltEffect.IsTiltEnabled="True">
@@ -112,14 +109,14 @@
                     </Button.Template>
                 </Button>
             </StackPanel>
-        </controls:PivotItem>
+        </phone:PivotItem>
 
-        <controls:PivotItem>
-            <controls:PivotItem.Header>
+        <phone:PivotItem>
+            <phone:PivotItem.Header>
                 <TextBlock Text="{Binding OtherAppsText}"
                            FontFamily="{Binding DefaultFont, TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
                            Foreground="{Binding HeaderForeground}" />
-            </controls:PivotItem.Header>
+            </phone:PivotItem.Header>
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -145,7 +142,7 @@
                                         <Grid>
                                             <Image Source="{Binding Thumbnail}" />
                                             <Border Background="#7F000000" VerticalAlignment="Bottom" >
-                                                <TextBlock Text="{Binding Name}"
+                                                <TextBlock Text="{Binding name}"
                                                        Foreground="White" Margin="6"
                                                        FontSize="{StaticResource PhoneFontSizeSmall}" />
                                             </Border>
@@ -162,6 +159,6 @@
                     </ListBox.ItemsPanel>
                 </ListBox>
             </Grid>
-        </controls:PivotItem>
-    </controls:Pivot>
+        </phone:PivotItem>
+    </phone:Pivot>
 </UserControl>

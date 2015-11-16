@@ -1,5 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Windows;
+using System.Windows.Markup;
 using System.Windows.Navigation;
+using System.Xml;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
@@ -31,10 +36,10 @@ namespace EasyCall
             InitializePhoneApplication();
 
             // Show graphics profiling information while debugging.
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -73,27 +78,62 @@ namespace EasyCall
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
                 // A navigation has failed; break into the debugger
-                System.Diagnostics.Debugger.Break();
+                Debugger.Break();
             }
         }
 
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (e != null)
+            {
+                var exception = e.ExceptionObject;
+                if ((exception is XmlException || exception is NullReferenceException) && exception.ToString().ToUpper().Contains("INNERACTIVE"))
+                {
+                    Debug.WriteLine("Handled Inneractive exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                if (exception is NullReferenceException && exception.ToString().ToUpper().Contains("SOMA"))
+                {
+                    Debug.WriteLine("Handled Smaato null reference exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                if ((exception is IOException || exception is NullReferenceException) && exception.ToString().ToUpper().Contains("GOOGLE"))
+                {
+                    Debug.WriteLine("Handled Google exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                if (exception is ObjectDisposedException && exception.ToString().ToUpper().Contains("MOBFOX"))
+                {
+                    Debug.WriteLine("Handled Mobfox exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                if ((exception is NullReferenceException || exception is XamlParseException) && exception.ToString().ToUpper().Contains("MICROSOFT.ADVERTISING"))
+                {
+                    Debug.WriteLine("Handled Microsoft.Advertising exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+            }
+
+            if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger
-                System.Diagnostics.Debugger.Break();
+                Debugger.Break();
             }
         }
 
         #region Phone application initialization
 
         // Avoid double-initialization
-        private bool phoneApplicationInitialized = false;
+        private bool phoneApplicationInitialized;
 
         // Do not add any additional code to this method
         private void InitializePhoneApplication()

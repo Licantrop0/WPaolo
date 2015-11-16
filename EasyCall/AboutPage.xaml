@@ -17,6 +17,7 @@
 
     <phone:PhoneApplicationPage.Resources>
         <vm:AboutViewModel x:Name="AboutVM"
+                           DefaultFont="{StaticResource PhoneFontFamilyNormal}"
                            AppName="Easy Call"
                            MinFontSize="40"
                            CustomText="A very special thanks to Emanuele Colli"

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -14,21 +13,10 @@ namespace EasyCall.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
-        private static readonly StorageFolder LocalFolder = ApplicationData.Current.LocalFolder;
         private const string FileName = "contacts.db";
 
-        public double ScrollPosition
-        {
-            get { return _scrollPosition; }
-            set
-            {
-                _scrollPosition = value;
-                RaisePropertyChanged("ScrollPosition");
-            }
-        }
-
         private List<ContactViewModel> _contacts;
-
+        private List<ContactViewModel> _searchedContacts;
         public List<ContactViewModel> SearchedContacts
         {
             get { return _searchedContacts; }
@@ -40,20 +28,6 @@ namespace EasyCall.ViewModel
         }
 
         private string _searchText = string.Empty;
-        private List<ContactViewModel> _searchedContacts;
-        private bool _isBusy;
-        private double _scrollPosition;
-
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set
-            {
-                _isBusy = value;
-                RaisePropertyChanged("IsBusy");
-            }
-        }
-
         public string SearchText
         {
             get { return _searchText; }
@@ -62,6 +36,17 @@ namespace EasyCall.ViewModel
                 if (_searchText == value) return;
                 _searchText = value;
                 Filter();
+            }
+        }
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                RaisePropertyChanged("IsBusy");
             }
         }
 
@@ -84,40 +69,48 @@ namespace EasyCall.ViewModel
         {
             IsBusy = true;
             _contacts = await ReadAsync();
-
             Filter();
 
-            var cs = await ContactManager.RequestStoreAsync();
-            var allContacts = await cs.FindContactsAsync();
+            await UpdateContacts();
+            IsBusy = false;
+        }
 
-            _contacts = allContacts
+        private async Task UpdateContacts()
+        {
+            var cs = await ContactManager.RequestStoreAsync();
+            var contactsFromCs = await cs.FindContactsAsync();
+
+            var newContacts = contactsFromCs
                 .Where(c => c.Phones.Any())
                 .Select(c => new ContactViewModel(
                     c.DisplayName,
                     c.Phones.Select(p => new NumberViewModel(p.Number, c.DisplayName)),
-                    c.Thumbnail))
-                .ToList();
+                    c.Thumbnail)).ToList();
 
-            WriteAsync(_contacts);
-
-            Filter();
-
-            IsBusy = false;
+            //Update only if sequence is different
+            if (_contacts == null ||
+                !_contacts.SelectMany(c => c.Numbers).SequenceEqual(
+                newContacts.SelectMany(c => c.Numbers)))
+            {
+                WriteAsync(newContacts);
+                _contacts = newContacts;
+                Filter();
+            }
         }
 
         private static async Task<List<ContactViewModel>> ReadAsync()
         {
-            try { await LocalFolder.GetFileAsync(FileName); }
+            try { await ApplicationData.Current.LocalFolder.GetFileAsync(FileName); }
             catch (FileNotFoundException) { return null; }
 
             var serializer = new DataContractJsonSerializer(typeof(List<ContactViewModel>));
-            using (var stream = await LocalFolder.OpenStreamForReadAsync(FileName))
+            using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync(FileName))
             {
                 return (List<ContactViewModel>)serializer.ReadObject(stream);
             }
         }
 
-        private static async void WriteAsync(List<ContactViewModel> data)
+        private static async void WriteAsync(IEnumerable<ContactViewModel> data)
         {
             var serializer = new DataContractJsonSerializer(typeof(List<ContactViewModel>));
             using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(

@@ -34,19 +34,25 @@ namespace EasyCall.Helper
 
             if (TrialManagement.Counter < FreeCalls)
             {
-                MessageBox.Show("You have " + (FreeCalls - TrialManagement.Counter) + " calls left for this demo",
+                var result1 = MessageBox.Show(
+                    "You have " + (FreeCalls - TrialManagement.Counter) + " calls left for this demo",
                     "Trial Mode",
                     MessageBoxButton.OK);
-                TrialManagement.IncrementCounter();
-                return true;
+                if (result1 == MessageBoxResult.OK)
+                {
+                    TrialManagement.IncrementCounter();
+                    return true;
+                }
             }
 
-            var result = MessageBox.Show(
+            var result2 = MessageBox.Show(
                 "I'm sorry, you called too many times for this trial, now it's time to pay!",
                 "Trial Mode",
                 MessageBoxButton.OK);
-            if(result == MessageBoxResult.OK)
+            if (result2 == MessageBoxResult.OK)
+            {
                 TrialManagement.Buy();
+            }
 
             return false;
         }

@@ -10,8 +10,8 @@
 	<SoundViewModel Name="Toc toc toc Penny" File="Toc_toc_toc_Penny.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="Tu es à ma place" File="Tu_es_a_ma_place.mp3" Category="CLAS" Lang="fr-FR"/>
 	<SoundViewModel Name="Tu m'auras pas" File="Tu_m'auras_pas.mp3" Category="CLAS" Lang="fr-FR"/>
-	<SoundViewModel Name="Theme full" File="TBBT_Theme_full.mp3" Category="TBBT" Lang="fr-FR"/>
 	<SoundViewModel Name="Theme end" File="TBBT_Theme_end.mp3" Category="TBBT" Lang="fr-FR"/>
+	<SoundViewModel Name="Theme full" File="TBBT_Theme_full.mp3" Category="TBBT" Lang="fr-FR"/>
 	<SoundViewModel Name="A plus !" File="A_plus.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Bonjour mes petites céréales" File="Bonjour_mes_petites_cereales.mp3" Category="ZAZZ" Lang="fr-FR"/>
 	<SoundViewModel Name="Brave Léonard" File="Brave_Leonard.mp3" Category="ZAZZ" Lang="fr-FR"/>
@@ -45,8 +45,8 @@
 	<SoundViewModel Name="Sheldon laugh" File="CLAS_Sheldon_laugh.mp3" Category="CLAS" Lang="en-US"/>
 	<SoundViewModel Name="There there" File="CLAS_there_there.mp3" Category="CLAS" Lang="en-US"/>
 	<SoundViewModel Name="You're in my spot" File="CLAS_You're_in_my_spot.mp3" Category="CLAS" Lang="en-US"/>
-	<SoundViewModel Name="Theme full" File="TBBT_Theme_full.mp3" Category="TBBT" Lang="en-US"/>
 	<SoundViewModel Name="Theme end" File="TBBT_Theme_end.mp3" Category="TBBT" Lang="en-US"/>
+	<SoundViewModel Name="Theme full" File="TBBT_Theme_full.mp3" Category="TBBT" Lang="en-US"/>
 	<SoundViewModel Name="Bongo Song" File="ZAZZ_Bongo_Song.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Brave Leonard song" File="ZAZZ_Brave_Leonard_song.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="DNA of leonard nimoy" File="ZAZZ_DNA_of_leonard_nimoy.mp3" Category="ZAZZ" Lang="en-US"/>
@@ -55,6 +55,7 @@
 	<SoundViewModel Name="Forgot Flash Drive" File="forgot_flash_drive.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Goodnight puny human" File="en_goodnight_puny_human.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="It's a trap!" File="ZAZZ_It's_a_trap1.mp3" Category="ZAZZ" Lang="en-US"/>
+	<SoundViewModel Name="My brain is better...." File="brain_better_than_everybody.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="My precious" File="en_precious.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Penny Blossom Song" File="ZAZZ_Penny_Blossom_Song.mp3" Category="ZAZZ" Lang="en-US"/>
 	<SoundViewModel Name="Sheldon sings drunk" File="ZAZZ_Sheldon_drunk_sings.mp3" Category="ZAZZ" Lang="en-US"/>

@@ -65,7 +65,7 @@ namespace EasyCall.ViewModel
             }
         }
 
-        private async void LoadContacts()
+    private async void LoadContacts()
         {
             IsBusy = true;
             _contacts = await ReadAsync();
@@ -131,9 +131,10 @@ namespace EasyCall.ViewModel
             }
             else
             {
-                SearchedContacts =
-                    _contacts.Where(contact => contact.NumberRepresentation.Any(nr => nr.StartsWith(SearchText)) ||
-                                               contact.Any(n => n.Number.Contains(SearchText))).ToList();
+                SearchedContacts = _contacts.Where(contact =>
+                    contact.NumberRepresentation.Any(nr => nr.StartsWith(SearchText)) ||
+                    contact.Any(n => n.Number.Contains(SearchText)))
+                    .ToList();
             }
         }
     }

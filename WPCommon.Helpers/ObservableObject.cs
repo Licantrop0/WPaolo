@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace WPCommon.Helpers
 {
+    [DataContract]
     public class ObservableObject : INotifyPropertyChanged
     {
         private INavigationService _navigationService;

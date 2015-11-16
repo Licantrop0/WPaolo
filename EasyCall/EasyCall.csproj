@@ -173,6 +173,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="AdMediator.config" />
+    <Content Include="Images\Contact.png" />
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />

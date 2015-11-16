@@ -1,25 +1,28 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using WPCommon.Helpers;
 
 namespace EasyCall.ViewModel
 {
     [DataContract]
-    public class ContactViewModel : IList, IEnumerable<NumberViewModel>
+    public class ContactViewModel : ObservableObject, IList, IEnumerable<NumberViewModel>
     {
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public string ImagePath { get; set; }
-        [DataMember]
         public readonly IList<NumberViewModel> Numbers;
+
+        [DataMember]
         public string[] NumberRepresentation { get; set; }
-        public Uri ContactImage => ImagePath == null ? null : new Uri(ImagePath);
+
+        [DataMember]
+        public Uri ContactImage { get; set; }
 
         public ContactViewModel()
         {
@@ -28,13 +31,39 @@ namespace EasyCall.ViewModel
 
         public ContactViewModel(string name, IEnumerable<NumberViewModel> numbers, IRandomAccessStreamReference thumbnail)
         {
-            Debug.WriteLine(name);
             Name = name;
             NumberRepresentation = TextToNum(name);
             Numbers = numbers.ToList();
-            if (thumbnail != null)
-                ImagePath = ((StorageFile)thumbnail).Path;
+            LoadThumbnail(thumbnail);
         }
+
+        private async void LoadThumbnail(IRandomAccessStreamReference thumbnail)
+        {
+            if (thumbnail == null)
+            {
+                ContactImage = new Uri("Images/Contact.png", UriKind.Relative);
+            }
+            else if (thumbnail is StorageFile)
+            {
+                ContactImage = new Uri(((StorageFile)thumbnail).Path);
+            }
+            else //Write file to disk
+            {
+                var storageFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(Name + Numbers[0] + ".png",
+                    CreationCollisionOption.ReplaceExisting);
+
+                var readstream = await thumbnail.OpenReadAsync();
+                using (var current = await storageFile.OpenStreamForWriteAsync())
+                {
+                    await readstream.AsStreamForRead().CopyToAsync(current);
+                }
+
+                ContactImage = new Uri(storageFile.Path);
+            }
+
+            RaisePropertyChanged("ContactImage");
+        }
+
         private static string[] TextToNum(string input)
         {
             if (string.IsNullOrEmpty(input))

@@ -115,7 +115,7 @@ namespace EasyCall
                     e.Handled = true;
                     return;
                 }
-                if ((exception is NullReferenceException || exception is XamlParseException) && exception.ToString().ToUpper().Contains("MICROSOFT.ADVERTISING"))
+                if ((exception is NullReferenceException || exception is XamlParseException) && exception.ToString().ToUpper().Contains("ADMEDIATOR"))
                 {
                     Debug.WriteLine("Handled Microsoft.Advertising exception {0}", exception);
                     e.Handled = true;

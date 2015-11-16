@@ -44,16 +44,17 @@ namespace EasyCall.Helper
                     return true;
                 }
             }
-
-            var result2 = MessageBox.Show(
-                "I'm sorry, you called too many times for this trial, now it's time to pay!",
-                "Trial Mode",
-                MessageBoxButton.OK);
-            if (result2 == MessageBoxResult.OK)
+            else
             {
-                TrialManagement.Buy();
+                var result2 = MessageBox.Show(
+                    "I'm sorry, you called too many times for this trial, now it's time to pay!",
+                    "Trial Mode",
+                    MessageBoxButton.OK);
+                if (result2 == MessageBoxResult.OK)
+                {
+                    TrialManagement.Buy();
+                }
             }
-
             return false;
         }
     }

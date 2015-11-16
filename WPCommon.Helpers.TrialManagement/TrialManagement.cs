@@ -7,7 +7,7 @@ namespace WPCommon.Helpers
 {
     public static class TrialManagement
     {
-        private static LicenseInformation li = new LicenseInformation();
+        private static readonly LicenseInformation li = new LicenseInformation();
         public static bool IsTrialMode
         {
             get
@@ -56,12 +56,12 @@ namespace WPCommon.Helpers
             get
             {
                 if (LastOpen == DateTime.Today)
-                    return true;
-                else
                 {
-                    LastOpen = DateTime.Today;
-                    return false;
+                    return true;
                 }
+
+                LastOpen = DateTime.Today;
+                return false;
             }
         }
 

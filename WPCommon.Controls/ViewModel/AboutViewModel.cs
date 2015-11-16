@@ -15,12 +15,10 @@ namespace SheldonMix.ViewModel
 {
     public class AboutViewModel : INotifyPropertyChanged
     {
-        XNamespace nsAtom = "http://www.w3.org/2005/Atom";
-        XNamespace nsZune = "http://schemas.zune.net/catalog/apps/2008/02";
-        string cultureName = System.Globalization.CultureInfo.CurrentUICulture.Name;
+        private readonly string _countryName = System.Globalization.CultureInfo.CurrentUICulture.Name.Split('-')[1];
 
-        private IEnumerable<AppTile> _appList;
-        public IEnumerable<AppTile> AppList
+        private IList<AppTile> _appList;
+        public IList<AppTile> AppList
         {
             get { return _appList; }
             private set
@@ -35,28 +33,17 @@ namespace SheldonMix.ViewModel
             InitializeWPMEApps();
         }
 
-        private void InitializeWPMEApps()
+        private async void InitializeWPMEApps()
         {
-            var wc = new WebClient();
-            wc.OpenReadAsync(new Uri(string.Format(
-                 "http://marketplaceedgeservice.windowsphone.com/v3.2/{0}/apps?q=WPME&clientType=WinMobile+7.1&store=zest",
-                 cultureName)));
-
-            wc.OpenReadCompleted += (sender, e) =>
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(new Uri($"http://wpdevinfo.azurewebsites.net/api/wpdev/{_countryName}/WPME"));
+            if (!response.IsSuccessStatusCode) return;
+            var serializer = new DataContractJsonSerializer(typeof(AppList));
+            var json = await response.Content.ReadAsStringAsync();
+            using (var stream = new MemoryStream(Encoding.Unicode.GetBytes(json)))
             {
-                if (e.Error != null) return;
-                if (AppList != null) return;
-
-                XDocument response = XDocument.Load(e.Result);
-                AppList = from n in response.Descendants(nsAtom + "entry")
-                          let imageId = n.Element(nsZune + "image")
-                              .Element(nsZune + "id").Value.Substring(9) //rimozione di "urn:uuid:"
-                          let appId = n.Element(nsAtom + "id").Value.Substring(9)
-                          where appId != AppId
-                          select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
-                              string.Format("http://cdn.marketplaceimages.windowsphone.com/v3.2/{0}/image/{1}?width=200&height=200&resize=true&contenttype=image/png",
-                                  cultureName, imageId)));
-            };
+                AppList = ((AppList)serializer.ReadObject(stream)).applications;
+            }
         }
 
         #region App Data
@@ -113,26 +100,11 @@ namespace SheldonMix.ViewModel
         }
 
 
-        private Thickness _appNameMargin = new Thickness(0);
-        public Thickness AppNameMargin
-        {
-            get { return _appNameMargin; }
-            set { _appNameMargin = value; }
-        }
+        public Thickness AppNameMargin { get; set; } = new Thickness(0);
 
-        private ImageSource _customLogo = new BitmapImage(new Uri("/WPCommon.Controls;component/Img/logo.png", UriKind.Relative));
-        public ImageSource CustomLogo
-        {
-            get { return _customLogo; }
-            set { _customLogo = value; }
-        }
+        public ImageSource CustomLogo { get; set; } = new BitmapImage(new Uri("/WPCommon.Controls;component/Img/logo.png", UriKind.Relative));
 
-        private Thickness _logoMargin = new Thickness(24);
-        public Thickness LogoMargin
-        {
-            get { return _logoMargin; }
-            set { _logoMargin = value; }
-        }
+        public Thickness LogoMargin { get; set; } = new Thickness(24);
 
         public Brush DefaultBackground { get; set; }
 
@@ -145,21 +117,13 @@ namespace SheldonMix.ViewModel
             set { _headerForeground = value; }
         }
 
-        private double _minFontSize = 19;
-        public double MinFontSize
-        {
-            get { return _minFontSize; }
-            set { _minFontSize = value; }
-        }
+        public double MinFontSize { get; set; } = 19;
 
-        public double AppNameFontSize
-        { get { return MinFontSize * (32d / 19); } }
+        public double AppNameFontSize => MinFontSize * (32d / 19);
 
-        public double AppVersionFontSize
-        { get { return MinFontSize; } }
+        public double AppVersionFontSize => MinFontSize;
 
-        public double HyperLinkFontSize
-        { get { return MinFontSize * (24d / 19); } }
+        public double HyperLinkFontSize => MinFontSize * (24d / 19);
 
         #endregion
 

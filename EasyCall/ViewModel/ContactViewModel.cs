@@ -16,12 +16,10 @@ namespace EasyCall.ViewModel
         public string Name { get; set; }
         [DataMember]
         public string ImagePath { get; set; }
-
-        public string[] NumberRepresentation { get; set; }
-        public Uri ContactImage => ImagePath == null ? null : new Uri(ImagePath);
-
         [DataMember]
         public readonly IList<NumberViewModel> Numbers;
+        public string[] NumberRepresentation { get; set; }
+        public Uri ContactImage => ImagePath == null ? null : new Uri(ImagePath);
 
         public ContactViewModel()
         {
@@ -95,7 +93,6 @@ namespace EasyCall.ViewModel
             return new string(output).Split(' ');
         }
 
-
         #region IList Implementation
 
         public bool IsFixedSize => true;
@@ -105,7 +102,7 @@ namespace EasyCall.ViewModel
         public int Count => Numbers?.Count ?? 0;
 
         public bool IsSynchronized => false;
-        public object SyncRoot { get; }
+        public object SyncRoot => new object();
 
         public object this[int index]
         {
@@ -162,6 +159,5 @@ namespace EasyCall.ViewModel
         IEnumerator<NumberViewModel> IEnumerable<NumberViewModel>.GetEnumerator() => Numbers.GetEnumerator();
 
         #endregion
-
     }
 }

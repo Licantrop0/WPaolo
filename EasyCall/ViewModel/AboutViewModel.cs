@@ -1,24 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows.Media;
-using System.Xml.Linq;
-using WPCommon.Controls.Model;
 using System.ComponentModel;
-using System.Windows;
+using System.IO;
 using System.Reflection;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Windows.Web.Http;
+using WPCommon.Controls.Model;
 
 namespace EasyCall.ViewModel
 {
     public class AboutViewModel : INotifyPropertyChanged
     {
-        XNamespace nsAtom = "http://www.w3.org/2005/Atom";
-        XNamespace nsZune = "http://schemas.zune.net/catalog/apps/2008/02";
-        string cultureName = System.Globalization.CultureInfo.CurrentUICulture.Name;
+        private readonly string _countryName = System.Globalization.CultureInfo.CurrentUICulture.Name.Split('-')[1];
 
-        private IEnumerable<AppTile> _appList;
-        public IEnumerable<AppTile> AppList
+        private IList<AppTile> _appList;
+        public IList<AppTile> AppList
         {
             get { return _appList; }
             private set
@@ -33,28 +33,17 @@ namespace EasyCall.ViewModel
             InitializeWPMEApps();
         }
 
-        private void InitializeWPMEApps()
+        private async void InitializeWPMEApps()
         {
-            var wc = new WebClient();
-            wc.OpenReadAsync(new Uri(string.Format(
-                 "http://catalog.zune.net/v3.2/{0}/apps?q=WPME&clientType=WinMobile%207.1&store=zest",
-                 cultureName)));
-
-            wc.OpenReadCompleted += (sender, e) =>
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(new Uri($"http://wpdevinfo.azurewebsites.net/api/wpdev/{_countryName}/WPME"));
+            if (!response.IsSuccessStatusCode) return;
+            var serializer = new DataContractJsonSerializer(typeof(AppList));
+            var json = await response.Content.ReadAsStringAsync();
+            using (var stream = new MemoryStream(Encoding.Unicode.GetBytes(json)))
             {
-                if (e.Error != null) return;
-                if (AppList != null) return;
-
-                XDocument response = XDocument.Load(e.Result);
-                AppList = from n in response.Descendants(nsAtom + "entry")
-                          let imageId = n.Element(nsZune + "image")
-                              .Element(nsZune + "id").Value.Substring(9) //rimozione di "urn:uuid:"
-                          let appId = n.Element(nsAtom + "id").Value.Substring(9)
-                          where appId != AppId
-                          select new AppTile(new Guid(appId), n.Element(nsAtom + "title").Value, new Uri(
-                              string.Format("http://image.catalog.zune.net/v3.2/{0}/image/{1}?width=200&height=200",
-                                  cultureName, imageId)));
-            };
+                AppList = ((AppList)serializer.ReadObject(stream)).applications;
+            }
         }
 
         #region App Data
@@ -86,21 +75,33 @@ namespace EasyCall.ViewModel
 
         public string CustomText { get; set; }
 
-        public ImageSource CustomLogo { get; set; }
-
-        private Thickness _logoMargin = new Thickness(12);
-        public Thickness LogoMargin
+        private FontFamily _customTextFontFamily;
+        public FontFamily CustomTextFontFamily
         {
-            get { return _logoMargin; }
-            set { _logoMargin = value; }
+            get { return _customTextFontFamily ?? DefaultFont; }
+            set { _customTextFontFamily = value; }
         }
 
-        private Thickness _customLogoMargin = new Thickness(0);
-        public Thickness CustomLogoMargin
+        private double? _customTextFontSize;
+        public double CustomTextFontSize
         {
-            get { return _customLogoMargin; }
-            set { _customLogoMargin = value; }
+            get { return _customTextFontSize ?? MinFontSize; }
+            set { _customTextFontSize = value; }
         }
+
+        private Brush _customTextForeground;
+        public Brush CustomTextForeground
+        {
+            get { return _customTextForeground ?? DefaultForeground ?? (Brush)Application.Current.Resources["PhoneForegroundBrush"]; }
+            set { _customTextForeground = value; }
+        }
+
+
+        public Thickness AppNameMargin { get; set; } = new Thickness(0);
+
+        public ImageSource CustomLogo { get; set; } = new BitmapImage(new Uri("/WPCommon.Controls;component/Img/logo.png", UriKind.Relative));
+
+        public Thickness LogoMargin { get; set; } = new Thickness(24);
 
         public Brush DefaultBackground { get; set; }
 
@@ -113,21 +114,13 @@ namespace EasyCall.ViewModel
             set { _headerForeground = value; }
         }
 
-        private double _minFontSize = 19;
-        public double MinFontSize
-        {
-            get { return _minFontSize; }
-            set { _minFontSize = value; }
-        }
+        public double MinFontSize { get; set; } = 19;
 
-        public double AppNameFontSize
-        { get { return MinFontSize * (32d / 19); } }
+        public double AppNameFontSize => MinFontSize * (32d / 19);
 
-        public double AppVersionFontSize
-        { get { return MinFontSize; } }
+        public double AppVersionFontSize => MinFontSize;
 
-        public double HyperLinkFontSize
-        { get { return MinFontSize * (24d / 19); } }
+        public double HyperLinkFontSize => MinFontSize * (24d / 19);
 
         #endregion
 
@@ -153,8 +146,7 @@ namespace EasyCall.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

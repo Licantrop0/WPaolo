@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using WPCommon.Helpers;
+using System.Linq;
+using EasyCall.Helper;
 
 namespace EasyCall
 {
@@ -87,10 +89,23 @@ namespace EasyCall
 
         private void SearchTextBox_OnActionIconTapped(object sender, EventArgs e)
         {
+            if (Vm.SearchedContacts.Any())
+            {
+                Vm.SearchedContacts.First().First().CallNumberCommand.Execute(null);
+            }
+            else
+            {
+                CallHelper.Call(null, SearchTextBox.Text);
+            }
+
         }
 
         private void SearchTextBox_OnKeyDown(object sender, KeyEventArgs e)
         {
+            if(e.Key == Key.Decimal)
+            {
+                SearchTextBox_OnActionIconTapped(sender, EventArgs.Empty);
+            }
         }
     }
 }

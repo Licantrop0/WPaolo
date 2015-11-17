@@ -2,7 +2,7 @@
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2014/deployment" AppPlatformVersion="8.1">
   <DefaultLanguage xmlns="" code="" />
   <App xmlns="" ProductID="{ac5b5d62-573c-4134-b290-0ad4f678ad7f}" Title="Easy Call" RuntimeType="Silverlight" Version="2.0.0.0" Genre="apps.normal" Author="Licantrop0" Description="" Publisher="WPME" PublisherID="{68d30256-d28d-47fb-8727-d50762dde842}">
-    <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
+    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_PHONEDIALER" />
@@ -19,9 +19,9 @@
     <Tokens>
       <PrimaryToken TokenID="EasyCallToken" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsResource="false" IsRelative="true">Background.png</SmallImageURI>
+          <SmallImageURI IsResource="false" IsRelative="true">Assets\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsResource="false" IsRelative="true">Background.png</BackgroundImageURI>
+          <BackgroundImageURI IsResource="false" IsRelative="true">Assets\FlipCycleTileMedium.png</BackgroundImageURI>
           <Title>EasyCall</Title>
           <BackContent>
           </BackContent>

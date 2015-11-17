@@ -173,8 +173,12 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="AdMediator.config" />
+    <Content Include="Assets\ApplicationIcon.png" />
+    <Content Include="Assets\FlipCycleTileMedium.png" />
+    <Content Include="Assets\FlipCycleTileSmall.png" />
     <Content Include="Images\Contact.png" />
     <None Include="app.config" />
+    <None Include="Images\Logo.pdn" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
@@ -186,8 +190,6 @@
     <None Include="Images\noun_127.png" />
     <Resource Include="Images\call.png" />
     <Resource Include="Images\CircleCall.png" />
-    <Resource Include="ApplicationIcon.png" />
-    <Resource Include="Background.png" />
     <Content Include="Assets\BadgeLogo.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SplashScreen.png" />

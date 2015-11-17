@@ -85,28 +85,35 @@ namespace EasyCall.ViewModel
             var cs = await ContactManager.RequestStoreAsync();
             var contactsFromCs = await cs.FindContactsAsync();
 
-            var newContacts = contactsFromCs
+            //Update only if sequence is different
+            if (_contacts == null || !AreEquals(_contacts, contactsFromCs))
+            {
+                _contacts = contactsFromCs
                 .Where(c => c.Phones.Any())
                 .Select(c => new ContactViewModel(
                     c.DisplayName,
                     c.Phones.Select(p => new NumberViewModel(p.Number, c.DisplayName)),
                     c.Thumbnail)).ToList();
-
-            //Update only if sequence is different
-            if (_contacts == null ||
-                !_contacts.SelectMany(c => c.Numbers).SequenceEqual(
-                newContacts.SelectMany(c => c.Numbers)))
-            {
-                _contacts = newContacts;
                 Filter();
                 WriteAsync(_contacts);
             }
         }
 
+        private static bool AreEquals(IReadOnlyList<ContactViewModel> contacts1, IReadOnlyList<Contact> contacts2)
+        {
+            Debug.WriteLine("AreEquals");
+
+            return !contacts1.Where((t, i) =>
+                t.Name != contacts2[i].DisplayName ||
+                !t.Numbers.Select(n => n.Number).SequenceEqual(contacts2[i].Phones.Select(n => n.Number))
+                ).Any();
+        }
+
+
         private static async Task<List<ContactViewModel>> ReadAsync()
         {
             Debug.WriteLine("ReadAsync");
-            
+
             try { await ApplicationData.Current.LocalFolder.GetFileAsync(FileName); }
             catch (FileNotFoundException) { return null; }
 
@@ -131,7 +138,7 @@ namespace EasyCall.ViewModel
 
         private void Filter()
         {
-            Debug.WriteLine("Filter, contacts null? " + (_contacts == null));
+            Debug.WriteLine("Filter, contacts " + (_contacts == null ? "null" : "actual"));
             if (_contacts == null)
                 return;
 

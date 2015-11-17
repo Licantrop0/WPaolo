@@ -72,24 +72,6 @@
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Button Margin="60,0,0,0"
-                                HorizontalAlignment="Left"
-                                Command="{Binding CallNumberCommand}"
-                                toolkit:TiltEffect.IsTiltEnabled="True">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Rectangle Width="48"
-                                               Height="48"
-                                               Margin="0,6,6,6"
-                                               Fill="{StaticResource PhoneForegroundBrush}">
-                                        <Rectangle.OpacityMask>
-                                            <ImageBrush ImageSource="Images\CircleCall.png" />
-                                        </Rectangle.OpacityMask>
-                                    </Rectangle>
-                                </ControlTemplate>
-                            </Button.Template>
-
-                        </Button>
                         <Button Margin="0,0,0,0"
                                 HorizontalAlignment="Left"
                                 Command="{Binding SendSmsCommand}"
@@ -98,7 +80,7 @@
                                 <ControlTemplate>
                                     <Rectangle Width="48"
                                                Height="48"
-                                               Margin="0,6,6,6"
+                                               Margin="60,6,6,6"
                                                Fill="{StaticResource PhoneForegroundBrush}">
                                         <Rectangle.OpacityMask>
                                             <ImageBrush ImageSource="Images\CircleSms.png" />
@@ -108,10 +90,11 @@
                             </Button.Template>
                         </Button>
 
-                        <TextBlock VerticalAlignment="Center"
-                                   FontSize="{StaticResource PhoneFontSizeMedium}"
-                                   Foreground="{StaticResource PhoneAccentBrush}"
-                                   Text="{Binding Number}" />
+                        <HyperlinkButton VerticalAlignment="Center"
+                                         Command="{Binding CallNumberCommand}"
+                                         Content="{Binding Number}"
+                                         FontSize="{StaticResource PhoneFontSizeMedium}"
+                                         Foreground="{StaticResource PhoneAccentBrush}" />
 
                     </StackPanel>
                 </DataTemplate>
@@ -121,7 +104,7 @@
                                          Grid.Row="2"
                                          Width="480"
                                          Height="80"
-                                         Id="AdMediator-Id-7558E90E-2805-4EBC-A441-42FD37C410EA"/>
+                                         Id="AdMediator-Id-7558E90E-2805-4EBC-A441-42FD37C410EA" />
     </Grid>
 
 </phone:PhoneApplicationPage>

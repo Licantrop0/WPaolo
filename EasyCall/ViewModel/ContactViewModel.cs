@@ -153,7 +153,8 @@ namespace EasyCall.ViewModel
                 }
             }
 
-            return new string(output).Split(' ');
+            var s = new string(output);
+            return s.Split(' '); //concat also the full string with space
         }
 
         #region IList Implementation

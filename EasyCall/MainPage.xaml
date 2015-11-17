@@ -40,14 +40,17 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <TextBox x:Name="SearchTextBox"
-                 GotFocus="SearchTextBox_GotFocus"
-                 InputScope="TelephoneNumber"
-                 KeyUp="SearchTextBox_KeyUp"
-                 Text="{Binding SearchText,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=Explicit}" />
+        <toolkit:PhoneTextBox x:Name="SearchTextBox"
+                              ActionIcon="Images/call.png"
+                              ActionIconTapped="SearchTextBox_OnActionIconTapped"
+                              GotFocus="SearchTextBox_GotFocus"
+                              Hint="Press dot to call the first in the list"
+                              InputScope="TelephoneNumber"
+                              KeyDown="SearchTextBox_OnKeyDown"
+                              KeyUp="SearchTextBox_KeyUp"
+                              Text="{Binding SearchText,
+                                             Mode=TwoWay,
+                                             UpdateSourceTrigger=Explicit}" />
 
         <phone:LongListSelector x:Name="ContactsLongListSelector"
                                 Grid.Row="1"

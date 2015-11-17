@@ -68,8 +68,6 @@ namespace EasyCall.ViewModel
 
         private async void LoadContacts()
         {
-            Debug.WriteLine("LoadContacts");
-
             IsBusy = true;
             _contacts = await ReadAsync();
             Filter();
@@ -80,8 +78,6 @@ namespace EasyCall.ViewModel
 
         private async Task UpdateContacts()
         {
-            Debug.WriteLine("UpdateContacts");
-
             var cs = await ContactManager.RequestStoreAsync();
             var contactsFromCs = await cs.FindContactsAsync();
 
@@ -99,11 +95,9 @@ namespace EasyCall.ViewModel
             }
         }
 
-        private static bool AreEquals(IReadOnlyList<ContactViewModel> contacts1, IReadOnlyList<Contact> contacts2)
+        private static bool AreEquals(IEnumerable<ContactViewModel> contacts1, IReadOnlyList<Contact> contacts2)
         {
-            Debug.WriteLine("AreEquals");
-
-            return !contacts1.Where((t, i) =>
+            return contacts1.Where((t, i) =>
                 t.Name != contacts2[i].DisplayName ||
                 !t.Numbers.Select(n => n.Number).SequenceEqual(contacts2[i].Phones.Select(n => n.Number))
                 ).Any();
@@ -112,8 +106,6 @@ namespace EasyCall.ViewModel
 
         private static async Task<List<ContactViewModel>> ReadAsync()
         {
-            Debug.WriteLine("ReadAsync");
-
             try { await ApplicationData.Current.LocalFolder.GetFileAsync(FileName); }
             catch (FileNotFoundException) { return null; }
 
@@ -126,8 +118,6 @@ namespace EasyCall.ViewModel
 
         private static async void WriteAsync(IEnumerable<ContactViewModel> data)
         {
-            Debug.WriteLine("WriteAsync");
-
             var serializer = new DataContractJsonSerializer(typeof(List<ContactViewModel>));
             using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(
                 FileName, CreationCollisionOption.ReplaceExisting))
@@ -138,7 +128,6 @@ namespace EasyCall.ViewModel
 
         private void Filter()
         {
-            Debug.WriteLine("Filter, contacts " + (_contacts == null ? "null" : "actual"));
             if (_contacts == null)
                 return;
 

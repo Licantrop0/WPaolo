@@ -84,5 +84,13 @@ namespace EasyCall
             if (FocusManager.GetFocusedElement() == SearchTextBox)
                 this.Focus();
         }
+
+        private void SearchTextBox_OnActionIconTapped(object sender, EventArgs e)
+        {
+        }
+
+        private void SearchTextBox_OnKeyDown(object sender, KeyEventArgs e)
+        {
+        }
     }
 }

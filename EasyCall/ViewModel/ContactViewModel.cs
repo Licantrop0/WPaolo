@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
+using Windows.ApplicationModel.Contacts;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using WPCommon.Helpers;
@@ -45,11 +46,13 @@ namespace EasyCall.ViewModel
 
         public ContactViewModel()
         {
+            Debug.WriteLine("ContactViewModel ctor parameterless");
             //for serialization
         }
 
         public ContactViewModel(string name, IEnumerable<NumberViewModel> numbers, IRandomAccessStreamReference thumbnail)
         {
+            Debug.WriteLine("ContactViewModel ctor with parameters");
             Name = name;
             NumberRepresentation = TextToNum(name);
             Numbers = numbers.ToList();
@@ -72,6 +75,8 @@ namespace EasyCall.ViewModel
             else //Write file to disk
             {
                 var fileName = Name + Numbers[0].Number + ".png";
+                Debug.WriteLine("LoadThumbnail assigning _contactImage " + fileName);
+
                 _contactImage = new Uri(Path.Combine(ApplicationData.Current.LocalFolder.Path, fileName));
                 WriteThumbnail(fileName, thumbnail);
             }
@@ -89,7 +94,7 @@ namespace EasyCall.ViewModel
                 await readstream.AsStreamForRead().CopyToAsync(current);
             }
 
-            Debug.WriteLine("LoadThumbnail writed to disk " + storageFile.Path);
+            Debug.WriteLine("WriteThumbnail writed to disk " + storageFile.Path);
             RaisePropertyChanged("ContactImage");
         }
 

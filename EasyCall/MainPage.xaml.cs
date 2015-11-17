@@ -1,13 +1,13 @@
-﻿using EasyCall.ViewModel;
-using Microsoft.Phone.Controls;
-using System;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
-using WPCommon.Helpers;
-using System.Linq;
 using EasyCall.Helper;
+using EasyCall.ViewModel;
+using Microsoft.Phone.Controls;
+using WPCommon.Helpers;
 
 namespace EasyCall
 {
@@ -36,33 +36,13 @@ namespace EasyCall
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!TrialManagement.IsTrialMode)
+            SearchTextBox.Focus();
+
+            if (TrialManagement.IsTrialMode)
             {
-                AdMediator_BEB5C4.Disable();
-                AdMediator_BEB5C4.Visibility = Visibility.Collapsed;
-                return;
+                AdMediator_BEB5C4.Visibility = Visibility.Visible;
+                AdMediator_BEB5C4.IsEnabled = true;                
             }
-            var messageBox = new CustomMessageBox()
-            {
-                Caption = "Welcome to the Trial Mode",
-                Message = "Hi there, to get rid of this nag screen and call limitations, press Buy.",
-                LeftButtonContent = "Buy",
-                RightButtonContent = "Maybe later",
-            };
-
-            messageBox.Dismissed += (s1, e1) =>
-            {
-                if (e1.Result == CustomMessageBoxResult.LeftButton)
-                {
-                    TrialManagement.Buy();
-                }
-                else
-                {
-                    SearchTextBox.Focus();
-                }
-            };
-
-            messageBox.Show();
         }
 
         private void About_Click(object sender, EventArgs e)
@@ -97,15 +77,43 @@ namespace EasyCall
             {
                 CallHelper.Call(null, SearchTextBox.Text);
             }
-
         }
 
         private void SearchTextBox_OnKeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Decimal)
+            if (e.PlatformKeyCode == 190) // dot
             {
+                e.Handled = true;
                 SearchTextBox_OnActionIconTapped(sender, EventArgs.Empty);
             }
+        }
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!TrialManagement.IsTrialMode)
+                return;
+
+            e.Cancel = true;
+            var messageBox = new CustomMessageBox()
+            {
+                Caption = "Trial Mode",
+                Message = "To get rid of call limitations, buy this app",
+                LeftButtonContent = "Buy",
+                RightButtonContent = "Maybe later",
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                if (e1.Result == CustomMessageBoxResult.LeftButton)
+                {
+                    TrialManagement.Buy();
+                }
+                else
+                {
+                    App.Current.Terminate();
+                }
+            };
+            messageBox.Show();
         }
     }
 }

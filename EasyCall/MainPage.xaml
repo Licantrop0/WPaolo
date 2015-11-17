@@ -17,7 +17,7 @@
                             d:DesignHeight="696"
                             d:DesignWidth="480"
                             shell:SystemTray.IsVisible="True"
-                            mc:Ignorable="d">
+                            mc:Ignorable="d" BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="{Binding IsBusy}" IsVisible="True" />
@@ -104,8 +104,9 @@
             </phone:LongListSelector.ItemTemplate>
         </phone:LongListSelector>
         <WindowsPhone8:AdMediatorControl x:Name="AdMediator_BEB5C4"
+                                         IsEnabled="False" Visibility="Collapsed"
                                          Grid.Row="2"
-                                         Width="480"
+                                         Width="480" 
                                          Height="80"
                                          Id="AdMediator-Id-7558E90E-2805-4EBC-A441-42FD37C410EA" />
     </Grid>

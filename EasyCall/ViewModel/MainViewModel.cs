@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
@@ -65,8 +66,10 @@ namespace EasyCall.ViewModel
             }
         }
 
-    private async void LoadContacts()
+        private async void LoadContacts()
         {
+            Debug.WriteLine("LoadContacts");
+
             IsBusy = true;
             _contacts = await ReadAsync();
             Filter();
@@ -77,6 +80,8 @@ namespace EasyCall.ViewModel
 
         private async Task UpdateContacts()
         {
+            Debug.WriteLine("UpdateContacts");
+
             var cs = await ContactManager.RequestStoreAsync();
             var contactsFromCs = await cs.FindContactsAsync();
 
@@ -92,14 +97,16 @@ namespace EasyCall.ViewModel
                 !_contacts.SelectMany(c => c.Numbers).SequenceEqual(
                 newContacts.SelectMany(c => c.Numbers)))
             {
-                WriteAsync(newContacts);
                 _contacts = newContacts;
                 Filter();
+                WriteAsync(_contacts);
             }
         }
 
         private static async Task<List<ContactViewModel>> ReadAsync()
         {
+            Debug.WriteLine("ReadAsync");
+            
             try { await ApplicationData.Current.LocalFolder.GetFileAsync(FileName); }
             catch (FileNotFoundException) { return null; }
 
@@ -112,6 +119,8 @@ namespace EasyCall.ViewModel
 
         private static async void WriteAsync(IEnumerable<ContactViewModel> data)
         {
+            Debug.WriteLine("WriteAsync");
+
             var serializer = new DataContractJsonSerializer(typeof(List<ContactViewModel>));
             using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(
                 FileName, CreationCollisionOption.ReplaceExisting))
@@ -122,6 +131,7 @@ namespace EasyCall.ViewModel
 
         private void Filter()
         {
+            Debug.WriteLine("Filter, contacts null? " + (_contacts == null));
             if (_contacts == null)
                 return;
 

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
+using System.Windows;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using WPCommon.Helpers;
@@ -13,8 +16,11 @@ namespace EasyCall.ViewModel
     [DataContract]
     public class ContactViewModel : ObservableObject, IList, IEnumerable<NumberViewModel>
     {
+        private Uri _contactImage;
+
         [DataMember]
         public string Name { get; set; }
+
         [DataMember]
         public readonly IList<NumberViewModel> Numbers;
 
@@ -22,7 +28,20 @@ namespace EasyCall.ViewModel
         public string[] NumberRepresentation { get; set; }
 
         [DataMember]
-        public Uri ContactImage { get; set; }
+        public Uri ContactImage
+        {
+            get
+            {
+                Debug.WriteLine("ContactImage Get " + (_contactImage?.ToString() ?? "null"));
+                return _contactImage;
+            }
+            set
+            {
+                Debug.WriteLine("ContactImage Set " + (value?.ToString() ?? "null"));
+                _contactImage = value;
+                RaisePropertyChanged("ContactImage");
+            }
+        }
 
         public ContactViewModel()
         {
@@ -34,11 +53,14 @@ namespace EasyCall.ViewModel
             Name = name;
             NumberRepresentation = TextToNum(name);
             Numbers = numbers.ToList();
-            LoadThumbnail(thumbnail);
+            if(ContactImage == null)
+                LoadThumbnail(thumbnail);
         }
 
-        private async void LoadThumbnail(IRandomAccessStreamReference thumbnail)
+        private void LoadThumbnail(IRandomAccessStreamReference thumbnail)
         {
+            Debug.WriteLine("LoadThumbnail " + (thumbnail == null ? "null" : "actual"));
+
             if (thumbnail == null)
             {
                 ContactImage = new Uri("Images/Contact.png", UriKind.Relative);
@@ -49,18 +71,25 @@ namespace EasyCall.ViewModel
             }
             else //Write file to disk
             {
-                var storageFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(Name + Numbers[0] + ".png",
-                    CreationCollisionOption.ReplaceExisting);
+                var fileName = Name + Numbers[0].Number + ".png";
+                _contactImage = new Uri(Path.Combine(ApplicationData.Current.LocalFolder.Path, fileName));
+                WriteThumbnail(fileName, thumbnail);
+            }
+        }
 
+        private async void WriteThumbnail(string fileName, IRandomAccessStreamReference thumbnail)
+        {
+            var storageFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(
+                fileName,
+                CreationCollisionOption.ReplaceExisting);
+
+            using (var current = await storageFile.OpenStreamForWriteAsync())
+            {
                 var readstream = await thumbnail.OpenReadAsync();
-                using (var current = await storageFile.OpenStreamForWriteAsync())
-                {
-                    await readstream.AsStreamForRead().CopyToAsync(current);
-                }
-
-                ContactImage = new Uri(storageFile.Path);
+                await readstream.AsStreamForRead().CopyToAsync(current);
             }
 
+            Debug.WriteLine("LoadThumbnail writed to disk " + storageFile.Path);
             RaisePropertyChanged("ContactImage");
         }
 

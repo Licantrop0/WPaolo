@@ -61,15 +61,7 @@ namespace SheldonMix.View
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             MainPivot.Margin = new Thickness(0, 0, 0, 80);
-            adSwitcher.AddAdvertising();
-            adSwitcher.LoadingError = s => { MainPivot.Margin = new Thickness(0); };
             base.OnNavigatedTo(e);
-        }
-
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            adSwitcher.RemoveAdvertising();
-            base.OnNavigatedFrom(e);
         }
 
         private void TwitterCBS_Click(object sender, RoutedEventArgs e)
@@ -126,10 +118,10 @@ namespace SheldonMix.View
                     if (!DeviceNetworkInformation.IsNetworkAvailable) return;
 
                     using (var file = isf.OpenFile(AppContext.XmlPath, FileMode.Open))
-                    using (var NewXml = await AppContext.GetNewXmlAsync())
+                    using (var newXml = await AppContext.GetNewXmlAsync())
                     {
-                        if (NewXml == null) return;
-                        if (NewXml.Length == file.Length) return;
+                        if (newXml == null) return;
+                        if (newXml.Length == file.Length) return;
                     }
                 }
                 else
@@ -147,19 +139,19 @@ namespace SheldonMix.View
                 }
             }
 
-            var MsgBox = new CustomMessageBox()
+            var msgBox = new CustomMessageBox()
             {
                 Message = AppResources.NewSoundsAvailable,
                 LeftButtonContent = AppResources.Yes,
                 RightButtonContent = AppResources.NotNow
             };
 
-            MsgBox.Dismissed += (s1, e1) =>
+            msgBox.Dismissed += (s1, e1) =>
             {
                 if (e1.Result == CustomMessageBoxResult.LeftButton)
                     NavigationService.Navigate(new Uri("/View/UpdatePage.xaml", UriKind.Relative));
             };
-            MsgBox.Show();
+            msgBox.Show();
         }
 
         //Stack<Uri> BrowserHistory = new Stack<Uri>();

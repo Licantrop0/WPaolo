@@ -129,28 +129,22 @@ namespace SheldonMix.ViewModel
 
         #region Localization
 
-        public string ApplicationText
-        { get { return WPCommon.Controls.Localization.AppResources.Application; } }
+        public string ApplicationText => WPCommon.Controls.Localization.AppResources.Application;
 
-        public string ContactUsText
-        { get { return WPCommon.Controls.Localization.AppResources.ContactUs; } }
+        public string ContactUsText => WPCommon.Controls.Localization.AppResources.ContactUs;
 
-        public string GetOtherAppsText
-        { get { return WPCommon.Controls.Localization.AppResources.GetOtherApps; } }
+        public string GetOtherAppsText => WPCommon.Controls.Localization.AppResources.GetOtherApps;
 
-        public string OtherAppsText
-        { get { return WPCommon.Controls.Localization.AppResources.OtherApps; } }
+        public string OtherAppsText => WPCommon.Controls.Localization.AppResources.OtherApps;
 
-        public string RateText
-        { get { return WPCommon.Controls.Localization.AppResources.RateThisApp; } }
+        public string RateText => WPCommon.Controls.Localization.AppResources.RateThisApp;
 
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

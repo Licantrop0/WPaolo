@@ -33,7 +33,7 @@ namespace SheldonMix.ViewModel
         }
 
         public UpdateViewModel()
-        {            
+        {
             if (DesignerProperties.IsInDesignTool)
             {
                 var btr = new BackgroundTransferRequest(
@@ -86,7 +86,7 @@ namespace SheldonMix.ViewModel
             if (AllFilesCount == 0)
             {
                 MessageBox.Show(AppResources.AlreadyUpdated);
-                NS.GoBack();
+                Ns.GoBack();
                 return;
             }
 
@@ -98,7 +98,7 @@ namespace SheldonMix.ViewModel
                     TransferPreferences = TransferPreferences.AllowCellularAndBattery
                 }));
 
-            for (int i = 0; i < Math.Min(5, TransferQueue.Count); i++)
+            for (var i = 0; i < Math.Min(5, TransferQueue.Count); i++)
                 StartDownload(TransferQueue.Dequeue());
         }
 
@@ -108,12 +108,9 @@ namespace SheldonMix.ViewModel
             using (var isf = IsolatedStorageFile.GetUserStoreForApplication())
             {
                 var files = isf.GetFileNames(baseUri + "*.mp3");
-                foreach (var file in files)
-                {
-                    //using (var f = isf.OpenFile(file, FileMode.Open))
-                    //if (f.Length > 0)
-                    fileList.Add(file);
-                }
+                //using (var f = isf.OpenFile(file, FileMode.Open))
+                //if (f.Length > 0)
+                fileList.AddRange(files);
             }
             return fileList;
         }
@@ -128,8 +125,9 @@ namespace SheldonMix.ViewModel
             tm.RequestStart();
         }
 
-        bool isFinished = false;
-        void tm_Complete(object sender, BackgroundTransferEventArgs e)
+        private bool _isFinished = false;
+
+        private void tm_Complete(object sender, BackgroundTransferEventArgs e)
         {
             try
             {
@@ -141,15 +139,14 @@ namespace SheldonMix.ViewModel
             if (TransferQueue.Count != 0)
                 StartDownload(TransferQueue.Dequeue());
 
-            if (isFinished) return;
-            if (!BackgroundTransferService.Requests.Any())
-            {
-                isFinished = true;
-                AppContext.UpdateUI(this);
-                MessageBox.Show(AppResources.NewSoundsDownloaded,
-                    AppResources.DownloadCompleted, MessageBoxButton.OK);
-                NS.GoBack();
-            }
+            if (_isFinished) return;
+            if (BackgroundTransferService.Requests.Any()) return;
+
+            _isFinished = true;
+            AppContext.UpdateUI(this);
+            MessageBox.Show(AppResources.NewSoundsDownloaded,
+                AppResources.DownloadCompleted, MessageBoxButton.OK);
+            Ns.GoBack();
         }
     }
 }

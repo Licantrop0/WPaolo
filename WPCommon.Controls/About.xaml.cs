@@ -1,32 +1,32 @@
-﻿using System;
+﻿using Microsoft.Phone.Tasks;
+using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Phone.Tasks;
-using System.Threading;
 
 namespace WPCommon.Controls
 {
     public partial class About : UserControl
     {
-        /// <summary>Set this value to serve Ads for a specific MS AdUnit</summary>
+        ///// <summary>Set this value to serve Ads for a specific MS AdUnit</summary>
         //public string AdUnitId
         //{
-        //    get { return AdSwitcher.ADAppId; }
-        //    set { AdSwitcher.ADAppId = value; }
+        //    get { return AdMediator_A72E6A.ADAppId; }
+        //    set { AdMediator_A72E6A.ADAppId = value; }
         //}
 
         ///// <summary>Set this value to serve Ads for a specific MS Application ID</summary>
         //public string ApplicationId
         //{
-        //    get { return AdSwitcher.MSAppId; }
-        //    set { AdSwitcher.MSAppId = value; }
+        //    get { return AdMediator_A72E6A.MSAppId; }
+        //    set { AdMediator_A72E6A.MSAppId = value; }
         //}
 
         ///// <summary>Set this value to serve Ads for a specific AdDuplex App Id</summary>
         //public string ADAppId
         //{
-        //    get { return AdSwitcher.ADAppId; }
-        //    set { AdSwitcher.ADAppId = value; }
+        //    get { return AdMediator_A72E6A.ADAppId; }
+        //    set { AdMediator_A72E6A.ADAppId = value; }
         //}
 
         public About()
@@ -34,7 +34,7 @@ namespace WPCommon.Controls
             InitializeComponent();
 
             //Remove Contact us pivot if China
-            if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "zh")
+            if (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "zh")
                 LayoutRoot.Items.RemoveAt(1);
         }
 

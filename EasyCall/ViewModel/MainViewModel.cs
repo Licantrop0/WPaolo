@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
@@ -17,16 +16,7 @@ namespace EasyCall.ViewModel
         private const string FileName = "contacts.db";
 
         private List<ContactViewModel> _contacts;
-        private List<ContactViewModel> _searchedContacts;
-        public List<ContactViewModel> SearchedContacts
-        {
-            get { return _searchedContacts; }
-            set
-            {
-                _searchedContacts = value;
-                RaisePropertyChanged("SearchedContacts");
-            }
-        }
+        public List<ContactViewModel> SearchedContacts { get; private set; }
 
         private string _searchText = string.Empty;
         public string SearchText
@@ -36,7 +26,7 @@ namespace EasyCall.ViewModel
             {
                 if (_searchText == value) return;
                 _searchText = value;
-                Filter();
+                FilterAsync();
             }
         }
 
@@ -44,7 +34,7 @@ namespace EasyCall.ViewModel
         public bool IsBusy
         {
             get { return _isBusy; }
-            set
+            private set
             {
                 _isBusy = value;
                 RaisePropertyChanged("IsBusy");
@@ -70,13 +60,12 @@ namespace EasyCall.ViewModel
         {
             IsBusy = true;
             _contacts = await ReadAsync();
-            Filter();
-
-            await UpdateContacts();
+            FilterAsync();
+            await UpdateContactsAsync();
             IsBusy = false;
         }
 
-        private async Task UpdateContacts()
+        private async Task UpdateContactsAsync()
         {
             var cs = await ContactManager.RequestStoreAsync();
             var contactsFromCs = await cs.FindContactsAsync();
@@ -85,12 +74,12 @@ namespace EasyCall.ViewModel
             if (_contacts == null || !AreEquals(_contacts, contactsFromCs))
             {
                 _contacts = contactsFromCs
-                .Where(c => c.Phones.Any())
-                .Select(c => new ContactViewModel(
-                    c.DisplayName,
-                    c.Phones.Select(p => new NumberViewModel(p.Number, c.DisplayName)),
-                    c.Thumbnail)).ToList();
-                Filter();
+                    .Where(c => c.Phones.Any())
+                    .Select(c => new ContactViewModel(
+                        c.DisplayName,
+                        c.Phones.Select(p => new NumberViewModel(p.Number, c.DisplayName)),
+                        c.Thumbnail)).ToList();
+                FilterAsync();
                 WriteAsync(_contacts);
             }
         }
@@ -126,22 +115,22 @@ namespace EasyCall.ViewModel
             }
         }
 
-        private void Filter()
+        private async void FilterAsync()
         {
             if (_contacts == null)
                 return;
 
-            if (string.IsNullOrEmpty(SearchText))
+            await Task.Run(() =>
             {
-                SearchedContacts = _contacts;
-            }
-            else
-            {
-                SearchedContacts = _contacts.Where(contact =>
-                    contact.NumberRepresentation.Any(nr => nr.StartsWith(SearchText)) ||
-                    contact.Any(n => n.Number.Contains(SearchText)))
-                    .ToList();
-            }
+                SearchedContacts = string.IsNullOrEmpty(SearchText)
+                    ? _contacts
+                    : _contacts.Where(contact =>
+                        contact.NumberRepresentation.Any(nr => nr.StartsWith(SearchText)) ||
+                        contact.Any(n => n.Number.Contains(SearchText)))
+                        .ToList();
+            });
+
+            RaisePropertyChanged("SearchedContacts");
         }
     }
 }

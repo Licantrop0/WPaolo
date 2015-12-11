@@ -7,6 +7,7 @@
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            BackKeyPress="PhoneApplicationPage_BackKeyPress"
                             DataContext="{StaticResource MainVM}"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -17,97 +18,98 @@
                             d:DesignHeight="696"
                             d:DesignWidth="480"
                             shell:SystemTray.IsVisible="True"
-                            mc:Ignorable="d" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+                            mc:Ignorable="d">
 
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="{Binding IsBusy}" IsVisible="True" />
-    </shell:SystemTray.ProgressIndicator>
+   <shell:SystemTray.ProgressIndicator>
+      <shell:ProgressIndicator IsIndeterminate="{Binding IsBusy}" IsVisible="True" />
+   </shell:SystemTray.ProgressIndicator>
 
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar ForegroundColor="{StaticResource PhoneAccentColor}"
-                              IsMenuEnabled="True"
-                              IsVisible="True"
-                              Mode="Minimized">
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Click="About_Click" Text="About" />
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+   <phone:PhoneApplicationPage.ApplicationBar>
+      <shell:ApplicationBar ForegroundColor="{StaticResource PhoneAccentColor}"
+                            IsMenuEnabled="True"
+                            IsVisible="True"
+                            Mode="Minimized">
+         <shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarMenuItem Click="About_Click" Text="About" />
+         </shell:ApplicationBar.MenuItems>
+      </shell:ApplicationBar>
+   </phone:PhoneApplicationPage.ApplicationBar>
 
-    <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <toolkit:PhoneTextBox x:Name="SearchTextBox"
-                              ActionIcon="Images/call.png"
-                              ActionIconTapped="SearchTextBox_OnActionIconTapped"
-                              GotFocus="SearchTextBox_GotFocus"
-                              Hint="Press dot to call the first in the list"
-                              InputScope="TelephoneNumber"
-                              KeyDown="SearchTextBox_OnKeyDown"
-                              KeyUp="SearchTextBox_KeyUp"
-                              Text="{Binding SearchText,
-                                             Mode=TwoWay,
-                                             UpdateSourceTrigger=Explicit}" />
+   <Grid x:Name="LayoutRoot">
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <toolkit:PhoneTextBox x:Name="SearchTextBox"
+                            ActionIcon="Images/call.png"
+                            ActionIconTapped="SearchTextBox_OnActionIconTapped"
+                            GotFocus="SearchTextBox_GotFocus"
+                            Hint="Press dot to call the first in the list"
+                            InputScope="TelephoneNumber"
+                            KeyDown="SearchTextBox_OnKeyDown"
+                            KeyUp="SearchTextBox_KeyUp"
+                            Text="{Binding SearchText,
+                                           Mode=TwoWay,
+                                           UpdateSourceTrigger=Explicit}" />
 
-        <phone:LongListSelector Grid.Row="1"
-                                IsGroupingEnabled="true"
-                                ItemsSource="{Binding SearchedContacts}"
-                                ManipulationStarted="ContactsLongListSelector_OnManipulationStarted">
-            <phone:LongListSelector.GroupHeaderTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Width="48"
-                               Height="48"
-                               Margin="6,0"
-                               Source="{Binding ContactImage}"
-                               Stretch="Fill" />
-                        <TextBlock VerticalAlignment="Center"
-                                   FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                                   Text="{Binding Name}" />
-                    </StackPanel>
-                </DataTemplate>
-            </phone:LongListSelector.GroupHeaderTemplate>
+      <phone:LongListSelector Grid.Row="1"
+                              IsGroupingEnabled="true"
+                              ItemsSource="{Binding SearchedContacts}"
+                              ManipulationStarted="ContactsLongListSelector_OnManipulationStarted">
+         <phone:LongListSelector.GroupHeaderTemplate>
+            <DataTemplate>
+               <StackPanel Orientation="Horizontal">
+                  <Image Width="48"
+                         Height="48"
+                         Margin="6,0"
+                         Source="{Binding ContactImage}"
+                         Stretch="Fill" />
+                  <TextBlock VerticalAlignment="Center"
+                             FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                             Text="{Binding Name}" />
+               </StackPanel>
+            </DataTemplate>
+         </phone:LongListSelector.GroupHeaderTemplate>
 
-            <phone:LongListSelector.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Margin="0,0,0,0"
-                                HorizontalAlignment="Left"
-                                Command="{Binding SendSmsCommand}"
-                                toolkit:TiltEffect.IsTiltEnabled="True">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Rectangle Width="48"
-                                               Height="48"
-                                               Margin="60,6,6,6"
-                                               Fill="{StaticResource PhoneForegroundBrush}">
-                                        <Rectangle.OpacityMask>
-                                            <ImageBrush ImageSource="Images\CircleSms.png" />
-                                        </Rectangle.OpacityMask>
-                                    </Rectangle>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
+         <phone:LongListSelector.ItemTemplate>
+            <DataTemplate>
+               <StackPanel Orientation="Horizontal">
+                  <Button Margin="0,0,0,0"
+                          HorizontalAlignment="Left"
+                          Command="{Binding SendSmsCommand}"
+                          toolkit:TiltEffect.IsTiltEnabled="True">
+                     <Button.Template>
+                        <ControlTemplate>
+                           <Rectangle Width="48"
+                                      Height="48"
+                                      Margin="60,6,6,6"
+                                      Fill="{StaticResource PhoneForegroundBrush}">
+                              <Rectangle.OpacityMask>
+                                 <ImageBrush ImageSource="Images\CircleSms.png" />
+                              </Rectangle.OpacityMask>
+                           </Rectangle>
+                        </ControlTemplate>
+                     </Button.Template>
+                  </Button>
 
-                        <HyperlinkButton VerticalAlignment="Center"
-                                         Command="{Binding CallNumberCommand}"
-                                         Content="{Binding Number}"
-                                         FontSize="{StaticResource PhoneFontSizeMedium}"
-                                         Foreground="{StaticResource PhoneAccentBrush}" />
+                  <HyperlinkButton VerticalAlignment="Center"
+                                   Command="{Binding CallNumberCommand}"
+                                   Content="{Binding Number}"
+                                   FontSize="{StaticResource PhoneFontSizeMedium}"
+                                   Foreground="{StaticResource PhoneAccentBrush}" />
 
-                    </StackPanel>
-                </DataTemplate>
-            </phone:LongListSelector.ItemTemplate>
-        </phone:LongListSelector>
+               </StackPanel>
+            </DataTemplate>
+         </phone:LongListSelector.ItemTemplate>
+      </phone:LongListSelector>
       <ad:AdMediatorControl x:Name="AdMediator_BEB5C4"
-                                         IsEnabled="False" Visibility="Collapsed"
-                                         Grid.Row="2"
-                                         Width="480" 
-                                         Height="80"
-                                         Id="AdMediator-Id-7558E90E-2805-4EBC-A441-42FD37C410EA" />
-    </Grid>
+                            Grid.Row="2"
+                            Width="480"
+                            Height="80"
+                            Id="AdMediator-Id-7558E90E-2805-4EBC-A441-42FD37C410EA"
+                            IsEnabled="False"
+                            Visibility="Collapsed" />
+   </Grid>
 
 </phone:PhoneApplicationPage>

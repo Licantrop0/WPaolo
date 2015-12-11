@@ -1,7 +1,7 @@
 ﻿<phone:PhoneApplicationPage x:Class="EasyCall.MainPage"
                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                            xmlns:WindowsPhone8="clr-namespace:Microsoft.AdMediator.WindowsPhone8;assembly=Microsoft.AdMediator.WindowsPhone8"
+                            xmlns:ad="clr-namespace:Microsoft.AdMediator.WindowsPhone8;assembly=Microsoft.AdMediator.WindowsPhone8"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -52,8 +52,7 @@
                                              Mode=TwoWay,
                                              UpdateSourceTrigger=Explicit}" />
 
-        <phone:LongListSelector x:Name="ContactsLongListSelector"
-                                Grid.Row="1"
+        <phone:LongListSelector Grid.Row="1"
                                 IsGroupingEnabled="true"
                                 ItemsSource="{Binding SearchedContacts}"
                                 ManipulationStarted="ContactsLongListSelector_OnManipulationStarted">
@@ -103,7 +102,7 @@
                 </DataTemplate>
             </phone:LongListSelector.ItemTemplate>
         </phone:LongListSelector>
-        <WindowsPhone8:AdMediatorControl x:Name="AdMediator_BEB5C4"
+      <ad:AdMediatorControl x:Name="AdMediator_BEB5C4"
                                          IsEnabled="False" Visibility="Collapsed"
                                          Grid.Row="2"
                                          Width="480" 

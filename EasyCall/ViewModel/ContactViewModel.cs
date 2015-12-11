@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Threading.Tasks;
-using System.Windows;
-using Windows.ApplicationModel.Contacts;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using WPCommon.Helpers;
@@ -33,12 +29,10 @@ namespace EasyCall.ViewModel
         {
             get
             {
-                Debug.WriteLine("ContactImage Get " + (_contactImage?.ToString() ?? "null"));
                 return _contactImage;
             }
             set
             {
-                Debug.WriteLine("ContactImage Set " + (value?.ToString() ?? "null"));
                 _contactImage = value;
                 RaisePropertyChanged("ContactImage");
             }
@@ -46,13 +40,11 @@ namespace EasyCall.ViewModel
 
         public ContactViewModel()
         {
-            Debug.WriteLine("ContactViewModel ctor parameterless");
             //for serialization
         }
 
         public ContactViewModel(string name, IEnumerable<NumberViewModel> numbers, IRandomAccessStreamReference thumbnail)
         {
-            Debug.WriteLine("ContactViewModel ctor with parameters");
             Name = name;
             NumberRepresentation = TextToNum(name);
             Numbers = numbers.ToList();
@@ -62,8 +54,6 @@ namespace EasyCall.ViewModel
 
         private void LoadThumbnail(IRandomAccessStreamReference thumbnail)
         {
-            Debug.WriteLine("LoadThumbnail " + (thumbnail == null ? "null" : "actual"));
-
             if (thumbnail == null)
             {
                 ContactImage = new Uri("Images/Contact.png", UriKind.Relative);
@@ -72,11 +62,9 @@ namespace EasyCall.ViewModel
             {
                 ContactImage = new Uri(((StorageFile)thumbnail).Path);
             }
-            else //Write file to disk
+            else //Need to write thumbnail to disk
             {
-                var fileName = Name + Numbers[0].Number + ".png";
-                Debug.WriteLine("LoadThumbnail assigning _contactImage " + fileName);
-
+                var fileName = Name + Numbers.First().Number + ".png";
                 _contactImage = new Uri(Path.Combine(ApplicationData.Current.LocalFolder.Path, fileName));
                 WriteThumbnail(fileName, thumbnail);
             }
@@ -94,7 +82,6 @@ namespace EasyCall.ViewModel
                 await readstream.AsStreamForRead().CopyToAsync(current);
             }
 
-            Debug.WriteLine("WriteThumbnail writed to disk " + storageFile.Path);
             RaisePropertyChanged("ContactImage");
         }
 
@@ -109,18 +96,33 @@ namespace EasyCall.ViewModel
                 switch (output[i])
                 {
                     case 'a':
+                    case 'à':
+                    case 'á':
+                    case 'â':
+                    case 'ã':
+                    case 'ä':
+                    case 'å':
                     case 'b':
                     case 'c':
+                    case 'ç':
                         output[i] = '2';
                         break;
                     case 'd':
                     case 'e':
+                    case 'è':
+                    case 'é':
+                    case 'ê':
+                    case 'ë':
                     case 'f':
                         output[i] = '3';
                         break;
                     case 'g':
                     case 'h':
                     case 'i':
+                    case 'ì':
+                    case 'í':
+                    case 'î':
+                    case 'ï':
                         output[i] = '4';
                         break;
                     case 'j':
@@ -130,24 +132,39 @@ namespace EasyCall.ViewModel
                         break;
                     case 'm':
                     case 'n':
+                    case 'ñ':
                     case 'o':
+                    case 'ò':
+                    case 'ó':
+                    case 'ô':
+                    case 'õ':
+                    case 'ö':
+                    case 'ø':
                         output[i] = '6';
                         break;
                     case 'p':
                     case 'q':
                     case 'r':
                     case 's':
+                    case 'š':
                         output[i] = '7';
                         break;
                     case 't':
                     case 'u':
+                    case 'ù':
+                    case 'ú':
+                    case 'û':
+                    case 'ü':
                     case 'v':
                         output[i] = '8';
                         break;
                     case 'w':
                     case 'x':
                     case 'y':
+                    case 'ý':
+                    case 'ÿ':
                     case 'z':
+                    case 'ž':
                         output[i] = '9';
                         break;
                 }

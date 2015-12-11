@@ -16,7 +16,7 @@ namespace EasyCall
         private DispatcherTimer _tmr;
 
         private MainViewModel _vm;
-        public MainViewModel Vm => _vm ?? (_vm = (MainViewModel)LayoutRoot.DataContext);
+        private MainViewModel Vm => _vm ?? (_vm = (MainViewModel)LayoutRoot.DataContext);
 
         public MainPage()
         {
@@ -41,7 +41,7 @@ namespace EasyCall
             if (TrialManagement.IsTrialMode)
             {
                 AdMediator_BEB5C4.Visibility = Visibility.Visible;
-                AdMediator_BEB5C4.IsEnabled = true;                
+                AdMediator_BEB5C4.IsEnabled = true;
             }
         }
 
@@ -71,7 +71,8 @@ namespace EasyCall
         {
             if (Vm.SearchedContacts.Any())
             {
-                Vm.SearchedContacts.First().First().CallNumberCommand.Execute(null);
+                var firstNumber = Vm.SearchedContacts.First().First();
+                firstNumber.CallNumberCommand.Execute(null);
             }
             else
             {
@@ -108,9 +109,9 @@ namespace EasyCall
                 {
                     TrialManagement.Buy();
                 }
-                else
+                else // "Maybe Later" or Back button
                 {
-                    App.Current.Terminate();
+                    Application.Current.Terminate();
                 }
             };
             messageBox.Show();

@@ -15,8 +15,8 @@ namespace EasyCall.ViewModel
     {
         private const string FileName = "contacts.db";
 
-        private List<ContactViewModel> _contacts;
-        public List<ContactViewModel> SearchedContacts { get; private set; }
+        private IList<ContactViewModel> _contacts;
+        public IList<ContactViewModel> SearchedContacts { get; private set; }
 
         private string _searchText = string.Empty;
         public string SearchText
@@ -68,13 +68,15 @@ namespace EasyCall.ViewModel
         private async Task UpdateContactsAsync()
         {
             var cs = await ContactManager.RequestStoreAsync();
-            var contactsFromCs = await cs.FindContactsAsync();
+            IReadOnlyList<Contact> contactsFromCs =
+                (await cs.FindContactsAsync())
+                .Where(c => c.Phones.Any())
+                .ToList();
 
             //Update only if sequence is different
             if (_contacts == null || !AreEquals(_contacts, contactsFromCs))
             {
                 _contacts = contactsFromCs
-                    .Where(c => c.Phones.Any())
                     .Select(c => new ContactViewModel(
                         c.DisplayName,
                         c.Phones.Select(p => new NumberViewModel(p.Number, c.DisplayName)),
@@ -84,12 +86,27 @@ namespace EasyCall.ViewModel
             }
         }
 
-        private static bool AreEquals(IEnumerable<ContactViewModel> contacts1, IReadOnlyList<Contact> contacts2)
+        private static bool AreEquals(IList<ContactViewModel> contacts1, IReadOnlyList<Contact> contacts2)
         {
-            return contacts1.Where((t, i) =>
-                t.Name != contacts2[i].DisplayName ||
-                !t.Numbers.Select(n => n.Number).SequenceEqual(contacts2[i].Phones.Select(n => n.Number))
-                ).Any();
+            if (contacts1.Count != contacts2.Count)
+                return false;
+
+            for (var i = 0; i < contacts1.Count; i++)
+            {
+                var c1 = contacts1[i];
+                var c2 = contacts2[i];
+
+                if (c1.Name != c2.DisplayName)
+                    return false;
+
+                for (var j = 0; j < c1.Numbers.Count; j++)
+                {
+                    if (c1.Numbers[j].Number != c2.Phones[j].Number)
+                        return false;
+                }
+            }
+
+            return true;
         }
 
 

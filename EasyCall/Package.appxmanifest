@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="56834WPME.EasyCall" Publisher="CN=06277945-EDD4-4EF4-9CEA-01B8C7E42F97" Version="2.0.1.0" />
+  <Identity Name="56834WPME.EasyCall" Publisher="CN=06277945-EDD4-4EF4-9CEA-01B8C7E42F97" Version="2.0.2.0" />
   <mp:PhoneIdentity PhoneProductId="ac5b5d62-573c-4134-b290-0ad4f678ad7f" PhonePublisherId="68d30256-d28d-47fb-8727-d50762dde842" />
   <Properties>
     <DisplayName>Easy Call</DisplayName>

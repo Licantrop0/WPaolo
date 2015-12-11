@@ -22,7 +22,7 @@ namespace EasyCall.ViewModel
 
         public NumberViewModel(string number, string name)
         {
-            Number = Regex.Replace(number, @"[\s\-\(\)]", string.Empty);
+            Number = number; // Regex.Replace(number, @"[\s\-\(\)]", string.Empty);
             Name = name;
         }
 

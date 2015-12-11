@@ -10,7 +10,7 @@
              d:DesignWidth="480"
              mc:Ignorable="d">
 
-    <!--
+   <!--
     1) Ricordarsi di impostare Build Action = Compile su AboutViewModel.cs
     2) copiare negli header:
         xmlns:vm="clr-namespace:WPCommon.Controls.ViewModel"
@@ -21,174 +21,175 @@
                                AppId="" />
         </phone:PhoneApplicationPage.Resources>
         <wpc:About DataContext="{StaticResource AboutVM}" />
-    -->
+   -->
 
-    <!--
+   <!--
     xmlns:vm="clr-namespace:WPCommon.ViewModel"
     <UserControl.Resources>
         <vm:AboutViewModel x:Key="AboutVM"/>
     </UserControl.Resources>
     DataContext="{StaticResource AboutVM}"
-    -->
+   -->
 
-    <phone:Pivot x:Name="LayoutRoot">
+   <phone:Pivot x:Name="LayoutRoot">
 
-        <phone:Pivot.Resources>
-            <ResourceDictionary Source="Resources.xaml" />
-        </phone:Pivot.Resources>
+      <phone:Pivot.Resources>
+         <ResourceDictionary Source="Resources.xaml" />
+      </phone:Pivot.Resources>
 
-        <phone:Pivot.Background>
-            <Binding Path="DefaultBackground" TargetNullValue="{StaticResource PhoneBackgroundBrush}" />
-        </phone:Pivot.Background>
-        <phone:Pivot.FontFamily>
-            <Binding Path="DefaultFont" TargetNullValue="{StaticResource PhoneFontFamilyNormal}" />
-        </phone:Pivot.FontFamily>
-        <phone:Pivot.Foreground>
-            <Binding Path="DefaultForeground" TargetNullValue="{StaticResource PhoneForegroundBrush}" />
-        </phone:Pivot.Foreground>
+      <phone:Pivot.Background>
+         <Binding Path="DefaultBackground" TargetNullValue="{StaticResource PhoneBackgroundBrush}" />
+      </phone:Pivot.Background>
+      <phone:Pivot.FontFamily>
+         <Binding Path="DefaultFont" TargetNullValue="{StaticResource PhoneFontFamilyNormal}" />
+      </phone:Pivot.FontFamily>
+      <phone:Pivot.Foreground>
+         <Binding Path="DefaultForeground" TargetNullValue="{StaticResource PhoneForegroundBrush}" />
+      </phone:Pivot.Foreground>
 
-        <phone:PivotItem Margin="0,24,0,0">
-            <phone:PivotItem.Header>
-                <TextBlock FontFamily="{Binding DefaultFont,
-                                                TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
-                           Foreground="{Binding HeaderForeground}"
-                           Text="{Binding ApplicationText}" />
-            </phone:PivotItem.Header>
-            <Grid x:Name="MainGrid">
-                <StackPanel>
-                    <TextBlock x:Name="AppNameTextBlock"
-                               Margin="{Binding AppNameMargin}"
-                               FontSize="{Binding AppNameFontSize}"
-                               Text="{Binding AppName,
-                                              TargetNullValue=App Name}"
-                               TextAlignment="Center"
-                               TextWrapping="Wrap" />
+      <phone:PivotItem Margin="0,24,0,0">
+         <phone:PivotItem.Header>
+            <TextBlock FontFamily="{Binding DefaultFont,
+                                            TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
+                       Foreground="{Binding HeaderForeground}"
+                       Text="{Binding ApplicationText}" />
+         </phone:PivotItem.Header>
+         <Grid>
+            <StackPanel>
+               <TextBlock x:Name="AppNameTextBlock"
+                          Margin="{Binding AppNameMargin}"
+                          FontSize="{Binding AppNameFontSize}"
+                          Text="{Binding AppName,
+                                         TargetNullValue=App Name}"
+                          TextAlignment="Center"
+                          TextWrapping="Wrap" />
 
-                    <TextBlock x:Name="AppVersionTextBlock"
-                               Margin="0,8"
-                               FontSize="{Binding AppVersionFontSize}"
-                               Text="{Binding AppVersion}"
-                               TextAlignment="Center" />
+               <TextBlock x:Name="AppVersionTextBlock"
+                          Margin="0,8"
+                          FontSize="{Binding AppVersionFontSize}"
+                          Text="{Binding AppVersion}"
+                          TextAlignment="Center" />
 
-                    <HyperlinkButton Click="Rate_Click"
-                                     Content="{Binding RateText}"
-                                     FontSize="{Binding HyperLinkFontSize}"
-                                     Foreground="{Binding DefaultForeground,
-                                                          TargetNullValue={StaticResource PhoneForegroundBrush}}"
-                                     Style="{StaticResource HyperlinkWrappingStyle}" />
+               <HyperlinkButton Click="Rate_Click"
+                                Content="{Binding RateText}"
+                                FontSize="{Binding HyperLinkFontSize}"
+                                Foreground="{Binding DefaultForeground,
+                                                     TargetNullValue={StaticResource PhoneForegroundBrush}}"
+                                Style="{StaticResource HyperlinkWrappingStyle}" />
 
-                    <Image Margin="{Binding LogoMargin}"
-                           Source="{Binding CustomLogo}"
-                           Stretch="None" />
+               <Image Margin="{Binding LogoMargin}"
+                      Source="{Binding CustomLogo}"
+                      Stretch="None" />
 
-                    <TextBlock Margin="6"
-                               FontFamily="{Binding CustomTextFontFamily}"
-                               FontSize="{Binding CustomTextFontSize}"
-                               Foreground="{Binding CustomTextForeground}"
-                               Text="{Binding CustomText}"
-                               TextAlignment="Center"
-                               TextWrapping="Wrap" />
-                </StackPanel>
-
-                <ad:AdMediatorControl x:Name="AdMediator_A72E6A"
-                                      Width="480"
-                                      Height="80"
-                                      VerticalAlignment="Bottom"
-                                      Id="AdMediator-Id-091595CE-6995-48B2-9627-FAFD686CF288" />
-            </Grid>
-        </phone:PivotItem>
-
-        <phone:PivotItem>
-            <phone:PivotItem.Header>
-                <TextBlock FontFamily="{Binding DefaultFont,
-                                                TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
-                           Foreground="{Binding HeaderForeground}"
-                           Text="{Binding ContactUsText}" />
-            </phone:PivotItem.Header>
-
-            <StackPanel HorizontalAlignment="Center">
-                <Button Click="Mail_Click" toolkit:TiltEffect.IsTiltEnabled="True">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Height="200"
-                                   Source="/WPCommon.Controls;component/Img/hotmail.png"
-                                   Stretch="None" />
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button Margin="0,8,0,16"
-                        Click="Facebook_Click"
-                        toolkit:TiltEffect.IsTiltEnabled="True">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Height="200" Source="/WPCommon.Controls;component/Img/facebook.png" />
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button Click="Twitter_Click" toolkit:TiltEffect.IsTiltEnabled="True">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Height="200" Source="/WPCommon.Controls;component/Img/twitter.png" />
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+               <TextBlock Margin="6"
+                          FontFamily="{Binding CustomTextFontFamily}"
+                          FontSize="{Binding CustomTextFontSize}"
+                          Foreground="{Binding CustomTextForeground}"
+                          Text="{Binding CustomText}"
+                          TextAlignment="Center"
+                          TextWrapping="Wrap" />
             </StackPanel>
-        </phone:PivotItem>
 
-        <phone:PivotItem>
-            <phone:PivotItem.Header>
-                <TextBlock FontFamily="{Binding DefaultFont,
-                                                TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
-                           Foreground="{Binding HeaderForeground}"
-                           Text="{Binding OtherAppsText}" />
-            </phone:PivotItem.Header>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <HyperlinkButton Grid.Row="0"
-                                 Margin="0,0,0,12"
-                                 Click="OtherAppsHyperLink_Click"
-                                 Content="{Binding GetOtherAppsText}"
-                                 FontSize="{Binding HyperLinkFontSize}"
-                                 Foreground="{Binding DefaultForeground,
-                                                      TargetNullValue={StaticResource PhoneForegroundBrush}}"
-                                 Style="{StaticResource HyperlinkWrappingStyle}" />
-                <ListBox x:Name="AppListBox"
-                         Grid.Row="1"
-                         ItemsSource="{Binding AppList}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Button Width="200"
-                                    Margin="8"
-                                    Click="App_Click"
-                                    Tag="{Binding Id}"
-                                    toolkit:TiltEffect.IsTiltEnabled="True">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Grid>
-                                            <Image Source="{Binding Thumbnail}" />
-                                            <Border VerticalAlignment="Bottom" Background="#7F000000">
-                                                <TextBlock Margin="6"
-                                                           FontSize="{StaticResource PhoneFontSizeSmall}"
-                                                           Foreground="White"
-                                                           Text="{Binding name}" />
-                                            </Border>
-                                        </Grid>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <toolkit:WrapPanel />
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
-            </Grid>
-        </phone:PivotItem>
-    </phone:Pivot>
+            <ad:AdMediatorControl x:Name="AdMediator_A72E6A"
+                                  Width="480"
+                                  Height="80"
+                                  VerticalAlignment="Bottom"
+                                  Id="AdMediator-Id-091595CE-6995-48B2-9627-FAFD686CF288" />
+         </Grid>
+      </phone:PivotItem>
+
+      <phone:PivotItem>
+         <phone:PivotItem.Header>
+            <TextBlock FontFamily="{Binding DefaultFont,
+                                            TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
+                       Foreground="{Binding HeaderForeground}"
+                       Text="{Binding ContactUsText}" />
+         </phone:PivotItem.Header>
+
+         <StackPanel HorizontalAlignment="Center">
+            <Button Click="Mail_Click" toolkit:TiltEffect.IsTiltEnabled="True">
+               <Button.Template>
+                  <ControlTemplate>
+                     <Image Height="200"
+                            Source="/WPCommon.Controls;component/Img/hotmail.png"
+                            Stretch="None" />
+                  </ControlTemplate>
+               </Button.Template>
+            </Button>
+            <Button Margin="0,8,0,16"
+                    Click="Facebook_Click"
+                    toolkit:TiltEffect.IsTiltEnabled="True">
+               <Button.Template>
+                  <ControlTemplate>
+                     <Image Height="200" Source="/WPCommon.Controls;component/Img/facebook.png" />
+                  </ControlTemplate>
+               </Button.Template>
+            </Button>
+            <Button Click="Twitter_Click" toolkit:TiltEffect.IsTiltEnabled="True">
+               <Button.Template>
+                  <ControlTemplate>
+                     <Image Height="200" Source="/WPCommon.Controls;component/Img/twitter.png" />
+                  </ControlTemplate>
+               </Button.Template>
+            </Button>
+         </StackPanel>
+      </phone:PivotItem>
+
+      <phone:PivotItem>
+         <phone:PivotItem.Header>
+            <TextBlock FontFamily="{Binding DefaultFont,
+                                            TargetNullValue={StaticResource PhoneFontFamilyNormal}}"
+                       Foreground="{Binding HeaderForeground}"
+                       Text="{Binding OtherAppsText}" />
+         </phone:PivotItem.Header>
+
+         <Grid>
+            <Grid.RowDefinitions>
+               <RowDefinition Height="Auto" />
+               <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <HyperlinkButton Grid.Row="0"
+                             Margin="0,0,0,12"
+                             Click="OtherAppsHyperLink_Click"
+                             Content="{Binding GetOtherAppsText}"
+                             FontSize="{Binding HyperLinkFontSize}"
+                             Foreground="{Binding DefaultForeground,
+                                                  TargetNullValue={StaticResource PhoneForegroundBrush}}"
+                             Style="{StaticResource HyperlinkWrappingStyle}" />
+            <ListBox x:Name="AppListBox"
+                     Grid.Row="1"
+                     ItemsSource="{Binding AppList}">
+               <ListBox.ItemTemplate>
+                  <DataTemplate>
+                     <Button Width="200"
+                             Margin="8"
+                             Click="App_Click"
+                             Tag="{Binding Id}"
+                             toolkit:TiltEffect.IsTiltEnabled="True">
+                        <Button.Template>
+                           <ControlTemplate>
+                              <Grid>
+                                 <Image Source="{Binding Thumbnail}" />
+                                 <Border VerticalAlignment="Bottom" Background="#7F000000">
+                                    <TextBlock Margin="6"
+                                               FontSize="{StaticResource PhoneFontSizeSmall}"
+                                               Foreground="White"
+                                               Text="{Binding name}" />
+                                 </Border>
+                              </Grid>
+                           </ControlTemplate>
+                        </Button.Template>
+                     </Button>
+                  </DataTemplate>
+               </ListBox.ItemTemplate>
+               <ListBox.ItemsPanel>
+                  <ItemsPanelTemplate>
+                     <toolkit:WrapPanel />
+                  </ItemsPanelTemplate>
+               </ListBox.ItemsPanel>
+            </ListBox>
+         </Grid>
+      </phone:PivotItem>
+   </phone:Pivot>
 </UserControl>

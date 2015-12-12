@@ -97,7 +97,7 @@ namespace EasyCall
             e.Cancel = true;
             var messageBox = new CustomMessageBox()
             {
-                Caption = "Trial Mode",
+                Caption = "Demo Mode",
                 Message = "To get rid of call limitations, buy this app",
                 LeftButtonContent = "Buy",
                 RightButtonContent = "Maybe later",

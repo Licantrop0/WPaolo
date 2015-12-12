@@ -145,6 +145,7 @@
     <Compile Include="Helper\CallHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helper\StorageHelper.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\ContactViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -177,6 +178,7 @@
     <Content Include="Assets\FlipCycleTileMedium.png" />
     <Content Include="Assets\FlipCycleTileSmall.png" />
     <Content Include="Images\Contact.png" />
+    <Content Include="Images\sms.png" />
     <None Include="app.config" />
     <None Include="Images\Logo.pdn" />
     <None Include="packages.config" />
@@ -186,17 +188,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\CircleSms.png" />
     <None Include="Images\noun_127.png" />
     <Resource Include="Images\call.png" />
-    <Resource Include="Images\CircleCall.png" />
-    <Content Include="Assets\BadgeLogo.png" />
-    <Content Include="Assets\Logo.png" />
+    <None Include="Assets\BadgeLogo.png" />
+    <None Include="Assets\Logo.png" />
     <Content Include="Assets\SplashScreen.png" />
-    <Content Include="Assets\SquareTile150x150.png" />
-    <Content Include="Assets\SquareTile71x71.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\WideLogo.png" />
+    <None Include="Assets\SquareTile150x150.png" />
+    <None Include="Assets\SquareTile71x71.png" />
+    <None Include="Assets\StoreLogo.png" />
+    <None Include="Assets\WideLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WPCommon.Controls\WPCommon.Controls.csproj">

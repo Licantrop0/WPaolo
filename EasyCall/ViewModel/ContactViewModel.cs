@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using Windows.ApplicationModel.Contacts;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using WPCommon.Helpers;
@@ -174,6 +175,13 @@ namespace EasyCall.ViewModel
             return s.Split(' '); //concat also the full string with space
         }
 
+        public bool IsEqual(Contact other)
+        {
+            return this.Name == other.DisplayName &&
+                   this.Numbers.Select(n => n.Number)
+                    .SequenceEqual(other.Phones.Select(n => n.Number));
+        }
+
         #region IList Implementation
 
         public bool IsFixedSize => true;
@@ -189,20 +197,18 @@ namespace EasyCall.ViewModel
         {
             get { return Numbers[index]; }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set { /* no op */ }
         }
 
         public int Add(object value)
         {
-            throw new NotImplementedException();
+            // no op
+            return 0;
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            // no op
         }
 
         public bool Contains(object value)
@@ -212,27 +218,32 @@ namespace EasyCall.ViewModel
 
         public int IndexOf(object value)
         {
-            throw new NotImplementedException();
+            if (value is NumberViewModel)
+            {
+                return Numbers.IndexOf((NumberViewModel)value);
+            }
+
+            return -1;
         }
 
         public void Insert(int index, object value)
         {
-            throw new NotImplementedException();
+            // no op
         }
 
         public void Remove(object value)
         {
-            throw new NotImplementedException();
+            // no op
         }
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            // no op
         }
 
         public void CopyTo(Array array, int index)
         {
-            throw new NotImplementedException();
+            // no op for not generic array
         }
 
         public IEnumerator GetEnumerator() => Numbers.GetEnumerator();

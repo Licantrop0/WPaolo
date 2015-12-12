@@ -16,7 +16,7 @@
   </Resources>
   <Applications>
     <Application Id="xac5b5d62y573cy4134yb290y0ad4f678ad7fx" Executable="AGHost.exe" EntryPoint="MainPage.xaml">
-      <m3:VisualElements DisplayName="EasyCall" Square150x150Logo="Assets\SquareTile150x150.png" Square44x44Logo="Assets\Logo.png" Description="EasyCall" ForegroundText="light" BackgroundColor="#464646" ToastCapable="false">
+      <m3:VisualElements DisplayName="Easy Call" Square150x150Logo="Assets\SquareTile150x150.png" Square44x44Logo="Assets\Logo.png" Description="Easy Call" ForegroundText="light" BackgroundColor="#464646" ToastCapable="false">
         <m3:DefaultTile Square71x71Logo="Assets\SquareTile71x71.png">
         </m3:DefaultTile>
         <m3:SplashScreen Image="Assets\SplashScreen.png" />

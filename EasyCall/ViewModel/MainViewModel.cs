@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Contacts;
-using Windows.Storage;
+using EasyCall.Helper;
 using WPCommon.Helpers;
 
 namespace EasyCall.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
-        private const string FileName = "contacts.db";
-
         private IList<ContactViewModel> _contacts;
         public IList<ContactViewModel> SearchedContacts { get; private set; }
 
@@ -59,7 +55,7 @@ namespace EasyCall.ViewModel
         private async void LoadContacts()
         {
             IsBusy = true;
-            _contacts = await ReadAsync();
+            _contacts = await StorageHelper.ReadAsync();
             FilterAsync();
             await UpdateContactsAsync();
             IsBusy = false;
@@ -73,16 +69,16 @@ namespace EasyCall.ViewModel
                 .Where(c => c.Phones.Any())
                 .ToList();
 
-            //Update only if sequence is different
+            //Update only if different
             if (_contacts == null || !AreEquals(_contacts, contactsFromCs))
             {
                 _contacts = contactsFromCs
-                    .Select(c => new ContactViewModel(
-                        c.DisplayName,
-                        c.Phones.Select(p => new NumberViewModel(p.Number, c.DisplayName)),
-                        c.Thumbnail)).ToList();
+                .Select(c => new ContactViewModel(
+                    c.DisplayName,
+                    c.Phones.Select(p => new NumberViewModel(p.Number, c.DisplayName)),
+                    c.Thumbnail)).ToList();
                 FilterAsync();
-                WriteAsync(_contacts);
+                StorageHelper.WriteAsync(_contacts);
             }
         }
 
@@ -109,29 +105,6 @@ namespace EasyCall.ViewModel
             return true;
         }
 
-
-        private static async Task<List<ContactViewModel>> ReadAsync()
-        {
-            try { await ApplicationData.Current.LocalFolder.GetFileAsync(FileName); }
-            catch (FileNotFoundException) { return null; }
-
-            var serializer = new DataContractJsonSerializer(typeof(List<ContactViewModel>));
-            using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync(FileName))
-            {
-                return (List<ContactViewModel>)serializer.ReadObject(stream);
-            }
-        }
-
-        private static async void WriteAsync(IEnumerable<ContactViewModel> data)
-        {
-            var serializer = new DataContractJsonSerializer(typeof(List<ContactViewModel>));
-            using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(
-                FileName, CreationCollisionOption.ReplaceExisting))
-            {
-                serializer.WriteObject(stream, data);
-            }
-        }
-
         private async void FilterAsync()
         {
             if (_contacts == null)
@@ -142,9 +115,9 @@ namespace EasyCall.ViewModel
                 SearchedContacts = string.IsNullOrEmpty(SearchText)
                     ? _contacts
                     : _contacts.Where(contact =>
-                        contact.NumberRepresentation.Any(nr => nr.StartsWith(SearchText)) ||
-                        contact.Any(n => n.Number.Contains(SearchText)))
-                        .ToList();
+                    contact.NumberRepresentation.Any(nr => nr.StartsWith(SearchText)) ||
+                    contact.Any(n => n.Number.Contains(SearchText)))
+                    .ToList();
             });
 
             RaisePropertyChanged("SearchedContacts");

@@ -7,6 +7,7 @@
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:viewModel="clr-namespace:EasyCall.ViewModel"
                             BackKeyPress="PhoneApplicationPage_BackKeyPress"
                             DataContext="{StaticResource MainVM}"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -59,34 +60,31 @@
                               ManipulationStarted="ContactsLongListSelector_OnManipulationStarted">
          <phone:LongListSelector.GroupHeaderTemplate>
             <DataTemplate>
-               <StackPanel Orientation="Horizontal">
+               <StackPanel Orientation="Horizontal" d:DataContext="{d:DesignInstance Type=viewModel:ContactViewModel}">
                   <Image Width="48"
                          Height="48"
-                         Margin="6,0"
+                         Margin="12,0"
                          Source="{Binding ContactImage}"
                          Stretch="Fill" />
-                  <TextBlock VerticalAlignment="Center"
-                             FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                  <TextBlock Margin="0"
+                             VerticalAlignment="Center"
+                             Style="{StaticResource PhoneTextLargeStyle}"
                              Text="{Binding Name}" />
                </StackPanel>
             </DataTemplate>
          </phone:LongListSelector.GroupHeaderTemplate>
-
          <phone:LongListSelector.ItemTemplate>
             <DataTemplate>
-               <StackPanel Orientation="Horizontal">
-                  <Button Margin="0,0,0,0"
-                          HorizontalAlignment="Left"
-                          Command="{Binding SendSmsCommand}"
-                          toolkit:TiltEffect.IsTiltEnabled="True">
+               <StackPanel Orientation="Horizontal" d:DataContext="{d:DesignInstance Type=viewModel:NumberViewModel}">
+                  <Button Command="{Binding SendSmsCommand}" toolkit:TiltEffect.IsTiltEnabled="True">
                      <Button.Template>
                         <ControlTemplate>
                            <Rectangle Width="48"
                                       Height="48"
-                                      Margin="60,6,6,6"
-                                      Fill="{StaticResource PhoneForegroundBrush}">
+                                      Margin="72,6,0,0"
+                                      Fill="{StaticResource PhoneAccentBrush}">
                               <Rectangle.OpacityMask>
-                                 <ImageBrush ImageSource="Images\CircleSms.png" />
+                                 <ImageBrush ImageSource="Images\sms.png" />
                               </Rectangle.OpacityMask>
                            </Rectangle>
                         </ControlTemplate>
@@ -102,6 +100,11 @@
                </StackPanel>
             </DataTemplate>
          </phone:LongListSelector.ItemTemplate>
+         <phone:LongListSelector.GroupFooterTemplate>
+            <DataTemplate>
+               <Grid Margin="6" />
+            </DataTemplate>
+         </phone:LongListSelector.GroupFooterTemplate>
       </phone:LongListSelector>
       <ad:AdMediatorControl x:Name="AdMediator_BEB5C4"
                             Grid.Row="2"

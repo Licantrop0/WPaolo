@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Colors>
+	<Color name="Alice Blue" value="F0F8FF"/>
+	<Color name="Antique White" value="FAEBD7"/>
+	<Color name="Aqua" value="00FFFF"/>
+	<Color name="Aquamarine" value="7FFFD4"/>
+	<Color name="Azure" value="F0FFFF"/>
+	<Color name="Beige" value="F5F5DC"/>
+	<Color name="Bisque" value="FFE4C4"/>
+	<Color name="Black" value="0"/>
+	<Color name="Blanched Almond" value="FFEBCD"/>
+	<Color name="Blue" value="0000FF"/>
+	<Color name="Blue Violet" value="8A2BE2"/>
+	<Color name="Brown" value="A52A2A"/>
+	<Color name="Burly Wood" value="DEB887"/>
+	<Color name="Cadet Blue" value="5F9EA0"/>
+	<Color name="Chartreuse" value="7FFF00"/>
+	<Color name="Chocolate" value="D2691E"/>
+	<Color name="Coral" value="FF7F50"/>
+	<Color name="Cornflower Blue" value="6495ED"/>
+	<Color name="Cornsilk" value="FFF8DC"/>
+	<Color name="Crimson" value="DC143C"/>
+	<Color name="Cyan" value="00FFFF"/>
+	<Color name="Dark Blue" value="00008B"/>
+	<Color name="Dark Cyan" value="008B8B"/>
+	<Color name="Dark Golden Rod" value="B8860B"/>
+	<Color name="Dark Gray" value="A9A9A9"/>
+	<Color name="Dark Green" value="6400"/>
+	<Color name="Dark Khaki" value="BDB76B"/>
+	<Color name="Dark Magenta" value="8B008B"/>
+	<Color name="Dark Olive Green" value="556B2F"/>
+	<Color name="Dark Orange" value="FF8C00"/>
+	<Color name="Dark Orchid" value="9932CC"/>
+	<Color name="Dark Red" value="8B0000"/>
+	<Color name="Dark Salmon" value="E9967A"/>
+	<Color name="Dark Sea Green" value="8FBC8F"/>
+	<Color name="Dark Slate Blue" value="483D8B"/>
+	<Color name="Dark Slate Gray" value="2F4F4F"/>
+	<Color name="Dark Turquoise" value="00CED1"/>
+	<Color name="Dark Violet" value="9400D3"/>
+	<Color name="Deep Pink" value="FF1493"/>
+	<Color name="Deep Sky Blue" value="00BFFF"/>
+	<Color name="Dim Gray" value="696969"/>
+	<Color name="Dodger Blue" value="1E90FF"/>
+	<Color name="Fire Brick" value="B22222"/>
+	<Color name="Floral White" value="FFFAF0"/>
+	<Color name="Forest Green" value="228B22"/>
+	<Color name="Fuchsia" value="FF00FF"/>
+	<Color name="Gainsboro" value="DCDCDC"/>
+	<Color name="Ghost White" value="F8F8FF"/>
+	<Color name="Gold" value="FFD700"/>
+	<Color name="Golden Rod" value="DAA520"/>
+	<Color name="Gray" value="808080"/>
+	<Color name="Green" value="8000"/>
+	<Color name="Green Yellow" value="ADFF2F"/>
+	<Color name="Honey Dew" value="F0FFF0"/>
+	<Color name="Hot Pink" value="FF69B4"/>
+	<Color name="Indian Red" value="CD5C5C"/>
+	<Color name="Indigo" value="4B0082"/>
+	<Color name="Ivory" value="FFFFF0"/>
+	<Color name="Khaki" value="F0E68C"/>
+	<Color name="Lavender" value="E6E6FA"/>
+	<Color name="Lavender Blush" value="FFF0F5"/>
+	<Color name="Lawn Green" value="7CFC00"/>
+	<Color name="Lemon Chiffon" value="FFFACD"/>
+	<Color name="Light Blue" value="ADD8E6"/>
+	<Color name="Light Coral" value="F08080"/>
+	<Color name="Light Cyan" value="E0FFFF"/>
+	<Color name="Light Golden Rod Yellow" value="FAFAD2"/>
+	<Color name="Light Gray" value="D3D3D3"/>
+	<Color name="Light Green" value="90EE90"/>
+	<Color name="Light Pink" value="FFB6C1"/>
+	<Color name="Light Salmon" value="FFA07A"/>
+	<Color name="Light Sea Green" value="20B2AA"/>
+	<Color name="Light Sky Blue" value="87CEFA"/>
+	<Color name="Light Slate Gray" value="778899"/>
+	<Color name="Light Steel Blue" value="B0C4DE"/>
+	<Color name="Light Yellow" value="FFFFE0"/>
+	<Color name="Lime" value="00FF00"/>
+	<Color name="Lime Green" value="32CD32"/>
+	<Color name="Linen" value="FAF0E6"/>
+	<Color name="Magenta" value="FF00FF"/>
+	<Color name="Maroon" value="800000"/>
+	<Color name="Medium Aqua Marine" value="66CDAA"/>
+	<Color name="Medium Blue" value="0000CD"/>
+	<Color name="Medium Orchid" value="BA55D3"/>
+	<Color name="Medium Purple" value="9370DB"/>
+	<Color name="Medium Sea Green" value="3CB371"/>
+	<Color name="Medium Slate Blue" value="7B68EE"/>
+	<Color name="Medium Spring Green" value="00FA9A"/>
+	<Color name="Medium Turquoise" value="48D1CC"/>
+	<Color name="Medium Violet Red" value="C71585"/>
+	<Color name="Midnight Blue" value="191970"/>
+	<Color name="Mint Cream" value="F5FFFA"/>
+	<Color name="Misty Rose" value="FFE4E1"/>
+	<Color name="Moccasin" value="FFE4B5"/>
+	<Color name="Navajo White" value="FFDEAD"/>
+	<Color name="Navy" value="80"/>
+	<Color name="Old Lace" value="FDF5E6"/>
+	<Color name="Olive" value="808000"/>
+	<Color name="Olive Drab" value="6B8E23"/>
+	<Color name="Orange" value="FFA500"/>
+	<Color name="Orange Red" value="FF4500"/>
+	<Color name="Orchid" value="DA70D6"/>
+	<Color name="Pale Golden Rod" value="EEE8AA"/>
+	<Color name="Pale Green" value="98FB98"/>
+	<Color name="Pale Turquoise" value="AFEEEE"/>
+	<Color name="Pale Violet Red" value="DB7093"/>
+	<Color name="Papaya Whip" value="FFEFD5"/>
+	<Color name="Peach Puff" value="FFDAB9"/>
+	<Color name="Peru" value="CD853F"/>
+	<Color name="Pink" value="FFC0CB"/>
+	<Color name="Plum" value="DDA0DD"/>
+	<Color name="Powder Blue" value="B0E0E6"/>
+	<Color name="Purple" value="800080"/>
+	<Color name="Rebecca Purple" value="663399"/>
+	<Color name="Red" value="FF0000"/>
+	<Color name="Rosy Brown" value="BC8F8F"/>
+	<Color name="Royal Blue" value="41690"/>
+	<Color name="Saddle Brown" value="8B4513"/>
+	<Color name="Salmon" value="FA8072"/>
+	<Color name="Sandy Brown" value="F4A460"/>
+	<Color name="Sea Green" value="2E8B57"/>
+	<Color name="Sea Shell" value="FFF5EE"/>
+	<Color name="Sienna" value="A0522D"/>
+	<Color name="Silver" value="C0C0C0"/>
+	<Color name="Sky Blue" value="87CEEB"/>
+	<Color name="Slate Blue" value="6A5ACD"/>
+	<Color name="Slate Gray" value="708090"/>
+	<Color name="Snow" value="FFFAFA"/>
+	<Color name="Spring Green" value="00FF7F"/>
+	<Color name="Steel Blue" value="4682B4"/>
+	<Color name="Tan" value="D2B48C"/>
+	<Color name="Teal" value="8080"/>
+	<Color name="Thistle" value="D8BFD8"/>
+	<Color name="Tomato" value="FF6347"/>
+	<Color name="Turquoise" value="40E0D0"/>
+	<Color name="Violet" value="EE82EE"/>
+	<Color name="Wheat" value="F5DEB3"/>
+	<Color name="White" value="FFFFFF"/>
+	<Color name="White Smoke" value="F5F5F5"/>
+	<Color name="Yellow" value="FFFF00"/>
+	<Color name="Yellow Green" value="9ACD32"/>
+</Colors>

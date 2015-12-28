@@ -1,0 +1,53 @@
+﻿<Page x:Class="TouchColors.View.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      DataContext="{Binding Source={StaticResource Locator},
+                            Path=MainVM}"
+      mc:Ignorable="d">
+
+   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <TextBlock Margin="12,0,0,0"
+                 Style="{StaticResource HeaderTextBlockStyle}"
+                 Text="{Binding SelectedColor.Name}" />
+
+      <ListView Grid.Row="1"
+                IsItemClickEnabled="True"
+                ItemClick="{x:Bind ViewModel.Item_Click}"
+                ItemsSource="{Binding ColorList}">
+         <ListView.ItemTemplate>
+            <DataTemplate>
+               <Border Width="80"
+                       Height="80"
+                       Margin="0,6">
+                  <Border.Background>
+                     <SolidColorBrush Color="{Binding RgbColor}" />
+                  </Border.Background>
+               </Border>
+            </DataTemplate>
+         </ListView.ItemTemplate>
+         <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+               <WrapGrid Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+         </ListView.ItemsPanel>
+      </ListView>
+   </Grid>
+   <Page.BottomAppBar>
+      <AppBar IsOpen="True" IsSticky="True">
+         <StackPanel Orientation="Horizontal">
+            <AppBarButton Click="SwitchTheme_Click"
+                          Icon="Switch"
+                          Label="Light / Dark" />
+            <AppBarButton Click="Questions_Click"
+                          Icon="Help"
+                          Label="Colors Questions" />
+         </StackPanel>
+      </AppBar>
+   </Page.BottomAppBar>
+</Page>

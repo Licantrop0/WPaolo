@@ -12,9 +12,9 @@ namespace TouchColors.ViewModel
     public class MainViewModel : ViewModelBase
     {
         SpeechSynthesizer synth;
-        public Dictionary<string, SolidColorBrush> ColorList { get; set; }
-        private KeyValuePair<string, SolidColorBrush> _selectedColor;
-        public KeyValuePair<string, SolidColorBrush> SelectedColor
+        public Dictionary<string, Color> ColorList { get; set; }
+        private KeyValuePair<string, Color> _selectedColor;
+        public KeyValuePair<string, Color> SelectedColor
         {
             get { return _selectedColor; }
             set
@@ -40,7 +40,7 @@ namespace TouchColors.ViewModel
                     value = int.Parse(e.Attribute("value").Value, NumberStyles.HexNumber)
                 })
                // .OrderBy(c => c.value)
-                .ToDictionary(e => e.key, e => new SolidColorBrush(ColorConverter.FromRgb(e.value)) );
+                .ToDictionary(e => e.key, e => ColorConverter.FromRgb(e.value));
 
             synth = new SpeechSynthesizer();
             synth.SetVoice(InstalledVoices.All.First(v => v.Language == "en-US"));

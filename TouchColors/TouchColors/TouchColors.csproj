@@ -103,6 +103,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\ColorConverter.cs" />
+    <Compile Include="Helper\ISpeechHelper.cs" />
+    <Compile Include="Helper\SpeechHelper.cs" />
     <Compile Include="Model\NamedColor.cs" />
     <Compile Include="ViewModel\QuestionsViewModel.cs" />
     <Compile Include="View\MainPage.xaml.cs">

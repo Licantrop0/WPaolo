@@ -51,14 +51,10 @@ namespace TouchColors.ViewModel
             Result = "What color is this?";
             _speechHelper.Speak(Result);
 
-            if (await _speechHelper.Recognize() == CurrentColor.Name)
-            {
-                Result = $"{CurrentColor.Name}, GOOD!";
-            }
-            else
-            {
-                Result = $"No, this is {CurrentColor.Name}";
-            }
+            Result = await _speechHelper.Recognize() == CurrentColor.Name ?
+                $"{CurrentColor.Name}, GOOD!" :
+                $"No, this is {CurrentColor.Name}";
+
             _speechHelper.Speak(Result);
         }
     }

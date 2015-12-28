@@ -38,10 +38,13 @@
                                       Mode=TwoWay}">
          <ListBox.ItemTemplate>
             <DataTemplate>
-               <Grid Width="100"
+               <Border Width="100"
                      Height="100"
-                     Margin="6"
-                     Background="{Binding Value}" />
+                     Margin="6">
+                  <Border.Background>
+                     <SolidColorBrush Color="{Binding Value}"/>
+                  </Border.Background>
+               </Border>
             </DataTemplate>
          </ListBox.ItemTemplate>
          <ListBox.ItemsPanel>

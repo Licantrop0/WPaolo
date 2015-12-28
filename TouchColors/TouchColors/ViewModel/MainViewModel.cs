@@ -1,49 +1,48 @@
+using System;
 using System.Collections.Generic;
-using System.Windows.Media;
-using GalaSoft.MvvmLight;
-using Windows.Phone.Speech.Synthesis;
 using System.Linq;
 using System.Xml.Linq;
+using GalaSoft.MvvmLight;
 using TouchColors.Helper;
-using System.Globalization;
+using TouchColors.Model;
+using Windows.Media.SpeechSynthesis;
+using Windows.UI.Xaml.Controls;
 
 namespace TouchColors.ViewModel
 {
+
     public class MainViewModel : ViewModelBase
     {
-        SpeechSynthesizer synth;
-        public Dictionary<string, Color> ColorList { get; set; }
-        private KeyValuePair<string, Color> _selectedColor;
-        public KeyValuePair<string, Color> SelectedColor
+        private SpeechSynthesizer _synth;
+        private MediaElement _mediaElement;
+
+        public List<NamedColor> ColorList { get; set; }
+
+        private NamedColor _selectedColor;
+        public NamedColor SelectedColor
         {
             get { return _selectedColor; }
-            set
-            {
-                _selectedColor = value;
-                RaisePropertyChanged("ColorString");
-                synth.SpeakTextAsync(ColorString);
-            }
-        }
-
-        public string ColorString
-        {
-            get { return SelectedColor.Key; }
+            set { Set(ref _selectedColor, value); }
         }
 
         public MainViewModel()
         {
-            ColorList = XElement.Load("Data/colors.xml")
-                .Elements()
-                .Select(e => new
-                {
-                    key = e.Attribute("name").Value,
-                    value = int.Parse(e.Attribute("value").Value, NumberStyles.HexNumber)
-                })
-               // .OrderBy(c => c.value)
-                .ToDictionary(e => e.key, e => ColorConverter.FromRgb(e.value));
+            ColorList = XElement.Load("Data/AllColors.xml").Elements()
+                .Select(e => new NamedColor(e.Attribute("name").Value, ColorConverter.FromRgb(e.Attribute("value").Value)))
+                .OrderByDescending(c => c.Luminosity)
+                .ToList();
 
-            synth = new SpeechSynthesizer();
-            synth.SetVoice(InstalledVoices.All.First(v => v.Language == "en-US"));
+            _mediaElement = new MediaElement();
+            _synth = new SpeechSynthesizer();
+            _synth.Voice = SpeechSynthesizer.AllVoices.First(v => v.Language == "en-US");
+        }
+
+        public async void Item_Click(object sender, ItemClickEventArgs e)
+        {
+            SelectedColor = (NamedColor)e.ClickedItem;
+            var stream = await _synth.SynthesizeTextToStreamAsync(SelectedColor.Name);
+            _mediaElement.SetSource(stream, stream.ContentType);
+            _mediaElement.Play();
         }
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Colors>
+	<Color name="White" value="#FFFFFF"/>
+	<Color name="Silver" value="#C0C0C0"/>
+	<Color name="Gray" value="#808080"/>
+	<Color name="Black" value="#000000"/>
+	<Color name="Red" value="#FF0000"/>
+	<Color name="Maroon" value="#800000"/>
+	<Color name="Yellow" value="#FFFF00"/>
+	<Color name="Olive" value="#808000"/>
+	<Color name="Lime" value="#00FF00"/>
+	<Color name="Green" value="#008000"/>
+	<Color name="Aqua" value="#00FFFF"/>
+	<Color name="Teal" value="#008080"/>
+	<Color name="Blue" value="#0000FF"/>
+	<Color name="Navy" value="#000080"/>
+	<Color name="Fuchsia" value="#FF00FF"/>
+	<Color name="Purple" value="#800080"/>
+</Colors>

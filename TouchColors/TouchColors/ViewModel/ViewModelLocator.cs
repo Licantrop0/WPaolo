@@ -11,6 +11,7 @@ See http://www.galasoft.ch/mvvm
 */
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using TouchColors.Helper;
 
 namespace TouchColors.ViewModel
 {
@@ -38,6 +39,9 @@ namespace TouchColors.ViewModel
             ////    // Create run time view services and models
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
+
+            SimpleIoc.Default.Register<ISpeechHelper, SpeechHelper>();
+
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<QuestionsViewModel>();
         }

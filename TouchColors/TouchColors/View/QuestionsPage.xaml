@@ -18,8 +18,7 @@
       <Button HorizontalAlignment="Center"
               VerticalAlignment="Center"
               Click="{x:Bind ViewModel.NextColor_Click}">
-         <TextBlock Style="{StaticResource HeaderTextBlockStyle}"
-                    Text="{Binding ButtonText}" />
+         <TextBlock Style="{StaticResource HeaderTextBlockStyle}" Text="{Binding ButtonText}" />
          <Button.Foreground>
             <SolidColorBrush Color="{Binding CurrentColor.RgbColor, Converter={StaticResource ColorInverter}}" />
          </Button.Foreground>
@@ -27,6 +26,5 @@
             <SolidColorBrush Color="{Binding CurrentColor.RgbColor, Converter={StaticResource ColorInverter}}" />
          </Button.BorderBrush>
       </Button>
-
    </Grid>
 </Page>

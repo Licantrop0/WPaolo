@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using Windows.UI;
+using Windows.UI.Xaml.Data;
 
 namespace TouchColors.Helper
 {
@@ -22,4 +23,17 @@ namespace TouchColors.Helper
         }
     }
 
+    public class ColorInverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var color = (Color)value;
+            return Color.FromArgb(255, (byte)(255 - color.R), (byte)(255 - color.G), (byte)(255 - color.B));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -22,17 +22,17 @@ namespace TouchColors.ViewModel
             set { Set(ref _currentColor, value); }
         }
 
-        private string _result;
-        public string Result
+        private string _buttonText;
+        public string ButtonText
         {
-            get { return _result; }
-            set { Set(ref _result, value); }
+            get { return _buttonText; }
+            set { Set(ref _buttonText, value); }
         }
 
         public QuestionsViewModel(ISpeechHelper speechHelper)
         {
             _speechHelper = speechHelper;
-            _colorList = XElement.Load("Data/SimpleColors.xml").Elements()
+            _colorList = XElement.Load("Data/RYBColors.xml").Elements()
                 .Select(e => new NamedColor(e.Attribute("name").Value, ColorConverter.FromRgb(e.Attribute("value").Value)))
                 .ToList();
 
@@ -48,14 +48,16 @@ namespace TouchColors.ViewModel
         public async void NextColor_Click(object sender, RoutedEventArgs e)
         {
             CurrentColor = _colorList[_rnd.Next(_colorList.Count - 1)];
-            Result = "What color is this?";
-            _speechHelper.Speak(Result);
+            ButtonText = "What color is this?";
+            await _speechHelper.Speak(ButtonText);
 
-            Result = await _speechHelper.Recognize() == CurrentColor.Name ?
+            var result = await _speechHelper.Recognize();
+
+            ButtonText = result == CurrentColor.Name ?
                 $"{CurrentColor.Name}, GOOD!" :
                 $"No, this is {CurrentColor.Name}";
 
-            _speechHelper.Speak(Result);
+            await _speechHelper.Speak(ButtonText);
         }
     }
 }

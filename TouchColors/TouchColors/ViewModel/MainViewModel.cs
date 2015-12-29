@@ -31,10 +31,10 @@ namespace TouchColors.ViewModel
                 .ToList();
         }
 
-        public void Item_Click(object sender, ItemClickEventArgs e)
+        public async void Item_Click(object sender, ItemClickEventArgs e)
         {
             SelectedColor = (NamedColor)e.ClickedItem;
-            _speechHelper.Speak(SelectedColor.Name);
+            await _speechHelper.Speak(SelectedColor.Name);
         }
     }
 }

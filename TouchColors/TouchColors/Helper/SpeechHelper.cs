@@ -30,9 +30,6 @@ namespace TouchColors.Helper
 
             var listConstraint = new SpeechRecognitionListConstraint(responses, "colors");
             _speechRecognizer.Constraints.Add(listConstraint);
-            _speechRecognizer.UIOptions.IsReadBackEnabled = false;
-            _speechRecognizer.UIOptions.ShowConfirmation = false;
-            _speechRecognizer.UIOptions.AudiblePrompt = "Say the color";
             await _speechRecognizer.CompileConstraintsAsync();
         }
 

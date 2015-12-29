@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Media.SpeechRecognition;
@@ -39,8 +40,13 @@ namespace TouchColors.Helper
         {
             var stream = await _synth.SynthesizeTextToStreamAsync(text);
             _mediaElement.SetSource(stream, stream.ContentType);
+
+            var sr = new StreamReader(stream.AsStreamForRead());
+            
+            var br = new BinaryReader(stream.AsStreamForRead());
+            var wave = new NAudio.Wave.WaveFormat(br);
             _mediaElement.Play();
-            await Task.Delay(1000);
+            await Task.Delay(1000); //Delay to avoid speech recognizer to start too soon.
         }
 
         public async Task<string> Recognize()

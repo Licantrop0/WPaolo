@@ -7,6 +7,6 @@ namespace TouchColors.Helper
     {
         Task InitializeSpeech(IEnumerable<string> responses);
         Task<string> Recognize();
-        void Speak(string text);
+        Task Speak(string text);
     }
 }

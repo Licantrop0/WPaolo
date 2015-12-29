@@ -24,13 +24,18 @@ namespace TouchColors.Helper
             _speechRecognizer = new SpeechRecognizer(SpeechRecognizer.SystemSpeechLanguage);
         }
 
-        public async Task InitializeSpeech(IEnumerable<string> responses)
+        public async Task<bool> InitializeSpeech(IEnumerable<string> responses)
         {
             bool permissionGained = await AudioCapturePermissions.RequestMicrophonePermission();
 
-            var listConstraint = new SpeechRecognitionListConstraint(responses, "colors");
-            _speechRecognizer.Constraints.Add(listConstraint);
-            await _speechRecognizer.CompileConstraintsAsync();
+            if (permissionGained)
+            {
+                var listConstraint = new SpeechRecognitionListConstraint(responses, "colors");
+                _speechRecognizer.Constraints.Add(listConstraint);
+                await _speechRecognizer.CompileConstraintsAsync();
+            }
+
+            return permissionGained;
         }
 
         public async Task Speak(string text)

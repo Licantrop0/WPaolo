@@ -41,8 +41,10 @@ namespace TouchColors.ViewModel
 
         private async void StartQuestioning()
         {
-            await _speechHelper.InitializeSpeech(_colorList.Select(c => c.Name));
-            NextColor_Click(null, null);
+            var initializated = await _speechHelper.InitializeSpeech(_colorList.Select(c => c.Name));
+
+            if (initializated)
+                NextColor_Click(null, null);
         }
 
         public async void NextColor_Click(object sender, RoutedEventArgs e)

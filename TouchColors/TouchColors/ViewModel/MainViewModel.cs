@@ -27,7 +27,7 @@ namespace TouchColors.ViewModel
 
             ColorList = XElement.Load("Data/AllColors.xml").Elements()
                 .Select(e => new NamedColor(e.Attribute("name").Value, ColorConverter.FromRgb(e.Attribute("value").Value)))
-                .OrderByDescending(c => c.Luminosity)
+                .OrderBy(c => c.Luminosity)
                 .ToList();
         }
 

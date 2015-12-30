@@ -3,7 +3,7 @@ using Windows.UI;
 
 namespace TouchColors.Model
 {
-    public class NamedColor
+    public class NamedColor : IEquatable<NamedColor>
     {
         public string Name { get; }
         public Color RgbColor { get; }
@@ -25,6 +25,15 @@ namespace TouchColors.Model
             float min = Math.Min(Math.Min(r, g), b);
             float max = Math.Max(Math.Max(r, g), b);
             return (max + min) / 2.0f;
+        }
+
+        public bool Equals(NamedColor other)
+        {
+            return this.RgbColor.Equals(other.RgbColor);
+        }
+        public override int GetHashCode()
+        {
+            return RgbColor.GetHashCode() ^ "NamedColor".GetHashCode();
         }
     }
 }

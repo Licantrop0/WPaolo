@@ -49,7 +49,14 @@ namespace TouchColors.ViewModel
 
         public async void NextColor_Click(object sender, RoutedEventArgs e)
         {
-            CurrentColor = _colorList[_rnd.Next(_colorList.Count - 1)];
+            NamedColor nextColor;
+            do
+            {
+                nextColor = _colorList[_rnd.Next(_colorList.Count - 1)];
+            } while (CurrentColor == nextColor);
+
+            CurrentColor = nextColor;
+
             ButtonText = "What color is this?";
             await _speechHelper.Speak(ButtonText);
 

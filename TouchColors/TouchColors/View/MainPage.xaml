@@ -16,27 +16,22 @@
                  Style="{StaticResource HeaderTextBlockStyle}"
                  Text="{Binding SelectedColor.Name}" />
 
-      <ListView Grid.Row="1"
+      <GridView Grid.Row="1"
                 IsItemClickEnabled="True"
                 ItemClick="{x:Bind ViewModel.Item_Click}"
                 ItemsSource="{Binding ColorList}">
-         <ListView.ItemTemplate>
+         <GridView.ItemTemplate>
             <DataTemplate>
                <Border Width="80"
                        Height="80"
-                       Margin="0,6">
+                       Margin="6">
                   <Border.Background>
                      <SolidColorBrush Color="{Binding RgbColor}" />
                   </Border.Background>
                </Border>
             </DataTemplate>
-         </ListView.ItemTemplate>
-         <ListView.ItemsPanel>
-            <ItemsPanelTemplate>
-               <WrapGrid Orientation="Horizontal" />
-            </ItemsPanelTemplate>
-         </ListView.ItemsPanel>
-      </ListView>
+         </GridView.ItemTemplate>
+      </GridView>
    </Grid>
    <Page.BottomAppBar>
       <AppBar IsOpen="True" IsSticky="True">

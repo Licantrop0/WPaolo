@@ -17,7 +17,6 @@
 	<Color name="Amaranth" value="#E52B50"/>
 	<Color name="Amaranth deep purple" value="#AB274F"/>
 	<Color name="Amaranth pink" value="#F19CBB"/>
-	<Color name="Amaranth purple" value="#AB274F"/>
 	<Color name="Amaranth red" value="#D3212D"/>
 	<Color name="Amazon" value="#3B7A57"/>
 	<Color name="Amber" value="#FFBF00"/>
@@ -51,7 +50,6 @@
 	<Color name="Aztec Gold" value="#C39953"/>
 	<Color name="Azure" value="#007FFF"/>
 	<Color name="Azure (web color)" value="#F0FFFF"/>
-	<Color name="Azure mist" value="#F0FFFF"/>
 	<Color name="Azureish white" value="#DBE9F4"/>
 	<Color name="Baby blue" value="#89CFF0"/>
 	<Color name="Baby blue eyes" value="#A1CAF1"/>
@@ -99,7 +97,6 @@
 	<Color name="Blue (RYB)" value="#0247FE"/>
 	<Color name="Blue Bell" value="#A2A2D0"/>
 	<Color name="Blue Jeans" value="#5DADEC"/>
-	<Color name="Blue Lagoon" value="#ACE5EE"/>
 	<Color name="Blue sapphire" value="#126180"/>
 	<Color name="Blue yonder" value="#5072A7"/>
 	<Color name="Blueberry" value="#4F86F7"/>
@@ -114,7 +111,6 @@
 	<Color name="Bone" value="#E3DAC9"/>
 	<Color name="Booger Buster" value="#DDE26A"/>
 	<Color name="Boston University Red" value="#CC0000"/>
-	<Color name="Bottle green" value="#006A4E"/>
 	<Color name="Boysenberry" value="#873260"/>
 	<Color name="Brandeis blue" value="#0070FF"/>
 	<Color name="Brass" value="#B5A642"/>
@@ -137,7 +133,6 @@
 	<Color name="Bronze" value="#CD7F32"/>
 	<Color name="Bronze Yellow" value="#737000"/>
 	<Color name="Brown (traditional)" value="#964B00"/>
-	<Color name="Brown (web)" value="#A52A2A"/>
 	<Color name="Brown Sugar" value="#AF6E4D"/>
 	<Color name="Brown Yellow" value="#cc9966"/>
 	<Color name="Brown-nose" value="#6B4423"/>
@@ -196,7 +191,6 @@
 	<Color name="Celestial blue" value="#4997D0"/>
 	<Color name="Cerise" value="#DE3163"/>
 	<Color name="Cerise pink" value="#EC3B83"/>
-	<Color name="Cerulean" value="#007BA7"/>
 	<Color name="Cerulean blue" value="#2A52BE"/>
 	<Color name="Cerulean frost" value="#6D9BC3"/>
 	<Color name="CG Blue" value="#007AA5"/>
@@ -208,7 +202,6 @@
 	<Color name="Charm pink" value="#E68FAC"/>
 	<Color name="Chartreuse (traditional)" value="#DFFF00"/>
 	<Color name="Chartreuse (web)" value="#7FFF00"/>
-	<Color name="Cherry" value="#DE3163"/>
 	<Color name="Cherry blossom pink" value="#FFB7C5"/>
 	<Color name="Chestnut" value="#954535"/>
 	<Color name="China pink" value="#DE6FA1"/>
@@ -222,13 +215,11 @@
 	<Color name="Cinereous" value="#98817B"/>
 	<Color name="Cinnabar" value="#E34234"/>
 	<Color name="Cinnamon Satin" value="#CD607E"/>
-	<Color name="Cinnamon[citation needed]" value="#D2691E"/>
 	<Color name="Citrine" value="#E4D00A"/>
 	<Color name="Citron" value="#9FA91F"/>
 	<Color name="Claret" value="#7F1734"/>
 	<Color name="Classic rose" value="#FBCCE7"/>
 	<Color name="Cobalt Blue" value="#0047AB"/>
-	<Color name="Cocoa brown" value="#D2691E"/>
 	<Color name="Coconut" value="#965A3E"/>
 	<Color name="Coffee" value="#6F4E37"/>
 	<Color name="Columbia Blue" value="#C4D8E2"/>
@@ -242,11 +233,9 @@
 	<Color name="Copper rose" value="#996666"/>
 	<Color name="Coquelicot" value="#FF3800"/>
 	<Color name="Coral" value="#FF7F50"/>
-	<Color name="Coral pink" value="#F88379"/>
 	<Color name="Coral red" value="#FF4040"/>
 	<Color name="Cordovan" value="#893F45"/>
 	<Color name="Corn" value="#FBEC5D"/>
-	<Color name="Cornell Red" value="#B31B1B"/>
 	<Color name="Cornflower blue" value="#6495ED"/>
 	<Color name="Cornsilk" value="#FFF8DC"/>
 	<Color name="Cosmic Cobalt" value="#2E2D88"/>
@@ -258,7 +247,6 @@
 	<Color name="Crimson glory" value="#BE0032"/>
 	<Color name="Crimson red" value="#990000"/>
 	<Color name="Cultured" value="#F5F5F5"/>
-	<Color name="Cyan" value="#00FFFF"/>
 	<Color name="Cyan (process)" value="#00B7EB"/>
 	<Color name="Cyan azure" value="#4E82b4"/>
 	<Color name="Cyan cobalt blue" value="#28589C"/>
@@ -293,7 +281,6 @@
 	<Color name="Dark liver" value="#534B4F"/>
 	<Color name="Dark liver (horses)" value="#543D37"/>
 	<Color name="Dark magenta" value="#8B008B"/>
-	<Color name="Dark medium gray" value="#A9A9A9"/>
 	<Color name="Dark midnight blue" value="#003366"/>
 	<Color name="Dark moss green" value="#4A5D23"/>
 	<Color name="Dark olive green" value="#556B2F"/>
@@ -319,7 +306,6 @@
 	<Color name="Dark spring green" value="#177245"/>
 	<Color name="Dark tan" value="#918151"/>
 	<Color name="Dark tangerine" value="#FFA812"/>
-	<Color name="Dark taupe" value="#483C32"/>
 	<Color name="Dark terra cotta" value="#CC4E5C"/>
 	<Color name="Dark turquoise" value="#00CED1"/>
 	<Color name="Dark vanilla" value="#D1BEA8"/>
@@ -353,9 +339,7 @@
 	<Color name="Deep Red" value="#850101"/>
 	<Color name="Deep ruby" value="#843F5B"/>
 	<Color name="Deep saffron" value="#FF9933"/>
-	<Color name="Deep sky blue" value="#00BFFF"/>
 	<Color name="Deep Space Sparkle" value="#4A646C"/>
-	<Color name="Deep spring bud" value="#556B2F"/>
 	<Color name="Deep Taupe" value="#7E5E60"/>
 	<Color name="Deep Tuscan red" value="#66424D"/>
 	<Color name="Deep violet" value="#330066"/>
@@ -363,7 +347,6 @@
 	<Color name="Denim" value="#1560BD"/>
 	<Color name="Denim Blue" value="#2243B6"/>
 	<Color name="Desaturated cyan" value="#669999"/>
-	<Color name="Desert" value="#C19A6B"/>
 	<Color name="Desert sand" value="#EDC9AF"/>
 	<Color name="Desire" value="#EA3C53"/>
 	<Color name="Diamond" value="#B9F2FF"/>
@@ -374,7 +357,6 @@
 	<Color name="Dogwood rose" value="#D71868"/>
 	<Color name="Dollar bill" value="#85BB65"/>
 	<Color name="Donkey brown" value="#664C28"/>
-	<Color name="Drab" value="#967117"/>
 	<Color name="Duke blue" value="#00009C"/>
 	<Color name="Dust storm" value="#E5CCC9"/>
 	<Color name="Dutch white" value="#EFDFBB"/>
@@ -387,10 +369,8 @@
 	<Color name="Egyptian blue" value="#1034A6"/>
 	<Color name="Electric blue" value="#7DF9FF"/>
 	<Color name="Electric crimson" value="#FF003F"/>
-	<Color name="Electric cyan" value="#00FFFF"/>
 	<Color name="Electric green" value="#00FF00"/>
 	<Color name="Electric indigo" value="#6F00FF"/>
-	<Color name="Electric lavender" value="#F4BBFF"/>
 	<Color name="Electric lime" value="#CCFF00"/>
 	<Color name="Electric purple" value="#BF00FF"/>
 	<Color name="Electric ultramarine" value="#3F00FF"/>
@@ -398,14 +378,12 @@
 	<Color name="Electric yellow" value="#FFFF33"/>
 	<Color name="Emerald" value="#50C878"/>
 	<Color name="Eminence" value="#6C3082"/>
-	<Color name="English green" value="#1B4D3E"/>
 	<Color name="English lavender" value="#B48395"/>
 	<Color name="English red" value="#AB4B52"/>
 	<Color name="English vermillion" value="#CC474B"/>
 	<Color name="English violet" value="#563C5C"/>
 	<Color name="Eton blue" value="#96C8A2"/>
 	<Color name="Eucalyptus" value="#44D7A8"/>
-	<Color name="Fallow" value="#C19A6B"/>
 	<Color name="Falu red" value="#801818"/>
 	<Color name="Fandango" value="#B53389"/>
 	<Color name="Fandango pink" value="#DE5285"/>
@@ -421,24 +399,18 @@
 	<Color name="Firebrick" value="#B22222"/>
 	<Color name="Flame" value="#E25822"/>
 	<Color name="Flamingo pink" value="#FC8EAC"/>
-	<Color name="Flattery" value="#6B4423"/>
 	<Color name="Flavescent" value="#F7E98E"/>
 	<Color name="Flax" value="#EEDC82"/>
 	<Color name="Flirt" value="#A2006D"/>
 	<Color name="Floral white" value="#FFFAF0"/>
-	<Color name="Fluorescent orange" value="#FFBF00"/>
-	<Color name="Fluorescent pink" value="#FF1493"/>
-	<Color name="Fluorescent yellow" value="#CCFF00"/>
 	<Color name="Folly" value="#FF004F"/>
 	<Color name="Forest green (traditional)" value="#014421"/>
 	<Color name="Forest green (web)" value="#228B22"/>
-	<Color name="French beige" value="#A67B5B"/>
 	<Color name="French bistre" value="#856D4D"/>
 	<Color name="French blue" value="#0072BB"/>
 	<Color name="French fuchsia" value="#FD3F92"/>
 	<Color name="French lilac" value="#86608E"/>
 	<Color name="French lime" value="#9EFD38"/>
-	<Color name="French mauve" value="#D473D4"/>
 	<Color name="French pink" value="#FD6C9E"/>
 	<Color name="French plum" value="#811453"/>
 	<Color name="French puce" value="#4E1609"/>
@@ -450,7 +422,6 @@
 	<Color name="Fresh Air" value="#A6E7FF"/>
 	<Color name="Frostbite" value="#E936A7"/>
 	<Color name="Fuchsia" value="#FF00FF"/>
-	<Color name="Fuchsia (Crayola)" value="#C154C1"/>
 	<Color name="Fuchsia pink" value="#FF77FF"/>
 	<Color name="Fuchsia purple" value="#CC397B"/>
 	<Color name="Fuchsia rose" value="#C74375"/>
@@ -480,13 +451,9 @@
 	<Color name="Granny Smith Apple" value="#A8E4A0"/>
 	<Color name="Grape" value="#6F2DA8"/>
 	<Color name="Gray" value="#808080"/>
-	<Color name="Gray (HTML/CSS gray)" value="#808080"/>
 	<Color name="Gray (X11 gray)" value="#BEBEBE"/>
 	<Color name="Gray-asparagus" value="#465945"/>
-	<Color name="Gray-blue" value="#8C92AC"/>
-	<Color name="Green (Color Wheel) (X11 green)" value="#00FF00"/>
 	<Color name="Green (Crayola)" value="#1CAC78"/>
-	<Color name="Green (HTML/CSS color)" value="#008000"/>
 	<Color name="Green (Munsell)" value="#00A877"/>
 	<Color name="Green (NCS)" value="#009F6B"/>
 	<Color name="Green (Pantone)" value="#00AD43"/>
@@ -504,7 +471,6 @@
 	<Color name="Halayà úbe" value="#663854"/>
 	<Color name="Han blue" value="#446CCF"/>
 	<Color name="Han purple" value="#5218FA"/>
-	<Color name="Hansa yellow" value="#E9D66B"/>
 	<Color name="Harlequin" value="#3FFF00"/>
 	<Color name="Harlequin green" value="#46CB18"/>
 	<Color name="Harvard crimson" value="#C90016"/>
@@ -514,13 +480,11 @@
 	<Color name="Heliotrope" value="#DF73FF"/>
 	<Color name="Heliotrope gray" value="#AA98A9"/>
 	<Color name="Heliotrope magenta" value="#AA00BB"/>
-	<Color name="Hollywood cerise" value="#F400A1"/>
 	<Color name="Honeydew" value="#F0FFF0"/>
 	<Color name="Honolulu blue" value="#006DB0"/>
 	<Color name="Hooker's green" value="#49796B"/>
 	<Color name="Hot magenta" value="#FF1DCE"/>
 	<Color name="Hot pink" value="#FF69B4"/>
-	<Color name="Hunter green" value="#355E3B"/>
 	<Color name="Iceberg" value="#71A6D2"/>
 	<Color name="Icterine" value="#FCF75E"/>
 	<Color name="Illuminating Emerald" value="#319177"/>
@@ -534,7 +498,6 @@
 	<Color name="Indian red" value="#CD5C5C"/>
 	<Color name="Indian yellow" value="#E3A857"/>
 	<Color name="Indigo" value="#4B0082"/>
-	<Color name="Indigo (web)" value="#4B0082"/>
 	<Color name="Indigo dye" value="#091F92"/>
 	<Color name="International Klein Blue" value="#002FA7"/>
 	<Color name="International orange (aerospace)" value="#FF4F00"/>
@@ -544,7 +507,6 @@
 	<Color name="Irresistible" value="#B3446C"/>
 	<Color name="Isabelline" value="#F4F0EC"/>
 	<Color name="Islamic green" value="#009000"/>
-	<Color name="Italian sky blue" value="#B2FFFF"/>
 	<Color name="Ivory" value="#FFFFF0"/>
 	<Color name="Jade" value="#00A86B"/>
 	<Color name="Japanese carmine" value="#9D2933"/>
@@ -567,7 +529,6 @@
 	<Color name="Khaki (X11) (Light khaki)" value="#F0E68C"/>
 	<Color name="Kobe" value="#882D17"/>
 	<Color name="Kobi" value="#E79FC4"/>
-	<Color name="Kobicha" value="#6B4423"/>
 	<Color name="Kombu green" value="#354230"/>
 	<Color name="KU Crimson" value="#E8000D"/>
 	<Color name="La Salle Green" value="#087830"/>
@@ -583,7 +544,6 @@
 	<Color name="Lavender gray" value="#C4C3D0"/>
 	<Color name="Lavender indigo" value="#9457EB"/>
 	<Color name="Lavender magenta" value="#EE82EE"/>
-	<Color name="Lavender mist" value="#E6E6FA"/>
 	<Color name="Lavender pink" value="#FBAED2"/>
 	<Color name="Lavender purple" value="#967BB6"/>
 	<Color name="Lavender rose" value="#FBA0E3"/>
@@ -598,7 +558,6 @@
 	<Color name="Lenurple" value="#BA93D8"/>
 	<Color name="Liberty" value="#545AA7"/>
 	<Color name="Licorice" value="#1A1110"/>
-	<Color name="Light apricot" value="#FDD5B1"/>
 	<Color name="Light blue" value="#ADD8E6"/>
 	<Color name="Light brilliant red" value="#FE2E2E"/>
 	<Color name="Light brown" value="#B5651D"/>
@@ -616,13 +575,11 @@
 	<Color name="Light grayish magenta" value="#CC99CC"/>
 	<Color name="Light green" value="#90EE90"/>
 	<Color name="Light hot pink" value="#FFB3DE"/>
-	<Color name="Light khaki" value="#F0E68C"/>
 	<Color name="Light medium orchid" value="#D39BCB"/>
 	<Color name="Light moss green" value="#ADDFAD"/>
 	<Color name="Light orchid" value="#E6A8D7"/>
 	<Color name="Light pastel purple" value="#B19CD9"/>
 	<Color name="Light pink" value="#FFB6C1"/>
-	<Color name="Light red ochre" value="#E97451"/>
 	<Color name="Light salmon" value="#FFA07A"/>
 	<Color name="Light salmon pink" value="#FF9999"/>
 	<Color name="Light sea green" value="#20B2AA"/>
@@ -630,29 +587,21 @@
 	<Color name="Light slate gray" value="#778899"/>
 	<Color name="Light steel blue" value="#B0C4DE"/>
 	<Color name="Light taupe" value="#B38B6D"/>
-	<Color name="Light Thulian pink" value="#E68FAC"/>
 	<Color name="Light yellow" value="#FFFFE0"/>
 	<Color name="Lilac" value="#C8A2C8"/>
 	<Color name="Lilac Luster" value="#AE98AA"/>
-	<Color name="Lime (color wheel)" value="#BFFF00"/>
-	<Color name="Lime (web) (X11 green)" value="#00FF00"/>
 	<Color name="Lime green" value="#32CD32"/>
 	<Color name="Limerick" value="#9DC209"/>
 	<Color name="Lincoln green" value="#195905"/>
 	<Color name="Linen" value="#FAF0E6"/>
-	<Color name="Lion" value="#C19A6B"/>
-	<Color name="Liseran Purple" value="#DE6FA1"/>
 	<Color name="Little boy blue" value="#6CA0DC"/>
 	<Color name="Liver" value="#674C47"/>
 	<Color name="Liver (dogs)" value="#B86D29"/>
 	<Color name="Liver (organ)" value="#6C2E1F"/>
 	<Color name="Liver chestnut" value="#987456"/>
-	<Color name="Livid" value="#6699CC"/>
 	<Color name="Lumber" value="#FFE4CD"/>
 	<Color name="Lust" value="#E62020"/>
 	<Color name="Macaroni and Cheese" value="#FFBD88"/>
-	<Color name="Magenta" value="#FF00FF"/>
-	<Color name="Magenta (Crayola)" value="#FF55A3"/>
 	<Color name="Magenta (dye)" value="#CA1F7B"/>
 	<Color name="Magenta (Pantone)" value="#D0417E"/>
 	<Color name="Magenta (process)" value="#FF0090"/>
@@ -662,7 +611,6 @@
 	<Color name="Magic Potion" value="#FF4466"/>
 	<Color name="Magnolia" value="#F8F4FF"/>
 	<Color name="Mahogany" value="#C04000"/>
-	<Color name="Maize" value="#FBEC5D"/>
 	<Color name="Majorelle Blue" value="#6050DC"/>
 	<Color name="Malachite" value="#0BDA51"/>
 	<Color name="Manatee" value="#979AAA"/>
@@ -671,7 +619,6 @@
 	<Color name="Mantis" value="#74C365"/>
 	<Color name="Mardi Gras" value="#880085"/>
 	<Color name="Marigold" value="#EAA221"/>
-	<Color name="Maroon (Crayola)" value="#C32148"/>
 	<Color name="Maroon (HTML/CSS)" value="#800000"/>
 	<Color name="Maroon (X11)" value="#B03060"/>
 	<Color name="Mauve" value="#E0B0FF"/>
@@ -700,13 +647,10 @@
 	<Color name="Medium slate blue" value="#7B68EE"/>
 	<Color name="Medium spring bud" value="#C9DC87"/>
 	<Color name="Medium spring green" value="#00FA9A"/>
-	<Color name="Medium taupe" value="#674C47"/>
 	<Color name="Medium turquoise" value="#48D1CC"/>
-	<Color name="Medium Tuscan red" value="#79443B"/>
 	<Color name="Medium vermilion" value="#D9603B"/>
 	<Color name="Medium violet-red" value="#C71585"/>
 	<Color name="Mellow apricot" value="#F8B878"/>
-	<Color name="Mellow yellow" value="#F8DE7E"/>
 	<Color name="Melon" value="#FDBCB4"/>
 	<Color name="Metal Pink" value="#FF00FD"/>
 	<Color name="Metallic Seaweed" value="#0A7E8C"/>
@@ -724,8 +668,6 @@
 	<Color name="Mint green" value="#98FF98"/>
 	<Color name="Misty Moss" value="#BBB477"/>
 	<Color name="Misty rose" value="#FFE4E1"/>
-	<Color name="Moccasin" value="#FAEBD7"/>
-	<Color name="Mode beige" value="#967117"/>
 	<Color name="Moonstone blue" value="#73A9C2"/>
 	<Color name="Mordant red 19" value="#AE0C00"/>
 	<Color name="Moss green" value="#8A9A5B"/>
@@ -744,7 +686,6 @@
 	<Color name="Naples yellow" value="#FADA5E"/>
 	<Color name="Navajo white" value="#FFDEAD"/>
 	<Color name="Navy" value="#000080"/>
-	<Color name="Navy purple" value="#9457EB"/>
 	<Color name="Neon Carrot" value="#FFA343"/>
 	<Color name="Neon fuchsia" value="#FE4164"/>
 	<Color name="Neon green" value="#39FF14"/>
@@ -758,18 +699,14 @@
 	<Color name="Ocean Boat Blue" value="#0077BE"/>
 	<Color name="Ocean Green" value="#48BF91"/>
 	<Color name="Ochre" value="#CC7722"/>
-	<Color name="Office green" value="#008000"/>
 	<Color name="Ogre Odor" value="#FD5240"/>
 	<Color name="Old burgundy" value="#43302E"/>
 	<Color name="Old gold" value="#CFB53B"/>
-	<Color name="Old heliotrope" value="#563C5C"/>
 	<Color name="Old lace" value="#FDF5E6"/>
 	<Color name="Old lavender" value="#796878"/>
 	<Color name="Old mauve" value="#673147"/>
 	<Color name="Old moss green" value="#867E36"/>
 	<Color name="Old rose" value="#C08081"/>
-	<Color name="Old silver" value="#848482"/>
-	<Color name="Olive" value="#808000"/>
 	<Color name="Olive Drab #7" value="#3C341F"/>
 	<Color name="Olive Drab (#3)" value="#6B8E23"/>
 	<Color name="Olivine" value="#9AB973"/>
@@ -787,8 +724,6 @@
 	<Color name="Orchid" value="#DA70D6"/>
 	<Color name="Orchid pink" value="#F2BDCD"/>
 	<Color name="Orioles orange" value="#FB4F14"/>
-	<Color name="Otter brown" value="#654321"/>
-	<Color name="OU Crimson Red" value="#990000"/>
 	<Color name="Outer Space" value="#414A4C"/>
 	<Color name="Outrageous Orange" value="#FF6E4A"/>
 	<Color name="Oxford Blue" value="#002147"/>
@@ -796,13 +731,10 @@
 	<Color name="Pakistan green" value="#006600"/>
 	<Color name="Palatinate blue" value="#273BE2"/>
 	<Color name="Palatinate purple" value="#682860"/>
-	<Color name="Pale aqua" value="#BCD4E6"/>
 	<Color name="Pale blue" value="#AFEEEE"/>
 	<Color name="Pale brown" value="#987654"/>
-	<Color name="Pale carmine" value="#AF4035"/>
 	<Color name="Pale cerulean" value="#9BC4E2"/>
 	<Color name="Pale chestnut" value="#DDADAF"/>
-	<Color name="Pale copper" value="#DA8A67"/>
 	<Color name="Pale cornflower blue" value="#ABCDEF"/>
 	<Color name="Pale cyan" value="#87D3F8"/>
 	<Color name="Pale gold" value="#E6BE8A"/>
@@ -812,20 +744,16 @@
 	<Color name="Pale magenta" value="#F984E5"/>
 	<Color name="Pale magenta-pink" value="#FF99CC"/>
 	<Color name="Pale pink" value="#FADADD"/>
-	<Color name="Pale plum" value="#DDA0DD"/>
 	<Color name="Pale red-violet" value="#DB7093"/>
 	<Color name="Pale robin egg blue" value="#96DED1"/>
 	<Color name="Pale silver" value="#C9C0BB"/>
 	<Color name="Pale spring bud" value="#ECEBBD"/>
 	<Color name="Pale taupe" value="#BC987E"/>
-	<Color name="Pale turquoise" value="#AFEEEE"/>
 	<Color name="Pale violet" value="#CC99FF"/>
-	<Color name="Pale violet-red" value="#DB7093"/>
 	<Color name="Pansy purple" value="#78184A"/>
 	<Color name="Paolo Veronese green" value="#009B7D"/>
 	<Color name="Papaya whip" value="#FFEFD5"/>
 	<Color name="Paradise pink" value="#E63E62"/>
-	<Color name="Paris Green" value="#50C878"/>
 	<Color name="Pastel blue" value="#AEC6CF"/>
 	<Color name="Pastel brown" value="#836953"/>
 	<Color name="Pastel gray" value="#CFCFC4"/>
@@ -838,7 +766,6 @@
 	<Color name="Pastel violet" value="#CB99C9"/>
 	<Color name="Pastel yellow" value="#FDFD96"/>
 	<Color name="Patriarch" value="#800080"/>
-	<Color name="Payne's grey" value="#536878"/>
 	<Color name="Peach" value="#FFE5B4"/>
 	<Color name="Peach puff" value="#FFDAB9"/>
 	<Color name="Peach-orange" value="#FFCC99"/>
@@ -848,7 +775,6 @@
 	<Color name="Pearl Aqua" value="#88D8C0"/>
 	<Color name="Pearly purple" value="#B768A2"/>
 	<Color name="Peridot" value="#E6E200"/>
-	<Color name="Periwinkle" value="#CCCCFF"/>
 	<Color name="Permanent Geranium Lake" value="#E12C2C"/>
 	<Color name="Persian blue" value="#1C39BB"/>
 	<Color name="Persian green" value="#00A693"/>
@@ -868,7 +794,6 @@
 	<Color name="Pictorial carmine" value="#C30B4E"/>
 	<Color name="Piggy pink" value="#FDDDE6"/>
 	<Color name="Pine green" value="#01796F"/>
-	<Color name="Pineapple" value="#563C5C"/>
 	<Color name="Pink" value="#FFC0CB"/>
 	<Color name="Pink (Pantone)" value="#D74894"/>
 	<Color name="Pink Flamingo" value="#FC74FD"/>
@@ -877,29 +802,23 @@
 	<Color name="Pink pearl" value="#E7ACCF"/>
 	<Color name="Pink raspberry" value="#980036"/>
 	<Color name="Pink Sherbet" value="#F78FA7"/>
-	<Color name="Pink-orange" value="#FF9966"/>
 	<Color name="Pistachio" value="#93C572"/>
 	<Color name="Pixie Powder" value="#391285"/>
 	<Color name="Platinum" value="#E5E4E2"/>
 	<Color name="Plum" value="#8E4585"/>
-	<Color name="Plum (web)" value="#DDA0DD"/>
 	<Color name="Plump Purple" value="#5946B2"/>
 	<Color name="Polished Pine" value="#5DA493"/>
-	<Color name="Pomp and Power" value="#86608E"/>
 	<Color name="Popstar" value="#BE4F62"/>
 	<Color name="Portland Orange" value="#FF5A36"/>
 	<Color name="Powder blue" value="#B0E0E6"/>
 	<Color name="Princess Perfume" value="#FF85CF"/>
 	<Color name="Princeton orange" value="#F58025"/>
-	<Color name="Prune" value="#701C1C"/>
 	<Color name="Prussian blue" value="#003153"/>
-	<Color name="Psychedelic purple" value="#DF00FF"/>
 	<Color name="Puce" value="#CC8899"/>
 	<Color name="Puce red" value="#722F37"/>
 	<Color name="Pullman Brown (UPS Brown)" value="#644117"/>
 	<Color name="Pullman Green" value="#3B331C"/>
 	<Color name="Pumpkin" value="#FF7518"/>
-	<Color name="Purple (HTML)" value="#800080"/>
 	<Color name="Purple (Munsell)" value="#9F00C5"/>
 	<Color name="Purple (X11)" value="#A020F0"/>
 	<Color name="Purple Heart" value="#69359C"/>
@@ -914,14 +833,11 @@
 	<Color name="Queen pink" value="#E8CCD7"/>
 	<Color name="Quick Silver" value="#A6A6A6"/>
 	<Color name="Quinacridone magenta" value="#8E3A59"/>
-	<Color name="Rackley" value="#5D8AA8"/>
 	<Color name="Radical Red" value="#FF355E"/>
 	<Color name="Raisin black" value="#242124"/>
 	<Color name="Rajah" value="#FBAB60"/>
 	<Color name="Raspberry" value="#E30B5D"/>
-	<Color name="Raspberry glace" value="#915F6D"/>
 	<Color name="Raspberry pink" value="#E25098"/>
-	<Color name="Raspberry rose" value="#B3446C"/>
 	<Color name="Raw Sienna" value="#D68A59"/>
 	<Color name="Raw umber" value="#826644"/>
 	<Color name="Razzle dazzle rose" value="#FF33CC"/>
@@ -932,42 +848,32 @@
 	<Color name="Red (Crayola)" value="#EE204D"/>
 	<Color name="Red (Munsell)" value="#F2003C"/>
 	<Color name="Red (NCS)" value="#C40233"/>
-	<Color name="Red (Pantone)" value="#ED2939"/>
 	<Color name="Red (pigment)" value="#ED1C24"/>
 	<Color name="Red (RYB)" value="#FE2712"/>
 	<Color name="Red devil" value="#860111"/>
 	<Color name="Red Salsa" value="#FD3A4A"/>
-	<Color name="Red-brown" value="#A52A2A"/>
 	<Color name="Red-orange" value="#FF5349"/>
 	<Color name="Red-purple" value="#E40078"/>
-	<Color name="Red-violet" value="#C71585"/>
 	<Color name="Redwood" value="#A45A52"/>
 	<Color name="Regalia" value="#522D80"/>
-	<Color name="Registration black" value="#000000"/>
 	<Color name="Resolution blue" value="#002387"/>
 	<Color name="Rhythm" value="#777696"/>
 	<Color name="Rich black" value="#004040"/>
 	<Color name="Rich black (FOGRA29)" value="#010B13"/>
 	<Color name="Rich black (FOGRA39)" value="#010203"/>
 	<Color name="Rich brilliant lavender" value="#F1A7FE"/>
-	<Color name="Rich carmine" value="#D70040"/>
 	<Color name="Rich electric blue" value="#0892D0"/>
 	<Color name="Rich lavender" value="#A76BCF"/>
 	<Color name="Rich lilac" value="#B666D2"/>
-	<Color name="Rich maroon" value="#B03060"/>
 	<Color name="Rifle green" value="#444C38"/>
-	<Color name="Roast coffee" value="#704241"/>
 	<Color name="Robin egg blue" value="#00CCCC"/>
 	<Color name="Rocket metallic" value="#8A7F80"/>
 	<Color name="Roman silver" value="#838996"/>
-	<Color name="Rose" value="#FF007F"/>
 	<Color name="Rose bonbon" value="#F9429E"/>
 	<Color name="Rose Dust" value="#9E5E6F"/>
 	<Color name="Rose ebony" value="#674846"/>
 	<Color name="Rose gold" value="#B76E79"/>
-	<Color name="Rose madder" value="#E32636"/>
 	<Color name="Rose pink" value="#FF66CC"/>
-	<Color name="Rose quartz" value="#AA98A9"/>
 	<Color name="Rose red" value="#C21E56"/>
 	<Color name="Rose taupe" value="#905D5D"/>
 	<Color name="Rose vale" value="#AB4E52"/>
@@ -978,7 +884,6 @@
 	<Color name="Royal blue" value="#002366"/>
 	<Color name="Royal fuchsia" value="#CA2C92"/>
 	<Color name="Royal purple" value="#7851A9"/>
-	<Color name="Royal yellow" value="#FADA5E"/>
 	<Color name="Ruber" value="#CE4676"/>
 	<Color name="Rubine red" value="#D10056"/>
 	<Color name="Ruby" value="#E0115F"/>
@@ -992,7 +897,6 @@
 	<Color name="Russian violet" value="#32174D"/>
 	<Color name="Rust" value="#B7410E"/>
 	<Color name="Rusty red" value="#DA2C43"/>
-	<Color name="Sacramento State green" value="#00563F"/>
 	<Color name="Saddle brown" value="#8B4513"/>
 	<Color name="Safety orange" value="#FF7800"/>
 	<Color name="Safety orange (blaze orange)" value="#FF6700"/>
@@ -1001,19 +905,14 @@
 	<Color name="Sage" value="#BCB88A"/>
 	<Color name="Salmon" value="#FA8072"/>
 	<Color name="Salmon pink" value="#FF91A4"/>
-	<Color name="Sand" value="#C2B280"/>
-	<Color name="Sand dune" value="#967117"/>
 	<Color name="Sandstorm" value="#ECD540"/>
 	<Color name="Sandy brown" value="#F4A460"/>
-	<Color name="Sandy taupe" value="#967117"/>
 	<Color name="Sangria" value="#92000A"/>
 	<Color name="Sap green" value="#507D2A"/>
 	<Color name="Sapphire" value="#0F52BA"/>
-	<Color name="Sapphire blue" value="#0067A5"/>
 	<Color name="Sasquatch Socks" value="#FF4681"/>
 	<Color name="Satin sheen gold" value="#CBA135"/>
 	<Color name="Scarlet" value="#FF2400"/>
-	<Color name="Schauss pink" value="#FF91AF"/>
 	<Color name="School bus yellow" value="#FFD800"/>
 	<Color name="Screamin' Green" value="#66FF66"/>
 	<Color name="Sea blue" value="#006994"/>
@@ -1032,7 +931,6 @@
 	<Color name="Shiny Shamrock" value="#5FA778"/>
 	<Color name="Shocking pink" value="#FC0FC0"/>
 	<Color name="Shocking pink (Crayola)" value="#FF6FFF"/>
-	<Color name="Sienna" value="#882D17"/>
 	<Color name="Silver" value="#C0C0C0"/>
 	<Color name="Silver chalice" value="#ACACAC"/>
 	<Color name="Silver Lake blue" value="#5D89BA"/>
@@ -1047,7 +945,6 @@
 	<Color name="Slate blue" value="#6A5ACD"/>
 	<Color name="Slate gray" value="#708090"/>
 	<Color name="Slimy Green" value="#299617"/>
-	<Color name="Smalt (Dark powder blue)" value="#003399"/>
 	<Color name="Smashed Pumpkin" value="#FF6D3A"/>
 	<Color name="Smitten" value="#C84186"/>
 	<Color name="Smoke" value="#738276"/>
@@ -1068,7 +965,6 @@
 	<Color name="Spanish orange" value="#E86100"/>
 	<Color name="Spanish pink" value="#F7BFBE"/>
 	<Color name="Spanish red" value="#E60026"/>
-	<Color name="Spanish sky blue" value="#00FFFF"/>
 	<Color name="Spanish violet" value="#4C2882"/>
 	<Color name="Spanish viridian" value="#007F5C"/>
 	<Color name="Spartan Crimson" value="#9E1316"/>
@@ -1076,14 +972,11 @@
 	<Color name="Spiro Disco Ball" value="#0FC0FC"/>
 	<Color name="Spring bud" value="#A7FC00"/>
 	<Color name="Spring Frost" value="#87FF2A"/>
-	<Color name="Spring green" value="#00FF7F"/>
 	<Color name="St. Patrick's blue" value="#23297A"/>
 	<Color name="Star command blue" value="#007BB8"/>
 	<Color name="Steel blue" value="#4682B4"/>
 	<Color name="Steel pink" value="#CC33CC"/>
 	<Color name="Steel Teal" value="#5F8A8B"/>
-	<Color name="Stil de grain yellow" value="#FADA5E"/>
-	<Color name="Stizza" value="#990000"/>
 	<Color name="Stormcloud" value="#4F666A"/>
 	<Color name="Straw" value="#E4D96F"/>
 	<Color name="Strawberry" value="#FC5A8D"/>
@@ -1092,7 +985,6 @@
 	<Color name="Sunglow" value="#FFCC33"/>
 	<Color name="Sunny" value="#F2F27A"/>
 	<Color name="Sunray" value="#E3AB57"/>
-	<Color name="Sunset" value="#FAD6A5"/>
 	<Color name="Sunset orange" value="#FD5E53"/>
 	<Color name="Super pink" value="#CF6BA9"/>
 	<Color name="Sweet Brown" value="#A83731"/>
@@ -1100,12 +992,9 @@
 	<Color name="Tangelo" value="#F94D00"/>
 	<Color name="Tangerine" value="#F28500"/>
 	<Color name="Tangerine yellow" value="#FFCC00"/>
-	<Color name="Tango pink" value="#E4717A"/>
 	<Color name="Tart Orange" value="#FB4D46"/>
-	<Color name="Taupe" value="#483C32"/>
 	<Color name="Taupe gray" value="#8B8589"/>
 	<Color name="Tea green" value="#D0F0C0"/>
-	<Color name="Tea rose" value="#F88379"/>
 	<Color name="Teal" value="#008080"/>
 	<Color name="Teal blue" value="#367588"/>
 	<Color name="Teal deer" value="#99E6B3"/>
@@ -1114,7 +1003,6 @@
 	<Color name="Tenné" value="#CD5700"/>
 	<Color name="Terra cotta" value="#E2725B"/>
 	<Color name="Thistle" value="#D8BFD8"/>
-	<Color name="Thulian pink" value="#DE6FA1"/>
 	<Color name="Tickle Me Pink" value="#FC89AC"/>
 	<Color name="Tiffany Blue" value="#0ABAB5"/>
 	<Color name="Tiger's eye" value="#E08D3C"/>
@@ -1124,7 +1012,6 @@
 	<Color name="Toolbox" value="#746CC0"/>
 	<Color name="Topaz" value="#FFC87C"/>
 	<Color name="Tractor red" value="#FD0E35"/>
-	<Color name="Trolley Grey" value="#808080"/>
 	<Color name="Tropical rain forest" value="#00755E"/>
 	<Color name="Tropical violet" value="#CDA4DE"/>
 	<Color name="True Blue" value="#0073CF"/>
@@ -1135,59 +1022,42 @@
 	<Color name="Turquoise" value="#40E0D0"/>
 	<Color name="Turquoise blue" value="#00FFEF"/>
 	<Color name="Turquoise green" value="#A0D6B4"/>
-	<Color name="Turtle green" value="#8A9A5B"/>
-	<Color name="Tuscan" value="#FAD6A5"/>
-	<Color name="Tuscan brown" value="#6F4E37"/>
 	<Color name="Tuscan red" value="#7C4848"/>
-	<Color name="Tuscan tan" value="#A67B5B"/>
 	<Color name="Tuscany" value="#C09999"/>
 	<Color name="Twilight lavender" value="#8A496B"/>
-	<Color name="Tyrian purple" value="#66023C"/>
 	<Color name="UA blue" value="#0033AA"/>
 	<Color name="UA red" value="#D9004C"/>
 	<Color name="Ube" value="#8878C3"/>
 	<Color name="UCLA Blue" value="#536895"/>
 	<Color name="UCLA Gold" value="#FFB300"/>
 	<Color name="UFO Green" value="#3CD070"/>
-	<Color name="Ultra pink" value="#FF6FFF"/>
 	<Color name="Ultra red" value="#FC6C85"/>
-	<Color name="Ultramarine" value="#3F00FF"/>
 	<Color name="Ultramarine blue" value="#4166F5"/>
 	<Color name="Umber" value="#635147"/>
 	<Color name="Unbleached silk" value="#FFDDCA"/>
 	<Color name="United Nations blue" value="#5B92E5"/>
 	<Color name="University of California Gold" value="#B78727"/>
 	<Color name="University of Tennessee Orange" value="#F77F00"/>
-	<Color name="Unmellow yellow" value="#FFFF66"/>
-	<Color name="UP Forest green" value="#014421"/>
 	<Color name="UP Maroon" value="#7B1113"/>
 	<Color name="Upsdell red" value="#AE2029"/>
 	<Color name="Urobilin" value="#E1AD21"/>
 	<Color name="USAFA blue" value="#004F98"/>
-	<Color name="USC Cardinal" value="#990000"/>
-	<Color name="USC Gold" value="#FFCC00"/>
 	<Color name="Utah Crimson" value="#D3003F"/>
 	<Color name="Van Dyke Brown" value="#664228"/>
-	<Color name="Vanilla" value="#F3E5AB"/>
 	<Color name="Vanilla ice" value="#F38FA9"/>
 	<Color name="Vegas gold" value="#C5B358"/>
 	<Color name="Venetian red" value="#C80815"/>
 	<Color name="Verdigris" value="#43B3AE"/>
-	<Color name="Vermilion" value="#E34234"/>
-	<Color name="Veronica" value="#A020F0"/>
 	<Color name="Very light azure" value="#74BBFB"/>
 	<Color name="Very light blue" value="#6666FF"/>
 	<Color name="Very light malachite green" value="#64E986"/>
 	<Color name="Very light tangelo" value="#FFB077"/>
 	<Color name="Very pale orange" value="#FFDFBF"/>
 	<Color name="Very pale yellow" value="#FFFFBF"/>
-	<Color name="Violet" value="#8F00FF"/>
 	<Color name="Violet (color wheel)" value="#7F00FF"/>
 	<Color name="Violet (RYB)" value="#8601AF"/>
-	<Color name="Violet (web)" value="#EE82EE"/>
 	<Color name="Violet-blue" value="#324AB2"/>
 	<Color name="Violet-red" value="#F75394"/>
-	<Color name="Viridian" value="#40826D"/>
 	<Color name="Viridian green" value="#009698"/>
 	<Color name="Vista blue" value="#7C9ED9"/>
 	<Color name="Vivid amber" value="#CC9900"/>
@@ -1219,33 +1089,25 @@
 	<Color name="Wenge" value="#645452"/>
 	<Color name="Wheat" value="#F5DEB3"/>
 	<Color name="White" value="#FFFFFF"/>
-	<Color name="White smoke" value="#F5F5F5"/>
 	<Color name="Wild blue yonder" value="#A2ADD0"/>
 	<Color name="Wild orchid" value="#D470A2"/>
 	<Color name="Wild Strawberry" value="#FF43A4"/>
-	<Color name="Wild watermelon" value="#FC6C85"/>
 	<Color name="Willpower orange" value="#FD5800"/>
 	<Color name="Windsor tan" value="#A75502"/>
-	<Color name="Wine" value="#722F37"/>
-	<Color name="Wine dregs" value="#673147"/>
 	<Color name="Winter Sky" value="#FF007C"/>
 	<Color name="Winter Wizard" value="#A0E6FF"/>
 	<Color name="Wintergreen Dream" value="#56887D"/>
 	<Color name="Wisteria" value="#C9A0DC"/>
-	<Color name="Wood brown" value="#C19A6B"/>
 	<Color name="Xanadu" value="#738678"/>
 	<Color name="Yale Blue" value="#0F4D92"/>
 	<Color name="Yankees blue" value="#1C2841"/>
 	<Color name="Yellow" value="#FFFF00"/>
 	<Color name="Yellow (Crayola)" value="#FCE883"/>
 	<Color name="Yellow (Munsell)" value="#EFCC00"/>
-	<Color name="Yellow (NCS)" value="#FFD300"/>
 	<Color name="Yellow (Pantone)" value="#FEDF00"/>
-	<Color name="Yellow (process)" value="#FFEF00"/>
 	<Color name="Yellow (RYB)" value="#FEFE33"/>
 	<Color name="Yellow Orange" value="#FFAE42"/>
 	<Color name="Yellow rose" value="#FFF000"/>
-	<Color name="Yellow Sunshine" value="#FFF700"/>
 	<Color name="Yellow-green" value="#9ACD32"/>
 	<Color name="Zaffre" value="#0014A8"/>
 	<Color name="Zinnwaldite brown" value="#2C1608"/>

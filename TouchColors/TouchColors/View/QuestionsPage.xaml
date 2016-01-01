@@ -17,14 +17,13 @@
       </Grid.Background>
       <Button HorizontalAlignment="Center"
               VerticalAlignment="Center"
+              BorderBrush="{Binding Path=Foreground,
+                                    RelativeSource={RelativeSource Mode=Self}}"
               Click="{x:Bind ViewModel.NextColor_Click}">
          <TextBlock Style="{StaticResource HeaderTextBlockStyle}" Text="{Binding ButtonText}" />
          <Button.Foreground>
             <SolidColorBrush Color="{Binding CurrentColor.RgbColor, Converter={StaticResource ColorInverter}}" />
          </Button.Foreground>
-         <Button.BorderBrush>
-            <SolidColorBrush Color="{Binding CurrentColor.RgbColor, Converter={StaticResource ColorInverter}}" />
-         </Button.BorderBrush>
       </Button>
    </Grid>
 </Page>

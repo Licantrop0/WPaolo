@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using GalaSoft.MvvmLight;
+using TouchColors.DesignMode;
 using TouchColors.Helper;
 using TouchColors.Model;
+using Windows.UI;
 using Windows.UI.Xaml;
 
 namespace TouchColors.ViewModel
@@ -31,6 +33,12 @@ namespace TouchColors.ViewModel
 
         public QuestionsViewModel(ISpeechHelper speechHelper)
         {
+            if (IsInDesignMode)
+            {
+                CurrentColor = new NamedColor("Blue", Colors.Blue);
+                ButtonText = "Blue, GOOD!";
+                return;
+            }
             _speechHelper = speechHelper;
             _colorList = XElement.Load("Data/RYBColors.xml").Elements()
                 .Select(e => new NamedColor(e.Attribute("name").Value, ColorConverter.FromRgb(e.Attribute("value").Value)))

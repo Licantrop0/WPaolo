@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       DataContext="{Binding Source={StaticResource Locator},
                             Path=MainVM}"
+      FontFamily="{StaticResource DefaultFontFamily}"
       mc:Ignorable="d">
 
    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -14,10 +15,15 @@
          <RowDefinition Height="*" />
          <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
-      <TextBlock Margin="12,0,0,0"
+      <Grid>
+       <TextBlock Margin="12,0,0,0"
                  Style="{StaticResource SubheaderTextBlockStyle}"
                  Text="{Binding SelectedColor.Name}"
                  TextWrapping="NoWrap" />
+         <Button HorizontalAlignment="Right" Click="SwitchTheme_Click" Content="&#xE13C;" FontFamily="Segoe UI Symbol" />
+
+
+      </Grid>
 
       <GridView Grid.Row="1"
                 IsItemClickEnabled="True"
@@ -35,22 +41,10 @@
             </DataTemplate>
          </GridView.ItemTemplate>
       </GridView>
-      <!--<Universal:AdMediatorControl x:Name="AdMediator_8901D0"
+      <Universal:AdMediatorControl x:Name="AdMediator_8901D0"
                                    Grid.Row="2"
-                                   Width="360"
+                                   Width="480"
                                    Height="80"
-                                   Id="AdMediator-Id-F0A429BC-2205-448F-B572-C8B81C6A2750" />-->
+                                   Id="AdMediator-Id-F0A429BC-2205-448F-B572-C8B81C6A2750" />
    </Grid>
-   <Page.BottomAppBar>
-      <AppBar IsOpen="True" IsSticky="True">
-         <StackPanel Orientation="Horizontal">
-            <AppBarButton Click="SwitchTheme_Click"
-                          Icon="Switch"
-                          Label="Light / Dark" />
-            <AppBarButton Click="Questions_Click"
-                          Icon="Help"
-                          Label="Questions" />
-         </StackPanel>
-      </AppBar>
-   </Page.BottomAppBar>
 </Page>

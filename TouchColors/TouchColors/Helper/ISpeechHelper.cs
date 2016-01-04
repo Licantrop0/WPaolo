@@ -5,7 +5,7 @@ namespace TouchColors.Helper
 {
     public interface ISpeechHelper
     {
-        Task<bool> InitializeSpeech(IEnumerable<string> responses);
+        Task<bool> InitializeRecognition(IEnumerable<string> responses);
         Task<string> Recognize();
         Task Speak(string text);
     }

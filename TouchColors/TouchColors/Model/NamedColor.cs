@@ -29,7 +29,7 @@ namespace TouchColors.Model
 
         public bool Equals(NamedColor other)
         {
-            return this.RgbColor.Equals(other.RgbColor);
+            return this.RgbColor.Equals(other?.RgbColor);
         }
         public override int GetHashCode()
         {

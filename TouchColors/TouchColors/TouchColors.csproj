@@ -103,14 +103,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DesignMode\DesignData.cs" />
-    <Compile Include="DesignMode\DesignSpeechHelper.cs" />
     <Compile Include="Helper\AudioCapturePermissions.cs" />
     <Compile Include="Helper\ColorConverter.cs" />
+    <Compile Include="Helper\ExtensionMethods.cs" />
     <Compile Include="Helper\ISpeechHelper.cs" />
     <Compile Include="Helper\SpeechHelper.cs" />
     <Compile Include="Model\NamedColor.cs" />
     <Compile Include="ViewModel\QuestionsViewModel.cs" />
+    <Compile Include="View\MainMenuPage.xaml.cs">
+      <DependentUpon>MainMenuPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -129,6 +131,7 @@
     <None Include="TouchColors_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Background.png" />
     <Content Include="Data\AllColors.xml" />
     <Content Include="Data\HTMLColors.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -150,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\MainMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

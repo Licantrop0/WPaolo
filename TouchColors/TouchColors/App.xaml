@@ -6,6 +6,14 @@
     RequestedTheme="Light">
    <Application.Resources>
       <vm:ViewModelLocator x:Key="Locator" />
-   </Application.Resources>
+      <FontFamily x:Key="DefaultFontFamily">Ravie</FontFamily>
 
+      <Style x:Key="BaseTextStyle" TargetType="TextBlock">
+         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+      </Style>
+      
+      <Style x:Key="ButtonTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+         <Setter Property="FontSize" Value="{ThemeResource TextStyleExtraLargeFontSize}" />
+      </Style>
+   </Application.Resources>
 </Application>

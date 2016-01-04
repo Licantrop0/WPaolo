@@ -9,7 +9,7 @@ namespace TouchColors.Helper
     {
         public static Color FromRgb(string rgb)
         {
-            var rgbValue = int.Parse(rgb.Replace("#", ""), NumberStyles.HexNumber);
+            var rgbValue = int.Parse(rgb.TrimStart('#'), NumberStyles.HexNumber);
             return FromRgb(rgbValue);
         }
 
@@ -28,7 +28,11 @@ namespace TouchColors.Helper
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var color = (Color)value;
-            return Color.FromArgb(255, (byte)(255 - color.R), (byte)(255 - color.G), (byte)(255 - color.B));
+            return Color.FromArgb(
+                255,
+                (byte)(255 - color.R),
+                (byte)(255 - color.G),
+                (byte)(255 - color.B));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Media.Playback;
 using Windows.Media.SpeechRecognition;
 using Windows.Media.SpeechSynthesis;
-using Windows.UI.Xaml.Controls;
 
 namespace TouchColors.Helper
 {
@@ -17,7 +14,7 @@ namespace TouchColors.Helper
         private readonly MediaPlayer _mediaPlayer;
         private SpeechRecognizer _speechRecognizer;
         private IAsyncOperation<SpeechRecognitionResult> _recognitionOperation;
-        private TaskCompletionSource<TimeSpan> _mediaCompletedTCS;
+        private TaskCompletionSource<object> _mediaCompletedTCS;
 
         public SpeechHelper()
         {
@@ -27,7 +24,7 @@ namespace TouchColors.Helper
             _synth.Voice = SpeechSynthesizer.DefaultVoice; //SpeechSynthesizer.AllVoices.First(v => v.Language == "en-US");
         }
 
-        public async Task<bool> InitializeSpeech(IEnumerable<string> responses)
+        public async Task<bool> InitializeRecognition(IEnumerable<string> responses)
         {
             var permissionGained = await AudioCapturePermissions.RequestMicrophonePermission();
             if (permissionGained)
@@ -43,22 +40,23 @@ namespace TouchColors.Helper
 
         public async Task Speak(string text)
         {
-            _mediaCompletedTCS = new TaskCompletionSource<TimeSpan>();
             using (var speechStream = await _synth.SynthesizeTextToStreamAsync(text))
             {
+                _mediaCompletedTCS = new TaskCompletionSource<object>();
                 _mediaPlayer.SetStreamSource(speechStream);
                 var duration = await _mediaCompletedTCS.Task;
-                _mediaPlayer.Play();
-                await Task.Delay(duration); //Delay to avoid speech recognizer to start too soon.
             }
         }
 
-        private void Mp_MediaOpened(MediaPlayer sender, object args)
+        private async void Mp_MediaOpened(MediaPlayer sender, object args)
         {
             //Empirically dividing by 2 because of SpeechSynthesizer fucker
-            var ms = sender.NaturalDuration.TotalMilliseconds / 2;
-            var duration = TimeSpan.FromMilliseconds(ms);
-            _mediaCompletedTCS.SetResult(duration);
+            var ms = (int)(sender.NaturalDuration.TotalMilliseconds / 2);
+            sender.Play();
+
+            //Delay to avoid speech recognizer to start too soon.
+            await Task.Delay(ms);
+            _mediaCompletedTCS.SetResult(null);
         }
 
         public async Task<string> Recognize()

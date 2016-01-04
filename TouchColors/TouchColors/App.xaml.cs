@@ -70,7 +70,6 @@ namespace TouchColors
                     rootFrame.CanGoBack ?
                     AppViewBackButtonVisibility.Visible :
                     AppViewBackButtonVisibility.Collapsed;
-
             }
 
             if (rootFrame.Content == null)
@@ -78,7 +77,7 @@ namespace TouchColors
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                rootFrame.Navigate(typeof(MainMenuPage), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();
@@ -105,7 +104,7 @@ namespace TouchColors
 
         private void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
+            var rootFrame = Window.Current.Content as Frame;
 
             if (rootFrame.CanGoBack)
             {

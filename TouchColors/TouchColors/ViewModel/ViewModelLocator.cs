@@ -9,11 +9,9 @@ DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 You can also use Blend to do all this with the tool's support.
 See http://www.galasoft.ch/mvvm
 */
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
-using TouchColors.DesignMode;
+using Microsoft.Practices.Unity;
 using TouchColors.Helper;
+
 
 namespace TouchColors.ViewModel
 {
@@ -24,13 +22,13 @@ namespace TouchColors.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
+        private UnityContainer _ioc;
 
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
         public ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
             ////    // Create design time view services and models
@@ -42,26 +40,23 @@ namespace TouchColors.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            if (ViewModelBase.IsInDesignModeStatic)
-            {
-                SimpleIoc.Default.Register<ISpeechHelper, DesignSpeechHelper>();
-            }
-            else
-            {
-                SimpleIoc.Default.Register<ISpeechHelper, SpeechHelper>();
-            }
+            //if (ViewModelBase.IsInDesignModeStatic)
+            //{
+            //    SimpleIoc.Default.Register<ISpeechHelper, DesignSpeechHelper>();
+            //}
+            //else
+            //{
+            //}
+            _ioc = new UnityContainer();
+            _ioc.RegisterType<ISpeechHelper, SpeechHelper>();
 
-
-
-            SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<QuestionsViewModel>();
         }
 
         public MainViewModel MainVM
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
+                return _ioc.Resolve<MainViewModel>();
             }
         }
 
@@ -69,7 +64,7 @@ namespace TouchColors.ViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<QuestionsViewModel>();
+                return _ioc.Resolve<QuestionsViewModel>();
             }
         }
 

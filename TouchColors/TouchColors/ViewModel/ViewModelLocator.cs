@@ -9,7 +9,6 @@ DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 You can also use Blend to do all this with the tool's support.
 See http://www.galasoft.ch/mvvm
 */
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using TouchColors.Helper;
@@ -46,21 +45,9 @@ namespace TouchColors.ViewModel
             SimpleIoc.Default.Register<QuestionsViewModel>();
         }
 
-        public MainViewModel MainVM
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
-        }
+        public MainViewModel MainVM => ServiceLocator.Current.GetInstance<MainViewModel>();
 
-        public QuestionsViewModel QuestionsVM
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<QuestionsViewModel>();
-            }
-        }
+        public QuestionsViewModel QuestionsVM => ServiceLocator.Current.GetInstance<QuestionsViewModel>();
 
         public static void Cleanup()
         {

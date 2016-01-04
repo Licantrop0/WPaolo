@@ -20,22 +20,20 @@ namespace TouchColors.Helper
         {
             _mediaPlayer = BackgroundMediaPlayer.Current;
             _mediaPlayer.MediaOpened += Mp_MediaOpened;
-            _synth = new SpeechSynthesizer();
-            _synth.Voice = SpeechSynthesizer.DefaultVoice; //SpeechSynthesizer.AllVoices.First(v => v.Language == "en-US");
+            _synth = new SpeechSynthesizer { Voice = SpeechSynthesizer.DefaultVoice };
+            //SpeechSynthesizer.AllVoices.First(v => v.Language == "en-US");
         }
 
         public async Task<bool> InitializeRecognition(IEnumerable<string> responses)
         {
             var permissionGained = await AudioCapturePermissions.RequestMicrophonePermission();
-            if (permissionGained)
-            {
-                _speechRecognizer = new SpeechRecognizer(SpeechRecognizer.SystemSpeechLanguage);
-                var listConstraint = new SpeechRecognitionListConstraint(responses, "colors");
-                _speechRecognizer.Constraints.Add(listConstraint);
-                await _speechRecognizer.CompileConstraintsAsync();
-            }
+            if (!permissionGained) return false;
 
-            return permissionGained;
+            _speechRecognizer = new SpeechRecognizer(SpeechRecognizer.SystemSpeechLanguage);
+            var listConstraint = new SpeechRecognitionListConstraint(responses, "colors");
+            _speechRecognizer.Constraints.Add(listConstraint);
+            await _speechRecognizer.CompileConstraintsAsync();
+            return true;
         }
 
         public async Task Speak(string text)

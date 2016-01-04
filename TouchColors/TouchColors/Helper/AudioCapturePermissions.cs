@@ -15,11 +15,11 @@ using Windows.Media.Capture;
 
 namespace TouchColors.Helper
 {
-    public class AudioCapturePermissions
+    public static class AudioCapturePermissions
     {
         // If no recording device is attached, attempting to get access to audio capture devices will throw 
         // a System.Exception object, with this HResult set.
-        private static int NoCaptureDevicesHResult = -1072845856;
+        private const int NoCaptureDevicesHResult = -1072845856;
 
         /// <summary>
         /// On desktop/tablet systems, users are prompted to give permission to use capture devices on a 
@@ -32,16 +32,18 @@ namespace TouchColors.Helper
         /// check if the user has changed the setting while the app was suspended or not in focus.
         /// </summary>
         /// <returns>true if the microphone can be accessed without any permissions problems.</returns>
-        public async static Task<bool> RequestMicrophonePermission()
+        public static async Task<bool> RequestMicrophonePermission()
         {
             try
             {
                 // Request access to the microphone only, to limit the number of capabilities we need
                 // to request in the package manifest.
-                MediaCaptureInitializationSettings settings = new MediaCaptureInitializationSettings();
-                settings.StreamingCaptureMode = StreamingCaptureMode.Audio;
-                settings.MediaCategory = MediaCategory.Speech;
-                MediaCapture capture = new MediaCapture();
+                var settings = new MediaCaptureInitializationSettings
+                {
+                    StreamingCaptureMode = StreamingCaptureMode.Audio,
+                    MediaCategory = MediaCategory.Speech
+                };
+                var capture = new MediaCapture();
 
                 await capture.InitializeAsync(settings);
             }
@@ -64,16 +66,11 @@ namespace TouchColors.Helper
             {
                 // This can be replicated by using remote desktop to a system, but not redirecting the microphone input.
                 // Can also occur if using the virtual machine console tool to access a VM instead of using remote desktop.
-                if (exception.HResult == NoCaptureDevicesHResult)
-                {
-                    var messageDialog = new Windows.UI.Popups.MessageDialog("No Audio Capture devices are present on this system.");
-                    await messageDialog.ShowAsync();
-                    return false;
-                }
-                else
-                {
+                if (exception.HResult != NoCaptureDevicesHResult)
                     throw;
-                }
+                var messageDialog = new Windows.UI.Popups.MessageDialog("No Audio Capture devices are present on this system.");
+                await messageDialog.ShowAsync();
+                return false;
             }
             return true;
         }

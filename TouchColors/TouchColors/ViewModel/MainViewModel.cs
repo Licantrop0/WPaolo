@@ -13,13 +13,13 @@ namespace TouchColors.ViewModel
     {
         private readonly ISpeechHelper _speechHelper;
 
-        public List<NamedColor> ColorList { get; set; }
+        public List<NamedColor> ColorList { get; private set; }
 
         private NamedColor _selectedColor;
         public NamedColor SelectedColor
         {
             get { return _selectedColor; }
-            set { Set(ref _selectedColor, value); }
+            private set { Set(ref _selectedColor, value); }
         }
 
         public MainViewModel(ISpeechHelper speechHelper)

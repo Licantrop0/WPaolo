@@ -19,14 +19,14 @@ namespace TouchColors.ViewModel
         public NamedColor CurrentColor
         {
             get { return _currentColor; }
-            set { Set(ref _currentColor, value); }
+            private set { Set(ref _currentColor, value); }
         }
 
         private string _buttonText;
         public string ButtonText
         {
             get { return _buttonText; }
-            set { Set(ref _buttonText, value); }
+            private set { Set(ref _buttonText, value); }
         }
 
         public QuestionsViewModel(ISpeechHelper speechHelper)

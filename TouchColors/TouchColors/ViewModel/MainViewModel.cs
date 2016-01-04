@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Template10.Mvvm;
-using Windows.ApplicationModel;
+using GalaSoft.MvvmLight;
 using TouchColors.Helper;
 using TouchColors.Model;
-using Windows.UI.Xaml.Controls;
 using Windows.UI;
+using Windows.UI.Xaml.Controls;
 
 namespace TouchColors.ViewModel
 {
@@ -25,7 +24,7 @@ namespace TouchColors.ViewModel
 
         public MainViewModel(ISpeechHelper speechHelper)
         {
-            if (DesignMode.DesignModeEnabled)
+            if (IsInDesignMode)
             {
                 ColorList = GetSampleColors();
                 SelectedColor = ColorList.First();

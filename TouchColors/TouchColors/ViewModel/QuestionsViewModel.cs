@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Template10.Mvvm;
+using GalaSoft.MvvmLight;
 using TouchColors.Helper;
 using TouchColors.Model;
-using Windows.ApplicationModel;
 using Windows.UI;
 using Windows.UI.Xaml;
 
@@ -33,7 +31,7 @@ namespace TouchColors.ViewModel
 
         public QuestionsViewModel(ISpeechHelper speechHelper)
         {
-            if (DesignMode.DesignModeEnabled)
+            if (IsInDesignMode)
             {
                 CurrentColor = new NamedColor("Blue", Colors.Blue);
                 ButtonText = "Blue, GOOD!";

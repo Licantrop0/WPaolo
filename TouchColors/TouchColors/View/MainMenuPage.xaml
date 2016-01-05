@@ -5,16 +5,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       FontFamily="{StaticResource DefaultFontFamily}"
       mc:Ignorable="d">
-   <Page.Resources>
-      <Storyboard x:Name="testStoryBoard">
-         <DoubleAnimation Duration="0"
-                                EnableDependentAnimation="True"
-                                Storyboard.TargetName="LayoutRoot"
-                                Storyboard.TargetProperty="(Panel.Background).(Brush.RelativeTransform).(CompositeTransform.Rotation)"
-                                To="-90" />
-      </Storyboard>
-
-   </Page.Resources>
    <Grid x:Name="LayoutRoot">
       <Grid.Background>
          <ImageBrush ImageSource="ms-appx:///Assets/Background.png">
@@ -37,28 +27,23 @@
             <TextBlock Style="{StaticResource ButtonTextStyle}" Text="Color Questions" />
          </Button>
       </StackPanel>
-
-   </Grid>
    <VisualStateManager.VisualStateGroups>
-      <VisualStateGroup x:Name="WindowStates">
-         <VisualState x:Name="WideState">
+      <VisualStateGroup x:Name="VisualStateGroup">
+         <VisualState x:Name="Narrow">
             <VisualState.StateTriggers>
-               <AdaptiveTrigger MinWindowWidth="800" />
+               <AdaptiveTrigger/>
             </VisualState.StateTriggers>
          </VisualState>
-         <VisualState x:Name="NarrowState">
+         <VisualState x:Name="Wide">
             <VisualState.StateTriggers>
-               <AdaptiveTrigger MinWindowWidth="0" />
+               <AdaptiveTrigger MinWindowWidth="800"/>
             </VisualState.StateTriggers>
-            <Storyboard>
-               <DoubleAnimation Duration="0"
-                                EnableDependentAnimation="True"
-                                Storyboard.TargetName="LayoutRoot"
-                                Storyboard.TargetProperty="(Panel.Background).(Brush.RelativeTransform).(CompositeTransform.Rotation)"
-                                To="0" />
-            </Storyboard>
+            <VisualState.Setters>
+               <Setter Target="LayoutRoot.(Panel.Background).(Brush.RelativeTransform).(CompositeTransform.Rotation)" Value="-90"/>
+            </VisualState.Setters>
          </VisualState>
       </VisualStateGroup>
    </VisualStateManager.VisualStateGroups>
 
+   </Grid>
 </Page>

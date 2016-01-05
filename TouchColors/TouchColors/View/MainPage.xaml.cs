@@ -31,9 +31,6 @@ namespace TouchColors.View
         {
             this.InitializeComponent();
             this.RequestedTheme = CurrentTheme;
-
-            ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseVisible);
-
         }
 
         private void SwitchTheme_Click(object sender, RoutedEventArgs e)

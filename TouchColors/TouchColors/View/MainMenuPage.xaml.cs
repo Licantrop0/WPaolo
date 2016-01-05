@@ -13,7 +13,6 @@ namespace TouchColors.View
         public MainMenuPage()
         {
             this.InitializeComponent();
-            testStoryBoard.Begin();
         }
 
         private void ColorNames_Click(object sender, RoutedEventArgs e)

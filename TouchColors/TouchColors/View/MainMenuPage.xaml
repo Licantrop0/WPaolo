@@ -5,9 +5,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       FontFamily="{StaticResource DefaultFontFamily}"
       mc:Ignorable="d">
+   <Page.Resources>
+      <Storyboard x:Name="testStoryBoard">
+         <DoubleAnimation Duration="0"
+                                EnableDependentAnimation="True"
+                                Storyboard.TargetName="LayoutRoot"
+                                Storyboard.TargetProperty="(Panel.Background).(Brush.RelativeTransform).(CompositeTransform.Rotation)"
+                                To="-90" />
+      </Storyboard>
+
+   </Page.Resources>
    <Grid x:Name="LayoutRoot">
       <Grid.Background>
-         <ImageBrush x:Name="LayoutRootBackground" ImageSource="ms-appx:///Assets/Background.png">
+         <ImageBrush ImageSource="ms-appx:///Assets/Background.png">
             <ImageBrush.RelativeTransform>
                <CompositeTransform CenterX="0.5"
                                    CenterY="0.5"
@@ -35,13 +45,6 @@
             <VisualState.StateTriggers>
                <AdaptiveTrigger MinWindowWidth="800" />
             </VisualState.StateTriggers>
-            <Storyboard>
-               <DoubleAnimation Duration="0"
-                                EnableDependentAnimation="True"
-                                Storyboard.TargetName="LayoutRoot"
-                                Storyboard.TargetProperty="(Panel.Background).(Brush.RelativeTransform).(CompositeTransform.Rotation)"
-                                To="-90" />
-            </Storyboard>
          </VisualState>
          <VisualState x:Name="NarrowState">
             <VisualState.StateTriggers>

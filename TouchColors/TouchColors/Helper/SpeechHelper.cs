@@ -15,6 +15,7 @@ namespace TouchColors.Helper
         private SpeechRecognizer _speechRecognizer;
         private IAsyncOperation<SpeechRecognitionResult> _recognitionOperation;
         private TaskCompletionSource<object> _mediaCompletedTCS;
+        public event EventHandler<SpeechRecognizerState> SpeechRecognizerStateChanged;
 
         public SpeechHelper()
         {
@@ -30,10 +31,16 @@ namespace TouchColors.Helper
             if (!permissionGained) return false;
 
             _speechRecognizer = new SpeechRecognizer(SpeechRecognizer.SystemSpeechLanguage);
+            _speechRecognizer.StateChanged += speechRecognizer_StateChanged;
             var listConstraint = new SpeechRecognitionListConstraint(responses, "colors");
             _speechRecognizer.Constraints.Add(listConstraint);
             await _speechRecognizer.CompileConstraintsAsync();
             return true;
+        }
+
+        private void speechRecognizer_StateChanged(SpeechRecognizer sender, SpeechRecognizerStateChangedEventArgs args)
+        {
+            SpeechRecognizerStateChanged?.Invoke(sender, args.State);
         }
 
         public async Task Speak(string text)
@@ -54,7 +61,7 @@ namespace TouchColors.Helper
 
             //Delay to avoid speech recognizer to start too soon.
             await Task.Delay(ms);
-            _mediaCompletedTCS.SetResult(null);
+            _mediaCompletedTCS.SetResult(null); //ERROR IF PRESSED MANY TIMES
         }
 
         public async Task<string> Recognize()

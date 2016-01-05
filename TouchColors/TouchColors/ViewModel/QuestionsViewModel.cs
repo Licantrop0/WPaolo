@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using GalaSoft.MvvmLight;
 using TouchColors.Helper;
 using TouchColors.Model;
+using Windows.Media.SpeechRecognition;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 
 namespace TouchColors.ViewModel
 {
     public class QuestionsViewModel : ViewModelBase
     {
+        private CoreDispatcher _dispatcher;
         private readonly List<NamedColor> _colorList;
         private readonly ISpeechHelper _speechHelper;
         private readonly string[] _validAnswers = new[] { "{0}, very good!", "Yes, this is {0}", "{0}, good job!", "{0}, you got it!" };
@@ -20,6 +24,14 @@ namespace TouchColors.ViewModel
         {
             get { return _currentColor; }
             private set { Set(ref _currentColor, value); }
+        }
+
+        private Visibility _isRecognizingVisibility;
+
+        public Visibility IsRecognizingVisibility
+        {
+            get { return _isRecognizingVisibility; }
+            set { Set(ref _isRecognizingVisibility, value); }
         }
 
         private string _buttonText;
@@ -37,7 +49,11 @@ namespace TouchColors.ViewModel
                 ButtonText = "Blue, GOOD!";
                 return;
             }
+
+            _dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
             _speechHelper = speechHelper;
+            _speechHelper.SpeechRecognizerStateChanged += speechHelper_SpeechRecognizerStateChanged;
+
             _colorList = XElement.Load("Data/RYBColors.xml").Elements()
                 .Select(e => new NamedColor(e.Attribute("name").Value, ColorConverter.FromRgb(e.Attribute("value").Value)))
                 .ToList();
@@ -45,10 +61,19 @@ namespace TouchColors.ViewModel
             StartQuestioning();
         }
 
+        private async void speechHelper_SpeechRecognizerStateChanged(object sender, SpeechRecognizerState state)
+        {
+            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                IsRecognizingVisibility = state == SpeechRecognizerState.Capturing ?
+                Visibility.Visible :
+                Visibility.Collapsed;
+            });
+        }
+
         private async void StartQuestioning()
         {
-            var initializated = await _speechHelper.InitializeRecognition(_colorList.Select(c => c.Name));
-
+            var initializated = await _speechHelper.InitializeRecognition(_colorList.Select(c => c.Name));            
             if (initializated)
                 NextColor_Click(null, null);
         }

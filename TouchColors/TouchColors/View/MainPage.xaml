@@ -21,8 +21,6 @@
                  Text="{Binding SelectedColor.Name}"
                  TextWrapping="NoWrap" />
          <Button HorizontalAlignment="Right" Click="SwitchTheme_Click" Content="&#xE13C;" FontFamily="Segoe UI Symbol" />
-
-
       </Grid>
 
       <GridView Grid.Row="1"

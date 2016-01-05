@@ -103,6 +103,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GifView.xaml.cs">
+      <DependentUpon>GifView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helper\AudioCapturePermissions.cs" />
     <Compile Include="Helper\ColorConverter.cs" />
     <Compile Include="Helper\ExtensionMethods.cs" />
@@ -132,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Background.png" />
+    <Content Include="Assets\color_loading.gif" />
     <Content Include="Data\AllColors.xml" />
     <Content Include="Data\HTMLColors.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -153,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\GifView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

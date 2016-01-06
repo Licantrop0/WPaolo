@@ -5,6 +5,10 @@ using System.Xml.Linq;
 using GalaSoft.MvvmLight;
 using TouchColors.Helper;
 using TouchColors.Model;
+using Windows.Media.Audio;
+using Windows.Media.Capture;
+using Windows.Media.Effects;
+using Windows.Media.Render;
 using Windows.Media.SpeechRecognition;
 using Windows.UI;
 using Windows.UI.Core;
@@ -96,5 +100,20 @@ namespace TouchColors.ViewModel
 
             await _speechHelper.Speak(ButtonText);
         }
+
+        private async void CreateAudioGraph()
+        {
+            var settings = new AudioGraphSettings(AudioRenderCategory.Speech);
+            var result = await AudioGraph.CreateAsync(settings);
+            var audioGraph = result.Graph;
+
+
+            var deviceInputNodeResult = await audioGraph.CreateDeviceInputNodeAsync(MediaCategory.Speech);
+            var deviceInput = deviceInputNodeResult.DeviceInputNode;
+
+            //https://channel9.msdn.com/events/Build/2015/3-634 balasiv@microsoft.com
+            //deviceInput.EffectDefinitions.Add(new AudioEffectDefinition(typeof(VolumeDetectionEffect)
+        }
+
     }
 }

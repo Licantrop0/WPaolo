@@ -10,6 +10,9 @@
     d:DesignWidth="400">
 
     <Grid>
-
-    </Grid>
+      <StackPanel Orientation="Horizontal">
+         <TextBlock FontSize="40" Text="Volume:" Margin="6,0" />
+         <TextBlock x:Name="Score" FontSize="40" Text="" FontFamily="Segoe MDL2 Assets"/>
+      </StackPanel>
+   </Grid>
 </UserControl>

@@ -12,6 +12,7 @@
       <Grid.Background>
          <SolidColorBrush Color="{Binding CurrentColor.RgbColor}" />
       </Grid.Background>
-      <controls:GifView UriSource="ms-appx:///Assets/color_loading.gif" Width="200" Visibility="{Binding IsRecognizingVisibility}" />
+      <!--<controls:GifView UriSource="ms-appx:///Assets/color_loading.gif" Width="200" Visibility="{Binding IsRecognizingVisibility}" />-->
+      <controls:MicrophoneVisualizer />
    </Grid>
 </Page>

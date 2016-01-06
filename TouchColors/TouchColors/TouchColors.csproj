@@ -32,6 +32,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -109,6 +110,7 @@
     <Compile Include="Controls\MicrophoneVisualizer.xaml.cs">
       <DependentUpon>MicrophoneVisualizer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\VolumeDetectionEffect.cs" />
     <Compile Include="Helper\AudioCapturePermissions.cs" />
     <Compile Include="Helper\ColorConverter.cs" />
     <Compile Include="Helper\ExtensionMethods.cs" />

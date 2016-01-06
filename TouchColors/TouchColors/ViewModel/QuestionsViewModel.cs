@@ -77,7 +77,9 @@ namespace TouchColors.ViewModel
 
         public async void NextColor_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Ignore multiple clicks
+            if (_clickSemaphore.CurrentCount == 0)
+                return;
+
             await _clickSemaphore.WaitAsync();
             try
             {

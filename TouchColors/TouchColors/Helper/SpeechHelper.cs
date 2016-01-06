@@ -10,12 +10,15 @@ namespace TouchColors.Helper
 {
     public class SpeechHelper : ISpeechHelper
     {
+        public event EventHandler<SpeechRecognizerState> SpeechRecognizerStateChanged;
+
         private readonly SpeechSynthesizer _synth;
         private readonly MediaPlayer _mediaPlayer;
+
         private SpeechRecognizer _speechRecognizer;
         private IAsyncOperation<SpeechRecognitionResult> _recognitionOperation;
         private TaskCompletionSource<object> _mediaCompletedTCS;
-        public event EventHandler<SpeechRecognizerState> SpeechRecognizerStateChanged;
+        private Task<object> _speechOperation;
 
         public SpeechHelper()
         {
@@ -45,11 +48,24 @@ namespace TouchColors.Helper
 
         public async Task Speak(string text)
         {
+            if (_speechOperation != null)
+            {
+                _mediaCompletedTCS.SetCanceled();
+                _speechOperation = null;
+                return;
+            }
+
             using (var speechStream = await _synth.SynthesizeTextToStreamAsync(text))
             {
                 _mediaCompletedTCS = new TaskCompletionSource<object>();
-                _mediaPlayer.SetStreamSource(speechStream);
-                var duration = await _mediaCompletedTCS.Task;
+                try
+                {
+                    _mediaPlayer.SetStreamSource(speechStream);
+                    _speechOperation = _mediaCompletedTCS.Task;
+                    await _speechOperation;
+                }
+                catch (TaskCanceledException) { }
+                finally { _speechOperation = null; }
             }
         }
 
@@ -57,21 +73,24 @@ namespace TouchColors.Helper
         {
             //Empirically dividing by 2 because of SpeechSynthesizer fucker
             var ms = (int)(sender.NaturalDuration.TotalMilliseconds / 2);
+
             sender.Play();
 
             //Delay to avoid speech recognizer to start too soon.
             await Task.Delay(ms);
-            _mediaCompletedTCS.SetResult(null); //ERROR IF PRESSED MANY TIMES
+
+            //TODO: FIX ERROR IF PRESSED MANY TIMES
+            if (!_mediaCompletedTCS.Task.IsCanceled)
+            {
+                _mediaCompletedTCS.SetResult(null);
+            }
         }
+
 
         public async Task<string> Recognize()
         {
-            if (_speechRecognizer.State != SpeechRecognizerState.Idle && _recognitionOperation != null)
-            {
-                _recognitionOperation.Cancel();
-                _recognitionOperation = null;
+            if (CancelPreviousSpeechRecognitionOperation())
                 return null;
-            }
 
             try
             {
@@ -83,6 +102,20 @@ namespace TouchColors.Helper
             {
                 return null;
             }
+            finally
+            {
+                _recognitionOperation = null;
+            }
+        }
+
+        private bool CancelPreviousSpeechRecognitionOperation()
+        {
+            if (_speechRecognizer.State == SpeechRecognizerState.Idle || _recognitionOperation == null)
+                return false;
+
+            _recognitionOperation.Cancel();
+            _recognitionOperation = null;
+            return true;
         }
     }
 }

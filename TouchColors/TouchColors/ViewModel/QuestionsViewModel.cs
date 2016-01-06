@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Xml.Linq;
 using GalaSoft.MvvmLight;
 using TouchColors.Helper;
@@ -14,11 +15,13 @@ namespace TouchColors.ViewModel
 {
     public class QuestionsViewModel : ViewModelBase
     {
-        private CoreDispatcher _dispatcher;
+        private readonly CoreDispatcher _dispatcher;
         private readonly List<NamedColor> _colorList;
         private readonly ISpeechHelper _speechHelper;
-        private readonly string[] _validAnswers = new[] { "{0}, very good!", "Yes, this is {0}", "{0}, good job!", "{0}, you got it!" };
-        private string _lastAnswer;
+        private readonly string[] _validAnswers = { "{0}, very good!", "Yes, this is {0}", "{0}, good job!", "{0}, you got it!" };
+        private string _validAnswer;
+        private SemaphoreSlim _clickSemaphore;
+
         private NamedColor _currentColor;
         public NamedColor CurrentColor
         {
@@ -34,23 +37,17 @@ namespace TouchColors.ViewModel
             set { Set(ref _isRecognizingVisibility, value); }
         }
 
-        private string _buttonText;
-        public string ButtonText
-        {
-            get { return _buttonText; }
-            private set { Set(ref _buttonText, value); }
-        }
-
         public QuestionsViewModel(ISpeechHelper speechHelper)
         {
             if (IsInDesignMode)
             {
                 CurrentColor = new NamedColor("Blue", Colors.Blue);
-                ButtonText = "Blue, GOOD!";
                 return;
             }
 
             _dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
+            _clickSemaphore = new SemaphoreSlim(1);
+
             _speechHelper = speechHelper;
             _speechHelper.SpeechRecognizerStateChanged += speechHelper_SpeechRecognizerStateChanged;
 
@@ -73,27 +70,35 @@ namespace TouchColors.ViewModel
 
         private async void StartQuestioning()
         {
-            var initializated = await _speechHelper.InitializeRecognition(_colorList.Select(c => c.Name));            
+            var initializated = await _speechHelper.InitializeRecognition(_colorList.Select(c => c.Name));
             if (initializated)
                 NextColor_Click(null, null);
         }
 
         public async void NextColor_Click(object sender, RoutedEventArgs e)
         {
-            CurrentColor = _colorList.GetNextRandomItem(CurrentColor);
+            //TODO: Ignore multiple clicks
+            await _clickSemaphore.WaitAsync();
+            try
+            {
+                CurrentColor = _colorList.GetNextRandomItem(CurrentColor);
 
-            ButtonText = "What color is this?";
-            await _speechHelper.Speak(ButtonText);
+                await _speechHelper.Speak("What color is this?");
 
-            var result = await _speechHelper.Recognize();
+                var result = await _speechHelper.Recognize();
 
-            _lastAnswer = _validAnswers.GetNextRandomItem(_lastAnswer);
-            
-            ButtonText = result == CurrentColor.Name ?
-                string.Format(_lastAnswer, CurrentColor.Name) :
-                $"No, this is {CurrentColor.Name}";
+                _validAnswer = _validAnswers.GetNextRandomItem(_validAnswer);
 
-            await _speechHelper.Speak(ButtonText);
+                var answer = result == CurrentColor.Name
+                    ? string.Format(_validAnswer, CurrentColor.Name)
+                    : $"No, this is {CurrentColor.Name}";
+
+                await _speechHelper.Speak(answer);
+            }
+            finally
+            {
+                _clickSemaphore.Release();
+            }
         }
     }
 }

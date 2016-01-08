@@ -43,6 +43,8 @@ namespace TouchColors.Controls
                 _scoreInterval++;
                 return;
             }
+            // Reset score interval
+            _scoreInterval = 0;
 
             var temp = double.Parse(_volumeDetectionConfiguration["Volume"].ToString());
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
@@ -59,8 +61,6 @@ namespace TouchColors.Controls
                     this.Score.Text = ""; // four/full bars
             });
 
-            // Reset score interval
-            _scoreInterval = 0;
         }
     }
 }

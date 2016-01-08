@@ -30,8 +30,8 @@ namespace TouchColors.Helper
 
         public async Task<bool> InitializeRecognition(IEnumerable<string> responses)
         {
-            var permissionGained = await AudioCapturePermissions.RequestMicrophonePermission();
-            if (!permissionGained) return false;
+            if(!(await AudioCapturePermissions.RequestMicrophonePermission()))
+                return false;
 
             _speechRecognizer = new SpeechRecognizer(SpeechRecognizer.SystemSpeechLanguage);
             _speechRecognizer.StateChanged += speechRecognizer_StateChanged;
@@ -79,7 +79,6 @@ namespace TouchColors.Helper
             //Delay to avoid speech recognizer to start too soon.
             await Task.Delay(ms);
 
-            //TODO: FIX ERROR IF PRESSED MANY TIMES
             if (!_mediaCompletedTCS.Task.IsCanceled)
             {
                 _mediaCompletedTCS.SetResult(null);

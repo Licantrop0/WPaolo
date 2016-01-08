@@ -79,7 +79,8 @@ namespace TouchColors.ViewModel
         {
             if (_clickSemaphore.CurrentCount == 0)
                 return;
-
+            
+            //TODO: reduce semaphore scope
             await _clickSemaphore.WaitAsync();
             try
             {

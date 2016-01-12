@@ -52,7 +52,7 @@ namespace TouchColors
                 rootFrame = new Frame();
 
                 rootFrame.Navigated += OnNavigated;
-                rootFrame.NavigationFailed += OnNavigationFailed;
+                rootFrame.NavigationFailed += (s1, e1) => { throw new Exception("Failed to load Page " + e1.SourcePageType.FullName); };
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
@@ -62,14 +62,15 @@ namespace TouchColors
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
 
-                // Register a handler for BackRequested events and set the
-                // visibility of the Back button
-                SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
-
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                    rootFrame.CanGoBack ?
-                    AppViewBackButtonVisibility.Visible :
-                    AppViewBackButtonVisibility.Collapsed;
+                // Register a handler for BackRequested events
+                SystemNavigationManager.GetForCurrentView().BackRequested += (s1, e1) =>
+                {
+                    if (rootFrame.CanGoBack)
+                    {
+                        e1.Handled = true;
+                        rootFrame.GoBack();
+                    }
+                };
             }
 
             if (rootFrame.Content == null)
@@ -90,27 +91,6 @@ namespace TouchColors
                 ((Frame)sender).CanGoBack ?
                 AppViewBackButtonVisibility.Visible :
                 AppViewBackButtonVisibility.Collapsed;
-        }
-
-        /// <summary>
-        /// Invoked when Navigation to a certain page fails
-        /// </summary>
-        /// <param name="sender">The Frame which failed navigation</param>
-        /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-        {
-            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
-        }
-
-        private void OnBackRequested(object sender, BackRequestedEventArgs e)
-        {
-            var rootFrame = Window.Current.Content as Frame;
-
-            if (rootFrame.CanGoBack)
-            {
-                e.Handled = true;
-                rootFrame.GoBack();
-            }
         }
 
         /// <summary>

@@ -42,7 +42,7 @@ namespace TouchColors.Controls
         private async void Graph_QuantumProcessed(AudioGraph sender, object args)
         {
             // SCORE: Find the current volume level every 20 intervals
-            if (_scoreInterval <= 10)
+            if (_scoreInterval <= 4)
             {
                 _scoreInterval++;
                 return;
@@ -52,9 +52,7 @@ namespace TouchColors.Controls
             var temp = double.Parse(_volumeDetectionConfiguration["Volume"].ToString());
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                Bars.Items.Add((temp+80)*8);
-                if(Bars.Items.Count > 50)
-                    Bars.Items.RemoveAt(0);
+                Hal.Opacity = Math.Min(Math.Max(0, (temp + 45.5)/(-6.4 + 45.5)), 1);
 
                 if (temp < -44)
                     this.Score.Text = ""; // no bars
@@ -74,6 +72,11 @@ namespace TouchColors.Controls
         {
             _audioGraph.QuantumProcessed -= Graph_QuantumProcessed;
             _audioGraph.Stop();
+        }
+
+        private void stop_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            _audioGraph.Stop();            
         }
     }
 }

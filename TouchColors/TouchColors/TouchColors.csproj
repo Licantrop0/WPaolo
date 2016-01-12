@@ -32,7 +32,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -79,6 +79,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -110,7 +111,6 @@
     <Compile Include="Controls\MicrophoneVisualizer.xaml.cs">
       <DependentUpon>MicrophoneVisualizer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\VolumeDetectionEffect.cs" />
     <Compile Include="Helper\AudioCapturePermissions.cs" />
     <Compile Include="Helper\ColorConverter.cs" />
     <Compile Include="Helper\ExtensionMethods.cs" />
@@ -196,6 +196,12 @@
     <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AudioGraphEffects\AudioGraphEffects.csproj">
+      <Project>{efbd912d-f5f3-4999-8de2-1dd251b74f84}</Project>
+      <Name>AudioGraphEffects</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

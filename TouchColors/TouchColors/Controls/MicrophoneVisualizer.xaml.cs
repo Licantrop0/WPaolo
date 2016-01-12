@@ -5,6 +5,7 @@ using Windows.Media.Capture;
 using Windows.Media.Effects;
 using Windows.Media.Render;
 using Windows.UI.Xaml.Controls;
+using AudioGraphEffects;
 
 namespace TouchColors.Controls
 {
@@ -12,55 +13,67 @@ namespace TouchColors.Controls
     {
         private int _scoreInterval = 0;
         private IPropertySet _volumeDetectionConfiguration;
+        private AudioGraph _audioGraph;
 
         public MicrophoneVisualizer()
         {
             this.InitializeComponent();
             CreateAudioGraph();
-        }
+        }        
 
         private async void CreateAudioGraph()
         {
             var settings = new AudioGraphSettings(AudioRenderCategory.Speech);
             var result = await AudioGraph.CreateAsync(settings);
-            var audioGraph = result.Graph;
+            _audioGraph = result.Graph;
 
-            var deviceInputNodeResult = await audioGraph.CreateDeviceInputNodeAsync(MediaCategory.Speech);
+            var deviceInputNodeResult = await _audioGraph.CreateDeviceInputNodeAsync(MediaCategory.Speech);
             var deviceInput = deviceInputNodeResult.DeviceInputNode;
 
             _volumeDetectionConfiguration = new PropertySet { { "Volume", 0d } };
-            deviceInput.EffectDefinitions.Add(
-                new AudioEffectDefinition(typeof(VolumeDetectionEffect).FullName,
+            deviceInput.EffectDefinitions.Add(new AudioEffectDefinition(
+                typeof(VolumeDetectionEffect).FullName,
                 _volumeDetectionConfiguration));
-            audioGraph.QuantumProcessed += Graph_QuantumProcessed;
+
+            _audioGraph.QuantumProcessed += Graph_QuantumProcessed;
+            _audioGraph.Start();
         }
 
         private async void Graph_QuantumProcessed(AudioGraph sender, object args)
         {
             // SCORE: Find the current volume level every 20 intervals
-            if (_scoreInterval <= 20)
+            if (_scoreInterval <= 10)
             {
                 _scoreInterval++;
                 return;
             }
-            // Reset score interval
             _scoreInterval = 0;
 
             var temp = double.Parse(_volumeDetectionConfiguration["Volume"].ToString());
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                if (temp >= -140 && temp < -60)
+                Bars.Items.Add((temp+80)*8);
+                if(Bars.Items.Count > 50)
+                    Bars.Items.RemoveAt(0);
+
+                if (temp < -44)
                     this.Score.Text = ""; // no bars
-                else if (temp >= -60 && temp < -30)
+                else if (temp >= -44 && temp < -38)
                     this.Score.Text = ""; // one bar
-                else if (temp >= -30 && temp < -15)
+                else if (temp >= -38 && temp < -32)
                     this.Score.Text = ""; // two bar
-                else if (temp >= -15 && temp < -7)
+                else if (temp >= -32 && temp < -26)
                     this.Score.Text = ""; // three bars
-                else if (temp >= -7)
+                else if (temp >= -26)
                     this.Score.Text = ""; // four/full bars
             });
 
+        }
+
+        private void UserControl_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            _audioGraph.QuantumProcessed -= Graph_QuantumProcessed;
+            _audioGraph.Stop();
         }
     }
 }

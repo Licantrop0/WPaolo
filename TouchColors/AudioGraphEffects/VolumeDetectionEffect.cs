@@ -1,23 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Effects;
 using Windows.Media.MediaProperties;
 
-namespace TouchColors.Controls
+namespace AudioGraphEffects
 {
-    static class VolumeDetectionPropertyNames
-    {
-        public static string Volume = "Volume";
-    }
-
     [ComImport]
     [Guid("5B0D3235-4DBA-4D44-865E-8F1D0E4FD04D")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    unsafe interface IMemoryBufferByteAccess
+    internal unsafe interface IMemoryBufferByteAccess
     {
         void GetBuffer(out byte* buffer, out uint capacity);
     }
@@ -25,7 +19,7 @@ namespace TouchColors.Controls
     public sealed class VolumeDetectionEffect : IBasicAudioEffect
     {
         private AudioEncodingProperties _currentEncodingProperties;
-        private List<AudioEncodingProperties> _supportedEncodingProperties;
+        private readonly List<AudioEncodingProperties> _supportedEncodingProperties;
         private IPropertySet _effectProperties;
 
         public VolumeDetectionEffect()
@@ -45,19 +39,13 @@ namespace TouchColors.Controls
             set { _effectProperties["Volume"] = value; }
         }
 
-        public IReadOnlyList<AudioEncodingProperties> SupportedEncodingProperties
-        {
-            get { return _supportedEncodingProperties; }
-        }
+        public IReadOnlyList<AudioEncodingProperties> SupportedEncodingProperties => _supportedEncodingProperties;
 
         /// <summary>
         /// We are not modifying any audio data, so pass-through audio data
         /// automatically
         /// </summary>
-        public bool UseInputFrameForOutput
-        {
-            get { return true; }
-        }
+        public bool UseInputFrameForOutput => true;
 
         public void Close(MediaEffectClosedReason reason)
         {
@@ -69,29 +57,26 @@ namespace TouchColors.Controls
             // We don't cache frames, so we have nothing to discard
         }
 
-        unsafe public void ProcessFrame(ProcessAudioFrameContext context)
+        public unsafe void ProcessFrame(ProcessAudioFrameContext context)
         {
-            AudioFrame inputFrame = context.InputFrame;
-
-            using (AudioBuffer inputBuffer = context.InputFrame.LockBuffer(AudioBufferAccessMode.Read))
-            using (IMemoryBufferReference inputReference = inputBuffer.CreateReference())
+            using (var inputBuffer = context.InputFrame.LockBuffer(AudioBufferAccessMode.Read))
+            using (var inputReference = inputBuffer.CreateReference())
             {
                 byte* inputInBytes;
                 uint inputCapacity;
-                float* inputInFloats;
-
+                
                 ((IMemoryBufferByteAccess)inputReference).GetBuffer(out inputInBytes, out inputCapacity);
 
-                inputInFloats = (float*)inputInBytes;
-                int inputLength = (int)inputBuffer.Length / sizeof(float);
+                var inputInFloats = (float*)inputInBytes;
+                var inputLength = inputBuffer.Length / sizeof(float);
                 float sum = 0;
 
                 // Only process one channel for now (will average out unless the audio is severely unbalanced between left/right)
-                for (int i = 0; i < inputLength; i += 2)
+                for (var i = 0; i < inputLength; i += 2)
                 {
                     sum += (inputInFloats[i] * inputInFloats[i]);
                 }
-                double rms = Math.Sqrt(sum / (inputLength / 2));
+                var rms = Math.Sqrt(sum / (inputLength / 2));
                 this.VolumeInDecibels = 20 * Math.Log10(rms);
             }
         }

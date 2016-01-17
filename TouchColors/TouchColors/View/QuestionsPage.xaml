@@ -1,18 +1,38 @@
 ﻿<Page x:Class="TouchColors.View.QuestionsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:TouchColors.Controls"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:media="using:Microsoft.Xaml.Interactions.Media"
       DataContext="{Binding Source={StaticResource Locator},
                             Path=QuestionsVM}"
       mc:Ignorable="d">
+   <Page.Resources>
+      <Storyboard x:Name="ColorStoryboard">
+         <ColorAnimation Duration="0:0:1"
+                         Storyboard.TargetName="LayoutRoot"
+                         Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                         To="{Binding CurrentColor.RgbColor}"
+                         d:IsOptimized="True">
+            <ColorAnimation.EasingFunction>
+               <ExponentialEase EasingMode="EaseIn" />
+            </ColorAnimation.EasingFunction>
+         </ColorAnimation>
+      </Storyboard>
+   </Page.Resources>
 
-   <Grid Tapped="{x:Bind ViewModel.NextColor_Click}">
-      <Grid.Background>
-         <SolidColorBrush Color="{Binding CurrentColor.RgbColor}" />
-      </Grid.Background>
-      <!--<controls:GifView UriSource="ms-appx:///Assets/color_loading.gif" Width="200" Visibility="{Binding IsRecognizingVisibility}" />-->
-      <controls:MicrophoneVisualizer />
+   <Grid x:Name="LayoutRoot">
+      <controls:MicrophoneVisualizer HorizontalAlignment="Left"
+                                     VerticalAlignment="Top"
+                                     IsEnabled="{Binding IsRecognizing}" />
+      <i:Interaction.Behaviors>
+         <core:EventTriggerBehavior EventName="Tapped">
+            <core:InvokeCommandAction Command="{Binding NextColorCommand}" />
+            <media:ControlStoryboardAction Storyboard="{StaticResource ColorStoryboard}" />
+         </core:EventTriggerBehavior>
+      </i:Interaction.Behaviors>
    </Grid>
 </Page>

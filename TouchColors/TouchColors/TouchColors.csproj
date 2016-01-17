@@ -105,9 +105,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\GifView.xaml.cs">
-      <DependentUpon>GifView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\MicrophoneVisualizer.xaml.cs">
       <DependentUpon>MicrophoneVisualizer.xaml</DependentUpon>
     </Compile>
@@ -162,10 +159,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\GifView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\MicrophoneVisualizer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

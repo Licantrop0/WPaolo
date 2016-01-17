@@ -6,20 +6,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400" Unloaded="UserControl_Unloaded">
+    d:DesignWidth="400" Unloaded="UserControl_Unloaded" IsEnabledChanged="UserControl_IsEnabledChanged">
 
-    <Grid>
-      <StackPanel Orientation="Horizontal">
-         <TextBlock FontSize="40" Text="Volume:" Margin="6,0" />
-         <TextBlock Name="Score" FontSize="40" Text="" FontFamily="Segoe MDL2 Assets"/>
-         <Ellipse Name="Hal" Opacity=".5" Height="100" Width="100">
-            <Ellipse.Fill>
-               <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                  <GradientStop Color="Black" Offset="0"/>
-                  <GradientStop Color="#FFB91818" Offset="1"/>
-               </LinearGradientBrush>
-            </Ellipse.Fill>
-         </Ellipse>
-      </StackPanel>
+   <Grid>
+      <ItemsControl Name="Bars" Height="100">
+         <ItemsControl.ItemTemplate>
+            <DataTemplate>
+               <Rectangle Height="{Binding}" Fill="Red" Stroke="Black" Width="5" VerticalAlignment="Bottom" />
+            </DataTemplate>
+         </ItemsControl.ItemTemplate>
+         <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+               <StackPanel Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+         </ItemsControl.ItemsPanel>
+      </ItemsControl>
    </Grid>
 </UserControl>

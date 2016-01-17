@@ -1,9 +1,11 @@
 ﻿using System;
+using Windows.ApplicationModel;
 using Windows.Foundation.Collections;
 using Windows.Media.Audio;
 using Windows.Media.Capture;
 using Windows.Media.Effects;
 using Windows.Media.Render;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using AudioGraphEffects;
 
@@ -18,8 +20,15 @@ namespace TouchColors.Controls
         public MicrophoneVisualizer()
         {
             this.InitializeComponent();
+            if (DesignMode.DesignModeEnabled)
+            {
+                var rnd = new Random();
+                for (var i = 0; i < 50; i++)
+                    Bars.Items.Add(rnd.Next(60));
+                return;
+            }
             CreateAudioGraph();
-        }        
+        }
 
         private async void CreateAudioGraph()
         {
@@ -49,21 +58,15 @@ namespace TouchColors.Controls
             }
             _scoreInterval = 0;
 
-            var temp = double.Parse(_volumeDetectionConfiguration["Volume"].ToString());
+            var db = double.Parse(_volumeDetectionConfiguration["Volume"].ToString());
+            var height = Math.Min(Math.Max((db + 40), 0) * 10, 100); //restrict from 0 to 100 px
+
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                Hal.Opacity = Math.Min(Math.Max(0, (temp + 45.5)/(-6.4 + 45.5)), 1);
+                Bars.Items.Add(height);
 
-                if (temp < -44)
-                    this.Score.Text = ""; // no bars
-                else if (temp >= -44 && temp < -38)
-                    this.Score.Text = ""; // one bar
-                else if (temp >= -38 && temp < -32)
-                    this.Score.Text = ""; // two bar
-                else if (temp >= -32 && temp < -26)
-                    this.Score.Text = ""; // three bars
-                else if (temp >= -26)
-                    this.Score.Text = ""; // four/full bars
+                if (Bars.Items.Count > 50)
+                    Bars.Items.RemoveAt(0);
             });
 
         }
@@ -76,7 +79,19 @@ namespace TouchColors.Controls
 
         private void stop_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            _audioGraph.Stop();            
+            _audioGraph.Stop();
+        }
+
+        private void UserControl_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var isEnabled = (bool) e.NewValue;
+            if (isEnabled)
+                _audioGraph.Start();
+            else
+            {
+                _audioGraph.Stop();
+                Bars.Items.Clear();
+            }
         }
     }
 }

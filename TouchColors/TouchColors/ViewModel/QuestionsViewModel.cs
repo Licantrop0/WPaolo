@@ -10,6 +10,7 @@ using Windows.Media.SpeechRecognition;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using GalaSoft.MvvmLight.Command;
 
 namespace TouchColors.ViewModel
 {
@@ -19,8 +20,10 @@ namespace TouchColors.ViewModel
         private readonly List<NamedColor> _colorList;
         private readonly ISpeechHelper _speechHelper;
         private readonly string[] _validAnswers = { "{0}, very good!", "Yes, this is {0}", "{0}, good job!", "{0}, you got it!" };
+        private readonly SemaphoreSlim _clickSemaphore;
         private string _validAnswer;
-        private SemaphoreSlim _clickSemaphore;
+
+        public RelayCommand NextColorCommand { get; }
 
         private NamedColor _currentColor;
         public NamedColor CurrentColor
@@ -29,12 +32,12 @@ namespace TouchColors.ViewModel
             private set { Set(ref _currentColor, value); }
         }
 
-        private Visibility _isRecognizingVisibility;
+        private bool _isRecognizing;
 
-        public Visibility IsRecognizingVisibility
+        public bool IsRecognizing
         {
-            get { return _isRecognizingVisibility; }
-            set { Set(ref _isRecognizingVisibility, value); }
+            get { return _isRecognizing; }
+            set { Set(ref _isRecognizing, value); }
         }
 
         public QuestionsViewModel(ISpeechHelper speechHelper)
@@ -47,7 +50,7 @@ namespace TouchColors.ViewModel
 
             _dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
             _clickSemaphore = new SemaphoreSlim(1);
-
+            NextColorCommand = new RelayCommand(NextColorAction);
             _speechHelper = speechHelper;
             _speechHelper.SpeechRecognizerStateChanged += speechHelper_SpeechRecognizerStateChanged;
 
@@ -58,13 +61,12 @@ namespace TouchColors.ViewModel
             StartQuestioning();
         }
 
+
         private async void speechHelper_SpeechRecognizerStateChanged(object sender, SpeechRecognizerState state)
         {
             await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                IsRecognizingVisibility = state == SpeechRecognizerState.Capturing ?
-                Visibility.Visible :
-                Visibility.Collapsed;
+                IsRecognizing = state != SpeechRecognizerState.Idle;
             });
         }
 
@@ -72,19 +74,19 @@ namespace TouchColors.ViewModel
         {
             var initializated = await _speechHelper.InitializeRecognition(_colorList.Select(c => c.Name));
             if (initializated)
-                NextColor_Click(null, null);
+                NextColorAction();
         }
-
-        public async void NextColor_Click(object sender, RoutedEventArgs e)
+        private async void NextColorAction()
         {
             if (_clickSemaphore.CurrentCount == 0)
                 return;
-            
+
+            CurrentColor = _colorList.GetNextRandomItem(CurrentColor);
+
             //TODO: reduce semaphore scope
             await _clickSemaphore.WaitAsync();
             try
             {
-                CurrentColor = _colorList.GetNextRandomItem(CurrentColor);
 
                 await _speechHelper.Speak("What color is this?");
 

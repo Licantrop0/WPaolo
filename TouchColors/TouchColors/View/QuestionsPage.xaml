@@ -12,7 +12,7 @@
       mc:Ignorable="d">
    <Page.Resources>
       <Storyboard x:Name="ColorStoryboard">
-         <ColorAnimation Duration="0:0:1"
+         <ColorAnimation Duration="0:0:0.5"
                          Storyboard.TargetName="LayoutRoot"
                          Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
                          To="{Binding CurrentColor.RgbColor}"
@@ -24,15 +24,20 @@
       </Storyboard>
    </Page.Resources>
 
-   <Grid x:Name="LayoutRoot">
-      <controls:MicrophoneVisualizer HorizontalAlignment="Left"
-                                     VerticalAlignment="Top"
-                                     IsEnabled="{Binding IsRecognizing}" />
+   <Grid x:Name="LayoutRoot" Background="Transparent">
       <i:Interaction.Behaviors>
+         <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding StartQuestioningCommand}" />
+            <media:ControlStoryboardAction Storyboard="{StaticResource ColorStoryboard}" />
+         </core:EventTriggerBehavior>
          <core:EventTriggerBehavior EventName="Tapped">
             <core:InvokeCommandAction Command="{Binding NextColorCommand}" />
             <media:ControlStoryboardAction Storyboard="{StaticResource ColorStoryboard}" />
          </core:EventTriggerBehavior>
       </i:Interaction.Behaviors>
+      <controls:MicrophoneVisualizer HorizontalAlignment="Left"
+                                     VerticalAlignment="Top"
+                                     IsEnabled="{Binding IsRecognizing}" />
+
    </Grid>
 </Page>

@@ -35,7 +35,8 @@ namespace TouchColors.Helper
 
             _speechRecognizer = new SpeechRecognizer(SpeechRecognizer.SystemSpeechLanguage);
             _speechRecognizer.StateChanged += speechRecognizer_StateChanged;
-            var listConstraint = new SpeechRecognitionListConstraint(responses, "colors");
+            var listConstraint = new SpeechRecognitionListConstraint(responses);
+            
             _speechRecognizer.Constraints.Add(listConstraint);
             await _speechRecognizer.CompileConstraintsAsync();
             return true;
@@ -71,8 +72,8 @@ namespace TouchColors.Helper
 
         private async void Mp_MediaOpened(MediaPlayer sender, object args)
         {
-            //Empirically dividing by 2 because of SpeechSynthesizer fucker
-            var ms = (int)(sender.NaturalDuration.TotalMilliseconds / 2);
+            //Empirically dividing by 1.4 because of SpeechSynthesizer fucker
+            var ms = (int)(sender.NaturalDuration.TotalMilliseconds / 1.4);
 
             sender.Play();
 

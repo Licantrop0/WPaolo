@@ -24,6 +24,7 @@ namespace TouchColors.ViewModel
         private string _validAnswer;
 
         public RelayCommand NextColorCommand { get; }
+        public RelayCommand StartQuestioningCommand { get; }
 
         private NamedColor _currentColor;
         public NamedColor CurrentColor
@@ -51,14 +52,13 @@ namespace TouchColors.ViewModel
             _dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
             _clickSemaphore = new SemaphoreSlim(1);
             NextColorCommand = new RelayCommand(NextColorAction);
+            StartQuestioningCommand = new RelayCommand(StartQuestioningAction);
             _speechHelper = speechHelper;
             _speechHelper.SpeechRecognizerStateChanged += speechHelper_SpeechRecognizerStateChanged;
 
             _colorList = XElement.Load("Data/RYBColors.xml").Elements()
                 .Select(e => new NamedColor(e.Attribute("name").Value, ColorConverter.FromRgb(e.Attribute("value").Value)))
                 .ToList();
-
-            StartQuestioning();
         }
 
 
@@ -66,11 +66,13 @@ namespace TouchColors.ViewModel
         {
             await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                IsRecognizing = state != SpeechRecognizerState.Idle;
+                IsRecognizing = state == SpeechRecognizerState.Capturing ||
+                                state == SpeechRecognizerState.SoundStarted ||
+                                state == SpeechRecognizerState.SoundEnded;
             });
         }
 
-        private async void StartQuestioning()
+        private async void StartQuestioningAction()
         {
             var initializated = await _speechHelper.InitializeRecognition(_colorList.Select(c => c.Name));
             if (initializated)

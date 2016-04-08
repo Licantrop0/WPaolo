@@ -9,7 +9,7 @@
     d:DesignWidth="400" Unloaded="UserControl_Unloaded" IsEnabledChanged="UserControl_IsEnabledChanged">
 
    <Grid>
-      <ItemsControl Name="Bars" Height="100">
+      <ItemsControl Name="Bars" Height="100" VerticalAlignment="Bottom">
          <ItemsControl.ItemTemplate>
             <DataTemplate>
                <Rectangle Height="{Binding}" Fill="Red" Stroke="Black" Width="5" VerticalAlignment="Bottom" />

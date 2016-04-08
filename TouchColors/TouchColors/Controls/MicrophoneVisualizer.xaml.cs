@@ -20,6 +20,7 @@ namespace TouchColors.Controls
         public MicrophoneVisualizer()
         {
             this.InitializeComponent();
+           
             if (DesignMode.DesignModeEnabled)
             {
                 var rnd = new Random();
@@ -50,8 +51,8 @@ namespace TouchColors.Controls
 
         private async void Graph_QuantumProcessed(AudioGraph sender, object args)
         {
-            // SCORE: Find the current volume level every 20 intervals
-            if (_scoreInterval <= 4)
+            // SCORE: Find the current volume level every 3 intervals
+            if (_scoreInterval <= 2)
             {
                 _scoreInterval++;
                 return;
@@ -59,13 +60,15 @@ namespace TouchColors.Controls
             _scoreInterval = 0;
 
             var db = double.Parse(_volumeDetectionConfiguration["Volume"].ToString());
-            var height = Math.Min(Math.Max((db + 40), 0) * 10, 100); //restrict from 0 to 100 px
+            var height = Math.Min(Math.Max((db + 41), 0) * 4, 100); //restrict from 0 to 100 px
+            if(height == 0)
+                return;            
 
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 Bars.Items.Add(height);
 
-                if (Bars.Items.Count > 50)
+                if (Bars.Items.Count > 40)
                     Bars.Items.RemoveAt(0);
             });
 
